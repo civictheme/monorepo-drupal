@@ -1,0 +1,11 @@
+//
+// Color mixins.
+//
+
+@function civic-color($name) {
+  $all-colors: map-merge($civic-default-colors, $civic-colors);
+  @if map-get($all-colors, $name) == null {
+    @error '"#{$name}" is not an available colour';
+  }
+  @return map-get($all-colors, $name);
+}

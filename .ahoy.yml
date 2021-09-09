@@ -1,0 +1,244 @@
+#
+# Ahoy configuration file.
+# http://www.ahoycli.com/
+#
+# Provides development experience shortcuts to work with the stack.
+# Any command can be copy-pasted directly into terminal and ran without using
+# Ahoy.
+#
+# Do not add values directly into this file. Use .env file instead.
+# Run `ahoy up cli` to apply environment variables changes to containers.
+---
+ahoyapi: v2
+
+commands:
+
+  build:
+    usage: Build or rebuild the project.
+    cmd: |
+      ahoy confirm "Running this command will remove your current database and files. Are you sure?" &&
+      ./scripts/drevops/build.sh
+
+  info:
+    usage: Show information about this project.
+    cmd: |
+      docker-compose exec \
+        -e HOST_DB_PORT=$(docker port $(docker-compose ps -q mariadb 2>/dev/null) 3306 2>/dev/null | cut -d : -f 2) \
+        -e HOST_SOLR_PORT=$(docker port $(docker-compose ps -q solr 2>/dev/null) 8983 2>/dev/null | cut -d : -f 2) \
+        -e SHOW_LOGIN_LINK=${SHOW_LOGIN_LINK} \
+        cli ./scripts/drevops/info.sh "$@"
+
+  # ----------------------------------------------------------------------------
+  # Docker commands.
+  # ----------------------------------------------------------------------------
+
+  up:
+    usage: Build and start all or specified Docker containers.
+    cmd: |
+      docker-compose up -d "$@" && if docker-compose logs | grep -q "\[Error\]"; then exit 1; fi
+      # Write Livereload host port information into a socket file.
+      mkdir -p docroot/sites/default/files && docker-compose port cli 35729 | cut -d : -f 2 | xargs -I{} ahoy cli 'echo {} > /app/docroot/sites/default/files/livereload.sock'
+
+  down:
+    usage: Stop Docker containers and remove container, images, volumes and networks.
+    cmd: |
+      ahoy confirm "Running this command will remove your current database. Are you sure?" &&
+      # Always remove dangling volumes after removing containers to prevent
+      # data leaking between builds (resulting in inconsistent builds).
+      if [ -f "docker-compose.yml" ]; then docker-compose down --volumes; fi
+
+  start:
+    usage: Start all or specified existing Docker containers.
+    cmd: |
+      docker-compose start "$@"
+      # Write Livereload host port information into a socket file.
+      mkdir -p docroot/sites/default/files && docker-compose port cli 35729 | cut -d : -f 2 | xargs -I{} ahoy cli 'echo {} > /app/docroot/sites/default/files/livereload.sock'
+
+  stop:
+    usage: Stop all or specified running Docker containers.
+    cmd: docker-compose stop "$@"
+
+  restart:
+    usage: Restart all or specified stopped and running Docker containers.
+    cmd: docker-compose restart "$@"
+
+  logs:
+    usage: Show Docker logs for all or specified services.
+    cmd: docker-compose logs "$@"
+
+  pull:
+    usage: Pull latest docker images.
+    cmd: if [ ! -z "$(docker image ls -q)" ]; then docker image ls --format \"{{.Repository}}:{{.Tag}}\" | grep amazeeio/ | grep -v none | xargs -n1 docker pull -q | cat; fi
+
+  cli:
+    usage: Start a shell or run a command inside the CLI service container.
+    # The shell is started if no arguments were provided to this command.
+    cmd: if \[ "${#}" -ne 0 \]; then docker-compose exec -T cli bash -c "$*"; else docker-compose exec cli bash; fi
+
+  composer:
+    usage: Run composer commands in the CLI service container.
+    cmd: docker-compose exec -T cli composer "$@"
+
+  drush:
+    usage: Run drush commands in the CLI service container.
+    cmd: docker-compose exec -T cli bash -c "drush -l ${LOCALDEV_URL} $*"
+
+  flush-redis:
+    usage: Flush Redis cache.
+    cmd: docker-compose exec redis redis-cli flushall
+
+  # ----------------------------------------------------------------------------
+  # Application commands.
+  # ----------------------------------------------------------------------------
+
+  login:
+    usage: Login to a website.
+    # Unblock user 1 and generate a one time login link.
+    cmd: ahoy drush uublk 1 -q && ahoy drush uli "$@"
+
+
+  reload-db:
+    usage: Reload the database container using local database image.
+    cmd: |
+      ahoy confirm "Running this command will replace your current database. Are you sure?" &&
+      docker-compose rm -f -s -v mariadb && ahoy up -- --build mariadb && ahoy install-site && ahoy info && ahoy login ||
+      echo "The operation was canceled."
+
+  install-site:
+    usage: Install a site.
+    cmd: docker-compose exec -e SKIP_POST_DB_IMPORT=${SKIP_POST_DB_IMPORT:-} -T cli ./scripts/drevops/drupal-install-site.sh
+
+  export-db:
+    usage: Export database dump or database image (DATABASE_IMAGE variable must be set).
+    cmd: |
+      [ -z "${DATABASE_IMAGE}" ] && docker-compose exec -e DB_DIR=${DB_DIR:-} -T cli ./scripts/drevops/drupal-export-db.sh "$@" || \
+      ( DOCKER_IMAGE="${DATABASE_IMAGE}" ./scripts/drevops/drupal-export-db-image.sh "$@";
+        if [ -n "${EXPORT_DB_DEPLOY_DOCKER}" ]; then DOCKER_MAP=mariadb=${DATABASE_IMAGE} DOCKER_IMAGE_TAG=${DOCKER_IMAGE_TAG} ./scripts/drevops/deploy-docker.sh; fi )
+
+  pull-db:
+    usage: Download database image with the latest nightly dump. Run "ahoy reload-db" to reload DB in the running stack.
+    cmd: |
+      [ -n "${DATABASE_IMAGE}" ] && docker pull $DATABASE_IMAGE
+
+  clean:
+    usage: Remove containers and all build files.
+    cmd: ahoy down && ./scripts/drevops/clean.sh
+
+  reset:
+    usage: "Reset environment: remove containers, all build, uncommitted files."
+    cmd: |
+      ahoy confirm "All containers, build and uncomitted files will be removed, repository will be reset to the last commit. Proceed?" \
+      && ahoy clean && ./scripts/drevops/reset.sh || echo "The operation was canceled."
+
+  fei:
+    usage: Install front-end assets.
+    cmd: |
+      ahoy cli "npm --prefix docroot/themes/custom/${DRUPAL_THEME_BASE} install"
+      ahoy cli "npm --prefix docroot/themes/custom/${DRUPAL_THEME} install"
+
+  fe:
+    usage: Build front-end assets.
+    cmd: |
+      ahoy cli "cd docroot/themes/custom/${DRUPAL_THEME_BASE} && npm run build"
+      ahoy cli "cd docroot/themes/custom/${DRUPAL_THEME} && npm run build"
+
+  fed:
+    usage: Build front-end assets for development.
+    cmd: |
+      ahoy cli "cd docroot/themes/custom/${DRUPAL_THEME_BASE} && npm run build"
+      ahoy cli "cd docroot/themes/custom/${DRUPAL_THEME} && npm run build"
+
+  storybook:
+    usage: Run Storybook on host.
+    cmd: |
+      cd docroot/themes/custom/${DRUPAL_THEME} && npm install && npm run storybook
+      cd docroot/themes/custom/${DRUPAL_THEME_BASE} && npm install && npm run storybook
+
+  lint:
+    usage: Lint back-end and front-end code.
+    cmd: ahoy cli ./scripts/drevops/lint.sh "$@"
+
+  lint-be:
+    usage: Lint back-end code.
+    cmd: ahoy cli ./scripts/drevops/lint.sh be
+
+  lint-fe:
+    usage: Lint front-end code.
+    cmd: ahoy cli ./scripts/drevops/lint.sh fe
+
+  test:
+    usage: Run all tests.
+    cmd: ahoy test-unit && ahoy test-kernel && ahoy test-functional && ahoy test-bdd
+
+  test-unit:
+    usage: Run PhpUnit unit tests.
+    cmd: ahoy cli "TEST_TYPE=unit TEST_LOG_DIR=${TEST_LOG_DIR} ./scripts/drevops/test.sh $@"
+
+  test-kernel:
+    usage: Run PhpUnit kernel tests.
+    cmd: ahoy cli "TEST_TYPE=kernel TEST_ARTIFACT_DIR=${TEST_ARTIFACT_DIR} TEST_LOG_DIR=${TEST_LOG_DIR} ./scripts/drevops/test.sh $@"
+
+  test-functional:
+    usage: Run PhpUnit functional tests.
+    cmd: ahoy cli "TEST_TYPE=functional TEST_ARTIFACT_DIR=${TEST_ARTIFACT_DIR} TEST_LOG_DIR=${TEST_LOG_DIR} ./scripts/drevops/test.sh $@"
+
+  test-bdd:
+    usage: Run BDD tests.
+    cmd: ahoy cli "TEST_TYPE=bdd TEST_ARTIFACT_DIR=${TEST_ARTIFACT_DIR} BEHAT_PROFILE=${BEHAT_PROFILE:-} BEHAT_FORMAT=${BEHAT_FORMAT:-} BEHAT_PARALLEL_INDEX=${BEHAT_PARALLEL_INDEX:-} BEHAT_SCREENSHOT_PURGE=${BEHAT_SCREENSHOT_PURGE-} ./scripts/drevops/test.sh $@"
+
+  debug:
+    usage: Enable debug configuration.
+    # Check if the debug configuration is already enabled and, if not -
+    # enable it and check again that it is enabled from inside of the container.
+    cmd: ahoy cli php -v | grep -q Xdebug || XDEBUG_ENABLE=true ahoy up cli php nginx && ahoy cli php -v | grep -q Xdebug && echo "Enabled debug confguration. Use 'ahoy up' to disable."
+
+  deploy:
+    usage: Run remote deployment procedures
+    cmd: |
+      ahoy confirm "Deployment usually runs in CI. Are you sure you want to proceed with manual deployment? (Run as DEPLOY_PROCEED=1 ahoy deploy [type1,[type2..]], where [type] is 'code', 'docker', 'webhook')" \
+      && ./scripts/drevops/deploy.sh "$@" || echo "The operation was canceled."
+
+  doctor:
+    usage: Find problems with current project setup.
+    cmd: ./scripts/drevops/doctor.sh "$@"
+
+  update:
+    usage: Update development stack.
+    cmd: ahoy confirm "Some committed files may become overwritten. Proceed?" && ./scripts/drevops/update.sh || echo "The operation was canceled."
+
+  # ----------------------------------------------------------------------------
+  # Utilities.
+  # ----------------------------------------------------------------------------
+  confirm:
+    cmd: |
+      [ -z "$CONFIRM_RESPONSE" ] && read -r -p "$1 [y/N] " CONFIRM_RESPONSE; [ "$CONFIRM_RESPONSE" = "y" ] || [ "$CONFIRM_RESPONSE" = true ]
+    hide: true
+
+# Override entrypoint to alter default behaviour of Ahoy.
+entrypoint:
+  # Run all commands in Bash.
+  - bash
+  # Read the commands from the string.
+  - -c
+  # Exit the script if any statement returns a non-true return value.
+  - -e
+  # Read variables from .env file, respecting existing environment variable values.
+  #
+  # It is important to understand that variables set in .env file are already
+  # available inside of the containers after stack is running (as a part of
+  # docker-compose functionality), so most of the commands are using these
+  # values taken from containers.
+  #
+  # However, since docker does not support changes to environment variables in
+  # running containers without restarting containers, we adding this mechanism
+  # of reading variables here to allow adjustments of some variables
+  # (like PHPCS scan targets) without the need to restart containers.
+  #
+  # As a rule of thumb, use `ahoy up cli` to apply changes to variables.
+  - |
+    t=$(mktemp) && export -p > "$t" && set -a && . ./.env && if [ -f ./.env.local ];then . ./.env.local;fi && set +a && . "$t" && rm "$t" && unset t
+    bash -e -c "$0" "$@"
+  # Replaced with your command.
+  - '{{cmd}}'
+  # The name of the command that was run (available as $0).
+  - '{{name}}'
