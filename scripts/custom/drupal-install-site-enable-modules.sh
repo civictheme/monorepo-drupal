@@ -23,8 +23,8 @@ DRUSH_ALIAS="${DRUSH_ALIAS:-}"
 # Use local or global Drush, giving priority to a local drush.
 drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush"; else command -v drush; fi)"
 
-echo "==> Enabling modules after install."
-$drush ${DRUSH_ALIAS} pm-enable shield -y
+# Use cd_core.info.yml to declare all dependencies that must be installed in all environments.
+# Use cd_core.install to add other post-install operations.
 $drush ${DRUSH_ALIAS} pm-enable cd_core -y
 
 # Perform operations based on the current environment.
