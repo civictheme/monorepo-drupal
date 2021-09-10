@@ -133,7 +133,7 @@ jobs:
 
   build: &job_build
     <<: *container_config
-    parallelism: 2
+    parallelism: 1
     steps:
       - attach_workspace:
           at: /workspace
