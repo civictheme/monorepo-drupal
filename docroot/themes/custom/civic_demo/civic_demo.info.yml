@@ -8,5 +8,8 @@ base theme: civic
 components:
   # Declaring support for components from the base and current theme.
   namespaces:
-    civic: ../civic/components/
-    custom: components/
+    # Override the location of the base theme's component overrides in the current theme.
+    # If there are no overrides - the components module will traverse the namespace in the
+    # parent theme.
+    civic: components
+    custom: components
