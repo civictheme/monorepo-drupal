@@ -20,8 +20,11 @@ DRUSH_ALIAS="${DRUSH_ALIAS:-}"
 # If provided, the ${DRUPAL_MODULE_PREFIX}_core will be enabled (if exists).
 DRUPAL_MODULE_PREFIX="${DRUPAL_MODULE_PREFIX:-}"
 
-# Drupal site name
+# Drupal site name.
 DRUPAL_SITE_NAME="${DRUPAL_SITE_NAME:-Example site}"
+
+# Drupal site email.
+DRUPAL_SITE_MAIL="${DRUPAL_SITE_MAIL:-admin@example.com}"
 
 # Profile machine name.
 DRUPAL_PROFILE="${DRUPAL_PROFILE:-standard}"
@@ -101,7 +104,7 @@ else
   if ls "${DRUPAL_CONFIG_PATH}"/*.yml >/dev/null 2>&1; then
     echo "==> Using found configuration files."
     # Install from profile and configuration.
-    $drush ${DRUSH_ALIAS} si "${DRUPAL_PROFILE}" -y --account-name=admin --site-name="${DRUPAL_SITE_NAME}" --config-dir=${DRUPAL_CONFIG_PATH} install_configure_form.enable_update_status_module=NULL install_configure_form.enable_update_status_emails=NULL
+    $drush ${DRUSH_ALIAS} si "${DRUPAL_PROFILE}" -y --account-name=admin --site-name="${DRUPAL_SITE_NAME}" --site-mail="${DRUPAL_SITE_MAIL}" --config-dir=${DRUPAL_CONFIG_PATH} install_configure_form.enable_update_status_module=NULL install_configure_form.enable_update_status_emails=NULL
     # Run updates.
     $drush ${DRUSH_ALIAS} updb -y
     # Mark to skip any other operations as the site is now fully built.
