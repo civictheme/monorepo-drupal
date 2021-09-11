@@ -1,7 +1,7 @@
 # Civic Demo
-Drupal 9 implementation of Civic Demo for Civic Demo Org
+Drupal 9 implementation of Civic Demo site for Civic Demo Org
 
-[![CircleCI](https://circleci.com/gh/salsadigitalauorg/civic/tree/master.svg?style=shiled&circle-token=01614394fbc6f77e46e2ed643853a5075828737e)](https://circleci.com/gh/salsadigitalauorg/civic/tree/master)
+[![CircleCI](https://circleci.com/gh/salsadigitalauorg/civic/tree/develop.svg?style=svg&circle-token=abf9bde8507c968b4de120552682aa925d979256)](https://circleci.com/gh/salsadigitalauorg/civic/tree/develop)
 ![Drupal 9](https://img.shields.io/badge/Drupal-9-blue.svg)
 
 
