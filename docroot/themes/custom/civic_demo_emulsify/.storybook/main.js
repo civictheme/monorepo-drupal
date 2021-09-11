@@ -1,7 +1,7 @@
 module.exports = {
   stories: [
-    '../../civic/components/**/*.stories.mdx',
-    '../../civic/components/**/*.stories.@(js|jsx|ts|tsx)',
+    '../../civic_emulsify/components/**/*.stories.mdx',
+    '../../civic_emulsify/components/**/*.stories.@(js|jsx|ts|tsx)',
     '../components/**/*.stories.mdx',
     '../components/**/*.stories.@(js|jsx|ts|tsx)',
   ],
