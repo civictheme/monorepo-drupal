@@ -1,4 +1,4 @@
-# Civic Demo
+# Civic Demo site
 Drupal 9 implementation of Civic Demo for Civic Demo Org
 
 [![CircleCI](https://circleci.com/gh/salsadigitalauorg/civic/tree/master.svg?style=shiled&circle-token=01614394fbc6f77e46e2ed643853a5075828737e)](https://circleci.com/gh/salsadigitalauorg/civic/tree/master)
