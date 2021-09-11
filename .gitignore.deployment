@@ -1,0 +1,28 @@
+# Replaces standard .gitignore when building a deployment artifact.
+
+# Ignore everything, but some whitelisted files.
+/*
+
+!docroot
+# But still ignore sources.
+docroot/themes/custom/civic/fonts
+docroot/themes/custom/civic/images
+docroot/themes/custom/civic/js
+docroot/themes/custom/civic/scss
+docroot/themes/custom/civic/Gruntfile.js
+docroot/themes/custom/civic/package.json
+docroot/themes/custom/civic/package-lock.json
+docroot/themes/custom/civic/.eslintrc.json
+docroot/themes/custom/civic/node_modules
+docroot/sites/default/settings.generated.php
+docroot/sites/default/default.settings.php
+docroot/sites/default/default.services.yml
+docroot/sites/default/default.settings.local.php
+docroot/sites/default/default.services.local.yml
+docroot/sites/default/files
+
+!composer.json
+!/config/
+!/hooks/
+!/vendor/
+!/scripts/

@@ -1,0 +1,1 @@
+Drupal.behaviors.name452={attach:function attach(){console.log("Javascript works!")}};

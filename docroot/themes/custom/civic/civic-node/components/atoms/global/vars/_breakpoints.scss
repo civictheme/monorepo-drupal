@@ -1,0 +1,14 @@
+//
+// Breakpoints.
+//
+// Do not use these directly, except for calculations.
+// Use @include breakpoint(name) mixin instead.
+//
+$civic-breakpoints: (
+  'xs': 368px,
+  's': 576px,
+  'm': 768px,
+  'l': 992px,
+  'xl': 1280px,
+  'xxl': 1440px
+) !default;

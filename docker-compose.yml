@@ -1,0 +1,252 @@
+# Docker Compose configuration file.
+#
+# - Using a single file to work in local, CI and production environments.
+# - Local overrides are possible using docker-composer.override.yml file.
+# - Environment variables are read from .env file.
+version: '2.3'
+
+# ------------------------------------------------------------------------------
+# Variable aliases.
+# ------------------------------------------------------------------------------
+
+# Project name. Used in multiple places to name built Docker images.
+# Do not change here, instead update .env file.
+x-project:
+  &project ${PROJECT:-civic_demo}
+
+# Volumes available in each container to share application data.
+x-volumes:
+  &default-volumes
+  # Understanding host mounting in Docker-based projects.
+  #
+  # To share application code between services (containers), Docker uses volumes.
+  # When used in non-development environments, containers have access to
+  # the same shared files using volumes and these volumes do not need to be
+  # mounted from the host. But for development environment, when the code
+  # constantly changes on the host, we need to have these changes synchronized
+  # into all containers. Since we are using single `docker-compose.yml` file for
+  # all environments, we have to accommodate both cases, so we are specifying an
+  # override for the same directory as a mounted volume as a commented-out lines,
+  # which will be automatically uncommented in CI.
+  #
+  # See Docker Compose reference about volumes https://docs.docker.com/compose/compose-file/compose-file-v2/#volume-configuration-reference
+  volumes:
+    #
+    # All application files mounted into container.
+    - .:/app:${VOLUME_FLAGS:-delegated} ### Local overrides to mount host filesystem. Automatically removed in CI and PROD.
+    #
+    # Override mount for files to allow different type of syncing to optimise
+    # performance.
+    - ./docroot/sites/default/files:/app/docroot/sites/default/files:${VOLUME_FLAGS:-delegated} ### Local overrides to mount host filesystem. Automatically removed in CI and PROD.
+    #
+    # Use the same volumes in environments without host mounts support.
+    ##- app:/app # Override for environment without host mounts. Automatically uncommented in CI.
+    ##- files:/app/docroot/sites/default/files # Override for environment without host mounts. Automatically uncommented in CI.
+
+# The default user under which the containers should run.
+x-user:
+  &default-user
+  # Change this if you are on linux and run with another user than id `1000`
+  user: '1000'
+
+# Environment variables set in all containers during build and runtime.
+# Do not change values here, instead modify .env file.
+x-environment:
+  &default-environment
+  #
+  # Local development URL. Required to make DNS request route correctly.
+  # Do not change the default value here (it is set as a fallback). Instead,
+  # change the value in .env file.
+  LAGOON_LOCALDEV_URL: &default-url ${LOCALDEV_URL:-civic-demo.docker.amazee.io}
+  LAGOON_ROUTE: *default-url
+  #
+  # Allow to enable XDebug by setting external environment variable.
+  # Do not change the value here. Instead, use
+  # ahoy debug
+  # or
+  # XDEBUG_ENABLE=true docker-compose up -d
+  XDEBUG_ENABLE: ${XDEBUG_ENABLE:-}
+  #
+  # Pass-through $CI variable used to identify the CI environment.
+  CI: ${CI:-}
+  #
+  # Re-using global project name for Lagoon.
+  LAGOON_PROJECT: *project
+  #
+  # Allow to override Lagoon environment type, defaulting it to 'local'.
+  LAGOON_ENVIRONMENT_TYPE: ${LAGOON_ENVIRONMENT_TYPE:-local}
+
+# ------------------------------------------------------------------------------
+# Services.
+# ------------------------------------------------------------------------------
+
+services:
+
+  # CLI container.
+  cli:
+    #
+    # Build docker image to add application files into container.
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.cli
+    #
+    # The name of the Docker image is the name of the project.
+    image: *project
+    <<: *default-volumes
+    user: root
+    environment:
+      <<: *default-environment
+    # Mount volumes from Pygmy to inject host SSH key into container.
+    # https://pygmy.readthedocs.io/en/master/ssh_agent/
+    volumes_from: ### Local overrides to mount host SSH keys. Automatically removed in CI.
+      - container:amazeeio-ssh-agent ### Local overrides to mount host SSH keys. Automatically removed in CI.
+    ports:
+      #
+      # Livereload port.
+      # Find port on host with `ahoy info` or `docker-compose port cli 35729`.
+      - "35729"
+    # https://lagoon.readthedocs.io/en/latest/using_lagoon/service_types/#service-types
+    labels:
+      lagoon.type: cli-persistent
+      lagoon.persistent.name: nginx-php
+      lagoon.persistent: /app/docroot/sites/default/files/
+
+  # Nginx container.
+  nginx:
+    #
+    # Build docker image to add application files into container.
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.nginx-drupal
+      args:
+        CLI_IMAGE: *project
+    <<: *default-volumes
+    <<: *default-user
+    environment:
+      <<: *default-environment
+    depends_on:
+      - cli
+    networks:
+      #
+      # This network is supported by Pygmy and used to route all requests to
+      # host machine.
+      - amazeeio-network
+      #
+      # This is a standard network and is used for all other environments, where
+      # requests routing is not required and/or not supported.
+      - default
+    # https://lagoon.readthedocs.io/en/latest/using_lagoon/service_types/#service-types
+    labels:
+      lagoon.type: nginx-php-persistent
+      lagoon.name: nginx-php
+      lagoon.persistent: /app/docroot/sites/default/files/
+      lagoon.persistent.class: slow
+
+  # PHP FPM container.
+  # All web requests going to this container.
+  php:
+    #
+    # Build docker image to add application files into container.
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.php
+      args:
+        CLI_IMAGE: *project
+    <<: *default-volumes
+    <<: *default-user
+    environment:
+      <<: *default-environment
+    depends_on:
+      - cli
+    # https://lagoon.readthedocs.io/en/latest/using_lagoon/service_types/#service-types
+    labels:
+      lagoon.type: nginx-php-persistent
+      lagoon.name: nginx-php
+      lagoon.persistent: /app/docroot/sites/default/files/
+      lagoon.persistent.class: slow
+
+  # Database container.
+  mariadb:
+    #
+    # Build docker image to add application files into container.
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.mariadb
+      args:
+        IMAGE: "${DATABASE_IMAGE:-amazeeio/mariadb-drupal:21.7.0}"
+    environment:
+      <<: *default-environment
+    ports:
+      #
+      # MariaDB port.
+      # Find port on host with `ahoy info` or `docker-compose port mariadb 3306`.
+      - "3306"
+    # https://lagoon.readthedocs.io/en/latest/using_lagoon/service_types/#service-types
+    # Make sure to destroy and re-deploy an environment if this value changes.
+    labels:
+      lagoon.type: mariadb
+
+  # Redis container.
+  # Used for caching.
+  redis:
+    image: amazeeio/redis:6-21.7.0
+    # https://lagoon.readthedocs.io/en/latest/using_lagoon/service_types/#service-types
+    labels:
+      lagoon.type: redis
+
+  # Search engine container.
+  solr:
+    #
+    # Build docker image to apply modifications required for this application.
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.solr
+      args:
+        CLI_IMAGE: *project
+    <<: *default-user
+    environment:
+      <<: *default-environment
+    ports:
+      #
+      # Solr port.
+      # Find port on host with `ahoy info` or `docker-compose port solr 8983`.
+      - "8983"
+    # https://lagoon.readthedocs.io/en/latest/using_lagoon/service_types/#service-types
+    labels:
+      lagoon.type: solr
+
+  # Chrome container.
+  # Used for browser testing.
+  chrome:
+    # Pinned to specific image version until https://github.com/drevops/drevops/issues/534 is resolved.
+    image: selenium/standalone-chrome:3.141.59-oxygen
+    #
+    # Increase '/dev/shm' partition size to avoid browser crashing.
+    shm_size: '1gb'
+    #
+    # Use default volumes to provide access to test fixtures.
+    <<: *default-volumes
+    environment:
+      <<: *default-environment
+    depends_on:
+      - cli
+    labels:
+      lagoon.type: none
+
+  # Wait for services to become available.
+  wait_dependencies:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - cli
+      - mariadb
+    command: mariadb:3306
+    labels:
+      lagoon.type: none
+
+networks:
+  amazeeio-network:
+    external: true
+
+volumes:
+  app: {}
+  files: {}

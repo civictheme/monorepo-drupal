@@ -1,0 +1,18 @@
+name: Cd Core
+type: module
+description: Core feature for site settings.
+core_version_requirement: ^9
+package: cd
+
+dependencies:
+  - admin_toolbar:admin_toolbar
+  - adminimal_admin_toolbar:adminimal_admin_toolbar
+  - coffee:coffee
+  - config_update:config_update
+  - environment_indicator:environment_indicator
+  - permissions_filter:permissions_filter
+  - shield:shield
+  - stage_file_proxy:stage_file_proxy
+  # Required for Civic theme.
+  - components:components
+  - paragraphs:paragraphs

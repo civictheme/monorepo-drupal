@@ -1,0 +1,143 @@
+{
+    "name": "civic_demo_org/civic_demo",
+    "description": "Drupal 9 implementation of Civic Demo for Civic Demo Org",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.4",
+        "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.7",
+        "drupal/coffee": "^1",
+        "drupal/config_devel": "^1.8",
+        "drupal/core-composer-scaffold": "^9",
+        "drupal/core-project-message": "^9",
+        "drupal/core-recommended": "^9",
+        "drupal/permissions_filter": "^1.1",
+        "drupal/redirect": "^1.6",
+        "drupal/stage_file_proxy": "^1.1",
+        "drush/drush": "^10",
+        "govcms/govcms": "^2.4",
+        "oomphinc/composer-installers-extender": "^2.0",
+        "vlucas/phpdotenv": "^5.1",
+        "webflo/drupal-finder": "^1.2",
+        "zaporylie/composer-drupal-optimizations": "^1.2"
+    },
+    "require-dev": {
+        "behat/behat": "^3.7",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+        "drevops/behat-format-progress-fail": "^1",
+        "drevops/behat-screenshot": "^1",
+        "drevops/behat-steps": "^1",
+        "drupal/core-dev": "^9",
+        "drupal/drupal-extension": "^4",
+        "php-parallel-lint/php-parallel-lint": "^1.2",
+        "phpcompatibility/php-compatibility": "^9.0",
+        "phpspec/prophecy-phpunit": "^2",
+        "pyrech/composer-changelogs": "^1.7"
+    },
+    "autoload": {
+        "classmap": [
+            "scripts/composer/"
+        ]
+    },
+    "minimum-stability": "alpha",
+    "prefer-stable": true,
+    "config": {
+        "platform": {
+            "php": "7.4"
+        },
+        "process-timeout": 0,
+        "sort-packages": true
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "asset-packagist": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+            "Utilities\\composer\\DrupalSettings::create"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+            "Utilities\\composer\\DrupalSettings::create"
+        ]
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "./docroot"
+            },
+            "file-mapping": {
+                "[project-root]/.gitattributes": false,
+                "[web-root]/.htaccess": false,
+                "[web-root]/.ht.router.php": false,
+                "[web-root]/example.gitignore": false,
+                "[web-root]/INSTALL.txt": false,
+                "[web-root]/README.txt": false,
+                "[web-root]/sites/example.settings.local.php": false,
+                "[web-root]/sites/example.sites.php": false,
+                "[web-root]/web.config": false
+            }
+        },
+        "enable-patching": true,
+        "installer-paths": {
+            "docroot/core": [
+                "type:drupal-core"
+            ],
+            "docroot/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
+            ],
+            "docroot/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "docroot/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "docroot/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ]
+        },
+        "installer-types": [
+            "bower-asset",
+            "npm-asset"
+        ],
+        "preserve-paths": [
+            "docroot/modules/custom",
+            "docroot/themes/custom",
+            "docroot/drush",
+            "docroot/sites/default/settings.php",
+            "docroot/sites/default/services.yml",
+            "docroot/sites/default/default.settings.local.php",
+            "docroot/sites/default/default.services.local.yml",
+            "docroot/sites/default/settings.local.php",
+            "docroot/sites/default/services.local.yml",
+            "docroot/sites/default/files",
+            "docroot/robots.txt",
+            "docroot/.htaccess"
+        ]
+    }
+}

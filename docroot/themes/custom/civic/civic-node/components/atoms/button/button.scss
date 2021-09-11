@@ -1,0 +1,51 @@
+//
+// Button.
+//
+
+@import '../global/mixins';
+@import '../global/variables';
+
+//
+// Mixins.
+//
+
+@mixin civic-button-base () {
+  @include civic-typography('label-large');
+  border: rem(2px) solid transparent;
+  border-radius: $civic-border-radius;
+  cursor: pointer;
+  padding: rem(16px) rem(24px);
+}
+
+@mixin civic-button-primary () {
+  background-color: civic-color('primary');
+  color: civic-color('white');
+
+  &:focus {
+    @include civic_outline();
+  }
+
+  &:hover {
+    background-color: civic-color('shade_30');
+  }
+
+  &:active {
+    background-color: civic-color('shade_60');
+  }
+
+  &[disabled] {
+    background-color: civic-color('neutral_40');
+  }
+}
+
+//
+// Classes.
+//
+
+.civic-button {
+  @include civic-button-base;
+
+  &.primary {
+    @include civic-button-base;
+  }
+}
