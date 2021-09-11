@@ -71,8 +71,8 @@ tasks:
           [[ -n "$LAGOON_PR_NUMBER" ]] && GIT_REF=$LAGOON_PR_NUMBER || GIT_REF=$LAGOON_GIT_BRANCH
           php ./scripts/drevops/notify-deployment.php \
             "Civic Demo" \
-            "lagoon-deploy@civic-demo.salsadigital.com.au" \
-            "your.name@civic-demo.salsadigital.com.au|Your Name" \
+            "lagoon-deploy+civic_demo@salsadigital.com.au" \
+            "alex.skrypnyk@salsadigital.com.au|Alex Skrypnyk, richard.gaunt@salsadigital.com.au|Richard Gaunt" \
             "$GIT_REF" \
             "$LAGOON_ROUTES"
         service: cli
