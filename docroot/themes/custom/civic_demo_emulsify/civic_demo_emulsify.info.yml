@@ -1,7 +1,7 @@
-name: civic_emulsify
+name: civic_demo_emulsify
 type: theme
 description: Theme based on <a href="http://emulsify.info">Emulsify</a>.
-base theme: stable9
+base theme: civic_emulsify
 core: 8.x
 core_version_requirement: ^8 || ^9
 

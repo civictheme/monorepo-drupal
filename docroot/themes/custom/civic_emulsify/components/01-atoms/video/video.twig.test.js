@@ -28,7 +28,7 @@ describe('video', () => {
             frameborder="0"
             height="480"
             src="https://www.youtube.com/embed/YRnVnlhjOBs?autoplay=0&start=0"
-            title="civic_civic_emulsify Video"
+            title="civic_emulsify Video"
             width="854"
           />
           
@@ -61,7 +61,7 @@ describe('video', () => {
             frameborder="0"
             height="480"
             src="https://www.youtube.com/embed/YRnVnlhjOBs?autoplay=0&start=0"
-            title="civic_civic_emulsify Video"
+            title="civic_emulsify Video"
             width="854"
           />
           

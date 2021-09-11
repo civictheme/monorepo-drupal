@@ -1,0 +1,22 @@
+root: true
+extends:
+  - airbnb
+  - prettier
+  - plugin:prettier/recommended
+plugins:
+  - prettier
+  - jest
+env:
+  es6: true
+  browser: true
+  jest/globals: true
+globals:
+  expect: true
+  it: true
+  describe: true
+  Drupal: true
+parser: '@babel/eslint-parser'
+rules:
+  strict: 0
+  import/no-extraneous-dependencies: 0
+  prettier/prettier: error
