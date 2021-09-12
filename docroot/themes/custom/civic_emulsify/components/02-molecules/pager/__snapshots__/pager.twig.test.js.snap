@@ -26,6 +26,7 @@ exports[`pager can render a pager 1`] = `
       
             
             
+            
                       
       <li
         class="pager__item "
@@ -158,6 +159,7 @@ exports[`pager can render a pager 1`] = `
       
             
             
+            
           
     </ul>
     
@@ -194,6 +196,7 @@ exports[`pager can render a pager with ellipses 1`] = `
       
             
             
+            
                       
       <li
         class="pager__item "
@@ -367,6 +370,7 @@ exports[`pager can render a pager with ellipses 1`] = `
         
       </li>
       
+            
           
     </ul>
     
@@ -401,6 +405,7 @@ exports[`pager can render a pager with prev and next ellipses 1`] = `
     >
       
       
+            
               
       <li
         class="pager__item pager__item--prev"
@@ -617,6 +622,7 @@ exports[`pager can render a pager with prev and next ellipses 1`] = `
         
       </li>
       
+            
           
     </ul>
     
@@ -651,6 +657,7 @@ exports[`pager can render a pager with prev ellipses 1`] = `
     >
       
       
+            
               
       <li
         class="pager__item pager__item--prev"
@@ -824,6 +831,7 @@ exports[`pager can render a pager with prev ellipses 1`] = `
         
       </li>
       
+            
             
             
           

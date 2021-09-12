@@ -1,9 +1,7 @@
 module.exports = {
   stories: [
-    '../../civic_emulsify/components/**/*.stories.mdx',
-    '../../civic_emulsify/components/**/*.stories.@(js|jsx|ts|tsx)',
-    '../components/**/*.stories.mdx',
-    '../components/**/*.stories.@(js|jsx|ts|tsx)',
+    '../.storybook-components/**/*.stories.mdx',
+    '../.storybook-components/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
     '@storybook/addon-a11y',

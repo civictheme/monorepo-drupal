@@ -11,7 +11,7 @@ function getEntries(pattern) {
   const entries = {};
 
   glob.sync(pattern).forEach((file) => {
-    const filePath = file.split('components/')[1];
+    const filePath = file.split('.storybook-components/')[1];
     const newfilePath = `js/${filePath.replace('.js', '')}`;
     entries[newfilePath] = file;
   });
@@ -29,7 +29,7 @@ module.exports = {
   entry: getEntries(
     path.resolve(
       rootDir,
-      'components/**/!(*.stories|*.component|*.min|*.test).js',
+      '.storybook-components/**/!(*.stories|*.component|*.min|*.test).js',
     ),
   ),
   module: {

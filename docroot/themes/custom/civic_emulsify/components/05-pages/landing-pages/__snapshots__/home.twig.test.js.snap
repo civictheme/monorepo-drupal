@@ -48,7 +48,7 @@ exports[`home can render a home page 1`] = `
   
 
               <img
-                alt="Logo"
+                alt="Civic Logo test"
                 class="logo__image"
                 src="logo.png"
               />

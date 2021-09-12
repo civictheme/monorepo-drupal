@@ -29,6 +29,7 @@ exports[`card can render a card 1`] = `
       
     
           
+      Civic demo card overridden testse
       
 
 
@@ -68,6 +69,20 @@ exports[`card can render a card 1`] = `
           
 
 
+
+
+      <button
+        class="card__button"
+      >
+        
+      CTA text
+  
+      </button>
+      
+        
+          
+
+
       <p
         class="card__body"
       >
@@ -88,20 +103,6 @@ exports[`card can render a card 1`] = `
       Read more about this card
   
       </a>
-      
-        
-          
-
-
-
-
-      <button
-        class="card__button"
-      >
-        
-      CTA text
-  
-      </button>
       
       
     </div>

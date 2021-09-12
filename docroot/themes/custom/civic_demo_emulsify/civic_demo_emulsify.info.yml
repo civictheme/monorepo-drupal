@@ -7,7 +7,7 @@ core_version_requirement: ^8 || ^9
 
 # Libraries (These are loaded on every page. Use https://www.drupal.org/developing/api/8/assets#twig whenever possible.)
 libraries:
-  - 'civic_emulsify/global'
+  - 'civic_demo_emulsify/global'
   # - 'civic_emulsify/typekit'
 
 # Libraries override allows you to remove libraries added by other projects.

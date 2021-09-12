@@ -6,7 +6,7 @@ node_modules/
 yarn.lock
 
 # Storybook
-.out
+.storybook-static
 
 # System
 .DS_Store
