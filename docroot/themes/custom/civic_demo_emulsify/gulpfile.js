@@ -35,7 +35,6 @@ function buildTask(cb) {
          if (fs.existsSync(filePath)) {
            return src(filePath)
              .pipe(rename(function (path) {
-
                path.dirname = filePath
                  .replace(__dirname + '/components', '')
                  .replace(path.basename + path.extname, '')
