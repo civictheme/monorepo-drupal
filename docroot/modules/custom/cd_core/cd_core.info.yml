@@ -16,4 +16,3 @@ dependencies:
   # Required for Civic theme.
   - components:components
   - paragraphs:paragraphs
-  - emulsify_twig:emulsify_twig
