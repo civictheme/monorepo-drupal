@@ -70,5 +70,5 @@ COPY . /app
 
 # Compile front-end assets. Running this after copying all files as we need
 # sources to compile assets.
-RUN cd docroot/themes/custom/civic && npm run build
-RUN cd docroot/themes/custom/civic_demo && npm run build
+# RUN cd docroot/themes/custom/civic && npm run build
+# RUN cd docroot/themes/custom/civic_demo && npm run build
