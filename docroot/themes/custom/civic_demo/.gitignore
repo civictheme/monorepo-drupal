@@ -7,7 +7,7 @@ yarn.lock
 
 # Storybook
 .storybook-components
-.storybook-static
+storybook-static
 
 # System
 .DS_Store

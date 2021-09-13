@@ -55,7 +55,7 @@
     "webpack-merge": "^5.3.0"
   },
   "scripts": {
-    "build": "npm run gulp:build && npm run webpack:build && build-storybook -s ./dist -o .storybook-static",
+    "build": "npm run gulp:build && npm run webpack:build && build-storybook -s ./dist -o storybook-static",
     "storybook": "npm run gulp:build && concurrently --raw \"npm run gulp:watch\" \"npm run webpack:watch\" \"start-storybook --ci -s ./dist -p 6006\"",
     "a11y": "npm run build && ./scripts/a11y.js -r",
     "test": "npm run gulp:build && jest --coverage",

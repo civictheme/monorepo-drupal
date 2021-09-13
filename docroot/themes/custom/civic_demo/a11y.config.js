@@ -1,5 +1,5 @@
 module.exports = {
-  storybookBuildDir: '.storybook-static',
+  storybookBuildDir: 'storybook-static',
   pa11y: {
     includeNotices: false,
     includeWarnings: false,

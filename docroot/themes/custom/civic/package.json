@@ -58,7 +58,7 @@
     "webpack-merge": "^5.3.0"
   },
   "scripts": {
-    "build": "npm run webpack:build && build-storybook -s ./dist -o .storybook-static",
+    "build": "npm run webpack:build && build-storybook -s ./dist -o storybook-static",
     "storybook": "concurrently --raw \"npm run webpack:watch\" \"start-storybook --ci -s ./dist -p 6006\"",
     "a11y": "npm run build && ./scripts/a11y.js -r",
     "test": "jest --coverage",
