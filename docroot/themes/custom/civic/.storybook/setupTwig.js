@@ -18,7 +18,5 @@ module.exports.namespaces = {
 module.exports.setupTwig = function setupTwig(twig) {
   twig.cache();
   twigDrupal(twig);
-  twigBEM(twig);
-  twigAddAttributes(twig);
   return twig;
 };
