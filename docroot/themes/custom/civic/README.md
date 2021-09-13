@@ -28,6 +28,17 @@ Emulsify is an open-source tool for creating design systems with reusable compon
 `npm run test`
 `npm run coverage`
 
-### To come
-- Remove templates
-- Remove emulsify_twig module
+
+### Setting up JS libraries
+
+JS libraries need to be registered as normal in the `civic.libraries.yml` file like below:
+
+```yml
+main-menu:
+  js:
+    dist/js/02-molecules/menus/main-menu/main-menu.js: {}
+  dependencies:
+    - core/drupal
+```
+
+Where the above JS library has been built by webpack and exported to the dist. folder.

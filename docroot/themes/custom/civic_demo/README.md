@@ -1,7 +1,7 @@
 Civic Demo Drupal theme
 =======================
 
-Based on Civic Drupal theme and emulsify
+Based on Civic Drupal theme
 
 Development workflow
 --------------------
@@ -29,4 +29,4 @@ Storybook
     npm run storybook
 
 
-### For further documentation see README.md in civic emulsifier theme
+### For further documentation see README.md in civic theme
