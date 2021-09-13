@@ -1,7 +1,6 @@
 const { resolve } = require('path');
 const twigDrupal = require('twig-drupal-filters');
-const twigBEM = require('bem-twig-extension');
-const twigAddAttributes = require('add-attributes-twig-extension');
+
 
 module.exports.namespaces = {
   atoms: resolve(__dirname, '../', '.storybook-components/01-atoms'),
@@ -20,7 +19,5 @@ module.exports.namespaces = {
 module.exports.setupTwig = function setupTwig(twig) {
   twig.cache();
   twigDrupal(twig);
-  twigBEM(twig);
-  twigAddAttributes(twig);
   return twig;
 };

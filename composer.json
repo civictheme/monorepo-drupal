@@ -12,7 +12,6 @@
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
-        "drupal/emulsify_twig": "^2.0",
         "drupal/permissions_filter": "^1.1",
         "drupal/redirect": "^1.6",
         "drupal/stage_file_proxy": "^1.1",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e722ef791f3706116ba39ef0af94002",
+    "content-hash": "97d59e2ee3c4d5b50bebf2db662f6015",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4758,70 +4758,6 @@
             "homepage": "https://www.drupal.org/project/embed",
             "support": {
                 "source": "https://git.drupalcode.org/project/embed"
-            }
-        },
-        {
-            "name": "drupal/emulsify_twig",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/emulsify_twig.git",
-                "reference": "2.0.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/emulsify_twig-2.0.0.zip",
-                "reference": "2.0.0",
-                "shasum": "22eec73344aadd0004f58b39d3b8774a7d1dcbd8"
-            },
-            "require": {
-                "drupal/core": "^8 || ^9"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "2.0.0",
-                    "datestamp": "1591387856",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Aaron Stanush",
-                    "homepage": "https://www.drupal.org/user/89718"
-                },
-                {
-                    "name": "bjlewis2",
-                    "homepage": "https://www.drupal.org/user/223774"
-                },
-                {
-                    "name": "ccjjmartin",
-                    "homepage": "https://www.drupal.org/user/3210801"
-                },
-                {
-                    "name": "evanmwillhite",
-                    "homepage": "https://www.drupal.org/user/562168"
-                },
-                {
-                    "name": "fk_bender",
-                    "homepage": "https://www.drupal.org/user/3539842"
-                },
-                {
-                    "name": "techninja",
-                    "homepage": "https://www.drupal.org/user/132895"
-                }
-            ],
-            "description": "BEM and Add Attributes Twig Extensions for Drupal",
-            "homepage": "https://www.drupal.org/project/emulsify_twig",
-            "support": {
-                "source": "https://git.drupalcode.org/project/emulsify_twig"
             }
         },
         {
