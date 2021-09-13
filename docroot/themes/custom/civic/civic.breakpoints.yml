@@ -1,30 +1,16 @@
-civic.extra_small:
-  label: mobile
-  mediaQuery: ''
-  weight: 0
-  multipliers:
-    - 1x
+# Breakpoints - change based on site need
 civic.small:
-  label: mobile
-  mediaQuery: 'all and (min-width: 576px) and (max-width: 767px)'
-  weight: 1
-  multipliers:
-    - 1x
+  label: small
+  mediaQuery: 'all and (min-width: 25em)'
+civic.small-med:
+  label: small-med
+  mediaQuery: 'all and (min-width: 26em)'
+civic.small-large:
+  label: small-large
+  mediaQuery: 'all and (min-width: 41em)'
 civic.medium:
-  label: narrow
-  mediaQuery: 'all and (min-width: 768px) and (max-width: 991px)'
-  weight: 2
-  multipliers:
-    - 1x
+  label: medium
+  mediaQuery: 'all and (min-width: 48em)'
 civic.large:
-  label: wide
-  mediaQuery: 'all and (min-width: 992px) and (max-width: 1199px)'
-  weight: 3
-  multipliers:
-    - 1x
-civic.extra_large:
-  label: wide
-  mediaQuery: 'all and (min-width: 1200px)'
-  weight: 4
-  multipliers:
-    - 1x
+  label: large
+  mediaQuery: 'all and (min-width: 61.25em)'

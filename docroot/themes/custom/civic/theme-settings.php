@@ -34,7 +34,7 @@ function civic_form_system_theme_settings_alter(&$form, &$form_state) {
     '#open' => TRUE,
   ];
 
-  $storybook_file = $theme->getPath() . '/storybook-static/index.html';
+  $storybook_file = $theme->getPath() . '/.storybook-static/index.html';
   if (file_exists($storybook_file)) {
     $form['storybook']['markup'] = [
       '#type' => 'inline_template',

@@ -1,0 +1,17 @@
+.civic-link {
+  color: #00698F;
+}
+
+.civic-link:hover {
+  background-color: #00698F;
+  color: #FFFFFF;
+}
+
+.civic-link:visited {
+  color: #9263DE;
+}
+
+.civic-link:visited:hover {
+  background-color: #9263DE;
+  color: #FFFFFF;
+}

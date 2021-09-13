@@ -1,0 +1,8 @@
+//
+// Outline mixins.
+//
+
+@mixin civic_outline() {
+  outline: $civic-outline;
+  outline-offset: $civic-outline-offset;
+}

@@ -1,0 +1,31 @@
+//
+// Typography.
+//
+
+$civic-font-import-default: true !default;
+$civic-font-base-size: 16px !default;
+$civic-font-scale: 1.250 !default;
+
+$civic-font-primary: 'Lexend', sans-serif;
+
+$civic-font: (
+  'primary': $civic-font-primary
+) !default;
+
+$civic-typography: (
+  'display-xl': (56px, 60px, 700, 'primary'),
+  'display-l': (39px, 44px, 700, 'primary'),
+  'display-m': (28px, 32px, 700, 'primary'),
+  'display-s': (20px, 24px, 700, 'primary'),
+  'display-support': (18px, 31px, 400, 'primary'),
+  'heading-1': (48px, 60px, 700, 'primary'),
+  'heading-2': (39px, 48px, 700, 'primary'),
+  'heading-3': (32px, 40px, 700, 'primary'),
+  'heading-4': (25px, 31px, 700, 'primary'),
+  'heading-5': (20px, 25px, 700, 'primary'),
+  'heading-6': (16px, 26px, 700, 'primary'),
+  'lead-copy': (20px, 34px, 400, 'primary'),
+  'body-copy': (16px, 28px, 400, 'primary'),
+  'small-copy': (14px, 25px, 400, 'primary'),
+  'label-large': (18px, 24px, 600, 'primary'),
+) !default;

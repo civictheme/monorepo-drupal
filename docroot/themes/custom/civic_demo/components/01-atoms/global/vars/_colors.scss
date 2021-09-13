@@ -1,0 +1,30 @@
+//
+// Colors.
+//
+$civic-default-colors: (
+  'primary': #00698F,
+  'secondary': #9263DE,
+  'accent': #61DAFF,
+  'white': #FFF,
+  'heading-general': #1F2833,
+  'heading-links': #00698F,
+  'body-copy': #536570,
+  'shade_-90': mix(white, #00698F, 90%),
+  'shade_15': mix(black, #00698F, 15%),
+  'shade_30': mix(black, #00698F, 30%),
+  'shade_45': mix(black, #00698F, 45%),
+  'shade_60': mix(black, #00698F, 60%),
+  'neutral_5': #F2F4F5,
+  'neutral_10': #E6E9EB,
+  'neutral_20': #CCD4D8,
+  'neutral_40': #99A7B0,
+  'neutral_60': #546570,
+  'neutral_80': #35414B,
+  'neutral_90': #1F2833,
+  'informtion': #00A7CE,
+  'success': #009694,
+  'warning': #DC5800,
+  'error': #CF3836
+);
+
+$civic-colors: () !default;
