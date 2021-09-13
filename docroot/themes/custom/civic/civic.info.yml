@@ -1,7 +1,7 @@
 name: civic
 type: theme
 description: 'Civic theme.'
-base theme: stable9
+base theme: classy
 core: 8.x
 core_version_requirement: ^8 || ^9
 
