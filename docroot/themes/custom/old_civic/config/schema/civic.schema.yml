@@ -1,8 +1,0 @@
-# Schema for the configuration files of the Civic theme.
-civic.settings:
-  type: theme_settings
-  label: 'Civic settings'
-  mapping:
-    font_size:
-      type: integer
-      label: Font size
