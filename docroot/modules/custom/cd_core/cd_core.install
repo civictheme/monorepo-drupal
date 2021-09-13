@@ -38,9 +38,9 @@ function cd_core_update_9000() {
   \Drupal::service('theme_installer')->install(['adminimal_theme']);
   \Drupal::service('config.factory')->getEditable('system.theme')->set('admin', 'adminimal_theme')->save();
 
-  \Drupal::service('theme_installer')->install(['civic']);
-  \Drupal::service('theme_installer')->install(['civic_demo']);
-  \Drupal::service('config.factory')->getEditable('system.theme')->set('default', 'civic_demo')->save();
+  \Drupal::service('theme_installer')->install(['civic_emulsify']);
+  \Drupal::service('theme_installer')->install(['civic_demo_emulsify']);
+  \Drupal::service('config.factory')->getEditable('system.theme')->set('default', 'civic_demo_emulsify')->save();
 
   \Drupal::service('theme_installer')->uninstall(['claro']);
   \Drupal::service('theme_installer')->uninstall(['govcms_bartik']);

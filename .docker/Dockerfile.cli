@@ -27,7 +27,16 @@ ENV WEBROOT=docroot \
 
 # Adding more tools.
 RUN apk update \
-    && apk add pv \
+    && apk add \
+        pv \
+        bash \
+        lcms2-dev \
+        libpng-dev \
+        gcc \
+        g++ \
+        make \
+        autoconf \
+        automake \
     && rm -rf /var/cache/apk/*
 
 # Adding patches and scripts.
@@ -70,5 +79,7 @@ COPY . /app
 
 # Compile front-end assets. Running this after copying all files as we need
 # sources to compile assets.
-RUN cd docroot/themes/custom/civic && npm run build
-RUN cd docroot/themes/custom/civic_demo && npm run build
+RUN npm install -g npm@^7
+RUN chown -R 1000:998 "/home/.npm"
+RUN cd docroot/themes/custom/civic_emulsify && npm run build
+RUN cd docroot/themes/custom/civic_demo_emulsify && npm run build

@@ -23,6 +23,10 @@ libraries:
 ckeditor_stylesheets:
   - dist/style.css
 
+dependencies:
+  - components:components
+  - paragraphs:paragraphs
+  - emulsify_twig:emulsify_twig
 regions:
   header: Header
   content: Content # the content region is required
