@@ -81,5 +81,5 @@ COPY . /app
 # sources to compile assets.
 RUN npm install -g npm@^7
 RUN chown -R 1000:998 "/home/.npm"
-RUN cd docroot/themes/custom/civic_emulsify && npm run build
-RUN cd docroot/themes/custom/civic_demo_emulsify && npm run build
+# RUN cd docroot/themes/custom/civic_emulsify && npm run build
+# RUN cd docroot/themes/custom/civic_demo_emulsify && npm run build
