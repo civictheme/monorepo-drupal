@@ -1,6 +1,5 @@
 const { resolve } = require('path');
 const twigDrupal = require('twig-drupal-filters');
-const twigAddAttributes = require('add-attributes-twig-extension');
 
 module.exports.namespaces = {
   atoms: resolve(__dirname, '../', 'components/01-atoms'),

@@ -1,6 +1,6 @@
 name: civic
 type: theme
-description: Theme based on <a href="http://emulsify.info">Emulsify</a>.
+description: 'Civic theme.'
 base theme: stable9
 core: 8.x
 core_version_requirement: ^8 || ^9

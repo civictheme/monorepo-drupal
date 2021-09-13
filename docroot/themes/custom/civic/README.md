@@ -5,7 +5,7 @@ Based on Civic Node components and built on top of Emulsify.
 
 Emulsify is an open-source tool for creating design systems with reusable components and clear guidelines for teams. Emulsify helps organizations scale their design while reducing cost, streamlining workflows, and improving accessibility.
 
-## Based on Emulsify Drupal
+## Built from Emulsify Drupal
 
 ### Storybook development, Webpack build, and Drupal 8 theme
 
