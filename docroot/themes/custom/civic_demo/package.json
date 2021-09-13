@@ -1,7 +1,7 @@
 {
-  "name": "emulsify-drupal",
-  "version": "1.0.0",
-  "description": "Storybook development + Webpack Build + Drupal 8 theme",
+  "name": "civic_demo",
+  "version": "0.0.1",
+  "description": "Storybook development + Webpack Build + Drupal 9 theme",
   "keywords": [
     "component library",
     "design system",
@@ -10,7 +10,6 @@
     "storybook",
     "styleguide"
   ],
-  "author": "Evan Willhite <evan@fourkitchens.com>",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.12.3",
