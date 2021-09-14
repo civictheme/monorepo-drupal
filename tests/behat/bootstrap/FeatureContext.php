@@ -6,6 +6,7 @@
  */
 
 use DrevOps\BehatSteps\JsTrait;
+use DrevOps\BehatSteps\WaitTrait;
 use Drupal\DrupalExtension\Context\DrupalContext;
 use DrevOps\BehatSteps\ContentTrait;
 use DrevOps\BehatSteps\TaxonomyTrait;
@@ -25,4 +26,5 @@ class FeatureContext extends DrupalContext {
   use TaxonomyTrait;
   use WatchdogTrait;
   use JsTrait;
+  use WaitTrait;
 }
