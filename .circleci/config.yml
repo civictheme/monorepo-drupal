@@ -37,6 +37,9 @@ aliases:
   # command and add private key under "SSH Permissions" in CircleCI UI.
   - &deploy_ssh_fingerprint "4e:82:39:4a:52:0e:ae:a9:ef:c1:19:56:46:21:fd:7f"
 
+  # SSH key fingerprint to deploy code to civic-node.
+  - &deploy_ssh_fingerprint2 "aa:01:7b:73:2c:a8:cb:e6:d2:1a:12:c0:e1:53:39:f2"
+
   #-----------------------------------------------------------------------------
   # Optional variables.
   #-----------------------------------------------------------------------------
@@ -77,6 +80,7 @@ aliases:
     working_directory: &working_directory /root/project
     environment:
       DEPLOY_SSH_FINGERPRINT: *deploy_ssh_fingerprint
+      DEPLOY_SSH_FINGERPRINT2: *deploy_ssh_fingerprint2
     docker:
       - image: drevops/ci-builder
         auth:
@@ -221,10 +225,25 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - *deploy_ssh_fingerprint
+            - *deploy_ssh_fingerprint2
       - checkout
       - *step_process_codebase
       - run:
-          command: DEPLOY_GIT_BRANCH="deployment/[tags:-]" ahoy deploy
+          name: Deploy release to Civic Theme repository.
+          command: |
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civic-theme.git \
+            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/themes/custom/civic" \
+            ./scripts/deploy-code-release.sh
+          no_output_timeout: 30m
+      - run:
+          name: Deploy release to Civic Node repository.
+          command: |
+            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civic-node.git \
+            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/themes/custom/civic/civic-node" \
+            ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - store_artifacts:
           path: *test_artifact_dir
