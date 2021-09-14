@@ -9,13 +9,13 @@ _meta:
 default:
   revision_uid:
     -
-      entity: 9d658a18-f0ac-4552-97d6-c073af1109c4
+      target_id: 1
   status:
     -
       value: true
   uid:
     -
-      entity: 9d658a18-f0ac-4552-97d6-c073af1109c4
+      target_id: 1
   title:
     -
       value: 'Page - Scisco'
