@@ -31,17 +31,17 @@ components:
 # Update the list of the configuration below and run `drush cde civic`.
 config_devel:
   install:
-    - core.entity_form_display.node.civic_page.default.yml
-    - core.entity_form_display.paragraph.civic_content.default.yml
-    - core.entity_view_display.node.civic_page.default.yml
-    - core.entity_view_display.paragraph.civic_content.default.yml
-    - field.field.node.civic_page.field_n_banner_components.yml
-    - field.field.node.civic_page.field_n_components.yml
-    - field.field.paragraph.civic_content.field_p_content.yml
-    - field.field.paragraph.civic_content.field_p_theme.yml
-    - field.storage.node.field_n_banner_components.yml
-    - field.storage.node.field_n_components.yml
-    - field.storage.paragraph.field_p_content.yml
-    - field.storage.paragraph.field_p_theme.yml
-    - node.type.civic_page.yml
-    - paragraphs.paragraphs_type.civic_content.yml
+    - core.entity_form_display.node.civic_page.default
+    - core.entity_form_display.paragraph.civic_content.default
+    - core.entity_view_display.node.civic_page.default
+    - core.entity_view_display.paragraph.civic_content.default
+    - field.field.node.civic_page.field_n_banner_components
+    - field.field.node.civic_page.field_n_components
+    - field.field.paragraph.civic_content.field_p_content
+    - field.field.paragraph.civic_content.field_p_theme
+    - field.storage.node.field_n_banner_components
+    - field.storage.node.field_n_components
+    - field.storage.paragraph.field_p_content
+    - field.storage.paragraph.field_p_theme
+    - node.type.civic_page
+    - paragraphs.paragraphs_type.civic_content
