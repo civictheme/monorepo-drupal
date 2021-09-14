@@ -19,6 +19,7 @@ use DrevOps\BehatSteps\PathTrait;
 class FeatureContext extends DrupalContext {
 
   use ContentTrait;
+  use JsTrait;
   use FieldTrait;
   use PathTrait;
   use TaxonomyTrait;

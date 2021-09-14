@@ -18,14 +18,14 @@ Feature: Tests the Slider paragraph
     And I should see the text "field_p_link" in the "Link" row
     And I should see the text "field_p_slides" in the "Slides" row
 
-  @api @javascript @wip
+  @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click an "div.field--name-field-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
-    And I wait for AJAX to finish
-    And I press the "field_n_components_civic_slider_add_more" button
+    And I click on "div.field--name-field-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I wait 1 second
+    And I click on "div.field--name-field-n-components .add-more-button-civic-slider.dropbutton-action" element
     And I wait for AJAX to finish
     And I should see an "div.js-form-item-field-n-components-0-subform-field-p-theme" element
     And I should see an "div.js-form-item-field-n-components-0-subform-field-p-theme select.required" element
