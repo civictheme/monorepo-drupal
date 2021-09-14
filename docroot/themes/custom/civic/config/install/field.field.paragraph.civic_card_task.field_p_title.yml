@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_title
+    - paragraphs.paragraphs_type.civic_card_task
+id: paragraph.civic_card_task.field_p_title
+field_name: field_p_title
+entity_type: paragraph
+bundle: civic_card_task
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

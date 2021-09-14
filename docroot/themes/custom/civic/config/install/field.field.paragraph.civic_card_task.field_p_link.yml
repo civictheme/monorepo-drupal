@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_link
+    - paragraphs.paragraphs_type.civic_card_task
+  module:
+    - link
+id: paragraph.civic_card_task.field_p_link
+field_name: field_p_link
+entity_type: paragraph
+bundle: civic_card_task
+label: Link
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
