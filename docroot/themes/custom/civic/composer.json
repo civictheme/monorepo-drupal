@@ -1,0 +1,10 @@
+{
+    "name": "salsadigitalauorg/civic",
+    "description": "Drupal 9 theme",
+    "type": "drupal-theme",
+    "homepage": "https://github.com/salsadigitalauorg/civic-theme",
+    "support": {
+        "issues": "https://github.com/salsadigitalauorg/civic-theme/issues"
+    },
+    "license": "proprietary"
+}

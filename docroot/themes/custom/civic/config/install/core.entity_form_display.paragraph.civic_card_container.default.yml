@@ -1,0 +1,69 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civic_card_container.field_p_cards
+    - field.field.paragraph.civic_card_container.field_p_column_count
+    - field.field.paragraph.civic_card_container.field_p_fill_width
+    - field.field.paragraph.civic_card_container.field_p_link
+    - field.field.paragraph.civic_card_container.field_p_title
+    - paragraphs.paragraphs_type.civic_card_container
+  module:
+    - link
+    - paragraphs
+id: paragraph.civic_card_container.default
+targetEntityType: paragraph
+bundle: civic_card_container
+mode: default
+content:
+  field_p_cards:
+    type: paragraphs
+    weight: 2
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+    region: content
+  field_p_column_count:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_p_fill_width:
+    weight: 4
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_p_link:
+    weight: 1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_p_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

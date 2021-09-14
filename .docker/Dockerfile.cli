@@ -55,12 +55,14 @@ RUN composer self-update --2 && composer global remove -n -q hirak/prestissimo &
 # the repository.
 # File Gruntfile.sj is copied into image as it is required to generate
 # front-end assets.
+COPY docroot/themes/custom/civic/civic-node/package.json docroot/themes/custom/civic/civic-node/package* /app/docroot/themes/custom/civic/civic-node/
 COPY docroot/themes/custom/civic/package.json docroot/themes/custom/civic/package* /app/docroot/themes/custom/civic/
 COPY docroot/themes/custom/civic_demo/package.json docroot/themes/custom/civic_demo/package* /app/docroot/themes/custom/civic_demo/
 
 # Install NodeJS dependencies.
 # Since Drupal does not use NodeJS for production, it does not matter if we
 # install development dependencnies here - they are not exposed in any way.
+RUN npm --prefix docroot/themes/custom/civic/civic-node install --no-audit --no-progress --unsafe-perm
 RUN npm --prefix docroot/themes/custom/civic install --no-audit --no-progress --unsafe-perm
 RUN npm --prefix docroot/themes/custom/civic_demo install --no-audit --no-progress --unsafe-perm
 
@@ -70,5 +72,6 @@ COPY . /app
 
 # Compile front-end assets. Running this after copying all files as we need
 # sources to compile assets.
+RUN cd docroot/themes/custom/civic/civic-node && npm run build
 RUN cd docroot/themes/custom/civic && npm run build
 RUN cd docroot/themes/custom/civic_demo && npm run build
