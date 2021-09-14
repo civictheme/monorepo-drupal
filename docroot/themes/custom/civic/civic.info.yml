@@ -52,6 +52,8 @@ config_devel:
     - field.field.paragraph.civic_slider.field_p_link
     - field.field.paragraph.civic_slider.field_p_slides
     - field.field.paragraph.civic_slider.field_p_title
+    - field.field.paragraph.civic_slider.field_p_theme
+    - field.field.paragraph.civic_slider_slide.field_p_content
     - field.field.paragraph.civic_slider_slide.field_p_image
     - field.field.paragraph.civic_slider_slide.field_p_image_position
     - field.field.paragraph.civic_slider_slide.field_p_link
