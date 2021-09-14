@@ -13,3 +13,13 @@ components:
     # parent theme.
     civic: components
     custom: components
+
+config_devel:
+  install:
+    - core.entity_form_display.node.civic_page.default.yml
+    - core.entity_view_display.node.civic_page.default.yml
+    - field.field.node.civic_page.field_n_banner_components.yml
+    - field.field.node.civic_page.field_n_components.yml
+    - field.storage.node.field_n_banner_components.yml
+    - field.storage.node.field_n_components.yml
+    - paragraphs.paragraphs_type.civic_content.yml

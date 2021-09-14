@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.civic_page.field_n_banner_components
+    - field.field.node.civic_page.field_n_components
+    - node.type.civic_page
+  module:
+    - entity_reference_revisions
+    - user
+id: node.civic_page.default
+targetEntityType: node
+bundle: civic_page
+mode: default
+content:
+  field_n_banner_components:
+    type: entity_reference_revisions_entity_view
+    weight: 101
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_n_components:
+    type: entity_reference_revisions_entity_view
+    weight: 102
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
