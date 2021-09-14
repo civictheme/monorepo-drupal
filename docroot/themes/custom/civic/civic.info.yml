@@ -32,10 +32,15 @@ components:
 config_devel:
   install:
     - node.type.civic_page
+    - core.entity_view_display.paragraph.civic_accordion_panel.default
     - core.entity_form_display.paragraph.civic_card_container.default
     - core.entity_form_display.paragraph.civic_card_task.default
+    - core.entity_form_display.paragraph.civic_accordion_panel.default
     - core.entity_view_display.paragraph.civic_card_container.default
     - core.entity_view_display.paragraph.civic_card_task.default
+    - field.field.paragraph.civic_accordion_panel.field_p_title
+    - field.field.paragraph.civic_accordion_panel.field_p_content
+    - field.field.paragraph.civic_accordion_panel.field_p_expand
     - field.field.paragraph.civic_card_container.field_p_cards
     - field.field.paragraph.civic_card_container.field_p_column_count
     - field.field.paragraph.civic_card_container.field_p_fill_width
@@ -47,6 +52,8 @@ config_devel:
     - field.field.paragraph.civic_card_task.field_p_title
     - field.storage.paragraph.field_p_cards
     - field.storage.paragraph.field_p_column_count
+    - field.storage.paragraph.field_p_content
+    - field.storage.paragraph.field_p_expand
     - field.storage.paragraph.field_p_fill_width
     - field.storage.paragraph.field_p_icon
     - field.storage.paragraph.field_p_link
@@ -55,3 +62,4 @@ config_devel:
     - media.type.icon
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_card_task
+    - paragraphs.paragraphs_type.civic_accordion_panel
