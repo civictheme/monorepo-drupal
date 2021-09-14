@@ -14,7 +14,10 @@ This lists 2 development workflows:
 3. Has the scripts to add Twig, SASS and JS outside of components and compile them together with components.
 4. Has own Storybook that will contain components from Civic theme and itself.
 5. If the NodeJS build is not supported in the hosting environment - consumer theme's developer will have to compile assets locally and commit compiled assets to the repository. This is easily controlled by a single entry in Consumer theme's `.gitignore`.
+## Prequsites for local development
 
+NPM version must be >=7 due to lockfile schema.
+Node version must be >=^15.
 ## Usage
 Install
 

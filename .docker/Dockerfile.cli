@@ -63,6 +63,8 @@ COPY docroot/themes/custom/civic_demo/package.json docroot/themes/custom/civic_d
 # install development dependencnies here - they are not exposed in any way.
 RUN npm install -g npm@^7
 RUN chown -R 1000:998 "/home/.npm"
+RUN npm --prefix docroot/themes/custom/civic install --no-audit --no-progress --unsafe-perm
+RUN npm --prefix docroot/themes/custom/civic_demo install --no-audit --no-progress --unsafe-perm
 
 # Copy all files into appllication source directory. Existing files are always
 # overridden.
@@ -70,5 +72,5 @@ COPY . /app
 
 # Compile front-end assets. Running this after copying all files as we need
 # sources to compile assets.
-RUN cd docroot/themes/custom/civic && npm install --no-audit --no-progress --unsafe-perm && npm run build
-RUN cd docroot/themes/custom/civic_demo && npm install --no-audit --no-progress --unsafe-perm && npm run build
+RUN cd docroot/themes/custom/civic && npm run build
+RUN cd docroot/themes/custom/civic_demo && npm run build

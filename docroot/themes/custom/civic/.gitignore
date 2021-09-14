@@ -1,12 +1,14 @@
 # Ignore compiled files.
-dist
+dist/**/*.*
+!dist/.gitkeep
 
 # Yarn/NPM
 node_modules/
 yarn.lock
 
 # Storybook
-storybook-static
+storybook-static/**/*.*
+!storybook-static/.gitkeep
 
 # System
 .DS_Store
