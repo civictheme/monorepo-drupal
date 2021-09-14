@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_content
+    - paragraphs.paragraphs_type.civic_content
+  module:
+    - text
+id: paragraph.civic_content.field_p_content
+field_name: field_p_content
+entity_type: paragraph
+bundle: civic_content
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
