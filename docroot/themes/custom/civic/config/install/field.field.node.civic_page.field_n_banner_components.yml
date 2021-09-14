@@ -5,6 +5,7 @@ dependencies:
     - field.storage.node.field_n_banner_components
     - node.type.civic_page
     - paragraphs.paragraphs_type.civic_content
+    - paragraphs.paragraphs_type.civic_slider
   module:
     - entity_reference_revisions
 id: node.civic_page.field_n_banner_components
@@ -23,8 +24,15 @@ settings:
     negate: 0
     target_bundles:
       civic_content: civic_content
+      civic_slider: civic_slider
     target_bundles_drag_drop:
       civic_content:
         enabled: true
         weight: 2
+      civic_slider:
+        enabled: true
+        weight: 5
+      civic_slider_slide:
+        weight: 6
+        enabled: false
 field_type: entity_reference_revisions
