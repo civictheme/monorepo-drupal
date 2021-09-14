@@ -1,0 +1,53 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civic_card_task.field_p_icon
+    - field.field.paragraph.civic_card_task.field_p_link
+    - field.field.paragraph.civic_card_task.field_p_summary
+    - field.field.paragraph.civic_card_task.field_p_title
+    - paragraphs.paragraphs_type.civic_card_task
+  module:
+    - link
+id: paragraph.civic_card_task.default
+targetEntityType: paragraph
+bundle: civic_card_task
+mode: default
+content:
+  field_p_icon:
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_p_link:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_p_summary:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_p_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

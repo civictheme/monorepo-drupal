@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_column_count
+    - paragraphs.paragraphs_type.civic_card_container
+  module:
+    - options
+id: paragraph.civic_card_container.field_p_column_count
+field_name: field_p_column_count
+entity_type: paragraph
+bundle: civic_card_container
+label: 'Column count'
+description: 'Number of columns in the container.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer
