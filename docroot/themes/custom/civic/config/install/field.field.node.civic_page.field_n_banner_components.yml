@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.storage.node.field_n_banner_components
     - node.type.civic_page
+    - paragraphs.paragraphs_type.civic_card_promo
     - paragraphs.paragraphs_type.civic_content
     - paragraphs.paragraphs_type.civic_slider
   module:
@@ -25,10 +26,32 @@ settings:
     target_bundles:
       civic_content: civic_content
       civic_slider: civic_slider
+      civic_card_promo: civic_card_promo
     target_bundles_drag_drop:
+      civic_accordion:
+        weight: 11
+        enabled: false
+      civic_accordion_panel:
+        weight: 12
+        enabled: false
+      civic_card_container:
+        weight: 13
+        enabled: false
+      civic_card_navigation:
+        weight: 14
+        enabled: false
+      civic_card_promo:
+        enabled: true
+        weight: 15
+      civic_card_task:
+        weight: 16
+        enabled: false
       civic_content:
         enabled: true
         weight: 2
+      civic_service_card:
+        weight: 18
+        enabled: false
       civic_slider:
         enabled: true
         weight: 5
