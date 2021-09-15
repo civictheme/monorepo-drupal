@@ -6,6 +6,7 @@ dependencies:
     - node.type.civic_page
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_content
+    - paragraphs.paragraphs_type.civic_slider
   module:
     - entity_reference_revisions
 id: node.civic_page.field_n_components
@@ -25,6 +26,7 @@ settings:
     target_bundles:
       civic_content: civic_content
       civic_card_container: civic_card_container
+      civic_slider: civic_slider
     target_bundles_drag_drop:
       civic_card_container:
         enabled: true
@@ -35,4 +37,10 @@ settings:
       civic_content:
         enabled: true
         weight: 2
+      civic_slider:
+        enabled: true
+        weight: 5
+      civic_slider_slide:
+        weight: 6
+        enabled: false
 field_type: entity_reference_revisions
