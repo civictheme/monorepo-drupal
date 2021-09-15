@@ -24,25 +24,21 @@ class FeatureContext extends DrupalContext {
   use WatchdogTrait;
 
   /**
-   * Checks if the given value is default selected in the given dropdown
+   * Checks if the given value is default selected in the given dropdown.
    *
-   * @param $option
-   *   string The value to be looked for
-   * @param $field
-   *   string The dropdown field that has the value
+   * @param string $option
+   *   The value to be looked for.
+   * @param string $field
+   *   The dropdown field that has the value.
    *
    * @Given /^I should see the option "([^"]*)" selected in "([^"]*)" dropdown$/
    */
   public function iShouldSeeTheOptionSelectedInDropdown($option, $field) {
-    $selector = $field;
-    // Some fields do not have label, so set the selector here
-    if (strtolower($field) == "default notification") {
-      $selector = "edit-projects-default";
-    }
     $chk = $this->getSession()->getPage()->findField($field);
-    // Make sure that the dropdown $field and the value $option exists in the dropdown
+    // Make sure that the dropdown $field and the value $option exists in the
+    // dropdown.
     $optionObj = $chk->findAll('xpath', '//option[@selected="selected"]');
-    // Check if at least one value is selected
+    // Check if at least one value is selected.
     if (empty($optionObj)) {
       throw new \Exception("The field '" . $field . "' does not have any options selected");
     }
