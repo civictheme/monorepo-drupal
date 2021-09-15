@@ -24,9 +24,9 @@ class FeatureContext extends DrupalContext {
   use JsTrait;
   use FieldTrait;
   use PathTrait;
+  use SelectTrait;
   use TaxonomyTrait;
   use WatchdogTrait;
-  use SelectTrait;
   use WaitTrait;
 
 }

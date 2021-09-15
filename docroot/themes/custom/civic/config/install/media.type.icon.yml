@@ -8,5 +8,5 @@ source: file
 queue_thumbnail_downloads: false
 new_revision: false
 source_configuration:
-  source_field: field_media_file
+  source_field: field_m_icon
 field_map: {  }
