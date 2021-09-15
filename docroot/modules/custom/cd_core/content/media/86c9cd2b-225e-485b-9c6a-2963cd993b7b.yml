@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 86c9cd2b-225e-485b-9c6a-2963cd993b7b
+  bundle: image
+  default_langcode: en
+  depends:
+    5e156daa-1515-430c-9d36-1d060b200960: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: maxresdefault.jpeg
+  created:
+    -
+      value: 1631680986
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_media_image:
+    -
+      entity: 5e156daa-1515-430c-9d36-1d060b200960
+      alt: Avengers
+      title: ''
+      width: 1280
+      height: 720
