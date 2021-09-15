@@ -59,17 +59,16 @@ config_devel:
     - field.field.paragraph.civic_slider_slide.field_p_link
     - field.field.paragraph.civic_slider_slide.field_p_title
     - field.field.paragraph.civic_slider_slide.field_p_topic
-    - field.storage.paragraph.field_p_content
     - field.storage.paragraph.field_p_image
     - field.storage.paragraph.field_p_image_position
     - field.storage.paragraph.field_p_link
     - field.storage.paragraph.field_p_slides
-    - field.storage.paragraph.field_p_theme
     - field.storage.paragraph.field_p_title
     - field.storage.paragraph.field_p_topic
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
+    - core.entity_view_display.paragraph.civic_accordion_panel.default
     - core.entity_form_display.paragraph.civic_card_container.default
     - core.entity_form_display.paragraph.civic_card_task.default
     - core.entity_view_display.paragraph.civic_card_container.default
@@ -87,9 +86,13 @@ config_devel:
     - field.storage.paragraph.field_p_column_count
     - field.storage.paragraph.field_p_fill_width
     - field.storage.paragraph.field_p_icon
-    - field.storage.paragraph.field_p_link
     - field.storage.paragraph.field_p_summary
-    - field.storage.paragraph.field_p_title
     - media.type.icon
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_card_task
+    - core.entity_form_display.paragraph.civic_accordion_panel.default
+    - field.field.paragraph.civic_accordion_panel.field_p_title
+    - field.field.paragraph.civic_accordion_panel.field_p_content
+    - field.field.paragraph.civic_accordion_panel.field_p_expand
+    - field.storage.paragraph.field_p_expand
+    - paragraphs.paragraphs_type.civic_accordion_panel

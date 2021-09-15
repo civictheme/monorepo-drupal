@@ -4,6 +4,8 @@ _meta:
   uuid: 1accbc91-68c8-4a86-a973-b7120ce05c9c
   bundle: civic_page
   default_langcode: en
+  depends:
+    9d658a18-f0ac-4552-97d6-c073af1109c4: user
 default:
   revision_uid:
     -
@@ -53,6 +55,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_p_content:
             -
               value: |+
@@ -103,6 +108,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_p_content:
             -
               value: |+
@@ -152,6 +160,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_p_content:
             -
               value: |+
