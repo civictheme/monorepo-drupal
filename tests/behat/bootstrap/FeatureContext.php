@@ -5,6 +5,8 @@
  * Civic Demo Drupal context for Behat testing.
  */
 
+use DrevOps\BehatSteps\JsTrait;
+use DrevOps\BehatSteps\WaitTrait;
 use Drupal\DrupalExtension\Context\DrupalContext;
 use DrevOps\BehatSteps\ContentTrait;
 use DrevOps\BehatSteps\TaxonomyTrait;
@@ -19,10 +21,12 @@ use DrevOps\BehatSteps\SelectTrait;
 class FeatureContext extends DrupalContext {
 
   use ContentTrait;
+  use JsTrait;
   use FieldTrait;
   use PathTrait;
+  use SelectTrait;
   use TaxonomyTrait;
   use WatchdogTrait;
-  use SelectTrait;
+  use WaitTrait;
 
 }
