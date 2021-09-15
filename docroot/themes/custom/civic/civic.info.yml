@@ -31,58 +31,80 @@ components:
 # Update the list of the configuration below and run `drush cde civic`.
 config_devel:
   install:
-    - node.type.civic_page
     - core.entity_form_display.node.civic_page.default
+    - core.entity_form_display.paragraph.civic_accordion_panel.default
+    - core.entity_form_display.paragraph.civic_card_container.default
+    - core.entity_form_display.paragraph.civic_card_navigation.default
+    - core.entity_form_display.paragraph.civic_card_task.default
     - core.entity_form_display.paragraph.civic_content.default
+    - core.entity_form_display.paragraph.civic_slider.default
+    - core.entity_form_display.paragraph.civic_slider_slide.default
     - core.entity_view_display.node.civic_page.default
+    - core.entity_view_display.paragraph.civic_accordion_panel.default
+    - core.entity_view_display.paragraph.civic_card_container.default
+    - core.entity_view_display.paragraph.civic_card_navigation.default
+    - core.entity_view_display.paragraph.civic_card_task.default
     - core.entity_view_display.paragraph.civic_content.default
+    - core.entity_view_display.paragraph.civic_slider.default
+    - core.entity_view_display.paragraph.civic_slider_slide.default
+    - field.field.media.icon.field_m_icon
     - field.field.node.civic_page.field_n_banner_components
     - field.field.node.civic_page.field_n_components
-    - field.field.paragraph.civic_content.field_p_content
-    - field.field.paragraph.civic_content.field_p_theme
-    - field.storage.node.field_n_banner_components
-    - field.storage.node.field_n_components
-    - field.storage.paragraph.field_p_theme
-    - core.entity_view_display.paragraph.civic_accordion_panel.default
-    - core.entity_form_display.paragraph.civic_card_container.default
-    - field.field.paragraph.civic_card_container.field_p_link
-    - field.storage.paragraph.field_p_cards
-    - field.storage.paragraph.field_p_column_count
-    - field.storage.paragraph.field_p_fill_width
-    - field.storage.paragraph.field_p_icon
-    - field.storage.paragraph.field_p_link
-    - field.storage.paragraph.field_p_summary
-    - field.storage.paragraph.field_p_title
-    - media.type.icon
-    - paragraphs.paragraphs_type.civic_card_container
-    - paragraphs.paragraphs_type.civic_card_task
-    - paragraphs.paragraphs_type.civic_content
-    - core.entity_form_display.paragraph.civic_card_task.default
-    - core.entity_form_display.paragraph.civic_accordion_panel.default
-    - core.entity_view_display.paragraph.civic_card_container.default
-    - core.entity_view_display.paragraph.civic_card_task.default
-    - field.field.paragraph.civic_accordion_panel.field_p_title
     - field.field.paragraph.civic_accordion_panel.field_p_content
     - field.field.paragraph.civic_accordion_panel.field_p_expand
+    - field.field.paragraph.civic_accordion_panel.field_p_title
     - field.field.paragraph.civic_card_container.field_p_cards
     - field.field.paragraph.civic_card_container.field_p_column_count
     - field.field.paragraph.civic_card_container.field_p_fill_width
+    - field.field.paragraph.civic_card_container.field_p_link
     - field.field.paragraph.civic_card_container.field_p_title
-    - field.field.paragraph.civic_card_task.field_p_icon
-    - field.field.paragraph.civic_card_task.field_p_link
-    - field.field.paragraph.civic_card_task.field_p_summary
-    - field.field.paragraph.civic_card_task.field_p_title
-    - field.storage.paragraph.field_p_content
-    - field.storage.paragraph.field_p_expand
-    - paragraphs.paragraphs_type.civic_accordion_panel
-    - core.entity_form_display.paragraph.civic_card_navigation.default
-    - core.entity_view_display.paragraph.civic_card_navigation.default
     - field.field.paragraph.civic_card_navigation.field_p_image
     - field.field.paragraph.civic_card_navigation.field_p_link
     - field.field.paragraph.civic_card_navigation.field_p_summary
     - field.field.paragraph.civic_card_navigation.field_p_theme
     - field.field.paragraph.civic_card_navigation.field_p_title
+    - field.field.paragraph.civic_card_task.field_p_icon
+    - field.field.paragraph.civic_card_task.field_p_link
+    - field.field.paragraph.civic_card_task.field_p_summary
+    - field.field.paragraph.civic_card_task.field_p_title
+    - field.field.paragraph.civic_content.field_p_content
+    - field.field.paragraph.civic_content.field_p_theme
+    - field.field.paragraph.civic_slider.field_p_link
+    - field.field.paragraph.civic_slider.field_p_slides
+    - field.field.paragraph.civic_slider.field_p_theme
+    - field.field.paragraph.civic_slider.field_p_title
+    - field.field.paragraph.civic_slider_slide.field_p_content
+    - field.field.paragraph.civic_slider_slide.field_p_image
+    - field.field.paragraph.civic_slider_slide.field_p_image_position
+    - field.field.paragraph.civic_slider_slide.field_p_link
+    - field.field.paragraph.civic_slider_slide.field_p_title
+    - field.field.paragraph.civic_slider_slide.field_p_topic
+    - field.storage.media.field_m_icon
+    - field.storage.node.field_n_banner_components
+    - field.storage.node.field_n_components
+    - field.storage.paragraph.field_p_cards
+    - field.storage.paragraph.field_p_column_count
+    - field.storage.paragraph.field_p_content
+    - field.storage.paragraph.field_p_expand
+    - field.storage.paragraph.field_p_fill_width
+    - field.storage.paragraph.field_p_icon
     - field.storage.paragraph.field_p_image
+    - field.storage.paragraph.field_p_image_position
+    - field.storage.paragraph.field_p_link
+    - field.storage.paragraph.field_p_slides
+    - field.storage.paragraph.field_p_summary
+    - field.storage.paragraph.field_p_theme
+    - field.storage.paragraph.field_p_title
+    - field.storage.paragraph.field_p_topic
+    - media.type.icon
+    - node.type.civic_page
+    - paragraphs.paragraphs_type.civic_accordion_panel
+    - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_card_navigation
+    - paragraphs.paragraphs_type.civic_card_task
+    - paragraphs.paragraphs_type.civic_content
+    - paragraphs.paragraphs_type.civic_slider
+    - paragraphs.paragraphs_type.civic_slider_slide
+    - taxonomy.vocabulary.civic_topics
   optional:
     - media.type.image
