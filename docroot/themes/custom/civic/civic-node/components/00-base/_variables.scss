@@ -1,0 +1,99 @@
+//
+// Breakpoints.
+//
+// Do not use these directly, except for calculations.
+// Use @include breakpoint(name) mixin instead.
+//
+$civic-breakpoints: (
+  'xs': 368px,
+  's': 576px,
+  'm': 768px,
+  'l': 992px,
+  'xl': 1280px,
+  'xxl': 1440px
+) !default;
+
+//
+// Colors.
+//
+$civic-default-colors: (
+  'primary': #00698F,
+  'secondary': #9263DE,
+  'accent': #61DAFF,
+  'white': #FFF,
+  'heading-general': #1F2833,
+  'heading-links': #00698F,
+  'body-copy': #536570,
+  'shade_-90': mix(white, #00698F, 90%),
+  'shade_15': mix(black, #00698F, 15%),
+  'shade_30': mix(black, #00698F, 30%),
+  'shade_45': mix(black, #00698F, 45%),
+  'shade_60': mix(black, #00698F, 60%),
+  'neutral_5': #F2F4F5,
+  'neutral_10': #E6E9EB,
+  'neutral_20': #CCD4D8,
+  'neutral_40': #99A7B0,
+  'neutral_60': #546570,
+  'neutral_80': #35414B,
+  'neutral_90': #1F2833,
+  'informtion': #00A7CE,
+  'success': #009694,
+  'warning': #DC5800,
+  'error': #CF3836
+);
+
+$civic-colors: () !default;
+
+//
+// Misc Variables.
+//
+
+$civic-border-radius: rem(4px) !default;
+
+$civic-outline: 3px solid #05F !default;
+$civic-outline-offset: 0 !default;
+
+//
+// Spacing.
+//
+
+$space: 0.5rem !default;       // 8px
+$space2: $space * 2 !default;  // 16px
+$space3: $space * 3 !default;  // 24px
+$space4: $space * 4 !default;  // 32px
+$space5: $space * 5 !default;  // 40px
+$space6: $space * 6 !default;  // 48px
+$space7: $space * 8 !default;  // 64px
+$space8: $space * 10 !default; // 80px
+
+//
+// Typography.
+//
+
+$civic-font-import-default: true !default;
+$civic-font-base-size: 16px !default;
+$civic-font-scale: 1.250 !default;
+
+$civic-font-primary: 'Lexend', sans-serif;
+
+$civic-font: (
+  'primary': $civic-font-primary
+) !default;
+
+$civic-typography: (
+  'display-xl': (56px, 60px, 700, 'primary'),
+  'display-l': (39px, 44px, 700, 'primary'),
+  'display-m': (28px, 32px, 700, 'primary'),
+  'display-s': (20px, 24px, 700, 'primary'),
+  'display-support': (18px, 31px, 400, 'primary'),
+  'heading-1': (48px, 60px, 700, 'primary'),
+  'heading-2': (39px, 48px, 700, 'primary'),
+  'heading-3': (32px, 40px, 700, 'primary'),
+  'heading-4': (25px, 31px, 700, 'primary'),
+  'heading-5': (20px, 25px, 700, 'primary'),
+  'heading-6': (16px, 26px, 700, 'primary'),
+  'lead-copy': (20px, 34px, 400, 'primary'),
+  'body-copy': (16px, 28px, 400, 'primary'),
+  'small-copy': (14px, 25px, 400, 'primary'),
+  'label-large': (18px, 24px, 600, 'primary'),
+) !default;

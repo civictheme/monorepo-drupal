@@ -2,8 +2,8 @@
 // Button.
 //
 
-@import '../global/mixins';
-@import '../global/variables';
+@import '../../00-base/mixins';
+@import '../../00-base/variables';
 
 //
 // Mixins.
@@ -11,6 +11,7 @@
 
 @mixin civic-button-base () {
   @include civic-typography('label-large');
+
   border: rem(2px) solid transparent;
   border-radius: $civic-border-radius;
   cursor: pointer;
