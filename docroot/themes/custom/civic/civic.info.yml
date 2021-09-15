@@ -75,3 +75,10 @@ config_devel:
     - field.storage.paragraph.field_p_content
     - field.storage.paragraph.field_p_expand
     - paragraphs.paragraphs_type.civic_accordion_panel
+    - core.entity_form_display.paragraph.civic_service_card.default
+    - core.entity_view_display.paragraph.civic_service_card.default
+    - field.field.paragraph.civic_service_card.field_p_links
+    - field.field.paragraph.civic_service_card.field_p_theme
+    - field.field.paragraph.civic_service_card.field_p_title
+    - field.storage.paragraph.field_p_links
+    - paragraphs.paragraphs_type.civic_service_card
