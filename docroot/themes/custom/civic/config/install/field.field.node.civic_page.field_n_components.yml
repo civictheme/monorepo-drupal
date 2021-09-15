@@ -5,6 +5,7 @@ dependencies:
     - field.storage.node.field_n_components
     - node.type.civic_page
     - paragraphs.paragraphs_type.civic_content
+    - paragraphs.paragraphs_type.civic_promo
   module:
     - entity_reference_revisions
 id: node.civic_page.field_n_components
@@ -23,8 +24,24 @@ settings:
     negate: 0
     target_bundles:
       civic_content: civic_content
+      civic_promo: civic_promo
     target_bundles_drag_drop:
+      civic_accordion:
+        weight: 6
+        enabled: false
+      civic_accordion_panel:
+        weight: 7
+        enabled: false
+      civic_card_container:
+        weight: 8
+        enabled: false
+      civic_card_task:
+        weight: 9
+        enabled: false
       civic_content:
         enabled: true
         weight: 2
+      civic_promo:
+        enabled: true
+        weight: 7
 field_type: entity_reference_revisions
