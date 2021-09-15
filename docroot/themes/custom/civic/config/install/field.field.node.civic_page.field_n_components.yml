@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.storage.node.field_n_components
     - node.type.civic_page
+    - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_content
     - paragraphs.paragraphs_type.civic_slider
   module:
@@ -24,8 +25,15 @@ settings:
     negate: 0
     target_bundles:
       civic_content: civic_content
+      civic_card_container: civic_card_container
       civic_slider: civic_slider
     target_bundles_drag_drop:
+      civic_card_container:
+        enabled: true
+        weight: 4
+      civic_card_task:
+        weight: 5
+        enabled: false
       civic_content:
         enabled: true
         weight: 2

@@ -13,6 +13,7 @@ use DrevOps\BehatSteps\TaxonomyTrait;
 use DrevOps\BehatSteps\WatchdogTrait;
 use DrevOps\BehatSteps\FieldTrait;
 use DrevOps\BehatSteps\PathTrait;
+use DrevOps\BehatSteps\SelectTrait;
 
 /**
  * Defines application features from the specific context.
@@ -26,5 +27,6 @@ class FeatureContext extends DrupalContext {
   use TaxonomyTrait;
   use WatchdogTrait;
   use WaitTrait;
+  use SelectTrait;
 
 }
