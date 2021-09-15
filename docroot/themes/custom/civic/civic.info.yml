@@ -97,6 +97,7 @@ config_devel:
     - field.field.paragraph.civic_slider_slide.field_p_link
     - field.field.paragraph.civic_slider_slide.field_p_title
     - field.field.paragraph.civic_slider_slide.field_p_topic
+    - field.storage.block_content.field_b_components
     - field.storage.media.field_m_icon
     - field.storage.node.field_n_banner_components
     - field.storage.node.field_n_components
