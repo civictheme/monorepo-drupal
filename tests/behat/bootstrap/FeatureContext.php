@@ -28,4 +28,5 @@ class FeatureContext extends DrupalContext {
   use TaxonomyTrait;
   use WatchdogTrait;
   use WaitTrait;
+
 }
