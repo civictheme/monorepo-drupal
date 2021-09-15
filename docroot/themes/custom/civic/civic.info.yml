@@ -75,3 +75,14 @@ config_devel:
     - field.storage.paragraph.field_p_content
     - field.storage.paragraph.field_p_expand
     - paragraphs.paragraphs_type.civic_accordion_panel
+    - core.entity_form_display.paragraph.civic_card_navigation.default
+    - core.entity_view_display.paragraph.civic_card_navigation.default
+    - field.field.paragraph.civic_card_navigation.field_p_image
+    - field.field.paragraph.civic_card_navigation.field_p_link
+    - field.field.paragraph.civic_card_navigation.field_p_summary
+    - field.field.paragraph.civic_card_navigation.field_p_theme
+    - field.field.paragraph.civic_card_navigation.field_p_title
+    - field.storage.paragraph.field_p_image
+    - paragraphs.paragraphs_type.civic_card_navigation
+  optional:
+    - media.type.image
