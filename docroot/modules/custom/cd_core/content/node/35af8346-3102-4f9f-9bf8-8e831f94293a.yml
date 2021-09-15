@@ -1,0 +1,164 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 35af8346-3102-4f9f-9bf8-8e831f94293a
+  bundle: civic_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Page - Accordion'
+  created:
+    -
+      value: 1631685591
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 645efdc4-b248-40bf-9234-d272e45cc753
+          bundle: civic_accordion
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631686631
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_p_default_panel:
+            -
+              value: 1
+          field_p_expand:
+            -
+              value: false
+          field_p_panels:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 7f5a4f22-cb48-4432-8063-ff82c322ba0c
+                  bundle: civic_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631686631
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_content:
+                    -
+                      value: "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\r\n"
+                      format: rich_text
+                  field_p_expand:
+                    -
+                      value: true
+                  field_p_title:
+                    -
+                      value: 'Accordion panel 1'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: f47a09a3-2b4d-496c-9f65-3f1ad8fa5963
+                  bundle: civic_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631690580
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_content:
+                    -
+                      value: "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\r\n"
+                      format: rich_text
+                  field_p_expand:
+                    -
+                      value: false
+                  field_p_title:
+                    -
+                      value: 'Accordion panel 2'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d5309834-0301-430b-ae2c-0e775c96cc17
+                  bundle: civic_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631690589
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_content:
+                    -
+                      value: "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\r\n"
+                      format: rich_text
+                  field_p_expand:
+                    -
+                      value: true
+                  field_p_title:
+                    -
+                      value: 'Accordion panel 3'
+          field_p_theme:
+            -
+              value: light
+          field_p_title:
+            -
+              value: 'Accordion title text'

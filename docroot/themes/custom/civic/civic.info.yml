@@ -31,7 +31,9 @@ components:
 # Update the list of the configuration below and run `drush cde civic`.
 config_devel:
   install:
+
     - core.entity_form_display.node.civic_page.default
+    - core.entity_form_display.paragraph.civic_accordion.default
     - core.entity_form_display.paragraph.civic_accordion_panel.default
     - core.entity_form_display.paragraph.civic_card_container.default
     - core.entity_form_display.paragraph.civic_card_navigation.default
@@ -41,6 +43,7 @@ config_devel:
     - core.entity_form_display.paragraph.civic_slider.default
     - core.entity_form_display.paragraph.civic_slider_slide.default
     - core.entity_view_display.node.civic_page.default
+    - core.entity_view_display.paragraph.civic_accordion.default
     - core.entity_view_display.paragraph.civic_accordion_panel.default
     - core.entity_view_display.paragraph.civic_card_container.default
     - core.entity_view_display.paragraph.civic_card_navigation.default
@@ -52,6 +55,11 @@ config_devel:
     - field.field.media.icon.field_m_icon
     - field.field.node.civic_page.field_n_banner_components
     - field.field.node.civic_page.field_n_components
+    - field.field.paragraph.civic_accordion.field_p_default_panel
+    - field.field.paragraph.civic_accordion.field_p_expand
+    - field.field.paragraph.civic_accordion.field_p_panels
+    - field.field.paragraph.civic_accordion.field_p_theme
+    - field.field.paragraph.civic_accordion.field_p_title
     - field.field.paragraph.civic_accordion_panel.field_p_content
     - field.field.paragraph.civic_accordion_panel.field_p_expand
     - field.field.paragraph.civic_accordion_panel.field_p_title
@@ -90,6 +98,7 @@ config_devel:
     - field.storage.paragraph.field_p_cards
     - field.storage.paragraph.field_p_column_count
     - field.storage.paragraph.field_p_content
+    - field.storage.paragraph.field_p_default_panel
     - field.storage.paragraph.field_p_expand
     - field.storage.paragraph.field_p_fill_width
     - field.storage.paragraph.field_p_icon
@@ -97,6 +106,7 @@ config_devel:
     - field.storage.paragraph.field_p_image_position
     - field.storage.paragraph.field_p_link
     - field.storage.paragraph.field_p_links
+    - field.storage.paragraph.field_p_panels
     - field.storage.paragraph.field_p_slides
     - field.storage.paragraph.field_p_summary
     - field.storage.paragraph.field_p_theme
@@ -104,6 +114,7 @@ config_devel:
     - field.storage.paragraph.field_p_topic
     - media.type.icon
     - node.type.civic_page
+    - paragraphs.paragraphs_type.civic_accordion
     - paragraphs.paragraphs_type.civic_accordion_panel
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_card_navigation
