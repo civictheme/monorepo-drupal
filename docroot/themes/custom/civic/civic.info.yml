@@ -55,3 +55,5 @@ config_devel:
     - media.type.icon
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_card_task
+    - field.storage.media.field_m_icon
+    - field.field.media.icon.field_m_icon
