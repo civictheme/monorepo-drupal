@@ -43,6 +43,4 @@ Feature: Tests the Card container paragraph
     And I should see an "div.js-form-item-field-n-components-0-subform-field-p-column-count select.required" element
     And I should see an "select[name='field_n_components[0][subform][field_p_column_count]']" element
     And I should see an "input[name='field_n_components[0][subform][field_p_fill_width][value]']" element
-    And I click on "div.field--name-field-p-cards .paragraphs-add-wrapper .dropbutton-toggle button" element
-    And I wait 1 second
     And I should see an "input[name='field_n_components_0_subform_field_p_cards_civic_card_task_add_more']" element
