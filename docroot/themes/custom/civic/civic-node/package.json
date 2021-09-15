@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "description": "Civic components with Storybook integration.",
   "keywords": [
-    "drupal",
+    "components",
     "storybook"
   ],
+  "homepage": "https://github.com/salsadigitalauorg/civic-node",
+  "bugs": {
+    "url": "https://github.com/salsadigitalauorg/civic-node/issues"
+  },
   "main": "index.js",
   "scripts": {
-    "build": "npm run storybook-css && npm run storybook-js",
+    "build": "build-storybook --quiet",
     "storybook": "start-storybook",
     "storybook-css": "webpack -d --config ./webpack/webpack.config.js --display-error-details",
     "storybook-js": "npx babel components -d dist/components --ignore 'components/**/*.stories.js' --presets=@babel/preset-env,babel-preset-minify --plugins=babel-plugin-drupal-behaviors",
