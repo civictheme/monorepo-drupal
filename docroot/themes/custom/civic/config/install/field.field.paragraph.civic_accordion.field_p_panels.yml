@@ -2,19 +2,18 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_n_components
-    - node.type.civic_page
+    - field.storage.paragraph.field_p_panels
     - paragraphs.paragraphs_type.civic_accordion
-    - paragraphs.paragraphs_type.civic_content
+    - paragraphs.paragraphs_type.civic_accordion_panel
   module:
     - entity_reference_revisions
-id: node.civic_page.field_n_components
-field_name: field_n_components
-entity_type: node
-bundle: civic_page
-label: Components
+id: paragraph.civic_accordion.field_p_panels
+field_name: field_p_panels
+entity_type: paragraph
+bundle: civic_accordion
+label: Panels
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -23,15 +22,14 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      civic_content: civic_content
-      civic_accordion: civic_accordion
+      civic_accordion_panel: civic_accordion_panel
     target_bundles_drag_drop:
       civic_accordion:
-        enabled: true
         weight: 6
-      civic_accordion_panel:
-        weight: 7
         enabled: false
+      civic_accordion_panel:
+        enabled: true
+        weight: 7
       civic_card_container:
         weight: 8
         enabled: false
@@ -39,6 +37,6 @@ settings:
         weight: 9
         enabled: false
       civic_content:
-        enabled: true
-        weight: 2
+        weight: 10
+        enabled: false
 field_type: entity_reference_revisions
