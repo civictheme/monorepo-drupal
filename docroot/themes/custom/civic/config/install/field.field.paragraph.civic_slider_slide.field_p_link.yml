@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_link
+    - paragraphs.paragraphs_type.civic_slider_slide
+  module:
+    - link
+id: paragraph.civic_slider_slide.field_p_link
+field_name: field_p_link
+entity_type: paragraph
+bundle: civic_slider_slide
+label: Link
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

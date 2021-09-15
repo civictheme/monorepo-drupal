@@ -194,3 +194,99 @@ default:
           field_p_theme:
             -
               value: dark
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 9d7a94ab-5e23-4571-bca3-00cc0c7fbad7
+          bundle: civic_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631631970
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_p_link:
+            -
+              uri: 'internal:/'
+              title: 'Bring to the table win-win survival strategies'
+              options: {  }
+          field_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c98dddd4-4e77-4ea5-80e1-7cb6d7dcc4fd
+                  bundle: civic_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631631970
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_content:
+                    -
+                      value: "<p><strong>Leverage agile frameworks</strong> to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\r\n\r\n<p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>\r\n\r\n<p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>\r\n"
+                      format: rich_text
+                  field_p_image_position:
+                    -
+                      value: left
+                  field_p_title:
+                    -
+                      value: 'Capitalize on low hanging fruit'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: f595103f-10ac-4831-8825-75d62cd72d0d
+                  bundle: civic_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631632038
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_image_position:
+                    -
+                      value: right
+                  field_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Override the digital divide'
+                      options: {  }
+                  field_p_title:
+                    -
+                      value: 'a new normal that has evolved'
+          field_p_theme:
+            -
+              value: light
+          field_p_title:
+            -
+              value: 'Leverage agile frameworks'
