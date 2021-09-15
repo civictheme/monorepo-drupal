@@ -31,6 +31,7 @@ components:
 # Update the list of the configuration below and run `drush cde civic`.
 config_devel:
   install:
+    - node.type.civic_page
     - core.entity_form_display.node.civic_page.default
     - core.entity_form_display.paragraph.civic_content.default
     - core.entity_view_display.node.civic_page.default
@@ -43,5 +44,27 @@ config_devel:
     - field.storage.node.field_n_components
     - field.storage.paragraph.field_p_content
     - field.storage.paragraph.field_p_theme
-    - node.type.civic_page
-    - paragraphs.paragraphs_type.civic_content
+    - core.entity_form_display.paragraph.civic_card_container.default
+      - core.entity_form_display.paragraph.civic_card_task.default
+      - core.entity_view_display.paragraph.civic_card_container.default
+      - core.entity_view_display.paragraph.civic_card_task.default
+      - field.field.paragraph.civic_card_container.field_p_cards
+      - field.field.paragraph.civic_card_container.field_p_column_count
+      - field.field.paragraph.civic_card_container.field_p_fill_width
+      - field.field.paragraph.civic_card_container.field_p_link
+      - field.field.paragraph.civic_card_container.field_p_title
+      - field.field.paragraph.civic_card_task.field_p_icon
+      - field.field.paragraph.civic_card_task.field_p_link
+      - field.field.paragraph.civic_card_task.field_p_summary
+      - field.field.paragraph.civic_card_task.field_p_title
+      - field.storage.paragraph.field_p_cards
+      - field.storage.paragraph.field_p_column_count
+      - field.storage.paragraph.field_p_fill_width
+      - field.storage.paragraph.field_p_icon
+      - field.storage.paragraph.field_p_link
+      - field.storage.paragraph.field_p_summary
+      - field.storage.paragraph.field_p_title
+      - media.type.icon
+      - paragraphs.paragraphs_type.civic_card_container
+      - paragraphs.paragraphs_type.civic_card_task
+      - paragraphs.paragraphs_type.civic_content
