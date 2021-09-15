@@ -12,19 +12,21 @@ use DrevOps\BehatSteps\WatchdogTrait;
 use DrevOps\BehatSteps\FieldTrait;
 use DrevOps\BehatSteps\PathTrait;
 use DrevOps\BehatSteps\JsTrait;
+use DrevOps\BehatSteps\SelectTrait;
 use DrevOps\BehatSteps\WaitTrait;
+
 
 /**
  * Defines application features from the specific context.
  */
 class FeatureContext extends DrupalContext {
 
-  use JsTrait;
   use ContentTrait;
+  use JsTrait;
   use FieldTrait;
   use PathTrait;
+  use SelectTrait;
   use TaxonomyTrait;
   use WatchdogTrait;
   use WaitTrait;
-
 }

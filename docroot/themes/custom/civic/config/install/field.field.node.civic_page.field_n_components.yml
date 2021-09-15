@@ -4,7 +4,10 @@ dependencies:
   config:
     - field.storage.node.field_n_components
     - node.type.civic_page
+    - paragraphs.paragraphs_type.civic_accordion
+    - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_content
+    - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_promo
   module:
     - entity_reference_revisions
@@ -25,18 +28,24 @@ settings:
     target_bundles:
       civic_content: civic_content
       civic_promo: civic_promo
+      civic_accordion: civic_accordion
+      civic_card_container: civic_card_container
+      civic_slider: civic_slider
     target_bundles_drag_drop:
       civic_accordion:
+        enabled: true
         weight: 6
-        enabled: false
       civic_accordion_panel:
         weight: 7
         enabled: false
       civic_card_container:
         weight: 8
         enabled: false
-      civic_card_task:
+      civic_card_navigation:
         weight: 9
+        enabled: false
+      civic_card_task:
+        weight: 10
         enabled: false
       civic_content:
         enabled: true
@@ -44,4 +53,10 @@ settings:
       civic_promo:
         enabled: true
         weight: 7
+      civic_slider:
+        enabled: true
+        weight: 5
+      civic_slider_slide:
+        weight: 6
+        enabled: false
 field_type: entity_reference_revisions

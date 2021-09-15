@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_expand
+    - paragraphs.paragraphs_type.civic_accordion
+id: paragraph.civic_accordion.field_p_expand
+field_name: field_p_expand
+entity_type: paragraph
+bundle: civic_accordion
+label: 'Expand all'
+description: 'All accordion panels are expanded.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
