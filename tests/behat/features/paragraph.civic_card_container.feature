@@ -24,7 +24,7 @@ Feature: Tests the Card container paragraph
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_card_container/fields/paragraph.civic_card_container.field_p_cards"
     And the "Label" field should contain "Cards"
-    And I should see the option "Default" selected in "Reference method" dropdown
+    Then the option "Default" from select "Reference method" is selected
     Then the "Include the selected below" checkbox should be checked
     And the "Card task" checkbox should be checked
     And the "Card container" checkbox should not be checked
