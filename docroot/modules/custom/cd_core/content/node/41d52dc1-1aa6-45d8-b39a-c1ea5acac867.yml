@@ -1,0 +1,170 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 41d52dc1-1aa6-45d8-b39a-c1ea5acac867
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Navigation card 2'
+  created:
+    -
+      value: 1631681070
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 14765926-28e1-4acc-990a-8a0841de7292
+          bundle: civic_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631681078
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 5f2faf83-4d08-4720-b75d-c3274b7409b6
+                  bundle: civic_card_navigation
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631681095
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_image:
+                    -
+                      entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+                  field_p_summary:
+                    -
+                      value: 'Nulla porttitor accumsan tincidunt. Cras ultricies ligula sed magna dictum porta. Nulla quis lorem ut libero malesuada feugiat. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.'
+                  field_p_theme:
+                    -
+                      value: dark
+                  field_p_title:
+                    -
+                      value: 'Navigation card title 1'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 250b5721-1085-4812-b329-98eb76e8ab02
+                  bundle: civic_card_navigation
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631681112
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_p_summary:
+                    -
+                      value: 'Nulla porttitor accumsan tincidunt. Cras ultricies ligula sed magna dictum porta. Nulla quis lorem ut libero malesuada feugiat. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.'
+                  field_p_theme:
+                    -
+                      value: light
+                  field_p_title:
+                    -
+                      value: 'Navigation card title 2'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: bca8bb9f-2667-4f6d-a16e-2822a0357d35
+                  bundle: civic_card_navigation
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631681117
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_link:
+                    -
+                      uri: 'http://google.com'
+                      title: 'Read more'
+                      options: {  }
+                  field_p_summary:
+                    -
+                      value: 'Nulla porttitor accumsan tincidunt. Cras ultricies ligula sed magna dictum porta. Nulla quis lorem ut libero malesuada feugiat. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.'
+                  field_p_theme:
+                    -
+                      value: dark
+                  field_p_title:
+                    -
+                      value: 'Navigation card title 3'
+          field_p_column_count:
+            -
+              value: 3
+          field_p_fill_width:
+            -
+              value: false
+          field_p_link:
+            -
+              uri: 'http://google.com'
+              title: 'Read more'
+              options: {  }
+          field_p_title:
+            -
+              value: 'Card container 3 column'
