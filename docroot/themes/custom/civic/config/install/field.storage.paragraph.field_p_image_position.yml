@@ -4,18 +4,18 @@ dependencies:
   module:
     - options
     - paragraphs
-id: paragraph.field_p_theme
-field_name: field_p_theme
+id: paragraph.field_p_image_position
+field_name: field_p_image_position
 entity_type: paragraph
 type: list_string
 settings:
   allowed_values:
     -
-      value: light
-      label: Light
+      value: left
+      label: Left
     -
-      value: dark
-      label: Dark
+      value: right
+      label: Right
   allowed_values_function: ''
 module: options
 locked: false
