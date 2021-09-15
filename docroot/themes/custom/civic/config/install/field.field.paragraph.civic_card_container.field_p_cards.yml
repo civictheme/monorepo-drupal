@@ -4,7 +4,9 @@ dependencies:
   config:
     - field.storage.paragraph.field_p_cards
     - paragraphs.paragraphs_type.civic_card_container
+    - paragraphs.paragraphs_type.civic_card_navigation
     - paragraphs.paragraphs_type.civic_card_task
+    - paragraphs.paragraphs_type.civic_service_card
   module:
     - entity_reference_revisions
 id: paragraph.civic_card_container.field_p_cards
@@ -23,14 +25,25 @@ settings:
     negate: 0
     target_bundles:
       civic_card_task: civic_card_task
+      civic_card_navigation: civic_card_navigation
+      civic_service_card: civic_service_card
     target_bundles_drag_drop:
+      civic_accordion_panel:
+        weight: 6
+        enabled: false
       civic_card_container:
         weight: 4
         enabled: false
+      civic_card_navigation:
+        enabled: true
+        weight: 8
       civic_card_task:
         enabled: true
         weight: 5
       civic_content:
         weight: 6
         enabled: false
+      civic_service_card:
+        enabled: true
+        weight: 10
 field_type: entity_reference_revisions

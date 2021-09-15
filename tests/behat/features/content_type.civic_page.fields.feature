@@ -24,3 +24,4 @@ Feature: Fields on Page content type
 
     And I should see text matching "Components"
     And should see an "input[name='field_n_components_civic_content_add_more']" element
+    And should see an "input[name='field_n_components_civic_card_container_add_more']" element

@@ -1,0 +1,186 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 5c23a0bd-3ee8-4608-bdec-b396f0be3c7d
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    fcd683b6-ea34-4310-aedd-7731ff476cbc: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Card default content 3'
+  created:
+    -
+      value: 1631673317
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 87d18510-a760-4042-b81e-796fba8dbdec
+          bundle: civic_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631673323
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 88267847-9115-49c2-b316-000383c6bc0f
+                  bundle: civic_card_task
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631673347
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_summary:
+                    -
+                      value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_p_title:
+                    -
+                      value: 'Card task 1'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 8e2ba649-0ff9-4a1d-9ee9-64b818bba28c
+                  bundle: civic_card_task
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631673351
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_icon:
+                    -
+                      entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
+                  field_p_summary:
+                    -
+                      value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_p_title:
+                    -
+                      value: 'Card task 2'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 40045185-d23c-466e-9e76-aedde86e470e
+                  bundle: civic_card_task
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631673357
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_summary:
+                    -
+                      value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_p_title:
+                    -
+                      value: 'Card task 3'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 5f3377d1-f374-4b7b-806e-282c73b1829d
+                  bundle: civic_card_task
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631673418
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_summary:
+                    -
+                      value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_p_title:
+                    -
+                      value: 'Card task 4'
+          field_p_column_count:
+            -
+              value: 4
+          field_p_fill_width:
+            -
+              value: false
+          field_p_link:
+            -
+              uri: 'http://google.com'
+              title: 'Read more'
+              options: {  }
+          field_p_title:
+            -
+              value: 'Card 4 column'

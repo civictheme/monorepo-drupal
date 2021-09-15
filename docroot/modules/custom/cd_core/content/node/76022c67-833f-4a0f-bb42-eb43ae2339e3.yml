@@ -1,0 +1,117 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 76022c67-833f-4a0f-bb42-eb43ae2339e3
+  bundle: civic_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Service cards 2'
+  created:
+    -
+      value: 1631685575
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: b09de9f2-0cb2-4ae9-b424-02f2da6cd0a9
+          bundle: civic_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631685583
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 2c738bbe-4c50-460d-bebe-f08e2e6ba805
+                  bundle: civic_service_card
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631685596
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_links:
+                    -
+                      uri: 'http://example.com'
+                      title: 'Example 1'
+                      options: {  }
+                    -
+                      uri: 'http://example.com'
+                      title: 'Example 2 large link text example Example 2 large link text example '
+                      options: {  }
+                    -
+                      uri: 'http://example.com'
+                      title: 'Example 3 large link text example '
+                      options: {  }
+                    -
+                      uri: 'http://example.com'
+                      title: 'Example 4 large link text example '
+                      options: {  }
+                  field_p_theme:
+                    -
+                      value: light
+                  field_p_title:
+                    -
+                      value: 'Service card 1'
+          field_p_column_count:
+            -
+              value: 1
+          field_p_fill_width:
+            -
+              value: true
+          field_p_link:
+            -
+              uri: 'http://example.com'
+              title: 'Read more'
+              options: {  }
+          field_p_title:
+            -
+              value: 'Service cards container Full width'
