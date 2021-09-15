@@ -15,7 +15,6 @@ use DrevOps\BehatSteps\JsTrait;
 use DrevOps\BehatSteps\SelectTrait;
 use DrevOps\BehatSteps\WaitTrait;
 
-
 /**
  * Defines application features from the specific context.
  */
