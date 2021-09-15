@@ -20,4 +20,4 @@ Feature: Tests the Civic Component Block Type
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "block/add/civic_component_block"
     And I should see an "div.field--name-field-b-components" element
-    And I should see the text "Add Card container" in the "field_b_components_civic_card_container_add_more" element
+    And I should see the text "Add Card container"
