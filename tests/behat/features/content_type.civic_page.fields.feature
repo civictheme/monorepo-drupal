@@ -36,11 +36,7 @@ Feature: Fields on Page content type
     And should see an "input[name='field_n_components_civic_content_add_more']" element
     And should see an "input[name='field_n_components_civic_card_container_add_more']" element
 
-    And I should see text matching "BANNER BACKGROUND"
     And should see an "input[name='field_n_banner_background-media-library-open-button']" element
-
-    And I should see text matching "FEATURED BANNER IMAGE"
     And should see an "input[name='field_n_featured_banner_image-media-library-open-button']" element
-
     And I should see text matching "Banner type"
-    And should see an "input[name='field_n_banner_type']" element
+    And should see an "select[name='field_n_banner_type']" element
