@@ -6,6 +6,7 @@ dependencies:
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_card_event_reference
     - paragraphs.paragraphs_type.civic_card_navigation
+    - paragraphs.paragraphs_type.civic_card_reference_promo
     - paragraphs.paragraphs_type.civic_card_navigation_reference
     - paragraphs.paragraphs_type.civic_card_task
     - paragraphs.paragraphs_type.civic_service_card
@@ -30,8 +31,12 @@ settings:
       civic_card_navigation: civic_card_navigation
       civic_service_card: civic_service_card
       civic_card_event_reference: civic_card_event_reference
+      civic_card_reference_promo: civic_card_reference_promo
       civic_card_navigation_reference: civic_card_navigation_reference
     target_bundles_drag_drop:
+      civic_accordion:
+        weight: 11
+        enabled: false
       civic_accordion_panel:
         weight: 6
         enabled: false
@@ -44,12 +49,12 @@ settings:
       civic_card_navigation:
         enabled: true
         weight: 8
-      civic_card_navigation_reference:
-        weight: 15
-        enabled: false
       civic_card_reference_promo:
+        enabled: true
         weight: 12
-        enabled: false
+      civic_card_navigation_reference:
+        enabled: true
+        weight: 15
       civic_card_task:
         enabled: true
         weight: 5

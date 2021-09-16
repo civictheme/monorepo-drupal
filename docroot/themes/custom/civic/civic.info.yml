@@ -38,8 +38,10 @@ config_devel:
     - core.entity_form_display.paragraph.civic_accordion.default
     - core.entity_form_display.paragraph.civic_accordion_panel.default
     - core.entity_form_display.paragraph.civic_card_container.default
+    - core.entity_form_display.paragraph.civic_card_event_reference.default
     - core.entity_form_display.paragraph.civic_card_navigation.default
     - core.entity_form_display.paragraph.civic_card_navigation_reference.default
+    - core.entity_form_display.paragraph.civic_card_reference_promo.default
     - core.entity_form_display.paragraph.civic_card_task.default
     - core.entity_form_display.paragraph.civic_content.default
     - core.entity_form_display.paragraph.civic_promo.default.yml
@@ -53,8 +55,10 @@ config_devel:
     - core.entity_view_display.paragraph.civic_accordion.default
     - core.entity_view_display.paragraph.civic_accordion_panel.default
     - core.entity_view_display.paragraph.civic_card_container.default
+    - core.entity_view_display.paragraph.civic_card_event_reference.default
     - core.entity_view_display.paragraph.civic_card_navigation.default
     - core.entity_view_display.paragraph.civic_card_navigation_reference.default
+    - core.entity_view_display.paragraph.civic_card_reference_promo.default
     - core.entity_view_display.paragraph.civic_card_task.default
     - core.entity_view_display.paragraph.civic_content.default
     - core.entity_view_display.paragraph.civic_promo.default.yml
@@ -85,6 +89,8 @@ config_devel:
     - field.field.paragraph.civic_card_container.field_p_fill_width
     - field.field.paragraph.civic_card_container.field_p_link
     - field.field.paragraph.civic_card_container.field_p_title
+    - field.field.paragraph.civic_card_event_reference.field_p_reference
+    - field.field.paragraph.civic_card_event_reference.field_p_theme
     - field.field.paragraph.civic_card_navigation.field_p_image
     - field.field.paragraph.civic_card_navigation.field_p_link
     - field.field.paragraph.civic_card_navigation.field_p_summary
@@ -92,6 +98,8 @@ config_devel:
     - field.field.paragraph.civic_card_navigation.field_p_title
     - field.field.paragraph.civic_card_navigation_reference.field_p_reference
     - field.field.paragraph.civic_card_navigation_reference.field_p_theme
+    - field.field.paragraph.civic_card_reference_promo.field_p_reference
+    - field.field.paragraph.civic_card_reference_promo.field_p_theme
     - field.field.paragraph.civic_card_task.field_p_icon
     - field.field.paragraph.civic_card_task.field_p_link
     - field.field.paragraph.civic_card_task.field_p_summary
@@ -145,6 +153,7 @@ config_devel:
     - field.storage.paragraph.field_p_theme
     - field.storage.paragraph.field_p_title
     - field.storage.paragraph.field_p_topic
+    - fieldcivic_project.field.node.civic_event.field_n_body
     - media.type.icon
     - node.type.civic_event
     - node.type.civic_page
@@ -152,8 +161,10 @@ config_devel:
     - paragraphs.paragraphs_type.civic_accordion_panel
     - paragraphs.paragraphs_type.civic_attachment
     - paragraphs.paragraphs_type.civic_card_container
+    - paragraphs.paragraphs_type.civic_card_event_reference
     - paragraphs.paragraphs_type.civic_card_navigation
     - paragraphs.paragraphs_type.civic_card_navigation_reference
+    - paragraphs.paragraphs_type.civic_card_reference_promo
     - paragraphs.paragraphs_type.civic_card_task
     - paragraphs.paragraphs_type.civic_content
     - paragraphs.paragraphs_type.civic_map
@@ -162,14 +173,6 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
-    - core.entity_form_display.paragraph.civic_card_event_reference.default
-    - core.entity_view_display.paragraph.civic_card_event_reference.default
-    - field.field.paragraph.civic_card_event_reference.field_p_reference
-    - field.field.paragraph.civic_card_event_reference.field_p_theme
-    - field.storage.paragraph.field_p_reference
-    - node.type.civic_event
-    - paragraphs.paragraphs_type.civic_card_event_reference
-
   optional:
     - media.type.image
     - core.entity_view_mode.node.teaser
