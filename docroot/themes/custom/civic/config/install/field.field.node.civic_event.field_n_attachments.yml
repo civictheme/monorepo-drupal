@@ -1,0 +1,69 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_n_attachments
+    - node.type.civic_event
+    - paragraphs.paragraphs_type.civic_attachment
+  module:
+    - entity_reference_revisions
+id: node.civic_event.field_n_attachments
+field_name: field_n_attachments
+entity_type: node
+bundle: civic_event
+label: Attachments
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      civic_attachment: civic_attachment
+    target_bundles_drag_drop:
+      civic_accordion:
+        weight: 16
+        enabled: false
+      civic_accordion_panel:
+        weight: 17
+        enabled: false
+      civic_attachment:
+        enabled: true
+        weight: 15
+      civic_card_container:
+        weight: 18
+        enabled: false
+      civic_card_event_reference:
+        weight: 19
+        enabled: false
+      civic_card_navigation:
+        weight: 20
+        enabled: false
+      civic_card_navigation_reference:
+        weight: 21
+        enabled: false
+      civic_card_reference_promo:
+        weight: 22
+        enabled: false
+      civic_card_task:
+        weight: 23
+        enabled: false
+      civic_content:
+        weight: 24
+        enabled: false
+      civic_map:
+        weight: 25
+        enabled: false
+      civic_service_card:
+        weight: 26
+        enabled: false
+      civic_slider:
+        weight: 27
+        enabled: false
+      civic_slider_slide:
+        weight: 28
+        enabled: false
+field_type: entity_reference_revisions
