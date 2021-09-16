@@ -137,5 +137,16 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
+    - core.entity_form_display.paragraph.civic_card_event.default
+    - core.entity_view_display.paragraph.civic_card_event.default
+    - field.field.paragraph.civic_card_event.field_p_date
+    - field.field.paragraph.civic_card_event.field_p_image
+    - field.field.paragraph.civic_card_event.field_p_link
+    - field.field.paragraph.civic_card_event.field_p_summary
+    - field.field.paragraph.civic_card_event.field_p_theme
+    - field.field.paragraph.civic_card_event.field_p_title
+    - field.field.paragraph.civic_card_event.field_p_topic
+    - paragraphs.paragraphs_type.civic_card_event
+    - field.storage.paragraph.field_p_date
   optional:
     - media.type.image
