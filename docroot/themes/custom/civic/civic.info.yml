@@ -39,6 +39,7 @@ config_devel:
     - core.entity_form_display.paragraph.civic_accordion_panel.default
     - core.entity_form_display.paragraph.civic_callout.default
     - core.entity_form_display.paragraph.civic_card_container.default
+    - core.entity_form_display.paragraph.civic_card_event.default
     - core.entity_form_display.paragraph.civic_card_event_reference.default
     - core.entity_form_display.paragraph.civic_card_navigation.default
     - core.entity_form_display.paragraph.civic_card_navigation_reference.default
@@ -57,6 +58,7 @@ config_devel:
     - core.entity_view_display.paragraph.civic_accordion_panel.default
     - core.entity_view_display.paragraph.civic_callout.default
     - core.entity_view_display.paragraph.civic_card_container.default
+    - core.entity_view_display.paragraph.civic_card_event.default
     - core.entity_view_display.paragraph.civic_card_event_reference.default
     - core.entity_view_display.paragraph.civic_card_navigation.default
     - core.entity_view_display.paragraph.civic_card_navigation_reference.default
@@ -95,6 +97,13 @@ config_devel:
     - field.field.paragraph.civic_card_container.field_p_fill_width
     - field.field.paragraph.civic_card_container.field_p_link
     - field.field.paragraph.civic_card_container.field_p_title
+    - field.field.paragraph.civic_card_event.field_p_date
+    - field.field.paragraph.civic_card_event.field_p_image
+    - field.field.paragraph.civic_card_event.field_p_link
+    - field.field.paragraph.civic_card_event.field_p_summary
+    - field.field.paragraph.civic_card_event.field_p_theme
+    - field.field.paragraph.civic_card_event.field_p_title
+    - field.field.paragraph.civic_card_event.field_p_topic
     - field.field.paragraph.civic_card_event_reference.field_p_reference
     - field.field.paragraph.civic_card_event_reference.field_p_theme
     - field.field.paragraph.civic_card_navigation.field_p_image
@@ -144,6 +153,7 @@ config_devel:
     - field.storage.paragraph.field_p_cards
     - field.storage.paragraph.field_p_column_count
     - field.storage.paragraph.field_p_content
+    - field.storage.paragraph.field_p_date
     - field.storage.paragraph.field_p_default_panel
     - field.storage.paragraph.field_p_expand
     - field.storage.paragraph.field_p_fill_width
@@ -168,6 +178,7 @@ config_devel:
     - paragraphs.paragraphs_type.civic_attachment
     - paragraphs.paragraphs_type.civic_callout
     - paragraphs.paragraphs_type.civic_card_container
+    - paragraphs.paragraphs_type.civic_card_event
     - paragraphs.paragraphs_type.civic_card_event_reference
     - paragraphs.paragraphs_type.civic_card_navigation
     - paragraphs.paragraphs_type.civic_card_navigation_reference

@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.storage.paragraph.field_p_cards
     - paragraphs.paragraphs_type.civic_card_container
+    - paragraphs.paragraphs_type.civic_card_event
     - paragraphs.paragraphs_type.civic_card_event_reference
     - paragraphs.paragraphs_type.civic_card_navigation
     - paragraphs.paragraphs_type.civic_card_reference_promo
@@ -33,9 +34,10 @@ settings:
       civic_card_event_reference: civic_card_event_reference
       civic_card_reference_promo: civic_card_reference_promo
       civic_card_navigation_reference: civic_card_navigation_reference
+      civic_card_event: civic_card_event
     target_bundles_drag_drop:
       civic_accordion:
-        weight: 11
+        weight: 12
         enabled: false
       civic_accordion_panel:
         weight: 6
@@ -43,6 +45,9 @@ settings:
       civic_card_container:
         weight: 4
         enabled: false
+      civic_card_event:
+        enabled: true
+        weight: 15
       civic_card_event_reference:
         enabled: true
         weight: 13
@@ -61,13 +66,16 @@ settings:
       civic_content:
         weight: 6
         enabled: false
+      civic_promo:
+        weight: 19
+        enabled: false
       civic_service_card:
         enabled: true
         weight: 10
       civic_slider:
-        weight: 19
+        weight: 21
         enabled: false
       civic_slider_slide:
-        weight: 20
+        weight: 22
         enabled: false
 field_type: entity_reference_revisions

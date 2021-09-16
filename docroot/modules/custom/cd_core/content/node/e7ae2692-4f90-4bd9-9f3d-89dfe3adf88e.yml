@@ -4,6 +4,8 @@ _meta:
   uuid: e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e
   bundle: civic_page
   default_langcode: en
+  depends:
+    4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
 default:
   revision_uid:
     -
@@ -75,9 +77,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
@@ -102,15 +101,53 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
                   field_p_title:
                     -
                       value: 'Card task 2'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: bbb68f12-2057-49e0-ab3f-87bf25b1dfa0
+                  bundle: civic_card_event
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631778963
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_date:
+                    -
+                      value: '2021-09-24'
+                  field_p_image:
+                    -
+                      entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+                  field_p_link:
+                    -
+                      uri: 'https://google.com'
+                      title: ''
+                      options: {  }
+                  field_p_summary:
+                    -
+                      value: "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.\r\n\r\n"
+                  field_p_theme:
+                    -
+                      value: light
+                  field_p_title:
+                    -
+                      value: 'Taking seamless key performance indicators'
           field_p_column_count:
             -
               value: 2
