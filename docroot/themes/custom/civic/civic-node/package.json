@@ -16,7 +16,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "npm run sass && build-storybook -s ./assets --quiet",
+    "build": "build-storybook -s ./assets --quiet",
     "storybook": "start-storybook -s ./assets"
   },
   "devDependencies": {
