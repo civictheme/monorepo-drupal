@@ -140,7 +140,6 @@ config_devel:
     - core.entity_form_display.node.civic_event.default
     - core.entity_view_display.node.civic_event.default
     - core.entity_view_display.node.civic_event.teaser
-    - core.entity_view_mode.node.teaser
     - field.field.node.civic_event.field_n_attachments
     - field.field.node.civic_event.field_n_body
     - field.field.node.civic_event.field_n_date
@@ -162,3 +161,4 @@ config_devel:
     - paragraphs.paragraphs_type.civic_map
   optional:
     - media.type.image
+    - core.entity_view_mode.node.teaser
