@@ -17,7 +17,8 @@
   "main": "index.js",
   "scripts": {
     "build": "build-storybook -s ./assets --quiet",
-    "storybook": "start-storybook -s ./assets"
+    "storybook": "start-storybook -s ./assets",
+    "lint": "eslint ./components"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
@@ -33,6 +34,8 @@
     "babel-plugin-drupal-behaviors": "^0.1.1",
     "css-loader": "^5.2.7",
     "drupal-attribute": "^1.0.2",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
     "html-webpack-plugin": "^4.5.2",
     "sass": "^1.41.0",
     "sass-loader": "^10.2.0",

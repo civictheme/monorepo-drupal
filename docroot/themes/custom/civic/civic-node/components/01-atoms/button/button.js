@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', function   () {
-  document.querySelector('.civic-button').addEventListener('click', function () {
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('.civic-button').addEventListener('click', () => {
+    // eslint-disable-next-line no-console
     console.log('Triggered example click event for the button');
   });
-}, {once: true});
+}, { once: true });
