@@ -2,11 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.civic_page.field_n_banner_background
     - field.field.node.civic_page.field_n_banner_components
+    - field.field.node.civic_page.field_n_banner_type
     - field.field.node.civic_page.field_n_components
+    - field.field.node.civic_page.field_n_featured_banner_image
     - node.type.civic_page
   module:
     - content_moderation
+    - media_library
     - paragraphs
     - path
 id: node.civic_page.default
@@ -20,6 +24,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_n_banner_background:
+    type: media_library_widget
+    weight: 123
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
   field_n_banner_components:
     type: paragraphs
     weight: 121
@@ -39,6 +50,12 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
     region: content
+  field_n_banner_type:
+    weight: 125
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_n_components:
     type: paragraphs
     weight: 122
@@ -56,6 +73,13 @@ content:
         add_above: '0'
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
+    third_party_settings: {  }
+    region: content
+  field_n_featured_banner_image:
+    type: media_library_widget
+    weight: 124
+    settings:
+      media_types: {  }
     third_party_settings: {  }
     region: content
   moderation_state:

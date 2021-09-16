@@ -7,8 +7,8 @@ dependencies:
     - paragraphs.paragraphs_type.civic_accordion
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_content
-    - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_promo
+    - paragraphs.paragraphs_type.civic_slider
   module:
     - entity_reference_revisions
 id: node.civic_page.field_n_components

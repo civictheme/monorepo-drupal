@@ -137,5 +137,17 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
+    - block_content.type.civic_banner
+    - core.entity_form_display.block_content.civic_banner.default
+    - core.entity_form_display.node.civic_page.default
+    - core.entity_view_display.block_content.civic_banner.default
+    - field.field.block_content.civic_banner.field_b_theme
+    - field.field.node.civic_page.field_n_banner_background.
+    - field.field.node.civic_page.field_n_banner_type
+    - field.field.node.civic_page.field_n_featured_banner_image
+    - field.storage.block_content.field_b_theme
+    - field.storage.node.field_n_banner_background
+    - field.storage.node.field_n_banner_type
+    - field.storage.node.field_n_featured_banner_image
   optional:
     - media.type.image
