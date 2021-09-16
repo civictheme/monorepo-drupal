@@ -16,7 +16,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "build-storybook -s ./assets --quiet",
+    "build": "build-storybook --quiet",
     "storybook": "start-storybook -s ./assets",
     "lint": "eslint ./components"
   },
