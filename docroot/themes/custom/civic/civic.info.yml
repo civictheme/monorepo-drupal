@@ -31,6 +31,7 @@ components:
 # Update the list of the configuration below and run `drush cde civic`.
 config_devel:
   install:
+
     - core.entity_form_display.node.civic_page.default
     - core.entity_form_display.paragraph.civic_accordion.default
     - core.entity_form_display.paragraph.civic_accordion_panel.default
