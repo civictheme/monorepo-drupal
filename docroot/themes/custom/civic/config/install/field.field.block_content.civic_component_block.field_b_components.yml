@@ -1,0 +1,54 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.civic_component_block
+    - field.storage.block_content.field_b_components
+    - paragraphs.paragraphs_type.civic_card_container
+  module:
+    - entity_reference_revisions
+id: block_content.civic_component_block.field_b_components
+field_name: field_b_components
+entity_type: block_content
+bundle: civic_component_block
+label: Components
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      civic_card_container: civic_card_container
+    target_bundles_drag_drop:
+      civic_accordion:
+        weight: 10
+        enabled: false
+      civic_accordion_panel:
+        weight: 11
+        enabled: false
+      civic_card_container:
+        enabled: true
+        weight: 12
+      civic_card_navigation:
+        weight: 13
+        enabled: false
+      civic_card_task:
+        weight: 14
+        enabled: false
+      civic_content:
+        weight: 15
+        enabled: false
+      civic_service_card:
+        weight: 16
+        enabled: false
+      civic_slider:
+        weight: 17
+        enabled: false
+      civic_slider_slide:
+        weight: 18
+        enabled: false
+field_type: entity_reference_revisions
