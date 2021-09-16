@@ -9,6 +9,7 @@ core_version_requirement: ^8 || ^9
 dependencies:
   - components:components
   - paragraphs:paragraphs
+  - drupal:block_content
 
 regions:
   header: 'Header'
@@ -32,6 +33,8 @@ components:
 config_devel:
   install:
 
+    - block_content.type.civic_component_block
+    - core.entity_form_display.block_content.civic_component_block.default
     - core.entity_form_display.node.civic_page.default
     - core.entity_form_display.paragraph.civic_accordion.default
     - core.entity_form_display.paragraph.civic_accordion_panel.default
@@ -43,6 +46,7 @@ config_devel:
     - core.entity_form_display.paragraph.civic_service_card.default
     - core.entity_form_display.paragraph.civic_slider.default
     - core.entity_form_display.paragraph.civic_slider_slide.default
+    - core.entity_view_display.block_content.civic_component_block.default
     - core.entity_view_display.node.civic_page.default
     - core.entity_view_display.paragraph.civic_accordion.default
     - core.entity_view_display.paragraph.civic_accordion_panel.default
@@ -54,6 +58,7 @@ config_devel:
     - core.entity_view_display.paragraph.civic_service_card.default
     - core.entity_view_display.paragraph.civic_slider.default
     - core.entity_view_display.paragraph.civic_slider_slide.default
+    - field.field.block_content.civic_component_block.field_b_components
     - field.field.media.icon.field_m_icon
     - field.field.node.civic_page.field_n_banner_components
     - field.field.node.civic_page.field_n_components
@@ -98,6 +103,7 @@ config_devel:
     - field.field.paragraph.civic_slider_slide.field_p_link
     - field.field.paragraph.civic_slider_slide.field_p_title
     - field.field.paragraph.civic_slider_slide.field_p_topic
+    - field.storage.block_content.field_b_components
     - field.storage.media.field_m_icon
     - field.storage.node.field_n_banner_components
     - field.storage.node.field_n_components
