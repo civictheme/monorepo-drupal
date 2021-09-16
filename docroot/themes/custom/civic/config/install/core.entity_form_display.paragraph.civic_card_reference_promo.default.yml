@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civic_card_reference_promo.field_p_reference
+    - field.field.paragraph.civic_card_reference_promo.field_p_theme
+    - paragraphs.paragraphs_type.civic_card_reference_promo
+id: paragraph.civic_card_reference_promo.default
+targetEntityType: paragraph
+bundle: civic_card_reference_promo
+mode: default
+content:
+  field_p_reference:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_p_theme:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  created: true
+  status: true
