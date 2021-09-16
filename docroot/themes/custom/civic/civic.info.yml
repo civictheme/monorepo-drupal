@@ -32,7 +32,6 @@ components:
 # Update the list of the configuration below and run `drush cde civic`.
 config_devel:
   install:
-
     - block_content.type.civic_component_block
     - core.entity_form_display.block_content.civic_component_block.default
     - core.entity_form_display.node.civic_page.default
