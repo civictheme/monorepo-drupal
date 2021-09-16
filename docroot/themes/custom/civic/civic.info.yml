@@ -203,6 +203,7 @@ config_devel:
     - field.storage.node.field_n_banner_background
     - field.storage.node.field_n_banner_type
     - field.storage.node.field_n_featured_banner_image
+    - block.block.civic_banner
   optional:
     - media.type.image
     - core.entity_view_mode.node.teaser
