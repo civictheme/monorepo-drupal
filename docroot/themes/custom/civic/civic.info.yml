@@ -158,7 +158,6 @@ config_devel:
     - paragraphs.paragraphs_type.civic_accordion
     - paragraphs.paragraphs_type.civic_accordion_panel
     - paragraphs.paragraphs_type.civic_attachment
-    - paragraphs.paragraphs_type.civic_callout.yml
     - paragraphs.paragraphs_type.civic_callout
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_card_navigation
@@ -166,7 +165,6 @@ config_devel:
     - paragraphs.paragraphs_type.civic_card_task
     - paragraphs.paragraphs_type.civic_content
     - paragraphs.paragraphs_type.civic_map
-    - paragraphs.paragraphs_type.civic_promo.yml
     - paragraphs.paragraphs_type.civic_promo
     - paragraphs.paragraphs_type.civic_service_card
     - paragraphs.paragraphs_type.civic_slider
