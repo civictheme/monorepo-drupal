@@ -6,6 +6,7 @@ dependencies:
     - node.type.civic_page
     - paragraphs.paragraphs_type.civic_accordion
     - paragraphs.paragraphs_type.civic_callout
+    - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_content
     - paragraphs.paragraphs_type.civic_promo
     - paragraphs.paragraphs_type.civic_slider
@@ -30,6 +31,7 @@ settings:
       civic_slider: civic_slider
       civic_accordion: civic_accordion
       civic_promo: civic_promo
+      civic_card_container: civic_card_container
       civic_callout: civic_callout
     target_bundles_drag_drop:
       civic_accordion:
@@ -42,8 +44,8 @@ settings:
         enabled: true
         weight: 12
       civic_card_container:
+        enabled: true
         weight: 8
-        enabled: false
       civic_card_navigation:
         weight: 9
         enabled: false

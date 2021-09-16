@@ -23,8 +23,8 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      civic_card_container: civic_card_container
       civic_callout: civic_callout
+      civic_card_container: civic_card_container
     target_bundles_drag_drop:
       civic_accordion:
         weight: -23
@@ -34,10 +34,10 @@ settings:
         enabled: false
       civic_callout:
         enabled: true
-        weight: -20
+        weight: -21
       civic_card_container:
         enabled: true
-        weight: -21
+        weight: -20
       civic_card_navigation:
         weight: -19
         enabled: false
