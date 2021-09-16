@@ -1,4 +1,41 @@
 //
+// Colors.
+//
+$civic-default-colors: (
+  'primary': #00698F,
+  'secondary': #9263DE,
+  'primary-accent': #61DAFF,
+  'secondary-accent': #FFF,
+  'shade_-90': mix(white, #00698F, 90%),
+  'shade_15': mix(black, #00698F, 15%),
+  'shade_30': mix(black, #00698F, 30%),
+  'shade_45': mix(black, #00698F, 45%),
+  'shade_60': mix(black, #00698F, 60%),
+  'neutral_5': #F2F4F5,
+  'neutral_10': #E6E9EB,
+  'neutral_20': #CCD4D8,
+  'neutral_40': #99A7B0,
+  'neutral_60': #546570,
+  'neutral_80': #35414B,
+  'neutral_90': #1F2833
+);
+
+// @todo:Review this mapping and decide if the custom colours should be added
+// to the $civic-default-colors and then referenced below.
+// The idea is that a custom site should only change the colors mapping here
+// to update them everywhere.
+$civic-colors: (
+  'heading': map-get($civic-default-colors, 'neutral_90'),
+  'heading-link': map-get($civic-default-colors, 'primary'),
+  'body': #536570,
+  'link': #8258C4,
+  'information': #00A7CE,
+  'success': #009694,
+  'warning': #DC5800,
+  'error': #CF3836
+) !default;
+
+//
 // Breakpoints.
 //
 // Do not use these directly, except for calculations.
@@ -14,57 +51,30 @@ $civic-breakpoints: (
 ) !default;
 
 //
-// Colors.
+// Spacing.
 //
-$civic-default-colors: (
-  'primary': #00698F,
-  'secondary': #9263DE,
-  'accent': #61DAFF,
-  'white': #FFF,
-  'heading-general': #1F2833,
-  'heading-links': #00698F,
-  'body-copy': #536570,
-  'shade_-90': mix(white, #00698F, 90%),
-  'shade_15': mix(black, #00698F, 15%),
-  'shade_30': mix(black, #00698F, 30%),
-  'shade_45': mix(black, #00698F, 45%),
-  'shade_60': mix(black, #00698F, 60%),
-  'neutral_5': #F2F4F5,
-  'neutral_10': #E6E9EB,
-  'neutral_20': #CCD4D8,
-  'neutral_40': #99A7B0,
-  'neutral_60': #546570,
-  'neutral_80': #35414B,
-  'neutral_90': #1F2833,
-  'informtion': #00A7CE,
-  'success': #009694,
-  'warning': #DC5800,
-  'error': #CF3836
-);
 
-$civic-colors: () !default;
+$civic-space: 0.5rem !default; // 8px
+$civic-spaces: (
+  $civic-space, // 8px
+  $civic-space * 2, // 16px
+  $civic-space * 3, // 24px
+  $civic-space * 4, // 32px
+  $civic-space * 5, // 40px
+  $civic-space * 6, // 48px
+  $civic-space * 8, // 64px
+  $civic-space * 10 // 80px
+) !default;
 
 //
 // Misc Variables.
 //
 
-$civic-border-radius: rem(4px) !default;
-
-$civic-outline: 3px solid #05F !default;
+$civic-border-radius: 0.25rem !default;
+$civic-border-width: 0.125rem !default;
+$civic-outline: 0.1875rem solid #05F !default;
+$civic-outline-accent: 0.1875rem solid #61DAFF !default;
 $civic-outline-offset: 0 !default;
-
-//
-// Spacing.
-//
-
-$space: 0.5rem !default;       // 8px
-$space2: $space * 2 !default;  // 16px
-$space3: $space * 3 !default;  // 24px
-$space4: $space * 4 !default;  // 32px
-$space5: $space * 5 !default;  // 40px
-$space6: $space * 6 !default;  // 48px
-$space7: $space * 8 !default;  // 64px
-$space8: $space * 10 !default; // 80px
 
 //
 // Typography.
@@ -96,4 +106,6 @@ $civic-typography: (
   'body-copy': (16px, 28px, 400, 'primary'),
   'small-copy': (14px, 25px, 400, 'primary'),
   'label-large': (18px, 24px, 600, 'primary'),
+  'label-normal': (16px, 18px, 600, 'primary'),
+  'label-small': (12px, 26px, 600, 'primary'),
 ) !default;

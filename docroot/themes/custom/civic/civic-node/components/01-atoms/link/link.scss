@@ -2,8 +2,7 @@
 // Button.
 //
 
-@import '../../00-base/mixins';
-@import '../../00-base/variables';
+@import '../../00-base/base';
 
 //
 // Mixins.
@@ -14,7 +13,7 @@
 
   &:hover {
     background-color: civic-color('primary');
-    color: civic-color('white');
+    color: civic-color('secondary-accent');
   }
 
   &:visited {
@@ -22,7 +21,7 @@
 
     &:hover {
       background-color: civic-color('secondary');
-      color: civic-color('white');
+      color: civic-color('secondary-accent');
     }
   }
 }
@@ -31,6 +30,7 @@
 // Classes.
 //
 
+a,
 .civic-link {
   @include civic-link-base;
 }

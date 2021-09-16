@@ -1,4 +1,5 @@
-@import "variables";
+@use 'sass:math';
+@import "../variables";
 
 //
 // Color mixins.
@@ -7,18 +8,33 @@
 @function civic-color($name) {
   $all-colors: map-merge($civic-default-colors, $civic-colors);
   @if map-get($all-colors, $name) == null {
-    @error '"#{$name}" is not an available colour';
+    @error '"#{$name}" is not an available color.';
   }
   @return map-get($all-colors, $name);
 }
 
 //
+// Spaces mixin.
+//
+@function civic-space($index: 1) {
+  @if $index <0 or $index > length($civic-spaces) {
+    @error '"#{$index}" is not an correct spacing index.';
+  }
+  @return nth($civic-spaces, $index);
+}
+
+
+//
 // Outline mixins.
 //
 
-@mixin civic_outline() {
-  outline: $civic-outline;
+@mixin civic-outline($is_accent: false) {
   outline-offset: $civic-outline-offset;
+  @if $is_accent {
+    outline: $civic-outline-accent;
+  } @else {
+    outline: $civic-outline;
+  }
 }
 
 //
@@ -31,7 +47,7 @@
     $base: $civic-font-base-size;
   }
   $pxbase: $base;
-  @return ($pxval / $pxbase) * 1rem;
+  @return math.div($pxval, $pxbase) * 1rem;
 }
 
 //
@@ -115,5 +131,29 @@
 
   @if $font-weight !='default' {
     font-weight: $font-weight;
+  }
+}
+
+//
+// Helper to spawn class variations.
+//
+@mixin spawn-variations($map, $prefix: false) {
+  $index: 0;
+  @each $key, $value in $map {
+    // Handle lists.
+    @if $value == null {
+      $value: $key;
+      $key: $index;
+    }
+
+    $classname: $key;
+    @if $prefix != false {
+      $classname: #{$prefix}--#{$key};
+    }
+
+    .#{$classname} {
+      @content($key, $value, $index);
+    }
+    $index: $index + 1;
   }
 }

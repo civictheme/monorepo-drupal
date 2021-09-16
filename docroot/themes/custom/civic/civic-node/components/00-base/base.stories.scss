@@ -1,101 +1,7 @@
 @import 'base.scss';
 
-.spacing-wrapper {
-  max-width: 960px;
-
-  &:hover {
-    div {
-      &::before {
-        display: block;
-      }
-    }
-  }
-
-  div {
-    position: relative;
-    width: 100%;
-    min-height: 8px;
-    box-sizing: border-box;
-
-    &::before {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      display: none;
-    }
-  }
-
-  .spacing-1 {
-    padding: $space 0 0 $space;
-    background-color: mix(#61DAFF, white, 25%);
-
-    &::before {
-      content: 'Space (8px)'
-    }
-  }
-
-  .spacing-2 {
-    padding: $space2 0 0 $space2;
-    background-color: mix(#61DAFF, white, 50%);
-
-    &::before {
-      content: 'Space 2 (16px)'
-    }
-  }
-
-  .spacing-3 {
-    padding: $space3 0 0 $space3;
-    background-color: mix(#61DAFF, white, 25%);
-
-    &::before {
-      content: 'Space 3 (24px)'
-    }
-  }
-
-  .spacing-4 {
-    padding: $space4 0 0 $space4;
-    background-color: mix(#61DAFF, white, 50%);
-
-    &::before {
-      content: 'Space 4 (32px)'
-    }
-  }
-
-  .spacing-5 {
-    padding: $space5 0 0 $space5;
-    background-color: mix(#61DAFF, white, 25%);
-
-    &::before {
-      content: 'Space 5 (40px)'
-    }
-  }
-
-  .spacing-6 {
-    padding: $space6 0 0 $space6;
-    background-color: mix(#61DAFF, white, 50%);
-
-    &::before {
-      content: 'Space 6 (48px)'
-    }
-  }
-
-  .spacing-7 {
-    padding: $space7 0 0 $space7;
-    background-color: mix(#61DAFF, white, 25%);
-
-    &::before {
-      content: 'Space 7 (64px)'
-    }
-  }
-
-  .spacing-8 {
-    padding: $space8 0 0 $space8;
-    background-color: mix(#61DAFF, white, 50%);
-
-    &::before {
-      content: 'Space 8 (80px)'
-    }
-  }
+#root {
+  font-family: sans-serif;
 }
 
 .colors-wrapper {
@@ -104,113 +10,62 @@
     width: 100%;
 
     div {
-      width: 150px;
-      height: 150px;
+      width: 100px;
+      height: 100px;
       border: 1px solid #CCD4D8;
       border-radius: 12px;
       margin: 8px;
     }
   }
-  .color-primary {
-    background-color: civic-color('primary');
+
+  $all-colors: map-merge($civic-default-colors, $civic-colors);
+  @include spawn-variations($all-colors, 'color') using($key, $value, $index) {
+    position: relative;
+    background-color: civic-color($key);
+    $content: to-upper-case(str-slice($key, 1, 1)) + str-slice($key, 2) + "\A" + to-upper-case(#{$value});
+    &::before {
+      content: "#{$content}";
+      color: invert($value);
+      position: absolute;
+      text-align: center;
+      margin-top: 30px;
+      display: none;
+    }
+
+    &:hover {
+      &::before {
+        display: block;
+      }
+    }
   }
-  .color-secondary {
-    background-color: civic-color('secondary');
+}
+
+.spacing-wrapper {
+  max-width: 960px;
+
+  div {
+    position: relative;
+    width: 100%;
+    min-height: $civic-space;
+    box-sizing: border-box;
   }
-  .color-accent {
-    background-color: civic-color('accent');
-  }
-  .color-white {
-    background-color: civic-color('white');
-  }
-  .color-heading-general {
-    background-color: civic-color('heading-general');
-  }
-  .color-heading-links {
-    background-color: civic-color('heading-links');
-  }
-  .color-body-copy {
-    background-color: civic-color('body-copy');
-  }
-  .color-shade_-90 {
-    background-color: civic-color('shade_-90');
-  }
-  .color-shade_15 {
-    background-color: civic-color('shade_15');
-  }
-  .color-shade_30 {
-    background-color: civic-color('shade_30');
-  }
-  .color-shade_45 {
-    background-color: civic-color('shade_45');
-  }
-  .color-shade_60 {
-    background-color: civic-color('shade_60');
-  }
-  .color-neutral_5 {
-    background-color: civic-color('neutral_5');
-  }
-  .color-neutral_10 {
-    background-color: civic-color('neutral_10');
-  }
-  .color-neutral_20 {
-    background-color: civic-color('neutral_20');
-  }
-  .color-neutral_40 {
-    background-color: civic-color('neutral_40');
-  }
-  .color-neutral_60 {
-    background-color: civic-color('neutral_60');
-  }
-  .color-neutral_80 {
-    background-color: civic-color('neutral_80');
-  }
-  .color-neutral_90 {
-    background-color: civic-color('neutral_90');
-  }
-  .color-informtion {
-    background-color: civic-color('informtion');
-  }
-  .color-success {
-    background-color: civic-color('success');
-  }
-  .color-warning {
-    background-color: civic-color('warning');
-  }
-  .color-error {
-    background-color: civic-color('error');
+
+  @include spawn-variations($civic-spaces, 'spacing') using($name, $value, $index) {
+    padding: $value 0 0 $value;
+    $transparency: if($index % 2 == 0, 25%, 50%);
+    background-color: mix(#61DAFF, white, $transparency);
+
+    &::before {
+      content: 'Space #{$name}';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+    }
   }
 }
 
 .typography-wrapper {
-  .display-xl {
-    @include civic-typography('display-xl');
-  }
-  .display-l {
-    @include civic-typography('display-l');
-  }
-  .display-m {
-    @include civic-typography('display-m');
-  }
-  .display-s {
-    @include civic-typography('display-s');
-  }
-  .heading-1 {
-    @include civic-typography('heading-1');
-  }
-  .heading-2 {
-    @include civic-typography('heading-2');
-  }
-  .heading-3 {
-    @include civic-typography('heading-3');
-  }
-  .heading-4 {
-    @include civic-typography('heading-4');
-  }
-  .heading-5 {
-    @include civic-typography('heading-5');
-  }
-  .heading-6 {
-    @include civic-typography('heading-6');
+  @include spawn-variations($civic-typography) using($name, $value, $index) {
+    @include civic-typography($name);
   }
 }
