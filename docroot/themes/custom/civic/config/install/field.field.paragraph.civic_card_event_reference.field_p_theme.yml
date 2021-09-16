@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_theme
+    - paragraphs.paragraphs_type.civic_card_event_reference
+  module:
+    - options
+id: paragraph.civic_card_event_reference.field_p_theme
+field_name: field_p_theme
+entity_type: paragraph
+bundle: civic_card_event_reference
+label: Theme
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: light
+default_value_callback: ''
+settings: {  }
+field_type: list_string

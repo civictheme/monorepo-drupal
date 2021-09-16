@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.civic_event.field_n_attachments
+    - field.field.node.civic_event.field_n_body
+    - field.field.node.civic_event.field_n_date
+    - field.field.node.civic_event.field_n_image
+    - field.field.node.civic_event.field_n_location
+    - field.field.node.civic_event.field_n_more_information
+    - field.field.node.civic_event.field_n_tagline
+    - field.field.node.civic_event.field_n_thumbnail
+    - node.type.civic_event
+  module:
+    - user
+id: node.civic_event.teaser
+targetEntityType: node
+bundle: civic_event
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_n_attachments: true
+  field_n_body: true
+  field_n_date: true
+  field_n_image: true
+  field_n_location: true
+  field_n_more_information: true
+  field_n_tagline: true
+  field_n_thumbnail: true
