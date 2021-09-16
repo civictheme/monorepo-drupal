@@ -1,0 +1,66 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_n_location
+    - node.type.civic_event
+    - paragraphs.paragraphs_type.civic_map
+  module:
+    - entity_reference_revisions
+id: node.civic_event.field_n_location
+field_name: field_n_location
+entity_type: node
+bundle: civic_event
+label: Location
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      civic_map: civic_map
+    target_bundles_drag_drop:
+      civic_accordion:
+        weight: 15
+        enabled: false
+      civic_accordion_panel:
+        weight: 16
+        enabled: false
+      civic_card_container:
+        weight: 17
+        enabled: false
+      civic_card_event_reference:
+        weight: 18
+        enabled: false
+      civic_card_navigation:
+        weight: 19
+        enabled: false
+      civic_card_navigation_reference:
+        weight: 20
+        enabled: false
+      civic_card_reference_promo:
+        weight: 21
+        enabled: false
+      civic_card_task:
+        weight: 22
+        enabled: false
+      civic_content:
+        weight: 23
+        enabled: false
+      civic_map:
+        enabled: true
+        weight: 14
+      civic_service_card:
+        weight: 24
+        enabled: false
+      civic_slider:
+        weight: 25
+        enabled: false
+      civic_slider_slide:
+        weight: 26
+        enabled: false
+field_type: entity_reference_revisions

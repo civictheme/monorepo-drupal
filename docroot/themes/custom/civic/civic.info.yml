@@ -137,5 +137,28 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
+    - core.entity_form_display.node.civic_event.default
+    - core.entity_view_display.node.civic_event.default
+    - core.entity_view_display.node.civic_event.teaser
+    - core.entity_view_mode.node.teaser
+    - field.field.node.civic_event.field_n_attachments
+    - field.field.node.civic_event.field_n_body
+    - field.field.node.civic_event.field_n_date
+    - field.field.node.civic_event.field_n_image
+    - field.field.node.civic_event.field_n_location
+    - field.field.node.civic_event.field_n_more_information
+    - field.field.node.civic_event.field_n_tagline
+    - field.field.node.civic_event.field_n_thumbnail
+    - field.storage.node.field_n_attachments
+    - field.storage.node.field_n_body
+    - field.storage.node.field_n_date
+    - field.storage.node.field_n_image
+    - field.storage.node.field_n_location
+    - field.storage.node.field_n_more_information
+    - field.storage.node.field_n_tagline
+    - field.storage.node.field_n_thumbnail
+    - node.type.civic_event
+    - paragraphs.paragraphs_type.civic_attachment
+    - paragraphs.paragraphs_type.civic_map
   optional:
     - media.type.image
