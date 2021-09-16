@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_links
+    - paragraphs.paragraphs_type.civic_callout
+  module:
+    - link
+id: paragraph.civic_callout.field_p_links
+field_name: field_p_links
+entity_type: paragraph
+bundle: civic_callout
+label: Links
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

@@ -5,6 +5,7 @@ dependencies:
     - field.storage.paragraph.field_p_cards
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_card_event
+    - paragraphs.paragraphs_type.civic_card_event_reference
     - paragraphs.paragraphs_type.civic_card_navigation
     - paragraphs.paragraphs_type.civic_card_reference_promo
     - paragraphs.paragraphs_type.civic_card_navigation_reference
@@ -30,6 +31,7 @@ settings:
       civic_card_task: civic_card_task
       civic_card_navigation: civic_card_navigation
       civic_service_card: civic_service_card
+      civic_card_event_reference: civic_card_event_reference
       civic_card_reference_promo: civic_card_reference_promo
       civic_card_navigation_reference: civic_card_navigation_reference
       civic_card_event: civic_card_event
@@ -46,6 +48,9 @@ settings:
       civic_card_event:
         enabled: true
         weight: 15
+      civic_card_event_reference:
+        enabled: true
+        weight: 13
       civic_card_navigation:
         enabled: true
         weight: 8
