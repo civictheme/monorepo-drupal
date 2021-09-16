@@ -169,7 +169,6 @@ config_devel:
     - field.field.paragraph.civic_card_event_reference.field_p_theme
     - field.storage.paragraph.field_p_reference
     - node.type.civic_event
-    - node.type.civic_project
     - paragraphs.paragraphs_type.civic_card_event_reference
 
   optional:
