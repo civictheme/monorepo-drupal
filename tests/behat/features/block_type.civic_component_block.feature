@@ -20,4 +20,5 @@ Feature: Tests the Civic Component Block Type
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "block/add/civic_component_block"
     And I should see an "div.field--name-field-b-components" element
-    And I should see the text "Add Card container"
+    And I should see an "input[value='Add Card container']" element
+    And I should see an "input[value='Add Callout']" element
