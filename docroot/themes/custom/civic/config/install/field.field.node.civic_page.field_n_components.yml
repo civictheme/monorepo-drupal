@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_content
     - paragraphs.paragraphs_type.civic_slider
+    - paragraphs.paragraphs_type.civic_promo
   module:
     - entity_reference_revisions
 id: node.civic_page.field_n_components
@@ -26,6 +27,7 @@ settings:
     negate: 0
     target_bundles:
       civic_content: civic_content
+      civic_promo: civic_promo
       civic_accordion: civic_accordion
       civic_card_container: civic_card_container
       civic_slider: civic_slider
@@ -48,6 +50,9 @@ settings:
       civic_content:
         enabled: true
         weight: 2
+      civic_promo:
+        enabled: true
+        weight: 7
       civic_slider:
         enabled: true
         weight: 5
