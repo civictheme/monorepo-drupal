@@ -131,5 +131,14 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
+    - core.entity_form_display.paragraph.civic_card_event_reference.default
+    - core.entity_view_display.paragraph.civic_card_event_reference.default
+    - field.field.paragraph.civic_card_event_reference.field_p_reference
+    - field.field.paragraph.civic_card_event_reference.field_p_theme
+    - field.storage.paragraph.field_p_reference
+    - node.type.civic_event
+    - node.type.civic_project
+    - paragraphs.paragraphs_type.civic_card_event_reference
+
   optional:
     - media.type.image
