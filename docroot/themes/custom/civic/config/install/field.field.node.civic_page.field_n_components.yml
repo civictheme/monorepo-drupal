@@ -10,6 +10,7 @@ dependencies:
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_content
     - paragraphs.paragraphs_type.civic_map
+    - paragraphs.paragraphs_type.civic_next_step
     - paragraphs.paragraphs_type.civic_promo
     - paragraphs.paragraphs_type.civic_slider
   module:
@@ -35,6 +36,7 @@ settings:
       civic_promo: civic_promo
       civic_card_container: civic_card_container
       civic_callout: civic_callout
+      civic_next_step: civic_next_step
       civic_attachment: civic_attachment
       civic_map: civic_map
     target_bundles_drag_drop:
@@ -46,7 +48,7 @@ settings:
         enabled: false
       civic_attachment:
         enabled: true
-        weight: 20
+        weight: 23
       civic_callout:
         enabled: true
         weight: 12
@@ -54,22 +56,22 @@ settings:
         enabled: true
         weight: 8
       civic_card_event:
-        weight: 23
+        weight: 26
         enabled: false
       civic_card_event_reference:
-        weight: 24
+        weight: 27
         enabled: false
       civic_card_navigation:
         weight: 9
         enabled: false
       civic_card_navigation_reference:
-        weight: 26
+        weight: 29
         enabled: false
       civic_card_promo:
         weight: 15
         enabled: false
       civic_card_reference_promo:
-        weight: 27
+        weight: 21
         enabled: false
       civic_card_task:
         weight: 10
@@ -79,7 +81,10 @@ settings:
         weight: 2
       civic_map:
         enabled: true
-        weight: 30
+        weight: 34
+      civic_next_step:
+        enabled: true
+        weight: 20
       civic_promo:
         enabled: true
         weight: 7

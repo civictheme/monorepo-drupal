@@ -52,6 +52,7 @@ config_devel:
     - core.entity_form_display.paragraph.civic_card_task.default
     - core.entity_form_display.paragraph.civic_content.default
     - core.entity_form_display.paragraph.civic_map.default
+    - core.entity_form_display.paragraph.civic_next_step.default
     - core.entity_form_display.paragraph.civic_promo.default
     - core.entity_form_display.paragraph.civic_service_card.default
     - core.entity_form_display.paragraph.civic_slider.default
@@ -75,6 +76,7 @@ config_devel:
     - core.entity_view_display.paragraph.civic_card_task.default
     - core.entity_view_display.paragraph.civic_content.default
     - core.entity_view_display.paragraph.civic_map.default
+    - core.entity_view_display.paragraph.civic_next_step.default
     - core.entity_view_display.paragraph.civic_promo.default
     - core.entity_view_display.paragraph.civic_service_card.default
     - core.entity_view_display.paragraph.civic_slider.default
@@ -153,6 +155,11 @@ config_devel:
     - field.field.paragraph.civic_map.field_p_theme
     - field.field.paragraph.civic_map.field_p_view_link
     - field.field.paragraph.civic_map.field_p_zoom
+    - field.field.paragraph.civic_next_step.field_p_icon
+    - field.field.paragraph.civic_next_step.field_p_image
+    - field.field.paragraph.civic_next_step.field_p_summary
+    - field.field.paragraph.civic_next_step.field_p_theme
+    - field.field.paragraph.civic_next_step.field_p_title
     - field.field.paragraph.civic_promo.field_p_link
     - field.field.paragraph.civic_promo.field_p_summary
     - field.field.paragraph.civic_promo.field_p_theme
