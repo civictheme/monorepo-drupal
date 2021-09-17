@@ -17,23 +17,23 @@ $civic-default-colors: (
   'neutral_40': #99A7B0,
   'neutral_60': #546570,
   'neutral_80': #35414B,
-  'neutral_90': #1F2833
-);
-
-// @todo:Review this mapping and decide if the custom colours should be added
-// to the $civic-default-colors and then referenced below.
-// The idea is that a custom site should only change the colors mapping here
-// to update them everywhere.
-$civic-colors: (
-  'heading': map-get($civic-default-colors, 'neutral_90'),
-  'heading-link': map-get($civic-default-colors, 'primary'),
+  'neutral_90': #1F2833,
+  // Element-specific colors.
+  'heading': #1F2833,
+  'heading-link': #00698F,
   'body': #536570,
   'link': #8258C4,
   'information': #00A7CE,
   'success': #009694,
   'warning': #DC5800,
   'error': #CF3836
-) !default;
+);
+
+// All Civic palette is defined in $civic-default-colors. $civic-colors is
+// available (and empty) so that any sub-themes can place their colours in
+// here to override the defaults. This allows Civic to make palette additions
+// (if required) without breaking sub-themes.
+$civic-colors: () !default;
 
 //
 // Breakpoints.
