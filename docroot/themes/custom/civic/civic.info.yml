@@ -37,6 +37,7 @@ config_devel:
     - core.entity_form_display.node.civic_page.default
     - core.entity_form_display.paragraph.civic_accordion.default
     - core.entity_form_display.paragraph.civic_accordion_panel.default
+    - core.entity_form_display.paragraph.civic_attachment.default
     - core.entity_form_display.paragraph.civic_callout.default
     - core.entity_form_display.paragraph.civic_card_container.default
     - core.entity_form_display.paragraph.civic_card_event.default
@@ -57,6 +58,7 @@ config_devel:
     - core.entity_view_display.node.civic_page.default
     - core.entity_view_display.paragraph.civic_accordion.default
     - core.entity_view_display.paragraph.civic_accordion_panel.default
+    - core.entity_view_display.paragraph.civic_attachment.default
     - core.entity_view_display.paragraph.civic_callout.default
     - core.entity_view_display.paragraph.civic_card_container.default
     - core.entity_view_display.paragraph.civic_card_event.default
@@ -90,6 +92,12 @@ config_devel:
     - field.field.paragraph.civic_accordion_panel.field_p_content
     - field.field.paragraph.civic_accordion_panel.field_p_expand
     - field.field.paragraph.civic_accordion_panel.field_p_title
+    - field.field.paragraph.civic_attachment.field_p_attachments
+    - field.field.paragraph.civic_attachment.field_p_icon
+    - field.field.paragraph.civic_attachment.field_p_image
+    - field.field.paragraph.civic_attachment.field_p_summary
+    - field.field.paragraph.civic_attachment.field_p_theme
+    - field.field.paragraph.civic_attachment.field_p_title
     - field.field.paragraph.civic_callout.field_p_links
     - field.field.paragraph.civic_callout.field_p_summary
     - field.field.paragraph.civic_callout.field_p_theme
@@ -158,6 +166,7 @@ config_devel:
     - field.storage.node.field_n_more_information
     - field.storage.node.field_n_tagline
     - field.storage.node.field_n_thumbnail
+    - field.storage.paragraph.field_p_attachments
     - field.storage.paragraph.field_p_cards
     - field.storage.paragraph.field_p_column_count
     - field.storage.paragraph.field_p_content
@@ -178,6 +187,7 @@ config_devel:
     - field.storage.paragraph.field_p_title
     - field.storage.paragraph.field_p_topic
     - fieldcivic_project.field.node.civic_event.field_n_body
+    - media.type.document
     - media.type.icon
     - node.type.civic_event
     - node.type.civic_page
