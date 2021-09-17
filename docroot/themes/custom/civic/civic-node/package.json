@@ -43,5 +43,9 @@
     "twig": "^1.15.4",
     "twigjs-loader": "^1.0.2",
     "webpack": "^4.46.0"
+  },
+  "dependencies": {
+    "breakpoint-sass": "^2.7.1",
+    "normalize.css": "^8.0.1"
   }
 }
