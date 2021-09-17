@@ -31,9 +31,7 @@ components:
 # Update the list of the configuration below and run `drush cde civic`.
 config_devel:
   install:
-
     - block.block.civic_banner
-    - block.block.civic_bannerparagraph.field_p_reference
     - block_content.type.civic_banner
     - block_content.type.civic_component_block
     - core.entity_form_display.block_content.civic_banner.default
@@ -87,6 +85,7 @@ config_devel:
     - field.field.block_content.civic_component_block.field_b_components
     - field.field.media.icon.field_m_icon
     - field.field.node.civic_event.field_n_attachments
+    - field.field.node.civic_event.field_n_body
     - field.field.node.civic_event.field_n_date
     - field.field.node.civic_event.field_n_image
     - field.field.node.civic_event.field_n_location
@@ -178,7 +177,6 @@ config_devel:
     - field.field.paragraph.civic_slider_slide.field_p_link
     - field.field.paragraph.civic_slider_slide.field_p_title
     - field.field.paragraph.civic_slider_slide.field_p_topic
-    - field.storage.    - block_content.type.civic_component_block
     - field.storage.block_content.field_b_components
     - field.storage.block_content.field_b_theme
     - field.storage.media.field_m_icon
