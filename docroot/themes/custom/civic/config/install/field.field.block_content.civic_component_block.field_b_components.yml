@@ -6,8 +6,8 @@ dependencies:
     - field.storage.block_content.field_b_components
     - paragraphs.paragraphs_type.civic_callout
     - paragraphs.paragraphs_type.civic_card_container
-    - paragraphs.paragraphs_type.civic_next_step
     - paragraphs.paragraphs_type.civic_map
+    - paragraphs.paragraphs_type.civic_next_step
   module:
     - entity_reference_revisions
 id: block_content.civic_component_block.field_b_components
