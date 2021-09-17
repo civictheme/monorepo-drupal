@@ -187,7 +187,6 @@ config_devel:
     - field.storage.paragraph.field_p_title
     - field.storage.paragraph.field_p_topic
     - fieldcivic_project.field.node.civic_event.field_n_body
-    - media.type.document
     - media.type.icon
     - node.type.civic_event
     - node.type.civic_page
@@ -211,4 +210,5 @@ config_devel:
     - taxonomy.vocabulary.civic_topics
   optional:
     - media.type.image
+    - media.type.document
     - core.entity_view_mode.node.teaser
