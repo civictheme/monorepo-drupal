@@ -1,0 +1,151 @@
+//
+// Button.
+//
+
+@import '../../00-base/base';
+
+//
+// Mixins.
+//
+
+@mixin civic-button($type: 'primary', $size: 'normal', $icon: false, $icon_placement: false, $is_disabled: false) {
+  @include civic-button-type($type);
+  @include civic-button-size($size);
+  // @todo Implement icon support.
+}
+
+@mixin civic-button-type($type) {
+  $types: ('primary', 'primary-accent', 'secondary', 'secondary-accent');
+  @if not index($types, $type) {
+    @error '"#{$type}" is not one of allowed #{$types}.';
+  }
+
+  @if $type == 'primary' {
+    background-color: civic-color('primary');
+    color: civic-color('secondary-accent');
+
+    &:focus {
+      @include civic-outline();
+    }
+
+    &:hover {
+      background-color: civic-color('shade_30');
+    }
+
+    &:active {
+      background-color: civic-color('shade_60');
+    }
+
+    &[disabled] {
+      background-color: civic-color('neutral_40');
+    }
+  } @else if ($type == 'primary-accent') {
+    background-color: civic-color('primary');
+    color: civic-color('secondary-accent');
+    border: solid $civic-border-width civic-color('secondary');
+
+    &:focus {
+      @include civic-outline();
+    }
+
+    &:hover {
+      background-color: civic-color('primary');
+    }
+
+    &:active {
+      background-color: civic-color('shade_45');
+    }
+
+    &[disabled] {
+      background-color: civic-color('neutral_40');
+    }
+  } @else if ($type == 'secondary') {
+    background-color: civic-color('secondary');
+    color: civic-color('secondary-accent');
+
+    &:focus {
+      @include civic-outline(true);
+    }
+
+    &:hover {
+      background-color: civic-color('shade_30');
+    }
+
+    &:active {
+      background-color: civic-color('shade_60');
+    }
+
+    &[disabled] {
+      background-color: civic-color('neutral_40');
+    }
+  } @else {
+    background-color: civic-color('secondary');
+    color: civic-color('secondary-accent');
+    border: solid $civic-border-width civic-color('secondary-accent');
+
+    &:focus {
+      @include civic-outline(true);
+    }
+
+    &:hover {
+      background-color: civic-color('shade_30');
+    }
+
+    &:active {
+      background-color: civic-color('shade_60');
+    }
+
+    &[disabled] {
+      background-color: civic-color('neutral_40');
+    }
+  }
+}
+
+@mixin civic-button-size($size) {
+  $sizes: ('large', 'normal', 'small');
+  @if not index($sizes, $size) {
+    @error '"#{$size}" is not one of allowed #{$sizes}.';
+  }
+
+  @include civic-typography('label-#{$size}');
+}
+
+//
+// Classes.
+//
+
+.civic-button {
+  border: $civic-border-width solid transparent;
+  border-radius: $civic-border-radius;
+  cursor: pointer;
+  padding: civic-space(2) civic-space(3);
+  @include civic-button-size('normal');
+
+  &--primary {
+    @include civic-button-type('primary');
+  }
+
+  &--primary-accent {
+    @include civic-button-type('primary-accent');
+  }
+
+  &--secondary {
+    @include civic-button-type('secondary');
+  }
+
+  &--secondary-accent {
+    @include civic-button-type('secondary-accent');
+  }
+
+  &--large {
+    @include civic-button-size('large');
+  }
+
+  &--normal {
+    @include civic-button-size('normal');
+  }
+
+  &--small {
+    @include civic-button-size('small');
+  }
+}

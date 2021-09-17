@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Button component.
+ *
+ * Variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - text: [string] Button text.
+ * - new_window: [boolean] Open in a new window.
+ */
+#}
+<a class="civic-button {{ modifier_class }}" {{ new_window ? 'target="_blank"' }}>{{ text }}</a>
