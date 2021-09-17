@@ -1,10 +1,6 @@
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:civic_banner:50c52459-c100-4e4d-92a4-9c4c77d8f8d0'
-  module:
-    - block_content
   theme:
     - civic
 id: civic_banner
