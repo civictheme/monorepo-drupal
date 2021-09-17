@@ -31,20 +31,24 @@ components:
 # Update the list of the configuration below and run `drush cde civic`.
 config_devel:
   install:
+    - block.block.civic_banner
+    - block_content.type.civic_banner
     - block_content.type.civic_component_block
+    - core.entity_form_display.block_content.civic_banner.default
     - core.entity_form_display.block_content.civic_component_block.default
     - core.entity_form_display.node.civic_event.default
     - core.entity_form_display.node.civic_page.default
     - core.entity_form_display.paragraph.civic_accordion.default
     - core.entity_form_display.paragraph.civic_accordion_panel.default
+    - core.entity_form_display.paragraph.civic_attachment.default
     - core.entity_form_display.paragraph.civic_callout.default
     - core.entity_form_display.paragraph.civic_card_container.default
     - core.entity_form_display.paragraph.civic_card_event.default
     - core.entity_form_display.paragraph.civic_card_event_reference.default
     - core.entity_form_display.paragraph.civic_card_navigation.default
     - core.entity_form_display.paragraph.civic_card_navigation_reference.default
-    - core.entity_form_display.paragraph.civic_card_reference_promo.default
     - core.entity_form_display.paragraph.civic_card_promo.default
+    - core.entity_form_display.paragraph.civic_card_reference_promo.default
     - core.entity_form_display.paragraph.civic_card_task.default
     - core.entity_form_display.paragraph.civic_content.default
     - core.entity_form_display.paragraph.civic_map.default
@@ -52,20 +56,22 @@ config_devel:
     - core.entity_form_display.paragraph.civic_service_card.default
     - core.entity_form_display.paragraph.civic_slider.default
     - core.entity_form_display.paragraph.civic_slider_slide.default
+    - core.entity_view_display.block_content.civic_banner.default
     - core.entity_view_display.block_content.civic_component_block.default
     - core.entity_view_display.node.civic_event.default
     - core.entity_view_display.node.civic_event.teaser
     - core.entity_view_display.node.civic_page.default
     - core.entity_view_display.paragraph.civic_accordion.default
     - core.entity_view_display.paragraph.civic_accordion_panel.default
+    - core.entity_view_display.paragraph.civic_attachment.default
     - core.entity_view_display.paragraph.civic_callout.default
     - core.entity_view_display.paragraph.civic_card_container.default
     - core.entity_view_display.paragraph.civic_card_event.default
     - core.entity_view_display.paragraph.civic_card_event_reference.default
     - core.entity_view_display.paragraph.civic_card_navigation.default
     - core.entity_view_display.paragraph.civic_card_navigation_reference.default
-    - core.entity_view_display.paragraph.civic_card_reference_promo.default
     - core.entity_view_display.paragraph.civic_card_promo.default
+    - core.entity_view_display.paragraph.civic_card_reference_promo.default
     - core.entity_view_display.paragraph.civic_card_task.default
     - core.entity_view_display.paragraph.civic_content.default
     - core.entity_view_display.paragraph.civic_map.default
@@ -73,17 +79,22 @@ config_devel:
     - core.entity_view_display.paragraph.civic_service_card.default
     - core.entity_view_display.paragraph.civic_slider.default
     - core.entity_view_display.paragraph.civic_slider_slide.default
+    - field.field.block_content.civic_banner.field_b_theme
     - field.field.block_content.civic_component_block.field_b_components
     - field.field.media.icon.field_m_icon
     - field.field.node.civic_event.field_n_attachments
+    - field.field.node.civic_event.field_n_body
     - field.field.node.civic_event.field_n_date
     - field.field.node.civic_event.field_n_image
     - field.field.node.civic_event.field_n_location
     - field.field.node.civic_event.field_n_more_information
     - field.field.node.civic_event.field_n_tagline
     - field.field.node.civic_event.field_n_thumbnail
+    - field.field.node.civic_page.field_n_banner_background.
     - field.field.node.civic_page.field_n_banner_components
+    - field.field.node.civic_page.field_n_banner_type
     - field.field.node.civic_page.field_n_components
+    - field.field.node.civic_page.field_n_featured_banner_image
     - field.field.paragraph.civic_accordion.field_p_default_panel
     - field.field.paragraph.civic_accordion.field_p_expand
     - field.field.paragraph.civic_accordion.field_p_panels
@@ -92,6 +103,12 @@ config_devel:
     - field.field.paragraph.civic_accordion_panel.field_p_content
     - field.field.paragraph.civic_accordion_panel.field_p_expand
     - field.field.paragraph.civic_accordion_panel.field_p_title
+    - field.field.paragraph.civic_attachment.field_p_attachments
+    - field.field.paragraph.civic_attachment.field_p_icon
+    - field.field.paragraph.civic_attachment.field_p_image
+    - field.field.paragraph.civic_attachment.field_p_summary
+    - field.field.paragraph.civic_attachment.field_p_theme
+    - field.field.paragraph.civic_attachment.field_p_title
     - field.field.paragraph.civic_callout.field_p_links
     - field.field.paragraph.civic_callout.field_p_summary
     - field.field.paragraph.civic_callout.field_p_theme
@@ -117,14 +134,14 @@ config_devel:
     - field.field.paragraph.civic_card_navigation.field_p_title
     - field.field.paragraph.civic_card_navigation_reference.field_p_reference
     - field.field.paragraph.civic_card_navigation_reference.field_p_theme
-    - field.field.paragraph.civic_card_reference_promo.field_p_reference
-    - field.field.paragraph.civic_card_reference_promo.field_p_theme
     - field.field.paragraph.civic_card_promo.field_p_date
     - field.field.paragraph.civic_card_promo.field_p_image
     - field.field.paragraph.civic_card_promo.field_p_link
     - field.field.paragraph.civic_card_promo.field_p_summary
     - field.field.paragraph.civic_card_promo.field_p_theme
     - field.field.paragraph.civic_card_promo.field_p_title
+    - field.field.paragraph.civic_card_reference_promo.field_p_reference
+    - field.field.paragraph.civic_card_reference_promo.field_p_theme
     - field.field.paragraph.civic_card_task.field_p_icon
     - field.field.paragraph.civic_card_task.field_p_link
     - field.field.paragraph.civic_card_task.field_p_summary
@@ -154,18 +171,23 @@ config_devel:
     - field.field.paragraph.civic_slider_slide.field_p_title
     - field.field.paragraph.civic_slider_slide.field_p_topic
     - field.storage.block_content.field_b_components
+    - field.storage.block_content.field_b_theme
     - field.storage.media.field_m_icon
     - field.storage.node.field_n_attachments
+    - field.storage.node.field_n_banner_background
     - field.storage.node.field_n_banner_components
+    - field.storage.node.field_n_banner_type
     - field.storage.node.field_n_body
     - field.storage.node.field_n_components
     - field.storage.node.field_n_date
+    - field.storage.node.field_n_featured_banner_image
     - field.storage.node.field_n_image
     - field.storage.node.field_n_location
     - field.storage.node.field_n_more_information
     - field.storage.node.field_n_tagline
     - field.storage.node.field_n_thumbnail
     - field.storage.paragraph.field_p_address
+    - field.storage.paragraph.field_p_attachments
     - field.storage.paragraph.field_p_cards
     - field.storage.paragraph.field_p_column_count
     - field.storage.paragraph.field_p_content
@@ -211,28 +233,7 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
-    - core.entity_form_display.node.civic_event.default
-    - core.entity_view_display.node.civic_event.default
-    - core.entity_view_display.node.civic_event.teaser
-    - field.field.node.civic_event.field_n_attachments
-    - field.field.node.civic_event.field_n_body
-    - field.field.node.civic_event.field_n_date
-    - field.field.node.civic_event.field_n_image
-    - field.field.node.civic_event.field_n_location
-    - field.field.node.civic_event.field_n_more_information
-    - field.field.node.civic_event.field_n_tagline
-    - field.field.node.civic_event.field_n_thumbnail
-    - field.storage.node.field_n_attachments
-    - field.storage.node.field_n_body
-    - field.storage.node.field_n_date
-    - field.storage.node.field_n_image
-    - field.storage.node.field_n_location
-    - field.storage.node.field_n_more_information
-    - field.storage.node.field_n_tagline
-    - field.storage.node.field_n_thumbnail
-    - node.type.civic_event
-    - paragraphs.paragraphs_type.civic_attachment
-    - paragraphs.paragraphs_type.civic_map
   optional:
     - media.type.image
+    - media.type.document
     - core.entity_view_mode.node.teaser

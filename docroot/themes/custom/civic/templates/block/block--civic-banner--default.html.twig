@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Theme to display a Banner block.
+ */
+#}
+{% set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+  'banner',
+  type ? 'banner--style--' ~ type : '',
+  theme ? 'banner--theme--' ~ theme : '',
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+  {{ title_suffix.contextual_links }}
+  <div class="banner__inner container">
+    <!-- Content_top placeholder start -->
+      {{ content_top }}
+    <!-- Content_top placeholder end -->
+
+    <!-- background placeholder start -->
+      {{ background }}
+    <!-- background placeholder start -->
+
+    <!-- breadcrumbs placeholder start -->
+      {{ breadcrumbs }}
+    <!-- breadcrumbs placeholder end -->
+
+    <!-- Content_top2 placeholder start -->
+      {{ content_top2 }}
+    <!-- Content_top2 placeholder end -->
+
+    <!-- Content_top3 placeholder start -->
+      {{ content_top3 }}
+    <!-- Content_top3 placeholder end -->
+
+    <!-- title placeholder start -->
+      {{ title }}
+    <!-- title placeholder end -->
+
+    <!-- Content_middle placeholder start -->
+      {{ content_middle }}
+    <!-- Content_middle placeholder end -->
+
+    <!-- content placeholder start -->
+      {{ content }}
+    <!-- content placeholder end -->
+
+    <!-- Content_bottom placeholder start -->
+      {{ content_bottom }}
+    <!-- Content_bottom placeholder end -->
+  </div>
+</div>
