@@ -2,17 +2,30 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.civic_page.field_n_banner_background
     - field.field.node.civic_page.field_n_banner_components
+    - field.field.node.civic_page.field_n_banner_type
     - field.field.node.civic_page.field_n_components
+    - field.field.node.civic_page.field_n_featured_banner_image
     - node.type.civic_page
   module:
     - entity_reference_revisions
+    - options
     - user
 id: node.civic_page.default
 targetEntityType: node
 bundle: civic_page
 mode: default
 content:
+  field_n_banner_background:
+    type: entity_reference_entity_view
+    weight: 103
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
   field_n_banner_components:
     type: entity_reference_revisions_entity_view
     weight: 101
@@ -22,6 +35,13 @@ content:
       link: ''
     third_party_settings: {  }
     region: content
+  field_n_banner_type:
+    weight: 105
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
   field_n_components:
     type: entity_reference_revisions_entity_view
     weight: 102
@@ -29,6 +49,15 @@ content:
     settings:
       view_mode: default
       link: ''
+    third_party_settings: {  }
+    region: content
+  field_n_featured_banner_image:
+    type: entity_reference_entity_view
+    weight: 104
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
     third_party_settings: {  }
     region: content
   links:
