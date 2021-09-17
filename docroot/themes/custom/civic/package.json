@@ -23,8 +23,8 @@
     "webpack-fix-style-only-entries": "^0.4.0"
   },
   "scripts": {
-    "build": "build-storybook -s ./static --quiet",
-    "storybook": "start-storybook -s ./static",
+    "build": "build-storybook --quiet",
+    "storybook": "start-storybook",
     "sass": "node-sass --output-style expanded components -o components",
     "sass-watch": "node-sass -w --output-style expanded components -o components"
   }
