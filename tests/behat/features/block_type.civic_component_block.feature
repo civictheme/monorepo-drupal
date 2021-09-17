@@ -22,5 +22,6 @@ Feature: Tests the Civic Component Block Type
     And I should see an "div.field--name-field-b-components" element
     And I should see an "input[value='Add Card container']" element
     And I should see an "input[value='Add Callout']" element
+    And I should see an "input[value='Add Attachment']" element
     And I should see an "input[value='Add Map']" element
 

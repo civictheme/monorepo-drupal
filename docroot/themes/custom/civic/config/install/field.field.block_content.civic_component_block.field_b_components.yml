@@ -4,6 +4,7 @@ dependencies:
   config:
     - block_content.type.civic_component_block
     - field.storage.block_content.field_b_components
+    - paragraphs.paragraphs_type.civic_attachment
     - paragraphs.paragraphs_type.civic_callout
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_map
@@ -27,6 +28,7 @@ settings:
     target_bundles:
       civic_callout: civic_callout
       civic_card_container: civic_card_container
+      civic_attachment: civic_attachment
       civic_next_step: civic_next_step
       civic_map: civic_map
     target_bundles_drag_drop:
@@ -36,12 +38,12 @@ settings:
       civic_accordion_panel:
         weight: -22
         enabled: false
+      civic_attachment:
+        enabled: true
+        weight: 20
       civic_callout:
         enabled: true
         weight: -21
-      civic_attachment:
-        weight: 17
-        enabled: false
       civic_card_container:
         enabled: true
         weight: -20
@@ -61,7 +63,7 @@ settings:
         weight: 30
         enabled: false
       civic_card_reference_promo:
-        weight: 31
+        weight: 21
         enabled: false
       civic_card_task:
         weight: -18
