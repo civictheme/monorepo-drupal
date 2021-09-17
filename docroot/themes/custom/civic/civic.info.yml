@@ -47,6 +47,7 @@ config_devel:
     - core.entity_form_display.paragraph.civic_card_promo.default
     - core.entity_form_display.paragraph.civic_card_task.default
     - core.entity_form_display.paragraph.civic_content.default
+    - core.entity_form_display.paragraph.civic_map.default
     - core.entity_form_display.paragraph.civic_promo.default
     - core.entity_form_display.paragraph.civic_service_card.default
     - core.entity_form_display.paragraph.civic_slider.default
@@ -67,6 +68,7 @@ config_devel:
     - core.entity_view_display.paragraph.civic_card_promo.default
     - core.entity_view_display.paragraph.civic_card_task.default
     - core.entity_view_display.paragraph.civic_content.default
+    - core.entity_view_display.paragraph.civic_map.default
     - core.entity_view_display.paragraph.civic_promo.default
     - core.entity_view_display.paragraph.civic_service_card.default
     - core.entity_view_display.paragraph.civic_slider.default
@@ -129,6 +131,11 @@ config_devel:
     - field.field.paragraph.civic_card_task.field_p_title
     - field.field.paragraph.civic_content.field_p_content
     - field.field.paragraph.civic_content.field_p_theme
+    - field.field.paragraph.civic_map.field_p_address
+    - field.field.paragraph.civic_map.field_p_share_link
+    - field.field.paragraph.civic_map.field_p_theme
+    - field.field.paragraph.civic_map.field_p_view_link
+    - field.field.paragraph.civic_map.field_p_zoom
     - field.field.paragraph.civic_promo.field_p_link
     - field.field.paragraph.civic_promo.field_p_summary
     - field.field.paragraph.civic_promo.field_p_theme
@@ -158,6 +165,7 @@ config_devel:
     - field.storage.node.field_n_more_information
     - field.storage.node.field_n_tagline
     - field.storage.node.field_n_thumbnail
+    - field.storage.paragraph.field_p_address
     - field.storage.paragraph.field_p_cards
     - field.storage.paragraph.field_p_column_count
     - field.storage.paragraph.field_p_content
@@ -172,15 +180,19 @@ config_devel:
     - field.storage.paragraph.field_p_links
     - field.storage.paragraph.field_p_panels
     - field.storage.paragraph.field_p_reference
+    - field.storage.paragraph.field_p_share_link
     - field.storage.paragraph.field_p_slides
     - field.storage.paragraph.field_p_summary
     - field.storage.paragraph.field_p_theme
     - field.storage.paragraph.field_p_title
     - field.storage.paragraph.field_p_topic
+    - field.storage.paragraph.field_p_view_link
+    - field.storage.paragraph.field_p_zoom
     - fieldcivic_project.field.node.civic_event.field_n_body
     - media.type.icon
     - node.type.civic_event
     - node.type.civic_page
+    - node.type.civic_project
     - paragraphs.paragraphs_type.civic_accordion
     - paragraphs.paragraphs_type.civic_accordion_panel
     - paragraphs.paragraphs_type.civic_attachment
