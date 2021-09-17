@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.civic_callout
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_content
+    - paragraphs.paragraphs_type.civic_map
     - paragraphs.paragraphs_type.civic_promo
     - paragraphs.paragraphs_type.civic_slider
   module:
@@ -35,6 +36,7 @@ settings:
       civic_card_container: civic_card_container
       civic_callout: civic_callout
       civic_attachment: civic_attachment
+      civic_map: civic_map
     target_bundles_drag_drop:
       civic_accordion:
         enabled: true

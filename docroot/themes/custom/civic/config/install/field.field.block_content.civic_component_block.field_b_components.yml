@@ -7,6 +7,7 @@ dependencies:
     - paragraphs.paragraphs_type.civic_attachment
     - paragraphs.paragraphs_type.civic_callout
     - paragraphs.paragraphs_type.civic_card_container
+    - paragraphs.paragraphs_type.civic_map
   module:
     - entity_reference_revisions
 id: block_content.civic_component_block.field_b_components
@@ -27,6 +28,7 @@ settings:
       civic_callout: civic_callout
       civic_card_container: civic_card_container
       civic_attachment: civic_attachment
+      civic_map: civic_map
     target_bundles_drag_drop:
       civic_accordion:
         weight: -23
