@@ -19,13 +19,21 @@ Feature: Tests the Map paragraph
     And I should see the text "field_p_zoom" in the "Zoom" row
     And I should see the text "field_p_theme" in the "Theme" row
 
+  @api
+  Scenario: Page content type field_n_components fields settings.
+    Given I am logged in as a user with the "Site Administrator" role
+    When I go to "admin/structure/types/manage/civic_page/fields/node.civic_page.field_n_components"
+    And the "Label" field should contain "Components"
+    Then the option "Default" from select "Reference method" is selected
+    Then the "Include the selected below" checkbox should be checked
+    And the "Map" checkbox should be checked
+
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
     And I click on "div.field--name-field-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
-    And I wait for AJAX to finish
     And I press the "field_n_components_civic_map_add_more" button
     And I wait for AJAX to finish
     And should see an "input[name='field_n_components[0][subform][field_p_address][0][value]']" element
@@ -42,7 +50,6 @@ Feature: Tests the Map paragraph
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "block/add/civic_component_block"
     And I click on "div.field--name-field-b-components .paragraphs-add-wrapper .dropbutton-toggle button" element
-    And I wait for AJAX to finish
     And I press the "field_b_components_civic_map_add_more" button
     And I wait for AJAX to finish
     And should see an "input[name='field_b_components[0][subform][field_p_address][0][value]']" element
