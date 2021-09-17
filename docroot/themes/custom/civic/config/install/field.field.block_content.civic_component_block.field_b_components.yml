@@ -6,6 +6,7 @@ dependencies:
     - field.storage.block_content.field_b_components
     - paragraphs.paragraphs_type.civic_callout
     - paragraphs.paragraphs_type.civic_card_container
+    - paragraphs.paragraphs_type.civic_next_step
   module:
     - entity_reference_revisions
 id: block_content.civic_component_block.field_b_components
@@ -25,6 +26,7 @@ settings:
     target_bundles:
       civic_callout: civic_callout
       civic_card_container: civic_card_container
+      civic_next_step: civic_next_step
     target_bundles_drag_drop:
       civic_accordion:
         weight: -23
@@ -32,14 +34,32 @@ settings:
       civic_accordion_panel:
         weight: -22
         enabled: false
+      civic_attachment:
+        weight: 23
+        enabled: false
       civic_callout:
         enabled: true
         weight: -21
       civic_card_container:
         enabled: true
         weight: -20
+      civic_card_event:
+        weight: 26
+        enabled: false
+      civic_card_event_reference:
+        weight: 27
+        enabled: false
       civic_card_navigation:
         weight: -19
+        enabled: false
+      civic_card_navigation_reference:
+        weight: 29
+        enabled: false
+      civic_card_promo:
+        weight: 30
+        enabled: false
+      civic_card_reference_promo:
+        weight: 31
         enabled: false
       civic_card_task:
         weight: -18
@@ -47,6 +67,12 @@ settings:
       civic_content:
         weight: -17
         enabled: false
+      civic_map:
+        weight: 34
+        enabled: false
+      civic_next_step:
+        enabled: true
+        weight: 20
       civic_promo:
         weight: -13
         enabled: false

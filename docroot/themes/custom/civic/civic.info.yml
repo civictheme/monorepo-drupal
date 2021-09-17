@@ -199,6 +199,14 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
+    - core.entity_form_display.paragraph.civic_next_step.default
+    - core.entity_view_display.paragraph.civic_next_step.default
+    - field.field.paragraph.civic_next_step.field_p_icon
+    - field.field.paragraph.civic_next_step.field_p_image
+    - field.field.paragraph.civic_next_step.field_p_summary
+    - field.field.paragraph.civic_next_step.field_p_theme
+    - field.field.paragraph.civic_next_step.field_p_title
+    - paragraphs.paragraphs_type.civic_next_step
   optional:
     - media.type.image
     - core.entity_view_mode.node.teaser
