@@ -17,3 +17,4 @@ dependencies:
   - components:components
   - paragraphs:paragraphs
   - default_content:default_content
+  - drupal:block_content

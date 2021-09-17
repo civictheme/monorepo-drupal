@@ -2,23 +2,19 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_n_components
-    - node.type.civic_page
-    - paragraphs.paragraphs_type.civic_accordion
+    - block_content.type.civic_component_block
+    - field.storage.block_content.field_b_components
     - paragraphs.paragraphs_type.civic_callout
     - paragraphs.paragraphs_type.civic_card_container
-    - paragraphs.paragraphs_type.civic_content
-    - paragraphs.paragraphs_type.civic_promo
-    - paragraphs.paragraphs_type.civic_slider
   module:
     - entity_reference_revisions
-id: node.civic_page.field_n_components
-field_name: field_n_components
-entity_type: node
-bundle: civic_page
+id: block_content.civic_component_block.field_b_components
+field_name: field_b_components
+entity_type: block_content
+bundle: civic_component_block
 label: Components
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -27,44 +23,40 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      civic_content: civic_content
-      civic_slider: civic_slider
-      civic_accordion: civic_accordion
-      civic_promo: civic_promo
-      civic_card_container: civic_card_container
       civic_callout: civic_callout
+      civic_card_container: civic_card_container
     target_bundles_drag_drop:
       civic_accordion:
-        enabled: true
-        weight: 6
+        weight: -23
+        enabled: false
       civic_accordion_panel:
-        weight: 7
+        weight: -22
         enabled: false
       civic_callout:
         enabled: true
-        weight: 12
+        weight: -21
       civic_card_container:
         enabled: true
-        weight: 8
+        weight: -20
       civic_card_navigation:
-        weight: 9
+        weight: -19
         enabled: false
       civic_card_task:
-        weight: 10
+        weight: -18
         enabled: false
       civic_content:
-        enabled: true
-        weight: 2
+        weight: -17
+        enabled: false
       civic_promo:
-        enabled: true
-        weight: 7
+        weight: -13
+        enabled: false
       civic_service_card:
-        weight: 20
+        weight: -16
         enabled: false
       civic_slider:
-        enabled: true
-        weight: 5
+        weight: -15
+        enabled: false
       civic_slider_slide:
-        weight: 6
+        weight: -14
         enabled: false
 field_type: entity_reference_revisions
