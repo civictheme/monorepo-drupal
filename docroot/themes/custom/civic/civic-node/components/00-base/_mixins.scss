@@ -1,0 +1,159 @@
+@use 'sass:math';
+@import "../variables";
+
+//
+// Color mixins.
+//
+
+@function civic-color($name) {
+  $all-colors: map-merge($civic-default-colors, $civic-colors);
+  @if map-get($all-colors, $name) == null {
+    @error '"#{$name}" is not an available color.';
+  }
+  @return map-get($all-colors, $name);
+}
+
+//
+// Spaces mixin.
+//
+@function civic-space($index: 1) {
+  @if $index <0 or $index > length($civic-spaces) {
+    @error '"#{$index}" is not an correct spacing index.';
+  }
+  @return nth($civic-spaces, $index);
+}
+
+
+//
+// Outline mixins.
+//
+
+@mixin civic-outline($is_accent: false) {
+  outline-offset: $civic-outline-offset;
+  @if $is_accent {
+    outline: $civic-outline-accent;
+  } @else {
+    outline: $civic-outline;
+  }
+}
+
+//
+// Rem mixins.
+//
+
+// Convert a pixel value into a rem value.
+@function rem($pxval, $base: null) {
+  @if $base == null {
+    $base: $civic-font-base-size;
+  }
+  $pxbase: $base;
+  @return math.div($pxval, $pxbase) * 1rem;
+}
+
+//
+// Typography mixins.
+//
+
+//
+// Include font size, height, weight and family for one-to-many breakpoints.
+//
+// @include typography('heading-l');
+// or
+// @include typography((24px, 1.2em, 400));
+// or
+// @include typography((
+//   'xs': (16px, 1.5em, 400),
+//   'l': (24px, 1.2em, 600)
+// ));
+//
+@mixin civic-typography($ruleset) {
+
+  // Print preset
+  @if type-of($ruleset)==string {
+    @if map-get($civic-typography, $ruleset)==null {
+      @error '"#{$ruleset}" is not an available typeset';
+    }
+
+    $ruleset: map-get($civic-typography, $ruleset);
+  }
+
+  // Print rules
+  @if type-of($ruleset)==list {
+    @include _typography_print_rules($ruleset);
+  }
+
+  // Print breakpoints
+  @if type-of($ruleset)==map {
+    $breakpoints: map-keys($ruleset);
+
+    @each $breakpoint in $breakpoints {
+      $breakpoint-rules: map-get($ruleset, $breakpoint);
+
+      @include breakpoint($breakpoint) {
+        @include _typography_print_rules($breakpoint-rules);
+      }
+    }
+  }
+}
+
+//
+// Do not use directly.
+// Use @include typography() mixin instead.
+//
+@mixin _typography_print_rules($rules) {
+  $font-size: nth($rules, 1);
+  $line-height: nth($rules, 2);
+  $font-weight: 'default';
+  $font-family: 'none';
+
+  @if length($rules)>=3 {
+    $font-weight: nth($rules, 3);
+  }
+
+  @if length($rules)>=4 {
+    $font-family: nth($rules, 4);
+  }
+
+  @include _typography_font($font-size, $line-height, $font-weight, $font-family);
+}
+
+//
+// Do not use directly.
+// Use @include typography() mixin instead.
+//
+@mixin _typography_font($font-size: 's', $line-height: 1.2em, $font-weight: 'default', $font-family: 'none') {
+  font-size: rem($font-size);
+  line-height: $line-height;
+
+  @if $font-family !='none' {
+    font-family: map-get($civic-font, $font-family);
+  }
+
+  @if $font-weight !='default' {
+    font-weight: $font-weight;
+  }
+}
+
+//
+// Helper to spawn class variations.
+//
+@mixin spawn-variations($map, $prefix: false) {
+  $index: 0;
+  @each $key, $value in $map {
+    // Handle lists.
+    @if $value == null {
+      $value: $key;
+      $key: $index;
+    }
+
+    $classname: $key;
+    @if $prefix != false {
+      $classname: #{$prefix}--#{$key};
+    }
+
+    .#{$classname} {
+      @content($key, $value, $index);
+    }
+    $index: $index + 1;
+  }
+}

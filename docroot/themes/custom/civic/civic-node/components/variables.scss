@@ -1,0 +1,111 @@
+//
+// Colors.
+//
+$civic-default-colors: (
+  'primary': #00698F,
+  'secondary': #9263DE,
+  'primary-accent': #61DAFF,
+  'secondary-accent': #FFF,
+  'shade_-90': mix(white, #00698F, 90%),
+  'shade_15': mix(black, #00698F, 15%),
+  'shade_30': mix(black, #00698F, 30%),
+  'shade_45': mix(black, #00698F, 45%),
+  'shade_60': mix(black, #00698F, 60%),
+  'neutral_5': #F2F4F5,
+  'neutral_10': #E6E9EB,
+  'neutral_20': #CCD4D8,
+  'neutral_40': #99A7B0,
+  'neutral_60': #546570,
+  'neutral_80': #35414B,
+  'neutral_90': #1F2833,
+  // Element-specific colors.
+  'heading': #1F2833,
+  'heading-link': #00698F,
+  'body': #536570,
+  'link': #8258C4,
+  'information': #00A7CE,
+  'success': #009694,
+  'warning': #DC5800,
+  'error': #CF3836
+);
+
+// All Civic palette is defined in $civic-default-colors. $civic-colors is
+// available (and empty) so that any sub-themes can place their colours in
+// here to override the defaults. This allows Civic to make palette additions
+// (if required) without breaking sub-themes.
+$civic-colors: () !default;
+
+//
+// Breakpoints.
+//
+// Do not use these directly, except for calculations.
+// Use @include breakpoint(name) mixin instead.
+//
+$civic-breakpoints: (
+  'xs': 368px,
+  's': 576px,
+  'm': 768px,
+  'l': 992px,
+  'xl': 1280px,
+  'xxl': 1440px
+) !default;
+
+//
+// Spacing.
+//
+
+$civic-space: 0.5rem !default; // 8px
+$civic-spaces: (
+  $civic-space, // 8px
+  $civic-space * 2, // 16px
+  $civic-space * 3, // 24px
+  $civic-space * 4, // 32px
+  $civic-space * 5, // 40px
+  $civic-space * 6, // 48px
+  $civic-space * 8, // 64px
+  $civic-space * 10 // 80px
+) !default;
+
+//
+// Misc Variables.
+//
+
+$civic-border-radius: 0.25rem !default;
+$civic-border-width: 0.125rem !default;
+$civic-outline: 0.1875rem solid #05F !default;
+$civic-outline-accent: 0.1875rem solid #61DAFF !default;
+$civic-outline-offset: 0 !default;
+
+//
+// Typography.
+//
+
+$civic-font-import-default: true !default;
+$civic-font-base-size: 16px !default;
+$civic-font-scale: 1.250 !default;
+
+$civic-font-primary: 'Lexend', sans-serif;
+
+$civic-font: (
+  'primary': $civic-font-primary
+) !default;
+
+$civic-typography: (
+  'display-xl': (56px, 60px, 700, 'primary'),
+  'display-l': (39px, 44px, 700, 'primary'),
+  'display-m': (28px, 32px, 700, 'primary'),
+  'display-s': (20px, 24px, 700, 'primary'),
+  'display-support': (18px, 31px, 400, 'primary'),
+  'heading-1': (48px, 60px, 700, 'primary'),
+  'heading-2': (39px, 48px, 700, 'primary'),
+  'heading-3': (32px, 40px, 700, 'primary'),
+  'heading-4': (25px, 31px, 700, 'primary'),
+  'heading-5': (20px, 25px, 700, 'primary'),
+  'heading-6': (16px, 26px, 700, 'primary'),
+  'lead-copy': (20px, 34px, 400, 'primary'),
+  'body-copy': (16px, 28px, 400, 'primary'),
+  'small-copy': (14px, 25px, 400, 'primary'),
+  'label-large': (18px, 24px, 600, 'primary'),
+  'label-normal': (16px, 18px, 600, 'primary'),
+  'label-small': (12px, 26px, 600, 'primary'),
+) !default;

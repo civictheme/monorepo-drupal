@@ -49,6 +49,9 @@ settings:
       civic_card_navigation:
         weight: 9
         enabled: false
+      civic_card_promo:
+        weight: 15
+        enabled: false
       civic_card_task:
         weight: 10
         enabled: false

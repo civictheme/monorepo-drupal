@@ -30,6 +30,9 @@ RUN apk update \
     && apk add pv \
     && rm -rf /var/cache/apk/*
 
+# Install updated version of NPM.
+RUN npm install -g npm@^7 && fix-permissions /home/.npm
+
 # Adding patches and scripts.
 ADD patches /app/patches
 ADD scripts /app/scripts
@@ -63,8 +66,8 @@ COPY docroot/themes/custom/civic_demo/package.json docroot/themes/custom/civic_d
 # Since Drupal does not use NodeJS for production, it does not matter if we
 # install development dependencnies here - they are not exposed in any way.
 RUN npm --prefix docroot/themes/custom/civic/civic-node install --no-audit --no-progress --unsafe-perm
-RUN npm --prefix docroot/themes/custom/civic install --no-audit --no-progress --unsafe-perm
-RUN npm --prefix docroot/themes/custom/civic_demo install --no-audit --no-progress --unsafe-perm
+# RUN npm --prefix docroot/themes/custom/civic install --no-audit --no-progress --unsafe-perm
+# RUN npm --prefix docroot/themes/custom/civic_demo install --no-audit --no-progress --unsafe-perm
 
 # Copy all files into appllication source directory. Existing files are always
 # overridden.
@@ -72,6 +75,6 @@ COPY . /app
 
 # Compile front-end assets. Running this after copying all files as we need
 # sources to compile assets.
-RUN cd docroot/themes/custom/civic/civic-node && npm run build
-RUN cd docroot/themes/custom/civic && npm run build
-RUN cd docroot/themes/custom/civic_demo && npm run build
+RUN cd /app/docroot/themes/custom/civic/civic-node && npm run build
+# RUN cd docroot/themes/custom/civic && npm run build
+# RUN cd docroot/themes/custom/civic_demo && npm run build

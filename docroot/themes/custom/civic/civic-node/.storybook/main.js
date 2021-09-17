@@ -2,13 +2,18 @@ const path = require('path');
 
 module.exports = {
   stories: [
-    '../components/**/*.stories.@(js|mdx)'
+    '../components/**/*.stories.js'
   ],
   addons: [
-    '@storybook/addon-knobs'
+    '@storybook/addon-a11y',
+    '@storybook/addon-essentials',
+    '@storybook/addon-knobs',
+    '@storybook/addon-links',
+    // SCSS is compiled using SCSS loader preset provided by the package below.
+    '@storybook/preset-scss'
   ],
   webpackFinal: async (config) => {
-    // Add twig support
+    // Add twig support.
     config.module.rules.unshift({
       test: /\.twig$/,
       use: [{
@@ -16,7 +21,6 @@ module.exports = {
       }]
     })
 
-    // Tell Storybook where your components live
     config.resolve.alias['templates'] = path.resolve(
       __dirname,
       '../components/'

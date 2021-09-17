@@ -22,6 +22,8 @@ docroot/libraries
 !drush
 drush/contrib/
 
+node_modules
+
 # Do not ignore other required files.
 !.docker/scripts
 !.docker/config
