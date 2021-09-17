@@ -7,9 +7,9 @@ dependencies:
     - paragraphs.paragraphs_type.civic_card_event
     - paragraphs.paragraphs_type.civic_card_event_reference
     - paragraphs.paragraphs_type.civic_card_navigation
-    - paragraphs.paragraphs_type.civic_card_reference_promo
     - paragraphs.paragraphs_type.civic_card_navigation_reference
     - paragraphs.paragraphs_type.civic_card_promo
+    - paragraphs.paragraphs_type.civic_card_reference_promo
     - paragraphs.paragraphs_type.civic_card_task
     - paragraphs.paragraphs_type.civic_service_card
   module:

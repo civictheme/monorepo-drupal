@@ -1,4 +1,4 @@
-@paragraph @civic_map
+@paragraph @civic_map @wip
 Feature: Tests the Map paragraph
 
   Ensure that Map paragraphs exists and has the expected fields.
@@ -19,7 +19,7 @@ Feature: Tests the Map paragraph
     And I should see the text "field_p_zoom" in the "Zoom" row
     And I should see the text "field_p_theme" in the "Theme" row
 
-  @api
+  @api @wip
   Scenario: Page content type field_n_components fields settings.
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "admin/structure/types/manage/civic_page/fields/node.civic_page.field_n_components"

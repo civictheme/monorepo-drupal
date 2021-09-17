@@ -62,11 +62,11 @@ settings:
       civic_card_navigation:
         weight: 9
         enabled: false
-      civic_card_promo:
-        weight: 15
-        enabled: false
       civic_card_navigation_reference:
         weight: 26
+        enabled: false
+      civic_card_promo:
+        weight: 15
         enabled: false
       civic_card_reference_promo:
         weight: 27
@@ -78,8 +78,8 @@ settings:
         enabled: true
         weight: 2
       civic_map:
+        enabled: true
         weight: 30
-        enabled: false
       civic_promo:
         enabled: true
         weight: 7
