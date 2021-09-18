@@ -33,19 +33,16 @@ This will build:
 
 ## Spacing
 
-Spacing (such as margin or padding) can be applied using the `$space` variables.
+Spacing (such as margin or padding) can be applied using the `civic-space` function.
 
-There are up to 8 predefined space values:
+Spaces are defined in `$civic-spacing` list variable (currently 8 defined spaces).
 
 ```scss
-$space  = 8px
-$space2 = 16px
-$space3 = 24px
-$space4 = 32px
-$space5 = 40px
-$space6 = 48px
-$space7 = 64px
-$space8 = 80px
+div {
+  padding: civic-space(1) civic-space(2);
+  margin-bottom: civic-space(2);
+}
+
 ```
 
 ## Colours
