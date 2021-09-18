@@ -2,21 +2,37 @@
 // Heading.
 //
 
-@import '../../00-base/base';
+@import "../../00-base/base";
 
 @for $level from 1 through 6 {
   h#{$level} {
-    @if($level < 5){
-      @include civic-typography('heading-#{$level + 2}');
+    @if ($level == 1) {
+      @include civic-typography("heading-3");
+      letter-spacing: -0.6px;
+    } @else if ($level == 2) {
+      @include civic-typography((28px, 35px, 700, "primary"));
+      letter-spacing: -0.5px;
+    } @else if ($level == 3) {
+      @include civic-typography((24px, 31px, 700, "primary"));
+      letter-spacing: -0.35px;
+    } @else if ($level == 4) {
+      @include civic-typography("heading-5");
+      letter-spacing: -0.25px;
+    } @else if ($level == 5) {
+      @include civic-typography((16px, 22px, 700, "primary"));
+      letter-spacing: 0;
+    } @else {
+      @include civic-typography("heading-6");
+      letter-spacing: 0;
     }
-    @if($level == 5){
-       @include civic-typography((16px, 22px, 700, 'primary'));
-    }
-    @if($level == 6){
-      @include civic-typography('heading-6');
-    }
+
     @include civic-breakpoint(m) {
-      @include civic-typography('heading-#{$level}');
+      @include civic-typography("heading-#{$level}");
+      @if ($level == 1) {
+        letter-spacing: -1px;
+      } @else {
+        letter-spacing: -(1 - (($level - 1) * 0.2px));
+      }
     }
   }
 }
