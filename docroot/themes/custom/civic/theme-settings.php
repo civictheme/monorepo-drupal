@@ -67,7 +67,7 @@ function civic_form_system_theme_settings_alter(&$form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Footer background image'),
     '#default_value' => theme_get_setting('civic_footer_background_image'),
-    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-footer-background.svg, or themes/custom/civic/dist/images/svg/logo-footer-background.svg.'),
+    '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://footer-background.png, or themes/custom/civic/dist/images/svg/footer-background.png.'),
   ];
 
   // Show compiled Storybook.
