@@ -5,35 +5,15 @@
  * Theme settings form for Civic theme.
  */
 
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\File\FileSystemInterface;
-
 /**
  * Implements hook_form_system_theme_settings_alter().
  */
 function civic_form_system_theme_settings_alter(&$form, &$form_state) {
+  $theme = \Drupal::theme()->getActiveTheme();
+
   $form['civic'] = [
     '#type' => 'details',
     '#title' => t('Civic'),
-    '#open' => TRUE,
-  ];
-
-  $form['civic']['font_size'] = [
-    '#type' => 'number',
-    '#title' => t('Font size'),
-    '#min' => 12,
-    '#max' => 18,
-    '#default_value' => theme_get_setting('font_size'),
-  ];
-
-  // Show compiled Storybook.
-  // @note For development of components, please use `npm run storybook`.
-  $theme = \Drupal::theme()->getActiveTheme();
-  $form['storybook'] = [
-    '#type' => 'details',
-    '#title' => t('Storybook for %theme theme', [
-      '%theme' => $theme->getName(),
-    ]),
     '#open' => TRUE,
   ];
 
@@ -90,5 +70,13 @@ function civic_form_system_theme_settings_alter(&$form, &$form_state) {
     '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-footer-background.svg, or themes/custom/civic/dist/images/svg/logo-footer-background.svg.'),
   ];
 
+  // Show compiled Storybook.
+  // @note For development of components, please use `npm run storybook`.
+  $form['storybook'] = [
+    '#type' => 'details',
+    '#title' => t('Storybook for %theme theme', [
+      '%theme' => $theme->getName(),
+    ]),
+    '#open' => TRUE,
+  ];
 }
-
