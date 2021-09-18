@@ -11,17 +11,20 @@ dependencies:
   - paragraphs:paragraphs
 
 regions:
-  header: 'Header'
-  primary_menu: 'Primary menu'
-  secondary_menu: 'Secondary menu'
-  page_top: 'Page top'
-  page_bottom: 'Page bottom'
-  featured: 'Featured'
-  breadcrumb: 'Breadcrumb'
+  header_top: 'Header'
+  header_logo: 'Header logo'
+  header_content: 'Header content'
+  header_bottom: 'Header bottom'
+  banner: 'Banner'
+  highlighted: 'Highlighted'
   content: 'Content'
-  sidebar_first: 'Sidebar first'
-  sidebar_second: 'Sidebar second'
+  content_left: 'Content left'
   footer: 'Footer'
+  footer_top_left: 'Footer top left'
+  footer_top_right: 'Footer top right'
+  footer_middlet: 'Footer middle'
+  footer_bottom_left: 'Footer bottom left'
+  footer_bottom_right: 'Footer bottom right'
 
 components:
   namespaces:
