@@ -1,7 +1,12 @@
 node_modules
-# Do no ignore lock file to speed up builds during development.
-!package-lock.json
+# Remove the lines below and commit the built assets if your build system
+# does not allow to run NodeJS scripts.
+dist
 # Remove the lines below and commit the Storybook assets if your build system
 # does not allow to run NodeJS scripts.
 storybook-static/**/*.*
 !storybook-static/.gitkeep
+
+# Do no ignore lock file to speed up builds during this project development.
+# Will be removed later.
+!package-lock.json
