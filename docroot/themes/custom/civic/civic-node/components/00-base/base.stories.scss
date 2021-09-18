@@ -72,37 +72,28 @@
 
 
 .headings-wrapper {
-  &.mobile {
-    @for $variable from 1 through 6 {
-      h#{$variable} {
-        @if($variable < 5){
-          @include civic-typography('heading-#{$variable + 2}');
-        }
-        @if($variable == 5){
-           @include civic-typography((16px, 22px, 700, 'primary'));
-        }
-        @if($variable == 6){
-          @include civic-typography('heading-6');
-        }
-      } 
-    }
-  }
 
   .heading-group {
     border: 1px dashed civic-color('secondary');
     margin-bottom: civic-space(2);
     padding: civic-space(1) civic-space(3);
     width: fit-content;
-
-    *:last-child {  
-      background: civic-color('primary-accent')
-    }
   }
 
-  @for $variable from 1 through 6 {
-    h#{$variable} {
-       @include civic-typography('heading-#{$variable}');
-       margin: civic-space(1) 0;
+  @for $level from 1 through 6 {
+    h#{$level} {
+        @if($level < 5){
+        @include civic-typography('heading-#{$level + 2}');
+      }
+      @if($level == 5){
+         @include civic-typography((16px, 22px, 700, 'primary'));
+      }
+      @if($level == 6){
+        @include civic-typography('heading-6');
+      }
+      @include civic-breakpoint(m) {
+        @include civic-typography('heading-#{$level}');
+      }
     }
   }
 }

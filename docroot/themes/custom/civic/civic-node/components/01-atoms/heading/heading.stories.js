@@ -8,13 +8,13 @@ export default {
 }
 
 export const Heading = () => Civicheading({
-  heading_level: select('Heading level',{
-    'h1':'h1',
-    'h2':'h2',
-    'h3':'h3',
-    'h4':'h4',
-    'h5':'h5',
-    'h6':'h6'
-  }, 'h1'), 
+  level: select('Heading level',{
+    '1':'1',
+    '2':'2',
+    '3':'3',
+    '4':'4',
+    '5':'5',
+    '6':'6'
+  }, '1'), 
   title: text('Text', 'Heading Text'),
 })
