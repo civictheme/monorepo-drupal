@@ -182,10 +182,12 @@
 // }
 //
 @mixin civic-breakpoint($class) {
+  @if map-get($civic-breakpoints, $class)==null {
+    @error '"#{$class}" is not an available breakpoint. (#{map-keys($civic-breakpoints)})';
+  }
   $breakpoint-value: map-get($civic-breakpoints, $class);
 
   @if $breakpoint-value==null {
-    @error '"#{$class}" is not an available breakpoint. (#{map-keys($civic-breakpoints)})';
   }
 
   @include breakpoint($breakpoint-value) {
