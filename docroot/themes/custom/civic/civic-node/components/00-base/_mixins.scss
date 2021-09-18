@@ -171,13 +171,13 @@
 // When defining breakpoints, include them lowest to highest (xs, s, m, l, xl, xxl)
 // to improve code readability.
 //
-// @include breakpoint(s) {
+// @include civic-breakpoint(s) {
 //   color: red;
 // }
-// @include breakpoint(m) {
+// @include civic-breakpoint(m) {
 //   color: green;
 // }
-// @include breakpoint(l) {
+// @include civic-breakpoint(l) {
 //   color: blue;
 // }
 //
