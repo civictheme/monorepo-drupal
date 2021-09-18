@@ -8,7 +8,7 @@ export default {
 }
 
 export const Heading = () => Civicheading({
-  level: select('Heading level',{
+  level: select('Level',{
     '1':'1',
     '2':'2',
     '3':'3',
