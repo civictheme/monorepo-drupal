@@ -11,7 +11,7 @@ module.exports = {
     let entries = glob.sync(pattern);
     // Add explicitly imported (S)CSS entries from css.js.
     entries.push(path.resolve(__dirname, 'css.js'));
-    // Add explicitly imported CVG entries from svg.js.
+    // Add explicitly imported SVG entries from svg.js.
     entries.push(path.resolve(__dirname, 'svg.js'));
     return entries;
   }('../components/**/!(*.stories|*.component|*.min|*.test).js'),
