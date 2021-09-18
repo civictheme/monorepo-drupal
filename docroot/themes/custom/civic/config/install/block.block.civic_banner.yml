@@ -1,11 +1,15 @@
 langcode: en
 status: true
 dependencies:
+  content:
+    - 'block_content:civic_banner:50c52459-c100-4e4d-92a4-9c4c77d8f8d0'
+  module:
+    - block_content
   theme:
     - civic
 id: civic_banner
 theme: civic
-region: header
+region: banner
 weight: 0
 provider: null
 plugin: 'block_content:50c52459-c100-4e4d-92a4-9c4c77d8f8d0'
@@ -13,7 +17,7 @@ settings:
   id: 'block_content:50c52459-c100-4e4d-92a4-9c4c77d8f8d0'
   label: Banner
   provider: block_content
-  label_display: visible
+  label_display: '0'
   status: true
   info: ''
   view_mode: full
