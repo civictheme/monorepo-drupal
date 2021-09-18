@@ -1,0 +1,11 @@
+//
+// Heading.
+//
+
+@import '../../00-base/base';
+
+@for $variable from 1 through 6 {
+	h#{$variable} {
+		@include civic-typography('heading-#{$variable}');
+	}	
+}
