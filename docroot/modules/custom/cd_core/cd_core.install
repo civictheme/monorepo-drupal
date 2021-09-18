@@ -42,11 +42,13 @@ function cd_core_update_9000() {
   \Drupal::service('config.factory')->getEditable('system.theme')->set('admin', 'adminimal_theme')->save();
 
   \Drupal::service('theme_installer')->install(['civic']);
+  \Drupal::service('config.factory')->getEditable('system.theme')->set('default', 'civic')->save();
   \Drupal::service('theme_installer')->install(['civic_demo']);
   \Drupal::service('config.factory')->getEditable('system.theme')->set('default', 'civic_demo')->save();
 
   \Drupal::service('theme_installer')->uninstall(['claro']);
   \Drupal::service('theme_installer')->uninstall(['govcms_bartik']);
+  \Drupal::service('theme_installer')->uninstall(['bartik']);
 }
 
 /**

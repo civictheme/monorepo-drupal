@@ -19,10 +19,9 @@ regions:
   highlighted: 'Highlighted'
   content: 'Content'
   content_left: 'Content left'
-  footer: 'Footer'
   footer_top_left: 'Footer top left'
   footer_top_right: 'Footer top right'
-  footer_middlet: 'Footer middle'
+  footer_middle: 'Footer middle'
   footer_bottom_left: 'Footer bottom left'
   footer_bottom_right: 'Footer bottom right'
 
@@ -34,7 +33,6 @@ components:
 # Update the list of the configuration below and run `drush cde civic`.
 config_devel:
   install:
-    - block.block.civic_banner
     - block_content.type.civic_banner
     - block_content.type.civic_component_block
     - core.entity_form_display.block_content.civic_banner.default
@@ -244,6 +242,14 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
   optional:
+    - block.block.civic_banner
+    - block.block.civic_content
+    - block.block.civic_help
+    - block.block.civic_mainnavigation
+    - block.block.civic_messages
+    - block.block.civic_primaryadminactions
+    - block.block.civic_sitebranding
+    - block.block.civic_tabs
     - media.type.image
     - media.type.document
     - core.entity_view_mode.node.teaser
