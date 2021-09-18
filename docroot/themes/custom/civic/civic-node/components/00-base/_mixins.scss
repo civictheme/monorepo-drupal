@@ -1,5 +1,6 @@
 @use 'sass:math';
 @import "../variables";
+@import '~breakpoint-sass/stylesheets/breakpoint';
 
 //
 // Color mixins.
@@ -155,5 +156,39 @@
       @content($key, $value, $index);
     }
     $index: $index + 1;
+  }
+}
+
+//
+// Breakpoint mixins.
+//
+
+//
+// Mobile-and-up breakpoints.
+//
+// Always use this mixin for responsive style overrides.
+// Do not define breakpoint values anywhere else.
+// When defining breakpoints, include them lowest to highest (xs, s, m, l, xl, xxl)
+// to improve code readability.
+//
+// @include breakpoint(s) {
+//   color: red;
+// }
+// @include breakpoint(m) {
+//   color: green;
+// }
+// @include breakpoint(l) {
+//   color: blue;
+// }
+//
+@mixin civic-breakpoint($class) {
+  $breakpoint-value: map-get($civic-breakpoints, $class);
+
+  @if $breakpoint-value==null {
+    @error '"#{$class}" is not an available breakpoint. (#{map-keys($civic-breakpoints)})';
+  }
+
+  @include breakpoint($breakpoint-value) {
+    @content;
   }
 }
