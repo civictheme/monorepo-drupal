@@ -106,7 +106,7 @@
   $line-height: nth($rules, 2);
   $font-weight: 'default';
   $font-family: 'none';
-
+  $letter-spacing: normal;
   @if length($rules)>=3 {
     $font-weight: nth($rules, 3);
   }
@@ -114,18 +114,20 @@
   @if length($rules)>=4 {
     $font-family: nth($rules, 4);
   }
-
-  @include _typography_font($font-size, $line-height, $font-weight, $font-family);
+  @if length($rules)>=5 {
+    $letter-spacing: nth($rules, 5);
+  }
+  @include _typography_font($font-size, $line-height, $font-weight, $font-family, $letter-spacing);
 }
 
 //
 // Do not use directly.
 // Use @include typography() mixin instead.
 //
-@mixin _typography_font($font-size: 's', $line-height: 1.2em, $font-weight: 'default', $font-family: 'none') {
+@mixin _typography_font($font-size: 's', $line-height: 1.2em, $font-weight: 'default', $font-family: 'none', $letter-spacing: 'normal') {
   font-size: rem($font-size);
   line-height: $line-height;
-
+  letter-spacing: $letter-spacing;
   @if $font-family !='none' {
     font-family: map-get($civic-font, $font-family);
   }
