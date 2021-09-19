@@ -6,8 +6,8 @@ Based on Civic Drupal theme
 Development workflow
 --------------------
 This lists 2 development workflows:
-- Stable - Civic Node is released to NPM registry; Civic Drupal theme has stable release
-- Development - Civic Node is being developed within Civic Drupal theme; Civic Drupal theme in active development
+- Stable - Civic Library is released to NPM registry; Civic Drupal theme has stable release
+- Development - Civic Library is being developed within Civic Drupal theme; Civic Drupal theme in active development
 
 1. Uses Civic theme as a base theme.
 2. Has all configuration setup to use components from `@civic` or `@custom` namespaces. Note that the consumer theme can override any component in `@civic` namespace by naming the file in the same way (the namespace will stay `@civic` - child->parent lookup is a courtesy of `components` Drupal module).
