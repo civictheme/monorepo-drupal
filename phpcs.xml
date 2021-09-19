@@ -24,7 +24,7 @@
 
     <exclude-pattern>docroot\/themes\/custom\/.*\/.storybook\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/custom\/.*\/components\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/custom\/.*\/civic-node\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/custom\/.*\/civic-library\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/custom\/.*\/storybook-static\/.*</exclude-pattern>
 
     <!-- Exclude CircleCI config files. -->

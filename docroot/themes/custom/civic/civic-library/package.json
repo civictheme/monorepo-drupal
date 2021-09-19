@@ -10,9 +10,9 @@
     "storybook",
     "styleguide"
   ],
-  "homepage": "https://github.com/salsadigitalauorg/civic-node",
+  "homepage": "https://github.com/salsadigitalauorg/civic-library",
   "bugs": {
-    "url": "https://github.com/salsadigitalauorg/civic-node/issues"
+    "url": "https://github.com/salsadigitalauorg/civic-library/issues"
   },
   "main": "index.js",
   "scripts": {

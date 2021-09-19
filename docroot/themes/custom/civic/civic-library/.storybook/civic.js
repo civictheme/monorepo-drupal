@@ -8,6 +8,6 @@ import logoUrl from '../assets/logo.png';
 export default create({
   base: 'light',
   brandTitle: 'Civic',
-  brandUrl: 'https://github.com/salsadigitalauorg/civic-node',
+  brandUrl: 'https://github.com/salsadigitalauorg/civic-library',
   brandImage: logoUrl,
 });
