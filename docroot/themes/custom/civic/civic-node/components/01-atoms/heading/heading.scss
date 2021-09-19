@@ -3,25 +3,6 @@
 //
 @import "../../00-base/base";
 
-h1 {
-  @include civic-typography('heading-1');
-}
-h2 {
-  @include civic-typography('heading-2');
-}
-h3 {
-  @include civic-typography('heading-3');
-}
-h4 {
-  @include civic-typography('heading-5');
-}
-h5 {
-  @include civic-typography('heading-5');
-}
-h6 {
-  @include civic-typography('heading-6');
-}
-
 @for $level from 1 through 6 {
   h#{$level} {
     @include civic-typography('heading-#{$level}')
