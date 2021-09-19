@@ -19,7 +19,6 @@ module.exports = {
   ],
   webpackFinal: async (config) => {
     // Modify common configs to let Storybook take over.
-    delete custom.entry
     delete custom.output
     delete custom.plugins
     // Special case: override whatever loader is used to load styles with a

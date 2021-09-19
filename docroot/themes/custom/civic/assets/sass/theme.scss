@@ -1,0 +1,8 @@
+@import "block/block--example";
+
+// Example of Civic override.
+.spacing-wrapper {
+  .spacing--7 {
+    background-color: red !important;
+  }
+}

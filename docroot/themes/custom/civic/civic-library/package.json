@@ -18,6 +18,7 @@
   "scripts": {
     "build": "npm run dist && build-storybook --quiet",
     "storybook": "start-storybook -s ./assets",
+    "build-storybook": "build-storybook",
     "lint": "eslint ./components",
     "dist": "webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "webpack --config ./webpack/webpack.dev.js"
@@ -32,8 +33,10 @@
     "@storybook/addons": "^6.1.18",
     "@storybook/html": "^6.3.8",
     "babel-loader": "^8.2.2",
+    "babel-plugin-drupal-behaviors": "^0.1.1",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^5.2.7",
+    "drupal-attribute": "^1.0.2",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "html-webpack-plugin": "^4.5.2",
@@ -44,6 +47,7 @@
     "style-loader": "^2.0.0",
     "svg-sprite-loader": "^6.0.9",
     "twig": "^1.15.4",
+    "twig-drupal-filters": "^3.1.2",
     "twigjs-loader": "^1.0.2",
     "webpack": "^4.46.0",
     "webpack-cli": "^4.8.0",
