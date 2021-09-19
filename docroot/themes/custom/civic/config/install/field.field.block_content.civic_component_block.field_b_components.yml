@@ -71,12 +71,12 @@ settings:
       civic_content:
         weight: -17
         enabled: false
-      civic_next_step:
-        enabled: true
-        weight: 20
       civic_map:
         enabled: true
         weight: 24
+      civic_next_step:
+        enabled: true
+        weight: 20
       civic_promo:
         weight: 25
         enabled: false
