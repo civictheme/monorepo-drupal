@@ -1,7 +1,7 @@
 import {text, radios, boolean} from '@storybook/addon-knobs'
 
 import CivicLinkButton from './link-button.twig'
-import '..//button/button.scss'
+import '../button/button.scss'
 
 export default {
   title: 'Atom/Link Button',
