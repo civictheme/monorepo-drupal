@@ -1,6 +1,4 @@
 var Twig = require('twig')
-import '../components/00-base/normalize.scss';
-import '../components/00-base/base.scss'
 
 export const parameters = {
   backgrounds: {
