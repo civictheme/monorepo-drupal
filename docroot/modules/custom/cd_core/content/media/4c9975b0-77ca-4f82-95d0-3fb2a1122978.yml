@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+  bundle: image
+  default_langcode: en
+  depends:
+    4a5c5b53-bad3-4ac6-adb8-d07f3167bb28: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Avengers-Age-of-Ultron-Joss-Whedon.jpeg
+  created:
+    -
+      value: 1631681047
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_media_image:
+    -
+      entity: 4a5c5b53-bad3-4ac6-adb8-d07f3167bb28
+      alt: 'Avengers 2'
+      title: ''
+      width: 1600
+      height: 1240

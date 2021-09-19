@@ -37,7 +37,7 @@ aliases:
   # command and add private key under "SSH Permissions" in CircleCI UI.
   - &deploy_ssh_fingerprint "4e:82:39:4a:52:0e:ae:a9:ef:c1:19:56:46:21:fd:7f"
 
-  # SSH key fingerprint to deploy code to civic-node.
+  # SSH key fingerprint to deploy code to civic-library.
   - &deploy_ssh_fingerprint2 "aa:01:7b:73:2c:a8:cb:e6:d2:1a:12:c0:e1:53:39:f2"
 
   #-----------------------------------------------------------------------------
@@ -237,12 +237,12 @@ jobs:
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
-          name: Deploy release to Civic Node repository.
+          name: Deploy release to Civic Library repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civic-node.git \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civic-library.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/themes/custom/civic/civic-node" \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/themes/custom/civic/civic-library" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - store_artifacts:

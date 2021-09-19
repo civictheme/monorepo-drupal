@@ -1,0 +1,36 @@
+//
+// Button.
+//
+
+@import '../../00-base/base';
+
+//
+// Mixins.
+//
+
+@mixin civic-link-base () {
+  color: civic-color('primary');
+
+  &:hover {
+    background-color: civic-color('primary');
+    color: civic-color('secondary-accent');
+  }
+
+  &:visited {
+    color: civic-color('secondary');
+
+    &:hover {
+      background-color: civic-color('secondary');
+      color: civic-color('secondary-accent');
+    }
+  }
+}
+
+//
+// Classes.
+//
+
+a,
+.civic-link {
+  @include civic-link-base;
+}

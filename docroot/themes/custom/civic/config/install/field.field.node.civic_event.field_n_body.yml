@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_n_body
+    - node.type.civic_event
+  module:
+    - text
+id: node.civic_event.field_n_body
+field_name: field_n_body
+entity_type: node
+bundle: civic_event
+label: Body
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

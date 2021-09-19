@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 4a5c5b53-bad3-4ac6-adb8-d07f3167bb28
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: Avengers-Age-of-Ultron-Joss-Whedon.jpeg
+  uri:
+    -
+      value: 'public://2021-09/Avengers-Age-of-Ultron-Joss-Whedon_3.jpeg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 231482
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1631681047

@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civic_card_promo
+label: 'Promo card'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

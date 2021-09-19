@@ -1,0 +1,180 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: d64809ee-1e4f-476f-ae5b-fdc5fb50d5f2
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    76022c67-833f-4a0f-bb42-eb43ae2339e3: node
+    6e51bcbc-ca74-4c45-9eb9-f5aecde3d397: node
+    e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e: node
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Navigation reference card 2'
+  created:
+    -
+      value: 1631723603
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: d1a70f96-dc21-406d-afd2-374adeffebc2
+          bundle: civic_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631723612
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 941eb7cd-be05-4ac4-a410-24f72fcec50c
+                  bundle: civic_card_navigation_reference
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631723620
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_reference:
+                    -
+                      entity: 76022c67-833f-4a0f-bb42-eb43ae2339e3
+                  field_p_theme:
+                    -
+                      value: light
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c8ef8035-6d51-4cb5-96e5-686b75af8f82
+                  bundle: civic_card_navigation_reference
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631723630
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_reference:
+                    -
+                      entity: 76022c67-833f-4a0f-bb42-eb43ae2339e3
+                  field_p_theme:
+                    -
+                      value: dark
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 54f2470e-e211-406f-a041-8dfa854ed660
+                  bundle: civic_card_navigation_reference
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631723640
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_reference:
+                    -
+                      entity: 6e51bcbc-ca74-4c45-9eb9-f5aecde3d397
+                  field_p_theme:
+                    -
+                      value: light
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: cb484edd-19a7-432b-9ab5-b506b783152a
+                  bundle: civic_card_navigation_reference
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631723652
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_reference:
+                    -
+                      entity: e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e
+                  field_p_theme:
+                    -
+                      value: light
+          field_p_column_count:
+            -
+              value: 4
+          field_p_fill_width:
+            -
+              value: false
+          field_p_title:
+            -
+              value: 'Card container'

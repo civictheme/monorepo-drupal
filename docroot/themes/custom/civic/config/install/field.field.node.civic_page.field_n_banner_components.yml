@@ -1,0 +1,85 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_n_banner_components
+    - node.type.civic_page
+    - paragraphs.paragraphs_type.civic_card_container
+    - paragraphs.paragraphs_type.civic_content
+    - paragraphs.paragraphs_type.civic_slider
+  module:
+    - entity_reference_revisions
+id: node.civic_page.field_n_banner_components
+field_name: field_n_banner_components
+entity_type: node
+bundle: civic_page
+label: 'Banner components'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      civic_content: civic_content
+      civic_slider: civic_slider
+      civic_card_container: civic_card_container
+    target_bundles_drag_drop:
+      civic_accordion:
+        weight: 11
+        enabled: false
+      civic_accordion_panel:
+        weight: 12
+        enabled: false
+      civic_attachment:
+        weight: 21
+        enabled: false
+      civic_callout:
+        weight: 22
+        enabled: false
+      civic_card_container:
+        enabled: true
+        weight: 13
+      civic_card_event:
+        weight: 24
+        enabled: false
+      civic_card_event_reference:
+        weight: 25
+        enabled: false
+      civic_card_navigation:
+        weight: 14
+        enabled: false
+      civic_card_navigation_reference:
+        weight: 27
+        enabled: false
+      civic_card_promo:
+        weight: 15
+        enabled: false
+      civic_card_reference_promo:
+        weight: 29
+        enabled: false
+      civic_card_task:
+        weight: 16
+        enabled: false
+      civic_content:
+        enabled: true
+        weight: 2
+      civic_map:
+        weight: 32
+        enabled: false
+      civic_promo:
+        weight: 33
+        enabled: false
+      civic_service_card:
+        weight: 18
+        enabled: false
+      civic_slider:
+        enabled: true
+        weight: 5
+      civic_slider_slide:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

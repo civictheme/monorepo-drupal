@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civic_component_block
+label: 'Component Block'
+revision: 0
+description: ''

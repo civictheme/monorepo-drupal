@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_image_position
+    - paragraphs.paragraphs_type.civic_slider_slide
+  module:
+    - options
+id: paragraph.civic_slider_slide.field_p_image_position
+field_name: field_p_image_position
+entity_type: paragraph
+bundle: civic_slider_slide
+label: 'Image position'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

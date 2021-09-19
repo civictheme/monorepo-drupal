@@ -1,17 +1,17 @@
 Civic Drupal theme
 ==================
 
-Based on Civic Node components.
+Based on Civic Library components.
 
 Development workflow
 --------------------
 This lists 2 development workflows:
-- Stable - Civic Node is released to NPM registry; Civic Drupal theme has stable release
-- Development - Civic Node is being developed within Civic Drupal theme; Civic Drupal theme in active development
+- Stable - Civic Library is released to NPM registry; Civic Drupal theme has stable release
+- Development - Civic Library is being developed within Civic Drupal theme; Civic Drupal theme in active development
 
 ### Stable
 1. Civic theme required by composer (if open-sourced) OR copied from Salsa's GitHub repo.
-  1. Civic theme comes with `civic-node` components pre-packaged. This is to make sure that Civic Drupal theme is a simple "drop-in" solution and does not require any build steps.
+  1. Civic theme comes with `civic-library` components pre-packaged. This is to make sure that Civic Drupal theme is a simple "drop-in" solution and does not require any build steps.
   2. Civic theme can be used as-is (primarily - for demo purposes).
   3. Civic theme has own Storybook compiled and served within theme settings (see below).
   4. Civic theme will not have adjustable settings in Drupal at the beginning. But later, it will be possible to adjust colours, font-size and other styles through Theme configuration. This is delayed to get Civic theme to market ASAP.
@@ -29,10 +29,10 @@ This lists 2 development workflows:
 
 ### Development
 Everything above applies, except for:
-1. Civic Node is a part of Civic Drupal theme repository until it gets full maturity. `./components` to `./civic-node/components`. Once in stable phase - a build script will be:
-  1. Requiring Civic Node from NPM
+1. Civic Library is a part of Civic Drupal theme repository until it gets full maturity. `./components` to `./civic-library/components`. Once in stable phase - a build script will be:
+  1. Requiring Civic Library from NPM
   2. Compiling assets
-  3. Copying `./civic-node/components` to `./components`
+  3. Copying `./civic-library/components` to `./components`
   4. Creating `storybook-static` which will be packaged to Civic theme
 2. For now, Civic theme is a part of this repo. If a decision is made to extract it:
   1. Civic theme will be required by Composer as a private package using GitHub token that will be committed to this repo.

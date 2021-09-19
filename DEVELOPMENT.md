@@ -3,7 +3,7 @@ Civic theme development
 
 ## Terminology
 - Civic theme - Civic Drupal theme
-- Civic node - Civic front-end library, hosted in NPM.
+- Civic Library - Civic front-end library, hosted in NPM.
 - Demo theme, consumer theme, reference theme - a theme that uses Civic theme as
   a base theme
 - Reference site, demo site - an example site (this repository) that uses Civic
@@ -35,7 +35,7 @@ Currently, this repository contains (for ease of development):
 1. Civic Drupal theme
 2. Civic Demo Drupal theme
 3. Civic Demo Drupal site installation based on GovCMS
-4. Civic node FE library
+4. Civic Library FE library
 
 Once active development phase is finished, this repository will be "forklifted"
 to only contain theme code.

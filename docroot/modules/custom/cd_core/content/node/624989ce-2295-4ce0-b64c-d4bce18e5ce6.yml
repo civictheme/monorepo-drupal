@@ -1,0 +1,130 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 624989ce-2295-4ce0-b64c-d4bce18e5ce6
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e: node
+    6e51bcbc-ca74-4c45-9eb9-f5aecde3d397: node
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Event reference card 1 - 2 column'
+  created:
+    -
+      value: 1631759373
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 37e79283-c562-4f18-b699-fe5e737069d2
+          bundle: civic_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631759384
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 5b54806a-e254-4873-b7e8-9733a62fc224
+                  bundle: civic_card_event_reference
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631759396
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_reference:
+                    -
+                      entity: e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e
+                  field_p_theme:
+                    -
+                      value: dark
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: ca39068f-0d60-4c63-a137-4abb3050e428
+                  bundle: civic_card_event_reference
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631759407
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_p_reference:
+                    -
+                      entity: 6e51bcbc-ca74-4c45-9eb9-f5aecde3d397
+                  field_p_theme:
+                    -
+                      value: dark
+          field_p_column_count:
+            -
+              value: 2
+          field_p_fill_width:
+            -
+              value: true
+          field_p_link:
+            -
+              uri: 'http://google.com'
+              title: 'Read more'
+              options: {  }
+          field_p_title:
+            -
+              value: 'Card container'

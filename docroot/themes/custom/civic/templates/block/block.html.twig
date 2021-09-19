@@ -25,13 +25,31 @@
  * @see template_preprocess_block()
  */
 #}
-{% include component with {
-    "attributes": attributes,
-    "title_attributes": title_attributes,
-    "plugin_id": plugin_id,
-    "title_prefix": title_prefix,
-    "title_suffix": title_suffix,
-    "label": label,
-    "content": content,
-    "configuration": configuration,
-} %}
+{#{% include component with {#}
+{#    "attributes": attributes,#}
+{#    "title_attributes": title_attributes,#}
+{#    "plugin_id": plugin_id,#}
+{#    "title_prefix": title_prefix,#}
+{#    "title_suffix": title_suffix,#}
+{#    "label": label,#}
+{#    "content": content,#}
+{#    "configuration": configuration,#}
+{#} %}#}
+
+{%
+  set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>
