@@ -69,14 +69,3 @@
     @include civic-typography($name);
   }
 }
-
-
-.headings-wrapper {
-
-  .heading-group {
-    border: 1px dashed civic-color('secondary');
-    margin-bottom: civic-space(2);
-    padding: civic-space(1) civic-space(3);
-    width: fit-content;
-  }
-}
