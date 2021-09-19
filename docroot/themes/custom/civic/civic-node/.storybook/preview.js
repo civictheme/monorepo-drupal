@@ -1,4 +1,5 @@
 var Twig = require('twig')
+import '../components/storybook-preview.scss'
 
 export const parameters = {
   backgrounds: {
