@@ -78,8 +78,25 @@ module.exports = {
             return [prefix, name].join('-').toLowerCase().replace('.svg', '').replace(' ', '-').replace(/[^a-z0-9\-]+/, '');
           }
         },
-      }
+      },
+      // Twig loader.
+      {
+        test: /\.twig$/,
+        use: [{
+          loader: 'twigjs-loader'
+        }]
+      },
     ],
+  },
+  resolve: {
+    alias: {
+      '@base': path.resolve(__dirname, '../components/00-base'),
+      '@atoms': path.resolve(__dirname, '../components/01-atoms'),
+      '@molecules': path.resolve(__dirname, '../components/02-molecules'),
+      '@organisms': path.resolve(__dirname, '../components/03-organisms'),
+      '@templates': path.resolve(__dirname, '../components/04-templates'),
+      '@pages': path.resolve(__dirname, '../components/05-pages'),
+    }
   },
   stats: {
     errorDetails: true,
