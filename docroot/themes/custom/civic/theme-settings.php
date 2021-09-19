@@ -11,9 +11,13 @@
 function civic_form_system_theme_settings_alter(&$form, &$form_state) {
   $theme = \Drupal::theme()->getActiveTheme();
 
-  $form['civic'] = [
+  // Show compiled Storybook.
+  // @note For development of components, please use `npm run storybook`.
+  $form['storybook'] = [
     '#type' => 'details',
-    '#title' => t('Civic'),
+    '#title' => t('Storybook for %theme theme', [
+      '%theme' => $theme->getName(),
+    ]),
     '#open' => TRUE,
   ];
 
@@ -68,15 +72,5 @@ function civic_form_system_theme_settings_alter(&$form, &$form_state) {
     '#title' => t('Footer background image'),
     '#default_value' => theme_get_setting('civic_footer_background_image'),
     '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://footer-background.png, or themes/custom/civic/dist/images/svg/footer-background.png.'),
-  ];
-
-  // Show compiled Storybook.
-  // @note For development of components, please use `npm run storybook`.
-  $form['storybook'] = [
-    '#type' => 'details',
-    '#title' => t('Storybook for %theme theme', [
-      '%theme' => $theme->getName(),
-    ]),
-    '#open' => TRUE,
   ];
 }
