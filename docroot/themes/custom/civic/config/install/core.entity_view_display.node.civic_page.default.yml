@@ -7,6 +7,8 @@ dependencies:
     - field.field.node.civic_page.field_n_banner_type
     - field.field.node.civic_page.field_n_components
     - field.field.node.civic_page.field_n_featured_banner_image
+    - field.field.node.civic_page.field_n_summary
+    - field.field.node.civic_page.field_n_thumbnail
     - node.type.civic_page
   module:
     - entity_reference_revisions
@@ -59,6 +61,21 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
+  field_n_summary:
+    weight: 107
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_n_thumbnail:
+    weight: 106
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   links:
     weight: 100

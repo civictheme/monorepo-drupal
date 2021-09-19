@@ -9,28 +9,11 @@
  * Implements hook_form_system_theme_settings_alter().
  */
 function civic_form_system_theme_settings_alter(&$form, &$form_state) {
+  $theme = \Drupal::theme()->getActiveTheme();
+
   $form['civic'] = [
     '#type' => 'details',
     '#title' => t('Civic'),
-    '#open' => TRUE,
-  ];
-
-  $form['civic']['font_size'] = [
-    '#type' => 'number',
-    '#title' => t('Font size'),
-    '#min' => 12,
-    '#max' => 18,
-    '#default_value' => theme_get_setting('font_size'),
-  ];
-
-  // Show compiled Storybook.
-  // @note For development of components, please use `npm run storybook`.
-  $theme = \Drupal::theme()->getActiveTheme();
-  $form['storybook'] = [
-    '#type' => 'details',
-    '#title' => t('Storybook for %theme theme', [
-      '%theme' => $theme->getName(),
-    ]),
     '#open' => TRUE,
   ];
 
@@ -51,4 +34,49 @@ function civic_form_system_theme_settings_alter(&$form, &$form_state) {
       ]),
     ];
   }
+
+  $form['civic_custom_configuration_options'] = [
+    '#type' => 'details',
+    '#title' => 'Custom Civic',
+    '#weight' => 50,
+    '#open' => TRUE,
+  ];
+
+  $form['civic_custom_configuration_options']['civic_header_logo_mobile'] = [
+    '#type' => 'textfield',
+    '#title' => t('Header Mobile Logo'),
+    '#default_value' => theme_get_setting('civic_header_logo_mobile'),
+    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-header-mobile.svg, or themes/custom/civic/dist/images/svg/logo-header-mobile.svg.'),
+  ];
+
+  $form['civic_custom_configuration_options']['civic_footer_logo_desktop'] = [
+    '#type' => 'textfield',
+    '#title' => t('Footer desktop logo'),
+    '#default_value' => theme_get_setting('civic_footer_logo_desktop'),
+    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-footer-desktop.svg, or themes/custom/civic/dist/images/svg/logo-footer-desktop.svg.'),
+  ];
+
+  $form['civic_custom_configuration_options']['civic_footer_logo_mobile'] = [
+    '#type' => 'textfield',
+    '#title' => t('Footer mobile logo'),
+    '#default_value' => theme_get_setting('civic_footer_logo_mobile'),
+    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-footer-mobile.svg, or themes/custom/civic/dist/images/svg/logo-footer-mobile.svg.'),
+  ];
+
+  $form['civic_custom_configuration_options']['civic_footer_background_image'] = [
+    '#type' => 'textfield',
+    '#title' => t('Footer background image'),
+    '#default_value' => theme_get_setting('civic_footer_background_image'),
+    '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://footer-background.png, or themes/custom/civic/dist/images/svg/footer-background.png.'),
+  ];
+
+  // Show compiled Storybook.
+  // @note For development of components, please use `npm run storybook`.
+  $form['storybook'] = [
+    '#type' => 'details',
+    '#title' => t('Storybook for %theme theme', [
+      '%theme' => $theme->getName(),
+    ]),
+    '#open' => TRUE,
+  ];
 }
