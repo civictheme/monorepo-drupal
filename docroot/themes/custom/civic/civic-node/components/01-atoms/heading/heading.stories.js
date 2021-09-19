@@ -1,20 +1,20 @@
-import {text, select} from '@storybook/addon-knobs'
+import {text, radios} from '@storybook/addon-knobs'
 
-import Civicheading from './heading.twig'
+import CivicHeading from './heading.twig'
 import './heading.scss'
 
 export default {
   title: 'Atom/Heading',
 }
 
-export const Heading = () => Civicheading({
-  level: select('Level',{
-    '1':'1',
-    '2':'2',
-    '3':'3',
-    '4':'4',
-    '5':'5',
-    '6':'6'
-  }, '1'), 
+export const Heading = () => CivicHeading({
+  level: radios('Level',{
+    'H1':'1',
+    'H2':'2',
+    'H3':'3',
+    'H4':'4',
+    'H5':'5',
+    'H6':'6'
+  }, '1'),
   title: text('Text', 'Heading Text'),
 })
