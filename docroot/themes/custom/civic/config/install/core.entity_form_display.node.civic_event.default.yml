@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.civic_event.field_n_more_information
     - field.field.node.civic_event.field_n_tagline
     - field.field.node.civic_event.field_n_thumbnail
+    - field.field.node.civic_event.field_n_topics
     - node.type.civic_event
   module:
     - content_moderation
@@ -121,6 +122,16 @@ content:
     settings:
       media_types: {  }
     third_party_settings: {  }
+    region: content
+  field_n_topics:
+    weight: 129
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   moderation_state:
     type: moderation_state_default
