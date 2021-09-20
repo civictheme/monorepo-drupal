@@ -49,6 +49,14 @@ config_devel:
   install:
     - block_content.type.civic_banner
     - block_content.type.civic_component_block
+    - block.block.civic_banner
+    - block.block.civic_content
+    - block.block.civic_help
+    - block.block.civic_mainnavigation
+    - block.block.civic_messages
+    - block.block.civic_primaryadminactions
+    - block.block.civic_sitebranding
+    - block.block.civic_tabs
     - core.entity_form_display.block_content.civic_banner.default
     - core.entity_form_display.block_content.civic_component_block.default
     - core.entity_form_display.node.civic_event.default
@@ -72,6 +80,7 @@ config_devel:
     - core.entity_form_display.paragraph.civic_service_card.default
     - core.entity_form_display.paragraph.civic_slider.default
     - core.entity_form_display.paragraph.civic_slider_slide.default
+    - core.entity_form_display.paragraph.civic_quick_links.default
     - core.entity_view_display.block_content.civic_banner.default
     - core.entity_view_display.block_content.civic_component_block.default
     - core.entity_view_display.node.civic_event.civic_card_event
@@ -104,6 +113,7 @@ config_devel:
     - core.entity_view_mode.node.civic_card_event
     - core.entity_view_mode.node.civic_card_navigation
     - core.entity_view_mode.node.civic_card_promo
+    - core.entity_view_display.paragraph.civic_quick_links.default
     - field.field.block_content.civic_banner.field_b_theme
     - field.field.block_content.civic_component_block.field_b_components
     - field.field.media.icon.field_m_icon
@@ -168,6 +178,9 @@ config_devel:
     - field.field.paragraph.civic_card_promo.field_p_summary
     - field.field.paragraph.civic_card_promo.field_p_theme
     - field.field.paragraph.civic_card_promo.field_p_title
+    - field.field.paragraph.civic_quick_links.field_p_links
+    - field.field.paragraph.civic_quick_links.field_p_theme
+    - field.field.paragraph.civic_quick_links.field_p_title
     - field.field.paragraph.civic_card_reference_promo.field_p_reference
     - field.field.paragraph.civic_card_reference_promo.field_p_theme
     - field.field.paragraph.civic_card_task.field_p_icon
@@ -264,19 +277,12 @@ config_devel:
     - paragraphs.paragraphs_type.civic_content
     - paragraphs.paragraphs_type.civic_map
     - paragraphs.paragraphs_type.civic_promo
+    - paragraphs.paragraphs_type.civic_quick_links
     - paragraphs.paragraphs_type.civic_service_card
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
   optional:
-    - block.block.civic_banner
-    - block.block.civic_content
-    - block.block.civic_help
-    - block.block.civic_mainnavigation
-    - block.block.civic_messages
-    - block.block.civic_primaryadminactions
-    - block.block.civic_sitebranding
-    - block.block.civic_tabs
     - media.type.image
     - media.type.document
     - core.entity_view_mode.node.teaser
