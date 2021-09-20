@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_map
     - paragraphs.paragraphs_type.civic_next_step
+    - paragraphs.paragraphs_type.civic_quick_links
   module:
     - entity_reference_revisions
 id: block_content.civic_component_block.field_b_components
@@ -30,6 +31,7 @@ settings:
       civic_card_container: civic_card_container
       civic_attachment: civic_attachment
       civic_next_step: civic_next_step
+      civic_quick_links: civic_quick_links
       civic_map: civic_map
     target_bundles_drag_drop:
       civic_accordion:
@@ -65,21 +67,27 @@ settings:
       civic_card_reference_promo:
         weight: 21
         enabled: false
+      civic_card_subject:
+        weight: 21
+        enabled: false
       civic_card_task:
         weight: -18
         enabled: false
       civic_content:
         weight: -17
         enabled: false
-      civic_next_step:
-        enabled: true
-        weight: 20
       civic_map:
         enabled: true
         weight: 24
+      civic_next_step:
+        enabled: true
+        weight: 20
       civic_promo:
         weight: 25
         enabled: false
+      civic_quick_links:
+        enabled: true
+        weight: 21
       civic_service_card:
         weight: -16
         enabled: false
