@@ -68,7 +68,7 @@ function cd_core_update_9001() {
 function cd_core_update_9002() {
   $emails = [
     'alan@salsadigital.com.au',
-    'akhil@salsadigital.com.au',
+    'akhil.bhandari@salsadigital.com.au',
     'alex.skrypnyk@salsadigital.com.au',
     'chris.darke@salsadigital.com.au',
     'danielle.sheffler@salsadigital.com.au',
