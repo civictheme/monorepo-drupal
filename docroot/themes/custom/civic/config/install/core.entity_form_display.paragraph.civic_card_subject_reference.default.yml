@@ -1,0 +1,42 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civic_card_subject_reference.field_p_reference
+    - field.field.paragraph.civic_card_subject_reference.field_p_theme
+    - field.field.paragraph.civic_card_subject_reference.field_p_topic
+    - paragraphs.paragraphs_type.civic_card_subject_reference
+id: paragraph.civic_card_subject_reference.default
+targetEntityType: paragraph
+bundle: civic_card_subject_reference
+mode: default
+content:
+  field_p_reference:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_p_theme:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_p_topic:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden:
+  created: true
+  status: true
