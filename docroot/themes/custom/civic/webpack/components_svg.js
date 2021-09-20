@@ -1,5 +1,5 @@
 /**
- * Import SVG files to be discoverable by the loader.
+ * Import Component SVG files to be discoverable by the loader.
  */
 
 function requireAll(r) {
@@ -7,4 +7,3 @@ function requireAll(r) {
 }
 
 requireAll(require.context('../civic-library/assets/icons/', true, /\.svg$/));
-requireAll(require.context('../assets/icons/', true, /\.svg$/));

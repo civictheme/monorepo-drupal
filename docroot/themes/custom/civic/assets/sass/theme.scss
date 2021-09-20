@@ -1,8 +1,8 @@
+//
+// Drupal theme specific styles.
+//
+// Note that these should be used only in cases when styles are outside of
+// components.
+//
+// These overrides will not be visible in the Storybook.
 @import "block/block--example";
-
-// Example of Civic override.
-.spacing-wrapper {
-  .spacing--7 {
-    background-color: red !important;
-  }
-}

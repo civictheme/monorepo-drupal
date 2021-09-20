@@ -18,8 +18,9 @@ module.exports = {
     '@storybook/addon-links',
   ],
   webpackFinal: async (config) => {
+    // Remove theme-related entries as components should not have them.
+    custom.entry = custom.entry.filter(path => !/theme_/g.test(path));
     // Modify common configs to let Storybook take over.
-    // delete custom.entry
     delete custom.output
     delete custom.plugins
     // Special case: override whatever loader is used to load styles with a

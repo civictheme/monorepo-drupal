@@ -1,5 +1,5 @@
 /**
- * Import theme JS files to be discoverable by the loader.
+ * Import current Drupal theme scripts to be discoverable by the loader.
  */
 
 function requireAll(r) {
