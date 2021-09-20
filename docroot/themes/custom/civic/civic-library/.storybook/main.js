@@ -6,6 +6,7 @@
  */
 const custom = require('./../webpack/webpack.prod.js');
 const {merge} = require('webpack-merge');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 module.exports = {
   stories: [
@@ -21,6 +22,9 @@ module.exports = {
     // Modify common configs to let Storybook take over.
     delete custom.output
     delete custom.plugins
+    custom.plugins = [
+      new SpriteLoaderPlugin({ plainSprite: true })
+    ]
     // Special case: override whatever loader is used to load styles with a
     // style-loader in oder to have styles injected during the runtime.
     custom.module.rules[1].use[0] = 'style-loader';

@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Icon component.
+ */
+#}
+<svg width="24" height="24" class="civic-icon{{ color ? ' civic-icon--color-' ~ color }}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <image href="{{ old_symbol }}"></use>
+</svg>
+
+<svg width="24" height="24" class="civic-icon{{ color ? ' civic-icon--color-' ~ color }}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <use xlink:href="{{ pack }}#{{ symbol }}"></use>
+</svg>
