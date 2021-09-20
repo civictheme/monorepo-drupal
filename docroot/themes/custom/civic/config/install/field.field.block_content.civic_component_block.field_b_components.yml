@@ -67,6 +67,9 @@ settings:
       civic_card_reference_promo:
         weight: 21
         enabled: false
+      civic_card_subject:
+        weight: 21
+        enabled: false
       civic_card_task:
         weight: -18
         enabled: false
