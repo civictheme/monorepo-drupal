@@ -90,7 +90,7 @@
     @each $breakpoint in $breakpoints {
       $breakpoint-rules: map-get($ruleset, $breakpoint);
 
-      @include breakpoint($breakpoint) {
+      @include civic-breakpoint($breakpoint) {
         @include _typography_print_rules($breakpoint-rules);
       }
     }
