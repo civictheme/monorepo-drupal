@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.civic_event.field_n_thumbnail
     - field.field.node.civic_event.field_n_topics
     - node.type.civic_event
+    - workflows.workflow.editorial
   module:
     - content_moderation
     - datetime_range

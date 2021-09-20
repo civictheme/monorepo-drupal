@@ -81,6 +81,7 @@ config_devel:
     - core.entity_form_display.paragraph.civic_card_promo.default
     - core.entity_form_display.paragraph.civic_card_reference_promo.default
     - core.entity_form_display.paragraph.civic_card_subject.default
+    - core.entity_form_display.paragraph.civic_card_subject_reference.default
     - core.entity_form_display.paragraph.civic_card_task.default
     - core.entity_form_display.paragraph.civic_content.default
     - core.entity_form_display.paragraph.civic_map.default
@@ -112,6 +113,7 @@ config_devel:
     - core.entity_view_display.paragraph.civic_card_promo.default
     - core.entity_view_display.paragraph.civic_card_reference_promo.default
     - core.entity_view_display.paragraph.civic_card_subject.default
+    - core.entity_view_display.paragraph.civic_card_subject_reference.default
     - core.entity_view_display.paragraph.civic_card_task.default
     - core.entity_view_display.paragraph.civic_content.default
     - core.entity_view_display.paragraph.civic_map.default
@@ -197,6 +199,8 @@ config_devel:
     - field.field.paragraph.civic_card_subject.field_p_theme
     - field.field.paragraph.civic_card_subject.field_p_title
     - field.field.paragraph.civic_card_subject.field_p_image
+    - field.field.paragraph.civic_card_subject_reference.field_p_reference
+    - field.field.paragraph.civic_card_subject_reference.field_p_theme
     - field.field.paragraph.civic_card_task.field_p_icon
     - field.field.paragraph.civic_card_task.field_p_link
     - field.field.paragraph.civic_card_task.field_p_summary
@@ -287,6 +291,7 @@ config_devel:
     - paragraphs.paragraphs_type.civic_card_navigation
     - paragraphs.paragraphs_type.civic_card_navigation_reference
     - paragraphs.paragraphs_type.civic_card_reference_promo
+    - paragraphs.paragraphs_type.civic_card_subject_reference
     - paragraphs.paragraphs_type.civic_card_task
     - paragraphs.paragraphs_type.civic_card_subject
     - paragraphs.paragraphs_type.civic_content
