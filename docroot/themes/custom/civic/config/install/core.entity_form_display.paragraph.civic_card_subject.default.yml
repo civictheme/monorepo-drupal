@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.civic_card_subject
   module:
     - link
+    - media_library
 id: paragraph.civic_card_subject.default
 targetEntityType: paragraph
 bundle: civic_card_subject
@@ -17,12 +18,9 @@ content:
   field_p_image:
     weight: 1
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: media_library_widget
     region: content
   field_p_link:
     weight: 3
