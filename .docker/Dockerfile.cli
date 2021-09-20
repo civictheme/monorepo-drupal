@@ -66,7 +66,7 @@ COPY docroot/themes/custom/civic_demo/package.json docroot/themes/custom/civic_d
 # Since Drupal does not use NodeJS for production, it does not matter if we
 # install development dependencnies here - they are not exposed in any way.
 RUN npm --prefix docroot/themes/custom/civic/civic-library install --no-audit --no-progress --unsafe-perm
-# RUN npm --prefix docroot/themes/custom/civic install --no-audit --no-progress --unsafe-perm
+RUN npm --prefix docroot/themes/custom/civic install --no-audit --no-progress --unsafe-perm
 # RUN npm --prefix docroot/themes/custom/civic_demo install --no-audit --no-progress --unsafe-perm
 
 # Copy all files into appllication source directory. Existing files are always
@@ -76,5 +76,5 @@ COPY . /app
 # Compile front-end assets. Running this after copying all files as we need
 # sources to compile assets.
 RUN cd /app/docroot/themes/custom/civic/civic-library && npm run build
-# RUN cd docroot/themes/custom/civic && npm run build
+RUN cd docroot/themes/custom/civic && npm run build
 # RUN cd docroot/themes/custom/civic_demo && npm run build
