@@ -4,7 +4,6 @@ dependencies:
   config:
     - field.field.paragraph.civic_card_subject_reference.field_p_reference
     - field.field.paragraph.civic_card_subject_reference.field_p_theme
-    - field.field.paragraph.civic_card_subject_reference.field_p_topic
     - paragraphs.paragraphs_type.civic_card_subject_reference
   module:
     - options
@@ -28,13 +27,5 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
-    region: content
-  field_p_topic:
-    weight: 0
-    label: hidden
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
     region: content
 hidden: {  }

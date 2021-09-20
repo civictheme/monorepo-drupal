@@ -18,6 +18,7 @@
   "scripts": {
     "build": "npm run dist && build-storybook --quiet",
     "storybook": "start-storybook -s ./assets",
+    "build-storybook": "build-storybook",
     "lint": "eslint ./components",
     "dist": "webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "webpack --config ./webpack/webpack.dev.js"

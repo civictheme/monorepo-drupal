@@ -95,12 +95,9 @@ content:
   field_n_thumbnail:
     weight: 126
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: media_library_widget
     region: content
   moderation_state:
     type: moderation_state_default

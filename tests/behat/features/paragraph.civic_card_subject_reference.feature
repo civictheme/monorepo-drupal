@@ -1,4 +1,4 @@
-@paragraph @civic_card_subject_reference
+@paragraph @civic_card_subject_reference @wip
 Feature: Tests the Subject reference card paragraph
 
   Ensure that Subject reference card paragraph exists and has the expected fields.
@@ -15,15 +15,6 @@ Feature: Tests the Subject reference card paragraph
     When I go to "admin/structure/paragraphs_type/civic_card_subject_reference/fields"
     And I should see the text "field_p_reference" in the "Reference" row
     And I should see the text "field_p_theme" in the "Theme" row
-    And I should see the text "field_p_topic" in the "Topic" row
-
-  @api
-  Scenario: Subject reference card paragraph field_p_topic fields settings.
-    Given I am logged in as a user with the "Site Administrator" role
-    When I go to "admin/structure/paragraphs_type/civic_card_subject_reference/fields/paragraph.civic_card_subject_reference.field_p_topic"
-    And the "Label" field should contain "Topic"
-    Then the "Create referenced entities if they don't already exist" checkbox should not be checked
-    And the "Topics" checkbox should be checked
 
   @api
   Scenario: Subject reference card paragraph field_p_reference fields settings.
@@ -64,5 +55,3 @@ Feature: Tests the Subject reference card paragraph
     And I wait for AJAX to finish
     And I should see an "select[name='field_n_components[0][subform][field_p_cards][0][subform][field_p_theme]'].required" element
     And I should see an "input[name='field_n_components[0][subform][field_p_cards][0][subform][field_p_reference][0][target_id]'].required" element
-    And I should see an "input[name='field_n_components[0][subform][field_p_cards][0][subform][field_p_topic][0][target_id]']" element
-    And I should not see an "input[name='field_n_components[0][subform][field_p_cards][0][subform][field_p_topic][0][target_id]'].required" element
