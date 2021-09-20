@@ -96,16 +96,58 @@ $civic-typography: (
   'display-m': (28px, 32px, 700, 'primary'),
   'display-s': (20px, 24px, 700, 'primary'),
   'display-support': (18px, 31px, 400, 'primary'),
-  'heading-1': (32px, 40px, 700, 'primary', -0.6px),
-  'heading-2': (28px, 35px, 700, 'primary', -0.5px),
-  'heading-3': (24px, 31px, 700, 'primary', -0.35px),
-  'heading-4': (20px, 25px, 700, 'primary', -0.25px),
-  'heading-5': (16px, 22px, 700, 'primary', 0),
+  'heading-1': (
+    'xs': (32px, 40px, 'primary', '-0.6'),  
+    'm': (48px, 60px, 700, 'primary', -1px)
+  ),
+  'heading-2': (
+    'xs': (28px, 35px, 'primary', '-0.5px'),
+    'm': (39px, 48px, 700, 'primary', -0.8px)
+  ),
+  'heading-3': (
+    'xs': (24px, 31px, 'primary', '0.35px'),
+    'm': (32px, 40px, 700, 'primary', -0.6px)
+  ),
+  'heading-4': (
+    'xs': (20px, 25px, 'primary', '-0.25px'),
+    'm': (25px, 31px, 700, 'primary', -0.4px)
+  ),
+  'heading-5': (
+    'xs': (16px, 22px, 'primary', 0),
+    'm': (20px, 25px, 700, 'primary', -0.2px)
+  ),
   'heading-6': (16px, 26px, 700, 'primary', 0),
-  'lead-copy': (20px, 34px, 400, 'primary'),
-  'body-copy': (16px, 28px, 400, 'primary'),
-  'small-copy': (14px, 25px, 400, 'primary'),
-  'label-large': (18px, 24px, 600, 'primary'),
-  'label-normal': (16px, 18px, 600, 'primary'),
+  'lead': (
+    'xs': (18px, 29px, 400, 'primary', '0'),
+    'm': (20px, 34px, 400, 'primary', '0')
+  ),
+  'body': (
+    'xs': (16px, 26px, 400, 'primary', 0),
+    'm': (16px, 28px, 400, 'primary', 0)
+  ),
+  'small': (
+    'xs': (14px, 23px, 400, 'primary', 0),
+    'm': (14px, 25px, 400, 'primary', 0)
+  ),
+  'quote': (
+    'xs': (18px, 29px, '400', 'primary', -0.15px),
+    'm': (25px, 40px, '400', 'primary', -0.35px)
+  ),
+  'unordered-list': (
+    'xs': (16px, 26px, '400', 'primary', 0),
+    'm': (15px, 28px, '400', 'primary', 0)
+  ),
+  'ordered-list': (
+    'xs': (16px, 26px, '400', 'primary', 0),
+    'm': (15px, 28px, 400 ''primary'', 0)
+  ),
+  'label-large': (
+    'xs': (18px, 24px, 600, 'primary', -0.1px),
+    'm': (18px, 24px, 600, ''primary'', 0)
+  ),
+  'label-normal': (
+    'xs': (16px, 20px, 600, 'primary', -0.1px),
+    'm': (16px, 20px, 600, 'primary', 0)
+  ),
   'label-small': (12px, 26px, 600, 'primary'),
 ) !default;
