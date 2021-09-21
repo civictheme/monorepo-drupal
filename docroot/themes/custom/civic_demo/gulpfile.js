@@ -10,10 +10,11 @@ const log = require('fancy-log')
 const civicStorybookWatchDir = __dirname + '/../civic/components/**'
 const civicChildStorybookWatchDir = __dirname + '/components/**'
 
-// Theme names.
-const baseThemeName = 'civic'
+// Theme names - `civic_demo` needs to be updated to civic child theme name.
 // @todo Extract child theme name dynamically.
-const childThemeName = 'civic_demo'
+const baseThemeName = __dirname.replace('civic_demo', 'civic')
+
+const childThemeName = __dirname
 
 // Output directory of merged components.
 const outputDir = __dirname + '/.storybook-components'
@@ -28,12 +29,18 @@ let periodicCleanup = function cleanUp() {
 // Add files to combined storybook.
 function buildTask(cb) {
   let filePath
+
   src(civicStorybookWatchDir)
     .pipe(flatMap((stream , file) => {
        filePath = file.path
        if(filePath !== undefined) {
-         filePath = filePath.replace(baseThemeName, childThemeName);
+         // log('original: ' + filePath)
+         filePath = filePath
+           .replace(__dirname, '')
+           .replace(baseThemeName, childThemeName)
+         log('replaced: ' + filePath)
          if (fs.existsSync(filePath)) {
+           log('found: ' + filePath)
            return src(filePath)
              .pipe(rename(function (path) {
                path.dirname = filePath
