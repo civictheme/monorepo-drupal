@@ -75,7 +75,7 @@ module.exports = {
             let paths = filePath.split('/');
             const name = paths.pop();
             const prefix = paths.pop();
-            return [prefix, name].join('-').toLowerCase().replace('.svg', '').replace(/\s/g, '-').replace(/[^a-z0-9\-]+/, '');
+            return [prefix, name].join('-').toLowerCase().replace('.svg', '').replace(/\s/g, '-').replace(/[^a-z0-9\-]+/g, '');
           }
         },
       },
