@@ -9,12 +9,15 @@ module.exports = {
   entry: function (pattern) {
     // Scan for all JS.
     let entries = glob.sync(pattern);
-    // Add explicitly imported (S)CSS entries from css.js.
-    entries.push(path.resolve(__dirname, 'css.js'));
-    // Add explicitly imported SVG entries from svg.js.
-    entries.push(path.resolve(__dirname, 'svg.js'));
+    // Add explicitly imported entries from components.
+    entries.push(path.resolve(__dirname, 'components_css.js'));
+    entries.push(path.resolve(__dirname, 'components_svg.js'));
+    // Add explicitly imported entries from the current theme.
+    entries.push(path.resolve(__dirname, 'theme_js.js'));
+    entries.push(path.resolve(__dirname, 'theme_css.js'));
+    entries.push(path.resolve(__dirname, 'theme_svg.js'));
     return entries;
-  }('../components/**/!(*.stories|*.component|*.min|*.test).js'),
+  }(path.resolve(__dirname, '../combined-components/**/!(*.stories|*.component|*.min|*.test).js')),
   output: {
     filename: 'civic.js',
     path: path.resolve(__dirname, '../dist'),
@@ -68,14 +71,14 @@ module.exports = {
           extract: true,
           spriteFilename: (name) => {
             // Export as multiple collections grouped by the parent directory.
-            return `icons/civic-${/icons([\\|/])(.*?)\1/gm.exec(name)[2].toLowerCase().replace(/\s/g, '-').replace(/[^a-z0-9\-]+/, '')}.svg`;
+            return `icons/civic-${/icons([\\|/])(.*?)\1/gm.exec(name)[2].toLowerCase().replace(' ', '-').replace(/[^a-z0-9\-]+/, '')}.svg`;
           },
           symbolId: filePath => {
             // Set symbol id to '<group>-<name>'.
             let paths = filePath.split('/');
             const name = paths.pop();
             const prefix = paths.pop();
-            return [prefix, name].join('-').toLowerCase().replace('.svg', '').replace(/\s/g, '-').replace(/[^a-z0-9\-]+/g, '');
+            return [prefix, name].join('-').toLowerCase().replace('.svg', '').replace(' ', '-').replace(/[^a-z0-9\-]+/, '');
           }
         },
       },
@@ -86,16 +89,33 @@ module.exports = {
           loader: 'twigjs-loader'
         }]
       },
+      // Wrap JS into Drupal.behaviours.
+      {
+        test: /components\/[^\/]+\/(?!.*\.(stories|component)\.js$).*\.js$/,
+        exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets:[
+              '@babel/preset-env'
+            ],
+            plugins: [
+              './node_modules/babel-plugin-syntax-dynamic-import',
+              './node_modules/babel-plugin-drupal-behaviors',
+            ],
+          }
+        }]
+      }
     ],
   },
   resolve: {
     alias: {
-      '@base': path.resolve(__dirname, '../components/00-base'),
-      '@atoms': path.resolve(__dirname, '../components/01-atoms'),
-      '@molecules': path.resolve(__dirname, '../components/02-molecules'),
-      '@organisms': path.resolve(__dirname, '../components/03-organisms'),
-      '@templates': path.resolve(__dirname, '../components/04-templates'),
-      '@pages': path.resolve(__dirname, '../components/05-pages'),
+      '@base': path.resolve(__dirname, '../combined-components/00-base'),
+      '@atoms': path.resolve(__dirname, '../combined-components/01-atoms'),
+      '@molecules': path.resolve(__dirname, '../combined-components/02-molecules'),
+      '@organisms': path.resolve(__dirname, '../combined-components/03-organisms'),
+      '@templates': path.resolve(__dirname, '../combined-components/04-templates'),
+      '@pages': path.resolve(__dirname, '../combined-components/05-pages'),
     }
   },
   stats: {

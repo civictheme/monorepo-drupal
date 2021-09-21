@@ -74,6 +74,7 @@ function cd_core_update_9002() {
     'danielle.sheffler@salsadigital.com.au',
     'govind@salsadigital.com.au',
     'kate.swayne@salsadigital.com.au',
+    'lokender.singh@salsadigital.com.au',
     'richard.gaunt@salsadigital.com.au',
     'satyajit.das@salsadigital.com.au',
   ];
