@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run dist && npm run gulp:build && build-storybook --quiet",
     "build-storybook": "npm run gulp:build && build-storybook",
-    "storybook": "npm run gulp:build && start-storybook -s ./assets",
+    "storybook": "concurrently \"npm:gulp:watch\"  \"start-storybook -s ./assets\"\n",
     "storybook2": "npm run gulp:build && start-storybook --no-manager-cache",
     "storybook3": "start-storybook --no-manager-cache",
     "gulp:build": "gulp",
@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "breakpoint-sass": "^2.7.1",
+    "concurrently": "^6.2.1",
     "normalize.css": "^8.0.1"
   }
 }
