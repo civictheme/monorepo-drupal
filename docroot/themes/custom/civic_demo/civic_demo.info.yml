@@ -1,9 +1,12 @@
 name: Civic Demo
 type: theme
-description: 'Civic Demo theme.'
-version: 8.x-1.0
-core_version_requirement: ^8 || ^9
 base theme: civic
+description: 'Civic Demo theme.'
+core: 9.x
+core_version_requirement: ^8 || ^9
+
+libraries:
+  - 'civic_demo/global'
 
 components:
   namespaces:
@@ -19,18 +22,3 @@ components:
       - components/04-templates
     pages:
       - components/05-pages
-
-regions:
-  header_top: 'Header'
-  header_logo: 'Header logo'
-  header_content: 'Header content'
-  header_bottom: 'Header bottom'
-  banner: 'Banner'
-  highlighted: 'Highlighted'
-  content: 'Content'
-  content_left: 'Content left'
-  footer_top_left: 'Footer top left'
-  footer_top_right: 'Footer top right'
-  footer_middle: 'Footer middle'
-  footer_bottom_left: 'Footer bottom left'
-  footer_bottom_right: 'Footer bottom right'

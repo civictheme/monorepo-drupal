@@ -2,8 +2,7 @@ name: Civic
 type: theme
 base theme: classy
 description: A flexible component based theme.
-package: Custom
-core: 8.x
+core: 9.x
 core_version_requirement: ^8 || ^9
 
 libraries:
