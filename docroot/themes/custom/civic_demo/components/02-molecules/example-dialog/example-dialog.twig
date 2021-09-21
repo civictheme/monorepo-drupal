@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Example Dialog component.
+ * Example Dialog component that overrides the component from the parent theme.
  *
  * Used to show project custom molecule-level component.
  *
@@ -14,7 +14,7 @@
 
 <div class="civic-dialog {{ modifier_class }}">
   <div class="civic-dialog__title">
-    {{ title }}
+    {{ title | default('Default dialog title') }}
   </div>
 
   {% if text is not empty %}
@@ -23,13 +23,18 @@
     </div>
   {% endif %}
 
-{#  #}{#  An atom from the base theme. #}
-{#  {% include '@civic/atoms/button/button.twig' with {#}
-{#    text: 'OK'#}
-{#  } %}#}
+  {#  An atom from the parent theme example. #}
+  {% include '@atoms/button/button.twig' with {
+    text: 'Cancel'
+  } %}
 
-  {#  An atom from the current theme. #}
-  {% include '@custom/atoms/example-button/example-button.twig' with {
+  {#  Another atom example. #}
+  {% include '@atoms/link/link.twig' with {
+    text: 'I am a link'
+  } %}
+
+  {#  An atom from the current theme example. #}
+  {% include '@atoms/demo-button/demo-button.twig' with {
     text: 'Cancel'
   } %}
 
