@@ -1,41 +1,32 @@
-const path = require('path');
+/**
+ * Custom configuration for Storybook.
+ *
+ * Using Production version of the asset building Webpack configuration to
+ * unify the building pipeline.
+ */
+const custom = require('./../webpack/webpack.prod.js');
+const {merge} = require('webpack-merge');
 
 module.exports = {
-  addons: [
-    '@storybook/addon-knobs'
-  ],
-  // Combine stories from the parent and current theme.
   stories: [
-    '../../civic/components/**/*.stories.@(js|mdx)',
-    '../components/**/*.stories.@(js|mdx)'
+    '../components/**/*.stories.js'
+  ],
+  addons: [
+    '@storybook/addon-a11y',
+    '@storybook/addon-essentials',
+    '@storybook/addon-knobs',
+    '@storybook/addon-links',
   ],
   webpackFinal: async (config) => {
-    // Add twig support.
-    config.module.rules.unshift({
-      test: /\.twig$/,
-      use: [{
-        loader: 'twigjs-loader'
-      }]
-    })
+    // Remove theme-related entries as components should not have them.
+    custom.entry = custom.entry.filter(path => !/theme_/g.test(path));
+    // Modify common configs to let Storybook take over.
+    delete custom.output
+    delete custom.plugins
+    // Special case: override whatever loader is used to load styles with a
+    // style-loader in oder to have styles injected during the runtime.
+    custom.module.rules[1].use[0] = 'style-loader';
 
-    // Override node_modules path to only use current theme's path.
-    config.resolve.modules = [
-      path.resolve(process.cwd(), 'node_modules')
-    ]
-
-    // Combine components from the parent and current themes.
-    config.resolve.alias['templates'] = [
-      path.resolve(__dirname, '../../civic/components/'),
-      path.resolve(__dirname, '../components/')
-    ].join(':')
-
-    // Provide aliases for the parent and current themes.
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@civic': path.resolve(__dirname, '../../civic/components/'),
-      '@custom': path.resolve(__dirname, '../components/')
-    }
-
-    return config
+    return merge(config, custom);
   }
 }
