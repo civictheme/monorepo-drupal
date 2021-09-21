@@ -4,9 +4,17 @@
  * Using Production version of the asset building Webpack configuration to
  * unify the building pipeline.
  */
+const webpack = require('webpack')
 const custom = require('./../webpack/webpack.prod.js');
 const {merge} = require('webpack-merge');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+
+const civic_variables = require('./civic-variables.js')
+
+// Provide civic SCSS variables to stories via webpack.
+const civicVariablesPlugin = new webpack.DefinePlugin({
+  CIVIC_VARIABLES: JSON.stringify(civic_variables.getVariables())
+})
 
 module.exports = {
   stories: [
@@ -23,7 +31,8 @@ module.exports = {
     delete custom.output
     delete custom.plugins
     custom.plugins = [
-      new SpriteLoaderPlugin({ plainSprite: true })
+      new SpriteLoaderPlugin({ plainSprite: true }),
+      civicVariablesPlugin
     ]
     // Special case: override whatever loader is used to load styles with a
     // style-loader in oder to have styles injected during the runtime.
