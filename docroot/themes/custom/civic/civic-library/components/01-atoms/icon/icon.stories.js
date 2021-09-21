@@ -4,16 +4,16 @@ import CivicIcon from './icon.twig'
 import './icon.scss'
 
 // Use the icons availabe in the assets directory to compile a list of spritesheets and icon IDs.
-const spritesheets = []
+const spritesheets = new Set()
 const icons = {}
 require.context('../../../assets/icons/', true, /\.svg$/).keys().forEach(path => {
   // Get a list of all spritesheets.
-  const spritesheetName = path.substring(2, path.indexOf('/', 2)).replace(/\s/gi, '-').toLowerCase()
+  const spritesheetName = path.substring(2, path.indexOf('/', 2)).replace(/\s/g, '-').toLowerCase()
   const spritesheetURL = `/icons/civic-${spritesheetName}.svg`
-  spritesheets.push(spritesheetURL)
+  spritesheets.add(spritesheetURL)
 
   // Get all icons available within the spritesheets.
-  const iconName = path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.')).replace(/\s/gi, '-').toLowerCase()
+  const iconName = path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.')).toLowerCase().replace(/\s/g, '-').replace(/[^a-z0-9\-]+/, '')
   if (!icons[spritesheetURL]) {
     icons[spritesheetURL] = []
   }
@@ -25,7 +25,8 @@ export default {
 }
 
 export const Icon = () => {
-  let spritesheet = select('Icon Pack', spritesheets, spritesheets[0])
+  const sheets = Array.from(spritesheets)
+  let spritesheet = select('Icon Pack', sheets, sheets[0])
   let symbol = select('Symbol', icons[spritesheet], icons[spritesheet][0])
   const colors = CIVIC_VARIABLES['civic-default-colors']
 
@@ -37,10 +38,15 @@ export const Icon = () => {
 }
 
 export const IconLibrary = () => {
-  return `<div class="icon-wrapper">
-  <h2>Arrows</h2>
-  <div>
-    ${CivicIcon({ symbol: 'caret' })}
-  </div>
-</div>`
+  let html = ``
+  Array.from(spritesheets).forEach(sheet => {
+    html += `<h2>${sheet.substring(sheet.lastIndexOf('/') + 1, sheet.lastIndexOf('.')).replace(/\-/g, ' ')}</h2>`
+    icons[sheet].forEach(icon => {
+      html += CivicIcon({
+        spritesheet: sheet,
+        symbol: icon
+      })
+    })
+  })
+  return `<div class="icon-wrapper">${html}</div>`
 }

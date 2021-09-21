@@ -68,14 +68,14 @@ module.exports = {
           extract: true,
           spriteFilename: (name) => {
             // Export as multiple collections grouped by the parent directory.
-            return `icons/civic-${/icons([\\|/])(.*?)\1/gm.exec(name)[2].toLowerCase().replace(' ', '-').replace(/[^a-z0-9\-]+/, '')}.svg`;
+            return `icons/civic-${/icons([\\|/])(.*?)\1/gm.exec(name)[2].toLowerCase().replace(/\s/g, '-').replace(/[^a-z0-9\-]+/, '')}.svg`;
           },
           symbolId: filePath => {
             // Set symbol id to '<group>-<name>'.
             let paths = filePath.split('/');
             const name = paths.pop();
             const prefix = paths.pop();
-            return [prefix, name].join('-').toLowerCase().replace('.svg', '').replace(/\s/gi, '-').replace(/[^a-z0-9\-]+/, '');
+            return [prefix, name].join('-').toLowerCase().replace('.svg', '').replace(/\s/g, '-').replace(/[^a-z0-9\-]+/, '');
           }
         },
       },
