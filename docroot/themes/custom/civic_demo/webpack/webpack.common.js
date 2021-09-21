@@ -9,16 +9,17 @@ module.exports = {
   entry: function (pattern) {
     // Scan for all JS.
     let entries = glob.sync(pattern);
-    entries.concat(glob.sync(path.resolve(__dirname, '../../civic/components/**/!(*.stories|*.component|*.min|*.test).js')));
     // Add explicitly imported entries from components.
     entries.push(path.resolve(__dirname, 'components_css.js'));
-    entries.push(path.resolve(__dirname, 'components_svg.js'));
+    // entries.push(path.resolve(__dirname, 'components_svg.js'));
     // Add explicitly imported entries from the current theme.
     entries.push(path.resolve(__dirname, 'theme_js.js'));
     entries.push(path.resolve(__dirname, 'theme_css.js'));
-    entries.push(path.resolve(__dirname, 'theme_svg.js'));
+    // entries.push(path.resolve(__dirname, 'theme_svg.js'));
+    console.log(entries);
+
     return entries;
-  }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test).js')),
+  }(path.resolve(__dirname, '../.storybook-components/**/!(*.stories|*.component|*.min|*.test).js')),
   output: {
     filename: 'civic.js',
     path: path.resolve(__dirname, '../dist'),
@@ -65,24 +66,24 @@ module.exports = {
         ],
       },
       // SVG Sprite Loader.
-      {
-        test: /icons\/.*\.svg$/,
-        loader: 'svg-sprite-loader',
-        options: {
-          extract: true,
-          spriteFilename: (name) => {
-            // Export as multiple collections grouped by the parent directory.
-            return `icons/civic-${/icons([\\|/])(.*?)\1/gm.exec(name)[2].toLowerCase().replace(' ', '-').replace(/[^a-z0-9\-]+/, '')}.svg`;
-          },
-          symbolId: filePath => {
-            // Set symbol id to '<group>-<name>'.
-            let paths = filePath.split('/');
-            const name = paths.pop();
-            const prefix = paths.pop();
-            return [prefix, name].join('-').toLowerCase().replace('.svg', '').replace(' ', '-').replace(/[^a-z0-9\-]+/, '');
-          }
-        },
-      },
+      // {
+      //   test: /icons\/.*\.svg$/,
+      //   loader: 'svg-sprite-loader',
+      //   options: {
+      //     extract: true,
+      //     spriteFilename: (name) => {
+      //       // Export as multiple collections grouped by the parent directory.
+      //       return `icons/civic-${/icons([\\|/])(.*?)\1/gm.exec(name)[2].toLowerCase().replace(' ', '-').replace(/[^a-z0-9\-]+/, '')}.svg`;
+      //     },
+      //     symbolId: filePath => {
+      //       // Set symbol id to '<group>-<name>'.
+      //       let paths = filePath.split('/');
+      //       const name = paths.pop();
+      //       const prefix = paths.pop();
+      //       return [prefix, name].join('-').toLowerCase().replace('.svg', '').replace(' ', '-').replace(/[^a-z0-9\-]+/, '');
+      //     }
+      //   },
+      // },
       // Twig loader.
       {
         test: /\.twig$/,
@@ -111,12 +112,12 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@base': path.resolve(__dirname, '../components/00-base'),
-      '@atoms': path.resolve(__dirname, '../components/01-atoms'),
-      '@molecules': path.resolve(__dirname, '../components/02-molecules'),
-      '@organisms': path.resolve(__dirname, '../components/03-organisms'),
-      '@templates': path.resolve(__dirname, '../components/04-templates'),
-      '@pages': path.resolve(__dirname, '../components/05-pages'),
+      '@base': path.resolve(__dirname, '../.storybook-components/00-base'),
+      '@atoms': path.resolve(__dirname, '../.storybook-components/01-atoms'),
+      '@molecules': path.resolve(__dirname, '../.storybook-components/02-molecules'),
+      '@organisms': path.resolve(__dirname, '../.storybook-components/03-organisms'),
+      '@templates': path.resolve(__dirname, '../.storybook-components/04-templates'),
+      '@pages': path.resolve(__dirname, '../.storybook-components/05-pages'),
     }
   },
   stats: {

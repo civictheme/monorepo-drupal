@@ -9,7 +9,7 @@ const {merge} = require('webpack-merge');
 
 module.exports = {
   stories: [
-    '../components/**/*.stories.js'
+    '../.storybook-components/**/*.stories.js',
   ],
   addons: [
     '@storybook/addon-a11y',
