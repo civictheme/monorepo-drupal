@@ -1,0 +1,23 @@
+//
+// Callout.
+//
+
+@import '../../00-base/base';
+
+.civic-callout {
+  border-left: 5px civic-color('secondary') solid;
+  padding: 5px 15px;
+  background-color: civic-color('neutral_5');
+  &__links {
+    margin: 10px 0 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    @include civic-breakpoint(m) {
+      flex-direction: row;
+    }
+    a {
+      margin: 0 10px 20px 0;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Callout component.
+ *
+ * Display of Callout component.
+ *
+ * Variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - content_top: [string] Component slot for top of Callout.
+ * - title: [string] Callout title.
+ * - summary: [string] Callout summary.
+ * - cta_text: [string] CTA Label
+ * - cta_type: [string] Classes to modify the default link button styling.
+ * - cta_url: [string] Example URL for CTA
+ * - link_text: [string] Link Label
+ * - link_url: [string] Example URL for Link
+ * - content_bottom: [string] Component slot for bottom of Callout.
+ */
+#}
+
+{% set modifier_class = modifier_class|default('civic-callout--light') %}
+
+<div class="civic-callout {{ modifier_class }}">
+  <div class="civic-callout__content-top">
+    {{ content_top }}
+  </div>
+
+  <div class="civic-callout__title">
+    {% include '@atoms/heading/heading.twig' with {
+      title: title,
+      level: 3
+    } only %}
+  </div>
+
+  <div class="civic-callout__summary">
+    {{ summary }}
+  </div>
+
+  <div class="civic-callout__links">
+
+    {% include '@atoms/link-button/link-button.twig' with {
+      text: cta_text,
+      href: cta_url,
+      modifier_class: cta_type
+    } only %}
+
+    {% include '@atoms/link/link.twig' with {
+      text: link_text,
+      href: link_url
+    } only %}
+  </div>
+
+  <div class="civic-callout__content-bottom">
+    {{ content_bottom }}
+  </div>
+</div>
