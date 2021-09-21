@@ -6,8 +6,9 @@
   "scripts": {
     "build": "npm run dist && npm run gulp:build && build-storybook --quiet",
     "build-storybook": "npm run gulp:build && build-storybook",
-    "storybook": "npm run gulp && start-storybook -s ./assets",
-    "storybook2": "npm run gulp && start-storybook --no-manager-cache",
+    "storybook": "npm run gulp:build && start-storybook -s ./assets",
+    "storybook2": "npm run gulp:build && start-storybook --no-manager-cache",
+    "storybook3": "start-storybook --no-manager-cache",
     "gulp:build": "gulp",
     "gulp:watch": "gulp watch",
     "lint": "eslint ./components ./assets/js",

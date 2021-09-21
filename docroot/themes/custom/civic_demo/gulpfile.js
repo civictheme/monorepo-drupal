@@ -12,9 +12,10 @@ const civicChildStorybookWatchDir = __dirname + '/components/**'
 
 // Theme names.
 const baseThemeName = 'civic'
+// @todo Extract child theme name dynamically.
 const childThemeName = 'civic_demo'
 
-// Output directory of merged storybook.
+// Output directory of merged components.
 const outputDir = __dirname + '/.storybook-components'
 
 // Periodic rebuild of combined storybook.
