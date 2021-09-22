@@ -13,14 +13,14 @@ Feature: Tests the Service card paragraph
   Scenario: Service card paragraph exists with fields.
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_service_card/fields"
-    And I should see the text "field_p_theme" in the "Theme" row
-    And I should see the text "field_p_title" in the "Title" row
-    And I should see the text "field_p_links" in the "Links" row
+    And I should see the text "field_c_p_theme" in the "Theme" row
+    And I should see the text "field_c_p_title" in the "Title" row
+    And I should see the text "field_c_p_links" in the "Links" row
 
   @api
-  Scenario: Card container paragraph field_p_cards fields settings.
+  Scenario: Card container paragraph field_c_p_cards fields settings.
     Given I am logged in as a user with the "Site Administrator" role
-    When I go to "admin/structure/paragraphs_type/civic_card_container/fields/paragraph.civic_card_container.field_p_cards"
+    When I go to "admin/structure/paragraphs_type/civic_card_container/fields/paragraph.civic_card_container.field_c_p_cards"
     And the "Label" field should contain "Cards"
     Then the option "Default" from select "Reference method" is selected
     Then the "Include the selected below" checkbox should be checked
@@ -33,17 +33,17 @@ Feature: Tests the Service card paragraph
       And I fill in "Title" with "[TEST] Page fields"
       And I click on "div.field--name-field-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
       And I wait 1 second
-      And I press the "field_n_components_civic_card_container_add_more" button
+      And I press the "field_c_n_components_civic_card_container_add_more" button
       And I wait for AJAX to finish
       And I should see an "div.js-form-item-field-n-components-0-subform-field-p-title-0-value" element
       And I should see an "div.js-form-item-field-n-components-0-subform-field-p-link-0-uri" element
       And I should see an "div.js-form-item-field-n-components-0-subform-field-p-column-count select.required" element
       And I click on "div.field--name-field-p-cards .paragraphs-add-wrapper .dropbutton-toggle button" element
       And I wait 1 second
-      And I press the "field_n_components_0_subform_field_p_cards_civic_service_card_add_more" button
+      And I press the "field_c_n_components_0_subform_field_c_p_cards_civic_service_card_add_more" button
       And I wait for AJAX to finish
-      Then select "field_n_components[0][subform][field_p_cards][0][subform][field_p_theme]" should have an option "light"
-      And I should see an "input[name='field_n_components[0][subform][field_p_cards][0][subform][field_p_title][0][value]']" element
-      And I should see an "input[name='field_n_components[0][subform][field_p_cards][0][subform][field_p_title][0][value]'].required" element
-      And I should see an "input[name='field_n_components[0][subform][field_p_cards][0][subform][field_p_links][0][uri]']" element
-      And I should see an "input[name='field_n_components[0][subform][field_p_cards][0][subform][field_p_links][0][title]']" element
+      Then select "field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_theme]" should have an option "light"
+      And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_title][0][value]']" element
+      And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_title][0][value]'].required" element
+      And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_links][0][uri]']" element
+      And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_links][0][title]']" element

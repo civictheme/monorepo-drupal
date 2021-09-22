@@ -13,7 +13,7 @@ Feature: Tests the Civic Component Block Type
   Scenario: Component Block type exists with fields.
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "admin/structure/block/block-content/manage/civic_component_block/fields"
-    Then I should see the text "Components" in the "field_b_components" row
+    Then I should see the text "Components" in the "field_c_b_components" row
 
   @api
   Scenario: Component Block paragraph reference exists and works

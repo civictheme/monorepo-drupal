@@ -13,6 +13,6 @@ Feature: Tests the Accordion panel
   Scenario: Accordion panel paragraph exists with fields.
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_accordion_panel/fields"
-    And I should see the text "field_p_title" in the "Title" row
-    And I should see the text "field_p_content" in the "Content" row
-    And I should see the text "field_p_expand" in the "Expand" row
+    And I should see the text "field_c_p_title" in the "Title" row
+    And I should see the text "field_c_p_content" in the "Content" row
+    And I should see the text "field_c_p_expand" in the "Expand" row

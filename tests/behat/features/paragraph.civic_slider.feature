@@ -13,10 +13,10 @@ Feature: Tests the Slider paragraph
   Scenario: Slider paragraph exists with fields.
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_slider/fields"
-    And I should see the text "field_p_theme" in the "Theme" row
-    And I should see the text "field_p_title" in the "Title" row
-    And I should see the text "field_p_link" in the "Link" row
-    And I should see the text "field_p_slides" in the "Slides" row
+    And I should see the text "field_c_p_theme" in the "Theme" row
+    And I should see the text "field_c_p_title" in the "Title" row
+    And I should see the text "field_c_p_link" in the "Link" row
+    And I should see the text "field_c_p_slides" in the "Slides" row
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
