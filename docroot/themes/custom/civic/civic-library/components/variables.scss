@@ -3,9 +3,9 @@
 //
 $civic-default-colors: (
   'primary': #00698F,
-  'secondary-accent': #9263DE,
   'primary-accent': #61DAFF,
   'secondary': #FFF,
+  'secondary-accent': #9263DE,
   'shade_90': mix(white, #00698F, 90%),
   'shade_15': mix(black, #00698F, 15%),
   'shade_30': mix(black, #00698F, 30%),
@@ -27,7 +27,7 @@ $civic-default-colors: (
   'success': #009694,
   'warning': #DC5800,
   'error': #CF3836,
-  'outline': #05F, 
+  'outline': #05F,
 );
 
 // All Civic palette is defined in $civic-default-colors. $civic-colors is
