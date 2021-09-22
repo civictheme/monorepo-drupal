@@ -1,4 +1,4 @@
-import './base.stories.scss'
+import './typography.stories.scss'
 
 export default {
   title: 'Base/Typography',

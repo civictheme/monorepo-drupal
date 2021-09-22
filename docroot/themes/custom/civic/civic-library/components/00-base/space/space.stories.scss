@@ -1,0 +1,25 @@
+@import '../base.stories';
+
+.space-wrapper {
+  max-width: 960px;
+
+  div {
+    position: relative;
+    width: 100%;
+    min-height: $civic-space;
+    box-sizing: border-box;
+  }
+
+  @include civic-generate-class-variations-from-map($civic-spaces, 'space') using($name, $value, $index) {
+    padding: $value 0 0 $value;
+    $transparency: if($index % 2 == 0, 25%, 50%);
+    background-color: mix(#61DAFF, white, $transparency);
+
+    &::before {
+      content: 'Space #{$name}';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+    }
+  }
+}

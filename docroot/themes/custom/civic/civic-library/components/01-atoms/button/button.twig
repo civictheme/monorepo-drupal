@@ -13,15 +13,16 @@
  */
 #}
 
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set kind = kind|default('button') %}
-{% set modifier_class = modifier_class|default('civic-button--light civic-button--primary civic-button--normal')%}
+{% set modifier_class = modifier_class|default('civic-button--light civic-button--normal') %}
+{% set modifier_class = modifier_class ~ ' ' ~ theme_class %}
 {% set url = url|default('#') %}
 
-
-{% if kind == 'button'%}
-	<button class="civic-button {{ modifier_class }}" data-component-name="button" {{ disabled ? 'disabled' }}>{{ text }}</button>
+{% if kind == 'button' %}
+  <button class="civic-button {{ modifier_class }}" data-component-name="button" {{ disabled ? 'disabled' }}>{{ text }}</button>
 {% elseif kind == 'link' %}
-	<a class="civic-button civic-button-link {{ modifier_class }}" data-component-name="link-button" href="{{ url }}" title="{{ text }}" {{ new_window ? 'target="_blank"' }}>{{ text }}</a>
+  <a class="civic-button {{ modifier_class }}" data-component-name="button" href="{{ url }}" title="{{ text }}" {{ new_window ? 'target="_blank"' }}>{{ text }}</a>
 {% elseif kind == 'reset' or kind == 'submit' %}
-	<input class="civic-button {{ modifier_class }}" type="{{ kind }}" data-component-name="button" value="{{ text }}" {{ disabled ? 'disabled' }}/>
+  <input class="civic-button {{ modifier_class }}" type="{{ kind }}" data-component-name="button" value="{{ text }}" {{ disabled ? 'disabled' }}/>
 {% endif %}
