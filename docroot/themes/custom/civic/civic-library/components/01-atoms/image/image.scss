@@ -1,0 +1,14 @@
+//
+// Heading.
+//
+@import "../../00-base/base";
+
+figure.civic-image {
+  background-color: civic-color('secondary');
+  color: civic-color('primary');
+
+  &.civic-theme-dark {
+    background-color: civic-color('primary');
+    color: civic-color('secondary');
+  }
+}

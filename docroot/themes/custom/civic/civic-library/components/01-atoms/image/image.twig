@@ -1,0 +1,17 @@
+{#
+/**
+ * @file heading!
+ *
+ * Available variables:
+ * - src: [string] Path of the image.
+ * - alt: [string] Alternate text of the image.
+ * - caption: [string] Caption below the image.
+ * - theme: [string] component theme.
+ */
+#}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+
+<figure class="civic-image {{ theme_class }}">
+  <img src="{{ src }}" alt="{{ alt }}">
+  <figcaption>{{ caption }}</figcaption>
+</figure>
