@@ -1,6 +1,6 @@
-// Use the icons availabe in the assets directory to compile a list of spritesheets and icon IDs.
 export const spritesheets = new Set()
 export const icons = {}
+// Use the icons availabe in the assets directory to compile a list of spritesheets and icon IDs.
 require.context('../../../assets/icons/', true, /\.svg$/).keys().forEach(path => {
   // Get a list of all spritesheets.
   const spritesheetName = path.substring(2, path.indexOf('/', 2)).replace(/\s/g, '-').toLowerCase()
