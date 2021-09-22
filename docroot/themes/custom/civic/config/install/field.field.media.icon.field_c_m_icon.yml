@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.media.field_m_icon
+    - field.storage.media.field_c_m_icon
     - media.type.icon
   module:
     - file
-id: media.icon.field_m_icon
-field_name: field_m_icon
+id: media.icon.field_c_m_icon
+field_name: field_c_m_icon
 entity_type: media
 bundle: icon
 label: File

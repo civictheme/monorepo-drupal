@@ -4,8 +4,8 @@ dependencies:
   module:
     - file
     - media
-id: media.field_m_icon
-field_name: field_m_icon
+id: media.field_c_m_icon
+field_name: field_c_m_icon
 entity_type: media
 type: file
 settings:
