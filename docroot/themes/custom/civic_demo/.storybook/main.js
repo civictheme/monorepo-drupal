@@ -12,9 +12,9 @@ module.exports = {
     '../combined-components/**/*.stories.js',
   ],
   addons: [
+    '@storybook/addon-knobs',
     '@storybook/addon-a11y',
     '@storybook/addon-essentials',
-    '@storybook/addon-knobs',
     '@storybook/addon-links',
   ],
   webpackFinal: async (config) => {
