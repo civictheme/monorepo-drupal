@@ -5,11 +5,11 @@
 @import '../../00-base/base';
 
 .civic-callout {
-  border-radius: 4px;
-  border-left: 6px civic-color('secondary-accent') solid;
+  border-radius: $civic-border-radius;
+  border-left: rem(6px) civic-color('secondary-accent') solid;
   display: flex;
   flex-direction: column;
-  padding: 24px 24px 28px;
+  padding: civic-space(3) civic-space(3);
   align-items: flex-start;
 
   flex: none;
@@ -18,7 +18,7 @@
   margin: 0;
 
   @include civic-breakpoint(m) {
-    padding: 32px 40px 36px 28px;
+    padding: civic-space(3) civic-space(5) civic-space(4) civic-space(3);
   }
 
   &__summary {
@@ -37,7 +37,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0px;
+    padding: 0;
     flex-wrap: wrap;
 
     @include civic-breakpoint(m) {
@@ -48,26 +48,38 @@
       flex: none;
       order: 0;
       flex-grow: 0;
-      margin: 8px 0;
+      margin: civic-space() 0;
       @include civic-breakpoint(m) {
-        margin: 8px 8px 0 0;
+        margin: civic-space() civic-space() 0 0;
       }
     }
 
     &:last-child {
       @include civic-breakpoint(m) {
-        margin: 8px 0 0 0;
+        margin: civic-space() 0 0 0;
       }
     }
-
-
-
   }
+
   &.civic-theme-light {
-    background-color: civic-color('neutral_5');
+    background-color: $civic-callout-light-background-color;
+    color: $civic-callout-light-color;
+
+    .civic-callout {
+      &__title {
+        color: $civic-callout-light-heading-color;
+      }
+    }
   }
+
   &.civic-theme-dark {
-    background-color: civic-color('shade_15');
-    color: civic-color('body-dark');
+    background-color: $civic-callout-dark-background-color;
+    color: $civic-callout-dark-color;
+
+    .civic-callout {
+      &__title {
+        color: $civic-callout-dark-heading-color;
+      }
+    }
   }
 }

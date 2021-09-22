@@ -4,19 +4,23 @@
  * Button component.
  *
  * Variables:
- * - disabled: [boolean] Disabled state.
- * - kind: [string] submit, reset, button, link (this would have different markup based on type).
- * - modifier_class: [string] Classes to modify the default component styling.
- * - new_window: [boolean] Open in a new window.
+ * - kind: [string] Button kind: submit, reset, button, link.
+ * - type: [string] Button type: primary, primary-accented, secondary, secondary-accented.
+ * - size: [string] Button size: large, regular, small.
+ * - modifier_class: [string] Additional classes to modify component styling.
  * - text: [string] Button text.
  * - url: [string] URL for the link button.
+ * - new_window: [boolean] Open in a new window.
+ * - disabled: [boolean] Disabled state.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set kind = kind|default('button') %}
-{% set modifier_class = modifier_class|default('civic-button--light civic-button--normal') %}
-{% set modifier_class = modifier_class ~ ' ' ~ theme_class %}
+{% set size = size|default('regular') %}
+{% set type_class = 'civic-button--%s'|format(type) %}
+{% set size_class = 'civic-button--%s'|format(size) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, type_class, size_class, modifier_class) %}
 {% set url = url|default('#') %}
 
 {% if kind == 'button' %}

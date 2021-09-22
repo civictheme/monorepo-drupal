@@ -1,4 +1,4 @@
-import {text, radios} from '@storybook/addon-knobs'
+import {radios, text} from '@storybook/addon-knobs'
 import CivicCallout from "./callout.twig";
 
 export default {
@@ -15,16 +15,62 @@ export const Callout = () => CivicCallout({
       'Dark': 'dark',
     },
     'light',
-    'Callout'
+    'Callout',
   ),
   title: text('Title', 'Callout title from knob', 'Callout'),
   summary: text('Summary', exampleSummary, 'Callout'),
   links: [
-    {text: text('Text', 'Primary CTA', 'Primary CTA'), url: text('URL', '', 'Primary CTA'), type: 'civic-button--primary'},
-    {text: text('Text', 'Secondary CTA', 'Secondary CTA'), url: text('URL', '', 'Secondary CTA'), type: 'civic-button--secondary'}
+    {
+      text: text('Text', 'CTA 1', 'CTA 1'),
+      url: text('URL', '', 'CTA 1'),
+      type: radios(
+        'Type',
+        {
+          'None': 'none',
+          'Primary': 'primary',
+          'Primary Accent': 'primary-accent',
+          'Secondary': 'secondary',
+          'Secondary Accent': 'secondary-accent',
+        },
+        'primary',
+        'CTA 1',
+      ),
+      size: radios(
+        'Size',
+        {
+          'Large': 'large',
+          'Regular': 'regular',
+          'Small': 'small',
+        },
+        'regular',
+        'CTA 1',
+      ),
+    },
+    {
+      text: text('Text', 'CTA 2', 'CTA 2'),
+      url: text('URL', '', 'CTA 2'),
+      type: radios(
+        'Type',
+        {
+          'None': 'none',
+          'Primary': 'primary',
+          'Primary Accent': 'primary-accent',
+          'Secondary': 'secondary',
+          'Secondary Accent': 'secondary-accent',
+        },
+        'none',
+        'CTA 2',
+      ),
+      size: radios(
+        'Size',
+        {
+          'Large': 'large',
+          'Regular': 'regular',
+          'Small': 'small',
+        },
+        'regular',
+        'CTA 2',
+      ),
+    },
   ]
 });
-
-
-
-
