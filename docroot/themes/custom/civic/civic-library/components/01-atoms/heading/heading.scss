@@ -5,6 +5,7 @@
 
 @for $level from 1 through 6 {
   h#{$level} {
-    @include civic-typography('heading-#{$level}')
+    @include civic-typography('heading-#{$level}');
+    margin: 0;
   }
 }
