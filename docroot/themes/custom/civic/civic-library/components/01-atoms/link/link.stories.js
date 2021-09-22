@@ -1,4 +1,4 @@
-import {text, boolean} from '@storybook/addon-knobs'
+import { text, boolean, radios } from '@storybook/addon-knobs'
 
 import CivicLink from './link.twig'
 import './link.scss'
@@ -8,7 +8,16 @@ export default {
 }
 
 export const Link = () => CivicLink({
+  theme: radios(
+    'Theme',
+    {
+      'Light': 'light',
+      'Dark': 'dark',
+    },
+    'light',
+  ),
   text: text('Text', 'Link Text'),
-  href: text('URL', '/'),
+  url: text('URL', 'https://www.example.com'),
   new_window: boolean('Open in a new window', false),
+  is_external: boolean('Link is external', false)
 })
