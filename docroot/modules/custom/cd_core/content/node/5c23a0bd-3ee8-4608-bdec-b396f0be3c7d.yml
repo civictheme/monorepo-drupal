@@ -36,7 +36,7 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_n_components:
+  field_c_n_components:
     -
       entity:
         _meta:
@@ -58,7 +58,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_cards:
+          field_c_p_cards:
             -
               entity:
                 _meta:
@@ -80,10 +80,10 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_summary:
+                  field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Card task 1'
             -
@@ -107,13 +107,13 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_icon:
+                  field_c_p_icon:
                     -
                       entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
-                  field_p_summary:
+                  field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Card task 2'
             -
@@ -137,10 +137,10 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_summary:
+                  field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Card task 3'
             -
@@ -164,23 +164,23 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_summary:
+                  field_c_p_summary:
                     -
                       value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Card task 4'
-          field_p_column_count:
+          field_c_p_column_count:
             -
               value: 4
-          field_p_fill_width:
+          field_c_p_fill_width:
             -
               value: false
-          field_p_link:
+          field_c_p_link:
             -
               uri: 'http://google.com'
               title: 'Read more'
               options: {  }
-          field_p_title:
+          field_c_p_title:
             -
               value: 'Card 4 column'

@@ -27,7 +27,7 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_m_icon:
+  field_c_m_icon:
     -
       entity: 587355c9-c76b-459d-adf8-8829c2fe4181
       display: false

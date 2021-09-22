@@ -17,6 +17,6 @@ default:
   revision_translation_affected:
     -
       value: true
-  field_b_theme:
+  field_c_b_theme:
     -
       value: light
