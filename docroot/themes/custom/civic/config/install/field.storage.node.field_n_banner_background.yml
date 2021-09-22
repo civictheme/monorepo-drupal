@@ -4,8 +4,8 @@ dependencies:
   module:
     - media
     - node
-id: node.field_n_banner_background
-field_name: field_n_banner_background
+id: node.field_c_n_banner_background
+field_name: field_c_n_banner_background
 entity_type: node
 type: entity_reference
 settings:

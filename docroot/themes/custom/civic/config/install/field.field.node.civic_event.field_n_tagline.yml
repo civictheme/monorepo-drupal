@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_n_tagline
+    - field.storage.node.field_c_n_tagline
     - node.type.civic_event
-id: node.civic_event.field_n_tagline
-field_name: field_n_tagline
+id: node.civic_event.field_c_n_tagline
+field_name: field_c_n_tagline
 entity_type: node
 bundle: civic_event
 label: Tagline

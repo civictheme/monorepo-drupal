@@ -4,8 +4,8 @@ dependencies:
   module:
     - datetime
     - paragraphs
-id: paragraph.field_p_date
-field_name: field_p_date
+id: paragraph.field_c_p_date
+field_name: field_c_p_date
 entity_type: paragraph
 type: datetime
 settings:

@@ -4,8 +4,8 @@ dependencies:
   module:
     - media
     - node
-id: node.field_n_thumbnail
-field_name: field_n_thumbnail
+id: node.field_c_n_thumbnail
+field_name: field_c_n_thumbnail
 entity_type: node
 type: entity_reference
 settings:

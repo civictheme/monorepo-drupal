@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_n_date
+    - field.storage.node.field_c_n_date
     - node.type.civic_event
   module:
     - datetime_range
-id: node.civic_event.field_n_date
-field_name: field_n_date
+id: node.civic_event.field_c_n_date
+field_name: field_c_n_date
 entity_type: node
 bundle: civic_event
 label: 'Event date'

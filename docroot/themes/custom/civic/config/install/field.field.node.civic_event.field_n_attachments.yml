@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_n_attachments
+    - field.storage.node.field_c_n_attachments
     - node.type.civic_event
     - paragraphs.paragraphs_type.civic_attachment
   module:
     - entity_reference_revisions
-id: node.civic_event.field_n_attachments
-field_name: field_n_attachments
+id: node.civic_event.field_c_n_attachments
+field_name: field_c_n_attachments
 entity_type: node
 bundle: civic_event
 label: Attachments

@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_p_reference
+    - field.storage.paragraph.field_c_p_reference
     - node.type.civic_event
     - node.type.civic_page
     - paragraphs.paragraphs_type.civic_card_event_reference
-id: paragraph.civic_card_event_reference.field_p_reference
-field_name: field_p_reference
+id: paragraph.civic_card_event_reference.field_c_p_reference
+field_name: field_c_p_reference
 entity_type: paragraph
 bundle: civic_card_event_reference
 label: Reference

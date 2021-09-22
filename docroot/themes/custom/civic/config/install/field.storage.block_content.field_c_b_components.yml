@@ -5,8 +5,8 @@ dependencies:
     - block_content
     - entity_reference_revisions
     - paragraphs
-id: block_content.field_b_components
-field_name: field_b_components
+id: block_content.field_c_b_components
+field_name: field_c_b_components
 entity_type: block_content
 type: entity_reference_revisions
 settings:

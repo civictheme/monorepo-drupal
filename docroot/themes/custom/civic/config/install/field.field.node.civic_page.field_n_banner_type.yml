@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_n_banner_type
+    - field.storage.node.field_c_n_banner_type
     - node.type.civic_page
   module:
     - options
-id: node.civic_page.field_n_banner_type
-field_name: field_n_banner_type
+id: node.civic_page.field_c_n_banner_type
+field_name: field_c_n_banner_type
 entity_type: node
 bundle: civic_page
 label: 'Banner type'

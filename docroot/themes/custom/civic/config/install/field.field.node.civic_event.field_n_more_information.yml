@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_n_more_information
+    - field.storage.node.field_c_n_more_information
     - node.type.civic_event
     - paragraphs.paragraphs_type.civic_promo
   module:
     - entity_reference_revisions
-id: node.civic_event.field_n_more_information
-field_name: field_n_more_information
+id: node.civic_event.field_c_n_more_information
+field_name: field_c_n_more_information
 entity_type: node
 bundle: civic_event
 label: 'More information'

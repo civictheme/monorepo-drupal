@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_p_expand
+    - field.storage.paragraph.field_c_p_expand
     - paragraphs.paragraphs_type.civic_accordion_panel
-id: paragraph.civic_accordion_panel.field_p_expand
-field_name: field_p_expand
+id: paragraph.civic_accordion_panel.field_c_p_expand
+field_name: field_c_p_expand
 entity_type: paragraph
 bundle: civic_accordion_panel
 label: Expanded

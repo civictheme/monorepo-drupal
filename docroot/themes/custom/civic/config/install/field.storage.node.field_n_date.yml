@@ -4,8 +4,8 @@ dependencies:
   module:
     - datetime_range
     - node
-id: node.field_n_date
-field_name: field_n_date
+id: node.field_c_n_date
+field_name: field_c_n_date
 entity_type: node
 type: daterange
 settings:

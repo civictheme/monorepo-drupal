@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_p_links
+    - field.storage.paragraph.field_c_p_links
     - paragraphs.paragraphs_type.civic_service_card
   module:
     - link
-id: paragraph.civic_service_card.field_p_links
-field_name: field_p_links
+id: paragraph.civic_service_card.field_c_p_links
+field_name: field_c_p_links
 entity_type: paragraph
 bundle: civic_service_card
 label: Links

@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_p_summary
+    - field.storage.paragraph.field_c_p_summary
     - paragraphs.paragraphs_type.civic_callout
-id: paragraph.civic_callout.field_p_summary
-field_name: field_p_summary
+id: paragraph.civic_callout.field_c_p_summary
+field_name: field_c_p_summary
 entity_type: paragraph
 bundle: civic_callout
 label: Summary

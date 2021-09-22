@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_p_address
+    - field.storage.paragraph.field_c_p_address
     - paragraphs.paragraphs_type.civic_map
-id: paragraph.civic_map.field_p_address
-field_name: field_p_address
+id: paragraph.civic_map.field_c_p_address
+field_name: field_c_p_address
 entity_type: paragraph
 bundle: civic_map
 label: Address

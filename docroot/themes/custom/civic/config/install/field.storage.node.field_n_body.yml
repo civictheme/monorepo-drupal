@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - text
-id: node.field_n_body
-field_name: field_n_body
+id: node.field_c_n_body
+field_name: field_c_n_body
 entity_type: node
 type: text_long
 settings: {  }

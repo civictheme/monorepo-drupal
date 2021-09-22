@@ -5,8 +5,8 @@ dependencies:
     - entity_reference_revisions
     - node
     - paragraphs
-id: node.field_n_banner_components
-field_name: field_n_banner_components
+id: node.field_c_n_banner_components
+field_name: field_c_n_banner_components
 entity_type: node
 type: entity_reference_revisions
 settings:

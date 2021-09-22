@@ -2,9 +2,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civic_accordion_panel.field_p_content
-    - field.field.paragraph.civic_accordion_panel.field_p_expand
-    - field.field.paragraph.civic_accordion_panel.field_p_title
+    - field.field.paragraph.civic_accordion_panel.field_c_p_content
+    - field.field.paragraph.civic_accordion_panel.field_c_p_expand
+    - field.field.paragraph.civic_accordion_panel.field_c_p_title
     - paragraphs.paragraphs_type.civic_accordion_panel
   module:
     - text
@@ -13,14 +13,14 @@ targetEntityType: paragraph
 bundle: civic_accordion_panel
 mode: default
 content:
-  field_p_content:
+  field_c_p_content:
     weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_p_expand:
+  field_c_p_expand:
     weight: 2
     label: hidden
     settings:
@@ -30,7 +30,7 @@ content:
     third_party_settings: {  }
     type: boolean
     region: content
-  field_p_title:
+  field_c_p_title:
     weight: 0
     label: hidden
     settings:

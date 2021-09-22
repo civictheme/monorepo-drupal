@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_p_slides
+    - field.storage.paragraph.field_c_p_slides
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
   module:
     - entity_reference_revisions
-id: paragraph.civic_slider.field_p_slides
-field_name: field_p_slides
+id: paragraph.civic_slider.field_c_p_slides
+field_name: field_c_p_slides
 entity_type: paragraph
 bundle: civic_slider
 label: Slides

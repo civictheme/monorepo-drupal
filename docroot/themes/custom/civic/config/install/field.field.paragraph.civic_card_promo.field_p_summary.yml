@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_p_summary
+    - field.storage.paragraph.field_c_p_summary
     - paragraphs.paragraphs_type.civic_card_promo
-id: paragraph.civic_card_promo.field_p_summary
-field_name: field_p_summary
+id: paragraph.civic_card_promo.field_c_p_summary
+field_name: field_c_p_summary
 entity_type: paragraph
 bundle: civic_card_promo
 label: Summary

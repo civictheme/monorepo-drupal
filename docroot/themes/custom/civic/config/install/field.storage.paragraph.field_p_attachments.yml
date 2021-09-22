@@ -4,8 +4,8 @@ dependencies:
   module:
     - media
     - paragraphs
-id: paragraph.field_p_attachments
-field_name: field_p_attachments
+id: paragraph.field_c_p_attachments
+field_name: field_c_p_attachments
 entity_type: paragraph
 type: entity_reference
 settings:

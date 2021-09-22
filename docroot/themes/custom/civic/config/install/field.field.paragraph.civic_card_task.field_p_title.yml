@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_p_title
+    - field.storage.paragraph.field_c_p_title
     - paragraphs.paragraphs_type.civic_card_task
-id: paragraph.civic_card_task.field_p_title
-field_name: field_p_title
+id: paragraph.civic_card_task.field_c_p_title
+field_name: field_c_p_title
 entity_type: paragraph
 bundle: civic_card_task
 label: Title

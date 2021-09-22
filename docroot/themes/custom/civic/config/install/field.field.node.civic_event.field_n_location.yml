@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_n_location
+    - field.storage.node.field_c_n_location
     - node.type.civic_event
     - paragraphs.paragraphs_type.civic_map
   module:
     - entity_reference_revisions
-id: node.civic_event.field_n_location
-field_name: field_n_location
+id: node.civic_event.field_c_n_location
+field_name: field_c_n_location
 entity_type: node
 bundle: civic_event
 label: Location

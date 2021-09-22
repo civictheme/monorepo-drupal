@@ -2,9 +2,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civic_quick_links.field_p_links
-    - field.field.paragraph.civic_quick_links.field_p_theme
-    - field.field.paragraph.civic_quick_links.field_p_title
+    - field.field.paragraph.civic_quick_links.field_c_p_links
+    - field.field.paragraph.civic_quick_links.field_c_p_theme
+    - field.field.paragraph.civic_quick_links.field_c_p_title
     - paragraphs.paragraphs_type.civic_quick_links
   module:
     - link
@@ -13,7 +13,7 @@ targetEntityType: paragraph
 bundle: civic_quick_links
 mode: default
 content:
-  field_p_links:
+  field_c_p_links:
     weight: 2
     settings:
       placeholder_url: ''
@@ -21,13 +21,13 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_p_theme:
+  field_c_p_theme:
     weight: 0
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
-  field_p_title:
+  field_c_p_title:
     weight: 1
     settings:
       size: 60

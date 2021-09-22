@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_p_date
+    - field.storage.paragraph.field_c_p_date
     - paragraphs.paragraphs_type.civic_card_event
   module:
     - datetime
-id: paragraph.civic_card_event.field_p_date
-field_name: field_p_date
+id: paragraph.civic_card_event.field_c_p_date
+field_name: field_c_p_date
 entity_type: paragraph
 bundle: civic_card_event
 label: Date
