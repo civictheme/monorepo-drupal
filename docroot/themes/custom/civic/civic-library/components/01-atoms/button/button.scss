@@ -36,6 +36,7 @@
 
     &:active {
       background-color: civic-color('shade_60');
+      box-shadow: none;
     }
 
     &[disabled] {
@@ -48,6 +49,7 @@
 
       &:focus {
         background-color: civic-color('shade_30');
+        box-shadow: $civic-outline-accent-boxshadow;
         color: civic-color('secondary');
         text-decoration: underline;
       }
@@ -59,9 +61,9 @@
 
       &:active {
         background-color: civic-color('secondary-accent');
-        box-shadow: none;
         color: civic-color('secondary');
         text-decoration: underline;
+        box-shadow: none;
       }
 
       &[disabled] {
@@ -89,6 +91,7 @@
 
     &:active {
       background-color: civic-color('secondary-accent');
+      box-shadow: none;
     }
 
     &[disabled] {
@@ -113,6 +116,7 @@
 
       &:active {
         background-color: civic-color('secondary-accent');
+        box-shadow: none;
         color: civic-color('secondary');
         text-decoration: underline;
       }
@@ -143,6 +147,7 @@
 
       &:active {
         background-color: civic-color('shade_60');
+        box-shadow: none;
         color: civic-color('secondary');
         border: rem(3px) solid civic-color('shade_60');;
       }
@@ -171,6 +176,7 @@
 
       &:active {
         background-color: civic-color('secondary-accent');
+        box-shadow: none;
         color: civic-color('secondary');
       }
 
@@ -201,6 +207,7 @@
 
     &:active {
       background-color: civic-color('shade_60');
+      box-shadow: none;
     }
 
     &[disabled] {
