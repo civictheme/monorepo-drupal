@@ -3,10 +3,10 @@
 //
 $civic-default-colors: (
   'primary': #00698F,
-  'secondary': #9263DE,
+  'secondary-accent': #9263DE,
   'primary-accent': #61DAFF,
-  'secondary-accent': #FFF,
-  'shade_-90': mix(white, #00698F, 90%),
+  'secondary': #FFF,
+  'shade_90': mix(white, #00698F, 90%),
   'shade_15': mix(black, #00698F, 15%),
   'shade_30': mix(black, #00698F, 30%),
   'shade_45': mix(black, #00698F, 45%),
@@ -26,7 +26,8 @@ $civic-default-colors: (
   'information': #00A7CE,
   'success': #009694,
   'warning': #DC5800,
-  'error': #CF3836
+  'error': #CF3836,
+  'outline': #05F, 
 );
 
 // All Civic palette is defined in $civic-default-colors. $civic-colors is
@@ -75,6 +76,8 @@ $civic-border-width: 0.125rem !default;
 $civic-outline: 0.1875rem solid #05F !default;
 $civic-outline-accent: 0.1875rem solid #61DAFF !default;
 $civic-outline-offset: 0 !default;
+$civic-outline-boxshadow: 0 0 0 3pt #05F !default;
+$civic-outline-accent-boxshadow: 0 0 0 3pt #61DAFF !default;
 
 //
 // Typography.
