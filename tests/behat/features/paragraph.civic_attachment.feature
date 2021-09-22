@@ -25,7 +25,7 @@ Feature: Tests the Attachment
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
-    And I click on "div.field--name-field-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
     And I press the "field_c_n_components_civic_attachment_add_more" button
     And I wait for AJAX to finish
@@ -44,7 +44,7 @@ Feature: Tests the Attachment
   Scenario: Component Block paragraph reference exists and works
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "block/add/civic_component_block"
-    And I click on "div.field--name-field-b-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I click on "div.field--name-field-c-b-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
     And I press the "field_c_b_components_civic_attachment_add_more" button
     And I wait for AJAX to finish

@@ -30,7 +30,7 @@ Feature: Tests the Quick links paragraph type and fields.
   Scenario: Component Block paragraph reference exists and works
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "block/add/civic_component_block"
-    And I click on "div.field--name-field-b-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I click on "div.field--name-field-c-b-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
     And I press the "field_c_b_components_civic_quick_links_add_more" button
     And I wait for AJAX to finish

@@ -23,6 +23,6 @@ Feature: Tests the Content paragraph
     And I fill in "Title" with "[TEST] Page fields"
     And I press the "field_c_n_banner_components_civic_content_add_more" button
     And I wait for AJAX to finish
-    And I should see an "div.js-form-item-field-n-banner-components-0-subform-field-p-content-0-value" element
-    And I should see an "div.js-form-item-field-n-banner-components-0-subform-field-p-theme" element
-    And I should see an ".js-form-item-field-n-banner-components-0-subform-field-p-theme select.required" element
+    And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-content-0-value" element
+    And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-theme" element
+    And I should see an ".js-form-item-field-c-n-banner-components-0-subform-field-c-p-theme select.required" element
