@@ -1,0 +1,13 @@
+//
+// Spaces mixin.
+//
+
+//
+// Get a spacing value from the pre-defined list of spacings.
+//
+@function civic-space($index: 1) {
+  @if $index <0 or $index > length($civic-spaces) {
+    @error '"#{$index}" is not an correct spacing index.';
+  }
+  @return nth($civic-spaces, $index);
+}

@@ -1,0 +1,15 @@
+//
+// Outline mixins.
+//
+
+//
+// Set element outline.
+//
+@mixin civic-outline($is_accent: false) {
+  outline-offset: $civic-outline-offset;
+  @if $is_accent {
+    outline: $civic-outline-accent;
+  } @else {
+    outline: $civic-outline;
+  }
+}

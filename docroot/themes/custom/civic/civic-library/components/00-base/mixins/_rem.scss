@@ -1,0 +1,14 @@
+@use 'sass:math';
+
+//
+// Convert a pixel value into a rem value.
+//
+// Exception case where we are not prefixing a function with `civic-` for brevity.
+//
+@function rem($pxval, $base: null) {
+  @if $base == null {
+    $base: $civic-font-base-size;
+  }
+  $pxbase: $base;
+  @return math.div($pxval, $pxbase) * 1rem;
+}

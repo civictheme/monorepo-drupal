@@ -26,24 +26,26 @@
     color: civic-color('secondary');
     text-decoration: none;
 
-    &:focus {
-      box-shadow: $civic-outline-boxshadow;
+    &.civic-theme-light {
+      &:focus {
+        box-shadow: $civic-outline-boxshadow;
+      }
+
+      &:hover {
+        background-color: civic-color('shade_30');
+      }
+
+      &:active {
+        background-color: civic-color('shade_60');
+        box-shadow: none;
+      }
+
+      &[disabled] {
+        background-color: civic-color('neutral_40');
+      }
     }
 
-    &:hover {
-      background-color: civic-color('shade_30');
-    }
-
-    &:active {
-      background-color: civic-color('shade_60');
-      box-shadow: none;
-    }
-
-    &[disabled] {
-      background-color: civic-color('neutral_40');
-    }
-
-    &.civic-button--dark {
+    &.civic-theme-dark {
       background-color: civic-color('secondary');
       color: civic-color('primary');
 
@@ -71,35 +73,35 @@
         color: civic-color('secondary');
       }
     }
-  }
-
-  @else if ($type=='primary-accent') {
+  } @else if ($type=='primary-accent') {
     background-color: civic-color('primary-accent');
     color: civic-color('primary');
     text-decoration: none;
 
-    &:focus {
-      background-color: civic-color('shade_30');
-      color: civic-color('secondary');
-      text-decoration: underline;
-      box-shadow: $civic-outline-accent-boxshadow;
+    &.civic-theme-light {
+      &:focus {
+        background-color: civic-color('shade_30');
+        color: civic-color('secondary');
+        text-decoration: underline;
+        box-shadow: $civic-outline-accent-boxshadow;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:active {
+        background-color: civic-color('secondary-accent');
+        box-shadow: none;
+      }
+
+      &[disabled] {
+        background-color: civic-color('neutral_40');
+        color: civic-color('secondary');
+      }
     }
 
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &:active {
-      background-color: civic-color('secondary-accent');
-      box-shadow: none;
-    }
-
-    &[disabled] {
-      background-color: civic-color('neutral_40');
-      color: civic-color('secondary');
-    }
-
-    &.civic-button--dark {
+    &.civic-theme-dark {
       background-color: civic-color('primary');
       color: civic-color('secondary');
 
@@ -127,15 +129,13 @@
         text-decoration: none;
       }
     }
-  }
-
-  @else if ($type=='secondary') {
+  } @else if ($type=='secondary') {
     background-color: civic-color('secondary');
     color: civic-color('primary');
     border: rem(3px) solid civic-color('primary');
     text-decoration: none;
 
-    &.civic-button--light {
+    &.civic-theme-light {
       &:focus {
         box-shadow: $civic-outline-boxshadow;
       }
@@ -158,7 +158,7 @@
       }
     }
 
-    &.civic-button--dark {
+    &.civic-theme-dark {
       background-color: civic-color('primary');
       color: civic-color('secondary');
       border: 0;
@@ -186,34 +186,35 @@
         text-decoration: none;
       }
     }
-  }
-
-  @else if ($type=='secondary-accent') {
+  } @else if ($type=='secondary-accent') {
     // @todo update light Add dark css once designs are updated.
     background-color: civic-color('secondary');
     color: civic-color('primary-accent');
     border: solid $civic-border-width civic-color('primary-accent');
     text-decoration: none;
 
-    &:focus {
-      box-shadow: $civic-outline-boxshadow;
-    }
+    &.civic-theme-light,
+    &.civic-theme-dark {
+      &:focus {
+        box-shadow: $civic-outline-boxshadow;
+      }
 
-    &:hover {
-      background-color: civic-color('shade_30');
-      color: civic-color('secondary');
-      border: 0;
-    }
+      &:hover {
+        background-color: civic-color('shade_30');
+        color: civic-color('secondary');
+        border: 0;
+      }
 
-    &:active {
-      background-color: civic-color('shade_60');
-      box-shadow: none;
-    }
+      &:active {
+        background-color: civic-color('shade_60');
+        box-shadow: none;
+      }
 
-    &[disabled] {
-      background-color: civic-color('neutral_40');
-      color: civic-color('secondary');
-      border: 0;
+      &[disabled] {
+        background-color: civic-color('neutral_40');
+        color: civic-color('secondary');
+        border: 0;
+      }
     }
   }
 
