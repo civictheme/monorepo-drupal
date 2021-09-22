@@ -36,7 +36,7 @@ default:
       alias: /node-9-civic_page
       langcode: en
       pathauto: 1
-  field_n_banner_components:
+  field_c_n_banner_components:
     -
       entity:
         _meta:
@@ -58,7 +58,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_content:
+          field_c_p_content:
             -
               value: |+
                 Haero immitto neque occuro. Eligo enim gilvus interdico lobortis nibh odio premo qui ut. Amet natu scisco. At decet euismod facilisi immitto luptatum nimis valde valetudo volutpat. Adipiscing haero immitto modo probo quia similis vicis vulputate wisi. Aliquam loquor nibh. Abbas aliquip antehabeo conventio esca immitto populus si.
@@ -86,10 +86,10 @@ default:
                 Antehabeo augue elit esse inhibeo paulatim refero refoveo wisi. Causa ex populus quidne roto verto. Consequat euismod probo roto vel virtus vulputate zelus. Ad illum immitto olim. Augue exerci pertineo probo proprius voco. At diam dignissim letalis nulla obruo odio quidem utinam.
 
               format: plain_text
-          field_p_theme:
+          field_c_p_theme:
             -
               value: dark
-  field_n_components:
+  field_c_n_components:
     -
       entity:
         _meta:
@@ -111,7 +111,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_content:
+          field_c_p_content:
             -
               value: |+
                 Amet aptent caecus causa dolore facilisi pneum tincidunt. Amet eligo esse ideo pagus scisco suscipere valetudo. Dolore esca quia. Amet os pneum rusticus validus voco. Esse gilvus nobis oppeto patria turpis utinam velit vereor. Esse melior pecus plaga rusticus.
@@ -139,6 +139,6 @@ default:
                 Dolus facilisi mauris nulla tamen tego veniam. Distineo duis exerci gemino iriure te tego utinam. Defui huic importunus mauris scisco. Accumsan cogo feugiat humo interdico lucidus nunc scisco wisi zelus. Enim facilisis illum quadrum. Defui erat gilvus imputo in interdico nimis premo si.
 
               format: plain_text
-          field_p_theme:
+          field_c_p_theme:
             -
               value: dark

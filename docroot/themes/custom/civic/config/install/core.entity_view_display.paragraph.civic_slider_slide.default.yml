@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civic_slider_slide.field_p_content
-    - field.field.paragraph.civic_slider_slide.field_p_image
-    - field.field.paragraph.civic_slider_slide.field_p_image_position
-    - field.field.paragraph.civic_slider_slide.field_p_link
-    - field.field.paragraph.civic_slider_slide.field_p_title
-    - field.field.paragraph.civic_slider_slide.field_p_topic
+    - field.field.paragraph.civic_slider_slide.field_c_p_content
+    - field.field.paragraph.civic_slider_slide.field_c_p_image
+    - field.field.paragraph.civic_slider_slide.field_c_p_image_position
+    - field.field.paragraph.civic_slider_slide.field_c_p_link
+    - field.field.paragraph.civic_slider_slide.field_c_p_title
+    - field.field.paragraph.civic_slider_slide.field_c_p_topic
     - paragraphs.paragraphs_type.civic_slider_slide
   module:
     - link
@@ -18,14 +18,14 @@ targetEntityType: paragraph
 bundle: civic_slider_slide
 mode: default
 content:
-  field_p_content:
+  field_c_p_content:
     weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_p_image:
+  field_c_p_image:
     type: entity_reference_entity_view
     weight: 6
     label: above
@@ -34,14 +34,14 @@ content:
       link: false
     third_party_settings: {  }
     region: content
-  field_p_image_position:
+  field_c_p_image_position:
     weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
-  field_p_link:
+  field_c_p_link:
     weight: 4
     label: above
     settings:
@@ -53,7 +53,7 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-  field_p_title:
+  field_c_p_title:
     weight: 2
     label: above
     settings:
@@ -61,7 +61,7 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_p_topic:
+  field_c_p_topic:
     weight: 5
     label: above
     settings:

@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_zoom
+    - paragraphs.paragraphs_type.civic_map
+id: paragraph.civic_map.field_c_p_zoom
+field_name: field_c_p_zoom
+entity_type: paragraph
+bundle: civic_map
+label: Zoom
+description: 'Allows for zoom from 0 to 23 on google maps.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  min: 0
+  max: 23
+  prefix: ''
+  suffix: ''
+field_type: integer

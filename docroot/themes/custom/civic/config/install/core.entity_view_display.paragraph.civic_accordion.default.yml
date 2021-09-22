@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civic_accordion.field_p_default_panel
-    - field.field.paragraph.civic_accordion.field_p_expand
-    - field.field.paragraph.civic_accordion.field_p_panels
-    - field.field.paragraph.civic_accordion.field_p_theme
-    - field.field.paragraph.civic_accordion.field_p_title
+    - field.field.paragraph.civic_accordion.field_c_p_default_panel
+    - field.field.paragraph.civic_accordion.field_c_p_expand
+    - field.field.paragraph.civic_accordion.field_c_p_panels
+    - field.field.paragraph.civic_accordion.field_c_p_theme
+    - field.field.paragraph.civic_accordion.field_c_p_title
     - paragraphs.paragraphs_type.civic_accordion
   module:
     - entity_reference_revisions
@@ -16,14 +16,14 @@ targetEntityType: paragraph
 bundle: civic_accordion
 mode: default
 content:
-  field_p_default_panel:
+  field_c_p_default_panel:
     weight: 4
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
-  field_p_expand:
+  field_c_p_expand:
     weight: 3
     label: hidden
     settings:
@@ -33,7 +33,7 @@ content:
     third_party_settings: {  }
     type: boolean
     region: content
-  field_p_panels:
+  field_c_p_panels:
     type: entity_reference_revisions_entity_view
     weight: 2
     label: hidden
@@ -42,14 +42,14 @@ content:
       link: ''
     third_party_settings: {  }
     region: content
-  field_p_theme:
+  field_c_p_theme:
     weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
-  field_p_title:
+  field_c_p_title:
     weight: 0
     label: hidden
     settings:

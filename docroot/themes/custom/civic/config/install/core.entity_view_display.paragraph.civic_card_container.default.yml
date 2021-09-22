@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civic_card_container.field_p_cards
-    - field.field.paragraph.civic_card_container.field_p_column_count
-    - field.field.paragraph.civic_card_container.field_p_fill_width
-    - field.field.paragraph.civic_card_container.field_p_link
-    - field.field.paragraph.civic_card_container.field_p_title
+    - field.field.paragraph.civic_card_container.field_c_p_cards
+    - field.field.paragraph.civic_card_container.field_c_p_column_count
+    - field.field.paragraph.civic_card_container.field_c_p_fill_width
+    - field.field.paragraph.civic_card_container.field_c_p_link
+    - field.field.paragraph.civic_card_container.field_c_p_title
     - paragraphs.paragraphs_type.civic_card_container
   module:
     - entity_reference_revisions
@@ -17,7 +17,7 @@ targetEntityType: paragraph
 bundle: civic_card_container
 mode: default
 content:
-  field_p_cards:
+  field_c_p_cards:
     type: entity_reference_revisions_entity_view
     weight: 2
     label: hidden
@@ -26,14 +26,14 @@ content:
       link: ''
     third_party_settings: {  }
     region: content
-  field_p_column_count:
+  field_c_p_column_count:
     weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
-  field_p_fill_width:
+  field_c_p_fill_width:
     weight: 4
     label: hidden
     settings:
@@ -43,7 +43,7 @@ content:
     third_party_settings: {  }
     type: boolean
     region: content
-  field_p_link:
+  field_c_p_link:
     weight: 1
     label: hidden
     settings:
@@ -55,7 +55,7 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-  field_p_title:
+  field_c_p_title:
     weight: 0
     label: hidden
     settings:

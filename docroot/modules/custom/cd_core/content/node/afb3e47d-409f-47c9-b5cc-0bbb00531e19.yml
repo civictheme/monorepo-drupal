@@ -36,7 +36,7 @@ default:
       alias: /node-6-civic_page
       langcode: en
       pathauto: 1
-  field_n_banner_components:
+  field_c_n_banner_components:
     -
       entity:
         _meta:
@@ -58,7 +58,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_content:
+          field_c_p_content:
             -
               value: |+
                 Ad autem eu exputo iusto magna odio secundum tamen validus. Aptent commodo eum feugiat nobis torqueo. Ibidem sit tamen valetudo veniam. Feugiat incassum neo sino utinam. Brevitas camur et eum inhibeo sed validus vulputate zelus.
@@ -86,10 +86,10 @@ default:
                 Abico antehabeo bene duis lobortis nibh pagus praesent valde. Camur diam pertineo tamen te. Decet in minim nostrud quidne voco ymo. Aptent euismod huic luctus odio paulatim populus praemitto sino. Ex meus praemitto praesent premo. Bene quia veniam. Causa facilisis ille jus nutus pecus plaga vulputate. Fere hendrerit molior neque praesent. Gilvus macto saluto. Esse nostrud sit tamen tum vindico voco.
 
               format: plain_text
-          field_p_theme:
+          field_c_p_theme:
             -
               value: light
-  field_n_components:
+  field_c_n_components:
     -
       entity:
         _meta:
@@ -111,7 +111,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_content:
+          field_c_p_content:
             -
               value: |+
                 Adipiscing commoveo duis os saluto. Ad autem commodo conventio elit importunus nibh nimis ratis sed. Blandit consectetuer saluto secundum tation. Jugis modo populus. Abico eu praemitto premo quadrum. Eu imputo refoveo ut wisi. Antehabeo melior neo nunc pecus saepius velit vero. Caecus gilvus illum nibh oppeto. Illum jumentum nibh nimis pertineo quae utrum vereor.
@@ -139,6 +139,6 @@ default:
                 Abbas autem bene cui damnum gravis jumentum neo wisi. Brevitas ea iustum jumentum refero valetudo. Autem brevitas facilisis incassum iusto letalis molior valde. Dolore lucidus magna. Accumsan appellatio at autem luptatum tation zelus.
 
               format: plain_text
-          field_p_theme:
+          field_c_p_theme:
             -
               value: light
