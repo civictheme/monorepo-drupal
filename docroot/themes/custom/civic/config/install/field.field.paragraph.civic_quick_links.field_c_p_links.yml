@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_links
+    - paragraphs.paragraphs_type.civic_quick_links
+  module:
+    - link
+id: paragraph.civic_quick_links.field_c_p_links
+field_name: field_c_p_links
+entity_type: paragraph
+bundle: civic_quick_links
+label: Links
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

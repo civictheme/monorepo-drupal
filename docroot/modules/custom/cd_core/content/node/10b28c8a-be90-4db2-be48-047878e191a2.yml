@@ -40,7 +40,7 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_n_banner_components:
+  field_c_n_banner_components:
     -
       entity:
         _meta:
@@ -62,17 +62,17 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_content:
+          field_c_p_content:
             -
               value: "<p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.</p>\r\n"
               format: rich_text
-          field_p_theme:
+          field_c_p_theme:
             -
               value: light
-  field_n_banner_type:
+  field_c_n_banner_type:
     -
       value: default
-  field_n_components:
+  field_c_n_components:
     -
       entity:
         _meta:
@@ -94,7 +94,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_cards:
+          field_c_p_cards:
             -
               entity:
                 _meta:
@@ -116,13 +116,13 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_reference:
+                  field_c_p_reference:
                     -
                       entity: 5c23a0bd-3ee8-4608-bdec-b396f0be3c7d
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: dark
-                  field_p_topic:
+                  field_c_p_topic:
                     -
                       entity: 75c3061b-50d7-42c4-8db5-7d06859c6725
             -
@@ -146,13 +146,13 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_reference:
+                  field_c_p_reference:
                     -
                       entity: e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: dark
-                  field_p_topic:
+                  field_c_p_topic:
                     -
                       entity: 0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c
             -
@@ -176,27 +176,27 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_reference:
+                  field_c_p_reference:
                     -
                       entity: 5c23a0bd-3ee8-4608-bdec-b396f0be3c7d
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: light
-                  field_p_topic:
+                  field_c_p_topic:
                     -
                       entity: 75c3061b-50d7-42c4-8db5-7d06859c6725
-          field_p_column_count:
+          field_c_p_column_count:
             -
               value: 2
-          field_p_fill_width:
+          field_c_p_fill_width:
             -
               value: true
-          field_p_title:
+          field_c_p_title:
             -
               value: 'Card container'
-  field_n_featured_banner_image:
+  field_c_n_featured_banner_image:
     -
       entity: 86c9cd2b-225e-485b-9c6a-2963cd993b7b
-  field_n_summary:
+  field_c_n_summary:
     -
       value: 'Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.'

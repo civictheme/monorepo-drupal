@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civic_map.field_p_address
-    - field.field.paragraph.civic_map.field_p_share_link
-    - field.field.paragraph.civic_map.field_p_theme
-    - field.field.paragraph.civic_map.field_p_view_link
-    - field.field.paragraph.civic_map.field_p_zoom
+    - field.field.paragraph.civic_map.field_c_p_address
+    - field.field.paragraph.civic_map.field_c_p_share_link
+    - field.field.paragraph.civic_map.field_c_p_theme
+    - field.field.paragraph.civic_map.field_c_p_view_link
+    - field.field.paragraph.civic_map.field_c_p_zoom
     - paragraphs.paragraphs_type.civic_map
   module:
     - link
@@ -15,7 +15,7 @@ targetEntityType: paragraph
 bundle: civic_map
 mode: default
 content:
-  field_p_address:
+  field_c_p_address:
     weight: 1
     settings:
       size: 60
@@ -23,7 +23,7 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_p_share_link:
+  field_c_p_share_link:
     weight: 4
     settings:
       placeholder_url: ''
@@ -31,13 +31,13 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_p_theme:
+  field_c_p_theme:
     weight: 0
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
-  field_p_view_link:
+  field_c_p_view_link:
     weight: 3
     settings:
       placeholder_url: ''
@@ -45,7 +45,7 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_p_zoom:
+  field_c_p_zoom:
     weight: 2
     settings:
       placeholder: ''

@@ -34,7 +34,7 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_n_components:
+  field_c_n_components:
     -
       entity:
         _meta:
@@ -56,13 +56,13 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_default_panel:
+          field_c_p_default_panel:
             -
               value: 1
-          field_p_expand:
+          field_c_p_expand:
             -
               value: false
-          field_p_panels:
+          field_c_p_panels:
             -
               entity:
                 _meta:
@@ -84,14 +84,14 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_content:
+                  field_c_p_content:
                     -
                       value: "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\r\n"
                       format: rich_text
-                  field_p_expand:
+                  field_c_p_expand:
                     -
                       value: true
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Accordion panel 1'
             -
@@ -115,14 +115,14 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_content:
+                  field_c_p_content:
                     -
                       value: "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\r\n"
                       format: rich_text
-                  field_p_expand:
+                  field_c_p_expand:
                     -
                       value: false
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Accordion panel 2'
             -
@@ -146,19 +146,19 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_content:
+                  field_c_p_content:
                     -
                       value: "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\r\n"
                       format: rich_text
-                  field_p_expand:
+                  field_c_p_expand:
                     -
                       value: true
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Accordion panel 3'
-          field_p_theme:
+          field_c_p_theme:
             -
               value: light
-          field_p_title:
+          field_c_p_title:
             -
               value: 'Accordion title text'

@@ -38,7 +38,7 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_n_components:
+  field_c_n_components:
     -
       entity:
         _meta:
@@ -60,21 +60,21 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_attachments:
+          field_c_p_attachments:
             -
               entity: 2cf05e2f-5d05-4e88-ae27-7248a11978c4
-          field_p_icon:
+          field_c_p_icon:
             -
               entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
-          field_p_image:
+          field_c_p_image:
             -
               entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
-          field_p_summary:
+          field_c_p_summary:
             -
               value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.\r\n\r\nBring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring."
-          field_p_theme:
+          field_c_p_theme:
             -
               value: light
-          field_p_title:
+          field_c_p_title:
             -
               value: 'Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. '

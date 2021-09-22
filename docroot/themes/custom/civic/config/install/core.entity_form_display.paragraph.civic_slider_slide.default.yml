@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civic_slider_slide.field_p_content
-    - field.field.paragraph.civic_slider_slide.field_p_image
-    - field.field.paragraph.civic_slider_slide.field_p_image_position
-    - field.field.paragraph.civic_slider_slide.field_p_link
-    - field.field.paragraph.civic_slider_slide.field_p_title
-    - field.field.paragraph.civic_slider_slide.field_p_topic
+    - field.field.paragraph.civic_slider_slide.field_c_p_content
+    - field.field.paragraph.civic_slider_slide.field_c_p_image
+    - field.field.paragraph.civic_slider_slide.field_c_p_image_position
+    - field.field.paragraph.civic_slider_slide.field_c_p_link
+    - field.field.paragraph.civic_slider_slide.field_c_p_title
+    - field.field.paragraph.civic_slider_slide.field_c_p_topic
     - paragraphs.paragraphs_type.civic_slider_slide
   module:
     - link
@@ -18,7 +18,7 @@ targetEntityType: paragraph
 bundle: civic_slider_slide
 mode: default
 content:
-  field_p_content:
+  field_c_p_content:
     weight: 3
     settings:
       rows: 5
@@ -26,20 +26,20 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_p_image:
+  field_c_p_image:
     type: media_library_widget
     weight: 2
     settings:
       media_types: {  }
     third_party_settings: {  }
     region: content
-  field_p_image_position:
+  field_c_p_image_position:
     weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
-  field_p_link:
+  field_c_p_link:
     weight: 4
     settings:
       placeholder_url: ''
@@ -47,7 +47,7 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_p_title:
+  field_c_p_title:
     weight: 0
     settings:
       size: 60
@@ -55,7 +55,7 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_p_topic:
+  field_c_p_topic:
     weight: 5
     settings:
       match_operator: CONTAINS

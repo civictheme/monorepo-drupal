@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_reference
+    - node.type.civic_event
+    - node.type.civic_page
+    - node.type.civic_project
+    - paragraphs.paragraphs_type.civic_card_subject_reference
+id: paragraph.civic_card_subject_reference.field_c_p_reference
+field_name: field_c_p_reference
+entity_type: paragraph
+bundle: civic_card_subject_reference
+label: Reference
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      civic_event: civic_event
+      civic_page: civic_page
+      civic_project: civic_project
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: civic_event
+field_type: entity_reference
