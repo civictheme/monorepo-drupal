@@ -6,50 +6,42 @@
  * Display of Callout component.
  *
  * Variables:
- * - modifier_class: [string] Classes to modify the default component styling.
+ * - theme: [string] Theme for Callout.
  * - content_top: [string] Component slot for top of Callout.
  * - title: [string] Callout title.
  * - summary: [string] Callout summary.
- * - cta_text: [string] CTA Label
- * - cta_type: [string] Classes to modify the default link button styling.
- * - cta_url: [string] Example URL for CTA
- * - link_text: [string] Link Label
- * - link_url: [string] Example URL for Link
+ * - links: [array] Array of Link objects containing type, url, text
  * - content_bottom: [string] Component slot for bottom of Callout.
  */
 #}
 
-{% set modifier_class = modifier_class|default('civic-callout--light') %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
-<div class="civic-callout {{ modifier_class }}">
+<div class="civic-callout {{ theme_class }}">
   <div class="civic-callout__content-top">
     {{ content_top }}
   </div>
 
-  <div class="civic-callout__title">
-    {% include '@atoms/heading/heading.twig' with {
-      title: title,
-      level: 3
-    } only %}
+  <div class="civic-callout__text">
+    <div class="civic-callout__title">
+      {{ title }}
+    </div>
+
+    <div class="civic-callout__summary">
+      {{ summary }}
+    </div>
   </div>
 
-  <div class="civic-callout__summary">
-    {{ summary }}
-  </div>
 
   <div class="civic-callout__links">
-
-    {% include '@atoms/button/button.twig' with {
-      kind: link,
-      text: cta_text,
-      url: cta_url,
-      modifier_class: cta_type
-    } only %}
-
-    {% include '@atoms/link/link.twig' with {
-      text: link_text,
-      href: link_url
-    } only %}
+    {% for linkObj in links %}
+      {% include '@atoms/button/button.twig' with {
+        kind: 'link',
+        text: linkObj.text,
+        url: linkObj.url,
+        modifier_class: linkObj.type
+      } %}
+    {% endfor %}
   </div>
 
   <div class="civic-callout__content-bottom">
