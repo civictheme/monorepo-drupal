@@ -46,12 +46,12 @@ export const NavigationCard = () => {
   let symbol = select('Symbol', icons[spritesheet], icons[spritesheet][0], iconList)
   const colors = CIVIC_VARIABLES['civic-default-colors']
 
-  const IconParams = { 
+  const iconParams = { 
     spritesheet,
     symbol,
     icon_color: select('Color', colors, 'primary', iconList)
   }
 
-  return CivicNavigationCard({ ...navCardParams, ...IconParams });
+  return CivicNavigationCard({ ...navCardParams, ...iconParams });
 }
 
