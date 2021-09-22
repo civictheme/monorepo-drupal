@@ -39,9 +39,10 @@
 
   <div class="civic-callout__links">
 
-    {% include '@atoms/link-button/link-button.twig' with {
+    {% include '@atoms/button/button.twig' with {
+      kind: link,
       text: cta_text,
-      href: cta_url,
+      url: cta_url,
       modifier_class: cta_type
     } only %}
 

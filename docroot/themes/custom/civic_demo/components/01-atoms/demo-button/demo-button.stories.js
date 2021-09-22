@@ -1,14 +1,14 @@
-import {text, radios, boolean} from '@storybook/addon-knobs'
+import {boolean, text, radios} from '@storybook/addon-knobs'
 
-import CivicLinkButton from './link-button.twig'
-import '../button/button.scss'
-import './link-button.scss'
+import CustomDemoButton from './demo-button.twig'
+import './demo-button.scss'
+import './demo-button.js'
 
 export default {
-  title: 'Atom/Link Button',
+  title: 'Atom/Demo Button',
 }
 
-export const LinkButton = () => CivicLinkButton({
+export const DemoButton = () => CustomDemoButton({
   modifier_class: [
     radios(
       'Type',
@@ -30,6 +30,6 @@ export const LinkButton = () => CivicLinkButton({
       'civic-button--normal',
     )
   ].join(' '),
-  text: text('Text', 'Link Button Text'),
-  new_window: boolean('Open in a new window', false),
+  text: text('Text', 'Button Text'),
+  disabled: boolean('Disabled', false),
 })

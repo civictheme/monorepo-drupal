@@ -5,7 +5,7 @@
 @import '../../00-base/base';
 
 .civic-callout {
-  border-left: 5px civic-color('secondary') solid;
+  border-left: 5px civic-color('secondary-accent') solid;
   padding: 5px 15px;
   background-color: civic-color('neutral_5');
   &__links {

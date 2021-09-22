@@ -1,0 +1,10 @@
+@import "../../00-base/base";
+
+.civic-icon {
+  $all-colors: map-merge($civic-default-colors, $civic-colors);
+  @each $key, $value in $all-colors {
+    &--color-#{$key} {
+      fill: civic-color($key);
+    }
+  }
+}

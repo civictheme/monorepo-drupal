@@ -9,7 +9,25 @@ export default {
 }
 
 export const Button = () => CivicButton({
+  kind: radios(
+    'Kind',
+    {
+      'Button': 'button',
+      'Link': 'link',
+      'Reset': 'reset',
+      'Submit': 'submit'
+    },
+    'button',
+  ),
   modifier_class: [
+    radios(
+      'Theme',
+      {
+        'Dark': 'civic-button--dark',
+        'Light': 'civic-button--light'
+      },
+      'civic-button--light',
+    ),
     radios(
       'Type',
       {
@@ -31,5 +49,12 @@ export const Button = () => CivicButton({
     )
   ].join(' '),
   text: text('Text', 'Button Text'),
+  url: text('URL (applies to button kind link.)', ''),
+  new_window: boolean('Open in a new window (applies to button kind link.)', false),
   disabled: boolean('Disabled', false),
 })
+
+
+
+
+
