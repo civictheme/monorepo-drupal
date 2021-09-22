@@ -36,7 +36,7 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_n_components:
+  field_c_n_components:
     -
       entity:
         _meta:
@@ -58,7 +58,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_cards:
+          field_c_p_cards:
             -
               entity:
                 _meta:
@@ -80,16 +80,16 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_image:
+                  field_c_p_image:
                     -
                       entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
-                  field_p_summary:
+                  field_c_p_summary:
                     -
                       value: 'Nulla porttitor accumsan tincidunt. Cras ultricies ligula sed magna dictum porta. Nulla quis lorem ut libero malesuada feugiat. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.'
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: dark
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Navigation card title 1'
             -
@@ -110,13 +110,13 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  field_p_summary:
+                  field_c_p_summary:
                     -
                       value: 'Nulla porttitor accumsan tincidunt. Cras ultricies ligula sed magna dictum porta. Nulla quis lorem ut libero malesuada feugiat. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.'
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: light
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Navigation card title 2'
             -
@@ -140,31 +140,31 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_link:
+                  field_c_p_link:
                     -
                       uri: 'http://google.com'
                       title: 'Read more'
                       options: {  }
-                  field_p_summary:
+                  field_c_p_summary:
                     -
                       value: 'Nulla porttitor accumsan tincidunt. Cras ultricies ligula sed magna dictum porta. Nulla quis lorem ut libero malesuada feugiat. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.'
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: dark
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Navigation card title 3'
-          field_p_column_count:
+          field_c_p_column_count:
             -
               value: 3
-          field_p_fill_width:
+          field_c_p_fill_width:
             -
               value: false
-          field_p_link:
+          field_c_p_link:
             -
               uri: 'http://google.com'
               title: 'Read more'
               options: {  }
-          field_p_title:
+          field_c_p_title:
             -
               value: 'Card container 3 column'

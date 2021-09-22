@@ -3,13 +3,13 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.civic_card_navigation
-    - field.field.node.civic_page.field_n_banner_background
-    - field.field.node.civic_page.field_n_banner_components
-    - field.field.node.civic_page.field_n_banner_type
-    - field.field.node.civic_page.field_n_components
-    - field.field.node.civic_page.field_n_featured_banner_image
-    - field.field.node.civic_page.field_n_summary
-    - field.field.node.civic_page.field_n_thumbnail
+    - field.field.node.civic_page.field_c_n_banner_background
+    - field.field.node.civic_page.field_c_n_banner_components
+    - field.field.node.civic_page.field_c_n_banner_type
+    - field.field.node.civic_page.field_c_n_components
+    - field.field.node.civic_page.field_c_n_featured_banner_image
+    - field.field.node.civic_page.field_c_n_summary
+    - field.field.node.civic_page.field_c_n_thumbnail
     - node.type.civic_page
   module:
     - layout_builder
@@ -23,14 +23,14 @@ targetEntityType: node
 bundle: civic_page
 mode: civic_card_navigation
 content:
-  field_n_summary:
+  field_c_n_summary:
     weight: 1
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: content
-  field_n_thumbnail:
+  field_c_n_thumbnail:
     weight: 0
     label: visually_hidden
     settings:
@@ -39,9 +39,9 @@ content:
     type: entity_reference_label
     region: content
 hidden:
-  field_n_banner_background: true
-  field_n_banner_components: true
-  field_n_banner_type: true
-  field_n_components: true
-  field_n_featured_banner_image: true
+  field_c_n_banner_background: true
+  field_c_n_banner_components: true
+  field_c_n_banner_type: true
+  field_c_n_components: true
+  field_c_n_featured_banner_image: true
   links: true

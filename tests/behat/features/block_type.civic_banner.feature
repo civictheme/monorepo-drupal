@@ -13,4 +13,4 @@ Feature: Tests the Civic banner block Type
   Scenario: Civic banner block type exists with fields.
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "admin/structure/block/block-content/manage/civic_banner/fields"
-    Then I should see the text "Theme" in the "field_b_theme" row
+    Then I should see the text "Theme" in the "field_c_b_theme" row

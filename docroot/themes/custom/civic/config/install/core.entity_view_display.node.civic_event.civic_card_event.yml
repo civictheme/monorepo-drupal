@@ -3,15 +3,15 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.civic_card_event
-    - field.field.node.civic_event.field_n_attachments
-    - field.field.node.civic_event.field_n_body
-    - field.field.node.civic_event.field_n_date
-    - field.field.node.civic_event.field_n_image
-    - field.field.node.civic_event.field_n_location
-    - field.field.node.civic_event.field_n_more_information
-    - field.field.node.civic_event.field_n_tagline
-    - field.field.node.civic_event.field_n_thumbnail
-    - field.field.node.civic_event.field_n_topics
+    - field.field.node.civic_event.field_c_n_attachments
+    - field.field.node.civic_event.field_c_n_body
+    - field.field.node.civic_event.field_c_n_date
+    - field.field.node.civic_event.field_c_n_image
+    - field.field.node.civic_event.field_c_n_location
+    - field.field.node.civic_event.field_c_n_more_information
+    - field.field.node.civic_event.field_c_n_tagline
+    - field.field.node.civic_event.field_c_n_thumbnail
+    - field.field.node.civic_event.field_c_n_topics
     - node.type.civic_event
   module:
     - datetime_range
@@ -27,14 +27,14 @@ targetEntityType: node
 bundle: civic_event
 mode: civic_card_event
 content:
-  field_n_body:
+  field_c_n_body:
     weight: 1
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_n_date:
+  field_c_n_date:
     weight: 3
     label: visually_hidden
     settings:
@@ -44,7 +44,7 @@ content:
     third_party_settings: {  }
     type: daterange_default
     region: content
-  field_n_thumbnail:
+  field_c_n_thumbnail:
     type: entity_reference_entity_view
     weight: 0
     label: visually_hidden
@@ -53,7 +53,7 @@ content:
       link: false
     third_party_settings: {  }
     region: content
-  field_n_topics:
+  field_c_n_topics:
     weight: 2
     label: visually_hidden
     settings:
@@ -62,9 +62,9 @@ content:
     type: entity_reference_label
     region: content
 hidden:
-  field_n_attachments: true
-  field_n_image: true
-  field_n_location: true
-  field_n_more_information: true
-  field_n_tagline: true
+  field_c_n_attachments: true
+  field_c_n_image: true
+  field_c_n_location: true
+  field_c_n_more_information: true
+  field_c_n_tagline: true
   links: true

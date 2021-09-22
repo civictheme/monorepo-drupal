@@ -9,19 +9,35 @@
 //
 
 @mixin civic-link-base () {
-  color: civic-color('primary');
+  &,
+  &.civic-theme-light {
+    color: civic-color('primary');
+    &:hover {
+      background-color: civic-color('primary');
+      color: civic-color('secondary');
+    }
 
-  &:hover {
-    background-color: civic-color('primary');
-    color: civic-color('secondary-accent');
+    &:visited {
+      color: civic-color('secondary-accent');
+      &:hover {
+        background-color: civic-color('secondary-accent');
+        color: civic-color('secondary');
+      }
+    }
   }
-
-  &:visited {
+  &.civic-theme-dark {
     color: civic-color('secondary');
-
     &:hover {
       background-color: civic-color('secondary');
-      color: civic-color('secondary-accent');
+      color: civic-color('primary-accent');
+    }
+
+    &:visited {
+      color: civic-color('primary');
+      &:hover {
+        background-color: civic-color('primary');
+        color: civic-color('primary-accent');
+      }
     }
   }
 }

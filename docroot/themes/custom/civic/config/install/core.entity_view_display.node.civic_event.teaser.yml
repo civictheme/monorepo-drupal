@@ -3,15 +3,15 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.civic_event.field_n_attachments
-    - field.field.node.civic_event.field_n_body
-    - field.field.node.civic_event.field_n_date
-    - field.field.node.civic_event.field_n_image
-    - field.field.node.civic_event.field_n_location
-    - field.field.node.civic_event.field_n_more_information
-    - field.field.node.civic_event.field_n_tagline
-    - field.field.node.civic_event.field_n_thumbnail
-    - field.field.node.civic_event.field_n_topics
+    - field.field.node.civic_event.field_c_n_attachments
+    - field.field.node.civic_event.field_c_n_body
+    - field.field.node.civic_event.field_c_n_date
+    - field.field.node.civic_event.field_c_n_image
+    - field.field.node.civic_event.field_c_n_location
+    - field.field.node.civic_event.field_c_n_more_information
+    - field.field.node.civic_event.field_c_n_tagline
+    - field.field.node.civic_event.field_c_n_thumbnail
+    - field.field.node.civic_event.field_c_n_topics
     - node.type.civic_event
   module:
     - user
@@ -26,12 +26,12 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
-  field_n_attachments: true
-  field_n_body: true
-  field_n_date: true
-  field_n_image: true
-  field_n_location: true
-  field_n_more_information: true
-  field_n_tagline: true
-  field_n_thumbnail: true
-  field_n_topics: true
+  field_c_n_attachments: true
+  field_c_n_body: true
+  field_c_n_date: true
+  field_c_n_image: true
+  field_c_n_location: true
+  field_c_n_more_information: true
+  field_c_n_tagline: true
+  field_c_n_thumbnail: true
+  field_c_n_topics: true

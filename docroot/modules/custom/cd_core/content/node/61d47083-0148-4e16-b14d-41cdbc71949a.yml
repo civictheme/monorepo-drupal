@@ -36,10 +36,10 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_n_banner_type:
+  field_c_n_banner_type:
     -
       value: default
-  field_n_components:
+  field_c_n_components:
     -
       entity:
         _meta:
@@ -61,7 +61,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_cards:
+          field_c_p_cards:
             -
               entity:
                 _meta:
@@ -83,18 +83,18 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_image:
+                  field_c_p_image:
                     -
                       entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
-                  field_p_link:
+                  field_c_p_link:
                     -
                       uri: 'http://google.com'
                       title: 'Read more'
                       options: {  }
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: light
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Subject card title 1'
             -
@@ -118,28 +118,28 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_link:
+                  field_c_p_link:
                     -
                       uri: 'http://google.com'
                       title: 'Read more'
                       options: {  }
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: dark
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Subject card title 2'
-          field_p_column_count:
+          field_c_p_column_count:
             -
               value: 2
-          field_p_fill_width:
+          field_c_p_fill_width:
             -
               value: true
-          field_p_link:
+          field_c_p_link:
             -
               uri: 'http://google.com'
               title: 'Read more'
               options: {  }
-          field_p_title:
+          field_c_p_title:
             -
               value: 'Card container'

@@ -34,7 +34,7 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_n_components:
+  field_c_n_components:
     -
       entity:
         _meta:
@@ -56,7 +56,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_cards:
+          field_c_p_cards:
             -
               entity:
                 _meta:
@@ -78,15 +78,15 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_links:
+                  field_c_p_links:
                     -
                       uri: 'http://google.com'
                       title: 'Read more'
                       options: {  }
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: light
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Service card 1'
             -
@@ -110,7 +110,7 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_links:
+                  field_c_p_links:
                     -
                       uri: 'http://example.com'
                       title: 'Example 1'
@@ -127,23 +127,23 @@ default:
                       uri: 'http://example.com'
                       title: 'Example 4'
                       options: {  }
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: light
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'Service card 2'
-          field_p_column_count:
+          field_c_p_column_count:
             -
               value: 2
-          field_p_fill_width:
+          field_c_p_fill_width:
             -
               value: false
-          field_p_link:
+          field_c_p_link:
             -
               uri: 'http://google.com'
               title: 'Read more'
               options: {  }
-          field_p_title:
+          field_c_p_title:
             -
               value: 'Service cards container'
