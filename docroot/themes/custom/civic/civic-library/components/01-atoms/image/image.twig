@@ -13,5 +13,12 @@
 
 <figure class="civic-image {{ theme_class }}">
   <img src="{{ src }}" alt="{{ alt }}">
-  <figcaption>{{ caption }}</figcaption>
+  <figcaption>
+    {% include '@atoms/icon/icon.twig' with {
+      spritesheet: '/icons/civic-multimedia.svg',
+      symbol: 'multimedia-image-3',
+      color: 'neutral_60',
+    } %}
+    {{ caption }}
+  </figcaption>
 </figure>
