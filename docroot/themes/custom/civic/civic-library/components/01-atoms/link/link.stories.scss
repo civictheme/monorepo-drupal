@@ -1,0 +1,6 @@
+@import '../../00-base/base.scss';
+
+a {
+  @include civic-typography('body');
+}
+
