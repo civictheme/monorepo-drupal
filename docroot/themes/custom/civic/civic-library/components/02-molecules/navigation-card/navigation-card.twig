@@ -15,7 +15,7 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}	
 {% set type_class = 'civic-nav-card--%s'|format(type|default('large')) %}
-{% set modifier_class = modifier_class|default('civic-button--light civic-button--normal') %}
+{% set modifier_class = modifier_class|default('civic-nav-card--large') %}
 {% set modifier_class = '%s %s'|format(theme_class, type_class) %}
 {% set url = url|default('#') %}
 
