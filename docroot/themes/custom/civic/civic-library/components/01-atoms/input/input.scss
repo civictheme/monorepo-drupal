@@ -1,0 +1,105 @@
+//
+// Civic input.
+//
+
+@import '../../00-base/base';
+
+.civic-input {
+  $root: &;
+  &__label {
+    display: block;
+    margin-bottom: civic-space(1);
+  }
+
+  &__element {
+    background-color: civic-color('neutral_5');
+    border: rem(1px) solid civic-color('neutral_20');
+    border-radius: rem(4px);
+    padding: ($civic-space * 1.5) civic-space(2);
+
+    &:hover {
+      border-color: civic-color('neutral_60');
+    }
+
+    &:focus {
+      background-color: civic-color('secondary');
+      color: civic-color('neutral_80');
+      outline: civic-color('neutral_80');
+      border-color: civic-color('neutral_80');
+    }
+  }
+
+  &--disabled {
+    #{$root}__element {
+      color: civic-color('neutral_40');
+      background-color: civic-color('neutral_10');
+    }
+  }
+
+  &__state {
+    position: relative;
+    margin-left: - civic-space(4);
+    svg {
+      width: civic-space(2);
+      height: civic-space(2);
+      vertical-align: middle;
+    }
+  }
+
+  &--error {
+    #{$root}__element {
+      border-color: civic-color('error') !important;
+      padding-right: civic-space(5);
+    }
+    #{$root}__state {
+      svg {
+        fill: civic-color('error');
+      }
+    }
+  }
+
+  &--success {
+    #{$root}__element {
+      border-color: civic-color('success') !important;
+      padding-right: civic-space(5);
+    }
+    #{$root}__state {
+      svg {
+        fill: civic-color('success');
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    color: civic-color('secondary');
+
+    #{$root}__element {
+      background-color: civic-color('shade_15');
+      color: civic-color('neutral_10');
+      border-color: civic-color('shade_30');
+
+      &:hover {
+        border-color: civic-color('neutral_10');
+      }
+
+      &:focus {
+        color: civic-color('secondary');
+        outline: civic-color('secondary');
+        border-color: civic-color('secondary');
+      }
+    }
+
+    #{$root}__state {
+      svg {
+        fill: civic-color('secondary');
+      }
+    }
+
+    #{$root}--disabled {
+      #{$root}__element {
+        color: civic-color('neutral_10');
+        background-color: civic-color('neutral_60');
+      }
+    }
+  }
+}
