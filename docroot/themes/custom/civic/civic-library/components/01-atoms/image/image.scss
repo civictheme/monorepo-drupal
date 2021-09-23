@@ -1,0 +1,22 @@
+//
+// Heading.
+//
+@import "../../00-base/base";
+
+.civic-image {
+  border-radius: $civic-border-radius;
+
+  &.civic-theme-light {
+    //background-color: civic-color('secondary');
+    color: civic-color('neutral_60');
+
+    svg path {
+      fill: civic-color('neutral_60');
+    }
+  }
+
+  &.civic-theme-dark {
+    //background-color: civic-color('primary-accent');
+    color: civic-color('neutral_60');
+  }
+}

@@ -8,7 +8,7 @@
 // Mixins.
 //
 
-@mixin civic-button($type: 'primary', $size: 'normal', $icon: false, $icon_placement: false, $is_disabled: false) {
+@mixin civic-button($type: 'primary', $size: 'regular', $icon: false, $icon_placement: false, $is_disabled: false) {
   @include civic-button-type($type);
   @include civic-button-size($size);
   // @todo Implement icon support.
@@ -21,10 +21,21 @@
     @error '"#{$type}" is not one of allowed #{$types}.';
   }
 
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+
+  &[disabled] {
+    text-decoration: none;
+  }
+
   @if $type=='primary' {
     background-color: civic-color('primary');
     color: civic-color('secondary');
-    text-decoration: none;
 
     &.civic-theme-light {
       &:focus {
@@ -53,18 +64,15 @@
         background-color: civic-color('shade_30');
         box-shadow: $civic-outline-accent-boxshadow;
         color: civic-color('secondary');
-        text-decoration: underline;
       }
 
       &:hover {
         background-color: civic-color('primary-accent');
-        text-decoration: underline;
       }
 
       &:active {
         background-color: civic-color('secondary-accent');
         color: civic-color('secondary');
-        text-decoration: underline;
         box-shadow: none;
       }
 
@@ -76,18 +84,16 @@
   } @else if ($type=='primary-accent') {
     background-color: civic-color('primary-accent');
     color: civic-color('primary');
-    text-decoration: none;
 
     &.civic-theme-light {
       &:focus {
         background-color: civic-color('shade_30');
         color: civic-color('secondary');
-        text-decoration: underline;
         box-shadow: $civic-outline-accent-boxshadow;
       }
 
       &:hover {
-        text-decoration: underline;
+        // Left here for visibility.
       }
 
       &:active {
@@ -113,27 +119,23 @@
       &:hover {
         background-color: civic-color('secondary');
         color: civic-color('primary');
-        text-decoration: underline;
       }
 
       &:active {
         background-color: civic-color('secondary-accent');
         box-shadow: none;
         color: civic-color('secondary');
-        text-decoration: underline;
       }
 
       &[disabled] {
         background-color: civic-color('neutral_60');
         color: civic-color('secondary');
-        text-decoration: none;
       }
     }
   } @else if ($type=='secondary') {
     background-color: civic-color('secondary');
     color: civic-color('primary');
     border: rem(3px) solid civic-color('primary');
-    text-decoration: none;
 
     &.civic-theme-light {
       &:focus {
@@ -191,7 +193,6 @@
     background-color: civic-color('secondary');
     color: civic-color('primary-accent');
     border: solid $civic-border-width civic-color('primary-accent');
-    text-decoration: none;
 
     &.civic-theme-light,
     &.civic-theme-dark {
@@ -221,13 +222,20 @@
 }
 
 @mixin civic-button-size($size) {
-  $sizes: ('large', 'normal', 'small');
+  $sizes: ('large', 'regular', 'small');
 
-  @if not index($sizes, $size) {
+  @if ($size=='large') {
+    @include civic-typography('label-#{$size}');
+    padding: civic-space(2) civic-space(5);
+  } @else if ($size=='regular') {
+    @include civic-typography('label-#{$size}');
+    padding: civic-space(2) civic-space(5);
+  } @else if ($size=='small') {
+    @include civic-typography('label-#{$size}');
+    padding: civic-space(1) civic-space(3);
+  } @else {
     @error '"#{$size}" is not one of allowed #{$sizes}.';
   }
-
-  @include civic-typography('label-#{$size}');
 }
 
 //
@@ -235,11 +243,11 @@
 //
 
 .civic-button {
+  cursor: pointer;
   border: $civic-border-width solid transparent;
   border-radius: $civic-border-radius;
-  cursor: pointer;
-  padding: rem(12px) civic-space(5);
-  @include civic-button-size('normal');
+
+  @include civic-button-size('regular');
 
   &--primary {
     @include civic-button-type('primary');
@@ -261,8 +269,8 @@
     @include civic-button-size('large');
   }
 
-  &--normal {
-    @include civic-button-size('normal');
+  &--regular {
+    @include civic-button-size('regular');
   }
 
   &--small {

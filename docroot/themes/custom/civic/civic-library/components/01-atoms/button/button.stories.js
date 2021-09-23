@@ -1,4 +1,4 @@
-import {boolean, text, radios} from '@storybook/addon-knobs'
+import {boolean, radios, text} from '@storybook/addon-knobs'
 
 import CivicButton from './button.twig'
 import './button.scss'
@@ -27,29 +27,29 @@ export const Button = () => CivicButton({
     },
     'button',
   ),
-  modifier_class: [
-    radios(
-      'Type',
-      {
-        'Primary': 'civic-button--primary',
-        'Primary Accent': 'civic-button--primary-accent',
-        'Secondary': 'civic-button--secondary',
-        'Secondary Accent': 'civic-button--secondary-accent',
-      },
-      'civic-button--primary',
-    ),
-    radios(
-      'Size',
-      {
-        'Large': 'civic-button--large',
-        'Normal': 'civic-button--normal',
-        'Small': 'civic-button--small',
-      },
-      'civic-button--normal',
-    )
-  ].join(' '),
+  type: radios(
+    'Type',
+    {
+      'None': 'none',
+      'Primary': 'primary',
+      'Primary Accent': 'primary-accent',
+      'Secondary': 'secondary',
+      'Secondary Accent': 'secondary-accent',
+    },
+    'none',
+  ),
+  size: radios(
+    'Size',
+    {
+      'Large': 'large',
+      'Regular': 'regular',
+      'Small': 'small',
+    },
+    'regular',
+  ),
   text: text('Text', 'Button Text'),
   url: text('URL (applies to button kind link.)', 'http://example.com'),
   new_window: boolean('Open in a new window (applies to button kind link.)', false),
   disabled: boolean('Disabled', false),
+  modifier_class: text('Additional class', ''),
 })
