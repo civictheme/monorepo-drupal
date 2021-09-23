@@ -7,14 +7,16 @@
  * - modifier_class: [string] Classes to modify the default component styling.
  * - summary: [string] Summary of the card.
  * - title: [string] The text of card title.
- * - theme: [string] Theme for navigation card. 
+ * - theme: [string] card theme: light, dark. 
+ * - type: [string] Card type: large, small, icon.
  * - url: [string] Card link.
  */
 #}
 
-{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}	
+{% set type_class = 'civic-nav-card--%s'|format(type|default('large')) %}
 {% set modifier_class = modifier_class|default('civic-button--light civic-button--normal') %}
-{% set modifier_class = modifier_class ~ ' ' ~ theme_class %}
+{% set modifier_class = '%s %s'|format(theme_class, type_class) %}
 {% set url = url|default('#') %}
 
 <a class="civic-nav-card {{ modifier_class }}" href="{{ url }}" title="">

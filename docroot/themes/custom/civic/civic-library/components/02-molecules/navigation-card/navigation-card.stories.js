@@ -47,15 +47,16 @@ export const NavigationCard = () => {
       'Light': 'light',
       'Dark': 'dark'
     }, 'light', navCard),
-    modifier_class: [radios('Type', {
-      'With image': 'civic-nav-card--large',
-      'Without image': 'civic-nav-card--small',
-      'With Icon': 'civic-nav-card--icon'
-    }, 'civic-nav-card--large', navCard)].join(' '),
+    type: [radios('Type', {
+      'With image': 'large',
+      'Without image': 'small',
+      'With Icon': 'icon'
+    }, 'large', navCard)].join(' '),
     title: text('Title', 'Navigation card heading which runs across two or three lines', navCard),
     summary: text('Summary', 'Recommend keeping card summary short over two or three lines.', navCard),
     image: object('Image  (Applies to card with image.)', imageData, navCard),
-    url: text('Card URL', 'https://google.com', navCard)
+    url: text('Card URL', 'https://google.com', navCard),
+    modifier_class: text('Additional class', '', navCard),
   };
 
   //Knob tabs order is decided on the basis of their order in story.
