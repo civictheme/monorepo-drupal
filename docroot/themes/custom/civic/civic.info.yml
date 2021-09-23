@@ -300,6 +300,9 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
+    - views.view.civic_pages
+    - views.view.civic_events
+    - views.view.civic_listing
   optional:
     - media.type.image
     - media.type.document
