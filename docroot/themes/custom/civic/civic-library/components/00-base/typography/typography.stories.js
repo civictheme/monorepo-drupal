@@ -20,11 +20,11 @@ export const Typography = () => {
 <div class="heading-5">Heading 5 desktop</div>
 <div class="heading-6">Heading 6 desktop</div>
 <hr/>
-<div class="lead-copy">Lead copy morbi scelerisque porttitor elit vel gravida. Duis id sollicitudin ante, in condimentum diam. Morbi faucibus egestas metus, et semper felis tempus at.</div>
-<div class="body-copy">Body copy proin tristique cursus ante in aliquam. Ut dictum lorem ut mauris venenatis, non consectetur massa feugiat. Aliquam quis lectus quam. Quisque quis tempor eros. Integer tempus odio velit, vel porta tellus viverra posuere. Sed id ante nec dui auctor mollis facilisis ut velit.</div>
-<div class="small-copy">Small copy fusce eget quam a quam blandit blandit lacinia id sapien. Sed commodo blandit urna nec tincidunt. Vestibulum et eros nisl. Maecenas consectetur ex tortor, a suscipit leo lacinia ac. Donec egestas, mauris vulputate tempus ullamcorper, augue magna semper erat, et vehicula eros lacus bibend.</div>
+<div class="lead">Lead copy morbi scelerisque porttitor elit vel gravida. Duis id sollicitudin ante, in condimentum diam. Morbi faucibus egestas metus, et semper felis tempus at.</div>
+<div class="body">Body copy proin tristique cursus ante in aliquam. Ut dictum lorem ut mauris venenatis, non consectetur massa feugiat. Aliquam quis lectus quam. Quisque quis tempor eros. Integer tempus odio velit, vel porta tellus viverra posuere. Sed id ante nec dui auctor mollis facilisis ut velit.</div>
+<div class="small">Small copy fusce eget quam a quam blandit blandit lacinia id sapien. Sed commodo blandit urna nec tincidunt. Vestibulum et eros nisl. Maecenas consectetur ex tortor, a suscipit leo lacinia ac. Donec egestas, mauris vulputate tempus ullamcorper, augue magna semper erat, et vehicula eros lacus bibend.</div>
 <div class="label-large">Large label</div>
-<div class="label-normal">Normal label</div>
+<div class="label-regular">Normal label</div>
 <div class="label-small">Small label</div>
 </div>`
 }
