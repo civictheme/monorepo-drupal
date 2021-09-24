@@ -1,0 +1,90 @@
+{#
+/**
+ * @file Event card component.
+ *
+ * Available variables:
+ * - content_top: [boolean] show/hide content top section.
+ * - content_top_label: [string] content top label.
+ * - date: [string] formatted date.
+ * - with_image: show card with or without image.
+ * - image: [object] Consist details of the card image like src, alt text.
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - summary: [string] Summary of the card.
+ * - place_n_time: [string] Place and time details fo the event.
+ * - tag: [string] Event topic/industry tag.
+ * - title: [string] The text of card title.
+ * - theme: [string] card theme: light, dark. 
+ * - type: [string] Card type: large, small, icon.
+ * - url: [string] Card link.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}	
+{% set type_class = with_image ? 'civic-event-card--large' : 'civic-event-card--small' %}
+{% set modifier_class = '%s %s'|format(theme_class, type_class) %}
+{% set url = url|default('#') %}
+
+<a class="civic-event-card {{ modifier_class }}" href="{{ url }}">
+	{% if with_image %}
+		<div class="civic-event-card__image-wrapper">
+			<img src="{{ image.src }}" alt="{{ image.alt }}">
+
+			{% if image_over %}
+				<div class="civic-event-card__image-over">{{ image_over }}</div>
+			{% endif %}
+
+			{% if content_top %}
+				<div class="civic-event-card__content-top">{{ content_top_label }}</div>
+			{% endif %}
+		</div>
+	{% endif %}
+
+	<div class="civic-event-card__content">
+		{% if date %}
+			<div class="civic-event-card__date-wrapper">
+				<span class="civic-event-card__calendar civic-event-card__icon">
+					{% include '@atoms/icon/icon.twig' with {
+				    spritesheet: '/icons/civic-business.svg',
+				    symbol: 'business-calendar-1',
+				    color: 'body'
+					} only %}
+				</span>
+			 <span class="civic-event-card__date">{{ date }}</span>
+			</div>
+		{% endif %}
+
+		{% include '@atoms/heading/heading.twig' with {
+	    level: 4,
+	    text: title
+		} only %}
+
+		{% if place_n_time %}
+			<div class="civic-event-card__content-middle"><p class="civic-event-card__timing">{{ place_n_time }}</div>
+		{% endif %}
+
+		{% if summary %}
+			<p class="civic-event-card__summary">{{ summary }}</p>
+		{% endif %}
+		
+		{% if content_middle %}
+			<div class="civic-event-card__content-middle">{{ content_middle }}</div>
+		{% endif %}
+
+		<div class="civic-event-card__tag-wrapper">
+			{% if tag %}
+				<div class="civic-event-card__tag">{{ tag }}</div>
+			{% endif %}
+			<div class="civic-event-card__read-more civic-event-card__icon">
+				{% include '@atoms/icon/icon.twig' with {
+			    spritesheet: '/icons/civic-arrows.svg',
+			    symbol: 'arrows-right-arrow-3',
+			    color: 'primary'
+				} only %}
+			</div>
+		</div>
+
+		{% if content_bottom %}
+			<div class="civic-event-card__content-bottom">{{ content_bottom }}</div>
+		{% endif %}
+	</div>
+</a>
