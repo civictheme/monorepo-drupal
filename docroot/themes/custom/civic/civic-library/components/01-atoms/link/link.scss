@@ -7,6 +7,22 @@
 //
 // Mixins.
 //
+@mixin civic-link-visited() {
+  &.civic-theme-light {
+    color: civic-color('secondary-accent');
+    &:hover {
+      background-color: civic-color('secondary-accent');
+      color: civic-color('secondary');
+    }
+  }
+  &.civic-theme-dark {
+    color: civic-color('primary');
+    &:hover {
+      background-color: civic-color('primary');
+      color: civic-color('primary-accent');
+    }
+  }
+}
 
 @mixin civic-link-base () {
   &,
@@ -16,14 +32,13 @@
       background-color: civic-color('primary');
       color: civic-color('secondary');
     }
-
-    &:visited {
-      color: civic-color('secondary-accent');
-      &:hover {
-        background-color: civic-color('secondary-accent');
-        color: civic-color('secondary');
-      }
+    .civic-link__external-icon {
+      vertical-align: top;
+      margin-left: -2px;
     }
+  }
+  &:visited {
+    @include civic-link-visited;
   }
   &.civic-theme-dark {
     color: civic-color('secondary');
@@ -31,14 +46,12 @@
       background-color: civic-color('secondary');
       color: civic-color('primary-accent');
     }
-
-    &:visited {
-      color: civic-color('primary');
-      &:hover {
-        background-color: civic-color('primary');
-        color: civic-color('primary-accent');
-      }
-    }
+  }
+  text-decoration: none;
+  border-bottom: 2px solid;
+  padding: 3px 0 2px 0;
+  &:hover {
+    padding: 3px 0 4px 0;
   }
 }
 
@@ -48,4 +61,7 @@
 
 .civic-link {
   @include civic-link-base;
+  &--visited {
+    @include civic-link-visited;
+  }
 }

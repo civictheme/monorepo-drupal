@@ -21,7 +21,8 @@
     {% if is_external %}
         {% include '@atoms/icon/icon.twig' with {
             spritesheet: '/icons/civic-arrows.svg',
-            symbol: 'arrows-upper-right-arrow'
+            symbol: 'arrows-upper-right-arrow',
+            modifier_class: 'civic-link__external-icon'
         } %}
     {% endif %}
 </a>
