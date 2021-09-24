@@ -100,7 +100,7 @@ $civic-typography: (
   'display-s': (32px, 40px, 700, 'primary', -0.3px),
   'display-support': (18px, 31px, 400, 'primary', 0),
   'heading-1': (
-    'xs': (32px, 40px, 700, ' primary', -0.6px),
+    'xs': (32px, 40px, 700, 'primary', -0.6px),
     'm': (48px, 60px, 700, 'primary', -1px)
   ),
   'heading-2': (
@@ -133,20 +133,20 @@ $civic-typography: (
     'm': (14px, 25px, 400, 'primary', 0)
   ),
   'quote': (
-    'xs': (18px, 29px, '400', 'primary', -0.15px),
-    'm': (25px, 40px, '400', 'primary', -0.35px)
+    'xs': (18px, 29px, 400, 'primary', -0.15px),
+    'm': (25px, 40px, 400, 'primary', -0.35px)
   ),
   'unordered-list': (
-    'xs': (16px, 26px, '400', 'primary', 0),
-    'm': (16px, 28px, '400', 'primary', 0)
+    'xs': (16px, 26px, 400, 'primary', 0),
+    'm': (16px, 28px, 400, 'primary', 0)
   ),
   'ordered-list': (
-    'xs': (16px, 26px, '400', 'primary', 0),
-    'm': (16px, 28px, 400 ''primary'', 0)
+    'xs': (16px, 26px, 400, 'primary', 0),
+    'm': (16px, 28px, 400 'primary', 0)
   ),
   'label-large': (
     'xs': (18px, 24px, 600, 'primary', -0.1px),
-    'm': (18px, 24px, 600, ''primary'', 0)
+    'm': (18px, 24px, 600, 'primary', 0)
   ),
   'label-regular': (
     'xs': (16px, 20px, 600, 'primary', -0.1px),
