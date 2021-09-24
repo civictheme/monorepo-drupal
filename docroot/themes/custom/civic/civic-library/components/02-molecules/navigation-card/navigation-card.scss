@@ -132,13 +132,13 @@
 
     &:active {
       .civic-nav-card__title {
-        color: $civic-nav-card-light-color-active;
+        color: $civic-nav-card-light-heading-color-active;
         text-decoration: underline;
       }
 
       .civic-nav-card__read-more {
         .civic-icon {
-          fill: $civic-nav-card-light-color-active;
+          fill: $civic-nav-card-light-heading-color-active;
         }
       }
     }
@@ -161,13 +161,13 @@
 
     &:hover {
       .civic-nav-card__title {
-        color: $civic-nav-card-dark-color-hover;
+        color: $civic-nav-card-dark-color-accent;
         text-decoration: underline;
       }
 
       .civic-nav-card__read-more {
         .civic-icon {
-          fill: $civic-nav-card-dark-color-hover;
+          fill: $civic-nav-card-dark-color-accent;
         }
       }
     }
@@ -181,7 +181,7 @@
 
     .civic-nav-card__icon {
       .civic-icon {
-        fill: $civic-nav-card-dark-color-active;
+        fill: $civic-nav-card-dark-color-accent;
       }
     }
 
@@ -195,7 +195,7 @@
 
     .civic-nav-card__read-more {
       .civic-icon {
-        fill: $civic-nav-card-dark-color-active;
+        fill: $civic-nav-card-dark-color-accent;
       }
     }
   }
