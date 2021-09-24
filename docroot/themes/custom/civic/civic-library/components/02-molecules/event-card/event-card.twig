@@ -53,10 +53,7 @@
 			</div>
 		{% endif %}
 
-		{% include '@atoms/heading/heading.twig' with {
-	    level: 4,
-	    text: title
-		} only %}
+		<h4 class="civic-event-card__title">{{ title }}</h4>
 
 		{% if place_n_time %}
 			<div class="civic-event-card__content-middle"><p class="civic-event-card__timing">{{ place_n_time }}</div>

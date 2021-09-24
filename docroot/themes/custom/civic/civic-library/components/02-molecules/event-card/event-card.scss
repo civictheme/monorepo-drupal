@@ -9,13 +9,13 @@
   text-decoration: none;
 
   &:hover {
-    .civic-heading {
+    .civic-event-card__title {
       text-decoration: underline;
     }
   }
 
   &:active {
-    .civic-heading {
+    .civic-event-card__title {
       outline: none;
       text-decoration: underline;
     }
@@ -52,13 +52,19 @@
     @include civic-typography((14px, 20px, 400, 'primary', '-0.1'));
   }
 
+  &__title {
+    @include civic-typography(heading-4);
+  }
+
   &__timing {
     @include civic-typography(body-regular);
   }
 
   &__summary {
-    @include civic-typography(('xs': (14px, 25px, 400, 'primary', -0.1),
-      'm': (16px, 28px, 400, 'primary', 0)));
+    @include civic-typography((
+      'xs': (14px, 25px, 400, 'primary', -0.1),
+      'm': (16px, 28px, 400, 'primary', 0)
+    ));
   }
 
   &__tag-wrapper {
@@ -80,19 +86,20 @@
   }
 
   &.civic-theme-light {
+    background-color: civic-color(secondary);
 
     &:focus {
       @include civic-outline(fale)
     }
 
     &:hover {
-      .civic-heading {
+      .civic-event-card__title {
         color: civic-color(secondary-accent);
       }
     }
 
     &:active {
-      .civic-heading {
+      .civic-event-card__title {
         color: civi-color(shade_30);
       }
     }
@@ -101,9 +108,7 @@
       background-color: civic-color(neutral_5);
 
       .civic-event-card__date {
-        @include civic-breakpoint(xs) {
-          color: civic-color(neutral_80);
-        }
+        color: civic-color(neutral_80);
 
         @include civic-breakpoint(m) {
           color: civic-color(body);
@@ -111,7 +116,7 @@
       }
     }
 
-    .civic-heading {
+    .civic-event-card__title {
       color: civic-color(heading);
     }
 
@@ -122,25 +127,22 @@
   }
 
   &.civic-theme-dark {
+    background-color: civic-color(shade_45);
 
     &:focus {
       @include civic-outline(true)
     }
 
     &:hover {
-      .civic-heading {
+      .civic-event-card__title {
         color: civic-color(primary-accent);
       }
     }
 
     &:active {
-      .civic-heading {
+      .civic-event-card__title {
         color: civi-color(neutral_20);
       }
-    }
-
-    .civic-event-card__content {
-      background-color: civic-color(shade_45);
     }
 
     .civic-event-card__date-wrapper {
@@ -151,7 +153,7 @@
       }
     }
 
-    .civic-heading,
+    .civic-event-card__title,
     .civic-event-card__timing {
       color: civic-color(secondary);
     }
