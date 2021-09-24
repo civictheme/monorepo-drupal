@@ -32,6 +32,10 @@
       background-color: civic-color('primary');
       color: civic-color('secondary');
     }
+    .civic-link__external-icon {
+      vertical-align: top;
+      margin-left: -2px;
+    }
   }
   &:visited {
     @include civic-link-visited;
