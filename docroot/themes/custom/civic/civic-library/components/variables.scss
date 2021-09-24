@@ -164,3 +164,15 @@ $civic-callout-dark-color: map-get(map-merge($civic-default-colors, $civic-color
 $civic-callout-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
 $civic-callout-light-stripe-color:  map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
 $civic-callout-dark-stripe-color:  $civic-callout-light-stripe-color !default;
+
+// Attachment.
+$civic-attachment-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
+$civic-attachment-light-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-attachment-light-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+$civic-attachment-light-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_60') !default;
+$civic-attachment-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
+$civic-attachment-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-attachment-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
+$civic-attachment-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-attachment-dark-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
+$civic-attachment-dark-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
