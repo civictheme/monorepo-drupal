@@ -35,9 +35,7 @@ export const NavigationCard = () => {
   const iconList = 'Icon (Applies to card with icon.)';
 
   const imageData = {
-    'src': 'https://via.placeholder.com/580x580',
-    'width': 580,
-    'height': 580,
+    'src': 'https://via.placeholder.com/400x400',
     'alt': 'image alt text'
   };
   

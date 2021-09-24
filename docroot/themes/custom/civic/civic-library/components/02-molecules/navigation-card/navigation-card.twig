@@ -19,11 +19,10 @@
 {% set modifier_class = '%s %s'|format(theme_class, type_class) %}
 {% set url = url|default('#') %}
 
-<a class="civic-nav-card {{ modifier_class }}" href="{{ url }}" title="">
+<a class="civic-nav-card {{ modifier_class }}" href="{{ url }}">
 	{% if 'civic-nav-card--large' in modifier_class %}
 		<div class="civic-nav-card__image-wrapper">
-			<img src="{{ image.src }}" alt="{{ image.alt }}" width="{{ image.width }}" height="{{ image.height }}">
-
+			<img src="{{ image.src }}" alt="{{ image.alt }}">
 			{% if image_over %}
 				<div class="civic-nav-card__image-over">{{ image_over }}</div>
 			{% endif %}
@@ -31,13 +30,13 @@
 	{% endif %}
 
 	{% if 'civic-nav-card--icon' in modifier_class %}
-		<span class="civic-nav-card__icon">
+		<div class="civic-nav-card__icon civic-nav-card__main-icon">
 			{% include '@atoms/icon/icon.twig' with {
 		    spritesheet: spritesheet,
 		    symbol: symbol,
 		    color: icon_color
 			} only %}
-		</span>
+		</div>
 	{% endif %}
 
 	<div class="civic-nav-card__content">
@@ -45,13 +44,10 @@
 			<div class="civic-nav-card__content-top">{{ content_top }}</div>
 		{% endif %}
 
-		{% include '@atoms/heading/heading.twig' with {
-	    level: 5,
-	    text: title
-		} %}
+		<h5 class="civic-nav-card__title">{{ title }}</h5>
 
 		<p class="civic-nav-card__summary">{{ summary }}</p>
-		<span class="civic-nav-card__read-more">
+		<span class="civic-nav-card__icon civic-nav-card__read-more">
 			{% include '@atoms/icon/icon.twig' with {
 		    spritesheet: '/icons/civic-arrows.svg',
 		    symbol: 'arrows-right-arrow-3',

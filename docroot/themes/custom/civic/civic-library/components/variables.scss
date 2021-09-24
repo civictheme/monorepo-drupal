@@ -80,6 +80,18 @@ $civic-outline-boxshadow: 0 0 0 3pt #05F !default;
 $civic-outline-accent-boxshadow: 0 0 0 3pt #61DAFF !default;
 
 //
+// Icon size.
+// parameters are width and height.
+//
+
+$civic-icon-size: (
+  'medium': (
+    'xs': (40px, 40px),
+    'm': (48px, 48px)
+  )
+);
+
+//
 // Typography.
 //
 

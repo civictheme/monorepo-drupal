@@ -4,39 +4,39 @@
 @import "../../00-base/base";
 
 .civic-nav-card {
+  display: block;
   text-decoration: none;
   box-shadow: 0 rem(8px) rem(32px) rgba(0, 0, 0, 0.2);
 
   &.civic-nav-card--large,
   &.civic-nav-card--small {
-    display: block;
-
     @include civic-breakpoint(m) {
       display: flex;
     }
   }
 
-  .civic-nav-card__content {
+  &__content {
     position: relative;
   }
 
-  .civic-nav-card__summary {
-    @include civic-breakpoint(xs) {
-      @include civic-typography((14px, 25px, 400, 'primary'));
-    }
+  &__title {
+    @include civic-typography(heading-5);
+    margin: 0;
+  }
 
+  &__summary {
+    @include civic-typography((14px, 25px, 400, 'primary'));
+    margin-bottom: 0;  
+    
     @include civic-breakpoint(m) {
       @include civic-typography((16px, 28px, 400, 'primary'));
     }
   }
 
-  .civic-nav-card__read-more {
+  &__read-more {
     position: absolute;
-
-    @include civic-breakpoint(xs) {
-      top: rem(20px);
-      right: rem(12px);
-    }
+    top: rem(20px);
+    right: rem(12px);
 
     @include civic-breakpoint(m) {
       top: civic-space(3);
@@ -44,11 +44,9 @@
     }
   }
 
-  &.civic-nav-card--large {
+  &--large {
     .civic-nav-card__content {
-      @include civic-breakpoint(xs) {
-        padding: rem(20px) civic-space(6) civic-space(3) rem(20px);
-      }
+      padding: rem(20px) civic-space(6) civic-space(3) rem(20px);
 
       @include civic-breakpoint(m) {
         padding: civic-space(3) civic-space(6) rem(20px) civic-space(3);
@@ -58,6 +56,7 @@
     .civic-nav-card__image-wrapper {
       @include civic-breakpoint(m) {
         max-width: rem(200px);
+        flex-shrink: 0;
       }
     }
 
@@ -68,11 +67,9 @@
     }
   }
 
-  &.civic-nav-card--small {
+  &--small {
     .civic-nav-card__content {
-      @include civic-breakpoint(xs) {
-        padding: rem(20px) rem(52px) rem(26px) rem(20px);
-      }
+      padding: rem(20px) rem(52px) rem(26px) rem(20px);
 
       @include civic-breakpoint(m) {
         padding: civic-space(3) civic-space(7) civic-space(4) civic-space(3);
@@ -80,37 +77,25 @@
     }
   }
 
-  &.civic-nav-card--icon {
+  &--icon {
     display: block;
-
-    @include civic-breakpoint(xs) {
-      padding: civic-space(2);
-      padding-right: 0;
-    }
+    padding: civic-space(2);
+    padding-right: 0;
 
     @include civic-breakpoint(m) {
       padding: civic-space(3);
       padding-right: 0;
     }
 
-    .civic-nav-card__icon {
+    .civic-nav-card__main-icon {
       .civic-icon {
-        @include civic-breakpoint(xs) {
-          width: rem(40px);
-          height: rem(40px);
-        }
-
-        @include civic-breakpoint(m) {
-          width: rem(48px);
-          height: rem(48px);
-        }
+        @include civic-icon-size(medium)
       }
+      margin-bottom: civic-space(2);
     }
 
     .civic-nav-card__content {
-      @include civic-breakpoint(xs) {
-        padding: 0 civic-space(2) 0 0;
-      }
+      padding: 0 civic-space(2) 0 0;
 
       @include civic-breakpoint(m) {
         padding: 0 civic-space(3) 0 0;
@@ -132,7 +117,7 @@
       background-color: unset;
       text-decoration: none;
 
-      .civic-heading {
+      .civic-nav-card__title {
         color: civic-color(secondary-accent);
         text-decoration: underline;
       }
@@ -145,7 +130,7 @@
     }
 
     &:active {
-      .civic-heading {
+      .civic-nav-card__title {
         color: civic-color(shade_60);
         text-decoration: underline;
       }
@@ -157,7 +142,7 @@
       }
     }
 
-    .civic-heading {
+    .civic-nav-card__title {
       color: civic-color(heading);
     }
 
@@ -174,7 +159,7 @@
     }
 
     &:hover {
-      .civic-heading {
+      .civic-nav-card__title {
         color: civic-color(primary-accent);
         text-decoration: underline;
       }
@@ -187,7 +172,7 @@
     }
 
     &:active {
-      .civic-heading {
+      .civic-nav-card__title {
         color: civic-color(neutral_20);
         text-decoration: underline;
       }
@@ -199,7 +184,7 @@
       }
     }
 
-    .civic-heading {
+    .civic-nav-card__title {
       color: civic-color(secondary);
     }
 
