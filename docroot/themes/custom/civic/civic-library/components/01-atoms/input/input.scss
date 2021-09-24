@@ -26,6 +26,9 @@
       outline: civic-color('neutral_80');
       border-color: civic-color('neutral_80');
     }
+    &::placeholder {
+      @include civic-typography('body');
+    }
   }
 
   &--disabled {
