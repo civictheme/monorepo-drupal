@@ -26,8 +26,8 @@
 
   &__summary {
     @include civic-typography((14px, 25px, 400, 'primary'));
-    margin-bottom: 0;  
-    
+    margin-bottom: 0;
+
     @include civic-breakpoint(m) {
       @include civic-typography((16px, 28px, 400, 'primary'));
     }
@@ -109,50 +109,51 @@
 
 
   &.civic-theme-light {
+    background-color: $civic-nav-card-light-background-color;
+    color: $civic-nav-card-light-color;
     &:focus {
       @include civic-outline(false);
     }
 
     &:hover {
-      background-color: unset;
       text-decoration: none;
 
       .civic-nav-card__title {
-        color: civic-color(secondary-accent);
+        color: $civic-nav-card-light-color-hover;
         text-decoration: underline;
       }
 
       .civic-nav-card__read-more {
         .civic-icon {
-          fill: civic-color(secondary-accent);
+          fill: $civic-nav-card-light-color-hover;
         }
       }
     }
 
     &:active {
       .civic-nav-card__title {
-        color: civic-color(shade_60);
+        color: $civic-nav-card-light-color-active;
         text-decoration: underline;
       }
 
       .civic-nav-card__read-more {
         .civic-icon {
-          fill: civic-color(shade_60);
+          fill: $civic-nav-card-light-color-active;
         }
       }
     }
 
     .civic-nav-card__title {
-      color: civic-color(heading);
+      color: $civic-nav-card-light-heading-color;
     }
 
     .civic-nav-card__summary {
-      color: civic-color('body');
+      color: $civic-nav-card-light-color;
     }
   }
 
   &.civic-theme-dark {
-    background-color: civic-color(shade_45);
+    background-color: $civic-nav-card-dark-background-color;
 
     &:focus {
       @include civic-outline(true);
@@ -160,41 +161,41 @@
 
     &:hover {
       .civic-nav-card__title {
-        color: civic-color(primary-accent);
+        color: $civic-nav-card-dark-color-hover;
         text-decoration: underline;
       }
 
       .civic-nav-card__read-more {
         .civic-icon {
-          fill: civic-color(primary-accent);
+          fill: $civic-nav-card-dark-color-hover;
         }
       }
     }
 
     &:active {
       .civic-nav-card__title {
-        color: civic-color(neutral_20);
+        color: $civic-nav-card-dark-heading-color-active;
         text-decoration: underline;
       }
     }
 
     .civic-nav-card__icon {
       .civic-icon {
-        fill: civic-color(primary-accent);
+        fill: $civic-nav-card-dark-color-active;
       }
     }
 
     .civic-nav-card__title {
-      color: civic-color(secondary);
+      color: $civic-nav-card-dark-heading-color;
     }
 
     .civic-nav-card__summary {
-      color: civic-color(neutral_5);
+      color: $civic-nav-card-dark-color;
     }
 
     .civic-nav-card__read-more {
       .civic-icon {
-        fill: civic-color(primary-accent);
+        fill: $civic-nav-card-dark-color-active;
       }
     }
   }
