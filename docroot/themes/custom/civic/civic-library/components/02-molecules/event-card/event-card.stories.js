@@ -1,6 +1,6 @@
 import { boolean, date, object, radios, text } from '@storybook/addon-knobs'
 
-import CivicNavigationCard from './event-card.twig'
+import CivicEventCard from './event-card.twig'
 import './event-card.scss'
 
 export default {
@@ -42,7 +42,7 @@ export const EventCard = () => {
    
   eventCardParams.date = new Date(eventCardParams.date).toLocaleDateString("en-uk", options);
 
-  return CivicNavigationCard(eventCardParams);
+  return CivicEventCard(eventCardParams);
 }
 
 
