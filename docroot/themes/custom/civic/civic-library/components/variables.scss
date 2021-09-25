@@ -11,6 +11,7 @@ $civic-default-colors: (
   'shade_30': mix(black, #00698F, 30%),
   'shade_45': mix(black, #00698F, 45%),
   'shade_60': mix(black, #00698F, 60%),
+  'neutral': #FFF,
   'neutral_5': #F2F4F5,
   'neutral_10': #E6E9EB,
   'neutral_20': #CCD4D8,
@@ -78,6 +79,18 @@ $civic-outline-accent: 0.1875rem solid #61DAFF !default;
 $civic-outline-offset: 0 !default;
 $civic-outline-boxshadow: 0 0 0 3pt #05F !default;
 $civic-outline-accent-boxshadow: 0 0 0 3pt #61DAFF !default;
+
+//
+// Icon size.
+// parameters are width and height.
+//
+
+$civic-icon-size: (
+  'medium': (
+    'xs': (40px, 40px),
+    'm': (48px, 48px)
+  )
+);
 
 //
 // Typography.
@@ -164,3 +177,16 @@ $civic-callout-dark-color: map-get(map-merge($civic-default-colors, $civic-color
 $civic-callout-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
 $civic-callout-light-stripe-color:  map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
 $civic-callout-dark-stripe-color:  $civic-callout-light-stripe-color !default;
+
+// Navigation card.
+$civic-nav-card-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral') !default;
+$civic-nav-card-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
+$civic-nav-card-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
+$civic-nav-card-light-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+$civic-nav-card-light-heading-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+
+$civic-nav-card-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
+$civic-nav-card-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-nav-card-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-nav-card-dark-color-accent: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-nav-card-dark-heading-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
