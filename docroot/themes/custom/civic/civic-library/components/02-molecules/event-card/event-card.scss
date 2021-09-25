@@ -54,17 +54,15 @@
 
   &__title {
     @include civic-typography(heading-4);
+    margin: 0;
   }
 
-  &__timing {
-    @include civic-typography(body-regular);
+  &__location {
+    @include civic-typography(card-summary);
   }
 
   &__summary {
-    @include civic-typography((
-      'xs': (14px, 25px, 400, 'primary', -0.1),
-      'm': (16px, 28px, 400, 'primary', 0)
-    ));
+    @include civic-typography(card-summary);
   }
 
   &__tag-wrapper {
@@ -73,12 +71,13 @@
   }
 
   &__tag {
-    @include civic-typography((14px, 20px, 400, 'primary', '-0.1'));
+    @include civic-typography(tag);
     border-radius: $civic-border-radius;
     padding: rem(4px) civic-space(1);
   }
 
   img {
+    display: block;
     height: auto;
     width: 100%;
   }
@@ -87,7 +86,7 @@
     background-color: $civic-event-card-light-background-color;
 
     &:focus {
-      @include civic-outline(fale)
+      @include civic-outline(false)
     }
 
     &:hover {
@@ -118,7 +117,7 @@
       color: $civic-event-card-light-heading-color;
     }
 
-    .civic-event-card__timing,
+    .civic-event-card__location,
     .civic-event-card__summary {
       color: $civic-event-card-light-body-color;
     }
@@ -162,7 +161,7 @@
     }
 
     .civic-event-card__summary,
-    .civic-event-card__timing {
+    .civic-event-card__location {
       color: $civic-event-card-dark-body-color;
     }
 

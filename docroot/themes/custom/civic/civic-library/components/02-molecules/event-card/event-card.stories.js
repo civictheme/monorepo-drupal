@@ -26,7 +26,7 @@ export const EventCard = () => {
     content_top_label: text('content top label', 'content top label'),
     date: date('Date', new Date()),
     title: text('Title', 'Event name which runs across two or three lines'),
-    place_n_time: text('Timing', 'Suburb, State – 16:00–17:00'),
+    location: text('Location', 'Suburb, State – 16:00–17:00'),
     summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..'),
     tag: text('Topic/industry tag', 'Topic/industry tag'),
     url: text('Card URL', 'https://google.com'),
