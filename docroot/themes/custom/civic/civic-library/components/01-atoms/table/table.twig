@@ -1,0 +1,50 @@
+{#
+/**
+ * This is strictly an exmaple file to demonstrate markup in Storybook.
+ * It is not intended to be included in any other component.
+ */
+#}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set striped_class = striped ? 'civic-table--%s'|format('striped') : '' %}
+{% set component_class = 'civic-table' %}
+{% set table_class = '%s %s %s'|format(component_class, theme_class, striped_class) %}
+
+<div class="{{ table_class }}">
+  {% if header %}
+    <div class="civic-table__header">
+      <h2>{{ header }}</h2>
+    </div>
+  {% endif %}
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Heading 1</th>
+        <th scope="col" colspan="2">Heading 2</th>
+        <th scope="col">Heading 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-title="Heading 1">Row 1</td>
+        <td data-title="Heading 2" colspan="2">Information about something</td>
+        <td data-title="Heading 3">And this is important</td>
+      </tr>
+      <tr>
+        <td data-title="Heading 1">Row 2</td>
+        <td data-title="Heading 2" colspan="2">Information about something</td>
+        <td data-title="Heading 3">And this is important</td>
+      </tr>
+      <tr>
+        <td data-title="Heading 1">Row 3</td>
+        <td data-title="Heading 2" colspan="2">Information about something</td>
+        <td data-title="Heading 3">And this is important</td>
+      </tr>
+      <tr>
+        <td data-title="Heading 1">Row 4</td>
+        <td data-title="Heading 2" colspan="2">Information about something</td>
+        <td data-title="Heading 3">And this is important</td>
+      </tr>
+    </tbody>
+    <caption>{{ caption }}</caption>
+  </table>
+</div>
