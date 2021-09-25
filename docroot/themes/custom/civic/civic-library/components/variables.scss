@@ -23,6 +23,8 @@ $civic-default-colors: (
   'heading-link': #00698F,
   'body': #536570,
   'link': #8258C4,
+  'link-light-visited': #8258C4,
+  'link-dark-visited': #A275EB,
   'information': #00A7CE,
   'success': #009694,
   'warning': #DC5800,
@@ -155,6 +157,23 @@ $civic-typography: (
   'label-small': (12px, 26px, 600, 'primary'),
 ) !default;
 
+// Link.
+$civic-link-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-link-light-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-link-light-background-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+
+$civic-link-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-link-dark-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
+$civic-link-dark-background-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+
+$civic-link-light-color-visited: map-get(map-merge($civic-default-colors, $civic-colors), 'link-light-visited') !default;
+$civic-link-light-color-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-link-light-background-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'link-light-visited') !default;
+
+$civic-link-dark-color-visited: map-get(map-merge($civic-default-colors, $civic-colors), 'link-dark-visited') !default;
+$civic-link-dark-color-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
+$civic-link-dark-background-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'link-dark-visited') !default;
+
 // Callout.
 $civic-callout-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
 $civic-callout-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
@@ -175,4 +194,4 @@ $civic-attachment-dark-background-color: map-get(map-merge($civic-default-colors
 $civic-attachment-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
 $civic-attachment-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 $civic-attachment-dark-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
-$civic-attachment-dark-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-attachment-dark-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
