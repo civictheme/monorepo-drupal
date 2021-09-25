@@ -46,6 +46,7 @@
           theme: theme,
           text: link.title,
           url: link.url,
+          modifier_class: 'civic-link__attachment'
         } only %}
       </div>
     {% endif %}
@@ -66,6 +67,7 @@
                 theme: theme,
                 text: linkObj.title,
                 url: linkObj.url,
+                modifier_class: 'civic-link__attachment'
               } only %}
 
               {% if linkObj.last_updated is not empty %}
