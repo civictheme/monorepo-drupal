@@ -4,6 +4,47 @@
 
 @import '../../00-base/base';
 
+@mixin civic-card-heading-state() {
+  & {
+    border-bottom: 0;
+    padding: 0;
+    text-decoration: underline;
+
+    &:hover {
+      background-color: unset;
+      padding: 0;
+    }
+
+    &:active {
+      text-underline: none;
+    }
+  }
+
+  &.civic-theme-light {
+    color: $civic-attachment-light-heading-color;
+
+    &:hover {
+      color: $civic-attachment-light-heading-color-hover;
+    }
+
+    &:active {
+      color: $civic-attachment-light-heading-color-active;
+    }
+  }
+
+  &.civic-theme-dark {
+    color: $civic-attachment-dark-heading-color;
+
+    &:hover {
+      color: $civic-attachment-dark-heading-color-hover;
+    }
+
+    &:active {
+      color: $civic-attachment-dark-heading-color-active;
+    }
+  }
+}
+
 .civic-attachment {
   border-radius: $civic-border-radius;
   border: solid $civic-border-width $civic-attachment-light-border-color;
@@ -121,6 +162,10 @@
     }
   }
 
+  .civic-link--attachment {
+    @include civic-card-heading-state();
+  }
+
   &.civic-theme-light {
     .civic-attachment {
       &__title {
@@ -142,12 +187,6 @@
         }
       }
     }
-    .civic-link__attachment {
-      color: $civic-attachment-light-heading-color;
-      &:hover {
-        color: $civic-link-light-color-hover;
-      }
-    }
   }
 
   &.civic-theme-dark {
@@ -161,26 +200,23 @@
       &__title {
         color: $civic-attachment-dark-heading-color;
       }
+
       &__icon {
         svg {
           fill: $civic-attachment-dark-icon-color;
         }
       }
+
       &__links {
         &--last-updated {
           color: $civic-attachment-dark-date-color;
         }
+
         &--link {
           svg {
             fill: civic-color('primary-accent');
           }
         }
-      }
-    }
-    .civic-link__attachment {
-      color: $civic-attachment-dark-heading-color;
-      &:hover {
-        color: $civic-link-dark-color-hover;
       }
     }
   }
