@@ -122,6 +122,10 @@
       color: $civic-event-card-light-body-color;
     }
 
+    .civic-event-card__location{
+      font-weight: 600;
+    }
+
     .civic-event-card__tag {
       background-color: $civic-event-card-light-tag-background-color;
       color: $civic-event-card-light-tag-color;
@@ -163,6 +167,10 @@
     .civic-event-card__summary,
     .civic-event-card__location {
       color: $civic-event-card-dark-body-color;
+    }
+
+    .civic-event-card__location{
+      font-weight: 600;
     }
 
     .civic-event-card__tag {

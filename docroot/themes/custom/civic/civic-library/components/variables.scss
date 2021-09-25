@@ -151,6 +151,10 @@ $civic-typography: (
     'xs': (18px, 29px, 400, 'primary', -0.15px),
     'm': (25px, 40px, 400, 'primary', -0.35px)
   ),
+  'card-summary': (
+    'xs': (14px, 25px, 400, 'primary', 0),
+    'm': (16px, 28px, 400, 'primary', 0)
+  ),
   'unordered-list': (
     'xs': (16px, 26px, 400, 'primary', 0),
     'm': (16px, 28px, 400, 'primary', 0)
@@ -162,10 +166,6 @@ $civic-typography: (
   'label-large': (
     'xs': (18px, 24px, 600, 'primary', -0.1px),
     'm': (18px, 24px, 600, 'primary', 0)
-  ),
-  'card-summary': (
-    'xs': (14px, 25px, 600, 'primary', 0),
-    'm': (16px, 28px, 600, 'primary', 0)
   ),
   'label-regular': (
     'xs': (16px, 20px, 600, 'primary', -0.1px),
