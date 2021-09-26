@@ -1,0 +1,73 @@
+{#
+/**
+ * @file
+ * Promo Card component.
+ *
+ * Display of Promo Card component.
+ *
+ * Variables:
+ * - theme: [string] Theme for Card.
+ * - image: [object] Image data for top of Card
+ * - content_top: [string] Component slot for above main content on Card.
+ * - title: [string] Card title.
+ * - summary: [string] Card summary.
+ * - content_middle: [string] Component slot for below main content on Card
+ * - date: [string] Date text
+ * - url: [string] Url for link out from Card
+ * - content_bottom: [string] Component slot for bottom of Card.
+ */
+#}
+
+{% set modifier_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{#{% if image %}#}
+{#  {% set modifier_class = values|merge(['civic-card-promo--image-enabled', modifier_class]) %}#}
+{#{% endif %}#}
+
+<div class="civic-card-promo {{ modifier_class }}">
+  {% if image.src %}
+  <div class="civic-card-promo__image">
+    <img src="{{ image.src }}" alt="{{ image.alt }}">
+    <div class="civic-card-promo__image__over">
+      {{  image_over }}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if content_top %}
+    <div class="civic-card-promo__content_top">
+      {{ content_top }}
+    </div>
+  {% endif %}
+
+  <div class="civic-card-promo__date">
+    {{ date }}
+  </div>
+
+  <div class="civic-card-promo__text">
+    <div class="civic-card-promo__title">
+      {{ title }}
+    </div>
+    <div class="civic-card-promo__summary">
+      {{ summary }}
+    </div>
+  </div>
+
+  <div class="civic-card-promo__content_middle">
+    {{ content_middle }}
+  </div>
+
+  <div class="civic-card-promo__meta">
+    <div class="civic-card-promo__topic">
+      {{ topic }}
+    </div>
+    <div class="civic-card-promo__url">
+      {{ url }}
+    </div>
+  </div>
+
+  {% if content_bottom %}
+    <div class="civic-card-promo__content-bottom">
+      {{ content_bottom }}
+    </div>
+  {% endif %}
+</div>

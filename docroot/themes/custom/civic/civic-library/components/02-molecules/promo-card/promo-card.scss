@@ -1,0 +1,37 @@
+
+//
+// Callout.
+//
+
+@import '../../00-base/base';
+
+.civic-card-promo {
+
+  &__date {
+    margin-top: civic-space(3);
+    @include civic-typography((
+      'xs': (13px, 20px, 400, 'primary'),
+      'l': (14px, 20px, 400, 'primary')
+    ));
+  }
+
+  &__url {
+
+  }
+
+  &__title {
+    margin-top: civic-space(2);
+    @include civic-typography((
+      'xs': (16px, 24px, 700, 'primary'),
+      'l': (20px, 28px, 700, 'primary')
+    ));
+  }
+
+  &__summary {
+    margin-top: civic-space(2);
+    @include civic-typography((
+      'xs': (14px, 25px, 400, 'primary'),
+      'l': (16px, 28px, 400, 'primary')
+    ));
+  }
+}
