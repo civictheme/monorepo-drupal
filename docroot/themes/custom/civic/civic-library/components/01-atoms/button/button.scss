@@ -19,7 +19,7 @@
   @if not index($types, $type) {
     @error '"#{$type}" is not one of allowed #{$types}.';
   }
-
+  display: inline-block;
   text-decoration: none;
 
   &:focus,
@@ -61,7 +61,7 @@
     &:hover,
     &:active {
       color: $civic-button-light-state-color;
-      
+
       .civic-icon {
         fill: $civic-button-light-state-color;
       }
@@ -95,14 +95,14 @@
     &:hover,
     &:active,
     &[disabled] {
-      color: $civic-button-dark-state-color;  
+      color: $civic-button-dark-state-color;
 
       .civic-icon {
         fill: $civic-button-dark-state-color;
-      }  
+      }
     }
 
-   
+
   }
 
   @if $type=='primary' {

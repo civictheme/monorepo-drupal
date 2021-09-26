@@ -53,12 +53,11 @@ export const Button = () => {
     ),
     type: radios(
       'Type', {
-        'None': 'none',
         'Primary': 'primary',
         'Secondary': 'secondary',
-        'tertiary': 'tertiary'
+        'Tertiary': 'tertiary'
       },
-      'none',
+      'primary',
       button
     ),
     icon: boolean('With icon', true, button),
@@ -87,7 +86,7 @@ export const Button = () => {
   }
 
   //Knob tabs order is decided on the basis of their order in story.
-  //Icon component parameters. 
+  //Icon component parameters.
   const sheets = Array.from(spritesheets)
   let spritesheet = select('Icon Pack', sheets, '/icons/civic-arrows.svg', iconList)
   let symbol = select('Symbol', icons[spritesheet], 'arrows-right-arrow-3', iconList)
@@ -95,8 +94,7 @@ export const Button = () => {
 
   const iconParams = {
     spritesheet,
-    symbol,
-    icon_color: select('Color', colors, 'primary', iconList)
+    symbol
   }
 
   return CivicButton({ ...buttonParams, ...iconParams });

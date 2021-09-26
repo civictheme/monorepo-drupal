@@ -47,7 +47,7 @@ $civic-colors: () !default;
 // Use @include breakpoint(name) mixin instead.
 //
 $civic-breakpoints: (
-  'xs': 368px,
+  'xs': 0,
   's': 576px,
   'm': 768px,
   'l': 992px,
