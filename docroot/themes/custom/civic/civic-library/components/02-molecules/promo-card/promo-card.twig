@@ -61,6 +61,11 @@
       {{ topic }}
     </div>
     <div class="civic-card-promo__url">
+      {% include '@atoms/icon/icon.twig' with {
+        spritesheet: '/icons/civic-arrows.svg',
+        symbol: 'arrows-right-arrow-3',
+        color: 'primary'
+      } only %}
       {{ url }}
     </div>
   </div>

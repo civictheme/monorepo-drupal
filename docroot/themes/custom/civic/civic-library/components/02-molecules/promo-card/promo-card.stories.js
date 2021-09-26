@@ -31,5 +31,5 @@ export const PromoCard = () => CivicPromoCard({
   },
   content_top_display: boolean('Display Content Top', false),
   date: text('Date', '1 Jun 1970'),
-  topic: text('Topic', null)
+  topic: text('Topic', 'Topic name')
 });

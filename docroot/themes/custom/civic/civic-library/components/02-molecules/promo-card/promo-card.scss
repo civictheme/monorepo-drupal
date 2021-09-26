@@ -15,7 +15,26 @@
     ));
   }
 
+  &__meta {
+    margin-top: civic-space(3);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__topic {
+    @include civic-typography((
+      'xs': (14px, 20px, 400, 'primary')
+    ));
+    padding: rem(4px) rem(8px);
+    color: $civic-promo-card-light-topic-color;
+    background-color: $civic-promo-card-light-topic-background-color;
+    border-radius: $civic-border-radius;
+  }
+
   &__url {
+    color: $civic-promo-card-light-link-color;
 
   }
 

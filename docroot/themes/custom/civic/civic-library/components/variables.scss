@@ -197,6 +197,11 @@ $civic-callout-dark-heading-color: map-get(map-merge($civic-default-colors, $civ
 $civic-callout-light-stripe-color:  map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
 $civic-callout-dark-stripe-color:  $civic-callout-light-stripe-color !default;
 
+// Promo Card.
+$civic-promo-card-light-topic-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-promo-card-light-topic-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-promo-card-light-link-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+
 // Attachment.
 $civic-attachment-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
 $civic-attachment-light-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
