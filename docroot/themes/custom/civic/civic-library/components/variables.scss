@@ -19,6 +19,7 @@ $civic-default-colors: (
   'neutral_60': #546570,
   'neutral_80': #35414B,
   'neutral_90': #1F2833,
+  'translucent': #00000000,
   // Element-specific colors.
   'heading': #1F2833,
   'heading-link': #00698F,
@@ -262,3 +263,32 @@ $civic-event-card-dark-date-color: map-get(map-merge($civic-default-colors, $civ
 $civic-event-card-dark-tag-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_80') !default;
 $civic-event-card-dark-color-accent: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 $civic-event-card-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+
+// Button
+$civic-button-light-primary-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-button-light-primary-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-button-light-secondary-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'translucent') !default;
+$civic-button-light-secondary-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-button-light-seondary-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-button-light-tertiary-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'translucent') !default;
+$civic-button-light-tertiary-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-button-light-focus-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-button-light-hover-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+$civic-button-light-active-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-button-light-disabled-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+$civic-button-light-disabled-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_60') !default;
+$civic-button-light-state-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+
+$civic-button-dark-primary-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-button-dark-primary-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-button-dark-secondary-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'translucent') !default;
+$civic-button-dark-secondary-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-button-dark-secondary-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-button-dark-tertiary-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-button-dark-tertiary-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-button-dark-focus-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-button-dark-focus-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-button-dark-hover-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'link') !default;
+$civic-button-dark-active-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-button-dark-disabled-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_60') !default;
+$civic-button-dark-state-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
