@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - block_content.type.civic_component_block
-    - field.field.block_content.civic_component_block.field_b_components
+    - field.field.block_content.civic_component_block.field_c_b_components
   module:
     - entity_reference_revisions
 id: block_content.civic_component_block.default
@@ -11,7 +11,7 @@ targetEntityType: block_content
 bundle: civic_component_block
 mode: default
 content:
-  field_b_components:
+  field_c_b_components:
     type: entity_reference_revisions_entity_view
     weight: 0
     label: above

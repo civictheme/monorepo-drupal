@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.civic_event.field_n_attachments
-    - field.field.node.civic_event.field_n_body
-    - field.field.node.civic_event.field_n_date
-    - field.field.node.civic_event.field_n_image
-    - field.field.node.civic_event.field_n_location
-    - field.field.node.civic_event.field_n_more_information
-    - field.field.node.civic_event.field_n_tagline
-    - field.field.node.civic_event.field_n_thumbnail
-    - field.field.node.civic_event.field_n_topics
+    - field.field.node.civic_event.field_c_n_attachments
+    - field.field.node.civic_event.field_c_n_body
+    - field.field.node.civic_event.field_c_n_date
+    - field.field.node.civic_event.field_c_n_image
+    - field.field.node.civic_event.field_c_n_location
+    - field.field.node.civic_event.field_c_n_more_information
+    - field.field.node.civic_event.field_c_n_tagline
+    - field.field.node.civic_event.field_c_n_thumbnail
+    - field.field.node.civic_event.field_c_n_topics
     - node.type.civic_event
     - workflows.workflow.editorial
   module:
@@ -31,7 +31,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_n_attachments:
+  field_c_n_attachments:
     type: paragraphs
     weight: 124
     settings:
@@ -50,7 +50,7 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
     region: content
-  field_n_body:
+  field_c_n_body:
     weight: 122
     settings:
       rows: 5
@@ -58,20 +58,20 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_n_date:
+  field_c_n_date:
     weight: 127
     settings: {  }
     third_party_settings: {  }
     type: daterange_default
     region: content
-  field_n_image:
+  field_c_n_image:
     type: media_library_widget
     weight: 126
     settings:
       media_types: {  }
     third_party_settings: {  }
     region: content
-  field_n_location:
+  field_c_n_location:
     type: paragraphs
     weight: 123
     settings:
@@ -90,7 +90,7 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
     region: content
-  field_n_more_information:
+  field_c_n_more_information:
     type: paragraphs
     weight: 128
     settings:
@@ -109,7 +109,7 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
     region: content
-  field_n_tagline:
+  field_c_n_tagline:
     weight: 121
     settings:
       size: 60
@@ -117,14 +117,14 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_n_thumbnail:
+  field_c_n_thumbnail:
     type: media_library_widget
     weight: 125
     settings:
       media_types: {  }
     third_party_settings: {  }
     region: content
-  field_n_topics:
+  field_c_n_topics:
     weight: 129
     settings:
       match_operator: CONTAINS

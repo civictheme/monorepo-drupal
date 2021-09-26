@@ -4,9 +4,29 @@
  * Button component.
  *
  * Variables:
- * - modifier_class: [string] Classes to modify the default component styling.
+ * - kind: [string] Button kind: submit, reset, button, link.
+ * - type: [string] Button type: primary, primary-accented, secondary, secondary-accented.
+ * - size: [string] Button size: large, regular, small.
+ * - modifier_class: [string] Additional classes to modify component styling.
  * - text: [string] Button text.
+ * - url: [string] URL for the link button.
+ * - new_window: [boolean] Open in a new window.
  * - disabled: [boolean] Disabled state.
  */
 #}
-<button class="civic-button {{ modifier_class }}" data-component-name="button" {{ disabled ? 'disabled' }}>{{ text }}</button>
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set kind = kind|default('button') %}
+{% set size = size|default('regular') %}
+{% set type_class = 'civic-button--%s'|format(type) %}
+{% set size_class = 'civic-button--%s'|format(size) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, type_class, size_class, modifier_class) %}
+{% set url = url|default('#') %}
+
+{% if kind == 'button' %}
+  <button class="civic-button {{ modifier_class }}" data-component-name="button" {{ disabled ? 'disabled' }}>{{ text }}</button>
+{% elseif kind == 'link' %}
+  <a class="civic-button {{ modifier_class }}" data-component-name="button" href="{{ url }}" title="{{ text }}" {{ new_window ? 'target="_blank"' }}>{{ text }}</a>
+{% elseif kind == 'reset' or kind == 'submit' %}
+  <input class="civic-button {{ modifier_class }}" type="{{ kind }}" data-component-name="button" value="{{ text }}" {{ disabled ? 'disabled' }}/>
+{% endif %}

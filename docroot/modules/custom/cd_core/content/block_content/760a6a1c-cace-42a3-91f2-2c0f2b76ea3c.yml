@@ -17,7 +17,7 @@ default:
   revision_translation_affected:
     -
       value: true
-  field_b_components:
+  field_c_b_components:
     -
       entity:
         _meta:
@@ -39,22 +39,22 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_address:
+          field_c_p_address:
             -
               value: 'Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.'
-          field_p_share_link:
+          field_c_p_share_link:
             -
               uri: 'internal:/'
               title: Homepage
               options: {  }
-          field_p_theme:
+          field_c_p_theme:
             -
               value: light
-          field_p_view_link:
+          field_c_p_view_link:
             -
               uri: 'http://www.google.com'
               title: Google
               options: {  }
-          field_p_zoom:
+          field_c_p_zoom:
             -
               value: 0

@@ -1,6 +1,8 @@
 @import "../../00-base/base";
 
 .civic-icon {
+  vertical-align: bottom;
+  fill: currentColor;
   $all-colors: map-merge($civic-default-colors, $civic-colors);
   @each $key, $value in $all-colors {
     &--color-#{$key} {

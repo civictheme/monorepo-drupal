@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_c_n_topics
+    - node.type.civic_event
+    - taxonomy.vocabulary.civic_topics
+id: node.civic_event.field_c_n_topics
+field_name: field_c_n_topics
+entity_type: node
+bundle: civic_event
+label: Topics
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      civic_topics: civic_topics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

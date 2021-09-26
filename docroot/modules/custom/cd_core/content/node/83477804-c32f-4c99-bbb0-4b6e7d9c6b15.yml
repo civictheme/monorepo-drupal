@@ -34,7 +34,7 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_n_components:
+  field_c_n_components:
     -
       entity:
         _meta:
@@ -56,7 +56,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_links:
+          field_c_p_links:
             -
               uri: 'https://www.google.com'
               title: Google
@@ -65,12 +65,12 @@ default:
               uri: 'https://www.gmail.com'
               title: Gmail
               options: {  }
-          field_p_summary:
+          field_c_p_summary:
             -
               value: "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.\r\n\r\nCapitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line."
-          field_p_theme:
+          field_c_p_theme:
             -
               value: dark
-          field_p_title:
+          field_c_p_title:
             -
               value: 'Leverage agile frameworks to provide a robust synopsis for high level overviews. '

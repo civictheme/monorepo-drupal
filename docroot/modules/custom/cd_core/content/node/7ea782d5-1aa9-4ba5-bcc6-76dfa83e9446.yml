@@ -37,7 +37,7 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_n_components:
+  field_c_n_components:
     -
       entity:
         _meta:
@@ -59,7 +59,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_cards:
+          field_c_p_cards:
             -
               entity:
                 _meta:
@@ -81,10 +81,10 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_reference:
+                  field_c_p_reference:
                     -
                       entity: dca378da-3f06-49fa-86e5-e97627ad77e6
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: light
             -
@@ -108,23 +108,23 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_reference:
+                  field_c_p_reference:
                     -
                       entity: 32e84de2-85db-425c-88e9-b311ba69e352
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: dark
-          field_p_column_count:
+          field_c_p_column_count:
             -
               value: 2
-          field_p_fill_width:
+          field_c_p_fill_width:
             -
               value: false
-          field_p_link:
+          field_c_p_link:
             -
               uri: 'http://google.com'
               title: 'Read more'
               options: {  }
-          field_p_title:
+          field_c_p_title:
             -
               value: 'Card container'

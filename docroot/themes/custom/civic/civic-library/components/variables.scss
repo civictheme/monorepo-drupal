@@ -3,14 +3,15 @@
 //
 $civic-default-colors: (
   'primary': #00698F,
-  'secondary': #9263DE,
   'primary-accent': #61DAFF,
-  'secondary-accent': #FFF,
-  'shade_-90': mix(white, #00698F, 90%),
+  'secondary': #FFF,
+  'secondary-accent': #9263DE,
+  'shade_90': mix(white, #00698F, 90%),
   'shade_15': mix(black, #00698F, 15%),
   'shade_30': mix(black, #00698F, 30%),
   'shade_45': mix(black, #00698F, 45%),
   'shade_60': mix(black, #00698F, 60%),
+  'neutral': #FFF,
   'neutral_5': #F2F4F5,
   'neutral_10': #E6E9EB,
   'neutral_20': #CCD4D8,
@@ -23,10 +24,13 @@ $civic-default-colors: (
   'heading-link': #00698F,
   'body': #536570,
   'link': #8258C4,
+  'link-light-visited': #8258C4,
+  'link-dark-visited': #A275EB,
   'information': #00A7CE,
   'success': #009694,
   'warning': #DC5800,
-  'error': #CF3836
+  'error': #CF3836,
+  'outline': #05F,
 );
 
 // All Civic palette is defined in $civic-default-colors. $civic-colors is
@@ -75,6 +79,20 @@ $civic-border-width: 0.125rem !default;
 $civic-outline: 0.1875rem solid #05F !default;
 $civic-outline-accent: 0.1875rem solid #61DAFF !default;
 $civic-outline-offset: 0 !default;
+$civic-outline-boxshadow: 0 0 0 3pt #05F !default;
+$civic-outline-accent-boxshadow: 0 0 0 3pt #61DAFF !default;
+
+//
+// Icon size.
+// parameters are width and height.
+//
+
+$civic-icon-size: (
+  'medium': (
+    'xs': (40px, 40px),
+    'm': (48px, 48px)
+  )
+);
 
 //
 // Typography.
@@ -91,34 +109,34 @@ $civic-font: (
 ) !default;
 
 $civic-typography: (
-  'display-xl': (56px, 60px, 700, 'primary'),
-  'display-l': (39px, 44px, 700, 'primary'),
+  'display-xl': (56px, 60px, 700, 'primary', -1px),
+  'display-l': (39px, 44px, 700, 'primary', -0.7px),
   'display-m': (28px, 32px, 700, 'primary'),
-  'display-s': (20px, 24px, 700, 'primary'),
-  'display-support': (18px, 31px, 400, 'primary'),
+  'display-s': (32px, 40px, 700, 'primary', -0.3px),
+  'display-support': (18px, 31px, 400, 'primary', 0),
   'heading-1': (
-    'xs': (32px, 40px, 'primary', '-0.6'),
+    'xs': (32px, 40px, 700, 'primary', -0.6px),
     'm': (48px, 60px, 700, 'primary', -1px)
   ),
   'heading-2': (
-    'xs': (28px, 35px, 'primary', '-0.5px'),
+    'xs': (28px, 35px, 700, 'primary', -0.5px),
     'm': (39px, 48px, 700, 'primary', -0.8px)
   ),
   'heading-3': (
-    'xs': (24px, 31px, 'primary', '0.35px'),
+    'xs': (24px, 31px, 700, 'primary', 0.35px),
     'm': (32px, 40px, 700, 'primary', -0.6px)
   ),
   'heading-4': (
-    'xs': (20px, 25px, 'primary', '-0.25px'),
+    'xs': (20px, 25px, 700, 'primary', -0.25px),
     'm': (25px, 31px, 700, 'primary', -0.4px)
   ),
   'heading-5': (
-    'xs': (16px, 22px, 'primary', 0),
+    'xs': (16px, 22px, 700, 'primary', 0),
     'm': (20px, 25px, 700, 'primary', -0.2px)
   ),
   'heading-6': (16px, 26px, 700, 'primary', 0),
   'lead': (
-    'xs': (18px, 29px, 400, 'primary', '0'),
+    'xs': (18px, 29px, 400, 'primary', 0),
     'm': (20px, 34px, 400, 'primary', '0')
   ),
   'body': (
@@ -130,24 +148,92 @@ $civic-typography: (
     'm': (14px, 25px, 400, 'primary', 0)
   ),
   'quote': (
-    'xs': (18px, 29px, '400', 'primary', -0.15px),
-    'm': (25px, 40px, '400', 'primary', -0.35px)
+    'xs': (18px, 29px, 400, 'primary', -0.15px),
+    'm': (25px, 40px, 400, 'primary', -0.35px)
   ),
   'unordered-list': (
-    'xs': (16px, 26px, '400', 'primary', 0),
-    'm': (15px, 28px, '400', 'primary', 0)
+    'xs': (16px, 26px, 400, 'primary', 0),
+    'm': (16px, 28px, 400, 'primary', 0)
   ),
   'ordered-list': (
-    'xs': (16px, 26px, '400', 'primary', 0),
-    'm': (15px, 28px, 400 ''primary'', 0)
+    'xs': (16px, 26px, 400, 'primary', 0),
+    'm': (16px, 28px, 400 'primary', 0)
   ),
   'label-large': (
     'xs': (18px, 24px, 600, 'primary', -0.1px),
-    'm': (18px, 24px, 600, ''primary'', 0)
+    'm': (18px, 24px, 600, 'primary', 0)
   ),
-  'label-normal': (
+  'label-regular': (
     'xs': (16px, 20px, 600, 'primary', -0.1px),
     'm': (16px, 20px, 600, 'primary', 0)
   ),
   'label-small': (12px, 26px, 600, 'primary'),
 ) !default;
+
+// Link.
+$civic-link-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-link-light-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-link-light-background-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+
+$civic-link-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-link-dark-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
+$civic-link-dark-background-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+
+$civic-link-light-color-visited: map-get(map-merge($civic-default-colors, $civic-colors), 'link-light-visited') !default;
+$civic-link-light-color-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-link-light-background-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'link-light-visited') !default;
+
+$civic-link-dark-color-visited: map-get(map-merge($civic-default-colors, $civic-colors), 'link-dark-visited') !default;
+$civic-link-dark-color-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
+$civic-link-dark-background-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'link-dark-visited') !default;
+
+// Callout.
+$civic-callout-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-callout-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
+$civic-callout-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
+$civic-callout-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_15') !default;
+$civic-callout-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
+$civic-callout-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
+$civic-callout-light-stripe-color:  map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+$civic-callout-dark-stripe-color:  $civic-callout-light-stripe-color !default;
+
+// Attachment.
+$civic-attachment-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
+$civic-attachment-light-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-attachment-light-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+$civic-attachment-light-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_60') !default;
+$civic-attachment-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
+$civic-attachment-light-heading-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+$civic-attachment-light-heading-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-attachment-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-attachment-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
+$civic-attachment-dark-heading-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-attachment-dark-heading-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral') !default;
+$civic-attachment-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-attachment-dark-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
+$civic-attachment-dark-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+
+// Navigation card.
+$civic-nav-card-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral') !default;
+$civic-nav-card-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
+$civic-nav-card-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
+$civic-nav-card-light-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+$civic-nav-card-light-heading-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+
+$civic-nav-card-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
+$civic-nav-card-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-nav-card-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-nav-card-dark-color-accent: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-nav-card-dark-heading-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+
+// Table.
+$civic-table-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
+$civic-table-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
+$civic-table-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-table-light-row-even-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+
+$civic-table-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_90') !default;
+$civic-table-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-table-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
+$civic-table-dark-row-odd-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-table-dark-row-even-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;

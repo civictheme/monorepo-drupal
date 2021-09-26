@@ -36,7 +36,7 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_n_banner_components:
+  field_c_n_banner_components:
     -
       entity:
         _meta:
@@ -58,27 +58,27 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_date:
+          field_c_p_date:
             -
               value: '2021-09-30'
-          field_p_image:
+          field_c_p_image:
             -
               entity: 59f0d0e8-51c2-4983-a41d-51e7a22899dd
-          field_p_link:
+          field_c_p_link:
             -
               uri: 'https://google.com'
               title: Google
               options: {  }
-          field_p_summary:
+          field_c_p_summary:
             -
               value: 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.'
-          field_p_theme:
+          field_c_p_theme:
             -
               value: light
-          field_p_title:
+          field_c_p_title:
             -
               value: 'Banner component - Promo card'
-  field_n_components:
+  field_c_n_components:
     -
       entity:
         _meta:
@@ -100,7 +100,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_p_cards:
+          field_c_p_cards:
             -
               entity:
                 _meta:
@@ -122,29 +122,29 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_p_image:
+                  field_c_p_image:
                     -
                       entity: 59f0d0e8-51c2-4983-a41d-51e7a22899dd
-                  field_p_link:
+                  field_c_p_link:
                     -
                       uri: 'https://www.google.com'
                       title: Google
                       options: {  }
-                  field_p_summary:
+                  field_c_p_summary:
                     -
                       value: 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.'
-                  field_p_theme:
+                  field_c_p_theme:
                     -
                       value: light
-                  field_p_title:
+                  field_c_p_title:
                     -
                       value: 'components >> Card container >> title'
-          field_p_column_count:
+          field_c_p_column_count:
             -
               value: 1
-          field_p_fill_width:
+          field_c_p_fill_width:
             -
               value: true
-          field_p_title:
+          field_c_p_title:
             -
               value: 'Card container -  Title'
