@@ -1,0 +1,202 @@
+//
+// Navigation card.
+//
+@import "../../00-base/base";
+
+.civic-nav-card {
+  display: block;
+  text-decoration: none;
+  box-shadow: 0 rem(8px) rem(32px) rgba(0, 0, 0, 0.2);
+
+  &.civic-nav-card--large,
+  &.civic-nav-card--small {
+    @include civic-breakpoint(m) {
+      display: flex;
+    }
+  }
+
+  &__content {
+    position: relative;
+  }
+
+  &__title {
+    @include civic-typography(heading-5);
+    margin: 0;
+  }
+
+  &__summary {
+    @include civic-typography((14px, 25px, 400, 'primary'));
+    margin-bottom: 0;
+
+    @include civic-breakpoint(m) {
+      @include civic-typography((16px, 28px, 400, 'primary'));
+    }
+  }
+
+  &__read-more {
+    position: absolute;
+    top: rem(20px);
+    right: rem(12px);
+
+    @include civic-breakpoint(m) {
+      top: civic-space(3);
+      right: civic-space(2);
+    }
+  }
+
+  &--large {
+    .civic-nav-card__content {
+      padding: rem(20px) civic-space(6) civic-space(3) rem(20px);
+
+      @include civic-breakpoint(m) {
+        padding: civic-space(3) civic-space(6) rem(20px) civic-space(3);
+      }
+    }
+
+    .civic-nav-card__image-wrapper {
+      @include civic-breakpoint(m) {
+        max-width: rem(200px);
+        flex-shrink: 0;
+      }
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &--small {
+    .civic-nav-card__content {
+      padding: rem(20px) rem(52px) rem(26px) rem(20px);
+
+      @include civic-breakpoint(m) {
+        padding: civic-space(3) civic-space(7) civic-space(4) civic-space(3);
+      }
+    }
+  }
+
+  &--icon {
+    display: block;
+    padding: civic-space(2);
+    padding-right: 0;
+
+    @include civic-breakpoint(m) {
+      padding: civic-space(3);
+      padding-right: 0;
+    }
+
+    .civic-nav-card__main-icon {
+      .civic-icon {
+        @include civic-icon-size(medium)
+      }
+      margin-bottom: civic-space(2);
+    }
+
+    .civic-nav-card__content {
+      padding: 0 civic-space(2) 0 0;
+
+      @include civic-breakpoint(m) {
+        padding: 0 civic-space(3) 0 0;
+      }
+    }
+
+    .civic-nav-card__read-more {
+      top: 0;
+    }
+  }
+
+
+  &.civic-theme-light {
+    background-color: $civic-nav-card-light-background-color;
+    color: $civic-nav-card-light-color;
+    &:focus {
+      @include civic-outline(false);
+    }
+
+    &:hover {
+      text-decoration: none;
+
+      .civic-nav-card__title {
+        color: $civic-nav-card-light-color-hover;
+        text-decoration: underline;
+      }
+
+      .civic-nav-card__read-more {
+        .civic-icon {
+          fill: $civic-nav-card-light-color-hover;
+        }
+      }
+    }
+
+    &:active {
+      .civic-nav-card__title {
+        color: $civic-nav-card-light-heading-color-active;
+        text-decoration: underline;
+      }
+
+      .civic-nav-card__read-more {
+        .civic-icon {
+          fill: $civic-nav-card-light-heading-color-active;
+        }
+      }
+    }
+
+    .civic-nav-card__title {
+      color: $civic-nav-card-light-heading-color;
+    }
+
+    .civic-nav-card__summary {
+      color: $civic-nav-card-light-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-nav-card-dark-background-color;
+
+    &:focus {
+      @include civic-outline(true);
+    }
+
+    &:hover {
+      .civic-nav-card__title {
+        color: $civic-nav-card-dark-color-accent;
+        text-decoration: underline;
+      }
+
+      .civic-nav-card__read-more {
+        .civic-icon {
+          fill: $civic-nav-card-dark-color-accent;
+        }
+      }
+    }
+
+    &:active {
+      .civic-nav-card__title {
+        color: $civic-nav-card-dark-heading-color-active;
+        text-decoration: underline;
+      }
+    }
+
+    .civic-nav-card__icon {
+      .civic-icon {
+        fill: $civic-nav-card-dark-color-accent;
+      }
+    }
+
+    .civic-nav-card__title {
+      color: $civic-nav-card-dark-heading-color;
+    }
+
+    .civic-nav-card__summary {
+      color: $civic-nav-card-dark-color;
+    }
+
+    .civic-nav-card__read-more {
+      .civic-icon {
+        fill: $civic-nav-card-dark-color-accent;
+      }
+    }
+  }
+}

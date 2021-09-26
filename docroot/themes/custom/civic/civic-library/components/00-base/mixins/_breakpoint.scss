@@ -39,3 +39,34 @@
     @content;
   }
 }
+
+//
+// Max-width breakpoint.
+//
+//@code
+//
+// @include civic-breakpoint-upto(s) {
+//   color: red;
+// }
+// @include civic-breakpoint-upto(m) {
+//   color: green;
+// }
+// @include civic-breakpoint-upto(l) {
+//   color: blue;
+// }
+//
+// @endcode
+//
+@mixin civic-breakpoint-upto($class) {
+  @if map-get($civic-breakpoints, $class)==null {
+    @error '"#{$class}" is not an available breakpoint. (#{map-keys($civic-breakpoints)})';
+  }
+  $breakpoint-value: map-get($civic-breakpoints, $class);
+
+  @if $breakpoint-value==null {
+  }
+
+  @include breakpoint("max-width" $breakpoint-value - 1) {
+    @content;
+  }
+}
