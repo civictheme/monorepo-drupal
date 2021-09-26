@@ -63,7 +63,7 @@
   }
 
   &__summary {
-    @include civic-typography(card-summary);
+    @include civic-typography(body);
   }
 
   &__tag-wrapper {
