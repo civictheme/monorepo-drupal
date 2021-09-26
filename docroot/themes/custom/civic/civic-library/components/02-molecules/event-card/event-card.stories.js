@@ -10,7 +10,7 @@ export default {
 
 export const EventCard = () => {
   const imageData = {
-    'src': 'https://via.placeholder.com/376x240',
+    'src': 'static/media/assets/image.png',
     'alt': 'image alt text'
   };
 

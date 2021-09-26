@@ -25,7 +25,7 @@
   }
 
   &__summary {
-    @include civic-typography(card-summary);
+    @include civic-typography(body);
     margin-bottom: civic-space(1);
   }
 

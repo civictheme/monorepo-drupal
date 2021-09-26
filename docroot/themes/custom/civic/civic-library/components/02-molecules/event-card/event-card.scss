@@ -5,17 +5,18 @@
 @import '../../00-base/base';
 
 .civic-event-card {
+  $root: &;
   display: block;
   text-decoration: none;
 
   &:hover {
-    .civic-event-card__title {
+    &__title {
       text-decoration: underline;
     }
   }
 
   &:active {
-    .civic-event-card__title {
+    &__title {
       outline: none;
       text-decoration: underline;
     }
@@ -58,7 +59,7 @@
   }
 
   &__location {
-    @include civic-typography(card-summary);
+    @include civic-typography(body);
   }
 
   &__summary {
