@@ -10,40 +10,33 @@
 {% set table_class = '%s %s %s'|format(component_class, theme_class, striped_class) %}
 
 <div class="{{ table_class }}">
-  {% if header %}
+  {% if heading %}
     <div class="civic-table__header">
-      <h2>{{ header }}</h2>
+      <h2>{{ heading }}</h2>
     </div>
   {% endif %}
   <table>
+    {% if header is not empty %}
     <thead>
       <tr>
-        <th scope="col">Heading 1</th>
-        <th scope="col" colspan="2">Heading 2</th>
-        <th scope="col">Heading 3</th>
+        {% for item in header %}
+          <th scope="col">{{ item }}</th>
+        {% endfor %}
       </tr>
     </thead>
+    {% endif %}
     <tbody>
-      <tr>
-        <td data-title="Heading 1">Row 1</td>
-        <td data-title="Heading 2" colspan="2">Information about something</td>
-        <td data-title="Heading 3">And this is important</td>
-      </tr>
-      <tr>
-        <td data-title="Heading 1">Row 2</td>
-        <td data-title="Heading 2" colspan="2">Information about something</td>
-        <td data-title="Heading 3">And this is important</td>
-      </tr>
-      <tr>
-        <td data-title="Heading 1">Row 3</td>
-        <td data-title="Heading 2" colspan="2">Information about something</td>
-        <td data-title="Heading 3">And this is important</td>
-      </tr>
-      <tr>
-        <td data-title="Heading 1">Row 4</td>
-        <td data-title="Heading 2" colspan="2">Information about something</td>
-        <td data-title="Heading 3">And this is important</td>
-      </tr>
+      {% if raws is not empty %}
+        {% for raw in raws  %}
+          <tr>
+            {% for item in raw %}
+              <td data-title="{{ header[loop.index] }}">{{ item }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      {% else %}
+        <h2> Table is empty </h2>
+      {% endif %}
     </tbody>
     <caption>{{ caption }}</caption>
   </table>
