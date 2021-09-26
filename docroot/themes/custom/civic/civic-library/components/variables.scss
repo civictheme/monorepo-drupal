@@ -31,6 +31,14 @@ $civic-default-colors: (
   'warning': #DC5800,
   'error': #CF3836,
   'outline': #05F,
+  'validation-light-error': #F8E1E1,
+  'validation-light-warning': #FAE6D9,
+  'validation-light-info': #D9F2F8,
+  'validation-light-success': #D9EFEF,
+  'validation-dark-error': #CF3836,
+  'validation-dark-warning': #DC5800,
+  'validation-dark-info': #00A7CE,
+  'validation-dark-success': #009694,
 );
 
 // All Civic palette is defined in $civic-default-colors. $civic-colors is
@@ -167,6 +175,10 @@ $civic-typography: (
     'xs': (16px, 20px, 600, 'primary', -0.1px),
     'm': (16px, 20px, 600, 'primary', 0)
   ),
+  'label-tag': (
+    'xs': (12px, 20px, 400, 'primary', -0.1px),
+    'm': (14px, 20px, 400, 'primary', -0.1px)
+  ),
   'label-small': (12px, 26px, 600, 'primary'),
 ) !default;
 
@@ -237,3 +249,21 @@ $civic-table-dark-heading-color: map-get(map-merge($civic-default-colors, $civic
 $civic-table-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
 $civic-table-dark-row-odd-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
 $civic-table-dark-row-even-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+
+//Messages
+$civic-messages-light-background-info-color: map-get(map-merge($civic-default-colors, $civic-colors), 'validation-light-info') !default;
+$civic-messages-light-background-error-color: map-get(map-merge($civic-default-colors, $civic-colors), 'validation-light-error') !default;
+$civic-messages-light-background-warning-color: map-get(map-merge($civic-default-colors, $civic-colors), 'validation-light-warning') !default;
+$civic-messages-light-background-success-color: map-get(map-merge($civic-default-colors, $civic-colors), 'validation-light-success') !default;
+$civic-messages-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
+$civic-messages-light-icon-info-color: map-get(map-merge($civic-default-colors, $civic-colors), 'information') !default;
+$civic-messages-light-icon-warning-color: map-get(map-merge($civic-default-colors, $civic-colors), 'warning') !default;
+$civic-messages-light-icon-success-color: map-get(map-merge($civic-default-colors, $civic-colors), 'success') !default;
+$civic-messages-light-icon-error-color: map-get(map-merge($civic-default-colors, $civic-colors), 'error') !default;
+
+$civic-messages-dark-background-info-color: map-get(map-merge($civic-default-colors, $civic-colors), 'validation-dark-info') !default;
+$civic-messages-dark-background-error-color: map-get(map-merge($civic-default-colors, $civic-colors), 'validation-dark-error') !default;
+$civic-messages-dark-background-warning-color: map-get(map-merge($civic-default-colors, $civic-colors), 'validation-dark-warning') !default;
+$civic-messages-dark-background-success-color: map-get(map-merge($civic-default-colors, $civic-colors), 'validation-dark-success') !default;
+$civic-messages-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+
