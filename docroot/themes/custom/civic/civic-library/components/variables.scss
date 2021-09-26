@@ -45,8 +45,10 @@ $civic-colors: () !default;
 // Do not use these directly, except for calculations.
 // Use @include breakpoint(name) mixin instead.
 //
+// First breakpoint is set to 0 so styles apply to all window sizes (not just small mobile - 368px and above).
+//
 $civic-breakpoints: (
-  'xs': 368px,
+  'xs': 0,
   's': 576px,
   'm': 768px,
   'l': 992px,
