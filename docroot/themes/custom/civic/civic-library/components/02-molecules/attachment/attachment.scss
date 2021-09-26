@@ -89,10 +89,7 @@
 
   &__summary {
     margin-top: 16px;
-    @include civic-typography((
-      'xs': (14px, 25px, 400),
-      'l': (16px, 28px, 400)
-    ));
+    @include civic-typography(body);
   }
 
   &__title {
