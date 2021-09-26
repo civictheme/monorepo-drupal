@@ -45,8 +45,10 @@ $civic-colors: () !default;
 // Do not use these directly, except for calculations.
 // Use @include breakpoint(name) mixin instead.
 //
+// First breakpoint is set to 0 so styles apply to all window sizes (not just small mobile - 368px and above).
+//
 $civic-breakpoints: (
-  'xs': 368px,
+  'xs': 0,
   's': 576px,
   'm': 768px,
   'l': 992px,
@@ -238,6 +240,28 @@ $civic-table-dark-heading-color: map-get(map-merge($civic-default-colors, $civic
 $civic-table-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
 $civic-table-dark-row-odd-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
 $civic-table-dark-row-even-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+
+// Event card.
+$civic-event-card-border-top-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+
+$civic-event-card-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-event-card-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
+$civic-event-card-light-body-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
+$civic-event-card-light-date-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutal_5') !default;
+$civic-event-card-light-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_80') !default;
+$civic-event-card-light-tag-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-event-card-light-tag-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-event-card-light-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+$civic-event-card-light-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+
+$civic-event-card-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
+$civic-event-card-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-event-card-dark-body-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-event-card-dark-date-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-event-card-dark-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-event-card-dark-tag-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_80') !default;
+$civic-event-card-dark-color-accent: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-event-card-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
 
 // Tag.
 $civic-tag-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
