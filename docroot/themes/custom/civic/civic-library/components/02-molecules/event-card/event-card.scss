@@ -10,14 +10,15 @@
   text-decoration: none;
 
   &:hover {
-    &__title {
+    #{$root}__title {
       text-decoration: underline;
     }
   }
 
   &:active {
-    &__title {
-      outline: none;
+    outline: none;
+    
+    #{$root}__title {
       text-decoration: underline;
     }
   }
@@ -91,21 +92,21 @@
     }
 
     &:hover {
-      .civic-event-card__title {
+      #{$root}__title {
         color: $civic-event-card-light-color-hover;
       }
     }
 
     &:active {
-      .civic-event-card__title {
+      #{$root}__title {
         color: $civic-event-card-light-color-active;
       }
     }
 
-    .civic-event-card__date-wrapper {
+    #{$root}__date-wrapper {
       background-color: $civic-event-card-light-date-background-color;
 
-      .civic-event-card__date {
+      #{$root}__date {
         color: $civic-event-card-light-date-color;
 
         @include civic-breakpoint(m) {
@@ -114,20 +115,20 @@
       }
     }
 
-    .civic-event-card__title {
+    #{$root}__title {
       color: $civic-event-card-light-heading-color;
     }
 
-    .civic-event-card__location,
-    .civic-event-card__summary {
+    #{$root}__location,
+    #{$root}__summary {
       color: $civic-event-card-light-body-color;
     }
 
-    .civic-event-card__location{
+    #{$root}__location{
       font-weight: 600;
     }
 
-    .civic-event-card__tag {
+    #{$root}__tag {
       background-color: $civic-event-card-light-tag-background-color;
       color: $civic-event-card-light-tag-color;
     }
@@ -142,44 +143,44 @@
     }
 
     &:hover {
-      .civic-event-card__title {
+      #{$root}__title {
         color: $civic-event-card-dark-color-accent;
       }
     }
 
     &:active {
-      .civic-event-card__title {
+      #{$root}__title {
         color: $civic-event-card-dark-color-active;
       }
     }
 
-    .civic-event-card__date-wrapper {
+    #{$root}__date-wrapper {
       background-color: $civic-event-card-dark-date-background-color;
 
-      .civic-event-card__date {
+      #{$root}__date {
         color: $civic-event-card-dark-date-color;
       }
     }
 
-    .civic-event-card__title {
+    #{$root}__title {
       color: $civic-event-card-dark-heading-color;
     }
 
-    .civic-event-card__summary,
-    .civic-event-card__location {
+    #{$root}__summary,
+    #{$root}__location {
       color: $civic-event-card-dark-body-color;
     }
 
-    .civic-event-card__location{
+    #{$root}__location{
       font-weight: 600;
     }
 
-    .civic-event-card__tag {
+    #{$root}__tag {
       background-color: $civic-event-card-dark-color-accent;
       color: $civic-event-card-dark-tag-color;
     }
 
-    .civic-event-card__icon {
+    #{$root}__icon {
       .civic-icon {
         fill: $civic-event-card-dark-color-accent;
       }
