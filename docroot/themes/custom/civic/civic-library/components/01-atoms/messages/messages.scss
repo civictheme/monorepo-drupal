@@ -62,6 +62,7 @@ $types: ('info', 'error', 'warning', 'success');
   flex-wrap: nowrap;
   justify-content: stretch;
   padding: civic-space();
+  border-radius: $civic-border-radius;
   @include civic-typography('label-tag');
 
   &__icon {
