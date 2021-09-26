@@ -85,8 +85,10 @@
   }
 
   &.civic-theme-light {
-    background-color: $civic-table-light-background-color;
     color: $civic-table-light-color;
+    table {
+      background-color: $civic-table-light-background-color;
+    }
 
     thead {
       @include civic-breakpoint('m') {
@@ -100,9 +102,6 @@
         tr:first-child td {
           border-top: solid 2px $civic-table-light-color;
         }
-      }
-      tr:nth-child(even) {
-        background: $civic-table-light-row-even-color;
       }
 
       @include civic-breakpoint-upto('m') {
@@ -118,6 +117,10 @@
 
   &.civic-theme-dark {
     color: $civic-table-dark-color;
+
+    table {
+      background-color: $civic-table-dark-row-odd-color;
+    }
 
     thead {
       @include civic-breakpoint('m') {
@@ -141,7 +144,16 @@
           }
         }
       }
+    }
+  }
 
+  &--striped {
+    &.civic-theme-light {
+      tr:nth-child(even) {
+        background: $civic-table-light-row-even-color;
+      }
+    }
+    &.civic-theme-dark {
       tr:nth-child(odd) {
         background: $civic-table-dark-row-odd-color;
       }
