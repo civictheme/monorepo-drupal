@@ -58,6 +58,7 @@
             max-width: rem(100px);
             flex-shrink: 0;
             vertical-align: middle;
+            @include civic-typography('label-regular');
             padding-right: civic-space(2);
           }
         }
