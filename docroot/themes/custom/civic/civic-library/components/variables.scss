@@ -213,11 +213,6 @@ $civic-callout-dark-heading-color: map-get(map-merge($civic-default-colors, $civ
 $civic-callout-light-stripe-color:  map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
 $civic-callout-dark-stripe-color:  $civic-callout-light-stripe-color !default;
 
-// Promo Card.
-$civic-promo-card-light-topic-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
-$civic-promo-card-light-topic-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
-$civic-promo-card-light-link-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
-
 // Attachment.
 $civic-attachment-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
 $civic-attachment-light-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
@@ -281,6 +276,29 @@ $civic-event-card-dark-tag-color: map-get(map-merge($civic-default-colors, $civi
 $civic-event-card-dark-color-accent: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 $civic-event-card-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
 
+// Promo Card
+$civic-card-promo-border-top-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+
+$civic-card-promo-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-card-promo-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
+$civic-card-promo-light-body-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
+$civic-card-promo-light-date-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutal_5') !default;
+$civic-card-promo-light-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_80') !default;
+$civic-card-promo-light-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+$civic-card-promo-light-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-promo-card-light-topic-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-promo-card-light-topic-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+
+$civic-card-promo-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
+$civic-card-promo-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-card-promo-dark-body-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-card-promo-dark-date-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-card-promo-dark-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-card-promo-dark-topic-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_80') !default;
+$civic-promo-card-dark-topic-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-card-promo-dark-color-accent: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-card-promo-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+
 // Button
 $civic-button-light-primary-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
 $civic-button-light-primary-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
@@ -334,3 +352,4 @@ $civic-tag-light-color: map-get(map-merge($civic-default-colors, $civic-colors),
 
 $civic-tag-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
 $civic-tag-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+
