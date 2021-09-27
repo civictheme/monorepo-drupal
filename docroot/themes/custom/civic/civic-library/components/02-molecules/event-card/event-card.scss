@@ -42,15 +42,8 @@
     padding: civic-space(3);
   }
 
-  &__date-wrapper {
-    border-radius: $civic-border-radius;
-    margin-bottom: civic-space(2);
-    padding: rem(2px) civic-space(1) rem(2px) rem(4px);
-    width: fit-content;
-  }
-
   &__date {
-    @include civic-typography((14px, 20px, 400, 'primary', '-0.1'));
+    margin-bottom: civic-space(2);
   }
 
   &__link {
@@ -116,18 +109,6 @@
       }
     }
 
-    #{$root}__date-wrapper {
-      background-color: $civic-event-card-light-date-background-color;
-
-      #{$root}__date {
-        color: $civic-event-card-light-date-color;
-
-        @include civic-breakpoint(m) {
-          color: $civic-event-card-light-body-color;
-        }
-      }
-    }
-
     #{$root}__title {
       color: $civic-event-card-light-heading-color;
     }
@@ -164,14 +145,6 @@
     &:active {
       #{$root}__title {
         color: $civic-event-card-dark-color-active;
-      }
-    }
-
-    #{$root}__date-wrapper {
-      background-color: $civic-event-card-dark-date-background-color;
-
-      #{$root}__date {
-        color: $civic-event-card-dark-date-color;
       }
     }
 
