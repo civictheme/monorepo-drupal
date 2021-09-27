@@ -1,0 +1,38 @@
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+
+<div class="civic-accordion__wrapper {{ theme_class }}">
+  <div class="civic-accordion__content-top">
+    {% if title %}
+      <h2 class="civic-accordion__title-top">
+        {{ title }}
+      </h2>
+    {% endif %}
+  </div>
+  <div class="civic-accordion">
+    <ul class="civic-accordion__list" aria-multiselectable="true">
+      {% for fold in panels %}
+        <li class="civic-accordion__list-item">
+          {% if fold.title %}
+            <h3 class="civic-accordion__header">
+              <button class="civic-accordion__header__button">
+                {{ fold.title }}
+                {% include '@atoms/icon/icon.twig' with {
+                  spritesheet: '/icons/civic-arrows.svg',
+                  symbol: 'arrows-down-arrow-1'
+                } %}
+              </button>
+            </h3>
+          {% endif %}
+
+          {% if fold.content %}
+            <div class="civic-accordion__content" {{ fold.expanded ? data-open }}>
+              <div class="civic-accordion__content--inner">
+                {{ fold.content }}
+              </div>
+            </div>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
