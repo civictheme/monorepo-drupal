@@ -14,7 +14,6 @@
   a {
     color: $civic-card-promo-light-heading-color;
     text-decoration: none;
-
     &:hover {
       color: $civic-card-promo-light-color-hover;
       text-decoration: underline;
@@ -56,7 +55,8 @@
     border-radius: $civic-border-radius;
   }
 
-  &__link {
+  &__link a {
+    color: $civic-promo-card-light-link-color;
     svg {
       fill: currentColor;
     }
@@ -115,8 +115,8 @@
         background-color: $civic-card-promo-dark-color-accent;
       }
 
-      &__link svg {
-        color: $civic-card-promo-dark-color-accent;
+      &__link a {
+        color: $civic-promo-card-dark-link-color;
       }
     }
   }
