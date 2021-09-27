@@ -344,3 +344,16 @@ $civic-progress-indicator-dark-color: map-get(map-merge($civic-default-colors, $
 $civic-progress-indicator-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
 $civic-progress-indicator-dark-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 $civic-progress-indicator-dark-active-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+
+// Service card.
+$civic-service-card-border-top-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+
+$civic-service-card-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-service-card-light-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+$civic-service-card-light-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-service-card-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
+
+$civic-service-card-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
+$civic-service-card-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-service-card-dark-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-service-card-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
