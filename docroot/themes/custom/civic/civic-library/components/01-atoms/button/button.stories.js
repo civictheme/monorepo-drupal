@@ -1,55 +1,101 @@
-import {boolean, radios, text} from '@storybook/addon-knobs'
+import { boolean, radios, text, select } from '@storybook/addon-knobs'
 
 import CivicButton from './button.twig'
 import './button.scss'
 import './button.js'
 
+// @todo Find a way to make this reusable.
+const spritesheets = new Set()
+const icons = {}
+// Use the icons availabe in the assets directory to compile a list of spritesheets and icon IDs.
+require.context('../../../assets/icons/', true, /\.svg$/).keys().forEach(path => {
+  // Get a list of all spritesheets.
+  const spritesheetName = path.substring(2, path.indexOf('/', 2)).replace(/\s/g, '-').toLowerCase()
+  const spritesheetURL = `/icons/civic-${spritesheetName}.svg`
+  spritesheets.add(spritesheetURL)
+
+  // Get all icons available within the spritesheets.
+  const iconName = path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.')).toLowerCase().replace(/\s/g, '-').replace(/[^a-z0-9\-]+/, '')
+  if (!icons[spritesheetURL]) {
+    icons[spritesheetURL] = []
+  }
+  icons[spritesheetURL].push(`${spritesheetName}-${iconName}`)
+});
+
+
 export default {
   title: 'Atom/Button',
 }
 
-export const Button = () => CivicButton({
-  theme: radios(
-    'Theme',
-    {
-      'Light': 'light',
-      'Dark': 'dark',
-    },
-    'light',
-  ),
-  kind: radios(
-    'Kind',
-    {
-      'Button': 'button',
-      'Link': 'link',
-      'Reset': 'reset',
-      'Submit': 'submit'
-    },
-    'button',
-  ),
-  type: radios(
-    'Type',
-    {
-      'None': 'none',
-      'Primary': 'primary',
-      'Primary Accent': 'primary-accent',
-      'Secondary': 'secondary',
-      'Secondary Accent': 'secondary-accent',
-    },
-    'none',
-  ),
-  size: radios(
-    'Size',
-    {
-      'Large': 'large',
-      'Regular': 'regular',
-      'Small': 'small',
-    },
-    'regular',
-  ),
-  text: text('Text', 'Button Text'),
-  url: text('URL (applies to button kind link.)', 'http://example.com'),
-  new_window: boolean('Open in a new window (applies to button kind link.)', false),
-  disabled: boolean('Disabled', false),
-  modifier_class: text('Additional class', ''),
-})
+export const Button = () => {
+  // Knob tab names.
+  const button = 'Button';
+  const iconList = 'Icon (Applies to button with icon.)';
+
+  const buttonParams = {
+    theme: radios(
+      'Theme', {
+        'Light': 'light',
+        'Dark': 'dark',
+      },
+      'light',
+      button
+    ),
+    kind: radios(
+      'Kind', {
+        'Button': 'button',
+        'Link': 'link',
+        'Reset': 'reset',
+        'Submit': 'submit'
+      },
+      'button',
+      button
+    ),
+    type: radios(
+      'Type', {
+        'Primary': 'primary',
+        'Secondary': 'secondary',
+        'Tertiary': 'tertiary'
+      },
+      'primary',
+      button
+    ),
+    icon: boolean('With icon', true, button),
+    icon_placement: radios(
+      'Icon position', {
+        'Left': 'left',
+        'Right': 'right',
+      },
+      'right',
+      button
+    ),
+    size: radios(
+      'Size', {
+        'Large': 'large',
+        'Regular': 'regular',
+        'Small': 'small',
+      },
+      'regular',
+      button
+    ),
+    text: text('Text', 'Button Text', button),
+    url: text('URL (applies to button kind link.)', 'http://example.com', button),
+    new_window: boolean('Open in a new window (applies to button kind link.)', false, button),
+    disabled: boolean('Disabled', false, button),
+    modifier_class: text('Additional class', '', button),
+  }
+
+  //Knob tabs order is decided on the basis of their order in story.
+  //Icon component parameters.
+  const sheets = Array.from(spritesheets)
+  let spritesheet = select('Icon Pack', sheets, '/icons/civic-arrows.svg', iconList)
+  let symbol = select('Symbol', icons[spritesheet], 'arrows-right-arrow-3', iconList)
+  const colors = CIVIC_VARIABLES['civic-default-colors']
+
+  const iconParams = {
+    spritesheet,
+    symbol
+  }
+
+  return CivicButton({ ...buttonParams, ...iconParams });
+}

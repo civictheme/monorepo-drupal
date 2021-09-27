@@ -36,7 +36,7 @@ Table.args = {
     'Header 2',
     'Header 3',
   ],
-  raws: [
+  rows: [
     [
       'Row 1',
       'Information about something',
