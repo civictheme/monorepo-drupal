@@ -11,13 +11,16 @@
 
   border-top: 6px $civic-card-promo-border-top-color solid;
 
+  &:hover {
+    a {
+      text-decoration: underline;
+      color: $civic-card-promo-light-color-hover;
+    }
+  }
+
   a {
     color: $civic-card-promo-light-heading-color;
     text-decoration: none;
-    &:hover {
-      color: $civic-card-promo-light-color-hover;
-      text-decoration: underline;
-    }
   }
 
   &--image-enabled {
@@ -97,6 +100,12 @@
     a {
       color: $civic-card-promo-dark-heading-color;
       &:hover {
+        color: $civic-card-promo-dark-color-accent;
+      }
+    }
+
+    &:hover {
+      a {
         color: $civic-card-promo-dark-color-accent;
       }
     }

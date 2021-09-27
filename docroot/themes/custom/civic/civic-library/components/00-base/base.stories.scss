@@ -9,8 +9,9 @@
   max-width: 576px;
 }
 
-.civic-event-card {
-   width: 376px;
+.civic-event-card,
+.civic-service-card {
+  max-width: 376px;	
 }
 
 .civic-card-promo {
