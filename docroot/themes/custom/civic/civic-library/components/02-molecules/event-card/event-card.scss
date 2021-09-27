@@ -6,8 +6,7 @@
 
 .civic-event-card {
   $root: &;
-  display: block;
-  text-decoration: none;
+  position: relative;
 
   &:hover {
     #{$root}__title {
@@ -17,13 +16,13 @@
 
   &:active {
     outline: none;
-    
+
     #{$root}__title {
       text-decoration: underline;
     }
   }
 
-  &--small{
+  &--small {
     border-top: rem(6px) solid $civic-event-card-border-top-color;
     border-radius: rem(4px) rem(4px) 0 0;
   }
@@ -52,6 +51,20 @@
 
   &__date {
     @include civic-typography((14px, 20px, 400, 'primary', '-0.1'));
+  }
+
+  &__link {
+    display: block;
+    text-decoration: none;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__title {
@@ -124,7 +137,7 @@
       color: $civic-event-card-light-body-color;
     }
 
-    #{$root}__location{
+    #{$root}__location {
       font-weight: 600;
     }
 
@@ -171,7 +184,7 @@
       color: $civic-event-card-dark-body-color;
     }
 
-    #{$root}__location{
+    #{$root}__location {
       font-weight: 600;
     }
 
@@ -187,4 +200,3 @@
     }
   }
 }
-
