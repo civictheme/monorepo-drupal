@@ -305,7 +305,7 @@ $civic-button-dark-active-background-color: map-get(map-merge($civic-default-col
 $civic-button-dark-disabled-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_60') !default;
 $civic-button-dark-state-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 
-//Messages
+// Messages.
 $civic-messages-light-background-info-color: map-get(map-merge($civic-default-colors, $civic-colors), 'validation-light-info') !default;
 $civic-messages-light-background-error-color: map-get(map-merge($civic-default-colors, $civic-colors), 'validation-light-error') !default;
 $civic-messages-light-background-warning-color: map-get(map-merge($civic-default-colors, $civic-colors), 'validation-light-warning') !default;
@@ -322,10 +322,17 @@ $civic-messages-dark-background-warning-color: map-get(map-merge($civic-default-
 $civic-messages-dark-background-success-color: map-get(map-merge($civic-default-colors, $civic-colors), 'validation-dark-success') !default;
 $civic-messages-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 
-
 // Tag.
 $civic-tag-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
 $civic-tag-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
 
 $civic-tag-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
 $civic-tag-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+
+// Skip link.
+$civic-skip-link-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_90') !default;
+$civic-skip-link-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+
+$civic-skip-link-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
+$civic-skip-link-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+
