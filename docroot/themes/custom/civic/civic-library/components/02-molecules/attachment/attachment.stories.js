@@ -54,7 +54,7 @@ Publication.args = {
     "title": "Test link title",
   },
   image: {
-    "src": "/static/media/assets/logo.png",
+    "src": "/static/media/assets/image.png",
     "alt": "Image alt text",
   },
 };
