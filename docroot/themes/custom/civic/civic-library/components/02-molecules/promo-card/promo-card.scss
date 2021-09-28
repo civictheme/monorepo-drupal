@@ -6,6 +6,7 @@
 @import '../../00-base/base';
 
 .civic-card-promo {
+  position: relative;
   border-radius: $civic-border-radius;
   background-color: $civic-card-promo-light-background-color;
 
@@ -80,6 +81,14 @@
       &:focus {
         color: $civic-card-promo-light-color-active;
         text-decoration: underline;
+      }
+      &:before {
+        content: '';
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
       }
     }
     margin-top: civic-space(2);
