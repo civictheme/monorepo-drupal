@@ -4,7 +4,6 @@ function AccordionWidget (el, selectedIndex) {
   }
 
   this.el = el;
-
   this.accordionItems = this.el.getElementsByClassName('civic-accordion__list-item');
   this.accordionTriggers = this.el.getElementsByClassName('civic-accordion__header__button');
   this.accordionPanels = this.el.getElementsByClassName('civic-accordion__content');
@@ -29,9 +28,9 @@ AccordionWidget.prototype._init = function (selectedIndex) {
     space: 32
   };
 
-  var initialSelectedIndex;
+  let initialSelectedIndex;
 
-  for (var i = 0; i < this.accordionTriggersLength; i++) {
+  for (let i = 0; i < this.accordionTriggersLength; i++) {
     this.accordionTriggers[i].index = i;
     this.accordionTriggers[i].addEventListener('click', this.clickListener, false);
     this.accordionTriggers[i].addEventListener('keydown', this.keydownListener, false);
@@ -69,7 +68,7 @@ AccordionWidget.prototype._clickEvent = function (e) {
 };
 
 AccordionWidget.prototype._keydownEvent = function (e) {
-  var targetIndex;
+  let targetIndex;
 
   switch (e.keyCode) {
     case this.keys.space:
@@ -103,8 +102,6 @@ AccordionWidget.prototype._focusEvent = function () {
   if (this.accordionTriggersLength === 1) {
     this.setSelected(0);
   }
-
-  return;
 };
 
 AccordionWidget.prototype.setSelected = function (index, userInvoked) {
@@ -114,13 +111,12 @@ AccordionWidget.prototype.setSelected = function (index, userInvoked) {
     return;
   }
 
-  for (var i = 0; i < this.accordionTriggersLength; i++) {
-    var currentButton = this.accordionTriggers[i];
+  for (let i = 0; i < this.accordionTriggersLength; i++) {
+    let currentButton = this.accordionTriggers[i];
     if (i === index) {
       currentButton.classList.add('is-selected');
       this.accordionItems[i].classList.add('civic-accordion__list-item--expanded');
       currentButton.classList.add('civic-accordion__header__button--expanded');
-      currentButton.parentElement
 
       currentButton.setAttribute('aria-selected', true);
       currentButton.setAttribute('tabindex', 0);
@@ -139,7 +135,7 @@ AccordionWidget.prototype.setSelected = function (index, userInvoked) {
 };
 
 AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
-  var i;
+  let i;
 
   if (userInvoked) {
     if (this.multiSelectable) {
@@ -187,7 +183,7 @@ AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
 AccordionWidget.prototype.destroy = function () {
   this.el.classList.remove('is-initialized');
 
-  for (var i = 0; i < this.accordionTriggersLength; i++) {
+  for (let i = 0; i < this.accordionTriggersLength; i++) {
     this.accordionTriggers[i].removeAttribute('aria-expanded');
     this.accordionTriggers[i].removeAttribute('aria-selected');
     this.accordionTriggers[i].classList.remove('is-expanded');
@@ -206,7 +202,6 @@ AccordionWidget.prototype.destroy = function () {
 
 document.addEventListener("DOMContentLoaded", function() {
   const accordions = document.querySelectorAll('.civic-accordion ul');
-
   Array.from(accordions).forEach((accordion, index) => {
     new AccordionWidget(accordion, index);
   });
