@@ -1,0 +1,78 @@
+{#
+/**
+ * @file
+ * Side Navigation Menu component.
+ *
+ * Variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - links: [array] List of Links to render in menu
+ * - theme: [string] Theme for menu.
+ * - title: [string] Title for menu.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+
+<div class="civic-side-navigation {{ theme_class }}">
+  <div class="civic-side-navigation__title">
+    {% include '@atoms/icon/icon.twig' with {
+      spritesheet: '/icons/civic-arrows.svg',
+      symbol: 'arrows-left-arrow-2',
+      modifier_class: 'civic-side-navigation__icon'
+    } %}
+    {{ title }}
+  </div>
+  {% if links is not empty %}
+    <div class="civic-side-navigation__items">
+      {% for linkObj in links  %}
+        {% if linkObj.links %}
+          {% set active_child = false %}
+          {% set expanded = linkObj.expanded %}
+          {% for sublinkObj in linkObj.links  %}
+            {% if sublinkObj.is_active %}
+              {% set active_child = true %}
+              {% set expanded = true %}
+            {% endif %}
+          {% endfor %}
+          <div class="civic-side-navigation__item">
+            {% include '@atoms/navigation/navigation.twig' with {
+              theme: theme,
+              text: linkObj.text,
+              url: linkObj.url,
+              is_parent: true,
+              level: 1,
+              is_active: linkObj.is_active|default(false),
+              active_child: active_child,
+              expanded: expanded,
+            } only %}
+          </div>
+          {% if expanded %}
+            {% for sublinkObj in linkObj.links  %}
+              <div class="civic-side-navigation__item">
+                {% include '@atoms/navigation/navigation.twig' with {
+                  theme: theme,
+                  text: sublinkObj.text,
+                  url: sublinkObj.url,
+                  is_parent: false,
+                  level: 2,
+                  is_active: sublinkObj.is_active|default(false)
+                } only %}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% else %}
+          <div class="civic-side-navigation__item">
+            {% include '@atoms/navigation/navigation.twig' with {
+              theme: theme,
+              text: linkObj.text,
+              url: linkObj.url,
+              is_parent: false,
+              level: 1,
+              is_active: linkObj.is_active|default(false)
+            } only %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

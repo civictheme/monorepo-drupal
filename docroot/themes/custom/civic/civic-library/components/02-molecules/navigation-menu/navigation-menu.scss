@@ -1,0 +1,30 @@
+//
+// Navigation Menu.
+//
+
+@import '../../00-base/base';
+
+.civic-side-navigation {
+  $root: &;
+  &__icon {
+    padding-right: civic-space();
+  }
+  &__title {
+    display: none;
+    @include civic-breakpoint(m) {
+      display: flex;
+      align-items: center;
+      @include civic-typography(heading-4);
+      padding: civic-space(2) 0;
+    }
+  }
+  &__item {
+    border-bottom: 1px solid $civic-side-navigation-light-menu-separator;
+  }
+  &.civic-theme-dark {
+    #{$root}__item {
+      border-bottom: 1px solid $civic-side-navigation-dark-menu-separator;
+    }
+  }
+
+}
