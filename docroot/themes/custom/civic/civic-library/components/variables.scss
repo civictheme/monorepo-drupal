@@ -357,6 +357,16 @@ $civic-service-card-dark-heading-color: map-get(map-merge($civic-default-colors,
 $civic-service-card-dark-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 $civic-service-card-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
 
+// Alerts - Header notifications.
+
+$civic-header-notifications-background-info-color: map-get(map-merge($civic-default-colors, $civic-colors), 'information') !default;
+$civic-header-notifications-background-error-color: map-get(map-merge($civic-default-colors, $civic-colors), 'error') !default;
+$civic-header-notifications-background-warning-color: map-get(map-merge($civic-default-colors, $civic-colors), 'warning') !default;
+$civic-header-notifications-background-success-color: map-get(map-merge($civic-default-colors, $civic-colors), 'success') !default;
+$civic-header-notifications-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-header-notifications-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+
+
 // Breadcrumbs.
 $civic-breadcrumbs-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_40') !default;
 $civic-breadcrumbs-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;

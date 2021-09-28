@@ -1,0 +1,97 @@
+//
+// Messages.
+//
+
+@import '../../00-base/base';
+
+$colors: ('info': $civic-header-notifications-background-info-color,
+'warning': $civic-header-notifications-background-warning-color,
+'error': $civic-header-notifications-background-error-color,
+'success': $civic-header-notifications-background-success-color,
+);
+
+$types: ('info', 'error', 'warning', 'success');
+
+// mixin
+@mixin civic-header-notifications-colors() {
+  @each $type in $types {
+    &--#{$type} {
+      background-color: map-get($colors, '#{$type}');
+    }
+  }
+}
+
+.civic-header-notifications {
+  $root: &;
+  color: $civic-header-notifications-color;
+
+  @include civic-breakpoint(xs) {
+    padding: civic-space(2) civic-space(2);
+  }
+
+  @include civic-breakpoint(m) {
+    padding: rem(20px) rem(20px);
+  }
+
+
+  @include civic-typography(label-tag);
+
+  &__icon {
+    width: rem(20px);
+    margin-right: civic-space();
+  }
+
+  &__title {
+    flex-shrink: 0;
+    margin-right: 24px;
+    width: rem(276px);
+    @include civic-typography(body);
+  }
+
+  &__content {
+    display: block;
+    position: relative;
+
+    @include civic-breakpoint(m) {
+      display: flex;
+      align-items: center;
+      max-width: rem(1280px);
+      margin: 0 auto;
+    }
+
+    #{$root}__title {
+      font-weight: 700;
+
+      @include civic-breakpoint(xs) {
+        margin-bottom: rem(5px);
+      }
+
+      @include civic-breakpoint(m) {
+        margin-bottom: 0;
+      }
+
+    }
+  }
+
+  &__close-icon {
+    cursor: pointer;
+    margin-left: civic-space(3);
+
+    @include civic-breakpoint(xs) {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    @include civic-breakpoint(m) {
+      position: static;
+    }
+  }
+
+  @include civic-header-notifications-colors();
+
+  .civic-icon {
+    fill: $civic-header-notifications-icon-color;
+    vertical-align: middle;
+  }
+}

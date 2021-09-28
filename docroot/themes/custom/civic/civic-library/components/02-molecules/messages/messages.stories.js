@@ -5,7 +5,7 @@ import CivicMessages from './messages.twig';
  * Storybook Definition.
  */
 export default {
-  title: 'Atom/Messages'
+  title: 'Molecule/Alerts'
 };
 
 export const Messages = () => CivicMessages({
