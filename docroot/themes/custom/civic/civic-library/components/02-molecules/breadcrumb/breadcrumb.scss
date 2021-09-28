@@ -54,6 +54,9 @@
     }
     &.civic-theme-dark {
       color: $civic-breadcrumbs-dark-color;
+      &:hover {
+        color: $civic-breadcrumbs-dark-color-hover;
+      }
     }
   }
   .civic-icon {

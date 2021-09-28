@@ -352,4 +352,5 @@ $civic-breadcrumbs-light-color: map-get(map-merge($civic-default-colors, $civic-
 $civic-breadcrumbs-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 
 $civic-breadcrumbs-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-breadcrumbs-dark-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
 $civic-breadcrumbs-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
