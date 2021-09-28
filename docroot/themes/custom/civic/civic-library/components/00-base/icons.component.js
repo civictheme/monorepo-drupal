@@ -15,9 +15,7 @@ require.context('../../assets/icons/', true, /\.svg$/).keys().forEach(path => {
   iconsComponent[spritesheetURL].push(`${spritesheetName}-${iconName}`)
 });
 
-const CivicIconSet = {
+export const CivicIconSet = {
   spritesheets: spritesheets,
   icons: iconsComponent,
 }
-
-export default CivicIconSet;
