@@ -32,6 +32,7 @@ $civic-default-colors: (
   'warning': #DC5800,
   'error': #CF3836,
   'outline': #05F,
+  'dark-text': #E5F0F4,
   'validation-light-error': #F8E1E1,
   'validation-light-warning': #FAE6D9,
   'validation-light-info': #D9F2F8,
@@ -208,8 +209,8 @@ $civic-callout-light-background-color: map-get(map-merge($civic-default-colors, 
 $civic-callout-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
 $civic-callout-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
 $civic-callout-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_15') !default;
-$civic-callout-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
-$civic-callout-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
+$civic-callout-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'dark-text') !default;
+$civic-callout-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 $civic-callout-light-stripe-color:  map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
 $civic-callout-dark-stripe-color:  $civic-callout-light-stripe-color !default;
 
