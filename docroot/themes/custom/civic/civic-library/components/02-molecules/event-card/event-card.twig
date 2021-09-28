@@ -24,7 +24,7 @@
 {% set modifier_class = '%s %s'|format(theme_class, type_class) %}
 {% set url = url|default('#') %}
 
-<a class="civic-event-card {{ modifier_class }}" href="{{ url }}">
+<div class="civic-event-card {{ modifier_class }}">
 	{% if with_image %}
 		<div class="civic-event-card__image-wrapper">
 			<img src="{{ image.src }}" alt="{{ image.alt }}">
@@ -41,19 +41,20 @@
 
 	<div class="civic-event-card__content">
 		{% if date %}
-			<div class="civic-event-card__date-wrapper">
-				<span class="civic-event-card__calendar civic-event-card__icon">
-					{% include '@atoms/icon/icon.twig' with {
-				    spritesheet: '/icons/civic-business.svg',
-				    symbol: 'business-calendar-1',
-				    color: 'body'
-					} only %}
-				</span>
-			 <span class="civic-event-card__date">{{ date }}</span>
-			</div>
+			{% include '@atoms/tag/tag.twig' with {
+		    theme: theme,
+		    icon: true,
+		    icon_placement: 'before',
+		    text: date,
+		    spritesheet: '/icons/civic-business.svg',
+		    symbol: 'business-calendar',
+		    modifier_class: 'civic-event-card__date'
+			} only %}
 		{% endif %}
 
-		<h4 class="civic-event-card__title">{{ title }}</h4>
+		<a class="civic-event-card__link" href="{{ url }}">
+			<h4 class="civic-event-card__title">{{ title }}</h4>
+		</a>
 
 		{% if location %}
 			<div class="civic-event-card__content-middle"><p class="civic-event-card__location">{{ location }}</div>
@@ -84,4 +85,4 @@
 			<div class="civic-event-card__content-bottom">{{ content_bottom }}</div>
 		{% endif %}
 	</div>
-</a>
+</div>

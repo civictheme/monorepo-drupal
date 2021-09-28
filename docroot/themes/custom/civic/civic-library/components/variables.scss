@@ -329,6 +329,21 @@ $civic-tag-light-color: map-get(map-merge($civic-default-colors, $civic-colors),
 $civic-tag-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
 $civic-tag-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 
+
+// Service card.
+$civic-service-card-border-top-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+
+$civic-service-card-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-service-card-light-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+$civic-service-card-light-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-service-card-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
+
+$civic-service-card-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
+$civic-service-card-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-service-card-dark-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-service-card-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+
+
 // Skip link.
 $civic-skip-link-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_90') !default;
 $civic-skip-link-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
