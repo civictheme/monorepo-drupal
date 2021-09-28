@@ -67,19 +67,34 @@
   @return $fallback;
 }
 
+//
+// Print all gutters at their breakpoints.
+//
+@mixin print-all-gutters($gutters: $grid-gutters, $rulePrefix: padding, $scale: 1) {
+  @if $gutters {
+    @each $bp, $gutter in $gutters {
+      @if $bp==$grid-lowest-breakpoint {
+        #{$rulePrefix}-left: math.div($gutter, 2) * $scale;
+        #{$rulePrefix}-right: math.div($gutter, 2) * $scale;
+      } @else {
+        @include civic-breakpoint($bp) {
+          #{$rulePrefix}-left: math.div($gutter, 2) * $scale;
+          #{$rulePrefix}-right: math.div($gutter, 2) * $scale;
+        }
+      }
+    }
+  }
+}
+
 // -----------------------------------------------------------------------------
-@mixin row($gutter: $grid-gutter) {
+@mixin row($gutters: $grid-gutters) {
   box-sizing: border-box;
   margin: 0 auto;
   display: flex;
   flex: 0 1 auto;
   flex-direction: row;
   flex-wrap: wrap;
-
-  @if $gutter > 0 {
-    margin-left: -1 * math.div($gutter, 2);
-    margin-right: -1 * math.div($gutter, 2);
-  }
+  @include print-all-gutters($gutters, margin, -1);
 }
 
 @mixin row-reverse() {
@@ -109,8 +124,7 @@
       box-sizing: border-box;
       flex-basis: math.div(100%, $grid-columns) * $col-number;
       max-width: math.div(100%, $grid-columns) * $col-number;
-      padding-left: math.div($grid-gutter, 2);
-      padding-right: math.div($grid-gutter, 2);
+      @include print-all-gutters;
     }
 
     // If no col number is passed then arg is set to "auto" by default
@@ -122,8 +136,7 @@
     flex-grow: 1;
     flex-basis: 0;
     max-width: 100%;
-    padding-left: math.div($grid-gutter, 2);
-    padding-right: math.div($grid-gutter, 2);
+    @include print-all-gutters;
   }
 
   @else {
@@ -161,8 +174,7 @@
     flex-grow: 1;
     flex-basis: 0;
     max-width: 100%;
-    padding-left: math.div($grid-gutter, 2);
-    padding-right: math.div($grid-gutter, 2);
+    @include print-all-gutters;
   }
 
   @for $i from 1 through $grid-columns {
@@ -170,8 +182,7 @@
       box-sizing: border-box;
       flex-basis: math.div(100%, $grid-columns) * $i;
       max-width: math.div(100%, $grid-columns) * $i;
-      padding-left: math.div($grid-gutter, 2);
-      padding-right: math.div($grid-gutter, 2);
+      @include print-all-gutters;
     }
 
     .col-#{$thisPrefix}-offset-#{$i} {

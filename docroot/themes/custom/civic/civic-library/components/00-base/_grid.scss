@@ -2,7 +2,7 @@
 // No gutters
 // No text alignment with justified container classes (center-xs, for example)
 .row {
-  @include row($grid-gutter);
+  @include row($grid-gutters);
 }
 
 .row.reverse {

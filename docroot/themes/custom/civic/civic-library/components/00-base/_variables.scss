@@ -89,11 +89,15 @@ $civic-spaces: (
 // the grid collapses into a single column.
 $grid-columns: 12;
 $grid-gutter: $civic-space * 3;
-$grid-offset-xxl: 92px;
 $grid-offset-xs: 24px;
+$grid-offset-xxl: 92px;
 $grid-lowest-breakpoint: 'xs';
 $grid-max-content-width: 1200px;
 $visible-lowest-breakpoint: 'xs';
+$grid-gutters: (
+  'xs': 15px,
+  's': $civic-space * 3
+);
 $civic-grid-offsets: (
   'xs': $grid-offset-xs,
   's': $grid-offset-xs,
