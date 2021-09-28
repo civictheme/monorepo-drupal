@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Navigation Link component.
+ *
+ * Variables:
+ * - theme: [string] Theme for navigation.
+ * - modifier_class: [string] Additional classes to modify component styling.
+ * - text: [string] Link text.
+ * - url: [string] URL for the link.
+ * - level: [int] Level for navigation element: 1 or 2
+ * - is_parent: [bool] Define if element is a parent of other nav links.
+ * - expanded: [bool] Define if element has been expanded
+ * - is_active: [bool] Define if the element is currently active.
+ * - active_child: [bool] Define if a child of this is currently active.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = modifier_class|default('') %}
+{% set level = level|default(1) %}
+{% set is_parent = is_parent|default(null) %}
+{% set level_class = 'civic-side-navigation-link--level-%s'|format(level) %}
+{% set expanded = expanded|default(false) %}
+{% set active_child = active_child|default(false) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, level_class, modifier_class) %}
+{%  if is_active %}
+  {% set modifier_class = modifier_class ~ ' civic-side-navigation-link--active' %}
+{% endif %}
+{% if is_parent %}
+  {% set modifier_class = modifier_class ~ ' civic-side-navigation-link--parent' %}
+  {%  if active_child %}
+    {% set expanded = true %}
+    {% set modifier_class = modifier_class ~ ' civic-side-navigation-link--active-child' %}
+  {% endif %}
+{% endif %}
+{% if expanded %}
+  {% set icon_modifier = 'civic-side-navigation-link__icon civic-side-navigation-link__icon--expanded' %}
+  {% set icon_symbol = 'arrows-upper-arrow-1' %}
+{% else %}
+  {% set icon_modifier = 'civic-side-navigation-link__icon civic-side-navigation-link__icon--expand' %}
+  {% set icon_symbol = 'arrows-down-arrow-1' %}
+{% endif %}
+
+<div class="civic-side-navigation-link {{ modifier_class }}">
+  {% include '@atoms/link/link.twig' with {
+    theme: theme,
+    text: text,
+    url: url,
+    modifier_class: 'civic-side-navigation-link__link'
+  } only %}
+  {% if is_parent %}
+    {% include '@atoms/icon/icon.twig' with {
+      spritesheet: '/icons/civic-arrows.svg',
+      symbol: icon_symbol,
+      modifier_class: icon_modifier
+    } %}
+  {% endif %}
+</div>
+

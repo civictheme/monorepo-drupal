@@ -203,6 +203,24 @@ $civic-link-dark-color-visited: map-get(map-merge($civic-default-colors, $civic-
 $civic-link-dark-color-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
 $civic-link-dark-background-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'link-dark-visited') !default;
 
+// Navigation
+$civic-side-navigation-light-link-1-background-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-side-navigation-light-link-2-background-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_10') !default;
+$civic-side-navigation-light-link-background: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral') !default;
+$civic-side-navigation-light-link-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
+$civic-side-navigation-light-link-icon: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_15') !default;
+$civic-side-navigation-light-link-marker: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+$civic-side-navigation-light-link-marker-active: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+
+$civic-side-navigation-dark-link-1-background-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_15') !default;
+$civic-side-navigation-dark-link-2-background-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-side-navigation-dark-link-background: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-side-navigation-dark-link-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-side-navigation-dark-link-icon: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-side-navigation-dark-link-marker: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-side-navigation-dark-link-marker-active: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+
+
 // Callout.
 $civic-callout-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
 $civic-callout-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
