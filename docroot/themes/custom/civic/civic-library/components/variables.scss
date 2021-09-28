@@ -18,7 +18,7 @@ $civic-default-colors: (
   'neutral_40': #99A7B0,
   'neutral_60': #546570,
   'neutral_80': #35414B,
-  'neutral_90': #1F2833,
+  'neutral_90': #1F2A33,
   'translucent': #00000000,
   // Element-specific colors.
   'heading': #1F2833,
@@ -368,6 +368,26 @@ $civic-service-card-dark-heading-color: map-get(map-merge($civic-default-colors,
 $civic-service-card-dark-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 $civic-service-card-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
 
+// Alerts - Header notifications.
+
+$civic-header-notifications-background-info-color: map-get(map-merge($civic-default-colors, $civic-colors), 'information') !default;
+$civic-header-notifications-background-error-color: map-get(map-merge($civic-default-colors, $civic-colors), 'error') !default;
+$civic-header-notifications-background-warning-color: map-get(map-merge($civic-default-colors, $civic-colors), 'warning') !default;
+$civic-header-notifications-background-success-color: map-get(map-merge($civic-default-colors, $civic-colors), 'success') !default;
+$civic-header-notifications-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-header-notifications-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+
+
+// Breadcrumbs.
+$civic-breadcrumbs-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_40') !default;
+$civic-breadcrumbs-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+
+$civic-breadcrumbs-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
+$civic-breadcrumbs-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+
+$civic-breadcrumbs-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-breadcrumbs-dark-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
+$civic-breadcrumbs-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
 
 // Skip link.
 $civic-skip-link-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_90') !default;
