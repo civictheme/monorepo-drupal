@@ -1,6 +1,6 @@
 import {radios, select, text} from '@storybook/addon-knobs'
 import CivicProgressIndicator from "./progress-indicator.twig";
-import CivicIconSet from "../../00-base/icons.js";
+import CivicIconSet from "../../00-base/icons.component.js";
 
 export default {
   title: 'Molecule/ProgressIndicator'
