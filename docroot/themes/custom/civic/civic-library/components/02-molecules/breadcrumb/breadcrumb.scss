@@ -27,8 +27,13 @@
       }
 
       &.mobile-only {
-        @include civic-breakpoint('m') {
-          display: none;
+        display: none;
+        @include civic-breakpoint-upto('m') {
+          display: flex;
+
+          .civic-link {
+            border: none;
+          }
         }
       }
     }
