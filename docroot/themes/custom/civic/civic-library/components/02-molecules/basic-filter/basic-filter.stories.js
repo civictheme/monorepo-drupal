@@ -16,15 +16,12 @@ export const BasicFilter = () => CivicBasicFilter({
   items: [
     {
       text: text('Text', 'Basic filter 1', 'Chip 1'),
-      is_active: boolean('Active', false, 'Chip 1'),
     },
     {
       text: text('Text', 'Basic filter 2', 'Chip 2'),
-      is_active: boolean('Active', true, 'Chip 2'),
     },
     {
       text: text('Text', 'Basic filter 3', 'Chip 3'),
-      is_active: boolean('Active', false, 'Chip 3'),
     }
   ],
 });

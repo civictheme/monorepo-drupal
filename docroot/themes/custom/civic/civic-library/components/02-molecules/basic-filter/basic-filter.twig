@@ -23,8 +23,7 @@
             theme: theme,
             text: itemObj.text,
             is_multiple: is_multiple,
-            is_active: itemObj.is_active,
-            input_name: 'basic-filter-' ~ loop.index,
+            input_name: is_multiple ? 'basic-filter-' ~ loop.index : 'basic-filter',
             input_id: 'chip-' ~ loop.index,
           } only %}
         </div>

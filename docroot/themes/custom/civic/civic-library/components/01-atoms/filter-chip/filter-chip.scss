@@ -7,11 +7,9 @@
 .civic-filter-chip {
   $root: &;
   @include civic-typography('label-tag');
-  border: solid 1px transparent;
-  border-radius: 20px;
-  padding: civic-space(1) civic-space(2);
   cursor: pointer;
   position: relative;
+  display: inline-block;
 
   input[type=checkbox], input[type=radio] {
     position: absolute;
@@ -20,6 +18,13 @@
     opacity: 0;
     width: 0;
     height: 0;
+
+    & + span {
+      border: solid 1px transparent;
+      border-radius: 20px;
+      padding: civic-space(1) civic-space(2);
+      display: block;
+    }
   }
 
   &:focus-within {
@@ -27,33 +32,41 @@
   }
 
   &.civic-theme-light {
-    border-color: $civic-filter-chip-light-border-color;
-    color: $civic-filter-chip-light-color;
+    input[type=checkbox], input[type=radio] {
+      &:checked + span {
+        background-color: $civic-filter-chip-light-active-background-color;
+        color: $civic-filter-chip-light-active-color;
+      }
 
-    &.is-active {
-      background-color: $civic-filter-chip-light-active-background-color;
-      color: $civic-filter-chip-light-active-color;
-    }
+      & + span {
+        border-color: $civic-filter-chip-light-border-color;
+        color: $civic-filter-chip-light-color;
 
-    &:hover, &:focus-within {
-      background-color: $civic-filter-chip-light-hover-background-color;
-      color: $civic-filter-chip-light-hover-color;
+        &:hover, &:focus {
+          background-color: $civic-filter-chip-light-hover-background-color;
+          color: $civic-filter-chip-light-hover-color;
+        }
+      }
     }
   }
 
   &.civic-theme-dark {
-    background-color: $civic-filter-chip-dark-background-color;
-    border-color: $civic-filter-chip-dark-border-color;
-    color: $civic-filter-chip-dark-color;
+    input[type=checkbox], input[type=radio] {
+      &:checked + span {
+        background-color: $civic-filter-chip-dark-active-background-color;
+        color: $civic-filter-chip-dark-active-color;
+      }
 
-    &.is-active {
-      background-color: $civic-filter-chip-dark-active-background-color;
-      color: $civic-filter-chip-dark-active-color;
-    }
+      & + span {
+        background-color: $civic-filter-chip-dark-background-color;
+        border-color: $civic-filter-chip-dark-border-color;
+        color: $civic-filter-chip-dark-color;
 
-    &:hover, &:focus-within {
-      background-color: $civic-filter-chip-dark-hover-background-color;
-      color: $civic-filter-chip-dark-hover-color;
+        &:hover, &:focus {
+          background-color: $civic-filter-chip-dark-hover-background-color;
+          color: $civic-filter-chip-dark-hover-color;
+        }
+      }
     }
   }
 }

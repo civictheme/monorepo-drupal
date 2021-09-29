@@ -12,9 +12,8 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type = is_multiple ? 'checkbox' : 'radio' %}
-{% set is_active = is_active ? 'is-active' : '' %}
 
-<label class="civic-filter-chip {{ theme_class }} {{ is_active }}" data-component-name="filter-chip">
+<label class="civic-filter-chip {{ theme_class }}" data-component-name="filter-chip">
   <input type="{{ type }}" id="{{ input_id }}" name="{{ input_name }}">
   <span>{{ text }}</span>
 </label>

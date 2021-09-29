@@ -19,5 +19,4 @@ export const FilterChip = () => CivicFilterChip({
   input_id: text('Input ID', 'chip-input-1'),
   input_name: text('Input name', 'chip'),
   is_multiple: boolean('Multiple', false),
-  is_active: boolean('Active', false),
 });
