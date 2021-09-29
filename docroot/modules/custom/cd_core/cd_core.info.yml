@@ -16,6 +16,7 @@ dependencies:
   - stage_file_proxy:stage_file_proxy
   # Required for Civic theme.
   - components:components
-  - paragraphs:paragraphs
   - default_content:default_content
   - drupal:block_content
+  - field_group:field_group
+  - paragraphs:paragraphs

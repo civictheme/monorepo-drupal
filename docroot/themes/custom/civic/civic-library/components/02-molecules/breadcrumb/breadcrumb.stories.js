@@ -35,7 +35,7 @@ Breadcrumb.args = {
       'url': 'http://example.com',
     },
     'link4': {
-      'text': 'Link 3 title',
+      'text': 'Link 4 title',
       'url': 'http://example.com',
     },
   }

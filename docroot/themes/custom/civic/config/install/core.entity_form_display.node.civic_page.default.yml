@@ -12,9 +12,73 @@ dependencies:
     - node.type.civic_page
   module:
     - content_moderation
+    - field_group
     - media_library
     - paragraphs
     - path
+third_party_settings:
+  field_group:
+    group_civic_tabs:
+      children:
+        - group_civic_general
+        - group_civic_banner
+        - group_civic_content
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        direction: horizontal
+      label: Tabs
+    group_civic_banner:
+      children:
+        - field_c_n_banner_type
+        - field_c_n_banner_background
+        - field_c_n_featured_banner_image
+        - field_c_n_banner_components
+      parent_name: group_civic_tabs
+      weight: 10
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Banner
+    group_civic_content:
+      children:
+        - field_c_n_components
+      parent_name: group_civic_tabs
+      weight: 11
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Content
+    group_civic_general:
+      children:
+        - title
+        - field_c_n_summary
+        - field_c_n_thumbnail
+      parent_name: group_civic_tabs
+      weight: 9
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: General
 id: node.civic_page.default
 targetEntityType: node
 bundle: civic_page
@@ -22,20 +86,20 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_c_n_banner_background:
     type: media_library_widget
-    weight: 123
+    weight: 8
     settings:
       media_types: {  }
     third_party_settings: {  }
     region: content
   field_c_n_banner_components:
     type: paragraphs
-    weight: 121
+    weight: 10
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -53,14 +117,14 @@ content:
     third_party_settings: {  }
     region: content
   field_c_n_banner_type:
-    weight: 125
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_c_n_components:
     type: paragraphs
-    weight: 122
+    weight: 9
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -79,13 +143,13 @@ content:
     region: content
   field_c_n_featured_banner_image:
     type: media_library_widget
-    weight: 124
+    weight: 9
     settings:
       media_types: {  }
     third_party_settings: {  }
     region: content
   field_c_n_summary:
-    weight: 127
+    weight: 3
     settings:
       rows: 5
       placeholder: ''
@@ -93,7 +157,7 @@ content:
     type: string_textarea
     region: content
   field_c_n_thumbnail:
-    weight: 126
+    weight: 4
     settings:
       media_types: {  }
     third_party_settings: {  }
@@ -101,13 +165,13 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 100
+    weight: 7
     settings: {  }
     region: content
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -115,26 +179,26 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 15
+    weight: 4
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 120
+    weight: 8
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 16
+    weight: 5
     region: content
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -5
+    weight: 2
     region: content
     settings:
       size: 60
@@ -142,7 +206,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
