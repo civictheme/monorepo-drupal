@@ -4,15 +4,15 @@
 
 @import '../../00-base/base';
 
-.civic-side-navigation-link {
+.civic-menu-item {
   $root: &;
   padding: civic-space(2);
   position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: $civic-side-navigation-light-link-background;
-  border-left: 4px solid $civic-side-navigation-light-link-marker;
+  background-color: $civic-menu-item-light-background;
+  border-left: 4px solid $civic-menu-item-light-marker;
   &__link:before {
     content: '';
     position: absolute;
@@ -22,19 +22,22 @@
     width: 100%;
   }
   &:hover {
-    border-color: $civic-side-navigation-light-link-marker-active;
+    border-color: $civic-menu-item-light-marker-active;
   }
   &--active {
-    background-color: $civic-side-navigation-light-link-1-background-active;
+    &#{$root}--level-1 {
+      background-color: $civic-menu-item-light-1-background-active;
+      border-color: $civic-menu-item-light-marker-active;
+    }
     &#{$root}--level-2 {
-      background-color: $civic-side-navigation-light-link-2-background-active;
+      background-color: $civic-menu-item-light-2-background-active;
     }
   }
   &__icon {
-    color: $civic-side-navigation-light-link-icon;
+    color: $civic-menu-item-light-icon;
   }
   &--active-child, &--level-2 {
-    background-color: $civic-side-navigation-light-link-1-background-active;
+    background-color: $civic-menu-item-light-1-background-active;
   }
   &--level-2 {
     #{$root}__link {
@@ -45,33 +48,36 @@
     #{$root}__link, #{$root}__link:hover {
       text-decoration: none;
       background: none;
-      color: $civic-side-navigation-light-link-color;
+      color: $civic-menu-item-light-color;
       border: none;
       padding: 0;
     }
   }
   &.civic-theme-dark {
-    background-color: $civic-side-navigation-dark-link-background;
-    border-color: $civic-side-navigation-dark-link-marker;
+    background-color: $civic-menu-item-dark-background;
+    border-color: $civic-menu-item-dark-marker;
     &:hover {
-      border-color: $civic-side-navigation-dark-link-marker-active;
+      border-color: $civic-menu-item-dark-marker-active;
     }
     #{$root}__icon {
-      color: $civic-side-navigation-dark-link-icon;
+      color: $civic-menu-item-dark-icon;
     }
     &#{$root}--active {
-      background-color: $civic-side-navigation-dark-link-1-background-active;
+      &#{$root}--level-1 {
+        background-color: $civic-menu-item-dark-1-background-active;
+        border-color: $civic-menu-item-dark-marker-active;
+      }
       &#{$root}--level-2 {
-        background-color: $civic-side-navigation-dark-link-2-background-active;
+        background-color: $civic-menu-item-dark-2-background-active;
       }
     }
     &#{$root}--active-child, &#{$root}--level-2 {
-      background-color: $civic-side-navigation-dark-link-1-background-active;
+      background-color: $civic-menu-item-dark-1-background-active;
     }
     #{$root}__link, #{$root}__link:hover {
       text-decoration: none;
       background: none;
-      color: $civic-side-navigation-dark-link-color;
+      color: $civic-menu-item-dark-color;
       border: none;
       padding: 0;
     }

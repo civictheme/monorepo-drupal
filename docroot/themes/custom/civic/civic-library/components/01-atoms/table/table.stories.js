@@ -1,4 +1,4 @@
-import {boolean, radios, text} from "@storybook/addon-knobs";
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicTable from './table.twig';
 
 /**
@@ -49,6 +49,16 @@ Table.args = {
     ],
     [
       'Row 3',
+      'Information about something',
+      'And this is important',
+    ],
+    [
+      'Row 4',
+      'Information about something',
+      'And this is important',
+    ],
+    [
+      'Row 5',
       'Information about something',
       'And this is important',
     ],

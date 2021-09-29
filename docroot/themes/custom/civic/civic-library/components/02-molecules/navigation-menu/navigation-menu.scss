@@ -4,26 +4,39 @@
 
 @import '../../00-base/base';
 
-.civic-side-navigation {
+.civic-menu-tree {
   $root: &;
   &__icon {
     padding-right: civic-space();
   }
   &__title {
-    display: none;
-    @include civic-breakpoint(m) {
-      display: flex;
-      align-items: center;
-      @include civic-typography(heading-4);
-      padding: civic-space(2) 0;
+    a {
+      display: none;
+      @include civic-breakpoint(m) {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        @include civic-typography(heading-4);
+        padding: civic-space(2) 0;
+        color: $civic-menu-tree-light-title;
+      }
+      &:hover {
+        color: $civic-menu-tree-light-title-hover;
+      }
     }
   }
   &__item {
-    border-bottom: 1px solid $civic-side-navigation-light-menu-separator;
+    border-bottom: 1px solid $civic-menu-tree-light-separator;
   }
   &.civic-theme-dark {
     #{$root}__item {
-      border-bottom: 1px solid $civic-side-navigation-dark-menu-separator;
+      border-bottom: 1px solid $civic-menu-tree-dark-separator;
+    }
+    #{$root}__title a {
+      color: $civic-menu-tree-dark-title;
+      &:hover {
+        color: $civic-menu-tree-dark-title-hover;
+      }
     }
   }
 

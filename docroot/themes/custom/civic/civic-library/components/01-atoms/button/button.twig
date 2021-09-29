@@ -27,22 +27,22 @@
 {% set modifier_class = '%s %s %s %s'|format(theme_class, type_class, size_class, modifier_class) %}
 {% set url = url|default('#') %}
 {% set button_icon %}
-	{% if icon %}
-		<span class="civic-button__icon">
+  {% if icon %}
+    <span class="civic-button__icon">
 		  {% include '@atoms/icon/icon.twig' with {
-		    spritesheet: spritesheet,
-		    symbol: symbol
-			} only %}
+        spritesheet: spritesheet,
+        symbol: symbol
+      } only %}
 		</span>
-	{% endif %}
+  {% endif %}
 {% endset %}
 
 {% set button_text %}
-	{% if icon_placement == 'left' %}
-	 {{ button_icon }}{{ text }}
-	{% elseif icon_placement == 'right' %}
-	 {{ text }}{{ button_icon }}
-	{% endif %}
+  {% if icon_placement == 'left' %}
+    {{ button_icon }}{{ text }}
+  {% elseif icon_placement == 'right' %}
+    {{ text }}{{ button_icon }}
+  {% endif %}
 {% endset %}
 
 {% if kind == 'button' %}

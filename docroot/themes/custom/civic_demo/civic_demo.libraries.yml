@@ -1,6 +1,0 @@
-global:
-  css:
-    theme:
-      dist/civic.css: {}
-  js:
-    dist/civic.js: {}

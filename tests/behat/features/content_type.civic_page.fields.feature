@@ -5,8 +5,8 @@ Feature: Fields on Page content type
 
   Background:
     Given civic_page content:
-      | title                    | status           |
-      | [TEST] Test review title | published        |
+      | title                    | status    |
+      | [TEST] Test review title | published |
 
   @api
   Scenario: Civic banner block type exists with fields.

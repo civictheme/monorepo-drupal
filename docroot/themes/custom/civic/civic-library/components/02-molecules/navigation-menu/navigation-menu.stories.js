@@ -21,8 +21,8 @@ export const NavigationMenu = (args) => CivicNavigationMenu({
     },
     'light',
   ),
-  title: text('Title', 'Section Title'),
-  caption: text('Caption', 'Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.'),
+  back_text: text('Section Title', 'Section Title'),
+  back_url: text('URL', '')
 });
 
 // Menu controls.

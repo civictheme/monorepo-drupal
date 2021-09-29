@@ -17,12 +17,12 @@
 {% set modifier_class = modifier_class ~ ' ' ~ theme_class %}
 {% set icon = is_external ? %}
 <a class="civic-link {{ modifier_class }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }}>
-    {{ text }}
-    {% if is_external %}
-        {% include '@atoms/icon/icon.twig' with {
-            spritesheet: '/icons/civic-arrows.svg',
-            symbol: 'arrows-upper-right-arrow',
-            modifier_class: 'civic-link__external-icon'
-        } %}
-    {% endif %}
+  {{ text }}
+  {% if is_external %}
+    {% include '@atoms/icon/icon.twig' with {
+      spritesheet: '/icons/civic-arrows.svg',
+      symbol: 'arrows-upper-right-arrow',
+      modifier_class: 'civic-link__external-icon'
+    } %}
+  {% endif %}
 </a>

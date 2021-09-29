@@ -20,34 +20,34 @@
 {% set modifier_class = modifier_class|default('') %}
 {% set level = level|default(1) %}
 {% set is_parent = is_parent|default(null) %}
-{% set level_class = 'civic-side-navigation-link--level-%s'|format(level) %}
+{% set level_class = 'civic-menu-item--level-%s'|format(level) %}
 {% set expanded = expanded|default(false) %}
 {% set active_child = active_child|default(false) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, level_class, modifier_class) %}
 {%  if is_active %}
-  {% set modifier_class = modifier_class ~ ' civic-side-navigation-link--active' %}
+  {% set modifier_class = modifier_class ~ ' civic-menu-item--active' %}
 {% endif %}
 {% if is_parent %}
-  {% set modifier_class = modifier_class ~ ' civic-side-navigation-link--parent' %}
+  {% set modifier_class = modifier_class ~ ' civic-menu-item--parent' %}
   {%  if active_child %}
     {% set expanded = true %}
-    {% set modifier_class = modifier_class ~ ' civic-side-navigation-link--active-child' %}
+    {% set modifier_class = modifier_class ~ ' civic-menu-item--active-child' %}
   {% endif %}
 {% endif %}
 {% if expanded %}
-  {% set icon_modifier = 'civic-side-navigation-link__icon civic-side-navigation-link__icon--expanded' %}
+  {% set icon_modifier = 'civic-menu-item__icon civic-menu-item__icon--expanded' %}
   {% set icon_symbol = 'arrows-upper-arrow-1' %}
 {% else %}
-  {% set icon_modifier = 'civic-side-navigation-link__icon civic-side-navigation-link__icon--expand' %}
+  {% set icon_modifier = 'civic-menu-item__icon civic-menu-item__icon--expand' %}
   {% set icon_symbol = 'arrows-down-arrow-1' %}
 {% endif %}
 
-<div class="civic-side-navigation-link {{ modifier_class }}">
+<div class="civic-menu-item {{ modifier_class }}">
   {% include '@atoms/link/link.twig' with {
     theme: theme,
     text: text,
     url: url,
-    modifier_class: 'civic-side-navigation-link__link'
+    modifier_class: 'civic-menu-item__link'
   } only %}
   {% if is_parent %}
     {% include '@atoms/icon/icon.twig' with {

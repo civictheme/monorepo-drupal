@@ -13,17 +13,19 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
-<div class="civic-side-navigation {{ theme_class }}">
-  <div class="civic-side-navigation__title">
-    {% include '@atoms/icon/icon.twig' with {
-      spritesheet: '/icons/civic-arrows.svg',
-      symbol: 'arrows-left-arrow-2',
-      modifier_class: 'civic-side-navigation__icon'
-    } %}
-    {{ title }}
+<div class="civic-menu-tree {{ theme_class }}">
+  <div class="civic-menu-tree__title">
+    <a href="{{ back_url }}">
+      {% include '@atoms/icon/icon.twig' with {
+        spritesheet: '/icons/civic-arrows.svg',
+        symbol: 'arrows-left-arrow-2',
+        modifier_class: 'civic-menu-tree__icon'
+      } %}
+      {{ back_text }}
+    </a>
   </div>
   {% if links is not empty %}
-    <div class="civic-side-navigation__items">
+    <div class="civic-menu-tree__items">
       {% for linkObj in links  %}
         {% if linkObj.links %}
           {% set active_child = false %}
@@ -34,7 +36,7 @@
               {% set expanded = true %}
             {% endif %}
           {% endfor %}
-          <div class="civic-side-navigation__item">
+          <div class="civic-menu-tree__item">
             {% include '@atoms/navigation/navigation.twig' with {
               theme: theme,
               text: linkObj.text,
@@ -48,7 +50,7 @@
           </div>
           {% if expanded %}
             {% for sublinkObj in linkObj.links  %}
-              <div class="civic-side-navigation__item">
+              <div class="civic-menu-tree__item">
                 {% include '@atoms/navigation/navigation.twig' with {
                   theme: theme,
                   text: sublinkObj.text,
@@ -61,7 +63,7 @@
             {% endfor %}
           {% endif %}
         {% else %}
-          <div class="civic-side-navigation__item">
+          <div class="civic-menu-tree__item">
             {% include '@atoms/navigation/navigation.twig' with {
               theme: theme,
               text: linkObj.text,
