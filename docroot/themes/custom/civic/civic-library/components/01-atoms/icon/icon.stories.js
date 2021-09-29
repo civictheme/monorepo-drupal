@@ -1,9 +1,9 @@
-import { text, select } from '@storybook/addon-knobs'
+import { select } from '@storybook/addon-knobs'
 
 import CivicIcon from './icon.twig'
 import './icon.scss'
 
-// Use the icons availabe in the assets directory to compile a list of spritesheets and icon IDs.
+// Use the icons available in the assets directory to compile a list of spritesheets and icon IDs.
 const icons = []
 require.context('../../../assets/icons/', true, /\.svg$/).keys().forEach(path => {
   const name = path.substring(2).replace('.svg', '').replace(/[\/\-]/g, '_').toLowerCase().replace(/[^a-z0-9\-_]+/g, '')

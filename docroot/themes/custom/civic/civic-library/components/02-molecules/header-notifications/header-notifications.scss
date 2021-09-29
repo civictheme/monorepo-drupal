@@ -5,9 +5,9 @@
 @import '../../00-base/base';
 
 $colors: ('info': $civic-header-notifications-background-info-color,
-'warning': $civic-header-notifications-background-warning-color,
-'error': $civic-header-notifications-background-error-color,
-'success': $civic-header-notifications-background-success-color,
+  'warning': $civic-header-notifications-background-warning-color,
+  'error': $civic-header-notifications-background-error-color,
+  'success': $civic-header-notifications-background-success-color,
 );
 
 $types: ('info', 'error', 'warning', 'success');

@@ -1,16 +1,14 @@
-import {boolean, radios, text} from "@storybook/addon-knobs";
+import { radios, text } from '@storybook/addon-knobs';
+
 import CivicHeaderNotifications from './header-notifications.twig';
 import './header-notifications.scss';
 import './header-notifications.js'
 
-/**
- * Storybook Definition.
- */
 export default {
-  title: 'Molecule/Alerts'
-};
+  title: 'Molecule/Header Notifications'
+}
 
-export const  HeaderNotifications= () => CivicHeaderNotifications({
+export const HeaderNotifications = () => CivicHeaderNotifications({
   theme: radios(
     'Theme',
     {

@@ -1,5 +1,5 @@
-import {boolean, radios, text} from '@storybook/addon-knobs'
-import CivicBreadcrumb from "./breadcrumb.twig";
+import { boolean, radios } from '@storybook/addon-knobs'
+import CivicBreadcrumb from './breadcrumb.twig';
 
 export default {
   title: 'Molecule/Breadcrumb',
