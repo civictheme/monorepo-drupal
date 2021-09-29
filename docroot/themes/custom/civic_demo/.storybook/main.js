@@ -6,7 +6,6 @@
 // unify the building pipeline.
 const custom = require('./../webpack/webpack.prod.js');
 const {merge} = require('webpack-merge');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const webpack = require('webpack')
 const civicVariables = require('./civic-variables.js')
 
@@ -27,7 +26,6 @@ module.exports = {
     // Modify common configs to let Storybook take over.
     delete custom.output
     custom.plugins = [
-      new SpriteLoaderPlugin({plainSprite: true}),
       // Provide Civic SCSS variables to stories via webpack.
       new webpack.DefinePlugin({
         CIVIC_VARIABLES: JSON.stringify(civicVariables.getVariables())
