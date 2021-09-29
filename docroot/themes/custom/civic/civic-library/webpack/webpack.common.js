@@ -3,7 +3,6 @@ const glob = require('glob');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const globImporter = require('node-sass-glob-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 module.exports = {
   entry: function (pattern) {
@@ -20,9 +19,6 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
-    new SpriteLoaderPlugin({
-      plainSprite: true,
-    }),
     new MiniCssExtractPlugin({
       filename: '../dist/civic.css',
     }),
@@ -59,25 +55,6 @@ module.exports = {
             },
           },
         ],
-      },
-      // SVG Sprite Loader.
-      {
-        test: /icons\/.*\.svg$/,
-        loader: 'svg-sprite-loader',
-        options: {
-          extract: true,
-          spriteFilename: (name) => {
-            // Export as multiple collections grouped by the parent directory.
-            return `icons/civic-${/icons([\\|/])(.*?)\1/gm.exec(name)[2].toLowerCase().replace(/\s/g, '-').replace(/[^a-z0-9\-]+/, '')}.svg`;
-          },
-          symbolId: filePath => {
-            // Set symbol id to '<group>-<name>'.
-            let paths = filePath.split('/');
-            const name = paths.pop();
-            const prefix = paths.pop();
-            return [prefix, name].join('-').toLowerCase().replace('.svg', '').replace(/\s/g, '-').replace(/[^a-z0-9\-]+/g, '');
-          }
-        },
       },
       // Twig loader.
       {

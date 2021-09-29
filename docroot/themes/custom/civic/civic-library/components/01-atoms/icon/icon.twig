@@ -13,10 +13,21 @@
  * Variables:
  * - color: [string] Icon color.
  * - symbol: [string] Icon name.
- * - spritesheet: [string] Icon collection (spritesheet).
  * - modifier_class: [string] Additional classes to modify component styling.
  */
 #}
-<svg width="24" height="24" class="civic-icon{{ color ? ' civic-icon--color-' ~ color }}{{ modifier_class ? ' ' ~ modifier_class}}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <use xlink:href="{{ spritesheet }}#{{ symbol }}"></use>
-</svg>
+{% extends './icon_library.twig' %}
+{% block content %}
+  {% set icon = icons[symbol] %}
+  <svg
+    width="{{icon.width}}"
+    height="{{icon.height}}"
+    class="civic-icon{{ color ? ' civic-icon--color-' ~ color }}{{ modifier_class ? ' ' ~ modifier_class}}"
+    viewBox="0 0 {{icon.width}} {{icon.height}}"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {% for path in icon.paths %}
+      <path d="{{path}}" />
+    {% endfor %}
+  </svg>
+{% endblock %}
