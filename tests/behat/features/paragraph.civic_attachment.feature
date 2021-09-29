@@ -20,7 +20,7 @@ Feature: Tests the Attachment
     And I should see the text "field_c_p_icon" in the "Icon" row
     And I should see the text "field_c_p_image" in the "Image" row
 
-    @api @javascript
+  @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
