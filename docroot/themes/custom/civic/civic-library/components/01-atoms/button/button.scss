@@ -120,7 +120,6 @@
       color: $civic-button-dark-primary-color;
     }
   }
-
   @else if ($type=='secondary') {
     &.civic-theme-light {
       background-color: $civic-button-light-secondary-background-color;
@@ -162,7 +161,6 @@
       }
     }
   }
-
   @else if ($type=='tertiary') {
     &.civic-theme-light {
       background-color: $civic-button-light-tertiary-background-color;
@@ -188,17 +186,14 @@
     @include civic-typography('label-#{$size}');
     padding: civic-space(2) civic-space(5);
   }
-
   @else if ($size=='regular') {
     @include civic-typography('label-#{$size}');
     padding: civic-space(2) civic-space(5);
   }
-
   @else if ($size=='small') {
     @include civic-typography('label-#{$size}');
     padding: civic-space(1) civic-space(3);
   }
-
   @else {
     @error '"#{$size}" is not one of allowed #{$sizes}.';
   }
