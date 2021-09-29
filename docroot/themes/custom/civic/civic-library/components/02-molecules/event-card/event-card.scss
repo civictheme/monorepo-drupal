@@ -1,0 +1,175 @@
+//
+// Event card.
+//
+
+@import '../../00-base/base';
+
+.civic-event-card {
+  $root: &;
+  position: relative;
+
+  &:hover {
+    #{$root}__title {
+      text-decoration: underline;
+    }
+  }
+
+  &:active {
+    outline: none;
+
+    #{$root}__title {
+      text-decoration: underline;
+    }
+  }
+
+  &--small {
+    border-top: rem(6px) solid $civic-event-card-border-top-color;
+    border-radius: rem(4px) rem(4px) 0 0;
+  }
+
+  &__image-wrapper {
+    position: relative;
+  }
+
+  &__content-top {
+    bottom: 0;
+    padding: civic-space(1);
+    position: absolute;
+  }
+
+  &__content {
+    box-shadow: 0 rem(8px) rem(32px) rgba(0, 0, 0, 0.2);
+    padding: civic-space(3);
+  }
+
+  &__date {
+    margin-bottom: civic-space(2);
+  }
+
+  &__link {
+    display: block;
+    text-decoration: none;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__title {
+    @include civic-typography(heading-4);
+    margin: 0;
+  }
+
+  &__location {
+    @include civic-typography(body);
+  }
+
+  &__summary {
+    @include civic-typography(body);
+  }
+
+  &__tag-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__tag {
+    @include civic-typography(tag);
+    border-radius: $civic-border-radius;
+    padding: rem(4px) civic-space(1);
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &.civic-theme-light {
+    background-color: $civic-event-card-light-background-color;
+
+    &:focus {
+      @include civic-outline(false)
+    }
+
+    &:hover {
+      #{$root}__title {
+        color: $civic-event-card-light-color-hover;
+      }
+    }
+
+    &:active {
+      #{$root}__title {
+        color: $civic-event-card-light-color-active;
+      }
+    }
+
+    #{$root}__title {
+      color: $civic-event-card-light-heading-color;
+    }
+
+    #{$root}__location,
+    #{$root}__summary {
+      color: $civic-event-card-light-body-color;
+    }
+
+    #{$root}__location {
+      font-weight: 600;
+    }
+
+    #{$root}__tag {
+      background-color: $civic-event-card-light-tag-background-color;
+      color: $civic-event-card-light-tag-color;
+    }
+
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-event-card-dark-background-color;
+
+    &:focus {
+      @include civic-outline(true)
+    }
+
+    &:hover {
+      #{$root}__title {
+        color: $civic-event-card-dark-color-accent;
+      }
+    }
+
+    &:active {
+      #{$root}__title {
+        color: $civic-event-card-dark-color-active;
+      }
+    }
+
+    #{$root}__title {
+      color: $civic-event-card-dark-heading-color;
+    }
+
+    #{$root}__summary,
+    #{$root}__location {
+      color: $civic-event-card-dark-body-color;
+    }
+
+    #{$root}__location {
+      font-weight: 600;
+    }
+
+    #{$root}__tag {
+      background-color: $civic-event-card-dark-color-accent;
+      color: $civic-event-card-dark-tag-color;
+    }
+
+    #{$root}__icon {
+      .civic-icon {
+        fill: $civic-event-card-dark-color-accent;
+      }
+    }
+  }
+}

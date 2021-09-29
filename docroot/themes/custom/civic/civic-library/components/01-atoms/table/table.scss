@@ -39,6 +39,7 @@
           &:first-of-type::after {
             visibility: hidden;
           }
+
           &:after {
             content: '';
             width: calc(100% - 30px);
@@ -50,6 +51,7 @@
             right: 0;
             top: -6px
           }
+
           &:before {
             content: attr(data-title);
             display: table-cell;
@@ -58,6 +60,7 @@
             max-width: rem(100px);
             flex-shrink: 0;
             vertical-align: middle;
+            @include civic-typography('label-regular');
             padding-right: civic-space(2);
           }
         }
@@ -85,8 +88,11 @@
   }
 
   &.civic-theme-light {
-    background-color: $civic-table-light-background-color;
     color: $civic-table-light-color;
+
+    table {
+      background-color: $civic-table-light-background-color;
+    }
 
     thead {
       @include civic-breakpoint('m') {
@@ -101,13 +107,11 @@
           border-top: solid 2px $civic-table-light-color;
         }
       }
-      tr:nth-child(even) {
-        background: $civic-table-light-row-even-color;
-      }
 
       @include civic-breakpoint-upto('m') {
         tr {
           border-bottom: solid 2px $civic-table-light-color;
+
           &:first-child {
             border-top: solid 2px $civic-table-light-color;
           }
@@ -118,6 +122,10 @@
 
   &.civic-theme-dark {
     color: $civic-table-dark-color;
+
+    table {
+      background-color: $civic-table-dark-row-odd-color;
+    }
 
     thead {
       @include civic-breakpoint('m') {
@@ -136,15 +144,27 @@
       @include civic-breakpoint-upto('m') {
         tr {
           border-bottom: solid 2px $civic-table-dark-color;
+
           &:first-child {
             border-top: solid 2px $civic-table-dark-color;
           }
         }
       }
+    }
+  }
 
+  &--striped {
+    &.civic-theme-light {
+      tr:nth-child(even) {
+        background: $civic-table-light-row-even-color;
+      }
+    }
+
+    &.civic-theme-dark {
       tr:nth-child(odd) {
         background: $civic-table-dark-row-odd-color;
       }
+
       tr:nth-child(even) {
         background: $civic-table-dark-row-even-color;
       }

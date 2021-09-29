@@ -8,19 +8,18 @@
 // Mixins.
 //
 
-@mixin civic-button($type: 'primary', $size: 'regular', $icon: false, $icon_placement: false, $is_disabled: false) {
+@mixin civic-button($type: 'primary', $size: 'regular', $icon: false, $icon_placement: 'right', $is_disabled: false) {
   @include civic-button-type($type);
   @include civic-button-size($size);
-  // @todo Implement icon support.
 }
 
 @mixin civic-button-type($type) {
-  $types: ('primary', 'primary-accent', 'secondary', 'secondary-accent');
+  $types: ('primary', 'secondary', 'tertiary');
 
   @if not index($types, $type) {
     @error '"#{$type}" is not one of allowed #{$types}.';
   }
-
+  display: inline-block;
   text-decoration: none;
 
   &:focus,
@@ -33,189 +32,148 @@
     text-decoration: none;
   }
 
+  .civic-icon {
+    vertical-align: middle;
+  }
+
+  &.civic-theme-light {
+
+    &:focus {
+      box-shadow: $civic-outline-boxshadow;
+      background-color: $civic-button-light-focus-background-color;
+    }
+
+    &:hover {
+      background-color: $civic-button-light-hover-background-color;
+    }
+
+    &:active {
+      background-color: $civic-button-light-active-background-color;
+      box-shadow: none;
+    }
+
+    &[disabled] {
+      background-color: $civic-button-light-disabled-background-color;
+      color: $civic-button-light-disabled-color;
+    }
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: $civic-button-light-state-color;
+
+      .civic-icon {
+        fill: $civic-button-light-state-color;
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    &:focus {
+      box-shadow: $civic-outline-boxshadow;
+      background-color: $civic-button-dark-focus-background-color;
+      color: $civic-button-dark-focus-color;
+
+      .civic-icon {
+        fill: $civic-button-dark-focus-color;
+      }
+    }
+
+    &:hover {
+      background-color: $civic-button-dark-hover-background-color;
+    }
+
+    &:active {
+      background-color: $civic-button-dark-active-background-color;
+      box-shadow: none;
+    }
+
+    &[disabled] {
+      background-color: $civic-button-dark-disabled-background-color;
+    }
+
+    &:hover,
+    &:active,
+    &[disabled] {
+      color: $civic-button-dark-state-color;
+
+      .civic-icon {
+        fill: $civic-button-dark-state-color;
+      }
+    }
+
+
+  }
+
   @if $type=='primary' {
-    background-color: civic-color('primary');
-    color: civic-color('secondary');
-
     &.civic-theme-light {
-      &:focus {
-        box-shadow: $civic-outline-boxshadow;
-      }
+      background-color: $civic-button-light-primary-background-color;
+      color: $civic-button-light-primary-color;
 
-      &:hover {
-        background-color: civic-color('shade_30');
-      }
-
-      &:active {
-        background-color: civic-color('shade_60');
-        box-shadow: none;
-      }
-
-      &[disabled] {
-        background-color: civic-color('neutral_40');
+      .civic-icon {
+        fill: $civic-button-light-primary-color;
       }
     }
 
     &.civic-theme-dark {
-      background-color: civic-color('secondary');
-      color: civic-color('primary');
-
-      &:focus {
-        background-color: civic-color('shade_30');
-        box-shadow: $civic-outline-accent-boxshadow;
-        color: civic-color('secondary');
-      }
-
-      &:hover {
-        background-color: civic-color('primary-accent');
-      }
-
-      &:active {
-        background-color: civic-color('secondary-accent');
-        color: civic-color('secondary');
-        box-shadow: none;
-      }
-
-      &[disabled] {
-        background-color: civic-color('neutral_60');
-        color: civic-color('secondary');
-      }
+      background-color: $civic-button-dark-primary-background-color;
+      color: $civic-button-dark-primary-color;
     }
-  } @else if ($type=='primary-accent') {
-    background-color: civic-color('primary-accent');
-    color: civic-color('primary');
-
+  }
+  @else if ($type=='secondary') {
     &.civic-theme-light {
-      &:focus {
-        background-color: civic-color('shade_30');
-        color: civic-color('secondary');
-        box-shadow: $civic-outline-accent-boxshadow;
-      }
+      background-color: $civic-button-light-secondary-background-color;
+      color: $civic-button-light-seondary-color;
+      border: rem(3px) solid $civic-button-light-secondary-border-color;
 
       &:hover {
-        // Left here for visibility.
+        border-color: $civic-button-light-hover-background-color;
       }
 
       &:active {
-        background-color: civic-color('secondary-accent');
-        box-shadow: none;
+        border-color: $civic-button-light-active-background-color;
       }
 
       &[disabled] {
-        background-color: civic-color('neutral_40');
-        color: civic-color('secondary');
+        border-color: $civic-button-light-disabled-background-color;
+      }
+
+      .civic-icon {
+        fill: $civic-button-light-seondary-color;
       }
     }
 
     &.civic-theme-dark {
-      background-color: civic-color('primary');
-      color: civic-color('secondary');
-
-      &:focus {
-        color: civic-color('secondary');
-        box-shadow: $civic-outline-accent-boxshadow
-      }
+      background-color: $civic-button-dark-secondary-background-color;
+      color: $civic-button-dark-secondary-color;
+      border: rem(3px) solid $civic-button-dark-secondary-border-color;
 
       &:hover {
-        background-color: civic-color('secondary');
-        color: civic-color('primary');
+        border-color: $civic-button-dark-hover-background-color;
       }
 
       &:active {
-        background-color: civic-color('secondary-accent');
-        box-shadow: none;
-        color: civic-color('secondary');
+        border-color: $civic-button-dark-active-background-color;
       }
 
       &[disabled] {
-        background-color: civic-color('neutral_60');
-        color: civic-color('secondary');
+        border-color: $civic-button-dark-disabled-background-color;
       }
     }
-  } @else if ($type=='secondary') {
-    background-color: civic-color('secondary');
-    color: civic-color('primary');
-    border: rem(3px) solid civic-color('primary');
-
+  }
+  @else if ($type=='tertiary') {
     &.civic-theme-light {
-      &:focus {
-        box-shadow: $civic-outline-boxshadow;
-      }
+      background-color: $civic-button-light-tertiary-background-color;
+      color: $civic-button-light-tertiary-color;
 
-      &:hover {
-        background-color: civic-color('primary');
-        color: civic-color('secondary');
-      }
-
-      &:active {
-        background-color: civic-color('shade_60');
-        box-shadow: none;
-        color: civic-color('secondary');
-        border: rem(3px) solid civic-color('shade_60');;
-      }
-
-      &[disabled] {
-        background-color: civic-color('neutral_40');
-        color: civic-color('secondary');
+      .civic-icon {
+        fill: $civic-button-light-tertiary-color;
       }
     }
 
     &.civic-theme-dark {
-      background-color: civic-color('primary');
-      color: civic-color('secondary');
-      border: 0;
-
-      &:focus {
-        background-color: civic-color('shade_60');
-        box-shadow: $civic-outline-accent-boxshadow;
-      }
-
-      &:hover {
-        background-color: civic-color('primary-accent');
-        color: civic-color('primary');
-        text-decoration: underline;
-      }
-
-      &:active {
-        background-color: civic-color('secondary-accent');
-        box-shadow: none;
-        color: civic-color('secondary');
-      }
-
-      &[disabled] {
-        background-color: civic-color('neutral_60');
-        color: civic-color('secondary');
-        text-decoration: none;
-      }
-    }
-  } @else if ($type=='secondary-accent') {
-    // @todo update light Add dark css once designs are updated.
-    background-color: civic-color('secondary');
-    color: civic-color('primary-accent');
-    border: solid $civic-border-width civic-color('primary-accent');
-
-    &.civic-theme-light,
-    &.civic-theme-dark {
-      &:focus {
-        box-shadow: $civic-outline-boxshadow;
-      }
-
-      &:hover {
-        background-color: civic-color('shade_30');
-        color: civic-color('secondary');
-        border: 0;
-      }
-
-      &:active {
-        background-color: civic-color('shade_60');
-        box-shadow: none;
-      }
-
-      &[disabled] {
-        background-color: civic-color('neutral_40');
-        color: civic-color('secondary');
-        border: 0;
-      }
+      background-color: $civic-button-dark-tertiary-background-color;
+      color: $civic-button-dark-tertiary-color;
     }
   }
 
@@ -227,13 +185,16 @@
   @if ($size=='large') {
     @include civic-typography('label-#{$size}');
     padding: civic-space(2) civic-space(5);
-  } @else if ($size=='regular') {
+  }
+  @else if ($size=='regular') {
     @include civic-typography('label-#{$size}');
     padding: civic-space(2) civic-space(5);
-  } @else if ($size=='small') {
+  }
+  @else if ($size=='small') {
     @include civic-typography('label-#{$size}');
     padding: civic-space(1) civic-space(3);
-  } @else {
+  }
+  @else {
     @error '"#{$size}" is not one of allowed #{$sizes}.';
   }
 }
@@ -253,16 +214,12 @@
     @include civic-button-type('primary');
   }
 
-  &--primary-accent {
-    @include civic-button-type('primary-accent');
-  }
-
   &--secondary {
     @include civic-button-type('secondary');
   }
 
-  &--secondary-accent {
-    @include civic-button-type('secondary-accent');
+  &--tertiary {
+    @include civic-button-type('tertiary');
   }
 
   &--large {

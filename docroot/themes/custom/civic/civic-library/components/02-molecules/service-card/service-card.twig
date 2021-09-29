@@ -1,0 +1,41 @@
+{#
+/**
+ * @file Event card component.
+ *
+ * Available variables:
+ * - links: [object] Consist details of the link like text, url, new_window, is_external.
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - title: [string] The text of card title.
+ * - theme: [string] card theme: light, dark.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s '|format(theme_class) %}
+
+<div class="civic-service-card {{ modifier_class }}">
+  <div class="civic-service-card__content">
+    {% if content_top %}
+      <div class="civic-service-card__content-top">{{ content_top }}</div>
+    {% endif %}
+
+    <h4 class="civic-service-card__title">{{ title }}</h4>
+    <ul class="civic-service-card__links">
+      {% for link in links %}
+        <li class="civic-service-card__link-items">
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: link.text,
+            url: link.url,
+            new_window: link.new_window,
+            is_external: link.is_external
+          } only %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if content_bottom %}
+      <div class="civic-service-card__content-bottom">{{ content_bottom }}</div>
+    {% endif %}
+  </div>
+</div>

@@ -17,26 +17,26 @@
   {% endif %}
   <table>
     {% if header is not empty %}
-    <thead>
+      <thead>
       <tr>
         {% for item in header %}
           <th scope="col">{{ item }}</th>
         {% endfor %}
       </tr>
-    </thead>
+      </thead>
     {% endif %}
     <tbody>
-      {% if raws is not empty %}
-        {% for raw in raws  %}
-          <tr>
-            {% for item in raw %}
-              <td data-title="{{ header[loop.index] }}">{{ item }}</td>
-            {% endfor %}
-          </tr>
-        {% endfor %}
-      {% else %}
-        <h2> Table is empty </h2>
-      {% endif %}
+    {% if rows is not empty %}
+      {% for row in rows %}
+        <tr>
+          {% for item in row %}
+            <td data-title="{{ header[loop.index] }}">{{ item }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    {% else %}
+      <h2> Table is empty </h2>
+    {% endif %}
     </tbody>
     <caption>{{ caption }}</caption>
   </table>

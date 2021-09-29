@@ -1,0 +1,9 @@
+//
+// Custom variables overrides.
+//
+// Civic variables can be found in components/00-base/_variables.scss
+
+// Example to override a primary color in a child theme.
+$civic-colors: (
+  'primary': green,
+);

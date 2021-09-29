@@ -70,6 +70,7 @@
       width: 25%;
       flex-basis: unset;
     }
+
     img {
       object-fit: cover;
       width: 100%;
@@ -89,10 +90,7 @@
 
   &__summary {
     margin-top: 16px;
-    @include civic-typography((
-      'xs': (14px, 25px, 400),
-      'l': (16px, 28px, 400)
-    ));
+    @include civic-typography(body);
   }
 
   &__title {
@@ -171,17 +169,20 @@
       &__title {
         color: $civic-attachment-light-heading-color;
       }
+
       &__icon {
         svg {
           fill: $civic-attachment-light-icon-color;
         }
       }
+
       &__links {
         &--link {
           svg {
             fill: civic-color('link');
           }
         }
+
         &--last-updated {
           color: $civic-attachment-light-date-color;
         }

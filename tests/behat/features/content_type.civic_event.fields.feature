@@ -5,8 +5,8 @@ Feature: Fields on Page content type
 
   Background:
     Given civic_event content:
-      | title                    | status           |
-      | [TEST] Test Event title | published         |
+      | title                   | status    |
+      | [TEST] Test Event title | published |
 
   @api
   Scenario: Event content type exists with fields.
