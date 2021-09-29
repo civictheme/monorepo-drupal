@@ -5,11 +5,6 @@ import './image.scss'
 
 import imageFile from '../../../assets/image.png';
 
-const imageAttr = {
-  src: imageFile,
-  alt: 'Civic image',
-};
-
 export default {
   title: 'Atom/Image',
 }
@@ -23,7 +18,7 @@ export const Image = () => CivicImage({
     },
     'light',
   ),
-  src: text('Image path', imageAttr.src),
-  alt: text('Image alt text', imageAttr.alt),
+  src: text('Image path', imageFile),
+  alt: text('Image alt text', 'Civic image alt'),
   caption: text('Caption', 'This is a default image caption.'),
 })

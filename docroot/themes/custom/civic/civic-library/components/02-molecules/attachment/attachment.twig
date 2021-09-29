@@ -56,12 +56,12 @@
         <ul>
           {% for linkObj in links %}
             <li class="civic-attachment__links--link">
-            <span>
-                {% include '@atoms/icon/icon.twig' with {
-                  spritesheet: '/icons/civic-file-and-folders.svg',
-                  symbol: 'file-and-folders-document'
-                } %}
-            </span>
+              <span>
+                  {% include '@atoms/icon/icon.twig' with {
+                    spritesheet: '/icons/civic-file-and-folders.svg',
+                    symbol: 'file-and-folders-document'
+                  } %}
+              </span>
               <div>
                 {% include '@atoms/link/link.twig' with {
                   theme: theme,

@@ -28,15 +28,8 @@ export default {
 }
 
 export const NavigationCard = () => {
-
-  // Knob tab names.
   const navCard = 'Navigation card';
   const iconList = 'Icon (Applies to card with icon.)';
-
-  const imageAttr = {
-    src: imageFile,
-    alt: 'Civic image',
-  };
 
   // Current component parameters.
   const navCardParams = {
@@ -52,8 +45,8 @@ export const NavigationCard = () => {
     title: text('Title', 'Navigation card heading which runs across two or three lines', navCard),
     summary: text('Summary', 'Recommend keeping card summary short over two or three lines.', navCard),
     image: {
-      src: text('Image path', imageAttr.src),
-      alt: text('Image alt text', imageAttr.alt)
+      src: text('Image path', imageFile),
+      alt: text('Image alt text', 'Civic image alt')
     },
     url: text('Card URL', 'https://google.com', navCard),
     modifier_class: text('Additional class', '', navCard),

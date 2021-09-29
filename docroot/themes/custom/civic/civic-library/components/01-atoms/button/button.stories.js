@@ -26,7 +26,6 @@ export default {
 }
 
 export const Button = () => {
-  // Knob tab names.
   const buttonKnobTab = 'Button';
   const iconKnobTab = 'Icon';
 

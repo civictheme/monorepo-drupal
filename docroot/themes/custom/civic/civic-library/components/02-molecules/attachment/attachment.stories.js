@@ -45,11 +45,6 @@ Attachment.args = {
   ],
 };
 
-const imageAttr = {
-  src: imageFile,
-  alt: 'Civic image',
-};
-
 export const Publication = CivicAttachment.bind({});
 Publication.args = {
   ...defaultArgs,
@@ -59,7 +54,7 @@ Publication.args = {
     'title': 'Test link title',
   },
   image: {
-    src: imageAttr.src,
-    alt: imageAttr.alt
+    src: imageFile,
+    alt: 'Civic image alt'
   },
 };
