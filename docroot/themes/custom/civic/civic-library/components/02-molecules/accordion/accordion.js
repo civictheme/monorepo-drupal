@@ -43,8 +43,8 @@ AccordionWidget.prototype.init = function (selectedIndex) {
   }
 
   if (!Number.isNaN(selectedIndex)) {
-    initialSelectedIndex = selectedIndex < this.accordionTriggersLength ? selectedIndex : this.accordionTriggersLength - 1;
     this.expandedAccordions = new Array(this.accordionTriggersLength);
+    initialSelectedIndex = selectedIndex < this.accordionTriggersLength ? selectedIndex : this.accordionTriggersLength - 1;
     this.expandedAccordions[initialSelectedIndex] = true;
   } else {
     initialSelectedIndex = this.expandedAccordions.lastIndexOf(true);
@@ -160,7 +160,7 @@ AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
       this.accordionTriggers[i].classList.remove('civic-accordion__header__button--expanded');
       this.accordionItems[i].classList.remove('civic-accordion__list-item--expanded');
       this.accordionPanels[i].classList.remove('civic-accordion__content--expanded');
-      this.accordionPanels[i].style.height = 0;
+      this.accordionPanels[i].style.height = '';
 
       this.accordionPanels[i].setAttribute('aria-hidden', true);
       this.accordionPanels[i].classList.add('is-hidden');
@@ -193,6 +193,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const accordions = document.querySelectorAll('.civic-accordion ul');
   const caw = [];
   Array.from(accordions).forEach((accordion, index) => {
-    caw.push(new AccordionWidget(accordion, index));
+    caw.push(new AccordionWidget(accordion));
   });
 });

@@ -97,26 +97,25 @@
 
   &__content {
     $content: &;
-    display: none;
     overflow: hidden;
     height: 0;
-    transition: height 0.1s ease 0.1s;
     @include civic-typography('body');
     color: civic-color('body');
 
     &--expanded {
       overflow: visible;
       border-top: none;
-      display: block;
-      transition: height 0.2s ease;
+      height: 0;
+      transition: height .25s;
 
-      #{$content}__inner {
+      #{$content}--inner {
         opacity: 1;
-        transition: opacity 0.3s ease;
+        transition: opacity .35s;
       }
     }
 
     &--inner {
+      opacity: 0;
       padding: civic-space(3);
     }
   }

@@ -14,7 +14,8 @@
         <li class="civic-accordion__list-item">
           {% if fold.title %}
             <h3 class="civic-accordion__header">
-              <button class="civic-accordion__header__button">
+              {% set is_open = (fold.expanded == true) or expand_all ? 'is-selected' : '' %}
+              <button class="civic-accordion__header__button {{ is_open }}">
                 {{ fold.title }}
                 {% include '@atoms/icon/icon.twig' with {
                   spritesheet: '/icons/civic-arrows.svg',
@@ -25,7 +26,7 @@
           {% endif %}
 
           {% if fold.content %}
-            <div class="civic-accordion__content" {{ fold.expanded ? data-open }}>
+            <div class="civic-accordion__content">
               <div class="civic-accordion__content--inner">
                 {{ fold.content }}
               </div>
