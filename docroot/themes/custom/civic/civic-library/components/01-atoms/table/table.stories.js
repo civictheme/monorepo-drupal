@@ -52,5 +52,15 @@ Table.args = {
       'Information about something',
       'And this is important',
     ],
+    [
+      'Row 4',
+      'Information about something',
+      'And this is important',
+    ],
+    [
+      'Row 5',
+      'Information about something',
+      'And this is important',
+    ],
   ]
 }
