@@ -1,13 +1,12 @@
-import { boolean, radios, text, select } from '@storybook/addon-knobs'
+import { boolean, radios, select, text } from '@storybook/addon-knobs'
 
 import CivicButton from './button.twig'
 import './button.scss'
-import './button.js'
 
 // @todo Find a way to make this reusable.
 const spritesheets = new Set()
 const icons = {}
-// Use the icons availabe in the assets directory to compile a list of spritesheets and icon IDs.
+// Use the icons available in the assets directory to compile a list of spritesheets and icon IDs.
 require.context('../../../assets/icons/', true, /\.svg$/).keys().forEach(path => {
   // Get a list of all spritesheets.
   const spritesheetName = path.substring(2, path.indexOf('/', 2)).replace(/\s/g, '-').toLowerCase()
@@ -22,24 +21,23 @@ require.context('../../../assets/icons/', true, /\.svg$/).keys().forEach(path =>
   icons[spritesheetURL].push(`${spritesheetName}-${iconName}`)
 });
 
-
 export default {
   title: 'Atom/Button',
 }
 
 export const Button = () => {
   // Knob tab names.
-  const button = 'Button';
-  const iconList = 'Icon (Applies to button with icon.)';
+  const buttonKnobTab = 'Button';
+  const iconKnobTab = 'Icon';
 
-  const buttonParams = {
+  const buttonKnobs = {
     theme: radios(
       'Theme', {
         'Light': 'light',
         'Dark': 'dark',
       },
       'light',
-      button
+      buttonKnobTab
     ),
     kind: radios(
       'Kind', {
@@ -49,7 +47,7 @@ export const Button = () => {
         'Submit': 'submit'
       },
       'button',
-      button
+      buttonKnobTab
     ),
     type: radios(
       'Type', {
@@ -58,16 +56,7 @@ export const Button = () => {
         'Tertiary': 'tertiary'
       },
       'primary',
-      button
-    ),
-    icon: boolean('With icon', true, button),
-    icon_placement: radios(
-      'Icon position', {
-        'Left': 'left',
-        'Right': 'right',
-      },
-      'right',
-      button
+      buttonKnobTab
     ),
     size: radios(
       'Size', {
@@ -76,26 +65,33 @@ export const Button = () => {
         'Small': 'small',
       },
       'regular',
-      button
+      buttonKnobTab
     ),
-    text: text('Text', 'Button Text', button),
-    url: text('URL (applies to button kind link.)', 'http://example.com', button),
-    new_window: boolean('Open in a new window (applies to button kind link.)', false, button),
-    disabled: boolean('Disabled', false, button),
-    modifier_class: text('Additional class', '', button),
+    text: text('Text', 'Button Text', buttonKnobTab),
+    url: text('URL (applies to button kind "link")', 'http://example.com', buttonKnobTab),
+    new_window: boolean('Open in a new window (applies to button kind "link")', false, buttonKnobTab),
+    disabled: boolean('Disabled', false, buttonKnobTab),
+    modifier_class: text('Additional class', '', buttonKnobTab),
   }
 
-  //Knob tabs order is decided on the basis of their order in story.
-  //Icon component parameters.
+  // Icon component parameters.
   const sheets = Array.from(spritesheets)
-  let spritesheet = select('Icon Pack', sheets, '/icons/civic-arrows.svg', iconList)
-  let symbol = select('Symbol', icons[spritesheet], 'arrows-right-arrow-3', iconList)
-  const colors = CIVIC_VARIABLES['civic-default-colors']
+  let spritesheet = select('Icon Pack', sheets, '/icons/civic-arrows.svg', iconKnobTab)
+  let symbol = select('Symbol', icons[spritesheet], 'arrows-right-arrow-3', iconKnobTab)
 
-  const iconParams = {
-    spritesheet,
-    symbol
+  const iconKnobs = {
+    icon: boolean('With icon', false, iconKnobTab),
+    icon_placement: radios(
+      'Icon position', {
+        'Left': 'left',
+        'Right': 'right',
+      },
+      'right',
+      iconKnobTab
+    ),
+    spritesheet: spritesheet,
+    symbol: symbol,
   }
 
-  return CivicButton({ ...buttonParams, ...iconParams });
+  return CivicButton({...buttonKnobs, ...iconKnobs});
 }

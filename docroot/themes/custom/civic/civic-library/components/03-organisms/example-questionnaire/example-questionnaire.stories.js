@@ -1,4 +1,4 @@
-import { text, select, boolean } from '@storybook/addon-knobs'
+import { text } from '@storybook/addon-knobs'
 
 import CustomExampleQuestionnaire from './example-questionnaire.twig'
 

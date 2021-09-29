@@ -1,4 +1,4 @@
-import { text, radios } from '@storybook/addon-knobs'
+import { radios, text } from '@storybook/addon-knobs'
 
 import CivicSkipLink from './skip-link.twig'
 import './skip-link.scss'

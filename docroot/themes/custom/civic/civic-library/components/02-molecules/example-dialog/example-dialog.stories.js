@@ -1,4 +1,4 @@
-import { text, select, boolean } from '@storybook/addon-knobs'
+import { text } from '@storybook/addon-knobs'
 
 import CustomExampleDialog from './example-dialog.twig'
 

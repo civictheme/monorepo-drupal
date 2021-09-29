@@ -35,6 +35,7 @@ $types: ('info', 'error', 'warning', 'success');
       &.civic-theme-light {
         background-color: map-get($colors, '#{$type}-light');
       }
+
       &.civic-theme-dark {
         background-color: map-get($colors, '#{$type}-dark');
       }
@@ -48,6 +49,7 @@ $types: ('info', 'error', 'warning', 'success');
       &.civic-theme-light {
         fill: map-get($icon-colors, '#{$type}-light');
       }
+
       &.civic-theme-dark {
         fill: map-get($icon-colors, '#{$type}-dark');
       }

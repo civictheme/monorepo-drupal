@@ -1,4 +1,4 @@
-import {boolean, radios, text} from "@storybook/addon-knobs";
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicTable from './table.twig';
 
 /**
