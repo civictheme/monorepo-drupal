@@ -12,6 +12,7 @@ export const BasicFilter = () => CivicBasicFilter({
     'Light': 'light',
     'Dark': 'dark'
   }, 'light', 'Theme'),
+  is_multiple: boolean('Multiple', false, 'Theme'),
   items: [
     {
       text: text('Text', 'Basic filter 1', 'Chip 1'),
