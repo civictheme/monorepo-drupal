@@ -1,0 +1,54 @@
+//
+// Filter chip.
+//
+
+@import '../../00-base/base';
+
+.civic-filter-chip {
+  $root: &;
+  @include civic-typography('label-tag');
+  border: solid 1px transparent;
+  border-radius: 20px;
+  padding: civic-space(1) civic-space(2);
+  cursor: pointer;
+
+  input[type=checkbox], input[type=radio] {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    opacity: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &.civic-theme-light {
+    border-color: $civic-filter-chip-light-border-color;
+    color: $civic-filter-chip-light-color;
+
+    &.is-active {
+      background-color: $civic-filter-chip-light-active-background-color;
+      color: $civic-filter-chip-light-active-color;
+    }
+
+    &:hover {
+      background-color: $civic-filter-chip-light-hover-background-color;
+      color: $civic-filter-chip-light-hover-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-filter-chip-dark-background-color;
+    border-color: $civic-filter-chip-dark-border-color;
+    color: $civic-filter-chip-dark-color;
+
+    &.is-active {
+      background-color: $civic-filter-chip-dark-active-background-color;
+      color: $civic-filter-chip-dark-active-color;
+    }
+
+    &:hover {
+      background-color: $civic-filter-chip-dark-hover-background-color;
+      color: $civic-filter-chip-dark-hover-color;
+    }
+  }
+}

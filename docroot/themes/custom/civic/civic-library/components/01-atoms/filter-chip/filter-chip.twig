@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Skip link component.
+ *
+ * Variables:
+ * - theme: [string] theme: light, dark.
+ * - is_multiple: [boolean] Control radio or checkbox.
+ * - is_active: [boolean] Chip active state.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type = is_multiple ? 'checkbox' : 'radio' %}
+{% set is_active = is_active ? 'is-active' : '' %}
+
+<label class="civic-filter-chip {{ theme_class }} {{ is_active }}" data-component-name="filter-chip">
+  <input type="{{ type }}" id="{{ input_id }}" name="{{ input_name }}">
+  <span>{{ text }}</span>
+</label>

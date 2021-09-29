@@ -397,3 +397,19 @@ $civic-skip-link-light-color: map-get(map-merge($civic-default-colors, $civic-co
 $civic-skip-link-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
 $civic-skip-link-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 
+// Filter chip.
+$civic-filter-chip-light-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+$civic-filter-chip-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
+$civic-filter-chip-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_90') !default;
+$civic-filter-chip-light-hover-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
+$civic-filter-chip-light-hover-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-filter-chip-light-active-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-filter-chip-light-active-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+
+$civic-filter-chip-dark-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading-link') !default;
+$civic-filter-chip-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-filter-chip-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
+$civic-filter-chip-dark-hover-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
+$civic-filter-chip-dark-hover-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-filter-chip-dark-active-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
+$civic-filter-chip-dark-active-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
