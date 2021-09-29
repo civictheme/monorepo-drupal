@@ -25,26 +25,27 @@
       padding: civic-space(1) civic-space(2);
       display: block;
     }
-  }
-
-  &:focus-within {
-    @include civic-outline(1);
+    
+    &:focus + span {
+      @include civic-outline(1);
+    }
   }
 
   &.civic-theme-light {
     input[type=checkbox], input[type=radio] {
-      &:checked + span {
-        background-color: $civic-filter-chip-light-active-background-color;
-        color: $civic-filter-chip-light-active-color;
-      }
-
       & + span {
         border-color: $civic-filter-chip-light-border-color;
         color: $civic-filter-chip-light-color;
 
-        &:hover, &:focus {
+        &:hover {
           background-color: $civic-filter-chip-light-hover-background-color;
           color: $civic-filter-chip-light-hover-color;
+        }
+      }
+      &:checked + span {
+        &, &:focus {
+          background-color: $civic-filter-chip-light-active-background-color;
+          color: $civic-filter-chip-light-active-color;
         }
       }
     }
@@ -52,19 +53,20 @@
 
   &.civic-theme-dark {
     input[type=checkbox], input[type=radio] {
-      &:checked + span {
-        background-color: $civic-filter-chip-dark-active-background-color;
-        color: $civic-filter-chip-dark-active-color;
-      }
-
       & + span {
         background-color: $civic-filter-chip-dark-background-color;
         border-color: $civic-filter-chip-dark-border-color;
         color: $civic-filter-chip-dark-color;
 
-        &:hover, &:focus {
+        &:hover {
           background-color: $civic-filter-chip-dark-hover-background-color;
           color: $civic-filter-chip-dark-hover-color;
+        }
+      }
+      &:checked + span {
+        &, &:focus {
+          background-color: $civic-filter-chip-dark-active-background-color;
+          color: $civic-filter-chip-dark-active-color;
         }
       }
     }
