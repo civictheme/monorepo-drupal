@@ -1,4 +1,5 @@
 import { object, radios, text } from '@storybook/addon-knobs'
+import { getSlots } from '../../00-base/base.stories.js';
 
 import CivicServiceCard from './service-card.twig'
 import './service-card.scss'
@@ -8,43 +9,54 @@ export default {
 }
 
 export const serviceCard = () => {
-  const serviceCardKnobTab = 'Service Card';
+  const generalKnobTab = 'General';
 
   // Current component parameters.
-  const serviceCardKnobs = {
-    theme: radios('Theme', {
-      'Light': 'light',
-      'Dark': 'dark'
-    }, 'light', serviceCardKnobTab),
-    title: text('Title', 'Services category title across one or two lines', serviceCardKnobTab),
+  const generalKnobs = {
+    theme: radios(
+      'Theme',
+      {
+        'Light': 'light',
+        'Dark': 'dark'
+      },
+      'light',
+      generalKnobTab
+    ),
+    title: text('Title', 'Services category title across one or two lines', generalKnobTab),
     links: object('Links', [
       {
         url: 'http://google.com',
-        text: 'service link 1',
+        text: 'Service link 1',
         new_window: false,
         is_external: false
       },
       {
         url: 'http://google.com',
-        text: 'service link 2',
+        text: 'Service link 2',
         new_window: false,
         is_external: false
       },
       {
         url: 'http://google.com',
-        text: 'service link 3',
+        text: 'Service link 3',
         new_window: false,
         is_external: false
       },
       {
         url: 'http://google.com',
-        text: 'service link 4',
+        text: 'Service link 4',
         new_window: false,
         is_external: false
       }
-    ], serviceCardKnobTab),
-    modifier_class: text('Additional class', '', serviceCardKnobTab),
+    ], generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicServiceCard({...serviceCardKnobs});
+  return CivicServiceCard({
+    ...generalKnobs,
+    ...getSlots([
+      'content_top',
+      'content_bottom',
+    ])
+  });
 }
