@@ -18,9 +18,11 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
 <div class="civic-callout {{ theme_class }}">
-  <div class="civic-callout__content-top">
-    {{ content_top }}
-  </div>
+  {% if content_top %}
+    <div class="civic-callout__content-top">
+      {{ content_top }}
+    </div>
+  {% endif %}
 
   <div class="civic-callout__text">
     <div class="civic-callout__title">
@@ -45,7 +47,10 @@
     {% endfor %}
   </div>
 
-  <div class="civic-callout__content-bottom">
-    {{ content_bottom }}
-  </div>
+  {% if content_bottom %}
+    <div class="civic-callout__content-bottom">
+      {{ content_bottom }}
+    </div>
+  {% endif %}
+
 </div>

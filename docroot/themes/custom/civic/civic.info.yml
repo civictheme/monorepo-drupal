@@ -9,6 +9,7 @@ libraries:
 
 dependencies:
   - components:components
+  - field_group:field_group
   - paragraphs:paragraphs
 
 regions:
@@ -55,14 +56,9 @@ config_devel:
     - block.block.civic_tabs
     - block_content.type.civic_banner
     - block_content.type.civic_component_block
-    - block.block.civic_banner
-    - block.block.civic_content
-    - block.block.civic_help
-    - block.block.civic_mainnavigation
-    - block.block.civic_messages
-    - block.block.civic_primaryadminactions
-    - block.block.civic_sitebranding
-    - block.block.civic_tabs
+    - core.base_field_override.node.civic_event.promote
+    - core.base_field_override.node.civic_page.promote
+    - core.base_field_override.node.civic_project.promote
     - core.entity_form_display.block_content.civic_banner.default
     - core.entity_form_display.block_content.civic_component_block.default
     - core.entity_form_display.node.civic_event.default
@@ -85,10 +81,10 @@ config_devel:
     - core.entity_form_display.paragraph.civic_map.default
     - core.entity_form_display.paragraph.civic_next_step.default
     - core.entity_form_display.paragraph.civic_promo.default
+    - core.entity_form_display.paragraph.civic_quick_links.default
     - core.entity_form_display.paragraph.civic_service_card.default
     - core.entity_form_display.paragraph.civic_slider.default
     - core.entity_form_display.paragraph.civic_slider_slide.default
-    - core.entity_form_display.paragraph.civic_quick_links.default
     - core.entity_view_display.block_content.civic_banner.default
     - core.entity_view_display.block_content.civic_component_block.default
     - core.entity_view_display.node.civic_event.civic_card_event
@@ -117,16 +113,16 @@ config_devel:
     - core.entity_view_display.paragraph.civic_map.default
     - core.entity_view_display.paragraph.civic_next_step.default
     - core.entity_view_display.paragraph.civic_promo.default
+    - core.entity_view_display.paragraph.civic_quick_links.default
     - core.entity_view_display.paragraph.civic_service_card.default
     - core.entity_view_display.paragraph.civic_slider.default
     - core.entity_view_display.paragraph.civic_slider_slide.default
     - core.entity_view_mode.node.civic_card_event
     - core.entity_view_mode.node.civic_card_navigation
     - core.entity_view_mode.node.civic_card_promo
-    - core.entity_view_display.paragraph.civic_quick_links.default
     - field.field.block_content.civic_banner.field_c_b_theme
     - field.field.block_content.civic_component_block.field_c_b_components
-    - field.field.media.icon.field_m_icon
+    - field.field.media.icon.field_c_m_icon
     - field.field.node.civic_event.field_c_n_attachments
     - field.field.node.civic_event.field_c_n_body
     - field.field.node.civic_event.field_c_n_date
@@ -136,7 +132,7 @@ config_devel:
     - field.field.node.civic_event.field_c_n_tagline
     - field.field.node.civic_event.field_c_n_thumbnail
     - field.field.node.civic_event.field_c_n_topics
-    - field.field.node.civic_page.field_c_n_banner_background.
+    - field.field.node.civic_page.field_c_n_banner_background
     - field.field.node.civic_page.field_c_n_banner_components
     - field.field.node.civic_page.field_c_n_banner_type
     - field.field.node.civic_page.field_c_n_components
@@ -188,17 +184,15 @@ config_devel:
     - field.field.paragraph.civic_card_promo.field_c_p_summary
     - field.field.paragraph.civic_card_promo.field_c_p_theme
     - field.field.paragraph.civic_card_promo.field_c_p_title
-    - field.field.paragraph.civic_quick_links.field_c_p_links
-    - field.field.paragraph.civic_quick_links.field_c_p_theme
-    - field.field.paragraph.civic_quick_links.field_c_p_title
     - field.field.paragraph.civic_card_reference_promo.field_c_p_reference
     - field.field.paragraph.civic_card_reference_promo.field_c_p_theme
+    - field.field.paragraph.civic_card_subject.field_c_p_image
     - field.field.paragraph.civic_card_subject.field_c_p_link
     - field.field.paragraph.civic_card_subject.field_c_p_theme
     - field.field.paragraph.civic_card_subject.field_c_p_title
-    - field.field.paragraph.civic_card_subject.field_c_p_image
     - field.field.paragraph.civic_card_subject_reference.field_c_p_reference
     - field.field.paragraph.civic_card_subject_reference.field_c_p_theme
+    - field.field.paragraph.civic_card_subject_reference.field_c_p_topic
     - field.field.paragraph.civic_card_task.field_c_p_icon
     - field.field.paragraph.civic_card_task.field_c_p_link
     - field.field.paragraph.civic_card_task.field_c_p_summary
@@ -219,6 +213,9 @@ config_devel:
     - field.field.paragraph.civic_promo.field_c_p_summary
     - field.field.paragraph.civic_promo.field_c_p_theme
     - field.field.paragraph.civic_promo.field_c_p_title
+    - field.field.paragraph.civic_quick_links.field_c_p_links
+    - field.field.paragraph.civic_quick_links.field_c_p_theme
+    - field.field.paragraph.civic_quick_links.field_c_p_title
     - field.field.paragraph.civic_service_card.field_c_p_links
     - field.field.paragraph.civic_service_card.field_c_p_theme
     - field.field.paragraph.civic_service_card.field_c_p_title
@@ -234,7 +231,7 @@ config_devel:
     - field.field.paragraph.civic_slider_slide.field_c_p_topic
     - field.storage.block_content.field_c_b_components
     - field.storage.block_content.field_c_b_theme
-    - field.storage.media.field_m_icon
+    - field.storage.media.field_c_m_icon
     - field.storage.node.field_c_n_attachments
     - field.storage.node.field_c_n_banner_background
     - field.storage.node.field_c_n_banner_components
@@ -288,21 +285,23 @@ config_devel:
     - paragraphs.paragraphs_type.civic_card_event_reference
     - paragraphs.paragraphs_type.civic_card_navigation
     - paragraphs.paragraphs_type.civic_card_navigation_reference
+    - paragraphs.paragraphs_type.civic_card_promo
     - paragraphs.paragraphs_type.civic_card_reference_promo
+    - paragraphs.paragraphs_type.civic_card_subject
     - paragraphs.paragraphs_type.civic_card_subject_reference
     - paragraphs.paragraphs_type.civic_card_task
-    - paragraphs.paragraphs_type.civic_card_subject
     - paragraphs.paragraphs_type.civic_content
     - paragraphs.paragraphs_type.civic_map
+    - paragraphs.paragraphs_type.civic_next_step
     - paragraphs.paragraphs_type.civic_promo
     - paragraphs.paragraphs_type.civic_quick_links
     - paragraphs.paragraphs_type.civic_service_card
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
-    - views.view.civic_pages
     - views.view.civic_events
     - views.view.civic_listing
+    - views.view.civic_pages
   optional:
     - media.type.image
     - media.type.document

@@ -19,24 +19,23 @@
 {% set type_class = 'civic-header-notifications--%s'|format(type|default('info')) %}
 {% set messages_class = '%s %s %s'|format(component_class, theme_class, type_class) %}
 {% set icons = {
-    info: {
-      spritesheet: "/icons/civic-user-interface.svg",
-      symbol: "user-interface-information-mark",
-    },
-    warning: {
-      spritesheet: "/icons/civic-user-interface.svg",
-      symbol: "user-interface-exclamation-mark-1",
-    },
-    error: {
-      spritesheet: "/icons/civic-user-interface.svg",
-      symbol: "user-interface-exclamation-mark-1",
-    },
-    success: {
-      spritesheet: "/icons/civic-user-interface.svg",
-      symbol: "user-interface-approve",
-    }
+  info: {
+    spritesheet: '/icons/civic-user-interface.svg',
+    symbol: 'user-interface-information-mark',
+  },
+  warning: {
+    spritesheet: '/icons/civic-user-interface.svg',
+    symbol: 'user-interface-exclamation-mark-1',
+  },
+  error: {
+    spritesheet: '/icons/civic-user-interface.svg',
+    symbol: 'user-interface-exclamation-mark-1',
+  },
+  success: {
+    spritesheet: '/icons/civic-user-interface.svg',
+    symbol: 'user-interface-approve',
   }
-%}
+} %}
 
 {% set alert_icon %}
   {% if icons[type] is defined %}
@@ -57,11 +56,11 @@
   {% endif %}
 {% endset %}
 
-<div class="{{ messages_class }}" data-component-name="header-notifications">
-  <div class="{{ component_class }}__content">
-    <div class="{{ component_class }}__title">{{alert_icon}}{{ title }}</div>
-    <div class="{{ component_class }}__summary">{{ description }}</div>
-    <div class="{{ component_class }}__close-icon">{{ alert_cancel_icon }}</div>
+<div class='{{ messages_class }}' data-component-name='header-notifications'>
+  <div class='{{ component_class }}__content'>
+    <div class='{{ component_class }}__title'>{{ alert_icon }}{{ title }}</div>
+    <div class='{{ component_class }}__summary'>{{ description }}</div>
+    <div class='{{ component_class }}__close-icon'>{{ alert_cancel_icon }}</div>
   </div>
 </div>
 

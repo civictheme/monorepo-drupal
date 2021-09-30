@@ -9,10 +9,10 @@ default:
       target_id: 1
   filename:
     -
-      value: maxresdefault.jpeg
+      value: desert.jpg
   uri:
     -
-      value: 'public://2021-09/maxresdefault.jpeg'
+      value: 'public://2021-09/desert.jpg'
   filemime:
     -
       value: image/jpeg

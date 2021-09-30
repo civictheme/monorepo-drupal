@@ -1,20 +1,14 @@
 /**
  * Custom configuration for Storybook.
- *
- * Using Production version of the asset building Webpack configuration to
- * unify the building pipeline.
  */
-const webpack = require('webpack')
+
+// Using Production version of the asset building Webpack configuration to
+// unify the building pipeline.
 const custom = require('./../webpack/webpack.prod.js');
 const {merge} = require('webpack-merge');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
-
-const civic_variables = require('./civic-variables.js')
-
-// Provide civic SCSS variables to stories via webpack.
-const civicVariablesPlugin = new webpack.DefinePlugin({
-  CIVIC_VARIABLES: JSON.stringify(civic_variables.getVariables())
-})
+const webpack = require('webpack')
+const civicVariables = require('./civic-variables.js')
 
 module.exports = {
   stories: [
@@ -25,14 +19,17 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-essentials',
     '@storybook/addon-links',
+    '@whitespace/storybook-addon-html',
   ],
   webpackFinal: async (config) => {
     // Modify common configs to let Storybook take over.
     delete custom.output
-    delete custom.plugins
     custom.plugins = [
-      new SpriteLoaderPlugin({ plainSprite: true }),
-      civicVariablesPlugin
+      new SpriteLoaderPlugin({plainSprite: true}),
+      // Provide Civic SCSS variables to stories via webpack.
+      new webpack.DefinePlugin({
+        CIVIC_VARIABLES: JSON.stringify(civicVariables.getVariables())
+      })
     ]
     // Special case: override whatever loader is used to load styles with a
     // style-loader in oder to have styles injected during the runtime.

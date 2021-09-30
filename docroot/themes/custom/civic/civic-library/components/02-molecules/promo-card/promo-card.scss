@@ -1,0 +1,146 @@
+//
+// Callout.
+//
+
+@import '../../00-base/base';
+
+.civic-card-promo {
+  position: relative;
+  border-radius: $civic-border-radius;
+  background-color: $civic-card-promo-light-background-color;
+
+  border-top: 6px $civic-card-promo-border-top-color solid;
+
+  &:hover {
+    a {
+      text-decoration: underline;
+      color: $civic-card-promo-light-color-hover;
+    }
+  }
+
+  a {
+    color: $civic-card-promo-light-heading-color;
+    text-decoration: none;
+  }
+
+  &--image-enabled {
+    border: none;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__date {
+    @include civic-typography((
+      'xs': (13px, 20px, 400, 'primary'),
+      'l': (14px, 20px, 400, 'primary')
+    ));
+  }
+
+  &__meta {
+    margin-top: civic-space(3);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__topic {
+    @include civic-typography((
+      'xs': (14px, 20px, 400, 'primary')
+    ));
+    padding: rem(4px) rem(8px);
+    color: $civic-promo-card-light-topic-color;
+    background-color: $civic-promo-card-light-topic-background-color;
+    border-radius: $civic-border-radius;
+  }
+
+  &__link a {
+    color: $civic-promo-card-light-link-color;
+
+    svg {
+      fill: currentColor;
+    }
+  }
+
+  &__content {
+    border-radius: $civic-border-radius;
+    box-shadow: 0 rem(8px) rem(32px) rgba(0, 0, 0, 0.2);
+    padding: civic-space(3);
+  }
+
+  &__title {
+    a {
+      @include civic-typography((
+        'xs': (16px, 24px, 700, 'primary'),
+        'm': (20px, 28px, 700, 'primary')
+      ));
+
+      &:focus {
+        color: $civic-card-promo-light-color-active;
+        text-decoration: underline;
+      }
+
+      &:before {
+        content: '';
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    margin-top: civic-space(2);
+  }
+
+  &__summary {
+    margin-top: civic-space(2);
+    @include civic-typography((
+      'xs': (14px, 25px, 400, 'primary'),
+      'm': (16px, 28px, 400, 'primary')
+    ));
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-card-promo-dark-background-color;
+    color: $civic-card-promo-dark-body-color;
+
+    a {
+      color: $civic-card-promo-dark-heading-color;
+
+      &:hover {
+        color: $civic-card-promo-dark-color-accent;
+      }
+    }
+
+    &:hover {
+      a {
+        color: $civic-card-promo-dark-color-accent;
+      }
+    }
+
+    .civic-card-promo {
+      &__title {
+        a {
+          &:focus {
+            text-decoration: underline;
+            color: $civic-card-promo-dark-color-active;
+          }
+        }
+      }
+
+      &__topic {
+        color: $civic-card-promo-dark-topic-color;
+        background-color: $civic-card-promo-dark-color-accent;
+      }
+
+      &__link a {
+        color: $civic-promo-card-dark-link-color;
+      }
+    }
+  }
+}

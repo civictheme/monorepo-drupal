@@ -1,5 +1,5 @@
-import {boolean, radios, text} from '@storybook/addon-knobs'
-import CivicBreadcrumb from "./breadcrumb.twig";
+import { boolean, radios } from '@storybook/addon-knobs'
+import CivicBreadcrumb from './breadcrumb.twig';
 
 export default {
   title: 'Molecule/Breadcrumb',
@@ -35,7 +35,7 @@ Breadcrumb.args = {
       'url': 'http://example.com',
     },
     'link4': {
-      'text': 'Link 3 title',
+      'text': 'Link 4 title',
       'url': 'http://example.com',
     },
   }

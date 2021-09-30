@@ -38,16 +38,17 @@ Feature: Test the Next step paragraph
     And the "Next step" checkbox should be checked
 
   @api @javascript
-    Scenario: Show relevant fields depending on the 'Content type' selected
-      Given I am logged in as a user with the "Site Administrator" role
-      When I visit "node/add/civic_page"
-      And I fill in "Title" with "[TEST] Page fields"
-      And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
-      And I wait 1 second
-      And I press the "field_c_n_components_civic_next_step_add_more" button
-      And I wait for AJAX to finish
-      And I see field "field_c_n_components[0][subform][field_c_p_theme]"
-      And I see field "Title"
-      And I see field "Summary"
-      And I should see an "input[name='field_c_p_image-media-library-open-button-field_c_n_components-0-subform']" element
-      And I should see an "input[name='field_c_p_icon-media-library-open-button-field_c_n_components-0-subform']" element
+  Scenario: Show relevant fields depending on the 'Content type' selected
+    Given I am logged in as a user with the "Site Administrator" role
+    When I visit "node/add/civic_page"
+    And I fill in "Title" with "[TEST] Page fields"
+    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
+    And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I wait 1 second
+    And I press the "field_c_n_components_civic_next_step_add_more" button
+    And I wait for AJAX to finish
+    And I see field "field_c_n_components[0][subform][field_c_p_theme]"
+    And I see field "Title"
+    And I see field "Summary"
+    And I should see an "input[name='field_c_p_image-media-library-open-button-field_c_n_components-0-subform']" element
+    And I should see an "input[name='field_c_p_icon-media-library-open-button-field_c_n_components-0-subform']" element

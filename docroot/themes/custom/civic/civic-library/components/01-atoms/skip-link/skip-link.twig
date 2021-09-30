@@ -4,7 +4,7 @@
  * Skip link component.
  *
  * Variables:
- * - theme: [string] theme: light, dark. 
+ * - theme: [string] theme: light, dark.
  * - url: [string] URL for the link button.
  * - text: [string] Link text.
  */
@@ -14,7 +14,7 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
 <div class="civic-skip-link {{ theme_class }}">
-	<a class="civic-skip-link__link" href="{{ url }}">
-	 {{ text }}
-	</a>
+  <a class="civic-skip-link__link" href="{{ url }}">
+    {{ text }}
+  </a>
 </div>
