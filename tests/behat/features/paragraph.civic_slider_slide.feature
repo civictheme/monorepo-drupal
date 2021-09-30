@@ -25,6 +25,7 @@ Feature: Tests the Slider Slide paragraph
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
+    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I click on "div.field--name-field-c-n-components .add-more-button-civic-slider.dropbutton-action" element
