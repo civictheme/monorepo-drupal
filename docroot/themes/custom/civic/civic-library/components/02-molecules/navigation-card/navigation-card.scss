@@ -42,7 +42,7 @@
   }
 
   &__summary {
-    @include civic-typography(body);
+    @include civic-typography(card-summary);
     margin-bottom: civic-space(1);
   }
 

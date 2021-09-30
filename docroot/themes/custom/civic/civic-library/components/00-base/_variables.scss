@@ -178,6 +178,10 @@ $civic-typography: (
     'xs': (12px, 20px, 400, 'primary', -0.1px),
     'm': (14px, 20px, 400, 'primary', -0.1px)
   ),
+  'card-summary': ( 
+    'xs': (14px, 25px, 400, 'primary', 0),
+    'm': (16px, 28px, 400, 'primary', 0)
+  ),
   'label-small': (12px, 26px, 600, 'primary'),
   'tag': (14px, 20px, 400, 'primary', -0.1px)
 ) !default;
