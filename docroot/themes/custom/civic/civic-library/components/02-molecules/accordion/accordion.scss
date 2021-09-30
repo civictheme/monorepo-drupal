@@ -90,32 +90,31 @@
 
       svg {
         margin-left: auto;
-        transition: transform .25s;
+        transition: transform .5s;
       }
     }
   }
 
   &__content {
     $content: &;
-    overflow: hidden;
-    height: 0;
-    @include civic-typography('body');
+    overflow: auto;
+    visibility: hidden;
     color: civic-color('body');
+    height: 0;
+    transition: height .5s, visibility .5s;
+    @include civic-typography('body');
 
     &--expanded {
-      overflow: visible;
       border-top: none;
-      height: 0;
-      transition: height .25s;
 
       #{$content}--inner {
         opacity: 1;
-        transition: opacity .35s;
       }
     }
 
     &--inner {
       opacity: 0;
+      transition: opacity .5s;
       padding: civic-space(3);
     }
   }

@@ -144,11 +144,19 @@ AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
 
   for (i = 0; i < this.accordionTriggersLength; i += 1) {
     if (this.expandedAccordions[i]) {
+      let currentPanel = this.accordionPanels[i];
       this.accordionTriggers[i].setAttribute('aria-expanded', true);
+      this.accordionPanels[i].style.height = this.accordionPanels[i].scrollHeight + 'px'
+      setTimeout(function () {
+        // Remove the fixed height after transition so it can be responsive
+        currentPanel.style.height = 'auto';
+      }, 500);
+      this.accordionPanels[i].style.visibility = 'visible';
+
+      // Add required classes.
       this.accordionTriggers[i].classList.add('civic-accordion__header__button--expanded');
       this.accordionItems[i].classList.add('civic-accordion__list-item--expanded');
       this.accordionPanels[i].classList.add('civic-accordion__content--expanded');
-      this.accordionPanels[i].style.height = 'auto';
 
       this.accordionPanels[i].setAttribute('aria-hidden', false);
       this.accordionPanels[i].classList.remove('is-hidden');
@@ -160,7 +168,12 @@ AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
       this.accordionTriggers[i].classList.remove('civic-accordion__header__button--expanded');
       this.accordionItems[i].classList.remove('civic-accordion__list-item--expanded');
       this.accordionPanels[i].classList.remove('civic-accordion__content--expanded');
-      this.accordionPanels[i].style.height = '';
+      let currentPanel = this.accordionPanels[i];
+      this.accordionPanels[i].style.height = this.accordionPanels[i].scrollHeight + 'px'
+      setTimeout(function () {
+        currentPanel.style.height = ''
+        currentPanel.style.visibility = ''
+      }, 1)
 
       this.accordionPanels[i].setAttribute('aria-hidden', true);
       this.accordionPanels[i].classList.add('is-hidden');

@@ -3,7 +3,7 @@ import './accordion.scss'
 import './accordion.js'
 
 export default {
-  title: 'Atom/Accordion',
+  title: 'Molecule/Accordion',
   component: CivicAccordion,
   argTypes: {
     theme: {
