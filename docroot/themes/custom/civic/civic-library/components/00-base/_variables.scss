@@ -87,17 +87,17 @@ $civic-spaces: (
 // Although the design uses 2 grids (6 cols for mobile and 12 cols for desktop),
 // we are using a using only 12 grid for desktop for simplicity. On mobile,
 // the grid collapses into a single column.
-$grid-columns: 12;
-$grid-gutter: $civic-space * 3;
-$grid-offset-xs: 24px;
-$grid-offset-xxl: 92px;
-$grid-lowest-breakpoint: 'xs';
-$grid-max-content-width: 1200px;
-$visible-lowest-breakpoint: 'xs';
+$grid-columns: 12 !default;
+$grid-gutter: $civic-space * 3 !default;
+$grid-offset-xs: 24px !default;
+$grid-offset-xxl: 92px !default;
+$grid-lowest-breakpoint: 'xs' !default;
+$grid-max-content-width: 1200px !default;
+$visible-lowest-breakpoint: 'xs' !default;
 $grid-gutters: (
   'xs': 15px,
   's': $civic-space * 3
-);
+) !default;
 $civic-grid-offsets: (
   'xs': $grid-offset-xs,
   's': $grid-offset-xs,
@@ -105,7 +105,7 @@ $civic-grid-offsets: (
   'l': $grid-offset-xxl * 0.5,
   'xl': $grid-offset-xxl * 0.5,
   'xxl': $grid-offset-xxl
-);
+) !default;
 
 //
 // Misc Variables.
