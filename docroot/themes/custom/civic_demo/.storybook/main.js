@@ -8,6 +8,7 @@ const custom = require('./../webpack/webpack.prod.js');
 const {merge} = require('webpack-merge');
 const webpack = require('webpack')
 const civicVariables = require('./civic-variables.js')
+const civicIcons = require('./civic-icons.js')
 
 module.exports = {
   stories: [
@@ -28,7 +29,8 @@ module.exports = {
     custom.plugins = [
       // Provide Civic SCSS variables to stories via webpack.
       new webpack.DefinePlugin({
-        CIVIC_VARIABLES: JSON.stringify(civicVariables.getVariables())
+        CIVIC_VARIABLES: JSON.stringify(civicVariables.getVariables()),
+        CIVIC_ICON: JSON.stringify(civicIcons.getIcons())
       })
     ]
     // Special case: override whatever loader is used to load styles with a
