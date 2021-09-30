@@ -63,5 +63,59 @@ export const Grid = () => {
       </div>
     </div>
   </div>
+
+  <h2>Grid in a grid</h2>
+  <div class="grid-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-s-8">
+          <div class="row">
+            <div class="col-xs-12 col-s-4"><span>Grid B</span></div>
+            <div class="col-xs-12 col-s-4"><span>Grid B</span></div>
+            <div class="col-xs-12 col-s-4"><span>Grid B</span></div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-s-4">
+          <span>Grid A</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Breakout</h2>
+  <div class="grid-wrapper">
+    <div class="container">
+      <div class="container-breakout">
+        <div class="row">
+          <div class="col-xs-8"><span>Col 1</span></div>
+          <div class="col-xs-4"><span>Col 1</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Auto Column</h2>
+  <div class="grid-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col"><span>A</span></div>
+        <div class="col"><span>B</span></div>
+        <div class="col"><span>C</span></div>
+        <div class="col"><span>D</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Reverse Row</h2>
+  <div class="grid-wrapper">
+    <div class="container">
+      <div class="row reverse">
+      <div class="col"><span>A</span></div>
+      <div class="col"><span>B</span></div>
+      <div class="col"><span>C</span></div>
+      <div class="col"><span>D</span></div>
+      </div>
+    </div>
+  </div>
 </div>`
 }
