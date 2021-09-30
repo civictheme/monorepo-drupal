@@ -1,0 +1,9 @@
+test-styling:
+  version: 1.x
+  css:
+    theme:
+      css/temp.css: {}
+global-scripts:
+  version: 1.x
+  js:
+    js/navmenu.js: {}

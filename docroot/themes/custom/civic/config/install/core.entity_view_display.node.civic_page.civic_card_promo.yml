@@ -10,9 +10,11 @@ dependencies:
     - field.field.node.civic_page.field_c_n_featured_banner_image
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_thumbnail
+    - image.style.large
     - node.type.civic_page
   module:
     - layout_builder
+    - media
     - user
 third_party_settings:
   layout_builder:
@@ -25,18 +27,19 @@ mode: civic_card_promo
 content:
   field_c_n_summary:
     weight: 1
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: content
   field_c_n_thumbnail:
     weight: 0
-    label: above
+    label: hidden
     settings:
-      link: true
+      image_style: large
+      image_link: ''
     third_party_settings: {  }
-    type: entity_reference_label
+    type: media_thumbnail
     region: content
   links:
     weight: 2

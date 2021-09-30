@@ -8,6 +8,7 @@
  * Variables:
  * - theme: [string] Theme for Card.
  * - image: [object] Image data for top of Card
+ * - image_set: [boolean] Image set via block, render block
  * - content_top: [string] Component slot for above main content on Card.
  * - title: [string] Card title.
  * - summary: [string] Card summary.
@@ -19,14 +20,18 @@
 #}
 
 {% set modifier_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set display_image = display_image|default(false) %}
 {% if image.src %}
+  {% set display_image = true %}
   {% set modifier_class = modifier_class ~ ' civic-card-promo--image-enabled' %}
 {% endif %}
 
 <div class="civic-card-promo {{ modifier_class }}">
-  {% if image.src %}
+  {% if display_image %}
     <div class="civic-card-promo__image">
-      <img src="{{ image.src }}" alt="{{ image.alt }}">
+      {% block rendered_image %}
+        <img src="{{ image.src }}" alt="{{ image.alt }}">
+      {% endblock %}
       <div class="civic-card-promo__image__over">
         {{ image_over }}
       </div>
