@@ -18,3 +18,17 @@
   width: 376px;
 }
 
+.slot {
+  display: block;
+  background-color: transparentize(purple, 0.7);
+  padding: 1em;
+  text-align: center;
+  font-family: 'Courier New', Monospace;
+}
+
+.slot--image_over {
+  position: absolute;
+  top: 4em;
+  left: 0;
+  right: 0;
+}

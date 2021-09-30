@@ -7,87 +7,63 @@
 .civic-event-card {
   $root: &;
   position: relative;
+  @include civic-box-shadow;
 
-  &:hover {
-    #{$root}__title {
-      text-decoration: underline;
-    }
-  }
-
-  &:active {
-    outline: none;
-
-    #{$root}__title {
-      text-decoration: underline;
-    }
-  }
-
-  &--small {
+  &#{$root}--no-image {
     border-top: rem(6px) solid $civic-event-card-border-top-color;
     border-radius: rem(4px) rem(4px) 0 0;
   }
 
-  &__image-wrapper {
+  #{$root}__image-wrapper {
     position: relative;
-  }
 
-  &__content-top {
-    bottom: 0;
-    padding: civic-space(1);
-    position: absolute;
-  }
-
-  &__content {
-    box-shadow: 0 rem(8px) rem(32px) rgba(0, 0, 0, 0.2);
-    padding: civic-space(3);
-  }
-
-  &__date {
-    margin-bottom: civic-space(2);
-  }
-
-  &__link {
-    display: block;
-    text-decoration: none;
-
-    &:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
+    img {
       height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
   }
 
-  &__title {
+  #{$root}__content {
+    padding: civic-space(3);
+  }
+
+  #{$root}__date {
+    margin-bottom: civic-space(2);
+  }
+
+  #{$root}__title {
     @include civic-typography(heading-4);
-    margin: 0;
+    margin-bottom: civic-space(2);
   }
 
-  &__location {
+  #{$root}__title-link {
+    text-decoration: none;
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  #{$root}__location {
+    @include civic-typography(subtitle);
+    margin-bottom: civic-space(2);
+  }
+
+  #{$root}__summary {
     @include civic-typography(body);
   }
 
-  &__summary {
-    @include civic-typography(body);
-  }
-
-  &__tag-wrapper {
+  #{$root}__bottom-wrapper {
     display: flex;
     justify-content: space-between;
+    margin-top: civic-space(3);
   }
 
-  &__tag {
+  #{$root}__tag {
     @include civic-typography(tag);
     border-radius: $civic-border-radius;
     padding: rem(4px) civic-space(1);
-  }
-
-  img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
   }
 
   &.civic-theme-light {
@@ -97,20 +73,18 @@
       @include civic-outline(false)
     }
 
-    &:hover {
-      #{$root}__title {
-        color: $civic-event-card-light-color-hover;
-      }
-    }
-
-    &:active {
-      #{$root}__title {
-        color: $civic-event-card-light-color-active;
-      }
-    }
-
     #{$root}__title {
       color: $civic-event-card-light-heading-color;
+    }
+
+    #{$root}__title-link {
+      color: $civic-event-card-light-heading-color;
+      &:hover {
+        color: $civic-event-card-light-color-hover;
+      }
+      &:active {
+        color: $civic-event-card-light-color-active;
+      }
     }
 
     #{$root}__location,
@@ -118,15 +92,10 @@
       color: $civic-event-card-light-body-color;
     }
 
-    #{$root}__location {
-      font-weight: 600;
-    }
-
     #{$root}__tag {
       background-color: $civic-event-card-light-tag-background-color;
       color: $civic-event-card-light-tag-color;
     }
-
   }
 
   &.civic-theme-dark {
@@ -136,29 +105,23 @@
       @include civic-outline(true)
     }
 
-    &:hover {
-      #{$root}__title {
-        color: $civic-event-card-dark-color-accent;
-      }
-    }
-
-    &:active {
-      #{$root}__title {
-        color: $civic-event-card-dark-color-active;
-      }
-    }
-
     #{$root}__title {
       color: $civic-event-card-dark-heading-color;
+    }
+
+    #{$root}__title-link {
+      color: $civic-event-card-dark-heading-color;
+      &:hover {
+        color: $civic-event-card-dark-color-accent;
+      }
+      &:active {
+        color: $civic-event-card-dark-color-active;
+      }
     }
 
     #{$root}__summary,
     #{$root}__location {
       color: $civic-event-card-dark-body-color;
-    }
-
-    #{$root}__location {
-      font-weight: 600;
     }
 
     #{$root}__tag {
