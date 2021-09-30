@@ -40,6 +40,37 @@
     background-color: $civic-next-steps-light-background-color;
     color: $civic-next-steps-light-color;
 
+    &:focus {
+      @include civic-outline(false);
+    }
+
+    &:hover {
+
+      #{$root}__title {
+        color: $civic-next-steps-light-color-hover;
+        text-decoration: underline;
+      }
+
+      #{$root}__read-more {
+        .civic-icon {
+          fill: $civic-next-steps-light-color-hover;
+        }
+      }
+    }
+
+    &:active {
+      .civic-next-steps__title {
+        color: $civic-next-steps-light-color-active;
+        text-decoration: underline;
+      }
+
+      #{$root}__read-more {
+        .civic-icon {
+          fill: $civic-next-steps-light-color-active;
+        }
+      }
+    }
+
     #{$root}__title {
       color: $civic-next-steps-light-heading-color;
     }
@@ -55,6 +86,37 @@
     background-color: $civic-next-steps-dark-background-color;
     color: $civic-next-steps-dark-color;
 
+    &:focus {
+      @include civic-outline(true);
+    }
+
+    &:hover {
+    
+      #{$root}__title {
+        color: $civic-next-steps-dark-color-hover;
+        text-decoration: underline;
+      }
+
+      #{$root}__read-more {
+        .civic-icon {
+          fill: $civic-next-steps-dark-color-hover;
+        }
+      }
+    }
+
+    &:active {
+      #{$root}__title {
+        color: $civic-next-steps-dark-color-active;
+        text-decoration: underline;
+      }
+
+      #{$root}__read-more {
+        .civic-icon {
+          fill: $civic-next-steps-dark-color-active;
+        }
+      }
+    }
+
     #{$root}__title {
       color: $civic-next-steps-dark-heading-color;
     }
@@ -67,4 +129,3 @@
 
   }
 }
-
