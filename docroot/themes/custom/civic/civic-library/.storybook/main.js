@@ -19,6 +19,7 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-essentials',
     '@storybook/addon-links',
+    '@whitespace/storybook-addon-html',
   ],
   webpackFinal: async (config) => {
     // Modify common configs to let Storybook take over.

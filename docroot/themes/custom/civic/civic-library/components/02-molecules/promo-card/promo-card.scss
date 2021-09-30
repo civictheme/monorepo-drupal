@@ -5,8 +5,10 @@
 @import '../../00-base/base';
 
 .civic-card-promo {
+  $root: &;
   position: relative;
   border-radius: $civic-border-radius;
+  box-shadow: 0 rem(8px) rem(32px) rgba(0, 0, 0, 0.2);
   background-color: $civic-card-promo-light-background-color;
 
   border-top: 6px $civic-card-promo-border-top-color solid;
@@ -34,6 +36,7 @@
   }
 
   &__date {
+    color: $civic-card-promo-light-date-color;
     @include civic-typography((
       'xs': (13px, 20px, 400, 'primary'),
       'l': (14px, 20px, 400, 'primary')
@@ -48,18 +51,18 @@
     align-items: center;
   }
 
-  &__topic {
+  #{$root}__topic {
     @include civic-typography((
       'xs': (14px, 20px, 400, 'primary')
     ));
     padding: rem(4px) rem(8px);
-    color: $civic-promo-card-light-topic-color;
-    background-color: $civic-promo-card-light-topic-background-color;
+    color: $civic-card-promo-light-topic-color;
+    background-color: $civic-card-promo-light-topic-background-color;
     border-radius: $civic-border-radius;
   }
 
   &__link a {
-    color: $civic-promo-card-light-link-color;
+    color: $civic-card-promo-light-link-color;
 
     svg {
       fill: currentColor;
@@ -67,8 +70,7 @@
   }
 
   &__content {
-    border-radius: $civic-border-radius;
-    box-shadow: 0 rem(8px) rem(32px) rgba(0, 0, 0, 0.2);
+    color: $civic-card-promo-light-body-color;
     padding: civic-space(3);
   }
 
@@ -106,8 +108,8 @@
   }
 
   &.civic-theme-dark {
+
     background-color: $civic-card-promo-dark-background-color;
-    color: $civic-card-promo-dark-body-color;
 
     a {
       color: $civic-card-promo-dark-heading-color;
@@ -133,13 +135,21 @@
         }
       }
 
+      &__content {
+        color: $civic-event-card-dark-body-color;
+      }
+
+      &__date {
+        color: $civic-card-promo-dark-date-color;
+      }
+
       &__topic {
         color: $civic-card-promo-dark-topic-color;
         background-color: $civic-card-promo-dark-color-accent;
       }
 
       &__link a {
-        color: $civic-promo-card-dark-link-color;
+        color: $civic-card-promo-dark-link-color;
       }
     }
   }
