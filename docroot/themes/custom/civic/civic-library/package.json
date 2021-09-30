@@ -21,7 +21,8 @@
     "build-storybook": "build-storybook",
     "lint": "eslint ./components",
     "dist": "webpack --config ./webpack/webpack.prod.js",
-    "dist:dev": "webpack --config ./webpack/webpack.dev.js"
+    "dist:dev": "webpack --config ./webpack/webpack.dev.js",
+    "generate-icons": "node ./scripts/generate-icons.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",

@@ -32,7 +32,6 @@
   {% if 'civic-nav-card--icon' in modifier_class %}
     <div class="civic-nav-card__icon civic-nav-card__main-icon">
       {% include '@atoms/icon/icon.twig' with {
-        spritesheet: spritesheet,
         symbol: symbol,
         color: icon_color
       } only %}
@@ -48,7 +47,6 @@
       <h5 class="civic-nav-card__title">{{ title }}</h5>
       <span class="civic-nav-card__icon civic-nav-card__read-more">
 				{% include '@atoms/icon/icon.twig' with {
-          spritesheet: '/icons/civic-arrows.svg',
           symbol: 'arrows-right-arrow-3',
           color: 'primary'
         } only %}

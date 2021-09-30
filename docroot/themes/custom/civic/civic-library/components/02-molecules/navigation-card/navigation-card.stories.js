@@ -4,25 +4,6 @@ import imageFile from '../../../assets/image.png';
 import CivicNavigationCard from './navigation-card.twig'
 import './navigation-card.scss'
 
-// @todo Find a way to make this reusable.
-const spritesheets = new Set()
-const icons = {}
-// Use the icons available in the assets directory to compile a list of spritesheets and icon IDs.
-require.context('../../../assets/icons/', true, /\.svg$/).keys().forEach(path => {
-  // Get a list of all spritesheets.
-  const spritesheetName = path.substring(2, path.indexOf('/', 2)).replace(/\s/g, '-').toLowerCase()
-  const spritesheetURL = `/icons/civic-${spritesheetName}.svg`
-  spritesheets.add(spritesheetURL)
-
-  // Get all icons available within the spritesheets.
-  const iconName = path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.')).toLowerCase().replace(/\s/g, '-').replace(/[^a-z0-9\-]+/, '')
-  if (!icons[spritesheetURL]) {
-    icons[spritesheetURL] = []
-  }
-  icons[spritesheetURL].push(`${spritesheetName}-${iconName}`)
-});
-
-
 export default {
   title: 'Molecule/Navigation Card'
 }
@@ -54,14 +35,11 @@ export const NavigationCard = () => {
 
   //Knob tabs order is decided on the basis of their order in story.
   //Icon component parameters.
-  const sheets = Array.from(spritesheets)
-  let spritesheet = select('Icon Pack', sheets, sheets[0], iconList)
-  let symbol = select('Symbol', icons[spritesheet], icons[spritesheet][0], iconList)
   const colors = CIVIC_VARIABLES['civic-default-colors']
+  const icons = CIVIC_ICON.icons
 
   const iconParams = {
-    spritesheet,
-    symbol,
+    symbol: select('Symbol', icons, icons[0], iconList),
     icon_color: select('Color', colors, 'primary', iconList)
   }
 

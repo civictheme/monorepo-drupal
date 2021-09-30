@@ -1,7 +1,7 @@
 const fs = require('fs')
+const iconUtils = require('./icons.js')
 
-const paths = fs.readdirSync('./assets/icons')
-const basePath = './assets/icons'
+const basePath = iconUtils.getBasePath()
 
 function getMatches (reg, text, matchIndex) {
   const returnVars = []
@@ -13,22 +13,9 @@ function getMatches (reg, text, matchIndex) {
   return returnVars
 }
 
-// Get icons.
-const iconPaths = []
-paths.forEach(path => {
-  const currentPath = `${basePath}/${path}`
-  const isDir = fs.lstatSync(currentPath).isDirectory()
-  if (isDir) {
-    const iconFiles = fs.readdirSync(currentPath)
-    iconFiles.forEach(file => {
-      iconPaths.push(`${currentPath}/${file}`)
-    })
-  }
-})
-
 // Extract the name, width and path out of them.
 const twigVariables = []
-iconPaths.forEach(path => {
+iconUtils.getIconPaths().forEach(path => {
   const iconSvg = fs.readFileSync(path, 'utf-8')
 
   const rPaths = new RegExp(' d="([A-Z0-9\\.\\s]+)"', 'gi')
@@ -38,7 +25,7 @@ iconPaths.forEach(path => {
   const paths = getMatches(rPaths, iconSvg, 1)
   const width = getMatches(rWidth, iconSvg, 1)
   const height = getMatches(rHeight, iconSvg, 1)
-  const name = path.replace(basePath, '').substring(1).replace('.svg', '').replace(/[\/\-]/g, '_').toLowerCase().replace(/[^a-z0-9\-_]+/g, '')
+  const name = iconUtils.getNameFromPath(path)
 
   const renderedPath = `[${paths.map(item => `"${item}"`).join(',')}]`
   const twigVar = `"${name}": { "width": ${width[0]}, "height": ${height[0]}, "paths": ${renderedPath} }`

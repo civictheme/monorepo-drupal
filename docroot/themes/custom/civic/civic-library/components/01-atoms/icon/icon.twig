@@ -16,7 +16,7 @@
  * - modifier_class: [string] Additional classes to modify component styling.
  */
 #}
-{% extends './icon_library.twig' %}
+{% extends '@atoms/icon/icon_library.twig' %}
 {% block content %}
   {% set icon = icons[symbol] %}
   <svg
@@ -25,6 +25,7 @@
     class="civic-icon{{ color ? ' civic-icon--color-' ~ color }}{{ modifier_class ? ' ' ~ modifier_class}}"
     viewBox="0 0 {{icon.width}} {{icon.height}}"
     xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
   >
     {% for path in icon.paths %}
       <path d="{{path}}" />
