@@ -99,6 +99,10 @@ $civic-icon-size: (
   'medium': (
     'xs': (40px, 40px),
     'm': (48px, 48px)
+  ),
+  'small': (
+          'xs': (20px, 20px),
+          'm': (24px, 24px)
   )
 );
 
@@ -408,6 +412,17 @@ $civic-service-card-dark-background-color: map-get(map-merge($civic-default-colo
 $civic-service-card-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 $civic-service-card-dark-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 $civic-service-card-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+
+// Progress indicator.
+$civic-progress-indicator-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
+$civic-progress-indicator-light-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-progress-indicator-light-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-progress-indicator-light-active-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+
+$civic-progress-indicator-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-progress-indicator-dark-background-color: transparent !default;
+$civic-progress-indicator-dark-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-progress-indicator-dark-active-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
 
 //
 // Header notifications.
