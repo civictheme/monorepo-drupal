@@ -1,13 +1,13 @@
-import { text, boolean, radios, select, object } from '@storybook/addon-knobs'
+import { radios, select, text } from '@storybook/addon-knobs'
+import imageFile from '../../../assets/image.png';
 
 import CivicNavigationCard from './navigation-card.twig'
 import './navigation-card.scss'
 
-
 // @todo Find a way to make this reusable.
 const spritesheets = new Set()
 const icons = {}
-// Use the icons availabe in the assets directory to compile a list of spritesheets and icon IDs.
+// Use the icons available in the assets directory to compile a list of spritesheets and icon IDs.
 require.context('../../../assets/icons/', true, /\.svg$/).keys().forEach(path => {
   // Get a list of all spritesheets.
   const spritesheetName = path.substring(2, path.indexOf('/', 2)).replace(/\s/g, '-').toLowerCase()
@@ -24,22 +24,14 @@ require.context('../../../assets/icons/', true, /\.svg$/).keys().forEach(path =>
 
 
 export default {
-  title: 'Molecule/Cards'
+  title: 'Molecule/Navigation Card'
 }
 
-
 export const NavigationCard = () => {
-
-  // Knob tab names.
   const navCard = 'Navigation card';
   const iconList = 'Icon (Applies to card with icon.)';
 
-  const imageData = {
-    'src': 'https://via.placeholder.com/400x400',
-    'alt': 'image alt text'
-  };
-  
-  // Current component parameters.  
+  // Current component parameters.
   const navCardParams = {
     theme: radios('Theme', {
       'Light': 'light',
@@ -52,24 +44,27 @@ export const NavigationCard = () => {
     }, 'large', navCard)].join(' '),
     title: text('Title', 'Navigation card heading which runs across two or three lines', navCard),
     summary: text('Summary', 'Recommend keeping card summary short over two or three lines.', navCard),
-    image: object('Image  (Applies to card with image.)', imageData, navCard),
+    image: {
+      src: text('Image path', imageFile),
+      alt: text('Image alt text', 'Civic image alt')
+    },
     url: text('Card URL', 'https://google.com', navCard),
     modifier_class: text('Additional class', '', navCard),
   };
 
   //Knob tabs order is decided on the basis of their order in story.
-  //Icon component parameters. 
+  //Icon component parameters.
   const sheets = Array.from(spritesheets)
   let spritesheet = select('Icon Pack', sheets, sheets[0], iconList)
   let symbol = select('Symbol', icons[spritesheet], icons[spritesheet][0], iconList)
   const colors = CIVIC_VARIABLES['civic-default-colors']
 
-  const iconParams = { 
+  const iconParams = {
     spritesheet,
     symbol,
     icon_color: select('Color', colors, 'primary', iconList)
   }
 
-  return CivicNavigationCard({ ...navCardParams, ...iconParams });
+  return CivicNavigationCard({...navCardParams, ...iconParams});
 }
 

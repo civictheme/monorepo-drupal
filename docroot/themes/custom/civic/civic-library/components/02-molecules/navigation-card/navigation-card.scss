@@ -1,7 +1,7 @@
 //
 // Navigation card.
 //
-@import "../../00-base/base";
+@import '../../00-base/base';
 
 .civic-nav-card {
   display: block;
@@ -63,9 +63,9 @@
     }
 
     img {
-      display: block;
+      height: 100%;
       width: 100%;
-      height: auto;
+      object-fit: cover;
     }
   }
 

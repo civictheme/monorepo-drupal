@@ -20,9 +20,9 @@
 <div class="civic-attachment {{ theme_class }}">
 
   {% if image is not empty %}
-  <div class="civic-attachment__image">
-    <img src="{{ image.src }}" alt="{{ image.alt }}" />
-  </div>
+    <div class="civic-attachment__image">
+      <img src="{{ image.src }}" alt="{{ image.alt }}"/>
+    </div>
   {% endif %}
 
   <div class="civic-attachment__content">
@@ -54,28 +54,29 @@
     {% if links is not empty %}
       <div class="civic-attachment__links">
         <ul>
-        {% for linkObj in links %}
-          <li class="civic-attachment__links--link">
-            <span>
-                {% include '@atoms/icon/icon.twig' with {
-                  spritesheet: '/icons/civic-file-and-folders.svg',
-                  symbol: 'file-and-folders-document'
-                } %}
+          {% for linkObj in links %}
+            <li class="civic-attachment__links--link">
+              <span>
+                  {% include '@atoms/icon/icon.twig' with {
+                    spritesheet: '/icons/civic-file-and-folders.svg',
+                    symbol: 'file-and-folders-document'
+                  } %}
               </span>
-            <div>
-              {% include '@atoms/link/link.twig' with {
-                theme: theme,
-                text: linkObj.title,
-                url: linkObj.url,
-                modifier_class: 'civic-link--attachment'
-              } only %}
+              <div>
+                {% include '@atoms/link/link.twig' with {
+                  theme: theme,
+                  text: linkObj.title,
+                  url: linkObj.url,
+                  modifier_class: 'civic-link--attachment'
+                } only %}
 
-              {% if linkObj.last_updated is not empty %}
-                <div class="civic-attachment__links--last-updated">LAST UPDATED: {{ linkObj.last_updated }}</div>
-              {% endif %}
-            </div>
-          </li>
-        {% endfor %}
+                {% if linkObj.last_updated is not empty %}
+                  <div class="civic-attachment__links--last-updated">LAST
+                    UPDATED: {{ linkObj.last_updated }}</div>
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
         </ul>
       </div>
     {% endif %}

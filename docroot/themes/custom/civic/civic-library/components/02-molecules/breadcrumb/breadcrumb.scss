@@ -42,23 +42,28 @@
   .civic-link {
     @include civic-typography('label-tag');
     padding: 0;
+
     &:hover {
       padding: 0;
     }
 
     &.civic-theme-light {
       color: $civic-breadcrumbs-light-color;
+
       &:hover {
         color: $civic-breadcrumbs-dark-color;
       }
     }
+
     &.civic-theme-dark {
       color: $civic-breadcrumbs-dark-color;
+
       &:hover {
         color: $civic-breadcrumbs-dark-color-hover;
       }
     }
   }
+
   .civic-icon {
     fill: $civic-breadcrumbs-icon-color;
   }
@@ -67,6 +72,7 @@
     background-color: $civic-breadcrumbs-light-background-color;
     color: $civic-breadcrumbs-light-color;
   }
+
   &.civic-theme-dark {
     background-color: $civic-breadcrumbs-dark-background-color;
     color: $civic-breadcrumbs-dark-color;

@@ -10,6 +10,7 @@
 @mixin civic-link-visited() {
   &.civic-theme-light {
     color: $civic-link-light-color-visited;
+
     &:hover {
       background-color: $civic-link-light-background-visited-hover;
       color: $civic-link-light-color-visited-hover;
@@ -17,6 +18,7 @@
   }
   &.civic-theme-dark {
     color: $civic-link-dark-color-visited;
+
     &:hover {
       background-color: $civic-link-dark-background-visited-hover;
       color: $civic-link-dark-color-visited-hover;
@@ -24,14 +26,16 @@
   }
 }
 
-@mixin civic-link-base () {
+@mixin civic-link-base() {
   &,
   &.civic-theme-light {
     color: $civic-link-light-color;
+
     &:hover {
       background-color: $civic-link-light-background-hover;
       color: $civic-link-light-color-hover;
     }
+
     .civic-link__external-icon {
       vertical-align: top;
       margin-left: -2px;
@@ -39,6 +43,7 @@
   }
   &.civic-theme-dark {
     color: $civic-link-dark-color;
+
     &:hover {
       background-color: $civic-link-dark-background-hover;
       color: $civic-link-dark-color-hover;
@@ -62,6 +67,7 @@
 
 .civic-link {
   @include civic-link-base;
+
   &--visited {
     @include civic-link-visited;
   }
