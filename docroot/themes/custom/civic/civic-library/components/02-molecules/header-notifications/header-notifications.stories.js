@@ -27,7 +27,7 @@ export const HeaderNotifications = () => CivicHeaderNotifications({
     },
     'info',
   ),
-  title: text('Title', 'scheduled maintenance'),
+  title: text('Title', 'Scheduled maintenance'),
   description: text('Summary', 'Due to scheduled maintenance CivicTheme will be unavailable between 9:30 pm Thursday 21 January to 6:30 am AEDT Friday 22 January. We apologise for any inconvenience.'),
 });
 

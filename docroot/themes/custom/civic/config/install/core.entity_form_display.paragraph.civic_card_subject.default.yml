@@ -16,14 +16,14 @@ bundle: civic_card_subject
 mode: default
 content:
   field_c_p_image:
-    weight: 1
+    weight: 0
     settings:
       media_types: {  }
     third_party_settings: {  }
     type: media_library_widget
     region: content
   field_c_p_link:
-    weight: 3
+    weight: 2
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -31,13 +31,13 @@ content:
     type: link_default
     region: content
   field_c_p_theme:
-    weight: 0
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_c_p_title:
-    weight: 2
+    weight: 1
     settings:
       size: 60
       placeholder: ''

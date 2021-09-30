@@ -10,7 +10,7 @@ third_party_settings:
     parent: 'main:'
 name: Project
 type: civic_project
-description: ''
+description: '<em>Civic</em>. Use Project pages to describe project information.'
 help: ''
 new_revision: true
 preview_mode: 1
