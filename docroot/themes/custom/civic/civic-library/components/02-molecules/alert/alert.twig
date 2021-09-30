@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Alert component.
+ *
+ * This is strictly an exmaple file to demonstrate markup in Storybook.
+ * It is not intended to be included in any other component.
+ *
+ * Variables:
+ * - type: [string] Message type: Info, Error, Warning, Success.
+ * - theme: [string] Light, Dark.
+ * - title: [string] Message title.
+ * - description: [string] Message summary.
+ *
+ */
+#}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set component_class = 'civic-alert' %}
+{% set type_class = 'civic-alert--%s'|format(type|default('info')) %}
+{% set alert_class = '%s %s %s'|format(component_class, theme_class, type_class) %}
+
+<div class='{{ alert_class }}'>
+  {% include '@molecules/messages/messages.twig' with {
+    theme: theme,
+    title: title,
+    description: description,
+    type: type
+  } only %}
+</div>
