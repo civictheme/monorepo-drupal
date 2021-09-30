@@ -77,6 +77,7 @@ function cd_core_update_9002() {
     'lokender.singh@salsadigital.com.au',
     'richard.gaunt@salsadigital.com.au',
     'satyajit.das@salsadigital.com.au',
+    'john.cloys@salsadigital.com.au',
   ];
 
   foreach ($emails as $email) {

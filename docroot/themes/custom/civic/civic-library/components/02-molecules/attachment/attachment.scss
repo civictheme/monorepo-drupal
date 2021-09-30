@@ -70,6 +70,7 @@
       width: 25%;
       flex-basis: unset;
     }
+
     img {
       object-fit: cover;
       width: 100%;
@@ -168,17 +169,20 @@
       &__title {
         color: $civic-attachment-light-heading-color;
       }
+
       &__icon {
         svg {
           fill: $civic-attachment-light-icon-color;
         }
       }
+
       &__links {
         &--link {
           svg {
             fill: civic-color('link');
           }
         }
+
         &--last-updated {
           color: $civic-attachment-light-date-color;
         }

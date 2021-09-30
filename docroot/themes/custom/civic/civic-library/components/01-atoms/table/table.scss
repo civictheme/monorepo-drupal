@@ -39,6 +39,7 @@
           &:first-of-type::after {
             visibility: hidden;
           }
+
           &:after {
             content: '';
             width: calc(100% - 30px);
@@ -50,6 +51,7 @@
             right: 0;
             top: -6px
           }
+
           &:before {
             content: attr(data-title);
             display: table-cell;
@@ -87,6 +89,7 @@
 
   &.civic-theme-light {
     color: $civic-table-light-color;
+
     table {
       background-color: $civic-table-light-background-color;
     }
@@ -108,6 +111,7 @@
       @include civic-breakpoint-upto('m') {
         tr {
           border-bottom: solid 2px $civic-table-light-color;
+
           &:first-child {
             border-top: solid 2px $civic-table-light-color;
           }
@@ -140,6 +144,7 @@
       @include civic-breakpoint-upto('m') {
         tr {
           border-bottom: solid 2px $civic-table-dark-color;
+
           &:first-child {
             border-top: solid 2px $civic-table-dark-color;
           }
@@ -154,10 +159,12 @@
         background: $civic-table-light-row-even-color;
       }
     }
+
     &.civic-theme-dark {
       tr:nth-child(odd) {
         background: $civic-table-dark-row-odd-color;
       }
+
       tr:nth-child(even) {
         background: $civic-table-dark-row-even-color;
       }

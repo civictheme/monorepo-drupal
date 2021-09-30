@@ -6,8 +6,7 @@
 
 .civic-event-card {
   $root: &;
-  display: block;
-  text-decoration: none;
+  position: relative;
 
   &:hover {
     #{$root}__title {
@@ -17,13 +16,13 @@
 
   &:active {
     outline: none;
-    
+
     #{$root}__title {
       text-decoration: underline;
     }
   }
 
-  &--small{
+  &--small {
     border-top: rem(6px) solid $civic-event-card-border-top-color;
     border-radius: rem(4px) rem(4px) 0 0;
   }
@@ -43,15 +42,22 @@
     padding: civic-space(3);
   }
 
-  &__date-wrapper {
-    border-radius: $civic-border-radius;
+  &__date {
     margin-bottom: civic-space(2);
-    padding: rem(2px) civic-space(1) rem(2px) rem(4px);
-    width: fit-content;
   }
 
-  &__date {
-    @include civic-typography((14px, 20px, 400, 'primary', '-0.1'));
+  &__link {
+    display: block;
+    text-decoration: none;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__title {
@@ -79,9 +85,9 @@
   }
 
   img {
-    display: block;
-    height: auto;
+    height: 100%;
     width: 100%;
+    object-fit: cover;
   }
 
   &.civic-theme-light {
@@ -103,18 +109,6 @@
       }
     }
 
-    #{$root}__date-wrapper {
-      background-color: $civic-event-card-light-date-background-color;
-
-      #{$root}__date {
-        color: $civic-event-card-light-date-color;
-
-        @include civic-breakpoint(m) {
-          color: $civic-event-card-light-body-color;
-        }
-      }
-    }
-
     #{$root}__title {
       color: $civic-event-card-light-heading-color;
     }
@@ -124,7 +118,7 @@
       color: $civic-event-card-light-body-color;
     }
 
-    #{$root}__location{
+    #{$root}__location {
       font-weight: 600;
     }
 
@@ -154,14 +148,6 @@
       }
     }
 
-    #{$root}__date-wrapper {
-      background-color: $civic-event-card-dark-date-background-color;
-
-      #{$root}__date {
-        color: $civic-event-card-dark-date-color;
-      }
-    }
-
     #{$root}__title {
       color: $civic-event-card-dark-heading-color;
     }
@@ -171,7 +157,7 @@
       color: $civic-event-card-dark-body-color;
     }
 
-    #{$root}__location{
+    #{$root}__location {
       font-weight: 600;
     }
 
@@ -187,4 +173,3 @@
     }
   }
 }
-

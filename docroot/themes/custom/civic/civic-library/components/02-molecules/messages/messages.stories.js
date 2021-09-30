@@ -1,12 +1,9 @@
-import {boolean, radios, text} from "@storybook/addon-knobs";
+import { radios, text } from '@storybook/addon-knobs';
 import CivicMessages from './messages.twig';
 
-/**
- * Storybook Definition.
- */
 export default {
-  title: 'Atom/Messages'
-};
+  title: 'Molecule/Messages'
+}
 
 export const Messages = () => CivicMessages({
   theme: radios(

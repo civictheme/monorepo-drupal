@@ -1,11 +1,12 @@
-import {boolean, radios, text, select} from '@storybook/addon-knobs'
+import { boolean, radios, select, text } from '@storybook/addon-knobs'
 
 import CivicTag from './tag.twig'
 import './tag.scss';
 
-// Use the icons availabe in the assets directory to compile a list of spritesheets and icon IDs.
+// @todo Find a way to make this reusable.
 const spritesheets = new Set()
 const icons = {}
+// Use the icons available in the assets directory to compile a list of spritesheets and icon IDs.
 require.context('../../../assets/icons/', true, /\.svg$/).keys().forEach(path => {
   // Get a list of all spritesheets.
   const spritesheetName = path.substring(2, path.indexOf('/', 2)).replace(/\s/g, '-').toLowerCase()
@@ -24,11 +25,9 @@ export default {
   title: 'Atom/Tag',
 }
 
-
 export const Tag = () => {
-//Knob tab names.
-  const tag = 'Tag';
-  const iconList = 'Icon (Applies to tag with icon.)';
+  const tagKnobTab = 'Tag';
+  const iconKnobTab = 'Icon';
 
   const tagParams = {
     theme: radios(
@@ -37,35 +36,32 @@ export const Tag = () => {
         'Dark': 'dark',
       },
       'light',
-      tag	
+      tagKnobTab
     ),
-    icon: boolean('With icon', true, tag),
+    text: text('Text', 'Button Text', tagKnobTab),
+    hidden_value: text('Hidden value', 'Hidden value', tagKnobTab),
+    modifier_class: text('Additional class', '', tagKnobTab)
+  };
+
+  const sheets = Array.from(spritesheets);
+  let spritesheet = select('Icon Pack', sheets, '/icons/civic-business.svg', iconKnobTab)
+  let symbol = select('Symbol', icons[spritesheet], 'business-calendar', iconKnobTab)
+  const colors = CIVIC_VARIABLES['civic-default-colors']
+
+  const iconParams = {
+    icon: boolean('With icon', false, iconKnobTab),
     icon_placement: radios(
       'Icon position', {
         'Before': 'before',
         'After': 'after',
       },
       'before',
-      tag
+      iconKnobTab
     ),
-    text: text('Text', 'Button Text', tag),
-    hidden_value: text('Hidden value', 'Hidden value', tag),
-    modifier_class: text('Additional class', '', tag)
-  };
-
-  //Knob tabs order is decided on the basis of their order in story.
-  //Icon component parameters. 
-  const sheets = Array.from(spritesheets);
-  let spritesheet = select('Icon Pack', sheets, '/icons/civic-business.svg', iconList)
-  let symbol = select('Symbol', icons[spritesheet], 'business-calendar', iconList)
-  const colors = CIVIC_VARIABLES['civic-default-colors']
-
-  const iconParams = {
     spritesheet,
     symbol,
-    icon_color: select('Color', colors, 'primary', iconList)
+    icon_color: select('Color', colors, 'primary', iconKnobTab)
   }
 
-
-  return CivicTag({ ...tagParams, ...iconParams });
+  return CivicTag({...tagParams, ...iconParams});
 }

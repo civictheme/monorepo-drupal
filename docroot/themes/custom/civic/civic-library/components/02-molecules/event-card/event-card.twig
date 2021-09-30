@@ -13,75 +13,77 @@
  * - place_n_time: [string] Place and time details fo the event.
  * - tag: [string] Event topic/industry tag.
  * - title: [string] The text of card title.
- * - theme: [string] card theme: light, dark. 
+ * - theme: [string] card theme: light, dark.
  * - type: [string] Card type: large, small, icon.
  * - url: [string] Card link.
  */
 #}
 
-{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}	
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type_class = with_image ? 'civic-event-card--large' : 'civic-event-card--small' %}
 {% set modifier_class = '%s %s'|format(theme_class, type_class) %}
 {% set url = url|default('#') %}
 
-<a class="civic-event-card {{ modifier_class }}" href="{{ url }}">
-	{% if with_image %}
-		<div class="civic-event-card__image-wrapper">
-			<img src="{{ image.src }}" alt="{{ image.alt }}">
+<div class="civic-event-card {{ modifier_class }}">
+  {% if with_image %}
+    <div class="civic-event-card__image-wrapper">
+      <img src="{{ image.src }}" alt="{{ image.alt }}">
 
-			{% if image_over %}
-				<div class="civic-event-card__image-over">{{ image_over }}</div>
-			{% endif %}
+      {% if image_over %}
+        <div class="civic-event-card__image-over">{{ image_over }}</div>
+      {% endif %}
 
-			{% if content_top %}
-				<div class="civic-event-card__content-top">{{ content_top_label }}</div>
-			{% endif %}
-		</div>
-	{% endif %}
+      {% if content_top %}
+        <div class="civic-event-card__content-top">{{ content_top_label }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
 
-	<div class="civic-event-card__content">
-		{% if date %}
-			<div class="civic-event-card__date-wrapper">
-				<span class="civic-event-card__calendar civic-event-card__icon">
-					{% include '@atoms/icon/icon.twig' with {
-				    spritesheet: '/icons/civic-business.svg',
-				    symbol: 'business-calendar-1',
-				    color: 'body'
-					} only %}
-				</span>
-			 <span class="civic-event-card__date">{{ date }}</span>
-			</div>
-		{% endif %}
+  <div class="civic-event-card__content">
+    {% if date %}
+      {% include '@atoms/tag/tag.twig' with {
+        theme: theme,
+        icon: true,
+        icon_placement: 'before',
+        text: date,
+        spritesheet: '/icons/civic-business.svg',
+        symbol: 'business-calendar',
+        modifier_class: 'civic-event-card__date'
+      } only %}
+    {% endif %}
 
-		<h4 class="civic-event-card__title">{{ title }}</h4>
+    <a class="civic-event-card__link" href="{{ url }}">
+      <h4 class="civic-event-card__title">{{ title }}</h4>
+    </a>
 
-		{% if location %}
-			<div class="civic-event-card__content-middle"><p class="civic-event-card__location">{{ location }}</div>
-		{% endif %}
+    {% if location %}
+      <div class="civic-event-card__content-middle">
+        <p class="civic-event-card__location">{{ location }}</div>
+    {% endif %}
 
-		{% if summary %}
-			<p class="civic-event-card__summary">{{ summary }}</p>
-		{% endif %}
-		
-		{% if content_middle %}
-			<div class="civic-event-card__content-middle">{{ content_middle }}</div>
-		{% endif %}
+    {% if summary %}
+      <p class="civic-event-card__summary">{{ summary }}</p>
+    {% endif %}
 
-		<div class="civic-event-card__tag-wrapper">
-			{% if tag %}
-				<div class="civic-event-card__tag">{{ tag }}</div>
-			{% endif %}
-			<div class="civic-event-card__read-more civic-event-card__icon">
-				{% include '@atoms/icon/icon.twig' with {
-			    spritesheet: '/icons/civic-arrows.svg',
-			    symbol: 'arrows-right-arrow-3',
-			    color: 'primary'
-				} only %}
-			</div>
-		</div>
+    {% if content_middle %}
+      <div class="civic-event-card__content-middle">{{ content_middle }}</div>
+    {% endif %}
 
-		{% if content_bottom %}
-			<div class="civic-event-card__content-bottom">{{ content_bottom }}</div>
-		{% endif %}
-	</div>
-</a>
+    <div class="civic-event-card__tag-wrapper">
+      {% if tag %}
+        <div class="civic-event-card__tag">{{ tag }}</div>
+      {% endif %}
+      <div class="civic-event-card__read-more civic-event-card__icon">
+        {% include '@atoms/icon/icon.twig' with {
+          spritesheet: '/icons/civic-arrows.svg',
+          symbol: 'arrows-right-arrow-3',
+          color: 'primary'
+        } only %}
+      </div>
+    </div>
+
+    {% if content_bottom %}
+      <div class="civic-event-card__content-bottom">{{ content_bottom }}</div>
+    {% endif %}
+  </div>
+</div>

@@ -19,7 +19,7 @@ module.exports = {
     return entries;
   }(path.resolve(__dirname, '../combined-components/**/!(*.stories|*.component|*.min|*.test).js')),
   output: {
-    filename: 'civic.js',
+    filename: 'scripts.js',
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
@@ -27,7 +27,7 @@ module.exports = {
       plainSprite: true,
     }),
     new MiniCssExtractPlugin({
-      filename: '../dist/civic.css',
+      filename: '../dist/styles.css',
     }),
     new CleanWebpackPlugin(),
   ],
