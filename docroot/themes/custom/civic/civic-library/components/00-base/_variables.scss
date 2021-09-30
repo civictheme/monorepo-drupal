@@ -99,6 +99,10 @@ $civic-icon-size: (
   'medium': (
     'xs': (40px, 40px),
     'm': (48px, 48px)
+  ),
+  'small': (
+          'xs': (20px, 20px),
+          'm': (24px, 24px)
   )
 );
 
@@ -416,7 +420,7 @@ $civic-progress-indicator-light-border-color: map-get(map-merge($civic-default-c
 $civic-progress-indicator-light-active-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
 
 $civic-progress-indicator-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
-$civic-progress-indicator-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-progress-indicator-dark-background-color: transparent !default;
 $civic-progress-indicator-dark-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 $civic-progress-indicator-dark-active-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
 
