@@ -39,6 +39,9 @@
 
 <div class='{{ messages_class }}' data-component-name='messages'>
   <div class='{{ component_class }}__icon'>
+    {% if type == 'status' %}
+      {% set type = 'info' %}
+    {% endif %}
     {% if icons[type] is defined %}
       {% include '@atoms/icon/icon.twig' with {
         spritesheet: icons[type].spritesheet,
