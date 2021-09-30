@@ -1,0 +1,42 @@
+<footer role="contentinfo">
+  <div class="container">
+
+    {% block top %}
+      {% if logo or top_left or top_right %}
+        <div class="row">
+          <div class="col-m-4">
+            {{ logo }}
+          </div>
+          <div class="col-m-4">
+            {{ top_left }}
+          </div>
+          <div class="col-m-4">
+            {{ top_right }}
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block middle %}
+      {% if middle %}
+        <div class="row">
+          {{ middle }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block bottom %}
+      {% if bottom_left or bottom_right %}
+        <div class="row">
+          <div class="col-m-4">
+            {{ bottom_left }}
+          </div>
+          <div class="col-m-4">
+            {{ bottom_right }}
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
+
+  </div>
+</footer>

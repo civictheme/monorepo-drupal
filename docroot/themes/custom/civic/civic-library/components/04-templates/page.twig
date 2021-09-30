@@ -1,0 +1,37 @@
+<div class="layout-container">
+
+  {% block header %}
+    {% include '@templates/header.twig' with {
+      top: page.header_top,
+      logo: page.header_logo,
+      content: page.header_content,
+      bottom: page.header_bottom,
+    } only %}
+  {% endblock %}
+
+  {% block banner %}
+    {{ page.banner }}
+  {% endblock %}
+
+  {% block highlighted %}
+    {{ page.highlighted }}
+  {% endblock %}
+
+  {% block content %}
+    {% include '@templates/content.twig' with {
+      content: page.content,
+      content_left: page.content_left,
+    } only %}
+  {% endblock %}
+
+  {% footer block %}
+    {% include '@templates/footer.twig' with {
+      top_left: page.footer_top_left,
+      top_right: page.footer_top_right,
+      middle: page.footer_middle,
+      bottom_left: page.footer_bottom_left,
+      bottom_right: page.footer_bottom_right,
+    } only %}
+  {% endblock %}
+
+</div>
