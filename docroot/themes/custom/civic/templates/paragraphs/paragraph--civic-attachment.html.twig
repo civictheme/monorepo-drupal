@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a promo card.
+ *
+ */
+#}
+{%
+  set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]
+%}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      {% include '@molecules/attachment/attachment.twig' with {
+        theme: paragraph.field_c_p_theme.value,
+        title: paragraph.field_c_p_title.value,
+        summary: content.field_c_p_summary,
+        content_bottom: 'This is content bottom text',
+        theme: paragraph.field_c_p_theme.value,
+        links: attachments
+      } %}
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

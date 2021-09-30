@@ -45,39 +45,4 @@
  * @see html.html.twig
  */
 #}
-<div class="layout-container">
-
-  <header role="banner">
-    {{ page.header_top }}
-    {{ page.header_logo }}
-    {{ page.header_content }}
-    {{ page.header_bottom }}
-  </header>
-
-  {{ page.banner }}
-  {{ page.highlighted }}
-
-  <main role="main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
-    <div class="layout-content">
-      {{ page.content }}
-    </div>{# /.layout-content #}
-
-    {% if page.content_left %}
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.content_left }}
-      </aside>
-    {% endif %}
-
-  </main>
-
-  <footer role="contentinfo">
-    {{ page.footer_top_left }}
-    {{ page.footer_top_right }}
-    {{ page.footer_middle }}
-    {{ page.footer_bottom_left }}
-    {{ page.footer_bottom_right }}
-  </footer>
-
-</div>{# /.layout-container #}
+{% include '@templates/page.twig' %}

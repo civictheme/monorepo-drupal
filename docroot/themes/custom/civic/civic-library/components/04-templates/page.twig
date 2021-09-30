@@ -24,7 +24,7 @@
     } only %}
   {% endblock %}
 
-  {% footer block %}
+  {% block footer %}
     {% include '@templates/footer.twig' with {
       top_left: page.footer_top_left,
       top_right: page.footer_top_right,
