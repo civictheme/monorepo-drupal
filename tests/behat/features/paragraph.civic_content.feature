@@ -21,6 +21,7 @@ Feature: Tests the Content paragraph
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
+    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-1 a" element
     And I press the "field_c_n_banner_components_civic_content_add_more" button
     And I wait for AJAX to finish
     And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-content-0-value" element
