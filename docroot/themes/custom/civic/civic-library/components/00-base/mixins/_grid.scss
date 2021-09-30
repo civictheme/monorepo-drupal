@@ -207,28 +207,3 @@
     }
   }
 }
-
-//
-// Breakout from the container.
-//
-// Note that child rows must be wrapped in .container to follow the grid.
-// E.g., .container-breakout > .container > .row > .col
-//
-@mixin civic-container-breakout() {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  overflow: hidden; // Mask unwanted horizontal scrolling from .row's negative margin.
-
-  @include civic-breakpoint(xxl) {
-    width: map-get($civic-breakpoints, 'xxl');
-    margin: 0 auto;
-    margin-left: -1 * map-get($civic-grid-offsets, 'xxl');
-    position: static;
-    left: auto;
-    right: auto;
-  }
-}
