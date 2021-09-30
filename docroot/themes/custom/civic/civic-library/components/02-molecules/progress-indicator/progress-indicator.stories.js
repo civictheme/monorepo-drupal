@@ -6,7 +6,7 @@ import {CivicIconSet} from "../../00-base/icons.component.js";
  * Storybook Definition.
  */
 export default {
-  title: 'Molecule/ProgressIndicator',
+  title: 'Molecule/Progress Indicator',
   component: CivicProgressIndicator,
 };
 
