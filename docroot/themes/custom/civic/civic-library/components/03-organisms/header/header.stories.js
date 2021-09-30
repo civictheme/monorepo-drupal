@@ -3,7 +3,7 @@ import imageFile from '../../../assets/logo.png';
 import './header.scss';
 
 export default {
-  title: 'Organisms/header',
+  title: 'Organisms/Header',
   component: CivicHeader,
 }
 

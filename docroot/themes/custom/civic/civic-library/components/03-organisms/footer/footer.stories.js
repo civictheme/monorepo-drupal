@@ -3,7 +3,7 @@ import imageFile from '../../../assets/logo.png';
 import './footer.scss';
 
 export default {
-  title: 'Organisms/footer',
+  title: 'Organisms/Footer',
   component: CivicFooter,
 }
 
