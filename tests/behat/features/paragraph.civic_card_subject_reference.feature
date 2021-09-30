@@ -1,4 +1,4 @@
-@paragraph @civic_card_subject_reference @wip
+@paragraph @civic_card_subject_reference
 Feature: Tests the Subject reference card paragraph
 
   Ensure that Subject reference card paragraph exists and has the expected fields.
@@ -40,6 +40,7 @@ Feature: Tests the Subject reference card paragraph
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
+    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I press the "field_c_n_components_civic_card_container_add_more" button

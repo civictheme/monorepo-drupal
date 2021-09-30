@@ -11,7 +11,7 @@ bundle: civic_card_reference_promo
 mode: default
 content:
   field_c_p_reference:
-    weight: 1
+    weight: 0
     settings:
       match_operator: CONTAINS
       match_limit: 10
@@ -21,7 +21,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_c_p_theme:
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_select

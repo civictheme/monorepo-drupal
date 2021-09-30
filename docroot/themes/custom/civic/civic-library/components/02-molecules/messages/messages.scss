@@ -4,54 +4,30 @@
 
 @import '../../00-base/base';
 
-$colors: (
-  'info-light': $civic-messages-light-background-info-color,
-  'warning-light': $civic-messages-light-background-warning-color,
-  'error-light': $civic-messages-light-background-error-color,
-  'success-light': $civic-messages-light-background-success-color,
-  'info-dark': $civic-messages-dark-background-info-color,
-  'warning-dark': $civic-messages-dark-background-warning-color,
-  'error-dark': $civic-messages-dark-background-error-color,
-  'success-dark': $civic-messages-dark-background-success-color,
-);
-
-$icon-colors: (
-  'info-light': $civic-messages-light-icon-info-color,
-  'warning-light': $civic-messages-light-icon-warning-color,
-  'error-light': $civic-messages-light-icon-error-color,
-  'success-light': $civic-messages-light-icon-success-color,
-  'info-dark': $civic-messages-dark-color,
-  'warning-dark': $civic-messages-dark-color,
-  'error-dark': $civic-messages-dark-color,
-  'success-dark': $civic-messages-dark-color,
-);
-
-$types: ('info', 'error', 'warning', 'success');
-
 // mixin
 @mixin civic-messages-colors() {
-  @each $type in $types {
+  @each $type in $civic-messages-types {
     &--#{$type} {
       &.civic-theme-light {
-        background-color: map-get($colors, '#{$type}-light');
+        background-color: map-get($civic-messages-colors, '#{$type}-light');
       }
 
       &.civic-theme-dark {
-        background-color: map-get($colors, '#{$type}-dark');
+        background-color: map-get($civic-messages-colors, '#{$type}-dark');
       }
     }
   }
 }
 
 @mixin civic-messages-icons-colors() {
-  @each $type in $types {
+  @each $type in $civic-messages-types {
     &--#{$type} {
       &.civic-theme-light {
-        fill: map-get($icon-colors, '#{$type}-light');
+        fill: map-get($civic-messages-icon-colors, '#{$type}-light');
       }
 
       &.civic-theme-dark {
-        fill: map-get($icon-colors, '#{$type}-dark');
+        fill: map-get($civic-messages-icon-colors, '#{$type}-dark');
       }
     }
   }
