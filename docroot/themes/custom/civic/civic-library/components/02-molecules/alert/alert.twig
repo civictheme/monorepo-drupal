@@ -19,7 +19,7 @@
 {% set type_class = 'civic-alert--%s'|format(type|default('info')) %}
 {% set alert_class = '%s %s %s'|format(component_class, theme_class, type_class) %}
 
-<div class='{{ alert_class }}'>
+<div class='{{ alert_class }}' data-component-name='alert'>
   {% include '@molecules/messages/messages.twig' with {
     theme: theme,
     title: title,
