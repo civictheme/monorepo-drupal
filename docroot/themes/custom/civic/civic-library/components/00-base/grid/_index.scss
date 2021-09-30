@@ -3,7 +3,7 @@
 //
 
 .row {
-  @include civic-row($grid-gutters);
+  @include civic-row($civic-grid-gutters);
 
   &.reverse {
     @include civic-row-reverse();
@@ -20,9 +20,9 @@
 
 .col {
   // Make columns at the lowest breakpoint to act as a single column per row.
-  @include _civic-grid-col($grid-lowest-breakpoint, $grid-columns);
+  @include _civic-grid-col($civic-grid-lowest-breakpoint, $civic-grid-columns);
 
-  $next-bp: map-get-next($civic-breakpoints, $grid-lowest-breakpoint, map-get($civic-breakpoints, 'xs'), key);
+  $next-bp: map-get-next($civic-breakpoints, $civic-grid-lowest-breakpoint, map-get($civic-breakpoints, 'xs'), key);
 
   // Spawn columns to fit into as single row for larger breakpoints.
   @include civic-breakpoint($next-bp) {
@@ -64,7 +64,7 @@
 
 // Generate column classes.
 @each $breakpoint, $value in $civic-breakpoints {
-  @if $breakpoint==$grid-lowest-breakpoint {
+  @if $breakpoint==$civic-grid-lowest-breakpoint {
     @include _civic-col-factory($breakpoint);
   }
   @else {
@@ -84,7 +84,7 @@
 //
 .container-max-width {
   @include civic-breakpoint(xxl) {
-    width: map-get($civic-breakpoints, xxl);
+    width: $civic-grid-max-width;
     margin: 0 auto;
   }
 }
@@ -94,8 +94,8 @@
 //
 .container-offset-xs {
   @include civic-breakpoint-upto(m) {
-    padding-left: $grid-offset-xs;
-    padding-right: $grid-offset-xs;
+    padding-left: $civic-grid-offset-xs;
+    padding-right: $civic-grid-offset-xs;
     width: auto;
   }
 }
