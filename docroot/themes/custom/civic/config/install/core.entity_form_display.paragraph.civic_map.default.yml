@@ -16,7 +16,7 @@ bundle: civic_map
 mode: default
 content:
   field_c_p_address:
-    weight: 1
+    weight: 0
     settings:
       size: 60
       placeholder: ''
@@ -24,20 +24,6 @@ content:
     type: string_textfield
     region: content
   field_c_p_share_link:
-    weight: 4
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
-  field_c_p_theme:
-    weight: 0
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_c_p_view_link:
     weight: 3
     settings:
       placeholder_url: ''
@@ -45,8 +31,22 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_c_p_zoom:
+  field_c_p_theme:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_c_p_view_link:
     weight: 2
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_c_p_zoom:
+    weight: 1
     settings:
       placeholder: ''
     third_party_settings: {  }
