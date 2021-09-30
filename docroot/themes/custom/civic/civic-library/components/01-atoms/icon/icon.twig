@@ -28,7 +28,7 @@
     aria-hidden="true"
   >
     {% for path in icon.paths %}
-      <path d="{{path}}" />
+      <path {% for attr in path|keys %} {{attr}}="{{path[attr]}}"{% endfor %} />
     {% endfor %}
   </svg>
 {% endblock %}

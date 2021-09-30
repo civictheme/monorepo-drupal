@@ -11,7 +11,8 @@
     "gulp:watch": "gulp watch",
     "lint": "eslint ./components ./assets/js",
     "dist": "npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
-    "dist:dev": "npm run gulp:build && webpack --config ./webpack/webpack.dev.js"
+    "dist:dev": "npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
+    "generate-icons": "node ./scripts/generate-icons.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
