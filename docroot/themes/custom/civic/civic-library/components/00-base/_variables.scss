@@ -176,6 +176,10 @@ $civic-typography: (
     'xs': (18px, 29px, 400, 'primary', 0),
     'm': (20px, 34px, 400, 'primary', '0')
   ),
+  'subtitle': (
+    'xs': (16px, 26px, 600, 'primary', 0),
+    'm': (16px, 28px, 600, 'primary', 0)
+  ),
   'body': (
     'xs': (16px, 26px, 400, 'primary', 0),
     'm': (16px, 28px, 400, 'primary', 0)
@@ -209,7 +213,7 @@ $civic-typography: (
     'm': (14px, 20px, 400, 'primary', -0.1px)
   ),
   'label-small': (12px, 26px, 600, 'primary'),
-  'tag': (14px, 20px, 400, 'primary', -0.1px)
+  'tag': (14px, 20px, 400, 'primary', -0.1px),
 ) !default;
 
 //
@@ -317,29 +321,27 @@ $civic-event-card-dark-color-active: map-get(map-merge($civic-default-colors, $c
 //
 // Promo Card
 //
-$civic-card-promo-border-top-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+$civic-promo-card-border-top-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
 
-$civic-card-promo-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
-$civic-card-promo-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
-$civic-card-promo-light-body-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
-$civic-card-promo-light-date-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutal_5') !default;
-$civic-card-promo-light-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_80') !default;
-$civic-card-promo-light-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
-$civic-card-promo-light-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
-$civic-card-promo-light-topic-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
-$civic-card-promo-light-topic-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
-$civic-card-promo-light-link-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-promo-card-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-promo-card-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
+$civic-promo-card-light-body-color: map-get(map-merge($civic-default-colors, $civic-colors), 'body') !default;
+$civic-promo-card-light-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_80') !default;
+$civic-promo-card-light-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+$civic-promo-card-light-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-promo-card-light-tag-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-promo-card-light-tag-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-promo-card-light-link-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
 
-$civic-card-promo-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
-$civic-card-promo-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
-$civic-card-promo-dark-body-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
-$civic-card-promo-dark-date-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
-$civic-card-promo-dark-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_90') !default;
-$civic-card-promo-dark-topic-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
-$civic-card-promo-dark-topic-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
-$civic-card-promo-dark-color-accent: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
-$civic-card-promo-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
-$civic-card-promo-dark-link-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-promo-card-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
+$civic-promo-card-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-promo-card-dark-body-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-promo-card-dark-date-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-promo-card-dark-tag-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_80') !default;
+$civic-promo-card-dark-tag-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-promo-card-dark-color-accent: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-promo-card-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+$civic-promo-card-dark-link-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 
 //
 // Button

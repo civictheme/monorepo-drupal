@@ -3,8 +3,6 @@ import { boolean, radios, select, text } from '@storybook/addon-knobs'
 import CivicLink from './link.twig'
 import './link.scss'
 
-import './link.stories.scss'
-
 export default {
   title: 'Atom/Link',
 }
