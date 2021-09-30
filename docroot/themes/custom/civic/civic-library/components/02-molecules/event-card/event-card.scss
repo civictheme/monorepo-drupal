@@ -8,10 +8,10 @@
   $root: &;
   position: relative;
   @include civic-box-shadow;
+  border-radius: $civic-border-radius;
 
   &#{$root}--no-image {
     border-top: rem(6px) solid $civic-event-card-border-top-color;
-    border-radius: rem(4px) rem(4px) 0 0;
   }
 
   #{$root}__image-wrapper {
