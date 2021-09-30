@@ -60,9 +60,12 @@
     <div class="civic-card-promo__meta">
       <div class="civic-card-promo__topic_wrapper">
         {% if topic %}
-          <div class="civic-card-promo__topic">
-            {{ topic }}
-          </div>
+          {% include '@atoms/tag/tag.twig' with {
+            theme: theme,
+            text: topic,
+            hidden_label: 'Topic',
+            modifier_class: 'civic-card-promo__topic'
+          } only %}
         {% endif %}
       </div>
       <div class="civic-card-promo__link">

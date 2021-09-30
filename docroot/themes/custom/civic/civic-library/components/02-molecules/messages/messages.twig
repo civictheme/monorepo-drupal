@@ -37,7 +37,7 @@
   }
 } %}
 
-<div class='{{ messages_class }}'>
+<div class='{{ messages_class }}' data-component-name='messages'>
   <div class='{{ component_class }}__icon'>
     {% if icons[type] is defined %}
       {% include '@atoms/icon/icon.twig' with {
