@@ -416,3 +416,12 @@ $civic-skip-link-light-color: map-get(map-merge($civic-default-colors, $civic-co
 
 $civic-skip-link-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
 $civic-skip-link-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+
+// Directional link
+$civic-directional-link-light-disabled-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_40') !default;
+$civic-directional-link-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
+$civic-directional-link-light-hover-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+
+$civic-directional-link-dark-disabled-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_40') !default;
+$civic-directional-link-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-directional-link-dark-hover-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
