@@ -10,67 +10,38 @@
 
 @use 'sass:math';
 
-//
-// Get the next element from the map.
-//
-// @see https://gist.github.com/agorilla/9df052eb1e15d8aea446
-//
-@function map-get-next($map, $key, $fallback: false, $return: value) {
+@mixin civic-row($gutters: $grid-gutters) {
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  @include _civic-print-all-gutters($gutters, margin, -1);
+}
 
-  // Check if map is valid
-  @if type-of($map)==map {
+@mixin civic-row-reverse() {
+  flex-direction: row-reverse;
+}
 
-    // Check if key exists in map
-    @if map-has-key($map, $key) {
-      // Init index counter variable
-      $i: 0;
-      // Init key index
-      $key-index: false;
+@mixin civic-row-natural-height() {
+  align-items: flex-start;
+}
 
-      // Traverse map for key
-      @each $map-key,
-      $map-value in $map {
-        // Update index
-        $i: $i + 1;
+@mixin civic-row-flex-column() {
+  flex-direction: column;
+}
 
-        // If map key found, set key index
-        @if $map-key==$key {
-          $key-index: $i;
-        }
-
-        // If next index return next value or key based on $return
-        @if $i==$key-index+1 {
-          @if $return==key {
-            @return $map-key;
-          }
-
-          @else {
-            @return $map-value;
-          }
-        }
-
-        // If last entry return false
-        @if $i==length($map) {
-          @return $fallback;
-        }
-      }
-
-      @warn 'No next map item for key #{$key}';
-      @return $fallback;
-    }
-
-    @warn 'No valid key #{$key} in map';
-    @return $fallback;
-  }
-
-  @warn 'No valid map';
-  @return $fallback;
+@mixin civic-col-reverse() {
+  flex-direction: column-reverse;
 }
 
 //
 // Print all gutters at their breakpoints.
 //
-@mixin print-all-gutters($gutters: $grid-gutters, $rulePrefix: padding, $scale: 1) {
+// Do not use directly.
+//
+@mixin _civic-print-all-gutters($gutters: $grid-gutters, $rulePrefix: padding, $scale: 1) {
   @if $gutters {
     @each $bp, $gutter in $gutters {
       @if $bp==$grid-lowest-breakpoint {
@@ -86,95 +57,71 @@
   }
 }
 
-// -----------------------------------------------------------------------------
-@mixin row($gutters: $grid-gutters) {
-  box-sizing: border-box;
-  margin: 0 auto;
-  display: flex;
-  flex: 0 1 auto;
-  flex-direction: row;
-  flex-wrap: wrap;
-  @include print-all-gutters($gutters, margin, -1);
-}
-
-@mixin row-reverse() {
-  flex-direction: row-reverse;
-}
-
-@mixin row-natural-height() {
-  align-items: flex-start;
-}
-
-@mixin row-flex-column() {
-  flex-direction: column;
-}
-
-@mixin col-reverse() {
-  flex-direction: column-reverse;
-}
-
-// Condition to run inside of the col mixin * not for developer use *
-@mixin col-condition($col-number) {
+//
+// Condition to run inside of the col mixin.
+//
+// Do not use directly.
+//
+@mixin _civic-col-condition($col-number) {
   @if type-of($col-number)==number {
     @if $col-number>$grid-columns or $col-number==0 {
       @warn "Column number must be greater than 0 and less than or equal to total number of columns in the grid (#{$grid-columns})";
     }
-
     @else {
       box-sizing: border-box;
       flex-basis: math.div(100%, $grid-columns) * $col-number;
       max-width: math.div(100%, $grid-columns) * $col-number;
-      @include print-all-gutters;
+      @include _civic-print-all-gutters;
     }
-
-    // If no col number is passed then arg is set to "auto" by default
-    // "auto" mode fills the horizontal space with evenly sized containers
   }
-
+  // If no col number is passed then arg is set to "auto" by default
+  // "auto" mode fills the horizontal space with evenly sized containers
   @else if $col-number=="auto" {
     box-sizing: border-box;
     flex-grow: 1;
     flex-basis: 0;
     max-width: 100%;
-    @include print-all-gutters;
+    @include _civic-print-all-gutters;
   }
-
   @else {
     @warn "Column number argument must either be the string 'auto' or a number greater than 0 and less than or equal to total number of columns in the grid (#{$grid-columns})";
   }
 }
 
-// Condition to run inside of the col mixin * not for developer use *
-@mixin col($breakpoint: "xs", $col-number: "auto") {
-
+//
+// Condition to run inside of the col mixin.
+//
+// Do not use directly.
+//
+@mixin _civic-grid-col($breakpoint: "xs", $col-number: "auto") {
   // If no breakpoint is passed and a col number is just use the first arg as
   // the col number and act like xs.
   @if type-of($breakpoint)==number {
     $col-number: $breakpoint;
-    @include col-condition($col-number);
+    @include _civic-col-condition($col-number);
   }
-
   @else if $breakpoint==$grid-lowest-breakpoint {
-    @include col-condition($col-number);
+    @include _civic-col-condition($col-number);
   }
-
   @else {
     @include civic-breakpoint($breakpoint) {
-      @include col-condition($col-number);
+      @include _civic-col-condition($col-number);
     }
   }
 }
 
-// -----------------------------------------------------------------------------
-
-// Mixin to run inside of for loop - creates col/breakpoint classes * Not for developer use *
-@mixin col-factory($thisPrefix) {
+//
+// Mixin to run inside of for loop - creates col/breakpoint classes.
+//
+// Do not use directly.
+//
+@mixin _civic-col-factory($thisPrefix) {
   .col-#{$thisPrefix} {
     box-sizing: border-box;
     flex-grow: 1;
     flex-basis: 0;
     max-width: 100%;
-    @include print-all-gutters;
+    @include _civic-print-all-gutters;
   }
 
   @for $i from 1 through $grid-columns {
@@ -182,7 +129,7 @@
       box-sizing: border-box;
       flex-basis: math.div(100%, $grid-columns) * $i;
       max-width: math.div(100%, $grid-columns) * $i;
-      @include print-all-gutters;
+      @include _civic-print-all-gutters;
     }
 
     .col-#{$thisPrefix}-offset-#{$i} {
@@ -238,58 +185,14 @@
 //
 // Offset column.
 //
-@mixin col-offset($column_num) {
+@mixin civic-col-offset($column_num) {
   margin-left: math.div(100%, $grid-columns) * $column_num;
 }
-
-//------------------------------------------------------------------------------
-// Grid debug helpers.
-//------------------------------------------------------------------------------
-
-//
-// Output grid debug overlay.
-//
-@mixin _grid-debug-overlay($width: 1440px, $columns: 12, $gutter: 24px, $baseline: 24px, $show_lines: true, $color: #f00) {
-  position: absolute;
-  content: "";
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: $width;
-  margin: 0 auto;
-  pointer-events: none;
-  z-index: 1000;
-
-  $_column: $width;
-
-  @if $columns==1 {
-    background-image: linear-gradient(to right, rgba($color, 0.25) 0, rgba($color, 0.25) $_column);
-  }
-
-  @else {
-    $_column: math.div(($width - ($columns - 1) * $gutter), $columns);
-    background-size: $_column + $gutter $baseline;
-
-    @if $show_lines==true {
-      background-image: linear-gradient(to right, rgba($color, 0.25) 0, rgba($color, 0.25) $_column, transparent $_column),
-        linear-gradient(to bottom, transparent ($baseline - 1), rgba($color, 0.5) $baseline);
-    }
-
-    @else {
-      background-image: linear-gradient(to right, rgba($color, 0.25) 0, rgba($color, 0.25) $_column, transparent $_column);
-    }
-  }
-}
-
-// -----------------------------------------------------------------------------
-// Additional utility classes.
-// -----------------------------------------------------------------------------
 
 //
 // Container class should wrap every row.
 //
-@mixin container() {
+@mixin civic-container() {
   margin: 0 auto;
 
   // Support super-narrow screens as well.
@@ -298,8 +201,7 @@
 
   // Set width for container at each breakpoint accounting for offsets at this
   // breakpoint.
-  @each $bp,
-  $value in $civic-breakpoints {
+  @each $bp, $value in $civic-breakpoints {
     @include civic-breakpoint($bp) {
       width: map-get($civic-breakpoints, $bp) - (map-get($civic-grid-offsets, $bp) * 2);
     }
@@ -312,7 +214,7 @@
 // Note that child rows must be wrapped in .container to follow the grid.
 // E.g., .container-breakout > .container > .row > .col
 //
-@mixin container-breakout() {
+@mixin civic-container-breakout() {
   width: 100vw;
   position: relative;
   left: 50%;

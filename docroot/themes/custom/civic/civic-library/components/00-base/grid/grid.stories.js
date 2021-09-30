@@ -70,25 +70,13 @@ export const Grid = () => {
       <div class="row">
         <div class="col-xs-12 col-s-8">
           <div class="row">
-            <div class="col-xs-12 col-s-4"><span>Grid B</span></div>
-            <div class="col-xs-12 col-s-4"><span>Grid B</span></div>
-            <div class="col-xs-12 col-s-4"><span>Grid B</span></div>
+            <div class="col-xs-12 col-s-4"><span>Column in nested grid</span></div>
+            <div class="col-xs-12 col-s-4"><span>Column in nested grid</span></div>
+            <div class="col-xs-12 col-s-4"><span>Column in nested grid</span></div>
           </div>
         </div>
         <div class="col-xs-12 col-s-4">
-          <span>Grid A</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <h2>Breakout</h2>
-  <div class="grid-wrapper">
-    <div class="container">
-      <div class="container-breakout">
-        <div class="row">
-          <div class="col-xs-8"><span>Col 1</span></div>
-          <div class="col-xs-4"><span>Col 1</span></div>
+          <span>Column in parent grid</span>
         </div>
       </div>
     </div>

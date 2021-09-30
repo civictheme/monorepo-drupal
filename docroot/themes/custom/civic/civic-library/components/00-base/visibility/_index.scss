@@ -1,0 +1,34 @@
+//
+// Visibility classes.
+//
+
+@each $breakpoint, $value in $civic-breakpoints {
+  @if $breakpoint==$visible-lowest-breakpoint {
+    .show-#{$breakpoint} {
+      display: block;
+    }
+
+    .show-#{$breakpoint}-table {
+      display: table;
+    }
+
+    .hide-#{$breakpoint} {
+      display: none;
+    }
+  }
+  @else {
+    @include civic-breakpoint($breakpoint) {
+      .show-#{$breakpoint} {
+        display: block;
+      }
+
+      .show-#{$breakpoint}-table {
+        display: block;
+      }
+
+      .hide-#{$breakpoint} {
+        display: none;
+      }
+    }
+  }
+}

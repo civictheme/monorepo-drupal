@@ -3,16 +3,21 @@
   min-width: 375px;
 
   .container {
-    border: 1px solid rgba(red, 0.25);
+    box-shadow: 0 0 1px 1px red inset;
     background-color: white;
+
     .row {
-      outline: 1px solid rgba(yellow, 0.25);
+      outline: 1px solid rgba(#563d7c, 0.1);
+
+      // Column.
       div {
-        outline: 1px solid rgba(green, 0.25);
+        outline: 1px solid rgba(blue, 0.5);
+        background-color: rgba(#563d7c, 0.15);
         height: 75px;
+
+        // Column content.
         span {
-          outline: 1px solid rgba(blue, 0.25);
-          background-color: #FFF9;
+          box-shadow: 0 0 0 1px green inset;
           height: 75px;
           display: flex;
           align-items: center;
