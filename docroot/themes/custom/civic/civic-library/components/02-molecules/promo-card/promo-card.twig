@@ -47,15 +47,17 @@
       </div>
     {% endif %}
 
-    <div class="civic-promo-card__title">
-      {% if url %}
-      <a class="civic-promo-card__title-link" href="{{ url }}">
-        {% endif %}
-        {{ title }}
+    {% if title %}
+      <div class="civic-promo-card__title">
         {% if url %}
-      </a>
-      {% endif %}
-    </div>
+        <a class="civic-promo-card__title-link" href="{{ url }}">
+          {% endif %}
+          {{ title }}
+          {% if url %}
+        </a>
+        {% endif %}
+      </div>
+    {% endif %}
 
     <div class="civic-promo-card__content_middle">
       {{ content_middle }}

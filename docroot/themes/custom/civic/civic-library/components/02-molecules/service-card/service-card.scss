@@ -6,11 +6,26 @@
 
 .civic-service-card {
   $root: &;
+  @include civic-box-shadow;
   border-top: rem(6px) solid $civic-service-card-border-top-color;
-  border-radius: rem(4px) rem(4px) 0 0;
+  border-radius: $civic-border-radius;
   text-align: center;
 
-  &__links {
+  #{$root}__content {
+    padding: civic-space(3) 0 civic-space(3) 0;
+
+    @include civic-breakpoint(m) {
+      padding: civic-space(4) 0 civic-space(4) 0;
+    }
+  }
+
+  #{$root}__title {
+    @include civic-typography(heading-4);
+    margin: 0;
+    padding: 0 civic-space(4);
+  }
+
+  #{$root}__links {
     list-style: none;
     margin-bottom: 0;
     padding: 0 civic-space(3);
@@ -20,62 +35,17 @@
     }
   }
 
-  &__link-items {
-    margin-bottom: rem(12px);
+  #{$root}__link__item {
+    margin-bottom: civic-space(2);
+    @include civic-typography(label-large);
 
     &:last-child {
       margin-bottom: 0;
     }
   }
 
-  &:hover {
-    #{$root}__title {
-      text-decoration: underline;
-    }
-  }
-
-  &:active {
-    outline: none;
-
-    #{$root}__title {
-      text-decoration: underline;
-    }
-  }
-
-  &__content {
-    box-shadow: 0 rem(8px) rem(32px) rgba(0, 0, 0, 0.2);
-    padding: civic-space(3) 0 civic-space(3) 0;
-
-    @include civic-breakpoint(m) {
-      padding: civic-space(4) 0 civic-space(4) 0;
-    }
-  }
-
-
-  &__title {
-    @include civic-typography(heading-4);
-    margin: 0;
-    padding: 0 civic-space(4);
-  }
-
   &.civic-theme-light {
     background-color: $civic-service-card-light-background-color;
-
-    &:focus {
-      @include civic-outline(false)
-    }
-
-    &:hover {
-      #{$root}__title {
-        color: $civic-service-card-light-color-hover;
-      }
-    }
-
-    &:active {
-      #{$root}__title {
-        color: $civic-service-card-light-color-active;
-      }
-    }
 
     #{$root}__title {
       color: $civic-service-card-light-heading-color;
@@ -85,25 +55,8 @@
   &.civic-theme-dark {
     background-color: $civic-service-card-dark-background-color;
 
-    &:focus {
-      @include civic-outline(true)
-    }
-
-    &:hover {
-      #{$root}__title {
-        color: $civic-service-card-dark-color-hover;
-      }
-    }
-
-    &:active {
-      #{$root}__title {
-        color: $civic-service-card-dark-color-active;
-      }
-    }
-
     #{$root}__title {
       color: $civic-service-card-dark-heading-color;
     }
   }
 }
-

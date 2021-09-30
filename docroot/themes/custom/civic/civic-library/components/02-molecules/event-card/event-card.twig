@@ -54,15 +54,17 @@
       } only %}
     {% endif %}
 
-    <div class="civic-event-card__title">
-      {% if url %}
-      <a class="civic-event-card__title-link" href="{{ url }}">
-      {% endif %}
-        {{ title }}
-      {% if url %}
-      </a>
-      {% endif %}
-    </div>
+    {% if title %}
+      <div class="civic-event-card__title">
+        {% if url %}
+        <a class="civic-event-card__title-link" href="{{ url }}">
+        {% endif %}
+          {{ title }}
+        {% if url %}
+        </a>
+        {% endif %}
+      </div>
+    {% endif %}
 
     {% if content_middle %}
       <div class="civic-event-card__content-middle">
