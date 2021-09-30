@@ -9,14 +9,14 @@
     {% endif %}
   </div>
   <div class="civic-accordion">
-    <ul class="civic-accordion__list" aria-multiselectable="true">
+    <ul class="civic-accordion__list" data-multiselectable="true">
       {% for fold in panels %}
         <li class="civic-accordion__list-item">
           {% if fold.title %}
             <h3 class="civic-accordion__header">
               {% set is_open = (fold.expanded == true) or expand_all ? 'is-selected' : '' %}
               <button class="civic-accordion__header__button {{ is_open }}">
-                {{ fold.title }}
+                <span>{{ fold.title }}</span>
                 {% include '@atoms/icon/icon.twig' with {
                   spritesheet: '/icons/civic-arrows.svg',
                   symbol: 'arrows-down-arrow-1'

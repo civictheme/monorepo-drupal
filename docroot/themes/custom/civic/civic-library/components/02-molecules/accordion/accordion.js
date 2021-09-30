@@ -19,7 +19,7 @@ function AccordionWidget(el, selectedIndex) {
 AccordionWidget.prototype.init = function (selectedIndex) {
   this.accordionTriggersLength = this.accordionTriggers.length;
   this.expandedAccordions = new Array(this.accordionTriggersLength);
-  this.multiSelectable = this.el.hasAttribute('aria-multiselectable');
+  this.multiSelectable = this.el.hasAttribute('data-multiselectable');
   this.clickListener = this.clickEvent.bind(this);
   this.keydownListener = this.keydownEvent.bind(this);
   this.focusListener = this.focusEvent.bind(this);
@@ -63,8 +63,8 @@ AccordionWidget.prototype.init = function (selectedIndex) {
 AccordionWidget.prototype.clickEvent = function (e) {
   e.preventDefault();
 
-  this.setSelected(e.target.index, true);
-  this.setExpanded(e.target.index, true);
+  this.setSelected(e.currentTarget.index, true);
+  this.setExpanded(e.currentTarget.index, true);
 };
 
 AccordionWidget.prototype.keydownEvent = function (e) {
@@ -81,11 +81,11 @@ AccordionWidget.prototype.keydownEvent = function (e) {
   }
 
   if (e.keyCode === this.keys.space) {
-    this.setExpanded(e.target.index, true);
+    this.setExpanded(e.currentTarget.index, true);
   } else if (e.keyCode === this.keys.prev && e.target.index > 0) {
-    targetIndex = e.target.index - 1;
+    targetIndex = e.currentTarget.index - 1;
   } else if (e.keyCode === this.keys.next && e.target.index < this.accordionTriggersLength - 1) {
-    targetIndex = e.target.index + 1;
+    targetIndex = e.currentTarget.index + 1;
   }
 
   this.setSelected(targetIndex, true);
@@ -99,7 +99,6 @@ AccordionWidget.prototype.focusEvent = function () {
 
 AccordionWidget.prototype.setSelected = function (index, userInvoked) {
   if (index === -1) {
-    this.accordionTriggers[0].setAttribute('tabindex', 0);
     return;
   }
 
@@ -110,8 +109,7 @@ AccordionWidget.prototype.setSelected = function (index, userInvoked) {
       this.accordionItems[i].classList.add('civic-accordion__list-item--expanded');
       currentButton.classList.add('civic-accordion__header__button--expanded');
 
-      currentButton.setAttribute('aria-selected', true);
-      currentButton.setAttribute('tabindex', 0);
+      currentButton.setAttribute('data-selected', true);
 
       if (userInvoked) {
         currentButton.focus();
@@ -119,8 +117,7 @@ AccordionWidget.prototype.setSelected = function (index, userInvoked) {
     } else {
       currentButton.classList.remove('civic-accordion__header__button--expanded');
       this.accordionItems[i].classList.remove('civic-accordion__list-item--expanded');
-      currentButton.setAttribute('aria-selected', false);
-      currentButton.setAttribute('tabindex', -1);
+      currentButton.setAttribute('data-selected', false);
     }
   }
 };
@@ -160,7 +157,6 @@ AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
 
       this.accordionPanels[i].setAttribute('aria-hidden', false);
       this.accordionPanels[i].classList.remove('is-hidden');
-      this.accordionPanels[i].setAttribute('tabindex', 0);
     }
     else {
       this.accordionTriggers[i].setAttribute('aria-expanded', false);
@@ -177,7 +173,6 @@ AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
 
       this.accordionPanels[i].setAttribute('aria-hidden', true);
       this.accordionPanels[i].classList.add('is-hidden');
-      this.accordionPanels[i].setAttribute('tabindex', -1);
     }
   }
 };
@@ -187,12 +182,11 @@ AccordionWidget.prototype.destroy = function () {
 
   for (let i = 0; i < this.accordionTriggersLength; i += 1) {
     this.accordionTriggers[i].removeAttribute('aria-expanded');
-    this.accordionTriggers[i].removeAttribute('aria-selected');
+    this.accordionTriggers[i].removeAttribute('data-selected');
     this.accordionTriggers[i].classList.remove('is-expanded');
 
     this.accordionPanels[i].removeAttribute('aria-hidden');
     this.accordionPanels[i].classList.remove('is-hidden');
-    this.accordionPanels[i].removeAttribute('tabindex');
 
     this.accordionTriggers[i].removeEventListener('click', this.clickListener, false);
     this.accordionTriggers[i].removeEventListener('keydown', this.keydownListener, false);
