@@ -25,7 +25,7 @@ function civic_form_system_theme_settings_alter(&$form, &$form_state) {
   if (file_exists($storybook_file)) {
     $form['storybook']['markup'] = [
       '#type' => 'inline_template',
-      '#template' => '<iframe width="100%" height="1024" src="{{ url }}"></iframe>',
+      '#template' => '<iframe id="storybook" width="100%" height="1024" src="{{ url }}"></iframe>',
       '#context' => [
         'url' => file_create_url($storybook_file) . '?cachebust=' . time(),
       ],

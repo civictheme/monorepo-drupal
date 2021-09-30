@@ -25,12 +25,12 @@
 
 <div class="civic-card-promo {{ modifier_class }}">
   {% if image.src %}
-  <div class="civic-card-promo__image">
-    <img src="{{ image.src }}" alt="{{ image.alt }}">
-    <div class="civic-card-promo__image__over">
-      {{  image_over }}
+    <div class="civic-card-promo__image">
+      <img src="{{ image.src }}" alt="{{ image.alt }}">
+      <div class="civic-card-promo__image__over">
+        {{ image_over }}
+      </div>
     </div>
-  </div>
   {% endif %}
 
   <div class="civic-card-promo__content">

@@ -19,8 +19,13 @@ regions:
   footer_bottom_left: 'Footer bottom left'
   footer_bottom_right: 'Footer bottom right'
 
-libraries:
-  - 'civic_demo/global'
+libraries-override:
+  civic/global:
+    css:
+      theme:
+        dist/civic.css: dist/styles.css
+    js:
+      dist/civic.js: dist/scripts.js
 
 components:
   namespaces:

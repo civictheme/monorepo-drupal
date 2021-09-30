@@ -6,6 +6,7 @@
 
 .civic-input {
   $root: &;
+
   &__label {
     display: block;
     margin-bottom: civic-space(1);
@@ -16,6 +17,7 @@
     border: rem(1px) solid civic-color('neutral_20');
     border-radius: rem(4px);
     padding: ($civic-space * 1.5) civic-space(5) ($civic-space * 1.5) civic-space(2);
+
     &:hover {
       border-color: civic-color('neutral_60');
     }
@@ -26,6 +28,7 @@
       outline: civic-color('neutral_80');
       border-color: civic-color('neutral_80');
     }
+
     &::placeholder {
       @include civic-typography('body');
     }
@@ -41,6 +44,7 @@
   &__state {
     position: relative;
     margin-left: - civic-space(4);
+
     svg {
 
       width: civic-space(2);
@@ -53,6 +57,7 @@
     #{$root}__element {
       border-color: civic-color('error') !important;
     }
+
     #{$root}__state {
       svg {
         fill: civic-color('error');
@@ -64,6 +69,7 @@
     #{$root}__element {
       border-color: civic-color('success') !important;
     }
+
     #{$root}__state {
       svg {
         fill: civic-color('success');

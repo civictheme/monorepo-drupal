@@ -1,20 +1,16 @@
-import {boolean, radios, select, text} from '@storybook/addon-knobs'
-import CivicCallout from "./callout.twig";
+import { radios, text } from '@storybook/addon-knobs'
+import CivicCallout from './callout.twig';
 
 export default {
   title: 'Molecule/Callout'
 }
 
-let exampleSummary = 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.'
-
-
 export const Callout = () => {
+  const calloutKnobTab = 'Callout';
+  const cta1KnobTab = 'CTA 1';
+  const cta2KnobTab = 'CTA 2';
 
-  const cta1 = 'CTA 1';
-  const cta2 = 'CTA 2';
-  const callout = 'Callout';
-
-  const calloutParams = {
+  const calloutKnobs = {
     theme: radios(
       'Theme',
       {
@@ -22,14 +18,14 @@ export const Callout = () => {
         'Dark': 'dark',
       },
       'light',
-      callout,
+      calloutKnobTab,
     ),
-    title: text('Title', 'Callout title from knob', callout),
-    summary: text('Summary', exampleSummary, 'Callout'),
+    title: text('Title', 'Callout title from knob', calloutKnobTab),
+    summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', calloutKnobTab),
     links: [
       {
-        text: text('Text', 'CTA 1', cta1),
-        url: text('URL', '', cta1),
+        text: text('Text', 'CTA 1', cta1KnobTab),
+        url: text('URL', '', cta1KnobTab),
         type: radios(
           'Type',
           {
@@ -38,7 +34,7 @@ export const Callout = () => {
             'Tertiary': 'tertiary'
           },
           'primary',
-          cta1,
+          cta1KnobTab,
         ),
         size: radios(
           'Size',
@@ -48,12 +44,12 @@ export const Callout = () => {
             'Small': 'small',
           },
           'regular',
-          cta1,
+          cta1KnobTab,
         ),
       },
       {
-        text: text('Text', 'CTA 2', cta2),
-        url: text('URL', '', cta2),
+        text: text('Text', 'CTA 2', cta2KnobTab),
+        url: text('URL', '', cta2KnobTab),
         type: radios(
           'Type', {
             'Primary': 'primary',
@@ -71,11 +67,11 @@ export const Callout = () => {
             'Small': 'small',
           },
           'regular',
-          cta2,
+          cta2KnobTab,
         ),
       },
     ]
   }
 
-  return CivicCallout(calloutParams);
+  return CivicCallout(calloutKnobs);
 };

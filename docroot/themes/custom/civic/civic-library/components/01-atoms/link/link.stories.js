@@ -1,9 +1,9 @@
-import { text, boolean, radios, select } from '@storybook/addon-knobs'
-
-import './link.stories.scss'
+import { boolean, radios, select, text } from '@storybook/addon-knobs'
 
 import CivicLink from './link.twig'
 import './link.scss'
+
+import './link.stories.scss'
 
 export default {
   title: 'Atom/Link',
@@ -31,6 +31,3 @@ export const Link = () => CivicLink({
   new_window: boolean('Open in a new window', false),
   is_external: boolean('Link is external', false)
 });
-
-
-
