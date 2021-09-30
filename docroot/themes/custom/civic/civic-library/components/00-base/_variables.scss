@@ -58,7 +58,7 @@ $civic-colors: () !default;
 // First breakpoint is set to 0 so styles apply to all window sizes (not just small mobile - 368px and above).
 //
 $civic-breakpoints: (
-  'xs': 0,
+  'xs': 368px,
   's': 576px,
   'm': 768px,
   'l': 992px,

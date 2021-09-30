@@ -2,6 +2,9 @@ import './grid.stories.scss'
 
 export default {
   title: 'Base/Grid',
+  parameters: {
+    layout: 'fullscreen',
+  },
 }
 
 export const Grid = () => {
