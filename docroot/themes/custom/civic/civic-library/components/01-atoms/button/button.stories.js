@@ -57,7 +57,7 @@ export const Button = () => {
   }
 
   const iconKnobTab = 'Icon';
-  const icons = CIVIC_ICON.icons
+  const icons = CIVIC_ICONS.icons
   const withIcon = boolean('With icon', false, iconKnobTab);
   const iconKnobs = {
     icon: withIcon ? select('Icon', icons, icons[0], iconKnobTab) : null,

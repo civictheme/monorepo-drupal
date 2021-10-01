@@ -11,7 +11,7 @@ export default {
 }
 
 export const Icon = () => {
-  const icons = CIVIC_ICON.icons
+  const icons = CIVIC_ICONS.icons
   const colors = CIVIC_VARIABLES['civic-default-colors']
   const sizes = CIVIC_VARIABLES['civic-icon-sizes']
 
@@ -23,7 +23,7 @@ export const Icon = () => {
 }
 
 export const IconLibrary = () => {
-  const packs = CIVIC_ICON.packs
+  const packs = CIVIC_ICONS.packs
   const colors = CIVIC_VARIABLES['civic-default-colors']
   const sizes = CIVIC_VARIABLES['civic-icon-sizes']
 

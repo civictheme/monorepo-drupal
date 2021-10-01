@@ -28,7 +28,7 @@ module.exports = {
       // Provide Civic SCSS variables to stories via webpack.
       new webpack.DefinePlugin({
         CIVIC_VARIABLES: JSON.stringify(civicVariables.getVariables()),
-        CIVIC_ICON: JSON.stringify(civicIcons.getIcons())
+        CIVIC_ICONS: JSON.stringify(civicIcons.getIcons())
       })
     ]
     // Special case: override whatever loader is used to load styles with a
