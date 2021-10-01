@@ -1,8 +1,11 @@
+
+.view-civic-events .view-content,
 .view-civic-listing .view-content {
   display: flex;
   flex-wrap: wrap;
 }
 
+.view-civic-events .view-content .views-row,
 .view-civic-listing .view-content .views-row {
   width: calc(100% * (1/3) - 10px - 1px);
   padding: 5px;
