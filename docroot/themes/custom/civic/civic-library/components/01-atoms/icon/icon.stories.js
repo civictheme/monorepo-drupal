@@ -5,6 +5,9 @@ import './icon.scss'
 
 export default {
   title: 'Atom/Icon',
+  parameters: {
+    layout: 'centered',
+  },
 }
 
 export const Icon = () => {
@@ -35,7 +38,7 @@ export const IconLibrary = () => {
       })
     })
 
-    html = `<div class="icon-wrapper">${html}</div>`;
+    html = `<div class="icon-wrapper wrapper-size--medium">${html}</div>`;
   }
 
   return html;

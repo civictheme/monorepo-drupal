@@ -5,6 +5,9 @@ import './tag.scss';
 
 export default {
   title: 'Atom/Tag',
+  parameters: {
+    layout: 'centered',
+  },
 }
 
 export const Tag = () => {

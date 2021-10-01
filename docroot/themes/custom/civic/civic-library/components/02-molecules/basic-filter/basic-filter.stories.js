@@ -4,7 +4,10 @@ import CivicBasicFilter from './basic-filter.twig';
 import './basic-filter.scss';
 
 export default {
-  title: 'Molecule/Basic Filter'
+  title: 'Molecule/Basic Filter',
+  parameters: {
+    layout: 'centered',
+  },
 }
 
 export const BasicFilter = () => CivicBasicFilter({

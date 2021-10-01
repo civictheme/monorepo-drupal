@@ -5,6 +5,9 @@ import './input.scss'
 
 export default {
   title: 'Atom/Input',
+  parameters: {
+    layout: 'centered',
+  },
 }
 
 export const Input = () => CivicInput({

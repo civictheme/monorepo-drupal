@@ -5,7 +5,10 @@ import CivicNavigationCard from './navigation-card.twig'
 import './navigation-card.scss'
 
 export default {
-  title: 'Molecule/Navigation Card'
+  title: 'Molecule/Navigation Card',
+  parameters: {
+    layout: 'centered',
+  },
 }
 
 export const NavigationCard = () => {

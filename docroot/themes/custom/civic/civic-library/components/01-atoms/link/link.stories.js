@@ -5,6 +5,9 @@ import './link.scss'
 
 export default {
   title: 'Atom/Link',
+  parameters: {
+    layout: 'centered',
+  },
 }
 
 export const Link = () => CivicLink({

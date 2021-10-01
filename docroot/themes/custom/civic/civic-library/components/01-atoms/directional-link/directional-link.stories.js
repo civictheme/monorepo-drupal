@@ -4,6 +4,9 @@ import './directional-link.scss'
 
 export default {
   title: 'Atom/Directional Link',
+  parameters: {
+    layout: 'centered',
+  },
 }
 
 export const DirectionalLink = () => {

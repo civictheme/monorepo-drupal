@@ -5,6 +5,9 @@ import './button.scss'
 
 export default {
   title: 'Atom/Button',
+  parameters: {
+    layout: 'centered',
+  },
 }
 
 export const Button = () => {

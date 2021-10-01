@@ -5,6 +5,9 @@ import './filter-chip.scss'
 
 export default {
   title: 'Atom/Filter Chip',
+  parameters: {
+    layout: 'centered',
+  },
 }
 
 export const FilterChip = () => CivicFilterChip({

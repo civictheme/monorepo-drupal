@@ -7,6 +7,9 @@ import imageFile from '../../../assets/image.png';
 
 export default {
   title: 'Atom/Image',
+  parameters: {
+    layout: 'centered',
+  },
 }
 
 export const Image = () => CivicImage({

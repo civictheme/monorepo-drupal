@@ -5,14 +5,25 @@
   font-family: sans-serif;
 }
 
-.civic-nav-card {
-  max-width: 576px;
+.sb-show-main.sb-main-centered #root {
+  padding: 0  ;
 }
 
+.wrapper-size--small,
 .civic-promo-card,
 .civic-event-card,
 .civic-service-card {
   max-width: 376px;
+}
+
+.wrapper-size--medium,
+.civic-nav-card {
+  max-width: 576px;
+}
+
+.wrapper-size--large,
+.civic-callout {
+  max-width: 992px;
 }
 
 .slot {
