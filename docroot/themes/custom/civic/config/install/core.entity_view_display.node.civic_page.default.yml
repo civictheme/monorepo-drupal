@@ -73,10 +73,9 @@ content:
     weight: 106
     label: above
     settings:
-      view_mode: full
-      link: false
+      link: true
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    type: entity_reference_label
     region: content
   links:
     weight: 100

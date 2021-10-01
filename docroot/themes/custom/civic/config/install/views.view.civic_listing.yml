@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.civic_card_promo
+    - core.entity_view_mode.node.civic_card_navigation
     - node.type.civic_page
   module:
     - node
@@ -78,7 +78,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: civic_card_promo
+          view_mode: civic_card_navigation
       fields:
         title:
           id: title

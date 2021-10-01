@@ -10,11 +10,9 @@ dependencies:
     - field.field.node.civic_page.field_c_n_featured_banner_image
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_thumbnail
-    - image.style.large
     - node.type.civic_page
   module:
     - layout_builder
-    - media
     - user
 third_party_settings:
   layout_builder:
@@ -36,10 +34,10 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: large
-      image_link: ''
+      view_mode: full
+      link: false
     third_party_settings: {  }
-    type: media_thumbnail
+    type: entity_reference_entity_view
     region: content
   links:
     weight: 2
