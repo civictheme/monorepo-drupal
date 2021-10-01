@@ -5,7 +5,7 @@
  * Card theme alterations.
  */
 
-use \Drupal\file\Entity\File;
+use Drupal\file\Entity\File;
 
 /**
  * Render out a Node as a Navigation Card.
