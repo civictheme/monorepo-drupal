@@ -6,7 +6,6 @@ function getIcons () {
   return icons
 }
 
-// Use the icons available in the assets directory to compile a list of spritesheets and icon IDs.
 function getIconPacks () {
   const icons = getIcons()
   const packs = {}
