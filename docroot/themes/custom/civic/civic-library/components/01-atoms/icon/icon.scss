@@ -3,11 +3,19 @@
 .civic-icon {
   vertical-align: bottom;
   fill: currentColor;
+
   // Generate color classes for all pre-set colors.
   $all-colors: map-merge($civic-default-colors, $civic-colors);
   @each $key, $value in $all-colors {
     &--color-#{$key} {
       fill: civic-color($key);
+    }
+  }
+
+  // Generate size classes for all pre-set sizes.
+  @each $size, $values in $civic-icon-sizes {
+    &--size-#{$size} {
+      @include civic-icon-size($size);
     }
   }
 }

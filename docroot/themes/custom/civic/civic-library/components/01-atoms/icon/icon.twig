@@ -7,6 +7,7 @@
  * Variables:
  * - symbol: [string] Icon name.
  * - color: [string] Icon color.
+ * - size: [string] Icon size.
  * - modifier_class: [string] Additional classes to modify component styling.
  */
 #}
@@ -14,22 +15,22 @@
 {% block content %}
   {% set icon = icons[symbol] %}
   {% set title = symbol | split('_', 2)[1] %}
-  {% set width = icon.width | default('16px') %}
-  {% set height = icon.height | default('16px') %}
-  {% set modifier_class = '%s %s'|format((color ? 'civic-icon--color-' ~ color : ''), modifier_class) %}
+  {% set width = icon.width | default(16) %}
+  {% set height = icon.height | default(16) %}
+  {% set modifier_class = '%s %s %s'|format((color ? 'civic-icon--color-' ~ color : ''), (size ? 'civic-icon--size-' ~ size : ''), modifier_class) %}
 
   {% if icon.paths is defined %}
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="civic-icon {{ modifier_class }}"
       title="{{ title }}"
-      width="{{width}}"
-      height="{{height}}"
-      viewBox="0 0 {{width}} {{height}}"
+      width="{{ width }}"
+      height="{{ height }}"
+      viewBox="0 0 {{ width }} {{ height }}"
       aria-hidden="true"
     >
       {% for path in icon.paths %}
-        <path {% for attr in path|keys %} {{attr}}="{{path[attr]}}"{% endfor %} />
+        <path {% for attr in path|keys %} {{ attr }}="{{ path[attr] }}"{% endfor %} />
       {% endfor %}
     </svg>
   {% endif %}
