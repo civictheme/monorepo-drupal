@@ -7,8 +7,16 @@
 const custom = require('./../webpack/webpack.prod.js');
 const {merge} = require('webpack-merge');
 const webpack = require('webpack')
-const civicVariables = require('./civic-variables.js')
-const civicIcons = require('./civic-icons.js')
+const scssVariables = require('./importer.scss_variables.js')
+const iconUtils = require('../components/01-atoms/icon/icon.utils.js')
+
+const customPlugin = new webpack.DefinePlugin({
+  SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
+  ICONS: JSON.stringify({
+    icons: iconUtils.getIcons(),
+    packs: iconUtils.getIconPacks()
+  })
+})
 
 module.exports = {
   stories: [
@@ -25,11 +33,7 @@ module.exports = {
     // Modify common configs to let Storybook take over.
     delete custom.output
     custom.plugins = [
-      // Provide Civic SCSS variables to stories via webpack.
-      new webpack.DefinePlugin({
-        CIVIC_VARIABLES: JSON.stringify(civicVariables.getVariables()),
-        CIVIC_ICONS: JSON.stringify(civicIcons.getIcons())
-      })
+      customPlugin,
     ]
     // Special case: override whatever loader is used to load styles with a
     // style-loader in oder to have styles injected during the runtime.

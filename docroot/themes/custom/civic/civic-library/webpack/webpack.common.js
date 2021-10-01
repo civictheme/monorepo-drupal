@@ -11,7 +11,7 @@ module.exports = {
     // Add explicitly imported (S)CSS entries from css.js.
     entries.push(path.resolve(__dirname, 'css.js'));
     return entries;
-  }('../components/**/!(*.stories|*.component|*.min|*.test).js'),
+  }('../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'),
   output: {
     filename: 'civic.js',
     path: path.resolve(__dirname, '../dist'),

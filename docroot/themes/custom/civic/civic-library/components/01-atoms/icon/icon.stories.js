@@ -11,9 +11,9 @@ export default {
 }
 
 export const Icon = () => {
-  const icons = CIVIC_ICONS.icons
-  const colors = CIVIC_VARIABLES['civic-default-colors']
-  const sizes = CIVIC_VARIABLES['civic-icon-sizes']
+  const icons = ICONS.icons
+  const colors = SCSS_VARIABLES['civic-default-colors']
+  const sizes = SCSS_VARIABLES['civic-icon-sizes']
 
   return CivicIcon({
     symbol: select('Symbol', icons, icons[0]),
@@ -23,9 +23,9 @@ export const Icon = () => {
 }
 
 export const IconLibrary = () => {
-  const packs = CIVIC_ICONS.packs
-  const colors = CIVIC_VARIABLES['civic-default-colors']
-  const sizes = CIVIC_VARIABLES['civic-icon-sizes']
+  const packs = ICONS.packs
+  const colors = SCSS_VARIABLES['civic-default-colors']
+  const sizes = SCSS_VARIABLES['civic-icon-sizes']
 
   const selectedPack = select('Pack', Object.keys(packs), Object.keys(packs).length ? Object.keys(packs)[0] : null)
 

@@ -1,3 +1,5 @@
 *.stories.js
 **/*.min.js
 *.component.js
+*.script.js
+*.utils.js

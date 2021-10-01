@@ -4,11 +4,6 @@ extends:
 env:
   es6: false
   browser: true
-globals:
-  expect: true
-  it: true
-  describe: true
-  Drupal: true
 rules:
   strict: 0
   import/no-extraneous-dependencies: 0

@@ -3,7 +3,7 @@
 //
 
 const fs = require('fs')
-const iconUtils = require('./icons.js')
+const iconUtils = require('./icon.utils.js')
 
 // Path to the output icon library file.
 const iconLibraryPath = './components/01-atoms/icon/icon_library.twig'
@@ -52,7 +52,7 @@ iconUtils.getIconPaths().forEach(path => {
   const paths = `[ ${iconPaths.map(path => `{${renderSvgPath(path)}}`)} ]`
   const width = getMatches(reWidth, iconContent, 1)[0]
   const height = getMatches(reHeight, iconContent, 1)[0]
-  const name = iconUtils.getNameFromPath(path)
+  const name = iconUtils.getIconNameFromPath(path)
 
   twigVariables.push(`"${name}": { "width": ${width}, "height": ${height}, "paths": ${paths} }`)
 })

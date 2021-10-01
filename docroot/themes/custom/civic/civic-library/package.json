@@ -22,7 +22,7 @@
     "lint": "eslint ./components",
     "dist": "webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "webpack --config ./webpack/webpack.dev.js",
-    "generate-icon-library": "node ./scripts/generate-icon-library.js"
+    "generate-icon-library": "node ./components/01-atoms/icon/icon.generate-library.script.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",

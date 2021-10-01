@@ -1,11 +1,11 @@
 const fs = require('fs')
 const path = require('path')
 
-const basePath = path.resolve(__dirname, '../assets/icons')
+const basePath = path.resolve(__dirname, '../../../assets/icons')
 const paths = fs.readdirSync(basePath)
 
 function getIcons() {
-  return getIconPaths().map(path => getNameFromPath(path))
+  return getIconPaths().map(path => getIconNameFromPath(path))
 }
 
 function getIconPacks() {
@@ -36,11 +36,13 @@ function getIconPaths() {
   return iconPaths
 }
 
-function getNameFromPath(path) {
+function getIconNameFromPath(path) {
   return path.replace(basePath, '').substring(1).replace('.svg', '').replace(/[\/\-]/g, '_').toLowerCase().replace(/[^a-z0-9\-_]+/g, '')
 }
 
 module.exports = {
   getIcons,
-  getIconPacks
+  getIconPacks,
+  getIconPaths,
+  getIconNameFromPath,
 }

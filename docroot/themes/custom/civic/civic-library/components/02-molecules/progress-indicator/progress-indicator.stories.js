@@ -1,6 +1,5 @@
-import {radios, select, text} from '@storybook/addon-knobs'
+import { radios, text } from '@storybook/addon-knobs'
 import CivicProgressIndicator from "./progress-indicator.twig";
-import {CivicIconSet} from "../../00-base/icons.component.js";
 
 /**
  * Storybook Definition.
@@ -11,21 +10,6 @@ export default {
 };
 
 export const ProgressIndicator = () => {
-  //Knob tabs order is decided on the basis of their order in story.
-  //Icon component parameters.
-  const sheets = Array.from(CivicIconSet.spritesheets);
-  const spritesheet = select('Icon Pack', sheets, '/icons/civic-user-interface.svg', 'Theme');
-  const icons = CivicIconSet.icons;
-
-  let status = [
-    'Status',
-    {
-      'Doing': 'doing',
-      'To do': 'todo',
-      'Done': 'done',
-    },
-  ]
-
   return CivicProgressIndicator({
     theme: radios(
       'Theme',
@@ -34,25 +18,24 @@ export const ProgressIndicator = () => {
         'Dark': 'dark',
       },
       'light',
-      'Theme',
     ),
-    spritesheet: spritesheet,
     steps: [
       {
-        title: text('Title', 'Step title 1', 'Step 1'),
-        status: radios(...status, 'todo', 'Step 1'),
-        symbol: select('Symbol', icons[spritesheet], 'user-interface-todo', 'Step 1'),
+        title: text('Title for step 1', 'Step title 1'),
+        status: 'todo',
       },
       {
-        title: text('Title', 'Step title 2', 'Step 2'),
-        status: radios(...status, 'doing', 'Step 2'),
-        symbol: select('Symbol', icons[spritesheet], 'user-interface-progress', 'Step 2'),
+        title: text('Title for step 2', 'Step title 2'),
+        status: 'doing',
       },
       {
-        title: text('Title', 'Step title 3', 'Step 3'),
-        status: radios(...status, 'done', 'Step 3'),
-        symbol: select('Symbol', icons[spritesheet], 'user-interface-approve', 'Step 3'),
+        title: text('Title for step 3', 'Step title 3'),
+        status: 'done',
       },
-    ]
+      {
+        title: text('Title for step 4', 'Step without a status'),
+      },
+    ],
+    modifier_class: text('Additional class', ''),
   });
 }
