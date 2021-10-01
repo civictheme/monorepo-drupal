@@ -58,7 +58,7 @@ $civic-colors: () !default;
 // First breakpoint is set to 0 so styles apply to all window sizes (not just small mobile - 368px and above).
 //
 $civic-breakpoints: (
-  'xs': 0,
+  'xs': 368px,
   's': 576px,
   'm': 768px,
   'l': 992px,
@@ -82,6 +82,30 @@ $civic-spaces: (
 ) !default;
 
 //
+// Grid.
+//
+$civic-grid-columns: 12 !default;
+$civic-grid-gutter: $civic-space * 3 !default;
+$civic-grid-offset-xs: 24px !default;
+$civic-grid-offset-xxl: 92px !default;
+$civic-grid-lowest-breakpoint: 'xs' !default;
+// Limit the width of the fluid container at max width. Used with .container-max-width class.
+$civic-grid-max-width: map-get($civic-breakpoints, xxl) !default;
+$civic-grid-visible-lowest-breakpoint: 'xs' !default;
+$civic-grid-gutters: (
+  'xs': 15px,
+  's': $civic-space * 3
+) !default;
+$civic-grid-offsets: (
+  'xs': $civic-grid-offset-xs,
+  's': $civic-grid-offset-xs,
+  'm': $civic-grid-offset-xxl * 0.25,
+  'l': $civic-grid-offset-xxl * 0.5,
+  'xl': $civic-grid-offset-xxl * 0.5,
+  'xxl': $civic-grid-offset-xxl
+) !default;
+
+//
 // Misc Variables.
 //
 $civic-border-radius: 0.25rem !default;
@@ -101,8 +125,8 @@ $civic-icon-size: (
     'm': (48px, 48px)
   ),
   'small': (
-          'xs': (20px, 20px),
-          'm': (24px, 24px)
+    'xs': (20px, 20px),
+    'm': (24px, 24px)
   )
 );
 
