@@ -8,7 +8,6 @@
  * Variables:
  * - theme: [string] Theme for Card.
  * - image: [object] Image data for top of Card
- * - image_set: [boolean] Image set via block, render block
  * - content_top: [string] Component slot for above main content on Card.
  * - title: [string] Card title.
  * - summary: [string] Card summary.
@@ -19,68 +18,80 @@
  */
 #}
 
-{% set modifier_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set display_image = display_image|default(false) %}
-{% if image.src %}
-  {% set display_image = true %}
-  {% set modifier_class = modifier_class ~ ' civic-card-promo--image-enabled' %}
-{% endif %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type_class = image is empty ? 'civic-promo-card--no-image' %}
+{% set modifier_class = '%s %s'|format(theme_class, type_class) %}
 
-<div class="civic-card-promo {{ modifier_class }}">
-  {% if display_image %}
-    <div class="civic-card-promo__image">
-      {% block rendered_image %}
-        <img src="{{ image.src }}" alt="{{ image.alt }}">
-      {% endblock %}
-      <div class="civic-card-promo__image__over">
-        {{ image_over }}
-      </div>
+<div class="civic-promo-card {{ modifier_class }}">
+  {% if image.src is not empty %}
+    <div class="civic-promo-card__image-wrapper">
+      <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
+      {% if image_over %}
+        <div class="civic-promo-card__image-over">
+          {{ image_over }}
+        </div>
+      {% endif %}
     </div>
   {% endif %}
 
-  <div class="civic-card-promo__content">
+  <div class="civic-promo-card__content">
     {% if content_top %}
-      <div class="civic-card-promo__content_top">
+      <div class="civic-promo-card__content_top">
         {{ content_top }}
       </div>
     {% endif %}
 
-    <div class="civic-card-promo__date">
-      {{ date }}
-    </div>
-
-    <div class="civic-card-promo__text">
-      <div class="civic-card-promo__title">
-        <a href="{{ url }}">{{ title }}</a>
+    {% if date %}
+      <div class="civic-promo-card__date">
+        {{ date }}
       </div>
-      <div class="civic-card-promo__summary">
-        {{ summary }}
-      </div>
-    </div>
+    {% endif %}
 
-    <div class="civic-card-promo__content_middle">
+    {% if title %}
+      <div class="civic-promo-card__title">
+        {% if url %}
+        <a class="civic-promo-card__title-link" href="{{ url }}">
+          {% endif %}
+          {{ title }}
+          {% if url %}
+        </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="civic-promo-card__content_middle">
       {{ content_middle }}
     </div>
 
-    <div class="civic-card-promo__meta">
-      <div class="civic-card-promo__topic_wrapper">
-        {% if topic %}
-          <div class="civic-card-promo__topic">
-            {{ topic }}
+    {% if summary %}
+      <div class="civic-promo-card__summary">
+        {{ summary }}
+      </div>
+    {% endif %}
+
+    {% if tag or url %}
+      <div class="civic-promo-card__bottom-wrapper">
+        {% if tag %}
+          <div class="civic-promo-card__tag">
+            {{ tag }}
           </div>
         {% endif %}
+
+        {% if url %}
+          {# @todo Replace with link with an icon atom. #}
+          <a class="civic-promo-card__bottom-link" href="{{ url }}">
+            {% include '@atoms/icon/icon.twig' with {
+              spritesheet: '/icons/civic-arrows.svg',
+              symbol: 'arrows-right-arrow-3',
+              color: 'primary'
+            } only %}
+          </a>
+        {% endif %}
       </div>
-      <div class="civic-card-promo__link">
-        <a href="{{ url }}" title="{{ title }}">{% include '@atoms/icon/icon.twig' with {
-            spritesheet: '/icons/civic-arrows.svg',
-            symbol: 'arrows-right-arrow-3',
-            color: 'primary'
-          } only %}</a>
-      </div>
-    </div>
+    {% endif %}
 
     {% if content_bottom %}
-      <div class="civic-card-promo__content-bottom">
+      <div class="civic-promo-card__content-bottom">
         {{ content_bottom }}
       </div>
     {% endif %}

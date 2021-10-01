@@ -70,14 +70,8 @@
  *   in different view modes.
  */
 #}
-
-{% extends "@molecules/promo-card/promo-card.twig" %}
-{% set summary = content.field_c_n_summary %}
-{% set title = node.title.0.value %}
-{% if content.field_c_n_thumbnail.0 is defined %}
-  {% set display_image = true %}
-  {% block rendered_image %}
-    {{ content.field_c_n_thumbnail.0 }}
-  {% endblock %}
-{% endif %}
-
+{% include "@molecules/promo-card/promo-card.twig" with {
+  summary: content.field_c_n_summary,
+  title: label
+}
+%}

@@ -6,6 +6,9 @@
  */
 
 require_once 'includes/civic_banner.inc';
+require_once 'includes/civic_images.inc';
+require_once 'includes/civic_cards.inc';
+
 
 /**
  * Implements hook_preprocess_HOOK() for html.html.twig.
@@ -25,7 +28,11 @@ function civic_preprocess_page(&$variables) {
  * Implements hook_preprocess_HOOK() for node.html.twig.
  */
 function civic_preprocess_node(&$variables) {
-
+  $view_mode = $variables['elements']['#view_mode'];
+  $preprocessor_function = '_civic_preprocess_node_' . $view_mode;
+  if (function_exists($preprocessor_function)) {
+    $preprocessor_function($variables);
+  }
 }
 
 /**
