@@ -20,7 +20,9 @@
             {% endblock %}
           </div>
           <div class="col-m-12">
-            {{ content }}
+            {% block content %}
+              {{ content }}
+            {% endblock %}
           </div>
         </div>
       {% endif %}

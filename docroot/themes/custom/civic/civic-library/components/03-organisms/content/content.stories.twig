@@ -9,12 +9,12 @@
 
   <div class="civic-block">
     {% include '@atoms/heading/heading.twig' with {
-      level: 23,
+      level: 3,
       title: "This is Promo card example",
     } only %}
     <div class="row">
-      {% for i in 0..4  %}
-        <div class="col-m-4">
+      {% for i in 1..4  %}
+        <div class="col-m-3">
           {% include '@molecules/promo-card/promo-card.twig' %}
         </div>
       {% endfor %}
@@ -23,12 +23,12 @@
 
   <div class="civic-block">
     {% include '@atoms/heading/heading.twig' with {
-      level: 23,
+      level: 3,
       title: "This is Events card example",
     } only %}
     <div class="row">
-      {% for i in 0..4  %}
-        <div class="col-m-4">
+      {% for i in 1..4  %}
+        <div class="col-m-3">
           {% include '@molecules/event-card/event-card.twig' with {
             with_image: true
           } %}
