@@ -11,39 +11,35 @@ export default {
 }
 
 export const Tag = () => {
-  const tagKnobTab = 'Tag';
-  const iconKnobTab = 'Icon';
-
-  const tagParams = {
+  const generalKnobTab = 'General';
+  const generalKnobs = {
     theme: radios(
       'Theme', {
         'Light': 'light',
         'Dark': 'dark',
       },
       'light',
-      tagKnobTab
+      generalKnobTab
     ),
-    text: text('Text', 'Button Text', tagKnobTab),
-    hidden_value: text('Hidden value', 'Hidden value', tagKnobTab),
-    modifier_class: text('Additional class', '', tagKnobTab)
+    text: text('Text', 'Tag text', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab)
   };
 
-  const colors = CIVIC_VARIABLES['civic-default-colors']
+  const iconKnobTab = 'Icon';
   const icons = CIVIC_ICON.icons
-
-  const iconParams = {
-    icon: boolean('With icon', false, iconKnobTab),
-    icon_placement: radios(
-      'Icon position', {
+  const withIcon = boolean('With icon', false, iconKnobTab);
+  const iconKnobs = {
+    icon: withIcon ? select('Icon', icons, 'business_calendar', iconKnobTab) : null,
+    icon_placement: withIcon ? radios(
+      'Position',
+      {
         'Before': 'before',
         'After': 'after',
       },
       'before',
       iconKnobTab
-    ),
-    symbol: select('Symbol', icons, 'business_calendar', iconKnobTab),
-    icon_color: select('Color', colors, 'primary', iconKnobTab)
+    ) : null,
   }
 
-  return CivicTag({...tagParams, ...iconParams});
+  return CivicTag({...generalKnobs, ...iconKnobs});
 }

@@ -11,17 +11,15 @@ export default {
 }
 
 export const Button = () => {
-  const buttonKnobTab = 'Button';
-  const iconKnobTab = 'Icon';
-
-  const buttonKnobs = {
+  const generalKnobTab = 'General';
+  const generalKnobs = {
     theme: radios(
       'Theme', {
         'Light': 'light',
         'Dark': 'dark',
       },
       'light',
-      buttonKnobTab
+      generalKnobTab
     ),
     kind: radios(
       'Kind', {
@@ -31,7 +29,7 @@ export const Button = () => {
         'Submit': 'submit'
       },
       'button',
-      buttonKnobTab
+      generalKnobTab
     ),
     type: radios(
       'Type', {
@@ -40,7 +38,7 @@ export const Button = () => {
         'Tertiary': 'tertiary'
       },
       'primary',
-      buttonKnobTab
+      generalKnobTab
     ),
     size: radios(
       'Size', {
@@ -49,30 +47,30 @@ export const Button = () => {
         'Small': 'small',
       },
       'regular',
-      buttonKnobTab
+      generalKnobTab
     ),
-    text: text('Text', 'Button Text', buttonKnobTab),
-    url: text('URL (applies to button kind "link")', 'http://example.com', buttonKnobTab),
-    new_window: boolean('Open in a new window (applies to button kind "link")', false, buttonKnobTab),
-    disabled: boolean('Disabled', false, buttonKnobTab),
-    modifier_class: text('Additional class', '', buttonKnobTab),
+    text: text('Text', 'Button Text', generalKnobTab),
+    url: text('URL (applies to button kind "link")', 'http://example.com', generalKnobTab),
+    new_window: boolean('Open in a new window (applies to button kind "link")', false, generalKnobTab),
+    disabled: boolean('Disabled', false, generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   }
 
-  // Icon component parameters.
+  const iconKnobTab = 'Icon';
   const icons = CIVIC_ICON.icons
-
+  const withIcon = boolean('With icon', false, iconKnobTab);
   const iconKnobs = {
-    icon: boolean('With icon', false, iconKnobTab),
-    icon_placement: radios(
-      'Icon position', {
-        'Left': 'left',
-        'Right': 'right',
+    icon: withIcon ? select('Icon', icons, icons[0], iconKnobTab) : null,
+    icon_placement: withIcon ? radios(
+      'Position',
+      {
+        'Before': 'before',
+        'After': 'after',
       },
-      'right',
+      'after',
       iconKnobTab
-    ),
-    symbol: select('Symbol', icons, 'arrows_rightarrow_3', iconKnobTab),
+    ) : null,
   }
 
-  return CivicButton({...buttonKnobs, ...iconKnobs});
+  return CivicButton({...generalKnobs, ...iconKnobs});
 }

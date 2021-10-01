@@ -5,7 +5,7 @@
 //
 // Include icon width, height for one-to-many breakpoints.
 //
-// @include civic-icon-size('medium');
+// @include civic-icon-size('regular');
 //
 @mixin civic-icon-size($size) {
   @if type-of($size)==string {

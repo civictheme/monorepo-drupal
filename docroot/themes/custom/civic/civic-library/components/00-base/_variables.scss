@@ -121,16 +121,16 @@ $civic-outline-accent-boxshadow: 0 0 0 3pt #61DAFF !default;
 //
 $civic-icon-sizes: (
   'small': (
-    'xs': (20px, 20px),
-    'm': (24px, 24px)
+    'xs': (16px, 16px),
+    'm': (20px, 20px),
   ),
-  'medium': (
-    'xs': (40px, 40px),
-    'm': (48px, 48px)
+  'regular': (
+    'xs': (20px, 20px),
+    'm': (24px, 24px),
   ),
   'large': (
-    'xs': (64px, 64px),
-    'm': (72px, 72px)
+    'xs': (40px, 40px),
+    'm': (48px, 48px),
   ),
 ) !default;
 

@@ -18,7 +18,6 @@
   {% for step in steps %}
     <div class="{{ component_class }}__step {{ '%s__step--%s'|format(component_class, step.status) }}">
       {% include '@atoms/icon/icon.twig' with {
-        spritesheet: spritesheet,
         symbol: step.symbol,
       } only %}
       <div class="{{ component_class }}__step--inner">

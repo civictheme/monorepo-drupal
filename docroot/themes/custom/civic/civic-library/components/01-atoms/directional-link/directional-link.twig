@@ -39,7 +39,6 @@
     {{ text }}
     {% if icons[direction] is defined %}
       {% include '@atoms/icon/icon.twig' with {
-        spritesheet: icons[direction].spritesheet,
         symbol: icons[direction].symbol,
         modifier_class: '%s civic-icon--%s'|format(theme_class, direction)
       } %}

@@ -23,7 +23,7 @@
 {% set required_class = required ? 'civic-input--required' : '' %}
 {% set state_class = state and (state != 'none') ? 'civic-input--%s'|format(state) : '' %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, required_class, state_class, modifier_class) %}
-{% set state_icon = (state == 'error') ? 'user-interface-close-2' : 'user-interface-approve' %}
+{% set state_icon = (state == 'error') ? 'userinterface_close_2' : 'userinterface_approve' %}
 
 <div class="civic-input {{ modifier_class }}">
   <label class="civic-input__label" for="{{ input_name }}">{{ label }}</label>
@@ -35,7 +35,6 @@
     {% if state and (state != 'none') %}
       <span class="civic-input__state">
         {% include '@atoms/icon/icon.twig' with {
-          spritesheet: '/icons/civic-user-interface.svg',
           symbol: state_icon
         } %}
       </span>
