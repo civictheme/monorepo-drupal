@@ -1,8 +1,47 @@
-{% extends '@templates/footer.twig' %}
+<footer class="civic-footer" role="contentinfo">
+  <div class="container">
 
-{% block top %}
-  {% include '@atoms/image/image.twig' with {
-    src: logo,
-    alt: 'Image alt text',
-  } %}
-{% endblock %}
+    {% if logo or top_left or top_right %}
+      <div class="row">
+        <div class="col-m-4">
+          {% block logo %}
+            {{ logo }}
+          {% endblock %}
+        </div>
+        <div class="col-m-4">
+          {% block top_left %}
+            {{ top_left }}
+          {% endblock %}
+        </div>
+        <div class="col-m-4">
+          {% block top_right %}
+            {{ top_right }}
+          {% endblock %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if middle %}
+      <div class="row">
+        {% block middle %}
+          {{ middle }}
+        {% endblock %}
+      </div>
+    {% endif %}
+
+    {% if bottom_left or bottom_right %}
+      <div class="row">
+        <div class="col-m-4">
+          {% block bottom_left %}
+            {{ bottom_left }}
+          {% endblock %}
+        </div>
+        <div class="col-m-4">
+          {% block bottom_right %}
+            {{ bottom_right }}
+          {% endblock %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</footer>

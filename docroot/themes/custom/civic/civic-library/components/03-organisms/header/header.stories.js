@@ -1,4 +1,4 @@
-import CivicHeader from './header.twig'
+import CivicHeader from './header.stories.twig'
 import imageFile from '../../../assets/logo.png';
 import './header.scss';
 

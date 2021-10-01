@@ -45,4 +45,16 @@
  * @see html.html.twig
  */
 #}
-{% include '@templates/page.twig' %}
+{% include '@templates/page.twig' with {
+  header_top: page.header_top,
+  header_logo: page.header_logo,
+  header_content: page.header_content,
+  header_bottom: page.header_bottom,
+  banner: page.banner,
+  highlighted: page.highlighted,
+  footer_top_left: page.footer_top_left,
+  footer_top_right: page.footer_top_right,
+  footer_middle: page.footer_middle,
+  footer_bottom_left: page.footer_bottom_left,
+  footer_bottom_right: page.footer_bottom_right,
+} %}

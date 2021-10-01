@@ -1,4 +1,4 @@
-import CivicFooter from './footer.twig'
+import CivicFooter from './footer.stories.twig'
 import imageFile from '../../../assets/logo.png';
 import './footer.scss';
 
