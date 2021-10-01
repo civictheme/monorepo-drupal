@@ -1,9 +1,16 @@
 <?php
 
 /**
- * Render out a Node as a Navigation Card
+ * @file
+ * Card theme alterations.
+ */
+
+use \Drupal\file\Entity\File;
+
+/**
+ * Render out a Node as a Navigation Card.
  *
- * @param $variables
+ * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node_civic_card_navigation(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -18,9 +25,9 @@ function _civic_preprocess_node_civic_card_navigation(&$variables) {
 }
 
 /**
- * Render out a Node as a Promo Card
+ * Render out a Node as a Promo Card.
  *
- * @param $variables
+ * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node_civic_card_promo(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -36,9 +43,9 @@ function _civic_preprocess_node_civic_card_promo(&$variables) {
 }
 
 /**
- * Render thumbnail for Nodes
+ * Render thumbnail for Nodes.
  *
- * @param $variables
+ * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node_thumbnail(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -46,7 +53,7 @@ function _civic_preprocess_node_thumbnail(&$variables) {
   if (isset($variables['content']['field_c_n_thumbnail'][0]['#media'])) {
     $media_content = $variables['content']['field_c_n_thumbnail'][0]['#media'];
     $media_image_data = $media_content->field_media_image[0];
-    $media_target_id = $media_image_data->target_id ?? null;
+    $media_target_id = $media_image_data->target_id ?? NULL;
     $alt_tag = $media_image_data->alt;
   }
   elseif (!$node->get('field_c_n_thumbnail')->isEmpty()) {
@@ -54,7 +61,7 @@ function _civic_preprocess_node_thumbnail(&$variables) {
     $media_target_id = $node->get('field_c_n_thumbnail')->getString();
   }
   if (isset($media_target_id)) {
-    if($file = \Drupal\file\Entity\File::load($media_target_id)) {
+    if ($file = File::load($media_target_id)) {
       $image['src'] = file_create_url($file->getFileUri());
       $image['alt'] = $alt_tag;
       $variables['image'] = $image;
@@ -65,7 +72,7 @@ function _civic_preprocess_node_thumbnail(&$variables) {
 /**
  * Render Summary from Civic Page nodes.
  *
- * @param $variables
+ * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node_civic_page_summary(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -78,7 +85,7 @@ function _civic_preprocess_node_civic_page_summary(&$variables) {
 /**
  * Render Summary from Civic Event nodes.
  *
- * @param $variables
+ * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node_civic_event_summary(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -88,5 +95,3 @@ function _civic_preprocess_node_civic_event_summary(&$variables) {
     $variables['summary'] = $value[0]['value'];
   }
 }
-
-
