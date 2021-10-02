@@ -1,16 +1,19 @@
-import { text, radios, boolean, select } from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicBasicFilter from './basic-filter.twig';
 import './basic-filter.scss';
 
 export default {
-  title: 'Molecule/Basic Filter'
-}
+  title: 'Molecule/Basic Filter',
+  parameters: {
+    layout: 'centered',
+  },
+};
 
 export const BasicFilter = () => CivicBasicFilter({
   theme: radios('Theme', {
-    'Light': 'light',
-    'Dark': 'dark'
+    Light: 'light',
+    Dark: 'dark',
   }, 'light', 'Theme'),
   is_multiple: boolean('Multiple', false, 'Theme'),
   items: [
@@ -22,6 +25,6 @@ export const BasicFilter = () => CivicBasicFilter({
     },
     {
       text: text('Text', 'Basic filter 3', 'Chip 3'),
-    }
+    },
   ],
 });

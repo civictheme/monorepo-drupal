@@ -4,152 +4,138 @@
 
 @import '../../00-base/base';
 
-.civic-card-promo {
+.civic-promo-card {
   $root: &;
   position: relative;
+  @include civic-box-shadow;
   border-radius: $civic-border-radius;
-  box-shadow: 0 rem(8px) rem(32px) rgba(0, 0, 0, 0.2);
-  background-color: $civic-card-promo-light-background-color;
 
-  border-top: 6px $civic-card-promo-border-top-color solid;
+  &#{$root}--no-image {
+    border-top: rem(6px) solid $civic-promo-card-border-top-color;
+  }
 
-  &:hover {
-    a {
-      text-decoration: underline;
-      color: $civic-card-promo-light-color-hover;
+  #{$root}__image-wrapper {
+    position: relative;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
   }
 
-  a {
-    color: $civic-card-promo-light-heading-color;
-    text-decoration: none;
-  }
-
-  &--image-enabled {
-    border: none;
-  }
-
-  img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-
-  &__date {
-    color: $civic-card-promo-light-date-color;
-    @include civic-typography((
-      'xs': (13px, 20px, 400, 'primary'),
-      'l': (14px, 20px, 400, 'primary')
-    ));
-  }
-
-  &__meta {
-    margin-top: civic-space(3);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  #{$root}__topic {
-    @include civic-typography((
-      'xs': (14px, 20px, 400, 'primary')
-    ));
-    padding: rem(4px) rem(8px);
-    color: $civic-card-promo-light-topic-color;
-    background-color: $civic-card-promo-light-topic-background-color;
-    border-radius: $civic-border-radius;
-  }
-
-  &__link a {
-    color: $civic-card-promo-light-link-color;
-
-    svg {
-      fill: currentColor;
-    }
-  }
-
-  &__content {
-    color: $civic-card-promo-light-body-color;
+  #{$root}__content {
     padding: civic-space(3);
   }
 
-  &__title {
-    a {
-      @include civic-typography((
-        'xs': (16px, 24px, 700, 'primary'),
-        'm': (20px, 28px, 700, 'primary')
-      ));
+  #{$root}__date {
+    @include civic-typography(small);
+    margin-bottom: civic-space(2);
+  }
 
-      &:focus {
-        color: $civic-card-promo-light-color-active;
-        text-decoration: underline;
+  #{$root}__title {
+    @include civic-typography(heading-5);
+    margin-bottom: civic-space(2);
+  }
+
+  #{$root}__title-link {
+    text-decoration: none;
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+  #{$root}__summary {
+    @include civic-typography(body);
+  }
+
+  #{$root}__bottom-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: civic-space(3);
+  }
+
+  #{$root}__tag {
+    @include civic-typography(tag);
+    border-radius: $civic-border-radius;
+    padding: rem(4px) civic-space(1);
+  }
+
+  &.civic-theme-light {
+    background-color: $civic-promo-card-light-background-color;
+
+    &:focus {
+      @include civic-outline(false)
+    }
+
+    #{$root}__date {
+      color: $civic-promo-card-light-date-color;
+    }
+
+    #{$root}__title {
+      color: $civic-promo-card-light-heading-color;
+    }
+
+    #{$root}__title-link {
+      color: $civic-promo-card-light-heading-color;
+      &:hover {
+        color: $civic-promo-card-light-color-hover;
       }
-
-      &:before {
-        content: '';
-        top: 0;
-        left: 0;
-        position: absolute;
-        width: 100%;
-        height: 100%;
+      &:active {
+        color: $civic-promo-card-light-color-active;
       }
     }
 
-    margin-top: civic-space(2);
-  }
+    #{$root}__location,
+    #{$root}__summary {
+      color: $civic-promo-card-light-body-color;
+    }
 
-  &__summary {
-    margin-top: civic-space(2);
-    @include civic-typography((
-      'xs': (14px, 25px, 400, 'primary'),
-      'm': (16px, 28px, 400, 'primary')
-    ));
+    #{$root}__tag {
+      background-color: $civic-promo-card-light-tag-background-color;
+      color: $civic-promo-card-light-tag-color;
+    }
   }
 
   &.civic-theme-dark {
+    background-color: $civic-promo-card-dark-background-color;
 
-    background-color: $civic-card-promo-dark-background-color;
+    &:focus {
+      @include civic-outline(true)
+    }
 
-    a {
-      color: $civic-card-promo-dark-heading-color;
+    #{$root}__date {
+      color: $civic-promo-card-dark-date-color;
+    }
 
+    #{$root}__title {
+      color: $civic-promo-card-dark-heading-color;
+    }
+
+    #{$root}__title-link {
+      color: $civic-promo-card-dark-heading-color;
       &:hover {
-        color: $civic-card-promo-dark-color-accent;
+        color: $civic-promo-card-dark-color-accent;
+      }
+      &:active {
+        color: $civic-promo-card-dark-color-active;
       }
     }
 
-    &:hover {
-      a {
-        color: $civic-card-promo-dark-color-accent;
-      }
+    #{$root}__summary,
+    #{$root}__location {
+      color: $civic-promo-card-dark-body-color;
     }
 
-    .civic-card-promo {
-      &__title {
-        a {
-          &:focus {
-            text-decoration: underline;
-            color: $civic-card-promo-dark-color-active;
-          }
-        }
-      }
+    #{$root}__tag {
+      background-color: $civic-promo-card-dark-color-accent;
+      color: $civic-promo-card-dark-tag-color;
+    }
 
-      &__content {
-        color: $civic-event-card-dark-body-color;
-      }
-
-      &__date {
-        color: $civic-card-promo-dark-date-color;
-      }
-
-      &__topic {
-        color: $civic-card-promo-dark-topic-color;
-        background-color: $civic-card-promo-dark-color-accent;
-      }
-
-      &__link a {
-        color: $civic-card-promo-dark-link-color;
+    #{$root}__icon {
+      .civic-icon {
+        fill: $civic-promo-card-dark-color-accent;
       }
     }
   }

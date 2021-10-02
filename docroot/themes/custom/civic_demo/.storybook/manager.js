@@ -1,6 +1,6 @@
 import { addons } from '@storybook/addons';
-import civic from './civic';
+import theme from './theme';
 
 addons.setConfig({
-  theme: civic,
+  theme: theme,
 });

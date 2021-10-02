@@ -91,7 +91,7 @@
 
     .civic-nav-card__main-icon {
       .civic-icon {
-        @include civic-icon-size(medium)
+        @include civic-icon-size('regular')
       }
 
       margin-bottom: civic-space(2);
