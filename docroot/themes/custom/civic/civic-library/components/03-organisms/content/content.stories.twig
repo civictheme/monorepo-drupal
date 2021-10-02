@@ -29,9 +29,7 @@
     <div class="row">
       {% for i in 1..4  %}
         <div class="col-m-3">
-          {% include '@molecules/event-card/event-card.twig' with {
-            with_image: true
-          } %}
+          {% include '@molecules/event-card/event-card.twig' %}
         </div>
       {% endfor %}
     </div>

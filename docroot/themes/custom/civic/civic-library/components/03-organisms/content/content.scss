@@ -8,7 +8,7 @@
   @include civic-typography('body');
 
   a {
-    @include civic-typography('label-regular');
+    @include civic-typography('body');
   }
 
   ul {
@@ -17,5 +17,9 @@
 
   ol {
     @include civic-typography('ordered-list');
+  }
+
+  blockquote {
+    @include civic-typography('quote');
   }
 }

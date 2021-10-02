@@ -1,34 +1,43 @@
+import {boolean, date, radios, text} from "@storybook/addon-knobs";
 import CivicContent from './content.stories.twig';
-import './content.scss';
 import imageFile from '../../../assets/image.png';
+import './content.scss';
 
 export default {
   title: 'Organisms/Content',
-  component: CivicContent,
-  argTypes: {
-    theme: {
-      name: 'Theme',
-      options: {
-        'Light': 'light',
-        'Dark': 'dark',
-      },
-      control: {type: 'radio'} // Automatically inferred when 'options' is defined
-    },
-    date: {
-      name: 'Date',
-      control: {type: 'date'} // Automatically inferred when 'options' is defined
-    },
-  },
 }
 
-export const Content = CivicContent.bind({});
-Content.args = {
-  theme: 'light',
-  title: 'This is a test title for any content',
-  summary: 'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.',
-  url: 'http://google.com',
-  image: {
-    src: imageFile,
-  },
-  date: '1 Jun 1970',
+export const Content = () => {
+  const generalKnobTab = 'General';
+
+  const generalKnobs = {
+    theme: radios(
+      'Theme',
+      {
+        'Light': 'light',
+        'Dark': 'dark'
+      },
+      'light',
+      generalKnobTab
+    ),
+    date: date('Date', new Date(), generalKnobTab),
+    title: text('Title', 'Title for inner component', generalKnobTab),
+    summary: text('Summary', 'Summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', generalKnobTab),
+    url: text('Link URL', 'https://google.com', generalKnobTab),
+    image: boolean('With image', true, generalKnobTab) ? {
+      src: imageFile,
+      alt: 'Image alt text',
+    } : false,
+    modifier_class: text('Additional class', '', generalKnobTab),
+  };
+
+  generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
+
+  return CivicContent({
+    ...generalKnobs,
+  });
 };
