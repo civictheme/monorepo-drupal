@@ -5,7 +5,7 @@
  */
 #}
 {% include '@molecules/event-card/event-card.twig' with {
-  date: content.field_c_p_date,
+  date: paragraph.field_c_p_date.0.value,
   summary: content.field_c_p_summary,
   title: paragraph.field_c_p_title.value,
   url: paragraph.field_c_p_link.0.url,
