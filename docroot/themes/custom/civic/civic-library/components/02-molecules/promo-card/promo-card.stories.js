@@ -1,6 +1,6 @@
-import { boolean, radios, text } from '@storybook/addon-knobs'
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import imageFile from '../../../assets/image.png';
-import { getSlots } from '../../00-base/base.stories.js';
+import { getSlots } from '../../00-base/base.stories';
 
 import CivicPromoCard from './promo-card.twig';
 
@@ -9,7 +9,7 @@ export default {
   parameters: {
     layout: 'centered',
   },
-}
+};
 
 export const PromoCard = () => {
   const generalKnobTab = 'General';
@@ -18,11 +18,11 @@ export const PromoCard = () => {
     theme: radios(
       'Theme',
       {
-        'Light': 'light',
-        'Dark': 'dark',
+        Light: 'light',
+        Dark: 'dark',
       },
       'light',
-      generalKnobTab
+      generalKnobTab,
     ),
     title: text('Title', 'Promo name which runs across two or three lines', generalKnobTab),
     summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', generalKnobTab),
@@ -34,12 +34,12 @@ export const PromoCard = () => {
       alt: 'Image alt text',
     } : false,
     modifier_class: text('Additional class', '', generalKnobTab),
-  }
+  };
 
   generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {
     year: 'numeric',
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
   });
 
   return CivicPromoCard({
@@ -49,6 +49,6 @@ export const PromoCard = () => {
       'content_top',
       'content_middle',
       'content_bottom',
-    ])
+    ]),
   });
-}
+};

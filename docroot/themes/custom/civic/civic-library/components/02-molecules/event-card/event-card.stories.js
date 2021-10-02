@@ -1,16 +1,18 @@
-import { boolean, date, radios, text } from '@storybook/addon-knobs'
+import {
+  boolean, date, radios, text,
+} from '@storybook/addon-knobs';
 import imageFile from '../../../assets/image.png';
-import { getSlots } from '../../00-base/base.stories.js';
+import { getSlots } from '../../00-base/base.stories';
 
-import CivicEventCard from './event-card.twig'
-import './event-card.scss'
+import CivicEventCard from './event-card.twig';
+import './event-card.scss';
 
 export default {
   title: 'Molecule/Event Card',
   parameters: {
     layout: 'centered',
   },
-}
+};
 
 export const EventCard = () => {
   const generalKnobTab = 'General';
@@ -19,11 +21,11 @@ export const EventCard = () => {
     theme: radios(
       'Theme',
       {
-        'Light': 'light',
-        'Dark': 'dark'
+        Light: 'light',
+        Dark: 'dark',
       },
       'light',
-      generalKnobTab
+      generalKnobTab,
     ),
     date: date('Date', new Date(), generalKnobTab),
     title: text('Title', 'Event name which runs across two or three lines', generalKnobTab),
@@ -41,7 +43,7 @@ export const EventCard = () => {
   generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {
     year: 'numeric',
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
   });
 
   return CivicEventCard({
@@ -51,8 +53,6 @@ export const EventCard = () => {
       'content_top',
       'content_middle',
       'content_bottom',
-    ])
+    ]),
   });
-}
-
-
+};

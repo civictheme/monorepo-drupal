@@ -1,11 +1,10 @@
-import './space.stories.scss'
+import './space.stories.scss';
 
 export default {
   title: 'Base/Space',
-}
+};
 
-export const Space = () => {
-  return `<div class="space-wrapper">
+export const Space = () => `<div class="space-wrapper">
   <div class="space--8">
     <div class="space--7">
       <div class="space--6">
@@ -21,5 +20,4 @@ export const Space = () => {
       </div>
     </div>
   </div>
-</div>`
-}
+</div>`;

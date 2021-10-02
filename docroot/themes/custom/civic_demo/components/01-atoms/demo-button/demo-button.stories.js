@@ -1,21 +1,21 @@
-import { boolean, radios, text } from '@storybook/addon-knobs'
+import { boolean, radios, text } from '@storybook/addon-knobs';
 
-import CustomDemoButton from './demo-button.twig'
-import './demo-button.scss'
-import './demo-button.js'
+import CustomDemoButton from './demo-button.twig';
+import './demo-button.scss';
+import './demo-button';
 
 export default {
   title: 'Atom/Demo Button',
-}
+};
 
 export const DemoButton = () => CustomDemoButton({
   modifier_class: [
     radios(
       'Type',
       {
-        'Primary': 'civic-button--primary',
+        Primary: 'civic-button--primary',
         'Primary Accent': 'civic-button--primary-accent',
-        'Secondary': 'civic-button--secondary',
+        Secondary: 'civic-button--secondary',
         'Secondary Accent': 'civic-button--secondary-accent',
       },
       'civic-button--primary',
@@ -23,13 +23,13 @@ export const DemoButton = () => CustomDemoButton({
     radios(
       'Size',
       {
-        'Large': 'civic-button--large',
-        'Normal': 'civic-button--normal',
-        'Small': 'civic-button--small',
+        Large: 'civic-button--large',
+        Normal: 'civic-button--normal',
+        Small: 'civic-button--small',
       },
       'civic-button--normal',
-    )
+    ),
   ].join(' '),
   text: text('Text', 'Button Text'),
   disabled: boolean('Disabled', false),
-})
+});

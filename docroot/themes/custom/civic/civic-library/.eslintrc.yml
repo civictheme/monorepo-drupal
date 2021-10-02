@@ -4,7 +4,14 @@ extends:
 env:
   es6: false
   browser: true
+globals:
+  Set: true
+  SCSS_VARIABLES: true
+  ICONS: true
 rules:
   strict: 0
   import/no-extraneous-dependencies: 0
+  import/prefer-default-export: 0
+  no-restricted-syntax: 0
+  guard-for-in: 0
   quotes: [ 2, "single", { "avoidEscape": true, "allowTemplateLiterals": true } ]
