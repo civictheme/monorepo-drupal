@@ -271,7 +271,18 @@ config_devel:
     - field.storage.paragraph.field_c_p_topic
     - field.storage.paragraph.field_c_p_view_link
     - field.storage.paragraph.field_c_p_zoom
-    - fieldcivic_project.field.node.civic_event.field_c_n_body
+    - field.node.civic_event.field_c_n_body
+    - image.settings.yml
+    - image.style.large.yml
+    - image.style.media_library.yml
+    - image.style.medium.yml
+    - image.style.navigation.yml
+    - image.style.promo_banner.yml
+    - image.style.promo_card.yml
+    - image.style.thumbnail.yml
+    - image.style.topic__desktop.yml
+    - image.style.topic__mobile.yml
+    - image.style.wide.yml
     - media.type.icon
     - node.type.civic_event
     - node.type.civic_page

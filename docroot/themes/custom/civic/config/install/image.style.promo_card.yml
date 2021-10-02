@@ -1,0 +1,15 @@
+uuid: 1aa7a17a-2311-4fa7-877a-7ab352c6b4a7
+langcode: en
+status: true
+dependencies: {  }
+name: promo_card
+label: 'Promo card'
+effects:
+  be9e65ef-2aa0-46f9-a42e-53694e9e5f5b:
+    uuid: be9e65ef-2aa0-46f9-a42e-53694e9e5f5b
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 376
+      height: 240
+      anchor: center-center
