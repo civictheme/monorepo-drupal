@@ -6,9 +6,17 @@
 // unify the building pipeline.
 const custom = require('./../webpack/webpack.prod.js');
 const {merge} = require('webpack-merge');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const webpack = require('webpack')
-const civicVariables = require('./civic-variables.js')
+const scssVariables = require('./importer.scss_variables.js')
+const iconUtils = require('../components/01-atoms/icon/icon.utils.js')
+
+const customPlugin = new webpack.DefinePlugin({
+  SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
+  ICONS: JSON.stringify({
+    icons: iconUtils.getIcons(),
+    packs: iconUtils.getIconPacks()
+  })
+})
 
 module.exports = {
   stories: [
@@ -29,11 +37,7 @@ module.exports = {
     delete custom.output
     delete custom.plugins
     custom.plugins = [
-      new SpriteLoaderPlugin({ plainSprite: true }),
-      // Provide Civic SCSS variables to stories via webpack.
-      new webpack.DefinePlugin({
-        CIVIC_VARIABLES: JSON.stringify(civicVariables.getVariables())
-      })
+      customPlugin,
     ]
     // Special case: override whatever loader is used to load styles with a
     // style-loader in oder to have styles injected during the runtime.

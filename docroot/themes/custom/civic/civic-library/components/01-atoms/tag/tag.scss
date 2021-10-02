@@ -11,7 +11,7 @@
   width: fit-content;
   @include civic-typography(tag);
 
-  &--without-icon {
+  &--no-icon {
     padding-left: civic-space(1);
   }
 

@@ -1,9 +1,12 @@
-import { radios, text } from '@storybook/addon-knobs'
+import { radios, text } from '@storybook/addon-knobs';
 import CivicCallout from './callout.twig';
 
 export default {
-  title: 'Molecule/Callout'
-}
+  title: 'Molecule/Callout',
+  parameters: {
+    layout: 'centered',
+  },
+};
 
 export const Callout = () => {
   const calloutKnobTab = 'Callout';
@@ -14,8 +17,8 @@ export const Callout = () => {
     theme: radios(
       'Theme',
       {
-        'Light': 'light',
-        'Dark': 'dark',
+        Light: 'light',
+        Dark: 'dark',
       },
       'light',
       calloutKnobTab,
@@ -29,9 +32,9 @@ export const Callout = () => {
         type: radios(
           'Type',
           {
-            'Primary': 'primary',
-            'Secondary': 'secondary',
-            'Tertiary': 'tertiary'
+            Primary: 'primary',
+            Secondary: 'secondary',
+            Tertiary: 'tertiary',
           },
           'primary',
           cta1KnobTab,
@@ -39,9 +42,9 @@ export const Callout = () => {
         size: radios(
           'Size',
           {
-            'Large': 'large',
-            'Regular': 'regular',
-            'Small': 'small',
+            Large: 'large',
+            Regular: 'regular',
+            Small: 'small',
           },
           'regular',
           cta1KnobTab,
@@ -52,9 +55,9 @@ export const Callout = () => {
         url: text('URL', '', cta2KnobTab),
         type: radios(
           'Type', {
-            'Primary': 'primary',
-            'Secondary': 'secondary',
-            'Tertiary': 'tertiary'
+            Primary: 'primary',
+            Secondary: 'secondary',
+            Tertiary: 'tertiary',
           },
           'secondary',
           'CTA 2',
@@ -62,16 +65,16 @@ export const Callout = () => {
         size: radios(
           'Size',
           {
-            'Large': 'large',
-            'Regular': 'regular',
-            'Small': 'small',
+            Large: 'large',
+            Regular: 'regular',
+            Small: 'small',
           },
           'regular',
           cta2KnobTab,
         ),
       },
-    ]
-  }
+    ],
+  };
 
   return CivicCallout(calloutKnobs);
 };
