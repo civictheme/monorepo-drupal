@@ -1,40 +1,36 @@
 <footer class="civic-footer" role="contentinfo">
   <div class="container">
+    <div class="row">
+      <div class="col-m-4">
+        {% block logo %}
+          {% if logo.src is not empty %}
+            <div class="civic-footer__logo">
+              <img src="{{ logo.src }}" {% if logo.alt is not empty %} alt="{{ logo.alt }} {% endif %}">
+            </div>
+          {% endif %}
+        {% endblock %}
+      </div>
 
-    {% if logo or top_left or top_right %}
-      <div class="row">
+      {% if top_left is not empty %}
         <div class="col-m-4">
-          {% block logo %}
-            {% if logo.src is not empty %}
-              <div class="civic-footer__logo">
-                <img src="{{ logo.src }}" {% if logo.alt is not empty %} alt="{{ logo.alt }} {% endif %}">
-              </div>
-            {% endif %}
+          {% block top_left %}
+            <div class="civic-footer__top--left">
+              {{ top_left }}
+            </div>
           {% endblock %}
         </div>
+      {% endif %}
 
-        {% if top_left not empty %}
-          <div class="col-m-4">
-            {% block top_left %}
-              <div class="civic-footer__top--left">
-                {{ top_left }}
-              </div>
-            {% endblock %}
-          </div>
-        {% endif %}
-
-        {% if top_right not empty %}
-          <div class="col-m-4">
-            {% block top_right %}
-              <div class="civic-footer__top--left">
-                {{ top_right }}
-              </div>
-            {% endblock %}
-          </div>
-        {% endif %}
-
-      </div>
-    {% endif %}
+      {% if top_right is not empty %}
+        <div class="col-m-4">
+          {% block top_right %}
+            <div class="civic-footer__top--left">
+              {{ top_right }}
+            </div>
+          {% endblock %}
+        </div>
+      {% endif %}
+    </div>
 
     {% if middle is not empty %}
       <div class="row">
@@ -56,6 +52,7 @@
               </div>
             {% endblock %}
           </div>
+
           <div class="col-m-4">
             {% block bottom_right %}
               <div class="civic-footer__bottom--right">

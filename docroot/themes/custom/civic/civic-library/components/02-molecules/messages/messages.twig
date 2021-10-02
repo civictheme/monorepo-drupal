@@ -19,6 +19,10 @@
 {% set type_class = 'civic-messages--%s'|format(type|default('info')) %}
 {% set messages_class = '%s %s %s'|format(component_class, theme_class, type_class) %}
 {% set icons = {
+  status: {
+    spritesheet: '/icons/civic-user-interface.svg',
+    symbol: 'user-interface-information-mark',
+  },
   info: {
     spritesheet: '/icons/civic-user-interface.svg',
     symbol: 'user-interface-information-mark',
@@ -39,9 +43,6 @@
 
 <div class='{{ messages_class }}' data-component-name='messages'>
   <div class='{{ component_class }}__icon'>
-    {% if type == 'status' %}
-      {% set type = 'info' %}
-    {% endif %}
     {% if icons[type] is defined %}
       {% include '@atoms/icon/icon.twig' with {
         spritesheet: icons[type].spritesheet,

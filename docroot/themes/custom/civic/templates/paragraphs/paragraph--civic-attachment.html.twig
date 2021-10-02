@@ -13,6 +13,8 @@
   not paragraph.isPublished() ? 'paragraph--unpublished'
 ]
 %}
+{% set attributes = attributes.addClass(classes) %}
+
 {% block paragraph %}
   {% include '@molecules/attachment/attachment.twig' with {
     theme: paragraph.field_c_p_theme.value,

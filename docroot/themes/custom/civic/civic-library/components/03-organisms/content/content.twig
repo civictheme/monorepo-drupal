@@ -3,13 +3,15 @@
 
   <div class="layout-content container">
     {% block content %}
-      {{ content }}
+      <div class="civic-content--content">
+        {{ content }}
+      </div>
     {% endblock %}
   </div>
 
   {% if content_left %}
-    <aside class="layout-sidebar-first" role="complementary">
-      {% block sidebar %}
+    <aside class="civic-content--content-left" role="complementary">
+      {% block content_left %}
         {{ content_left }}
       {% endblock %}
     </aside>

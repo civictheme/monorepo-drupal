@@ -21,7 +21,7 @@ export const Footer = () => {
       'light',
       generalKnobTab
     ),
-    logo: boolean('With image', true, generalKnobTab) ? {
+    image: boolean('With image', true, generalKnobTab) ? {
       src: imageFile,
       alt: 'Image alt text',
     } : false,
@@ -33,7 +33,7 @@ export const Footer = () => {
       'logo',
       'top_left',
       'top_right',
-      'midlle',
+      'middle',
       'bottom_left',
       'bottom_right',
     ])

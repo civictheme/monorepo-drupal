@@ -2,7 +2,7 @@
   <div class="container">
 
     {% block top %}
-      {% if top %}
+      {% if top is not empty %}
         <div class="row">
           <div class="col-m-12">
             <div class="civic-header__top">
@@ -14,18 +14,18 @@
     {% endblock %}
 
     {% block logocontent %}
-      {% if logo or contnet %}
-        <div class="row">
-          <div class="col-m-4">
-            {% block logo %}
-              {% if logo.src is not empty %}
-                <div class="civic-header__logo">
-                  <img src="{{ logo.src }}" {% if logo.alt is not empty %} alt="{{ logo.alt }} {% endif %}">
-                </div>
-              {% endif %}
-            {% endblock %}
-          </div>
+      <div class="row">
+        <div class="col-m-4">
+          {% block logo %}
+            {% if logo.src is not empty %}
+              <div class="civic-header__logo">
+                <img src="{{ logo.src }}" {% if logo.alt is not empty %} alt="{{ logo.alt }} {% endif %}">
+              </div>
+            {% endif %}
+          {% endblock %}
+        </div>
 
+        {% if content is not empty %}
           <div class="col-m-8">
             {% block content %}
               <div class="civic-header__content">
@@ -33,8 +33,8 @@
               </div>
             {% endblock %}
           </div>
-        </div>
-      {% endif %}
+        {% endif %}
+      </div>
     {% endblock %}
 
     {% block bottom %}

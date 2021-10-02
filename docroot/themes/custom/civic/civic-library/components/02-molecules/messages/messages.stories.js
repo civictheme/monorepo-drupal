@@ -17,6 +17,7 @@ export const Messages = () => CivicMessages({
   type: radios(
     'Type',
     {
+      'Status': 'status',
       'Info': 'info',
       'Error': 'error',
       'Warning': 'warning',
