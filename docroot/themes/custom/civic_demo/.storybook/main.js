@@ -8,7 +8,7 @@ const custom = require('./../webpack/webpack.prod.js');
 const {merge} = require('webpack-merge');
 const webpack = require('webpack')
 const scssVariables = require('./importer.scss_variables.js')
-const iconUtils = require('../combined-components/01-atoms/icon/icon.utils.js')
+const iconUtils = require('../components-combined/01-atoms/icon/icon.utils.js')
 
 const customPlugin = new webpack.DefinePlugin({
   SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
@@ -20,7 +20,7 @@ const customPlugin = new webpack.DefinePlugin({
 
 module.exports = {
   stories: [
-    '../combined-components/**/*.stories.js'
+    '../components-combined/**/*.stories.js'
   ],
   addons: [
     '@storybook/addon-knobs',

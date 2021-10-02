@@ -12,7 +12,7 @@
     "lint": "eslint ./components ./assets/js",
     "dist": "npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
-    "generate-icon-library": "npm run gulp:build && node ./combined-components/01-atoms/icon/icon.generate-library.script.js"
+    "generate-icon-library": "npm run gulp:build && node ./components-combined/01-atoms/icon/icon.generate-library.script.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",

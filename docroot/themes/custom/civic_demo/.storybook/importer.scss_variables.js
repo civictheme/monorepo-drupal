@@ -3,7 +3,7 @@
 //
 const fs = require('fs');
 
-const importedFile = fs.readFileSync('./combined-components/00-base/_variables.scss', {encoding: 'utf8'})
+const importedFile = fs.readFileSync('./components-combined/00-base/_variables.scss', {encoding: 'utf8'})
 
 function getVariables() {
   const allGroups = {}

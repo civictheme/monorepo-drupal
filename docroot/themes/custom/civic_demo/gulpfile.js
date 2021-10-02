@@ -17,7 +17,7 @@ const baseThemeName = __dirname.replace('civic_demo', 'civic')
 const childThemeName = __dirname
 
 // Output directory of merged components.
-const outputDir = __dirname + '/combined-components'
+const outputDir = __dirname + '/components-combined'
 
 // Periodic rebuild of combined storybook.
 let periodicCleanup = function cleanUp() {

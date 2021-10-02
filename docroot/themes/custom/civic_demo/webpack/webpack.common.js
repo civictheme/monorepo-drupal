@@ -15,7 +15,7 @@ module.exports = {
     entries.push(path.resolve(__dirname, 'theme_css.js'));
     entries.push(path.resolve(__dirname, 'theme_svg.js'));
     return entries;
-  }(path.resolve(__dirname, '../combined-components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js')),
+  }(path.resolve(__dirname, '../components-combined/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js')),
   output: {
     filename: 'scripts.js',
     path: path.resolve(__dirname, '../dist'),
@@ -86,12 +86,12 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@base': path.resolve(__dirname, '../combined-components/00-base'),
-      '@atoms': path.resolve(__dirname, '../combined-components/01-atoms'),
-      '@molecules': path.resolve(__dirname, '../combined-components/02-molecules'),
-      '@organisms': path.resolve(__dirname, '../combined-components/03-organisms'),
-      '@templates': path.resolve(__dirname, '../combined-components/04-templates'),
-      '@pages': path.resolve(__dirname, '../combined-components/05-pages'),
+      '@base': path.resolve(__dirname, '../components-combined/00-base'),
+      '@atoms': path.resolve(__dirname, '../components-combined/01-atoms'),
+      '@molecules': path.resolve(__dirname, '../components-combined/02-molecules'),
+      '@organisms': path.resolve(__dirname, '../components-combined/03-organisms'),
+      '@templates': path.resolve(__dirname, '../components-combined/04-templates'),
+      '@pages': path.resolve(__dirname, '../components-combined/05-pages'),
     }
   },
   stats: {
