@@ -19,8 +19,8 @@ export const Table = (args) => CivicTable({
   theme: radios(
     'Theme',
     {
-      'Light': 'light',
-      'Dark': 'dark',
+      Light: 'light',
+      Dark: 'dark',
     },
     'light',
   ),
@@ -62,5 +62,5 @@ Table.args = {
       'Information about something',
       'And this is important',
     ],
-  ]
-}
+  ],
+};

@@ -3,13 +3,34 @@
 //
 const fs = require('fs');
 
-const importedFile = fs.readFileSync('./combined-components/00-base/_variables.scss', { encoding:'utf8' })
+const importedFiles = [
+  './components/00-base/_variables.scss',
+  './components/variables.scss',
+];
 
-function getGroups () {
+function getVariables() {
+  let variables = {}
+  for (var i in importedFiles) {
+    variables = {...variables, ...getVariablesFromFile(importedFiles[i])};
+  }
+  return variables
+}
+
+function getVariablesFromFile(file) {
+  const importedFile = fs.readFileSync(file, {encoding: 'utf8'})
+
   const allGroups = {}
 
-  const groups = getSassVariableGroups()
+  // Get all variable groups.
+  const groups = []
+  const re = new RegExp('\\$[a-z-]+:\\s\\(([\\s\\S\\r])+?\\;', 'gi')
+  let lastMatch = re.exec(importedFile)
+  while (lastMatch !== null) {
+    groups.push(lastMatch[0])
+    lastMatch = re.exec(importedFile)
+  }
 
+  // Extract variables from every group.
   groups.forEach(group => {
     const re = new RegExp('(\\$[a-z-]+\\:)', 'gim')
     let match = re.exec(group)
@@ -23,21 +44,7 @@ function getGroups () {
   return allGroups
 }
 
-function getSassVariableGroups () {
-  const groups = []
-
-  const re = new RegExp('\\$[a-z-]+:\\s\\(([\\s\\S\\r])+?\\;', 'gi')
-
-  let lastMatch = re.exec(importedFile)
-  while (lastMatch !== null) {
-    groups.push(lastMatch[0])
-    lastMatch = re.exec(importedFile)
-  }
-
-  return groups
-}
-
-function getSassVariablesFromGroup (group) {
+function getSassVariablesFromGroup(group) {
   const vars = []
 
   const re = new RegExp('\'[a-z-_0-9]+\'', 'gi')
@@ -52,7 +59,5 @@ function getSassVariablesFromGroup (group) {
 }
 
 module.exports = {
-  getVariables () {
-    return getGroups()
-  }
+  getVariables,
 }

@@ -1,3 +1,4 @@
+@import '../variables';
 @import 'base.scss';
 
 // Set default styles for the Storybook viewport.
@@ -5,17 +6,28 @@
   font-family: sans-serif;
 }
 
-.civic-nav-card {
-  max-width: 576px;
+.sb-show-main.sb-main-centered #root {
+  padding: 0  ;
 }
 
+.story-wrapper-size--small,
 .civic-promo-card,
 .civic-event-card,
 .civic-service-card {
   max-width: 376px;
 }
 
-.slot {
+.story-wrapper-size--medium,
+.civic-nav-card {
+  max-width: 576px;
+}
+
+.story-wrapper-size--large,
+.civic-callout {
+  max-width: 992px;
+}
+
+.story-slot {
   display: block;
   background-color: transparentize(purple, 0.7);
   padding: 1em;
@@ -23,7 +35,7 @@
   font-family: 'Courier New', Monospace;
 }
 
-.slot--image_over {
+.story-slot--image_over {
   position: absolute;
   top: 4em;
   left: 0;

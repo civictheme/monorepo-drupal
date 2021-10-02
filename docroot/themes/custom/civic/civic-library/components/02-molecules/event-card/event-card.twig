@@ -45,11 +45,9 @@
     {% if date %}
       {% include '@atoms/tag/tag.twig' with {
         theme: theme,
-        icon: true,
-        icon_placement: 'before',
         text: date,
-        spritesheet: '/icons/civic-business.svg',
-        symbol: 'business-calendar',
+        icon: 'business_calendar',
+        icon_placement: 'before',
         modifier_class: 'civic-event-card__date'
       } only %}
     {% endif %}
@@ -96,8 +94,7 @@
           {# @todo Replace with link with an icon atom. #}
           <a class="civic-event-card__bottom-link" href="{{ url }}">
             {% include '@atoms/icon/icon.twig' with {
-              spritesheet: '/icons/civic-arrows.svg',
-              symbol: 'arrows-right-arrow-3',
+              symbol: 'arrows_rightarrow_3',
               color: 'primary'
             } only %}
           </a>
