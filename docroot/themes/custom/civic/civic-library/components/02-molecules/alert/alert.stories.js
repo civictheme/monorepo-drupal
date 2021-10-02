@@ -18,6 +18,7 @@ export const Alert = () => CivicAlert({
     'Type',
     {
       Info: 'info',
+      Status: 'status',
       Error: 'error',
       Warning: 'warning',
       Success: 'success',
