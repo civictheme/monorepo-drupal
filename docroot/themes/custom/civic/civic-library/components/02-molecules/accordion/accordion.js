@@ -16,6 +16,7 @@ function AccordionWidget(el, selectedIndex) {
   this.init(selectedIndex);
 }
 
+// eslint-disable-next-line func-names
 AccordionWidget.prototype.init = function (selectedIndex) {
   this.accordionTriggersLength = this.accordionTriggers.length;
   this.expandedAccordions = new Array(this.accordionTriggersLength);
@@ -41,10 +42,11 @@ AccordionWidget.prototype.init = function (selectedIndex) {
       this.expandedAccordions[i] = true;
     }
   }
-
+  
   if (!Number.isNaN(selectedIndex)) {
     this.expandedAccordions = new Array(this.accordionTriggersLength);
-    initialSelectedIndex = selectedIndex < this.accordionTriggersLength ? selectedIndex : this.accordionTriggersLength - 1;
+    initialSelectedIndex = selectedIndex < this.accordionTriggersLength
+      ? selectedIndex : this.accordionTriggersLength - 1;
     this.expandedAccordions[initialSelectedIndex] = true;
   } else {
     initialSelectedIndex = this.expandedAccordions.lastIndexOf(true);
@@ -60,6 +62,7 @@ AccordionWidget.prototype.init = function (selectedIndex) {
   this.el.classList.add('is-initialized');
 };
 
+// eslint-disable-next-line func-names
 AccordionWidget.prototype.clickEvent = function (e) {
   e.preventDefault();
 
@@ -67,6 +70,7 @@ AccordionWidget.prototype.clickEvent = function (e) {
   this.setExpanded(e.currentTarget.index, true);
 };
 
+// eslint-disable-next-line func-names
 AccordionWidget.prototype.keydownEvent = function (e) {
   let targetIndex;
 
@@ -91,19 +95,21 @@ AccordionWidget.prototype.keydownEvent = function (e) {
   this.setSelected(targetIndex, true);
 };
 
+// eslint-disable-next-line func-names
 AccordionWidget.prototype.focusEvent = function () {
   if (this.accordionTriggersLength === 1) {
     this.setSelected(0);
   }
 };
 
+// eslint-disable-next-line func-names
 AccordionWidget.prototype.setSelected = function (index, userInvoked) {
   if (index === -1) {
     return;
   }
 
   for (let i = 0; i < this.accordionTriggersLength; i += 1) {
-    let currentButton = this.accordionTriggers[i];
+    const currentButton = this.accordionTriggers[i];
     if (i === index) {
       currentButton.classList.add('is-selected');
       this.accordionItems[i].classList.add('civic-accordion__list-item--expanded');
@@ -122,6 +128,7 @@ AccordionWidget.prototype.setSelected = function (index, userInvoked) {
   }
 };
 
+// eslint-disable-next-line func-names
 AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
   let i;
 
@@ -141,10 +148,10 @@ AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
 
   for (i = 0; i < this.accordionTriggersLength; i += 1) {
     if (this.expandedAccordions[i]) {
-      let currentPanel = this.accordionPanels[i];
+      const currentPanel = this.accordionPanels[i];
       this.accordionTriggers[i].setAttribute('aria-expanded', true);
-      this.accordionPanels[i].style.height = this.accordionPanels[i].scrollHeight + 'px'
-      setTimeout(function () {
+      this.accordionPanels[i].style.height = `${this.accordionPanels[i].scrollHeight}px`;
+      setTimeout(() => {
         // Remove the fixed height after transition so it can be responsive
         currentPanel.style.height = 'auto';
       }, 500);
@@ -157,19 +164,18 @@ AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
 
       this.accordionPanels[i].setAttribute('aria-hidden', false);
       this.accordionPanels[i].classList.remove('is-hidden');
-    }
-    else {
+    } else {
       this.accordionTriggers[i].setAttribute('aria-expanded', false);
       this.accordionTriggers[i].classList.remove('is-expanded');
       this.accordionTriggers[i].classList.remove('civic-accordion__header__button--expanded');
       this.accordionItems[i].classList.remove('civic-accordion__list-item--expanded');
       this.accordionPanels[i].classList.remove('civic-accordion__content--expanded');
-      let currentPanel = this.accordionPanels[i];
-      this.accordionPanels[i].style.height = this.accordionPanels[i].scrollHeight + 'px'
-      setTimeout(function () {
-        currentPanel.style.height = ''
-        currentPanel.style.visibility = ''
-      }, 1)
+      const currentPanel = this.accordionPanels[i];
+      this.accordionPanels[i].style.height = `${this.accordionPanels[i].scrollHeight}px`;
+      setTimeout(() => {
+        currentPanel.style.height = '';
+        currentPanel.style.visibility = '';
+      }, 1);
 
       this.accordionPanels[i].setAttribute('aria-hidden', true);
       this.accordionPanels[i].classList.add('is-hidden');
@@ -177,6 +183,7 @@ AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
   }
 };
 
+// eslint-disable-next-line func-names
 AccordionWidget.prototype.destroy = function () {
   this.el.classList.remove('is-initialized');
 
@@ -196,10 +203,10 @@ AccordionWidget.prototype.destroy = function () {
   }
 };
 
-document.addEventListener('DOMContentLoaded', function () {
-  const accordions = document.querySelectorAll('.civic-accordion ul');
-  const caw = [];
-  Array.from(accordions).forEach((accordion, index) => {
-    caw.push(new AccordionWidget(accordion));
+document.addEventListener('DOMContentLoaded', () => {
+  const accordions = document.querySelectorAll('.civic-accordion .civic-accordion__list');
+  Array.from(accordions).forEach((accordion) => {
+    // eslint-disable-next-line no-new
+    new AccordionWidget(accordion);
   });
 });

@@ -14,7 +14,6 @@ export default {
 
 export const Accordion = () => {
   const generalKnobTab = 'General';
-  const expandAll = boolean('Expand all', false, generalKnobTab);
   const generalKnobs = {
     theme: radios(
       'Theme',
@@ -25,8 +24,10 @@ export const Accordion = () => {
       'light',
       generalKnobTab,
     ),
-    expand_all: expandAll,
   };
+
+  const expandAll = boolean('Expand all', true, generalKnobTab);
+  generalKnobs.expand_all = expandAll;
 
   // Adding dynamic number of accordion panels.
   const panelsKnobTab = 'Panels';

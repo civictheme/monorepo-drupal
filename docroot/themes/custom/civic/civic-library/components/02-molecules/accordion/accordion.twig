@@ -1,6 +1,24 @@
-{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{#
+/**
+ * @file
+ * Accordion component.
+ * Creates an accordion.
+ *
+ * Variables:
+ * - theme: [string] theme: light, dark.
+ * - color: [string] Icon color.
+ * - size: [string] Icon size.
+ * - modifier_class: [string] Additional classes to modify component styling.
+ * - panels: [array] Accordion panels comprised of:
+ *   - title: [string] Accordion panel title
+ *   - expanded: [boolean] Accordion panel expanded|closed state.
+ *   - content: [string] Accordion panel accordion
+ */
+#}
 
-<div class="civic-accordion__wrapper {{ theme_class }}">
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('civic-accordion--default')) %}
+<div class="civic-accordion__wrapper {{ modifier_class }}">
   <div class="civic-accordion__content-top">
     {% if title %}
       <h2 class="civic-accordion__title-top">
@@ -11,22 +29,23 @@
   <div class="civic-accordion">
     <ul class="civic-accordion__list" data-multiselectable="true">
       {% for fold in panels %}
+        {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
         <li class="civic-accordion__list-item">
           {% if fold.title %}
             <h3 class="civic-accordion__header">
-              {% set is_open = (fold.expanded == true) or expand_all ? 'is-selected' : '' %}
+              {% set is_open = is_expanded ? 'is-selected' : '' %}
               <button class="civic-accordion__header__button {{ is_open }}">
                 <span>{{ fold.title }}</span>
                 {% include '@atoms/icon/icon.twig' with {
-                  spritesheet: '/icons/civic-arrows.svg',
-                  symbol: 'arrows-down-arrow-1'
-                } %}
+                  symbol: 'arrows_downarrow_1'
+                } only%}
               </button>
             </h3>
           {% endif %}
 
           {% if fold.content %}
-            <div class="civic-accordion__content">
+            {% set is_open = is_expanded ? 'civic-accordion__content--expanded' : '' %}
+            <div class="civic-accordion__content {{ is_open }}">
               <div class="civic-accordion__content--inner">
                 {{ fold.content }}
               </div>
