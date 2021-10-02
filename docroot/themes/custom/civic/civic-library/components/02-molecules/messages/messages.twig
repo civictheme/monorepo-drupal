@@ -45,7 +45,6 @@
   <div class='{{ component_class }}__icon'>
     {% if icons[type] is defined %}
       {% include '@atoms/icon/icon.twig' with {
-        spritesheet: icons[type].spritesheet,
         symbol: icons[type].symbol,
         modifier_class: '%s civic-icon--%s'|format(theme_class, type)
       } %}

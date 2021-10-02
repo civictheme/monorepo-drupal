@@ -10,39 +10,23 @@
  */
 #}
 
-{% set text = text|default('Skip to main content') %}
+{% set text = text|default('Top') %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set is_disabled = is_disabled ? 'civic-directional-link--disabled': '' %}
+{% set disabled_class = is_disabled ? 'civic-directional-link--disabled': '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, disabled_class, modifier_class) %}
 
 {% set icons = {
-  top: {
-    spritesheet: "/icons/civic-arrows.svg",
-    symbol: "arrows-up-arrow-1",
-  },
-  bottom: {
-    spritesheet: "/icons/civic-arrows.svg",
-    symbol: "arrows-down-arrow-2",
-  },
-  next: {
-    spritesheet: "/icons/civic-arrows.svg",
-    symbol: "arrows-right-arrow-3",
-  },
-  back: {
-    spritesheet: "/icons/civic-arrows.svg",
-    symbol: "arrows-left-arrow-2",
-  }
-}
-%}
+  top: 'arrows_uparrow_1',
+  bottom: 'arrows_downarrow_2',
+  next: 'arrows_rightarrow_3',
+  back: 'arrows_leftarrow_2',
+} %}
 
-<div class="civic-directional-link {{ theme_class }} {{ is_disabled }}">
-  <a class="civic-directional-link__link" href="{{ url }}">
-    {{ text }}
-    {% if icons[direction] is defined %}
-      {% include '@atoms/icon/icon.twig' with {
-        spritesheet: icons[direction].spritesheet,
-        symbol: icons[direction].symbol,
-        modifier_class: '%s civic-icon--%s'|format(theme_class, direction)
-      } %}
-    {% endif %}
-  </a>
-</div>
+<a class="civic-directional-link {{ modifier_class }}" role="link"{% if not is_disabled %} href="{{ url }}"{% endif %}{% if is_disabled %} aria-disabled="true"{% endif %}>
+  {{ text }}
+  {% if icons[direction] is defined %}
+    {% include '@atoms/icon/icon.twig' with {
+      symbol: icons[direction],
+    } %}
+  {% endif %}
+</a>

@@ -40,7 +40,6 @@
 {% set alert_icon %}
   {% if icons[type] is defined %}
     {% include '@atoms/icon/icon.twig' with {
-      spritesheet: icons[type].spritesheet,
       symbol: icons[type].symbol,
       modifier_class: '%s civic-icon--%s'|format(theme_class, type)
     } only %}
@@ -50,8 +49,7 @@
 {% set alert_cancel_icon %}
   {% if icons[type] is defined %}
     {% include '@atoms/icon/icon.twig' with {
-      spritesheet: '/icons/civic-user-interface.svg',
-      symbol: 'user-interface-cancel',
+      symbol: 'userinterface_cancel',
     } only %}
   {% endif %}
 {% endset %}

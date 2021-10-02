@@ -1,37 +1,27 @@
 @import '../base.stories';
 
-.colors-wrapper {
-  .colors-group {
-    display: flex;
-    width: 100%;
-
-    div {
-      width: 100px;
-      height: 100px;
-      border: 1px solid #CCD4D8;
-      border-radius: 12px;
-      margin: 8px;
-    }
-  }
+.story-colors-wrapper {
+  display: flex;
+  flex-flow: row wrap;
 
   $all-colors: map-merge($civic-default-colors, $civic-colors);
-  @include civic-generate-class-variations-from-map($all-colors, 'color') using($key, $value, $index) {
+  @include civic-generate-class-variations-from-map($all-colors, 'story-color') using($key, $value, $index) {
+    width: 100px;
+    height: 100px;
+    margin: 0 8px 100px;
+    border: 1px solid #CCD4D8;
+    border-radius: 12px;
+
     position: relative;
     background-color: civic-color($key);
     $content: to-upper-case(str-slice($key, 1, 1)) + str-slice($key, 2) + "\A" + to-upper-case(#{$value});
-    &::before {
+    &::after {
       content: "#{$content}";
-      color: invert($value);
-      position: absolute;
       text-align: center;
-      margin-top: 30px;
       display: block;
-    }
-
-    &:hover {
-      &::before {
-        display: none;
-      }
+      padding: 1em;
+      position: absolute;
+      top: 100%;
     }
   }
 }
