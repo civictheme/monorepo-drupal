@@ -13,7 +13,6 @@ module.exports = {
     // Add explicitly imported entries from the current theme.
     entries.push(path.resolve(__dirname, 'theme_js.js'));
     entries.push(path.resolve(__dirname, 'theme_css.js'));
-    entries.push(path.resolve(__dirname, 'theme_svg.js'));
     return entries;
   }(path.resolve(__dirname, '../components-combined/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js')),
   output: {
