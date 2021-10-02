@@ -39,7 +39,7 @@
     @each $size, $values in $civic-icon-sizes {
       &#{$root}--size-#{$size} {
         .civic-icon {
-          border: 1px solid currentcolor;
+          border: 1px solid currentColor;
           @include civic-icon-border-radius-size($size);
         }
       }
