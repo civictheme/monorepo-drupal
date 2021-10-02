@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Link component.
+ *
+ * Variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - new_window: [boolean] Open in a new window.
+ * - text: [string] Button text.
+ * - url: [string] URL for the link button.
+ * - is_external [boolean] Link is external.
+ */
+#}
+{% set is_external = is_external|default(false) %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = modifier_class|default('civic-link--normal') %}
+{% set modifier_class = modifier_class ~ ' ' ~ theme_class %}
+
+<a class="civic-link {{ modifier_class }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }}>
+  {{ text }}
+  {% if is_external %}
+    {% include '@atoms/icon/icon.twig' with {
+      spritesheet: '/icons/civic-arrows.svg',
+      symbol: 'arrows-upper-right-arrow',
+      modifier_class: 'civic-link__external-icon'
+    } %}
+  {% endif %}
+</a>

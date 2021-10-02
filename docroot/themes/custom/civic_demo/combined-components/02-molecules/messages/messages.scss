@@ -1,0 +1,66 @@
+//
+// Messages.
+//
+
+@import '../../00-base/base';
+
+// mixin
+@mixin civic-messages-colors() {
+  @each $type in $civic-messages-types {
+    &--#{$type} {
+      &.civic-theme-light {
+        background-color: map-get($civic-messages-colors, '#{$type}-light');
+      }
+
+      &.civic-theme-dark {
+        background-color: map-get($civic-messages-colors, '#{$type}-dark');
+      }
+    }
+  }
+}
+
+@mixin civic-messages-icons-colors() {
+  @each $type in $civic-messages-types {
+    &--#{$type} {
+      &.civic-theme-light {
+        fill: map-get($civic-messages-icon-colors, '#{$type}-light');
+      }
+
+      &.civic-theme-dark {
+        fill: map-get($civic-messages-icon-colors, '#{$type}-dark');
+      }
+    }
+  }
+}
+
+.civic-messages {
+  $root: &;
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  padding: civic-space();
+  border-radius: $civic-border-radius;
+  @include civic-typography('label-tag');
+
+  &__icon {
+    width: rem(20px);
+    margin-right: civic-space();
+  }
+
+  @include civic-messages-colors();
+
+  .civic-icon {
+    width: rem(20px);
+    height: rem(20px);
+    @include civic-messages-icons-colors();
+  }
+
+  &.civic-theme-light {
+    color: $civic-messages-light-color;
+  }
+
+  &.civic-theme-dark {
+    color: $civic-messages-dark-color;
+  }
+}

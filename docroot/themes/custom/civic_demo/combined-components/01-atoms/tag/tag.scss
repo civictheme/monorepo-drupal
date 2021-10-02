@@ -1,0 +1,45 @@
+//
+// Tag.
+//
+@import '../../00-base/base';
+
+.civic-tag {
+  $root: &;
+
+  border-radius: $civic-border-radius;
+  padding: rem(2px) civic-space(1) rem(2px) rem(4px);
+  width: fit-content;
+  @include civic-typography(tag);
+
+  &--without-icon {
+    padding-left: civic-space(1);
+  }
+
+  &--icon-after {
+    padding-right: rem(4px);
+    padding-left: civic-space(1);
+  }
+
+  .civic-icon {
+    padding-right: rem(2px);
+    vertical-align: middle;
+  }
+
+  &.civic-theme-light {
+    background-color: $civic-tag-light-background-color;
+    color: $civic-tag-light-color;
+
+    .civic-icon {
+      fill: $civic-tag-light-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-tag-dark-background-color;
+    color: $civic-tag-dark-color;
+
+    .civic-icon {
+      fill: $civic-tag-dark-color;
+    }
+  }
+}

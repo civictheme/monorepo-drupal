@@ -1,0 +1,21 @@
+//
+// Content.
+//
+
+@import '../../00-base/base';
+
+.civic-content {
+  @include civic-typography('body');
+
+  a {
+    @include civic-typography('label-regular');
+  }
+
+  ul {
+    @include civic-typography('unordered-list');
+  }
+
+  ol {
+    @include civic-typography('ordered-list');
+  }
+}

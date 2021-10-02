@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Example Button component.
+ *
+ * Used to show project custom atom-level component.
+ *
+ * Variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - text: [string] Button text.
+ * - disabled: [boolean] Disabled state.
+ */
+#}
+<button class="civic-button {{ modifier_class }}" data-component-name="demo-button" {{ disabled ? 'disabled' }}>Example button: {{ text }}</button>

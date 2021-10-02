@@ -1,0 +1,8 @@
+{% extends './footer.twig' %}
+
+{% block logo %}
+  {% include '@atoms/image/image.twig' with {
+    src: logo,
+    alt: 'Image alt text',
+  } %}
+{% endblock %}
