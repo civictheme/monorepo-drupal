@@ -1,11 +1,13 @@
-import {boolean, date, radios, text} from "@storybook/addon-knobs";
+import {
+  boolean, date, radios, text,
+} from '@storybook/addon-knobs';
 import CivicContent from './content.stories.twig';
 import imageFile from '../../../assets/image.png';
 import './content.scss';
 
 export default {
   title: 'Organisms/Content',
-}
+};
 
 export const Content = () => {
   const generalKnobTab = 'General';
@@ -14,11 +16,11 @@ export const Content = () => {
     theme: radios(
       'Theme',
       {
-        'Light': 'light',
-        'Dark': 'dark'
+        Light: 'light',
+        Dark: 'dark',
       },
       'light',
-      generalKnobTab
+      generalKnobTab,
     ),
     date: date('Date', new Date(), generalKnobTab),
     title: text('Title', 'Title for inner component', generalKnobTab),
@@ -34,7 +36,7 @@ export const Content = () => {
   generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {
     year: 'numeric',
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
   });
 
   return CivicContent({

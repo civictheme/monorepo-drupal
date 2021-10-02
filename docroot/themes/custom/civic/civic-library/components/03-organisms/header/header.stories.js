@@ -1,12 +1,13 @@
-import CivicHeader from './header.stories.twig'
-import { getSlots } from '../../00-base/base.stories.js';
+import { boolean, radios } from '@storybook/addon-knobs';
+import { getSlots } from '../../00-base/base.stories';
+import CivicHeader from './header.stories.twig';
 import imageFile from '../../../assets/logo.png';
 import './header.scss';
-import { boolean, radios } from "@storybook/addon-knobs";
+
 
 export default {
   title: 'Organisms/Header',
-}
+};
 
 export const Header = () => {
   const generalKnobTab = 'General';
@@ -15,17 +16,17 @@ export const Header = () => {
     theme: radios(
       'Theme',
       {
-        'Light': 'light',
-        'Dark': 'dark'
+        Light: 'light',
+        Dark: 'dark',
       },
       'light',
-      generalKnobTab
+      generalKnobTab,
     ),
     logo: boolean('With image', true, generalKnobTab) ? {
       src: imageFile,
       alt: 'Image alt text',
     } : false,
-  }
+  };
 
   return CivicHeader({
     ...generalKnobs,
@@ -34,6 +35,6 @@ export const Header = () => {
       'logo',
       'content',
       'bottom',
-    ])
-  })
-}
+    ]),
+  });
+};

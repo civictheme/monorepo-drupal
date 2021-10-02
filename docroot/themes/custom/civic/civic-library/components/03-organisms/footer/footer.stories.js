@@ -1,12 +1,12 @@
-import CivicFooter from './footer.stories.twig'
-import { getSlots } from '../../00-base/base.stories.js';
+import { boolean, radios } from '@storybook/addon-knobs';
+import { getSlots } from '../../00-base/base.stories';
+import CivicFooter from './footer.stories.twig';
 import imageFile from '../../../assets/logo.png';
 import './footer.scss';
-import { boolean, radios } from "@storybook/addon-knobs";
 
 export default {
   title: 'Organisms/Footer',
-}
+};
 
 export const Footer = () => {
   const generalKnobTab = 'General';
@@ -15,17 +15,17 @@ export const Footer = () => {
     theme: radios(
       'Theme',
       {
-        'Light': 'light',
-        'Dark': 'dark'
+        Light: 'light',
+        Dark: 'dark',
       },
       'light',
-      generalKnobTab
+      generalKnobTab,
     ),
     image: boolean('With image', true, generalKnobTab) ? {
       src: imageFile,
       alt: 'Image alt text',
     } : false,
-  }
+  };
 
   return CivicFooter({
     ...generalKnobs,
@@ -36,6 +36,6 @@ export const Footer = () => {
       'middle',
       'bottom_left',
       'bottom_right',
-    ])
-  })
-}
+    ]),
+  });
+};
