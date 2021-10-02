@@ -1,19 +1,19 @@
-import {radios, text} from '@storybook/addon-knobs'
-import CivicNextSteps from "./next-steps.twig";
+import { radios, text } from '@storybook/addon-knobs';
+import CivicNextSteps from './next-steps.twig';
 import './next-steps.scss';
 
 export default {
-  title: 'Molecule/Next Steps'
-}
+  title: 'Molecule/Next Steps',
+};
 
-let exampleSummary = 'Short summary explaining why this link is relevant.';
+const exampleSummary = 'Short summary explaining why this link is relevant.';
 
 export const NextSteps = () => CivicNextSteps({
   theme: radios(
     'Theme',
     {
-      'Light': 'light',
-      'Dark': 'dark',
+      Light: 'light',
+      Dark: 'dark',
     },
     'light',
   ),
