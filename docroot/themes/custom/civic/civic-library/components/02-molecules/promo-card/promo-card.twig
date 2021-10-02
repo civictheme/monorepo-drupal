@@ -59,9 +59,11 @@
       </div>
     {% endif %}
 
-    <div class="civic-promo-card__content_middle">
-      {{ content_middle }}
-    </div>
+    {% if content_middle %}
+      <div class="civic-promo-card__content_middle">
+        {{ content_middle }}
+      </div>
+    {% endif %}
 
     {% if summary %}
       <div class="civic-promo-card__summary">

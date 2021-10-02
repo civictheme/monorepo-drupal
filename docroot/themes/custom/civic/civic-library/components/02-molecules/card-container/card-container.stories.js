@@ -25,7 +25,7 @@ export const CardContainer = () => {
     title: text('Title', 'Card container title', generalKnobTab),
     link_text: text('Link Text', 'View all', generalKnobTab),
     url: text('Link URL', 'https://google.com', generalKnobTab),
-    columns: select('Columns', [1, 2, 3, 4], 1, generalKnobTab),
+    column_count: select('Columns', [1, 2, 3, 4], 1, generalKnobTab),
     fill_width: boolean('With width', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };

@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a Subject card.
+ *
+ */
+#}
+{%
+  set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]
+%}
+
+{% set attributes = attributes.addClass(classes) %}
+
+{% block paragraph %}
+  {% include '@molecules/promo-card/promo-card.twig' with {
+    theme: paragraph.field_c_p_theme.value,
+    type: 'small',
+    image_over: paragraph.field_c_p_title.value,
+    url: paragraph.field_c_p_link.0.url,
+    image: {
+      src: file_url(paragraph.field_c_p_image.entity.field_media_image.entity.fileuri),
+      alt: paragraph.field_c_p_image.entity.field_media_image.entity.alt,
+    },
+    modifier_class: attributes.getClass(),
+  } only %}
+{% endblock paragraph %}

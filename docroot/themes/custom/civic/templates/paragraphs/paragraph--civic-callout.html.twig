@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a Callout.
+ */
+#}
+{%
+  set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]
+%}
+
+{% set attributes = attributes.addClass(classes) %}
+
+{% block paragraph %}
+  {% include '@molecules/callout/callout.twig' with {
+    theme: paragraph.field_c_p_theme.value,
+    summary: content.field_c_p_summary,
+    title: paragraph.field_c_p_title.value,
+    links: links,
+    modifier_class: attributes.getClass(),
+  } only %}
+{% endblock %}
