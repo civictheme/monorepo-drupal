@@ -24,7 +24,15 @@ export const Tag = () => {
       generalKnobTab,
     ),
     text: text('Text', 'Tag text', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    modifier_class: radios(
+      'Type',
+      {
+        Default: '',
+        Card: 'civic-tag--card',
+      },
+      '',
+      generalKnobTab,
+    ),
   };
 
   const iconKnobTab = 'Icon';
