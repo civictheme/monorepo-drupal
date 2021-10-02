@@ -1,0 +1,48 @@
+{#
+/**
+ * @file Card container component.
+ *
+ * Available variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - title: [string] The text of card title.
+ * - theme: [string] card theme: light, dark.
+ * - url: [string] Card link.
+ * - cards: [array] Cards array.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type_class = image is empty ? 'civic-event-card--no-image' : '' %}
+{% set modifier_class = '%s %s'|format(theme_class, type_class) %}
+{% set column_class = 'col-m-%s'|format(12 / columns|default(1))  %}
+{% if fill_width %}
+  {% set column_class = 'col' %}
+{% endif %}
+
+<div class="civic-card-container {{ modifier_class }}">
+  {% if title is not empty %}
+    {% include '@atoms/heading/heading.twig' with {
+      level: 3,
+      title: title,
+    } only %}
+  {% endif %}
+
+  {% if url is not empty %}
+    {% include '@atoms/link/link.twig' with {
+      text: link_text is not empty ? link_text : 'View all',
+      url: url
+    } only %}
+  {% endif %}
+
+  {% if cards is not empty %}
+    {% block cards %}
+      <div class="row">
+        {% for card in cards %}
+          <div class="{{ column_class }}">
+            {{ card }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endblock %}
+  {% endif %}
+</div>

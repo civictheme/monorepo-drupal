@@ -1,0 +1,18 @@
+{% extends './card-container.twig' %}
+
+{% block cards %}
+  <div class="row">
+    {% for i in range(1, cards.number_of_cards) %}
+      <div class="{{ column_class }}">
+        {% include '@molecules/event-card/event-card.twig' with {
+          title: cards.title,
+          date: cards.date,
+          location: cards.location,
+          summary: cards.summary,
+          tag: cards.tag,
+          image: cards.image,
+        } only %}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
