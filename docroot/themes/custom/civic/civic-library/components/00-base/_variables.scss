@@ -190,6 +190,10 @@ $civic-typography: (
     'xs': (14px, 23px, 400, 'primary', 0),
     'm': (14px, 25px, 400, 'primary', 0)
   ),
+  'card-summary': (
+    'xs': (14px, 25px, 400, 'primary', 0),
+    'm': (16px, 28px, 400, 'primary', 0)
+  ),
   'quote': (
     'xs': (18px, 29px, 400, 'primary', -0.15px),
     'm': (25px, 40px, 400, 'primary', -0.35px)
@@ -213,10 +217,6 @@ $civic-typography: (
   'label-tag': (
     'xs': (12px, 20px, 400, 'primary', -0.1px),
     'm': (14px, 20px, 400, 'primary', -0.1px)
-  ),
-  'card-summary': ( 
-    'xs': (14px, 25px, 400, 'primary', 0),
-    'm': (16px, 28px, 400, 'primary', 0)
   ),
   'label-small': (12px, 26px, 600, 'primary'),
   'tag': (14px, 20px, 400, 'primary', -0.1px),

@@ -47,7 +47,7 @@
   }
 
   #{$root}__summary {
-    @include civic-typography(body);
+    @include civic-typography(card-summary);
   }
 
   #{$root}__bottom-wrapper {
