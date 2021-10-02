@@ -12,7 +12,7 @@ export default {
 
 export const Icon = () => {
   const icons = ICONS.icons
-  const colors = SCSS_VARIABLES['civic-default-colors']
+  const colors = [...new Set([...SCSS_VARIABLES['civic-default-colors'], ...SCSS_VARIABLES['civic-colors']])];
   const sizes = SCSS_VARIABLES['civic-icon-sizes']
 
   return CivicIcon({
@@ -24,7 +24,7 @@ export const Icon = () => {
 
 export const IconLibrary = () => {
   const packs = ICONS.packs
-  const colors = SCSS_VARIABLES['civic-default-colors']
+  const colors = [...new Set([...SCSS_VARIABLES['civic-default-colors'], ...SCSS_VARIABLES['civic-colors']])];
   const sizes = SCSS_VARIABLES['civic-icon-sizes']
 
   const selectedPack = select('Pack', Object.keys(packs), Object.keys(packs).length ? Object.keys(packs)[0] : null)
@@ -41,7 +41,7 @@ export const IconLibrary = () => {
       })
     })
 
-    html = `<div class="icon-wrapper wrapper-size--medium">${html}</div>`;
+    html = `<div class="story-icon-wrapper story-wrapper-size--medium">${html}</div>`;
   }
 
   return html;

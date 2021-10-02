@@ -7,7 +7,7 @@ import { boolean } from "@storybook/addon-knobs";
 export const getSlots = (names) => {
   let obj = {};
   for (var i in names) {
-    obj[names[i]] = boolean('Show slots', false, 'Slots') ? '<div class="slot slot--' + names[i] + '">{{ ' + names[i] + ' }}</div>' : null;
+    obj[names[i]] = boolean('Show story-slots', false, 'Slots') ? '<div class="story-slot story-slot--' + names[i] + '">{{ ' + names[i] + ' }}</div>' : null;
   }
   return obj;
 }

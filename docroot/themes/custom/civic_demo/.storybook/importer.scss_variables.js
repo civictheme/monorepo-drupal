@@ -3,9 +3,22 @@
 //
 const fs = require('fs');
 
-const importedFile = fs.readFileSync('./components-combined/00-base/_variables.scss', {encoding: 'utf8'})
+const importedFiles = [
+  './components-combined/00-base/_variables.scss',
+  './components-combined/variables.scss',
+];
 
 function getVariables() {
+  let variables = {}
+  for (var i in importedFiles) {
+    variables = {...variables, ...getVariablesFromFile(importedFiles[i])};
+  }
+  return variables
+}
+
+function getVariablesFromFile(file) {
+  const importedFile = fs.readFileSync(file, {encoding: 'utf8'})
+
   const allGroups = {}
 
   // Get all variable groups.

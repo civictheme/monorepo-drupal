@@ -38,7 +38,7 @@ export const NavigationCard = () => {
 
   //Knob tabs order is decided on the basis of their order in story.
   //Icon component parameters.
-  const colors = SCSS_VARIABLES['civic-default-colors']
+  const colors = [...new Set([...SCSS_VARIABLES['civic-default-colors'], ...SCSS_VARIABLES['civic-colors']])];
   const icons = ICONS.icons
 
   const iconParams = {
