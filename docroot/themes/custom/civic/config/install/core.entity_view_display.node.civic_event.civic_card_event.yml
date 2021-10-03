@@ -38,9 +38,9 @@ content:
     weight: 3
     label: visually_hidden
     settings:
-      separator: '-'
-      format_type: medium
       timezone_override: ''
+      format_type: civic_short_date
+      separator: '-'
     third_party_settings: {  }
     type: daterange_default
     region: content

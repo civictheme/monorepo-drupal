@@ -82,11 +82,15 @@
       </div>
     {% endif %}
 
-    {% if tag or url %}
+    {% if tags or url %}
       <div class="civic-event-card__bottom-wrapper">
-        {% if tag %}
-          <div class="civic-event-card__tag">
-            {{ tag }}
+        {% if tags %}
+          <div class="civic-event-card__tags">
+            {% for tag in tags %}
+              <div class="civic-event-card__tag">
+                {{ tag }}
+              </div>
+            {% endfor %}
           </div>
         {% endif %}
 

@@ -60,7 +60,12 @@
     margin-top: civic-space(3);
   }
 
+  #{$root}__tags {
+    display: flex;
+  }
+
   #{$root}__tag {
+    margin-right: 2px;
     @include civic-typography(tag);
     border-radius: $civic-border-radius;
     padding: rem(4px) civic-space(1);
