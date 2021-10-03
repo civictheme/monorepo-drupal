@@ -4,10 +4,12 @@
 @import '../../00-base/base';
 
 .civic-card-container {
-  display: flex;
-  flex-direction: column;
-  @include civic-breakpoint('m') {
-    flex-direction: row;
+  &__header {
+    display: flex;
+    flex-direction: column;
+    @include civic-breakpoint('m') {
+      flex-direction: row;
+    }
   }
   &__heading {
     @include civic-typography('heading-3');

@@ -20,19 +20,21 @@
 {% endif %}
 
 <div class="civic-card-container {{ modifier_class }}">
-  {% if title is not empty %}
-    <div class="civic-card-container__heading">
-      <h3>{{ title }}</h3>
-    </div>
-  {% endif %}
-  {% if url is not empty %}
-    <div class="civic-card-container__link">
-        {% include '@atoms/link/link.twig' with {
-          text: link_text is not empty ? link_text : 'View all',
-          url: url
-        } only %}
-    </div>
-  {% endif %}
+  <div class="civic-card-container__header">
+      {% if title is not empty %}
+          <div class="civic-card-container__heading">
+              <h3>{{ title }}</h3>
+          </div>
+      {% endif %}
+      {% if url is not empty %}
+          <div class="civic-card-container__link">
+              {% include '@atoms/link/link.twig' with {
+                  text: link_text is not empty ? link_text : 'View all',
+                  url: url
+              } only %}
+          </div>
+      {% endif %}
+  </div>
   {% if cards is not empty %}
     <div class="civic-card-container__cards">
       <div class="row">
