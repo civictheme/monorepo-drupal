@@ -6,6 +6,7 @@
  */
 
 use Drupal\file\Entity\File;
+use Drupal\media\Entity\Media;
 
 /**
  * Render out a Node as a Navigation Card.
@@ -50,20 +51,13 @@ function _civic_preprocess_node_civic_card_promo(&$variables) {
 function _civic_preprocess_node_thumbnail(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  if (isset($variables['content']['field_c_n_thumbnail'][0]['#media'])) {
-    $media_content = $variables['content']['field_c_n_thumbnail'][0]['#media'];
-    $media_image_data = $media_content->field_media_image[0];
-    $media_target_id = $media_image_data->target_id ?? NULL;
-    $alt_tag = $media_image_data->alt;
-  }
-  elseif (!$node->get('field_c_n_thumbnail')->isEmpty()) {
-    $alt_tag = '';
-    $media_target_id = $node->get('field_c_n_thumbnail')->getString();
-  }
+  $media_target_id = $node->get('field_c_n_thumbnail')->getString();
   if (isset($media_target_id)) {
-    if ($file = File::load($media_target_id)) {
+    if ($media = Media::load($media_target_id)) {
+      $file = File::load($media->get('field_media_image')->first()->getValue()['target_id']);
+      // @todo fix image style generation from static content.
       $image['src'] = file_create_url($file->getFileUri());
-      $image['alt'] = $alt_tag;
+      $image['alt'] = $media->get('field_media_image')->first()->getValue()['alt'];
       $variables['image'] = $image;
     }
   }
