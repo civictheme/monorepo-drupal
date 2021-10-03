@@ -29,9 +29,9 @@ export const Link = () => CivicLink({
     },
     '',
   ),
-  text: text('Text', 'Link Text'),
-  title: text('title', 'Link title'),
-  url: text('URL', 'https://www.example.com'),
-  new_window: boolean('Open in a new window', false),
-  is_external: boolean('Link is external', false)
+  text: text('Text', 'Link Text', linkTab),
+  title: text('Title', 'Link title', linkTab),
+  url: text('URL', 'https://www.example.com', linkTab),
+  new_window: boolean('Open in a new window', false, linkTab),
+  is_external: boolean('Link is external', false, linkTab),
 });
