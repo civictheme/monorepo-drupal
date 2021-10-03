@@ -59,6 +59,7 @@ config_devel:
     - core.base_field_override.node.civic_event.promote
     - core.base_field_override.node.civic_page.promote
     - core.base_field_override.node.civic_project.promote
+    - core.date_format.civic_short_date
     - core.entity_form_display.block_content.civic_banner.default
     - core.entity_form_display.block_content.civic_component_block.default
     - core.entity_form_display.node.civic_event.default
@@ -272,7 +273,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_view_link
     - field.storage.paragraph.field_c_p_zoom
     - field.node.civic_event.field_c_n_body
-    - image.style.media_library
     - image.style.navigation
     - image.style.promo_banner
     - image.style.promo_card

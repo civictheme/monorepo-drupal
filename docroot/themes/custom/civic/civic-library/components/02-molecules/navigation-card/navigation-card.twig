@@ -21,12 +21,14 @@
 
 <div class="civic-nav-card {{ modifier_class }}">
   {% if 'civic-nav-card--large' in modifier_class %}
-    <div class="civic-nav-card__image-wrapper">
-      <img src="{{ image.src }}" alt="{{ image.alt }}">
-      {% if image_over %}
-        <div class="civic-nav-card__image-over">{{ image_over }}</div>
-      {% endif %}
-    </div>
+    {% if image.src is not empty %}
+      <div class="civic-nav-card__image-wrapper">
+        <img src="{{ image.src }}" alt="{{ image.alt }}">
+        {% if image_over %}
+          <div class="civic-nav-card__image-over">{{ image_over }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
   {% endif %}
 
   {% if 'civic-nav-card--icon' in modifier_class %}
