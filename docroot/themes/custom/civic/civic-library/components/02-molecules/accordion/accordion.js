@@ -17,7 +17,7 @@ function AccordionWidget(el, selectedIndex) {
 }
 
 // eslint-disable-next-line func-names
-AccordionWidget.prototype.init = function (selectedIndex) {
+AccordionWidget.prototype.init = function () {
   this.accordionTriggersLength = this.accordionTriggers.length;
   this.expandedAccordions = new Array(this.accordionTriggersLength);
   this.multiSelectable = this.el.hasAttribute('data-multiselectable');
@@ -29,8 +29,6 @@ AccordionWidget.prototype.init = function (selectedIndex) {
     next: 40,
     space: 32,
   };
-
-  let initialSelectedIndex;
 
   for (let i = 0; i < this.accordionTriggersLength; i += 1) {
     this.accordionTriggers[i].index = i;

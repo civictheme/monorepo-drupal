@@ -8,6 +8,7 @@
 require_once 'includes/civic_banner.inc';
 require_once 'includes/paragraph--civic_attachment.inc';
 require_once 'includes/paragraph--civic_callout.inc';
+require_once 'includes/paragraph--civic_accordion.inc';
 require_once 'includes/civic_cards.inc';
 
 /**

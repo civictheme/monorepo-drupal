@@ -6,9 +6,9 @@
  *
  * Variables:
  * - theme: [string] theme: light, dark.
- * - color: [string] Icon color.
- * - size: [string] Icon size.
+ * - title: [string] Accordion title.
  * - modifier_class: [string] Additional classes to modify component styling.
+ * - expand_all: [boolean] All panels exanded.
  * - panels: [array] Accordion panels comprised of:
  *   - title: [string] Accordion panel title
  *   - expanded: [boolean] Accordion panel expanded|closed state.
@@ -47,7 +47,7 @@
             {% set is_open = is_expanded ? 'civic-accordion__content--expanded' : '' %}
             <div class="civic-accordion__content {{ is_open }}">
               <div class="civic-accordion__content--inner">
-                {{ fold.content }}
+                {{ fold.content|raw }}
               </div>
             </div>
           {% endif %}
