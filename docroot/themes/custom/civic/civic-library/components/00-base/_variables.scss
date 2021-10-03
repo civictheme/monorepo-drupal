@@ -561,8 +561,8 @@ $civic-accordion-light-icon-color: map-get(map-merge($civic-default-colors, $civ
 $civic-accordion-light-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
 $civic-accordion-expanded-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
 $civic-accordion-dark-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
-$civic-accordion-dark-button-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
-$civic-accordion-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-accordion-dark-button-background-color: transparent !default;
+$civic-accordion-dark-background-color: transparent !default;
 $civic-accordion-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 $civic-accordion-dark-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
 

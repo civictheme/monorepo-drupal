@@ -26,7 +26,7 @@ export const Accordion = () => {
     ),
   };
 
-  const expandAll = boolean('Expand all', true, generalKnobTab);
+  const expandAll = boolean('Expand all', false, generalKnobTab);
   generalKnobs.expand_all = expandAll;
 
   // Adding dynamic number of accordion panels.

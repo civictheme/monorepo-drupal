@@ -18,10 +18,9 @@
       }
 
       #{$root}__header__button {
-        background-color: $civic-accordion-dark-background-color;
         color: $civic-accordion-dark-color;
         border-top: 1px solid $civic-accordion-dark-border-color;
-
+        background-color: $civic-accordion-dark-button-background-color;
         svg {
           fill: $civic-accordion-dark-icon-color;
         }
@@ -54,8 +53,7 @@
 
     &-item {
       border: 1px solid;
-      border-radius: rem(4px);
-      border-top: none;
+      border-radius: $civic-border-radius;
       margin-bottom: civic-space(2);
     }
   }
@@ -64,7 +62,8 @@
     $header: &;
     display: block;
     margin: 0;
-    border-radius: rem(4px);
+    border-top-left-radius: $civic-border-radius;
+    border-top-right-radius: $civic-border-radius;
 
     &__button--expanded {
       border-bottom: none;
@@ -80,9 +79,9 @@
       @include civic-typography('heading-6');
       width: 100%;
       padding: civic-space(3);
+      border-radius: $civic-border-radius;
       margin: 0;
       border: none;
-      border-radius: 4px;
       cursor: pointer;
       text-align: left;
       display: flex;
@@ -116,7 +115,7 @@
     &--inner {
       opacity: 0;
       transition: opacity .5s;
-      padding: civic-space(3);
+      padding: 0 civic-space(3) civic-space(3);
     }
   }
 
@@ -132,6 +131,8 @@
       left: 0;
       width: 0;
       background-color: $civic-accordion-expanded-border-color;
+      border-top-left-radius: $civic-border-radius;
+      border-bottom-left-radius: $civic-border-radius;
       transition: width .25s;
     }
 

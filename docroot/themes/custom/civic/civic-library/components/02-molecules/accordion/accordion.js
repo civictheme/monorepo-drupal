@@ -42,21 +42,6 @@ AccordionWidget.prototype.init = function (selectedIndex) {
       this.expandedAccordions[i] = true;
     }
   }
-
-  if (!Number.isNaN(selectedIndex)) {
-    initialSelectedIndex = selectedIndex < this.accordionTriggersLength
-      ? selectedIndex : this.accordionTriggersLength - 1;
-    this.expandedAccordions[initialSelectedIndex] = true;
-  } else {
-    initialSelectedIndex = this.expandedAccordions.lastIndexOf(true);
-
-    if (!this.multiSelectable) {
-      this.expandedAccordions = new Array(this.accordionTriggersLength);
-      this.expandedAccordions[initialSelectedIndex] = true;
-    }
-  }
-
-  this.setSelected(initialSelectedIndex);
   this.setExpanded();
   this.el.classList.add('is-initialized');
 };
