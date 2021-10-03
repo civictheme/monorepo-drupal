@@ -1,0 +1,38 @@
+{% extends './content.twig' %}
+
+{% block content %}
+
+  {% include '@atoms/heading/heading.twig' with {
+    level: 2,
+    title: "This is content heading"
+  } only %}
+
+  <div class="civic-block">
+    {% include '@atoms/heading/heading.twig' with {
+      level: 3,
+      title: "This is Promo card example",
+    } only %}
+    <div class="row">
+      {% for i in 1..4  %}
+        <div class="col-m-3">
+          {% include '@molecules/promo-card/promo-card.twig' %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="civic-block">
+    {% include '@atoms/heading/heading.twig' with {
+      level: 3,
+      title: "This is Events card example",
+    } only %}
+    <div class="row">
+      {% for i in 1..4  %}
+        <div class="col-m-3">
+          {% include '@molecules/event-card/event-card.twig' %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}

@@ -19,7 +19,7 @@
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set type_class = image is empty ? 'civic-promo-card--no-image' %}
+{% set type_class = image is empty ? 'civic-promo-card--no-image' : '' %}
 {% set modifier_class = '%s %s'|format(theme_class, type_class) %}
 
 <div class="civic-promo-card {{ modifier_class }}">
@@ -59,9 +59,11 @@
       </div>
     {% endif %}
 
-    <div class="civic-promo-card__content_middle">
-      {{ content_middle }}
-    </div>
+    {% if content_middle %}
+      <div class="civic-promo-card__content_middle">
+        {{ content_middle }}
+      </div>
+    {% endif %}
 
     {% if summary %}
       <div class="civic-promo-card__summary">
@@ -69,14 +71,19 @@
       </div>
     {% endif %}
 
-    {% if tag or url %}
+    {% if tags or url %}
       <div class="civic-promo-card__bottom-wrapper">
-        {% if tag %}
-          <div class="civic-promo-card__tag">
-            {{ tag }}
-          </div>
-        {% endif %}
-
+        <div class="civic-promo-card__tags">
+          {% if tags %}
+            {% for tag in tags %}
+              {% include '@atoms/tag/tag.twig' with {
+                theme: theme,
+                text: tag,
+                modifier_class: 'civic-tag--card',
+              } only %}
+            {% endfor %}
+          {% endif %}
+        </div>
         {% if url %}
           {# @todo Replace with link with an icon atom. #}
           <a class="civic-promo-card__bottom-link" href="{{ url }}">

@@ -4,6 +4,8 @@ _meta:
   uuid: dca378da-3f06-49fa-86e5-e97627ad77e6
   bundle: civic_page
   default_langcode: en
+  depends:
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
     -
@@ -147,3 +149,6 @@ default:
           field_c_p_title:
             -
               value: 'Service cards container'
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

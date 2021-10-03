@@ -11,7 +11,7 @@ export default {
   },
 };
 
-export const serviceCard = () => {
+export const ServiceCard = () => {
   const generalKnobTab = 'General';
 
   // Current component parameters.

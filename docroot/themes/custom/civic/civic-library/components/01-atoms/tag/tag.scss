@@ -42,4 +42,23 @@
       fill: $civic-tag-dark-color;
     }
   }
+  &.civic-tag--card {
+    padding: rem(4px) civic-space(1) rem(4px) rem(4px);
+    &.civic-theme-dark {
+      background-color: $civic-tag-card-dark-background-color;
+      color: $civic-tag-card-dark-color;
+
+      .civic-icon {
+        fill: $civic-tag-card-dark-color;
+      }
+    }
+    &.civic-theme-light {
+      background-color: $civic-tag-card-light-background-color;
+      color: $civic-tag-card-light-color;
+
+      .civic-icon {
+        fill: $civic-tag-card-light-color;
+      }
+    }
+  }
 }

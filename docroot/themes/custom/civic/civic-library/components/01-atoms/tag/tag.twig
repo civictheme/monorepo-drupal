@@ -14,7 +14,7 @@
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set icon_class = icon is empty ? 'civic-tag--no-icon' %}
+{% set icon_class = icon is empty ? 'civic-tag--no-icon' : '' %}
 {% set icon_placement_class = icon ? 'civic-tag--icon-%s'|format(icon_placement|default('before')) : '' %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, icon_class, icon_placement_class, modifier_class) %}
 
