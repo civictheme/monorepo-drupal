@@ -15,7 +15,7 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = modifier_class|default('civic-link--normal') %}
 {% set modifier_class = modifier_class ~ ' ' ~ theme_class %}
-{% set icon = is_external ? %}
+
 <a class="civic-link {{ modifier_class }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }}>
   {{ text }}
   {% if is_external %}

@@ -21,12 +21,17 @@
 
 .civic-alert {
   $root: &;
+  padding: civic-space(2) 0;
 
   .civic-messages {
     padding: civic-space(3) civic-space(3) civic-space(3) civic-space(2);
     border-left: solid rem(6px) transparent;
     @include civic-alert-border-colors();
     @include civic-typography('body');
+
+    & + .civic-messages {
+      margin-top: civic-space(2);
+    }
 
     &__icon {
       width: rem(26px);
