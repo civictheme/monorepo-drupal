@@ -6,6 +6,8 @@
  * - title: [string] Title for the iframe.
  * - theme: [string] theme: light, dark.
  * - src: [string] URL of the video.
+ * - width: [string] Width of the iframe.
+ * - height: [string] Height of the video.
  * - transcript_link: [object] Video transcript link.
  * - share_link: [object] Video share link.
  */
@@ -56,7 +58,7 @@
             symbol: 'userinterface_share',
             color: 'primary'
           } only %}
-          
+
           {% include '@atoms/link/link.twig' with {
             theme: theme,
             text: share_link.text,
