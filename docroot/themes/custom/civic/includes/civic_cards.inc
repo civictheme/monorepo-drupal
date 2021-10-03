@@ -22,6 +22,11 @@ function _civic_preprocess_node_card(&$variables) {
   $variables['title'] = $node->getTitle();
 }
 
+/**
+ * Preprocess callback for Event Display Mode on Nodes.
+ *
+ * @SuppressWarnings(PHPMD)
+ */
 function _civic_preprocess_node_civic_card_event(&$variables) {
   _civic_preprocess_node_card($variables);
   _civic_preprocess_node_date($variables);
@@ -53,7 +58,7 @@ function _civic_preprocess_node_civic_card_promo(&$variables) {
 }
 
 /**
- * Date field preprocessor
+ * Date field preprocessor.
  *
  * @SuppressWarnings(PHPMD)
  */
@@ -67,13 +72,18 @@ function _civic_preprocess_node_date(&$variables) {
   }
 }
 
+/**
+ * Topic field preprocessor.
+ *
+ * @SuppressWarnings(PHPMD)
+ */
 function _civic_preprocess_node_topics(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   if ($node->hasField('field_c_n_topics')) {
     if ($topics = $node->get('field_c_n_topics')->getValue()) {
       $tags = [];
-      foreach($topics as $topic_data) {
+      foreach ($topics as $topic_data) {
         $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($topic_data['target_id']);
         $tags[] = $term->getName();
       }
@@ -86,6 +96,7 @@ function _civic_preprocess_node_topics(&$variables) {
  * Format dates for cards.
  *
  * @return mixed
+ *   Formatted date.
  */
 function _civic_format_short_date($date) {
   return \Drupal::service('date.formatter')->format(strtotime($date), 'civic_short_date');
