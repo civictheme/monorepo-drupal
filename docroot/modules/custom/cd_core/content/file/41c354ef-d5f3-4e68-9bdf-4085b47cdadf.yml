@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: 4a5c5b53-bad3-4ac6-adb8-d07f3167bb28
+  uuid: 41c354ef-d5f3-4e68-9bdf-4085b47cdadf
   default_langcode: en
 default:
   uid:
@@ -9,19 +9,19 @@ default:
       target_id: 1
   filename:
     -
-      value: nature.jpg
+      value: civic-image.jpg
   uri:
     -
-      value: 'public://2021-09/nature_11.jpg'
+      value: 'public://2021-10/civic-image_0.jpg'
   filemime:
     -
       value: image/jpeg
   filesize:
     -
-      value: 467393
+      value: 93149
   status:
     -
       value: true
   created:
     -
-      value: 1631681047
+      value: 1633245345
