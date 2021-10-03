@@ -7,6 +7,7 @@ _meta:
   depends:
     4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
     86c9cd2b-225e-485b-9c6a-2963cd993b7b: media
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
     -
@@ -183,3 +184,6 @@ default:
   field_c_n_summary:
     -
       value: 'Nulla quis lorem ut libero malesuada feugiat. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada.'
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

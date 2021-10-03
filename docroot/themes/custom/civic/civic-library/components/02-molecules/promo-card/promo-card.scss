@@ -52,14 +52,21 @@
 
   #{$root}__bottom-wrapper {
     display: flex;
-    justify-content: space-between;
     margin-top: civic-space(3);
   }
-
-  #{$root}__tag {
-    @include civic-typography(tag);
-    border-radius: $civic-border-radius;
-    padding: rem(4px) civic-space(1);
+  #{$root}__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-right: auto;
+    margin-top: rem(-4px);
+    .civic-tag {
+      margin-top: rem(4px);
+      margin-right: rem(4px);
+    }
+  }
+  #{$root}__bottom-link {
+    margin-left: auto;
   }
 
   &.civic-theme-light {
@@ -90,11 +97,6 @@
     #{$root}__location,
     #{$root}__summary {
       color: $civic-promo-card-light-body-color;
-    }
-
-    #{$root}__tag {
-      background-color: $civic-promo-card-light-tag-background-color;
-      color: $civic-promo-card-light-tag-color;
     }
   }
 
@@ -128,10 +130,6 @@
       color: $civic-promo-card-dark-body-color;
     }
 
-    #{$root}__tag {
-      background-color: $civic-promo-card-dark-color-accent;
-      color: $civic-promo-card-dark-tag-color;
-    }
 
     #{$root}__icon {
       .civic-icon {

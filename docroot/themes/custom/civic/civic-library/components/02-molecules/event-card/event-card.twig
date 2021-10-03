@@ -20,7 +20,7 @@
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set type_class = image is empty ? 'civic-event-card--no-image' %}
+{% set type_class = image is empty ? 'civic-event-card--no-image' : '' %}
 {% set modifier_class = '%s %s'|format(theme_class, type_class) %}
 
 <div class="civic-event-card {{ modifier_class }}">

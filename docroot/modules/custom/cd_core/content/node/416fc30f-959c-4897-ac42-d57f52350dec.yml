@@ -9,6 +9,7 @@ _meta:
     32e84de2-85db-425c-88e9-b311ba69e352: node
     5c23a0bd-3ee8-4608-bdec-b396f0be3c7d: node
     dca378da-3f06-49fa-86e5-e97627ad77e6: node
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
     -
@@ -184,3 +185,6 @@ default:
           field_c_p_title:
             -
               value: 'Card container'
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

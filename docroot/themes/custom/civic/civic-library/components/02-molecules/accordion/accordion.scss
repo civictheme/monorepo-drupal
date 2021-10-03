@@ -105,6 +105,7 @@
     @include civic-typography('body');
 
     &--expanded {
+      height: auto;
       border-top: none;
 
       #{$content}--inner {

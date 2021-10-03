@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a Next step.
+ */
+#}
+{% block paragraph %}
+  {% include '@molecules/next-steps/next-steps.twig' with {
+    theme: paragraph.field_c_p_theme.value,
+    summary: content.field_c_p_summary,
+    title: paragraph.field_c_p_title.value,
+    comtent_top: content.field_c_p_image,
+    icon: {
+      src: file_url(paragraph.field_c_p_icon.entity.field_c_m_icon.entity.fileuri),
+      alt: paragraph.field_c_p_icon.entity.field_c_m_icon.entity.alt,
+    },
+    modifier_class: attributes.getClass(),
+  } only %}
+{% endblock %}

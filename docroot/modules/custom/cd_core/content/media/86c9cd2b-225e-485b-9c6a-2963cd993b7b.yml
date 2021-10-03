@@ -5,7 +5,7 @@ _meta:
   bundle: image
   default_langcode: en
   depends:
-    5e156daa-1515-430c-9d36-1d060b200960: file
+    4a5c5b53-bad3-4ac6-adb8-d07f3167bb28: file
 default:
   status:
     -
@@ -29,7 +29,7 @@ default:
       pathauto: 0
   field_media_image:
     -
-      entity: 5e156daa-1515-430c-9d36-1d060b200960
+      entity: 4a5c5b53-bad3-4ac6-adb8-d07f3167bb28
       alt: Avengers
       title: ''
       width: 1280

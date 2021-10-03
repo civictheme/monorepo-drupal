@@ -42,9 +42,8 @@ AccordionWidget.prototype.init = function (selectedIndex) {
       this.expandedAccordions[i] = true;
     }
   }
-  
+
   if (!Number.isNaN(selectedIndex)) {
-    this.expandedAccordions = new Array(this.accordionTriggersLength);
     initialSelectedIndex = selectedIndex < this.accordionTriggersLength
       ? selectedIndex : this.accordionTriggersLength - 1;
     this.expandedAccordions[initialSelectedIndex] = true;

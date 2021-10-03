@@ -24,7 +24,7 @@
         {% if loop.index == links_count - 1 %}
           {% set parent = linkObj %}
         {% endif %}
-        {% if not active_is_link and (loop.index == links_count) %}
+        {% if not (active_is_link|format(active_is_link|default(false))) and (loop.index == links_count) %}
           {{ linkObj.text }}
         {% else %}
           {% include '@atoms/link/link.twig' with {
