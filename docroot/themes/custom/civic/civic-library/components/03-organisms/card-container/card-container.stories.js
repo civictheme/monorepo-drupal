@@ -17,7 +17,7 @@ const CardMap = {
 };
 
 export default {
-  title: 'Organism/Card Container',
+  title: 'Organisms/Card Container',
 };
 
 export const CardContainer = () => {
@@ -37,7 +37,7 @@ export const CardContainer = () => {
     link_text: text('Link Text', 'View all', generalKnobTab),
     url: text('Link URL', 'https://google.com', generalKnobTab),
     column_count: select('Columns', [1, 2, 3, 4], 1, generalKnobTab),
-    fill_width: boolean('With width', false, generalKnobTab),
+    fill_width: boolean('Fill width', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
