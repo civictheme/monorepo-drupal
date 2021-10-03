@@ -6,7 +6,7 @@ import imageFile from '../../../assets/image.png';
 import './card-container.scss';
 
 export default {
-  title: 'Molecule/Card Container',
+  title: 'Organism/Card Container',
 };
 
 export const CardContainer = () => {
