@@ -312,4 +312,3 @@ config_devel:
     - media.type.image
     - media.type.document
     - core.entity_view_mode.node.teaser
-    - views.view.frontpage
