@@ -1,14 +1,13 @@
-import './grid.stories.scss'
+import './grid.stories.scss';
 
 export default {
   title: 'Base/Grid',
   parameters: {
     layout: 'fullscreen',
   },
-}
+};
 
-export const Grid = () => {
-  return `
+export const Grid = () => `
   <h2>Columns</h2>
   <div class="grid-wrapper">
     <div class="container">
@@ -108,5 +107,4 @@ export const Grid = () => {
       </div>
     </div>
   </div>
-</div>`
-}
+</div>`;

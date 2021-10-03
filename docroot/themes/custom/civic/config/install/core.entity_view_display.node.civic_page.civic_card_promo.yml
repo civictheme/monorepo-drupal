@@ -25,19 +25,18 @@ mode: civic_card_promo
 content:
   field_c_n_summary:
     weight: 1
-    label: hidden
+    label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: content
   field_c_n_thumbnail:
     weight: 0
-    label: hidden
+    label: above
     settings:
-      view_mode: full
-      link: false
+      link: true
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    type: entity_reference_label
     region: content
   links:
     weight: 2

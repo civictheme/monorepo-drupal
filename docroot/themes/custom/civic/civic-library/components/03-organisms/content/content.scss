@@ -1,0 +1,25 @@
+//
+// Content.
+//
+
+@import '../../00-base/base';
+
+.civic-content {
+  @include civic-typography('body');
+
+  a {
+    @include civic-typography('body');
+  }
+
+  ul {
+    @include civic-typography('unordered-list');
+  }
+
+  ol {
+    @include civic-typography('ordered-list');
+  }
+
+  blockquote {
+    @include civic-typography('quote');
+  }
+}

@@ -1,29 +1,32 @@
-import { boolean, radios, text } from '@storybook/addon-knobs'
+import { boolean, radios, text } from '@storybook/addon-knobs';
 
-import CivicInput from './input.twig'
-import './input.scss'
+import CivicInput from './input.twig';
+import './input.scss';
 
 export default {
   title: 'Atom/Input',
-}
+  parameters: {
+    layout: 'centered',
+  },
+};
 
 export const Input = () => CivicInput({
   theme: radios(
     'Theme',
     {
-      'Light': 'light',
-      'Dark': 'dark',
+      Light: 'light',
+      Dark: 'dark',
     },
     'light',
   ),
   type: radios(
     'Type',
     {
-      'Text': 'text',
-      'Textarea': 'textarea',
-      'Email': 'email',
-      'Tel': 'tel',
-      'Password': 'password',
+      Text: 'text',
+      Textarea: 'textarea',
+      Email: 'email',
+      Tel: 'tel',
+      Password: 'password',
     },
     'text',
   ),
@@ -36,13 +39,13 @@ export const Input = () => CivicInput({
   state: radios(
     'State',
     {
-      'None': 'none',
-      'Error': 'error',
-      'Success': 'success',
+      None: 'none',
+      Error: 'error',
+      Success: 'success',
     },
     'none',
   ),
   disabled: boolean('Disabled', false),
   required: boolean('Required', false),
   modifier_class: text('Additional class', ''),
-})
+});

@@ -1,0 +1,13 @@
+//
+// Heading.
+//
+@import "../../00-base/base";
+
+.civic-heading {
+  @for $level from 1 through 6 {
+    &h#{$level} {
+      @include civic-typography('heading-#{$level}')
+    }
+  }
+}
+

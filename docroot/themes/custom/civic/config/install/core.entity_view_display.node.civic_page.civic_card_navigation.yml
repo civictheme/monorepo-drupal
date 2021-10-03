@@ -35,9 +35,8 @@ content:
     label: visually_hidden
     settings:
       link: true
-      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    type: entity_reference_label
     region: content
 hidden:
   field_c_n_banner_background: true

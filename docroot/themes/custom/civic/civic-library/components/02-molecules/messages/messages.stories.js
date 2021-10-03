@@ -2,25 +2,26 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicMessages from './messages.twig';
 
 export default {
-  title: 'Molecule/Messages'
-}
+  title: 'Molecule/Messages',
+};
 
 export const Messages = () => CivicMessages({
   theme: radios(
     'Theme',
     {
-      'Light': 'light',
-      'Dark': 'dark',
+      Light: 'light',
+      Dark: 'dark',
     },
     'light',
   ),
   type: radios(
     'Type',
     {
-      'Info': 'info',
-      'Error': 'error',
-      'Warning': 'warning',
-      'Success': 'success',
+      Status: 'status',
+      Info: 'info',
+      Error: 'error',
+      Warning: 'warning',
+      Success: 'success',
     },
     'info',
   ),

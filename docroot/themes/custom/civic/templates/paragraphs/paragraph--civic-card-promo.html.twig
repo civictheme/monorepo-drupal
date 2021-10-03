@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a promo card.
+ *
+ */
+#}
+{% block paragraph %}
+  {% include '@molecules/promo-card/promo-card.twig' with {
+    theme: paragraph.field_c_p_theme.value,
+    date: (content.field_c_p_date is not empty) ? content.field_c_p_date : '',
+    title: paragraph.field_c_p_title.value,
+    summary: content.field_c_p_summary,
+    url: paragraph.field_c_p_link.0.url,
+    image: {
+      src: file_url(paragraph.field_c_p_image.entity.field_media_image.entity.fileuri),
+      alt: paragraph.field_c_p_image.entity.field_media_image.entity.alt,
+    },
+    modifier_class: attributes.getClass(),
+  } only %}
+{% endblock paragraph %}

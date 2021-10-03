@@ -2,21 +2,36 @@
 /**
  * @file
  * Icon component.
- * Creates an inline SVG which references an icon symbol in a spritesheet pack.
- * E.g.
- *
- * {{spritesheet}}        {{symbol}}
- * /icons/civic-arrow.svg#arrows-caret
- *
- * Uses the "arrows-caret" symbol from the "/icons/civic-arrow.svg" spritesheet.
+ * Creates an inline SVG.
  *
  * Variables:
- * - color: [string] Icon color.
  * - symbol: [string] Icon name.
- * - spritesheet: [string] Icon collection (spritesheet).
+ * - color: [string] Icon color.
+ * - size: [string] Icon size.
  * - modifier_class: [string] Additional classes to modify component styling.
  */
 #}
-<svg width="24" height="24" class="civic-icon{{ color ? ' civic-icon--color-' ~ color }}{{ modifier_class ? ' ' ~ modifier_class }}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <use xlink:href="{{ spritesheet }}#{{ symbol }}"></use>
-</svg>
+{% extends '@atoms/icon/icon_library.twig' %}
+{% block content %}
+  {% set icon = icons[symbol] %}
+  {% set title = symbol | split('_', 2)[1] %}
+  {% set width = icon.width | default(16) %}
+  {% set height = icon.height | default(16) %}
+  {% set modifier_class = '%s %s %s'|format((color ? 'civic-icon--color-' ~ color : ''), (size ? 'civic-icon--size-' ~ size : ''), modifier_class|default('')) %}
+
+  {% if icon.paths is defined %}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="civic-icon {{ modifier_class }}"
+      title="{{ title }}"
+      width="{{ width }}"
+      height="{{ height }}"
+      viewBox="0 0 {{ width }} {{ height }}"
+      aria-hidden="true"
+    >
+      {% for path in icon.paths %}
+        <path {% for attr in path|keys %} {{ attr }}="{{ path[attr] }}"{% endfor %} />
+      {% endfor %}
+    </svg>
+  {% endif %}
+{% endblock %}

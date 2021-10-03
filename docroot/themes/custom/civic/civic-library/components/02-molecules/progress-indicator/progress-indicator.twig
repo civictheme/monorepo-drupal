@@ -3,32 +3,54 @@
  * @file Progress indicator component.
  *
  * Available variables:
+ * - theme: [string] Theme: 'light' or 'dark'. Default to 'light'.
  * - steps: [array] Steps.
  *    - title: [string] Title of the step.
  *    - status: [string] Title of the step.
- *    - icon: [object] Icon object.
+ * - modifier_class:[string] Additional classes.
  */
 #}
 
-{% set component_class = 'civic-progress-indicator' %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(component_class, theme_class) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class) %}
 
-<div class="{{ modifier_class }}" aria-live="polite">
+{% set statuses = {
+  todo: {
+    text: 'Todo',
+    icon:   'userinterface_todo',
+  },
+  doing: {
+    text: 'Doing',
+    icon: 'userinterface_progress',
+  },
+  done: {
+    text: 'Done',
+    icon: 'userinterface_approve',
+  }
+} %}
+
+<div class="civic-progress-indicator {{ modifier_class }}" aria-live="polite">
   {% for step in steps %}
-    <div class="{{ component_class }}__step {{ '%s__step--%s'|format(component_class, step.status) }}">
-      {% include '@atoms/icon/icon.twig' with {
-        spritesheet: spritesheet,
-        symbol: step.symbol,
-      } only %}
-      <div class="{{ component_class }}__step--inner">
-        <div class="{{ component_class }}__step--status">
-          {{ step.status }}
-        </div>
-        <div class="{{ component_class }}__step--title">
-          {{ step.title }}
+    {% if step.title is not empty %}
+      <div class="civic-progress-indicator__step {{ 'civic-progress-indicator__step--%s'|format(step.status) }}">
+        {% if step.status is defined %}
+          {% include '@atoms/icon/icon.twig' with {
+            symbol: statuses[step.status].icon,
+          } only %}
+        {% endif %}
+
+        <div class="civic-progress-indicator__step--inner">
+          {% if step.status is defined %}
+            <div class="civic-progress-indicator__step--status">
+              {{ statuses[step.status].text }}
+            </div>
+          {% endif %}
+
+          <div class="civic-progress-indicator__step--title">
+            {{ step.title }}
+          </div>
         </div>
       </div>
-    </div>
+    {% endif %}
   {% endfor %}
 </div>

@@ -1,11 +1,10 @@
-import './typography.stories.scss'
+import './typography.stories.scss';
 
 export default {
   title: 'Base/Typography',
-}
+};
 
-export const Typography = () => {
-  return `<div class="typography-wrapper">
+export const Typography = () => `<div class="typography-wrapper">
 <hr/>
 <div class="display-xl">XL - Desktop Display Text</div>
 <div class="display-l">L - Tablet Display Text</div>
@@ -27,18 +26,17 @@ export const Typography = () => {
 <div class="quote">“The RPL replaces the student pilot licence and general flying progress test (GFPT) that existed under the Civil Aviation Regulations 1988.”</div>
 <hr/>
 <ul class="unordered-list">
-	<li>List item 1</li>
-	<li>List item 2</li>
-	<li>List item 3</li>
+  <li>List item 1</li>
+  <li>List item 2</li>
+  <li>List item 3</li>
 </ul>
 <ol class="ordered-list">
-	<li>List item 1</li>
-	<li>List item 2</li>
-	<li>List item 3</li>
+  <li>List item 1</li>
+  <li>List item 2</li>
+  <li>List item 3</li>
 </ol>
 <hr/>
 <div class="label-large">Large label</div>
 <div class="label-regular">Normal label</div>
 <div class="label-small">Small label</div>
-</div>`
-}
+</div>`;
