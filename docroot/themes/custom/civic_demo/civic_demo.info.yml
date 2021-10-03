@@ -27,9 +27,6 @@ libraries-override:
     js:
       dist/civic.js: dist/scripts.js
 
-libraries:
-  - civic_demo/test-styling
-
 components:
   namespaces:
     base:
