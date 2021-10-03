@@ -3,61 +3,90 @@
  * @file Navigation card component.
  *
  * Available variables:
- * - image: [object] Consist details of the card image like src, width, height, alt text.
- * - modifier_class: [string] Classes to modify the default component styling.
- * - summary: [string] Summary of the card.
- * - title: [string] The text of card title.
  * - theme: [string] card theme: light, dark.
- * - type: [string] Card type: large, small, icon.
+ * - size: [string] Card type: large, small.
+ * - image: [object] Consist details of the card image like src, width, height, alt text.
+ * - image_over: [string] Component slot for image_over of Card.
+ * - icon: [string] Icon name.
+ * - content_top: [string] Component slot for top  of Card.
+ * - title: [string] The text of card title.
+ * - content_middle: [string] Component slot for middle of Card.
+ * - summary: [string] Summary of the card.
+ * - image: [string] Card type: large, small.
  * - url: [string] Card link.
+ * - content_bottom: [string] Component slot for bottom of Card.
+ * - modifier_class: [string] Classes to modify the default component styling.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set type_class = 'civic-nav-card--%s'|format(type|default('large')) %}
-{% set modifier_class = modifier_class|default('civic-nav-card--large') %}
-{% set modifier_class = '%s %s'|format(theme_class, type_class) %}
-{% set url = url|default('#') %}
+{% set size = size|default('large') %}
+{% set size_class = size == 'large'?'civic-navigation-card--large' : 'civic-navigation-card--small' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class) %}
 
-<div class="civic-nav-card {{ modifier_class }}">
-  {% if 'civic-nav-card--large' in modifier_class %}
-    {% if image.src is not empty %}
-      <div class="civic-nav-card__image-wrapper">
-        <img src="{{ image.src }}" alt="{{ image.alt }}">
-        {% if image_over %}
-          <div class="civic-nav-card__image-over">{{ image_over }}</div>
-        {% endif %}
-      </div>
-    {% endif %}
-  {% endif %}
-
-  {% if 'civic-nav-card--icon' in modifier_class %}
-    <div class="civic-nav-card__icon civic-nav-card__main-icon">
-      {% include '@atoms/icon/icon.twig' with {
-        symbol: symbol,
-        color: icon_color
-      } only %}
+<div class="civic-navigation-card {{ modifier_class }}">
+  {% if image.src is not empty %}
+    <div class="civic-navigation-card__image-wrapper">
+      <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
+      {% if image_over %}
+        <div class="civic-navigation-card__image-over">
+          {{ image_over }}
+        </div>
+      {% endif %}
     </div>
   {% endif %}
 
-  <div class="civic-nav-card__content">
+  <div class="civic-navigation-card__content">
     {% if content_top %}
-      <div class="civic-nav-card__content-top">{{ content_top }}</div>
+      <div class="civic-navigation-card__content-top">
+        {{ content_top }}
+      </div>
     {% endif %}
 
-    <a class="civic-nav-card__link" href="{{ url }}">
-      <h5 class="civic-nav-card__title">{{ title }}</h5>
-      <span class="civic-nav-card__icon civic-nav-card__read-more">
-				{% include '@atoms/icon/icon.twig' with {
-          symbol: 'arrows_rightarrow_3',
-          color: 'primary'
+    {% if icon %}
+      <div class="civic-navigation-card__icon">
+        {% include '@atoms/icon/icon.twig' with {
+          symbol: icon,
+          size: 'large',
+          color: 'primary',
         } only %}
-			</span>
-    </a>
+      </div>
+    {% endif %}
 
-    <p class="civic-nav-card__summary">{{ summary }}</p>
+    {% if title %}
+      <div class="civic-navigation-card__title">
+        {% if url %}
+        <a class="civic-navigation-card__title-link" href="{{ url }}">
+          {% endif %}
+          {{ title }}
+          {% if url %}
+          <span class="civic-promo-card__link" href="{{ url }}">
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: 'arrows_rightarrow_3',
+              color: 'primary'
+            } only %}
+          </span>
+        </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if content_middle %}
+      <div class="civic-navigation-card__content-middle">
+        {{ content_middle }}
+      </div>
+    {% endif %}
+
+    {% if summary %}
+      <div class="civic-navigation-card__summary">
+        {{ summary }}
+      </div>
+    {% endif %}
+
     {% if content_bottom %}
-      <div class="civic-nav-card__content-bottom">{{ content_bottom }}</div>
+      <div class="civic-navigation-card__content-bottom">
+        {{ content_bottom }}
+      </div>
     {% endif %}
   </div>
 </div>
