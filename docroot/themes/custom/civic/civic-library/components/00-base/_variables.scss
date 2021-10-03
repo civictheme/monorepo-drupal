@@ -560,3 +560,5 @@ $civic-icon-link-dark-color-focus: map-get(map-merge($civic-default-colors, $civ
 $civic-icon-link-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_90') !default;
 $civic-icon-link-dark-color-visited: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 $civic-icon-link-dark-color-disabled: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_40') !default;
+
+// Card container.

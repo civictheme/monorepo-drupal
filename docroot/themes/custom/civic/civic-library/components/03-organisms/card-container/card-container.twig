@@ -25,7 +25,6 @@
       <h3>{{ title }}</h3>
     </div>
   {% endif %}
-
   {% if url is not empty %}
     <div class="civic-card-container__link">
         {% include '@atoms/link/link.twig' with {
@@ -36,15 +35,13 @@
   {% endif %}
   {% if cards is not empty %}
     <div class="civic-card-container__cards">
-        {% block cards %}
-          <div class="row">
-            {% for card in cards %}
-              <div class="{{ column_class }}">
-                {{ card }}
-              </div>
-            {% endfor %}
+      <div class="row">
+        {% for card in cards %}
+          <div class="{{ column_class }}">
+            {{ card }}
           </div>
-        {% endblock %}
+        {% endfor %}
+      </div>
     </div>
   {% endif %}
 </div>

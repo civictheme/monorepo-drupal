@@ -4,5 +4,26 @@
 @import '../../00-base/base';
 
 .civic-card-container {
-
+  display: flex;
+  flex-direction: column;
+  @include civic-breakpoint('m') {
+    flex-direction: row;
+  }
+  &__heading {
+    @include civic-typography('heading-3');
+    @include civic-breakpoint('m') {
+      margin-right: auto;
+    }
+  }
+  &__link {
+    @include civic-typography('label-regular');
+    @include civic-breakpoint('m') {
+      align-self: center;
+      margin-left: auto;
+    }
+  }
+  &__cards {
+    display: flex;
+    width: 100%;
+  }
 }
