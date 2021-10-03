@@ -72,7 +72,7 @@ function _civic_preprocess_node_civic_page_summary(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   if ($node->hasField('field_c_n_summary') && !$node->get('field_c_n_summary')->isEmpty()) {
-    $variables['summary'] = $node->get('field_c_n_summary')->getString();
+    $variables['summary'] = text_summary($node->get('field_c_n_summary')->getString(), NULL, 100);
   }
 }
 
