@@ -19,7 +19,7 @@
   {% set column_class = 'col' %}
 {% endif %}
 
-<div class="civic-card-container {{ modifier_class }}">
+<div class="civic-card-container container {{ modifier_class }}">
   <div class="civic-card-container__header">
       {% if title is not empty %}
           <div class="civic-card-container__heading">
@@ -39,7 +39,7 @@
     <div class="civic-card-container__cards">
       <div class="row">
         {% for card in cards %}
-          <div class="{{ column_class }}">
+          <div class="civic-card-container__card {{ column_class }}">
             {{ card }}
           </div>
         {% endfor %}

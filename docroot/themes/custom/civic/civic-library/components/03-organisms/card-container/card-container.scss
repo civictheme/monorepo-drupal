@@ -25,8 +25,9 @@
     }
   }
   &__cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+
+  }
+  &__card {
+    margin-top: civic-space(3)
   }
 }
