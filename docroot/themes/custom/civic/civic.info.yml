@@ -273,7 +273,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_view_link
     - field.storage.paragraph.field_c_p_zoom
     - field.node.civic_event.field_c_n_body
-    - image.style.media_library
     - image.style.navigation
     - image.style.promo_banner
     - image.style.promo_card
@@ -306,7 +305,6 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
     - taxonomy.vocabulary.civic_topics
-    - views.view.frontpage
     - views.view.civic_events
     - views.view.civic_listing
     - views.view.civic_pages
@@ -314,3 +312,4 @@ config_devel:
     - media.type.image
     - media.type.document
     - core.entity_view_mode.node.teaser
+    - views.view.frontpage
