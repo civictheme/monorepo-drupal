@@ -28,7 +28,7 @@ export const Callout = () => {
     links: [
       {
         text: text('Text', 'CTA 1', cta1KnobTab),
-        url: text('URL', '#', cta1KnobTab),
+        url: text('URL', 'http://example.com', cta1KnobTab),
         type: radios(
           'Type',
           {
@@ -52,7 +52,7 @@ export const Callout = () => {
       },
       {
         text: text('Text', 'CTA 2', cta2KnobTab),
-        url: text('URL', '#', cta2KnobTab),
+        url: text('URL', 'http://example.com', cta2KnobTab),
         type: radios(
           'Type', {
             Primary: 'primary',

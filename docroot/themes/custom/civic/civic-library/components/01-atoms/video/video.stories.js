@@ -23,14 +23,14 @@ export const Video = () => CivicVideo({
   transcript_link: object('Transcript URL', {
     text: 'View transcript',
     title: 'Opens in new tab',
-    url: 'www.google.com',
+    url: 'http://example.com',
     new_window: true,
     is_external: false,
   }),
   share_link: object('Share URL', {
     text: 'Share this video',
     title: 'Opens in new tab',
-    url: 'www.google.com',
+    url: 'http://example.com',
     new_window: true,
     is_external: false,
   }),

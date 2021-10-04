@@ -28,25 +28,25 @@ export const ServiceCard = () => {
     title: text('Title', 'Services category title across one or two lines', generalKnobTab),
     links: object('Links', [
       {
-        url: 'http://google.com',
+        url: 'http://example.com',
         text: 'Service link 1',
         new_window: false,
         is_external: false,
       },
       {
-        url: 'http://google.com',
+        url: 'http://example.com',
         text: 'Service link 2',
         new_window: false,
         is_external: false,
       },
       {
-        url: 'http://google.com',
+        url: 'http://example.com',
         text: 'Service link 3',
         new_window: false,
         is_external: false,
       },
       {
-        url: 'http://google.com',
+        url: 'http://example.com',
         text: 'Service link 4',
         new_window: false,
         is_external: false,
