@@ -59,6 +59,9 @@
   &:hover {
     padding: 3px 0 4px 0;
   }
+  &:focus {
+    @include civic-outline;
+  }
 }
 
 //
