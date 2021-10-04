@@ -12,7 +12,7 @@ default:
       value: civic-image.jpg
   uri:
     -
-      value: 'public://2021-10/civic-image_0_1.jpg'
+      value: 'public://2021-10/civic-image_0_1_3.jpg'
   filemime:
     -
       value: image/jpeg
