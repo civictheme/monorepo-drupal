@@ -8,7 +8,7 @@ import CivicEventCard from './event-card.twig';
 import './event-card.scss';
 
 export default {
-  title: 'Molecule/Event Card',
+  title: 'Molecule/Card',
   parameters: {
     layout: 'centered',
   },
@@ -35,7 +35,7 @@ export const EventCard = () => {
       text('Topic/industry tag', 'Topic 1', generalKnobTab),
       text('Topic/industry tag 2', 'Topic 2', generalKnobTab),
     ],
-    url: text('Link URL', 'https://google.com', generalKnobTab),
+    url: text('Link URL', 'http://example.com', generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
       src: imageFile,
       alt: 'Image alt text',

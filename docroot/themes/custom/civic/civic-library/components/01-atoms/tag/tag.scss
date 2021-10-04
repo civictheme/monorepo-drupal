@@ -5,10 +5,9 @@
 
 .civic-tag {
   $root: &;
-
   border-radius: $civic-border-radius;
   padding: rem(2px) civic-space(1) rem(2px) rem(4px);
-  width: fit-content;
+  display: inline-block;
   @include civic-typography(tag);
 
   &--no-icon {
@@ -43,7 +42,6 @@
     }
   }
   &.civic-tag--card {
-    padding: rem(4px) civic-space(1) rem(4px) rem(4px);
     &.civic-theme-dark {
       background-color: $civic-tag-card-dark-background-color;
       color: $civic-tag-card-dark-color;

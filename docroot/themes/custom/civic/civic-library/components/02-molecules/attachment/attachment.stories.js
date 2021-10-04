@@ -28,17 +28,17 @@ Attachment.args = {
   ...defaultArgs,
   links: [
     {
-      url: 'http://google.com',
+      url: 'http://example.com',
       title: 'Test link title',
       last_updated: new Date().toLocaleDateString(),
     },
     {
-      url: 'http://google.com',
+      url: 'http://example.com',
       title: 'Test link title',
       last_updated: new Date().toLocaleDateString(),
     },
     {
-      url: 'http://google.com',
+      url: 'http://example.com',
       title: 'Test link title',
       last_updated: new Date().toLocaleDateString(),
     },
@@ -50,7 +50,7 @@ Publication.args = {
   ...defaultArgs,
   icon: '/icons/civic-arrows.svg#arrows-bottom-alignment',
   link: {
-    url: 'http://google.com',
+    url: 'http://example.com',
     title: 'Test link title',
   },
   image: {

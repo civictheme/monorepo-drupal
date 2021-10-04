@@ -10,6 +10,10 @@
   @include civic-box-shadow;
   border-radius: $civic-border-radius;
 
+  &:focus-within {
+    @include civic-outline;
+  }
+
   &#{$root}--no-image {
     border-top: rem(6px) solid $civic-event-card-border-top-color;
   }
@@ -43,6 +47,19 @@
     &:active {
       text-decoration: underline;
     }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
   }
 
   #{$root}__location {
@@ -58,17 +75,6 @@
     display: flex;
     justify-content: space-between;
     margin-top: civic-space(3);
-  }
-
-  #{$root}__tags {
-    display: flex;
-  }
-
-  #{$root}__tag {
-    margin-right: civic-space();
-    @include civic-typography(tag);
-    border-radius: $civic-border-radius;
-    padding: rem(4px) civic-space(1);
   }
 
   &.civic-theme-light {
