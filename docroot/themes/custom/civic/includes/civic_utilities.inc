@@ -23,7 +23,7 @@ use Drupal\media\Entity\Media;
  */
 function _civic_media_image($media_target_id, $media_field = 'field_media_image') {
   if (isset($media_target_id)) {
-    /* @var \Drupal\media\Entity\Media $media */
+    /** @var \Drupal\media\Entity\Media $media */
     if ($media = Media::load($media_target_id)) {
       $file = File::load($media->get($media_field)->first()->getValue()['target_id']);
       // @todo fix image style generation from static content.
@@ -32,5 +32,5 @@ function _civic_media_image($media_target_id, $media_field = 'field_media_image'
       return $image;
     }
   }
-  return false;
+  return FALSE;
 }

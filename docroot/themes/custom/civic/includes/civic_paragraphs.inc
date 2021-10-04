@@ -17,7 +17,7 @@ function civic_theme_suggestions_paragraph_alter(array &$suggestions, array $var
 
   // Add a generic card theme suggestion for reference cards since the component
   // is being handled via node preprocessing functions.
-  if(in_array($type, _civic_get_card_types()) && $paragraph->hasField('field_c_p_reference')) {
+  if (in_array($type, _civic_get_card_types()) && $paragraph->hasField('field_c_p_reference')) {
     $suggestions[] = 'paragraph__civic_reference_card';
   }
 }
@@ -39,7 +39,7 @@ function _civic_preprocess_paragraph_card(&$variables) {
     _civic_preprocess_paragraph_reference_card($variables);
   }
   else {
-    //@todo documentation for the field api ie they must have certain fields in
+    // @todo documentation for the field api ie they must have certain fields in
     // card fielded paragraph types.
     _civic_preprocess_paragraph_icon($variables);
   }
@@ -228,8 +228,8 @@ function civic_preprocess_paragraph__civic_card_container(&$variables) {
   $variables['column_count'] = $paragraph->hasField('field_c_p_column_count') ? $paragraph->get('field_c_p_column_count')->getString() : '';
   $variables['fill_width'] = $paragraph->hasField('field_c_p_fill_width') ? (bool) $paragraph->get('field_c_p_fill_width')->getString() : FALSE;
   $link = $paragraph->hasField('field_c_p_link') ? $paragraph->get('field_c_p_link')->getValue() : [];
-  $variables['link_text'] = $link['title'] ?? null;
-  $variables['url'] = $link['url'] ?? null;
+  $variables['link_text'] = $link['title'] ?? NULL;
+  $variables['url'] = $link['url'] ?? NULL;
   $variables['cards'] = array_filter($variables['content']['field_c_p_cards'], function ($key) {
     return is_numeric($key);
   }, ARRAY_FILTER_USE_KEY);
@@ -244,10 +244,10 @@ function civic_preprocess_paragraph__civic_card_promo(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $link = $paragraph->hasField('field_c_p_link') ? $paragraph->get('field_c_p_link')->getValue() : [];
-  $variables['link_text'] = $link['title'] ?? null;
-  $variables['url'] = $link['url'] ?? null;
-  $media_target_id = !$paragraph->field_c_p_image->isEmpty() ? $paragraph->get('field_c_p_image')->first()->getValue()['target_id'] : null;
-  $variables['image'] = isset($media_target_id) ? _civic_media_image($media_target_id, 'field_media_image') : null;
+  $variables['link_text'] = $link['title'] ?? NULL;
+  $variables['url'] = $link['url'] ?? NULL;
+  $media_target_id = !$paragraph->field_c_p_image->isEmpty() ? $paragraph->get('field_c_p_image')->first()->getValue()['target_id'] : NULL;
+  $variables['image'] = isset($media_target_id) ? _civic_media_image($media_target_id, 'field_media_image') : NULL;
   $variables['date'] = $paragraph->get('field_c_p_date')->getValue()[0]['value'];
 }
 
@@ -270,7 +270,7 @@ function civic_preprocess_paragraph__civic_card_navigation(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $link = $paragraph->hasField('field_c_p_link') ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
-  $variables['url'] = $link['uri'] ?? null;
-  $media_target_id = !$paragraph->field_c_p_image->isEmpty() ? $paragraph->get('field_c_p_image')->first()->getValue()['target_id'] : null;
-  $variables['image'] = isset($media_target_id) ? _civic_media_image($media_target_id, 'field_media_image') : null;
+  $variables['url'] = $link['uri'] ?? NULL;
+  $media_target_id = !$paragraph->field_c_p_image->isEmpty() ? $paragraph->get('field_c_p_image')->first()->getValue()['target_id'] : NULL;
+  $variables['image'] = isset($media_target_id) ? _civic_media_image($media_target_id, 'field_media_image') : NULL;
 }
