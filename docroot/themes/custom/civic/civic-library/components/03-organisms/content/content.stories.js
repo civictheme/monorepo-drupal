@@ -25,7 +25,7 @@ export const Content = () => {
     date: date('Date', new Date(), generalKnobTab),
     title: text('Title', 'Title for inner component', generalKnobTab),
     summary: text('Summary', 'Summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', generalKnobTab),
-    url: text('Link URL', 'https://google.com', generalKnobTab),
+    url: text('Link URL', 'http://example.com', generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
       src: imageFile,
       alt: 'Image alt text',

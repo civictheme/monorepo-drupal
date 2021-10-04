@@ -73,8 +73,8 @@
 
     {% if tags or url %}
       <div class="civic-promo-card__bottom-wrapper">
-        <div class="civic-promo-card__tags">
-          {% if tags %}
+        {% if tags %}
+          <div class="civic-promo-card__tags">
             {% for tag in tags %}
               {% include '@atoms/tag/tag.twig' with {
                 theme: theme,
@@ -82,16 +82,13 @@
                 modifier_class: 'civic-tag--card',
               } only %}
             {% endfor %}
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
         {% if url %}
-          {# @todo Replace with link with an icon atom. #}
-          <a class="civic-promo-card__bottom-link" href="{{ url }}">
-            {% include '@atoms/icon/icon.twig' with {
-              symbol: 'arrows_rightarrow_3',
-              color: 'primary'
-            } only %}
-          </a>
+          {% include '@atoms/icon/icon.twig' with {
+            symbol: 'arrows_rightarrow_3',
+            color: 'primary'
+          } only %}
         {% endif %}
       </div>
     {% endif %}

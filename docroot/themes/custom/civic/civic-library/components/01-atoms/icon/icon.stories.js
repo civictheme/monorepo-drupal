@@ -76,7 +76,7 @@ export const IconLink = () => {
       '',
     ),
     text: text('Text', 'Link Text'),
-    url: text('URL', 'https://www.example.com'),
+    url: text('URL', 'http://example.com'),
     new_window: boolean('Open in a new window', false),
   });
 };

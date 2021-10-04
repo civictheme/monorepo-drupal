@@ -1,0 +1,244 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: e6cb58d5-605b-4013-a682-30fec3307c74
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Card demonstration page'
+  created:
+    -
+      value: 1633323676
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 18c81e16-24d0-4e9c-9186-90fbcd2714f5
+          bundle: civic_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1633330729
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 474e5d75-94bb-469c-93b6-8121de6a8757
+                  bundle: civic_card_promo
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1633330738
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date:
+                    -
+                      value: '2021-10-05'
+                  field_c_p_image:
+                    -
+                      entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+                  field_c_p_link:
+                    -
+                      uri: 'http://www.example.com'
+                      title: Test
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Promo card title 1'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4962110f-a340-4033-87f6-0e3eca12688d
+                  bundle: civic_card_promo
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1633330738
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date:
+                    -
+                      value: '2021-10-05'
+                  field_c_p_image:
+                    -
+                      entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+                  field_c_p_link:
+                    -
+                      uri: 'http://www.example.com'
+                      title: Test
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Promo card title 1'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 5512c0ce-f776-4689-8590-9ea714a9b57a
+                  bundle: civic_card_promo
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1633330738
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date:
+                    -
+                      value: '2021-10-05'
+                  field_c_p_image:
+                    -
+                      entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+                  field_c_p_link:
+                    -
+                      uri: 'http://www.example.com'
+                      title: Test
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Promo card title 1'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 144b1d42-fd30-4598-9249-0e434b3bc580
+                  bundle: civic_card_promo
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1633330738
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date:
+                    -
+                      value: '2021-10-05'
+                  field_c_p_image:
+                    -
+                      entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+                  field_c_p_link:
+                    -
+                      uri: 'http://www.example.com'
+                      title: Test
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Promo card title 1'
+          field_c_p_column_count:
+            -
+              value: 3
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_title:
+            -
+              value: 'Promo card container 1'
+  field_c_n_summary:
+    -
+      value: 'Page to demonstrate the cards in civic theme.'
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

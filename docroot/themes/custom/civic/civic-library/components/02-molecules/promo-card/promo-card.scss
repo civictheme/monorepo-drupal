@@ -10,6 +10,10 @@
   @include civic-box-shadow;
   border-radius: $civic-border-radius;
 
+  &:focus-within {
+    @include civic-outline;
+  }
+
   &#{$root}--no-image {
     border-top: rem(6px) solid $civic-promo-card-border-top-color;
   }
@@ -40,14 +44,28 @@
 
   #{$root}__title-link {
     text-decoration: none;
+
     &:hover,
     &:active {
       text-decoration: underline;
     }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
   }
 
   #{$root}__summary {
-    @include civic-typography(body);
+    @include civic-typography(card-summary);
   }
 
   #{$root}__bottom-wrapper {
