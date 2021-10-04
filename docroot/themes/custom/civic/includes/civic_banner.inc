@@ -65,8 +65,8 @@ function _civic_preprocess_civic_banner(&$variables) {
   $variables['theme'] = CIVIC_BANNER_DEFAULT_THEME;
 
   // Banner theme.
-  if ($entity->hasField('field_c_b_type') && !$entity->field_c_b_type->isEmpty()) {
-    $variables['theme'] = strtolower($entity->field_c_b_type->getString());
+  if ($entity->hasField('field_c_b_type') && !$entity->get('field_c_b_type')->isEmpty()) {
+    $variables['theme'] = strtolower($entity->get('field_c_b_type')->getString());
   }
 
   _civic_preprocess_civic_banner_title($variables);
@@ -131,17 +131,17 @@ function _civic_preprocess_civic_banner_node(&$variables) {
   }
 
   // Banner background.
-  if ($node->hasField('field_c_n_banner_background') && !$node->field_c_n_banner_background->isEmpty()) {
+  if ($node->hasField('field_c_n_banner_background') && !$node->get('field_c_n_banner_background')->isEmpty()) {
     $variables['background'] = \Drupal::entityTypeManager()->getViewBuilder('media')->view($node->field_c_n_banner_background->entity);
   }
 
   // Banner type.
-  if ($node->hasField('field_c_n_banner_type') && !$node->field_c_n_banner_type->isEmpty()) {
+  if ($node->hasField('field_c_n_banner_type') && !$node->get('field_c_n_banner_type')->isEmpty()) {
     $variables['type'] = $node->field_c_n_banner_type->value;
   }
 
   // Banner content components.
-  if ($node->hasField('field_c_n_banner_components') && !$node->field_c_n_banner_components->isEmpty()) {
+  if ($node->hasField('field_c_n_banner_components') && !$node->get('field_c_n_banner_components')->isEmpty()) {
     $entities = $node->field_c_n_banner_components->referencedEntities();
     $render_controller = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
     $variables['content'] = $render_controller->viewMultiple($entities, 'default');

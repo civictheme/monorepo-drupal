@@ -19,6 +19,6 @@ export const NextSteps = () => CivicNextSteps({
   ),
   title: text('Title', 'Next step title from knob'),
   summary: text('Summary', exampleSummary),
-  url: text('Link', 'https://www.google.com'),
+  url: text('Link', 'http://example.com'),
   modifier_class: text('Additional class', ''),
 });

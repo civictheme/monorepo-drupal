@@ -4,12 +4,5 @@
  * Default theme implementation to display a Next step.
  */
 #}
-{% include '@organisms/card-container/card-container.twig' with {
-  title: paragraph.field_c_p_title.value,
-  column_count: paragraph.field_c_p_column_count.value,
-  fill_width: paragraph.field_c_p_fill_width.value,
-  modifier_class: attributes.getClass(),
-  cards: content.field_c_p_cards|filter((v, k) => (k|first != '#')),
-  link_text: paragraph.field_c_p_link.0.title,
-  url: paragraph.field_c_p_link.0.url,
-} only %}
+{% include '@organisms/card-container/card-container.twig' %}
+

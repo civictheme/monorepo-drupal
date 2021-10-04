@@ -11,9 +11,9 @@ Feature: Tests the civic image styles
     And I should see <effect>
 
     Examples:
-      | style         | machine_name   | effect                   |
-      | Promo card    | promo_card     | "Scale and crop 376×240" |
-      | Navigation    | navigation     | "Scale and crop 200×200" |
-      | Topic mobile  | topic__mobile  | "Scale and crop 213×200" |
-      | Topic desktop | topic__desktop | "Scale and crop 276×224" |
-      | Promo banner  | promo_banner   | "Scale and crop 476×520" |
+      | style           | machine_name   | effect                   |
+      | Promo card      | promo_card     | "Scale and crop 376×240" |
+      | Navigation card | navigation     | "Scale and crop 200×200" |
+      | Topic mobile    | topic__mobile  | "Scale and crop 213×200" |
+      | Topic desktop   | topic__desktop | "Scale and crop 276×224" |
+      | Promo banner    | promo_banner   | "Scale and crop 476×520" |

@@ -11,6 +11,10 @@
   display: flex;
   text-decoration: none;
 
+  &:focus {
+    @include civic-outline;
+  }
+
   .civic-icon {
     margin-left: civic-space(1);
 

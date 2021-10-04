@@ -35,7 +35,7 @@ export const CardContainer = () => {
     ),
     title: text('Title', 'Card container title', generalKnobTab),
     link_text: text('Link Text', 'View all', generalKnobTab),
-    url: text('Link URL', 'https://google.com', generalKnobTab),
+    url: text('Link URL', 'http://example.com', generalKnobTab),
     column_count: select('Columns', [1, 2, 3, 4], 1, generalKnobTab),
     fill_width: boolean('Fill width', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
