@@ -4,6 +4,6 @@ dependencies:
   module:
     - node
 id: node.civic_card_navigation
-label: Navigation
+label: Navigation card
 targetEntityType: node
 cache: true

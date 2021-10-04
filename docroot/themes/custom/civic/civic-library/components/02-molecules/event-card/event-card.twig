@@ -82,14 +82,18 @@
       </div>
     {% endif %}
 
-    {% if tag or url %}
+    {% if tags or url %}
       <div class="civic-event-card__bottom-wrapper">
-        {% if tag %}
-          {% include '@atoms/tag/tag.twig' with {
-            theme: theme,
-            text: tag,
-            modifier_class: 'civic-tag--card',
-          } only %}
+        {% if tags %}
+          <div class="civic-event-card__tags">
+            {% for tag in tags %}
+              {% include '@atoms/tag/tag.twig' with {
+                theme: theme,
+                text: tag,
+                modifier_class: 'civic-tag--card',
+              } only %}
+            {% endfor %}
+          </div>
         {% endif %}
         {% if url %}
           {% include '@atoms/icon/icon.twig' with {

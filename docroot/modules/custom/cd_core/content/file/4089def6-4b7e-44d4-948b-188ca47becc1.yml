@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: 41c354ef-d5f3-4e68-9bdf-4085b47cdadf
+  uuid: 4089def6-4b7e-44d4-948b-188ca47becc1
   default_langcode: en
 default:
   uid:
@@ -9,19 +9,19 @@ default:
       target_id: 1
   filename:
     -
-      value: civic-image.jpg
+      value: generic.png
   uri:
     -
-      value: 'public://2021-10/civic-image_0_1_3.jpg'
+      value: 'public://media-icons/generic/generic.png'
   filemime:
     -
-      value: image/jpeg
+      value: image/png
   filesize:
     -
-      value: 93149
+      value: 3900
   status:
     -
       value: true
   created:
     -
-      value: 1633245345
+      value: 1633323533

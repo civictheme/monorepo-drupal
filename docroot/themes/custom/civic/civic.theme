@@ -6,9 +6,9 @@
  */
 
 require_once 'includes/civic_banner.inc';
-require_once 'includes/paragraph--civic_attachment.inc';
-require_once 'includes/paragraph--civic_callout.inc';
 require_once 'includes/civic_cards.inc';
+require_once 'includes/civic_paragraphs.inc';
+require_once 'includes/civic_utilities.inc';
 
 /**
  * Implements hook_preprocess_HOOK() for html.html.twig.
@@ -29,10 +29,17 @@ function civic_preprocess_page(&$variables) {
  */
 function civic_preprocess_node(&$variables) {
   $view_mode = $variables['elements']['#view_mode'];
-  $preprocessor_function = '_civic_preprocess_node_' . $view_mode;
+  $preprocessor_function = '_civic_preprocess_node__' . $view_mode;
   if (function_exists($preprocessor_function)) {
     $preprocessor_function($variables);
   }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function civic_preprocess_paragraph(&$variables) {
+  _civic_preprocess_paragraph($variables);
 }
 
 /**
