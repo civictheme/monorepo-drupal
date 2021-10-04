@@ -29,7 +29,7 @@ function civic_preprocess_page(&$variables) {
  */
 function civic_preprocess_node(&$variables) {
   $view_mode = $variables['elements']['#view_mode'];
-  $preprocessor_function = '_civic_preprocess_node_' . $view_mode;
+  $preprocessor_function = '_civic_preprocess_node__' . $view_mode;
   if (function_exists($preprocessor_function)) {
     $preprocessor_function($variables);
   }

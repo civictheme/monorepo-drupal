@@ -70,7 +70,7 @@ function _civic_preprocess_paragraph(&$variables) {
 }
 
 /**
- * Render Summary from Civic Paragraphs.
+ * Preprocess summary for Civic paragraphs.
  *
  * @SuppressWarnings(PHPMD)
  */
@@ -83,7 +83,7 @@ function _civic_preprocess_paragraph_summary(&$variables) {
 }
 
 /**
- * Render Title from Civic Paragraphs.
+ * Preprocess title for Civic paragraphs.
  *
  * @SuppressWarnings(PHPMD)
  */
@@ -96,7 +96,7 @@ function _civic_preprocess_paragraph_title(&$variables) {
 }
 
 /**
- * Render Theme fields from Civic Paragraphs.
+ * Preprocess Theme fields for Civic paragraphs.
  *
  * @SuppressWarnings(PHPMD)
  */
@@ -122,8 +122,9 @@ function _civic_preprocess_paragraph_card__icon(&$variables) {
     }
   }
 }
+
 /**
- * Render Icon from Civic Paragraphs.
+ * Preprocess Icon for Civic Paragraphs.
  *
  * @SuppressWarnings(PHPMD)
  */
@@ -157,7 +158,7 @@ function _civic_get_card_types() {
 }
 
 /**
- * Helper for rendering
+ * Preprocessing reference cards paragraphs.
  *
  * @SuppressWarnings(PHPMD)
  */
