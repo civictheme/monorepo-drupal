@@ -60,12 +60,6 @@
     margin-top: civic-space(3);
   }
 
-  #{$root}__tag {
-    @include civic-typography(tag);
-    border-radius: $civic-border-radius;
-    padding: rem(4px) civic-space(1);
-  }
-
   &.civic-theme-light {
     background-color: $civic-event-card-light-background-color;
 
