@@ -8,6 +8,7 @@
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Process media to generate image array for twig.
@@ -29,4 +30,14 @@ function _civic_media_image(MediaInterface $media, $media_field = 'field_media_i
 
     return $image;
   }
+}
+
+/**
+ * Parse attribute classes into a string for modifier_class property.
+ *
+ * @SuppressWarnings(PHPMD)
+ */
+function _civic_attributes(&$variables) {
+  $attributes = new Attribute($variables['attributes']);
+  $variables['modifier_class'] = implode(' ', $attributes->getClass()->value());
 }

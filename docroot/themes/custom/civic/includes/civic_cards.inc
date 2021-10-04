@@ -20,6 +20,7 @@ function _civic_preprocess_node__card(&$variables) {
     $type_callback($variables);
   }
   $variables['title'] = $node->getTitle();
+  _civic_attributes($variables);
 }
 
 /**

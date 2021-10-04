@@ -144,6 +144,7 @@ function _civic_preprocess_paragraph_card__image(&$variables) {
 function _civic_get_card_types() {
   // @todo extend to allow for child theme - implement as theme setting.
   return [
+    'civic_card_container',
     'civic_card_task',
     'civic_card_event_reference',
     'civic_card_event',
