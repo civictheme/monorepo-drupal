@@ -5,12 +5,10 @@
  * Functions to support theming in the Civic theme.
  */
 
-require_once 'includes/civic_utilities.inc';
 require_once 'includes/civic_banner.inc';
-require_once 'includes/paragraph--civic_attachment.inc';
-require_once 'includes/paragraph--civic_callout.inc';
 require_once 'includes/civic_cards.inc';
 require_once 'includes/civic_paragraphs.inc';
+require_once 'includes/civic_utilities.inc';
 
 /**
  * Implements hook_preprocess_HOOK() for html.html.twig.
