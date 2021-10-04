@@ -49,4 +49,5 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-hidden: {  }
+hidden:
+  field_c_p_default_panel: true

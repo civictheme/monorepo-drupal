@@ -7,6 +7,8 @@
 
 use Drupal\file\Entity\File;
 
+require_once 'paragraph--civic_accordion.inc';
+
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
