@@ -1,4 +1,4 @@
-function AccordionWidget(el, selectedIndex) {
+function CivicAccordion(el, selectedIndex) {
   if (!el) {
     return;
   }
@@ -17,7 +17,7 @@ function AccordionWidget(el, selectedIndex) {
 }
 
 // eslint-disable-next-line func-names
-AccordionWidget.prototype.init = function () {
+CivicAccordion.prototype.init = function () {
   this.accordionTriggersLength = this.accordionTriggers.length;
   this.expandedAccordions = new Array(this.accordionTriggersLength);
   this.multiSelectable = this.el.hasAttribute('data-multiselectable');
@@ -45,7 +45,7 @@ AccordionWidget.prototype.init = function () {
 };
 
 // eslint-disable-next-line func-names
-AccordionWidget.prototype.clickEvent = function (e) {
+CivicAccordion.prototype.clickEvent = function (e) {
   e.preventDefault();
 
   this.setSelected(e.currentTarget.index, true);
@@ -53,7 +53,7 @@ AccordionWidget.prototype.clickEvent = function (e) {
 };
 
 // eslint-disable-next-line func-names
-AccordionWidget.prototype.keydownEvent = function (e) {
+CivicAccordion.prototype.keydownEvent = function (e) {
   let targetIndex;
 
   switch (e.keyCode) {
@@ -78,14 +78,14 @@ AccordionWidget.prototype.keydownEvent = function (e) {
 };
 
 // eslint-disable-next-line func-names
-AccordionWidget.prototype.focusEvent = function () {
+CivicAccordion.prototype.focusEvent = function () {
   if (this.accordionTriggersLength === 1) {
     this.setSelected(0);
   }
 };
 
 // eslint-disable-next-line func-names
-AccordionWidget.prototype.setSelected = function (index, userInvoked) {
+CivicAccordion.prototype.setSelected = function (index, userInvoked) {
   if (index === -1) {
     return;
   }
@@ -111,7 +111,7 @@ AccordionWidget.prototype.setSelected = function (index, userInvoked) {
 };
 
 // eslint-disable-next-line func-names
-AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
+CivicAccordion.prototype.setExpanded = function (index, userInvoked) {
   let i;
 
   if (userInvoked) {
@@ -166,7 +166,7 @@ AccordionWidget.prototype.setExpanded = function (index, userInvoked) {
 };
 
 // eslint-disable-next-line func-names
-AccordionWidget.prototype.destroy = function () {
+CivicAccordion.prototype.destroy = function () {
   this.el.classList.remove('is-initialized');
 
   for (let i = 0; i < this.accordionTriggersLength; i += 1) {
@@ -186,9 +186,8 @@ AccordionWidget.prototype.destroy = function () {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const accordions = document.querySelectorAll('.civic-accordion .civic-accordion__list');
-  Array.from(accordions).forEach((accordion) => {
+  document.querySelectorAll('.civic-accordion .civic-accordion__list').forEach((accordion) => {
     // eslint-disable-next-line no-new
-    new AccordionWidget(accordion);
+    new CivicAccordion(accordion);
   });
 });

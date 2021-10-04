@@ -6,46 +6,9 @@
 
 .civic-accordion {
   $root: &;
-  display: block;
 
-  &__wrapper {
-    &.civic-theme-dark {
-      color: $civic-accordion-dark-color;
-
-      #{$root}__content,
-      #{$root}__header {
-        color: inherit;
-        background-color: $civic-accordion-dark-background-color;
-      }
-
-      #{$root}__header__button {
-        color: $civic-accordion-dark-color;
-        border-top: 1px solid $civic-accordion-dark-border-color;
-        background-color: $civic-accordion-dark-button-background-color;
-
-        svg {
-          fill: $civic-accordion-dark-icon-color;
-        }
-      }
-
-      #{$root}__list-item {
-        border-color: $civic-accordion-dark-border-color;
-      }
-    }
-
-    &.civic-theme-light {
-      #{$root}__header__button {
-        background-color: $civic-accordion-light-button-background-color;
-
-        svg {
-          fill: $civic-accordion-light-icon-color;
-        }
-      }
-
-      #{$root}__list-item {
-        border-color: $civic-accordion-light-border-color;
-      }
-    }
+  &__inner {
+    display: block;
   }
 
   &__list {
@@ -100,7 +63,6 @@
     $content: &;
     overflow: auto;
     visibility: hidden;
-    color: civic-color('body');
     height: 0;
     transition: height .5s, visibility .5s;
     @include civic-typography('body');
@@ -132,7 +94,6 @@
       top: 0;
       left: 0;
       width: 0;
-      background-color: $civic-accordion-expanded-border-color;
       border-top-left-radius: $civic-border-radius;
       border-bottom-left-radius: $civic-border-radius;
       transition: width .25s;
@@ -144,4 +105,60 @@
       }
     }
   }
+
+  &.civic-theme-light {
+    color: $civic-accordion-light-color;
+
+    #{$root}__header__button {
+      background-color: $civic-accordion-light-button-background-color;
+      color: $civic-accordion-light-color;
+
+      svg {
+        fill: $civic-accordion-light-icon-color;
+      }
+    }
+
+    #{$root}__content {
+      background-color: $civic-accordion-light-background-color;
+    }
+
+    #{$root}__list-item {
+      border-color: $civic-accordion-light-border-color;
+
+      &::before {
+        background-color: $civic-accordion-light-expanded-border-color;
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    color: $civic-accordion-dark-color;
+
+    #{$root}__header {
+      background-color: $civic-accordion-dark-background-color;
+    }
+
+    #{$root}__header__button {
+      border-top: 1px solid $civic-accordion-dark-border-color;
+      background-color: $civic-accordion-dark-button-background-color;
+      color: $civic-accordion-dark-color;
+
+      svg {
+        fill: $civic-accordion-dark-icon-color;
+      }
+    }
+
+    #{$root}__content {
+      background-color: $civic-accordion-dark-background-color;
+    }
+
+    #{$root}__list-item {
+      border-color: $civic-accordion-dark-border-color;
+
+      &::before {
+        background-color: $civic-accordion-dark-expanded-border-color;
+      }
+    }
+  }
 }
+

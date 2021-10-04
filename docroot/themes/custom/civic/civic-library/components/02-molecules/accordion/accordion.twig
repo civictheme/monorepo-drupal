@@ -18,7 +18,7 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('civic-accordion--default')) %}
-<div class="civic-accordion__wrapper {{ modifier_class }}">
+<div class="civic-accordion {{ modifier_class }}">
   <div class="civic-accordion__content-top">
     {% if title %}
       <div class="civic-accordion__title-top">
@@ -26,7 +26,7 @@
       </div>
     {% endif %}
   </div>
-  <div class="civic-accordion">
+  <div class="civic-accordion__inner">
     <ul class="civic-accordion__list" data-multiselectable="true">
       {% for fold in panels %}
         {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
