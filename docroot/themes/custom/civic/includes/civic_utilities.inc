@@ -20,13 +20,19 @@ use Drupal\media\MediaInterface;
  * @return array
  *   Image array or false if not available.
  */
-function _civic_media_image(MediaInterface $media, $media_field = 'field_media_image') {
+function _civic_media_image(MediaInterface $media) {
   if ($media instanceof Media) {
-    $file = File::load($media->get($media_field)->first()->getValue()['target_id']);
-    // @todo fix image style generation from static content.
-    $image['src'] = file_create_url($file->getFileUri());
-    $image['alt'] = $media->get($media_field)->first()->getValue()['alt'] ?? '';
+    $fid = $media->getSource()->getSourceFieldValue($media);
+    $config = $media->getSource()->getConfiguration();
+    $image_entity = $media->get($config['source_field'])->first()->getValue();
 
-    return $image;
+    $file = File::load($fid);
+    if ($file) {
+      // @todo fix image style generation from static content.
+      $image['src'] = $file->createFileUrl();
+      $image['alt'] = !empty($image_entity['alt']) ? $image_entity['alt'] : NULL;
+      $image['title'] = !empty($image_entity['title']) ? $image_entity['title'] : NULL;
+      return $image;
+    }
   }
 }
