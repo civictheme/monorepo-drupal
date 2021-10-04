@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.civic_card_promo
-    - node.type.civic_event
+    - node.type.civic_page
   module:
     - node
     - user
@@ -49,7 +49,7 @@ display:
       pager:
         type: full
         options:
-          items_per_page: 6
+          items_per_page: 12
           offset: 0
           id: 0
           total_pages: null
@@ -68,12 +68,16 @@ display:
             offset_label: Offset
           quantity: 9
       style:
-        type: default
+        type: grid
         options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
           uses_fields: false
+          columns: 4
+          automatic_width: true
+          alignment: horizontal
+          col_class_default: true
+          col_class_custom: ''
+          row_class_default: true
+          row_class_custom: ''
       row:
         type: 'entity:node'
         options:
@@ -150,7 +154,7 @@ display:
           admin_label: ''
           operator: in
           value:
-            civic_event: civic_event
+            civic_page: civic_page
           group: 1
           exposed: false
           expose:
