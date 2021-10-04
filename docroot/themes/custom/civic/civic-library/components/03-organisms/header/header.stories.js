@@ -1,7 +1,8 @@
-import { boolean, radios } from '@storybook/addon-knobs';
+import { radios } from '@storybook/addon-knobs';
+import { Logo } from '../../01-atoms/logo/logo.stories';
 import { getSlots } from '../../00-base/base.stories';
-import CivicHeader from './header.stories.twig';
-import imageFile from '../../../assets/logo.png';
+import CivicHeader from './header.twig';
+
 import './header.scss';
 
 export default {
@@ -21,10 +22,6 @@ export const Header = () => {
       'light',
       generalKnobTab,
     ),
-    logo: boolean('With image', true, generalKnobTab) ? {
-      src: imageFile,
-      alt: 'Image alt text',
-    } : false,
   };
 
   return CivicHeader({
@@ -35,5 +32,6 @@ export const Header = () => {
       'content',
       'bottom',
     ]),
+    logo: Logo,
   });
 };
