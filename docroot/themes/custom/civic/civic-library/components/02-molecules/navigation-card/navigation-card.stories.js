@@ -8,7 +8,7 @@ import './navigation-card.scss';
 import { getSlots } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecule/Navigation Card',
+  title: 'Molecule/Card',
   parameters: {
     layout: 'centered',
   },

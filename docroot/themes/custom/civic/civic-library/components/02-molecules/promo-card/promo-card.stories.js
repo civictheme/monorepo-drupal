@@ -10,7 +10,7 @@ import { getSlots } from '../../00-base/base.stories';
 import CivicPromoCard from './promo-card.twig';
 
 export default {
-  title: 'Molecule/Promo Card',
+  title: 'Molecule/Card',
   parameters: {
     layout: 'centered',
   },

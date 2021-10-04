@@ -5,7 +5,7 @@ import CivicServiceCard from './service-card.twig';
 import './service-card.scss';
 
 export default {
-  title: 'Molecule/Service Card',
+  title: 'Molecule/Card',
   parameters: {
     layout: 'centered',
   },

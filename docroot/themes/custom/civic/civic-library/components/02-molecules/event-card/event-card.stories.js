@@ -8,7 +8,7 @@ import CivicEventCard from './event-card.twig';
 import './event-card.scss';
 
 export default {
-  title: 'Molecule/Event Card',
+  title: 'Molecule/Card',
   parameters: {
     layout: 'centered',
   },
