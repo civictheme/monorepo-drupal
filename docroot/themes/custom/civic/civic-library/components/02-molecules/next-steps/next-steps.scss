@@ -1,0 +1,131 @@
+//
+// Next steps.
+//
+
+@import '../../00-base/base';
+
+.civic-next-steps {
+  $root: &;
+  border-radius: $civic-border-radius;
+  border-left: rem(6px) $civic-next-steps-stripe-color solid;
+  display: block;
+  padding: civic-space(3) civic-space(3);
+  position: relative;
+  text-decoration: none;
+
+  @include civic-breakpoint(m) {
+    padding: civic-space(3) civic-space(5) civic-space(4) civic-space(3);
+  }
+
+  &__title {
+    @include civic-typography('heading-4');
+  }
+
+  &__summary {
+    margin-top: 16px;
+    @include civic-typography(body);
+  }
+
+  &__read-more {
+    position: absolute;
+    top: civic-space(3);
+    right: civic-space(2);
+
+    @include civic-breakpoint(m) {
+      right: civic-space(4);
+    }
+  }
+
+  &.civic-theme-light {
+    background-color: $civic-next-steps-light-background-color;
+    color: $civic-next-steps-light-color;
+
+    &:focus {
+      @include civic-outline(false);
+    }
+
+    &:hover {
+
+      #{$root}__title {
+        color: $civic-next-steps-light-color-hover;
+        text-decoration: underline;
+      }
+
+      #{$root}__read-more {
+        .civic-icon {
+          fill: $civic-next-steps-light-color-hover;
+        }
+      }
+    }
+
+    &:active {
+      .civic-next-steps__title {
+        color: $civic-next-steps-light-color-active;
+        text-decoration: underline;
+      }
+
+      #{$root}__read-more {
+        .civic-icon {
+          fill: $civic-next-steps-light-color-active;
+        }
+      }
+    }
+
+    #{$root}__title {
+      color: $civic-next-steps-light-heading-color;
+    }
+
+    #{$root}__read-more {
+      .civic-icon {
+        fill: civic-color(primary);
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-next-steps-dark-background-color;
+    color: $civic-next-steps-dark-color;
+
+    &:focus {
+      @include civic-outline(true);
+    }
+
+    &:hover {
+    
+      #{$root}__title {
+        color: $civic-next-steps-dark-color-hover;
+        text-decoration: underline;
+      }
+
+      #{$root}__read-more {
+        .civic-icon {
+          fill: $civic-next-steps-dark-color-hover;
+        }
+      }
+    }
+
+    &:active {
+      #{$root}__title {
+        color: $civic-next-steps-dark-color-active;
+        text-decoration: underline;
+      }
+
+      #{$root}__read-more {
+        .civic-icon {
+          fill: $civic-next-steps-dark-color-active;
+        }
+      }
+    }
+
+    #{$root}__title {
+      color: $civic-next-steps-dark-heading-color;
+    }
+
+    #{$root}__read-more {
+      .civic-icon {
+        fill: civic-color(primary-accent);
+      }
+    }
+
+  }
+}

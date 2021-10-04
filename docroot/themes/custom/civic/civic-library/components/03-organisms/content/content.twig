@@ -1,0 +1,20 @@
+<main class="civic-content" role="main">
+  <a id="main-content" tabindex="-1"></a>
+
+  <div class="layout-content container">
+    {% block content %}
+      <div class="civic-content--content">
+        {{ content }}
+      </div>
+    {% endblock %}
+  </div>
+
+  {% if content_left %}
+    <aside class="civic-content--content-left" role="complementary">
+      {% block content_left %}
+        {{ content_left }}
+      {% endblock %}
+    </aside>
+  {% endif %}
+
+</main>

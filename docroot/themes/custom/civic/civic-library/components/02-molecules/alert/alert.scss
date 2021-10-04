@@ -1,0 +1,53 @@
+//
+// Alert.
+//
+
+@import '../../00-base/base';
+
+// mixin
+@mixin civic-alert-border-colors() {
+  @each $type in $civic-messages-types {
+    &--#{$type} {
+      &.civic-theme-light {
+        border-color: map-get($civic-messages-icon-colors, '#{$type}-light');
+      }
+
+      &.civic-theme-dark {
+        border-color: map-get($civic-messages-icon-colors, '#{$type}-dark');
+      }
+    }
+  }
+}
+
+.civic-alert {
+  $root: &;
+  padding: civic-space(2) 0;
+
+  .civic-messages {
+    padding: civic-space(3) civic-space(3) civic-space(3) civic-space(2);
+    border-left: solid rem(6px) transparent;
+    @include civic-alert-border-colors();
+    @include civic-typography('body');
+
+    & + .civic-messages {
+      margin-top: civic-space(2);
+    }
+
+    &__icon {
+      width: rem(26px);
+      margin-right: civic-space(2);
+
+      .civic-icon {
+        width: rem(26px);
+        height: rem(26px);
+      }
+    }
+
+    &__title {
+      font-weight: 600;
+      + div {
+        margin-top: civic-space();
+      }
+    }
+  }
+}

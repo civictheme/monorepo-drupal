@@ -10,7 +10,7 @@ third_party_settings:
     parent: 'main:'
 name: Event
 type: civic_event
-description: ''
+description: '<em>Civic</em>. Use Event pages to describe event information.'
 help: ''
 new_revision: true
 preview_mode: 1

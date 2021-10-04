@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civic_accordion.field_c_p_default_panel
     - field.field.paragraph.civic_accordion.field_c_p_expand
     - field.field.paragraph.civic_accordion.field_c_p_panels
     - field.field.paragraph.civic_accordion.field_c_p_theme
@@ -15,14 +14,8 @@ targetEntityType: paragraph
 bundle: civic_accordion
 mode: default
 content:
-  field_c_p_default_panel:
-    weight: 4
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_c_p_expand:
-    weight: 3
+    weight: 2
     settings:
       display_label: true
     third_party_settings: {  }
@@ -30,7 +23,7 @@ content:
     region: content
   field_c_p_panels:
     type: paragraphs
-    weight: 2
+    weight: 1
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -47,7 +40,7 @@ content:
     third_party_settings: {  }
     region: content
   field_c_p_theme:
-    weight: 1
+    weight: 4
     settings: {  }
     third_party_settings: {  }
     type: options_select

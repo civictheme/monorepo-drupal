@@ -1,0 +1,31 @@
+.grid-wrapper {
+  background-color: #EFEFEF;
+
+  .container {
+    box-shadow: 0 0 1px 1px red inset;
+    background-color: white;
+
+    .row {
+      outline: 1px solid rgba(#563d7c, 0.1);
+
+      // Column.
+      div {
+        outline: 1px solid rgba(blue, 0.5);
+        background-color: rgba(#563d7c, 0.15);
+        height: 75px;
+
+        // Column content.
+        span {
+          box-shadow: 0 0 0 1px green inset;
+          height: 75px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          text-align: center;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}

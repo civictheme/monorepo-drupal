@@ -3,64 +3,18 @@
 //
 @import '../../00-base/base';
 
-.civic-nav-card {
-  display: block;
-  text-decoration: none;
-  box-shadow: 0 rem(8px) rem(32px) rgba(0, 0, 0, 0.2);
+.civic-navigation-card {
+  $root: &;
   position: relative;
+  @include civic-box-shadow;
+  border-radius: $civic-border-radius;
 
-  &.civic-nav-card--large,
-  &.civic-nav-card--small {
-    @include civic-breakpoint(m) {
-      display: flex;
-    }
-
-    .civic-nav-card__link {
-      margin-right: -32px;
-    }
-
+  &:focus-within {
+    @include civic-outline;
   }
 
-  &__link {
-    display: flex;
-    text-decoration: none;
-
-    &:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &__title {
-    @include civic-typography(heading-5);
-    margin: 0;
-    padding-right: 20px;
-  }
-
-  &__summary {
-    @include civic-typography(body);
-    margin-bottom: civic-space(1);
-  }
-
-  &--large {
-    .civic-nav-card__content {
-      padding: rem(20px) civic-space(6) civic-space(3) rem(20px);
-
-      @include civic-breakpoint(m) {
-        padding: civic-space(3) civic-space(6) rem(20px) civic-space(3);
-      }
-    }
-
-    .civic-nav-card__image-wrapper {
-      @include civic-breakpoint(m) {
-        max-width: rem(200px);
-        flex-shrink: 0;
-      }
-    }
+  #{$root}__image-wrapper {
+    position: relative;
 
     img {
       height: 100%;
@@ -69,138 +23,123 @@
     }
   }
 
-  &--small {
-    .civic-nav-card__content {
-      padding: rem(20px) rem(52px) rem(26px) rem(20px);
-
-      @include civic-breakpoint(m) {
-        padding: civic-space(3) civic-space(7) civic-space(4) civic-space(3);
-      }
-    }
+  #{$root}__content {
+    padding: civic-space(3);
   }
 
-  &--icon {
-    display: block;
-    padding: civic-space(2);
-    padding-right: 0;
-
-    @include civic-breakpoint(m) {
-      padding: civic-space(3);
-      padding-right: 0;
-    }
-
-    .civic-nav-card__main-icon {
-      .civic-icon {
-        @include civic-icon-size(medium)
-      }
-
-      margin-bottom: civic-space(2);
-    }
-
-    .civic-nav-card__content {
-      padding: 0 civic-space(2) 0 0;
-
-      @include civic-breakpoint(m) {
-        padding: 0 civic-space(3) 0 0;
-      }
-    }
-
-    .civic-nav-card__read-more {
-      top: 0;
-    }
+  #{$root}__title {
+    @include civic-typography(heading-5);
+    margin-bottom: civic-space(2);
   }
 
+  #{$root}__title-link {
+    text-decoration: none;
+    display: flex;
 
-  &.civic-theme-light {
-    background-color: $civic-nav-card-light-background-color;
-    color: $civic-nav-card-light-color;
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
 
     &:focus {
-      @include civic-outline(false);
+      outline: 0;
     }
 
-    &:hover {
-      text-decoration: none;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
 
-      .civic-nav-card__title {
-        color: $civic-nav-card-light-color-hover;
-        text-decoration: underline;
-      }
+  #{$root}__icon {
+    margin-bottom: civic-space(2);
+  }
 
-      .civic-nav-card__read-more {
-        .civic-icon {
-          fill: $civic-nav-card-light-color-hover;
-        }
+  #{$root}__summary {
+    @include civic-typography(card-summary);
+    padding-right: civic-space(3);
+  }
+
+  &#{$root}--large {
+    @include civic-breakpoint(m) {
+      display: flex;
+    }
+
+    #{$root}__image-wrapper {
+      @include civic-breakpoint(m) {
+        max-width: 12.5rem;
+        flex-shrink: 0;
       }
     }
 
-    &:active {
-      .civic-nav-card__title {
-        color: $civic-nav-card-light-heading-color-active;
-        text-decoration: underline;
+    #{$root}__title {
+      @include civic-typography(heading-4);
+    }
+  }
+
+  &#{$root}--small {
+    #{$root}__title {
+      @include civic-typography(heading-5);
+    }
+  }
+
+  &.civic-theme-light {
+    background-color: $civic-navigation-card-light-background-color;
+
+    &:focus {
+      @include civic-outline(false)
+    }
+
+    #{$root}__title {
+      color: $civic-navigation-card-light-heading-color;
+    }
+
+    #{$root}__title-link {
+      color: $civic-navigation-card-light-heading-color;
+
+      &:hover {
+        color: $civic-navigation-card-light-color-hover;
       }
 
-      .civic-nav-card__read-more {
-        .civic-icon {
-          fill: $civic-nav-card-light-heading-color-active;
-        }
+      &:active {
+        color: $civic-navigation-card-light-heading-color-active;
       }
     }
 
-    .civic-nav-card__title {
-      color: $civic-nav-card-light-heading-color;
-    }
-
-    .civic-nav-card__summary {
-      color: $civic-nav-card-light-color;
+    #{$root}__summary {
+      color: $civic-navigation-card-light-color;
     }
   }
 
   &.civic-theme-dark {
-    background-color: $civic-nav-card-dark-background-color;
+    background-color: $civic-navigation-card-dark-background-color;
 
     &:focus {
-      @include civic-outline(true);
+      @include civic-outline(true)
     }
 
-    &:hover {
-      .civic-nav-card__title {
-        color: $civic-nav-card-dark-color-accent;
-        text-decoration: underline;
-      }
-
-      .civic-nav-card__read-more {
-        .civic-icon {
-          fill: $civic-nav-card-dark-color-accent;
-        }
-      }
+    #{$root}__title {
+      color: $civic-navigation-card-dark-heading-color;
     }
 
-    &:active {
-      .civic-nav-card__title {
-        color: $civic-nav-card-dark-heading-color-active;
-        text-decoration: underline;
+    #{$root}__title-link {
+      color: $civic-navigation-card-dark-heading-color;
+
+      &:hover {
+        color: $civic-navigation-card-dark-color-accent;
+      }
+
+      &:active {
+        color: $civic-navigation-card-dark-heading-color-active
       }
     }
 
-    .civic-nav-card__icon {
-      .civic-icon {
-        fill: $civic-nav-card-dark-color-accent;
-      }
-    }
-
-    .civic-nav-card__title {
-      color: $civic-nav-card-dark-heading-color;
-    }
-
-    .civic-nav-card__summary {
-      color: $civic-nav-card-dark-color;
-    }
-
-    .civic-nav-card__read-more {
-      .civic-icon {
-        fill: $civic-nav-card-dark-color-accent;
-      }
+    #{$root}__summary {
+      color: $civic-navigation-card-light-color;
     }
   }
 }

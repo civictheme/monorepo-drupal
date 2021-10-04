@@ -6,19 +6,28 @@
 // unify the building pipeline.
 const custom = require('./../webpack/webpack.prod.js');
 const {merge} = require('webpack-merge');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const webpack = require('webpack')
-const civicVariables = require('./civic-variables.js')
+const scssVariables = require('./importer.scss_variables.js')
+const iconUtils = require('../components-combined/01-atoms/icon/icon.utils.js')
+
+const customPlugin = new webpack.DefinePlugin({
+  SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
+  ICONS: JSON.stringify({
+    icons: iconUtils.getIcons(),
+    packs: iconUtils.getIconPacks()
+  })
+})
 
 module.exports = {
   stories: [
-    '../combined-components/**/*.stories.js',
+    '../components-combined/**/*.stories.js'
   ],
   addons: [
     '@storybook/addon-knobs',
     '@storybook/addon-a11y',
     '@storybook/addon-essentials',
     '@storybook/addon-links',
+    '@whitespace/storybook-addon-html',
   ],
   webpackFinal: async (config) => {
     // Remove theme-related entries as components should not have them.
@@ -26,12 +35,9 @@ module.exports = {
 
     // Modify common configs to let Storybook take over.
     delete custom.output
+    delete custom.plugins
     custom.plugins = [
-      new SpriteLoaderPlugin({plainSprite: true}),
-      // Provide Civic SCSS variables to stories via webpack.
-      new webpack.DefinePlugin({
-        CIVIC_VARIABLES: JSON.stringify(civicVariables.getVariables())
-      })
+      customPlugin,
     ]
     // Special case: override whatever loader is used to load styles with a
     // style-loader in oder to have styles injected during the runtime.

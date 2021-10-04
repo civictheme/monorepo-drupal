@@ -4,11 +4,9 @@ dependencies:
   config:
     - core.entity_view_mode.node.civic_card_event
     - node.type.civic_event
-    - taxonomy.vocabulary.civic_topics
   module:
     - datetime
     - node
-    - taxonomy
     - user
 id: civic_events
 label: 'Civic events'
@@ -71,12 +69,16 @@ display:
             offset_label: Offset
           quantity: 9
       style:
-        type: default
+        type: grid
         options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
           uses_fields: false
+          columns: 3
+          automatic_width: true
+          alignment: horizontal
+          col_class_default: true
+          col_class_custom: ''
+          row_class_default: true
+          row_class_custom: ''
       row:
         type: 'entity:node'
         options:
@@ -348,7 +350,6 @@ display:
         - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -368,7 +369,6 @@ display:
         - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -389,7 +389,6 @@ display:
         - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

@@ -5,13 +5,12 @@
 
 .civic-tag {
   $root: &;
-
   border-radius: $civic-border-radius;
   padding: rem(2px) civic-space(1) rem(2px) rem(4px);
-  width: fit-content;
+  display: inline-block;
   @include civic-typography(tag);
 
-  &--without-icon {
+  &--no-icon {
     padding-left: civic-space(1);
   }
 
@@ -40,6 +39,24 @@
 
     .civic-icon {
       fill: $civic-tag-dark-color;
+    }
+  }
+  &.civic-tag--card {
+    &.civic-theme-dark {
+      background-color: $civic-tag-card-dark-background-color;
+      color: $civic-tag-card-dark-color;
+
+      .civic-icon {
+        fill: $civic-tag-card-dark-color;
+      }
+    }
+    &.civic-theme-light {
+      background-color: $civic-tag-card-light-background-color;
+      color: $civic-tag-card-light-color;
+
+      .civic-icon {
+        fill: $civic-tag-card-light-color;
+      }
     }
   }
 }

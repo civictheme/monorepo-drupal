@@ -21,7 +21,8 @@
     "build-storybook": "build-storybook",
     "lint": "eslint ./components",
     "dist": "webpack --config ./webpack/webpack.prod.js",
-    "dist:dev": "webpack --config ./webpack/webpack.dev.js"
+    "dist:dev": "webpack --config ./webpack/webpack.dev.js",
+    "generate-icon-library": "node ./components/01-atoms/icon/icon.generate-library.script.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
@@ -32,6 +33,7 @@
     "@storybook/addon-links": "^6.3.8",
     "@storybook/addons": "^6.1.18",
     "@storybook/html": "^6.3.8",
+    "@whitespace/storybook-addon-html": "^5.0.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^5.2.7",

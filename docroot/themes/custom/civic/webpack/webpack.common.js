@@ -3,7 +3,6 @@ const glob = require('glob');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const globImporter = require('node-sass-glob-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 module.exports = {
   entry: function (pattern) {
@@ -11,21 +10,16 @@ module.exports = {
     let entries = glob.sync(pattern);
     // Add explicitly imported entries from components.
     entries.push(path.resolve(__dirname, 'components_css.js'));
-    entries.push(path.resolve(__dirname, 'components_svg.js'));
     // Add explicitly imported entries from the current theme.
     entries.push(path.resolve(__dirname, 'theme_js.js'));
     entries.push(path.resolve(__dirname, 'theme_css.js'));
-    entries.push(path.resolve(__dirname, 'theme_svg.js'));
     return entries;
-  }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test).js')),
+  }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js')),
   output: {
     filename: 'civic.js',
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
-    new SpriteLoaderPlugin({
-      plainSprite: true,
-    }),
     new MiniCssExtractPlugin({
       filename: '../dist/civic.css',
     }),
@@ -62,25 +56,6 @@ module.exports = {
             },
           },
         ],
-      },
-      // SVG Sprite Loader.
-      {
-        test: /icons\/.*\.svg$/,
-        loader: 'svg-sprite-loader',
-        options: {
-          extract: true,
-          spriteFilename: (name) => {
-            // Export as multiple collections grouped by the parent directory.
-            return `icons/civic-${/icons([\\|/])(.*?)\1/gm.exec(name)[2].toLowerCase().replace(' ', '-').replace(/[^a-z0-9\-]+/, '')}.svg`;
-          },
-          symbolId: filePath => {
-            // Set symbol id to '<group>-<name>'.
-            let paths = filePath.split('/');
-            const name = paths.pop();
-            const prefix = paths.pop();
-            return [prefix, name].join('-').toLowerCase().replace('.svg', '').replace(' ', '-').replace(/[^a-z0-9\-]+/, '');
-          }
-        },
       },
       // Twig loader.
       {

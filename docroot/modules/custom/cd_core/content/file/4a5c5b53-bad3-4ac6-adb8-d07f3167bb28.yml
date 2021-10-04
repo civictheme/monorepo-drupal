@@ -9,16 +9,16 @@ default:
       target_id: 1
   filename:
     -
-      value: Avengers-Age-of-Ultron-Joss-Whedon.jpeg
+      value: nature.jpg
   uri:
     -
-      value: 'public://2021-09/Avengers-Age-of-Ultron-Joss-Whedon_3.jpeg'
+      value: 'public://2021-09/nature_11_1_3.jpg'
   filemime:
     -
       value: image/jpeg
   filesize:
     -
-      value: 231482
+      value: 467393
   status:
     -
       value: true

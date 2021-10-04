@@ -26,7 +26,7 @@
     <exclude-pattern>docroot\/themes\/custom\/.*\/components\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/custom\/.*\/civic-library\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/custom\/.*\/storybook-static\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/custom\/.*\/combined-components\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/custom\/.*\/components-combined\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/custom\/.*\/dist\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/custom\/.*\/webpack\/.*</exclude-pattern>
 

@@ -1,0 +1,9 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+#}
+{% include "@molecules/promo-card/promo-card.twig" with {
+    summary: summary|striptags
+  }
+%}

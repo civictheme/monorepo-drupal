@@ -1,4 +1,4 @@
-@paragraph @civic_map @wip
+@paragraph @civic_map
 Feature: Tests the Map paragraph
 
   Ensure that Map paragraphs exists and has the expected fields.
@@ -19,7 +19,7 @@ Feature: Tests the Map paragraph
     And I should see the text "field_c_p_zoom" in the "Zoom" row
     And I should see the text "field_c_p_theme" in the "Theme" row
 
-  @api @wip
+  @api
   Scenario: Page content type field_c_n_components fields settings.
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "admin/structure/types/manage/civic_page/fields/node.civic_page.field_c_n_components"
@@ -33,6 +33,7 @@ Feature: Tests the Map paragraph
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
+    And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I press the "field_c_n_components_civic_map_add_more" button
     And I wait for AJAX to finish
