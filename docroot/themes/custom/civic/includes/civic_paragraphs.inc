@@ -20,7 +20,7 @@ function _civic_preprocess_paragraph_card(&$variables) {
   }
   // Cards that are generated via reference are handled separately.
   if ($paragraph->hasField('field_c_p_reference')) {
-    _civic_preprocess_paragraph_reference_card();
+    _civic_preprocess_paragraph_reference_card($variables);
   }
   else {
     //@todo documentation for the field api ie they must have certain fields in
@@ -109,6 +109,8 @@ function _civic_preprocess_paragraph_icon(&$variables) {
 
 /**
  * Civic card types.
+ *
+ * @SuppressWarnings(PHPMD)
  */
 function _civic_get_card_types() {
   // @todo extend to allow for child theme - implement as theme setting.
@@ -126,6 +128,26 @@ function _civic_get_card_types() {
   ];
 }
 
+/**
+ * Helper for rendering
+ *
+ * @SuppressWarnings(PHPMD)
+ */
 function _civic_preprocess_paragraph_reference_card(&$variables) {
-  $x = 1;
+  $variables['reference_card'] = $variables['content']['field_c_p_reference'];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civic_theme_suggestions_paragraph_alter(array &$suggestions, array $variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['elements']['#paragraph'];
+  $type = $paragraph->getType();
+
+  // Add a generic card theme suggestion for reference cards since the component
+  // is being handled via node preprocessing functions.
+  if(in_array($type, _civic_get_card_types()) && $paragraph->hasField('field_c_p_reference')) {
+    $suggestions[] = 'paragraph__civic_reference_card';
+  }
 }
