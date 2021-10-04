@@ -9,6 +9,10 @@
   @include civic-box-shadow;
   border-radius: $civic-border-radius;
 
+  &:focus-within {
+    @include civic-outline;
+  }
+
   #{$root}__image-wrapper {
     position: relative;
 
@@ -35,6 +39,19 @@
     &:hover,
     &:active {
       text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
     }
   }
 

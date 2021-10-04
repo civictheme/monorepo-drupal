@@ -85,19 +85,17 @@
     {% if tag or url %}
       <div class="civic-event-card__bottom-wrapper">
         {% if tag %}
-          <div class="civic-event-card__tag">
-            {{ tag }}
-          </div>
+          {% include '@atoms/tag/tag.twig' with {
+            theme: theme,
+            text: tag,
+            modifier_class: 'civic-tag--card',
+          } only %}
         {% endif %}
-
         {% if url %}
-          {# @todo Replace with link with an icon atom. #}
-          <a class="civic-event-card__bottom-link" href="{{ url }}">
-            {% include '@atoms/icon/icon.twig' with {
-              symbol: 'arrows_rightarrow_3',
-              color: 'primary'
-            } only %}
-          </a>
+          {% include '@atoms/icon/icon.twig' with {
+            symbol: 'arrows_rightarrow_3',
+            color: 'primary'
+          } only %}
         {% endif %}
       </div>
     {% endif %}
