@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Promo Card component.
+ *
+ * Display of Promo Card component.
+ *
+ * Variables:
+ * - theme: [string] Theme for Card.
+ * - image: [object] Image data for top of Card
+ * - content_top: [string] Component slot for above main content on Card.
+ * - title: [string] Card title.
+ * - summary: [string] Card summary.
+ * - content_middle: [string] Component slot for below main content on Card
+ * - date: [string] Date text
+ * - url: [string] Url for link out from Card
+ * - content_bottom: [string] Component slot for bottom of Card.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type_class = image is empty ? 'civic-subject-card--no-image' : '' %}
+{% set modifier_class = '%s %s'|format(theme_class, type_class) %}
+
+<div class="civic-subject-card {{ modifier_class }}">
+    <div class="civic-subject-card__image-wrapper">
+      <div class="civic-subject-card__image">
+        {% if image.src is not empty %}
+          <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
+        {% endif %}
+      </div>
+
+      {% if image_over %}
+        <div class="civic-subject-card__image-over">
+          {{ image_over }}
+        </div>
+      {% endif %}
+
+      {% if title %}
+        <div class="civic-subject-card__title">
+          {% if url %}
+          <a class="civic-subject-card__title-link" href="{{ url }}">
+            {% endif %}
+            {{ title }}
+            {% if url %}
+          </a>
+          {% endif %}
+        </div>
+      {% endif %}
+
+    </div>
+</div>

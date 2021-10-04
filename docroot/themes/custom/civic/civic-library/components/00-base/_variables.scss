@@ -573,3 +573,12 @@ $civic-video-dark-link-color: map-get(map-merge($civic-default-colors, $civic-co
 $civic-video-dark-link-hover-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
 $civic-video-dark-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 
+//
+// Subject card.
+//
+$civic-subject-card-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+
+$civic-subject-card-light-color-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
+$civic-subject-card-light-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-subject-card-dark-color-accent: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-subject-card-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
