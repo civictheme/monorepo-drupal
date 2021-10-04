@@ -1,7 +1,7 @@
 import { radios } from '@storybook/addon-knobs';
+import { Logo } from '../../01-atoms/logo/logo.stories';
 import { getSlots } from '../../00-base/base.stories';
 import CivicHeader from './header.twig';
-import { Logo } from '../../01-atoms/logo/logo.stories';
 
 import './header.scss';
 
@@ -26,12 +26,12 @@ export const Header = () => {
 
   return CivicHeader({
     ...generalKnobs,
-    logo: Logo,
     ...getSlots([
       'top',
       'logo',
       'content',
       'bottom',
     ]),
+    logo: Logo,
   });
 };
