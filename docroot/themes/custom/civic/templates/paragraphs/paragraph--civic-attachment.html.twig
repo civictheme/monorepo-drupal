@@ -5,14 +5,12 @@
  *
  */
 #}
-{% block paragraph %}
-  {% include '@molecules/attachment/attachment.twig' with {
-    theme: paragraph.field_c_p_theme.value,
-    title: paragraph.field_c_p_title.value,
-    summary: content.field_c_p_summary,
-    content_bottom: 'This is content bottom text',
-    theme: paragraph.field_c_p_theme.value,
-    links: attachments,
-    modifier_class: attributes.getClass(),
-  } only %}
-{% endblock paragraph %}
+{% include '@molecules/attachment/attachment.twig' with {
+  theme: paragraph.field_c_p_theme.value,
+  title: paragraph.field_c_p_title.value,
+  summary: content.field_c_p_summary,
+  content_bottom: 'This is content bottom text',
+  theme: paragraph.field_c_p_theme.value,
+  links: attachments,
+  modifier_class: attributes.getClass(),
+} only %}

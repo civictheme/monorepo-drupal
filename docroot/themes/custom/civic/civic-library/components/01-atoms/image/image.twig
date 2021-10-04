@@ -13,11 +13,14 @@
 
 <figure class="civic-image {{ theme_class }}">
   <img src="{{ src }}" alt="{{ alt }}">
-  <figcaption>
-    {% include '@atoms/icon/icon.twig' with {
-      symbol: 'multimedia_image_3',
-      color: 'neutral_60',
-    } %}
-    {{ caption }}
-  </figcaption>
+
+  {% if caption is not empty %}
+    <figcaption>
+      {% include '@atoms/icon/icon.twig' with {
+        symbol: 'multimedia_image_3',
+        color: 'neutral_60',
+      } %}
+      {{ caption }}
+    </figcaption>
+  {% endif %}
 </figure>
