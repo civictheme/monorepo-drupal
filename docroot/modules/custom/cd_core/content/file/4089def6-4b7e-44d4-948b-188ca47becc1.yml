@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: 587355c9-c76b-459d-adf8-8829c2fe4181
+  uuid: 4089def6-4b7e-44d4-948b-188ca47becc1
   default_langcode: en
 default:
   uid:
@@ -9,19 +9,19 @@ default:
       target_id: 1
   filename:
     -
-      value: Download-Icon.svg
+      value: generic.png
   uri:
     -
-      value: 'public://2021-09/Download-Icon_33.svg'
+      value: 'public://media-icons/generic/generic.png'
   filemime:
     -
-      value: image/svg+xml
+      value: image/png
   filesize:
     -
-      value: 2170
+      value: 3900
   status:
     -
       value: true
   created:
     -
-      value: 1631673403
+      value: 1633323533

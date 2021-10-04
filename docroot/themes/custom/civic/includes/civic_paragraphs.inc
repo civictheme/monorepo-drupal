@@ -41,7 +41,8 @@ function _civic_preprocess_paragraph_card(&$variables) {
   else {
     // @todo documentation for the field api ie they must have certain fields in
     // card fielded paragraph types.
-    _civic_preprocess_paragraph_icon($variables);
+    _civic_preprocess_paragraph_card__icon($variables);
+    _civic_preprocess_paragraph_card__image($variables);
   }
 
 }
@@ -51,7 +52,7 @@ function _civic_preprocess_paragraph_card(&$variables) {
  *
  * @SuppressWarnings(PHPMD)
  */
-function _civic_preprocess_paragraph_global(&$variables) {
+function _civic_preprocess_paragraph(&$variables) {
   // Global paragraph fields.
   _civic_preprocess_paragraph_theme($variables);
   _civic_preprocess_paragraph_title($variables);
@@ -108,18 +109,29 @@ function _civic_preprocess_paragraph_theme(&$variables) {
 }
 
 /**
+ * Preprocess icon for Civic cards.
+ *
+ * @SuppressWarnings(PHPMD)
+ */
+function _civic_preprocess_paragraph_card__icon(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  if ($paragraph->hasField('field_c_p_icon') && !$paragraph->get('field_c_p_icon')->isEmpty()) {
+    if ($image = _civic_media_image($paragraph->get('field_c_p_icon')->referencedEntities()[0], 'field_c_m_icon')) {
+      $variables['image'] = $image;
+    }
+  }
+}
+/**
  * Render Icon from Civic Paragraphs.
  *
  * @SuppressWarnings(PHPMD)
  */
-function _civic_preprocess_paragraph_icon(&$variables) {
+function _civic_preprocess_paragraph_card__image(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_icon') && !$paragraph->get('field_c_p_icon')->isEmpty()) {
-    $media_target_id = $paragraph->get('field_c_p_icon')->getString();
-    if ($image = _civic_media_image($media_target_id, 'field_c_m_icon')) {
-      $variables['image'] = $image;
-    }
+  if ($paragraph->hasField('field_c_p_image') && !$paragraph->get('field_c_p_image')->isEmpty()) {
+    $variables['image'] = _civic_media_image($paragraph->get('field_c_p_image')->referencedEntities()[0], 'field_media_image');
   }
 }
 
@@ -165,7 +177,7 @@ function civic_preprocess_paragraph__civic_attachment(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  if ($paragraph->hasField('field_c_p_attachments') && !$paragraph->field_c_p_attachments->isEmpty()) {
+  if ($paragraph->hasField('field_c_p_attachments') && !$paragraph->get('field_c_p_attachments')->isEmpty()) {
     $attachments = [];
     foreach ($paragraph->field_c_p_attachments->referencedEntities() as $attachment) {
       $fid = $attachment->getSource()->getSourceFieldValue($attachment);
@@ -200,7 +212,7 @@ function civic_preprocess_paragraph__civic_callout(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  if ($paragraph->hasField('field_c_p_links') && !$paragraph->field_c_p_links->isEmpty()) {
+  if ($paragraph->hasField('field_c_p_links') && !$paragraph->get('field_c_p_links')->isEmpty()) {
     $links = [];
     foreach ($paragraph->field_c_p_links as $link) {
       if (!empty($link)) {
@@ -246,19 +258,7 @@ function civic_preprocess_paragraph__civic_card_promo(&$variables) {
   $link = $paragraph->hasField('field_c_p_link') ? $paragraph->get('field_c_p_link')->getValue() : [];
   $variables['link_text'] = $link['title'] ?? NULL;
   $variables['url'] = $link['url'] ?? NULL;
-  $media_target_id = !$paragraph->field_c_p_image->isEmpty() ? $paragraph->get('field_c_p_image')->first()->getValue()['target_id'] : NULL;
-  $variables['image'] = isset($media_target_id) ? _civic_media_image($media_target_id, 'field_media_image') : NULL;
   $variables['date'] = $paragraph->get('field_c_p_date')->getValue()[0]['value'];
-}
-
-/**
- * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD)
- */
-function civic_preprocess_paragraph__civic_card_event(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
 }
 
 /**
@@ -271,6 +271,4 @@ function civic_preprocess_paragraph__civic_card_navigation(&$variables) {
   $paragraph = $variables['paragraph'];
   $link = $paragraph->hasField('field_c_p_link') ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
   $variables['url'] = $link['uri'] ?? NULL;
-  $media_target_id = !$paragraph->field_c_p_image->isEmpty() ? $paragraph->get('field_c_p_image')->first()->getValue()['target_id'] : NULL;
-  $variables['image'] = isset($media_target_id) ? _civic_media_image($media_target_id, 'field_media_image') : NULL;
 }

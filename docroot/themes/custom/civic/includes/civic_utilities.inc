@@ -11,26 +11,22 @@ use Drupal\media\Entity\Media;
 /**
  * Process media to generate image array for twig.
  *
- * @param int $media_target_id
- *   Target ID from reference.
+ * @param \Drupal\media\MediaInterface $media
+ *   Host Media entity for image.
  * @param string $media_field
  *   Field name for the media target.
  *
- * @return array|false
+ * @return array
  *   Image array or false if not available.
- *
- * @throws \Drupal\Core\TypedData\Exception\MissingDataException
  */
-function _civic_media_image($media_target_id, $media_field = 'field_media_image') {
-  if (isset($media_target_id)) {
+function _civic_media_image($media, $media_field = 'field_media_image') {
     /** @var \Drupal\media\Entity\Media $media */
-    if ($media = Media::load($media_target_id)) {
+    if ($media instanceof Media) {
       $file = File::load($media->get($media_field)->first()->getValue()['target_id']);
       // @todo fix image style generation from static content.
       $image['src'] = file_create_url($file->getFileUri());
       $image['alt'] = $media->get($media_field)->first()->getValue()['alt'] ?? '';
+
       return $image;
     }
-  }
-  return FALSE;
 }

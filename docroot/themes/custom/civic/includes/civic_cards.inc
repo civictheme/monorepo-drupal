@@ -10,12 +10,12 @@
  *
  * @SuppressWarnings(PHPMD)
  */
-function _civic_preprocess_node_card(&$variables) {
+function _civic_preprocess_node__card(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   $type = $node->getType();
   unset($variables['date']);
-  $type_callback = '_civic_preprocess_node_' . $type . '_summary';
+  $type_callback = '_civic_preprocess_node_' . $type . '__summary';
   if (function_exists($type_callback)) {
     $type_callback($variables);
   }
@@ -28,24 +28,24 @@ function _civic_preprocess_node_card(&$variables) {
  * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node_civic_card_event(&$variables) {
-  _civic_preprocess_node_card($variables);
-  _civic_preprocess_node_date($variables);
-  _civic_preprocess_node_thumbnail($variables);
-  _civic_preprocess_node_topics($variables);
+  _civic_preprocess_node__card($variables);
+  _civic_preprocess_node__date($variables);
+  _civic_preprocess_node__thumbnail($variables);
+  _civic_preprocess_node__topics($variables);
 }
 
 /**
- * Render out a Node as a Navigation Card.
+ * Preprocess a Node for navigation_card view mode.
  *
  * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node_civic_card_navigation(&$variables) {
-  _civic_preprocess_node_card($variables);
-  _civic_preprocess_node_thumbnail($variables);
+  _civic_preprocess_node__card($variables);
+  _civic_preprocess_node__thumbnail($variables);
 }
 
 /**
- * Render out a Node as a Promo Card.
+ * Preprocess a Node for civic_promo_card view mode.
  *
  * @SuppressWarnings(PHPMD)
  */
@@ -53,16 +53,16 @@ function _civic_preprocess_node_civic_card_promo(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   $variables['date'] = \Drupal::service('date.formatter')->format($node->getCreatedTime(), 'civic_short_date');
-  _civic_preprocess_node_card($variables);
-  _civic_preprocess_node_thumbnail($variables);
+  _civic_preprocess_node__card($variables);
+  _civic_preprocess_node__thumbnail($variables);
 }
 
 /**
- * Date field preprocessor.
+ * Preprocess date field.
  *
  * @SuppressWarnings(PHPMD)
  */
-function _civic_preprocess_node_date(&$variables) {
+function _civic_preprocess_node__date(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   if ($node->hasField('field_c_n_date')) {
@@ -77,18 +77,15 @@ function _civic_preprocess_node_date(&$variables) {
  *
  * @SuppressWarnings(PHPMD)
  */
-function _civic_preprocess_node_topics(&$variables) {
+function _civic_preprocess_node__topics(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   if ($node->hasField('field_c_n_topics')) {
-    if ($topics = $node->get('field_c_n_topics')->getValue()) {
-      $tags = [];
-      foreach ($topics as $topic_data) {
-        $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($topic_data['target_id']);
-        $tags[] = $term->getName();
-      }
-      $variables['tags'] = $tags;
+    $tags = [];
+    foreach ($node->get('field_c_n_topics')->referencedEntities() as $term) {
+      $tags[] = $term->getName();
     }
+    $variables['tags'] = $tags;
   }
 }
 
@@ -103,25 +100,24 @@ function _civic_format_short_date($date) {
 }
 
 /**
- * Render thumbnail for Nodes.
+ * Preprocess image thumbnail for nodes.
  *
  * @SuppressWarnings(PHPMD)
  */
-function _civic_preprocess_node_thumbnail(&$variables) {
+function _civic_preprocess_node__thumbnail(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  if ($node->hasField('field_c_n_thumbnail')) {
-    $media_target_id = $node->get('field_c_n_thumbnail')->getString();
-    $variables['image'] = _civic_media_image($media_target_id);
+  if ($node->hasField('field_c_n_thumbnail') && !$node->get('field_c_n_thumbnail')->isEmpty()) {
+    $variables['image'] = _civic_media_image($node->get('field_c_n_thumbnail')->referencedEntities()[0]);
   }
 }
 
 /**
- * Render Summary from Civic Page nodes.
+ * Preprocess Summary for civic_page nodes.
  *
  * @SuppressWarnings(PHPMD)
  */
-function _civic_preprocess_node_civic_page_summary(&$variables) {
+function _civic_preprocess_node_civic_page__summary(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   if ($node->hasField('field_c_n_summary') && !$node->get('field_c_n_summary')->isEmpty()) {
@@ -130,11 +126,11 @@ function _civic_preprocess_node_civic_page_summary(&$variables) {
 }
 
 /**
- * Render Summary from Civic Event nodes.
+ * Preprocess Summary for civic_event.
  *
  * @SuppressWarnings(PHPMD)
  */
-function _civic_preprocess_node_civic_event_summary(&$variables) {
+function _civic_preprocess_node_civic_event__summary(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   if ($node->hasField('field_c_n_body') && !$node->get('field_c_n_body')->isEmpty()) {
