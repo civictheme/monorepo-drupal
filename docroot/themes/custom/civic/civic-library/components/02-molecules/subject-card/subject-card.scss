@@ -47,6 +47,7 @@
     @include civic-typography(heading-5);
     margin-bottom: civic-space(2);
     z-index: 1;
+    color: $civic-subject-card-color;
   }
 
   &__title-link {

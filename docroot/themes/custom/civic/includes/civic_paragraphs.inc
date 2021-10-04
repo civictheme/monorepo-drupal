@@ -11,6 +11,8 @@ require_once 'paragraph--civic_card_container.inc';
 require_once 'paragraph--civic_card_event.inc';
 require_once 'paragraph--civic_card_navigation.inc';
 require_once 'paragraph--civic_card_promo.inc';
+require_once 'paragraph--civic_card_subject.inc';
+require_once 'paragraph--civic_card_task.inc';
 require_once 'paragraph--civic_quick_links.inc';
 require_once 'paragraph--civic_service_card.inc';
 
