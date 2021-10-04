@@ -4,6 +4,8 @@ _meta:
   uuid: 6e51bcbc-ca74-4c45-9eb9-f5aecde3d397
   bundle: civic_page
   default_langcode: en
+  depends:
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
     -
@@ -92,3 +94,6 @@ default:
           field_c_p_theme:
             -
               value: dark
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

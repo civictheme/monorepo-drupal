@@ -1,70 +1,65 @@
-import { radios, select, text } from '@storybook/addon-knobs'
+import {
+  boolean, radios, select, text,
+} from '@storybook/addon-knobs';
 import imageFile from '../../../assets/image.png';
 
-import CivicNavigationCard from './navigation-card.twig'
-import './navigation-card.scss'
-
-// @todo Find a way to make this reusable.
-const spritesheets = new Set()
-const icons = {}
-// Use the icons available in the assets directory to compile a list of spritesheets and icon IDs.
-require.context('../../../assets/icons/', true, /\.svg$/).keys().forEach(path => {
-  // Get a list of all spritesheets.
-  const spritesheetName = path.substring(2, path.indexOf('/', 2)).replace(/\s/g, '-').toLowerCase()
-  const spritesheetURL = `/icons/civic-${spritesheetName}.svg`
-  spritesheets.add(spritesheetURL)
-
-  // Get all icons available within the spritesheets.
-  const iconName = path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.')).toLowerCase().replace(/\s/g, '-').replace(/[^a-z0-9\-]+/, '')
-  if (!icons[spritesheetURL]) {
-    icons[spritesheetURL] = []
-  }
-  icons[spritesheetURL].push(`${spritesheetName}-${iconName}`)
-});
-
+import CivicNavigationCard from './navigation-card.twig';
+import './navigation-card.scss';
+import { getSlots } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecule/Navigation Card'
-}
+  title: 'Molecule/Card',
+  parameters: {
+    layout: 'centered',
+  },
+};
 
 export const NavigationCard = () => {
-  const navCard = 'Navigation card';
-  const iconList = 'Icon (Applies to card with icon.)';
-
-  // Current component parameters.
-  const navCardParams = {
-    theme: radios('Theme', {
-      'Light': 'light',
-      'Dark': 'dark'
-    }, 'light', navCard),
-    type: [radios('Type', {
-      'With image': 'large',
-      'Without image': 'small',
-      'With Icon': 'icon'
-    }, 'large', navCard)].join(' '),
-    title: text('Title', 'Navigation card heading which runs across two or three lines', navCard),
-    summary: text('Summary', 'Recommend keeping card summary short over two or three lines.', navCard),
-    image: {
-      src: text('Image path', imageFile),
-      alt: text('Image alt text', 'Civic image alt')
-    },
-    url: text('Card URL', 'https://google.com', navCard),
-    modifier_class: text('Additional class', '', navCard),
+  const generalKnobTab = 'General';
+  const generalKnobs = {
+    theme: radios(
+      'Theme',
+      {
+        Light: 'light',
+        Dark: 'dark',
+      },
+      'light',
+      generalKnobTab,
+    ),
+    size: radios(
+      'Size',
+      {
+        Large: 'large',
+        Small: 'small',
+      },
+      'large',
+      generalKnobTab,
+    ),
+    title: text('Title', 'Navigation card heading which runs across two or three lines', generalKnobTab),
+    summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', generalKnobTab),
+    url: text('URL', 'http://example.com', generalKnobTab),
+    image: boolean('With image', true, generalKnobTab) ? {
+      src: imageFile,
+      alt: 'Image alt text',
+    } : false,
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  //Knob tabs order is decided on the basis of their order in story.
-  //Icon component parameters.
-  const sheets = Array.from(spritesheets)
-  let spritesheet = select('Icon Pack', sheets, sheets[0], iconList)
-  let symbol = select('Symbol', icons[spritesheet], icons[spritesheet][0], iconList)
-  const colors = CIVIC_VARIABLES['civic-default-colors']
+  const iconKnobTab = 'Icon';
+  const { icons } = ICONS;
+  const withIcon = boolean('With icon', false, iconKnobTab);
+  const iconKnobs = {
+    icon: withIcon ? select('Icon', icons, 'business_calendar', iconKnobTab) : null,
+  };
 
-  const iconParams = {
-    spritesheet,
-    symbol,
-    icon_color: select('Color', colors, 'primary', iconList)
-  }
-
-  return CivicNavigationCard({...navCardParams, ...iconParams});
-}
-
+  return CivicNavigationCard({
+    ...generalKnobs,
+    ...iconKnobs,
+    ...getSlots([
+      'image_over',
+      'content_top',
+      'content_middle',
+      'content_bottom',
+    ]),
+  });
+};

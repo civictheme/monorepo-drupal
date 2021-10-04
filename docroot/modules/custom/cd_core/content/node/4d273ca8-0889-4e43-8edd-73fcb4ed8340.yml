@@ -6,6 +6,7 @@ _meta:
   default_langcode: en
   depends:
     9d658a18-f0ac-4552-97d6-c073af1109c4: user
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
     -
@@ -142,3 +143,6 @@ default:
           field_c_p_theme:
             -
               value: dark
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

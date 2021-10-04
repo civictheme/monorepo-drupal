@@ -6,12 +6,13 @@
   "scripts": {
     "build": "npm run dist && build-storybook --quiet",
     "build-storybook": "npm run gulp:build && build-storybook",
-    "storybook": "npm run gulp:build && concurrently \"npm run gulp:watch\" \"start-storybook -s ./assets\"\n",
+    "storybook": "npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s ./assets\"\n",
     "gulp:build": "gulp",
     "gulp:watch": "gulp watch",
     "lint": "eslint ./components ./assets/js",
     "dist": "npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
-    "dist:dev": "npm run gulp:build && webpack --config ./webpack/webpack.dev.js"
+    "dist:dev": "npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
+    "generate-icon-library": "npm run gulp:build && node ./components-combined/01-atoms/icon/icon.generate-library.script.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
@@ -24,6 +25,7 @@
     "@storybook/addons": "^6.1.18",
     "@storybook/html": "^6.3.8",
     "@storybook/preset-scss": "^1.0.3",
+    "@whitespace/storybook-addon-html": "^5.0.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-drupal-behaviors": "^0.1.1",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",

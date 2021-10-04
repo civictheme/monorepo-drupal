@@ -18,33 +18,21 @@
 {% set component_class = 'civic-messages' %}
 {% set type_class = 'civic-messages--%s'|format(type|default('info')) %}
 {% set messages_class = '%s %s %s'|format(component_class, theme_class, type_class) %}
-{% set icons = {
-  info: {
-    spritesheet: '/icons/civic-user-interface.svg',
-    symbol: 'user-interface-information-mark',
-  },
-  warning: {
-    spritesheet: '/icons/civic-user-interface.svg',
-    symbol: 'user-interface-exclamation-mark-1',
-  },
-  error: {
-    spritesheet: '/icons/civic-user-interface.svg',
-    symbol: 'user-interface-close-2',
-  },
-  success: {
-    spritesheet: '/icons/civic-user-interface.svg',
-    symbol: 'user-interface-approve',
-  }
+{% set messages_icon = {
+  status: 'userinterface_informationmark',
+  info: 'userinterface_informationmark',
+  warning: 'userinterface_exclamationmark_1',
+  error: 'userinterface_close_2',
+  success: 'userinterface_approve',
 } %}
 
-<div class='{{ messages_class }}'>
+<div class='{{ messages_class }}' data-component-name='messages'>
   <div class='{{ component_class }}__icon'>
-    {% if icons[type] is defined %}
+    {% if messages_icon[type] is defined %}
       {% include '@atoms/icon/icon.twig' with {
-        spritesheet: icons[type].spritesheet,
-        symbol: icons[type].symbol,
+        symbol: messages_icon[type],
         modifier_class: '%s civic-icon--%s'|format(theme_class, type)
-      } %}
+      } only %}
     {% endif %}
   </div>
   <div class='{{ component_class }}__contnet'>

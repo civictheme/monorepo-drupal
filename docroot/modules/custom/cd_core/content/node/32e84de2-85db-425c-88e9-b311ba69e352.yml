@@ -4,6 +4,8 @@ _meta:
   uuid: 32e84de2-85db-425c-88e9-b311ba69e352
   bundle: civic_page
   default_langcode: en
+  depends:
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
     -
@@ -34,6 +36,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_n_banner_type:
+    -
+      value: default
   field_c_n_components:
     -
       entity:
@@ -152,3 +157,6 @@ default:
           field_c_p_title:
             -
               value: 'Card 3 column'
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

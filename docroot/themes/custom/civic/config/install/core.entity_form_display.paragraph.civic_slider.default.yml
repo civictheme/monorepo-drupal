@@ -16,7 +16,7 @@ bundle: civic_slider
 mode: default
 content:
   field_c_p_link:
-    weight: 2
+    weight: 1
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -25,7 +25,7 @@ content:
     region: content
   field_c_p_slides:
     type: entity_reference_paragraphs
-    weight: 3
+    weight: 2
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -36,13 +36,13 @@ content:
     third_party_settings: {  }
     region: content
   field_c_p_theme:
-    weight: 0
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_c_p_title:
-    weight: 1
+    weight: 0
     settings:
       size: 60
       placeholder: ''

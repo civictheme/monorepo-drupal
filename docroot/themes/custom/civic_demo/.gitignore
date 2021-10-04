@@ -3,4 +3,4 @@ node_modules
 # does not allow to run NodeJS scripts.
 storybook-static
 dist
-combined-components
+components-combined

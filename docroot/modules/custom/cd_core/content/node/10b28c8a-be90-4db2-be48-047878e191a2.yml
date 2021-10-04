@@ -10,6 +10,7 @@ _meta:
     e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e: node
     0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c: taxonomy_term
     86c9cd2b-225e-485b-9c6a-2963cd993b7b: media
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
     -
@@ -200,3 +201,6 @@ default:
   field_c_n_summary:
     -
       value: 'Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.'
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

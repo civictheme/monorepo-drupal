@@ -14,29 +14,31 @@
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set icon_class = icon ? 'civic-tag-with-icon' : 'civic-tag--without-icon' %}
+{% set icon_class = icon is empty ? 'civic-tag--no-icon' : '' %}
 {% set icon_placement_class = icon ? 'civic-tag--icon-%s'|format(icon_placement|default('before')) : '' %}
-{% set icon = icon|default(false) %}
-{% set icon_placement = icon_placement|default('before') %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, icon_class, icon_placement_class, modifier_class) %}
+
 {% set tag_icon %}
   {% if icon %}
     <span class="civic-tag__icon">
 		  {% include '@atoms/icon/icon.twig' with {
-        spritesheet: spritesheet,
-        symbol: symbol,
-        color: icon_color
+        symbol: icon,
+        size: 'small',
       } only %}
 		</span>
   {% endif %}
 {% endset %}
 
 {% set tag_text %}
-  {% if icon_placement == 'before' %}
-    {{ tag_icon }}{{ text }}
-  {% elseif icon_placement == 'after' %}
-    {{ text }}{{ tag_icon }}
+  {% if icon %}
+    {% if icon_placement == 'before' %}
+      {{ tag_icon }}{{ text }}
+    {% elseif icon_placement == 'after' %}
+      {{ text }}{{ tag_icon }}
+    {% endif %}
+  {% else %}
+    {{ text }}
   {% endif %}
 {% endset %}
 
-<div class="civic-tag {{ modifier_class }} aria-label="{{ hidden_label ? hidden_label~': ' }}{{ text }}">{{ tag_text }}</div>
+<div class="civic-tag {{ modifier_class }}" aria-label="{{ text }}">{{ tag_text }}</div>

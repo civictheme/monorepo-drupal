@@ -4,6 +4,8 @@ _meta:
   uuid: 76022c67-833f-4a0f-bb42-eb43ae2339e3
   bundle: civic_page
   default_langcode: en
+  depends:
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
     -
@@ -115,3 +117,6 @@ default:
           field_c_p_title:
             -
               value: 'Service cards container Full width'
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

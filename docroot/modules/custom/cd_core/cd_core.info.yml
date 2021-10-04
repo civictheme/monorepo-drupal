@@ -6,6 +6,7 @@ package: cd
 
 dependencies:
   - admin_toolbar:admin_toolbar
+  - admin_toolbar:admin_toolbar_tools
   - adminimal_admin_toolbar:adminimal_admin_toolbar
   - coffee:coffee
   - config_update:config_update
@@ -15,6 +16,7 @@ dependencies:
   - stage_file_proxy:stage_file_proxy
   # Required for Civic theme.
   - components:components
-  - paragraphs:paragraphs
   - default_content:default_content
   - drupal:block_content
+  - field_group:field_group
+  - paragraphs:paragraphs

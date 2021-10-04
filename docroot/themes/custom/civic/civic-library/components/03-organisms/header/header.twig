@@ -1,0 +1,51 @@
+<header class="civic-header" role="banner">
+  <div class="container">
+
+    {% block top %}
+      {% if top is not empty %}
+        <div class="row">
+          <div class="col-m-12">
+            <div class="civic-header__top">
+              {{ top }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block logocontent %}
+      <div class="row">
+        {% if logo is not empty %}
+          <div class="col-m-4">
+            {% block logo %}
+              {{ logo }}
+            {% endblock %}
+          </div>
+        {% endif %}
+
+        {% if content is not empty %}
+          <div class="col-m-8">
+            {% block content %}
+              <div class="civic-header__content">
+                {{ content }}
+              </div>
+            {% endblock %}
+          </div>
+        {% endif %}
+      </div>
+    {% endblock %}
+
+    {% block bottom %}
+      {% if bottom %}
+        <div class="row">
+          <div class="col-m-12">
+            <div class="civic-header__bottom">
+              {{ bottom }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
+
+  </div>
+</header>

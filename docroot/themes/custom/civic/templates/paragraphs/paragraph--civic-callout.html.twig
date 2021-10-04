@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a Callout.
+ */
+#}
+{% include '@molecules/callout/callout.twig' with {
+  theme: paragraph.field_c_p_theme.value,
+  summary: content.field_c_p_summary,
+  title: paragraph.field_c_p_title.value,
+  links: links,
+  modifier_class: attributes.getClass(),
+} only %}

@@ -1,0 +1,33 @@
+//
+// Basic filter.
+//
+
+@import '../../00-base/base';
+
+.civic-basic-filter {
+  $root: &;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+
+    &--row {
+        margin: civic-space(2) civic-space();
+      @include civic-breakpoint('m') {
+        margin: civic-space(5) civic-space(1);
+      }
+    }
+  }
+
+  &.civic-theme-light {
+    #{$root}__list {
+
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__list {
+
+    }
+  }
+}

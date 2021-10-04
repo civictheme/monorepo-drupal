@@ -90,7 +90,7 @@
 
   &__summary {
     margin-top: 16px;
-    @include civic-typography(body);
+    @include civic-typography(card-summary);
   }
 
   &__title {

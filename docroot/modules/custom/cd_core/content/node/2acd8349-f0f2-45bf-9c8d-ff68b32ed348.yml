@@ -6,6 +6,7 @@ _meta:
   default_langcode: en
   depends:
     59f0d0e8-51c2-4983-a41d-51e7a22899dd: media
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
     -
@@ -148,3 +149,6 @@ default:
           field_c_p_title:
             -
               value: 'Card container -  Title'
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
