@@ -21,9 +21,9 @@
 <div class="civic-accordion__wrapper {{ modifier_class }}">
   <div class="civic-accordion__content-top">
     {% if title %}
-      <h2 class="civic-accordion__title-top">
+      <div class="civic-accordion__title-top">
         {{ title }}
-      </h2>
+      </div>
     {% endif %}
   </div>
   <div class="civic-accordion">
@@ -32,7 +32,7 @@
         {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
         <li class="civic-accordion__list-item">
           {% if fold.title %}
-            <h3 class="civic-accordion__header">
+            <div class="civic-accordion__header">
               {% set is_open = is_expanded ? 'is-selected' : '' %}
               <button class="civic-accordion__header__button {{ is_open }}">
                 <span>{{ fold.title }}</span>
@@ -40,7 +40,7 @@
                   symbol: 'arrows_downarrow_1'
                 } only%}
               </button>
-            </h3>
+            </div>
           {% endif %}
 
           {% if fold.content %}
