@@ -1,15 +1,14 @@
 {#
 /**
  * @file
- * Default theme implementation to display a Next step.
+ * Default theme implementation to display a card task.
  */
 #}
-{% include '@molecules/next-steps/next-steps.twig' with {
-  theme: paragraph.field_c_p_theme.value,
+{% include '@molecules/navigation-card/navigation-card.twig' with {
+  type: 'large',
   summary: content.field_c_p_summary,
   title: paragraph.field_c_p_title.value,
-  comtent_top: content.field_c_p_image,
-  icon: {
+  image: {
     src: file_url(paragraph.field_c_p_icon.entity.field_c_m_icon.entity.fileuri),
     alt: paragraph.field_c_p_icon.entity.field_c_m_icon.entity.alt,
   },
