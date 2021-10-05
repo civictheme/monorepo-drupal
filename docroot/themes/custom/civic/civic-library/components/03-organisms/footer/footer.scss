@@ -136,7 +136,7 @@
         }
 
         #{$root}__menu-items {
-        	padding-bottom: rem(12px);
+          padding-bottom: rem(12px);
 
           &:first-child {
             margin-top: civic-space(2);
@@ -251,9 +251,9 @@
 
   &.civic-theme-light {
     #{$root}__top {
-    	@include civic-breakpoint(m) {
-    		border-bottom: 1px solid $civic-footer-light-border-color;
-    	}
+      @include civic-breakpoint(m) {
+        border-bottom: 1px solid $civic-footer-light-border-color;
+      }
 
       .civic-icon-link {
         color: civic-color(footer_black);
@@ -261,9 +261,9 @@
     }
 
     #{$root}__middle {
-    	@include civic-breakpoint(m) {
-    		border-bottom: 1px solid $civic-footer-light-border-color;
-    	}
+      @include civic-breakpoint(m) {
+        border-bottom: 1px solid $civic-footer-light-border-color;
+      }
 
       #{$root}__middle-right--menu,
       #{$root}__middle-left--menu {
@@ -275,21 +275,22 @@
       }
 
       #{$root}__middle-right--menu {
-        
+
         #{$root}__menu-heading {
-	        border-bottom: 1px solid $civic-footer-light-border-color;
+          border-bottom: 1px solid $civic-footer-light-border-color;
 
-	        @include civic-breakpoint(m) {
-	          border-bottom: 0;
-	         }
-	        &:first-child {
-	          border-top: 1px solid $civic-footer-light-border-color;
+          @include civic-breakpoint(m) {
+            border-bottom: 0;
+          }
 
-	          @include civic-breakpoint(m) {
-	          	border-top: 0;
-	          }
-	        }
-	      }
+          &:first-child {
+            border-top: 1px solid $civic-footer-light-border-color;
+
+            @include civic-breakpoint(m) {
+              border-top: 0;
+            }
+          }
+        }
 
         #{$root}__middle-links {
           color: $civic-footer-light-color;
@@ -311,9 +312,9 @@
 
   &.civic-theme-dark {
     #{$root}__top {
-    	@include civic-breakpoint(m) {
-    		border-bottom: 1px solid $civic-footer-dark-border-color;
-    	}
+      @include civic-breakpoint(m) {
+        border-bottom: 1px solid $civic-footer-dark-border-color;
+      }
 
       .civic-icon-link {
         color: $civic-footer-dark-color;
@@ -321,9 +322,9 @@
     }
 
     #{$root}__middle {
-    	@include civic-breakpoint(m) {
-    		border-bottom: 1px solid $civic-footer-dark-border-color;
-    	}
+      @include civic-breakpoint(m) {
+        border-bottom: 1px solid $civic-footer-dark-border-color;
+      }
 
       #{$root}__middle-right--menu,
       #{$root}__middle-left--menu {
@@ -336,24 +337,24 @@
 
       #{$root}__middle-right--menu {
 
-      	#{$root}__menu-heading {
-	        border-bottom: 1px solid $civic-footer-dark-mobile-border-color;
+        #{$root}__menu-heading {
+          border-bottom: 1px solid $civic-footer-dark-mobile-border-color;
 
-	        @include civic-breakpoint(m) {
-	          border-bottom: 0;
-	        }
+          @include civic-breakpoint(m) {
+            border-bottom: 0;
+          }
 
-	        &:first-child {
-	          border-top: 1px solid $civic-footer-dark-mobile-border-color;
+          &:first-child {
+            border-top: 1px solid $civic-footer-dark-mobile-border-color;
 
-	          @include civic-breakpoint(m) {
-	          	border-top: 0;
-	         	}
-	        }
-	      }
+            @include civic-breakpoint(m) {
+              border-top: 0;
+            }
+          }
+        }
 
         .civic-icon {
-        	fill: $civic-footer-dark-color;
+          fill: $civic-footer-dark-color;
         }
 
         #{$root}__middle-links {
