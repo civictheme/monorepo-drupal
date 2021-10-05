@@ -28,10 +28,10 @@ use Drupal\DrupalExtension\Context\DrupalContext;
 class FeatureContext extends DrupalContext {
 
   use ContentTrait;
-  use JsTrait;
   use ElementTrait;
   use FieldTrait;
   use FileTrait;
+  use JsTrait;
   use LinkTrait;
   use MediaTrait;
   use PathTrait;

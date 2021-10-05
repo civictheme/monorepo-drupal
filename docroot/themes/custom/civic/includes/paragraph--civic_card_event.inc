@@ -15,7 +15,7 @@ function civic_preprocess_paragraph__civic_card_event(&$variables) {
   $paragraph = $variables['paragraph'];
 
   // Event url.
-  $link = $paragraph->hasField('field_c_p_link') ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
+  $link = ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
   $variables['url'] = $link['uri'] ?? NULL;
 
   // Event date.
