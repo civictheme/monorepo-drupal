@@ -1,4 +1,4 @@
-@civic @civic_page @civic_page_view
+@civic @civic_cards
 Feature: View of Page content type
 
   Ensure that Page content can be viewed correctly.
