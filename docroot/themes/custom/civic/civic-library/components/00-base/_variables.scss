@@ -390,9 +390,6 @@ $civic-button-dark-state-color: map-get(map-merge($civic-default-colors, $civic-
 //
 // Message.
 //
-
-$civic-message-types: ('status', 'info', 'error', 'warning', 'success');
-
 $civic-message-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
 $civic-message-light-background-colors: (
   'info': map-get(map-merge($civic-default-colors, $civic-colors), 'validation-light-info'),
@@ -426,11 +423,43 @@ $civic-message-dark-icon-colors: (
   'error': map-get(map-merge($civic-default-colors, $civic-colors), 'error'),
   'success': map-get(map-merge($civic-default-colors, $civic-colors), 'success'),
 ) !default;
+
+//
+// Alert.
+//
+
+$civic-alert-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-alert-light-background-colors: (
   'info': map-get(map-merge($civic-default-colors, $civic-colors), 'information'),
-  'status': map-get(map-merge($civic-default-colors, $civic-colors), 'status'),
+  'status': map-get(map-merge($civic-default-colors, $civic-colors), 'information'),
   'warning': map-get(map-merge($civic-default-colors, $civic-colors), 'warning'),
   'error': map-get(map-merge($civic-default-colors, $civic-colors), 'error'),
   'success': map-get(map-merge($civic-default-colors, $civic-colors), 'success'),
+) !default;
+
+$civic-alert-light-icon-colors: (
+  'info': $civic-alert-light-color,
+  'status': $civic-alert-light-color,
+  'warning': $civic-alert-light-color,
+  'error': $civic-alert-light-color,
+  'success': $civic-alert-light-color,
+) !default;
+
+$civic-alert-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-alert-dark-background-colors: (
+  'info': map-get(map-merge($civic-default-colors, $civic-colors), 'information'),
+  'status': map-get(map-merge($civic-default-colors, $civic-colors), 'information'),
+  'warning': map-get(map-merge($civic-default-colors, $civic-colors), 'warning'),
+  'error': map-get(map-merge($civic-default-colors, $civic-colors), 'error'),
+  'success': map-get(map-merge($civic-default-colors, $civic-colors), 'success'),
+) !default;
+
+$civic-alert-dark-icon-colors: (
+  'info': $civic-alert-dark-color,
+  'status': $civic-alert-dark-color,
+  'warning': $civic-alert-dark-color,
+  'error': $civic-alert-dark-color,
+  'success': $civic-alert-dark-color,
 ) !default;
 
 //
@@ -475,16 +504,6 @@ $civic-progress-indicator-dark-color: map-get(map-merge($civic-default-colors, $
 $civic-progress-indicator-dark-background-color: transparent !default;
 $civic-progress-indicator-dark-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 $civic-progress-indicator-dark-active-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
-
-//
-// Header notifications.
-//
-$civic-header-notifications-background-info-color: map-get(map-merge($civic-default-colors, $civic-colors), 'information') !default;
-$civic-header-notifications-background-error-color: map-get(map-merge($civic-default-colors, $civic-colors), 'error') !default;
-$civic-header-notifications-background-warning-color: map-get(map-merge($civic-default-colors, $civic-colors), 'warning') !default;
-$civic-header-notifications-background-success-color: map-get(map-merge($civic-default-colors, $civic-colors), 'success') !default;
-$civic-header-notifications-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
-$civic-header-notifications-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 
 //
 // Breadcrumbs.
