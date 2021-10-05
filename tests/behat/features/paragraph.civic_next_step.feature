@@ -1,4 +1,4 @@
-@paragraph @civic_next_step
+@civic @paragraph @civic_next_step
 Feature: Test the Next step paragraph
 
   Ensure that Next step paragraph exists and has the expected fields.

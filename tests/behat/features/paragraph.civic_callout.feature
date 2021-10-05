@@ -1,4 +1,4 @@
-@paragraph @civic_callout
+@civic @paragraph @civic_callout
 Feature: Tests the Callout
 
   Ensure that Callout paragraph exists and has the expected fields.

@@ -1,4 +1,4 @@
-@paragraph @civic_card_event_reference
+@civic @paragraph @civic_card_event_reference
 Feature: Tests the Event reference card paragraph
 
   Ensure that Event reference card paragraph exists and has the expected fields.
