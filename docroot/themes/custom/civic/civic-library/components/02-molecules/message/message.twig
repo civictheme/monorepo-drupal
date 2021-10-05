@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Message component.
+ *
+ * This is strictly an exmaple file to demonstrate markup in Storybook.
+ * It is not intended to be included in any other component.
+ *
+ * Variables:
+ * - type: [string] Message type: Info, Error, Warning, Success.
+ * - theme: [string] Light, Dark.
+ * - title: [string] Message title.
+ * - description: [string] Message summary.
+ */
+#}
+
+{% set type = type|default('info') %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type_class = 'civic-message--%s messages--%s'|format(type, type) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
+
+{% set icons = {
+  status: 'userinterface_informationmark',
+  info: 'userinterface_informationmark',
+  warning: 'userinterface_exclamationmark_1',
+  error: 'userinterface_close_2',
+  success: 'userinterface_approve',
+} %}
+
+<div role="{% if type == 'error' %}error{% else %}contentinfo{% endif %}" class="civic-message messages {{ modifier_class }}" aria-label="{{ type }}">
+  {% if icons[type] is defined %}
+    <div class="civic-message__icon">
+      {% include "@atoms/icon/icon.twig" with {
+        symbol: icons[type],
+        modifier_class: "%s civic-icon--%s"|format(theme_class, type)
+      } only %}
+    </div>
+  {% endif %}
+  <div class="civic-message__content">
+    <div class="civic-message__title">{{ title }}</div>
+    <div class="civic-message__summary">{{ description|striptags('<strong>,<a>,<pre>,<ul>,<ol>,<li>')|raw }}</div>
+  </div>
+</div>

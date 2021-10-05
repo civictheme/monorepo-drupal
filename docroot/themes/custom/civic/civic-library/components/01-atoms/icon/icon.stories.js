@@ -1,11 +1,7 @@
-import {
-  boolean, radios, select, text,
-} from '@storybook/addon-knobs';
+import { radios, select } from '@storybook/addon-knobs';
 
 import CivicIcon from './icon.twig';
-import CivicIconLink from './icon_link.twig';
 import './icon.scss';
-import './icon-link.scss';
 
 export default {
   title: 'Atom/Icon',
@@ -49,34 +45,4 @@ export const IconLibrary = () => {
   }
 
   return html;
-};
-
-export const IconLink = () => {
-  const { icons } = ICONS;
-  const sizes = SCSS_VARIABLES['civic-icon-sizes'];
-  const defaultIcon = icons.indexOf('brands_facebook');
-  return CivicIconLink({
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-    ),
-    symbol: select('Symbol', icons, defaultIcon !== -1 ? icons[defaultIcon] : icons[0]),
-    size: radios('Size', sizes, sizes[0]),
-    modifier_class: select(
-      'Modifiers',
-      {
-        None: '',
-        Visited: 'civic-icon-link--visited',
-        Disabled: 'civic-icon-link--disabled',
-      },
-      '',
-    ),
-    text: text('Text', 'Link Text'),
-    url: text('URL', 'http://example.com'),
-    new_window: boolean('Open in a new window', false),
-  });
 };

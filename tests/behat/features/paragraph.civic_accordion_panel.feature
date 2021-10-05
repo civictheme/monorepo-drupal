@@ -1,4 +1,4 @@
-@paragraph @civic_accordion_panel
+@civic @paragraph @civic_accordion_panel
 Feature: Tests the Accordion panel
 
   Ensure that Accordion panel paragraph exists and has the expected fields.

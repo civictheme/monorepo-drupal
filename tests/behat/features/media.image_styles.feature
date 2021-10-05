@@ -1,4 +1,4 @@
-@media @image_styles
+@civic @media @image_styles
 Feature: Tests the civic image styles
 
   Ensure that civic image styles exist and have the expected fields.

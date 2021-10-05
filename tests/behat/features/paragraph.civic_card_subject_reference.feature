@@ -1,4 +1,4 @@
-@paragraph @civic_card_subject_reference
+@civic @paragraph @civic_card_subject_reference
 Feature: Tests the Subject reference card paragraph
 
   Ensure that Subject reference card paragraph exists and has the expected fields.

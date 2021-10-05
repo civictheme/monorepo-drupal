@@ -1,4 +1,4 @@
-@paragraph @civic_card_task
+@civic @paragraph @civic_card_task
 Feature: Tests the Card task paragraph
 
   Ensure that Card task paragraph exists and has the expected fields.

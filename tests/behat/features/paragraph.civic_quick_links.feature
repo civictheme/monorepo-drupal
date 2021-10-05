@@ -1,4 +1,4 @@
-@paragraph @civic_quick_links
+@civic @paragraph @civic_quick_links
 Feature: Tests the Quick links paragraph type and fields.
 
   Ensure that Quick links paragraph exists and has the expected fields.

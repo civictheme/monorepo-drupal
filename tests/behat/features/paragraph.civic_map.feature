@@ -1,4 +1,4 @@
-@paragraph @civic_map
+@civic @paragraph @civic_map
 Feature: Tests the Map paragraph
 
   Ensure that Map paragraphs exists and has the expected fields.

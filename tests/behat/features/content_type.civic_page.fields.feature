@@ -1,4 +1,4 @@
-@content_type @civic_page
+@civic @content_type @civic_page
 Feature: Fields on Page content type
 
   Ensure that Review fields have been setup correctly.
