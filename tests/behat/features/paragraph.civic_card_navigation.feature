@@ -1,4 +1,4 @@
-@paragraph @civic_card_navigation
+@civic @paragraph @civic_card_navigation
 Feature: Tests the Card container paragraph
 
   Ensure that Card container paragraph exists and has the expected fields.

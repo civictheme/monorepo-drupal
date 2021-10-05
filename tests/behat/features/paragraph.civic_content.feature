@@ -1,4 +1,4 @@
-@paragraph @civic_content
+@civic @paragraph @civic_content
 Feature: Tests the Content paragraph
 
   Ensure that Content paragraphs exists and has the expected fields.
