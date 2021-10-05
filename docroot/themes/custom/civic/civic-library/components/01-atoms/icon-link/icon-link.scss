@@ -1,9 +1,9 @@
 @use 'sass:math';
 @import '../../00-base/base';
-@import '../link/link';
+//@import '../link/link';
 
 //
-// Calculates required border radius for a circular border for a given icon size.
+// Sets required border radius for a circular border for a given icon size.
 //
 @mixin civic-icon-border-radius-size($size) {
   @if type-of($size)==string {
@@ -34,8 +34,8 @@
   border-bottom: none;
   border-radius: $civic-border-radius;
   text-decoration: none;
-  & {
 
+  &#{$root}--with-border {
     @each $size, $values in $civic-icon-sizes {
       &#{$root}--size-#{$size} {
         .civic-icon {
@@ -49,43 +49,43 @@
   &,
   &.civic-theme-light {
     color: $civic-icon-link-light-color;
+
     &:hover {
       color: $civic-icon-link-light-color-hover;
     }
+
     &:focus {
       @include civic-outline(false);
       color: $civic-icon-link-light-color-focus;
     }
+
     &:active {
       color: $civic-icon-link-light-color-active;
     }
-    &#{$root}--visited,
+
     &:visited {
       color: $civic-icon-link-light-color-visited;
-    }
-    &#{$root}--disabled {
-      color: $civic-icon-link-light-color-disabled;
     }
   }
 
   &.civic-theme-dark {
     color: $civic-icon-link-dark-color;
+
     &:hover {
       color: $civic-icon-link-dark-color-hover;
     }
+
     &:focus {
       @include civic-outline(false);
       color: $civic-icon-link-dark-color-focus;
     }
+
     &:active {
       color: $civic-icon-link-dark-color-active;
     }
-    &#{$root}--visited,
+
     &:visited {
       color: $civic-icon-link-dark-color-visited;
-    }
-    &#{$root}--disabled {
-      color: $civic-icon-link-dark-color-disabled;
     }
   }
 
