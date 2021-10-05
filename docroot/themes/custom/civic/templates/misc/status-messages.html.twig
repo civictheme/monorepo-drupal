@@ -21,7 +21,7 @@
 #}
 {% for type, messages in message_list %}
   {% for message in messages %}
-    {% include '@molecules/alert/alert.twig' with {
+    {% include '@molecules/alert/messages.twig' with {
       title: message,
       type: type,
     } %}
