@@ -8,9 +8,14 @@
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Exception\ElementNotFoundException;
 use DrevOps\BehatSteps\ContentTrait;
+use DrevOps\BehatSteps\ElementTrait;
 use DrevOps\BehatSteps\FieldTrait;
+use DrevOps\BehatSteps\FileTrait;
 use DrevOps\BehatSteps\JsTrait;
+use DrevOps\BehatSteps\LinkTrait;
+use DrevOps\BehatSteps\MediaTrait;
 use DrevOps\BehatSteps\PathTrait;
+use DrevOps\BehatSteps\ParagraphsTrait;
 use DrevOps\BehatSteps\SelectTrait;
 use DrevOps\BehatSteps\TaxonomyTrait;
 use DrevOps\BehatSteps\WaitTrait;
@@ -24,8 +29,13 @@ class FeatureContext extends DrupalContext {
 
   use ContentTrait;
   use JsTrait;
+  use ElementTrait;
   use FieldTrait;
+  use FileTrait;
+  use LinkTrait;
+  use MediaTrait;
   use PathTrait;
+  use ParagraphsTrait;
   use SelectTrait;
   use TaxonomyTrait;
   use WatchdogTrait;

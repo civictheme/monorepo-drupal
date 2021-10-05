@@ -18,6 +18,6 @@ function civic_preprocess_paragraph__civic_card_promo(&$variables) {
   $variables['url'] = $link['url'] ?? NULL;
 
   if ($paragraph->hasField('field_c_p_date') && !$paragraph->get('field_c_p_date')->isEmpty()) {
-    $variables['date'] = \Drupal::service('date.formatter')->format($paragraph->get('field_c_p_date')->date->getTimestamp(), 'civic_short_date');
+    $variables['date'] = \Drupal::service('date.formatter')->format(strtotime($paragraph->get('field_c_p_date')->value), 'civic_short_date');
   }
 }
