@@ -1,6 +1,4 @@
-import {
-  boolean, radios, select, text,
-} from '@storybook/addon-knobs';
+import { radios, select } from '@storybook/addon-knobs';
 
 import CivicIcon from './icon.twig';
 import './icon.scss';
