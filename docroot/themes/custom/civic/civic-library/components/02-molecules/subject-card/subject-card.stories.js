@@ -36,8 +36,7 @@ export const SubjectCardStories = () => {
     } : false,
     modifier_class: text('Additional class', '', generalKnobTab),
   };
-
-
+  
   return CivicSubjectCard({
     ...generalKnobs,
     ...getSlots([
