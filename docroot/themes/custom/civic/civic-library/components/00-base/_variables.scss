@@ -20,6 +20,7 @@ $civic-default-colors: (
   'neutral_80': #35414B,
   'neutral_90': #1F2A33,
   'translucent': #00000000,
+  'footer_black': #000000,
   // Element-specific colors.
   'heading': #1F2833,
   'heading-link': #00698F,
@@ -80,6 +81,7 @@ $civic-spaces: (
   $civic-space * 4, // 32px
   $civic-space * 5, // 40px
   $civic-space * 6, // 48px
+  $civic-space * 7, // 56px
   $civic-space * 8, // 64px
   $civic-space * 10 // 80px
 ) !default;
@@ -136,7 +138,7 @@ $civic-icon-sizes: (
     'm': (48px, 48px),
   ),
   'link-large': (
-    'xs': (48px, 48px),
+    'xs': (40px, 40px),
     'm': (48px, 48px),
   )
 ) !default;
@@ -595,3 +597,10 @@ $civic-video-dark-link-color: map-get(map-merge($civic-default-colors, $civic-co
 $civic-video-dark-link-hover-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
 $civic-video-dark-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 
+
+// Footer
+$civic-footer-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_80') !default;
+$civic-footer-light-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_40') !default;
+$civic-footer-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-footer-dark-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-footer-dark-mobile-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_15') !default;
