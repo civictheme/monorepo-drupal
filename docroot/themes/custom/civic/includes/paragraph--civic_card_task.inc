@@ -11,9 +11,6 @@
  * @SuppressWarnings(PHPMD)
  */
 function civic_preprocess_paragraph__civic_card_task(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-
   $variables['size'] = 'small';
 
   // @todo Add icon support in backend as per the component.

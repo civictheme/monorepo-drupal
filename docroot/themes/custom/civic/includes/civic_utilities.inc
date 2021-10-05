@@ -14,8 +14,6 @@ use Drupal\media\MediaInterface;
  *
  * @param \Drupal\media\MediaInterface $media
  *   Host Media entity for image.
- * @param string $media_field
- *   Field name for the media target.
  *
  * @return array
  *   Image array or false if not available.
