@@ -1,5 +1,8 @@
 import {
-  boolean, date, radios, text,
+  boolean,
+  date, number,
+  radios,
+  text,
 } from '@storybook/addon-knobs';
 import imageFile from '../../../assets/image.png';
 import { getSlots } from '../../00-base/base.stories';
@@ -31,10 +34,6 @@ export const EventCard = () => {
     title: text('Title', 'Event name which runs across two or three lines', generalKnobTab),
     location: text('Location', 'Suburb, State – 16:00–17:00', generalKnobTab),
     summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', generalKnobTab),
-    tags: [
-      text('Topic/industry tag', 'Topic 1', generalKnobTab),
-      text('Topic/industry tag 2', 'Topic 2', generalKnobTab),
-    ],
     url: text('Link URL', 'http://example.com', generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
       src: imageFile,
@@ -49,8 +48,35 @@ export const EventCard = () => {
     day: 'numeric',
   });
 
+  // Adding dynamic promo card tags.
+  const tagKnobTab = 'Tags';
+  const tagNum = number(
+    'Number of tags (1-4)',
+    1,
+    {
+      range: true,
+      min: 1,
+      max: 4,
+      step: 1,
+    },
+    tagKnobTab,
+  );
+
+  // Adding dynamic number of tags.
+  const tags = {};
+  let itr = 1;
+  while (itr <= tagNum) {
+    tags[`tag${itr}`] = text(`tag${itr}`, `Topic ${itr}`, tagKnobTab);
+    itr += 1;
+  }
+  const tagKnobs = {
+    tags,
+    tagNum,
+  };
+
   return CivicEventCard({
     ...generalKnobs,
+    ...tagKnobs,
     ...getSlots([
       'image_over',
       'content_top',

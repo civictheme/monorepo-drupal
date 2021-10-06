@@ -1,0 +1,16 @@
+{#
+/**
+ * @file Basic Content Paragraph.
+ *
+ * Available variables:
+ * - content: [string] content to render.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+
+{% if content is not empty %}
+  <div class="civic-event-card {{ theme_class }}">
+    {{ content | raw }}
+  </div>
+{% endif %}
