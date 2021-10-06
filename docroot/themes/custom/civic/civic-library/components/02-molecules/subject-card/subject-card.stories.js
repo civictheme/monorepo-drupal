@@ -15,7 +15,7 @@ export default {
   },
 };
 
-export const SubjectCardStories = () => {
+export const SubjectCard = () => {
   const generalKnobTab = 'General';
 
   const generalKnobs = {
