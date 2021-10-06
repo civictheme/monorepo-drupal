@@ -27,6 +27,7 @@
   {% if icons[direction] is defined %}
     {% include '@atoms/icon/icon.twig' with {
       symbol: icons[direction],
+      modifier_class: 'civic-icon--%s'|format(direction),
     } %}
   {% endif %}
 </a>
