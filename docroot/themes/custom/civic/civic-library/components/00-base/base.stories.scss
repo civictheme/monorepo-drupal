@@ -4,6 +4,7 @@
 // Set default styles for the Storybook viewport.
 #root {
   font-family: sans-serif;
+  padding: civic-space(2);
 }
 
 .sb-show-main.sb-main-centered #root {
@@ -18,6 +19,7 @@
 }
 
 .story-wrapper-size--medium,
+.civic-accordion,
 .civic-navigation-card {
   max-width: 576px;
 }

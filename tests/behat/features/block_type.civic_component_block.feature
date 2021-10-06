@@ -1,4 +1,4 @@
-@block_type @civic_component_block
+@civic @block_type @civic_component_block
 Feature: Tests the Civic Component Block Type
 
   Ensure that Civic Component Block fields have been setup correctly.

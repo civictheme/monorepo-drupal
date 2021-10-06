@@ -1,4 +1,4 @@
-@paragraph @civic_card_reference_promo
+@civic @paragraph @civic_card_reference_promo
 Feature: Tests the Reference promo card paragraph
 
   Ensure that Reference promo card paragraph exists and has the expected fields.

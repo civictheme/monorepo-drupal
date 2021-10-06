@@ -1,4 +1,4 @@
-@paragraph @civic_slider_slide
+@civic @paragraph @civic_slider_slide
 Feature: Tests the Slider Slide paragraph
 
   Ensure that the Slider Slide paragraph exists and has the expected fields.

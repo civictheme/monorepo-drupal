@@ -1,4 +1,4 @@
-@paragraph @civic_service_card
+@civic @paragraph @civic_service_card
 Feature: Tests the Service card paragraph
 
   Ensure that Service card paragraph exists and has the expected fields.

@@ -1,4 +1,4 @@
-@paragraph @civic_attachment
+@civic @paragraph @civic_attachment
 Feature: Tests the Attachment
 
   Ensure that Attachment paragraph exists and has the expected fields.

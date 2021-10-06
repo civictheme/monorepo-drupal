@@ -11,11 +11,9 @@ require_once 'includes/civic_paragraphs.inc';
 require_once 'includes/civic_utilities.inc';
 require_once 'includes/civic_nodes.inc';
 
-/**
- * Implements hook_preprocess_HOOK() for html.html.twig.
- */
-function civic_preprocess_html(&$variables) {
-
+// @todo Remove before release 1.
+if (file_exists('includes/styleguide.inc')) {
+  include 'includes/styleguide.inc';
 }
 
 /**

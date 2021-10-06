@@ -1,4 +1,4 @@
-@paragraph @civic_card_navigation_reference
+@civic @paragraph @civic_card_navigation_reference
 Feature: Tests the Navigation reference card paragraph
 
   Ensure that Navigation reference card paragraph exists and has the expected fields.
