@@ -12,7 +12,7 @@
 
 {% set text = text|default('Top') %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set disabled_class = is_disabled ? 'civic-directional-link--disabled': '' %}
+{% set disabled_class = disabled ? 'civic-directional-link--disabled': '' %}
 {% set modifier_class = '%s %s %s'|format(theme_class, disabled_class, modifier_class) %}
 
 {% set icons = {
@@ -22,7 +22,7 @@
   back: 'arrows_leftarrow_2',
 } %}
 
-<a class="civic-directional-link {{ modifier_class }}" role="link"{% if not is_disabled %} href="{{ url }}"{% endif %}{% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}>
+<a class="civic-directional-link {{ modifier_class }}" role="link"{% if not disabled %} href="{{ url }}"{% endif %}{% if disabled %}disabled="disabled" aria-disabled="true"{% endif %}>
   {{ text }}
   {% if icons[direction] is defined %}
     {% include '@atoms/icon/icon.twig' with {
