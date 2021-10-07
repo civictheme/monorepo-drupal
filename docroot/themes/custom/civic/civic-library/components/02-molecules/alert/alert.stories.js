@@ -3,6 +3,9 @@ import CivicAlert from './alert.twig';
 
 export default {
   title: 'Molecule/Alert',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const Alert = () => CivicAlert({
