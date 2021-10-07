@@ -25,22 +25,22 @@ export const Table = () => {
 
   const rows = [
     [
-      "<a class='civic-lik' href='#' title='Row 4 with link'>Row 4 with link</a>",
+      "<a class='civic-link' href='#' title='Row 4 with link'>Row 4 with link</a>",
       'Information about something',
       'And this is important',
     ],
     [
-      "<a class='civic-lik' href='#' title='Row 4 with link'>Row 4 with link</a>",
+      "<a class='civic-link' href='#' title='Row 4 with link'>Row 4 with link</a>",
       'Information about something',
       'And this is important',
     ],
     [
-      "<a class='civic-lik' href='#' title='Row 4 with link'>Row 4 with link</a>",
+      "<a class='civic-link' href='#' title='Row 4 with link'>Row 4 with link</a>",
       'Information about something',
       'And this is important',
     ],
     [
-      "<a class='civic-lik' href='#' title='Row 4 with link'>Row 4 with link</a>",
+      "<a class='civic-link' href='#' title='Row 4 with link'>Row 4 with link</a>",
       'Information about something',
       'And this is important',
     ],
