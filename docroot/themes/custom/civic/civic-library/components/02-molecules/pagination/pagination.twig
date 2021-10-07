@@ -1,0 +1,89 @@
+{% if items %}
+  <nav class="civic-pager" role="navigation" aria-labelledby="{{ heading_id }}">
+    <h4 id="{{ heading_id }}" class="visually-hidden">{{ 'Pagination' }}</h4>
+    <ul class="civic-pager__items">
+      {# Print first item if we are not on the first page. #}
+      {% if items.first %}
+        <li class="civic-pager__item civic-pager__item--first">
+          {% include '@atoms/directional-link/directional-link.twig' with {
+            theme: theme,
+            text: items.first.text|default('First'),
+            title: 'Go to first page',
+            context: 'First page',
+            url: items.first.href,
+            direction: 'back',
+          } only %}
+        </li>
+      {% endif %}
+
+      {# Print previous item. #}
+      <li class="civic-pager__item civic-pager__item--previous">
+        {% include '@atoms/directional-link/directional-link.twig' with {
+          theme: theme,
+          text: items.previous.text|default('Previous'),
+          title: 'Go to previous page',
+          context: 'Previous page',
+          url: items.previous.href,
+          is_disabled: items.previous ? 1 : 0,
+          direction: 'back',
+        } only %}
+      </li>
+
+      {# Add an ellipsis if there are further previous pages. #}
+      {% if ellipses.previous %}
+        <li class="civic-pager__item civic-pager__item--ellipsis" role="presentation">&hellip;</li>
+      {% endif %}
+
+      {# Now generate the actual pager piece. #}
+      {% for key, item in items.pages %}
+        <li class="civic-pager__item{{ current == key ? ' is-active' : '' }}">
+          {% if current == key %}
+            {% set title = 'Current page' %}
+          {% else %}
+            {% set title = 'Go to page %s'|format(key) %}
+          {% endif %}
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: key,
+            title: title,
+            context: current == key ? 'Current page' : 'Page',
+            url: item.href,
+            modifier_class: current == key ? 'is-active' : '',
+          } only %}
+        </li>
+      {% endfor %}
+
+      {# Add an ellipsis if there are further next pages. #}
+      {% if ellipses.next %}
+        <li class="civic-pager__item civic-pager__item--ellipsis" role="presentation">&hellip;</li>
+      {% endif %}
+
+      {# Print next item if we are not on the last page. #}
+      <li class="civic-pager__item civic-pager__item--next">
+        {% include '@atoms/directional-link/directional-link.twig' with {
+          theme: theme,
+          text: items.next.text|default('Next'),
+          title: 'Go to next page',
+          context: 'Next page',
+          url: items.previous.href,
+          is_disabled: items.next ? 0 : 1,
+          direction: 'next',
+        } only %}
+      </li>
+
+      {# Print last item if we are not on the last page. #}
+      {% if items.last %}
+        <li class="civic-pager__item civic-pager__item--last">
+          {% include '@atoms/directional-link/directional-link.twig' with {
+            theme: theme,
+            text: items.last.text|default('Last'),
+            title: 'Go to last page',
+            context: 'Last page',
+            url: items.last.href,
+            direction: 'next',
+          } only %}
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}

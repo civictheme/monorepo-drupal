@@ -1,0 +1,32 @@
+//
+// Pagination.
+//
+
+@import '../../00-base/base';
+
+.civic-pager {
+  @include civic-typography('label-large');
+
+  &__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &__item {
+    margin-right: rem(4px);
+
+    .civic-link {
+      width: civic-space(3);
+      display: block;
+      text-align: center;
+
+      &:not(.is-active) {
+        border-bottom: none;
+      }
+    }
+  }
+}

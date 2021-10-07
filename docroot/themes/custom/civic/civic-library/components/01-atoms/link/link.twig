@@ -18,6 +18,11 @@
 {% set modifier_class = modifier_class ~ ' ' ~ theme_class %}
 
 <a class="civic-link {{ modifier_class }}" href="{{ url }}" title="{{ title }}" {{ new_window ? 'target="_blank"' }}>
+  {% if context %}
+    <span class="visually-hidden">
+      {{ context }}
+    </span>
+  {% endif %}
   {{ text }}
   {% if is_external %}
     {% include '@atoms/icon/icon.twig' with {
