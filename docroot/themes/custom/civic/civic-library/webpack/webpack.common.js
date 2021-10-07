@@ -61,6 +61,23 @@ module.exports = {
           loader: 'twigjs-loader'
         }]
       },
+      // Wrap JS with DOMContentLoaded.
+      {
+        test: /components\/[^\/]+\/(?!.*\.(stories|component)\.js$).*\.js$/,
+        exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env'
+            ],
+            plugins: [
+              './node_modules/babel-plugin-syntax-dynamic-import',
+              './webpack/babel-plugin-script-wrapper.js',
+            ],
+          }
+        }]
+      }
     ],
   },
   resolve: {
