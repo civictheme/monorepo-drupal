@@ -619,3 +619,14 @@ $civic-subject-card-light-color-hover: map-get(map-merge($civic-default-colors, 
 $civic-subject-card-light-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
 $civic-subject-card-dark-color-accent: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 $civic-subject-card-dark-color-active: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
+
+//
+// Pagination.
+//
+$civic-pagination-light-link-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
+$civic-pagination-light-link-hover-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+$civic-pagination-light-link-active-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
+
+$civic-pagination-dark-link-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-pagination-dark-link-hover-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-pagination-dark-link-active-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;

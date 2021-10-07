@@ -1,5 +1,24 @@
+{#
+/**
+ * @file
+ * Pagination component.
+ *
+ * Display of pagination component.
+ *
+ * Variables:
+ * - theme: [string] Theme for pagiation.
+ * - heading_id: [string] pagination heading html id.
+ * - items: [array] Array of pagination items.
+ * - current: [string] Current page number.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, modifier_class|default('')) %}
+
 {% if items %}
-  <nav class="civic-pager" role="navigation" aria-labelledby="{{ heading_id }}">
+  <nav class="civic-pager {{ modifier_class }}" role="navigation" aria-labelledby="{{ heading_id }}">
     <h4 id="{{ heading_id }}" class="visually-hidden">{{ 'Pagination' }}</h4>
     <ul class="civic-pager__items">
       {# Print first item if we are not on the first page. #}
@@ -11,7 +30,7 @@
             title: 'Go to first page',
             context: 'First page',
             url: items.first.href,
-            direction: 'back',
+            direction: 'left',
           } only %}
         </li>
       {% endif %}
@@ -24,8 +43,8 @@
           title: 'Go to previous page',
           context: 'Previous page',
           url: items.previous.href,
-          is_disabled: items.previous ? 1 : 0,
-          direction: 'back',
+          disabled: items.previous ? 1 : 0,
+          direction: 'left',
         } only %}
       </li>
 
@@ -66,8 +85,8 @@
           title: 'Go to next page',
           context: 'Next page',
           url: items.previous.href,
-          is_disabled: items.next ? 0 : 1,
-          direction: 'next',
+          disabled: items.next ? 0 : 1,
+          direction: 'right',
         } only %}
       </li>
 
@@ -80,7 +99,7 @@
             title: 'Go to last page',
             context: 'Last page',
             url: items.last.href,
-            direction: 'next',
+            direction: 'right',
           } only %}
         </li>
       {% endif %}

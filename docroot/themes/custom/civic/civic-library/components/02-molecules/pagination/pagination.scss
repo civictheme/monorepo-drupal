@@ -14,6 +14,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
   }
 
   &__item {
@@ -24,8 +25,44 @@
       display: block;
       text-align: center;
 
+      &:hover {
+        background: transparent;
+      }
+
       &:not(.is-active) {
-        border-bottom: none;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+
+  &.civic-theme-light {
+    color: $civic-pagination-light-link-color;
+
+    .civic-link {
+      color: $civic-pagination-light-link-color;
+
+      &.is-active {
+        border-bottom-color: $civic-pagination-light-link-active-border-color;
+      }
+
+      &:hover {
+        color: $civic-pagination-light-link-hover-color;
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    color: $civic-pagination-dark-link-color;
+
+    .civic-link {
+      color: $civic-pagination-dark-link-color;
+
+      &.is-active {
+        border-bottom-color: $civic-pagination-dark-link-active-border-color;
+      }
+
+      &:hover {
+        color: $civic-pagination-dark-link-hover-color;
       }
     }
   }
