@@ -1,0 +1,70 @@
+{% extends './banner.twig' %}
+
+{% block content_top %}
+  {{- parent() -}}
+  {%- if showTopContent %}
+    <div>Top content</div>
+  {% endif -%}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {{- parent() -}}
+  {%- if showBreadcrumbs %}
+    {% include '@molecules/breadcrumb/breadcrumb.twig' with {
+      theme: theme,
+      links: [
+        { 'text': 'Home', 'url': 'http://example.com'},
+        { 'text': 'Sub Page', 'url': 'http://example.com'},
+        { 'text': 'Active Page', 'url': 'http://example.com'}
+      ]
+    } only %}
+  {% endif -%}
+{% endblock %}
+
+{% block content_top2 %}
+  {{- parent() -}}
+  {%- if showControls %}
+    <div>Content Top 2</div>
+  {% endif -%}
+{% endblock %}
+
+{% block content_top3 %}
+  {{- parent() -}}
+  {%- if showTopContent3 %}
+    <div>Section name</div>
+  {% endif -%}
+{% endblock %}
+
+{% block content_title %}
+  {{- parent() -}}
+  {%- if showBannerTitle %}
+    <h1 class="civic-banner-example__title">Providing visually engaging digital experiences</h1>
+  {% endif -%}
+{% endblock %}
+
+{% block content_middle %}
+  {{- parent() -}}
+  {%- if showContentMiddle %}
+    <div>Midlde Content</div>
+  {% endif -%}
+{% endblock %}
+
+{% block content %}
+  {{- parent() -}}
+  {%- if showContent %}
+    <p>Last updated: 26 Oct 2020</p>
+    <p>Government grade set of high quality design themes that are accessible, inclusive and provide a consistent digital experience for your citizen. </p>
+    {% include '@atoms/button/button.twig' with {
+      text: 'Learn about our mission',
+      type: 'primary',
+      theme: theme,
+    } only %}
+  {% endif -%}
+{% endblock %}
+
+{% block below_content %}
+  {{- parent() -}}
+  {%- if showBelowContent %}
+    <div>Below content</div>
+  {% endif -%}
+{% endblock %}

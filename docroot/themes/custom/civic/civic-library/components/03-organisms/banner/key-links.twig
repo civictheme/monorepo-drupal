@@ -1,0 +1,21 @@
+<div class="civic-key-links">
+  {% if title %}
+    <div class="civic-key-links__title">{{ title }}</div>
+  {% endif %}
+  {% if key_links %}
+    <ul class="civic-key-links__list">
+      {% for link in key_links %}
+        <li class="civic-key-links__list-item">
+          <a class="civic-key-links__link" href="{{ link.url }}">
+            <span>{{ link.title }}</span>
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: 'arrows_rightarrow_3',
+              color: 'primary-accent',
+              modifier_class: 'civic-key-links__link-icon'
+            } only %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
