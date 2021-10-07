@@ -51,7 +51,7 @@
 {% if kind == 'button' %}
   <button class="civic-button {{ modifier_class }}" data-component-name="button" {{ disabled ? 'disabled' }}>{{ button_text }}</button>
 {% elseif kind == 'link' %}
-  <a class="civic-button {{ modifier_class }}" data-component-name="button" {% if url %}href="{{ url }}" {% endif %}title="{{ text }}" {{ new_window ? 'target="_blank"' }}>{{ button_text }}</a>
+  <a class="civic-button {{ modifier_class }}" role="button" data-component-name="button" {% if url %}href="{{ url }}" {% endif %}title="{{ text }}" {{ new_window ? 'target="_blank"' }}>{{ button_text }}</a>
 {% elseif kind == 'reset' or kind == 'submit' %}
   <button class="civic-button {{ modifier_class }}" type="{{ kind }}" data-component-name="button" {{ disabled ? 'disabled' }}>{{ button_text }}</button>
 {% endif %}
