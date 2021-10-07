@@ -57,9 +57,9 @@
           {% for linkObj in links %}
             <li class="civic-attachment__links--link">
               <span>
-                  {% include '@atoms/icon/icon.twig' with {
-                    symbol: 'fileandfolders_document'
-                  } %}
+                {% include '@atoms/icon/icon.twig' with {
+                  symbol: 'fileandfolders_document',
+                } only %}
               </span>
               <div>
                 {% include '@atoms/link/link.twig' with {
