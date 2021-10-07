@@ -114,7 +114,8 @@ function _civic_preprocess_node__thumbnail(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   if ($node->hasField('field_c_n_thumbnail') && !$node->get('field_c_n_thumbnail')->isEmpty()) {
-    $variables['image'] = _civic_media_image($node->get('field_c_n_thumbnail')->referencedEntities()[0]);
+    $media = $node->get('field_c_n_thumbnail')->first()->get('entity')->getTarget()->getValue();
+    $variables['image'] = _civic_media_image($media);
   }
 }
 

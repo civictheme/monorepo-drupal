@@ -20,15 +20,15 @@ export const DirectionalLink = () => CivicDirectionalLink({
   direction: radios(
     'Direction', {
       Top: 'top',
-      Next: 'next',
       Bottom: 'bottom',
-      Back: 'back',
+      Left: 'left',
+      Right: 'right',
     },
-    'next',
+    'left',
   ),
   text: text('Text', 'Top'),
   url: text('URL', '#top'),
   title: text('Text', 'Top link title'),
-  is_disabled: boolean('Is disabled', false),
+  disabled: boolean('Disabled', false),
   modifier_class: text('Additional class', ''),
 });
