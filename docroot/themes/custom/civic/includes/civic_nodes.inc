@@ -16,7 +16,7 @@ function _civic_preprocess_node__full(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   $type = $node->getType();
-  $type_callback = '_civic_preprocess_node__full__' . $type;
+  $type_callback = '_civic_preprocess_node__' . $type . '__full';
   if (function_exists($type_callback)) {
     $type_callback($variables);
   }
@@ -28,6 +28,6 @@ function _civic_preprocess_node__full(&$variables) {
  *
  * @SuppressWarnings(PHPMD)
  */
-function _civic_preprocess_node__full__civic_page(&$variables) {
+function _civic_preprocess_node__civic_page__full(&$variables) {
   $variables['components'] = $variables['content']['field_c_n_components'];
 }

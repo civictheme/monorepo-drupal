@@ -1,11 +1,6 @@
 {% extends '@organisms/content/content.twig' %}
 
 {% block content %}
-  {% if banner_content is not empty %}
-    <div class="civic-page-content--banner-content">
-      {{ banner_content }}
-    </div>
-  {% endif %}
   {% if components is not empty %}
     <div class="civic-page-content--components">
       {{ components }}
