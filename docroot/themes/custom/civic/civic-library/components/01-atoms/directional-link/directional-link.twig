@@ -1,12 +1,15 @@
 {#
 /**
  * @file
- * Skip link component.
+ * Directional link component.
  *
  * Variables:
  * - theme: [string] theme: light, dark.
  * - url: [string] URL for the link button.
  * - text: [string] Link text.
+ * - direction: [string] Direction: top, bottom, left, right.
+ * - disabled: [string] Link text.
+ * - modifier_class: [string] Additional classes to modify component styling.
  */
 #}
 
@@ -18,8 +21,8 @@
 {% set icons = {
   top: 'arrows_uparrow_1',
   bottom: 'arrows_downarrow_2',
-  next: 'arrows_rightarrow_3',
-  back: 'arrows_leftarrow_2',
+  left: 'arrows_leftarrow_2',
+  right: 'arrows_rightarrow_3',
 } %}
 
 <a class="civic-directional-link {{ modifier_class }}" role="link"{% if not disabled %} href="{{ url }}"{% endif %}{% if disabled %}disabled="disabled" aria-disabled="true"{% endif %}>

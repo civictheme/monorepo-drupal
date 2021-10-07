@@ -20,11 +20,11 @@ export const DirectionalLink = () => CivicDirectionalLink({
   direction: radios(
     'Direction', {
       Top: 'top',
-      Next: 'next',
       Bottom: 'bottom',
-      Back: 'back',
+      Left: 'left',
+      Right: 'right',
     },
-    'next',
+    'left',
   ),
   text: text('Text', 'Top'),
   url: text('URL', '#top'),
