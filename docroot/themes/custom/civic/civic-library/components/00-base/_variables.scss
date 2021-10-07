@@ -548,13 +548,13 @@ $civic-filter-chip-light-hover-background-color: map-get(map-merge($civic-defaul
 $civic-filter-chip-light-active-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
 $civic-filter-chip-light-active-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
 
-$civic-filter-chip-dark-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading-link') !default;
+$civic-filter-chip-dark-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_40') !default;
 $civic-filter-chip-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
 $civic-filter-chip-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
 $civic-filter-chip-dark-hover-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
 $civic-filter-chip-dark-hover-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
-$civic-filter-chip-dark-active-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
-$civic-filter-chip-dark-active-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-filter-chip-dark-active-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-filter-chip-dark-active-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
 
 // Next steps.
 $civic-next-steps-stripe-color:  map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
