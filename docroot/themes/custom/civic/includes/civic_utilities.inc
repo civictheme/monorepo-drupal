@@ -44,6 +44,34 @@ function _civic_media_image(MediaInterface $media) {
 function _civic_attributes(&$variables) {
   if (isset($variables['attributes'])) {
     $attributes = new Attribute($variables['attributes']);
-    $variables['modifier_class'] = implode(' ', $attributes->getClass()->value());
+    if ($classes = _civic_get_class_attributes($attributes)) {
+      $variables['modifier_class'] = $classes;
+    }
+
   }
+}
+
+/**
+ * @param \Drupal\Core\Template\Attribute $attributes
+ *
+ * @return string
+ *   Classes as a string
+ */
+function _civic_get_class_attributes(Attribute $attributes) {
+  if ($attributes->hasAttribute('class')) {
+    return implode(' ', $attributes->getClass()->value());
+  }
+  return false;
+}
+
+/**
+ * Get theme name from Paragraph Entity.
+ *
+ * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+ */
+function _civic_paragraph_get_theme(\Drupal\paragraphs\Entity\Paragraph $paragraph) {
+  if ($paragraph->hasField('field_c_p_theme') && !$paragraph->get('field_c_p_theme')->isEmpty()) {
+    return $paragraph->get('field_c_p_theme')->getString();
+  }
+  return false;
 }

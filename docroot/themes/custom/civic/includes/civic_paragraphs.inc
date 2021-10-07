@@ -115,8 +115,8 @@ function _civic_preprocess_paragraph_title(&$variables) {
 function _civic_preprocess_paragraph_theme(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_theme') && !$paragraph->get('field_c_p_theme')->isEmpty()) {
-    $variables['theme'] = $paragraph->get('field_c_p_theme')->getString();
+  if ($theme = _civic_paragraph_get_theme($paragraph)) {
+    $variables['theme'] = $theme;
   }
 }
 

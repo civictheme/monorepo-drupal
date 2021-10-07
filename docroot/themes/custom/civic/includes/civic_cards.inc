@@ -21,6 +21,7 @@ function _civic_preprocess_node__card(&$variables) {
   }
   $variables['title'] = $node->getTitle();
   _civic_attributes($variables);
+  _civic_preprocess_node__theme($variables);
 }
 
 /**
@@ -35,6 +36,23 @@ function _civic_preprocess_node__civic_card_event(&$variables) {
   _civic_preprocess_node__date($variables);
   _civic_preprocess_node__thumbnail($variables);
   _civic_preprocess_node__topics($variables);
+}
+
+/**
+ * Preprocess reference Theme fields for Civic Nodes.
+ *
+ * @SuppressWarnings(PHPMD)
+ */
+function _civic_preprocess_node__theme(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  if (isset($node->_referringItem)) {
+    /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+    $referring_paragraph = $node->_referringItem->getEntity();
+    if ($theme = _civic_paragraph_get_theme($referring_paragraph)) {
+      $variables['theme'] = $theme;
+    }
+  }
 }
 
 /**
