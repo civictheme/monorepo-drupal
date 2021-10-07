@@ -30,7 +30,9 @@
       {% for row in rows %}
         <tr>
           {% for item in row %}
-            <td data-title="{{ header[loop.index] }}">{{ item }}</td>
+            <td data-title="{{ header[loop.index] }}">
+              {{ item }}
+            </td>
           {% endfor %}
         </tr>
       {% endfor %}
