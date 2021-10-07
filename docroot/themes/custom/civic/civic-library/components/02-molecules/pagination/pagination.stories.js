@@ -1,4 +1,6 @@
-import { radios, text, object, boolean } from '@storybook/addon-knobs';
+import {
+  radios, text, object, boolean,
+} from '@storybook/addon-knobs';
 import CivicPagination from './pagination.twig';
 import './pagination.scss';
 
@@ -16,7 +18,7 @@ export const Pagination = () => {
         Dark: 'dark',
       },
       'light',
-      generalKnobTab
+      generalKnobTab,
     ),
     heading_id: text('Heading Id', 'civic-pager-demo', generalKnobTab),
     items: object('Pagination items', {
@@ -53,4 +55,4 @@ export const Pagination = () => {
     current: text('Current Page', 2, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   });
-}
+};
