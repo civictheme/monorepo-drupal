@@ -29,6 +29,7 @@ export const Button = () => {
         Link: 'link',
         Reset: 'reset',
         Submit: 'submit',
+        None: '',
       },
       'button',
       generalKnobTab,
@@ -38,6 +39,7 @@ export const Button = () => {
         Primary: 'primary',
         Secondary: 'secondary',
         Tertiary: 'tertiary',
+        None: '',
       },
       'primary',
       generalKnobTab,
@@ -47,6 +49,7 @@ export const Button = () => {
         Large: 'large',
         Regular: 'regular',
         Small: 'small',
+        None: '',
       },
       'regular',
       generalKnobTab,
@@ -56,6 +59,7 @@ export const Button = () => {
     new_window: boolean('Open in a new window (applies to button kind "link")', false, generalKnobTab),
     disabled: boolean('Disabled', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   const iconKnobTab = 'Icon';
