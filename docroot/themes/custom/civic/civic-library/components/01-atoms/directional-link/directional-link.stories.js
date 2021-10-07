@@ -28,6 +28,6 @@ export const DirectionalLink = () => CivicDirectionalLink({
   ),
   text: text('Text', 'Top'),
   url: text('URL', '#top'),
-  is_disabled: boolean('Is disabled', false),
+  disabled: boolean('Disabled', false),
   modifier_class: text('Additional class', ''),
 });
