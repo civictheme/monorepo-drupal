@@ -22,7 +22,7 @@
   back: 'arrows_leftarrow_2',
 } %}
 
-<a class="civic-directional-link {{ modifier_class }}" role="link"{% if not is_disabled %} href="{{ url }}"{% endif %}{% if is_disabled %} aria-disabled="true"{% endif %}>
+<a class="civic-directional-link {{ modifier_class }}" role="link"{% if not is_disabled %} href="{{ url }}"{% endif %}{% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}>
   {{ text }}
   {% if icons[direction] is defined %}
     {% include '@atoms/icon/icon.twig' with {
