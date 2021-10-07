@@ -42,6 +42,8 @@ function _civic_media_image(MediaInterface $media) {
  * @SuppressWarnings(PHPMD)
  */
 function _civic_attributes(&$variables) {
-  $attributes = new Attribute($variables['attributes']);
-  $variables['modifier_class'] = implode(' ', $attributes->getClass()->value());
+  if (isset($variables['attributes'])) {
+    $attributes = new Attribute($variables['attributes']);
+    $variables['modifier_class'] = implode(' ', $attributes->getClass()->value());
+  }
 }
