@@ -1,0 +1,54 @@
+{#
+/**
+ * @file Banner component.
+ *
+ * Available variables:
+ * - date: [string] formatted date.
+ * - background: Background image.
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - content: [string] Content for the banner.
+ * - section: [string] Section page belong to.
+ * - title: [string] The text of card title.
+ * - theme: [string] card theme: light, dark.
+ * - breadcrumb: [Boolean] Show/hide breadcrumb.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type_class = 'civic-banner--%s'|format(type|default('small')) %}
+{% set modifier_class = '%s %s'|format(theme_class, type_class) %}
+
+<div class="civic-banner {{ modifier_class }}">
+  {% if background.src is not empty %}
+    <div class="civic-banner__background">
+      <img src="{{ background.src }}" {% if background.alt is not empty %} alt="{{ background.alt }} {% endif %}">
+    </div>
+  {% endif %}
+
+  <div class="civic-banner__content">
+    {% if breadcrumb %}
+      <div class="civic-banner__breadcrumb">
+        {{ breadcrumb }}
+      </div>
+    {% endif %}
+
+    {% if section %}
+      <div class="civic-banner__section">
+        {{ section }}
+      </div>
+    {% endif %}
+
+    {% if title %}
+      <div class="civic-banner__title">
+        {{ title }}
+      </div>
+    {% endif %}
+
+    {% if content %}
+      <div class="civic-banner__summary">
+        {{ content }}
+      </div>
+    {% endif %}
+
+  </div>
+</div>

@@ -1,0 +1,33 @@
+//
+// Banner.
+//
+
+@import '../../00-base/base';
+
+.civic-banner {
+
+  position: relative;
+
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    padding: civic-space(4) 0 civic-space(8) 0;
+    min-height: rem(400px);
+
+    @include civic-breakpoint('m') {
+      padding-top: civic-space(7);
+    }
+  }
+}
