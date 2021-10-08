@@ -274,6 +274,10 @@ $civic-callout-dark-heading-color: map-get(map-merge($civic-default-colors, $civ
 $civic-callout-light-stripe-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary-accent') !default;
 $civic-callout-dark-stripe-color: $civic-callout-light-stripe-color !default;
 
+// Basic content
+$civic-basic-content-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_45') !default;
+$civic-basic-content-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+
 //
 // Attachment.
 //

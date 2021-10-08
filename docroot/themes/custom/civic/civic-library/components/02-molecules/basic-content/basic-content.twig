@@ -1,16 +1,18 @@
 {#
 /**
- * @file Basic Content Paragraph.
+ * @file
+ * Content Paragraph component.
  *
- * Available variables:
- * - content: [string] content to render.
+ * Variables:
+ * - theme: [string] theme: light, dark.
+ * - content: [string] Raw content.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
-{% if content is not empty %}
-  <div class="civic-event-card {{ theme_class }}">
-    {{ content | raw }}
-  </div>
-{% endif %}
+<div class="civic-basic-content {{ theme_class }}">
+  {% if content is not empty %}
+    {{ content|raw }}
+  {% endif %}
+</div>
