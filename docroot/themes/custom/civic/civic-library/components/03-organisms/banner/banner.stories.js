@@ -4,9 +4,6 @@ import CivicBannerExample from './banner.stories.twig';
 import CivicSearch from './search.twig';
 import CivicKeyLinks from './key-links.twig';
 import './banner.stories.scss';
-import './banner.scss';
-import './key-links.scss';
-import './search.scss';
 import bgImage from '../../../assets/banner-background.png';
 
 export default {
