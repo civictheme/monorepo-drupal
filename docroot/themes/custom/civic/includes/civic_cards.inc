@@ -68,7 +68,7 @@ function _civic_preprocess_node__civic_card_navigation(&$variables) {
 }
 
 /**
- * Preprocess a Node for civic_promo_card view mode.
+ * Preprocess a Node for civic_subject view mode.
  *
  * @see civic_preprocess_node()
  *
@@ -78,6 +78,18 @@ function _civic_preprocess_node__civic_card_promo(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   $variables['date'] = \Drupal::service('date.formatter')->format($node->getCreatedTime(), 'civic_short_date');
+  _civic_preprocess_node__card($variables);
+  _civic_preprocess_node__thumbnail($variables);
+}
+
+/**
+ * Preprocess a Node for civic_card_subject view mode.
+ *
+ * @see civic_preprocess_node()
+ *
+ * @SuppressWarnings(PHPMD)
+ */
+function _civic_preprocess_node__civic_card_subject(&$variables) {
   _civic_preprocess_node__card($variables);
   _civic_preprocess_node__thumbnail($variables);
 }
