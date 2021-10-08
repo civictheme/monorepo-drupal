@@ -1,20 +1,21 @@
-<main class="civic-content" role="main">
+<main class="civic-content container" role="main">
   <a id="main-content" tabindex="-1"></a>
 
-  <div class="layout-content container">
-    {% block content %}
-      <div class="civic-content--content">
+  <div class="row">
+    {# Sidebar #}
+    {% if content_left %}
+      <aside class="col-m-3 civic-content--content-left" role="complementary">
+        {{ content_left }}
+      </aside>
+    {% endif %}
+
+    {# Content #}
+    {% set content_classes = (content_left is empty) or ( not content_left) ? ' col-m-12' : ' col-m-8 col-m-offset-1' %}
+    <section class="civic-content--main{{ content_classes }}">
+      <div class="civic-content">
         {{ content }}
       </div>
-    {% endblock %}
+    </section>
   </div>
-
-  {% if content_left %}
-    <aside class="civic-content--content-left" role="complementary">
-      {% block content_left %}
-        {{ content_left }}
-      {% endblock %}
-    </aside>
-  {% endif %}
 
 </main>
