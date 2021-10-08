@@ -34,4 +34,5 @@ export const Link = () => CivicLink({
   url: text('URL', 'http://example.com', linkTab),
   new_window: boolean('Open in a new window', false, linkTab),
   is_external: boolean('Link is external', false, linkTab),
+  attributes: text('Additional attributes', '', linkTab),
 });
