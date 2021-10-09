@@ -1,0 +1,35 @@
+//
+// Banner.
+//
+
+@import '../../00-base/base';
+
+.civic-banner {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: $civic-space * 12;
+  padding-bottom: $civic-space * 15;
+
+  &--light {
+    background-color: $civic-banner-light-background-color;
+  }
+
+  &--dark {
+    background-color: $civic-banner-dark-background-color;
+  }
+
+  &--decorative {
+    clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{civic-space(5)}), 0% 100%);
+
+    @include civic-breakpoint(m) {
+      clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{$civic-space * 11}), 0% 100%);
+    }
+  }
+
+  &__region {
+    &:not(:empty) {
+      margin-bottom: civic-space(6);
+    }
+  }
+}

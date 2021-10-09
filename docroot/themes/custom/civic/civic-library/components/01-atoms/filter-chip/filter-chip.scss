@@ -25,7 +25,7 @@
       padding: civic-space(1) civic-space(2);
       display: block;
     }
-    
+
     &:focus + span {
       @include civic-outline(1);
     }
@@ -59,13 +59,13 @@
         color: $civic-filter-chip-dark-color;
 
         &:hover {
-          background-color: $civic-filter-chip-dark-hover-background-color;
-          color: $civic-filter-chip-dark-hover-color;
+          border: solid  1px $civic-filter-chip-dark-hover-background-color;
         }
       }
       &:checked + span {
         &, &:focus {
           background-color: $civic-filter-chip-dark-active-background-color;
+          border-color: $civic-filter-chip-dark-active-color;
           color: $civic-filter-chip-dark-active-color;
         }
       }
