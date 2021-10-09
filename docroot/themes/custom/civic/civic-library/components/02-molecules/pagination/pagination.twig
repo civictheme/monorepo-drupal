@@ -21,6 +21,23 @@
   <nav class="civic-pager {{ modifier_class }}" role="navigation" aria-labelledby="{{ heading_id }}">
     <h4 id="{{ heading_id }}" class="visually-hidden">{{ 'Pagination' }}</h4>
     <ul class="civic-pager__items">
+      {# Print previous item. #}
+      <li class="civic-pager__item civic-pager__item--previous">
+        {% include '@atoms/directional-link/directional-link.twig' with {
+          theme: theme,
+          text: items.previous.text|default('Previous'),
+          title: 'Go to previous page',
+          context: 'Previous page',
+          url: items.previous.href,
+          disabled: items.previous ? 0 : 1,
+          direction: 'left',
+        } only %}
+      </li>
+
+      {# Add an ellipsis if there are further previous pages. #}
+      {% if ellipses.previous %}
+        <li class="civic-pager__item civic-pager__item--ellipsis" role="presentation">&hellip;</li>
+      {% endif %}
       {# Print first item if we are not on the first page. #}
       {% if items.first %}
         <li class="civic-pager__item civic-pager__item--first">
@@ -33,24 +50,6 @@
             direction: 'left',
           } only %}
         </li>
-      {% endif %}
-
-      {# Print previous item. #}
-      <li class="civic-pager__item civic-pager__item--previous">
-        {% include '@atoms/directional-link/directional-link.twig' with {
-          theme: theme,
-          text: items.previous.text|default('Previous'),
-          title: 'Go to previous page',
-          context: 'Previous page',
-          url: items.previous.href,
-          disabled: items.previous ? 1 : 0,
-          direction: 'left',
-        } only %}
-      </li>
-
-      {# Add an ellipsis if there are further previous pages. #}
-      {% if ellipses.previous %}
-        <li class="civic-pager__item civic-pager__item--ellipsis" role="presentation">&hellip;</li>
       {% endif %}
 
       {# Now generate the actual pager piece. #}
