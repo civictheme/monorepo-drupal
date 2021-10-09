@@ -2,35 +2,37 @@
 
   {% block header %}
     {% include '@organisms/header/header.twig' with {
-      top: page.header_top,
-      logo: page.header_logo,
-      content: page.header_content,
-      bottom: page.header_bottom,
+      top: header_top,
+      logo: header_logo,
+      content: header_content,
+      bottom: header_bottom,
     } only %}
   {% endblock %}
 
   {% block banner %}
-    {{ page.banner }}
+    {{ banner }}
   {% endblock %}
 
-  {% block highlighted %}
-    {{ page.highlighted }}
-  {% endblock %}
+  <div class="container">
+    {% block highlighted %}
+      {{ highlighted }}
+    {% endblock %}
+  </div>
 
   {% block content %}
     {% include '@organisms/content/content.twig' with {
-      content: page.content,
-      content_left: page.content_left,
+      content: content,
+      content_left: content_left,
     } only %}
   {% endblock %}
 
   {% block footer %}
     {% include '@organisms/footer/footer.twig' with {
-      top_left: page.footer_top_left,
-      top_right: page.footer_top_right,
-      middle: page.footer_middle,
-      bottom_left: page.footer_bottom_left,
-      bottom_right: page.footer_bottom_right,
+      top_left: footer_top_left,
+      top_right: footer_top_right,
+      middle: footer_middle,
+      bottom_left: footer_bottom_left,
+      bottom_right: footer_bottom_right,
     } only %}
   {% endblock %}
 </div>
