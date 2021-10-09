@@ -1,59 +1,46 @@
-import { boolean, radios, text } from '@storybook/addon-knobs';
+import {
+  boolean,
+  radios,
+  text,
+} from '@storybook/addon-knobs';
 import CivicTable from './table.twig';
+import './table.scss';
 
 /**
  * Storybook Definition.
  */
 export default {
   title: 'Atom/Table',
-  component: CivicTable,
 };
 
-export const Table = (args) => CivicTable({
-  ...args,
-  props: [
-    'Header',
-    'Rows',
-    'Striped',
-  ],
-  theme: radios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-  ),
-  heading: text('Heading', 'This is table heading'),
-  striped: boolean('Striped', true),
-  caption: text('Caption', 'Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.'),
-});
+export const Table = () => {
+  const generalKnobTab = 'General';
 
-// Table controls.
-Table.args = {
-  header: [
+  // Table controls.
+  const header = [
     'Header 1',
     'Header 2',
     'Header 3',
-  ],
-  rows: [
+  ];
+
+  const rows = [
     [
-      'Row 1',
+      "<a class='civic-link' href='#' title='Row 4 with link'>Row 4 with link</a>",
       'Information about something',
       'And this is important',
     ],
     [
-      'Row 2',
+      "<a class='civic-link' href='#' title='Row 4 with link'>Row 4 with link</a>",
       'Information about something',
       'And this is important',
     ],
     [
-      'Row 3',
+      "<a class='civic-link' href='#' title='Row 4 with link'>Row 4 with link</a>",
       'Information about something',
       'And this is important',
     ],
     [
-      'Row 4',
+      "<a class='civic-link' href='#' title='Row 4 with link'>Row 4 with link</a>",
       'Information about something',
       'And this is important',
     ],
@@ -62,5 +49,22 @@ Table.args = {
       'Information about something',
       'And this is important',
     ],
-  ],
+  ];
+
+  return CivicTable({
+    theme: radios(
+      'Theme',
+      {
+        Light: 'light',
+        Dark: 'dark',
+      },
+      'light',
+      generalKnobTab,
+    ),
+    heading: text('Heading', 'This is table heading', generalKnobTab),
+    striped: boolean('Striped', true, generalKnobTab),
+    caption: text('Caption', 'Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.', generalKnobTab),
+    header,
+    rows,
+  });
 };
