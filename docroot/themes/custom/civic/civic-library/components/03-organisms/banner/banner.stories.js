@@ -1,8 +1,9 @@
-import { text, boolean, radios, object } from '@storybook/addon-knobs';
+import {
+  text, boolean, radios,
+} from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
 import CivicBannerExample from './banner.stories.twig';
 import CivicSearch from './search.twig';
-import CivicKeyLinks from './key-links.twig';
 import './banner.stories.scss';
 import bgImage from '../../../assets/banner-background.png';
 
@@ -73,34 +74,6 @@ export const Search = () => {
   };
 
   return CivicSearch({
-    ...generalKnobs
-  });
-};
-
-export const KeyLinks = () => {
-  const generalKnobTab = 'General';
-
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    title: text('Title', 'Key links', generalKnobTab),
-    key_links: object('Key links', [
-      { title: 'Key link 1', url: 'http://example.com' },
-      { title: 'Key link 2', url: 'http://example.com' },
-      { title: 'Key link 3', url: 'http://example.com' },
-      { title: 'Key link 4', url: 'http://example.com' },
-      { title: 'Key link 5', url: 'http://example.com' },
-    ], generalKnobTab)
-  };
-
-  return CivicKeyLinks({
-    ...generalKnobs
+    ...generalKnobs,
   });
 };
