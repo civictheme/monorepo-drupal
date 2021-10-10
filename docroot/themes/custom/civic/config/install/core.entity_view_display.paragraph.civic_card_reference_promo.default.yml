@@ -16,8 +16,8 @@ content:
     weight: 1
     label: hidden
     settings:
-      link: true
-      view_mode: default
+      view_mode: civic_card_promo
+      link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content

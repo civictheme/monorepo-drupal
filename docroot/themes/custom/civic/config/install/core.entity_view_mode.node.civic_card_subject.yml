@@ -3,7 +3,7 @@ status: true
 dependencies:
   module:
     - node
-id: node.civic_card_navigation
-label: 'Navigation card'
+id: node.civic_card_subject
+label: 'Subject'
 targetEntityType: node
 cache: true

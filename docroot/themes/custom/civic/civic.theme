@@ -11,6 +11,7 @@ require_once 'includes/civic_pages.inc';
 require_once 'includes/civic_paragraphs.inc';
 require_once 'includes/civic_utilities.inc';
 require_once 'includes/civic_views.inc';
+require_once 'includes/civic_nodes.inc';
 
 // @todo Remove before release 1.
 if (file_exists('includes/styleguide.inc')) {

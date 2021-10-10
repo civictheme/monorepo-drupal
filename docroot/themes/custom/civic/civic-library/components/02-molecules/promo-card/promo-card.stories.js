@@ -49,11 +49,11 @@ export const PromoCard = () => {
   // Adding dynamic promo card tags.
   const tagKnobTab = 'Tags';
   const tagNum = number(
-    'Number of tags (1-4)',
+    'Number of tags (0-4)',
     1,
     {
       range: true,
-      min: 1,
+      min: 0,
       max: 4,
       step: 1,
     },
