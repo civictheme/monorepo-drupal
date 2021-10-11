@@ -60,7 +60,7 @@ export const MainMenu = () => {
 
   const links = [
     {
-      text: 'About us',
+      title: 'About us',
       url: '#',
       below: [
         {

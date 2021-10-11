@@ -83,7 +83,7 @@ function civic_preprocess_block(&$variables) {
   // Add classes to all bocks in footer region.
   $block = Block::load($variables['elements']['#id']);
   $region = $block->getRegion();
-  if($region == 'footer_middle') {
+  if ($region == 'footer_middle') {
     $variables['attributes']['class'][] = 'col-xs-12 col-m-3';
   }
 }
@@ -148,12 +148,11 @@ function civic_theme_preprocess_pager(&$variables) {
   }
 }
 
-
 /**
  * Implements hook_preprocess_region().
  */
 function civic_preprocess_region(&$variables) {
-  if($variables['region'] == 'footer_middle') {
+  if ($variables['region'] == 'footer_middle') {
     $variables['attributes']['class'][] = 'row';
   }
 }

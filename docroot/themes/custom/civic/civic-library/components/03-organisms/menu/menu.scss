@@ -7,4 +7,12 @@
   &--main {
     display: flex;
   }
+
+  &__sub-menu {
+    margin-top: civic-space(2);
+  }
+
+  &__item {
+    margin-bottom: civic-space(2);
+  }
 }
