@@ -156,7 +156,6 @@ function _civic_preprocess_civic_banner_node(&$variables) {
     $variables['decorative'] = TRUE;
     $variables['type'] = CIVIC_BANNER_TYPE_LARGE;
   }
-  $variables['decorative'] = TRUE;
 
   // Banner background.
   if ($node->hasField('field_c_n_banner_background') && !$node->get('field_c_n_banner_background')->isEmpty()) {
