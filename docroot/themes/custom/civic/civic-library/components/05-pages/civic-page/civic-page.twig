@@ -16,9 +16,9 @@
 {% extends '@templates/page.twig' %}
 
 {% block content %}
-  <article class="civic-page {{ modifier_class }}">
-    {% if components is not empty %}
+  {% if components is not empty %}
+    <article class="civic-page {{ modifier_class }}">
       {{ components }}
-    {% endif %}
-  </article>
+    </article>
+  {% endif %}
 {% endblock %}
