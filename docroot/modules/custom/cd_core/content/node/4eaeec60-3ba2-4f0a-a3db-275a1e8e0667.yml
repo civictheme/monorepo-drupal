@@ -38,6 +38,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_n_banner_type:
+    -
+      value: default
   field_c_n_components:
     -
       entity:
@@ -103,9 +106,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_reference:
                     -
                       entity: 32e84de2-85db-425c-88e9-b311ba69e352
@@ -118,6 +118,16 @@ default:
           field_c_p_fill_width:
             -
               value: true
+          field_c_p_footer_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_header_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
           field_c_p_title:
             -
               value: 'Card container'

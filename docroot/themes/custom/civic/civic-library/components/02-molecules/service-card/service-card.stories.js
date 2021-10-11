@@ -55,11 +55,13 @@ export const ServiceCard = () => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicServiceCard({
+  const html = CivicServiceCard({
     ...generalKnobs,
     ...getSlots([
       'content_top',
       'content_bottom',
     ]),
   });
+
+  return `<div class="story-wrapper-size--small">${html}</div>`;
 };

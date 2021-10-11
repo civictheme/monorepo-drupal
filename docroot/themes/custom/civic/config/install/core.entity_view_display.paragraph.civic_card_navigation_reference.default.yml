@@ -14,7 +14,7 @@ mode: default
 content:
   field_c_p_reference:
     weight: 1
-    label: above
+    label: hidden
     settings:
       view_mode: civic_card_navigation
       link: false
@@ -23,7 +23,7 @@ content:
     region: content
   field_c_p_theme:
     weight: 0
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default

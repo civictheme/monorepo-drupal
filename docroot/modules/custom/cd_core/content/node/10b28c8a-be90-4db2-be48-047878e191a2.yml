@@ -60,9 +60,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_content:
             -
               value: "<p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.</p>\r\n"
@@ -114,9 +111,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_reference:
                     -
                       entity: 5c23a0bd-3ee8-4608-bdec-b396f0be3c7d
@@ -144,9 +138,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_reference:
                     -
                       entity: e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e
@@ -174,9 +165,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_reference:
                     -
                       entity: 5c23a0bd-3ee8-4608-bdec-b396f0be3c7d
@@ -192,6 +180,16 @@ default:
           field_c_p_fill_width:
             -
               value: true
+          field_c_p_footer_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_header_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
           field_c_p_title:
             -
               value: 'Card container'

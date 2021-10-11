@@ -66,6 +66,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_cards:
             -
               entity:
@@ -127,6 +130,16 @@ default:
           field_c_p_fill_width:
             -
               value: false
+          field_c_p_footer_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_header_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
           field_c_p_title:
             -
               value: 'Card container'

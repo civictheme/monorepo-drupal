@@ -93,6 +93,9 @@ config_devel:
     - core.entity_view_display.node.civic_event.civic_card_promo
     - core.entity_view_display.node.civic_event.default
     - core.entity_view_display.node.civic_event.teaser
+    - core.entity_view_display.node.civic_event.civic_card_subject
+    - core.entity_view_display.node.civic_page.civic_card_subject
+    - core.entity_view_mode.node.civic_card_subject
     - core.entity_view_display.node.civic_page.civic_card_navigation
     - core.entity_view_display.node.civic_page.civic_card_promo
     - core.entity_view_display.node.civic_page.default
@@ -161,7 +164,8 @@ config_devel:
     - field.field.paragraph.civic_card_container.field_c_p_cards
     - field.field.paragraph.civic_card_container.field_c_p_column_count
     - field.field.paragraph.civic_card_container.field_c_p_fill_width
-    - field.field.paragraph.civic_card_container.field_c_p_link
+    - field.field.paragraph.civic_card_container.field_c_p_header_link
+    - field.field.paragraph.civic_card_container.field_c_p_footer_link
     - field.field.paragraph.civic_card_container.field_c_p_title
     - field.field.paragraph.civic_card_event.field_c_p_date
     - field.field.paragraph.civic_card_event.field_c_p_image
@@ -261,6 +265,8 @@ config_devel:
     - field.storage.paragraph.field_c_p_image
     - field.storage.paragraph.field_c_p_image_position
     - field.storage.paragraph.field_c_p_link
+    - field.storage.paragraph.field_c_p_header_link
+    - field.storage.paragraph.field_c_p_footer_link
     - field.storage.paragraph.field_c_p_links
     - field.storage.paragraph.field_c_p_panels
     - field.storage.paragraph.field_c_p_reference

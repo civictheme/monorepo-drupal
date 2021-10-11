@@ -7,7 +7,6 @@
 .civic-breadcrumbs {
   $root: &;
   @include civic-typography('label-tag');
-  border-bottom: solid rem(1px) $civic-breadcrumbs-border-color;
 
   &__links {
     list-style: none;
@@ -15,7 +14,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    padding: civic-space(2);
+    padding: 0;
 
     &--link {
       margin-right: civic-space();
@@ -69,12 +68,10 @@
   }
 
   &.civic-theme-light {
-    background-color: $civic-breadcrumbs-light-background-color;
     color: $civic-breadcrumbs-light-color;
   }
 
   &.civic-theme-dark {
-    background-color: $civic-breadcrumbs-dark-background-color;
     color: $civic-breadcrumbs-dark-color;
   }
 }

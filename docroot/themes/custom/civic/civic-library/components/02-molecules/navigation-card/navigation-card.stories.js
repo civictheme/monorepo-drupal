@@ -52,7 +52,7 @@ export const NavigationCard = () => {
     icon: withIcon ? select('Icon', icons, 'business_calendar', iconKnobTab) : null,
   };
 
-  return CivicNavigationCard({
+  const html = CivicNavigationCard({
     ...generalKnobs,
     ...iconKnobs,
     ...getSlots([
@@ -62,4 +62,6 @@ export const NavigationCard = () => {
       'content_bottom',
     ]),
   });
+
+  return `<div class="story-wrapper-size--medium">${html}</div>`;
 };
