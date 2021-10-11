@@ -47,8 +47,10 @@ export const Accordion = () => {
     panels,
   };
 
-  return CivicAccordion({
+  const html = CivicAccordion({
     ...generalKnobs,
     ...panelKnobs,
   });
+
+  return `<div class="story-wrapper-size--medium">${html}</div>`;
 };

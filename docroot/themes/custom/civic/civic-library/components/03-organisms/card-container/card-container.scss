@@ -4,6 +4,18 @@
 @import '../../00-base/base';
 
 .civic-card-container {
+  $root: &;
+
+  padding-top: civic-space(6);
+  padding-bottom: civic-space(6);
+
+  &--fill-width {
+    [class*="col-"] {
+      max-width: 100%;
+      flex-grow: 1;
+    }
+  }
+
   &__header {
     display: flex;
     flex-direction: column;
@@ -11,23 +23,60 @@
       flex-direction: row;
     }
   }
-  &__heading {
+
+  &__header__heading {
     @include civic-typography('heading-3');
     @include civic-breakpoint('m') {
       margin-right: auto;
     }
   }
-  &__link {
+
+  &__header__link {
     @include civic-typography('label-regular');
     @include civic-breakpoint('m') {
       align-self: center;
       margin-left: auto;
     }
   }
+
   &__cards {
 
   }
+
   &__card {
     margin-top: civic-space(3)
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    @include civic-breakpoint('m') {
+      flex-direction: row;
+    }
+  }
+
+  &__footer__link {
+    margin-top: civic-space(4);
+    @include civic-typography('label-regular');
+    @include civic-breakpoint('m') {
+      align-self: center;
+      margin-left: auto;
+    }
+  }
+
+  &.civic-theme-light {
+    background-color: $civic-card-container-light-background;
+
+    #{$root}__header__heading {
+      color: $civic-card-container-light-heading-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-card-container-dark-background;
+
+    #{$root}__header__heading {
+      color: $civic-card-container-dark-heading-color;
+    }
   }
 }
