@@ -14,7 +14,7 @@
 }
 
 @mixin civic-button-type($type) {
-  $types: ('primary', 'neutral', 'tertiary');
+  $types: ('primary', 'secondary', 'tertiary');
 
   @if not index($types, $type) {
     @error '"#{$type}" is not one of allowed #{$types}.';
@@ -215,7 +215,7 @@
   }
 
   &--secondary {
-    @include civic-button-type('neutral');
+    @include civic-button-type('secondary');
   }
 
   &--tertiary {

@@ -33,7 +33,7 @@ export const Callout = () => {
           'Type',
           {
             Primary: 'primary',
-            Secondary: 'neutral',
+            Secondary: 'secondary',
             Tertiary: 'tertiary',
           },
           'primary',
@@ -56,7 +56,7 @@ export const Callout = () => {
         type: radios(
           'Type', {
             Primary: 'primary',
-            Secondary: 'neutral',
+            Secondary: 'secondary',
             Tertiary: 'tertiary',
           },
           'neutral',

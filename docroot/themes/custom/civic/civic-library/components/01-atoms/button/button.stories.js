@@ -37,7 +37,7 @@ export const Button = () => {
     type: radios(
       'Type', {
         Primary: 'primary',
-        Secondary: 'neutral',
+        Secondary: 'secondary',
         Tertiary: 'tertiary',
         None: '',
       },
