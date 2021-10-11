@@ -1,107 +1,131 @@
 {% set bgImage = backgroundImage ? 'style="background-image: url(' ~ backgroundImage ~ ')"' : null %}
 
 {% set classes = ['civic-banner'] %}
-{% set classes = decorative ? classes|merge(['civic-banner--decorative']) : classes %}
 {% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
 {% set theme_class = 'civic-banner--%s'|format(theme|default('light')) %}
 {% set classes = classes|merge([theme_class]) %}
 
-<div class="{{ classes|join(' ') }}" {{ bgImage|raw }}>
-  <div class="container">
-    {% if content_top is not empty %}
-      <div class="row">
-        <div class="col-xs-12 col-m-8">
-          <div class="civic-banner__region">
-            {%- block content_top %}
-              {{- content_top -}}
-            {% endblock -%}
-          </div>
-        </div>
-      </div>
-    {% endif %}
+{% if content_top or breadcrumbs or content_top2 or content_top3 or content_middle or content or content_title or below_content %}
+  <div class="{{ classes|join(' ') }}">
+    <div class="civic-banner__inner{{ decorative ? ' civic-banner--decorative' }}" {{ bgImage|raw }}>
+      <div class="container">
+        {# Featured image required extra wrapper. #}
+        {% if featuredImage is not empty %}
+          <div class="row">
+            <div class="col-m-8">
+        {% endif %}
+        {# Featured image required extra wrapper. #}
 
-    {% if content_top2 is not empty or breadcrumbs is not empty %}
-      <div class="row">
-        {% if breadcrumbs is not empty %}
-          <div class="col-xs-12 col-m-6">
-          <div class="civic-banner__region">
-            {%- block breadcrumbs %}
-              {{- breadcrumbs -}}
-            {% endblock -%}
+          {% if content_top is not empty %}
+            <div class="row">
+              <div class="col-xs-12 col-m-8">
+                <div class="civic-banner__region">
+                  {%- block content_top %}
+                    {{- content_top -}}
+                  {% endblock -%}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if content_top2 is not empty or breadcrumbs is not empty %}
+            <div class="row">
+              {% if breadcrumbs is not empty %}
+                <div class="col-xs-12 col-m-6">
+                  <div class="civic-banner__region">
+                    {%- block breadcrumbs %}
+                      {{- breadcrumbs -}}
+                    {% endblock -%}
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if content_top2 is not empty %}
+                <div class="col-xs-12 col-m-6">
+                  <div class="civic-banner__region">
+                    {%- block content_top2 %}
+                      {{- content_top2 -}}
+                    {% endblock -%}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if content_top3 is not empty %}
+            <div class="row">
+              <div class="col-xs-12 col-m-8">
+                <div class="civic-banner__region">
+                  {%- block content_top3 %}
+                    {{- content_top3 -}}
+                  {% endblock -%}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if content_title is not empty %}
+            <div class="row">
+              <div class="col-xs-12 col-m-8">
+                <div class="civic-banner__region">
+                  {%- block content_title %}
+                    {{- content_title -}}
+                  {% endblock -%}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if content_middle is not empty %}
+            <div class="row">
+              <div class="col-xs-12 col-m-8">
+                <div class="civic-banner__region">
+                  {%- block content_middle %}
+                    {{- content_middle -}}
+                  {% endblock -%}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if content is not empty %}
+            <div class="row">
+              <div class="col-xs-12 col-m-8">
+                <div class="civic-banner__region">
+                  {%- block content %}
+                    {{- content -}}
+                  {% endblock -%}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if featuredImage is not empty %}
           </div>
         </div>
         {% endif %}
 
-        {% if content_top2 is not empty %}
-          <div class="col-xs-12 col-m-6">
+      </div>
+    </div>
+
+    <div class="civic-banner__featuredimage">
+      {{ featuredImage }}
+    </div>
+  </div>
+
+  {% if below_content is not empty %}
+    <div class="civic-banner__bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
             <div class="civic-banner__region">
-              {%- block content_top2 %}
-                {{- content_top2 -}}
+              {%- block below_content %}
+                {{- below_content -}}
               {% endblock -%}
             </div>
           </div>
-        {% endif %}
-      </div>
-    {% endif %}
-
-    {% if content_top3 is not empty %}
-      <div class="row">
-        <div class="col-xs-12 col-m-8">
-          <div class="civic-banner__region">
-            {%- block content_top3 %}
-              {{- content_top3 -}}
-            {% endblock -%}
-          </div>
         </div>
       </div>
-    {% endif %}
-
-    {% if content_title is not empty %}
-      <div class="row">
-        <div class="col-xs-12 col-m-8">
-          <div class="civic-banner__region">
-            {%- block content_title %}
-              {{- content_title -}}
-            {% endblock -%}
-          </div>
-        </div>
-      </div>
-    {% endif %}
-
-    {% if content_middle is not empty %}
-      <div class="row">
-        <div class="col-xs-12 col-m-8">
-          <div class="civic-banner__region">
-            {%- block content_middle %}
-              {{- content_middle -}}
-            {% endblock -%}
-          </div>
-        </div>
-      </div>
-    {% endif %}
-
-    {% if content is not empty %}
-      <div class="row">
-        <div class="col-xs-12 col-m-8">
-          <div class="civic-banner__region">
-            {%- block content %}
-              {{- content -}}
-            {% endblock -%}
-          </div>
-        </div>
-      </div>
-    {% endif %}
-
-    {% if below_content is not empty %}
-      <div class="row">
-        <div class="col-xs-12 col-m-8">
-          <div class="civic-banner__region">
-            {%- block below_content %}
-              {{- below_content -}}
-            {% endblock -%}
-          </div>
-        </div>
-      </div>
-    {% endif %}
-  </div>
-</div>
+    </div>
+  {% endif %}
+{% endif %}
