@@ -15,6 +15,7 @@ require_once 'paragraph--civic_card_subject.inc';
 require_once 'paragraph--civic_card_task.inc';
 require_once 'paragraph--civic_quick_links.inc';
 require_once 'paragraph--civic_service_card.inc';
+require_once 'paragraph--civic_content.inc';
 
 require_once 'paragraph--civic_accordion.inc';
 
@@ -114,8 +115,8 @@ function _civic_preprocess_paragraph_title(&$variables) {
 function _civic_preprocess_paragraph_theme(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_theme') && !$paragraph->get('field_c_p_theme')->isEmpty()) {
-    $variables['theme'] = $paragraph->get('field_c_p_theme')->getString();
+  if ($theme = _civic_paragraph_get_theme($paragraph)) {
+    $variables['theme'] = $theme;
   }
 }
 
@@ -157,6 +158,7 @@ function _civic_preprocess_paragraph_card__image(&$variables) {
 function _civic_get_card_types() {
   // @todo extend to allow for child theme - implement as theme setting.
   return [
+    'civic_card_container',
     'civic_card_task',
     'civic_card_event_reference',
     'civic_card_event',

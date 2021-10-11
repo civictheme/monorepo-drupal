@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Content Paragraph component.
+ *
+ * Variables:
+ * - theme: [string] theme: light, dark.
+ * - content: [string] Raw content.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+
+<div class="civic-basic-content {{ theme_class }}">
+  {% if content is not empty %}
+    {{ content|raw }}
+  {% endif %}
+</div>

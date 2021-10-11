@@ -4,7 +4,6 @@ dependencies:
   config:
     - field.storage.paragraph.field_c_p_reference
     - node.type.civic_event
-    - node.type.civic_page
     - paragraphs.paragraphs_type.civic_card_event_reference
 id: paragraph.civic_card_event_reference.field_c_p_reference
 field_name: field_c_p_reference
@@ -21,7 +20,6 @@ settings:
   handler_settings:
     target_bundles:
       civic_event: civic_event
-      civic_page: civic_page
     sort:
       field: _none
       direction: ASC

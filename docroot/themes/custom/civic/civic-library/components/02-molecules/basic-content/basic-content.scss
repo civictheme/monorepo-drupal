@@ -1,0 +1,15 @@
+//
+// Content.
+//
+
+@import '../../00-base/base';
+
+.civic-basic-content {
+  padding: civic-space();
+  @include civic-typography(body);
+
+  &.civic-theme-dark {
+    background-color: $civic-basic-content-dark-background-color;
+    color: $civic-basic-content-dark-heading-color;
+  }
+}
