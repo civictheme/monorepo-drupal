@@ -164,7 +164,8 @@ config_devel:
     - field.field.paragraph.civic_card_container.field_c_p_cards
     - field.field.paragraph.civic_card_container.field_c_p_column_count
     - field.field.paragraph.civic_card_container.field_c_p_fill_width
-    - field.field.paragraph.civic_card_container.field_c_p_link
+    - field.field.paragraph.civic_card_container.field_c_p_header_link
+    - field.field.paragraph.civic_card_container.field_c_p_footer_link
     - field.field.paragraph.civic_card_container.field_c_p_title
     - field.field.paragraph.civic_card_event.field_c_p_date
     - field.field.paragraph.civic_card_event.field_c_p_image
