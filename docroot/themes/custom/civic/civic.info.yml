@@ -125,6 +125,7 @@ config_devel:
     - core.entity_view_mode.node.civic_card_navigation
     - core.entity_view_mode.node.civic_card_promo
     - field.field.block_content.civic_banner.field_c_b_theme
+    - field.field.block_content.civic_banner.field_c_b_background_image
     - field.field.block_content.civic_component_block.field_c_b_components
     - field.field.media.icon.field_c_m_icon
     - field.field.node.civic_event.field_c_n_attachments
@@ -236,6 +237,7 @@ config_devel:
     - field.field.paragraph.civic_slider_slide.field_c_p_topic
     - field.storage.block_content.field_c_b_components
     - field.storage.block_content.field_c_b_theme
+    - field.storage.block_content.field_c_b_background_image
     - field.storage.media.field_c_m_icon
     - field.storage.node.field_c_n_attachments
     - field.storage.node.field_c_n_banner_background

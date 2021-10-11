@@ -70,10 +70,9 @@ function _civic_preprocess_civic_banner(&$variables) {
     $variables['theme'] = strtolower($entity->get('field_c_b_theme')->getString());
   }
 
-  // Deafult banner background.
-  $default_banner_background = theme_get_setting('civic_banner_background_image');
-  if (!empty($default_banner_background)) {
-    $variables['backgroundImage'] = file_url_transform_relative(file_create_url($default_banner_background));
+  // Default banner background.
+  if ($entity->hasField('field_c_b_background_image') && !$entity->get('field_c_b_background_image')->isEmpty()) {
+    $variables['backgroundImage'] = _civic_media_image_url($entity, 'field_c_b_background_image');
   }
 
   _civic_preprocess_civic_banner_title($variables);
@@ -159,8 +158,7 @@ function _civic_preprocess_civic_banner_node(&$variables) {
 
   // Banner background.
   if ($node->hasField('field_c_n_banner_background') && !$node->get('field_c_n_banner_background')->isEmpty()) {
-    $file_url = $node->get('field_c_n_banner_background')->first()->entity->field_media_image->entity->getFileUri();
-    $variables['backgroundImage'] = file_create_url($file_url);
+    $variables['backgroundImage'] = _civic_media_image_url($node, 'field_c_n_banner_background');
   }
 
   // Featured Banner image.

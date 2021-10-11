@@ -5,6 +5,7 @@
  * Theme utility functions.
  */
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
@@ -77,5 +78,31 @@ function _civic_paragraph_get_theme(Paragraph $paragraph) {
   if ($paragraph->hasField('field_c_p_theme') && !$paragraph->get('field_c_p_theme')->isEmpty()) {
     return $paragraph->get('field_c_p_theme')->getString();
   }
+  return FALSE;
+}
+
+/**
+ * Process media to generate image array for twig.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   Entity to get media image url.
+ * @param string $field_name
+ *   Field name.
+ *
+ * @return string
+ *   Image URL or false if not available.
+ */
+function _civic_media_image_url(EntityInterface $entity, string $field_name) {
+  if ($entity->hasField($field_name) && !$entity->get($field_name)->isEmpty()) {
+    $media = $entity->get($field_name)->first()->entity;
+    if ($media) {
+      $fid = $media->getSource()->getSourceFieldValue($media);
+      $file = File::load($fid);
+      if ($file) {
+        return file_create_url($file->createFileUrl());
+      }
+    }
+  }
+
   return FALSE;
 }
