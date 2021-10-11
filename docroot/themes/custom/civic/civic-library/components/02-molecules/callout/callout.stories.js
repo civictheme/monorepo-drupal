@@ -59,7 +59,7 @@ export const Callout = () => {
             Secondary: 'secondary',
             Tertiary: 'tertiary',
           },
-          'neutral',
+          'secondary',
           'CTA 2',
         ),
         size: radios(
