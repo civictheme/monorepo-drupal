@@ -117,7 +117,7 @@ function civic_theme_preprocess_pager(&$variables) {
 }
 
 /**
- * Implements HOOK_preprocess_breadcrumb().
+ * Implements template_preprocess_civic_breadcrumb().
  */
 function civic_preprocess_civic_breadcrumb(&$variables) {
   if (!empty($variables['display_theme'])) {
