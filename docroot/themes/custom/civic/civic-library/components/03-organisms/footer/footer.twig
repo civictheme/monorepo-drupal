@@ -1,14 +1,15 @@
-
+{% set classes = ['civic-footer'] %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set classes = classes|merge([theme_class]) %}
 
-<footer class="civic-footer {{ theme_class }}" role="contentinfo" data-component-name="civic-footer">
+<footer class="{{ classes|join(' ') }}" role="contentinfo" data-component-name="civic-footer">
   <div class="container">
-    <div class="civic-footer__top">
+    <div class="civic-footer__top civic-footer__region">
       <div class="row">
-      
-        <div class="col-m-4 civic-footer__col">
+
+        <div class="col-m-3">
           {% block logo %}
-            {% if logo.src is not empty %}
+            {% if logo is not empty %}
               <div class="civic-footer__logo">
                 {{ logo }}
               </div>
@@ -16,7 +17,7 @@
           {% endblock %}
         </div>
 
-        <div class="col-m-4 civic-footer__col">
+        <div class="col-m-3">
           {% block top_left %}
             <div class="civic-footer__top--left">
               {{ top_left }}
@@ -24,7 +25,7 @@
           {% endblock %}
         </div>
 
-        <div class="col-m-4 civic-footer__col">
+        <div class="col-m-3 col-m-offset-3">
           {% block top_right %}
             <div class="civic-footer__top--right">
               {{ top_right }}
@@ -34,32 +35,17 @@
       </div>
     </div>
 
-      
-    <div class="civic-footer__middle">
-      <div class="row">
 
-        <div class="col-m-4 civic-footer__col">
-          {% block middle_left %}
-              <div class="civic-footer__middle--left">
-                {{ middle_left }}
-              </div>
-          {% endblock %}
-        </div>
-          
-        <div class="col-m-8 civic-footer__col">
-          {% block middle_right %}
-            <div class="civic-footer__middle--right">
-              {{ middle_right }}
-            </div>
-          {% endblock %}
-        </div>
+    {% block middle %}
+      <div class="civic-footer__middle civic-footer__region">
+        {{ middle }}
       </div>
-    </div>
+    {% endblock %}
 
-    <div class="civic-footer__bottom">
+    <div class="civic-footer__bottom civic-footer__region">
       <div class="row">
 
-        <div class="col-m-7 civic-footer__col">
+        <div class="col-m-7">
           {% block bottom_left %}
             <div class="civic-footer__bottom--left">
               {{ bottom_left }}
@@ -67,7 +53,7 @@
           {% endblock %}
         </div>
 
-        <div class="col-m-5 civic-footer__col">
+        <div class="col-m-3 col-m-offset-2">
           {% block bottom_right %}
             <div class="civic-footer__bottom--right">
               {{ bottom_right }}

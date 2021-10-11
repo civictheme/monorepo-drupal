@@ -1,0 +1,10 @@
+.civic-menu {
+  $root: &;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &--main {
+    display: flex;
+  }
+}

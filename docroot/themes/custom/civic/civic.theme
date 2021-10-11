@@ -5,6 +5,8 @@
  * Functions to support theming in the Civic theme.
  */
 
+use Drupal\block\Entity\Block;
+
 require_once 'includes/civic_banner.inc';
 require_once 'includes/civic_cards.inc';
 require_once 'includes/civic_pages.inc';
@@ -27,6 +29,29 @@ function civic_preprocess_page(&$variables) {
     return strpos($key, '#') !== 0;
   }, ARRAY_FILTER_USE_KEY);
   $variables += $regions;
+
+  // Footer logo.
+  $footer_logo_desktop = theme_get_setting('civic_footer_logo_desktop');
+  if (!empty($footer_logo_desktop)) {
+    $variables['footer_logo']['desktop'] = [
+      '#theme' => 'image',
+      '#uri' => file_url_transform_relative(file_create_url($footer_logo_desktop)),
+      '#attributes' => [
+        'class' => 'footer-logo--desktop',
+      ],
+    ];
+  }
+  // Mobile.
+  $footer_logo_mobile = theme_get_setting('civic_footer_logo_mobile');
+  if (!empty($footer_logo_mobile)) {
+    $variables['footer_logo']['mobile'] = [
+      '#theme' => 'image',
+      '#uri' => file_url_transform_relative(file_create_url($footer_logo_mobile)),
+      '#attributes' => [
+        'class' => 'footer-logo--mobile',
+      ],
+    ];
+  }
 }
 
 /**
@@ -54,6 +79,13 @@ function civic_preprocess_block(&$variables) {
   // @todo Build theme suggestion system.
   $variables['component'] = '@civic/block/block.twig';
   _civic_preprocess_civic_banner($variables);
+
+  // Add classes to all bocks in footer region.
+  $block = Block::load($variables['elements']['#id']);
+  $region = $block->getRegion();
+  if($region == 'footer_middle') {
+    $variables['attributes']['class'][] = 'col-xs-12 col-m-3';
+  }
 }
 
 /**
@@ -102,7 +134,6 @@ function civic_theme_suggestions_block_alter(array &$suggestions, array $variabl
  * Implements template_preprocess_pager().
  */
 function civic_theme_preprocess_pager(&$variables) {
-  print_r("ok");
   if (isset($variables['items']['first']['text'])) {
     $variables['items']['first']['text'] = t('First');
   }
@@ -114,5 +145,15 @@ function civic_theme_preprocess_pager(&$variables) {
   }
   if (isset($variables['items']['next']['text'])) {
     $variables['items']['next']['text'] = t('Next');
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_region().
+ */
+function civic_preprocess_region(&$variables) {
+  if($variables['region'] == 'footer_middle') {
+    $variables['attributes']['class'][] = 'row';
   }
 }

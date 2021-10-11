@@ -139,6 +139,7 @@ $civic-icon-sizes: (
   'link-large': (
     'xs': (40px, 40px),
     'm': (48px, 48px),
+  ),
   'extra-large': (
     'xs': (48px, 48px),
     'm': (64px, 64px),
@@ -654,8 +655,11 @@ $civic-pagination-dark-link-active-border-color: map-get(map-merge($civic-defaul
 //
 // Footer
 //
-$civic-footer-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_80') !default;
+$civic-footer-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
+$civic-footer-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
 $civic-footer-light-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_40') !default;
+
 $civic-footer-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-footer-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
 $civic-footer-dark-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
 $civic-footer-dark-mobile-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_15') !default;
