@@ -13,7 +13,6 @@ export default {
 };
 
 export const SocialLinks = () => {
-
   const socialLinks = [
     {
       symbol: 'brands_facebook',

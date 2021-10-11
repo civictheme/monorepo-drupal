@@ -10,7 +10,6 @@ export default {
 };
 
 export const FooterMenu = () => {
-
   const links = [
     {
       title: 'For individuals',
@@ -57,7 +56,6 @@ export const FooterMenu = () => {
 
 
 export const MainMenu = () => {
-
   const links = [
     {
       title: 'About us',

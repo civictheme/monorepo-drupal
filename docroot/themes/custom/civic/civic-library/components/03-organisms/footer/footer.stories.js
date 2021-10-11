@@ -1,7 +1,6 @@
 import {
   boolean,
   radios,
-  object,
   text,
 } from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
