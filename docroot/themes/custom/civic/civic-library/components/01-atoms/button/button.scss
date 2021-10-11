@@ -120,7 +120,7 @@
       color: $civic-button-dark-primary-color;
     }
   }
-  @else if ($type=='neutral') {
+  @else if ($type=='secondary') {
     &.civic-theme-light {
       background-color: $civic-button-light-secondary-background-color;
       color: $civic-button-light-seondary-color;
