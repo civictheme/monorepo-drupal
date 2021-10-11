@@ -5,7 +5,8 @@ dependencies:
     - field.field.paragraph.civic_card_container.field_c_p_cards
     - field.field.paragraph.civic_card_container.field_c_p_column_count
     - field.field.paragraph.civic_card_container.field_c_p_fill_width
-    - field.field.paragraph.civic_card_container.field_c_p_link
+    - field.field.paragraph.civic_card_container.field_c_p_footer_link
+    - field.field.paragraph.civic_card_container.field_c_p_header_link
     - field.field.paragraph.civic_card_container.field_c_p_title
     - paragraphs.paragraphs_type.civic_card_container
   module:
@@ -18,7 +19,7 @@ mode: default
 content:
   field_c_p_cards:
     type: paragraphs
-    weight: 2
+    weight: 4
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -36,19 +37,27 @@ content:
     third_party_settings: {  }
     region: content
   field_c_p_column_count:
-    weight: 3
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_c_p_fill_width:
-    weight: 4
+    weight: 6
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
-  field_c_p_link:
+  field_c_p_footer_link:
+    weight: 2
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_c_p_header_link:
     weight: 1
     settings:
       placeholder_url: ''
