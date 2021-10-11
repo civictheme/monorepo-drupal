@@ -45,10 +45,10 @@
           {% include '@atoms/link/link.twig' with {
             theme: theme,
             text: transcript_link.text,
-            title: transcript_link_title,
+            title: transcript_link.title,
             url: transcript_link.url,
-            new_window: true,
-            is_external: transcript_link_external
+            new_window: transcript_link.new_window,
+            is_external: transcript_link.is_external
           } only %}
         </div>
       {% endif %}
@@ -62,10 +62,10 @@
           {% include '@atoms/link/link.twig' with {
             theme: theme,
             text: share_link.text,
-            title: share_link_title,
+            title: share_link.title,
             url: share_link.url,
-            new_window: true,
-            is_external: share_link_external
+            new_window: share_link.new_window,
+            is_external: share_link.is_external,
           } only %}
         </div>
       {% endif %}

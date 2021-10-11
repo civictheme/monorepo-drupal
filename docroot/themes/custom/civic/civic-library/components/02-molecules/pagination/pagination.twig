@@ -14,11 +14,13 @@
  */
 #}
 
+{% set classes = ['civic-pager'] %}
+{% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, modifier_class|default('')) %}
+{% set classes = classes|merge([theme_class]) %}
 
 {% if items %}
-  <nav class="civic-pager {{ modifier_class }}" role="navigation" aria-labelledby="{{ heading_id }}">
+  <nav class="{{ classes|join(' ') }}" role="navigation" aria-labelledby="{{ heading_id }}">
     <h4 id="{{ heading_id }}" class="visually-hidden">{{ 'Pagination' }}</h4>
     <ul class="civic-pager__items">
       {# Print previous item. #}
