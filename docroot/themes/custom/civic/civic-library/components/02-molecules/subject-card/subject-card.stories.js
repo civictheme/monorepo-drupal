@@ -37,10 +37,12 @@ export const SubjectCard = () => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicSubjectCard({
+  const html = CivicSubjectCard({
     ...generalKnobs,
     ...getSlots([
       'image_over',
     ]),
   });
+
+  return `<div class="story-wrapper-size--small">${html}</div>`;
 };

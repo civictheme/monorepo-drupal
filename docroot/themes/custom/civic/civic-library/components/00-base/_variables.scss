@@ -296,6 +296,15 @@ $civic-attachment-dark-date-color: map-get(map-merge($civic-default-colors, $civ
 $civic-attachment-dark-icon-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
 
 //
+// Card container.
+//
+
+$civic-card-container-light-background: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_5') !default;
+$civic-card-container-light-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'heading') !default;
+$civic-card-container-dark-background: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
+$civic-card-container-dark-heading-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral') !default;
+
+//
 // Navigation card.
 //
 $civic-navigation-card-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral') !default;
