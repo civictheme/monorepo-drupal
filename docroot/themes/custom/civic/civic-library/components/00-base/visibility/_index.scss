@@ -41,3 +41,11 @@
   width: 1px;
   word-wrap: normal;
 }
+
+
+//
+// Block debug class
+//
+.civic-block-debug {
+  @include block-debug;
+}
