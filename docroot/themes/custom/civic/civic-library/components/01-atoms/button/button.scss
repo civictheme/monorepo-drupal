@@ -14,7 +14,7 @@
 }
 
 @mixin civic-button-type($type) {
-  $types: ('primary', 'secondary', 'tertiary');
+  $types: ('primary', 'neutral', 'tertiary');
 
   @if not index($types, $type) {
     @error '"#{$type}" is not one of allowed #{$types}.';
@@ -120,7 +120,7 @@
       color: $civic-button-dark-primary-color;
     }
   }
-  @else if ($type=='secondary') {
+  @else if ($type=='neutral') {
     &.civic-theme-light {
       background-color: $civic-button-light-secondary-background-color;
       color: $civic-button-light-seondary-color;
@@ -215,7 +215,7 @@
   }
 
   &--secondary {
-    @include civic-button-type('secondary');
+    @include civic-button-type('neutral');
   }
 
   &--tertiary {
