@@ -6,7 +6,6 @@
  */
 
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Defines Small banner style.
@@ -65,8 +64,8 @@ function _civic_preprocess_civic_banner(&$variables) {
   $variables['theme'] = CIVIC_BANNER_DEFAULT_THEME;
 
   // Banner theme.
-  if ($entity->hasField('field_c_b_type') && !$entity->get('field_c_b_type')->isEmpty()) {
-    $variables['theme'] = strtolower($entity->get('field_c_b_type')->getString());
+  if ($entity->hasField('field_c_b_theme') && !$entity->get('field_c_b_theme')->isEmpty()) {
+    $variables['theme'] = strtolower($entity->get('field_c_b_theme')->getString());
   }
 
   _civic_preprocess_civic_banner_title($variables);
@@ -84,24 +83,34 @@ function _civic_preprocess_civic_banner(&$variables) {
  * Preprocess banner title.
  */
 function _civic_preprocess_civic_banner_title(&$variables) {
+  // Banner title.
+  $block_manager = \Drupal::service('plugin.manager.block');
+  $plugin_block = $block_manager->createInstance('page_title_block');
+
   $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
   $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
 
   if (!empty($page_title)) {
-    $variables['title'] = $page_title;
+    $plugin_block->setTitle($page_title);
   }
+  $variables['content_title'] = $plugin_block->build();
 }
 
 /**
- * Preprocess banner title.
+ * Preprocess banner breadcrumb.
  */
 function _civic_preprocess_civic_banner_breadcrumb(&$variables) {
   $route_match = \Drupal::routeMatch();
   $breadcrumb_manager = \Drupal::service('breadcrumb');
   $breadcrumbs = $breadcrumb_manager->build($route_match);
   if ($breadcrumbs) {
-    $variables['breadcrumbs'] = $breadcrumbs;
+    $variables['breadcrumbs'] = $breadcrumbs->toRenderable();
+    if (isset($variables['theme'])) {
+      // Changing to civic theme to pass other variables to template.
+      $variables['breadcrumbs']['#theme'] = 'civic_breadcrumb';
+      $variables['breadcrumbs']['#display_theme'] = $variables['theme'];
+    }
   }
 }
 
@@ -116,28 +125,28 @@ function _civic_preprocess_civic_banner_node(&$variables) {
     return;
   }
 
-  // Banner title.
-  $variables['title'] = $node->getTitle();
+  // Banner type.
+  if ($node->hasField('field_c_n_banner_type') && !$node->get('field_c_n_banner_type')->isEmpty()) {
+    $variables['type'] = $node->get('field_c_n_banner_type')->getValue();
+  }
 
   $variables['is_front'] = $is_front = \Drupal::service('path.matcher')->isFrontPage();
   // Banner last updated date.
   if (!$is_front) {
     $variables['content_middle'] = [
-      '#type' => 'item',
-      '#title' => new TranslatableMarkup('Last updated'),
       '#weight' => -1,
-      '#markup' => \Drupal::service('date.formatter')->format($node->getChangedTime(), 'medium'),
+      '#markup' => '<p>Last updated' . \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civic_short_date') . '</p>',
     ];
+  }
+  else {
+    $variables['decorative'] = TRUE;
+    $variables['type'] = CIVIC_BANNER_TYPE_LARGE;
   }
 
   // Banner background.
   if ($node->hasField('field_c_n_banner_background') && !$node->get('field_c_n_banner_background')->isEmpty()) {
-    $variables['background'] = \Drupal::entityTypeManager()->getViewBuilder('media')->view($node->field_c_n_banner_background->entity);
-  }
-
-  // Banner type.
-  if ($node->hasField('field_c_n_banner_type') && !$node->get('field_c_n_banner_type')->isEmpty()) {
-    $variables['type'] = $node->field_c_n_banner_type->value;
+    $file_url = $node->get('field_c_n_banner_background')->first()->entity->field_media_image->entity->getFileUri();
+    $variables['backgroundImage'] = file_create_url($file_url);
   }
 
   // Banner content components.

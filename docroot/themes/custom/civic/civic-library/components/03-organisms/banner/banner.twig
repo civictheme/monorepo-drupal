@@ -6,7 +6,7 @@
 {% set theme_class = 'civic-banner--%s'|format(theme|default('light')) %}
 {% set classes = classes|merge([theme_class]) %}
 
-<div class="{{ classes|join(' ') }}" {{ bgImage }}>
+<div class="{{ classes|join(' ') }}" {{ bgImage|raw }}>
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-m-10 col-m-offset-1">
