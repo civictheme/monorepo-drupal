@@ -611,7 +611,10 @@ $civic-icon-link-dark-color-active: map-get(map-merge($civic-default-colors, $ci
 $civic-icon-link-dark-color-visited: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 $civic-icon-link-dark-color-disabled: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_40') !default;
 
-// Card container.
+// Image.
+$civic-image-border-radius: $civic-border-radius !default;
+$civic-image-caption-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_60') !default;
+$civic-image-caption-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_90') !default;
 
 // Video
 $civic-video-padding-bottom: 56.25% !default;
