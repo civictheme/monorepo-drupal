@@ -5,8 +5,7 @@ _meta:
   bundle: civic_page
   default_langcode: en
   depends:
-    e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e: node
-    6e51bcbc-ca74-4c45-9eb9-f5aecde3d397: node
+    608b3d31-cd63-420e-8342-9c210fbb7538: node
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
@@ -38,6 +37,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_n_banner_type:
+    -
+      value: default
   field_c_n_components:
     -
       entity:
@@ -84,7 +86,7 @@ default:
                       value: true
                   field_c_p_reference:
                     -
-                      entity: e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e
+                      entity: 608b3d31-cd63-420e-8342-9c210fbb7538
                   field_c_p_theme:
                     -
                       value: dark
@@ -111,7 +113,7 @@ default:
                       value: true
                   field_c_p_reference:
                     -
-                      entity: 6e51bcbc-ca74-4c45-9eb9-f5aecde3d397
+                      entity: 608b3d31-cd63-420e-8342-9c210fbb7538
                   field_c_p_theme:
                     -
                       value: dark
@@ -121,10 +123,15 @@ default:
           field_c_p_fill_width:
             -
               value: true
-          field_c_p_link:
+          field_c_p_footer_link:
             -
-              uri: 'http://google.com'
-              title: 'Read more'
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_header_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
               options: {  }
           field_c_p_title:
             -
