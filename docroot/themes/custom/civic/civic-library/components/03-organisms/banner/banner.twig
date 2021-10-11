@@ -108,9 +108,11 @@
       </div>
     </div>
 
-    <div class="civic-banner__featuredimage">
-      {{ featuredImage }}
-    </div>
+    {% if featuredImage is not empty %}
+      <div class="civic-banner__featuredimage">
+        {{ featuredImage }}
+      </div>
+    {% endif %}
   </div>
 
   {% if below_content is not empty %}

@@ -51,15 +51,23 @@
   &__featuredimage {
     clip-path: polygon(13% 10%, 100% 0, 100% 100%, 0% 100%);
     display: none;
+    max-width: 50%;
 
     img {
       max-width: 100%;
+      object-fit: cover;
+      height: 100%;
     }
     @include civic-breakpoint('m') {
       display: block;
       position: absolute;
       bottom: civic-space(4);
+      top: $civic-space * 12;
       right: 0;
+
+      & * {
+        height: 100%;
+      }
     }
   }
 }
