@@ -138,6 +138,13 @@ function civic_theme() {
         'links' => [],
       ],
       'template' => 'navigation/breadcrumb',
-    ]
+    ],
+    'civic_basic_content' => [
+      'variables' => [
+        'content' => NULL,
+        'display_theme' => NULL,
+      ],
+      'template' => 'content/civic-basic-content',
+    ],
   ];
 }

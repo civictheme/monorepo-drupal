@@ -73,4 +73,11 @@ function civic_form_system_theme_settings_alter(&$form, &$form_state) {
     '#default_value' => theme_get_setting('civic_footer_background_image'),
     '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://footer-background.png, or themes/custom/civic/dist/images/svg/footer-background.png.'),
   ];
+
+  $form['civic_custom_configuration_options']['civic_banner_background_image'] = [
+    '#type' => 'textfield',
+    '#title' => t('Banner default background image'),
+    '#default_value' => theme_get_setting('civic_banner_background_image'),
+    '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://banner-background.png, or themes/custom/civic/assets/banner-background.png.'),
+  ];
 }

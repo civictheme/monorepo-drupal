@@ -625,6 +625,8 @@ $civic-subject-card-dark-color-active: map-get(map-merge($civic-default-colors, 
 //
 $civic-banner-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
 $civic-banner-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
+$civic-banner-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
+$civic-banner-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 
 //
 // Pagination.

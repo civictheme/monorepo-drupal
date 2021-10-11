@@ -13,10 +13,12 @@
 
   &--light {
     background-color: $civic-banner-light-background-color;
+    color: $civic-banner-light-color;
   }
 
   &--dark {
     background-color: $civic-banner-dark-background-color;
+    color: $civic-banner-dark-color;
   }
 
   &--decorative {

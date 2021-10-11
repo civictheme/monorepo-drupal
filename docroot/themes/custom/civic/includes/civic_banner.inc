@@ -68,6 +68,12 @@ function _civic_preprocess_civic_banner(&$variables) {
     $variables['theme'] = strtolower($entity->get('field_c_b_theme')->getString());
   }
 
+  // Deafult banner background.
+  $default_banner_background = theme_get_setting('civic_banner_background_image');
+  if (!empty($default_banner_background)) {
+    $variables['backgroundImage'] = file_url_transform_relative(file_create_url($default_banner_background));
+  }
+
   _civic_preprocess_civic_banner_title($variables);
   _civic_preprocess_civic_banner_breadcrumb($variables);
   _civic_preprocess_civic_banner_node($variables);
@@ -133,9 +139,9 @@ function _civic_preprocess_civic_banner_node(&$variables) {
   $variables['is_front'] = $is_front = \Drupal::service('path.matcher')->isFrontPage();
   // Banner last updated date.
   if (!$is_front) {
-    $variables['content_middle'] = [
-      '#weight' => -1,
-      '#markup' => '<p>Last updated' . \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civic_short_date') . '</p>',
+    $variables['content_middle'][] = [
+      '#theme' => 'civic_basic_content',
+      '#content' => 'Last updated: ' . \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civic_short_date'),
     ];
   }
   else {
@@ -147,6 +153,13 @@ function _civic_preprocess_civic_banner_node(&$variables) {
   if ($node->hasField('field_c_n_banner_background') && !$node->get('field_c_n_banner_background')->isEmpty()) {
     $file_url = $node->get('field_c_n_banner_background')->first()->entity->field_media_image->entity->getFileUri();
     $variables['backgroundImage'] = file_create_url($file_url);
+  }
+
+  if ($node->hasField('field_c_n_summary') && !$node->get('field_c_n_summary')->isEmpty()) {
+    $variables['content_middle'][] = [
+      '#theme' => 'civic_basic_content',
+      '#content' => text_summary($node->get('field_c_n_summary')->getString(), NULL, 300),
+    ];
   }
 
   // Banner content components.

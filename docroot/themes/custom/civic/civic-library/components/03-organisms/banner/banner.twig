@@ -8,75 +8,100 @@
 
 <div class="{{ classes|join(' ') }}" {{ bgImage|raw }}>
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-m-10 col-m-offset-1">
-        <div class="civic-banner__region">
-          {%- block content_top %}
-            {{- content_top -}}
-          {% endblock -%}
+    {% if content_top is not empty %}
+      <div class="row">
+        <div class="col-xs-12 col-m-8">
+          <div class="civic-banner__region">
+            {%- block content_top %}
+              {{- content_top -}}
+            {% endblock -%}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-m-5 col-m-offset-1">
-        <div class="civic-banner__region">
-          {%- block breadcrumbs %}
-            {{- breadcrumbs -}}
-          {% endblock -%}
+    {% endif %}
+
+    {% if content_top2 is not empty or breadcrumbs is not empty %}
+      <div class="row">
+        {% if breadcrumbs is not empty %}
+          <div class="col-xs-12 col-m-6">
+          <div class="civic-banner__region">
+            {%- block breadcrumbs %}
+              {{- breadcrumbs -}}
+            {% endblock -%}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if content_top2 is not empty %}
+          <div class="col-xs-12 col-m-6">
+            <div class="civic-banner__region">
+              {%- block content_top2 %}
+                {{- content_top2 -}}
+              {% endblock -%}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if content_top3 is not empty %}
+      <div class="row">
+        <div class="col-xs-12 col-m-8">
+          <div class="civic-banner__region">
+            {%- block content_top3 %}
+              {{- content_top3 -}}
+            {% endblock -%}
+          </div>
         </div>
       </div>
-      <div class="col-xs-12 col-m-5">
-        <div class="civic-banner__region">
-          {%- block content_top2 %}
-            {{- content_top2 -}}
-          {% endblock -%}
+    {% endif %}
+
+    {% if content_title is not empty %}
+      <div class="row">
+        <div class="col-xs-12 col-m-8">
+          <div class="civic-banner__region">
+            {%- block content_title %}
+              {{- content_title -}}
+            {% endblock -%}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-m-10 col-m-offset-1">
-        <div class="civic-banner__region">
-          {%- block content_top3 %}
-            {{- content_top3 -}}
-          {% endblock -%}
+    {% endif %}
+
+    {% if content_middle is not empty %}
+      <div class="row">
+        <div class="col-xs-12 col-m-8">
+          <div class="civic-banner__region">
+            {%- block content_middle %}
+              {{- content_middle -}}
+            {% endblock -%}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-m-10 col-m-offset-1">
-        <div class="civic-banner__region">
-          {%- block content_title %}
-            {{- content_title -}}
-          {% endblock -%}
+    {% endif %}
+
+    {% if content is not empty %}
+      <div class="row">
+        <div class="col-xs-12 col-m-8">
+          <div class="civic-banner__region">
+            {%- block content %}
+              {{- content -}}
+            {% endblock -%}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-m-10 col-m-offset-1">
-        <div class="civic-banner__region">
-          {%- block content_middle %}
-            {{- content_middle -}}
-          {% endblock -%}
+    {% endif %}
+
+    {% if below_content is not empty %}
+      <div class="row">
+        <div class="col-xs-12 col-m-8">
+          <div class="civic-banner__region">
+            {%- block below_content %}
+              {{- below_content -}}
+            {% endblock -%}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-m-10 col-m-offset-1">
-        <div class="civic-banner__region">
-          {%- block content %}
-            {{- content -}}
-          {% endblock -%}
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-m-10 col-m-offset-1">
-        <div class="civic-banner__region">
-          {%- block below_content %}
-            {{- below_content -}}
-          {% endblock -%}
-        </div>
-      </div>
-    </div>
+    {% endif %}
   </div>
 </div>
