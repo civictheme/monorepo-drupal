@@ -264,6 +264,8 @@ config_devel:
     - field.storage.paragraph.field_c_p_image
     - field.storage.paragraph.field_c_p_image_position
     - field.storage.paragraph.field_c_p_link
+    - field.storage.paragraph.field_c_p_header_link
+    - field.storage.paragraph.field_c_p_footer_link
     - field.storage.paragraph.field_c_p_links
     - field.storage.paragraph.field_c_p_panels
     - field.storage.paragraph.field_c_p_reference

@@ -4,6 +4,6 @@ dependencies:
   module:
     - node
 id: node.civic_card_subject
-label: 'Subject'
+label: Subject
 targetEntityType: node
 cache: true
