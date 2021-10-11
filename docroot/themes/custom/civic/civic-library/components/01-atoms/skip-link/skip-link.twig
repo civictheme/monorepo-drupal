@@ -12,8 +12,9 @@
 
 {% set text = text|default('Skip to main content') %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civic-skip-link {{ theme_class }}">
+<div class="civic-skip-link {{ modifier_class }}">
   <a class="civic-skip-link__link" href="{{ url }}">
     {{ text }}
   </a>
