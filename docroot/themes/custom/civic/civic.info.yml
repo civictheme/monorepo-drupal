@@ -93,6 +93,9 @@ config_devel:
     - core.entity_view_display.node.civic_event.civic_card_promo
     - core.entity_view_display.node.civic_event.default
     - core.entity_view_display.node.civic_event.teaser
+    - core.entity_view_display.node.civic_event.civic_card_subject
+    - core.entity_view_display.node.civic_page.civic_card_subject
+    - core.entity_view_mode.node.civic_card_subject
     - core.entity_view_display.node.civic_page.civic_card_navigation
     - core.entity_view_display.node.civic_page.civic_card_promo
     - core.entity_view_display.node.civic_page.default

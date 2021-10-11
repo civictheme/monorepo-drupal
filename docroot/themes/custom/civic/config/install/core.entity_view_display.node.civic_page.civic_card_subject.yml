@@ -1,0 +1,42 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.civic_card_subject
+    - field.field.node.civic_page.field_c_n_banner_background
+    - field.field.node.civic_page.field_c_n_banner_components
+    - field.field.node.civic_page.field_c_n_banner_type
+    - field.field.node.civic_page.field_c_n_components
+    - field.field.node.civic_page.field_c_n_featured_banner_image
+    - field.field.node.civic_page.field_c_n_summary
+    - field.field.node.civic_page.field_c_n_thumbnail
+    - node.type.civic_page
+  module:
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: node.civic_page.civic_card_subject
+targetEntityType: node
+bundle: civic_page
+mode: civic_card_subject
+content:
+  field_c_n_thumbnail:
+    weight: 0
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  field_c_n_banner_background: true
+  field_c_n_banner_components: true
+  field_c_n_banner_type: true
+  field_c_n_components: true
+  field_c_n_featured_banner_image: true
+  field_c_n_summary: true
+  links: true

@@ -25,8 +25,13 @@
   right: 'arrows_rightarrow_3',
 } %}
 
-<a class="civic-directional-link {{ modifier_class }}" role="link"{% if not disabled %} href="{{ url }}"{% endif %}{% if disabled %}disabled="disabled" aria-disabled="true"{% endif %}>
-  {{ text }}
+<a class="civic-directional-link {{ modifier_class }}" title="{{ title }}" role="link"{% if not disabled %} href="{{ url }}"{% endif %}{% if disabled %}disabled="disabled" aria-disabled="true"{% endif %}>
+  {% if context %}
+    <span class="visually-hidden">{{ context }}</span>
+    <span aria-hidden="true">{{ text }}</span>
+  {% else %}
+    {{ text }}
+  {% endif %}
   {% if icons[direction] is defined %}
     {% include '@atoms/icon/icon.twig' with {
       symbol: icons[direction],

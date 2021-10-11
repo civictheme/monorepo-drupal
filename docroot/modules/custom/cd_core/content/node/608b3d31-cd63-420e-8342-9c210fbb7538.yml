@@ -1,0 +1,52 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 608b3d31-cd63-420e-8342-9c210fbb7538
+  bundle: civic_event
+  default_langcode: en
+  depends:
+    0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'The Test Event'
+  created:
+    -
+      value: 1633688845
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: "<p>Nulla tincidunt facilisis risus vel volutpat. Vestibulum consectetur nulla quis nibh dapibus elementum. Maecenas mattis accumsan est quis pellentesque. Curabitur aliquet sit amet tellus et aliquam. Duis varius felis ligula, et laoreet ex dictum et. Sed tristique nisi eu diam aliquam facilisis. Aenean porta, tortor quis vestibulum pulvinar, dolor quam maximus enim, id sodales ligula sem ac eros. Donec vel mi nec est vestibulum egestas. Duis nunc magna, dignissim ac lobortis in, volutpat in massa. Aenean tellus diam, pellentesque ac metus ornare, luctus gravida metus. Quisque bibendum arcu sed lacus consequat, sit amet consectetur neque lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque eu nisl rhoncus, mattis orci et, tincidunt massa. Integer ligula erat, molestie commodo leo eu, iaculis posuere lacus. Mauris imperdiet dictum odio, at commodo justo mollis ac.</p>\r\n"
+      format: rich_text
+  field_c_n_date:
+    -
+      value: '2021-10-15T02:27:55'
+      end_value: '2021-10-27T00:29:57'
+  field_c_n_tagline:
+    -
+      value: 'Its Happening!'
+  field_c_n_topics:
+    -
+      entity: 0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c

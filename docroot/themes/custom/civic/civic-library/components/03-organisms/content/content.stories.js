@@ -1,8 +1,10 @@
 import {
   radios,
+  boolean,
 } from '@storybook/addon-knobs';
 import CivicContent from './content.twig';
 import { CardContainer } from '../card-container/card-container.stories';
+import { Heading } from '../../01-atoms/heading/heading.stories';
 
 import './content.scss';
 
@@ -23,6 +25,7 @@ export const Content = () => {
       'light',
       generalKnobTab,
     ),
+    content_left: boolean('Sidebar', false, generalKnobTab) ? Heading : false,
   };
 
   return CivicContent({
