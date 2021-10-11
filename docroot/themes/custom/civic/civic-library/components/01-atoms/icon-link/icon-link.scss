@@ -1,31 +1,5 @@
 @use 'sass:math';
 @import '../../00-base/base';
-//@import '../link/link';
-
-//
-// Sets required border radius for a circular border for a given icon size.
-//
-@mixin civic-icon-border-radius-size($size) {
-  @if type-of($size)==string {
-    @if map-get($civic-icon-sizes, $size)==null {
-      @error '"#{$size}" is not an available icon size.';
-    }
-
-    $size: map-get($civic-icon-sizes, $size);
-  }
-
-  @if type-of($size)==map {
-    $breakpoints: map-keys($size);
-
-    @each $breakpoint in $breakpoints {
-      $breakpoint-rules: map-get($size, $breakpoint);
-
-      @include civic-breakpoint($breakpoint) {
-        border-radius: math.div(rem(nth($breakpoint-rules, 1)), 2);
-      }
-    }
-  }
-}
 
 .civic-icon-link {
   $root: &;
@@ -36,13 +10,10 @@
   text-decoration: none;
 
   &#{$root}--with-border {
-    @each $size, $values in $civic-icon-sizes {
-      &#{$root}--size-#{$size} {
-        .civic-icon {
-          border: 1px solid currentColor;
-          @include civic-icon-border-radius-size($size);
-        }
-      }
+    .civic-icon {
+      padding: civic-space() * 1.5;
+      border: 1px solid currentColor;
+      border-radius: rem(100px);
     }
   }
 

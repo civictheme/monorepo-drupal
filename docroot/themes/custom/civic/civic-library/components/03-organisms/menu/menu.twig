@@ -1,3 +1,14 @@
+{#
+/**
+ * @file Menu component.
+ *
+ * Available variables:
+ * - theme: [string] Theme: light, dark.
+ * - items: [array] Menu links array.
+ * - menu_type: [string] Menu type to change the style and behaviour.
+ */
+#}
+
 {% set classes = ['civic-menu'] %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set classes = classes|merge([theme_class]) %}

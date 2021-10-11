@@ -1,5 +1,5 @@
 {% extends './footer.twig' %}
-{% import './menu.twig' as menus %}
+{% import '../menu/menu.twig' as menus %}
 
 {% block logo %}
 	<div class="civic-footer__logo">
@@ -11,33 +11,53 @@
 	{% if socialLinks %}
 	  <div class="civic-footer__top--right">
 	  	<div class="civic-footer__social-links">
-	    {% for socialLink in socialLinks %}
-	    	{% include '@atoms/icon/icon_link.twig' with {
-	      	theme: theme,
-	      	symbol: socialLink.symbol,
-	      	size: socialLink.size,
-	      	url: socialLink.url,
-	    	} only %}
-	  {% endfor %}
+        {% include '@organisms/social-links/social-links.twig' with {
+          theme: theme,
+          links: [
+            {
+              symbol: 'brands_facebook',
+              size: 'regular',
+              url: 'www.facebook.com',
+            },
+            {
+              symbol: 'brands_twitter',
+              size: 'regular',
+              url: 'www.facebook.com',
+            },
+            {
+              symbol: 'brands_linkedin',
+              size: 'regular',
+              url: 'www.facebook.com',
+            },
+          ],
+          with_border: true,
+        } only %}
 			</div>
 	  </div>
 	{% endif %}
 {% endblock %}
 
-{% block middle_left %}
-	{% if menu_left %}
-		<div class="civic-footer__middle-left--menu">
-			{{ menus.menu_links(menu_left, 0, 'civic-footer', false) }}
-		</div>
-	{% endif %}
-{% endblock %}
-
-{% block middle_right %}
-	{% if menu_right %}
-		<div class="civic-footer__middle-right--menu">
-			{{ menus.menu_links(menu_right, 0, 'civic-footer', true) }}
-		</div>
-	{% endif %}
+{% block middle %}
+  {% if showMiddleMenus %}
+    <div class="civic-footer__middle">
+    <div class="row">
+      {% for i in 1..4 %}
+        <div class="col-xs-12 col-m-3">
+          {% include '@organisms/menu/menu.twig' with {
+            theme: theme,
+            items: [
+              { title: 'For individuals', url: '#' },
+              { title: 'For businesses', url: '#' },
+              { title: 'For government', url: '#' },
+              { title: 'Services', url: '#' },
+              { title: 'News & events', url: '#' },
+            ]
+          } only %}
+        </div>
+      {% endfor %}
+    </div>
+    </div>
+  {% endif %}
 {% endblock %}
 
 {% block bottom_left %}
