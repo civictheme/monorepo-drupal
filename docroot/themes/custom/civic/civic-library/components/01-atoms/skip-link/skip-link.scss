@@ -8,10 +8,6 @@
   $root: &;
   padding: civic-space(2) civic-space(3);
 
-  @include civic-breakpoint(m) {
-    padding: civic-space(2) rem(132px) civic-space(2) rem(132px);
-  }
-
   &__link {
     display: inline-block;
     padding: civic-space(1);
