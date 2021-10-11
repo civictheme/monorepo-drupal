@@ -1,4 +1,4 @@
-import { radios, text, object } from '@storybook/addon-knobs';
+import { radios, text, boolean } from '@storybook/addon-knobs';
 
 import CivicVideo from './video.twig';
 import './video.scss';
@@ -20,18 +20,18 @@ export const Video = () => CivicVideo({
   title: text('title', 'Songlines to soar for science and country'),
   width: text('Width', 854),
   height: text('Height', 450),
-  transcript_link: object('Transcript URL', {
-    text: 'View transcript',
-    title: 'Opens in new tab',
-    url: 'http://example.com',
-    new_window: true,
-    is_external: false,
-  }),
-  share_link: object('Share URL', {
-    text: 'Share this video',
-    title: 'Opens in new tab',
-    url: 'http://example.com',
-    new_window: true,
-    is_external: false,
-  }),
+  transcript_link: {
+    text: text('Transcript link text', 'View transcript'),
+    title: text('Transcript link title', 'Opens in new tab'),
+    url: text('Transcript link url', 'https://example.com'),
+    new_window: boolean('Transcript link opens in new window', true),
+    is_external: boolean('Share link - is external', true),
+  },
+  share_link: {
+    text: text('Share link text', 'Share this video'),
+    title: text('Share link title', 'Opens in new tab'),
+    url: text('Share link url', 'https://example.com'),
+    new_window: boolean('Share link opens in new window', true),
+    is_external: boolean('Share link - is external', true),
+  },
 });
