@@ -522,10 +522,10 @@ $civic-breadcrumbs-dark-color-hover: map-get(map-merge($civic-default-colors, $c
 // Skip link.
 //
 $civic-skip-link-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_90') !default;
-$civic-skip-link-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
+$civic-skip-link-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
 
 $civic-skip-link-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
-$civic-skip-link-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-skip-link-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'dark-text') !default;
 
 //
 // Directional link
