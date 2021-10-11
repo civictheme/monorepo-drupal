@@ -17,8 +17,8 @@ export const Logo = () => {
       Dark: 'dark',
     }, 'light', generalKnobTab),
     logo: boolean('With logo', true, generalKnobTab) ? {
-      src: text('Logo', imageFile, generalKnobTab),
-      alt: text('Logo alt', 'Image alt text', generalKnobTab),
+      src: imageFile,
+      alt: 'Logo alt text',
     } : true,
     modifier_class: text('Additional class', '', generalKnobTab),
   };
