@@ -19,4 +19,4 @@ default:
       value: true
   field_c_b_theme:
     -
-      value: light
+      value: dark
