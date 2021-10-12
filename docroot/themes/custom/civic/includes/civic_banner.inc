@@ -145,6 +145,10 @@ function _civic_preprocess_civic_banner_node(&$variables) {
     $variables['type'] = $node->get('field_c_n_banner_type')->getString();
   }
 
+  if ($node->hasField('field_c_n_banner_theme') && !$node->get('field_c_n_banner_theme')->isEmpty()) {
+    $variables['theme'] = $node->get('field_c_n_banner_theme')->getString();
+  }
+
   $is_front = \Drupal::service('path.matcher')->isFrontPage();
   $variables['is_front'] = $is_front;
 
