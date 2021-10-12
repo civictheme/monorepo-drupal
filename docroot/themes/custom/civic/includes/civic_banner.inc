@@ -161,8 +161,8 @@ function _civic_preprocess_civic_banner_node(&$variables) {
   }
 
   // Featured Banner image.
-  if ($node->hasField('field_c_n_featured_banner_image') && !$node->get('field_c_n_featured_banner_image')->isEmpty()) {
-    $variables['featured_image']['src'] = civic_media_get_url_from_field($node, 'field_c_n_featured_banner_image');
+  if ($node->hasField('field_c_n_banner_featured_image') && !$node->get('field_c_n_banner_featured_image')->isEmpty()) {
+    $variables['featured_image']['src'] = civic_media_get_url_from_field($node, 'field_c_n_banner_featured_image');
     // @todo Iplement correct getter for alt attribute.
     $variables['featured_image']['alt'] = t('Banner featured image');
   }

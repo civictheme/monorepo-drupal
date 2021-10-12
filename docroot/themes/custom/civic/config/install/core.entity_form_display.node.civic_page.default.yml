@@ -7,7 +7,7 @@ dependencies:
     - field.field.node.civic_page.field_c_n_banner_components_bott
     - field.field.node.civic_page.field_c_n_banner_type
     - field.field.node.civic_page.field_c_n_components
-    - field.field.node.civic_page.field_c_n_featured_banner_image
+    - field.field.node.civic_page.field_c_n_banner_featured_image
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_thumbnail
     - node.type.civic_page
@@ -37,7 +37,7 @@ third_party_settings:
       children:
         - field_c_n_banner_type
         - field_c_n_banner_background
-        - field_c_n_featured_banner_image
+        - field_c_n_banner_featured_image
         - field_c_n_banner_components
         - field_c_n_banner_components_bott
       parent_name: group_civic_tabs
@@ -162,7 +162,7 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
     region: content
-  field_c_n_featured_banner_image:
+  field_c_n_banner_featured_image:
     type: media_library_widget
     weight: 9
     settings:
