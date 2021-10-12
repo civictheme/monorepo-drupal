@@ -4,17 +4,8 @@
 
 @import '../../00-base/base';
 
-.civic-banner-example {
-
-  &.civic-banner--light {
-    color: civic-color(heading);
-  }
-
-  &.civic-banner--dark {
-    color: civic-color(neutral);
-  }
-
-  &__title {
-    @include civic-typography(heading-1);
+.civic-banner {
+  &__content__example {
+    margin-bottom: civic-space(6);
   }
 }

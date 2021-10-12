@@ -63,26 +63,25 @@ function _civic_preprocess_civic_banner(&$variables) {
   $variables['#cache']['contexts'][] = 'url.query_args';
 
   $variables['type'] = CIVIC_BANNER_TYPE_DEFAULT;
-  $variables['theme'] = CIVIC_BANNER_DEFAULT_THEME;
 
-  // Banner theme.
+  $variables['theme'] = CIVIC_BANNER_DEFAULT_THEME;
   if ($entity->hasField('field_c_b_theme') && !$entity->get('field_c_b_theme')->isEmpty()) {
     $variables['theme'] = strtolower($entity->get('field_c_b_theme')->getString());
   }
 
-  // Default banner background.
   if ($entity->hasField('field_c_b_background_image') && !$entity->get('field_c_b_background_image')->isEmpty()) {
-    $variables['backgroundImage'] = _civic_media_image_url($entity, 'field_c_b_background_image');
+    $variables['background_image'] = civic_media_get_url_from_field($entity, 'field_c_b_background_image');
   }
 
   _civic_preprocess_civic_banner_title($variables);
   _civic_preprocess_civic_banner_breadcrumb($variables);
   _civic_preprocess_civic_banner_node($variables);
 
-  // @todo preprocess other optional variables for banner.
-  $variables['content_top'] = NULL;
+  // Explicitly defined variable to allow additional preprocessing.
+  $variables['content_top1'] = NULL;
   $variables['content_top2'] = NULL;
   $variables['content_top3'] = NULL;
+  $variables['content_bottom'] = NULL;
 }
 
 /**
@@ -99,7 +98,7 @@ function _civic_preprocess_civic_banner_title(&$variables) {
 
   if (!empty($page_title)) {
     $plugin_block->setTitle($page_title);
-    $variables['content_title'] = $plugin_block->build();
+    $variables['title'] = $plugin_block->build();
   }
 }
 
@@ -120,7 +119,7 @@ function _civic_preprocess_civic_banner_breadcrumb(&$variables) {
   if ($breadcrumbs) {
     $variables['breadcrumbs'] = $breadcrumbs->toRenderable();
     if (isset($variables['theme'])) {
-      // Changing to civic theme to pass other variables to template.
+      // Changing to Civic theme to pass other variables to template.
       $variables['breadcrumbs']['#theme'] = 'civic_breadcrumb';
       $variables['breadcrumbs']['#display_theme'] = $variables['theme'];
     }
@@ -152,31 +151,33 @@ function _civic_preprocess_civic_banner_node(&$variables) {
     ];
   }
   else {
-    $variables['decorative'] = TRUE;
     $variables['type'] = CIVIC_BANNER_TYPE_LARGE;
+    $variables['decorative'] = TRUE;
   }
 
   // Banner background.
   if ($node->hasField('field_c_n_banner_background') && !$node->get('field_c_n_banner_background')->isEmpty()) {
-    $variables['backgroundImage'] = _civic_media_image_url($node, 'field_c_n_banner_background');
+    $variables['background_image'] = civic_media_get_url_from_field($node, 'field_c_n_banner_background');
   }
 
   // Featured Banner image.
   if ($node->hasField('field_c_n_featured_banner_image') && !$node->get('field_c_n_featured_banner_image')->isEmpty()) {
-    $variables['featuredImage'] = $node->get('field_c_n_featured_banner_image')->first()->entity->get('field_media_image')->view('default');
-  }
-
-  if ($node->hasField('field_c_n_summary') && !$node->get('field_c_n_summary')->isEmpty()) {
-    $variables['content'][] = [
-      '#theme' => 'civic_basic_content',
-      '#content' => text_summary($node->get('field_c_n_summary')->getString(), NULL, 300),
-    ];
+    $variables['featured_image']['src'] = civic_media_get_url_from_field($node, 'field_c_n_featured_banner_image');
+    // @todo Iplement correct getter for alt attribute.
+    $variables['featured_image']['alt'] = t('Banner featured image');
   }
 
   // Banner content components.
   if ($node->hasField('field_c_n_banner_components') && !$node->get('field_c_n_banner_components')->isEmpty()) {
     $entities = $node->field_c_n_banner_components->referencedEntities();
     $render_controller = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
-    $variables['below_content'] = $render_controller->viewMultiple($entities, 'default');
+    $variables['content'][] = $render_controller->viewMultiple($entities, 'default');
+  }
+
+  // Banner content below components.
+  if ($node->hasField('field_c_n_banner_components_bott') && !$node->get('field_c_n_banner_components_bott')->isEmpty()) {
+    $entities = $node->field_c_n_banner_components_bott->referencedEntities();
+    $render_controller = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+    $variables['content_below'][] = $render_controller->viewMultiple($entities, 'default');
   }
 }

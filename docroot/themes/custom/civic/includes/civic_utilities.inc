@@ -82,18 +82,19 @@ function _civic_paragraph_get_theme(Paragraph $paragraph) {
 }
 
 /**
- * Process media to generate image array for twig.
+ * Get URL of the media entity from field on provided entity.
  *
  * @param \Drupal\Core\Entity\EntityInterface $entity
- *   Entity to get media image url.
+ *   The entity to get the media from.
  * @param string $field_name
- *   Field name.
+ *   The field name that has media.
  *
  * @return string
- *   Image URL or false if not available.
+ *   Image URL or FALSE if not available.
  */
-function _civic_media_image_url(EntityInterface $entity, string $field_name) {
+function civic_media_get_url_from_field(EntityInterface $entity, string $field_name) {
   if ($entity->hasField($field_name) && !$entity->get($field_name)->isEmpty()) {
+    /** @var \Drupal\media\Entity\Media $media */
     $media = $entity->get($field_name)->first()->entity;
     if ($media) {
       $fid = $media->getSource()->getSourceFieldValue($media);

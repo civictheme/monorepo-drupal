@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.node.civic_page.field_c_n_banner_background
     - field.field.node.civic_page.field_c_n_banner_components
+    - field.field.node.civic_page.field_c_n_banner_components_bott
     - field.field.node.civic_page.field_c_n_banner_type
     - field.field.node.civic_page.field_c_n_components
     - field.field.node.civic_page.field_c_n_featured_banner_image
@@ -38,6 +39,7 @@ third_party_settings:
         - field_c_n_banner_background
         - field_c_n_featured_banner_image
         - field_c_n_banner_components
+        - field_c_n_banner_components_bott
       parent_name: group_civic_tabs
       weight: 10
       format_type: tab
@@ -100,6 +102,25 @@ content:
   field_c_n_banner_components:
     type: paragraphs
     weight: 10
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+    region: content
+  field_c_n_banner_components_bott:
+    type: paragraphs
+    weight: 11
     settings:
       title: Paragraph
       title_plural: Paragraphs

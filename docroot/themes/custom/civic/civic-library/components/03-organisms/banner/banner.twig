@@ -1,38 +1,31 @@
-{% set bgImage = backgroundImage ? 'style="background-image: url(' ~ backgroundImage ~ ')"' : null %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set decorative_class = decorative ? 'civic-banner--decorative': '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class,decorative_class, modifier_class|default('')) %}
 
-{% set classes = ['civic-banner'] %}
-{% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
-{% set theme_class = 'civic-banner--%s'|format(theme|default('light')) %}
-{% set classes = classes|merge([theme_class]) %}
+{% if block('content_top1') is defined or block('breadcrumbs') is defined or block('content_top2') is defined or block('content_top3') is defined or block('content_middle') is defined or block('content') is defined or block('title') is defined or block('content_bottom') is defined %}
+  <div class="civic-banner {{ modifier_class }}">
+    <div class="civic-banner__wrapper">
+      <div class="civic-banner__wrapper__inner" {% if background_image %}style="background-image: url('{{ background_image }} ')"{% endif %}>
+        <div class="container">
 
-{% if content_top or breadcrumbs or content_top2 or content_top3 or content_middle or content or content_title or below_content %}
-  <div class="{{ classes|join(' ') }}">
-    <div class="civic-banner__inner{{ decorative ? ' civic-banner--decorative' }}" {{ bgImage|raw }}>
-      <div class="container">
-        {# Featured image required extra wrapper. #}
-        {% if featuredImage is not empty %}
-          <div class="row">
-            <div class="col-m-8">
-        {% endif %}
-        {# Featured image required extra wrapper. #}
-
-          {% if content_top is not empty %}
+          {% if block('content_top1') is defined %}
             <div class="row">
-              <div class="col-xs-12 col-m-8">
-                <div class="civic-banner__region">
-                  {%- block content_top %}
-                    {{- content_top -}}
+              <div class="col-xs-12">
+                <div class="civic-banner__content-top">
+                  {%- block content_top1 %}
+                    {{- content_top1 -}}
                   {% endblock -%}
                 </div>
               </div>
             </div>
           {% endif %}
 
-          {% if content_top2 is not empty or breadcrumbs is not empty %}
+          {% if block('content_top2') is defined or block('breadcrumbs') is defined %}
             <div class="row">
-              {% if breadcrumbs is not empty %}
+
+              {% if block('breadcrumbs') is defined %}
                 <div class="col-xs-12 col-m-6">
-                  <div class="civic-banner__region">
+                  <div class="civic-banner__breadcrumbs">
                     {%- block breadcrumbs %}
                       {{- breadcrumbs -}}
                     {% endblock -%}
@@ -40,9 +33,9 @@
                 </div>
               {% endif %}
 
-              {% if content_top2 is not empty %}
+              {% if block('content_top2') is defined %}
                 <div class="col-xs-12 col-m-6">
-                  <div class="civic-banner__region">
+                  <div class="civic-banner__content-top2">
                     {%- block content_top2 %}
                       {{- content_top2 -}}
                     {% endblock -%}
@@ -52,10 +45,10 @@
             </div>
           {% endif %}
 
-          {% if content_top3 is not empty %}
+          {% if block('content_top3') is defined %}
             <div class="row">
-              <div class="col-xs-12 col-m-8">
-                <div class="civic-banner__region">
+              <div class="col-xs-12">
+                <div class="civic-banner__content-top3">
                   {%- block content_top3 %}
                     {{- content_top3 -}}
                   {% endblock -%}
@@ -64,22 +57,23 @@
             </div>
           {% endif %}
 
-          {% if content_title is not empty %}
+          {% if title is not empty %}
             <div class="row">
-              <div class="col-xs-12 col-m-8">
-                <div class="civic-banner__region">
-                  {%- block content_title %}
-                    {{- content_title -}}
-                  {% endblock -%}
+              <div class="{{ featured_image is not empty ? 'col-xs-12 col-m-6':'col-xs-12 col-m-8' }}">
+                <div class="civic-banner__title">
+                  {% include '@atoms/heading/heading.twig' with {
+                    title: title,
+                    level: 1,
+                  } only %}
                 </div>
               </div>
             </div>
           {% endif %}
 
-          {% if content_middle is not empty %}
+          {% if block('content_middle') is defined %}
             <div class="row">
-              <div class="col-xs-12 col-m-8">
-                <div class="civic-banner__region">
+              <div class="{{ featured_image is not empty ? 'col-xs-12 col-m-6':'col-xs-12 col-m-8' }}">
+                <div class="civic-banner__content-middle">
                   {%- block content_middle %}
                     {{- content_middle -}}
                   {% endblock -%}
@@ -88,10 +82,10 @@
             </div>
           {% endif %}
 
-          {% if content is not empty %}
+          {% if block('content') is defined %}
             <div class="row">
-              <div class="col-xs-12 col-m-8">
-                <div class="civic-banner__region">
+              <div class="{{ featured_image is not empty ? 'col-xs-12 col-m-6':'col-xs-12 col-m-8' }}">
+                <div class="civic-banner__content">
                   {%- block content %}
                     {{- content -}}
                   {% endblock -%}
@@ -100,34 +94,42 @@
             </div>
           {% endif %}
 
-          {% if featuredImage is not empty %}
-          </div>
         </div>
-        {% endif %}
-
       </div>
+
+      {% if featured_image is not empty %}
+        <div class="civic-banner__featured-image">
+          <img src="{{ featured_image.src }}" alt="{{ featured_image.alt }}"/>
+        </div>
+      {% endif %}
     </div>
 
-    {% if featuredImage is not empty %}
-      <div class="civic-banner__featuredimage">
-        {{ featuredImage }}
-      </div>
-    {% endif %}
-  </div>
-
-  {% if below_content is not empty %}
-    <div class="civic-banner__bottom">
+    {% if block('content_below') is defined %}
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
-            <div class="civic-banner__region">
-              {%- block below_content %}
-                {{- below_content -}}
+            <div class="civic-banner__content-below">
+              {%- block content_below %}
+                {{- content_below -}}
               {% endblock -%}
             </div>
           </div>
         </div>
       </div>
-    </div>
-  {% endif %}
+    {% endif %}
+
+    {% if block('content_bottom') is defined %}
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="civic-banner__content-bottom">
+              {%- block content_bottom %}
+                {{- content_bottom -}}
+              {% endblock -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
 {% endif %}
