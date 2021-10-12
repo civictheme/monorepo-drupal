@@ -19,7 +19,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'Banner test'
+      value: 'Banner - Dark, Large,  Bottom Components'
   created:
     -
       value: 1631787673
@@ -223,6 +223,9 @@ default:
           field_c_p_with_spacing:
             -
               value: false
+  field_c_n_banner_theme:
+    -
+      value: dark
   field_c_n_banner_type:
     -
       value: large
