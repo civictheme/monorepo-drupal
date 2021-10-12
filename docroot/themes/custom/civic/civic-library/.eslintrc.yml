@@ -8,6 +8,7 @@ globals:
   Set: true
   SCSS_VARIABLES: true
   ICONS: true
+  BACKGROUNDS: true
 rules:
   strict: 0
   import/no-extraneous-dependencies: 0
