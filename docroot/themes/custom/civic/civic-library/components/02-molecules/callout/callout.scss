@@ -6,7 +6,7 @@
 
 .civic-callout {
   border-radius: $civic-border-radius;
-  border-left: rem(6px) civic-color('secondary-accent') solid;
+  border-left: rem(6px) civic-color('secondary') solid;
   display: flex;
   flex-direction: column;
   padding: civic-space(3) civic-space(3);
