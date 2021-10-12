@@ -7,20 +7,15 @@
  * enabled in the block configuration.
  *
  * Available variables:
- * - site_logo: Logo for site as defined in Appearance or theme settings.
- * - site_name: Name for site as defined in Site information settings.
- * - site_slogan: Slogan for site as defined in Site information settings.
+ * - logo: [object] Logo image and alt attribute for site as defined in theme settings.
+ * - site_name: [string] Name for site as defined in Site information settings.
+ * - site_slogan: [string] Slogan for site as defined in Site information settings.
  *
  * @ingroup themeable
  */
 #}
 
-{% include '@atoms/logo/logo.twig' with {
-  logo: {
-    src: site_logo,
-    alt: 'Home'|t
-  },
-} only %}
+{% include '@atoms/logo/logo.twig' %}
 
 {% if site_name %}
   <a href="{{ path('<front>') }}" rel="home">{{ site_name }}</a>
