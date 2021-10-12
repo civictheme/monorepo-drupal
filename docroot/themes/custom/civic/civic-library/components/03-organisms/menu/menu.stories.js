@@ -54,7 +54,6 @@ export const FooterMenu = () => {
   });
 };
 
-
 export const MainMenu = () => {
   const links = [
     {
