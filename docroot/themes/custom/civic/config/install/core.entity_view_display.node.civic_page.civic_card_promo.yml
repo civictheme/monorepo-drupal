@@ -6,10 +6,10 @@ dependencies:
     - field.field.node.civic_page.field_c_n_banner_background
     - field.field.node.civic_page.field_c_n_banner_components
     - field.field.node.civic_page.field_c_n_banner_components_bott
+    - field.field.node.civic_page.field_c_n_banner_featured_image
     - field.field.node.civic_page.field_c_n_banner_theme
     - field.field.node.civic_page.field_c_n_banner_type
     - field.field.node.civic_page.field_c_n_components
-    - field.field.node.civic_page.field_c_n_banner_featured_image
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_thumbnail
     - node.type.civic_page
@@ -49,7 +49,7 @@ hidden:
   field_c_n_banner_background: true
   field_c_n_banner_components: true
   field_c_n_banner_components_bott: true
+  field_c_n_banner_featured_image: true
   field_c_n_banner_theme: true
   field_c_n_banner_type: true
   field_c_n_components: true
-  field_c_n_banner_featured_image: true

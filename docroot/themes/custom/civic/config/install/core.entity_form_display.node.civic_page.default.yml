@@ -5,10 +5,10 @@ dependencies:
     - field.field.node.civic_page.field_c_n_banner_background
     - field.field.node.civic_page.field_c_n_banner_components
     - field.field.node.civic_page.field_c_n_banner_components_bott
+    - field.field.node.civic_page.field_c_n_banner_featured_image
     - field.field.node.civic_page.field_c_n_banner_theme
     - field.field.node.civic_page.field_c_n_banner_type
     - field.field.node.civic_page.field_c_n_components
-    - field.field.node.civic_page.field_c_n_banner_featured_image
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_thumbnail
     - node.type.civic_page
@@ -139,6 +139,13 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
     region: content
+  field_c_n_banner_featured_image:
+    type: media_library_widget
+    weight: 10
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
   field_c_n_banner_theme:
     weight: 8
     settings: {  }
@@ -168,13 +175,6 @@ content:
         add_above: '0'
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
-    third_party_settings: {  }
-    region: content
-  field_c_n_banner_featured_image:
-    type: media_library_widget
-    weight: 10
-    settings:
-      media_types: {  }
     third_party_settings: {  }
     region: content
   field_c_n_summary:
