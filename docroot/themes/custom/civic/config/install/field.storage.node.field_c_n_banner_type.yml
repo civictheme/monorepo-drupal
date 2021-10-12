@@ -12,10 +12,10 @@ settings:
   allowed_values:
     -
       value: default
-      label: 'Default banner'
+      label: Default
     -
       value: large
-      label: 'Large banner'
+      label: Large
   allowed_values_function: ''
 module: options
 locked: false

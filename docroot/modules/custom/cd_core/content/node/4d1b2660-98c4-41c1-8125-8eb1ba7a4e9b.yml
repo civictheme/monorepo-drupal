@@ -85,9 +85,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_cards:
             -
               entity:
@@ -139,9 +136,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -174,9 +168,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -209,9 +200,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       uri: 'http://example.com'

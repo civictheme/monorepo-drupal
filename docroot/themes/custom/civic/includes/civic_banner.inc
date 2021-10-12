@@ -77,6 +77,10 @@ function _civic_preprocess_civic_banner(&$variables) {
   _civic_preprocess_civic_banner_breadcrumb($variables);
   _civic_preprocess_civic_banner_node($variables);
 
+  if ($variables['type'] == CIVIC_BANNER_TYPE_LARGE){
+    $variables['decorative'] = TRUE;
+  }
+
   // Explicitly defined variable to allow additional preprocessing.
   $variables['content_top1'] = NULL;
   $variables['content_top2'] = NULL;
@@ -137,22 +141,18 @@ function _civic_preprocess_civic_banner_node(&$variables) {
     return;
   }
 
-  // Banner type.
   if ($node->hasField('field_c_n_banner_type') && !$node->get('field_c_n_banner_type')->isEmpty()) {
-    $variables['type'] = $node->get('field_c_n_banner_type')->getValue();
+    $variables['type'] = $node->get('field_c_n_banner_type')->getString();
   }
 
-  $variables['is_front'] = $is_front = \Drupal::service('path.matcher')->isFrontPage();
-  // Banner last updated date.
+  $is_front = \Drupal::service('path.matcher')->isFrontPage();
+  $variables['is_front'] = $is_front;
+
   if (!$is_front) {
     $variables['content'][] = [
       '#theme' => 'civic_basic_content',
       '#content' => 'Last updated: ' . \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civic_short_date'),
     ];
-  }
-  else {
-    $variables['type'] = CIVIC_BANNER_TYPE_LARGE;
-    $variables['decorative'] = TRUE;
   }
 
   // Banner background.
