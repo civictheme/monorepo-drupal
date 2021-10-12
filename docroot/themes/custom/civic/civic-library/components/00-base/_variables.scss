@@ -249,7 +249,7 @@ $civic-link-light-color-visited: map-get(map-merge($civic-default-colors, $civic
 $civic-link-light-color-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 $civic-link-light-background-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'link-light-visited') !default;
 
-$civic-link-dark-color-visited: map-get(map-merge($civic-default-colors, $civic-colors), 'link-dark-visited') !default;
+$civic-link-dark-color-visited: map-get(map-merge($civic-default-colors, $civic-colors), 'link-dark-visitedlink-dark-visited') !default;
 $civic-link-dark-color-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
 $civic-link-dark-background-visited-hover: map-get(map-merge($civic-default-colors, $civic-colors), 'link-dark-visited') !default;
 
@@ -656,10 +656,16 @@ $civic-pagination-dark-link-active-border-color: map-get(map-merge($civic-defaul
 // Footer
 //
 $civic-footer-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
+$civic-footer-light-link-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_90') !default;
+$civic-footer-light-link-hover-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
 $civic-footer-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_20') !default;
 $civic-footer-light-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_40') !default;
+$civic-footer-light-outline-color: map-get(map-merge($civic-default-colors, $civic-colors), 'link-light-visited') !default;
 
 $civic-footer-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 $civic-footer-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_60') !default;
 $civic-footer-dark-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
 $civic-footer-dark-mobile-border-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_15') !default;
+$civic-footer-dark-link-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
+$civic-footer-dark-link-hover-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
+$civic-footer-dark-outline-color: map-get(map-merge($civic-default-colors, $civic-colors), 'link-dark-visited') !default;

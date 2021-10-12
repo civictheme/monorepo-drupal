@@ -17,7 +17,7 @@
 {% set classes = classes|merge([size_class]) %}
 {% set classes = with_border ? classes|merge(['civic-icon-link--with-border']) : classes %}
 {% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
-{% set theme_class = 'civic-icon-link--%s'|format(theme|default('light')) %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set classes = classes|merge([theme_class]) %}
 
 <a class="{{ classes|join(' ') }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }} {% if text %} title="{{ title }}" {% endif %}>

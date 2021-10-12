@@ -46,6 +46,8 @@ $footer-logo-mobile: 198px;
   }
 
   .civic-link {
+    border-bottom: solid 1px;
+
     &:hover {
       border-bottom-color: transparent;
     }
