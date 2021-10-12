@@ -5,8 +5,7 @@ _meta:
   bundle: civic_page
   default_langcode: en
   depends:
-    4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
-    86c9cd2b-225e-485b-9c6a-2963cd993b7b: media
+    0eb512d0-d116-48f7-83bb-ae07c3eb2c91: media
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
@@ -40,7 +39,7 @@ default:
       pathauto: 0
   field_c_n_banner_background:
     -
-      entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+      entity: 0eb512d0-d116-48f7-83bb-ae07c3eb2c91
   field_c_n_banner_components:
     -
       entity:
@@ -60,9 +59,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_content:
             -
               value: "<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Pellentesque in ipsum id orci porta dapibus.</p>\r\n"
@@ -70,12 +66,181 @@ default:
           field_c_p_theme:
             -
               value: light
+  field_c_n_banner_components_bott:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 94fce2ee-e4da-4130-a3a2-d39307aa3ae9
+          bundle: civic_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1634047327
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 863201fe-192b-4863-b1e5-bdb2d0317260
+                  bundle: civic_card_navigation
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1634047333
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_link:
+                    -
+                      uri: 'http://example.com'
+                      title: 'http://example.com'
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'Optional summary in the breakdown of tasks.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Register for a workshop'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 030f3121-08b1-4d32-b900-6d4c1608fe38
+                  bundle: civic_card_navigation
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1634047425
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'http://example.com'
+                      title: 'http://example.com'
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'Optional summary in the breakdown of tasks.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Register for a workshop'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 987e6e29-1a3f-4e10-9542-3c6d3b88533e
+                  bundle: civic_card_navigation
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1634047441
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'http://example.com'
+                      title: 'http://example.com'
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'Optional summary in the breakdown of tasks.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Register for a workshop'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: df1716b3-2e0e-47fb-91fc-0ac811e582d5
+                  bundle: civic_card_navigation
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1634047449
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'http://example.com'
+                      title: 'http://example.com'
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'Optional summary in the breakdown of tasks.'
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_title:
+                    -
+                      value: 'Register for a workshop'
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_with_spacing:
+            -
+              value: false
   field_c_n_banner_type:
     -
-      value: default
+      value: large
   field_c_n_featured_banner_image:
     -
-      entity: 86c9cd2b-225e-485b-9c6a-2963cd993b7b
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
