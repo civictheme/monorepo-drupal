@@ -77,7 +77,7 @@ function _civic_preprocess_civic_banner(&$variables) {
   _civic_preprocess_civic_banner_breadcrumb($variables);
   _civic_preprocess_civic_banner_node($variables);
 
-  if ($variables['type'] == CIVIC_BANNER_TYPE_LARGE){
+  if ($variables['type'] == CIVIC_BANNER_TYPE_LARGE) {
     $variables['decorative'] = TRUE;
   }
 
