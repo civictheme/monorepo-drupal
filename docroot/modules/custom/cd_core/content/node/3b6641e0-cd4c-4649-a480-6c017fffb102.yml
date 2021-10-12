@@ -157,9 +157,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Nulla tincidunt facilisis risus vel volutpat. Vestibulum consectetur nulla quis nibh dapibus elementum. Maecenas mattis accumsan est quis pellentesque. Curabitur aliquet sit amet tellus et aliquam. Duis varius felis ligula, et laoreet ex dictum et. Sed tristique nisi eu diam aliquam facilisis. Aenean porta, tortor quis vestibulum pulvinar, dolor quam maximus enim, id sodales ligula sem ac eros. Donec vel mi nec est vestibulum egestas. Duis nunc magna, dignissim ac lobortis in, volutpat in massa. Aenean tellus diam, pellentesque ac metus ornare, luctus gravida metus. Quisque bibendum arcu sed lacus consequat, sit amet consectetur neque lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque eu nisl rhoncus, mattis orci et, tincidunt massa. Integer ligula erat, molestie commodo leo eu, iaculis posuere lacus. Mauris imperdiet dictum odio, at commodo justo mollis ac.'
@@ -184,9 +181,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_reference:
                     -
                       entity: 608b3d31-cd63-420e-8342-9c210fbb7538
@@ -211,9 +205,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_reference:
                     -
                       entity: 5c23a0bd-3ee8-4608-bdec-b396f0be3c7d
@@ -226,9 +217,14 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_link:
+          field_c_p_footer_link:
             -
-              uri: 'http://www.example.com'
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_header_link:
+            -
+              uri: 'http://example.com'
               title: 'View all'
               options: {  }
           field_c_p_title:

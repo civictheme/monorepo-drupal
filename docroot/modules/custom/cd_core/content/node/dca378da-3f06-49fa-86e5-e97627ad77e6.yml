@@ -36,6 +36,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_n_banner_type:
+    -
+      value: default
   field_c_n_components:
     -
       entity:
@@ -141,11 +144,6 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_link:
-            -
-              uri: 'http://google.com'
-              title: 'Read more'
-              options: {  }
           field_c_p_title:
             -
               value: 'Service cards container'

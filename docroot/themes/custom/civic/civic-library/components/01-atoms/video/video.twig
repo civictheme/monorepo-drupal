@@ -15,9 +15,9 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s'|format(theme_class) %}
-{% set transcript_link_title = transcript_link.title|default('Opens in new tab') %}
+{% set transcript_link_title = transcript_link.title|default('Opens in a new tab') %}
 {% set transcript_link_external = transcript_link.external|default(false) %}
-{% set share_link_title = share_link.title|default('Opens in new tab') %}
+{% set share_link_title = share_link.title|default('Opens in a new tab') %}
 {% set share_link_external = share_link.external|default(false) %}
 
 {% if src is not empty %}
@@ -27,14 +27,14 @@
         class="civic-video-frame"
         width="{{ width }}"
         height=" {{ height }}"
-        src= "{{ src }} "
+        src="{{ src }}"
         allowfullscreen
         data-chromatic="ignore"
         title="{{ title }}"
       >
       </iframe>
     </div>
-    <div class="civic-video__links" >
+    <div class="civic-video__links">
       {% if transcript_link.url is defined and transcript_link.url is not empty %}
         <div class="civic-video__transcript">
           {% include '@atoms/icon/icon.twig' with {
@@ -45,10 +45,10 @@
           {% include '@atoms/link/link.twig' with {
             theme: theme,
             text: transcript_link.text,
-            title: transcript_link_title,
+            title: transcript_link.title,
             url: transcript_link.url,
-            new_window: true,
-            is_external: transcript_link_external
+            new_window: transcript_link.new_window,
+            is_external: transcript_link.is_external
           } only %}
         </div>
       {% endif %}
@@ -62,10 +62,10 @@
           {% include '@atoms/link/link.twig' with {
             theme: theme,
             text: share_link.text,
-            title: share_link_title,
+            title: share_link.title,
             url: share_link.url,
-            new_window: true,
-            is_external: share_link_external
+            new_window: share_link.new_window,
+            is_external: share_link.is_external,
           } only %}
         </div>
       {% endif %}

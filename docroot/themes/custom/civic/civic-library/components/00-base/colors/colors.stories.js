@@ -13,7 +13,7 @@ export const Colors = () => {
     ...SCSS_VARIABLES['civic-default-colors-shades'],
     ...SCSS_VARIABLES['civic-default-colors-neutrals'],
     ...SCSS_VARIABLES['civic-default-colors-elements'],
-    ...SCSS_VARIABLES['civic-colors']
+    ...SCSS_VARIABLES['civic-colors'],
   ])];
 
   let html = '';

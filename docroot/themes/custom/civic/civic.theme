@@ -102,7 +102,6 @@ function civic_theme_suggestions_block_alter(array &$suggestions, array $variabl
  * Implements template_preprocess_pager().
  */
 function civic_theme_preprocess_pager(&$variables) {
-  print_r("ok");
   if (isset($variables['items']['first']['text'])) {
     $variables['items']['first']['text'] = t('First');
   }

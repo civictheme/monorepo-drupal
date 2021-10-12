@@ -22,18 +22,15 @@ $civic-default-colors: (
 );
 
 $civic-default-colors-shades: (
-  'shade_90': mix(white, civic-base-color('primary'), 90%),
   'shade_15': mix(black, civic-base-color('primary'), 15%),
   'shade_30': mix(black, civic-base-color('primary'), 30%),
   'shade_45': mix(black, civic-base-color('primary'), 45%),
   'shade_60': mix(black, civic-base-color('primary'), 60%),
+  'shade_90': mix(white, civic-base-color('primary'), 90%),
 );
 
 $civic-default-colors-neutral-base: civic-base-color('primary') !default;
-$civic-default-colors-neutral-desat: desaturate($civic-default-colors-neutral-base, 20%);
-$civic-default-colors-neutral-darken: math.max(color.lightness($civic-default-colors-neutral-base) - 5%, 0%);
-$civic-default-colors-neutral: darken($civic-default-colors-neutral-desat, $civic-default-colors-neutral-darken);
-
+$civic-default-colors-neutral: darken(desaturate($civic-default-colors-neutral-base, 20%), math.max(color.lightness($civic-default-colors-neutral-base) - 5%, 0%));
 $civic-default-colors-neutrals: (
   'neutral_5': mix($civic-default-colors-neutral, white, 5%),
   'neutral_10': mix($civic-default-colors-neutral, white, 10%),
@@ -44,6 +41,7 @@ $civic-default-colors-neutrals: (
   'neutral_90': mix($civic-default-colors-neutral, white, 90%),
 );
 
+// @todo: Refactor these into component variables.
 $civic-default-colors-elements: (
   'translucent': #00000000,
   'heading': #1F2833,
@@ -271,15 +269,38 @@ $civic-link-dark-background-visited-hover: civic-color('link-dark-visited') !def
 // Table.
 //
 $civic-table-light-color: civic-color('body') !default;
+$civic-table-light-link-color: $civic-link-light-color !default;
+$civic-table-light-link-hover-color: $civic-link-light-color-hover !default;
 $civic-table-light-heading-color: civic-color('neutral_90') !default;
+$civic-table-light-border-color: civic-color('body') !default;
 $civic-table-light-background-color: civic-color('neutral') !default;
-$civic-table-light-row-even-color: civic-color('neutral_5') !default;
+
+$civic-table-light-row-odd-color: civic-color('body') !default;
+$civic-table-light-row-odd-link-color: $civic-link-light-color !default;
+$civic-table-light-row-odd-link-hover-color: $civic-link-light-color-hover !default;
+$civic-table-light-row-odd-background-color: civic-color('neutral') !default;
+
+$civic-table-light-row-even-color: civic-color('body') !default;
+$civic-table-light-row-even-link-color: $civic-link-light-color !default;
+$civic-table-light-row-even-link-hover-color: $civic-link-light-color-hover !default;
+$civic-table-light-row-even-background-color: civic-color('neutral_5') !default;
 
 $civic-table-dark-color: civic-color('shade_90') !default;
+$civic-table-dark-link-color: civic-color('accent') !default;
+$civic-table-dark-link-hover-color: $civic-table-dark-link-color !default;
 $civic-table-dark-heading-color: civic-color('neutral') !default;
+$civic-table-dark-border-color: civic-color('shade_90') !default;
 $civic-table-dark-background-color: civic-color('shade_45') !default;
-$civic-table-dark-row-odd-color: civic-color('primary') !default;
-$civic-table-dark-row-even-color: civic-color('shade_30') !default;
+
+$civic-table-dark-row-odd-color: $civic-table-dark-color !default;
+$civic-table-dark-row-odd-link-color: $civic-table-dark-link-color !default;
+$civic-table-dark-row-odd-link-hover-color: $civic-table-dark-link-hover-color !default;
+$civic-table-dark-row-odd-background-color: civic-color('primary') !default;
+
+$civic-table-dark-row-even-color: $civic-table-dark-color !default;
+$civic-table-dark-row-even-link-color: $civic-table-dark-link-color !default;
+$civic-table-dark-row-even-link-hover-color: $civic-table-dark-link-hover-color !default;
+$civic-table-dark-row-even-background-color: civic-color('shade_30') !default;
 
 //
 // Callout.
@@ -314,6 +335,15 @@ $civic-attachment-dark-heading-color-active: civic-color('neutral') !default;
 $civic-attachment-dark-heading-color: civic-color('neutral') !default;
 $civic-attachment-dark-date-color: civic-color('neutral_10') !default;
 $civic-attachment-dark-icon-color: civic-color('accent') !default;
+
+//
+// Card container.
+//
+
+$civic-card-container-light-background: civic-color('neutral_5') !default;
+$civic-card-container-light-heading-color: civic-color('heading') !default;
+$civic-card-container-dark-background: civic-color('shade_60') !default;
+$civic-card-container-dark-heading-color: civic-color('neutral') !default;
 
 //
 // Navigation card.
@@ -494,12 +524,6 @@ $civic-tag-light-color: civic-color('body') !default;
 $civic-tag-dark-background-color: civic-color('shade_30') !default;
 $civic-tag-dark-color: civic-color('neutral') !default;
 
-$civic-tag-card-light-background-color: civic-color('primary') !default;
-$civic-tag-card-light-color: civic-color('neutral') !default;
-
-$civic-tag-card-dark-background-color: civic-color('accent') !default;
-$civic-tag-card-dark-color: civic-color('neutral_80') !default;
-
 //
 // Service card.
 //
@@ -542,10 +566,10 @@ $civic-breadcrumbs-dark-color-hover: civic-color('shade_60') !default;
 // Skip link.
 //
 $civic-skip-link-light-background-color: civic-color('shade_90') !default;
-$civic-skip-link-light-color: civic-color('primary') !default;
+$civic-skip-link-light-color: civic-color('shade_30') !default;
 
 $civic-skip-link-dark-background-color: civic-color('shade_60') !default;
-$civic-skip-link-dark-color: civic-color('accent') !default;
+$civic-skip-link-dark-color: civic-color('dark-text') !default;
 
 //
 // Directional link
@@ -561,24 +585,28 @@ $civic-directional-link-dark-hover-color: civic-color('accent') !default;
 //
 // Filter chip.
 //
+$civic-filter-chip-light-color: civic-color('neutral_80') !default;
 $civic-filter-chip-light-border-color: civic-color('neutral_20') !default;
-$civic-filter-chip-light-color: civic-color('neutral_90') !default;
-$civic-filter-chip-light-background-color: civic-color('shade_90') !default;
-$civic-filter-chip-light-hover-color: civic-color('neutral_90') !default;
+$civic-filter-chip-light-background-color: civic-color('neutral') !default;
+$civic-filter-chip-light-hover-color: civic-color('neutral_80') !default;
+$civic-filter-chip-light-hover-border-color: civic-color('neutral_80') !default;
 $civic-filter-chip-light-hover-background-color: civic-color('neutral_5') !default;
-$civic-filter-chip-light-active-color: civic-color('neutral_5') !default;
+$civic-filter-chip-light-active-color: civic-color('neutral') !default;
+$civic-filter-chip-light-active-border-color: civic-color('primary') !default;
 $civic-filter-chip-light-active-background-color: civic-color('primary') !default;
 
-$civic-filter-chip-dark-border-color: civic-color('neutral_40') !default;
 $civic-filter-chip-dark-color: civic-color('neutral_5') !default;
+$civic-filter-chip-dark-border-color: civic-color('neutral_40') !default;
 $civic-filter-chip-dark-background-color: civic-color('shade_45') !default;
-$civic-filter-chip-dark-hover-color: civic-color('shade_45') !default;
-$civic-filter-chip-dark-hover-background-color: civic-color('neutral') !default;
+$civic-filter-chip-dark-hover-color: civic-color('neutral_5') !default;
+$civic-filter-chip-dark-hover-border-color: civic-color('neutral_40') !default;
+$civic-filter-chip-dark-hover-background-color: civic-color('shade_45') !default;
 $civic-filter-chip-dark-active-color: civic-color('accent') !default;
 $civic-filter-chip-dark-active-background-color: civic-color('shade_60') !default;
+$civic-filter-chip-dark-active-border-color: civic-color('accent') !default;
 
 // Next steps.
-$civic-next-steps-stripe-color:  civic-color('secondary') !default;
+$civic-next-steps-stripe-color: civic-color('secondary') !default;
 
 $civic-next-steps-light-background-color: civic-color('neutral_5') !default;
 $civic-next-steps-light-color: civic-color('body') !default;
@@ -622,7 +650,10 @@ $civic-icon-link-dark-color-active: civic-color('shade_90') !default;
 $civic-icon-link-dark-color-visited: civic-color('neutral') !default;
 $civic-icon-link-dark-color-disabled: civic-color('neutral_40') !default;
 
-// Card container.
+// Image.
+$civic-image-border-radius: $civic-border-radius !default;
+$civic-image-caption-light-color: civic-color('neutral_60') !default;
+$civic-image-caption-dark-color: civic-color('shade_90') !default;
 
 // Video
 $civic-video-padding-bottom: 56.25% !default;

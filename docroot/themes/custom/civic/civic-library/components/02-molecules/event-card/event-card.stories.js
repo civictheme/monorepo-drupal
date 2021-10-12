@@ -56,7 +56,7 @@ export const EventCard = () => {
     {
       range: true,
       min: 0,
-      max: 4,
+      max: 10,
       step: 1,
     },
     tagKnobTab,
@@ -74,7 +74,7 @@ export const EventCard = () => {
     tagNum,
   };
 
-  return CivicEventCard({
+  const html = CivicEventCard({
     ...generalKnobs,
     ...tagKnobs,
     ...getSlots([
@@ -84,4 +84,6 @@ export const EventCard = () => {
       'content_bottom',
     ]),
   });
+
+  return `<div class="story-wrapper-size--small">${html}</div>`;
 };

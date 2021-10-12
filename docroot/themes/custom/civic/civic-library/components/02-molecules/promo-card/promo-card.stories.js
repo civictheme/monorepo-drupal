@@ -54,7 +54,7 @@ export const PromoCard = () => {
     {
       range: true,
       min: 0,
-      max: 4,
+      max: 10,
       step: 1,
     },
     tagKnobTab,
@@ -72,7 +72,7 @@ export const PromoCard = () => {
     tagNum,
   };
 
-  return CivicPromoCard({
+  const html = CivicPromoCard({
     ...generalKnobs,
     ...tagKnobs,
     ...getSlots([
@@ -82,4 +82,6 @@ export const PromoCard = () => {
       'content_bottom',
     ]),
   });
+
+  return `<div class="story-wrapper-size--small">${html}</div>`;
 };
