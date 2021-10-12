@@ -6,6 +6,7 @@
  */
 
 require_once 'includes/civic_banner.inc';
+require_once 'includes/civic_blocks.inc';
 require_once 'includes/civic_cards.inc';
 require_once 'includes/civic_pages.inc';
 require_once 'includes/civic_paragraphs.inc';

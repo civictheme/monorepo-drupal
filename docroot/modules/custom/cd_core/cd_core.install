@@ -96,14 +96,19 @@ function cd_core_update_9002() {
  */
 function cd_core_update_9003() {
   // Set logo in theme settings.
-  $logo_path = 'docroot/themes/custom/civic_demo/assets/logo.png';
+  $logo_path = '/themes/custom/civic_demo/assets/logo.png';
   $config = \Drupal::service('config.factory')->getEditable('civic_demo.settings');
   $logo_settings = [
     'civic_header_logo_mobile',
-    'civic_header_logo_desktop',
+    'logo_path',
     'civic_footer_logo_mobile',
     'civic_footer_logo_desktop',
   ];
+  $config->set('logo', [
+    'use_default' => FALSE,
+    'path' => $logo_path,
+    'url' => $logo_path,
+  ]);
   foreach ($logo_settings as $logo_setting) {
     $config->set($logo_setting, $logo_path);
   }
