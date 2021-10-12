@@ -1,4 +1,4 @@
-import { radios, text } from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicImage from './image.twig';
 import './image.scss';
@@ -21,7 +21,7 @@ export const Image = () => CivicImage({
     },
     'light',
   ),
-  src: text('Image path', imageFile),
+  src: boolean('With image', true) ? imageFile : false,
   alt: text('Image alt text', 'Civic image alt'),
   caption: text('Caption', 'This is a default image caption.'),
 });

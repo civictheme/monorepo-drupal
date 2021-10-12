@@ -4,19 +4,21 @@
 @import '../../00-base/base';
 
 .civic-image {
-  border-radius: $civic-border-radius;
+  border-radius: $civic-image-border-radius;
 
   &.civic-theme-light {
-    //background-color: civic-color('secondary');
-    color: civic-color('neutral_60');
+    color: $civic-image-caption-light-color;
 
     svg path {
-      fill: civic-color('neutral_60');
+      fill: $civic-image-caption-light-color;
     }
   }
 
   &.civic-theme-dark {
-    //background-color: civic-color('primary-accent');
-    color: civic-color('neutral_60');
+    color: $civic-image-caption-dark-color;
+
+    svg path {
+      fill: $civic-image-caption-dark-color;
+    }
   }
 }

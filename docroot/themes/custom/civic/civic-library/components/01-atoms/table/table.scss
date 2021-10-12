@@ -96,24 +96,68 @@
 
     thead {
       @include civic-breakpoint('m') {
-        border-bottom: solid 1px $civic-table-light-color;
+        border-bottom: solid 1px $civic-table-light-border-color;
       }
       color: $civic-table-light-heading-color;
     }
 
     tbody {
       @include civic-breakpoint('m') {
-        tr:first-child td {
-          border-top: solid 2px $civic-table-light-color;
+        tr:first-child {
+          td {
+            border-top: solid 2px $civic-table-light-border-color;
+          }
         }
       }
 
       @include civic-breakpoint-upto('m') {
         tr {
-          border-bottom: solid 2px $civic-table-light-color;
+          border-bottom: solid 2px $civic-table-light-border-color;
 
           &:first-child {
-            border-top: solid 2px $civic-table-light-color;
+            border-top: solid 2px $civic-table-light-border-color;
+          }
+        }
+      }
+    }
+
+    .civic-link {
+      color: $civic-table-light-link-color;
+
+      &:hover {
+        color: $civic-table-light-link-hover-color;
+      }
+    }
+
+    &#{$root}--striped {
+      tr:nth-child(odd) {
+        background: $civic-table-light-row-odd-background-color;
+
+        td {
+          color: $civic-table-light-row-odd-color;
+
+          .civic-link {
+            color: $civic-table-light-row-odd-link-color;
+
+            &:hover {
+              color: $civic-table-light-row-odd-link-hover-color;
+            }
+          }
+        }
+      }
+
+      tr:nth-child(even) {
+        background: $civic-table-light-row-even-background-color;
+
+        td {
+          color: $civic-table-light-row-even-color;
+
+          .civic-link {
+            color: $civic-table-light-row-even-link-color;
+
+            &:hover {
+              color: $civic-table-light-row-odd-link-hover-color;
+            }
           }
         }
       }
@@ -124,49 +168,75 @@
     color: $civic-table-dark-color;
 
     table {
-      background-color: $civic-table-dark-row-odd-color;
+      background-color: $civic-table-dark-background-color;
     }
 
     thead {
       @include civic-breakpoint('m') {
-        border-bottom: solid rem(2px) $civic-table-light-background-color;
+        border-bottom: solid 1px $civic-table-dark-border-color;
       }
       color: $civic-table-dark-heading-color;
     }
 
     tbody {
       @include civic-breakpoint('m') {
-        tr:first-child td {
-          border-top: solid rem(2px) $civic-table-dark-color;
+        tr:first-child {
+          td {
+            border-top: solid 2px $civic-table-dark-border-color;
+          }
         }
       }
 
       @include civic-breakpoint-upto('m') {
         tr {
-          border-bottom: solid 2px $civic-table-dark-color;
+          border-bottom: solid 2px $civic-table-dark-border-color;
 
           &:first-child {
-            border-top: solid 2px $civic-table-dark-color;
+            border-top: solid 2px $civic-table-dark-border-color;
           }
         }
       }
     }
-  }
 
-  &--striped {
-    &.civic-theme-light {
-      tr:nth-child(even) {
-        background: $civic-table-light-row-even-color;
+    .civic-link {
+      color: $civic-table-dark-link-color;
+
+      &:hover {
+        color: $civic-table-dark-link-hover-color;
       }
     }
 
-    &.civic-theme-dark {
+    &#{$root}--striped {
       tr:nth-child(odd) {
-        background: $civic-table-dark-row-odd-color;
+        background: $civic-table-dark-row-odd-background-color;
+
+        td {
+          color: $civic-table-dark-row-odd-color;
+
+          .civic-link {
+            color: $civic-table-dark-row-odd-link-color;
+
+            &:hover {
+              color: $civic-table-dark-row-odd-link-hover-color;
+            }
+          }
+        }
       }
 
       tr:nth-child(even) {
-        background: $civic-table-dark-row-even-color;
+        background: $civic-table-dark-row-even-background-color;
+
+        td {
+          color: $civic-table-dark-row-even-color;
+
+          .civic-link {
+            color: $civic-table-dark-row-even-link-color;
+
+            &:hover {
+              color: $civic-table-dark-row-odd-link-hover-color;
+            }
+          }
+        }
       }
     }
   }
