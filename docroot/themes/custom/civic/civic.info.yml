@@ -166,6 +166,7 @@ config_devel:
     - field.field.paragraph.civic_card_container.field_c_p_cards
     - field.field.paragraph.civic_card_container.field_c_p_column_count
     - field.field.paragraph.civic_card_container.field_c_p_fill_width
+    - field.field.paragraph.civic_card_container.field_c_p_with_spacing
     - field.field.paragraph.civic_card_container.field_c_p_header_link
     - field.field.paragraph.civic_card_container.field_c_p_footer_link
     - field.field.paragraph.civic_card_container.field_c_p_title
@@ -265,6 +266,7 @@ config_devel:
     - field.storage.paragraph.field_c_p_default_panel
     - field.storage.paragraph.field_c_p_expand
     - field.storage.paragraph.field_c_p_fill_width
+    - field.storage.paragraph.field_c_p_with_spacing
     - field.storage.paragraph.field_c_p_icon
     - field.storage.paragraph.field_c_p_image
     - field.storage.paragraph.field_c_p_image_position
