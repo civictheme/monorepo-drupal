@@ -2,7 +2,7 @@
 
 /**
  * @file
- * System branding block
+ * System branding block.
  */
 
 /**
@@ -20,6 +20,6 @@ function civic_preprocess_block__system_branding_block(&$variables) {
     'desktop' => [
       'src' => $desktop_logo,
       'alt' => $alt_attribute,
-    ]
+    ],
   ];
 }
