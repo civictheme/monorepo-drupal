@@ -17,4 +17,5 @@ export const SkipLink = () => CivicSkipLink({
   ),
   text: text('Text', 'Skip to main content'),
   url: text('URL', '#main-content'),
+  modifier_class: text('Additional class', ''),
 });

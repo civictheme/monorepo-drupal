@@ -54,7 +54,7 @@ export const PromoCard = () => {
     {
       range: true,
       min: 0,
-      max: 4,
+      max: 10,
       step: 1,
     },
     tagKnobTab,

@@ -16,4 +16,5 @@ export const Heading = () => CivicHeading({
     H6: '6',
   }, '1'),
   title: text('Text', 'Heading Text'),
+  modifier_class: text('Additional class', ''),
 });

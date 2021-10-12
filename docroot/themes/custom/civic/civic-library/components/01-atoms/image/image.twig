@@ -11,16 +11,18 @@
 #}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
-<figure class="civic-image {{ theme_class }}">
-  <img src="{{ src }}" alt="{{ alt }}">
+{% if src %}
+  <figure class="civic-image {{ theme_class }}">
+    <img src="{{ src }}" alt="{{ alt }}">
 
-  {% if caption is not empty %}
-    <figcaption>
-      {% include '@atoms/icon/icon.twig' with {
-        symbol: 'multimedia_image_3',
-        color: 'neutral_60',
-      } %}
-      {{ caption }}
-    </figcaption>
-  {% endif %}
-</figure>
+    {% if caption is not empty %}
+      <figcaption class="civic-image__caption">
+        {% include '@atoms/icon/icon.twig' with {
+          symbol: 'multimedia_image_3',
+          color: 'neutral_60',
+        } %}
+        {{ caption }}
+      </figcaption>
+    {% endif %}
+  </figure>
+{% endif %}

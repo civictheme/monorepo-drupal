@@ -1,11 +1,10 @@
 import {
-  text, boolean, radios,
+  boolean, radios, select, text,
 } from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
 import CivicBannerExample from './banner.stories.twig';
 import CivicSearch from './search.twig';
 import './banner.stories.scss';
-import bgImage from '../../../assets/banner-background.png';
 
 export default {
   title: 'Organisms/Banner',
@@ -27,7 +26,7 @@ export const BannerExample = () => {
       'dark',
       generalKnobTab,
     ),
-    backgroundImage: text('Background image', bgImage, generalKnobTab),
+    backgroundImage: BACKGROUNDS[select('Background', Object.keys(BACKGROUNDS), Object.keys(BACKGROUNDS)[0], generalKnobTab)],
     decorative: boolean('Decorative', true, generalKnobTab),
     showTopContent: boolean('Show example content for Top Content', false, generalKnobTab),
     showBreadcrumbs: boolean('Show example content for Breadcrumbs ', true, generalKnobTab),

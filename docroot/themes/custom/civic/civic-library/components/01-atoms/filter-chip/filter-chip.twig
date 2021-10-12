@@ -6,14 +6,18 @@
  * Variables:
  * - theme: [string] theme: light, dark.
  * - is_multiple: [boolean] Control radio or checkbox.
- * - is_active: [boolean] Chip active state.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes to modify component styling.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 {% set type = is_multiple ? 'checkbox' : 'radio' %}
 
-<label class="civic-filter-chip {{ theme_class }}" data-component-name="filter-chip">
-  <input type="{{ type }}" id="{{ input_id }}" name="{{ input_name }}">
-  <span>{{ text }}</span>
-</label>
+{% if id is not empty or name is not empty %}
+  <label class="civic-filter-chip {{ modifier_class }}" for="{{ id }}" data-component-name="filter-chip">
+    <input class="civic-filter-chip__field" type="{{ type }}" id="{{ id }}" name="{{ name }}" {% if attributes %}{{ attributes }}{% endif %} />
+    <span class="civic-filter-chip__text">{{ text }}</span>
+  </label>
+{% endif %}
