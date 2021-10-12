@@ -35,11 +35,33 @@
       </div>
     </div>
 
-
     {% block middle %}
-      <div class="civic-footer__middle civic-footer__region">
-        {{ middle }}
-      </div>
+      {% if middle_1 or middle_2 or middle_3 or middle_4 %}
+        <div class="civic-footer__middle civic-footer__region">
+          <div class="row">
+            <div class="civic-footer__middle--1 col-xs-12 col-m-3">
+              {% block middle_1 %}
+                {{ middle_1 }}
+              {% endblock %}
+            </div>
+            <div class="civic-footer__middle--2 col-xs-12 col-m-3">
+              {% block middle_2 %}
+                {{ middle_2 }}
+              {% endblock %}
+            </div>
+            <div class="civic-footer__middle_3 col-xs-12 col-m-3">
+              {% block middle_3 %}
+                {{ middle_3 }}
+              {% endblock %}
+            </div>
+            <div class="civic-footer__middle_4 col-xs-12 col-m-3">
+              {% block middle_4 %}
+                {{ middle_4 }}
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
     {% endblock %}
 
     <div class="civic-footer__bottom civic-footer__region">

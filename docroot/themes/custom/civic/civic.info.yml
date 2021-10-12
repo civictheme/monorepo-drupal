@@ -23,7 +23,10 @@ regions:
   content_left: 'Content left'
   footer_top_left: 'Footer top left'
   footer_top_right: 'Footer top right'
-  footer_middle: 'Footer middle'
+  footer_middle_1: 'Footer middle 1'
+  footer_middle_2: 'Footer middle 2'
+  footer_middle_3: 'Footer middle 3'
+  footer_middle_4: 'Footer middle 4'
   footer_bottom_left: 'Footer bottom left'
   footer_bottom_right: 'Footer bottom right'
 

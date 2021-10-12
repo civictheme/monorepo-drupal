@@ -12,12 +12,16 @@
  * - url: [string] URL for the link button.
  */
 #}
-{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set size_class = size ? 'civic-icon-link--size-' ~ size : '' %}
-{% set with_border_class = with_border ? 'civic-icon-link--with-border' : '' %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, size_class, with_border_class, modifier_class|default('')) %}
+{% set classes = ['civic-icon-link'] %}
+{% set size_class = size ? 'civic-icon-link--size-%s'|format(size) : '' %}
+{% set classes = classes|merge([size_class]) %}
+{% set classes = with_border ? classes|merge(['civic-icon-link--with-border']) : classes %}
+{% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
+{% set theme_class = 'civic-icon-link--%s'|format(theme|default('light')) %}
+{% set classes = classes|merge([theme_class]) %}
 
-<a class="civic-icon-link {{ modifier_class }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }} {% if text %}title="{{ text }}"{% endif %}>
+<a class="{{ classes|join(' ') }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }} {% if text %} title="{{ title }}" {% endif %}>
+  <span class="visually-hidden">{{ title }}</span>
   {% include '@atoms/icon/icon.twig' with {
     symbol: symbol,
     size: size

@@ -36,10 +36,6 @@ $footer-logo-mobile: 198px;
     border-top: solid rem(1px) transparent;
     border-bottom: solid rem(1px) transparent;
 
-    .civic-link {
-      border-bottom-color: transparent;
-    }
-
     li.civic-menu__item {
       margin-bottom: civic-space() * 1.5;
     }
@@ -48,6 +44,16 @@ $footer-logo-mobile: 198px;
   &__bottom {
     padding: civic-space(5) 0 civic-space(2) 0;
   }
+
+  .civic-link {
+    &:hover {
+      border-bottom-color: transparent;
+    }
+    &:focus, &:active {
+      @include civic-outline();
+    }
+  }
+
 
   &.civic-theme-light {
     background-color: $civic-footer-light-background-color;
@@ -58,11 +64,16 @@ $footer-logo-mobile: 198px;
     }
 
     .civic-link {
-      color: $civic-footer-light-color;
-    }
+      background-color: transparent;
+      color: $civic-footer-light-link-color;
 
-    .civic-icon-link {
-      color: $civic-footer-light-color;
+      &:hover {
+        color: $civic-footer-light-link-hover-color;
+      }
+
+      &:focus {
+        outline-color: $civic-footer-light-outline-color;
+      }
     }
   }
 
@@ -71,15 +82,20 @@ $footer-logo-mobile: 198px;
     color: $civic-footer-dark-color;
 
     .civic-link {
-      color: $civic-footer-dark-color;
+      background-color: transparent;
+      color: $civic-footer-dark-link-color;
+
+      &:hover {
+        color: $civic-footer-dark-link-hover-color;
+      }
+
+      &:focus {
+        outline-color: $civic-footer-dark-outline-color;
+      }
     }
 
     #{$root}__middle {
       border-color: $civic-footer-dark-border-color;
-    }
-
-    .civic-icon-link {
-      color: $civic-footer-dark-color;
     }
   }
 }

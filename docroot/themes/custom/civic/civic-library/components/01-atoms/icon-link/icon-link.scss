@@ -11,9 +11,13 @@
 
   &#{$root}--with-border {
     .civic-icon {
-      padding: civic-space() * 1.5;
       border: 1px solid currentColor;
       border-radius: rem(100px);
+      padding: civic-space();
+
+      @include civic-breakpoint('m') {
+        padding: civic-space() * 1.5;
+      }
     }
   }
 
