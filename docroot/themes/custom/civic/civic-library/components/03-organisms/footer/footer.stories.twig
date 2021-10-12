@@ -41,18 +41,25 @@
   {% if showMiddleMenus %}
     <div class="civic-footer__middle">
     <div class="row">
-      {% for i in 1..4 %}
+      {% for itr in 1..4 %}
         <div class="col-xs-12 col-m-3">
-          {% include '@organisms/menu/menu.twig' with {
-            theme: theme,
-            items: [
-              { title: 'For individuals', url: '#' },
-              { title: 'For businesses', url: '#' },
-              { title: 'For government', url: '#' },
-              { title: 'Services', url: '#' },
-              { title: 'News & events', url: '#' },
-            ]
-          } only %}
+          {% include '@atoms/heading/heading.twig' with {
+            level: 2,
+            title: 'Footer Menu--' ~ itr,
+          } %}
+          <div class="civic-footer-menu">
+            {% include '@organisms/menu/menu.twig' with {
+              theme: theme,
+              items: [
+                { title: 'For individuals', url: '#' },
+                { title: 'For businesses', url: '#' },
+                { title: 'For government', url: '#' },
+                { title: 'Services', url: '#' },
+                { title: 'News & events', url: '#' },
+              ],
+              menu_type: 'list',
+            } only %}
+          </div>
         </div>
       {% endfor %}
     </div>

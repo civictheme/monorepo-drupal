@@ -4,24 +4,45 @@
 
 @import '../../00-base/base';
 
+$footer-logo-desktop: 228px;
+$footer-logo-mobile: 198px;
+
 .civic-footer {
   $root: &;
   @include civic-typography('body');
 
   &__logo {
     img {
-      max-width: 100%;
+      max-width: rem($footer-logo-mobile);
+
+      @include civic-breakpoint('m') {
+        max-width: rem($footer-logo-desktop);
+      }
     }
   }
 
   &__top {
     padding: civic-space(5) 0;
+
+    &--right {
+      @include civic-breakpoint-upto('m') {
+        margin-top: civic-space(2);
+      }
+    }
   }
 
   &__middle {
     padding: civic-space(7) 0;
     border-top: solid rem(1px) transparent;
     border-bottom: solid rem(1px) transparent;
+
+    .civic-link {
+      border-bottom-color: transparent;
+    }
+
+    li.civic-menu__item {
+      margin-bottom: civic-space() * 1.5;
+    }
   }
 
   &__bottom {
@@ -35,14 +56,30 @@
     #{$root}__middle {
       border-color: $civic-footer-light-border-color;
     }
+
+    .civic-link {
+      color: $civic-footer-light-color;
+    }
+
+    .civic-icon-link {
+      color: $civic-footer-light-color;
+    }
   }
 
   &.civic-theme-dark {
     background-color: $civic-footer-dark-background-color;
     color: $civic-footer-dark-color;
 
+    .civic-link {
+      color: $civic-footer-dark-color;
+    }
+
     #{$root}__middle {
       border-color: $civic-footer-dark-border-color;
+    }
+
+    .civic-icon-link {
+      color: $civic-footer-dark-color;
     }
   }
 }

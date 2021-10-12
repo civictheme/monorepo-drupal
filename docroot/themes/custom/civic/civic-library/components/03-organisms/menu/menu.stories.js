@@ -7,51 +7,9 @@ import './menu.scss';
 
 export default {
   title: 'Organisms/Menu',
-};
-
-export const FooterMenu = () => {
-  const links = [
-    {
-      title: 'For individuals',
-      url: '#',
-    },
-    {
-      title: 'For businesses',
-      url: '#',
-    },
-    {
-      title: 'For government',
-      url: '#',
-    },
-    {
-      title: 'Services',
-      url: '#',
-    },
-    {
-      title: 'News & events',
-      url: '#',
-    },
-  ];
-
-  const generalKnobTab = 'General';
-
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    items: object('Links', links, generalKnobTab),
-  };
-
-  return CivicMenu({
-    ...generalKnobs,
-    menu_type: 'footer',
-  });
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export const MainMenu = () => {
@@ -140,5 +98,50 @@ export const MainMenu = () => {
   return CivicMenu({
     ...generalKnobs,
     menu_type: 'main',
+  });
+};
+
+export const FooterMenu = () => {
+  const links = [
+    {
+      title: 'For individuals',
+      url: '#',
+    },
+    {
+      title: 'For businesses',
+      url: '#',
+    },
+    {
+      title: 'For government',
+      url: '#',
+    },
+    {
+      title: 'Services',
+      url: '#',
+    },
+    {
+      title: 'News & events',
+      url: '#',
+    },
+  ];
+
+  const generalKnobTab = 'General';
+
+  const generalKnobs = {
+    theme: radios(
+      'Theme',
+      {
+        Light: 'light',
+        Dark: 'dark',
+      },
+      'light',
+      generalKnobTab,
+    ),
+    items: object('Links', links, generalKnobTab),
+  };
+
+  return CivicMenu({
+    ...generalKnobs,
+    menu_type: 'footer',
   });
 };

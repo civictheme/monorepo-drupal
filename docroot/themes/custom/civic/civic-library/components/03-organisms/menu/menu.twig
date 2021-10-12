@@ -20,7 +20,7 @@
 {% macro menu_links(items, menu_level, classes, menu_type) %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul class="{{ classes|join(' ') }}">
+      <ul class="{{ classes|join(' ') }}" data-component-name="{{ 'civic-menu--%s'|format(menu_type) }}">
     {% else %}
       <ul class="civic-menu civic-menu__sub-menu">
     {% endif %}

@@ -18,16 +18,19 @@ export const SocialLinks = () => {
       symbol: 'brands_facebook',
       size: 'regular',
       url: 'www.facebook.com',
+      title: 'facebook',
     },
     {
       symbol: 'brands_twitter',
       size: 'regular',
       url: 'www.facebook.com',
+      title: 'twitter',
     },
     {
       symbol: 'brands_linkedin',
       size: 'regular',
       url: 'www.facebook.com',
+      title: 'Linkedin',
     },
   ];
 
