@@ -8,7 +8,13 @@ export default {
 };
 
 export const Colors = () => {
-  const colors = [...new Set([...SCSS_VARIABLES['civic-default-colors'], ...SCSS_VARIABLES['civic-colors']])];
+  const colors = [...new Set([
+    ...SCSS_VARIABLES['civic-default-colors'],
+    ...SCSS_VARIABLES['civic-default-colors-shades'],
+    ...SCSS_VARIABLES['civic-default-colors-neutrals'],
+    ...SCSS_VARIABLES['civic-default-colors-elements'],
+    ...SCSS_VARIABLES['civic-colors']
+  ])];
 
   let html = '';
 
