@@ -37,6 +37,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_n_banner_theme:
+    -
+      value: dark
   field_c_n_banner_type:
     -
       value: default
@@ -177,6 +180,9 @@ default:
           field_c_p_title:
             -
               value: 'Card 1'
+          field_c_p_with_spacing:
+            -
+              value: true
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

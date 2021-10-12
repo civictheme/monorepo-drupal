@@ -1,0 +1,51 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 6ed0baba-5fd0-42b3-982c-848f37b2ea76
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    67b42d97-926d-425b-b9db-488627bcbd1f: media
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Banner - Light, Default, No content'
+  created:
+    -
+      value: 1634051287
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_background:
+    -
+      entity: 67b42d97-926d-425b-b9db-488627bcbd1f
+  field_c_n_banner_theme:
+    -
+      value: light
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
