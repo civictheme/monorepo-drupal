@@ -9,7 +9,7 @@ id: node.civic_page.field_c_n_banner_featured_image
 field_name: field_c_n_banner_featured_image
 entity_type: node
 bundle: civic_page
-label: 'Featured banner image'
+label: 'Banner featured image'
 description: ''
 required: false
 translatable: false
