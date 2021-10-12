@@ -506,12 +506,6 @@ $civic-tag-light-color: map-get(map-merge($civic-default-colors, $civic-colors),
 $civic-tag-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'shade_30') !default;
 $civic-tag-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
 
-$civic-tag-card-light-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary') !default;
-$civic-tag-card-light-color: map-get(map-merge($civic-default-colors, $civic-colors), 'secondary') !default;
-
-$civic-tag-card-dark-background-color: map-get(map-merge($civic-default-colors, $civic-colors), 'primary-accent') !default;
-$civic-tag-card-dark-color: map-get(map-merge($civic-default-colors, $civic-colors), 'neutral_80') !default;
-
 //
 // Service card.
 //
