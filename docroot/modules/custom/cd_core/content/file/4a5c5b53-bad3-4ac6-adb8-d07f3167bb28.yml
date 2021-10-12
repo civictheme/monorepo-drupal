@@ -12,7 +12,7 @@ default:
       value: nature.jpg
   uri:
     -
-      value: 'public://2021-09/nature_11_1_3_1.jpg'
+      value: 'public://2021-09/nature_11_1_3_1_0.jpg'
   filemime:
     -
       value: image/jpeg
