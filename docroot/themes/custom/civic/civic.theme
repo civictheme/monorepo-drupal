@@ -5,8 +5,6 @@
  * Functions to support theming in the Civic theme.
  */
 
-use Drupal\block\Entity\Block;
-
 require_once 'includes/civic_banner.inc';
 require_once 'includes/civic_blocks.inc';
 require_once 'includes/civic_cards.inc';
