@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 448d08b2-d9b1-4a67-ac21-36afe67f77d7
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: civic_pattern_light_1.jpg
+  uri:
+    -
+      value: 'public://2021-10/civic_pattern_light_1_0.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 1247776
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1634049753

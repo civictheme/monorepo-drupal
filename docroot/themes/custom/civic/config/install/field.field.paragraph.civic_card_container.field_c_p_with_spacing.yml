@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_with_spacing
+    - paragraphs.paragraphs_type.civic_card_container
+id: paragraph.civic_card_container.field_c_p_with_spacing
+field_name: field_c_p_with_spacing
+entity_type: paragraph
+bundle: civic_card_container
+label: 'With spacing'
+description: 'Add spacing around elements of the container.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -13,11 +13,14 @@
     {{ banner }}
   {% endblock %}
 
-  <div class="container">
+  {% if highlighted is not empty %}
     {% block highlighted %}
-      {{ highlighted }}
+      <div class="container">
+        {{ highlighted }}
+      </div>
     {% endblock %}
-  </div>
+  {% endif %}
+
 
   {% block content %}
     {% include '@organisms/content/content.twig' with {

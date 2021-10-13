@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_c_n_featured_banner_image
+    - block_content.type.civic_banner
+    - field.storage.block_content.field_c_b_background_image
     - media.type.image
-    - node.type.civic_page
-id: node.civic_page.field_c_n_featured_banner_image
-field_name: field_c_n_featured_banner_image
-entity_type: node
-bundle: civic_page
-label: 'Featured banner image'
-description: ''
+id: block_content.civic_banner.field_c_b_background_image
+field_name: field_c_b_background_image
+entity_type: block_content
+bundle: civic_banner
+label: 'Background image'
+description: 'Default background image for the banner.'
 required: false
 translatable: false
 default_value: {  }

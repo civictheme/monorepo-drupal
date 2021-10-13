@@ -8,6 +8,7 @@ dependencies:
     - field.field.paragraph.civic_card_container.field_c_p_footer_link
     - field.field.paragraph.civic_card_container.field_c_p_header_link
     - field.field.paragraph.civic_card_container.field_c_p_title
+    - field.field.paragraph.civic_card_container.field_c_p_with_spacing
     - paragraphs.paragraphs_type.civic_card_container
   module:
     - entity_reference_revisions
@@ -75,5 +76,15 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_c_p_with_spacing:
+    weight: 7
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
 hidden: {  }

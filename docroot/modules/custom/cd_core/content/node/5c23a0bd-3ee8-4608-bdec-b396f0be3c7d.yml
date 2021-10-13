@@ -181,6 +181,9 @@ default:
           field_c_p_title:
             -
               value: 'Card 4 column'
+          field_c_p_with_spacing:
+            -
+              value: true
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

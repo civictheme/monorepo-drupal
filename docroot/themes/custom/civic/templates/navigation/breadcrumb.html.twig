@@ -8,10 +8,5 @@
  */
 #}
 {% if breadcrumb %}
-  <nav role="navigation" aria-labelledby="system-breadcrumb">
-    <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
-    {% include '@molecules/breadcrumb/breadcrumb.twig' with {
-      links: breadcrumb
-    } %}
-  </nav>
+  {% include '@molecules/breadcrumb/breadcrumb.twig' %}
 {% endif %}
