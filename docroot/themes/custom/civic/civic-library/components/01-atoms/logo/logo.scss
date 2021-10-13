@@ -6,12 +6,6 @@
 
 .civic-logo {
   .civic-image {
-    max-width: rem(125px);
-
-    @include civic-breakpoint('m') {
-      max-width: rem(190px);
-    }
-
     img {
       width: 100%;
     }
