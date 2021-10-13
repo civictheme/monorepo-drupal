@@ -125,6 +125,7 @@ config_devel:
     - core.entity_view_mode.node.civic_card_navigation
     - core.entity_view_mode.node.civic_card_promo
     - field.field.block_content.civic_banner.field_c_b_theme
+    - field.field.block_content.civic_banner.field_c_b_background_image
     - field.field.block_content.civic_component_block.field_c_b_components
     - field.field.media.icon.field_c_m_icon
     - field.field.node.civic_event.field_c_n_attachments
@@ -138,9 +139,11 @@ config_devel:
     - field.field.node.civic_event.field_c_n_topics
     - field.field.node.civic_page.field_c_n_banner_background
     - field.field.node.civic_page.field_c_n_banner_components
+    - field.field.node.civic_page.field_c_n_banner_components_bott
     - field.field.node.civic_page.field_c_n_banner_type
+    - field.field.node.civic_page.field_c_n_banner_theme
     - field.field.node.civic_page.field_c_n_components
-    - field.field.node.civic_page.field_c_n_featured_banner_image
+    - field.field.node.civic_page.field_c_n_banner_featured_image
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_thumbnail
     - field.field.paragraph.civic_accordion.field_c_p_default_panel
@@ -164,6 +167,7 @@ config_devel:
     - field.field.paragraph.civic_card_container.field_c_p_cards
     - field.field.paragraph.civic_card_container.field_c_p_column_count
     - field.field.paragraph.civic_card_container.field_c_p_fill_width
+    - field.field.paragraph.civic_card_container.field_c_p_with_spacing
     - field.field.paragraph.civic_card_container.field_c_p_header_link
     - field.field.paragraph.civic_card_container.field_c_p_footer_link
     - field.field.paragraph.civic_card_container.field_c_p_title
@@ -236,15 +240,18 @@ config_devel:
     - field.field.paragraph.civic_slider_slide.field_c_p_topic
     - field.storage.block_content.field_c_b_components
     - field.storage.block_content.field_c_b_theme
+    - field.storage.block_content.field_c_b_background_image
     - field.storage.media.field_c_m_icon
     - field.storage.node.field_c_n_attachments
     - field.storage.node.field_c_n_banner_background
     - field.storage.node.field_c_n_banner_components
+    - field.storage.node.field_c_n_banner_components_bott
     - field.storage.node.field_c_n_banner_type
+    - field.storage.node.field_c_n_banner_theme
     - field.storage.node.field_c_n_body
     - field.storage.node.field_c_n_components
     - field.storage.node.field_c_n_date
-    - field.storage.node.field_c_n_featured_banner_image
+    - field.storage.node.field_c_n_banner_featured_image
     - field.storage.node.field_c_n_image
     - field.storage.node.field_c_n_location
     - field.storage.node.field_c_n_more_information
@@ -261,6 +268,7 @@ config_devel:
     - field.storage.paragraph.field_c_p_default_panel
     - field.storage.paragraph.field_c_p_expand
     - field.storage.paragraph.field_c_p_fill_width
+    - field.storage.paragraph.field_c_p_with_spacing
     - field.storage.paragraph.field_c_p_icon
     - field.storage.paragraph.field_c_p_image
     - field.storage.paragraph.field_c_p_image_position

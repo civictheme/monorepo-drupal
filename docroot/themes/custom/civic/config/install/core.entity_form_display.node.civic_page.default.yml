@@ -4,9 +4,11 @@ dependencies:
   config:
     - field.field.node.civic_page.field_c_n_banner_background
     - field.field.node.civic_page.field_c_n_banner_components
+    - field.field.node.civic_page.field_c_n_banner_components_bott
+    - field.field.node.civic_page.field_c_n_banner_featured_image
+    - field.field.node.civic_page.field_c_n_banner_theme
     - field.field.node.civic_page.field_c_n_banner_type
     - field.field.node.civic_page.field_c_n_components
-    - field.field.node.civic_page.field_c_n_featured_banner_image
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_thumbnail
     - node.type.civic_page
@@ -35,9 +37,11 @@ third_party_settings:
     group_civic_banner:
       children:
         - field_c_n_banner_type
+        - field_c_n_banner_theme
         - field_c_n_banner_background
-        - field_c_n_featured_banner_image
+        - field_c_n_banner_featured_image
         - field_c_n_banner_components
+        - field_c_n_banner_components_bott
       parent_name: group_civic_tabs
       weight: 10
       format_type: tab
@@ -92,14 +96,14 @@ content:
     third_party_settings: {  }
   field_c_n_banner_background:
     type: media_library_widget
-    weight: 8
+    weight: 9
     settings:
       media_types: {  }
     third_party_settings: {  }
     region: content
   field_c_n_banner_components:
     type: paragraphs
-    weight: 10
+    weight: 11
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -116,11 +120,43 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
     region: content
+  field_c_n_banner_components_bott:
+    type: paragraphs
+    weight: 12
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+    region: content
+  field_c_n_banner_featured_image:
+    type: media_library_widget
+    weight: 10
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+  field_c_n_banner_theme:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_c_n_banner_type:
     weight: 7
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_c_n_components:
     type: paragraphs
@@ -139,13 +175,6 @@ content:
         add_above: '0'
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
-    third_party_settings: {  }
-    region: content
-  field_c_n_featured_banner_image:
-    type: media_library_widget
-    weight: 9
-    settings:
-      media_types: {  }
     third_party_settings: {  }
     region: content
   field_c_n_summary:

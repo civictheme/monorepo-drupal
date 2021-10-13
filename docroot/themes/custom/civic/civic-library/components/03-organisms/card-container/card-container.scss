@@ -6,13 +6,19 @@
 .civic-card-container {
   $root: &;
 
-  padding-top: civic-space(6);
-  padding-bottom: civic-space(6);
-
   &--fill-width {
     [class*="col-"] {
       max-width: 100%;
       flex-grow: 1;
+    }
+  }
+
+  &--with-spacing {
+    padding-top: civic-space(6);
+    padding-bottom: civic-space(6);
+
+    #{$root}__card {
+      margin-top: civic-space(3)
     }
   }
 
@@ -43,10 +49,6 @@
 
   }
 
-  &__card {
-    margin-top: civic-space(3)
-  }
-
   &__footer {
     display: flex;
     flex-direction: column;
@@ -65,7 +67,9 @@
   }
 
   &.civic-theme-light {
-    background-color: $civic-card-container-light-background;
+    &#{$root}--with-spacing {
+      background-color: $civic-card-container-light-background;
+    }
 
     #{$root}__header__heading {
       color: $civic-card-container-light-heading-color;
@@ -73,7 +77,9 @@
   }
 
   &.civic-theme-dark {
-    background-color: $civic-card-container-dark-background;
+    &#{$root}--with-spacing {
+      background-color: $civic-card-container-dark-background;
+    }
 
     #{$root}__header__heading {
       color: $civic-card-container-dark-heading-color;

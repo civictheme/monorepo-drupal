@@ -115,3 +115,36 @@ function civic_theme_preprocess_pager(&$variables) {
     $variables['items']['next']['text'] = t('Next');
   }
 }
+
+/**
+ * Implements template_preprocess_civic_breadcrumb().
+ */
+function civic_preprocess_civic_breadcrumb(&$variables) {
+  if (!empty($variables['display_theme'])) {
+    $variables['theme'] = $variables['display_theme'];
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function civic_theme() {
+  return [
+    'civic_breadcrumb' => [
+      'base hook' => 'breadcrumb',
+      'variables' => [
+        'display_theme' => NULL,
+        'active_is_link' => NULL,
+        'links' => [],
+      ],
+      'template' => 'navigation/breadcrumb',
+    ],
+    'civic_basic_content' => [
+      'variables' => [
+        'content' => NULL,
+        'display_theme' => NULL,
+      ],
+      'template' => 'content/civic-basic-content',
+    ],
+  ];
+}

@@ -5,6 +5,7 @@
  * Theme utility functions.
  */
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
@@ -77,5 +78,32 @@ function _civic_paragraph_get_theme(Paragraph $paragraph) {
   if ($paragraph->hasField('field_c_p_theme') && !$paragraph->get('field_c_p_theme')->isEmpty()) {
     return $paragraph->get('field_c_p_theme')->getString();
   }
+  return FALSE;
+}
+
+/**
+ * Get URL of the media entity from field on provided entity.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity to get the media from.
+ * @param string $field_name
+ *   The field name that has media.
+ *
+ * @return string
+ *   Image URL or FALSE if not available.
+ */
+function civic_media_get_url_from_field(EntityInterface $entity, string $field_name) {
+  if ($entity->hasField($field_name) && !$entity->get($field_name)->isEmpty()) {
+    /** @var \Drupal\media\Entity\Media $media */
+    $media = $entity->get($field_name)->first()->entity;
+    if ($media) {
+      $fid = $media->getSource()->getSourceFieldValue($media);
+      $file = File::load($fid);
+      if ($file) {
+        return file_create_url($file->createFileUrl());
+      }
+    }
+  }
+
   return FALSE;
 }

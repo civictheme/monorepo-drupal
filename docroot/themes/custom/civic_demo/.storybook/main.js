@@ -9,13 +9,15 @@ const {merge} = require('webpack-merge');
 const webpack = require('webpack')
 const scssVariables = require('./importer.scss_variables.js')
 const iconUtils = require('../components-combined/01-atoms/icon/icon.utils.js')
+const backgroundUtils = require('../components-combined/01-atoms/background/background.utils.js')
 
 const customPlugin = new webpack.DefinePlugin({
   SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
   ICONS: JSON.stringify({
     icons: iconUtils.getIcons(),
     packs: iconUtils.getIconPacks()
-  })
+  }),
+  BACKGROUNDS: JSON.stringify(backgroundUtils.getBackgrounds()),
 })
 
 module.exports = {

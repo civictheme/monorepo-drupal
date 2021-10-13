@@ -8,7 +8,11 @@ const paths = fs.readdirSync(basePath);
 function getBackgrounds() {
   const urls = {};
   paths.forEach((path) => {
-    urls[path] = `${dir.replace('../../../assets/', '')}/${path}`;
+    const theme = path.match(/civic_pattern_([^_]+)/)[1];
+    if (theme) {
+      urls[theme] = urls[theme] || {};
+      urls[theme][path] = `${dir.replace('../../../assets/', '')}/${path}`;
+    }
   });
   return urls;
 }

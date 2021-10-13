@@ -42,6 +42,7 @@ export const CardContainer = () => {
       generalKnobTab,
     ),
     fill_width: boolean('Fill width', false, generalKnobTab),
+    with_spacing: boolean('With spacing', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 

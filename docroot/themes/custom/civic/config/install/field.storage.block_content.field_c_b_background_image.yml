@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   module:
+    - block_content
     - media
-    - node
-id: node.field_c_n_featured_banner_image
-field_name: field_c_n_featured_banner_image
-entity_type: node
+id: block_content.field_c_b_background_image
+field_name: field_c_b_background_image
+entity_type: block_content
 type: entity_reference
 settings:
   target_type: media

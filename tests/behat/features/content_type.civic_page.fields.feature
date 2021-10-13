@@ -15,8 +15,9 @@ Feature: Fields on Page content type
     Then I should see the text "Banner background" in the "field_c_n_banner_background" row
     Then I should see the text "Banner components" in the "field_c_n_banner_components" row
     Then I should see the text "Banner type" in the "field_c_n_banner_type" row
-    Then I should see the text "Components" in the "field_c_n_components" row
-    Then I should see the text "Featured banner image" in the "field_c_n_featured_banner_image" row
+    Then I should see the text "Banner components" in the "field_c_n_banner_components" row
+    Then I should see the text "Banner components bottom" in the "field_c_n_banner_components_bott" row
+    Then I should see the text "Banner featured image" in the "field_c_n_banner_featured_image" row
 
   @api
   Scenario: Page content type page has the relevant fields
@@ -32,11 +33,14 @@ Feature: Fields on Page content type
     And I should see text matching "Banner components"
     And should see an "input[name='field_c_n_banner_components_civic_content_add_more']" element
 
+    And I should see text matching "Banner components bottom"
+    And should see an "input[name='field_c_n_banner_components_bott_civic_content_add_more']" element
+
+    And should see an "input[name='field_c_n_banner_background-media-library-open-button']" element
+    And should see an "input[name='field_c_n_banner_featured_image-media-library-open-button']" element
+    And I should see text matching "Banner type"
+    And should see an "input[name='field_c_n_banner_type']" element
+
     And I should see text matching "Components"
     And should see an "input[name='field_c_n_components_civic_content_add_more']" element
     And should see an "input[name='field_c_n_components_civic_card_container_add_more']" element
-
-    And should see an "input[name='field_c_n_banner_background-media-library-open-button']" element
-    And should see an "input[name='field_c_n_featured_banner_image-media-library-open-button']" element
-    And I should see text matching "Banner type"
-    And should see an "select[name='field_c_n_banner_type']" element

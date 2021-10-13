@@ -676,6 +676,11 @@ $civic-subject-card-dark-color-active: civic-color('neutral_20') !default;
 //
 $civic-banner-light-background-color: civic-color('neutral_20') !default;
 $civic-banner-dark-background-color: civic-color('shade_60') !default;
+$civic-banner-light-color: civic-color('neutral_90') !default;
+$civic-banner-dark-color: civic-color('neutral') !default;
+$civic-banner-decorative-mobile-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{civic-space(5)}), 0% 100%) !default;
+$civic-banner-decorative-desktop-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{$civic-space * 11}), 0% 100%) !default;
+$civic-banner-featured-image-clip-path: polygon(13% 10%, 100% 0, 100% 100%, 0% 100%) !default;
 
 //
 // Pagination.
