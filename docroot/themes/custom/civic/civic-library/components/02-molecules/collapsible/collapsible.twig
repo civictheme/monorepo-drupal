@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Collapsible component.
+ *
+ * Variables:
+ * - theme: [string] Light, Dark.
+ * - title: [string] Component title.
+ * - content: [string] Content.
+ * - expanded: [boolean] Component default state.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set classes = ['civic-collapsible'] %}
+{% set classes = expanded ? classes|merge(['civic-collapsible--expanded']) : classes %}
+{% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set classes = classes|merge([theme_class]) %}
+
+<div class="{{ classes|join(' ') }}" data-component-name="civic-collapsible">
+  <a class="civic-collapsible__title{{ expanded ? ' civic-collapsible__title--expanded' : '' }}" aria-expanded="{{ expanded ? expanded : false }}" role="button">
+    <span>{{ title }}</span>
+    {% include '@atoms/icon/icon.twig' with {
+      symbol: 'arrows_downarrow_1'
+    } only%}
+  </a>
+  <div class="civic-collapsible__content{{ expanded ? ' civic-collapsible__content--expanded' : '' }}" aria-hidden="{{ expanded ? not expanded : true }}">
+    <div class="civic-collapsible__content--inner">
+      {{ content }}
+    </div>
+  </div>
+</div>
