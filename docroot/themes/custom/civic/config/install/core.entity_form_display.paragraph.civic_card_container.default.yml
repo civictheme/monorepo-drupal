@@ -8,6 +8,7 @@ dependencies:
     - field.field.paragraph.civic_card_container.field_c_p_footer_link
     - field.field.paragraph.civic_card_container.field_c_p_header_link
     - field.field.paragraph.civic_card_container.field_c_p_title
+    - field.field.paragraph.civic_card_container.field_c_p_with_spacing
     - paragraphs.paragraphs_type.civic_card_container
   module:
     - link
@@ -72,6 +73,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_c_p_with_spacing:
+    weight: 7
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
 hidden:
   created: true

@@ -66,5 +66,6 @@ export const Table = () => {
     caption: text('Caption', 'Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.', generalKnobTab),
     header,
     rows,
+    modifier_class: text('Additional class', '', generalKnobTab),
   });
 };

@@ -29,9 +29,11 @@
   padding: 1em;
   text-align: center;
   font-family: 'Courier New', Monospace;
+  border: dotted 1px purple;
 
   .civic-theme-dark & {
     background-color: transparentize(white, 0.7);
+    border: dotted 1px purple;
   }
 }
 

@@ -67,6 +67,13 @@ function civic_form_system_theme_settings_alter(&$form, &$form_state) {
     '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-footer-mobile.svg, or themes/custom/civic/dist/images/svg/logo-footer-mobile.svg.'),
   ];
 
+  $form['civic_custom_configuration_options']['civic_site_logo_alt'] = [
+    '#type' => 'textfield',
+    '#title' => t('Logo alt attribute text'),
+    '#default_value' => theme_get_setting('civic_site_logo_alt'),
+    '#description' => t('Text for the alt attribute of site logo image'),
+  ];
+
   $form['civic_custom_configuration_options']['civic_footer_background_image'] = [
     '#type' => 'textfield',
     '#title' => t('Footer background image'),

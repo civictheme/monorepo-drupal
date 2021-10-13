@@ -1,11 +1,10 @@
 import {
-  text, boolean, radios,
+  boolean, radios, select, text,
 } from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
 import CivicBannerExample from './banner.stories.twig';
-import CivicSearch from './search.twig';
+import imageFile from '../../../assets/image.png';
 import './banner.stories.scss';
-import bgImage from '../../../assets/banner-background.png';
 
 export default {
   title: 'Organisms/Banner',
@@ -14,66 +13,43 @@ export default {
   },
 };
 
-export const BannerExample = () => {
+export const Banner = () => {
   const generalKnobTab = 'General';
 
+  const theme = radios(
+    'Theme',
+    {
+      Light: 'light',
+      Dark: 'dark',
+    },
+    'dark',
+    generalKnobTab,
+  );
+
   const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'dark',
-      generalKnobTab,
-    ),
-    backgroundImage: text('Background image', bgImage, generalKnobTab),
+    theme,
+    title: text('Title', 'Providing visually engaging digital experiences', generalKnobTab),
+    background_image: BACKGROUNDS[theme][select('Background', Object.keys(BACKGROUNDS[theme]), Object.keys(BACKGROUNDS[theme])[0], generalKnobTab)],
+    featured_image: boolean('With featured image', true, generalKnobTab) ? {
+      src: imageFile,
+      alt: 'Featured image alt',
+    } : null,
     decorative: boolean('Decorative', true, generalKnobTab),
-    showTopContent: boolean('Show example content for Top Content', false, generalKnobTab),
-    showBreadcrumbs: boolean('Show example content for Breadcrumbs ', true, generalKnobTab),
-    showControls: boolean('Show example content for Controls', false, generalKnobTab),
-    showTopContent3: boolean('Show example content for Top Content 3', true, generalKnobTab),
-    showBannerTitle: boolean('Show example content for Banner Title', true, generalKnobTab),
-    showContentMiddle: boolean('Show example content for Content Middle', false, generalKnobTab),
-    showContent: boolean('Show example content for Content', true, generalKnobTab),
-    showBelowContent: boolean('Show example content for Below Content', false, generalKnobTab),
-    modifier_class: 'civic-banner-example',
+    show_breadcrumbs: boolean('Show breadcrumbs', true, generalKnobTab),
+    show_content_text: boolean('Show content text', true, generalKnobTab),
+    show_content_search: boolean('Show content search', false, generalKnobTab),
+    show_content_below: boolean('Show content below', false, generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   return CivicBannerExample({
     ...generalKnobs,
     ...getSlots([
-      'content_top',
-      'breadcrumbs',
+      'content_top1',
       'content_top2',
       'content_top3',
-      'content_title',
       'content_middle',
-      'content',
-      'below_content',
+      'content_bottom',
     ]),
-  });
-};
-
-export const Search = () => {
-  const generalKnobTab = 'General';
-
-  const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    placeholder: text('Placeholder', 'Enter keywords or phrase', generalKnobTab),
-    button_text: text('Button text', 'Search', generalKnobTab),
-    description: text('Description', 'Search by keyword', generalKnobTab),
-  };
-
-  return CivicSearch({
-    ...generalKnobs,
   });
 };

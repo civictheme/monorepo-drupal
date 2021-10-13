@@ -23,7 +23,7 @@
     }
 
     &:focus {
-      background-color: civic-color('secondary');
+      background-color: civic-color('neutral');
       color: civic-color('neutral_80');
       outline: civic-color('neutral_80');
       border-color: civic-color('neutral_80');
@@ -78,7 +78,7 @@
   }
 
   &.civic-theme-dark {
-    color: civic-color('secondary');
+    color: civic-color('neutral');
 
     #{$root}__element {
       background-color: civic-color('shade_15');
@@ -90,15 +90,15 @@
       }
 
       &:focus {
-        color: civic-color('secondary');
-        outline: civic-color('secondary');
-        border-color: civic-color('secondary');
+        color: civic-color('neutral');
+        outline: civic-color('neutral');
+        border-color: civic-color('neutral');
       }
     }
 
     #{$root}__state {
       svg {
-        fill: civic-color('secondary');
+        fill: civic-color('neutral');
       }
     }
 

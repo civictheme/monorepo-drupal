@@ -2,7 +2,9 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicLogo from './logo.twig';
 import './logo.scss';
-import imageFile from '../../../assets/logo.png';
+import './logo.stories.scss';
+import desktopLogoFile from '../../../assets/logo.png';
+import mobileLogoFile from '../../../assets/logo-mobile.png';
 
 export default {
   title: 'Atom/Logo',
@@ -16,14 +18,22 @@ export const Logo = () => {
       Light: 'light',
       Dark: 'dark',
     }, 'light', generalKnobTab),
-    logo: boolean('With logo', true, generalKnobTab) ? {
-      src: text('Logo', imageFile, generalKnobTab),
-      alt: text('Logo alt', 'Image alt text', generalKnobTab),
+    logos: boolean('With logo', true, generalKnobTab) ? {
+      mobile: {
+        src: mobileLogoFile,
+        alt: 'Logo mobile alt text',
+      },
+      desktop: {
+        src: desktopLogoFile,
+        alt: 'Logo desktop alt text',
+      },
     } : true,
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicLogo({
+  const html = CivicLogo({
     ...generalKnobs,
   });
+
+  return `<div class="civic-logo-example">${html}</div>`;
 };

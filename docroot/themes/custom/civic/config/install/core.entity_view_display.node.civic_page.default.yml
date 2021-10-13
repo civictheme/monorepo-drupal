@@ -4,82 +4,38 @@ dependencies:
   config:
     - field.field.node.civic_page.field_c_n_banner_background
     - field.field.node.civic_page.field_c_n_banner_components
+    - field.field.node.civic_page.field_c_n_banner_components_bott
+    - field.field.node.civic_page.field_c_n_banner_featured_image
+    - field.field.node.civic_page.field_c_n_banner_theme
     - field.field.node.civic_page.field_c_n_banner_type
     - field.field.node.civic_page.field_c_n_components
-    - field.field.node.civic_page.field_c_n_featured_banner_image
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_thumbnail
     - node.type.civic_page
   module:
     - entity_reference_revisions
-    - options
     - user
 id: node.civic_page.default
 targetEntityType: node
 bundle: civic_page
 mode: default
 content:
-  field_c_n_banner_background:
-    type: entity_reference_entity_view
-    weight: 103
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    region: content
-  field_c_n_banner_components:
-    type: entity_reference_revisions_entity_view
-    weight: 101
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    region: content
-  field_c_n_banner_type:
-    weight: 105
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
   field_c_n_components:
     type: entity_reference_revisions_entity_view
-    weight: 102
+    weight: 0
     label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
     region: content
-  field_c_n_featured_banner_image:
-    type: entity_reference_entity_view
-    weight: 104
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    region: content
-  field_c_n_summary:
-    weight: 107
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
-    region: content
-  field_c_n_thumbnail:
-    weight: 106
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  links:
-    weight: 100
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_c_n_banner_background: true
+  field_c_n_banner_components: true
+  field_c_n_banner_components_bott: true
+  field_c_n_banner_featured_image: true
+  field_c_n_banner_theme: true
+  field_c_n_banner_type: true
+  field_c_n_summary: true
+  field_c_n_thumbnail: true
+  links: true

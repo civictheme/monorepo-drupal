@@ -3,11 +3,21 @@ status: true
 dependencies:
   config:
     - block_content.type.civic_banner
+    - field.field.block_content.civic_banner.field_c_b_background_image
     - field.field.block_content.civic_banner.field_c_b_theme
 id: block_content.civic_banner.default
 targetEntityType: block_content
 bundle: civic_banner
 mode: default
-content: {  }
+content:
+  field_c_b_background_image:
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
 hidden:
   field_c_b_theme: true

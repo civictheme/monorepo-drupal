@@ -1,4 +1,4 @@
-import { radios, text, boolean } from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicVideo from './video.twig';
 import './video.scss';
@@ -16,8 +16,8 @@ export const Video = () => CivicVideo({
     },
     'light',
   ),
-  src: text('video URL', 'https://www.youtube.com/embed/fIfXWDMYdfo'),
-  title: text('title', 'Songlines to soar for science and country'),
+  src: text('URL', 'https://www.youtube.com/embed/C0DPdy98e4c'),
+  title: text('Title', 'Test video'),
   width: text('Width', 854),
   height: text('Height', 450),
   transcript_link: {
