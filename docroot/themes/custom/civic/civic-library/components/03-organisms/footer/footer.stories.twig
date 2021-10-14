@@ -42,24 +42,47 @@
     <div class="civic-footer__middle">
     <div class="row">
       {% for itr in 1..4 %}
-        <div class="col-xs-12 col-m-3">
-          {% include '@atoms/heading/heading.twig' with {
-            level: 2,
-            title: 'Footer Menu--' ~ itr,
-          } %}
-          <div class="civic-footer-menu">
-            {% include '@organisms/menu/menu.twig' with {
-              theme: theme,
-              items: [
-                { title: 'For individuals', url: '#' },
-                { title: 'For businesses', url: '#' },
-                { title: 'For government', url: '#' },
-                { title: 'Services', url: '#' },
-                { title: 'News & events', url: '#' },
-              ],
-              menu_type: 'list',
-            } only %}
+          {% set title = 'Footer Menu--' ~ itr %}
+          {% set links = [
+              { title: 'For individuals', url: '#' },
+              { title: 'For businesses', url: '#' },
+              { title: 'For government', url: '#' },
+              { title: 'Services', url: '#' },
+              { title: 'News & events', url: '#' },
+          ] %}
+          <div class="col-m-6 col-l-3 hide-xs show-m" >
+              {% include '@atoms/heading/heading.twig' with {
+                  level: 2,
+                  title: title,
+                  modifier_class: 'civic-footer__middle-title'
+              } %}
+              <div class="civic-footer-menu">
+                  {% include '@organisms/menu/menu.twig' with {
+                      theme: theme,
+                      items: links,
+                      menu_type: 'list',
+                  } only %}
+              </div>
           </div>
+          <div class="col-xs-12 hide-m">
+            {% embed '@molecules/collapsible/collapsible.twig' with {
+                title: 'Footer Menu--' ~ itr
+            } %}
+                {% block title %}
+                    {% include '@atoms/heading/heading.twig' with {
+                        level: 2,
+                        title: title,
+                        modifier_class: 'civic-footer__middle-title'
+                    } %}
+                {% endblock %}
+                {% block content %}
+                    {% include '@organisms/menu/menu.twig' with {
+                        theme: theme,
+                        items: links,
+                        menu_type: 'list',
+                    } only %}
+                {% endblock %}
+            {% endembed %}
         </div>
       {% endfor %}
     </div>

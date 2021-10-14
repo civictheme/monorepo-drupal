@@ -20,14 +20,18 @@
 
 <div class="{{ classes|join(' ') }}" data-component-name="civic-collapsible">
   <a class="civic-collapsible__title{{ expanded ? ' civic-collapsible__title--expanded' : '' }}" aria-expanded="{{ expanded ? expanded : false }}" role="button">
-    <span>{{ title }}</span>
+    {% block title %}
+      <span>{{ title }}</span>
+    {%  endblock %}
     {% include '@atoms/icon/icon.twig' with {
       symbol: 'arrows_downarrow_1'
     } only%}
   </a>
   <div class="civic-collapsible__content{{ expanded ? ' civic-collapsible__content--expanded' : '' }}" aria-hidden="{{ expanded ? not expanded : true }}">
-    <div class="civic-collapsible__content--inner">
-      {{ content }}
-    </div>
+      <div class="civic-collapsible__content--inner">
+        {% block content %}
+          {{ content }}
+        {% endblock %}
+      </div>
   </div>
 </div>
