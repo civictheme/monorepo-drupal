@@ -4,8 +4,8 @@ dependencies:
   module:
     - editor
     - media
-name: 'Rich text'
-format: rich_text
+name: 'Civic Rich text'
+format: civic_rich_text
 weight: 0
 filters:
   editor_file_reference:

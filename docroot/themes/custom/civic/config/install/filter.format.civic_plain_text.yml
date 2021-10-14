@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-name: 'Plain text'
-format: plain_text
+name: 'Civic Plain text'
+format: civic_plain_text
 weight: 10
 filters:
   filter_html_escape:
