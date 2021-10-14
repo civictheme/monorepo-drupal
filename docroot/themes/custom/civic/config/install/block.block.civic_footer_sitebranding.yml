@@ -6,7 +6,7 @@ dependencies:
     - system
   theme:
     - civic
-id: sitebranding
+id: civic_footer_sitebranding
 theme: civic
 region: footer_logo
 weight: 0
