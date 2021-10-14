@@ -24,6 +24,9 @@ if (file_exists('includes/styleguide.inc')) {
  * Implements hook_preprocess_HOOK() for page.html.twig.
  */
 function civic_preprocess_page(&$variables) {
+  // Adding header and footer theme to page variables.
+  $variables['page']['header_theme'] = theme_get_setting('civic_header_theme') ?? 'light';
+  $variables['page']['footer_theme'] = theme_get_setting('civic_footer_theme') ?? 'light';
   // Adding all the regions from page.
   $regions = array_filter($variables['page'], function ($key) {
     return strpos($key, '#') !== 0;

@@ -102,7 +102,6 @@ function cd_core_update_9003() {
   $config = \Drupal::service('config.factory')->getEditable('civic_demo.settings');
   $logo_settings = [
     'civic_header_logo_mobile',
-    'logo_path',
     'civic_footer_logo_mobile',
     'civic_footer_logo_desktop',
   ];
@@ -114,6 +113,7 @@ function cd_core_update_9003() {
   foreach ($logo_settings as $logo_setting) {
     $config->set($logo_setting, $logo_path);
   }
+  $config->set('logo_path', substr($logo_path, 1));
   $config->set('civic_site_logo_alt', 'Civic demo logo');
   $config->set('civic_header_theme', 'light');
   $config->set('civic_footer_theme', 'light');
