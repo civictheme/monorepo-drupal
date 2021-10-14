@@ -27,6 +27,9 @@ libraries-override:
     js:
       dist/civic.js: dist/scripts.js
 
+ckeditor_stylesheets:
+  - dist/styles.css
+
 components:
   namespaces:
     base:
