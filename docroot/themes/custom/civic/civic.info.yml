@@ -290,8 +290,8 @@ config_devel:
     - field.storage.paragraph.field_c_p_view_link
     - field.storage.paragraph.field_c_p_zoom
     - field.node.civic_event.field_c_n_body
-    - filter.format.plain_text
-    - filter.format.rich_text
+    - filter.format.civic_plain_text
+    - filter.format.civic_rich_text
     - filter.settings
     - image.style.navigation
     - image.style.promo_banner
