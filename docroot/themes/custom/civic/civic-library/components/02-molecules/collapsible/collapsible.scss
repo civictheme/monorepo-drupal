@@ -6,7 +6,6 @@
 
 .civic-collapsible {
   $root: &;
-
   &__title {
     @include civic-typography('heading-6');
     margin: 0;
@@ -17,7 +16,6 @@
     justify-content: stretch;
     padding: civic-space(2);
     border-bottom: solid 1px;
-
     svg {
       margin-left: auto;
       margin-right: civic-space();
@@ -54,7 +52,6 @@
 
   &.civic-theme-light {
     color: $civic-collapsible-light-color;
-    background-color: $civic-collapsible-light-background-color;
 
     #{$root}__title {
       border-bottom-color: $civic-collapsible-light-border-color;
@@ -63,7 +60,6 @@
 
   &.civic-theme-dark {
     color: $civic-collapsible-dark-color;
-    background-color: $civic-collapsible-dark-background-color;
 
     #{$root}__title {
       border-bottom-color: $civic-collapsible-dark-border-color;

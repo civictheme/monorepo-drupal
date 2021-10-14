@@ -22,7 +22,14 @@ $footer-logo-mobile: 198px;
   }
 
   &__top {
-    padding: civic-space(5) 0;
+    padding: civic-space(5) civic-space(3) civic-space(2);
+    @include civic-breakpoint('m') {
+      padding: civic-space(5) civic-space(3);
+    }
+
+    @include civic-breakpoint('l') {
+      padding: civic-space(5) 0;
+    }
 
     &--right {
       @include civic-breakpoint-upto('m') {
@@ -32,17 +39,33 @@ $footer-logo-mobile: 198px;
   }
 
   &__middle {
-    padding: civic-space(7) 0;
+    padding: civic-space(2) civic-space(4);
     border-top: solid rem(1px) transparent;
     border-bottom: solid rem(1px) transparent;
 
+    @include civic-breakpoint('m') {
+      padding: civic-space(7) civic-space(3);
+    }
     li.civic-menu__item {
       margin-bottom: civic-space() * 1.5;
     }
   }
+  &__menu {
+    @include civic-breakpoint-upto('m') {
+      width: 100%;
+    }
+  }
 
   &__bottom {
-    padding: civic-space(5) 0 civic-space(2) 0;
+    padding: 0 civic-space(3) civic-space(5);
+
+    @include civic-breakpoint('m') {
+      padding: civic-space(5) civic-space(3) civic-space(2);
+    }
+
+    @include civic-breakpoint('l') {
+      padding: civic-space(5) 0 civic-space(2) 0;
+    }
   }
 
   .civic-link {
@@ -55,14 +78,40 @@ $footer-logo-mobile: 198px;
       @include civic-outline();
     }
   }
+  &__middle-inner {
+    border-top: 1px solid;
+    @include civic-breakpoint('m') {
+      border-top: none;
+    }
+  }
 
+  &__middle-title {
+    @include civic-typography('heading-5');
+  }
+
+  &__middle-collapsible {
+    .civic-icon {
+      margin-top: civic-space(2);
+    }
+  }
 
   &.civic-theme-light {
     background-color: $civic-footer-light-background-color;
     color: $civic-footer-light-color;
 
     #{$root}__middle {
+      @include civic-breakpoint('m') {
+        border-color: $civic-footer-light-border-color;
+      }
+    }
+
+    #{$root}__middle-inner {
       border-color: $civic-footer-light-border-color;
+    }
+
+    #{$root}__middle-collapsible .civic-collapsible__title {
+      border-bottom-color: $civic-footer-light-border-color;
+      padding: 0 civic-space(1);
     }
 
     .civic-link {
@@ -98,6 +147,14 @@ $footer-logo-mobile: 198px;
 
     #{$root}__middle {
       border-color: $civic-footer-dark-border-color;
+    }
+
+    #{$root}__middle-inner {
+      border-color: $civic-collapsible-dark-border-color;
+    }
+
+    #{$root}__middle-collapsible .civic-collapsible__title {
+      border-bottom-color: $civic-collapsible-dark-border-color;
     }
   }
 }
