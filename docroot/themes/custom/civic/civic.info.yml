@@ -63,6 +63,7 @@ config_devel:
     - block.block.civic_messages
     - block.block.civic_primaryadminactions
     - block.block.civic_sitebranding
+    - block.block.sitebranding
     - block.block.civic_tabs
     - block_content.type.civic_banner
     - block_content.type.civic_component_block

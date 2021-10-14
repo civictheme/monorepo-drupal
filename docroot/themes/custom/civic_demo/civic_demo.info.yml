@@ -13,6 +13,7 @@ regions:
   highlighted: 'Highlighted'
   content: 'Content'
   content_left: 'Content left'
+  footer_logo: 'Footer logo'
   footer_top_left: 'Footer top left'
   footer_top_right: 'Footer top right'
   footer_middle_1: 'Footer middle 1'

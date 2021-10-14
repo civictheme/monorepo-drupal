@@ -6,9 +6,9 @@ dependencies:
   module:
     - system
   theme:
-    - civic_demo
+    - civic
 id: civicfootermenu4
-theme: civic_demo
+theme: civic
 region: footer_middle_4
 weight: 0
 provider: null

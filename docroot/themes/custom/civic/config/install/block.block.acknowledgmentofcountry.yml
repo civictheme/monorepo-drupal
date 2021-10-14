@@ -1,14 +1,10 @@
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:civic_component_block:7cf65f98-cbae-4e9d-b6ea-7d6d1c437c1c'
-  module:
-    - block_content
   theme:
-    - civic_demo
+    - civic
 id: acknowledgmentofcountry
-theme: civic_demo
+theme: civic
 region: footer_bottom_left
 weight: 0
 provider: null

@@ -125,10 +125,10 @@ function cd_core_update_9003() {
  */
 function cd_core_update_9007() {
   $footer_menus = [
-    'Civic footer menu 1' => 'civic_menu_1',
-    'Civic footer menu 2' => 'civic_menu_2',
-    'Civic footer menu 3' => 'civic_menu_3',
-    'Civic footer menu 4' => 'civic_menu_4',
+    'civic_menu_1',
+    'civic_menu_2',
+    'civic_menu_3',
+    'civic_menu_4',
   ];
 
   $top_level_links = [
@@ -147,13 +147,7 @@ function cd_core_update_9007() {
     'News & events' => '/node/9',
   ];
 
-  foreach ($footer_menus as $footer_menu_name => $footer_menu_id) {
-    $menu = Menu::create([
-      'id' => $footer_menu_id,
-      'label' => $footer_menu_name,
-      'description' => '',
-    ]);
-    $menu->save();
+  foreach ($footer_menus as $footer_menu) {
     $top_level_link__title = array_pop($top_level_link_titles);
     $top_level_link__link = array_pop($top_level_links);
 
@@ -162,7 +156,7 @@ function cd_core_update_9007() {
     shuffle($child_link__keys);
     shuffle($child_links__links);
     $shuffled_child_links = array_combine($child_link__keys, $child_links__links);
-    Helper::saveMenuTree($footer_menu_id, [
+    Helper::saveMenuTree($footer_menu, [
       $top_level_link__title => [
         'link' => $top_level_link__link,
         'children' => $shuffled_child_links,
