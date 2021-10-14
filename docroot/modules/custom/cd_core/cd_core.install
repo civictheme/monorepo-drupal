@@ -5,6 +5,8 @@
  * Install file for core.
  */
 
+use Drupal\cd_core\Helper;
+use Drupal\system\Entity\Menu;
 use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
@@ -113,5 +115,58 @@ function cd_core_update_9003() {
     $config->set($logo_setting, $logo_path);
   }
   $config->set('civic_site_logo_alt', 'Civic demo logo');
+  $config->set('civic_header_theme', 'light');
+  $config->set('civic_footer_theme', 'light');
   $config->save();
+}
+
+/**
+ * Add links for footer.
+ */
+function cd_core_update_9007() {
+  $footer_menus = [
+    'Civic footer menu 1' => 'civic_menu_1',
+    'Civic footer menu 2' => 'civic_menu_2',
+    'Civic footer menu 3' => 'civic_menu_3',
+    'Civic footer menu 4' => 'civic_menu_4',
+  ];
+
+  $top_level_links = [
+    'For individuals' => '/node/29',
+    'About us' => '/node/20',
+    'Help' => '/node/1',
+    'Services' => '/node/14',
+  ];
+  $top_level_link_titles = array_keys($top_level_links);
+
+  $child_links = [
+    'For individuals' => '/node/36',
+    'For businesses' => '/civic/pages',
+    'For government' => '/node/31',
+    'Services' => '/node/40',
+    'News & events' => '/node/9',
+  ];
+
+  foreach ($footer_menus as $footer_menu_name => $footer_menu_id) {
+    $menu = Menu::create([
+      'id' => $footer_menu_id,
+      'label' => $footer_menu_name,
+      'description' => '',
+    ]);
+    $menu->save();
+    $top_level_link__title = array_pop($top_level_link_titles);
+    $top_level_link__link = array_pop($top_level_links);
+
+    $child_link__keys = array_keys($child_links);
+    $child_links__links = array_values($child_links);
+    shuffle($child_link__keys);
+    shuffle($child_links__links);
+    $shuffled_child_links = array_combine($child_link__keys, $child_links__links);
+    Helper::saveMenuTree($footer_menu_id, [
+      $top_level_link__title => [
+        'link' => $top_level_link__link,
+        'children' => $shuffled_child_links,
+      ],
+    ]);
+  }
 }

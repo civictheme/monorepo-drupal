@@ -1,0 +1,26 @@
+<div class="col-m-6 col-l-3 hide-xs show-m" >
+    <h2 class="civic-footer__middle-title">{{ title }}</h2>
+    <div class="civic-footer__menu">
+        {% include '@organisms/menu/menu.twig' with {
+            theme: theme,
+            items: links,
+            menu_type: 'list',
+        } only %}
+    </div>
+</div>
+<div class="civic-footer__menu hide-m">
+    {% embed '@molecules/collapsible/collapsible.twig' with {
+        modifier_class: 'civic-footer__middle-collapsible'
+    } %}
+        {% block title %}
+            <h2 class="civic-footer__middle-title">{{ title }}</h2>
+        {% endblock %}
+        {% block content %}
+            {% include '@organisms/menu/menu.twig' with {
+                theme: theme,
+                items: links,
+                menu_type: 'list',
+            } only %}
+        {% endblock %}
+    {% endembed %}
+</div>

@@ -80,4 +80,23 @@ function civic_form_system_theme_settings_alter(&$form, &$form_state) {
     '#default_value' => theme_get_setting('civic_footer_background_image'),
     '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://footer-background.png, or themes/custom/civic/dist/images/svg/footer-background.png.'),
   ];
+
+  // Allow selecting theme for footer and header.
+  $themeable_regions = [
+    'Header' => 'civic_header_theme',
+    'Footer' => 'civic_footer_theme',
+  ];
+
+  foreach ($themeable_regions as $region_name => $region_key) {
+    $form['civic_custom_configuration_options'][$region_key] = [
+      '#title' => t('@region theme', ['@region' => $region_name]),
+      '#description' => t('Set the theme option for the @region', ['@region' => $region_name]),
+      '#type' => 'radios',
+      '#options' => [
+        'light' => t('Light'),
+        'dark' => t('Dark'),
+      ],
+      '#default_value' => 'light',
+    ];
+  }
 }

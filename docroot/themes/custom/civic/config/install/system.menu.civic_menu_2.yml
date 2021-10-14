@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civic_menu_2
+label: 'Civic footer menu 2'
+description: ''
+locked: false
