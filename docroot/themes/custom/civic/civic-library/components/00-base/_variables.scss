@@ -692,3 +692,14 @@ $civic-pagination-light-link-active-border-color: civic-color('shade_30') !defau
 $civic-pagination-dark-link-color: civic-color('neutral') !default;
 $civic-pagination-dark-link-hover-color: civic-color('accent') !default;
 $civic-pagination-dark-link-active-border-color: civic-color('accent') !default;
+
+//
+// Collapsible.
+//
+$civic-collapsible-light-color: civic-color('neutral_90') !default;
+$civic-collapsible-light-border-color: civic-color('neutral_60') !default;
+$civic-collapsible-light-background-color: civic-color('neutral_5') !default;
+
+$civic-collapsible-dark-color: civic-color('neutral') !default;
+$civic-collapsible-dark-background-color: civic-color('shade_60') !default;
+$civic-collapsible-dark-border-color: civic-color('shade_30') !default;
