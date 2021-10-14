@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Cache\Cache;
+use Drupal\node\NodeInterface;
 
 /**
  * Defines Small banner style.
@@ -56,7 +57,7 @@ function _civic_preprocess_civic_banner(&$variables) {
   // Cache tags.
   /** @var \Drupal\node\Entity\Node $node */
   $node = \Drupal::routeMatch()->getParameter('node');
-  if (!is_null($node)) {
+  if ($node instanceof NodeInterface) {
     $variables['#cache']['tags'] = Cache::mergeTags($entity->getCacheTags(), $node->getCacheTags());
   }
   $variables['#cache']['contexts'][] = 'url.path';
