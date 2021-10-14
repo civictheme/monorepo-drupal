@@ -13,6 +13,10 @@
 function _civic_theme_suggestions_footer_menus(&$suggestions, $variables) {
   if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'system_menu_block') {
     $footer_menus = [
+      'civic_demo_civicfootermenu1',
+      'civic_demo_civicfootermenu2',
+      'civic_demo_civicfootermenu3',
+      'civic_demo_civicfootermenu4',
       'civicfootermenu1',
       'civicfootermenu2',
       'civicfootermenu3',
