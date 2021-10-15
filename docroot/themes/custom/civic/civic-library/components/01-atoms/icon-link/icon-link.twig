@@ -12,15 +12,14 @@
  * - url: [string] URL for the link button.
  */
 #}
-{% set classes = ['civic-icon-link'] %}
 {% set size_class = size ? 'civic-icon-link--size-%s'|format(size) : '' %}
-{% set classes = classes|merge([size_class]) %}
-{% set classes = with_border ? classes|merge(['civic-icon-link--with-border']) : classes %}
-{% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
+{% set modifier_class = [size_class] %}
+{% set modifier_class = with_border ? modifier_class|merge(['civic-icon-link--with-border']) : modifier_class %}
+{% set modifier_class = modifier_class ? modifier_class|merge([modifier_class]) : modifier_class %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set classes = classes|merge([theme_class]) %}
+{% set modifier_class = modifier_class|merge([theme_class]) %}
 
-<a class="{{ classes|join(' ') }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }} {% if text %} title="{{ title }}" {% endif %}>
+<a class="civic-icon-link {{ modifier_class|join(' ') }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }} {% if text %} title="{{ title }}" {% endif %}>
   <span class="visually-hidden">{{ title }}</span>
   {% include '@atoms/icon/icon.twig' with {
     symbol: symbol,
