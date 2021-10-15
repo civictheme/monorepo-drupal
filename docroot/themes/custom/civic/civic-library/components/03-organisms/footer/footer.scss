@@ -10,10 +10,10 @@
 
   &__logo {
     img {
-      max-width: rem($civic-footer-logo-mobile-size);
+      max-width: rem($civic-footer-logo-mobile-width);
 
       @include civic-breakpoint('m') {
-        max-width: rem($civic-footer-logo-desktop-size);
+        max-width: rem($civic-footer-logo-desktop-width);
       }
     }
   }
