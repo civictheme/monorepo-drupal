@@ -3,7 +3,7 @@ status: true
 dependencies:
   theme:
     - civic
-id: copyright
+id: civic_copyright
 theme: civic
 region: footer_bottom_right
 weight: 0

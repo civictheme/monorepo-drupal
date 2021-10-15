@@ -3,7 +3,7 @@ status: true
 dependencies:
   theme:
     - civic
-id: acknowledgmentofcountry
+id: civic_acknowledgmentofcountry
 theme: civic
 region: footer_bottom_left
 weight: 0

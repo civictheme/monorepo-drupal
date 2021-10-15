@@ -82,15 +82,15 @@ function civic_form_system_theme_settings_alter(&$form, &$form_state) {
   ];
 
   // Allow selecting theme for footer and header.
-  $themeable_regions = [
+  $themeable_components = [
     'Header' => 'civic_header_theme',
     'Footer' => 'civic_footer_theme',
   ];
 
-  foreach ($themeable_regions as $region_name => $region_key) {
-    $form['civic_custom_configuration_options'][$region_key] = [
-      '#title' => t('@region theme', ['@region' => $region_name]),
-      '#description' => t('Set the theme option for the @region', ['@region' => $region_name]),
+  foreach ($themeable_components as $component_name => $component_key) {
+    $form['civic_custom_configuration_options'][$component_key] = [
+      '#title' => t('@region theme', ['@region' => $component_name]),
+      '#description' => t('Set the theme option for the @region', ['@region' => $component_name]),
       '#type' => 'radios',
       '#options' => [
         'light' => t('Light'),
