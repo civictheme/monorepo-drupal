@@ -53,10 +53,10 @@ config_devel:
     - block.block.acknowledgmentofcountry
     - block.block.civic_banner
     - block.block.civic_content
-    - block.block.civicfootermenu1
-    - block.block.civicfootermenu2
-    - block.block.civicfootermenu3
-    - block.block.civicfootermenu4
+    - block.block.civic_footer_menu1
+    - block.block.civic_footer_menu2
+    - block.block.civic_footer_menu3
+    - block.block.civic_footer_menu4
     - block.block.copyright
     - block.block.civic_help
     - block.block.civic_mainnavigation
