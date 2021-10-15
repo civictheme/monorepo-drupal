@@ -4,19 +4,16 @@
 
 @import '../../00-base/base';
 
-$footer-logo-desktop: 228px;
-$footer-logo-mobile: 198px;
-
 .civic-footer {
   $root: &;
   @include civic-typography('body');
 
   &__logo {
     img {
-      max-width: rem($footer-logo-mobile);
+      max-width: rem($civic-footer-logo-mobile-size);
 
       @include civic-breakpoint('m') {
-        max-width: rem($footer-logo-desktop);
+        max-width: rem($civic-footer-logo-desktop-size);
       }
     }
   }

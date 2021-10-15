@@ -3,8 +3,20 @@
 
 {% block logo %}
 	<div class="civic-footer__logo">
-    <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
-  </div>
+        {% include '@atoms/logo/logo.twig' with {
+            'theme': theme,
+            'logos': {
+                'mobile': {
+                    'src': image.src,
+                    'alt': image.alt,
+                },
+                'desktop': {
+                    'src': image.src,
+                    'alt': image.alt,
+                }
+            }
+        } only %}
+    </div>
 {% endblock %}
 
 {% block top_right %}
