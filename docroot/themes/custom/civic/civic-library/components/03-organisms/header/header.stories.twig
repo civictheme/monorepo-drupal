@@ -26,11 +26,33 @@
             <div class="container">
               <div class="row">
                 <div class="xs-hide col-m-12">
-                  <div class="civic-heaer__top-inner">
+                  <div class="civic-header__top-inner">
                     <div class="civic-header__slogan">
                       <span>{{ slogan }}</span>
                     </div>
                     <div class="civic-header__top-menu">
+                      {% include '@molecules/link-list/link-list.twig' with {
+                        type: 'inline',
+                        theme: theme,
+                        links: [
+                          {
+                            title: 'About us',
+                            url: '#',
+                            modifier_class: 'civic-top__menu-link civic-top__top-menu-link--about-us',
+                          },
+                          {
+                            title: 'Help',
+                            url: '#',
+                            modifier_class: 'civic-top__menu-link civic-header__top-menu-link--help',
+                          },
+                          {
+                            title: 'Contact us',
+                            url: '#',
+                            modifier_class: 'civic-top__menu-link civic-header__top-menu-link--contact-us',
+                          }
+                        ],
+                        modifier_class: 'civic-top-menu',
+                      } %}
                     </div>
                   </div>
                 </div>

@@ -5,6 +5,7 @@ function CivicDropdown(el) {
   this.el = el;
   this.dropDownTrigger = this.el.querySelector('[data-component-name="civic-dropdown-trigger"]');
   this.dropDownMenu = this.el.querySelector('[data-component-name="civic-dropdown-menu"]');
+  this.dropDownMenuLinks = this.dropDownMenu.querySelectorAll('.civic-menu-item');
   this.el.expanded = this.el.classList.contains('civic-dropdown--expanded');
   this.isToggling = false;
 
@@ -37,6 +38,9 @@ CivicDropdown.prototype.dropDownCloseEvent = function (e) {
 CivicDropdown.prototype.open = function () {
   document.dispatchEvent(new Event('dropdownClose', { dropdownTrigger: this.dropDownTrigger }));
   this.el.expanded = true;
+  this.dropDownMenuLinks.forEach((link) => {
+    link.setAttribute('tabindex', 0);
+  });
   this.dropDownTrigger.setAttribute('aria-expanded', true);
   this.dropDownTrigger.classList.add('civic-dropdown__trigger--expanded');
   this.el.classList.add('civic-dropdown--expanded');
@@ -47,6 +51,9 @@ CivicDropdown.prototype.open = function () {
 // eslint-disable-next-line func-names
 CivicDropdown.prototype.close = function () {
   this.el.expanded = false;
+  this.dropDownMenuLinks.forEach((link) => {
+    link.setAttribute('tabindex', -1);
+  });
   this.dropDownTrigger.setAttribute('aria-expanded', false);
   this.dropDownTrigger.classList.remove('civic-dropdown__trigger--expanded');
   this.el.classList.remove('civic-dropdown--expanded');

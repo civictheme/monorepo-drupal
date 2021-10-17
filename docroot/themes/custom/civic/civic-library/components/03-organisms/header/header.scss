@@ -14,12 +14,20 @@
     display: flex;
   }
   &__slogan {
-    justify-self: flex-start;
+    margin-right: auto;
   }
   &__logo{
     padding: civic-space(2) 0;
     .civic-image {
       margin: 0;
+    }
+  }
+  .civic-top-menu {
+    .civic-top__menu-link {
+      border-bottom: none;
+      &:hover {
+        background-color: transparent;
+      }
     }
   }
   &__content{}
@@ -32,6 +40,11 @@
       background-color: $civic-header-light-top-background-color;
       color: $civic-header-light-top-color;
     }
+    .civic-top-menu {
+      .civic-top__menu-link {
+        color: $civic-header-light-top-menu-link;
+      }
+    }
     #{$root}__middle {
       border-color: $civic-header-light-border-color;
     }
@@ -42,6 +55,11 @@
     #{$root}__top {
       background-color: $civic-header-dark-top-background-color;
       color: $civic-header-dark-top-color;
+    }
+    .civic-top-menu {
+      .civic-top__menu-link {
+        color: $civic-header-dark-top-menu-link;
+      }
     }
     #{$root}__middle {
       border-color: $civic-header-dark-border-color;

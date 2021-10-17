@@ -42,6 +42,7 @@
             title: item.title,
             url: item.url,
             modifier_class: item_classes,
+            attributes: menu_level != 0 and is_collapsible ? 'tabindex="-1"',
           } only %}
 
           {% if menu_type == 'main' and item.below %}
