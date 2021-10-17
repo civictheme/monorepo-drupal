@@ -4,6 +4,7 @@ import { getSlots } from '../../00-base/base.stories';
 import CivicHeader from './header.stories.twig';
 
 import './header.scss';
+import '../menu/menu';
 
 export default {
   title: 'Organisms/Header',

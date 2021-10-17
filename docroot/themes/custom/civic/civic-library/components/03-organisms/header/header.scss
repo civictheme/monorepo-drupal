@@ -8,8 +8,10 @@
   $root: &;
   @include civic-typography('body');
   &__top {
-    display: flex;
     padding: civic-space(2) 0;
+  }
+  &__top-inner {
+    display: flex;
   }
   &__slogan {
     justify-self: flex-start;

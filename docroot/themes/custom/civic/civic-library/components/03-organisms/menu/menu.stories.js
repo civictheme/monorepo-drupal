@@ -4,6 +4,7 @@ import {
 } from '@storybook/addon-knobs';
 import CivicMenu from './menu.twig';
 import './menu.scss';
+import './menu';
 
 export default {
   title: 'Organisms/Menu',

@@ -7,7 +7,7 @@ function CivicCollapsible(el) {
   this.collapsibleTrigger = this.el.querySelector('.civic-collapsible__title');
   this.collapsiblePanel = this.el.querySelector('.civic-collapsible__content');
   this.el.expanded = this.el.classList.contains('civic-collapsible--expanded');
-  this.isToggeling = false;
+  this.isToggling = false;
 
   // Add event listener to element.
   this.collapsibleTrigger.addEventListener('click', this.clickEvent.bind(this));

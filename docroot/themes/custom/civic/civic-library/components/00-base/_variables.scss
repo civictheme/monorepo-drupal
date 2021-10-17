@@ -26,6 +26,7 @@ $civic-default-colors-shades: (
   'shade_30': mix(black, civic-base-color('primary'), 30%),
   'shade_45': mix(black, civic-base-color('primary'), 45%),
   'shade_60': mix(black, civic-base-color('primary'), 60%),
+  'shade_80': mix(black, civic-base-color('primary'), 80%),
   'shade_90': mix(white, civic-base-color('primary'), 90%),
 );
 
@@ -237,6 +238,10 @@ $civic-typography: (
   'label-regular': (
     'xs': (16px, 20px, 600, 'primary', -0.1px),
     'm': (16px, 20px, 600, 'primary', 0)
+  ),
+  'label-menu': (
+    'xs': (16px, 20px, 600, 'primary', 0),
+    'm': (17px, 29px, 600, 'primary', 0),
   ),
   'label-tag': (
     'xs': (12px, 20px, 400, 'primary', -0.1px),
@@ -723,3 +728,48 @@ $civic-collapsible-light-background-color: civic-color('neutral_5') !default;
 $civic-collapsible-dark-color: civic-color('neutral') !default;
 $civic-collapsible-dark-background-color: civic-color('shade_60') !default;
 $civic-collapsible-dark-border-color: civic-color('shade_30') !default;
+
+//
+// Header.
+//
+$civic-header-logo-desktop-width: 230px;
+$civic-header-logo-mobile-width: 200px;
+$civic-header-dropdown-width: 300px;
+$civic-header-light-color: civic-color('primary') !default;
+$civic-header-light-top-color: civic-color('shade_80') !default;
+$civic-header-light-menu-link-color: civic-color('shade_80') !default;
+$civic-header-light-menu-link-hover-background-color: transparent !default;
+$civic-header-light-menu-item-hover-border-color: civic-color('primary') !default;
+$civic-header-light-menu-item-active-border-color: civic-color('primary') !default;
+$civic-header-light-menu-item-active-color: civic-color('primary') !default;
+$civic-header-light-menu-item-active-hover-background-color: civic-color('neutral_5') !default;
+$civic-header-light-background-color: civic-color('neutral') !default;
+$civic-header-light-top-background-color: civic-color('neutral_20') !default;
+$civic-header-light-border-color: civic-color('neutral_40') !default;
+$civic-header-light-outline-color: civic-color('link-light-visited') !default;
+$civic-header-light-dropdown-background-color: civic-color('neutral') !default;
+$civic-header-light-submenu-menu-link-color: civic-color('shade_15');
+$civic-header-light-submenu-menu-link-hover-color: civic-color('neutral');
+$civic-header-light-submenu-menu-link-active-color: civic-color('neutral');
+$civic-header-light-submenu-menu-link-hover-background-color: civic-color('shade_15');
+$civic-header-light-submenu-menu-link-active-background-color: civic-color('shade_60');
+
+$civic-header-dark-color: civic-color('neutral') !default;
+$civic-header-dark-top-color: civic-color('neutral_20') !default;
+$civic-header-dark-background-color: civic-color('shade_45') !default;
+$civic-header-dark-top-background-color: civic-color('shade_60') !default;
+$civic-header-dark-border-color: civic-color('primary') !default;
+$civic-header-dark-mobile-border-color: civic-color('shade_15') !default;
+$civic-header-dark-menu-link-color: civic-color('neutral') !default;
+$civic-header-dark-menu-link-hover-background-color: transparent !default;
+$civic-header-dark-menu-item-hover-border-color: civic-color('primary') !default;
+$civic-header-dark-menu-item-active-border-color: civic-color('accent') !default;
+$civic-header-dark-menu-item-active-color: civic-color('accent') !default;
+$civic-header-dark-menu-item-active-hover-background-color: civic-color('shade_60') !default;
+$civic-header-dark-outline-color: civic-color('link-dark-visited') !default;
+$civic-header-dark-dropdown-background-color: civic-color('shade_45') !default;
+$civic-header-dark-submenu-menu-link-color: civic-color('neutral');
+$civic-header-dark-submenu-menu-link-hover-color: civic-color('neutral');
+$civic-header-dark-submenu-menu-link-active-color: civic-color('shade_30');
+$civic-header-dark-submenu-menu-link-hover-background-color: civic-color('shade_60');
+$civic-header-dark-submenu-menu-link-active-background-color: civic-color('accent');

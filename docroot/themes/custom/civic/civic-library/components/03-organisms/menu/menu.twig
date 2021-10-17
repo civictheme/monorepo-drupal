@@ -25,35 +25,39 @@
       <ul class="civic-menu civic-menu__sub-menu">
     {% endif %}
     {% for item in items %}
-      <li class="civic-menu__item">
+      {% set is_collapsible = menu_type == 'main' and item.below %}
+      <li class="civic-menu__item {{ is_collapsible ? 'civic-dropdown' : '' }}" {{ is_collapsible ? 'data-component-name="civic-dropdown"'}}>
         {%
           set item_classes = [
-          'menu-item',
-          item.is_expanded ? 'menu-item--expanded',
-          item.is_collapsed ? 'menu-item--collapsed',
-          item.in_active_trail ? 'menu-item--active-trail',
-        ]
+          'civic-menu-item',
+          item.is_expanded ? 'civic-menu-item--expanded' : '',
+          item.is_collapsed ? 'civic-menu-item--collapsed' : '',
+          item.in_active_trail ? 'civic-menu-item--active-trail' : '',
+        ]|join(' ')
         %}
-        <div class="civic-menu__item--link">
+        <div class="civic-menu__item--link {{ is_collapsible ? 'civic-dropdown__trigger' : '' }}" {{  is_collapsible ? 'data-component-name="civic-dropdown-trigger"' }}>
           {% include '@atoms/link/link.twig' with {
             theme: theme,
             text: item.title,
             title: item.title,
             url: item.url,
-            modifier_class: item_classes|join(' '),
+            modifier_class: item_classes,
           } only %}
 
           {% if menu_type == 'main' and item.below %}
             {% include '@atoms/icon/icon.twig' with {
               symbol: 'arrows_downarrowlarge',
               size: 'regular',
-              color: 'footer'
+              color: 'footer',
+              modifier_class: 'civic-dropdown__caret'
             } only %}
           {% endif %}
         </div>
 
         {% if item.below %}
-          {{ menus.menu_links(item.below, menu_level + 1, classes, menu_type) }}
+          <div class="{{ is_collapsible ? 'civic-dropdown__menu' : '' }}" {{ is_collapsible ? 'data-component-name="civic-dropdown-menu"' }}>
+            {{ menus.menu_links(item.below, menu_level + 1, classes, menu_type) }}
+          </div>
         {% endif %}
       </li>
     {% endfor %}
