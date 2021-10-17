@@ -1,12 +1,15 @@
-import { radios } from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import { Logo } from '../../01-atoms/logo/logo.stories';
 import { getSlots } from '../../00-base/base.stories';
-import CivicHeader from './header.twig';
+import CivicHeader from './header.stories.twig';
 
 import './header.scss';
 
 export default {
   title: 'Organisms/Header',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const Header = () => {
@@ -22,6 +25,9 @@ export const Header = () => {
       'light',
       generalKnobTab,
     ),
+    showTop: boolean('Show top navigation', true, generalKnobTab),
+    slogan: text('Site slogan', 'Visually engaging digital experiences', generalKnobTab),
+    showBottom: boolean('Show bottom navigation', true, generalKnobTab),
   };
 
   return CivicHeader({

@@ -5,5 +5,44 @@
 @import '../../00-base/base';
 
 .civic-header {
+  $root: &;
   @include civic-typography('body');
+  &__top {
+    display: flex;
+    padding: civic-space(2) 0;
+  }
+  &__slogan {
+    justify-self: flex-start;
+  }
+  &__logo{
+    padding: civic-space(2) 0;
+    .civic-image {
+      margin: 0;
+    }
+  }
+  &__content{}
+  &__bottom {}
+
+  &.civic-theme-light {
+    background-color: $civic-header-light-background-color;
+    color: $civic-header-light-color;
+    #{$root}__top {
+      background-color: $civic-header-light-top-background-color;
+      color: $civic-header-light-top-color;
+    }
+    #{$root}__middle {
+      border-color: $civic-header-light-border-color;
+    }
+  }
+  &.civic-theme-dark {
+    background-color: $civic-header-dark-background-color;
+    color: $civic-header-dark-color;
+    #{$root}__top {
+      background-color: $civic-header-dark-top-background-color;
+      color: $civic-header-dark-top-color;
+    }
+    #{$root}__middle {
+      border-color: $civic-header-dark-border-color;
+    }
+  }
 }

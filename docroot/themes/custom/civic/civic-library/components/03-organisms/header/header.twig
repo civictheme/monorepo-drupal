@@ -1,25 +1,32 @@
-<header class="civic-header" role="banner">
-  <div class="container">
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-    {% block top %}
-      {% if top is not empty %}
-        <div class="row">
-          <div class="col-m-12">
-            <div class="civic-header__top">
+<header class="civic-header {{ modifier_class }}" role="banner">
+  {% block top %}
+    {% if top is not empty %}
+      <div class="civic-header__top">
+        <div class="container">
+          <div class="row">
+            <div class="xs-hide col-m-12">
               {{ top }}
             </div>
           </div>
         </div>
-      {% endif %}
-    {% endblock %}
+      </div>
+    {% endif %}
+  {% endblock %}
 
-    {% block logocontent %}
+  {% block logocontent %}
+    {% if logo is not empty or content is not empty %}
+      <div class="container">
       <div class="row">
         {% if logo is not empty %}
           <div class="col-m-4">
-            {% block logo %}
-              {{ logo }}
-            {% endblock %}
+            <div class="civic-header__logo">
+              {% block logo %}
+                {{ logo }}
+              {% endblock %}
+            </div>
           </div>
         {% endif %}
 
@@ -33,10 +40,13 @@
           </div>
         {% endif %}
       </div>
-    {% endblock %}
+    </div>
+    {% endif %}
+  {% endblock %}
 
-    {% block bottom %}
-      {% if bottom %}
+  {% block bottom %}
+    {% if bottom %}
+      <div class="container">
         <div class="row">
           <div class="col-m-12">
             <div class="civic-header__bottom">
@@ -44,8 +54,8 @@
             </div>
           </div>
         </div>
-      {% endif %}
-    {% endblock %}
+      </div>
+    {% endif %}
+  {% endblock %}
 
-  </div>
 </header>
