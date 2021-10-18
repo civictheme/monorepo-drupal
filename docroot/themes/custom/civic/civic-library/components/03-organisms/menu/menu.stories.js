@@ -94,7 +94,7 @@ export const MainMenu = () => {
       generalKnobTab,
     ),
     items: object('Links', links, generalKnobTab),
-    iconSize: radios(
+    icon_size: radios(
       'Icon Size',
       {
         Small: 'small',
