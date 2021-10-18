@@ -32,12 +32,25 @@
         padding: civic-space(2) civic-space(1);
         border-bottom: none;
       }
+      &.civic-dropdown--expanded {
+        position: absolute;
+      }
+      &:hover {
+        position: relative;
+      }
       &.civic-dropdown--expanded,
       &:hover {
+        background: $civic-header-light-mobile-menu-background;
+        width: 100%;
+        top: 0;
         @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+          position: relative;
+          top: initial;
+          width: auto;
           border-bottom: 4px solid;
         }
       }
+
       .civic-dropdown__caret {
         position: absolute;
         bottom: 0;
@@ -138,10 +151,20 @@
         }
         &.civic-dropdown--expanded {
           border-color: $civic-header-light-menu-item-active-border-color;
+          > .civic-menu__item--link {
+            .civic-menu-item,
+            .civic-mobile-menu__back-arrow {
+              color: $civic-header-light-mobile-menu-link-title-color;
+              @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+                color: $civic-header-light-menu-item-active-color;
+              }
+            }
+          }
           .civic-dropdown__caret,
           .civic-menu-item {
             color: $civic-header-light-menu-item-active-color;
           }
+
           &:hover {
             @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
               background-color: $civic-header-light-menu-item-active-hover-background-color;
@@ -151,26 +174,21 @@
       }
 
       .civic-dropdown__menu--expanded #{$root}__sub-menu {
-          background-color: $civic-header-light-dropdown-background-color;
-
-          .civic-menu-item {
-            color: $civic-header-light-submenu-menu-link-color;
-            @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
-              &:hover {
-                color: $civic-header-light-submenu-menu-link-hover-color;
-                background-color: $civic-header-light-submenu-menu-link-hover-background-color;
-              }
-
-              &:active {
-                color: $civic-header-light-submenu-menu-link-active-color;
-                background-color: $civic-header-light-submenu-menu-link-active-background-color;
-              }
+        background-color: $civic-header-light-dropdown-background-color;
+        .civic-menu-item {
+          color: $civic-header-light-submenu-menu-link-color;
+          @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+            &:hover {
+              color: $civic-header-light-submenu-menu-link-hover-color;
+              background-color: $civic-header-light-submenu-menu-link-hover-background-color;
             }
-
+            &:active {
+              color: $civic-header-light-submenu-menu-link-active-color;
+              background-color: $civic-header-light-submenu-menu-link-active-background-color;
+            }
           }
-
         }
-
+      }
     }
 
     &.civic-theme-dark {
@@ -204,6 +222,16 @@
         }
         &.civic-dropdown--expanded {
           border-color: $civic-header-dark-menu-item-active-border-color;
+          > .civic-menu__item--link  {
+            .civic-menu-item,
+            .civic-mobile-menu__back-arrow {
+              color: $civic-header-dark-mobile-menu-link-title-color;
+              @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+                color: $civic-header-dark-menu-item-active-color;
+              }
+            }
+
+          }
           .civic-dropdown__caret,
           .civic-menu-item {
             color: $civic-header-dark-menu-item-active-color
