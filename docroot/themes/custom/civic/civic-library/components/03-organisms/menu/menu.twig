@@ -48,7 +48,7 @@
           {% if menu_type == 'main' and item.below %}
             {% include '@atoms/icon/icon.twig' with {
               symbol: 'arrows_downarrowlarge',
-              size: 'regular',
+              size: iconSize ? iconSize : 'regular',
               color: 'footer',
               modifier_class: 'civic-dropdown__caret'
             } only %}
