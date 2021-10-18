@@ -5,7 +5,8 @@ import CivicHeader from './header.stories.twig';
 
 import './header.scss';
 import './header.stories.scss';
-import '../menu/menu';
+import '../menu/dropdown-menu';
+import '../menu/mobile-menu';
 
 export default {
   title: 'Organisms/Header',

@@ -53,6 +53,18 @@
               color: 'footer',
               modifier_class: 'civic-dropdown__caret'
             } only %}
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: 'arrows_rightarrow_3',
+              size: 'regular',
+              color: 'footer',
+              modifier_class: 'civic-mobile-menu__select-arrow'
+            } only %}
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: 'arrows_leftarrow_1',
+              size: 'regular',
+              color: 'footer',
+              modifier_class: 'civic-mobile-menu__back-arrow'
+            } only %}
           {% endif %}
         </div>
 

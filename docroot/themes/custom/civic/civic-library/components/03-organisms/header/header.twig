@@ -25,17 +25,20 @@
           <div class="civic-header__middle">
             {% if logo is not empty %}
               <div class="col-xs-12 col-m-4">
-                <div class="civic-header__logo">
-                  {% block logo %}
-                    {{ logo }}
-                  {% endblock %}
+                <div class="civic-header__middle-inner">
+                  <div class="civic-header__logo">
+                    {% block logo %}
+                      {{ logo }}
+                    {% endblock %}
+                  </div>
+                  {% include '@organisms/menu/menu-control.twig' with {
+                    type: 'open',
+                    label: 'Menu',
+                    icon: 'content_bars',
+                    component_name: 'civic-mobile-menu-open-trigger',
+                    component_target: 'civic-mobile-menu'
+                  } only %}
                 </div>
-                <button class="civic-header__menu-toggle" aria-label="Menu" aria-expanded="false">
-                  {% include '@atoms/icon/icon.twig' with {
-                    symbol: 'content_bars',
-                    modifier_class: 'civic-icon--button',
-                  } %}
-                </button>
               </div>
             {% endif %}
 

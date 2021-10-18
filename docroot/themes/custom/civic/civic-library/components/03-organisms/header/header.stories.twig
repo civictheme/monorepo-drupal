@@ -25,7 +25,7 @@
               <div class="row">
                 <div class="hide-xs col-xs-12">
                   <div class="civic-header__top-inner">
-                    <div class="civic-header__slogan">
+                    <div class="civic-header__slogtan">
                       <span>{{ slogan }}</span>
                     </div>
                     <div class="civic-header__top-menu">
@@ -66,11 +66,21 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="civic-header__bottom">
-            {% include '@organisms/menu/menu.twig' with {
-              theme: theme,
-              items: links,
-              menu_type: 'main',
-            } only %}
+            <div class="civic-mobile-menu" data-component-name="civic-mobile-menu">
+              {% include '@organisms/menu/menu-control.twig' with {
+                type: 'close',
+                label: 'Close',
+                aria_label: 'Close Menu',
+                icon: 'userinterface_cancel',
+                component_name: 'civic-mobile-menu-close-trigger',
+                component_target: 'civic-mobile-menu'
+              } only %}
+              {% include '@organisms/menu/menu.twig' with {
+                theme: theme,
+                items: links,
+                menu_type: 'main',
+              } only %}
+            </div>
           </div>
         </div>
       </div>

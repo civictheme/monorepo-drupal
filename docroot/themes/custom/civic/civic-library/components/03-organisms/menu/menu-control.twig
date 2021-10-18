@@ -1,0 +1,35 @@
+{#
+/**
+ * @file Menu control.
+ *
+ * Available variables:
+ * - theme: [string] Theme: light, dark.
+ * - type: [string] Type of control - close, open, back.
+ * - aria_label: [string] Specifiy an aria label if not specifying a visible label.
+ * - label: [string] Button label.
+ * - component_name: [string] Type of component.
+ * - component_target: [string] Target of component.
+ * - icon: [string] Icon symbol.
+ */
+#}
+{% set aria_expanded = type == 'open' ? 'aria-expanded="false"' : '' %}
+{% set aria_label = aria_label is empty ? label : aria_label %}
+<button class="civic-header__menu-{{ type }}-ctrl"
+        {% if aria_label %}
+          aria-label="{{ aria_label }}"
+        {% endif %}
+        {{ aria_expanded }}
+        {% if component_name %}
+          data-component-name="{{ component_name }}"
+        {% endif %}
+        {% if component_target %}
+          data-component-target-name="{{ component_target }}">
+        {% endif %}
+  {{ label }}
+  {% if icon %}
+    {% include '@atoms/icon/icon.twig' with {
+      symbol: icon,
+      modifier_class: 'civic-icon--button',
+    } %}
+  {% endif %}
+</button>
