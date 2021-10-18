@@ -6,6 +6,7 @@
 
 .civic-menu {
   $root: &;
+  position: relative;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -23,11 +24,19 @@
     }
     > #{$root}__item {
       position: relative;
-      margin: 0 civic-space(2);
-      padding: civic-space(2) civic-space(1);
+      margin: 0;
+      padding: civic-space(2) 0;
+      border-bottom: 1px solid;
+      @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+        margin: 0 civic-space(2);
+        padding: civic-space(2) civic-space(1);
+        border-bottom: none;
+      }
       &.civic-dropdown--expanded,
       &:hover {
-        border-bottom: 4px solid;
+        @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+          border-bottom: 4px solid;
+        }
       }
       .civic-dropdown__caret {
         position: absolute;
@@ -65,9 +74,11 @@
           z-index: -1;
         }
         #{$root}__sub-menu {
-
-          padding: civic-space(2);
-          width: $civic-header-dropdown-width;
+          padding: 0;
+          @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+            padding: civic-space(2);
+            width: $civic-header-dropdown-width;
+          }
           height: auto;
           clip: auto;
         }
@@ -103,8 +114,12 @@
         &,
         &:hover,
         &:visited {
-          background-color: $civic-header-light-menu-link-hover-background-color;
-          color: $civic-header-light-menu-link-color;
+          color: $civic-header-light-mobile-menu-link-color;
+          background-color: $civic-header-light-mobile-menu-hover-background-color;
+          @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+            color: $civic-header-light-menu-link-color;
+            background-color: $civic-header-light-menu-link-hover-background-color;
+          }
         }
         &:hover,
         &.civic-dropdown__trigger--expanded {
@@ -128,7 +143,9 @@
             color: $civic-header-light-menu-item-active-color;
           }
           &:hover {
-            background-color: $civic-header-light-menu-item-active-hover-background-color;
+            @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+              background-color: $civic-header-light-menu-item-active-hover-background-color;
+            }
           }
         }
       }
@@ -138,16 +155,18 @@
 
           .civic-menu-item {
             color: $civic-header-light-submenu-menu-link-color;
+            @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+              &:hover {
+                color: $civic-header-light-submenu-menu-link-hover-color;
+                background-color: $civic-header-light-submenu-menu-link-hover-background-color;
+              }
 
-            &:hover {
-              color: $civic-header-light-submenu-menu-link-hover-color;
-              background-color: $civic-header-light-submenu-menu-link-hover-background-color;
+              &:active {
+                color: $civic-header-light-submenu-menu-link-active-color;
+                background-color: $civic-header-light-submenu-menu-link-active-background-color;
+              }
             }
 
-            &:active {
-              color: $civic-header-light-submenu-menu-link-active-color;
-              background-color: $civic-header-light-submenu-menu-link-active-background-color;
-            }
           }
 
         }
@@ -159,13 +178,20 @@
         &,
         &:hover,
         &:visited {
-          background-color: $civic-header-dark-menu-link-hover-background-color;
-          color: $civic-header-dark-menu-link-color;
+          color: $civic-header-dark-mobile-menu-link-color;
+          background-color: $civic-header-dark-mobile-menu-hover-background-color;
+          @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+            color: $civic-header-dark-menu-link-color;
+            background-color: $civic-header-dark-menu-link-hover-background-color;
+          }
         }
         &:hover,
         &.civic-dropdown__trigger--expanded {
           .civic-dropdown__caret {
-            color: $civic-header-dark-menu-link-color;
+            color: $civic-header-dark-mobile-menu-link-color;
+            @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+              color: $civic-header-dark-menu-link-color;
+            }
           }
         }
       }
@@ -183,7 +209,9 @@
             color: $civic-header-dark-menu-item-active-color
           }
           &:hover {
-            background-color: $civic-header-dark-menu-item-active-hover-background-color;
+            @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+              background-color: $civic-header-dark-menu-item-active-hover-background-color;
+            }
           }
         }
       }
@@ -191,15 +219,15 @@
         background-color: $civic-header-dark-dropdown-background-color;
         .civic-menu-item {
           color: $civic-header-dark-submenu-menu-link-color;
-
-          &:hover {
-            color: $civic-header-dark-submenu-menu-link-hover-color;
-            background-color: $civic-header-dark-submenu-menu-link-hover-background-color;
-          }
-
-          &:active {
-            color: $civic-header-dark-submenu-menu-link-active-color;
-            background-color: $civic-header-dark-submenu-menu-link-active-background-color;
+          @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+            &:hover {
+              color: $civic-header-dark-submenu-menu-link-hover-color;
+              background-color: $civic-header-dark-submenu-menu-link-hover-background-color;
+            }
+            &:active {
+              color: $civic-header-dark-submenu-menu-link-active-color;
+              background-color: $civic-header-dark-submenu-menu-link-active-background-color;
+            }
           }
         }
       }
@@ -228,7 +256,9 @@
       padding: 0;
     }
   }
-
+  &.civic-mobile-menu--expanded .civic-dropdown__menu--expanded {
+    z-index: 1;
+  }
   &--expanded {
     display: block;
     position: fixed;
@@ -247,8 +277,8 @@
       display: block;
     }
     .civic-dropdown__menu--expanded {
-      z-index: 1;
       .civic-menu__sub-menu {
+        box-shadow: none;
         width: 100%;
       }
     }
@@ -279,7 +309,7 @@
     display: block;
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: civic-space(1);
     cursor: pointer;
   }
   @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
@@ -288,7 +318,7 @@
     }
     #{$root}__back-arrow,
     #{$root}__select-arrow {
-      display: none;
+      display: none !important;
     }
   }
 }
