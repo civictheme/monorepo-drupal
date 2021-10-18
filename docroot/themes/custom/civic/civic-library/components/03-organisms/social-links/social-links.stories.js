@@ -1,6 +1,5 @@
 import {
-  radios,
-  object,
+  boolean, object, radios, text,
 } from '@storybook/addon-knobs';
 import CivicSocialLinks from './social-links.twig';
 import './social-links.scss';
@@ -47,10 +46,11 @@ export const SocialLinks = () => {
       generalKnobTab,
     ),
     links: object('Links', socialLinks, generalKnobTab),
+    with_border: boolean('With border', true, generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   return CivicSocialLinks({
     ...generalKnobs,
-    with_border: true,
   });
 };

@@ -9,5 +9,9 @@
 
   &__item {
     margin-right: civic-space(2);
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

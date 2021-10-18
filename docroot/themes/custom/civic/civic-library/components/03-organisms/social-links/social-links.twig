@@ -8,18 +8,17 @@
  */
 #}
 
-{% set classes = ['civic-social-links'] %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set classes = classes|merge([theme_class]) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="{{ classes|join(' ') }}">
-  {% for socialLink in links %}
+<div class="civic-social-links {{ modifier_class }}">
+  {% for link in links %}
     <div class="civic-social-links__item">
       {% include '@atoms/icon-link/icon-link.twig' with {
         theme: theme,
-        symbol: socialLink.symbol,
-        size: socialLink.size,
-        url: socialLink.url,
+        symbol: link.symbol,
+        size: link.size,
+        url: link.url,
         with_border: with_border,
       } only %}
     </div>
