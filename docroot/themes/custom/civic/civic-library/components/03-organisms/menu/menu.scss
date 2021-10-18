@@ -33,11 +33,15 @@
         position: relative;
         border-bottom: none;
         @include civic-typography('heading-6');
-        padding-right: civic-space(3);
         &,
         &:hover,
         &:visited {
           text-decoration: none;
+        }
+      }
+      &.civic-dropdown {
+        .civic-menu-item {
+          padding-right: civic-space(3);
         }
       }
       .civic-menu__item--link {
