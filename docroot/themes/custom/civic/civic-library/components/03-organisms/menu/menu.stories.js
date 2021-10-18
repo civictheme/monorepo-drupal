@@ -99,8 +99,6 @@ export const MainMenu = () => {
       {
         Small: 'small',
         Regular: 'regular',
-        Large: 'large',
-        'Extra Large': 'extra-large',
       },
       'regular',
       generalKnobTab,
@@ -150,17 +148,6 @@ export const FooterMenu = () => {
       generalKnobTab,
     ),
     items: object('Links', links, generalKnobTab),
-    iconSize: radios(
-      'Icon Size',
-      {
-        Small: 'small',
-        Regular: 'regular',
-        Large: 'large',
-        'Extra Large': 'extra-large',
-      },
-      'regular',
-      generalKnobTab,
-    ),
   };
 
   return CivicMenu({
