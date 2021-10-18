@@ -6,64 +6,140 @@
 
 .civic-footer {
   $root: &;
-  @include civic-typography('body');
-
-  &__logo {
-    img {
-      max-width: rem($civic-footer-logo-mobile-width);
-
-      @include civic-breakpoint('m') {
-        max-width: rem($civic-footer-logo-desktop-width);
-      }
-    }
-  }
 
   &__top {
-    padding: civic-space(5) civic-space(3) civic-space(2);
-    @include civic-breakpoint('m') {
-      padding: civic-space(5) civic-space(3);
-    }
-
-    @include civic-breakpoint('l') {
-      padding: civic-space(5) 0;
-    }
-
-    &--right {
-      @include civic-breakpoint-upto('m') {
-        margin-top: civic-space(2);
-      }
-    }
+    padding-top: civic-space(5);
+    padding-bottom: civic-space(5);
+    border-bottom: solid rem(1px) transparent;
   }
 
   &__middle {
-    padding: civic-space(2) civic-space(4);
-    border-top: solid rem(1px) transparent;
+    padding-top: civic-space(5);
+    padding-bottom: civic-space(5);
     border-bottom: solid rem(1px) transparent;
-
-    @include civic-breakpoint('m') {
-      padding: civic-space(7) civic-space(3);
-    }
-    li.civic-menu__item {
-      margin-bottom: civic-space() * 1.5;
-    }
-  }
-  &__menu {
-    @include civic-breakpoint-upto('m') {
-      width: 100%;
-    }
   }
 
   &__bottom {
-    padding: 0 civic-space(3) civic-space(5);
+    padding-top: civic-space(5);
+    padding-bottom: civic-space(5);
+  }
+
+  //  padding: civic-space(2) civic-space(4);
+  //  border-top: solid rem(1px) transparent;
+  //  border-bottom: solid rem(1px) transparent;
+  //
+  //  @include civic-breakpoint('m') {
+  //    padding: civic-space(7) civic-space(3);
+  //  }
+  //  li.civic-menu__item {
+  //    margin-bottom: civic-space() * 1.5;
+  //  }
+  //}
+  //&__menu {
+  //  @include civic-breakpoint-upto('m') {
+  //    width: 100%;
+  //  }
+  //}
+  //
+  //&__bottom {
+  //  padding: 0 civic-space(3) civic-space(5);
+  //
+  //  @include civic-breakpoint('m') {
+  //    padding: civic-space(5) civic-space(3) civic-space(2);
+  //  }
+  //
+  //  @include civic-breakpoint('l') {
+  //    padding: civic-space(5) 0 civic-space(2) 0;
+  //  }
+  //}
+
+  &.civic-theme-light {
+    background-color: $civic-footer-light-background-color;
+    color: $civic-footer-light-color;
+
+    #{$root}__top {
+      @include civic-breakpoint('m') {
+        border-color: $civic-footer-light-border-color;
+      }
+    }
+
+    #{$root}__middle {
+      @include civic-breakpoint('m') {
+        border-color: $civic-footer-light-border-color;
+      }
+    }
+
+
+    //
+    //#{$root}__middle-collapsible .civic-collapsible__title {
+    //  border-bottom-color: $civic-footer-light-border-color;
+    //  padding: 0 civic-space(1);
+    //}
+    //
+    //.civic-link {
+    //  background-color: transparent;
+    //  color: $civic-footer-light-link-color;
+    //
+    //  &:hover {
+    //    color: $civic-footer-light-link-hover-color;
+    //  }
+    //
+    //  &:focus {
+    //    outline-color: $civic-footer-light-outline-color;
+    //  }
+    //}
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-footer-dark-background-color;
+    color: $civic-footer-dark-color;
+
+    #{$root}__top {
+      @include civic-breakpoint('m') {
+        border-color: $civic-footer-dark-border-color;
+      }
+    }
+
+    #{$root}__middle {
+      @include civic-breakpoint('m') {
+        border-color: $civic-footer-dark-border-color;
+      }
+    }
+
+    //
+    //#{$root}__middle-inner {
+    //  border-color: $civic-collapsible-dark-border-color;
+    //}
+    //
+    //#{$root}__middle-collapsible .civic-collapsible__title {
+    //  border-bottom-color: $civic-footer-dark-border-color;
+    //}
+    //
+    //.civic-link {
+    //  background-color: transparent;
+    //  color: $civic-footer-dark-link-color;
+    //
+    //  &:hover {
+    //    color: $civic-footer-dark-link-hover-color;
+    //  }
+    //
+    //  &:focus {
+    //    outline-color: $civic-footer-dark-outline-color;
+    //  }
+    //}
+  }
+
+
+  &__logo {
+    max-width: rem($civic-footer-logo-mobile-width);
 
     @include civic-breakpoint('m') {
-      padding: civic-space(5) civic-space(3) civic-space(2);
-    }
-
-    @include civic-breakpoint('l') {
-      padding: civic-space(5) 0 civic-space(2) 0;
+      max-width: rem($civic-footer-logo-desktop-width);
     }
   }
+
+
+  /////////////
 
   .civic-link {
     border-bottom: solid 1px;
@@ -71,10 +147,12 @@
     &:hover {
       border-bottom-color: transparent;
     }
+
     &:focus, &:active {
       @include civic-outline();
     }
   }
+
   &__middle-inner {
     border-top: 1px solid;
     @include civic-breakpoint('m') {
@@ -92,68 +170,4 @@
     }
   }
 
-  &.civic-theme-light {
-    background-color: $civic-footer-light-background-color;
-    color: $civic-footer-light-color;
-
-    #{$root}__middle {
-      @include civic-breakpoint('m') {
-        border-color: $civic-footer-light-border-color;
-      }
-    }
-
-    #{$root}__middle-inner {
-      border-color: $civic-footer-light-border-color;
-    }
-
-    #{$root}__middle-collapsible .civic-collapsible__title {
-      border-bottom-color: $civic-footer-light-border-color;
-      padding: 0 civic-space(1);
-    }
-
-    .civic-link {
-      background-color: transparent;
-      color: $civic-footer-light-link-color;
-
-      &:hover {
-        color: $civic-footer-light-link-hover-color;
-      }
-
-      &:focus {
-        outline-color: $civic-footer-light-outline-color;
-      }
-    }
-  }
-
-  &.civic-theme-dark {
-    background-color: $civic-footer-dark-background-color;
-    color: $civic-footer-dark-color;
-
-    .civic-link {
-      background-color: transparent;
-      color: $civic-footer-dark-link-color;
-
-      &:hover {
-        color: $civic-footer-dark-link-hover-color;
-      }
-
-      &:focus {
-        outline-color: $civic-footer-dark-outline-color;
-      }
-    }
-
-    #{$root}__middle {
-      @include civic-breakpoint('m') {
-        border-color: $civic-footer-dark-border-color;
-      }
-    }
-
-    #{$root}__middle-inner {
-      border-color: $civic-collapsible-dark-border-color;
-    }
-
-    #{$root}__middle-collapsible .civic-collapsible__title {
-      border-bottom-color: $civic-footer-dark-border-color;
-    }
-  }
 }

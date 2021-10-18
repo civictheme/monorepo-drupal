@@ -1,115 +1,78 @@
 {% extends './footer.twig' %}
 {% import '../menu/menu.twig' as menus %}
 
-{% block logo %}
-	<div class="civic-footer__logo">
-        {% include '@atoms/logo/logo.twig' with {
-            'theme': theme,
-            'logos': {
-                'mobile': {
-                    'src': image.src,
-                    'alt': image.alt,
-                },
-                'desktop': {
-                    'src': image.src,
-                    'alt': image.alt,
-                }
-            }
-        } only %}
-    </div>
-{% endblock %}
+{% if logos is not empty %}
+  {% set content_top1 %}
+    {% include '@atoms/logo/logo.twig' with {
+      'theme': theme == 'light' ? 'dark' : 'light',
+      'logos': logos,
+      'modifier_class': 'civic-footer__logo',
+    } only %}
+  {% endset %}
+{% endif %}
 
-{% block top_right %}
-	{% if socialLinks %}
-	  <div class="civic-footer__top--right">
-	  	<div class="civic-footer__social-links">
-        {% include '@organisms/social-links/social-links.twig' with {
-          theme: theme,
-          links: [
-            {
-              symbol: 'brands_facebook',
-              size: 'regular',
-              url: 'www.facebook.com',
-            },
-            {
-              symbol: 'brands_twitter',
-              size: 'regular',
-              url: 'www.facebook.com',
-            },
-            {
-              symbol: 'brands_linkedin',
-              size: 'regular',
-              url: 'www.facebook.com',
-            },
-          ],
-          with_border: true,
-        } only %}
-			</div>
-	  </div>
-	{% endif %}
-{% endblock %}
+{% if show_social_links %}
+  {% set content_top3 %}
+    {% include '@organisms/social-links/social-links.twig' with {
+      'theme': theme,
+      'links': [
+        {
+          symbol: 'brands_facebook',
+          size: 'regular',
+          url: 'www.facebook.com',
+        },
+        {
+          symbol: 'brands_twitter',
+          size: 'regular',
+          url: 'www.facebook.com',
+        },
+        {
+          symbol: 'brands_linkedin',
+          size: 'regular',
+          url: 'www.facebook.com',
+        },
+      ],
+      'with_border': true,
+      'modifier_class': 'civic-justify-content-end',
+    } only %}
+  {% endset %}
+{% endif %}
 
-{% block middle %}
-  {% if showMiddleMenus %}
-    <div class="civic-footer__middle">
-        <div class="civic-footer__middle-inner row">
-            {% for itr in 1..4 %}
-                {% set titles = [
-                    'For Individuals',
-                    'About us',
-                    'Help',
-                    'Services'
-                ] %}
-                {% set links = [
-                    { title: 'For individuals', url: '#' },
-                    { title: 'For businesses', url: '#' },
-                    { title: 'For government', url: '#' },
-                    { title: 'Services', url: '#' },
-                    { title: 'News & events', url: '#' },
-                ] %}
-                <div class="col-m-6 col-l-3 hide-xs show-m" >
-                    <h2 class="civic-footer__middle-title">{{ titles[itr - 1] }}</h2>
-                    <div class="civic-footer__menu">
-                        {% include '@organisms/menu/menu.twig' with {
-                            theme: theme,
-                            items: links,
-                            menu_type: 'list',
-                        } only %}
-                    </div>
-                </div>
-                <div class="civic-footer__menu hide-m">
-                    {% embed '@molecules/collapsible/collapsible.twig' with {
-                        modifier_class: 'civic-footer__middle-collapsible'
-                    } %}
-                        {% block title %}
-                            <h2 class="civic-footer__middle-title">{{ titles[itr - 1] }}</h2>
-                        {% endblock %}
-                        {% block content %}
-                            {% include '@organisms/menu/menu.twig' with {
-                                theme: theme,
-                                items: links,
-                                menu_type: 'list',
-                            } only %}
-                        {% endblock %}
-                    {% endembed %}
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-  {% endif %}
-{% endblock %}
+{% if show_middle_menus %}
+  {% set links = [
+    { title: 'For individuals', url: '#' },
+    { title: 'For businesses', url: '#' },
+    { title: 'For government', url: '#' },
+    { title: 'Services', url: '#' },
+    { title: 'News & events', url: '#' },
+  ] %}
 
-{% block bottom_left %}
-	{% if copyright %}
-		<p class="civic-footer__acknowledgement">{{ acknowledgement }}</p>
-	{% endif %}
-{% endblock %}
-
-{% block bottom_right %}
-  {% if copyright %}
-		<p class="civic-footer__copyright">{{ copyright }}</p>
-	{% endif %}
-{% endblock %}
-
-
-
+  {% set content_middle1 %}
+    {% include '@organisms/menu/menu.twig' with {
+      theme: theme,
+      items: links,
+      menu_type: 'list',
+    } only %}
+  {% endset %}
+  {% set content_middle2 %}
+    {% include '@organisms/menu/menu.twig' with {
+      theme: theme,
+      items: links,
+      menu_type: 'list',
+    } only %}
+  {% endset %}
+  {% set content_middle3 %}
+    {% include '@organisms/menu/menu.twig' with {
+      theme: theme,
+      items: links,
+      menu_type: 'list',
+    } only %}
+  {% endset %}
+  {% set content_middle4 %}
+    {% include '@organisms/menu/menu.twig' with {
+      theme: theme,
+      items: links,
+      menu_type: 'list',
+    } only %}
+  {% endset %}
+{% endif %}

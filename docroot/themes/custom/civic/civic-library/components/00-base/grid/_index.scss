@@ -66,8 +66,7 @@
 @each $breakpoint, $value in $civic-breakpoints {
   @if $breakpoint==$civic-grid-lowest-breakpoint {
     @include _civic-col-factory($breakpoint);
-  }
-  @else {
+  } @else {
     @include civic-breakpoint($breakpoint) {
       @include _civic-col-factory($breakpoint);
     }
@@ -107,4 +106,16 @@
 
 .col-no-gutter {
   padding: 0;
+}
+
+.civic-justify-content-start {
+  justify-content: flex-start;
+}
+
+.civic-justify-content-center {
+  justify-content: center;
+}
+
+.civic-justify-content-end {
+  justify-content: flex-end;
 }
