@@ -7,7 +7,7 @@
       <div class="civic-header__top">
         <div class="container">
           <div class="row">
-            <div class="xs-hide col-m-12">
+            <div class="col-xs-12">
               <div class="civic-header__top-inner">
                 {{ top }}
               </div>
@@ -24,17 +24,23 @@
         <div class="row">
           <div class="civic-header__middle">
             {% if logo is not empty %}
-              <div class="col-m-4">
+              <div class="col-xs-12 col-m-4">
                 <div class="civic-header__logo">
                   {% block logo %}
                     {{ logo }}
                   {% endblock %}
                 </div>
+                <button class="civic-header__menu-toggle" aria-label="Menu" aria-expanded="false">
+                  {% include '@atoms/icon/icon.twig' with {
+                    symbol: 'content_bars',
+                    modifier_class: 'civic-icon--button',
+                  } %}
+                </button>
               </div>
             {% endif %}
 
             {% if content is not empty %}
-              <div class="col-m-8">
+              <div class="col-xs-12 col-m-8">
                 {% block content %}
                   <div class="civic-header__content">
                     {{ content }}
@@ -52,7 +58,7 @@
     {% if bottom %}
       <div class="container">
         <div class="row">
-          <div class="col-m-12">
+          <div class="col-xs-12">
             <div class="civic-header__bottom">
               {{ bottom }}
             </div>

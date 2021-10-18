@@ -19,7 +19,8 @@
 
 {% macro menu_links(items, menu_level, classes, menu_type) %}
   {% if items %}
-    {% if menu_level == 0 %}
+    {% set top_level_menu = (menu_level == 0) %}
+    {% if top_level_menu %}
       <ul class="{{ classes|join(' ') }}" data-component-name="{{ 'civic-menu--%s'|format(menu_type) }}">
     {% else %}
       <ul class="civic-menu civic-menu__sub-menu">
@@ -42,7 +43,7 @@
             title: item.title,
             url: item.url,
             modifier_class: item_classes,
-            attributes: menu_level != 0 and is_collapsible ? 'tabindex="-1"',
+            attributes: not top_level_menu and is_collapsible ? 'tabindex="-1"',
           } only %}
 
           {% if menu_type == 'main' and item.below %}

@@ -8,7 +8,12 @@
   $root: &;
   @include civic-typography('body');
   &__top {
-    padding: civic-space(2) 0;
+    @include civic-breakpoint-upto($civic-header-desktop-menu-breakpoint) {
+      display: none;
+    }
+    @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+      padding: civic-space(2) 0;
+    }
   }
   &__top-inner {
     display: flex;

@@ -12,8 +12,15 @@
 
   // Primary menu.
   &--main {
-    display: flex;
-
+    display: none;
+    &--main--open {
+      display: flex;
+    }
+    flex-direction: column;
+    @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+      display: flex;
+      flex-direction: row;
+    }
     > #{$root}__item {
       position: relative;
       margin: 0 civic-space(2);

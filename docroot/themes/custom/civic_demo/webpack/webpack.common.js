@@ -66,13 +66,13 @@ module.exports = {
       },
       // Wrap JS into Drupal.behaviours.
       {
-        test: /components\/[^\/]+\/(?!.*\.(stories|component)\.js$).*\.js$/,
+        test: /components-combined\/[^\/]+\/(?!.*\.(stories|component)\.js$).*\.js$/,
         exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
         use: [{
           loader: 'babel-loader',
           options: {
             presets:[
-              '@babel/preset-env'
+              '@babel/preset-env',
             ],
             plugins: [
               './node_modules/babel-plugin-syntax-dynamic-import',
