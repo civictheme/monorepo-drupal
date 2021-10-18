@@ -30,8 +30,16 @@
       }
     }
   }
-  &__content{}
-  &__bottom {}
+  &__middle {
+    width: 100%;
+  }
+  &__content {
+    border-bottom: 1px solid;
+  }
+  &__bottom {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+  }
 
   &.civic-theme-light {
     background-color: $civic-header-light-background-color;
@@ -45,6 +53,7 @@
         color: $civic-header-light-top-menu-link;
       }
     }
+    #{$root}__bottom,
     #{$root}__middle {
       border-color: $civic-header-light-border-color;
     }
@@ -61,6 +70,7 @@
         color: $civic-header-dark-top-menu-link;
       }
     }
+    #{$root}__bottom,
     #{$root}__middle {
       border-color: $civic-header-dark-border-color;
     }

@@ -23,23 +23,30 @@
         border-bottom: 4px solid;
       }
       .civic-dropdown__caret {
+        position: absolute;
+        bottom: 0;
+        right: 0;
         cursor: pointer;
         transition: transform .5s;
       }
       .civic-menu-item {
+        position: relative;
         border-bottom: none;
         @include civic-typography('heading-6');
+        padding-right: civic-space(3);
         &,
         &:hover,
         &:visited {
           text-decoration: none;
         }
       }
+      .civic-menu__item--link {
+        position: relative;
+      }
     }
     .civic-dropdown {
       &--expanded {
         .civic-menu__item--link {
-          position: relative;
           z-index: 1;
         }
         .civic-dropdown__menu--expanded {
