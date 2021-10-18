@@ -94,6 +94,15 @@ export const MainMenu = () => {
       generalKnobTab,
     ),
     items: object('Links', links, generalKnobTab),
+    icon_size: radios(
+      'Icon Size',
+      {
+        Small: 'small',
+        Regular: 'regular',
+      },
+      'regular',
+      generalKnobTab,
+    ),
   };
 
   return CivicMenu({

@@ -246,7 +246,14 @@
     .civic-menu--main {
       display: block;
     }
+    .civic-dropdown__menu--expanded {
+      z-index: 1;
+      .civic-menu__sub-menu {
+        width: 100%;
+      }
+    }
   }
+
   .civic-dropdown--expanded {
     #{$root}__back-arrow {
       display: block;
@@ -260,6 +267,8 @@
     }
   }
 
+
+
   .civic-dropdown__caret {
     display: none;
   }
@@ -272,9 +281,6 @@
     bottom: 0;
     right: 0;
     cursor: pointer;
-  }
-  #{$root}--expanded {
-
   }
   @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
     .civic-dropdown__caret {

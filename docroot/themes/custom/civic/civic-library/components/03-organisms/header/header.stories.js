@@ -28,6 +28,15 @@ export const Header = () => {
       'light',
       generalKnobTab,
     ),
+    menuIconSize: radios(
+      'Menu Icon Size',
+      {
+        Small: 'small',
+        Regular: 'regular',
+      },
+      'regular',
+      generalKnobTab,
+    ),
     showTop: boolean('Show top navigation', true, generalKnobTab),
     slogan: text('Site slogan', 'Visually engaging digital experiences', generalKnobTab),
     showBottom: boolean('Show bottom navigation', true, generalKnobTab),
