@@ -197,13 +197,13 @@
 
   // Support super-narrow screens as well.
   $width: map-get($civic-grid-offsets, xs) * 2;
-  max-width: calc(100% - #{$width});
+  width: calc(100% - #{$width});
 
   // Set width for container at each breakpoint accounting for offsets at this
   // breakpoint.
   @each $bp, $value in $civic-breakpoints {
     @include civic-breakpoint($bp) {
-      max-width: map-get($civic-breakpoints, $bp) - (map-get($civic-grid-offsets, $bp) * 2);
+      width: map-get($civic-breakpoints, $bp) - (map-get($civic-grid-offsets, $bp) * 2);
     }
   }
 }
