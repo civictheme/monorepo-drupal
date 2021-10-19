@@ -214,6 +214,18 @@ $civic-typography: (
     'xs': (14px, 23px, 400, 'primary', 0),
     'm': (14px, 25px, 400, 'primary', 0)
   ),
+  'text-large': (
+    'xs': (18px, 29px, 400, 'primary', 0),
+    'm': (20px, 34px, 400, 'primary', '0')
+  ),
+  'text-regular': (
+    'xs': (14px, 25px, 400, 'primary', 0),
+    'm': (16px, 28px, 400, 'primary', 0)
+  ),
+  'text-small': (
+    'xs': (12px, 20px, 400, 'primary', 0),
+    'm': (14px, 25px, 400, 'primary', 0),
+  ),
   'card-summary': (
     'xs': (14px, 25px, 400, 'primary', 0),
     'm': (16px, 28px, 400, 'primary', 0)

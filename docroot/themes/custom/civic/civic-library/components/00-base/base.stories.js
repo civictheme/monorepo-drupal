@@ -13,5 +13,6 @@ export const getSlots = (names) => {
       obj[names[i]] = `<div class="story-slot story-slot--${names[i]}">{{ ${names[i]} }}</div>`;
     }
   }
+
   return obj;
 };
