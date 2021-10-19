@@ -1,0 +1,50 @@
+{#
+/**
+ * @file Menu component.
+ *
+ * Available variables:
+ * - theme: [string] Theme: light, dark.
+ * - items: [array] Navigation links array.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% import _self as navigation_items %}
+
+{% macro navigation_links(items, level) %}
+  {% if items %}
+    {% if level == 0 %}
+      <ul class="civic-primary-navigation {{ modifier_class }}" data-component-name="primary-navigation">
+    {% else %}
+      <ul class="civic-primary-navigation civic-primary-navigation__sub-navigation">
+    {% endif %}
+    {% for item in items %}
+      <li class="civic-primary-navigation__item">
+
+        <div class="civic-primary-navigation__item__link">
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: item.title,
+            title: item.title,
+            url: item.url,
+          } only %}
+
+          {% include '@atoms/icon/icon.twig' with {
+            symbol: 'arrows_downarrowlarge',
+            size: 'regular',
+            color: 'footer'
+          } only %}
+        </div>
+
+        {% if item.below %}
+          {{ navigation_items.navigation_links(item.below, level + 1) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
+
+{{ navigation_items.navigation_links(items, 0, classes) }}

@@ -1,0 +1,41 @@
+//
+// Menu.
+//
+
+@import '../../00-base/base';
+
+.civic-primary-navigation {
+  $root: &;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+
+  #{$root}__item {
+    margin-bottom: civic-space(2);
+  }
+
+  #{$root}__sub-navigation {
+    position: absolute;
+    left: 0;
+    padding: 0;
+    list-style: none;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    margin-top: civic-space(2);
+  }
+
+  #{$root}__item {
+    :hover {
+      #{$root}__sub-navigation {
+        padding: civic-space(2);
+        width: 9rem;
+        height: auto;
+        clip: auto;
+      }
+    }
+  }
+}
