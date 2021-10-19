@@ -1,0 +1,63 @@
+{#
+/**
+ * @file Menu component.
+ *
+ * Available variables:
+ * - theme: [string] Theme: light, dark.
+ * - items: [array] Menu links array.
+ * - menu_type: [string] Menu type to change the style and behaviour.
+ */
+#}
+
+{% set classes = ['civic-mobile-navigation'] %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set classes = classes|merge([theme_class]) %}
+{% set menu_type = menu_type ? menu_type : 'main' %}
+{% set classes = classes|merge(['civic-mobile-navigation--%s'|format(menu_type)]) %}
+
+{% import _self as menus %}
+{% macro menu_links(items, menu_level, classes, menu_type) %}
+  {% if items %}
+    {% set top_level_menu = (menu_level == 0) %}
+    {% if top_level_menu %}
+      <ul class="{{ classes|join(' ') }}" data-component-name="{{ 'civic-mobile-navigation--%s'|format(menu_type) }}">
+        <a class="civic-mobile-navigation__close" href="#">
+        Close
+        {% include '@atoms/icon/icon.twig' with {
+          symbol: 'userinterface_cancel',
+          size: icon_size ? icon_size : 'regular',
+          color: 'footer',
+        } only %}
+        </a>
+        <div class="civic-mobile-navigation__title">Home</div>
+    {% else %}
+      <ul class="civic-mobile-navigation__submenu-menu">
+    {% endif %}
+    {% for item in items %}
+      <li class="civic-mobile-navigation__item {{ item.below ? 'civic-mobile-navigation__item--has-submenu' : '' }}" {{ is_expandable ? 'data-component-name="civic-mobile-submenu"'}}>
+        {% include '@atoms/mobile-navigation-link/mobile-navigation-link.twig' with {
+          theme: theme,
+          text: item.title,
+          url: item.url,
+          icon: item.below ? 'arrows_rightarrow_3' : null,
+          attributes: not top_level_menu and is_expandable ? 'tabindex="-1"',
+        } only %}
+
+        {% if item.below %}
+          <div class="civic-mobile-navigation__submenu {{ is_collapsible ? 'civic-mobile-navigation__menu' : '' }}" {{ is_collapsible ? 'data-component-name="civic-dropdown-menu"' }}>
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: 'arrows_leftarrow_1',
+              size: icon_size ? icon_size : 'regular',
+              color: 'footer',
+            } only %}
+            <div class="civic-mobile-navigation__title">{{ item.title }}</div>
+            {{ menus.menu_links(item.below, menu_level + 1, classes, menu_type) }}
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
+
+{{ menus.menu_links(items, 0, classes, menu_type) }}

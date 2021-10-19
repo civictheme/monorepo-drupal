@@ -1,0 +1,98 @@
+//
+// Mobile Navigation.
+//
+
+@import '../../00-base/base';
+
+$civic-header-light-mobile-navigation-title-typography: (20px, 25px, 800, 'primary', 0);
+$civic-header-dark-mobile-navigation-title-typography: (20px, 25px, 800, 'shade_90', 0);
+$civic-header-light-mobile-navigation-close-typography: (14px, 20px, 400, 'primary', 0);
+$civic-header-dark-mobile-navigation-close-typography: (14px, 20px, 400, 'shade_90', 0);
+$civic-header-light-menu-link-border-bottom: civic-color(neutral_20);
+$civic-header-dark-menu-link-border-bottom: civic-color(neutral_20);
+
+// Mobile Navigation.
+.civic-mobile-navigation {
+  $root: &;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: civic-space(2);
+  list-style: none;
+  @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+    & {
+      // display: none;
+      // padding: 0;
+    }
+  }
+  &.civic-mobile-navigation--expanded .civic-dropdown__menu--expanded {
+    z-index: 1;
+  }
+  &--expanded {
+    display: block;
+    // position: fixed;
+    // height: 100vh;
+    // left: 0;
+    // top: 0;
+    background-color: white;
+    @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+      position: static;
+      height: auto;
+      top: initial;
+      left: initial;
+    }
+
+    .civic-mobile-navigation--main {
+      display: block;
+    }
+    .civic-dropdown__menu--expanded {
+      .civic-menu__sub-menu {
+        box-shadow: none;
+        width: 100%;
+      }
+    }
+  }
+  #{$root}__item {
+
+  }
+  #{$root}__item--link {
+    position: relative;
+    .civic-icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      pointer-events: none;
+    }
+  }
+
+  #{$root}__submenu {
+    padding: 0;
+    // display: none;
+  }
+  #{$root}__submenu-menu {
+    padding: civic-space(2) 0;
+    margin: 0;
+    list-style: none;
+  }
+  #{$root}__title {
+    @include civic-typography($civic-header-light-mobile-navigation-title-typography);
+  }
+  #{$root}__close {
+    @include civic-typography($civic-header-light-mobile-navigation-close-typography);
+    text-decoration: none;
+    position: absolute;
+    top: civic-space(2);
+    right: civic-space(2);
+  }
+  #{$root}__back-arrow {
+    // display: none;
+  }
+  #{$root}__select-arrow {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: civic-space(1);
+    cursor: pointer;
+  }
+}

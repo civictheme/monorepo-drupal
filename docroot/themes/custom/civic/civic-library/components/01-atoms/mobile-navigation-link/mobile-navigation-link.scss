@@ -1,0 +1,77 @@
+@use 'sass:math';
+@import '../../00-base/base';
+
+$civic-mobile-navigation-link-light-color: civic-color('shade_80');
+$civic-mobile-navigation-link-light-color-hover: civic-color('shade_80');
+$civic-mobile-navigation-link-light-color-focus: civic-color('shade_80');
+$civic-mobile-navigation-link-light-color-visited: civic-color('shade_80');
+$civic-mobile-navigation-link-light-icon-color: civic-color('primary');
+$civic-mobile-navigation-link-light-border-color: civic-color(neutral_20);;
+$civic-mobile-navigation-link-dark-color: civic-color('neutral');
+$civic-mobile-navigation-link-dark-color-hover: civic-color('neutral');
+$civic-mobile-navigation-link-dark-color-focus: civic-color('neutral');
+$civic-mobile-navigation-link-dark-color-visited: civic-color('neutral');
+$civic-mobile-navigation-link-dark-icon-color: civic-color('primary');
+$civic-mobile-navigation-link-dark-border-color: civic-color(shade_30);;
+$civic-mobile-navigation-link-typography: (18px, 24px, 500);
+
+.civic-mobile-navigation-link {
+  $root: &;
+  display: flex;
+  background: none;
+  border-bottom: none;
+  text-decoration: none;
+  justify-content: space-between;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &,
+  &.civic-theme-light {
+    color: $civic-mobile-navigation-link-light-color;
+    border-bottom: 1px solid $civic-mobile-navigation-link-light-border-color;
+
+    #{$root}__link {
+      display: block;
+      color: $civic-mobile-navigation-link-light-color;
+      padding: civic-space();
+      @include civic-typography($civic-mobile-navigation-link-typography);
+
+      &:hover {
+        color: $civic-mobile-navigation-link-light-color-hover;
+      }
+
+      &:focus {
+        color: $civic-mobile-navigation-link-light-color-focus;
+      }
+
+      &:visited {
+        color: $civic-mobile-navigation-link-light-color-visited;
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    color: $civic-mobile-navigation-link-dark-color;
+    border-bottom: 1px solid $civic-mobile-navigation-link-dark-border-color;
+
+    #{$root}__link {
+      color: $civic-mobile-navigation-link-dark-color;
+
+      &:hover {
+        color: $civic-mobile-navigation-link-dark-color-hover;
+      }
+
+      &:focus {
+        color: $civic-mobile-navigation-link-dark-color-focus;
+      }
+
+      &:visited {
+        color: $civic-mobile-navigation-link-dark-color-visited;
+      }
+    }
+  }
+}
