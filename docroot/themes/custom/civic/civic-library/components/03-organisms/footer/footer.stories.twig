@@ -58,6 +58,7 @@
         { title: 'Our team', url: '#' },
         { title: 'Contact us', url: '#' },
       ],
+      attributes: 'data-collapsible data-collapsible-collapsed data-responsive="<m"',
     } only %}
   {% endset %}
   {% set content_middle3 %}
@@ -69,6 +70,7 @@
         { title: 'Lodge a support ticket', url: '#' },
         { title: 'Contact us', url: '#' },
       ],
+      attributes: 'data-collapsible data-collapsible-collapsed data-responsive="<m"',
     } only %}
   {% endset %}
   {% set content_middle4 %}
@@ -80,6 +82,8 @@
         { title: 'Another external services', url: 'http://example.com', is_external: true },
         { title: 'Services for non-residents', url: '#' },
       ],
+      modifier_class: 'civic-collapsible--last',
+      attributes: 'data-collapsible data-collapsible-collapsed data-responsive="<m"',
     } only %}
   {% endset %}
 {% endif %}

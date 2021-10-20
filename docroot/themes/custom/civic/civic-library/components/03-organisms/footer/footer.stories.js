@@ -4,6 +4,8 @@ import CivicFooter from './footer.stories.twig';
 import logoDesktopLight from '../../../assets/logo-desktop-light.png';
 import logoDesktopDark from '../../../assets/logo-desktop-dark.png';
 import './footer.scss';
+import '../../00-base/responsive/responsive';
+import '../../00-base/collapsible/collapsible';
 
 export default {
   title: 'Organisms/Footer',

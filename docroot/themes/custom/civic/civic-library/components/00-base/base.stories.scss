@@ -7,9 +7,14 @@
   padding: civic-space(2);
 }
 
-.sb-show-main.sb-main-fullscreen #root,
-.sb-show-main.sb-main-centered #root {
-  padding: 0;
+.sb-show-main {
+  &.sb-main-fullscreen,
+  &.sb-main-centered {
+    #root {
+      padding: 0;
+      overflow: scroll;
+    }
+  }
 }
 
 .story-wrapper-size--small {
@@ -22,6 +27,12 @@
 
 .story-wrapper-size--large {
   max-width: 992px;
+}
+
+.story-wrapper-centered {
+  margin-top: 30vh;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .story-slot {

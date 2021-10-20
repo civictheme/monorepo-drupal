@@ -42,21 +42,12 @@
   }
 
   &__middle__content-middle2 {
-    @include civic-breakpoint-upto(m) {
-      margin-top: civic-space(3);
-    }
   }
 
   &__middle__content-middle3 {
-    @include civic-breakpoint-upto(m) {
-      margin-top: civic-space(3);
-    }
   }
 
   &__middle__content-middle4 {
-    @include civic-breakpoint-upto(m) {
-      margin-top: civic-space(3);
-    }
   }
 
   &__bottom {
@@ -157,6 +148,39 @@
   .civic-social-links {
     @include civic-breakpoint('m') {
       justify-content: flex-end;
+    }
+  }
+
+  .civic-link-list {
+    @include civic-breakpoint-upto(m) {
+      margin-bottom: civic-space(3);
+    }
+  }
+
+  [data-collapsible="true"] {
+    [data-collapsible-trigger] {
+      padding: civic-space(2) civic-space(1);
+    }
+
+    [data-collapsible-panel] {
+      padding-left: civic-space(1);
+      padding-right: civic-space(1);
+    }
+
+    &.civic-link-list {
+      margin: 0;
+    }
+
+    .civic-link-list__title {
+      @include civic-breakpoint-upto(m) {
+        margin: 0;
+      }
+    }
+
+    .civic-link-list__list__item {
+      @include civic-breakpoint-upto(m) {
+        margin-top: civic-space(2);
+      }
     }
   }
 }
