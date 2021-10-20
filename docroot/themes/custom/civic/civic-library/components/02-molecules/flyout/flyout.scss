@@ -31,6 +31,7 @@ $civic-flyout-direction-transforms: (
     right: 0;
     bottom: 0;
     visibility: hidden;
+    @include civic-box-shadow;
     @include civic-typography('body');
 
     &--inner {

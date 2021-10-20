@@ -34,26 +34,38 @@
       <ul class="civic-mobile-navigation__submenu-menu">
     {% endif %}
     {% for item in items %}
-      <li class="civic-mobile-navigation__item {{ item.below ? 'civic-mobile-navigation__item--has-submenu' : '' }}" {{ is_expandable ? 'data-component-name="civic-mobile-submenu"'}}>
-        {% include '@atoms/mobile-navigation-link/mobile-navigation-link.twig' with {
-          theme: theme,
-          text: item.title,
-          url: item.url,
-          icon: item.below ? 'arrows_rightarrow_3' : null,
-          attributes: not top_level_menu and is_expandable ? 'tabindex="-1"',
-        } only %}
-
+      <li class="civic-mobile-navigation__item {{ item.below ? 'civic-mobile-navigation__item--has-submenu' : '' }}" {{ item.below ? 'data-component-name="civic-flyout"'}}>
         {% if item.below %}
-          <div class="civic-mobile-navigation__submenu {{ is_collapsible ? 'civic-mobile-navigation__menu' : '' }}" {{ is_collapsible ? 'data-component-name="civic-dropdown-menu"' }}>
-            {% include '@atoms/icon/icon.twig' with {
-              symbol: 'arrows_leftarrow_1',
-              size: icon_size ? icon_size : 'regular',
-              color: 'footer',
-              modifier_class: 'civic-mobile-navigation__back-arrow',
-            } only %}
-            <div class="civic-mobile-navigation__parent-link">{{ item.title }}</div>
-            {{ menus.menu_links(item.below, menu_level + 1, classes, menu_type) }}
-          </div>
+          {% embed '@molecules/flyout/flyout.twig' %}
+            {% block trigger %}
+              {% include '@atoms/mobile-navigation-link/mobile-navigation-link.twig' with {
+                theme: theme,
+                text: item.title,
+                url: item.url,
+                attributes: not top_level_menu and is_expandable ? 'tabindex="-1"',
+                icon: item.below ? 'arrows_rightarrow_3' : null,
+              } only %}
+            {% endblock %}
+            {% block content %}
+              <div class="civic-mobile-navigation__submenu">
+                {% include '@atoms/icon/icon.twig' with {
+                  symbol: 'arrows_leftarrow_1',
+                  size: icon_size ? icon_size : 'regular',
+                  color: 'footer',
+                  modifier_class: 'civic-mobile-navigation__back-arrow',
+                } only %}
+                <div class="civic-mobile-navigation__parent-link">{{ item.title }}</div>
+                {{ menus.menu_links(item.below, menu_level + 1, classes, menu_type) }}
+              </div>
+            {% endblock %}
+          {% endembed %}
+        {% else %}
+          {% include '@atoms/mobile-navigation-link/mobile-navigation-link.twig' with {
+            theme: theme,
+            text: item.title,
+            url: item.url,
+            attributes: not top_level_menu and is_expandable ? 'tabindex="-1"',
+          } only %}
         {% endif %}
       </li>
     {% endfor %}
