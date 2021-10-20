@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Flyout component.
+ *
+ * Variables:
+ * - theme: [string] Light, Dark.
+ * - trigger: [string] Component trigger.
+ * - content: [string] Content.
+ * - expanded: [boolean] Component default state.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set classes = ['civic-flyout'] %}
+{% set classes = expanded ? classes|merge(['civic-flyout--expanded']) : classes %}
+{% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
+{% set flyout_from_class = 'civic-flyout--%s'|format(flyout_from|default('from-right')) %}
+{% set classes = classes|merge([flyout_from_class]) %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set classes = classes|merge([theme_class]) %}
+
+<div class="{{ classes|join(' ') }}" data-component-name="civic-flyout">
+  <a class="civic-flyout__trigger{{ expanded ? ' civic-flyout__trigger--expanded' : '' }}" aria-expanded="{{ expanded ? expanded : false }}" role="button">
+    {% block trigger %}
+      {{ trigger }}
+    {% endblock %}
+  </a>
+  <div class="civic-flyout__content{{ expanded ? ' civic-flyout__content--expanded' : '' }}" aria-hidden="{{ expanded ? not expanded : true }}">
+      <div class="civic-flyout__content--inner">
+        {% block content %}
+          {{ content }}
+        {% endblock %}
+      </div>
+  </div>
+</div>
