@@ -83,6 +83,7 @@ config_devel:
     - core.entity_form_display.paragraph.civic_next_step.default
     - core.entity_form_display.paragraph.civic_promo.default
     - core.entity_form_display.paragraph.civic_quick_links.default
+    - core.entity_form_display.paragraph.civic_search.default
     - core.entity_form_display.paragraph.civic_service_card.default
     - core.entity_form_display.paragraph.civic_slider.default
     - core.entity_form_display.paragraph.civic_slider_slide.default
@@ -118,6 +119,7 @@ config_devel:
     - core.entity_view_display.paragraph.civic_next_step.default
     - core.entity_view_display.paragraph.civic_promo.default
     - core.entity_view_display.paragraph.civic_quick_links.default
+    - core.entity_view_display.paragraph.civic_search.default
     - core.entity_view_display.paragraph.civic_service_card.default
     - core.entity_view_display.paragraph.civic_slider.default
     - core.entity_view_display.paragraph.civic_slider_slide.default
@@ -238,6 +240,11 @@ config_devel:
     - field.field.paragraph.civic_slider_slide.field_c_p_link
     - field.field.paragraph.civic_slider_slide.field_c_p_title
     - field.field.paragraph.civic_slider_slide.field_c_p_topic
+    - field.field.paragraph.civic_search.field_c_p_title
+    - field.field.paragraph.civic_search.field_c_p_search_url
+    - field.field.paragraph.civic_search.field_c_p_placeholder
+    - field.field.paragraph.civic_search.field_c_p_help_text
+    - field.field.paragraph.civic_search.field_c_p_button_text
     - field.storage.block_content.field_c_b_components
     - field.storage.block_content.field_c_b_theme
     - field.storage.block_content.field_c_b_background_image
@@ -286,6 +293,10 @@ config_devel:
     - field.storage.paragraph.field_c_p_topic
     - field.storage.paragraph.field_c_p_view_link
     - field.storage.paragraph.field_c_p_zoom
+    - field.storage.paragraph.field_c_p_button_text
+    - field.storage.paragraph.field_c_p_search_url
+    - field.storage.paragraph.field_c_p_placeholder
+    - field.storage.paragraph.field_c_p_help_text
     - field.node.civic_event.field_c_n_body
     - image.style.navigation
     - image.style.promo_banner
@@ -315,6 +326,7 @@ config_devel:
     - paragraphs.paragraphs_type.civic_next_step
     - paragraphs.paragraphs_type.civic_promo
     - paragraphs.paragraphs_type.civic_quick_links
+    - paragraphs.paragraphs_type.civic_search
     - paragraphs.paragraphs_type.civic_service_card
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
