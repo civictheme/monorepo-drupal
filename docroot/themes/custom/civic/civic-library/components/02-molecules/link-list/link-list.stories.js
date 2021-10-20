@@ -24,6 +24,7 @@ export const LinkList = () => CivicLinkList({
   title: text('Title', 'Optional list title'),
   is_inline: boolean('Inline', false),
   modifier_class: text('Additional class', ''),
+  attributes: text('Additional attributes', ''),
   links: object('Links', [
     { title: 'Link title 1', url: '#' },
     { title: 'Link title 2', url: '#' },

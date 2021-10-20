@@ -16,7 +16,7 @@
 {% set modifier_class = '%s %s %s'|format(theme_class, is_inline_class, modifier_class|default('')) %}
 
 {% if links %}
-  <div class="civic-link-list {{ modifier_class }}">
+  <div class="civic-link-list {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
     {% if title %}
       <div class="civic-link-list__title">
         {{ title }}
