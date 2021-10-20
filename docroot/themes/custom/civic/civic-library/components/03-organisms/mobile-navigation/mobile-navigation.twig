@@ -12,8 +12,8 @@
 {% set classes = ['civic-mobile-navigation'] %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set classes = classes|merge([theme_class]) %}
-{% set menu_type = menu_type ? menu_type : 'main' %}
-{% set classes = classes|merge(['civic-mobile-navigation--%s'|format(menu_type)]) %}
+{% set modifier_class = '%s %s %s'|format(theme_class,decorative_class,modifier_class|default('')) %}
+{% set classes = classes|merge([theme_class]) %}
 
 {% import _self as menus %}
 {% macro menu_links(items, menu_level, classes, menu_type) %}
@@ -29,7 +29,7 @@
           color: 'footer',
         } only %}
         </a>
-        <div class="civic-mobile-navigation__title">Home</div>
+        <div class="civic-mobile-navigation__parent-link">Home</div>
     {% else %}
       <ul class="civic-mobile-navigation__submenu-menu">
     {% endif %}
@@ -49,8 +49,9 @@
               symbol: 'arrows_leftarrow_1',
               size: icon_size ? icon_size : 'regular',
               color: 'footer',
+              modifier_class: 'civic-mobile-navigation__back-arrow',
             } only %}
-            <div class="civic-mobile-navigation__title">{{ item.title }}</div>
+            <div class="civic-mobile-navigation__parent-link">{{ item.title }}</div>
             {{ menus.menu_links(item.below, menu_level + 1, classes, menu_type) }}
           </div>
         {% endif %}

@@ -1,0 +1,75 @@
+{% set classes = ['civic-mobile-navigation'] %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set classes = classes|merge([theme_class]) %}
+{% set modifier_class = '%s %s %s'|format(theme_class,decorative_class, modifier_class|default('')) %}
+{% set classes = classes|merge([theme_class]) %}
+
+<div class="{{ classes|join(' ') }}">
+  {% if block('close') is defined %}
+  <div class="civic-mobile-navigation__close">
+    {%- block close %}
+      {% if close is empty %}
+      <a class="civic-mobile-navigation__close-button" href="#">
+        Close
+        {% include '@atoms/icon/icon.twig' with {
+          symbol: 'userinterface_cancel',
+          size: icon_size ? icon_size : 'regular',
+          color: 'footer',
+        } only %}
+      </a>
+      {% else %}
+      {{- close -}}
+      {% endif %}
+    {% close -%}
+  </div>
+  {% endif %}
+  
+  {% if block('content_top') is defined %}
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="civic-mobile-navigation__content-top">
+          {%- block content_top %}
+            {{- content_top -}}
+          {% endblock -%}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  
+  {% if block('parent_link') is defined %}
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="civic-mobile-navigation__parent-link">
+          {%- block parent_link %}
+            {{- parent_link -}}
+          {% endblock -%}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  
+  {% if block('links') is defined %}
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="civic-mobile-navigation__links">
+          {%- block links %}
+            {{- links -}}
+          {% endblock -%}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  
+  {% if block('content_bottom') is defined %}
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="civic-mobile-navigation__content-bottom">
+          {%- block content_bottom %}
+            {{- content_bottom -}}
+          {% endblock -%}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
