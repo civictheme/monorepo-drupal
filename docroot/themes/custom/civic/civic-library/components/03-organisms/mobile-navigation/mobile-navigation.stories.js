@@ -19,8 +19,14 @@ export const MobileNavigation = () => {
       url: '#',
       below: [
         {
-          title: 'Menu item',
+          title: 'Test Second Level',
           url: '#',
+          below: [
+            {
+              title: 'Test Third Level',
+              url: '#',
+            },
+          ],
         },
         {
           title: 'Menu item',
