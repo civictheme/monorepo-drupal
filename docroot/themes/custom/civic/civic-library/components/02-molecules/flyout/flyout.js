@@ -16,6 +16,7 @@ function CivicFlyout(el) {
   this.flyoutTrigger.expand = true
   this.flyoutClose.addEventListener('click', this.clickEvent.bind(this));
   this.flyoutClose.expand = false
+  this.flyoutCloseAll.addEventListener('click', this.closeAllClickEvent.bind(this));
 }
 
 // eslint-disable-next-line func-names
@@ -25,6 +26,15 @@ CivicFlyout.prototype.clickEvent = function (e) {
   e.stopImmediatePropagation();
 
   e.currentTarget.expand ? this.expand() : this.collapse();
+};
+
+// eslint-disable-next-line func-names
+CivicFlyout.prototype.closeAllClickEvent = function (e) {
+  e.stopPropagation();
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  
+  // todo: add collapse for each flyout
 };
 
 // eslint-disable-next-line func-names
