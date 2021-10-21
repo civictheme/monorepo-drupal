@@ -114,8 +114,8 @@ function cd_core_update_9003() {
   }
   $config->set('logo_path', substr($logo_path, 1));
   $config->set('civic_site_logo_alt', 'Civic demo logo');
-  $config->set('civic_header_theme', 'light');
-  $config->set('civic_footer_theme', 'light');
+  $config->set('civic_header_theme', 'dark');
+  $config->set('civic_footer_theme', 'dark');
   $config->save();
 }
 

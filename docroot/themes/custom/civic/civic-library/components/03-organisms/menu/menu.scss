@@ -1,0 +1,46 @@
+//
+// Menu.
+//
+
+@import '../../00-base/base';
+
+.civic-menu {
+  $root: &;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  // Primary menu.
+  &--main {
+    display: flex;
+
+    #{$root}__sub-menu {
+      position: absolute;
+      left: 0;
+      padding: 0;
+      list-style: none;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+      clip: rect(1px, 1px, 1px, 1px);
+    }
+
+    #{$root}__item:hover {
+      #{$root}__sub-menu  {
+        padding: civic-space(2);
+        width: 9rem;
+        height: auto;
+        clip: auto;
+      }
+    }
+  }
+
+  &__sub-menu {
+    margin-top: civic-space(2);
+  }
+
+  &__item {
+    margin-bottom: civic-space(2);
+  }
+}
