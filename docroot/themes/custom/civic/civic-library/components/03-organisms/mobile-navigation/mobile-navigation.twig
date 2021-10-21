@@ -5,7 +5,6 @@
  * Available variables:
  * - theme: [string] Theme: light, dark.
  * - items: [array] Menu links array.
- * - menu_type: [string] Menu type to change the style and behaviour.
  */
 #}
 
@@ -16,11 +15,11 @@
 {% set classes = classes|merge([theme_class]) %}
 
 {% import _self as menus %}
-{% macro menu_links(items, menu_level, classes, menu_type) %}
+{% macro menu_links(items, menu_level, classes) %}
   {% if items %}
     {% set top_level_menu = (menu_level == 0) %}
     {% if top_level_menu %}
-      <ul class="{{ classes|join(' ') }}" data-component-name="{{ 'civic-mobile-navigation--%s'|format(menu_type) }}">
+      <ul class="{{ classes|join(' ') }}" data-component-name="civic-mobile-navigation">
         <a class="civic-mobile-navigation__close" href="#">
         Close
         {% include '@atoms/icon/icon.twig' with {
@@ -34,7 +33,7 @@
       <ul class="civic-mobile-navigation__submenu-menu">
     {% endif %}
     {% for item in items %}
-      <li class="civic-mobile-navigation__item {{ item.below ? 'civic-mobile-navigation__item--has-submenu' : '' }}" {{ item.below ? 'data-component-name="civic-flyout"'}}>
+      <li class="civic-mobile-navigation__item {{ item.below ? 'civic-mobile-navigation__item--has-submenu' : '' }}">
         {% if item.below %}
           {% embed '@molecules/flyout/flyout.twig' %}
             {% block trigger %}
@@ -48,14 +47,16 @@
             {% endblock %}
             {% block content %}
               <div class="civic-mobile-navigation__submenu">
-                {% include '@atoms/icon/icon.twig' with {
-                  symbol: 'arrows_leftarrow_1',
-                  size: icon_size ? icon_size : 'regular',
-                  color: 'footer',
-                  modifier_class: 'civic-mobile-navigation__back-arrow',
-                } only %}
-                <div class="civic-mobile-navigation__parent-link">{{ item.title }}</div>
-                {{ menus.menu_links(item.below, menu_level + 1, classes, menu_type) }}
+                <div class="civic-mobile-navigation__back-button civic-flyout__back" role="button">
+                  {% include '@atoms/icon/icon.twig' with {
+                    symbol: 'arrows_leftarrow_1',
+                    size: icon_size ? icon_size : 'regular',
+                    color: 'footer',
+                    modifier_class: 'civic-mobile-navigation__back-arrow',
+                  } only %}
+                  <div class="civic-mobile-navigation__parent-link">{{ item.title }}</div>
+                </div>
+                {{ menus.menu_links(item.below, menu_level + 1, classes) }}
               </div>
             {% endblock %}
           {% endembed %}
@@ -73,4 +74,4 @@
   {% endif %}
 {% endmacro %}
 
-{{ menus.menu_links(items, 0, classes, menu_type) }}
+{{ menus.menu_links(items, 0, classes) }}

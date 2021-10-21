@@ -17,13 +17,13 @@ $civic-flyout-direction-transforms: (
 
 .civic-flyout {
   $root: &;
-  &__trigger {
+  &__trigger, &__back {
     cursor: pointer;
   }
 
   &__content {
     $content: &;
-    overflow: auto;
+    overflow: hidden auto;
     transition: transform .5s;
     position: fixed;
     top: 0;

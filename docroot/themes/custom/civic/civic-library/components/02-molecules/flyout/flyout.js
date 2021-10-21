@@ -5,12 +5,14 @@ function CivicFlyout(el) {
 
   this.el = el;
   this.flyoutTrigger = this.el.querySelector('.civic-flyout__trigger');
+  this.flyoutBack = this.el.querySelector('.civic-flyout__back');
   this.flyoutPanel = this.el.querySelector('.civic-flyout__content');
   this.el.expanded = this.el.classList.contains('civic-flyout--expanded');
   this.isToggling = false;
 
   // Add event listener to element.
   this.flyoutTrigger.addEventListener('click', this.clickEvent.bind(this));
+  this.flyoutBack.addEventListener('click', this.clickEvent.bind(this));
 }
 
 // eslint-disable-next-line func-names
@@ -28,10 +30,9 @@ CivicFlyout.prototype.toggle = function () {
     this.el.expanded = true;
     const currentPanel = this.flyoutPanel;
     this.flyoutTrigger.setAttribute('aria-expanded', true);
-    this.flyoutPanel.style.height = `${this.flyoutPanel.scrollHeight}px`;
+    this.flyoutTrigger.classList.add('civic-flyout__trigger--expanding');
     setTimeout(() => {
-      // Remove the fixed height after transition so it can be responsive
-      currentPanel.style.height = 'auto';
+      this.flyoutTrigger.classList.remove('civic-flyout__trigger--expanding');
     }, 500);
     this.flyoutPanel.style.visibility = 'visible';
 
@@ -47,11 +48,11 @@ CivicFlyout.prototype.toggle = function () {
     this.el.classList.remove('civic-flyout--expanded');
     this.flyoutPanel.classList.remove('civic-flyout__content--expanded');
     const currentPanel = this.flyoutPanel;
-    this.flyoutPanel.style.height = `${this.flyoutPanel.scrollHeight}px`;
+    this.flyoutTrigger.classList.add('civic-flyout__trigger--closing');
     setTimeout(() => {
-      currentPanel.style.height = '';
+      this.flyoutTrigger.classList.remove('civic-flyout__trigger--closing');
       currentPanel.style.visibility = '';
-    }, 1);
+    }, 500);
 
     this.flyoutPanel.setAttribute('aria-hidden', true);
   }

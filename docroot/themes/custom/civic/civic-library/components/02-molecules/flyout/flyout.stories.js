@@ -28,10 +28,10 @@ export const Flyout = () => {
     flyout_from: radios(
       'Flyout from',
       {
-        Right: 'from-right',
-        Left: 'from-left',
-        Top: 'from-top',
-        Bottom: 'from-bottom',
+        Right: 'right',
+        Left: 'left',
+        Top: 'top',
+        Bottom: 'bottom',
       },
       'from-right',
     ),
