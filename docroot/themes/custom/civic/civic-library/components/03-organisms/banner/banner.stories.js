@@ -4,7 +4,6 @@ import {
 import { getSlots } from '../../00-base/base.stories';
 import CivicBannerExample from './banner.stories.twig';
 import imageFile from '../../../assets/image.png';
-import './banner.stories.scss';
 
 export default {
   title: 'Organisms/Banner',
