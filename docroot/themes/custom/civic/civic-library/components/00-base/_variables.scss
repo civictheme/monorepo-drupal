@@ -387,8 +387,7 @@ $civic-event-card-dark-color-active: civic-color('neutral_20') !default;
 //
 // Promo Card
 //
-$civic-promo-card-border-top-color: civic-color('secondary') !default;
-
+$civic-promo-card-light-border-top-color: civic-color('secondary') !default;
 $civic-promo-card-light-background-color: civic-color('neutral') !default;
 $civic-promo-card-light-heading-color: civic-color('heading') !default;
 $civic-promo-card-light-body-color: civic-color('body') !default;
@@ -399,6 +398,7 @@ $civic-promo-card-light-tag-color: civic-color('neutral') !default;
 $civic-promo-card-light-tag-background-color: civic-color('primary') !default;
 $civic-promo-card-light-link-color: civic-color('primary') !default;
 
+$civic-promo-card-dark-border-top-color: civic-color('secondary') !default;
 $civic-promo-card-dark-background-color: civic-color('shade_45') !default;
 $civic-promo-card-dark-heading-color: civic-color('neutral') !default;
 $civic-promo-card-dark-body-color: civic-color('neutral_5') !default;
