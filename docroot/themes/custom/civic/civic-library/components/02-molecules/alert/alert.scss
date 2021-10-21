@@ -8,27 +8,36 @@
   $root: &;
   position: relative;
   border-radius: $civic-border-radius;
-  border-left: solid rem(6px) transparent;
-  padding: civic-space(3) civic-space(3) civic-space(3) civic-space(2);
-  @include civic-typography('label-tag');
+  padding: civic-space(2);
+
+  @include civic-breakpoint('m') {
+    padding: civic-space(2) * 1.5;
+  }
+
+  @include civic-typography('tag');
 
   #{$root}__title {
+    @include civic-typography('heading-6');
     display: flex;
-    font-weight: 600;
+    align-items: center;
 
-    @include civic-breakpoint('m') {
-      align-items: center;
+    @include civic-breakpoint-upto('m') {
+      margin-bottom: civic-space();
     }
   }
 
   #{$root}__icon {
-    width: rem(26px);
-    margin-right: civic-space(2);
+    width: rem(24px);
+    margin-right: civic-space();
+
+    @include civic-breakpoint('m') {
+      margin-right: civic-space(2);
+    }
   }
 
   .civic-icon {
-    width: rem(26px);
-    height: rem(26px);
+    width: rem(24px);
+    height: rem(24px);
   }
 
   #{$root}__summary {
@@ -39,11 +48,12 @@
     cursor: pointer;
     margin-left: civic-space(3);
     position: absolute;
-    top: 0;
-    right: 0;
+    top: civic-space(2);
+    right: civic-space(2);
 
     @include civic-breakpoint(m) {
       position: static;
+      align-self: center;
     }
   }
 
