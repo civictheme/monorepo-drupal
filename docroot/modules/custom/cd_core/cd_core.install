@@ -124,10 +124,10 @@ function cd_core_update_9003() {
  */
 function cd_core_update_9007() {
   $footer_menus = [
-    'civic_menu_1',
-    'civic_menu_2',
-    'civic_menu_3',
-    'civic_menu_4',
+    'civic_footer_menu_1',
+    'civic_footer_menu_2',
+    'civic_footer_menu_3',
+    'civic_footer_menu_4',
   ];
 
   $top_level_links = [

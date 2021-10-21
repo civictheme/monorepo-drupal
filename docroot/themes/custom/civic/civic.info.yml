@@ -329,10 +329,10 @@ config_devel:
     - paragraphs.paragraphs_type.civic_service_card
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
-    - system.menu.civic_menu_1
-    - system.menu.civic_menu_2
-    - system.menu.civic_menu_3
-    - system.menu.civic_menu_4
+    - system.menu.civic_footer_menu_1
+    - system.menu.civic_footer_menu_2
+    - system.menu.civic_footer_menu_3
+    - system.menu.civic_footer_menu_4
     - taxonomy.vocabulary.civic_topics
     - views.view.civic_events
     - views.view.civic_listing

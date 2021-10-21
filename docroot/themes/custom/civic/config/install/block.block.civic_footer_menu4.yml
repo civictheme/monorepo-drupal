@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.civic_menu_4
+    - system.menu.civic_footer_menu_4
   module:
     - system
   theme:
@@ -12,9 +12,9 @@ theme: civic
 region: footer_middle_4
 weight: 0
 provider: null
-plugin: 'system_menu_block:civic_menu_4'
+plugin: 'system_menu_block:civic_footer_menu_4'
 settings:
-  id: 'system_menu_block:civic_menu_4'
+  id: 'system_menu_block:civic_footer_menu_4'
   label: 'Civic footer menu 4'
   provider: system
   label_display: '0'
