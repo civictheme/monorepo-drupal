@@ -87,6 +87,7 @@ config_devel:
     - core.entity_form_display.paragraph.civic_service_card.default
     - core.entity_form_display.paragraph.civic_slider.default
     - core.entity_form_display.paragraph.civic_slider_slide.default
+    - core.entity_form_display.paragraph.civic_slider_slide_reference.default
     - core.entity_view_display.block_content.civic_banner.default
     - core.entity_view_display.block_content.civic_component_block.default
     - core.entity_view_display.node.civic_event.civic_card_event
@@ -96,10 +97,12 @@ config_devel:
     - core.entity_view_display.node.civic_event.teaser
     - core.entity_view_display.node.civic_event.civic_card_subject
     - core.entity_view_display.node.civic_page.civic_card_subject
+    - core.entity_view_display.node.civic_event.civic_slider_slide
     - core.entity_view_mode.node.civic_card_subject
     - core.entity_view_display.node.civic_page.civic_card_navigation
     - core.entity_view_display.node.civic_page.civic_card_promo
     - core.entity_view_display.node.civic_page.default
+    - core.entity_view_display.node.civic_page.civic_slider_slide
     - core.entity_view_display.paragraph.civic_accordion.default
     - core.entity_view_display.paragraph.civic_accordion_panel.default
     - core.entity_view_display.paragraph.civic_attachment.default
@@ -123,9 +126,11 @@ config_devel:
     - core.entity_view_display.paragraph.civic_service_card.default
     - core.entity_view_display.paragraph.civic_slider.default
     - core.entity_view_display.paragraph.civic_slider_slide.default
+    - core.entity_view_display.paragraph.civic_slider_slide_reference.default
     - core.entity_view_mode.node.civic_card_event
     - core.entity_view_mode.node.civic_card_navigation
     - core.entity_view_mode.node.civic_card_promo
+    - core.entity_view_mode.node.civic_slider_slide
     - field.field.block_content.civic_banner.field_c_b_theme
     - field.field.block_content.civic_banner.field_c_b_background_image
     - field.field.block_content.civic_component_block.field_c_b_components
@@ -240,6 +245,7 @@ config_devel:
     - field.field.paragraph.civic_slider_slide.field_c_p_link
     - field.field.paragraph.civic_slider_slide.field_c_p_title
     - field.field.paragraph.civic_slider_slide.field_c_p_topic
+    - field.field.paragraph.civic_slider_slide_reference.field_c_p_reference
     - field.field.paragraph.civic_search.field_c_p_title
     - field.field.paragraph.civic_search.field_c_p_search_url
     - field.field.paragraph.civic_search.field_c_p_placeholder
@@ -330,6 +336,7 @@ config_devel:
     - paragraphs.paragraphs_type.civic_service_card
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
+    - paragraphs.paragraphs_type.civic_slider_slide_reference
     - taxonomy.vocabulary.civic_topics
     - views.view.civic_events
     - views.view.civic_listing
