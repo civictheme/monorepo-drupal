@@ -17,7 +17,7 @@ $civic-flyout-direction-transforms: (
 
 .civic-flyout {
   $root: &;
-  &__trigger, &__back {
+  &__trigger, &__close {
     cursor: pointer;
   }
 

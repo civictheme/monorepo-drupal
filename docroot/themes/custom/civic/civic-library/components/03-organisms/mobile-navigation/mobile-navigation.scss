@@ -9,7 +9,7 @@ $civic-mobile-navigation-parent-link-typography: (20px, 25px, 800, 'primary', 0)
 $civic-mobile-navigation-light-back-arrow-icon-color: civic-color('shade_80');
 $civic-mobile-navigation-light-close-color: civic-color('shade_80');
 $civic-mobile-navigation-light-parent-link-color: civic-color('shade_80');
-$civic-mobile-navigation-dark-back-arrow-icon-color: civic-color('neutral');
+$civic-mobile-navigation-dark-back-arrow-icon-color: civic-color('accent');
 $civic-mobile-navigation-dark-close-color: civic-color('neutral');
 $civic-mobile-navigation-dark-parent-link-color: civic-color('neutral');
 
@@ -60,6 +60,7 @@ $civic-mobile-navigation-dark-parent-link-color: civic-color('neutral');
   }
   #{$root}__parent-link {
     @include civic-typography($civic-mobile-navigation-parent-link-typography);
+    padding-top: civic-space();
   }
   #{$root}__close {
     @include civic-typography($civic-mobile-navigation-close-typography);
