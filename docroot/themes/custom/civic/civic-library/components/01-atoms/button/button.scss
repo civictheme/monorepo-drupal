@@ -123,7 +123,7 @@
   @else if ($type=='secondary') {
     &.civic-theme-light {
       background-color: $civic-button-light-secondary-background-color;
-      color: $civic-button-light-seondary-color;
+      color: $civic-button-light-secondary-color;
       border: rem(3px) solid $civic-button-light-secondary-border-color;
 
       &:hover {
@@ -139,7 +139,7 @@
       }
 
       .civic-icon {
-        fill: $civic-button-light-seondary-color;
+        fill: $civic-button-light-secondary-color;
       }
     }
 

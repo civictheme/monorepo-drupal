@@ -1,7 +1,7 @@
 const path = require('path');
 const glob = require('glob');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const globImporter = require('node-sass-glob-importer');
+const magicImporter = require('node-sass-magic-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -51,7 +51,7 @@ module.exports = {
             options: {
               sourceMap: true,
               sassOptions: {
-                importer: globImporter(),
+                importer: magicImporter(),
               },
             },
           },
