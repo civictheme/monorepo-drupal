@@ -5,15 +5,213 @@
 @import '../../00-base/base';
 
 .civic-basic-content {
-  @include civic-typography(body);
+  $root: &;
+  @include civic-typography('body');
+  padding: civic-space();
 
   &.civic-theme-light {
-    background-color: $civic-basic-content-light-background-color;
-    color: $civic-basic-content-light-heading-color;
+    color: $civic-basic-content-light-base-color;
+
+    h1 {
+      color: $civic-basic-content-light-heading-1-color;
+    }
+
+    h2 {
+      color: $civic-basic-content-light-heading-2-color;
+    }
+
+    h3 {
+      color: $civic-basic-content-light-heading-3-color;
+    }
+
+    h4 {
+      color: $civic-basic-content-light-heading-4-color;
+    }
+
+    h5 {
+      color: $civic-basic-content-light-heading-5-color;
+    }
+
+    h6 {
+      color: $civic-basic-content-light-heading-6-color;
+    }
+
+    blockquote {
+      color: $civic-basic-content-light-blockquote-color;
+
+      &::before {
+        background-color: $civic-basic-content-light-blockquote-block;
+      }
+    }
+
+    ul {
+      li {
+        color: $civic-basic-content-light-ul-li-color;
+
+        &::before {
+          background-color: $civic-basic-content-light-ul-li-marker-color;
+        }
+      }
+    }
+
+    ol {
+      li {
+        color: $civic-basic-content-light-ol-li-color;
+
+        &::before {
+          color: $civic-basic-content-light-ol-li-marker-color;
+        }
+      }
+    }
   }
 
   &.civic-theme-dark {
-    background-color: $civic-basic-content-dark-background-color;
-    color: $civic-basic-content-dark-heading-color;
+    color: $civic-basic-content-dark-base-color;
+
+    h1 {
+      color: $civic-basic-content-dark-heading-1-color;
+    }
+
+    h2 {
+      color: $civic-basic-content-dark-heading-2-color;
+    }
+
+    h3 {
+      color: $civic-basic-content-dark-heading-3-color;
+    }
+
+    h4 {
+      color: $civic-basic-content-dark-heading-4-color;
+    }
+
+    h5 {
+      color: $civic-basic-content-dark-heading-5-color;
+    }
+
+    h6 {
+      color: $civic-basic-content-dark-heading-6-color;
+    }
+
+    blockquote {
+      color: $civic-basic-content-dark-blockquote-color;
+
+      &::before {
+        background-color: $civic-basic-content-dark-blockquote-block;
+      }
+    }
+
+    ul {
+      li {
+        color: $civic-basic-content-dark-ul-li-color;
+
+        &::before {
+          background-color: $civic-basic-content-dark-ul-li-marker-color;
+        }
+      }
+    }
+
+    ol {
+      li {
+        color: $civic-basic-content-dark-ol-li-color;
+
+        &::before {
+          color: $civic-basic-content-dark-ol-li-marker-color;
+        }
+      }
+    }
+  }
+
+  h1 {
+    @include civic-typography('heading-1');
+  }
+
+  h2 {
+    @include civic-typography('heading-2');
+  }
+
+  h3 {
+    @include civic-typography('heading-3');
+  }
+
+  h4 {
+    @include civic-typography('heading-4');
+  }
+
+  h5 {
+    @include civic-typography('heading-5');
+  }
+
+  h6 {
+    @include civic-typography('heading-6');
+  }
+
+  .lead {
+    @include civic-typography('lead');
+  }
+
+  .small {
+    @include civic-typography('small');
+  }
+
+  blockquote {
+    @include civic-typography('quote');
+    position: relative;
+    margin: 0;
+    padding: civic-space(2) civic-space(3);
+
+    &::before {
+      content: '';
+      width: rem(6px);
+      height: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: rem(4px);
+    }
+  }
+
+  $list-marker-width: 28px;
+  $list-marker-margin: 16px;
+
+  ul {
+    padding: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+      padding-left: rem($list-marker-width + $list-marker-margin);
+
+      &::before {
+        content: '';
+        position: absolute;
+        text-align: center;
+        width: rem(7px);
+        height: rem(7px);
+        border-radius: 100%;
+        top: rem(11px);
+        left: rem(11px);
+      }
+    }
+  }
+
+  ol {
+    counter-reset: ordered_counter;
+    padding: 0;
+    list-style: none;
+
+    li {
+      counter-increment: ordered_counter;
+      padding-left: rem($list-marker-width + $list-marker-margin);
+
+      &::before {
+        content: counter(ordered_counter);
+        display: inline-block;
+        text-align: center;
+        width: rem($list-marker-width);
+        margin-left: rem(-$list-marker-width - $list-marker-margin);
+        margin-right: rem($list-marker-margin);
+      }
+    }
   }
 }
