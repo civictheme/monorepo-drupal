@@ -3,7 +3,6 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicCollapsible from './collapsible.twig';
-import './collapsible.scss';
 import './collapsible';
 
 export default {

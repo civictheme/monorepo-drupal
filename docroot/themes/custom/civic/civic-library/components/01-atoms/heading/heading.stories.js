@@ -1,6 +1,5 @@
 import { text, radios } from '@storybook/addon-knobs';
 import CivicHeading from './heading.twig';
-import './heading.scss';
 
 export default {
   title: 'Atom/Heading',
