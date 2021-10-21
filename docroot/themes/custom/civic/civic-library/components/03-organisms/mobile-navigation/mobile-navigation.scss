@@ -58,18 +58,13 @@ $civic-mobile-navigation-dark-content-bottom-background-color: civic-color('neut
     padding: 0;
     margin: 0;
   }
-
-  &__submenu {
-    padding: 0;
-  }
-  &__submenu-menu {
-    padding: civic-space(2) 0;
-    margin: 0;
-    list-style: none;
-  }
   &__parent-link {
     @include civic-typography($civic-mobile-navigation-parent-link-typography);
-    padding: civic-space() 0 civic-space(3) 0;
+    margin: civic-space() 0 civic-space(3) 0;
+  }
+  &__back-button {
+    display: block;
+    text-decoration: none;
   }
   &__close {
     justify-content: end;

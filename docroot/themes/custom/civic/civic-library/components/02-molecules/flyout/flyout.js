@@ -6,6 +6,7 @@ function CivicFlyout(el) {
   this.el = el;
   this.flyoutTrigger = this.el.querySelector('.civic-flyout__trigger');
   this.flyoutClose = this.el.querySelector('.civic-flyout__close');
+  this.flyoutCloseAll = this.el.querySelector('.civic-flyout__close-all');
   this.flyoutPanel = this.el.querySelector('.civic-flyout__content');
   this.el.expanded = this.el.classList.contains('civic-flyout--expanded');
   this.isToggling = false;

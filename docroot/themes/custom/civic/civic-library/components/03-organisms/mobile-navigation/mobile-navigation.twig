@@ -18,7 +18,7 @@
 {% macro menu_links(items, menu_level, classes, parent_link) %}
   <div class="{{ classes|join(' ') }}" data-component-name="civic-mobile-navigation">
   {% if items %}
-    <div class="civic-mobile-navigation__close">
+    <div class="civic-mobile-navigation__close civic-flyout__close-all" role="button">
       {%- block close %}
         {% if close is empty %}
         <a class="civic-mobile-navigation__close-button" href="#">
@@ -51,7 +51,7 @@
     {% if top_level_menu %}
       <div class="civic-mobile-navigation__parent-link">Home</div>
     {% else %}
-      <div class="civic-mobile-navigation__back-button civic-flyout__close" role="button">
+      <a class="civic-mobile-navigation__back-button civic-flyout__close" href="#" tabindex="0" role="button">
         {% include '@atoms/icon/icon.twig' with {
           symbol: 'arrows_leftarrow_1',
           size: icon_size ? icon_size : 'regular',
@@ -59,8 +59,9 @@
           modifier_class: 'civic-mobile-navigation__back-arrow',
         } only %}
         <div class="civic-mobile-navigation__parent-link">{{ parent_link }}</div>
-      </div>
+      </a>
     {% endif %}
+
     <ul class="civic-mobile-navigation__links-list">
     {% for item in items %}
       <li class="civic-mobile-navigation__item {{ item.below ? 'civic-mobile-navigation__item--has-submenu' : '' }}">
@@ -71,14 +72,11 @@
                 theme: theme,
                 text: item.title,
                 url: item.url,
-                attributes: not top_level_menu and is_expandable ? 'tabindex="-1"',
                 icon: item.below ? 'arrows_rightarrow_3' : null,
               } only %}
             {% endblock %}
             {% block content %}
-              <div class="civic-mobile-navigation__submenu">
-                {{ menus.menu_links(item.below, menu_level + 1, classes, item.title) }}
-              </div>
+              {{ menus.menu_links(item.below, menu_level + 1, classes, item.title) }}
             {% endblock %}
           {% endembed %}
         {% else %}
@@ -86,7 +84,6 @@
             theme: theme,
             text: item.title,
             url: item.url,
-            attributes: not top_level_menu and is_expandable ? 'tabindex="-1"',
           } only %}
         {% endif %}
       </li>
