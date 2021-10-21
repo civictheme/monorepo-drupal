@@ -1,7 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicInput from './input.twig';
-import './input.scss';
 
 export default {
   title: 'Atom/Input',
