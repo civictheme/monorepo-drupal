@@ -15,23 +15,53 @@
 {% set classes = classes|merge([theme_class]) %}
 
 {% import _self as menus %}
-{% macro menu_links(items, menu_level, classes) %}
+{% macro menu_links(items, menu_level, classes, parent_link) %}
+  <div class="{{ classes|join(' ') }}" data-component-name="civic-mobile-navigation">
   {% if items %}
+    <div class="civic-mobile-navigation__close">
+      {%- block close %}
+        {% if close is empty %}
+        <a class="civic-mobile-navigation__close-button" href="#">
+          Close
+          {% include '@atoms/icon/icon.twig' with {
+            symbol: 'userinterface_cancel',
+            size: icon_size ? icon_size : 'regular',
+            color: 'footer',
+          } only %}
+        </a>
+        {% else %}
+        {{- close -}}
+        {% endif %}
+      {% endblock -%}
+    </div>
+  
+    {% if block('content_top') is defined %}
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="civic-mobile-navigation__content-top">
+            {%- block content_top %}
+              {{- content_top -}}
+            {% endblock -%}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
     {% set top_level_menu = (menu_level == 0) %}
     {% if top_level_menu %}
-      <ul class="{{ classes|join(' ') }}" data-component-name="civic-mobile-navigation">
-        <a class="civic-mobile-navigation__close" href="#">
-        Close
+      <div class="civic-mobile-navigation__parent-link">Home</div>
+    {% else %}
+      <div class="civic-mobile-navigation__back-button civic-flyout__close" role="button">
         {% include '@atoms/icon/icon.twig' with {
-          symbol: 'userinterface_cancel',
+          symbol: 'arrows_leftarrow_1',
           size: icon_size ? icon_size : 'regular',
           color: 'footer',
+          modifier_class: 'civic-mobile-navigation__back-arrow',
         } only %}
-        </a>
-        <div class="civic-mobile-navigation__parent-link">Home</div>
-    {% else %}
-      <ul class="civic-mobile-navigation__submenu-menu">
+        <div class="civic-mobile-navigation__parent-link">{{ parent_link }}</div>
+      </div>
     {% endif %}
+    <ul class="civic-mobile-navigation__links-list">
     {% for item in items %}
       <li class="civic-mobile-navigation__item {{ item.below ? 'civic-mobile-navigation__item--has-submenu' : '' }}">
         {% if item.below %}
@@ -47,16 +77,7 @@
             {% endblock %}
             {% block content %}
               <div class="civic-mobile-navigation__submenu">
-                <div class="civic-mobile-navigation__back-button civic-flyout__close" role="button">
-                  {% include '@atoms/icon/icon.twig' with {
-                    symbol: 'arrows_leftarrow_1',
-                    size: icon_size ? icon_size : 'regular',
-                    color: 'footer',
-                    modifier_class: 'civic-mobile-navigation__back-arrow',
-                  } only %}
-                  <div class="civic-mobile-navigation__parent-link">{{ item.title }}</div>
-                </div>
-                {{ menus.menu_links(item.below, menu_level + 1, classes) }}
+                {{ menus.menu_links(item.below, menu_level + 1, classes, item.title) }}
               </div>
             {% endblock %}
           {% endembed %}
@@ -72,6 +93,7 @@
     {% endfor %}
     </ul>
   {% endif %}
+  </div>
 {% endmacro %}
 
 {{ menus.menu_links(items, 0, classes) }}

@@ -33,7 +33,7 @@ export const Flyout = () => {
         Top: 'top',
         Bottom: 'bottom',
       },
-      'from-right',
+      'right',
     ),
     trigger: text('Trigger', 'Open Flyout'),
     content: text('Content', content),

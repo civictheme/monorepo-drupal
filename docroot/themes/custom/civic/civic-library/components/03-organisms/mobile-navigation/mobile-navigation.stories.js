@@ -24,7 +24,7 @@ export const MobileNavigation = () => {
           below: [
             {
               title: 'Test Third Level',
-              url: '#',
+              url: 'https://www.google.com',
             },
           ],
         },
@@ -86,7 +86,7 @@ export const MobileNavigation = () => {
     },
     {
       title: 'Contact Us',
-      url: '#',
+      url: 'https://www.example.com',
     },
   ];
 
