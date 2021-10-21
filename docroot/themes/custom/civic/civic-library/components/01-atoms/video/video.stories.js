@@ -1,7 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicVideo from './video.twig';
-import './video.scss';
 
 export default {
   title: 'Atom/Video',

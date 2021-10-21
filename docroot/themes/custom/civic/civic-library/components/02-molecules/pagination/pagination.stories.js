@@ -2,7 +2,6 @@ import {
   radios, text, object, boolean,
 } from '@storybook/addon-knobs';
 import CivicPagination from './pagination.twig';
-import './pagination.scss';
 
 export default {
   title: 'Molecule/Pagination',

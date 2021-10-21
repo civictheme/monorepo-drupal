@@ -6,8 +6,6 @@ import logoDesktopDark from '../../../assets/logo-desktop-dark.png';
 import logoMobileLight from '../../../assets/logo-mobile-light.png';
 import logoMobileDark from '../../../assets/logo-mobile-dark.png';
 
-import './logo.scss';
-
 export default {
   title: 'Atom/Logo',
   parameters: {

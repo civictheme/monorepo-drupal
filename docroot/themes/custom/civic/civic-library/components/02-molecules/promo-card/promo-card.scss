@@ -15,7 +15,16 @@
   }
 
   &#{$root}--no-image {
-    border-top: rem(6px) solid $civic-promo-card-border-top-color;
+    border-top-width: rem(6px);
+    border-top-style: solid;
+
+    &.civic-theme-light {
+      border-top-color: $civic-promo-card-light-border-top-color;
+    }
+
+    &.civic-theme-dark {
+      border-top-color: $civic-promo-card-dark-border-top-color;
+    }
   }
 
   #{$root}__image-wrapper {
