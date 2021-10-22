@@ -144,19 +144,19 @@ $civic-outline-accent-boxshadow: 0 0 0 3pt civic-color('accent') !default;
 //
 $civic-icon-sizes: (
   'small': (
-    'xs': (16px, 16px),
+    'xxs': (16px, 16px),
     'm': (20px, 20px),
   ),
   'regular': (
-    'xs': (20px, 20px),
+    'xxs': (20px, 20px),
     'm': (24px, 24px),
   ),
   'large': (
-    'xs': (40px, 40px),
+    'xxs': (40px, 40px),
     'm': (48px, 48px),
   ),
   'extra-large': (
-    'xs': (48px, 48px),
+    'xxs': (48px, 48px),
     'm': (64px, 64px),
   )
 ) !default;
@@ -181,80 +181,80 @@ $civic-typography: (
   'display-s': (32px, 40px, 700, 'primary', -0.3px),
   'display-support': (18px, 31px, 400, 'primary', 0),
   'heading-1': (
-    'xs': (32px, 40px, 700, 'primary', -0.6px),
+    'xxs': (32px, 40px, 700, 'primary', -0.6px),
     'm': (48px, 60px, 700, 'primary', -1px)
   ),
   'heading-2': (
-    'xs': (28px, 35px, 700, 'primary', -0.5px),
+    'xxs': (28px, 35px, 700, 'primary', -0.5px),
     'm': (39px, 48px, 700, 'primary', -0.8px)
   ),
   'heading-3': (
-    'xs': (24px, 31px, 700, 'primary', 0.35px),
+    'xxs': (24px, 31px, 700, 'primary', 0.35px),
     'm': (32px, 40px, 700, 'primary', -0.6px)
   ),
   'heading-4': (
-    'xs': (20px, 25px, 700, 'primary', -0.25px),
+    'xxs': (20px, 25px, 700, 'primary', -0.25px),
     'm': (25px, 31px, 700, 'primary', -0.4px)
   ),
   'heading-5': (
-    'xs': (16px, 22px, 700, 'primary', 0),
+    'xxs': (16px, 22px, 700, 'primary', 0),
     'm': (20px, 25px, 700, 'primary', -0.2px)
   ),
   'heading-6': (16px, 26px, 700, 'primary', 0),
   'lead': (
-    'xs': (18px, 29px, 400, 'primary', 0),
+    'xxs': (18px, 29px, 400, 'primary', 0),
     'm': (20px, 34px, 400, 'primary', '0')
   ),
   'subtitle': (
-    'xs': (16px, 26px, 600, 'primary', 0),
+    'xxs': (16px, 26px, 600, 'primary', 0),
     'm': (16px, 28px, 600, 'primary', 0)
   ),
   'body': (
-    'xs': (16px, 26px, 400, 'primary', 0),
+    'xxs': (16px, 26px, 400, 'primary', 0),
     'm': (16px, 28px, 400, 'primary', 0)
   ),
   'small': (
-    'xs': (14px, 23px, 400, 'primary', 0),
+    'xxs': (14px, 23px, 400, 'primary', 0),
     'm': (14px, 25px, 400, 'primary', 0)
   ),
   'text-large': (
-    'xs': (18px, 29px, 400, 'primary', 0),
+    'xxs': (18px, 29px, 400, 'primary', 0),
     'm': (20px, 34px, 400, 'primary', '0')
   ),
   'text-regular': (
-    'xs': (14px, 25px, 400, 'primary', 0),
+    'xxs': (14px, 25px, 400, 'primary', 0),
     'm': (16px, 28px, 400, 'primary', 0)
   ),
   'text-small': (
-    'xs': (12px, 20px, 400, 'primary', 0),
+    'xxs': (12px, 20px, 400, 'primary', 0),
     'm': (14px, 25px, 400, 'primary', 0),
   ),
   'card-summary': (
-    'xs': (14px, 25px, 400, 'primary', 0),
+    'xxs': (14px, 25px, 400, 'primary', 0),
     'm': (16px, 28px, 400, 'primary', 0)
   ),
   'quote': (
-    'xs': (18px, 29px, 400, 'primary', -0.15px),
+    'xxs': (18px, 29px, 400, 'primary', -0.15px),
     'm': (25px, 40px, 400, 'primary', -0.35px)
   ),
   'unordered-list': (
-    'xs': (16px, 26px, 400, 'primary', 0),
+    'xxs': (16px, 26px, 400, 'primary', 0),
     'm': (16px, 28px, 400, 'primary', 0)
   ),
   'ordered-list': (
-    'xs': (16px, 26px, 400, 'primary', 0),
+    'xxs': (16px, 26px, 400, 'primary', 0),
     'm': (16px, 28px, 400 'primary', 0)
   ),
   'label-large': (
-    'xs': (18px, 24px, 600, 'primary', -0.1px),
+    'xxs': (18px, 24px, 600, 'primary', -0.1px),
     'm': (18px, 24px, 600, 'primary', 0)
   ),
   'label-regular': (
-    'xs': (16px, 20px, 600, 'primary', -0.1px),
+    'xxs': (16px, 20px, 600, 'primary', -0.1px),
     'm': (16px, 20px, 600, 'primary', 0)
   ),
   'label-tag': (
-    'xs': (12px, 20px, 400, 'primary', -0.1px),
+    'xxs': (12px, 20px, 400, 'primary', -0.1px),
     'm': (14px, 20px, 400, 'primary', -0.1px)
   ),
   'label-small': (12px, 26px, 600, 'primary'),
