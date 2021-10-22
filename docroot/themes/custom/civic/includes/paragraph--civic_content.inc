@@ -15,8 +15,10 @@ function civic_preprocess_paragraph__civic_content(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $content = ($paragraph->hasField('field_c_p_content') && !$paragraph->get('field_c_p_content')->isEmpty()) ? $paragraph->get('field_c_p_content')->first()->getValue() : NULL;
-  unset($variables['content']);
-  if (isset($content)) {
-    $variables['content'] = $content['value'];
-  }
+  $content = \Drupal::service('renderer')->render($variables['content']['field_c_p_content']);
+//  unset($variables['content']);
+//  if (isset($content)) {
+//    $variables['content'] = $content['value'];
+//  }
+  $variables['content'] = $content;
 }
