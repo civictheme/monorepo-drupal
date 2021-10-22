@@ -38,51 +38,32 @@
 
 {% if show_middle_links %}
   {% set content_middle1 %}
-    {% include '@molecules/link-list/link-list.twig' with {
+    {% include '@organisms/navigation/navigation.twig' with {
       theme: theme,
-      links: [
-        { title: 'For individuals', url: '#' },
-        { title: 'For businesses', url: '#' },
-        { title: 'For government', url: '#' },
-        { title: 'Services', url: '#' },
-        { title: 'News & events', url: '#' },
-      ],
+      items: links1,
     } only %}
   {% endset %}
   {% set content_middle2 %}
-    {% include '@molecules/link-list/link-list.twig' with {
+    {% include '@organisms/navigation/navigation.twig' with {
       theme: theme,
+      items: links2,
       title: 'About us',
-      links: [
-        { title: 'Our story', url: '#' },
-        { title: 'Our team', url: '#' },
-        { title: 'Contact us', url: '#' },
-      ],
       attributes: 'data-collapsible data-collapsible-collapsed data-responsive="<m"',
     } only %}
   {% endset %}
   {% set content_middle3 %}
-    {% include '@molecules/link-list/link-list.twig' with {
+    {% include '@organisms/navigation/navigation.twig' with {
       theme: theme,
+      items: links3,
       title: 'Help',
-      links: [
-        { title: 'Help and support', url: '#' },
-        { title: 'Lodge a support ticket', url: '#' },
-        { title: 'Contact us', url: '#' },
-      ],
       attributes: 'data-collapsible data-collapsible-collapsed data-responsive="<m"',
     } only %}
   {% endset %}
   {% set content_middle4 %}
-    {% include '@molecules/link-list/link-list.twig' with {
+    {% include '@organisms/navigation/navigation.twig' with {
       theme: theme,
+      items: links4,
       title: 'Services',
-      links: [
-        { title: 'Services for citizens', url: '#' },
-        { title: 'Another external services', url: 'http://example.com', is_external: true },
-        { title: 'Services for non-residents', url: '#' },
-      ],
-      modifier_class: 'civic-collapsible--last',
       attributes: 'data-collapsible data-collapsible-collapsed data-responsive="<m"',
     } only %}
   {% endset %}

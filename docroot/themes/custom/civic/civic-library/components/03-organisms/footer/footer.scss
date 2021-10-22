@@ -151,36 +151,23 @@
     }
   }
 
-  .civic-link-list {
+  .civic-navigation {
     @include civic-breakpoint-upto(m) {
       margin-bottom: civic-space(3);
     }
   }
 
   [data-collapsible="true"] {
+    margin-bottom: 0;
+
     [data-collapsible-trigger] {
       padding: civic-space(2) civic-space(1);
+      margin-bottom: 0;
     }
 
     [data-collapsible-panel] {
       padding-left: civic-space(1);
       padding-right: civic-space(1);
-    }
-
-    &.civic-link-list {
-      margin: 0;
-    }
-
-    .civic-link-list__title {
-      @include civic-breakpoint-upto(m) {
-        margin: 0;
-      }
-    }
-
-    .civic-link-list__list__item {
-      @include civic-breakpoint-upto(m) {
-        margin-top: civic-space(2);
-      }
     }
   }
 }
