@@ -61,7 +61,7 @@ config_devel:
     - block.block.civic_sitebranding
     - block.block.civic_footer_sitebranding
     - block.block.civic_tabs
-    - block.block.footermenu
+    - block.block.footermenu_1
     - block.block.footermenu_2
     - block.block.footermenu_3
     - block.block.footermenu_4
