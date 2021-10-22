@@ -1,0 +1,95 @@
+//
+// Mobile Navigation.
+//
+@use 'sass:math';
+@import '../../00-base/base';
+
+// Mobile Navigation.
+.civic-mobile-navigation {
+  $root: &;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: civic-space(2);
+  &.civic-mobile-navigation--expanded .civic-dropdown__menu--expanded {
+    z-index: 1;
+  }
+
+  &--expanded {
+    display: block;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: white;
+
+    .civic-mobile-navigation--main {
+      display: block;
+    }
+    .civic-dropdown__menu--expanded {
+      .civic-menu__sub-menu {
+        box-shadow: none;
+        width: 100%;
+      }
+    }
+  }
+
+  &__links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  &__parent-link {
+    @include civic-typography($civic-mobile-navigation-parent-link-typography);
+    margin: civic-space() 0 civic-space(3) 0;
+  }
+  &__back-button {
+    display: block;
+    text-decoration: none;
+  }
+  &__close {
+    justify-content: end;
+    display: flex;
+    margin-bottom: civic-space(2);
+  }
+  &__close-button {
+    @include civic-typography($civic-mobile-navigation-close-typography);
+    text-decoration: none;
+    align-items: center;
+    display: flex;
+    border-radius: 1rem;
+    padding: math.div(civic-space(), 2) math.div(civic-space(), 2) math.div(civic-space(), 2) civic-space();
+  }
+
+  &,
+  &.civic-theme-light {
+    #{$root}__back-arrow {
+      fill: $civic-mobile-navigation-light-back-arrow-icon-color;
+    }
+    #{$root}__close-button {
+      background-color: $civic-mobile-navigation-light-close-background-color;
+      color: $civic-mobile-navigation-light-close-color;
+    }
+    #{$root}__parent-link {
+      color: $civic-mobile-navigation-light-parent-link-color;
+    }
+    #{$root}__content-bottom {
+      background-color: $civic-mobile-navigation-light-content-bottom-background-color;
+    }
+  }
+  &.civic-theme-dark {
+    #{$root}__back-arrow {
+      fill: $civic-mobile-navigation-dark-back-arrow-icon-color;
+    }
+    #{$root}__close-button {
+      background-color: $civic-mobile-navigation-dark-close-background-color;
+      color: $civic-mobile-navigation-dark-close-color;
+    }
+    #{$root}__parent-link {
+      color: $civic-mobile-navigation-dark-parent-link-color;
+    }
+    #{$root}__content-bottom {
+      background-color: $civic-mobile-navigation-dark-content-bottom-background-color;
+    }
+  }
+}

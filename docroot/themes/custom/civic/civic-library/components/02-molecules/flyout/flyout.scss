@@ -1,0 +1,63 @@
+//
+// Flyout
+//
+
+@import '../../00-base/base';
+
+.civic-flyout {
+  $root: &;
+  &__trigger, &__close {
+    cursor: pointer;
+  }
+
+  &__content {
+    $content: &;
+    overflow: hidden auto;
+    transition: transform .5s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    visibility: hidden;
+    @include civic-box-shadow;
+    @include civic-typography('body');
+
+    &--inner {
+      padding: civic-space(2);
+    }
+
+    &--expanded {
+      border-top: none;
+      transform: translate(0, 0);
+      z-index: 10;
+      visibility: visible;
+    }
+  }
+
+  @each $direction, $transform in $civic-flyout-direction-transforms {
+    &--#{$direction} {
+      #{$root}__content {
+        transform: $transform;
+      }
+      #{$root}__content--expanded {
+        transform: translate(0, 0);
+      }
+    }
+  }
+
+  &,
+  &.civic-theme-light {
+    #{$root}__content {
+      color: $civic-flyout-light-color;
+      background: $civic-flyout-light-background-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__content {
+      color: $civic-flyout-dark-color;
+      background: $civic-flyout-dark-background-color;
+    }
+  }
+}

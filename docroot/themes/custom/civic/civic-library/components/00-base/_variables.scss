@@ -743,3 +743,50 @@ $civic-collapsible-dark-color: civic-color('neutral') !default;
 $civic-collapsible-dark-background-color: civic-color('shade_60') !default;
 $civic-collapsible-dark-border-color: civic-color('shade_30') !default;
 $civic-collapsible-dark-icon-color: $civic-collapsible-dark-color;
+
+//
+// Mobile navigation.
+//
+$civic-mobile-navigation-close-typography: (14px, 20px, 400, 'primary', 0);
+$civic-mobile-navigation-parent-link-typography: (20px, 25px, 800, 'primary', 0);
+$civic-mobile-navigation-light-back-arrow-icon-color: civic-color('heading');
+$civic-mobile-navigation-light-close-color: civic-color('heading');
+$civic-mobile-navigation-light-close-background-color: civic-color('neutral_5');
+$civic-mobile-navigation-light-parent-link-color: civic-color('heading');
+$civic-mobile-navigation-light-content-bottom-background-color: civic-color('neutral_5');
+$civic-mobile-navigation-dark-back-arrow-icon-color: civic-color('accent');
+$civic-mobile-navigation-dark-close-color: civic-color('neutral');
+$civic-mobile-navigation-dark-close-background-color: civic-color('shade_30');
+$civic-mobile-navigation-dark-parent-link-color: civic-color('neutral');
+$civic-mobile-navigation-dark-content-bottom-background-color: civic-color('neutral_5');
+
+//
+// Mobile navigation link.
+//
+$civic-mobile-navigation-link-light-color: civic-color('shade_15');
+$civic-mobile-navigation-link-light-color-hover: civic-color('shade_15');
+$civic-mobile-navigation-link-light-color-focus: civic-color('shade_15');
+$civic-mobile-navigation-link-light-color-visited: civic-color('shade_15');
+$civic-mobile-navigation-link-light-icon-color: civic-color('secondary');
+$civic-mobile-navigation-link-light-border-color: civic-color('neutral_10');
+$civic-mobile-navigation-link-dark-color: civic-color('neutral');
+$civic-mobile-navigation-link-dark-color-hover: civic-color('neutral');
+$civic-mobile-navigation-link-dark-color-focus: civic-color('neutral');
+$civic-mobile-navigation-link-dark-color-visited: civic-color('neutral');
+$civic-mobile-navigation-link-dark-icon-color: civic-color('secondary');
+$civic-mobile-navigation-link-dark-border-color: civic-color('shade_30');
+$civic-mobile-navigation-link-typography: (18px, 24px, 500, 'primary', 0);
+
+//
+// Flyout.
+//
+$civic-flyout-light-color: civic-color('shade_15');
+$civic-flyout-light-background-color: civic-color('neutral');
+$civic-flyout-dark-color: civic-color('neutral');
+$civic-flyout-dark-background-color: civic-color('shade_45');
+$civic-flyout-direction-transforms: (
+  'from-right': translateX(100%),
+  'from-left': translateX(-100%),
+  'from-top': translateY(-100%),
+  'from-bottom': translateY(100%),
+);
