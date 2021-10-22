@@ -4,23 +4,28 @@
 @import '../../00-base/base';
 
 .civic-image {
+  $root: &;
   margin: 0;
   border-radius: $civic-image-border-radius;
   margin: 0;
 
   &.civic-theme-light {
     color: $civic-image-caption-light-color;
-
-    svg path {
-      fill: $civic-image-caption-light-color;
-    }
   }
 
   &.civic-theme-dark {
     color: $civic-image-caption-dark-color;
+  }
 
-    svg path {
-      fill: $civic-image-caption-dark-color;
+  &__caption {
+    .civic-icon {
+      #{$root}.civic-theme-light & {
+        fill: $civic-image-caption-icon-light-color;
+      }
+
+      #{$root}.civic-theme-dark & {
+        fill: $civic-image-caption-icon-dark-color;
+      }
     }
   }
 }

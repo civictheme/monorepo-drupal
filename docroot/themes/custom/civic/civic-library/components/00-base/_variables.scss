@@ -657,7 +657,9 @@ $civic-icon-link-dark-color-disabled: civic-color('neutral_40') !default;
 // Image.
 $civic-image-border-radius: $civic-border-radius !default;
 $civic-image-caption-light-color: civic-color('neutral_60') !default;
+$civic-image-caption-icon-light-color: $civic-image-caption-light-color !default;
 $civic-image-caption-dark-color: civic-color('shade_90') !default;
+$civic-image-caption-icon-dark-color: $civic-image-caption-dark-color !default;
 
 // Video
 $civic-video-padding-bottom: 56.25% !default;
