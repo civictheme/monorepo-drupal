@@ -1,17 +1,16 @@
 /* eslint-disable no-new, func-names */
 
 /**
- * Responsive components.
+ * Responsive utility component.
  *
  * Emits a 'civic-responsive' event on breakpoint change allowing components
  * to delay initialisation by providing 'data-responsive' attribute with an
  * operator and breakpoint name.
  *
- * For example: a component with `data-responsive=">=m"` attribute will can
+ * For example: a component with `data-responsive=">=m"` attribute will
  * delay it's initialization to happen only when current screen size is equal
- * or more then medium ('m') breakpoint.
+ * or more than medium ('m') breakpoint.
  */
-
 function CivicResponsive() {
   const queries = this.getMediaQueries();
   for (const breakpoint in queries) {

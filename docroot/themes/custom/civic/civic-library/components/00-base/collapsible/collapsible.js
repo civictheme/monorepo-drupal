@@ -12,7 +12,6 @@
  * - data-collapsible-collapsed - indicate that a starting state is collapsed.
  * - data-collapsible-duration - duration in milliseconds. Defaults to 500.
  */
-
 function CivicCollapsible(el) {
   // Use 'data-collapsible''s attribute value to identify if this component was
   // already initialised.
@@ -156,6 +155,7 @@ CivicCollapsible.prototype.toggle = function () {
 };
 
 document.querySelectorAll('[data-collapsible]').forEach((el) => {
+  // Delay initialisation if should be responsive.
   const breakpointExpr = el.getAttribute('data-responsive');
   if (breakpointExpr) {
     window.addEventListener('civic-responsive', (evt) => {
