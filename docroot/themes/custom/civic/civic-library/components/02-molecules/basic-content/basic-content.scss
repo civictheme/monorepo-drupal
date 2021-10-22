@@ -6,6 +6,10 @@
 
 .civic-basic-content {
   $root: &;
+  $basic-content-vertical-spacing: civic-space(3);
+  $basic-content-list-marker-width: rem(28px);
+  $basic-content-list-marker-margin: rem(16px);
+
   @include civic-typography('body');
   padding: civic-space();
 
@@ -121,28 +125,67 @@
     }
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+
   h1 {
     @include civic-typography('heading-1');
+    margin-bottom: rem(22px);
+
+    @include civic-breakpoint('m') {
+      margin-bottom: rem(26px);
+    }
   }
 
   h2 {
     @include civic-typography('heading-2');
+    margin-bottom: rem(22px);
+
+    @include civic-breakpoint('m') {
+      margin-bottom: rem(26px);
+    }
   }
 
   h3 {
     @include civic-typography('heading-3');
+    margin-bottom: rem(16px);
+
+    @include civic-breakpoint('m') {
+      margin-bottom: rem(24px);
+    }
   }
 
   h4 {
     @include civic-typography('heading-4');
+    margin-bottom: rem(16px);
+
+    @include civic-breakpoint('m') {
+      margin-bottom: rem(24px);
+    }
   }
 
   h5 {
     @include civic-typography('heading-5');
+    margin-bottom: rem(8px);
+
+    @include civic-breakpoint('m') {
+      margin-bottom: rem(16px);
+    }
   }
 
   h6 {
     @include civic-typography('heading-6');
+    margin-bottom: rem(8px);
+
+    @include civic-breakpoint('m') {
+      margin-bottom: rem(16px);
+    }
+  }
+
+  p {
+    margin-top: $basic-content-vertical-spacing;
+    margin-bottom: $basic-content-vertical-spacing;
   }
 
   .lead {
@@ -157,6 +200,8 @@
     @include civic-typography('quote');
     position: relative;
     margin: 0;
+    margin-top: $basic-content-vertical-spacing;
+    margin-bottom: $basic-content-vertical-spacing;
     padding: civic-space(2) civic-space(3);
 
     &::before {
@@ -171,16 +216,16 @@
     }
   }
 
-  $list-marker-width: 28px;
-  $list-marker-margin: 16px;
-
   ul {
+    margin-top: $basic-content-vertical-spacing;
+    margin-bottom: $basic-content-vertical-spacing;
     padding: 0;
     list-style: none;
 
     li {
+      @include civic-typography('unordered-list');
       position: relative;
-      padding-left: rem($list-marker-width + $list-marker-margin);
+      padding-left: $basic-content-list-marker-width + $basic-content-list-marker-margin;
 
       &::before {
         content: '';
@@ -196,22 +241,41 @@
   }
 
   ol {
+    margin-top: $basic-content-vertical-spacing;
+    margin-bottom: $basic-content-vertical-spacing;
     counter-reset: ordered_counter;
     padding: 0;
     list-style: none;
 
     li {
+      @include civic-typography('ordered-list');
       counter-increment: ordered_counter;
-      padding-left: rem($list-marker-width + $list-marker-margin);
+      padding-left: $basic-content-list-marker-width + $basic-content-list-marker-margin;
 
       &::before {
         content: counter(ordered_counter);
         display: inline-block;
         text-align: center;
-        width: rem($list-marker-width);
-        margin-left: rem(-$list-marker-width - $list-marker-margin);
-        margin-right: rem($list-marker-margin);
+        width: $basic-content-list-marker-width;
+        margin-left: -$basic-content-list-marker-width - $basic-content-list-marker-margin;
+        margin-right: $basic-content-list-marker-margin;
       }
+    }
+  }
+
+  img {
+    max-width: 100%;
+    margin-top: $basic-content-vertical-spacing * 2;
+    margin-bottom: $basic-content-vertical-spacing * 2;
+  }
+
+  figure {
+    margin-top: $basic-content-vertical-spacing * 2;
+    margin-bottom: $basic-content-vertical-spacing * 2;
+
+    img {
+      margin-top: 0;
+      margin-bottom: 0;
     }
   }
 }
