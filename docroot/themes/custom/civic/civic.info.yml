@@ -134,6 +134,7 @@ config_devel:
     - core.entity_view_mode.node.civic_card_navigation
     - core.entity_view_mode.node.civic_card_promo
     - core.entity_view_mode.node.civic_slider_slide
+    - editor.editor.civic_rich_text
     - field.field.block_content.civic_banner.field_c_b_theme
     - field.field.block_content.civic_banner.field_c_b_background_image
     - field.field.block_content.civic_component_block.field_c_b_components

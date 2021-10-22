@@ -1,0 +1,51 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.civic_rich_text
+  module:
+    - ckeditor
+format: civic_rich_text
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+            - Styles
+        -
+          name: Links
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Lists
+          items:
+            - BulletedList
+            - NumberedList
+        -
+          name: Media
+          items:
+            - Blockquote
+            - DrupalImage
+        -
+          name: Tools
+          items:
+            - Source
+  plugins:
+    language:
+      language_list: un
+    stylescombo:
+      styles: "a.civic-button.civic-theme-light.civic-button--primary.civic-button--regular|Button - primary regular\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--regular|Button - secondary regular\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--large|Button - primary large\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--large|Button - secondary large"
+image_upload:
+  status: false
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null
