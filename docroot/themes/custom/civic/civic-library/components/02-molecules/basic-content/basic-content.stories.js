@@ -28,7 +28,7 @@ export const BasicContent = () => {
     generalKnobTab,
   );
 
-  let html = ''
+  let html = '';
 
   // Headings
   html += `
@@ -45,7 +45,7 @@ export const BasicContent = () => {
     <p class="lead">Lead sed aute in sed consequat veniam excepteur minim mollit.</p>
     <p>Body veniam reprehenderit velit ea veniam occaecat magna est sed duis quis elit occaecat dolore ut enim est do in dolor non elit aliquip commodo aliquip sint veniam ullamco adipisicing tempor ad.</p>
     <p class="small">Small <span>duis sunt velit.</span><span>Ea eu non.</span></p>
-    <p>In mollit in minim ut non ${ CivicLink({ theme: theme, text: 'commodo dolore', url: 'https://example.com' }) } nisi anim.</p>
+    <p>In mollit in minim ut non ${CivicLink({ theme, text: 'commodo dolore', url: 'https://example.com' })} nisi anim.</p>
     <p>Deserunt in ex dolore. <sup>Super cupidatat esse.</sup> <sub>Sub do mollit aute labore.</sub></p>
   `;
 
@@ -70,7 +70,7 @@ export const BasicContent = () => {
 
   // Image
   html += CivicImage({
-    theme: theme,
+    theme,
     src: imageFile,
     alt: 'Occaecat laborum voluptate cupidatat.',
     caption: 'Commodo anim sint minim.',
@@ -78,13 +78,13 @@ export const BasicContent = () => {
 
   // Video
   html += CivicVideo({
-    theme: theme,
+    theme,
     src: 'https://www.youtube.com/embed/C0DPdy98e4c',
   });
 
   // Table
   html += CivicTable({
-    theme: theme,
+    theme,
     header: [
       'Column A',
       'Column B',
@@ -106,13 +106,13 @@ export const BasicContent = () => {
         'Consequat qui anim.',
         'Lorem ipsum aliqua veniam deserunt.',
       ],
-    ]
+    ],
   });
 
   const generalKnobs = {
-    theme: theme,
-    content: html // TODO - Add this back when dev finished.--> text('Content', html, generalKnobTab),
+    theme,
+    content: text('Content', html, generalKnobTab),
   };
 
   return CivicBasicContent(generalKnobs);
-}
+};
