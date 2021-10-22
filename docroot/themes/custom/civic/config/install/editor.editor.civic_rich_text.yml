@@ -17,6 +17,9 @@ settings:
             - Bold
             - Italic
             - Styles
+            - Format
+            - RemoveFormat
+            - Superscript
         -
           name: Links
           items:
@@ -31,11 +34,13 @@ settings:
           name: Media
           items:
             - Blockquote
-            - DrupalImage
+            - DrupalMediaLibrary
         -
           name: Tools
           items:
             - Source
+            - PasteFromWord
+            - Maximize
   plugins:
     language:
       language_list: un
