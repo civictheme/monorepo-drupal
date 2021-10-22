@@ -1,0 +1,41 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 7200ae2d-a809-4b60-bb18-a25681ab7ad2
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    bbb3cee2-09b3-4c30-a154-c5e65e272b18: menu_link_content
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'News & events'
+  menu_name:
+    -
+      value: civic-footer-menu
+  link:
+    -
+      uri: 'base:node/9'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 4
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:bbb3cee2-09b3-4c30-a154-c5e65e272b18'
+  revision_translation_affected:
+    -
+      value: true

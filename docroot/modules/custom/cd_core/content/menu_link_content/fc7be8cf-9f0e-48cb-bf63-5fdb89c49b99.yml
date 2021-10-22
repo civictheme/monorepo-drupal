@@ -1,0 +1,41 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: fc7be8cf-9f0e-48cb-bf63-5fdb89c49b99
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    b392e4a2-1b78-42d7-a624-c896dec78143: menu_link_content
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'For government'
+  menu_name:
+    -
+      value: civic-footer-menu
+  link:
+    -
+      uri: 'base:node/31'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 2
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:b392e4a2-1b78-42d7-a624-c896dec78143'
+  revision_translation_affected:
+    -
+      value: true

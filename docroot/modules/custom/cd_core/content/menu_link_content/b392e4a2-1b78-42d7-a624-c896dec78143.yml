@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: b392e4a2-1b78-42d7-a624-c896dec78143
+  bundle: menu_link_content
+  default_langcode: en
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Services
+  menu_name:
+    -
+      value: civic-footer-menu
+  link:
+    -
+      uri: 'route:<front>'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 3
+  expanded:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true

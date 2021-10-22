@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: block_content
-  uuid: 617c7fad-dfb9-481a-95f0-6774f5471aca
+  uuid: ac5b00a1-a04a-4042-ae89-f14f6d7148be
   bundle: civic_component_block
   default_langcode: en
 default:

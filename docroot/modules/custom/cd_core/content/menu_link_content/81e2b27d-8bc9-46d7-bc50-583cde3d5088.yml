@@ -1,0 +1,41 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 81e2b27d-8bc9-46d7-bc50-583cde3d5088
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    48856ecc-1907-4b49-81d3-8e14c8c120af: menu_link_content
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'For businesses'
+  menu_name:
+    -
+      value: civic-footer-menu
+  link:
+    -
+      uri: 'base:civic/pages'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 1
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:48856ecc-1907-4b49-81d3-8e14c8c120af'
+  revision_translation_affected:
+    -
+      value: true

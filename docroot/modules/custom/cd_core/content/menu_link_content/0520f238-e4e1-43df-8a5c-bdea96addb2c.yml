@@ -1,0 +1,41 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 0520f238-e4e1-43df-8a5c-bdea96addb2c
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    bbb3cee2-09b3-4c30-a154-c5e65e272b18: menu_link_content
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'For individuals'
+  menu_name:
+    -
+      value: civic-footer-menu
+  link:
+    -
+      uri: 'base:node/36'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:bbb3cee2-09b3-4c30-a154-c5e65e272b18'
+  revision_translation_affected:
+    -
+      value: true
