@@ -6,7 +6,6 @@ import {
 import { getSlots } from '../../00-base/base.stories';
 import CivicFooter from './footer.stories.twig';
 import imageFile from '../../../assets/logo.png';
-import './footer.scss';
 
 export default {
   title: 'Organisms/Footer',

@@ -1,5 +1,3 @@
-import './colors.stories.scss';
-
 export default {
   title: 'Base/Colors',
   parameters: {

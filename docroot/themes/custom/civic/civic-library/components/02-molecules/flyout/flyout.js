@@ -25,7 +25,11 @@ CivicFlyout.prototype.clickEvent = function (e) {
   e.preventDefault();
   e.stopImmediatePropagation();
 
-  e.currentTarget.expand ? this.expand() : this.collapse();
+  if (e.currentTarget.expand) {
+    this.expand();
+  } else {
+    this.collapse();
+  }
 };
 
 // eslint-disable-next-line func-names
@@ -35,6 +39,7 @@ CivicFlyout.prototype.closeAllClickEvent = function (e) {
   e.stopImmediatePropagation();
 
   // todo: add collapse for each flyout
+  this.collapse();
 };
 
 // eslint-disable-next-line func-names
