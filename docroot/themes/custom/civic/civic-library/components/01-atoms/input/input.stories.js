@@ -29,8 +29,6 @@ export const Input = () => CivicInput({
     },
     'text',
   ),
-  input_id: text('Id', 'civic_input'),
-  input_name: text('Name', 'civic_input'),
   value: text('Value', 'Civic input'),
   placeholder: text('Placeholder', 'Civic input'),
   autocomplete: boolean('Autocomplete', false),
@@ -47,4 +45,5 @@ export const Input = () => CivicInput({
   disabled: boolean('Disabled', false),
   required: boolean('Required', false),
   modifier_class: text('Additional class', ''),
+  attributes: text('Additional attributes', ''),
 });

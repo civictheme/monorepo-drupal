@@ -61,7 +61,6 @@ function civic_preprocess_block(&$variables) {
   _civic_preprocess_menu_block_civic_footer_menu($variables);
 }
 
-
 /**
  * Implements hook_library_info_build().
  */
