@@ -12,7 +12,7 @@ default:
       value: banner-background.png
   uri:
     -
-      value: 'public://2021-10/banner-background_0_0.png'
+      value: 'public://2021-10/banner-background_0_0_4.png'
   filemime:
     -
       value: image/png

@@ -2,6 +2,6 @@ langcode: en
 status: true
 dependencies: {  }
 id: civic-footer-menu
-label: 'Footer menu'
+label: 'Civic Footer'
 description: 'Footer menu provided by Civic.'
 locked: false
