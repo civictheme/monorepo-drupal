@@ -1,4 +1,4 @@
-import { boolean, number, radios, text } from '@storybook/addon-knobs';
+import { radios, text } from '@storybook/addon-knobs';
 import CivicMenu from './menu.twig';
 import getMenuLinks from './menu.utils';
 
@@ -10,7 +10,6 @@ export default {
 };
 
 export const Menu = () => {
-
   const generalKnobs = {
     theme: radios(
       'Theme',

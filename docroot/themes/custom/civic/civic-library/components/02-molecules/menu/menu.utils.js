@@ -1,23 +1,24 @@
-import { boolean, number } from "@storybook/addon-knobs";
+/* eslint-disable camelcase */
+import { boolean, number } from '@storybook/addon-knobs';
 
 export function generateMenuLinks(count, level, is_active_trail) {
   const links = [];
 
   const active_trail_idx = is_active_trail ? Math.floor(Math.random() * count) : null;
 
-  for (var i = 0; i < count; i++) {
-    let link = {
-      title: 'Item ' + (i + 1),
-      url: 'http://example.com/' + (Math.random() + 1).toString(36).substring(7),
+  for (let i = 0; i < count; i++) {
+    const link = {
+      title: `Item ${i + 1}`,
+      url: `http://example.com/${(Math.random() + 1).toString(36).substring(7)}`,
     };
 
     if (active_trail_idx === i) {
-      link['in_active_trail'] = true;
+      link.in_active_trail = true;
     }
 
     if (level > 1) {
-      link['below'] = generateMenuLinks(count, level - 1, active_trail_idx === i);
-      link['is_expanded'] = true;
+      link.below = generateMenuLinks(count, level - 1, active_trail_idx === i);
+      link.is_expanded = true;
     }
 
     links.push(link);

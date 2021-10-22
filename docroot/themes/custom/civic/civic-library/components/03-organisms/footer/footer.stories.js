@@ -5,7 +5,7 @@ import logoDesktopLight from '../../../assets/logo-desktop-light.png';
 import logoDesktopDark from '../../../assets/logo-desktop-dark.png';
 import '../../00-base/responsive/responsive';
 import '../../00-base/collapsible/collapsible';
-import { generateMenuLinks } from "../../02-molecules/menu/menu.utils";
+import { generateMenuLinks } from '../../02-molecules/menu/menu.utils';
 
 export default {
   title: 'Organisms/Footer',
@@ -46,10 +46,10 @@ export const Footer = () => {
   generalKnobs.show_copyright = boolean('Show copyright', true, generalKnobTab);
 
   if (generalKnobs.show_middle_links) {
-    generalKnobs['links1'] = generateMenuLinks(4, 1, false);
-    generalKnobs['links2'] = generateMenuLinks(4, 1, false);
-    generalKnobs['links3'] = generateMenuLinks(4, 1, false);
-    generalKnobs['links4'] = generateMenuLinks(4, 1, false);
+    generalKnobs.links1 = generateMenuLinks(4, 1, false);
+    generalKnobs.links2 = generateMenuLinks(4, 1, false);
+    generalKnobs.links3 = generateMenuLinks(4, 1, false);
+    generalKnobs.links4 = generateMenuLinks(4, 1, false);
   }
 
   return CivicFooter({
