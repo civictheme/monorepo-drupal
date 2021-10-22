@@ -6,7 +6,6 @@ import {
 import imageFile from '../../../assets/image.png';
 import { getSlots } from '../../00-base/base.stories';
 import CivicSubjectCard from './subject-card.twig';
-import './subject-card.scss';
 
 export default {
   title: 'Molecule/Card',

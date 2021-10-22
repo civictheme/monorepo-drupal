@@ -3,11 +3,6 @@ import { Logo } from '../../01-atoms/logo/logo.stories';
 import { getSlots } from '../../00-base/base.stories';
 import CivicHeader from './header.stories.twig';
 
-import './header.scss';
-import './header.stories.scss';
-import '../menu/dropdown-menu';
-import '../menu/mobile-menu';
-
 export default {
   title: 'Organisms/Header',
   parameters: {

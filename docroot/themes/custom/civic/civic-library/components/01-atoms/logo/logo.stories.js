@@ -1,8 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicLogo from './logo.twig';
-import './logo.scss';
-import './logo.stories.scss';
 import desktopLogoFile from '../../../assets/logo.png';
 import mobileLogoFile from '../../../assets/logo-mobile.png';
 

@@ -1,7 +1,6 @@
 import { radios, select } from '@storybook/addon-knobs';
 
 import CivicIcon from './icon.twig';
-import './icon.scss';
 
 export default {
   title: 'Atom/Icon',

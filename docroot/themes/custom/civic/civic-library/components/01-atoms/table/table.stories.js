@@ -4,7 +4,6 @@ import {
   text,
 } from '@storybook/addon-knobs';
 import CivicTable from './table.twig';
-import './table.scss';
 
 /**
  * Storybook Definition.
