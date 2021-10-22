@@ -18,6 +18,8 @@
   }
 
   &__caption {
+    @include civic-typography('small-and-captions');
+
     .civic-icon {
       #{$root}.civic-theme-light & {
         fill: $civic-image-caption-icon-light-color;
