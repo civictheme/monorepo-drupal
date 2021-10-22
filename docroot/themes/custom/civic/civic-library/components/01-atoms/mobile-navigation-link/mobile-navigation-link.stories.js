@@ -1,5 +1,5 @@
 import {
-  boolean, radios, select, text,
+  radios, select, text,
 } from '@storybook/addon-knobs';
 
 import CivicMobileNavigationLink from './mobile-navigation-link.twig';

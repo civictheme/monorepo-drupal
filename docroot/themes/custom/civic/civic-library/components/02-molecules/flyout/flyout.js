@@ -13,9 +13,9 @@ function CivicFlyout(el) {
 
   // Add event listener to element.
   this.flyoutTrigger.addEventListener('click', this.clickEvent.bind(this));
-  this.flyoutTrigger.expand = true
+  this.flyoutTrigger.expand = true;
   this.flyoutClose.addEventListener('click', this.clickEvent.bind(this));
-  this.flyoutClose.expand = false
+  this.flyoutClose.expand = false;
   this.flyoutCloseAll.addEventListener('click', this.closeAllClickEvent.bind(this));
 }
 
@@ -33,14 +33,13 @@ CivicFlyout.prototype.closeAllClickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
   e.stopImmediatePropagation();
-  
+
   // todo: add collapse for each flyout
 };
 
 // eslint-disable-next-line func-names
 CivicFlyout.prototype.expand = function () {
   this.el.expanded = true;
-  const currentPanel = this.flyoutPanel;
   this.flyoutTrigger.setAttribute('aria-expanded', true);
   this.flyoutTrigger.classList.add('civic-flyout__trigger--expanding');
   setTimeout(() => {

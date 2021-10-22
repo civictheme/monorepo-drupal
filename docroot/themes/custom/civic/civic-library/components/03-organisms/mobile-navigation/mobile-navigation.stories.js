@@ -1,7 +1,6 @@
 import {
   radios,
   object,
-  text,
 } from '@storybook/addon-knobs';
 import CivicMobileNavigation from './mobile-navigation.twig';
 import './mobile-navigation.scss';
