@@ -10,6 +10,7 @@ libraries:
 dependencies:
   - components:components
   - field_group:field_group
+  - menu_block:menu_block
   - paragraphs:paragraphs
 
 regions:
@@ -21,15 +22,14 @@ regions:
   highlighted: 'Highlighted'
   content: 'Content'
   content_left: 'Content left'
-  footer_logo: 'Footer logo'
-  footer_top_left: 'Footer top left'
-  footer_top_right: 'Footer top right'
+  footer_top_1: 'Footer top 1'
+  footer_top_2: 'Footer top 2'
   footer_middle_1: 'Footer middle 1'
   footer_middle_2: 'Footer middle 2'
   footer_middle_3: 'Footer middle 3'
   footer_middle_4: 'Footer middle 4'
-  footer_bottom_left: 'Footer bottom left'
-  footer_bottom_right: 'Footer bottom right'
+  footer_bottom_1: 'Footer bottom 1'
+  footer_bottom_2: 'Footer bottom 2'
 
 components:
   namespaces:
@@ -53,10 +53,6 @@ config_devel:
     - block.block.civic_acknowledgmentofcountry
     - block.block.civic_banner
     - block.block.civic_content
-    - block.block.civic_footer_menu1
-    - block.block.civic_footer_menu2
-    - block.block.civic_footer_menu3
-    - block.block.civic_footer_menu4
     - block.block.civic_copyright
     - block.block.civic_help
     - block.block.civic_mainnavigation
@@ -341,10 +337,7 @@ config_devel:
     - paragraphs.paragraphs_type.civic_service_card
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
-    - system.menu.civic_footer_menu_1
-    - system.menu.civic_footer_menu_2
-    - system.menu.civic_footer_menu_3
-    - system.menu.civic_footer_menu_4
+    - system.menu.civic_footer_menu
     - taxonomy.vocabulary.civic_topics
     - views.view.civic_events
     - views.view.civic_listing

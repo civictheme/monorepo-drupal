@@ -1,6 +1,8 @@
 .civic-navigation {
+  @include civic-typography('text-regular');
+
   &__title {
-    font-weight: bold;
+    @include civic-typography('heading-5');
     margin-bottom: civic-space(2);
   }
 
