@@ -1,4 +1,3 @@
-uuid: bff8ff00-2617-4045-ae7d-276279dee83f
 langcode: en
 status: true
 dependencies:
@@ -8,8 +7,8 @@ dependencies:
     - civic
 id: civic_footer_sitebranding
 theme: civic
-region: footer_logo
-weight: 0
+region: footer_top_1
+weight: -7
 provider: null
 plugin: system_branding_block
 settings:

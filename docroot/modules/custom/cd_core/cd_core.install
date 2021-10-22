@@ -96,9 +96,10 @@ function cd_core_update_9002() {
  * Set civic_demo theme settings.
  */
 function cd_core_update_9003() {
-  // Set logo in theme settings.
   $logo_path = '/themes/custom/civic_demo/assets/logo.png';
+
   $config = \Drupal::service('config.factory')->getEditable('civic_demo.settings');
+
   $logo_settings = [
     'civic_header_logo_mobile',
     'civic_footer_logo_mobile',
@@ -114,52 +115,56 @@ function cd_core_update_9003() {
   }
   $config->set('logo_path', substr($logo_path, 1));
   $config->set('civic_site_logo_alt', 'Civic demo logo');
+
   $config->set('civic_header_theme', 'dark');
   $config->set('civic_footer_theme', 'dark');
+
   $config->save();
 }
 
 /**
- * Add links for footer.
+ * Provisions links in footer.
  */
 function cd_core_update_9007() {
-  $footer_menus = [
-    'civic_footer_menu_1',
-    'civic_footer_menu_2',
-    'civic_footer_menu_3',
-    'civic_footer_menu_4',
-  ];
-
-  $top_level_links = [
-    'For individuals' => '/node/29',
-    'About us' => '/node/20',
-    'Help' => '/node/1',
-    'Services' => '/node/14',
-  ];
-  $top_level_link_titles = array_keys($top_level_links);
-
-  $child_links = [
-    'For individuals' => '/node/36',
-    'For businesses' => '/civic/pages',
-    'For government' => '/node/31',
-    'Services' => '/node/40',
-    'News & events' => '/node/9',
-  ];
-
-  foreach ($footer_menus as $footer_menu) {
-    $top_level_link__title = array_pop($top_level_link_titles);
-    $top_level_link__link = array_pop($top_level_links);
-
-    $child_link__keys = array_keys($child_links);
-    $child_links__links = array_values($child_links);
-    shuffle($child_link__keys);
-    shuffle($child_links__links);
-    $shuffled_child_links = array_combine($child_link__keys, $child_links__links);
-    Helper::saveMenuTree($footer_menu, [
-      $top_level_link__title => [
-        'link' => $top_level_link__link,
-        'children' => $shuffled_child_links,
+  Helper::saveMenuTree('civic-footer-menu', [
+    'General' => [
+      'link' => '/<front>',
+      'children' => [
+        'For individuals' => '/node/36',
+        'For businesses' => '/civic/pages',
+        'For government' => '/node/31',
+        'Services' => '/node/40',
+        'News & events' => '/node/9',
       ],
-    ]);
-  }
+    ],
+    'About us' => [
+      'link' => '/<front>',
+      'children' => [
+        'For individuals' => '/node/36',
+        'For businesses' => '/civic/pages',
+        'For government' => '/node/31',
+        'Services' => '/node/40',
+        'News & events' => '/node/9',
+      ],
+    ],
+    'Help' => [
+      'link' => '/<front>',
+      'children' => [
+        'For individuals' => '/node/36',
+        'For businesses' => '/civic/pages',
+        'For government' => '/node/31',
+        'Services' => '/node/40',
+        'News & events' => '/node/9',
+      ],
+    ],
+    'Services' => [
+      'link' => '/<front>',
+      'children' => [
+        'For individuals' => '/node/36',
+        'For businesses' => '/civic/pages',
+        'For government' => '/node/31',
+        'Services' => '/node/40',
+      ],
+    ],
+  ]);
 }

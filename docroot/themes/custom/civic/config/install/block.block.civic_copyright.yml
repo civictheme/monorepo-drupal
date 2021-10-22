@@ -1,12 +1,16 @@
 langcode: en
 status: true
 dependencies:
+  content:
+    - 'block_content:civic_component_block:d7098a8c-3ba3-48f7-bc0c-5787ebaa0427'
+  module:
+    - block_content
   theme:
     - civic
 id: civic_copyright
 theme: civic
-region: footer_bottom_right
-weight: 0
+region: footer_bottom_2
+weight: -7
 provider: null
 plugin: 'block_content:d7098a8c-3ba3-48f7-bc0c-5787ebaa0427'
 settings:
