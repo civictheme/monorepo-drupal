@@ -3,6 +3,7 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicLinkList from './link-list.twig';
+import './link-list.scss';
 
 export default {
   title: 'Molecule/Link List',

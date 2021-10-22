@@ -1,6 +1,7 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicBasicFilter from './basic-filter.twig';
+import './basic-filter.scss';
 
 export default {
   title: 'Molecule/Basic Filter',

@@ -3,6 +3,7 @@ import {
 } from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
 import CivicAttachment from './attachment.twig';
+import './attachment.scss';
 
 export default {
   title: 'Molecule/Attachment',

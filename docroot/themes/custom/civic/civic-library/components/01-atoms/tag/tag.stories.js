@@ -3,6 +3,7 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicTag from './tag.twig';
+import './tag.scss';
 
 export default {
   title: 'Atom/Tag',

@@ -1,3 +1,5 @@
+import './space.stories.scss';
+
 export default {
   title: 'Base/Space',
 };

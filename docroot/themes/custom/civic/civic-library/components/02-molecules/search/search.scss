@@ -44,24 +44,20 @@
   }
 
   &__input {
+    @include civic-typography((
+      'm': (20px, 34px, 400),
+      'xs': (16px, 26px, 400)
+    ));
+    background-color: civic-color(neutral);
+    border: 1px solid civic-color(shade_30);
+    border-radius: rem(4px);
+    color: civic-color(neutral_60);
+    padding: civic-space(2) civic-space(3) civic-space(2) civic-space(7);
+    width: 100%;
     height: 100%;
 
-    .civic-input__element {
-      @include civic-typography((
-        'm': (20px, 34px, 400),
-        'xs': (16px, 26px, 400)
-      ));
-      background-color: civic-color(neutral);
-      border: 1px solid civic-color(shade_30);
-      border-radius: rem(4px);
-      color: civic-color(neutral_60);
-      padding: civic-space(2) civic-space(3) civic-space(2) civic-space(7);
-      width: 100%;
-      height: 100%;
-
-      &:focus {
-        @include civic-outline(true);
-      }
+    &:focus {
+      @include civic-outline(true);
     }
   }
 

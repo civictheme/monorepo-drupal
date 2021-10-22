@@ -6,6 +6,8 @@ import CivicCardContainer from './card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
 import { getSlots } from '../../00-base/base.stories';
 
+import './card-container.scss';
+
 export default {
   title: 'Organisms/Card Container',
 };

@@ -1,3 +1,5 @@
+@import '../base.stories';
+
 .typography-wrapper {
   @include civic-generate-class-variations-from-map($civic-typography) using($name, $value, $index) {
     @include civic-typography($name);

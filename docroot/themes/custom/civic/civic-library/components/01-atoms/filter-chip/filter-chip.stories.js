@@ -1,6 +1,7 @@
 import { radios, boolean, text } from '@storybook/addon-knobs';
 
 import CivicFilterChip from './filter-chip.twig';
+import './filter-chip.scss';
 
 export default {
   title: 'Atom/Filter Chip',

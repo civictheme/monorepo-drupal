@@ -6,6 +6,8 @@ import CivicContent from './content.twig';
 import { CardContainer } from '../card-container/card-container.stories';
 import { Heading } from '../../01-atoms/heading/heading.stories';
 
+import './content.scss';
+
 export default {
   title: 'Organisms/Content',
 };

@@ -3,6 +3,7 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicIconLink from './icon-link.twig';
+import './icon-link.scss';
 
 export default {
   title: 'Atom/Icon Link',

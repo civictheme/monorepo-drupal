@@ -1,6 +1,7 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicImage from './image.twig';
+import './image.scss';
 
 import imageFile from '../../../assets/image.png';
 

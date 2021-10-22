@@ -1,5 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicDirectionalLink from './directional-link.twig';
+import './directional-link.scss';
 
 export default {
   title: 'Atom/Directional Link',

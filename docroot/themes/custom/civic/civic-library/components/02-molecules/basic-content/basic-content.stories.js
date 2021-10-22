@@ -1,6 +1,7 @@
 import { text, radios } from '@storybook/addon-knobs';
 
 import CivicBasicContent from './basic-content.twig';
+import './basic-content.scss';
 
 export default {
   title: 'Molecule/Basic Content',

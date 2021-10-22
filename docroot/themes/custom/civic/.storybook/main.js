@@ -10,7 +10,6 @@ const webpack = require('webpack')
 const scssVariables = require('./importer.scss_variables.js')
 const iconUtils = require('../components/01-atoms/icon/icon.utils.js')
 const backgroundUtils = require('../components/01-atoms/background/background.utils.js')
-const path = require('path');
 
 const customPlugin = new webpack.DefinePlugin({
   SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
@@ -33,9 +32,6 @@ module.exports = {
     '@whitespace/storybook-addon-html',
   ],
   webpackFinal: async (config) => {
-    // Add stories CSS.
-    custom.entry.push(path.resolve(__dirname, 'css.stories.js'));
-
     // Remove theme-related entries as components should not have them.
     custom.entry = custom.entry.filter(path => !/theme_/g.test(path));
 
