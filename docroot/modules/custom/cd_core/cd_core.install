@@ -97,6 +97,7 @@ function cd_core_update_9002() {
  */
 function cd_core_update_9003() {
   $logo_path = '/themes/custom/civic_demo/assets/logo.png';
+  $favicon_path = '/themes/custom/civic_demo/assets/favicon.ico';
 
   $config = \Drupal::service('config.factory')->getEditable('civic_demo.settings');
 
@@ -111,6 +112,8 @@ function cd_core_update_9003() {
   $config->set('civic_footer_logo_desktop', $logo_path);
   $config->set('logo_path', substr($logo_path, 1));
   $config->set('civic_site_logo_alt', 'Civic demo logo');
+
+  $config->set('favicon_path', substr($favicon_path, 1));
 
   $config->set('civic_header_theme', 'dark');
   $config->set('civic_footer_theme', 'dark');

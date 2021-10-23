@@ -67,6 +67,7 @@ config_devel:
     - block.block.civic_footer_menu_4
     - block_content.type.civic_banner
     - block_content.type.civic_component_block
+    - civic.settings
     - core.base_field_override.node.civic_event.promote
     - core.base_field_override.node.civic_page.promote
     - core.base_field_override.node.civic_project.promote

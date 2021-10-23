@@ -5,8 +5,8 @@
  * Functions to support theming in the Civic theme.
  */
 
+require_once 'includes/block--system_branding.inc';
 require_once 'includes/civic_banner.inc';
-require_once 'includes/civic_blocks.inc';
 require_once 'includes/civic_cards.inc';
 require_once 'includes/civic_pages.inc';
 require_once 'includes/civic_paragraphs.inc';
