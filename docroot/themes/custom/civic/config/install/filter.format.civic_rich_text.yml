@@ -1,6 +1,8 @@
 langcode: en
 status: true
 dependencies:
+  config:
+    - core.entity_view_mode.media.embedded
   module:
     - editor
     - media
@@ -76,4 +78,4 @@ filters:
       allowed_media_types:
         image: image
       allowed_view_modes:
-        default: default
+        embedded: embedded
