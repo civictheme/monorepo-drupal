@@ -107,6 +107,9 @@ to `config/default` and using file names without `.yml` extension. Do not forget
 to remove all exported configuration files from `config/default` or the next site
 install will fail.
 
+Note that configuration for blocks in `civic` will be copied to `civic_demo` on
+installation of `civic_demo`. We do not capture configuration for `civic_demo`.
+
 ### Demo content export
 
     drush dcer --folder=modules/custom/cd_core/content <entity_type> <entity_id>
