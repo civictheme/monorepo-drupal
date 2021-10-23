@@ -27,7 +27,7 @@ function civic_preprocess_media__remote_video(&$variables) {
   $media = $variables['media'];
   $variables['width'] = 854;
   $variables['height'] = 400;
-  $variables['title'] = $media->get('field_c_m_title')->first()->getValue() !== NULL ? $media->get('field_c_m_title')->first()->getValue()['value'] : '';
+  $variables['title'] = $media->get('field_c_m_title')->first() !== NULL ? $media->get('field_c_m_title')->first()->getValue()['value'] : '';
   if ($media->hasField('field_c_m_share_link') && !$media->get('field_c_m_share_link')->isEmpty()) {
     $variables['share_link'] = [
       'text' => $media->get('field_c_m_share_link')->first()->get('title')->getValue(),
