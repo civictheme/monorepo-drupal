@@ -18,7 +18,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'Civic typography'
+      value: Typography
   created:
     -
       value: 1634959028
@@ -28,9 +28,6 @@ default:
   sticky:
     -
       value: false
-  revision_translation_affected:
-    -
-      value: true
   path:
     -
       alias: ''
@@ -66,7 +63,7 @@ default:
               value: {  }
           field_c_p_content:
             -
-              value: "<h2>Heading 2</h2>\r\n\r\n<h3>Heading 3</h3>\r\n\r\n<h4>Heading 4</h4>\r\n\r\n<h5>Heading 5</h5>\r\n\r\n<h6>Heading 6</h6>\r\n\r\n<p class=\"lead\">Lead paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p class=\"small\">Small paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p>Normal paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Ordered list:</strong></p>\r\n\r\n<ol>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ol>\r\n\t\t<li>Nested List item 1</li>\r\n\t\t<li>Nested List item 2</li>\r\n\t</ol>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ol>\r\n\r\n<p><strong>Unordered list</strong>:</p>\r\n\r\n<ul>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ul>\r\n\t\t<li>Nested item 1</li>\r\n\t\t<li>Nested item 2</li>\r\n\t</ul>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"d0ff700e-b452-4b72-a94d-7e509e2a8b80\"></drupal-media>\r\n"
+              value: "<h2>Heading 2</h2>\r\n\r\n<h3>Heading 3</h3>\r\n\r\n<h4>Heading 4</h4>\r\n\r\n<h5>Heading 5</h5>\r\n\r\n<h6>Heading 6</h6>\r\n\r\n<p class=\"lead\">Lead paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p class=\"small\">Small paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p>Normal paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p><strong>Ordered list:</strong></p>\r\n\r\n<ol>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ol>\r\n\t\t<li>Nested List item 1</li>\r\n\t\t<li>Nested List item 2</li>\r\n\t</ol>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ol>\r\n\r\n<p><strong>Unordered list</strong>:</p>\r\n\r\n<ul>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ul>\r\n\t\t<li>Nested item 1</li>\r\n\t\t<li>Nested item 2</li>\r\n\t</ul>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ul>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"d0ff700e-b452-4b72-a94d-7e509e2a8b80\"></drupal-media>\r\n"
               format: civic_rich_text
           field_c_p_theme:
             -
@@ -89,9 +86,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_content:
             -
               value: "<h2>Second section of content</h2>\r\n\r\n<p class=\"lead\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur autem quibusdam ratione repudiandae ullam. Hic impedit, incidunt possimus qui quisquam voluptas voluptatibus. Ex ipsam laboriosam obcaecati soluta voluptatem. Aut dolores est fuga inventore iure! Adipisci dolor facere laudantium nisi quae ratione tempora! Adipisci at delectus distinctio error itaque similique, tempora?</p>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"0953800f-c751-4943-af5e-ed5ff82422a9\"></drupal-media>\r\n"
@@ -119,7 +113,7 @@ default:
               value: {  }
           field_c_p_content:
             -
-              value: "<h3>Third section with call to action</h3>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae consequuntur dolorem dolorum ducimus natus quidem reprehenderit vero. Assumenda, consectetur, consequuntur delectus eum explicabo harum laudantium molestiae nesciunt nisi pariatur, unde?</p>\r\n\r\n<p><br />\r\n<a class=\"civic-button civic-button--primary civic-button--regular civic-theme-light\" href=\"/\">Call to action</a> <a class=\"civic-button civic-button--regular civic-button--secondary civic-theme-light\" href=\"/\">Call to action 2</a></p>\r\n"
+              value: "<h3>Third section with call to action</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae consequuntur dolorem dolorum ducimus natus quidem reprehenderit vero. Assumenda, consectetur, consequuntur delectus eum explicabo harum laudantium molestiae nesciunt nisi pariatur, unde?</p>\r\n\r\n<p><a class=\"civic-button civic-button--primary civic-button--regular civic-theme-light\" href=\"/\">Call to action</a> <a class=\"civic-button civic-button--regular civic-button--secondary civic-theme-light\" href=\"/\">Call to action 2</a></p>\r\n"
               format: civic_rich_text
           field_c_p_theme:
             -
