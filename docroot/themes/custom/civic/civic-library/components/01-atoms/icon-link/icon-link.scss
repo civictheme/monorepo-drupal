@@ -3,6 +3,7 @@
 
 .civic-icon-link {
   $root: &;
+
   display: block;
   background: none;
   border-bottom: none;
@@ -31,6 +32,7 @@
 
     &:focus {
       @include civic-outline(false);
+
       color: $civic-icon-link-light-color-focus;
     }
 
@@ -52,6 +54,7 @@
 
     &:focus {
       @include civic-outline(false);
+
       color: $civic-icon-link-dark-color-focus;
     }
 
@@ -63,5 +66,4 @@
       color: $civic-icon-link-dark-color-visited;
     }
   }
-
 }

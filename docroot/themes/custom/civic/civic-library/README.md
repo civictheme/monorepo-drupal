@@ -17,6 +17,12 @@ Civic component library with Storybook integration.
 
     npm run build
 
+## Linting
+
+    npm run lint
+
+    npm run lint:fix
+
 This will build:
 
 - CSS and JS assets in the `dist` directory. These files can be included

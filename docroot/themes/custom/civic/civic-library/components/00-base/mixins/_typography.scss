@@ -1,6 +1,10 @@
 //
 // Typography mixins.
 //
+// stylelint-disable scss/dollar-variable-pattern
+
+@use 'sass:map';
+@use 'sass:list';
 
 //
 // Include font size, height, weight and family for one-to-many breakpoints.
@@ -15,30 +19,29 @@
 // ));
 //
 @mixin civic-typography($ruleset) {
-
   // Print preset
-  @if type-of($ruleset)==string {
-    @if map-get($civic-typography, $ruleset)==null {
+  @if type-of($ruleset) == string {
+    @if map.get($civic-typography, $ruleset) == null {
       @error '"#{$ruleset}" is not an available typeset';
     }
 
-    $ruleset: map-get($civic-typography, $ruleset);
+    $ruleset: map.get($civic-typography, $ruleset);
   }
 
   // Print rules
-  @if type-of($ruleset)==list {
-    @include _civic_typography_print_rules($ruleset);
+  @if type-of($ruleset) == list {
+    @include _civic-typography-print-rules($ruleset);
   }
 
   // Print breakpoints
-  @if type-of($ruleset)==map {
-    $breakpoints: map-keys($ruleset);
+  @if type-of($ruleset) == map {
+    $breakpoints: map.keys($ruleset);
 
     @each $breakpoint in $breakpoints {
-      $breakpoint-rules: map-get($ruleset, $breakpoint);
+      $breakpoint-rules: map.get($ruleset, $breakpoint);
 
       @include civic-breakpoint($breakpoint) {
-        @include _civic_typography_print_rules($breakpoint-rules);
+        @include _civic-typography-print-rules($breakpoint-rules);
       }
     }
   }
@@ -48,38 +51,42 @@
 // Do not use directly.
 // Use @include typography() mixin instead.
 //
-@mixin _civic_typography_print_rules($rules) {
-  $font-size: nth($rules, 1);
-  $line-height: nth($rules, 2);
+@mixin _civic-typography-print-rules($rules) {
+  $font-size: list.nth($rules, 1);
+  $line-height: list.nth($rules, 2);
   $font-weight: 'default';
   $font-family: 'none';
   $letter-spacing: normal;
-  @if length($rules)>=3 {
-    $font-weight: nth($rules, 3);
+
+  @if length($rules) >= 3 {
+    $font-weight: list.nth($rules, 3);
   }
 
-  @if length($rules)>=4 {
-    $font-family: nth($rules, 4);
+  @if length($rules) >= 4 {
+    $font-family: list.nth($rules, 4);
   }
-  @if length($rules)>=5 {
-    $letter-spacing: nth($rules, 5);
+
+  @if length($rules) >= 5 {
+    $letter-spacing: list.nth($rules, 5);
   }
-  @include _typography_font($font-size, $line-height, $font-weight, $font-family, $letter-spacing);
+
+  @include _civic-typography-font($font-size, $line-height, $font-weight, $font-family, $letter-spacing);
 }
 
 //
 // Do not use directly.
 // Use @include typography() mixin instead.
 //
-@mixin _typography_font($font-size: 's', $line-height: 1.2em, $font-weight: 'default', $font-family: 'none', $letter-spacing: 'normal') {
+@mixin _civic-typography-font($font-size: 's', $line-height: 1.2em, $font-weight: 'default', $font-family: 'none', $letter-spacing: 'normal') {
   font-size: rem($font-size);
   line-height: $line-height;
   letter-spacing: $letter-spacing;
-  @if $font-family !='none' {
-    font-family: map-get($civic-font, $font-family);
+
+  @if $font-family != 'none' {
+    font-family: map.get($civic-font, $font-family);
   }
 
-  @if $font-weight !='default' {
+  @if $font-weight != 'default' {
     font-weight: $font-weight;
   }
 }

@@ -1,5 +1,10 @@
+//
+// Base rules for Storybook stories.
+//
+
+@use 'sass:color';
 @import '../variables';
-@import 'base.scss';
+@import 'base';
 
 // Set default styles for the Storybook viewport.
 #root {
@@ -36,14 +41,14 @@
 
 .story-slot {
   display: block;
-  background-color: transparentize(purple, 0.7);
+  background-color: color.adjust(purple, $alpha: -0.7);
   padding: 1em;
   text-align: center;
-  font-family: 'Courier New', Monospace;
+  font-family: 'Courier New', monospace;
   border: dotted 1px purple;
 
   .civic-theme-dark & {
-    background-color: transparentize(white, 0.7);
+    background-color: color.adjust(white, $alpha: -0.7);
     border: dotted 1px purple;
   }
 }

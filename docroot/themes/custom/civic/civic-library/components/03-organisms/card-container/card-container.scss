@@ -7,7 +7,7 @@
   $root: &;
 
   &--fill-width {
-    [class*="col-"] {
+    [class*='col-'] {
       max-width: 100%;
       flex-grow: 1;
     }
@@ -18,13 +18,14 @@
     padding-bottom: civic-space(6);
 
     #{$root}__card {
-      margin-top: civic-space(3)
+      margin-top: civic-space(3);
     }
   }
 
   &__header {
     display: flex;
     flex-direction: column;
+
     @include civic-breakpoint('m') {
       flex-direction: row;
     }
@@ -32,6 +33,7 @@
 
   &__header__heading {
     @include civic-typography('heading-3');
+
     @include civic-breakpoint('m') {
       margin-right: auto;
     }
@@ -39,6 +41,7 @@
 
   &__header__link {
     @include civic-typography('label-regular');
+
     @include civic-breakpoint('m') {
       align-self: center;
       margin-left: auto;
@@ -46,12 +49,13 @@
   }
 
   &__cards {
-
+    // stylelint-disable-line block-no-empty
   }
 
   &__footer {
     display: flex;
     flex-direction: column;
+
     @include civic-breakpoint('m') {
       flex-direction: row;
     }
@@ -59,7 +63,9 @@
 
   &__footer__link {
     margin-top: civic-space(4);
+
     @include civic-typography('label-regular');
+
     @include civic-breakpoint('m') {
       align-self: center;
       margin-left: auto;

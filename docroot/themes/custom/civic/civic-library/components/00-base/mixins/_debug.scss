@@ -5,7 +5,7 @@
 //
 // Add outline to a block without introducing changes to element dimensions.
 //
-@mixin block-debug($color: #f00, $text: false) {
+@mixin civic-block-debug($color: #f00, $text: false) {
   // Outline without changing element's dimensions.
   box-shadow: 0 0 1px 1px $color inset;
 

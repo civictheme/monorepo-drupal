@@ -6,13 +6,16 @@
 
 .civic-directional-link {
   $root: &;
+
   padding: civic-space(2) civic-space(3);
+
   @include civic-typography('label-large');
+
   display: flex;
   text-decoration: none;
 
   &:focus {
-    @include civic-outline;
+    @include civic-outline();
   }
 
   .civic-icon {

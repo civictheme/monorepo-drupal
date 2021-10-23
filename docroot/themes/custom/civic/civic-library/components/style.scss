@@ -1,3 +1,4 @@
+// stylelint-disable scss/at-import-partial-extension
 @import '~normalize.css';
 @import 'variables';
 @import '00-base/**/!(*.stories).scss';

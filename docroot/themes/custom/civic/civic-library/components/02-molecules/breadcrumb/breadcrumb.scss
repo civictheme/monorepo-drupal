@@ -6,6 +6,7 @@
 
 .civic-breadcrumbs {
   $root: &;
+
   @include civic-typography('label-tag');
 
   &__links {
@@ -27,6 +28,7 @@
 
       &.mobile-only {
         display: none;
+
         @include civic-breakpoint-upto('m') {
           display: flex;
 
@@ -40,6 +42,7 @@
 
   .civic-link {
     @include civic-typography('label-tag');
+
     padding: 0;
 
     &:hover {

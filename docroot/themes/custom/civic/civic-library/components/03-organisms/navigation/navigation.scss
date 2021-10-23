@@ -3,6 +3,7 @@
 
   &__title {
     @include civic-typography('heading-5');
+
     margin-bottom: civic-space(2);
   }
 

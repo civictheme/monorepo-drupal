@@ -6,11 +6,13 @@
 
 .civic-skip-link {
   $root: &;
+
   padding: civic-space(2) civic-space(3);
 
   &__link {
     display: inline-block;
     padding: civic-space(1);
+
     @include civic-typography(label-regular);
   }
 
@@ -22,7 +24,7 @@
       color: $civic-skip-link-light-color;
 
       &:focus {
-        @include civic-outline(false)
+        @include civic-outline(false);
       }
     }
   }
@@ -34,7 +36,7 @@
       color: $civic-skip-link-dark-color;
 
       &:focus {
-        @include civic-outline(true)
+        @include civic-outline(true);
       }
     }
   }
