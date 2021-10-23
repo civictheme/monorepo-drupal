@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: 41c354ef-d5f3-4e68-9bdf-4085b47cdadf
+  uuid: 68348813-9a4f-4a91-8a10-876febe9df49
   default_langcode: en
 default:
   uid:
@@ -9,19 +9,19 @@ default:
       target_id: 1
   filename:
     -
-      value: civic-image.jpg
+      value: SABZ3ZO3yXTsFzwePVOwCj4oJK0M2_QWAk3CDTZXbI4.jpg
   uri:
     -
-      value: 'public://2021-10/civic-image_0_1_3_1_0_0_15.jpg'
+      value: 'public://oembed_thumbnails/SABZ3ZO3yXTsFzwePVOwCj4oJK0M2_QWAk3CDTZXbI4.jpg'
   filemime:
     -
       value: image/jpeg
   filesize:
     -
-      value: 93149
+      value: 8256
   status:
     -
       value: true
   created:
     -
-      value: 1633245345
+      value: 1634966036

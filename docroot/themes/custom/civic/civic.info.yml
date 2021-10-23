@@ -46,6 +46,9 @@ components:
     pages:
       - components/05-pages
 
+ckeditor_stylesheets:
+  - dist/civic.css
+
 # Configuration shipped with this theme.
 # Update the list of the configuration below and run `drush cde civic`.
 config_devel:
@@ -139,14 +142,18 @@ config_devel:
     - core.entity_view_display.paragraph.civic_slider.default
     - core.entity_view_display.paragraph.civic_slider_slide.default
     - core.entity_view_display.paragraph.civic_slider_slide_reference.default
+    - core.entity_view_display.media.image.embedded
+    - core.entity_view_mode.media.embedded
     - core.entity_view_mode.node.civic_card_event
     - core.entity_view_mode.node.civic_card_navigation
     - core.entity_view_mode.node.civic_card_promo
     - core.entity_view_mode.node.civic_slider_slide
+    - editor.editor.civic_rich_text
     - field.field.block_content.civic_banner.field_c_b_theme
     - field.field.block_content.civic_banner.field_c_b_background_image
     - field.field.block_content.civic_component_block.field_c_b_components
     - field.field.media.icon.field_c_m_icon
+    - field.field.media.image.field_c_m_caption
     - field.field.node.civic_event.field_c_n_attachments
     - field.field.node.civic_event.field_c_n_body
     - field.field.node.civic_event.field_c_n_date
@@ -156,6 +163,12 @@ config_devel:
     - field.field.node.civic_event.field_c_n_tagline
     - field.field.node.civic_event.field_c_n_thumbnail
     - field.field.node.civic_event.field_c_n_topics
+    - field.field.media.remote_video.field_c_m_share_link
+    - field.field.media.remote_video.field_c_m_title
+    - field.field.media.remote_video.field_c_m_transcript_link
+    - field.storage.media.field_c_m_share_link
+    - field.storage.media.field_c_m_title
+    - field.storage.media.field_c_m_transcript_link
     - field.field.node.civic_page.field_c_n_banner_background
     - field.field.node.civic_page.field_c_n_banner_components
     - field.field.node.civic_page.field_c_n_banner_components_bott
@@ -267,6 +280,7 @@ config_devel:
     - field.storage.block_content.field_c_b_theme
     - field.storage.block_content.field_c_b_background_image
     - field.storage.media.field_c_m_icon
+    - field.storage.media.field_c_m_caption
     - field.storage.node.field_c_n_attachments
     - field.storage.node.field_c_n_banner_background
     - field.storage.node.field_c_n_banner_components
@@ -316,6 +330,8 @@ config_devel:
     - field.storage.paragraph.field_c_p_placeholder
     - field.storage.paragraph.field_c_p_help_text
     - field.node.civic_event.field_c_n_body
+    - filter.format.civic_plain_text
+    - filter.format.civic_rich_text
     - image.style.navigation
     - image.style.promo_banner
     - image.style.promo_card

@@ -10,6 +10,7 @@
  * - height: [string] Height of the video.
  * - transcript_link: [object] Video transcript link.
  * - share_link: [object] Video share link.
+ * - oembed: [string] oEmbed provided iframe container.
  */
 #}
 
@@ -20,19 +21,23 @@
 {% set share_link_title = share_link.title|default('Opens in a new tab') %}
 {% set share_link_external = share_link.external|default(false) %}
 
-{% if src is not empty %}
+{% if src is not empty or oembed is not empty %}
   <div class="civic-video {{ modifier_class }}">
     <div class="civic-video__iframe-container">
-      <iframe
-        class="civic-video-frame"
-        width="{{ width }}"
-        height=" {{ height }}"
-        src="{{ src }}"
-        allowfullscreen
-        data-chromatic="ignore"
-        title="{{ title }}"
-      >
-      </iframe>
+      {% if oembed is not empty %}
+        {{ oembed|raw }}
+      {% else %}
+        <iframe
+          class="civic-video-frame"
+          width="{{ width }}"
+          height=" {{ height }}"
+          src="{{ src }}"
+          allowfullscreen
+          data-chromatic="ignore"
+          title="{{ title }}"
+        >
+        </iframe>
+      {% endif %}
     </div>
     <div class="civic-video__links">
       {% if transcript_link.url is defined and transcript_link.url is not empty %}
