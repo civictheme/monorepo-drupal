@@ -122,7 +122,7 @@ function cd_core_update_9003() {
  * Provisions links in footer.
  */
 function cd_core_update_9004() {
-  Helper::saveMenuTree('civic-footer-menu', [
+  Helper::saveMenuTree('civic_footer', [
     'General' => [
       'link' => '/<front>',
       'children' => [
