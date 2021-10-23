@@ -1,5 +1,5 @@
 import {
-  boolean, radios, text, number,
+  boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import CivicAccordion from './accordion.twig';
 // eslint-disable-next-line import/extensions

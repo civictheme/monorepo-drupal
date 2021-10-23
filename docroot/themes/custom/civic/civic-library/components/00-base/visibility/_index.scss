@@ -15,8 +15,7 @@
     .hide-#{$breakpoint} {
       display: none;
     }
-  }
-  @else {
+  } @else {
     @include civic-breakpoint($breakpoint) {
       .show-#{$breakpoint} {
         display: block;

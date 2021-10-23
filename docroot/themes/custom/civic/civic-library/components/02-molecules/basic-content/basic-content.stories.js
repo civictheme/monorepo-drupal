@@ -1,4 +1,4 @@
-import { text, radios } from '@storybook/addon-knobs';
+import { radios, text } from '@storybook/addon-knobs';
 
 import CivicBasicContent from './basic-content.twig';
 

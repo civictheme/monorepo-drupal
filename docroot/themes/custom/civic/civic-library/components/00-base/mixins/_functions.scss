@@ -34,9 +34,7 @@
         @if $i==$key-index+1 {
           @if $return==key {
             @return $map-key;
-          }
-
-          @else {
+          } @else {
             @return $map-value;
           }
         }

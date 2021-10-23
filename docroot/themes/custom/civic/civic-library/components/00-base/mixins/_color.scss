@@ -50,6 +50,6 @@
   @return $string;
 }
 
-@function civic-svg-fill($svg, $color){
+@function civic-svg-fill($svg, $color) {
   @return str_replace($svg, "fill=''", "fill='#{civic-encode-color($color)}'");
 }

@@ -43,6 +43,7 @@
 
   #{$root}__title-link {
     text-decoration: none;
+
     &:hover,
     &:active {
       text-decoration: underline;
@@ -90,9 +91,11 @@
 
     #{$root}__title-link {
       color: $civic-event-card-light-heading-color;
+
       &:hover {
         color: $civic-event-card-light-color-hover;
       }
+
       &:active {
         color: $civic-event-card-light-color-active;
       }
@@ -122,9 +125,11 @@
 
     #{$root}__title-link {
       color: $civic-event-card-dark-heading-color;
+
       &:hover {
         color: $civic-event-card-dark-color-accent;
       }
+
       &:active {
         color: $civic-event-card-dark-color-active;
       }
