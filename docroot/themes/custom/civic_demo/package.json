@@ -9,7 +9,7 @@
     "storybook": "npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s ./assets\"\n",
     "gulp:build": "gulp",
     "gulp:watch": "gulp watch",
-    "lint": "eslint ./components ./assets/js",
+    "lint": "eslint ./components",
     "dist": "npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
     "generate-icon-library": "npm run gulp:build && node ./components-combined/01-atoms/icon/icon.generate-library.script.js"
