@@ -5,6 +5,9 @@
  * Install file for core.
  */
 
+use Drupal\block\BlockInterface;
+use Drupal\cd_core\Helper;
+use Drupal\Core\Config\Entity\ConfigEntityUpdater;
 use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
@@ -17,7 +20,8 @@ function cd_core_install() {
   // Run all update functions when installing this module.
   foreach ($functions['user'] as $function) {
     if (strpos($function, 'cd_core_update_') === 0) {
-      call_user_func($function);
+      $sandbox = [];
+      call_user_func($function, $sandbox);
     }
   }
 
@@ -92,26 +96,101 @@ function cd_core_update_9002() {
 }
 
 /**
- * Set civic_demo theme settings.
+ * Sets civic_demo theme settings.
  */
 function cd_core_update_9003() {
-  // Set logo in theme settings.
-  $logo_path = '/themes/custom/civic_demo/assets/logo.png';
+  $logo_header_desktop = '/themes/custom/civic_demo/assets/logo-desktop-dark.png';
+  $logo_header_mobile = '/themes/custom/civic_demo/assets/logo-mobile-dark.png';
+  $logo_footer_desktop = '/themes/custom/civic_demo/assets/logo-desktop-light.png';
+  $logo_footer_mobile = '/themes/custom/civic_demo/assets/logo-mobile-light.png';
+
+  $favicon = '/themes/custom/civic_demo/assets/favicon.ico';
+
   $config = \Drupal::service('config.factory')->getEditable('civic_demo.settings');
-  $logo_settings = [
-    'civic_header_logo_mobile',
-    'logo_path',
-    'civic_footer_logo_mobile',
-    'civic_footer_logo_desktop',
-  ];
+
   $config->set('logo', [
     'use_default' => FALSE,
-    'path' => $logo_path,
-    'url' => $logo_path,
+    'path' => $logo_header_desktop,
+    'url' => $logo_header_desktop,
   ]);
-  foreach ($logo_settings as $logo_setting) {
-    $config->set($logo_setting, $logo_path);
-  }
+
+  $config->set('logo_path', substr($logo_header_desktop, 1));
+  $config->set('civic_header_logo_mobile', $logo_header_mobile);
+  $config->set('civic_footer_logo_desktop', $logo_footer_desktop);
+  $config->set('civic_footer_logo_mobile', $logo_footer_mobile);
+
   $config->set('civic_site_logo_alt', 'Civic demo logo');
+
+  $config->set('favicon_path', substr($favicon, 1));
+
+  $config->set('civic_header_theme', 'light');
+  $config->set('civic_footer_theme', 'dark');
+
   $config->save();
+}
+
+/**
+ * Provisions links in footer and updates menu block configurations.
+ */
+function cd_core_update_9004($sandbox) {
+  Helper::saveMenuTree('civic_footer', [
+    'General' => [
+      'link' => '/<front>',
+      'children' => [
+        'For individuals' => '/node/36',
+        'For businesses' => '/civic/pages',
+        'For government' => '/node/31',
+        'News & events' => '/node/9',
+      ],
+    ],
+    'About us' => [
+      'link' => '/<front>',
+      'children' => [
+        'News & events' => '/node/9',
+        'For individuals' => '/node/36',
+        'For businesses' => '/civic/pages',
+        'For government' => '/node/31',
+      ],
+    ],
+    'Help' => [
+      'link' => '/<front>',
+      'children' => [
+        'For government' => '/node/31',
+        'For individuals' => '/node/36',
+        'For businesses' => '/civic/pages',
+        'News & events' => '/node/9',
+      ],
+    ],
+    'Services' => [
+      'link' => '/<front>',
+      'children' => [
+        'Services' => '/node/40',
+        'For individuals' => '/node/36',
+        'For businesses' => '/civic/pages',
+        'For government' => '/node/31',
+      ],
+    ],
+  ]);
+
+  $theme = \Drupal::theme()->getActiveTheme()->getName();
+
+  $map = [
+    $theme . '_footer_menu_1' => Helper::findMenuItemByTitle('civic_footer', 'General'),
+    $theme . '_footer_menu_2' => Helper::findMenuItemByTitle('civic_footer', 'About us'),
+    $theme . '_footer_menu_3' => Helper::findMenuItemByTitle('civic_footer', 'Help'),
+    $theme . '_footer_menu_4' => Helper::findMenuItemByTitle('civic_footer', 'Services'),
+  ];
+
+  \Drupal::classResolver(ConfigEntityUpdater::class)
+    ->update($sandbox, 'block', function (BlockInterface $block) use ($map) {
+      if (strpos($block->getPluginId(), 'menu_block:') === 0) {
+        if (!empty($map[$block->id()])) {
+          $block_settings = $block->get('settings');
+          $block_settings['parent'] = 'civic_footer:menu_link_content:' . $map[$block->id()]->uuid();
+          $block->set('settings', $block_settings);
+          return TRUE;
+        }
+      }
+      return FALSE;
+    });
 }

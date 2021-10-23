@@ -31,11 +31,16 @@
 
   {% block footer %}
     {% include '@organisms/footer/footer.twig' with {
-      top_left: footer_top_left,
-      top_right: footer_top_right,
-      middle: footer_middle,
-      bottom_left: footer_bottom_left,
-      bottom_right: footer_bottom_right,
+      theme: footer_theme,
+      logo: footer_logo,
+      content_top1: footer_top_1,
+      content_top2: footer_top_2,
+      content_middle1: footer_middle_1,
+      content_middle2: footer_middle_2,
+      content_middle3: footer_middle_3,
+      content_middle4: footer_middle_4,
+      content_bottom1: footer_bottom_1,
+      content_bottom2: footer_bottom_2,
     } only %}
   {% endblock %}
 </div>

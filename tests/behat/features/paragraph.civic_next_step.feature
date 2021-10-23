@@ -29,7 +29,7 @@ Feature: Test the Next step paragraph
     And the "Next step" checkbox should be checked
 
   @api
-  Scenario: Block type Component Block field_c_b_components fields settings.
+  Scenario: Block type Civic Component field_c_b_components fields settings.
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "admin/structure/block/block-content/manage/civic_component_block/fields/block_content.civic_component_block.field_c_b_components"
     And the "Label" field should contain "Components"

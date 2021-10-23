@@ -38,3 +38,18 @@
   $all-colors: map.merge($all-colors, $civic-colors);
   @return $all-colors;
 }
+
+@function civic-encode-color($string) {
+  @if type-of($string) == 'color' and str-index(#{$string}, '#') == 1 {
+    $hex: str-slice(ie-hex-str($string), 4);
+    $string: unquote('#{$hex}');
+
+    @return '%23' + $string;
+  }
+
+  @return $string;
+}
+
+@function civic-svg-fill($svg, $color){
+  @return str_replace($svg, "fill=''", "fill='#{civic-encode-color($color)}'");
+}

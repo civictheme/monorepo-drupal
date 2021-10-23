@@ -47,7 +47,7 @@ Feature: Tests the Map paragraph
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_share_link][0][uri]']" element
 
   @api @javascript
-  Scenario: Component Block paragraph reference exists and works
+  Scenario: Civic Component paragraph reference exists and works
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "block/add/civic_component_block"
     And I click on "div.field--name-field-c-b-components .paragraphs-add-wrapper .dropbutton-toggle button" element

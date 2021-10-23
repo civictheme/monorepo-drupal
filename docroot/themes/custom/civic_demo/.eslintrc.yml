@@ -17,3 +17,5 @@ rules:
   no-restricted-syntax: 0
   guard-for-in: 0
   quotes: [ 2, "single", { "avoidEscape": true, "allowTemplateLiterals": true } ]
+  no-continue: 0
+  no-plusplus: 0

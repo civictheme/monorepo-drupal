@@ -63,7 +63,7 @@ module.exports = {
       },
       // Wrap JS with DOMContentLoaded.
       {
-        test: /components\/[^\/]+\/(?!.*\.(stories|component)\.js$).*\.js$/,
+        test: /components\/[^\/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
         exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
         use: [{
           loader: 'babel-loader',
