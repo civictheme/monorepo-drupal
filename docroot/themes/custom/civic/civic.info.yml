@@ -310,7 +310,6 @@ config_devel:
     - field.node.civic_event.field_c_n_body
     - filter.format.civic_plain_text
     - filter.format.civic_rich_text
-    - filter.settings
     - image.style.navigation
     - image.style.promo_banner
     - image.style.promo_card
