@@ -1,0 +1,104 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: c003ec93-fada-42e3-bbf8-d4622f5ed80c
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    0eb512d0-d116-48f7-83bb-ae07c3eb2c91: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Civic typography'
+  created:
+    -
+      value: 1634959028
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_background:
+    -
+      entity: 0eb512d0-d116-48f7-83bb-ae07c3eb2c91
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: b0332a67-5701-495c-87af-1a51a9e263b1
+          bundle: civic_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1634959087
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_content:
+            -
+              value: "<h2>Heading 2</h2>\r\n\r\n<h3>Heading 3</h3>\r\n\r\n<h4>Heading 4</h4>\r\n\r\n<h5>Heading 5</h5>\r\n\r\n<h6>Heading 6</h6>\r\n\r\n<p class=\"lead\">Lead paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p class=\"small\">Small paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p>Normal paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Ordered list:</strong></p>\r\n\r\n<ol>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ol>\r\n\t\t<li>Nested List item 1</li>\r\n\t\t<li>Nested List item 2</li>\r\n\t</ol>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ol>\r\n\r\n<p><strong>Unordered list</strong>:</p>\r\n\r\n<ul>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ul>\r\n\t\t<li>Nested item 1</li>\r\n\t\t<li>Nested item 2</li>\r\n\t</ul>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"d0ff700e-b452-4b72-a94d-7e509e2a8b80\"></drupal-media>\r\n"
+              format: civic_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: f1acbb8a-005a-4503-8ff0-42c4951ddd44
+          bundle: civic_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1634959087
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: "<h2>Heading 2</h2>\r\n\r\n<h3>Heading 3</h3>\r\n\r\n<h4>Heading 4</h4>\r\n\r\n<h5>Heading 5</h5>\r\n\r\n<h6>Heading 6</h6>\r\n\r\n<p class=\"lead\">Lead paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p class=\"small\">Small paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p>Normal paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Ordered list:</strong></p>\r\n\r\n<ol>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ol>\r\n\t\t<li>Nested List item 1</li>\r\n\t\t<li>Nested List item 2</li>\r\n\t</ol>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ol>\r\n\r\n<p><strong>Unordered list</strong>:</p>\r\n\r\n<ul>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ul>\r\n\t\t<li>Nested item 1</li>\r\n\t\t<li>Nested item 2</li>\r\n\t</ul>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"d0ff700e-b452-4b72-a94d-7e509e2a8b80\"></drupal-media>\r\n"
+              format: civic_rich_text
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_summary:
+    -
+      value: 'Page is used to demonstrate typography and wysiwyg components.'
