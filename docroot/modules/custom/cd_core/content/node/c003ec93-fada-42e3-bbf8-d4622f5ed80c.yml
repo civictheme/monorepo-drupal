@@ -28,6 +28,9 @@ default:
   sticky:
     -
       value: false
+  revision_translation_affected:
+    -
+      value: true
   path:
     -
       alias: ''
@@ -61,9 +64,12 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_content:
             -
-              value: "<h2>Heading 2</h2>\r\n\r\n<h3>Heading 3</h3>\r\n\r\n<h4>Heading 4</h4>\r\n\r\n<h5>Heading 5</h5>\r\n\r\n<h6>Heading 6</h6>\r\n\r\n<p class=\"lead\">Lead paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p class=\"small\">Small paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p>Normal paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p><strong>Ordered list:</strong></p>\r\n\r\n<ol>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ol>\r\n\t\t<li>Nested List item 1</li>\r\n\t\t<li>Nested List item 2</li>\r\n\t</ol>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ol>\r\n\r\n<p><strong>Unordered list</strong>:</p>\r\n\r\n<ul>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ul>\r\n\t\t<li>Nested item 1</li>\r\n\t\t<li>Nested item 2</li>\r\n\t</ul>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ul>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"d0ff700e-b452-4b72-a94d-7e509e2a8b80\"></drupal-media>\r\n"
+              value: "<h2>Heading 2</h2>\r\n\r\n<h3>Heading 3</h3>\r\n\r\n<h4>Heading 4</h4>\r\n\r\n<h5>Heading 5</h5>\r\n\r\n<h6>Heading 6</h6>\r\n\r\n<p class=\"civic-text-large\">Lead paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p class=\"civic-text-small\">Small paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p>Normal paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p><strong>Ordered list:</strong></p>\r\n\r\n<ol>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ol>\r\n\t\t<li>Nested List item 1</li>\r\n\t\t<li>Nested List item 2</li>\r\n\t</ol>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ol>\r\n\r\n<p><strong>Unordered list</strong>:</p>\r\n\r\n<ul>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ul>\r\n\t\t<li>Nested item 1</li>\r\n\t\t<li>Nested item 2</li>\r\n\t</ul>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ul>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"d0ff700e-b452-4b72-a94d-7e509e2a8b80\"></drupal-media>\r\n"
               format: civic_rich_text
           field_c_p_theme:
             -
