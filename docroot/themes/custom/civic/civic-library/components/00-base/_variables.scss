@@ -78,6 +78,7 @@ $civic-default-colors-elements: (
 // First breakpoint is set to 0 so styles apply to all window sizes (not just small mobile - 368px and above).
 //
 $civic-breakpoints: (
+  'xxs': 0px,
   'xs': 368px,
   's': 576px,
   'm': 768px,
@@ -113,10 +114,12 @@ $civic-grid-lowest-breakpoint: 'xs' !default;
 $civic-grid-max-width: map-get($civic-breakpoints, xxl) !default;
 $civic-grid-visible-lowest-breakpoint: 'xs' !default;
 $civic-grid-gutters: (
+  'xxs': 15px,
   'xs': 15px,
   's': $civic-space * 3
 ) !default;
 $civic-grid-offsets: (
+  'xxs': $civic-grid-offset-xs,
   'xs': $civic-grid-offset-xs,
   's': $civic-grid-offset-xs,
   'm': $civic-grid-offset-xxl * 0.25,
@@ -141,19 +144,19 @@ $civic-outline-accent-boxshadow: 0 0 0 3pt civic-color('accent') !default;
 //
 $civic-icon-sizes: (
   'small': (
-    'xs': (16px, 16px),
+    'xxs': (16px, 16px),
     'm': (20px, 20px),
   ),
   'regular': (
-    'xs': (20px, 20px),
+    'xxs': (20px, 20px),
     'm': (24px, 24px),
   ),
   'large': (
-    'xs': (40px, 40px),
+    'xxs': (40px, 40px),
     'm': (48px, 48px),
   ),
   'extra-large': (
-    'xs': (48px, 48px),
+    'xxs': (48px, 48px),
     'm': (64px, 64px),
   )
 ) !default;
@@ -178,68 +181,80 @@ $civic-typography: (
   'display-s': (32px, 40px, 700, 'primary', -0.3px),
   'display-support': (18px, 31px, 400, 'primary', 0),
   'heading-1': (
-    'xs': (32px, 40px, 700, 'primary', -0.6px),
+    'xxs': (32px, 40px, 700, 'primary', -0.6px),
     'm': (48px, 60px, 700, 'primary', -1px)
   ),
   'heading-2': (
-    'xs': (28px, 35px, 700, 'primary', -0.5px),
+    'xxs': (28px, 35px, 700, 'primary', -0.5px),
     'm': (39px, 48px, 700, 'primary', -0.8px)
   ),
   'heading-3': (
-    'xs': (24px, 31px, 700, 'primary', 0.35px),
+    'xxs': (24px, 31px, 700, 'primary', 0.35px),
     'm': (32px, 40px, 700, 'primary', -0.6px)
   ),
   'heading-4': (
-    'xs': (20px, 25px, 700, 'primary', -0.25px),
+    'xxs': (20px, 25px, 700, 'primary', -0.25px),
     'm': (25px, 31px, 700, 'primary', -0.4px)
   ),
   'heading-5': (
-    'xs': (16px, 22px, 700, 'primary', 0),
+    'xxs': (16px, 22px, 700, 'primary', 0),
     'm': (20px, 25px, 700, 'primary', -0.2px)
   ),
   'heading-6': (16px, 26px, 700, 'primary', 0),
   'lead': (
-    'xs': (18px, 29px, 400, 'primary', 0),
+    'xxs': (18px, 29px, 400, 'primary', 0),
     'm': (20px, 34px, 400, 'primary', '0')
   ),
   'subtitle': (
-    'xs': (16px, 26px, 600, 'primary', 0),
+    'xxs': (16px, 26px, 600, 'primary', 0),
     'm': (16px, 28px, 600, 'primary', 0)
   ),
   'body': (
-    'xs': (16px, 26px, 400, 'primary', 0),
+    'xxs': (16px, 26px, 400, 'primary', 0),
     'm': (16px, 28px, 400, 'primary', 0)
   ),
   'small': (
-    'xs': (14px, 23px, 400, 'primary', 0),
+    'xxs': (14px, 23px, 400, 'primary', 0),
     'm': (14px, 25px, 400, 'primary', 0)
   ),
+  'text-large': (
+    'xxs': (18px, 29px, 400, 'primary', 0),
+    'm': (20px, 34px, 400, 'primary', '0')
+  ),
+  'text-regular': (
+    'xxs': (14px, 25px, 400, 'primary', 0),
+    'm': (16px, 28px, 400, 'primary', 0)
+  ),
+  'text-small': (
+    'xxs': (12px, 20px, 400, 'primary', 0),
+    'm': (14px, 25px, 400, 'primary', 0),
+  ),
   'card-summary': (
-    'xs': (14px, 25px, 400, 'primary', 0),
+    'xxs': (14px, 25px, 400, 'primary', 0),
     'm': (16px, 28px, 400, 'primary', 0)
   ),
   'quote': (
-    'xs': (18px, 29px, 400, 'primary', -0.15px),
+    'xxs': (18px, 29px, 400, 'primary', -0.15px),
     'm': (25px, 40px, 400, 'primary', -0.35px)
   ),
   'unordered-list': (
-    'xs': (16px, 26px, 400, 'primary', 0),
+    'xxs': (16px, 26px, 400, 'primary', 0),
     'm': (16px, 28px, 400, 'primary', 0)
   ),
   'ordered-list': (
-    'xs': (16px, 26px, 400, 'primary', 0),
+    'xxs': (16px, 26px, 400, 'primary', 0),
     'm': (16px, 28px, 400 'primary', 0)
   ),
   'label-large': (
-    'xs': (18px, 24px, 600, 'primary', -0.1px),
+    'xxs': (18px, 24px, 600, 'primary', -0.1px),
     'm': (18px, 24px, 600, 'primary', 0)
   ),
   'label-regular': (
-    'xs': (16px, 20px, 600, 'primary', -0.1px),
+    'xxs': (16px, 20px, 600, 'primary', -0.1px),
     'm': (16px, 20px, 600, 'primary', 0)
   ),
   'label-tag': (
-    'xs': (12px, 20px, 400, 'primary', -0.1px),
+    'xxs': (12px, 20px, 400, 'primary', -0.1px),
     'm': (14px, 20px, 400, 'primary', -0.1px)
   ),
   'label-small': (12px, 26px, 600, 'primary'),
@@ -694,12 +709,37 @@ $civic-pagination-dark-link-hover-color: civic-color('accent') !default;
 $civic-pagination-dark-link-active-border-color: civic-color('accent') !default;
 
 //
+// Footer
+//
+$civic-footer-logo-desktop-width: 190px;
+$civic-footer-logo-mobile-width: 190px;
+$civic-footer-light-color: civic-color('neutral_90') !default;
+$civic-footer-light-link-color: civic-color('neutral_90') !default;
+$civic-footer-light-link-hover-color: civic-color('shade_30') !default;
+$civic-footer-light-background-color: civic-color('neutral_20') !default;
+$civic-footer-light-border-color: civic-color('neutral_40') !default;
+$civic-footer-light-outline-color: civic-color('link-light-visited') !default;
+
+$civic-footer-dark-color: civic-color('neutral') !default;
+$civic-footer-dark-background-color: civic-color('shade_60') !default;
+$civic-footer-dark-border-color: civic-color('primary') !default;
+$civic-footer-dark-mobile-border-color: civic-color('shade_15') !default;
+$civic-footer-dark-link-color: civic-color('neutral') !default;
+$civic-footer-dark-link-hover-color: civic-color('accent') !default;
+$civic-footer-dark-outline-color: civic-color('link-dark-visited') !default;
+
+//
 // Collapsible.
 //
+$civic-collapsible-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='' class='civic-icon civic-icon--color-primary civic-icon--size-small ' title='downarrow_1' width='24' height='24' viewBox='0 0 24 24' aria-hidden='true'%3E%3Cpath d='M16.9997 9.17C16.8123 8.98375 16.5589 8.87921 16.2947 8.87921C16.0305 8.87921 15.7771 8.98375 15.5897 9.17L11.9997 12.71L8.4597 9.17C8.27234 8.98375 8.01889 8.87921 7.7547 8.87921C7.49052 8.87921 7.23707 8.98375 7.0497 9.17C6.95598 9.26297 6.88158 9.37357 6.83081 9.49543C6.78004 9.61729 6.75391 9.74799 6.75391 9.88C6.75391 10.012 6.78004 10.1427 6.83081 10.2646C6.88158 10.3864 6.95598 10.497 7.0497 10.59L11.2897 14.83C11.3827 14.9237 11.4933 14.9981 11.6151 15.0489C11.737 15.0997 11.8677 15.1258 11.9997 15.1258C12.1317 15.1258 12.2624 15.0997 12.3843 15.0489C12.5061 14.9981 12.6167 14.9237 12.7097 14.83L16.9997 10.59C17.0934 10.497 17.1678 10.3864 17.2186 10.2646C17.2694 10.1427 17.2955 10.012 17.2955 9.88C17.2955 9.74799 17.2694 9.61729 17.2186 9.49543C17.1678 9.37357 17.0934 9.26297 16.9997 9.17Z'%3E%3C/path%3E%3C/svg%3E");
+$civic-collapsible-icon-size: 'm';
+
 $civic-collapsible-light-color: civic-color('neutral_90') !default;
 $civic-collapsible-light-border-color: civic-color('neutral_60') !default;
 $civic-collapsible-light-background-color: civic-color('neutral_5') !default;
+$civic-collapsible-light-icon-color: $civic-collapsible-light-color;
 
 $civic-collapsible-dark-color: civic-color('neutral') !default;
 $civic-collapsible-dark-background-color: civic-color('shade_60') !default;
 $civic-collapsible-dark-border-color: civic-color('shade_30') !default;
+$civic-collapsible-dark-icon-color: $civic-collapsible-dark-color;

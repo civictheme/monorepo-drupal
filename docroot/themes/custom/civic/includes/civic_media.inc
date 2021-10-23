@@ -19,7 +19,9 @@ function civic_preprocess_media__image(&$variables) {
   $variables['alt'] = $media->get('field_media_image')->first()->get('alt')->getString();
 }
 
-
+/**
+ * Implements hook_preprocess__HOOK().
+ */
 function civic_preprocess_media__remote_video(&$variables) {
   if (empty($variables['media'])) {
     return;

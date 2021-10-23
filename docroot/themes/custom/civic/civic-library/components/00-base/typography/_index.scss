@@ -1,0 +1,15 @@
+//
+// Typography classes and generators.
+//
+
+.civic-text-large {
+  @include civic-typography('text-large');
+}
+
+.civic-text-regular {
+  @include civic-typography('text-regular');
+}
+
+.civic-text-small {
+  @include civic-typography('text-small');
+}

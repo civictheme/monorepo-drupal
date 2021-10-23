@@ -12,7 +12,7 @@ default:
       value: lorem-ipsum.pdf
   uri:
     -
-      value: 'public://2021-09/lorem-ipsum_26_1.pdf'
+      value: 'public://2021-09/lorem-ipsum_26_1_6.pdf'
   filemime:
     -
       value: application/pdf

@@ -1,3 +1,4 @@
+@import '~normalize.css';
 @import 'variables';
 @import '00-base/**/!(*.stories).scss';
 @import '01-atoms/**/!(*.stories).scss';
