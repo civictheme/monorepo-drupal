@@ -1,8 +1,5 @@
 import {
-  boolean,
-  date, number,
-  radios,
-  text,
+  boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';
 import imageFile from '../../../assets/image.png';
 import { getSlots } from '../../00-base/base.stories';

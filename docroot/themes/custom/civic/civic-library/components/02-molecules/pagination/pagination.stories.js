@@ -1,5 +1,5 @@
 import {
-  radios, text, object, boolean,
+  boolean, object, radios, text,
 } from '@storybook/addon-knobs';
 import CivicPagination from './pagination.twig';
 

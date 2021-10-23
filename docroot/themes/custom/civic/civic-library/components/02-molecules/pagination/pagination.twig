@@ -38,7 +38,9 @@
 
       {# Add an ellipsis if there are further previous pages. #}
       {% if ellipses.previous %}
-        <li class="civic-pager__item civic-pager__item--ellipsis" role="presentation">&hellip;</li>
+        <li class="civic-pager__item civic-pager__item--ellipsis" role="presentation">
+          &hellip;
+        </li>
       {% endif %}
       {# Print first item if we are not on the first page. #}
       {% if items.first %}
@@ -75,7 +77,9 @@
 
       {# Add an ellipsis if there are further next pages. #}
       {% if ellipses.next %}
-        <li class="civic-pager__item civic-pager__item--ellipsis" role="presentation">&hellip;</li>
+        <li class="civic-pager__item civic-pager__item--ellipsis" role="presentation">
+          &hellip;
+        </li>
       {% endif %}
 
       {# Print next item if we are not on the last page. #}

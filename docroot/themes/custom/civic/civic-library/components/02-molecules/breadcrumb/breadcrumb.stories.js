@@ -1,6 +1,4 @@
-import {
-  boolean, radios, object,
-} from '@storybook/addon-knobs';
+import { boolean, object, radios } from '@storybook/addon-knobs';
 import CivicBreadcrumb from './breadcrumb.twig';
 
 export default {

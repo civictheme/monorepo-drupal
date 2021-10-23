@@ -1,4 +1,4 @@
-import { radios, boolean, text } from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicFilterChip from './filter-chip.twig';
 
