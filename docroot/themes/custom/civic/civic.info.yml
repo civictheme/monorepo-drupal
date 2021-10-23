@@ -65,7 +65,6 @@ config_devel:
     - core.date_format.civic_short_date
     - core.entity_form_display.block_content.civic_banner.default
     - core.entity_form_display.block_content.civic_component_block.default
-    - core.entity_form_display.media.image.default
     - core.entity_form_display.node.civic_event.default
     - core.entity_form_display.node.civic_page.default
     - core.entity_form_display.paragraph.civic_accordion.default
@@ -155,7 +154,6 @@ config_devel:
     - field.field.media.remote_video.field_c_m_share_link
     - field.field.media.remote_video.field_c_m_title
     - field.field.media.remote_video.field_c_m_transcript_link
-    - field.field.media.remote_video.field_media_oembed_video
     - field.storage.media.field_c_m_share_link
     - field.storage.media.field_c_m_title
     - field.storage.media.field_c_m_transcript_link
