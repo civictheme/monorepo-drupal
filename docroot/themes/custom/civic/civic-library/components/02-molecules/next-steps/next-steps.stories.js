@@ -2,7 +2,7 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicNextSteps from './next-steps.twig';
 
 export default {
-  title: 'Molecule/Next Steps',
+  title: 'Molecules/Next Steps',
 };
 
 const exampleSummary = 'Short summary explaining why this link is relevant.';

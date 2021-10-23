@@ -7,7 +7,7 @@ import logoMobileLight from '../../../assets/logo-mobile-light.png';
 import logoMobileDark from '../../../assets/logo-mobile-dark.png';
 
 export default {
-  title: 'Atom/Logo',
+  title: 'Atoms/Logo',
   parameters: {
     layout: 'centered',
   },

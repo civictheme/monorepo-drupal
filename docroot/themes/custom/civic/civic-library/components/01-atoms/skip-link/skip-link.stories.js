@@ -3,7 +3,7 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicSkipLink from './skip-link.twig';
 
 export default {
-  title: 'Atom/Skip Link',
+  title: 'Atoms/Skip Link',
 };
 
 export const SkipLink = () => CivicSkipLink({

@@ -10,7 +10,7 @@ import { getSlots } from '../../00-base/base.stories';
 import CivicEventCard from './event-card.twig';
 
 export default {
-  title: 'Molecule/Card',
+  title: 'Molecules/Card/Event Card',
   parameters: {
     layout: 'centered',
   },

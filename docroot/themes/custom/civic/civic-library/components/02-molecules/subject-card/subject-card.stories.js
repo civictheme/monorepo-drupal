@@ -8,7 +8,7 @@ import { getSlots } from '../../00-base/base.stories';
 import CivicSubjectCard from './subject-card.twig';
 
 export default {
-  title: 'Molecule/Card',
+  title: 'Molecules/Card/Subject Card',
   parameters: {
     layout: 'centered',
   },

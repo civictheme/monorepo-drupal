@@ -4,7 +4,7 @@ import {
 import CivicLink from './link.twig';
 
 export default {
-  title: 'Atom/Link',
+  title: 'Atoms/Link',
   parameters: {
     layout: 'centered',
   },

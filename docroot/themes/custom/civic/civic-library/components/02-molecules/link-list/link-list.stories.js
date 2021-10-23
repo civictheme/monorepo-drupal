@@ -5,7 +5,7 @@ import {
 import CivicLinkList from './link-list.twig';
 
 export default {
-  title: 'Molecule/Link List',
+  title: 'Molecules/Link List',
   parameters: {
     layout: 'centered',
   },

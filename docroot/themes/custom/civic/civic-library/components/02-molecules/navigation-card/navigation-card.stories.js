@@ -7,7 +7,7 @@ import CivicNavigationCard from './navigation-card.twig';
 import { getSlots } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecule/Card',
+  title: 'Molecules/Card/Navigation Card',
   parameters: {
     layout: 'centered',
   },

@@ -4,7 +4,7 @@ import {
 import CivicPagination from './pagination.twig';
 
 export default {
-  title: 'Molecule/Pagination',
+  title: 'Molecules/Pagination',
 };
 
 export const Pagination = () => {

@@ -5,7 +5,7 @@ import { getSlots } from '../../00-base/base.stories';
 import CivicAttachment from './attachment.twig';
 
 export default {
-  title: 'Molecule/Attachment',
+  title: 'Molecules/Attachment',
 };
 
 export const Attachment = () => {
