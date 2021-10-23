@@ -2,7 +2,7 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicSearch from './search.twig';
 
 export default {
-  title: 'Molecule/Search',
+  title: 'Molecules/Search',
   parameters: {
     layout: 'centered',
   },

@@ -2,7 +2,7 @@ import { text, radios } from '@storybook/addon-knobs';
 import CivicHeading from './heading.twig';
 
 export default {
-  title: 'Atom/Heading',
+  title: 'Atoms/Heading',
 };
 
 export const Heading = () => CivicHeading({

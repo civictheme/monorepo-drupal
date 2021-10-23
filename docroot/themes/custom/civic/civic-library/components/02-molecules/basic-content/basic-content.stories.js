@@ -3,7 +3,7 @@ import { text, radios } from '@storybook/addon-knobs';
 import CivicBasicContent from './basic-content.twig';
 
 export default {
-  title: 'Molecule/Basic Content',
+  title: 'Molecules/Basic Content',
   parameters: {
     layout: 'fullscreen',
   },

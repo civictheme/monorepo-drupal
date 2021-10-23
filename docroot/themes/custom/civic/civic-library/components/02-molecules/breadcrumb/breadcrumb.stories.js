@@ -4,7 +4,7 @@ import {
 import CivicBreadcrumb from './breadcrumb.twig';
 
 export default {
-  title: 'Molecule/Breadcrumb',
+  title: 'Molecules/Breadcrumb',
 };
 
 export const Breadcrumb = () => {

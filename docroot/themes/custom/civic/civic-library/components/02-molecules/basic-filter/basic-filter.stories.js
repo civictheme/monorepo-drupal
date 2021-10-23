@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicBasicFilter from './basic-filter.twig';
 
 export default {
-  title: 'Molecule/Basic Filter',
+  title: 'Molecules/Basic Filter',
   parameters: {
     layout: 'centered',
   },

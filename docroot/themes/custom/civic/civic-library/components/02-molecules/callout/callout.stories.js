@@ -2,7 +2,7 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicCallout from './callout.twig';
 
 export default {
-  title: 'Molecule/Callout',
+  title: 'Molecules/Callout',
   parameters: {
     layout: 'centered',
   },

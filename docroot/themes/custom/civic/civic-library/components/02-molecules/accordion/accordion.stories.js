@@ -6,7 +6,7 @@ import CivicAccordion from './accordion.twig';
 import './accordion.js';
 
 export default {
-  title: 'Molecule/Accordion',
+  title: 'Molecules/Accordion',
   parameters: {
     layout: 'centered',
   },

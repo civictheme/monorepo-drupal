@@ -9,7 +9,7 @@ import CivicTable from './table.twig';
  * Storybook Definition.
  */
 export default {
-  title: 'Atom/Table',
+  title: 'Atoms/Table',
 };
 
 export const Table = () => {

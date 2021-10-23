@@ -5,7 +5,7 @@ import {
 import CivicIconLink from './icon-link.twig';
 
 export default {
-  title: 'Atom/Icon Link',
+  title: 'Atoms/Icon Link',
   parameters: {
     layout: 'centered',
   },
