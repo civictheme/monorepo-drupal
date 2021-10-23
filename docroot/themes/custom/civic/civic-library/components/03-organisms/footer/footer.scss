@@ -139,7 +139,7 @@
     }
   }
 
-  &__copyright {
+  .copyright {
     @include civic-breakpoint('m') {
       text-align: right;
     }

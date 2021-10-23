@@ -57,6 +57,7 @@ function civic_preprocess_paragraph(&$variables) {
 function civic_preprocess_block(&$variables) {
   _civic_preprocess_civic_banner($variables);
   _civic_preprocess_menu_block_civic_footer_menu($variables);
+  _civic_preprocess_block_content($variables);
 }
 
 /**
@@ -69,7 +70,7 @@ function civic_theme_library_info_build() {
   $extensions = implode('|', $extensions);
   /** @var \Drupal\Core\File\FileSystem $file_system */
   $file_system = \Drupal::service('file_system');
-  $file_scan = $file_system->scanDirectory($component_directory, "/{$extensions}$/");
+  $file_scan = $file_system->scanDirectory($component_directory, '/{$extensions}$/');
   $libraries = [];
   foreach ($file_scan as $file) {
     $parts = explode('.', $file->filename);
@@ -169,5 +170,21 @@ function _civic_preprocess_menu_block_civic_footer_menu(&$variables) {
     $variables['attributes']['data-collapsible'] = '';
     $variables['attributes']['data-collapsible-collapsed'] = '';
     $variables['attributes']['data-responsive'] = '<m';
+  }
+}
+
+/**
+ * Preprocess for block_content block.
+ */
+function _civic_preprocess_block_content(&$variables) {
+  if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'block_content') {
+    return;
+  }
+
+  switch ($variables['elements']['#configuration']['label']) {
+    case 'Copyright':
+      $variables['attributes']['class'][] = 'copyright';
+      $variables['attributes']['class'][] = 'civic-text-regular';
+      break;
   }
 }
