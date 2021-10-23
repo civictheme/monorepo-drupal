@@ -55,8 +55,6 @@ function civic_preprocess_paragraph(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function civic_preprocess_block(&$variables) {
-  // @todo Build theme suggestion system.
-  $variables['component'] = '@civic/block/block.twig';
   _civic_preprocess_civic_banner($variables);
   _civic_preprocess_menu_block_civic_footer_menu($variables);
 }

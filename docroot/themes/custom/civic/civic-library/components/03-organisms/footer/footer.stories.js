@@ -3,6 +3,8 @@ import { getSlots } from '../../00-base/base.stories';
 import CivicFooter from './footer.stories.twig';
 import logoDesktopLight from '../../../assets/logo-desktop-light.png';
 import logoDesktopDark from '../../../assets/logo-desktop-dark.png';
+import logoMobileLight from '../../../assets/logo-mobile-light.png';
+import logoMobileDark from '../../../assets/logo-mobile-dark.png';
 import '../../00-base/responsive/responsive';
 import '../../00-base/collapsible/collapsible';
 import { generateMenuLinks } from '../../02-molecules/menu/menu.utils';
@@ -31,7 +33,7 @@ export const Footer = () => {
 
   generalKnobs.logos = boolean('Show Logo', true, generalKnobTab) ? {
     mobile: {
-      src: generalKnobs.theme === 'light' ? logoDesktopDark : logoDesktopLight,
+      src: generalKnobs.theme === 'light' ? logoMobileDark : logoMobileLight,
       alt: 'Logo mobile alt text',
     },
     desktop: {

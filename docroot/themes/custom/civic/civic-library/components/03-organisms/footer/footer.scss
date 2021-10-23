@@ -131,7 +131,7 @@
     }
   }
 
-  &__logo {
+  .civic-logo {
     max-width: rem($civic-footer-logo-mobile-width);
 
     @include civic-breakpoint('m') {
