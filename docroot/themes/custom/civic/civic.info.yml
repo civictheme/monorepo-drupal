@@ -141,6 +141,7 @@ config_devel:
     - field.field.block_content.civic_banner.field_c_b_background_image
     - field.field.block_content.civic_component_block.field_c_b_components
     - field.field.media.icon.field_c_m_icon
+    - field.field.media.image.field_c_m_caption
     - field.field.node.civic_event.field_c_n_attachments
     - field.field.node.civic_event.field_c_n_body
     - field.field.node.civic_event.field_c_n_date
@@ -261,6 +262,7 @@ config_devel:
     - field.storage.block_content.field_c_b_theme
     - field.storage.block_content.field_c_b_background_image
     - field.storage.media.field_c_m_icon
+    - field.storage.media.field_c_m_caption
     - field.storage.node.field_c_n_attachments
     - field.storage.node.field_c_n_banner_background
     - field.storage.node.field_c_n_banner_components
