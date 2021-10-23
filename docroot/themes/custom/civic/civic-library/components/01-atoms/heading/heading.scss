@@ -1,7 +1,7 @@
 //
 // Heading.
 //
-@import "../../00-base/base";
+@import '../../00-base/base';
 
 @for $level from 1 through 6 {
   h#{$level} {

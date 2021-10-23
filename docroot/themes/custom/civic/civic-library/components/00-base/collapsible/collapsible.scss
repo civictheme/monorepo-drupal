@@ -1,31 +1,32 @@
 //
-// List list.
+// Collapsible utility component.
 //
-
+@use 'sass:list';
+@use 'sass:map';
 @import '../../00-base/base';
 
-[data-collapsible="true"] {
+[data-collapsible='true'] {
   [data-collapsible-trigger] {
     cursor: pointer;
-
-    padding-right: nth(map-get(map-get($civic-icon-sizes, 'regular'), $civic-collapsible-icon-size), 1);
+    padding-right: list.nth(map.get(map.get($civic-icon-sizes, 'regular'), $civic-collapsible-icon-size), 1);
     display: block;
     position: relative;
 
-    &:after {
+    &::after {
       @include civic-icon-size('regular');
+
       content: $civic-collapsible-icon;
       position: absolute;
       right: 0;
       transform: rotate(-180deg);
-      transition: transform .5s;
+      transition: transform 0.5s;
       line-height: 0;
     }
   }
 
   &[data-collapsible-collapsed] {
     [data-collapsible-trigger] {
-      &:after {
+      &::after {
         transform: rotate(0deg);
       }
     }
@@ -37,7 +38,7 @@
     [data-collapsible-trigger] {
       border-top: solid 1px $civic-collapsible-light-border-color;
 
-      &:after {
+      &::after {
         content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-light-icon-color);
       }
     }
@@ -53,7 +54,7 @@
     [data-collapsible-trigger] {
       border-top: solid 1px $civic-collapsible-dark-border-color;
 
-      &:after {
+      &::after {
         content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-dark-icon-color);
       }
     }

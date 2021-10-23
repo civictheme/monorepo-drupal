@@ -6,6 +6,7 @@
 
 .civic-next-steps {
   $root: &;
+
   border-radius: $civic-border-radius;
   border-left: rem(6px) $civic-next-steps-stripe-color solid;
   display: block;
@@ -23,6 +24,7 @@
 
   &__summary {
     margin-top: 16px;
+
     @include civic-typography(body);
   }
 
@@ -126,6 +128,5 @@
         fill: civic-color(accent);
       }
     }
-
   }
 }

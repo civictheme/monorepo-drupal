@@ -11,13 +11,15 @@
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
-  padding: 3px 0 2px 0;
+  padding: 3px 0 2px;
+
   &:hover {
     text-decoration: none;
-    padding: 3px 0 4px 0;
+    padding: 3px 0 4px;
   }
+
   &:focus {
-    @include civic-outline;
+    @include civic-outline();
   }
 
   &,
@@ -33,6 +35,7 @@
       vertical-align: middle;
     }
   }
+
   &.civic-theme-dark {
     color: $civic-link-dark-color;
 
@@ -41,8 +44,9 @@
       color: $civic-link-dark-color-hover;
     }
   }
+
   &:visited {
-    @include civic-link-visited;
+    @include civic-link-visited ();
   }
 }
 
@@ -55,6 +59,7 @@
       color: $civic-link-light-color-visited-hover;
     }
   }
+
   &.civic-theme-dark {
     color: $civic-link-dark-color-visited;
 
@@ -70,9 +75,9 @@
 //
 
 .civic-link {
-  @include civic-link-base;
+  @include civic-link-base();
 
   &--visited {
-    @include civic-link-visited;
+    @include civic-link-visited();
   }
 }

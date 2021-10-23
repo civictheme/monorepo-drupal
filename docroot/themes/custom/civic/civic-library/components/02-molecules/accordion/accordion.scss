@@ -1,6 +1,7 @@
 //
 // Accordion.
 //
+// stylelint-disable scss/dollar-variable-pattern
 
 @import '../../00-base/base';
 
@@ -15,16 +16,11 @@
     margin: 0;
     padding: 0;
     list-style: none;
-
-    &-item {
-      border: 1px solid;
-      border-radius: $civic-border-radius;
-      margin-bottom: civic-space(2);
-    }
   }
 
   &__header {
     $header: &;
+
     display: block;
     margin: 0;
     border-top-left-radius: $civic-border-radius;
@@ -42,6 +38,7 @@
 
     &__button {
       @include civic-typography('heading-6');
+
       width: 100%;
       padding: civic-space(3);
       border-radius: $civic-border-radius;
@@ -54,17 +51,19 @@
 
       svg {
         margin-left: auto;
-        transition: transform .5s;
+        transition: transform 0.5s;
       }
     }
   }
 
   &__content {
     $content: &;
+
     overflow: auto;
     visibility: hidden;
     height: 0;
-    transition: height .5s, visibility .5s;
+    transition: height 0.5s, visibility 0.5s;
+
     @include civic-typography('body');
 
     &--expanded {
@@ -72,19 +71,22 @@
       border-top: none;
 
       #{$content}--inner {
-        opacity: 1;
+        opacity: 100%;
       }
     }
 
     &--inner {
-      opacity: 0;
-      transition: opacity .5s;
+      opacity: 0%;
+      transition: opacity 0.5s;
       padding: 0 civic-space(3) civic-space(3);
     }
   }
 
   &__list-item {
     position: relative;
+    border: 1px solid;
+    border-radius: $civic-border-radius;
+    margin-bottom: civic-space(2);
 
     &::before {
       content: '';
@@ -96,12 +98,12 @@
       width: 0;
       border-top-left-radius: $civic-border-radius;
       border-bottom-left-radius: $civic-border-radius;
-      transition: width .25s;
+      transition: width 0.25s;
     }
 
     &--expanded {
       &::before {
-        width: .5rem;
+        width: 0.5rem;
       }
     }
   }
@@ -161,4 +163,3 @@
     }
   }
 }
-

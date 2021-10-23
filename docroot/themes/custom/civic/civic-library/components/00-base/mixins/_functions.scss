@@ -1,6 +1,10 @@
 //
 // Helper functions to extend SASS functionality.
 //
+// stylelint-disable scss/dollar-variable-pattern
+
+@use 'sass:map';
+@use 'sass:string';
 
 //
 // Get the next element from the map.
@@ -8,39 +12,39 @@
 // @see https://gist.github.com/agorilla/9df052eb1e15d8aea446
 //
 @function map-get-next($map, $key, $fallback: false, $return: value) {
-
   // Check if map is valid.
-  @if type-of($map)==map {
-
+  @if type-of($map) == map {
     // Check if key exists in map.
-    @if map-has-key($map, $key) {
+    @if map.has-key($map, $key) {
       // Init index counter variable.
       $i: 0;
+
       // Init key index.
       $key-index: false;
 
       // Traverse map for key.
       @each $map-key,
-      $map-value in $map {
+        $map-value in $map {
         // Update index
         $i: $i + 1;
 
         // If map key found, set key index.
-        @if $map-key==$key {
+        @if $map-key == $key {
           $key-index: $i;
         }
 
         // If next index return next value or key based on $return.
-        @if $i==$key-index+1 {
-          @if $return==key {
+        @if $i == $key-index + 1 {
+          @if $return == key {
             @return $map-key;
-          } @else {
+          }
+          @else {
             @return $map-value;
           }
         }
 
         // If last entry return false.
-        @if $i==length($map) {
+        @if $i == length($map) {
           @return $fallback;
         }
       }
@@ -60,11 +64,11 @@
 //
 // Replace $search with $replace in $string.
 //
-@function str-replace($string, $search, $replace: '') {
-  $index: str-index($string, $search);
+@function civic-str-replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return string.slice($string, 1, $index - 1) + $replace + civic-str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
   }
 
   @return $string;

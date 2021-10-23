@@ -51,6 +51,7 @@
         'm': (20px, 34px, 400),
         'xs': (16px, 26px, 400)
       ));
+
       background-color: civic-color(neutral);
       border: 1px solid civic-color(shade_30);
       border-radius: rem(4px);
@@ -67,6 +68,7 @@
 
   &__helper-text {
     @include civic-typography(body);
+
     color: civic-color(neutral);
   }
 }

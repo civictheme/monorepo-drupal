@@ -14,11 +14,13 @@
 }
 
 @mixin civic-button-type($type) {
+  // stylelint-disable-next-line scss/dollar-variable-pattern
   $types: ('primary', 'secondary', 'tertiary');
 
   @if not index($types, $type) {
     @error '"#{$type}" is not one of allowed #{$types}.';
   }
+
   display: inline-block;
   text-decoration: none;
 
@@ -37,7 +39,6 @@
   }
 
   &.civic-theme-light {
-
     &:focus {
       box-shadow: $civic-outline-boxshadow;
       background-color: $civic-button-light-focus-background-color;
@@ -101,11 +102,9 @@
         fill: $civic-button-dark-state-color;
       }
     }
-
-
   }
 
-  @if $type=='primary' {
+  @if $type == 'primary' {
     &.civic-theme-light {
       background-color: $civic-button-light-primary-background-color;
       color: $civic-button-light-primary-color;
@@ -119,7 +118,8 @@
       background-color: $civic-button-dark-primary-background-color;
       color: $civic-button-dark-primary-color;
     }
-  } @else if ($type=='secondary') {
+  }
+  @else if $type == 'secondary' {
     &.civic-theme-light {
       background-color: $civic-button-light-secondary-background-color;
       color: $civic-button-light-secondary-color;
@@ -159,7 +159,8 @@
         border-color: $civic-button-dark-disabled-background-color;
       }
     }
-  } @else if ($type=='tertiary') {
+  }
+  @else if $type == 'tertiary' {
     &.civic-theme-light {
       background-color: $civic-button-light-tertiary-background-color;
       color: $civic-button-light-tertiary-color;
@@ -174,22 +175,28 @@
       color: $civic-button-dark-tertiary-color;
     }
   }
-
 }
 
 @mixin civic-button-size($size) {
+  // stylelint-disable-next-line scss/dollar-variable-pattern
   $sizes: ('large', 'regular', 'small');
 
-  @if ($size=='large') {
+  @if $size == 'large' {
     @include civic-typography('label-#{$size}');
+
     padding: civic-space(2) civic-space(5);
-  } @else if ($size=='regular') {
+  }
+  @else if $size == 'regular' {
     @include civic-typography('label-#{$size}');
+
     padding: civic-space(2) civic-space(5);
-  } @else if ($size=='small') {
+  }
+  @else if $size == 'small' {
     @include civic-typography('label-#{$size}');
+
     padding: civic-space(1) civic-space(3);
-  } @else {
+  }
+  @else {
     @error '"#{$size}" is not one of allowed #{$sizes}.';
   }
 }

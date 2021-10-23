@@ -11,7 +11,6 @@
   flex-direction: column;
   padding: civic-space(3) civic-space(3);
   align-items: flex-start;
-
   flex: none;
   order: 1;
   flex-grow: 1;
@@ -23,6 +22,7 @@
 
   &__summary {
     margin-top: civic-space(2);
+
     @include civic-typography((
       'xs': (14px, 25px, 400),
       'l': (16px, 28px, 400)
@@ -49,6 +49,7 @@
       order: 0;
       flex-grow: 0;
       margin: civic-space() 0;
+
       @include civic-breakpoint(m) {
         margin: civic-space() civic-space() 0 0;
       }
