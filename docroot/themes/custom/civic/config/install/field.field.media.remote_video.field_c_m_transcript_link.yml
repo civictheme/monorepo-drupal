@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_c_m_transcript_link
+    - media.type.remote_video
+  module:
+    - link
+id: media.remote_video.field_c_m_transcript_link
+field_name: field_c_m_transcript_link
+entity_type: media
+bundle: remote_video
+label: 'Transcript link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

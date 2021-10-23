@@ -152,6 +152,13 @@ config_devel:
     - field.field.node.civic_event.field_c_n_tagline
     - field.field.node.civic_event.field_c_n_thumbnail
     - field.field.node.civic_event.field_c_n_topics
+    - field.field.media.remote_video.field_c_m_share_link
+    - field.field.media.remote_video.field_c_m_title
+    - field.field.media.remote_video.field_c_m_transcript_link
+    - field.field.media.remote_video.field_media_oembed_video
+    - field.storage.media.field_c_m_share_link
+    - field.storage.media.field_c_m_title
+    - field.storage.media.field_c_m_transcript_link
     - field.field.node.civic_page.field_c_n_banner_background
     - field.field.node.civic_page.field_c_n_banner_components
     - field.field.node.civic_page.field_c_n_banner_components_bott
