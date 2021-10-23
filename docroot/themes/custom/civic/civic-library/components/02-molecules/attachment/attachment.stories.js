@@ -1,60 +1,76 @@
+import {
+  object, radios, text,
+} from '@storybook/addon-knobs';
+import { getSlots } from '../../00-base/base.stories';
 import CivicAttachment from './attachment.twig';
-import imageFile from '../../../assets/image.png';
 
 export default {
   title: 'Molecule/Attachment',
-  component: CivicAttachment,
-  argTypes: {
-    theme: {
-      name: 'Theme',
-      options: {
+};
+
+export const Attachment = () => {
+  const generalKnobTab = 'General';
+
+  const date = new Date().toLocaleDateString('en-uk', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+
+  return CivicAttachment({
+    theme: radios(
+      'Theme',
+      {
         Light: 'light',
         Dark: 'dark',
       },
-      control: { type: 'radio' }, // Automatically inferred when 'options' is defined
-    },
-  },
-};
-
-const defaultArgs = {
-  theme: 'light',
-  title: 'Attachment card title test',
-  summary: 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.',
-  content_bottom: 'This is content bottom text',
-};
-
-export const Attachment = CivicAttachment.bind({});
-Attachment.args = {
-  ...defaultArgs,
-  links: [
-    {
-      url: 'http://example.com',
-      title: 'Test link title',
-      last_updated: new Date().toLocaleDateString(),
-    },
-    {
-      url: 'http://example.com',
-      title: 'Test link title',
-      last_updated: new Date().toLocaleDateString(),
-    },
-    {
-      url: 'http://example.com',
-      title: 'Test link title',
-      last_updated: new Date().toLocaleDateString(),
-    },
-  ],
-};
-
-export const Publication = CivicAttachment.bind({});
-Publication.args = {
-  ...defaultArgs,
-  icon: '/icons/civic-arrows.svg#arrows-bottom-alignment',
-  link: {
-    url: 'http://example.com',
-    title: 'Test link title',
-  },
-  image: {
-    src: imageFile,
-    alt: 'Civic image alt',
-  },
+      'light',
+      generalKnobTab,
+    ),
+    title: text('Title', 'Event name which runs across two or three lines', generalKnobTab),
+    summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', generalKnobTab),
+    links: object('Links', [
+      {
+        url: 'https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.doc',
+        text: 'DOC type document',
+        last_updated: date,
+        icon: 'fileandfolders_wordfile',
+      },
+      {
+        url: 'https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.docx',
+        text: 'DOCX type document',
+        last_updated: date,
+        icon: 'fileandfolders_wordfile',
+      },
+      {
+        url: 'https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf',
+        text: 'PDF type document',
+        last_updated: date,
+        icon: 'fileandfolders_pdffile',
+      },
+      {
+        url: 'https://file-examples-com.github.io/uploads/2017/08/file_example_PPT_250kB.ppt',
+        text: 'PPT type document',
+        last_updated: date,
+        icon: 'fileandfolders_clipboard_3',
+      },
+      {
+        url: 'https://file-examples-com.github.io/uploads/2017/02/file_example_XLSX_10.xlsx',
+        text: 'XLSX type document',
+        last_updated: date,
+        icon: 'fileandfolders_document',
+      },
+      {
+        url: 'https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_10.xls',
+        text: 'XLS type document',
+        last_updated: date,
+        icon: 'fileandfolders_document',
+      },
+    ], generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
+    ...getSlots([
+      'content_top',
+      'content_bottom',
+    ]),
+  });
 };

@@ -1,6 +1,5 @@
 import { text, radios } from '@storybook/addon-knobs';
 import CivicHeading from './heading.twig';
-import './heading.scss';
 
 export default {
   title: 'Atom/Heading',
@@ -16,4 +15,5 @@ export const Heading = () => CivicHeading({
     H6: '6',
   }, '1'),
   title: text('Text', 'Heading Text'),
+  modifier_class: text('Additional class', ''),
 });

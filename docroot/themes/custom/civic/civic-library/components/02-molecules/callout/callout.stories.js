@@ -76,5 +76,7 @@ export const Callout = () => {
     ],
   };
 
-  return CivicCallout(calloutKnobs);
+  const html = CivicCallout(calloutKnobs);
+
+  return `<div class="story-wrapper-size--large">${html}</div>`;
 };

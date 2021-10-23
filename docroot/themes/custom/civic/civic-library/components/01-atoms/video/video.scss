@@ -23,10 +23,7 @@
     }
 
     a {
-      @include civic-typography((
-      	'xs': (14px, 23px, 400, 'primary', 0),
-        'm': (16px, 26px, 400, 'primary', 0)
-      ));
+      @include civic-typography('small');
     }
   }
 
@@ -47,7 +44,7 @@
     height: 100%;
   }
 
-  .civic-icon: {
+  .civic-icon {
     vertical-align: middle;
   }
 

@@ -1,0 +1,10 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a Search.
+ */
+#}
+
+<form action="{{ search_url ? search_url : '/' }}" method="get">
+  {% include '@molecules/search/search.twig' %}
+</form>

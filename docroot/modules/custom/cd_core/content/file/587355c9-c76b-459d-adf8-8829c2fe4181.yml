@@ -12,7 +12,7 @@ default:
       value: Download-Icon.svg
   uri:
     -
-      value: 'public://2021-09/Download-Icon_33.svg'
+      value: 'public://2021-09/Download-Icon_33_1_0_5.svg'
   filemime:
     -
       value: image/svg+xml

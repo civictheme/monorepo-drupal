@@ -1,4 +1,4 @@
-@paragraph @civic_accordion
+@civic @paragraph @civic_accordion
 Feature: Tests the Accordion
 
   Ensure that Accordion paragraph exists and has the expected fields.

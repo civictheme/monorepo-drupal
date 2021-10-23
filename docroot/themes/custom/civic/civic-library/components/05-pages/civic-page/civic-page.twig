@@ -1,0 +1,24 @@
+{#
+/**
+ * @file Civic Page component.
+ *
+ * Available variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - title: [string] The text of page title.
+ * - theme: [string] card theme: light, dark.
+ * - components: [array] Components Cards array.
+ */
+#}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = modifier_class|default('') %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class) %}
+
+{% extends '@templates/page.twig' %}
+
+{% block content %}
+  <article class="civic-page {{ modifier_class }}">
+    {% if components is not empty %}
+      {{ components }}
+    {% endif %}
+  </article>
+{% endblock %}

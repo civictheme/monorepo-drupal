@@ -15,17 +15,21 @@
  * - date: [string] Date text
  * - url: [string] Url for link out from Card
  * - content_bottom: [string] Component slot for bottom of Card.
+ * - modifier_class: [string] Additional classes for Card.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type_class = image is empty ? 'civic-promo-card--no-image' : '' %}
-{% set modifier_class = '%s %s'|format(theme_class, type_class) %}
+{% set image_over_class = image_over ? 'civic-promo-card--image-over' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, type_class, image_over_class, modifier_class) %}
 
 <div class="civic-promo-card {{ modifier_class }}">
-  {% if image.src is not empty %}
+  {% if image or image_over %}
     <div class="civic-promo-card__image-wrapper">
-      <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
+      {% if image.src is not empty %}
+        <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
+      {% endif %}
       {% if image_over %}
         <div class="civic-promo-card__image-over">
           {{ image_over }}
@@ -77,7 +81,7 @@
           <div class="civic-promo-card__tags">
             {% for tag in tags %}
               {% include '@atoms/tag/tag.twig' with {
-                theme: theme,
+                theme: theme == 'light' ? 'dark' : 'light',
                 text: tag,
                 modifier_class: 'civic-tag--card',
               } only %}

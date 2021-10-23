@@ -6,6 +6,7 @@ dependencies:
     - node.type.civic_page
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_content
+    - paragraphs.paragraphs_type.civic_search
     - paragraphs.paragraphs_type.civic_slider
   module:
     - entity_reference_revisions
@@ -27,6 +28,7 @@ settings:
       civic_content: civic_content
       civic_slider: civic_slider
       civic_card_container: civic_card_container
+      civic_search: civic_search
     target_bundles_drag_drop:
       civic_accordion:
         weight: 11
@@ -61,6 +63,12 @@ settings:
       civic_card_reference_promo:
         weight: 29
         enabled: false
+      civic_card_subject:
+        weight: 35
+        enabled: false
+      civic_card_subject_reference:
+        weight: 36
+        enabled: false
       civic_card_task:
         weight: 16
         enabled: false
@@ -70,9 +78,18 @@ settings:
       civic_map:
         weight: 32
         enabled: false
+      civic_next_step:
+        weight: 40
+        enabled: false
       civic_promo:
         weight: 33
         enabled: false
+      civic_quick_links:
+        weight: 42
+        enabled: false
+      civic_search:
+        enabled: true
+        weight: 43
       civic_service_card:
         weight: 18
         enabled: false

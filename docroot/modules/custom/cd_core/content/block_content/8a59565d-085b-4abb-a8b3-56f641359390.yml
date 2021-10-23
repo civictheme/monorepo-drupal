@@ -10,7 +10,7 @@ default:
       value: true
   info:
     -
-      value: 'Block callout component'
+      value: 'Demo - Callout'
   reusable:
     -
       value: true

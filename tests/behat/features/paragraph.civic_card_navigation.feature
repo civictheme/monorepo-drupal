@@ -1,4 +1,4 @@
-@paragraph @civic_card_navigation
+@civic @paragraph @civic_card_navigation
 Feature: Tests the Card container paragraph
 
   Ensure that Card container paragraph exists and has the expected fields.
@@ -39,7 +39,7 @@ Feature: Tests the Card container paragraph
     And I press the "field_c_n_components_civic_card_container_add_more" button
     And I wait for AJAX to finish
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-link-0-uri" element
+    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-header-link-0-uri" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-column-count select.required" element
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_column_count]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]']" element

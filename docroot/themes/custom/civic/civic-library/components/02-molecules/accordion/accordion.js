@@ -185,9 +185,7 @@ CivicAccordion.prototype.destroy = function () {
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.civic-accordion .civic-accordion__list').forEach((accordion) => {
-    // eslint-disable-next-line no-new
-    new CivicAccordion(accordion);
-  });
+document.querySelectorAll('.civic-accordion .civic-accordion__list').forEach((accordion) => {
+  // eslint-disable-next-line no-new
+  new CivicAccordion(accordion);
 });

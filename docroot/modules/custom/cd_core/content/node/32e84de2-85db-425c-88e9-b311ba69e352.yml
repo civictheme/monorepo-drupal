@@ -154,6 +154,16 @@ default:
           field_c_p_fill_width:
             -
               value: true
+          field_c_p_footer_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_header_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
           field_c_p_title:
             -
               value: 'Card 3 column'

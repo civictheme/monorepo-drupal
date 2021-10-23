@@ -1,6 +1,5 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicDirectionalLink from './directional-link.twig';
-import './directional-link.scss';
 
 export default {
   title: 'Atom/Directional Link',
@@ -20,14 +19,15 @@ export const DirectionalLink = () => CivicDirectionalLink({
   direction: radios(
     'Direction', {
       Top: 'top',
-      Next: 'next',
       Bottom: 'bottom',
-      Back: 'back',
+      Left: 'left',
+      Right: 'right',
     },
-    'next',
+    'left',
   ),
   text: text('Text', 'Top'),
   url: text('URL', '#top'),
-  is_disabled: boolean('Is disabled', false),
+  title: text('Text', 'Top link title'),
+  disabled: boolean('Disabled', false),
   modifier_class: text('Additional class', ''),
 });

@@ -2,7 +2,6 @@ import { object, radios, text } from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
 
 import CivicServiceCard from './service-card.twig';
-import './service-card.scss';
 
 export default {
   title: 'Molecule/Card',
@@ -55,11 +54,13 @@ export const ServiceCard = () => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicServiceCard({
+  const html = CivicServiceCard({
     ...generalKnobs,
     ...getSlots([
       'content_top',
       'content_bottom',
     ]),
   });
+
+  return `<div class="story-wrapper-size--small">${html}</div>`;
 };

@@ -10,19 +10,29 @@
  * - url: [string] URL for the link button.
  * - is_external [boolean] Link is external.
  * - title: [string] Defines the title of a link.
+ * - attributes: [string] Additional attributes.
+ * - context: [string] Additional context for link (visually hidden).
  */
 #}
 {% set is_external = is_external|default(false) %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = modifier_class|default('civic-link--normal') %}
-{% set modifier_class = modifier_class ~ ' ' ~ theme_class %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<a class="civic-link {{ modifier_class }}" href="{{ url }}" title="{{ title }}" {{ new_window ? 'target="_blank"' }}>
-  {{ text }}
-  {% if is_external %}
-    {% include '@atoms/icon/icon.twig' with {
-      symbol: 'arrows_upperrightarrow',
-      modifier_class: 'civic-link__external-icon'
-    } %}
-  {% endif %}
-</a>
+{% if text %}
+  <a class="civic-link {{ modifier_class }}" {% if url %}href="{{ url }}"{% endif %} {% if title %}title="{{ title }}"{% endif %} {{ new_window ? 'target="_blank"' }} {% if attributes %}{{ attributes }}{% endif %}>
+    {% if context %}
+      <span class="visually-hidden">
+        {{ context }}
+      </span>
+    {% endif %}
+
+    {{ text }}
+
+    {% if is_external %}
+      {% include '@atoms/icon/icon.twig' with {
+        symbol: 'arrows_upperrightarrow',
+        modifier_class: 'civic-link__external-icon'
+      } %}
+    {% endif %}
+  </a>
+{% endif %}

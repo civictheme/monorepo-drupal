@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Link list component.
+ *
+ * Variables:
+ * - type: [string] List type: default, inline.
+ * - theme: [string] Light, Dark.
+ * - links: [array] Links array.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set is_inline_class = is_inline ? 'civic-link-list--inline' : '' %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_inline_class, modifier_class|default('')) %}
+
+{% if links %}
+  <div class="civic-link-list {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
+    {% if title %}
+      <div class="civic-link-list__title">
+        {{ title }}
+      </div>
+    {% endif %}
+
+    <ul class="civic-link-list__list">
+      {% for link in links %}
+        <li class="civic-link-list__list__item">
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: link.title,
+            url: link.url,
+            new_window: link.new_window ? link.new_window : false,
+            is_external: link.is_external ? link.is_external : false,
+          } only %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

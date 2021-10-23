@@ -1,10 +1,8 @@
-@import '../base.stories';
-
 .story-colors-wrapper {
   display: flex;
   flex-flow: row wrap;
 
-  $all-colors: map-merge($civic-default-colors, $civic-colors);
+  $all-colors: civic-all-colors();
   @include civic-generate-class-variations-from-map($all-colors, 'story-color') using($key, $value, $index) {
     width: 100px;
     height: 100px;

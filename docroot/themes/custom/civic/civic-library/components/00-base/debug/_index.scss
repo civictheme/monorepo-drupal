@@ -1,0 +1,23 @@
+//
+// Block debug class
+//
+.civic-block-debug {
+  @include block-debug;
+}
+
+.civic-breakpoint-debug {
+  @each $bp, $value in $civic-breakpoints {
+    &::before {
+      @include civic-breakpoint($bp) {
+        content: '#{$bp}: >=#{$value}';
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background: rgba(purple, .75);
+        display: block;
+        padding: .25em .5em;
+        z-index: 1000;
+      }
+    }
+  }
+}

@@ -2,7 +2,10 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicAlert from './alert.twig';
 
 export default {
-  title: 'Molecule/Messages',
+  title: 'Molecule/Alert',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const Alert = () => CivicAlert({
@@ -17,14 +20,15 @@ export const Alert = () => CivicAlert({
   type: radios(
     'Type',
     {
-      Info: 'info',
       Status: 'status',
+      Info: 'info',
       Error: 'error',
       Warning: 'warning',
       Success: 'success',
     },
     'info',
   ),
-  title: text('Alert title', 'The information on this page is currently being updated.'),
-  description: text('Alert summary', 'Please contact your service desk for further assistance. Filium morte multavit si sine causa, nollem me tamen laudandis. Learn more. Please contact your service desk for further assistance. Filium morte multavit si sine causa, nollem me tamen laudandis. Learn more. Please contact your service desk for further assistance. Filium morte multavit si sine causa, nollem me tamen laudandis. Learn more.'),
+  title: text('Title', 'Site information'),
+  description: text('Summary', 'Filium morte multavit si sine causa, nollem me tamen laudandis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vel elit laoreet, dignissim arcu sit amet, vulputate risus.'),
+  modifier_class: text('Additional class', ''),
 });

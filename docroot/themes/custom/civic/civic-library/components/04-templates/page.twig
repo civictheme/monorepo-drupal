@@ -2,35 +2,45 @@
 
   {% block header %}
     {% include '@organisms/header/header.twig' with {
-      top: page.header_top,
-      logo: page.header_logo,
-      content: page.header_content,
-      bottom: page.header_bottom,
+      top: header_top,
+      logo: header_logo,
+      content: header_content,
+      bottom: header_bottom,
     } only %}
   {% endblock %}
 
   {% block banner %}
-    {{ page.banner }}
+    {{ banner }}
   {% endblock %}
 
-  {% block highlighted %}
-    {{ page.highlighted }}
-  {% endblock %}
+  {% if highlighted is not empty %}
+    {% block highlighted %}
+      <div class="container">
+        {{ highlighted }}
+      </div>
+    {% endblock %}
+  {% endif %}
+
 
   {% block content %}
     {% include '@organisms/content/content.twig' with {
-      content: page.content,
-      content_left: page.content_left,
+      content: content,
+      content_left: content_left,
     } only %}
   {% endblock %}
 
   {% block footer %}
     {% include '@organisms/footer/footer.twig' with {
-      top_left: page.footer_top_left,
-      top_right: page.footer_top_right,
-      middle: page.footer_middle,
-      bottom_left: page.footer_bottom_left,
-      bottom_right: page.footer_bottom_right,
+      theme: footer_theme,
+      logo: footer_logo,
+      content_top1: footer_top_1,
+      content_top2: footer_top_2,
+      content_middle1: footer_middle_1,
+      content_middle2: footer_middle_2,
+      content_middle3: footer_middle_3,
+      content_middle4: footer_middle_4,
+      content_bottom1: footer_bottom_1,
+      content_bottom2: footer_bottom_2,
     } only %}
   {% endblock %}
 </div>

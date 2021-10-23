@@ -40,6 +40,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_n_banner_type:
+    -
+      value: default
   field_c_n_components:
     -
       entity:
@@ -81,9 +84,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_reference:
                     -
                       entity: e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e
@@ -108,9 +108,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_reference:
                     -
                       entity: 32e84de2-85db-425c-88e9-b311ba69e352
@@ -135,9 +132,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_reference:
                     -
                       entity: 5c23a0bd-3ee8-4608-bdec-b396f0be3c7d
@@ -162,9 +156,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_reference:
                     -
                       entity: dca378da-3f06-49fa-86e5-e97627ad77e6
@@ -177,14 +168,22 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_link:
+          field_c_p_footer_link:
             -
-              uri: 'http://google.com'
-              title: 'Read more'
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_header_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
               options: {  }
           field_c_p_title:
             -
               value: 'Card container'
+          field_c_p_with_spacing:
+            -
+              value: false
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

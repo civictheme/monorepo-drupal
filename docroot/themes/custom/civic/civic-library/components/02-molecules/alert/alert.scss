@@ -4,49 +4,93 @@
 
 @import '../../00-base/base';
 
-// mixin
-@mixin civic-alert-border-colors() {
-  @each $type in $civic-messages-types {
-    &--#{$type} {
-      &.civic-theme-light {
-        border-color: map-get($civic-messages-icon-colors, '#{$type}-light');
-      }
+.civic-alert {
+  $root: &;
+  position: relative;
+  border-radius: $civic-border-radius;
+  padding: civic-space(2);
 
-      &.civic-theme-dark {
-        border-color: map-get($civic-messages-icon-colors, '#{$type}-dark');
+  @include civic-breakpoint('m') {
+    padding: civic-space(2) * 1.5;
+  }
+
+  @include civic-typography('tag');
+
+  #{$root}__title {
+    @include civic-typography('heading-6');
+    display: flex;
+    align-items: center;
+
+    @include civic-breakpoint-upto('m') {
+      margin-bottom: civic-space();
+    }
+  }
+
+  #{$root}__icon {
+    width: rem(24px);
+    margin-right: civic-space();
+
+    @include civic-breakpoint('m') {
+      margin-right: civic-space(2);
+    }
+  }
+
+  .civic-icon {
+    width: rem(24px);
+    height: rem(24px);
+  }
+
+  #{$root}__summary {
+    display: flex;
+  }
+
+  #{$root}__close-icon {
+    cursor: pointer;
+    margin-left: civic-space(3);
+    position: absolute;
+    top: civic-space(2);
+    right: civic-space(2);
+
+    @include civic-breakpoint(m) {
+      position: static;
+      align-self: center;
+    }
+  }
+
+  &.civic-theme-light {
+    color: $civic-alert-light-color;
+  }
+
+  &.civic-theme-dark {
+    color: $civic-alert-dark-color;
+  }
+
+  @each $type, $values in $civic-alert-light-background-colors {
+    &#{$root}--#{$type} {
+      &.civic-theme-light {
+        background-color: map-get($civic-alert-light-background-colors, '#{$type}');
+        border-color: map-get($civic-alert-light-icon-colors, '#{$type}');
+
+        #{$root}__icon {
+          .civic-icon {
+            fill: map-get($civic-alert-light-icon-colors, '#{$type}');
+          }
+        }
       }
     }
   }
-}
 
-.civic-alert {
-  $root: &;
-  padding: civic-space(2) 0;
+  @each $type, $values in $civic-alert-dark-background-colors {
+    &#{$root}--#{$type} {
+      &.civic-theme-dark {
+        background-color: map-get($civic-alert-dark-background-colors, '#{$type}');
+        border-color: map-get($civic-alert-dark-icon-colors, '#{$type}');
 
-  .civic-messages {
-    padding: civic-space(3) civic-space(3) civic-space(3) civic-space(2);
-    border-left: solid rem(6px) transparent;
-    @include civic-alert-border-colors();
-    @include civic-typography('body');
-
-    & + .civic-messages {
-      margin-top: civic-space(2);
-    }
-
-    &__icon {
-      width: rem(26px);
-      margin-right: civic-space(2);
-
-      .civic-icon {
-        width: rem(26px);
-        height: rem(26px);
-      }
-    }
-
-    &__title {
-      font-weight: 600;
-      + div {
-        margin-top: civic-space();
+        #{$root}__icon {
+          .civic-icon {
+            fill: map-get($civic-alert-dark-icon-colors, '#{$type}');
+          }
+        }
       }
     }
   }

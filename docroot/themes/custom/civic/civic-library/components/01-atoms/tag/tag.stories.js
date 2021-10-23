@@ -3,7 +3,6 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicTag from './tag.twig';
-import './tag.scss';
 
 export default {
   title: 'Atom/Tag',
@@ -24,15 +23,7 @@ export const Tag = () => {
       generalKnobTab,
     ),
     text: text('Text', 'Tag text', generalKnobTab),
-    modifier_class: radios(
-      'Type',
-      {
-        Default: '',
-        Card: 'civic-tag--card',
-      },
-      '',
-      generalKnobTab,
-    ),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   const iconKnobTab = 'Icon';
@@ -51,5 +42,8 @@ export const Tag = () => {
     ) : null,
   };
 
-  return CivicTag({ ...generalKnobs, ...iconKnobs });
+  return CivicTag({
+    ...generalKnobs,
+    ...iconKnobs,
+  });
 };

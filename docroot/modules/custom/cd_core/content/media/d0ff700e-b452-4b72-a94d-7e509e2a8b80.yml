@@ -30,6 +30,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_m_caption:
+    -
+      value: 'Civic demo image'
   field_media_image:
     -
       entity: 41c354ef-d5f3-4e68-9bdf-4085b47cdadf

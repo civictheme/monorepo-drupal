@@ -1,4 +1,4 @@
-@block_type @civic_banner
+@civic @block_type @block_civic_banner
 Feature: Tests the Civic banner block Type
 
   Ensure that Civic banner block fields have been setup correctly.

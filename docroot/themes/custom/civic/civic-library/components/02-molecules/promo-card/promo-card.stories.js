@@ -49,12 +49,12 @@ export const PromoCard = () => {
   // Adding dynamic promo card tags.
   const tagKnobTab = 'Tags';
   const tagNum = number(
-    'Number of tags (1-4)',
+    'Number of tags (0-4)',
     1,
     {
       range: true,
-      min: 1,
-      max: 4,
+      min: 0,
+      max: 10,
       step: 1,
     },
     tagKnobTab,
@@ -72,7 +72,7 @@ export const PromoCard = () => {
     tagNum,
   };
 
-  return CivicPromoCard({
+  const html = CivicPromoCard({
     ...generalKnobs,
     ...tagKnobs,
     ...getSlots([
@@ -82,4 +82,6 @@ export const PromoCard = () => {
       'content_bottom',
     ]),
   });
+
+  return `<div class="story-wrapper-size--small">${html}</div>`;
 };

@@ -14,9 +14,11 @@ dependencies:
   - permissions_filter:permissions_filter
   - shield:shield
   - stage_file_proxy:stage_file_proxy
+  - styleguide:styleguide
   # Required for Civic theme.
   - components:components
   - default_content:default_content
   - drupal:block_content
   - field_group:field_group
+  - menu_block:menu_block
   - paragraphs:paragraphs

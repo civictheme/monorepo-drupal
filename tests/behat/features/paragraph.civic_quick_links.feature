@@ -1,4 +1,4 @@
-@paragraph @civic_quick_links
+@civic @paragraph @civic_quick_links
 Feature: Tests the Quick links paragraph type and fields.
 
   Ensure that Quick links paragraph exists and has the expected fields.
@@ -27,7 +27,7 @@ Feature: Tests the Quick links paragraph type and fields.
     And the "Quick links" checkbox should be checked
 
   @api @javascript
-  Scenario: Component Block paragraph reference exists and works
+  Scenario: Civic Component paragraph reference exists and works
     Given I am logged in as a user with the "Site Administrator" role
     When I go to "block/add/civic_component_block"
     And I click on "div.field--name-field-c-b-components .paragraphs-add-wrapper .dropbutton-toggle button" element

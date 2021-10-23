@@ -1,0 +1,73 @@
+//
+// message.
+//
+
+@import '../../00-base/base';
+
+.civic-message {
+  $root: &;
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  border-radius: $civic-border-radius;
+  border-left: solid rem(6px) transparent;
+  padding: civic-space(3) civic-space(3) civic-space(3) civic-space(2);
+  @include civic-typography('body');
+
+  #{$root}__icon {
+    width: rem(26px);
+    margin-right: civic-space(2);
+  }
+
+  .civic-icon {
+    width: rem(26px);
+    height: rem(26px);
+  }
+
+  #{$root}__title {
+    font-weight: 600;
+  }
+
+  #{$root}__summary {
+    margin-top: civic-space();
+  }
+
+  &.civic-theme-light {
+    color: $civic-message-light-color;
+  }
+
+  &.civic-theme-dark {
+    color: $civic-message-dark-color;
+  }
+
+  @each $type, $values in $civic-message-light-background-colors {
+    &#{$root}--#{$type} {
+      &.civic-theme-light {
+        background-color: map-get($civic-message-light-background-colors, '#{$type}');
+        border-color: map-get($civic-message-light-icon-colors, '#{$type}');
+
+        #{$root}__icon {
+          .civic-icon {
+            fill: map-get($civic-message-light-icon-colors, '#{$type}');
+          }
+        }
+      }
+    }
+  }
+
+  @each $type, $values in $civic-message-dark-background-colors {
+    &#{$root}--#{$type} {
+      &.civic-theme-dark {
+        background-color: map-get($civic-message-dark-background-colors, '#{$type}');
+        border-color: map-get($civic-message-dark-icon-colors, '#{$type}');
+
+        #{$root}__icon {
+          .civic-icon {
+            fill: map-get($civic-message-dark-icon-colors, '#{$type}');
+          }
+        }
+      }
+    }
+  }
+}

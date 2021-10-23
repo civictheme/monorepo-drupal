@@ -1,7 +1,7 @@
 const path = require('path');
 const glob = require('glob');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const globImporter = require('node-sass-glob-importer');
+const magicImporter = require('node-sass-magic-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -48,7 +48,7 @@ module.exports = {
             options: {
               sourceMap: true,
               sassOptions: {
-                importer: globImporter(),
+                importer: magicImporter(),
               },
             },
           },
@@ -61,6 +61,23 @@ module.exports = {
           loader: 'twigjs-loader'
         }]
       },
+      // Wrap JS with DOMContentLoaded.
+      {
+        test: /components\/[^\/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
+        exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env'
+            ],
+            plugins: [
+              './node_modules/babel-plugin-syntax-dynamic-import',
+              './webpack/babel-plugin-script-wrapper.js',
+            ],
+          }
+        }]
+      }
     ],
   },
   resolve: {

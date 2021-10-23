@@ -1,6 +1,5 @@
 import { radios, text } from '@storybook/addon-knobs';
 import CivicNextSteps from './next-steps.twig';
-import './next-steps.scss';
 
 export default {
   title: 'Molecule/Next Steps',

@@ -7,23 +7,48 @@
  * It is not intended to be included in any other component.
  *
  * Variables:
- * - type: [string] Message type: Info, Error, Warning, Success.
+ * - type: [string] Alert type: Info, Error, Warning, Success.
  * - theme: [string] Light, Dark.
- * - title: [string] Message title.
- * - description: [string] Message summary.
- *
+ * - title: [string] Alert title.
+ * - description: [string] Alert summary.
  */
 #}
-{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set component_class = 'civic-alert' %}
-{% set type_class = 'civic-alert--%s'|format(type|default('info')) %}
-{% set alert_class = '%s %s %s'|format(component_class, theme_class, type_class) %}
 
-<div class='{{ alert_class }}' data-component-name='alert'>
-  {% include '@molecules/messages/messages.twig' with {
-    theme: theme,
-    title: title,
-    description: description,
-    type: type
-  } only %}
+{% set type = type|default('info') %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type_class = 'civic-alert--%s'|format(type, type) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
+
+{% set icons = {
+  status: 'userinterface_informationmark',
+  info: 'userinterface_informationmark',
+  warning: 'userinterface_exclamationmark_1',
+  error: 'userinterface_exclamationmark_1',
+  success: 'userinterface_approve',
+} %}
+
+<div class="civic-alert {{ modifier_class }}" data-component-name="alert">
+  <div class="container">
+    <div class="row">
+      <div class="civic-alert__title col-xs-12 col-m-3">
+        {% if icons[type] is defined %}
+          <span class="civic-alert__icon">
+            {% include "@atoms/icon/icon.twig" with {
+              symbol: icons[type],
+              modifier_class: "%s civic-icon--%s"|format(theme_class, type)
+            } only %}
+          </span>
+        {% endif %}
+        {{ title }}
+      </div>
+      <div class="civic-alert__summary col-xs-12 col-m-9">
+        {{ description }}
+        <span class="civic-alert__close-icon" data-action="close">
+          {% include '@atoms/icon/icon.twig' with {
+            symbol: 'userinterface_cancel',
+          } only %}
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
