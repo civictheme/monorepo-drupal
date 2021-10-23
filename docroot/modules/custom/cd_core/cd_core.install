@@ -5,7 +5,9 @@
  * Install file for core.
  */
 
+use Drupal\block\BlockInterface;
 use Drupal\cd_core\Helper;
+use Drupal\Core\Config\Entity\ConfigEntityUpdater;
 use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
@@ -18,7 +20,8 @@ function cd_core_install() {
   // Run all update functions when installing this module.
   foreach ($functions['user'] as $function) {
     if (strpos($function, 'cd_core_update_') === 0) {
-      call_user_func($function);
+      $sandbox = [];
+      call_user_func($function, $sandbox);
     }
   }
 
@@ -127,9 +130,9 @@ function cd_core_update_9003() {
 }
 
 /**
- * Provisions links in footer.
+ * Provisions links in footer and updates menu block configurations.
  */
-function cd_core_update_9004() {
+function cd_core_update_9004($sandbox) {
   Helper::saveMenuTree('civic_footer', [
     'General' => [
       'link' => '/<front>',
@@ -137,38 +140,57 @@ function cd_core_update_9004() {
         'For individuals' => '/node/36',
         'For businesses' => '/civic/pages',
         'For government' => '/node/31',
-        'Services' => '/node/40',
         'News & events' => '/node/9',
       ],
     ],
     'About us' => [
       'link' => '/<front>',
       'children' => [
+        'News & events' => '/node/9',
         'For individuals' => '/node/36',
         'For businesses' => '/civic/pages',
         'For government' => '/node/31',
-        'Services' => '/node/40',
-        'News & events' => '/node/9',
       ],
     ],
     'Help' => [
       'link' => '/<front>',
       'children' => [
+        'For government' => '/node/31',
         'For individuals' => '/node/36',
         'For businesses' => '/civic/pages',
-        'For government' => '/node/31',
-        'Services' => '/node/40',
         'News & events' => '/node/9',
       ],
     ],
     'Services' => [
       'link' => '/<front>',
       'children' => [
+        'Services' => '/node/40',
         'For individuals' => '/node/36',
         'For businesses' => '/civic/pages',
         'For government' => '/node/31',
-        'Services' => '/node/40',
       ],
     ],
   ]);
+
+  $theme = \Drupal::theme()->getActiveTheme()->getName();
+
+  $map = [
+    $theme . '_footer_menu_1' => Helper::findMenuItemByTitle('civic_footer', 'General'),
+    $theme . '_footer_menu_2' => Helper::findMenuItemByTitle('civic_footer', 'About us'),
+    $theme . '_footer_menu_3' => Helper::findMenuItemByTitle('civic_footer', 'Help'),
+    $theme . '_footer_menu_4' => Helper::findMenuItemByTitle('civic_footer', 'Services'),
+  ];
+
+  \Drupal::classResolver(ConfigEntityUpdater::class)
+    ->update($sandbox, 'block', function (BlockInterface $block) use ($map) {
+      if (strpos($block->getPluginId(), 'menu_block:') === 0) {
+        if (!empty($map[$block->id()])) {
+          $block_settings = $block->get('settings');
+          $block_settings['parent'] = 'civic_footer:menu_link_content:' . $map[$block->id()]->uuid();
+          $block->set('settings', $block_settings);
+          return TRUE;
+        }
+      }
+      return FALSE;
+    });
 }
