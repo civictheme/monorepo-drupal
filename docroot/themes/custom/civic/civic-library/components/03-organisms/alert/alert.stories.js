@@ -2,7 +2,7 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicAlert from './alert.twig';
 
 export default {
-  title: 'Molecules/Alert',
+  title: 'Organisms/Alert',
   parameters: {
     layout: 'fullscreen',
   },

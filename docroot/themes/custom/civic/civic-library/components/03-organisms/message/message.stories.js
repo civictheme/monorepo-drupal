@@ -2,7 +2,7 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicMessage from './message.twig';
 
 export default {
-  title: 'Molecules/Message',
+  title: 'Organisms/Message',
 };
 
 export const Message = () => CivicMessage({

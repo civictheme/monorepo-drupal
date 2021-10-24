@@ -2,7 +2,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicDirectionalLink from './directional-link.twig';
 
 export default {
-  title: 'Atoms/Directional Link',
+  title: 'Molecules/Directional Link',
   parameters: {
     layout: 'centered',
   },

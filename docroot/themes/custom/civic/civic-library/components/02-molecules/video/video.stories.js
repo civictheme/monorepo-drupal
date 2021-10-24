@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicVideo from './video.twig';
 
 export default {
-  title: 'Atoms/Video',
+  title: 'Molecules/Video',
 };
 
 export const Video = () => CivicVideo({
