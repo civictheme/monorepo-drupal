@@ -1,11 +1,11 @@
 _meta:
   version: '1.0'
   entity_type: media
-  uuid: b8ae7216-9d98-4f61-8ac1-638b39ce5276
+  uuid: 0f3ade52-b39b-4241-94b4-fc3a5c11f426
   bundle: civic_icon
   default_langcode: en
   depends:
-    f203e18d-4de6-421e-a7e9-11b7e4fa13d7: file
+    5f754d6e-86e3-459d-b47e-1beed04bee8b: file
 default:
   status:
     -
@@ -15,10 +15,10 @@ default:
       target_id: 1
   name:
     -
-      value: user-secret-svgrepo-com.svg
+      value: icons8-instagram-24.svg
   created:
     -
-      value: 1631869401
+      value: 1635056868
   revision_translation_affected:
     -
       value: true
@@ -29,6 +29,6 @@ default:
       pathauto: 0
   field_c_m_icon:
     -
-      entity: f203e18d-4de6-421e-a7e9-11b7e4fa13d7
+      entity: 5f754d6e-86e3-459d-b47e-1beed04bee8b
       display: false
       description: ''

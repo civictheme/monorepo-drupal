@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.civic_social_icons
+    - field.field.block_content.civic_social_icons.field_c_b_social_icons
+  module:
+    - entity_reference_revisions
+id: block_content.civic_social_icons.default
+targetEntityType: block_content
+bundle: civic_social_icons
+mode: default
+content:
+  field_c_b_social_icons:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

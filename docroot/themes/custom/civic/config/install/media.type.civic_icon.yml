@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-id: icon
+id: civic_icon
 label: Icon
 description: 'SVG icon'
 source: file

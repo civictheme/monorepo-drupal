@@ -1,0 +1,141 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: 5c0ad15f-3e9c-4eeb-8525-7a064b06fc58
+  bundle: civic_social_icons
+  default_langcode: en
+  depends:
+    203c789c-b29e-4d74-9b23-83ace0170b2f: media
+    0f3ade52-b39b-4241-94b4-fc3a5c11f426: media
+    9851aa8e-767b-406d-993f-c4c47b369285: media
+    7f39379f-7435-4a1a-905c-88a62d2dd174: media
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: 'Social icons'
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  field_c_b_social_icons:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 1b79d942-5437-45b2-b6da-d320d5ada850
+          bundle: civic_social_icon
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635056707
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_icon:
+            -
+              entity: 203c789c-b29e-4d74-9b23-83ace0170b2f
+          field_c_p_link:
+            -
+              uri: 'https://www.facebook.com/'
+              title: Facebook
+              options: {  }
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: b2dcfb13-9062-40cc-90e7-8a74f1894351
+          bundle: civic_social_icon
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635056707
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_icon:
+            -
+              entity: 0f3ade52-b39b-4241-94b4-fc3a5c11f426
+          field_c_p_link:
+            -
+              uri: 'https://www.instagram.com/'
+              title: Instagram
+              options: {  }
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8e16aba6-d2da-41a1-9bf7-1d02bea7c1a9
+          bundle: civic_social_icon
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635056922
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_icon:
+            -
+              entity: 9851aa8e-767b-406d-993f-c4c47b369285
+          field_c_p_link:
+            -
+              uri: 'https://www.youtube.com/'
+              title: Youtube
+              options: {  }
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 4cb05b4c-1ee2-4c22-b876-c14a73557817
+          bundle: civic_social_icon
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635056944
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_icon:
+            -
+              entity: 7f39379f-7435-4a1a-905c-88a62d2dd174
+          field_c_p_link:
+            -
+              uri: 'https://twitter.com/'
+              title: Twitter
+              options: {  }
