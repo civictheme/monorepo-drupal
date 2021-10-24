@@ -7,6 +7,7 @@ dependencies:
     - paragraphs.paragraphs_type.civic_social_icon
   module:
     - link
+    - media_library
 id: paragraph.civic_social_icon.default
 targetEntityType: paragraph
 bundle: civic_social_icon
@@ -15,12 +16,9 @@ content:
   field_c_p_icon:
     weight: 0
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: media_library_widget
     region: content
   field_c_p_link:
     weight: 1

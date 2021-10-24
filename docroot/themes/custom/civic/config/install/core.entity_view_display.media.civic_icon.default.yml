@@ -15,7 +15,7 @@ content:
     label: visually_hidden
     weight: 0
     settings:
-      use_description_as_link_text: true
+      use_description_as_link_text: false
     third_party_settings: {  }
     type: file_default
     region: content
