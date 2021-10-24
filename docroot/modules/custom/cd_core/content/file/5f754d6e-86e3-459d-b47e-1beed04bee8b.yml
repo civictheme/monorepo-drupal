@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 5f754d6e-86e3-459d-b47e-1beed04bee8b
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: icons8-instagram-24.svg
+  uri:
+    -
+      value: 'public://icons/icons8-instagram-24.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 16342
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1635056868
