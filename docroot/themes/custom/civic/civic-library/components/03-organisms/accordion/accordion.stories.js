@@ -2,11 +2,10 @@ import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import CivicAccordion from './accordion.twig';
-// eslint-disable-next-line import/extensions
-import './accordion.js';
+import './accordion';
 
 export default {
-  title: 'Molecules/Accordion',
+  title: 'Organisms/Accordion',
   parameters: {
     layout: 'centered',
   },
@@ -36,7 +35,7 @@ export const Accordion = () => {
   let itr = 1;
   while (itr <= numOfPanels) {
     panels.push({
-      title: text(`Panel ${itr} title `, `Acccordion title ${itr}`, panelsKnobTab),
+      title: text(`Panel ${itr} title `, `Accordion title ${itr}`, panelsKnobTab),
       content: text(`Panel ${itr} content`, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur harum magnam modi obcaecati vitae voluptatibus! Accusamus atque deleniti, distinctio esse facere, nam odio officiis omnis porro quibusdam quis repudiandae veritatis.', panelsKnobTab),
       expanded: boolean(`Panel ${itr} expanded`, expandAll, panelsKnobTab),
     });

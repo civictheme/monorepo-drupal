@@ -2,7 +2,7 @@ import { boolean, object, radios } from '@storybook/addon-knobs';
 import CivicBreadcrumb from './breadcrumb.twig';
 
 export default {
-  title: 'Molecules/Breadcrumb',
+  title: 'Organisms/Breadcrumb',
 };
 
 export const Breadcrumb = () => {

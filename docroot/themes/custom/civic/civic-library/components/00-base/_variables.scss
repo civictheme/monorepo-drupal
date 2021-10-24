@@ -316,6 +316,8 @@ $civic-callout-light-stripe-color: civic-color('secondary') !default;
 $civic-callout-dark-stripe-color: $civic-callout-light-stripe-color !default;
 
 // Basic content
+$civic-basic-content-light-background-color: inherit !default;
+$civic-basic-content-light-heading-color: inherit !default;
 $civic-basic-content-dark-background-color: civic-color('shade_45') !default;
 $civic-basic-content-dark-heading-color: civic-color('neutral') !default;
 

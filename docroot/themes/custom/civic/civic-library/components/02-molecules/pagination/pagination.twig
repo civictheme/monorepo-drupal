@@ -25,7 +25,7 @@
     <ul class="civic-pager__items">
       {# Print previous item. #}
       <li class="civic-pager__item civic-pager__item--previous">
-        {% include '@atoms/directional-link/directional-link.twig' with {
+        {% include '@molecules/directional-link/directional-link.twig' with {
           theme: theme,
           text: items.previous.text|default('Previous'),
           title: 'Go to previous page',
@@ -45,7 +45,7 @@
       {# Print first item if we are not on the first page. #}
       {% if items.first %}
         <li class="civic-pager__item civic-pager__item--first">
-          {% include '@atoms/directional-link/directional-link.twig' with {
+          {% include '@molecules/directional-link/directional-link.twig' with {
             theme: theme,
             text: items.first.text|default('First'),
             title: 'Go to first page',
@@ -84,7 +84,7 @@
 
       {# Print next item if we are not on the last page. #}
       <li class="civic-pager__item civic-pager__item--next">
-        {% include '@atoms/directional-link/directional-link.twig' with {
+        {% include '@molecules/directional-link/directional-link.twig' with {
           theme: theme,
           text: items.next.text|default('Next'),
           title: 'Go to next page',
@@ -98,7 +98,7 @@
       {# Print last item if we are not on the last page. #}
       {% if items.last %}
         <li class="civic-pager__item civic-pager__item--last">
-          {% include '@atoms/directional-link/directional-link.twig' with {
+          {% include '@molecules/directional-link/directional-link.twig' with {
             theme: theme,
             text: items.last.text|default('Last'),
             title: 'Go to last page',

@@ -9,7 +9,6 @@
   $root: &;
 
   position: relative;
-  border-radius: $civic-border-radius;
   padding: civic-space(2);
 
   @include civic-breakpoint('m') {

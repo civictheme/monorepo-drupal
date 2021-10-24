@@ -3,7 +3,10 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicSkipLink from './skip-link.twig';
 
 export default {
-  title: 'Atoms/Skip Link',
+  title: 'Molecules/Skip Link',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const SkipLink = () => CivicSkipLink({
