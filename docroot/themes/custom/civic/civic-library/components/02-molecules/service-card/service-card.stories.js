@@ -2,10 +2,9 @@ import { object, radios, text } from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
 
 import CivicServiceCard from './service-card.twig';
-import './service-card.scss';
 
 export default {
-  title: 'Molecule/Card',
+  title: 'Molecules/Card/Service Card',
   parameters: {
     layout: 'centered',
   },

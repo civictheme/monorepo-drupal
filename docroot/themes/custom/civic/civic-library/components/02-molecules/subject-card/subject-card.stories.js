@@ -1,15 +1,10 @@
-import {
-  boolean,
-  radios,
-  text,
-} from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import imageFile from '../../../assets/image.png';
 import { getSlots } from '../../00-base/base.stories';
 import CivicSubjectCard from './subject-card.twig';
-import './subject-card.scss';
 
 export default {
-  title: 'Molecule/Card',
+  title: 'Molecules/Card/Subject Card',
   parameters: {
     layout: 'centered',
   },

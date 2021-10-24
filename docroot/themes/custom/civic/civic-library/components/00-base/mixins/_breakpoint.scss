@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import '~breakpoint-sass/stylesheets/breakpoint';
 
 //
@@ -27,15 +28,11 @@
 // @endcode
 //
 @mixin civic-breakpoint($class) {
-  @if map-get($civic-breakpoints, $class)==null {
+  @if map.get($civic-breakpoints, $class) == null {
     @error '"#{$class}" is not an available breakpoint. (#{map-keys($civic-breakpoints)})';
   }
-  $breakpoint-value: map-get($civic-breakpoints, $class);
 
-  @if $breakpoint-value==null {
-  }
-
-  @include breakpoint($breakpoint-value) {
+  @include breakpoint(map.get($civic-breakpoints, $class)) {
     @content;
   }
 }
@@ -43,7 +40,7 @@
 //
 // Max-width breakpoint.
 //
-//@code
+// @code
 //
 // @include civic-breakpoint-upto(s) {
 //   color: red;
@@ -58,15 +55,11 @@
 // @endcode
 //
 @mixin civic-breakpoint-upto($class) {
-  @if map-get($civic-breakpoints, $class)==null {
+  @if map.get($civic-breakpoints, $class) == null {
     @error '"#{$class}" is not an available breakpoint. (#{map-keys($civic-breakpoints)})';
   }
-  $breakpoint-value: map-get($civic-breakpoints, $class);
 
-  @if $breakpoint-value==null {
-  }
-
-  @include breakpoint("max-width" $breakpoint-value - 1) {
+  @include breakpoint('max-width'  map.get($civic-breakpoints, $class) - 1) {
     @content;
   }
 }

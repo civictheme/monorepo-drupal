@@ -1,4 +1,4 @@
-@civic_settings
+@civic @civic_theme_settings
 Feature: Check for custom fields on Civic theme page
 
   Ensure that the relevant fields are present.
@@ -9,7 +9,13 @@ Feature: Check for custom fields on Civic theme page
     When I visit "/admin/appearance/settings/civic"
     Then the response status code should be 200
 
-    And I see field "Header Mobile Logo"
-    And I see field "Footer desktop logo"
-    And I see field "Footer mobile logo"
-    And I see field "Footer background image"
+    And I see field "Header desktop logo path"
+    And I see field "Header mobile logo path"
+    And I see field "Footer desktop logo path"
+    And I see field "Footer mobile logo path"
+    And I see field "Logo alt attribute text"
+
+    And I see field "civic_header_theme"
+    And I see field "civic_footer_theme"
+
+    And I see field "Footer background image path"

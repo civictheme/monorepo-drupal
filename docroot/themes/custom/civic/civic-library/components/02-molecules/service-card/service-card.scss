@@ -6,10 +6,12 @@
 
 .civic-service-card {
   $root: &;
-  @include civic-box-shadow;
+
   border-top: rem(6px) solid $civic-service-card-border-top-color;
   border-radius: $civic-border-radius;
   text-align: center;
+
+  @include civic-box-shadow();
 
   #{$root}__content {
     padding: civic-space(3) 0 civic-space(3) 0;
@@ -21,6 +23,7 @@
 
   #{$root}__title {
     @include civic-typography(heading-4);
+
     margin: 0;
     padding: 0 civic-space(4);
   }
@@ -37,6 +40,7 @@
 
   #{$root}__link__item {
     margin-bottom: civic-space(2);
+
     @include civic-typography(label-large);
 
     &:last-child {

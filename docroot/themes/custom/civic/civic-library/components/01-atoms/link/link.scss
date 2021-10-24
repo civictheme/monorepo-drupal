@@ -7,26 +7,21 @@
 //
 // Mixins.
 //
-@mixin civic-link-visited() {
-  &.civic-theme-light {
-    color: $civic-link-light-color-visited;
-
-    &:hover {
-      background-color: $civic-link-light-background-visited-hover;
-      color: $civic-link-light-color-visited-hover;
-    }
-  }
-  &.civic-theme-dark {
-    color: $civic-link-dark-color-visited;
-
-    &:hover {
-      background-color: $civic-link-dark-background-visited-hover;
-      color: $civic-link-dark-color-visited-hover;
-    }
-  }
-}
-
 @mixin civic-link-base() {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  padding: 3px 0 2px;
+
+  &:hover {
+    text-decoration: none;
+    padding: 3px 0 4px;
+  }
+
+  &:focus {
+    @include civic-outline();
+  }
+
   &,
   &.civic-theme-light {
     color: $civic-link-light-color;
@@ -37,10 +32,10 @@
     }
 
     .civic-link__external-icon {
-      vertical-align: top;
-      margin-left: -2px;
+      vertical-align: middle;
     }
   }
+
   &.civic-theme-dark {
     color: $civic-link-dark-color;
 
@@ -49,18 +44,29 @@
       color: $civic-link-dark-color-hover;
     }
   }
+
   &:visited {
-    @include civic-link-visited;
+    @include civic-link-visited ();
+  }
+}
+
+@mixin civic-link-visited() {
+  &.civic-theme-light {
+    color: $civic-link-light-color-visited;
+
+    &:hover {
+      background-color: $civic-link-light-background-visited-hover;
+      color: $civic-link-light-color-visited-hover;
+    }
   }
 
-  text-decoration: none;
-  border-bottom: 2px solid;
-  padding: 3px 0 2px 0;
-  &:hover {
-    padding: 3px 0 4px 0;
-  }
-  &:focus {
-    @include civic-outline;
+  &.civic-theme-dark {
+    color: $civic-link-dark-color-visited;
+
+    &:hover {
+      background-color: $civic-link-dark-background-visited-hover;
+      color: $civic-link-dark-color-visited-hover;
+    }
   }
 }
 
@@ -69,9 +75,9 @@
 //
 
 .civic-link {
-  @include civic-link-base;
+  @include civic-link-base();
 
   &--visited {
-    @include civic-link-visited;
+    @include civic-link-visited();
   }
 }

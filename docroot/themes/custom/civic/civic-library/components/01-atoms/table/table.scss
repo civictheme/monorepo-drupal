@@ -6,6 +6,7 @@
 
 .civic-table {
   $root: &;
+
   caption-side: bottom;
 
   &__header {
@@ -40,7 +41,7 @@
             visibility: hidden;
           }
 
-          &:after {
+          &::after {
             content: '';
             width: calc(100% - 30px);
             display: block;
@@ -49,10 +50,10 @@
             position: absolute;
             left: 0;
             right: 0;
-            top: -6px
+            top: -6px;
           }
 
-          &:before {
+          &::before {
             content: attr(data-title);
             display: table-cell;
             height: 100%;
@@ -60,7 +61,9 @@
             max-width: rem(100px);
             flex-shrink: 0;
             vertical-align: middle;
+
             @include civic-typography('label-regular');
+
             padding-right: civic-space(2);
           }
         }
@@ -73,7 +76,8 @@
   }
 
   tr {
-    th, td {
+    th,
+    td {
       padding: (civic-space() * 1.5) civic-space();
 
       @include civic-breakpoint('m') {
@@ -98,6 +102,7 @@
       @include civic-breakpoint('m') {
         border-bottom: solid 1px $civic-table-light-border-color;
       }
+
       color: $civic-table-light-heading-color;
     }
 
@@ -175,6 +180,7 @@
       @include civic-breakpoint('m') {
         border-bottom: solid 1px $civic-table-dark-border-color;
       }
+
       color: $civic-table-dark-heading-color;
     }
 

@@ -5,7 +5,7 @@ import './demo-button.scss';
 import './demo-button';
 
 export default {
-  title: 'Atom/Demo Button',
+  title: 'Atoms/Demo Button',
 };
 
 export const DemoButton = () => CustomDemoButton({

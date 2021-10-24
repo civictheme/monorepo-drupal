@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\cd_core\Unit;
 
-use Drupal\Tests\UnitTestCase;
 use Drupal\Tests\cd_core\Traits\CdCoreTestHelperTrait;
+use Drupal\Tests\UnitTestCase;
 
 /**
  * Class CdCoreUnitTestBase.

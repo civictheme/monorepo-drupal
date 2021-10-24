@@ -1,12 +1,16 @@
 //
-// Content.
+// Basic Content component.
 //
 
 @import '../../00-base/base';
 
 .civic-basic-content {
-  padding: civic-space();
   @include civic-typography(body);
+
+  &.civic-theme-light {
+    background-color: $civic-basic-content-light-background-color;
+    color: $civic-basic-content-light-heading-color;
+  }
 
   &.civic-theme-dark {
     background-color: $civic-basic-content-dark-background-color;

@@ -30,6 +30,10 @@ Feature: Tests the Slider Slide paragraph
     And I wait 1 second
     And I click on "div.field--name-field-c-n-components .add-more-button-civic-slider.dropbutton-action" element
     And I wait for AJAX to finish
+    And I see field "field_c_n_components[0][subform][field_c_p_theme]"
+    And I see field "Title"
+    And I press the "field_c_n_components_0_subform_field_c_p_slides_civic_slider_slide_add_more" button
+    And I wait for AJAX to finish
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-title-0-value" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-title-0-value input.required" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-slides-0-subform-field-c-p-image-position" element

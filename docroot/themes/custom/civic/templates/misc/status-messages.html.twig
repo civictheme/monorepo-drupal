@@ -21,7 +21,7 @@
 #}
 {% for type, messages in message_list %}
   {% for message in messages %}
-    {% include '@molecules/message/message.twig' with {
+    {% include '@organisms/message/message.twig' with {
       title: message,
       type: type,
     } %}

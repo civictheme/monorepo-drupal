@@ -4,11 +4,10 @@ import {
 import imageFile from '../../../assets/image.png';
 
 import CivicNavigationCard from './navigation-card.twig';
-import './navigation-card.scss';
 import { getSlots } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecule/Card',
+  title: 'Molecules/Card/Navigation Card',
   parameters: {
     layout: 'centered',
   },

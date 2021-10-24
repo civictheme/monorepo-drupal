@@ -5,7 +5,6 @@
 @import '../../00-base/base';
 
 .civic-progress-indicator {
-
   $root: &;
 
   &__step {
@@ -17,7 +16,9 @@
 
     .civic-icon {
       padding: civic-space();
+
       @include civic-icon-size('small');
+
       align-self: center;
     }
 
@@ -28,6 +29,7 @@
     &--title {
       @include civic-typography('body');
     }
+
     &--status {
       @include civic-typography('small');
     }
@@ -53,6 +55,7 @@
       color: $civic-progress-indicator-dark-color;
       border-color: transparent;
       background-color: $civic-progress-indicator-dark-background-color;
+
       &--doing {
         background-color: $civic-progress-indicator-dark-active-color;
         border-color: $civic-progress-indicator-dark-icon-color;

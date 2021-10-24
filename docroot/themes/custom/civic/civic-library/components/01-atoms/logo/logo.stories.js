@@ -1,13 +1,16 @@
-import { boolean, radios, text } from '@storybook/addon-knobs';
+import { radios, text } from '@storybook/addon-knobs';
 
 import CivicLogo from './logo.twig';
-import './logo.scss';
-import './logo.stories.scss';
-import desktopLogoFile from '../../../assets/logo.png';
-import mobileLogoFile from '../../../assets/logo-mobile.png';
+import logoDesktopLight from '../../../assets/logo-desktop-light.png';
+import logoDesktopDark from '../../../assets/logo-desktop-dark.png';
+import logoMobileLight from '../../../assets/logo-mobile-light.png';
+import logoMobileDark from '../../../assets/logo-mobile-dark.png';
 
 export default {
-  title: 'Atom/Logo',
+  title: 'Atoms/Logo',
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export const Logo = () => {
@@ -18,22 +21,24 @@ export const Logo = () => {
       Light: 'light',
       Dark: 'dark',
     }, 'light', generalKnobTab),
-    logos: boolean('With logo', true, generalKnobTab) ? {
-      mobile: {
-        src: mobileLogoFile,
-        alt: 'Logo mobile alt text',
-      },
-      desktop: {
-        src: desktopLogoFile,
-        alt: 'Logo desktop alt text',
-      },
-    } : true,
-    modifier_class: text('Additional class', '', generalKnobTab),
   };
+
+  generalKnobs.logos = {
+    mobile: {
+      src: generalKnobs.theme === 'light' ? logoMobileDark : logoMobileLight,
+      alt: 'Logo mobile alt text',
+    },
+    desktop: {
+      src: generalKnobs.theme === 'light' ? logoDesktopDark : logoDesktopLight,
+      alt: 'Logo desktop alt text',
+    },
+  };
+
+  generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
 
   const html = CivicLogo({
     ...generalKnobs,
   });
 
-  return `<div class="civic-logo-example">${html}</div>`;
+  return `<div class="civic-logo-example story-wrapper-size--small">${html}</div>`;
 };

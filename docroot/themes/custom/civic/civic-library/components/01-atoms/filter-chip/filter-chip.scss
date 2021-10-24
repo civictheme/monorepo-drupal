@@ -6,7 +6,9 @@
 
 .civic-filter-chip {
   $root: &;
+
   @include civic-typography('label-tag');
+
   cursor: pointer;
   position: relative;
   display: inline-block;
@@ -15,7 +17,7 @@
     position: absolute;
     top: 1px;
     left: 1px;
-    opacity: 0;
+    opacity: 0%;
     width: 0;
     height: 0;
 
@@ -46,14 +48,13 @@
 
     #{$root}__field {
       &:checked + #{$root}__text {
-        &, &:focus {
+        &,
+        &:focus {
           color: $civic-filter-chip-light-active-color;
           border-color: $civic-filter-chip-light-active-border-color;
           background-color: $civic-filter-chip-light-active-background-color;
         }
-      }
 
-      &:checked + #{$root}__text {
         &:hover {
           color: $civic-filter-chip-light-active-color;
           border-color: $civic-filter-chip-light-active-border-color;
@@ -79,14 +80,13 @@
 
     #{$root}__field {
       &:checked + #{$root}__text {
-        &, &:focus {
+        &,
+        &:focus {
           color: $civic-filter-chip-dark-active-color;
           border-color: $civic-filter-chip-dark-active-border-color;
           background-color: $civic-filter-chip-dark-active-background-color;
         }
-      }
 
-      &:checked + #{$root}__text {
         &:hover {
           color: $civic-filter-chip-dark-active-color;
           border-color: $civic-filter-chip-dark-active-border-color;
