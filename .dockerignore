@@ -38,3 +38,14 @@ node_modules
 !patches
 !scripts
 !.lagoon.env.*
+
+# Include Civic theme treated as contrib.
+docroot/*
+!docroot/themes/
+docroot/themes/*
+!docroot/themes/contrib
+!docroot/themes/custom
+docroot/themes/contrib/*
+!docroot/themes/contrib/civic
+!docroot/themes/contrib/civic/
+!docroot/themes/contrib/civic/*

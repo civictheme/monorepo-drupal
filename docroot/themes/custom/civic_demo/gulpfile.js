@@ -7,12 +7,12 @@ const newer = require('gulp-newer');
 const log = require('fancy-log')
 
 // Component file globs.
-const civicStorybookWatchDir = __dirname + '/../civic/components/**'
+const civicStorybookWatchDir = __dirname + '/../../contrib/civic/components/**'
 const civicChildStorybookWatchDir = __dirname + '/components/**'
 
 // Theme names - `civic_demo` needs to be updated to civic child theme name.
 // @todo Extract child theme name dynamically.
-const baseThemeName = __dirname.replace('civic_demo', 'civic')
+const baseThemeName = __dirname.replace('custom/civic_demo', 'contrib/civic')
 
 const childThemeName = __dirname
 

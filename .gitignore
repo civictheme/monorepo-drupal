@@ -52,3 +52,10 @@ docker-compose.override.yml
 
 # Ignore configuration as this site is installed from profile.
 /config/*
+
+# Include Civic theme treated as contrib.
+!docroot/themes/contrib/
+docroot/themes/contrib/*
+!docroot/themes/contrib/civic
+!docroot/themes/contrib/civic/
+!docroot/themes/contrib/civic/*
