@@ -79,6 +79,8 @@ config_devel:
     - core.entity_form_display.block_content.civic_component_block.default
     - core.entity_form_display.node.civic_event.default
     - core.entity_form_display.node.civic_page.default
+    - core.entity_form_display.media.civic_icon.default
+    - core.entity_form_display.media.civic_icon.media_library
     - core.entity_form_display.paragraph.civic_accordion.default
     - core.entity_form_display.paragraph.civic_accordion_panel.default
     - core.entity_form_display.paragraph.civic_attachment.default
@@ -105,6 +107,8 @@ config_devel:
     - core.entity_form_display.paragraph.civic_slider_slide_reference.default
     - core.entity_view_display.block_content.civic_banner.default
     - core.entity_view_display.block_content.civic_component_block.default
+    - core.entity_view_display.media.civic_icon.media_library
+    - core.entity_view_display.media.civic_icon.default
     - core.entity_view_display.node.civic_event.civic_card_event
     - core.entity_view_display.node.civic_event.civic_card_navigation
     - core.entity_view_display.node.civic_event.civic_card_promo
@@ -152,7 +156,7 @@ config_devel:
     - field.field.block_content.civic_banner.field_c_b_theme
     - field.field.block_content.civic_banner.field_c_b_background_image
     - field.field.block_content.civic_component_block.field_c_b_components
-    - field.field.media.icon.field_c_m_icon
+    - field.field.media.civic_icon.field_c_m_icon
     - field.field.media.image.field_c_m_caption
     - field.field.node.civic_event.field_c_n_attachments
     - field.field.node.civic_event.field_c_n_body
@@ -337,7 +341,7 @@ config_devel:
     - image.style.promo_card
     - image.style.topic__desktop
     - image.style.topic__mobile
-    - media.type.icon
+    - media.type.civic_icon
     - node.type.civic_event
     - node.type.civic_page
     - node.type.civic_project

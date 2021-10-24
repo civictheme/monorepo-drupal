@@ -3,13 +3,13 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_c_m_icon
-    - media.type.icon
+    - media.type.civic_icon
   module:
     - file
-id: media.icon.field_c_m_icon
+id: media.civic_icon.field_c_m_icon
 field_name: field_c_m_icon
 entity_type: media
-bundle: icon
+bundle: civic_icon
 label: File
 description: ''
 required: true
@@ -17,7 +17,7 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_directory: icons
   file_extensions: svg
   max_filesize: ''
   description_field: false

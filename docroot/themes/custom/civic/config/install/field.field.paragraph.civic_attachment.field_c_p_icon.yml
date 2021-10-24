@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_c_p_icon
-    - media.type.icon
+    - media.type.civic_icon
     - paragraphs.paragraphs_type.civic_attachment
 id: paragraph.civic_attachment.field_c_p_icon
 field_name: field_c_p_icon
@@ -19,10 +19,10 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
-      icon: icon
+      civic_icon: civic_icon
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: civic_icon
 field_type: entity_reference
