@@ -10,18 +10,18 @@
 
 {% set classes = ['civic-mobile-navigation'] %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = modifier_class|default('') %}
 {% set classes = classes|merge([theme_class]) %}
-{% set modifier_class = '%s %s %s'|format(theme_class,decorative_class,modifier_class|default('')) %}
-{% set classes = classes|merge([theme_class]) %}
+{% set classes = classes|merge([modifier_class]) %}
 
 {% import _self as menus %}
 {% macro menu_links(items, menu_level, classes, parent_link) %}
   <div class="{{ classes|join(' ') }}" data-component-name="civic-mobile-navigation">
   {% if items %}
-    <div class="civic-mobile-navigation__close civic-flyout__close-all" role="button">
+    <div class="civic-mobile-navigation__close">
       {%- block close %}
         {% if close is empty %}
-        <a class="civic-mobile-navigation__close-button" href="#">
+        <a data-flyout-close-all class="civic-mobile-navigation__close-button" href="#" role="button">
           Close
           {% include '@atoms/icon/icon.twig' with {
             symbol: 'userinterface_cancel',
@@ -51,7 +51,7 @@
     {% if top_level_menu %}
       <div class="civic-mobile-navigation__parent-link">Home</div>
     {% else %}
-      <a class="civic-mobile-navigation__back-button civic-flyout__close" href="#" tabindex="0" role="button">
+      <a class="civic-mobile-navigation__back-button" data-flyout-close href="#" tabindex="0" role="button">
         {% include '@atoms/icon/icon.twig' with {
           symbol: 'arrows_leftarrow_1',
           size: icon_size ? icon_size : 'regular',
@@ -66,19 +66,19 @@
     {% for item in items %}
       <li class="civic-mobile-navigation__item {{ item.below ? 'civic-mobile-navigation__item--has-submenu' : '' }}">
         {% if item.below %}
-          {% embed '@molecules/flyout/flyout.twig' %}
-            {% block trigger %}
+          <div data-flyout>
+            <div data-flyout-trigger>
               {% include '@atoms/mobile-navigation-link/mobile-navigation-link.twig' with {
                 theme: theme,
                 text: item.title,
                 url: item.url,
                 icon: item.below ? 'arrows_rightarrow_3' : null,
               } only %}
-            {% endblock %}
-            {% block content %}
+            </div>
+            <div data-flyout-panel>
               {{ menus.menu_links(item.below, menu_level + 1, classes, item.title) }}
-            {% endblock %}
-          {% endembed %}
+            </div>
+          </div>
         {% else %}
           {% include '@atoms/mobile-navigation-link/mobile-navigation-link.twig' with {
             theme: theme,

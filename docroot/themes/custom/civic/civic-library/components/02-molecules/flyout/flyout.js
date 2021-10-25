@@ -43,16 +43,12 @@ CivicFlyout.prototype.closeAllClickEvent = function (e) {
 CivicFlyout.prototype.expand = function () {
   this.el.expanded = true;
   this.trigger.setAttribute('aria-expanded', true);
-  // this.trigger.classList.add('civic-flyout__trigger--expanding');
   setTimeout(() => {
-    // this.trigger.classList.remove('civic-flyout__trigger--expanding');
   }, this.duration);
   this.panel.style.visibility = 'visible';
 
   // Add required classes.
-  // this.trigger.classList.add('civic-flyout__trigger--expanded');
   this.el.setAttribute('data-flyout-expanded', true);
-  // this.panel.classList.add('civic-flyout__content--expanded');
   this.panel.setAttribute('aria-hidden', false);
 };
 
@@ -63,9 +59,8 @@ CivicFlyout.prototype.collapse = function () {
   this.el.removeAttribute('data-flyout-expanded');
   const currentPanel = this.panel;
   setTimeout(() => {
-    // this.trigger.classList.remove('civic-flyout__trigger--collapsing');
     currentPanel.style.visibility = '';
-  }, 500);
+  }, this.duration);
 
   this.panel.setAttribute('aria-hidden', true);
 };

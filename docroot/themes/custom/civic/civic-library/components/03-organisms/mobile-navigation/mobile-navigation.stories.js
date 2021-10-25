@@ -4,6 +4,8 @@ import {
 } from '@storybook/addon-knobs';
 import CivicMobileNavigation from './mobile-navigation.twig';
 import './mobile-navigation.scss';
+import '../../02-molecules/flyout/flyout.scss';
+import '../../02-molecules/flyout/flyout';
 
 export default {
   title: 'Organisms/Mobile Navigation',
