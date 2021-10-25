@@ -47,7 +47,7 @@
 
   &__transcript,
   &__share {
-    & > .civic-icon:not(.civic-link__external-icon) {
+    & .civic-video__action-icon {
       #{$root}.civic-theme-light & {
         fill: $civic-video-light-icon-color;
       }

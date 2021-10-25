@@ -46,7 +46,8 @@
         <div class="civic-video__transcript">
           {% include '@atoms/icon/icon.twig' with {
             symbol: 'designtools_eye',
-            color: 'primary'
+            color: 'primary',
+            modifier_class: 'civic-video__action-icon',
           } only %}
 
           {% include '@atoms/link/link.twig' with {
@@ -63,6 +64,7 @@
         <div class="civic-video__share">
           {% include '@atoms/icon/icon.twig' with {
             symbol: 'userinterface_share',
+            modifier_class: 'civic-video__action-icon',
           } only %}
 
           {% include '@atoms/link/link.twig' with {
