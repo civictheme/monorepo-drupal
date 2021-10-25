@@ -36,31 +36,23 @@
     color: $civic-collapsible-light-color;
 
     [data-collapsible-trigger] {
-      border-top: solid 1px $civic-collapsible-light-border-color;
 
       &::after {
         content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-light-icon-color);
       }
     }
 
-    &.civic-collapsible--last {
-      border-bottom: solid 1px $civic-collapsible-light-border-color;
-    }
   }
 
   &.civic-theme-dark {
     color: $civic-collapsible-dark-color;
 
     [data-collapsible-trigger] {
-      border-top: solid 1px $civic-collapsible-dark-border-color;
 
       &::after {
         content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-dark-icon-color);
       }
     }
 
-    &.civic-collapsible--last {
-      border-bottom: solid 1px $civic-collapsible-dark-border-color;
-    }
   }
 }
