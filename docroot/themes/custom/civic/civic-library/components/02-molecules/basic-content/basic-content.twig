@@ -6,13 +6,15 @@
  * Variables:
  * - theme: [string] theme: light, dark.
  * - content: [string] Raw content.
+ * - modifier_class: [string] Additional classes to modify component styling.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class) %}
 
-<div class="civic-basic-content {{ theme_class }}">
-  {% if content is not empty %}
+{% if content is not empty %}
+  <div class="civic-basic-content {{ modifier_class }}">
     {{ content|raw }}
-  {% endif %}
-</div>
+  </div>
+{% endif %}
