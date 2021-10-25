@@ -1,15 +1,11 @@
-import {
-  boolean,
-  radios,
-  text,
-} from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicTable from './table.twig';
 
 /**
  * Storybook Definition.
  */
 export default {
-  title: 'Atom/Table',
+  title: 'Atoms/Table',
 };
 
 export const Table = () => {

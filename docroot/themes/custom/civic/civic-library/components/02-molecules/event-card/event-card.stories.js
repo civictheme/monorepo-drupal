@@ -1,8 +1,5 @@
 import {
-  boolean,
-  date, number,
-  radios,
-  text,
+  boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';
 import imageFile from '../../../assets/image.png';
 import { getSlots } from '../../00-base/base.stories';
@@ -10,7 +7,7 @@ import { getSlots } from '../../00-base/base.stories';
 import CivicEventCard from './event-card.twig';
 
 export default {
-  title: 'Molecule/Card',
+  title: 'Molecules/Card/Event Card',
   parameters: {
     layout: 'centered',
   },

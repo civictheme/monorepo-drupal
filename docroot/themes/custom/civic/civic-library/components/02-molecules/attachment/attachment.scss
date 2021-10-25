@@ -50,7 +50,6 @@
   border: solid $civic-border-width $civic-attachment-light-border-color;
   display: flex;
   flex-wrap: wrap;
-
   flex: none;
   order: 1;
   flex-grow: 1;
@@ -65,6 +64,7 @@
     width: 100%;
     max-height: 250px;
     flex-basis: 100%;
+
     @include civic-breakpoint(m) {
       max-height: 100%;
       width: 25%;
@@ -80,6 +80,7 @@
 
   &__content {
     @include civic-typography(card-summary);
+
     padding: civic-space(3);
     flex: 1;
     color: $civic-attachment-light-color;
@@ -138,10 +139,13 @@
     order: 0;
     flex-grow: 0;
     margin: civic-space() 0;
+
     @include civic-breakpoint(m) {
       margin: civic-space() civic-space() 0 0;
     }
+
     font-weight: 600;
+
     @include civic-card-heading-state();
   }
 
@@ -154,6 +158,7 @@
       &__links {
         &--link {
           color: $civic-attachment-light-heading-color;
+
           svg {
             fill: $civic-attachment-light-icon-color;
           }
@@ -185,6 +190,7 @@
 
         &--link {
           color: $civic-attachment-dark-heading-color;
+
           svg {
             fill: $civic-attachment-dark-icon-color;
           }

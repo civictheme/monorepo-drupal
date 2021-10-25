@@ -1,3 +1,7 @@
+// stylelint-disable scss/dollar-variable-pattern
+
+@use 'sass:color';
+
 .space-wrapper {
   max-width: 960px;
 
@@ -10,8 +14,10 @@
 
   @include civic-generate-class-variations-from-map($civic-spaces, 'space') using($name, $value, $index) {
     padding: $value 0 0 $value;
+
     $transparency: if($index % 2 == 0, 25%, 50%);
-    background-color: mix(#61DAFF, white, $transparency);
+
+    background-color: color.mix(#61daff, white, $transparency);
 
     &::before {
       content: 'Space #{$name}';

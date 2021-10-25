@@ -17,6 +17,7 @@ require_once 'paragraph--civic_quick_links.inc';
 require_once 'paragraph--civic_service_card.inc';
 require_once 'paragraph--civic_content.inc';
 require_once 'paragraph--civic_search.inc';
+require_once 'paragraph--civic_social_icon.inc';
 
 require_once 'paragraph--civic_accordion.inc';
 

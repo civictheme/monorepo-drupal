@@ -1,20 +1,26 @@
+@use 'sass:string';
+
 .story-colors-wrapper {
   display: flex;
   flex-flow: row wrap;
 
+  // stylelint-disable-next-line scss/dollar-variable-pattern
   $all-colors: civic-all-colors();
+
   @include civic-generate-class-variations-from-map($all-colors, 'story-color') using($key, $value, $index) {
     width: 100px;
     height: 100px;
     margin: 0 8px 100px;
-    border: 1px solid #CCD4D8;
+    border: 1px solid #ccd4d8;
     border-radius: 12px;
-
     position: relative;
     background-color: civic-color($key);
-    $content: to-upper-case(str-slice($key, 1, 1)) + str-slice($key, 2) + "\A" + to-upper-case(#{$value});
+
+    // stylelint-disable-next-line scss/dollar-variable-pattern
+    $content: string.to-upper-case(string.slice($key, 1, 1)) + string.slice($key, 2) + '\A' + string.to-upper-case(#{$value});
+
     &::after {
-      content: "#{$content}";
+      content: '#{$content}';
       text-align: center;
       display: block;
       padding: 1em;

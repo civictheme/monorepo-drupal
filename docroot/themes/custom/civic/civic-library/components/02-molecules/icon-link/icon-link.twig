@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Icon Link component.
+ *
+ * Variables:
+ * - symbol: [string] Replaces link text with icon.
+ * - text: [string] Link text or title attribute.
+ * - size: [string] Icon size.
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - new_window: [boolean] Open in a new window.
+ * - url: [string] URL for the link button.
+ */
+#}
+{% set size_class = size ? 'civic-icon-link--size-%s'|format(size) : '' %}
+{% set modifier_class = [modifier_class] %}
+{% set modifier_class = size_class ? modifier_class|merge([size_class]) : modifier_class %}
+{% set modifier_class = with_border ? modifier_class|merge(['civic-icon-link--with-border']) : modifier_class %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = modifier_class|merge([theme_class]) %}
+
+<a class="civic-icon-link {{ modifier_class|join(' ') }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }} {% if text %} title="{{ title }}" {% endif %}>
+  <span class="visually-hidden">{{ title }}</span>
+  {% if symbol %}
+    {% include '@atoms/icon/icon.twig' with {
+      symbol: symbol,
+      size: size
+    }  only %}
+  {% endif %}
+
+  {% if content %}
+    {{ content }}
+  {% endif %}
+</a>

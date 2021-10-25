@@ -6,12 +6,14 @@
 
 .civic-event-card {
   $root: &;
+
   position: relative;
-  @include civic-box-shadow;
   border-radius: $civic-border-radius;
 
+  @include civic-box-shadow();
+
   &:focus-within {
-    @include civic-outline;
+    @include civic-outline();
   }
 
   &#{$root}--no-image {
@@ -38,11 +40,13 @@
 
   #{$root}__title {
     @include civic-typography(heading-4);
+
     margin-bottom: civic-space(2);
   }
 
   #{$root}__title-link {
     text-decoration: none;
+
     &:hover,
     &:active {
       text-decoration: underline;
@@ -64,6 +68,7 @@
 
   #{$root}__location {
     @include civic-typography(subtitle);
+
     margin-bottom: civic-space(2);
   }
 
@@ -81,7 +86,7 @@
     background-color: $civic-event-card-light-background-color;
 
     &:focus {
-      @include civic-outline(false)
+      @include civic-outline(false);
     }
 
     #{$root}__title {
@@ -90,9 +95,11 @@
 
     #{$root}__title-link {
       color: $civic-event-card-light-heading-color;
+
       &:hover {
         color: $civic-event-card-light-color-hover;
       }
+
       &:active {
         color: $civic-event-card-light-color-active;
       }
@@ -113,7 +120,7 @@
     background-color: $civic-event-card-dark-background-color;
 
     &:focus {
-      @include civic-outline(true)
+      @include civic-outline(true);
     }
 
     #{$root}__title {
@@ -122,9 +129,11 @@
 
     #{$root}__title-link {
       color: $civic-event-card-dark-heading-color;
+
       &:hover {
         color: $civic-event-card-dark-color-accent;
       }
+
       &:active {
         color: $civic-event-card-dark-color-active;
       }

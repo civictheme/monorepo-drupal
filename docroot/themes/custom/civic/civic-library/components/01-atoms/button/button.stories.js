@@ -5,7 +5,7 @@ import {
 import CivicButton from './button.twig';
 
 export default {
-  title: 'Atom/Button',
+  title: 'Atoms/Button',
   parameters: {
     layout: 'centered',
   },

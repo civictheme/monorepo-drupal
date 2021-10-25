@@ -1,8 +1,10 @@
-@import 'variables';
-
 //
 // Font imports.
 //
-@if ($civic-font-import-default) {
+// stylelint-disable no-invalid-position-at-import-rule
+
+@import 'variables';
+
+@if $civic-font-import-default {
   @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap');
 }

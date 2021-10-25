@@ -10,6 +10,7 @@ libraries:
 dependencies:
   - components:components
   - field_group:field_group
+  - menu_block:menu_block
   - paragraphs:paragraphs
 
 regions:
@@ -21,11 +22,14 @@ regions:
   highlighted: 'Highlighted'
   content: 'Content'
   content_left: 'Content left'
-  footer_top_left: 'Footer top left'
-  footer_top_right: 'Footer top right'
-  footer_middle: 'Footer middle'
-  footer_bottom_left: 'Footer bottom left'
-  footer_bottom_right: 'Footer bottom right'
+  footer_top_1: 'Footer top 1'
+  footer_top_2: 'Footer top 2'
+  footer_middle_1: 'Footer middle 1'
+  footer_middle_2: 'Footer middle 2'
+  footer_middle_3: 'Footer middle 3'
+  footer_middle_4: 'Footer middle 4'
+  footer_bottom_1: 'Footer bottom 1'
+  footer_bottom_2: 'Footer bottom 2'
 
 components:
   namespaces:
@@ -42,28 +46,43 @@ components:
     pages:
       - components/05-pages
 
+ckeditor_stylesheets:
+  - dist/civic.css
+
 # Configuration shipped with this theme.
 # Update the list of the configuration below and run `drush cde civic`.
 config_devel:
   install:
+    - block.block.civic_acknowledgmentofcountry
     - block.block.civic_banner
     - block.block.civic_content
+    - block.block.civic_copyright
     - block.block.civic_help
     - block.block.civic_mainnavigation
     - block.block.civic_messages
     - block.block.civic_primaryadminactions
     - block.block.civic_sitebranding
+    - block.block.civic_footer_sitebranding
     - block.block.civic_tabs
+    - block.block.civic_footer_menu_1
+    - block.block.civic_footer_menu_2
+    - block.block.civic_footer_menu_3
+    - block.block.civic_footer_menu_4
     - block_content.type.civic_banner
     - block_content.type.civic_component_block
+    - block_content.type.civic_social_icons
+    - civic.settings
     - core.base_field_override.node.civic_event.promote
     - core.base_field_override.node.civic_page.promote
     - core.base_field_override.node.civic_project.promote
     - core.date_format.civic_short_date
     - core.entity_form_display.block_content.civic_banner.default
     - core.entity_form_display.block_content.civic_component_block.default
+    - core.entity_form_display.block_content.civic_social_icons.default
     - core.entity_form_display.node.civic_event.default
     - core.entity_form_display.node.civic_page.default
+    - core.entity_form_display.media.civic_icon.default
+    - core.entity_form_display.media.civic_icon.media_library
     - core.entity_form_display.paragraph.civic_accordion.default
     - core.entity_form_display.paragraph.civic_accordion_panel.default
     - core.entity_form_display.paragraph.civic_attachment.default
@@ -88,8 +107,12 @@ config_devel:
     - core.entity_form_display.paragraph.civic_slider.default
     - core.entity_form_display.paragraph.civic_slider_slide.default
     - core.entity_form_display.paragraph.civic_slider_slide_reference.default
+    - core.entity_form_display.paragraph.civic_social_icon.default
     - core.entity_view_display.block_content.civic_banner.default
     - core.entity_view_display.block_content.civic_component_block.default
+    - core.entity_view_display.block_content.civic_social_icons.default
+    - core.entity_view_display.media.civic_icon.media_library
+    - core.entity_view_display.media.civic_icon.default
     - core.entity_view_display.node.civic_event.civic_card_event
     - core.entity_view_display.node.civic_event.civic_card_navigation
     - core.entity_view_display.node.civic_event.civic_card_promo
@@ -127,14 +150,20 @@ config_devel:
     - core.entity_view_display.paragraph.civic_slider.default
     - core.entity_view_display.paragraph.civic_slider_slide.default
     - core.entity_view_display.paragraph.civic_slider_slide_reference.default
+    - core.entity_view_display.paragraph.civic_social_icon.default
+    - core.entity_view_display.media.image.embedded
+    - core.entity_view_mode.media.embedded
     - core.entity_view_mode.node.civic_card_event
     - core.entity_view_mode.node.civic_card_navigation
     - core.entity_view_mode.node.civic_card_promo
     - core.entity_view_mode.node.civic_slider_slide
+    - editor.editor.civic_rich_text
     - field.field.block_content.civic_banner.field_c_b_theme
     - field.field.block_content.civic_banner.field_c_b_background_image
     - field.field.block_content.civic_component_block.field_c_b_components
-    - field.field.media.icon.field_c_m_icon
+    - field.field.block_content.civic_social_icons.field_c_b_social_icons
+    - field.field.media.civic_icon.field_c_m_icon
+    - field.field.media.image.field_c_m_caption
     - field.field.node.civic_event.field_c_n_attachments
     - field.field.node.civic_event.field_c_n_body
     - field.field.node.civic_event.field_c_n_date
@@ -144,6 +173,12 @@ config_devel:
     - field.field.node.civic_event.field_c_n_tagline
     - field.field.node.civic_event.field_c_n_thumbnail
     - field.field.node.civic_event.field_c_n_topics
+    - field.field.media.remote_video.field_c_m_share_link
+    - field.field.media.remote_video.field_c_m_title
+    - field.field.media.remote_video.field_c_m_transcript_link
+    - field.storage.media.field_c_m_share_link
+    - field.storage.media.field_c_m_title
+    - field.storage.media.field_c_m_transcript_link
     - field.field.node.civic_page.field_c_n_banner_background
     - field.field.node.civic_page.field_c_n_banner_components
     - field.field.node.civic_page.field_c_n_banner_components_bott
@@ -251,10 +286,14 @@ config_devel:
     - field.field.paragraph.civic_search.field_c_p_placeholder
     - field.field.paragraph.civic_search.field_c_p_help_text
     - field.field.paragraph.civic_search.field_c_p_button_text
+    - field.field.paragraph.civic_social_icon.field_c_p_icon
+    - field.field.paragraph.civic_social_icon.field_c_p_link
     - field.storage.block_content.field_c_b_components
     - field.storage.block_content.field_c_b_theme
     - field.storage.block_content.field_c_b_background_image
+    - field.storage.block_content.field_c_b_social_icons
     - field.storage.media.field_c_m_icon
+    - field.storage.media.field_c_m_caption
     - field.storage.node.field_c_n_attachments
     - field.storage.node.field_c_n_banner_background
     - field.storage.node.field_c_n_banner_components
@@ -304,12 +343,14 @@ config_devel:
     - field.storage.paragraph.field_c_p_placeholder
     - field.storage.paragraph.field_c_p_help_text
     - field.node.civic_event.field_c_n_body
+    - filter.format.civic_plain_text
+    - filter.format.civic_rich_text
     - image.style.navigation
     - image.style.promo_banner
     - image.style.promo_card
     - image.style.topic__desktop
     - image.style.topic__mobile
-    - media.type.icon
+    - media.type.civic_icon
     - node.type.civic_event
     - node.type.civic_page
     - node.type.civic_project
@@ -336,6 +377,8 @@ config_devel:
     - paragraphs.paragraphs_type.civic_service_card
     - paragraphs.paragraphs_type.civic_slider
     - paragraphs.paragraphs_type.civic_slider_slide
+    - paragraphs.paragraphs_type.civic_social_icon
+    - system.menu.civic_footer
     - paragraphs.paragraphs_type.civic_slider_slide_reference
     - taxonomy.vocabulary.civic_topics
     - views.view.civic_events

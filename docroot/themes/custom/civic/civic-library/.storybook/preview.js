@@ -1,6 +1,11 @@
 var Twig = require('twig')
 
 export const parameters = {
+  options: {
+    storySort: {
+      order: ['Base', ['*', 'Collapsible', 'Responsive'], '*'],
+    },
+  },
   backgrounds: {
     default: 'White',
     values: [

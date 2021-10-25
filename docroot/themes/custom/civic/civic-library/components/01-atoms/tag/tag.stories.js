@@ -5,7 +5,7 @@ import {
 import CivicTag from './tag.twig';
 
 export default {
-  title: 'Atom/Tag',
+  title: 'Atoms/Tag',
   parameters: {
     layout: 'centered',
   },
