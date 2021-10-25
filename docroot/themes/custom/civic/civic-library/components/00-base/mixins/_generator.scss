@@ -1,12 +1,14 @@
 //
 // Generator mixins.
 //
+// stylelint-disable scss/dollar-variable-pattern
 
 //
 // Generate classes variations from provided map with optional prefix.
 //
 @mixin civic-generate-class-variations-from-map($map, $prefix: false) {
   $index: 0;
+
   @each $key, $value in $map {
     // Handle lists.
     @if $value == null {
@@ -15,6 +17,7 @@
     }
 
     $classname: $key;
+
     @if $prefix != false {
       $classname: #{$prefix}--#{$key};
     }
@@ -22,6 +25,7 @@
     .#{$classname} {
       @content($key, $value, $index);
     }
+
     $index: $index + 1;
   }
 }

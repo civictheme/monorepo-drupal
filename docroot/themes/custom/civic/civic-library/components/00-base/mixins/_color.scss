@@ -1,17 +1,21 @@
-@use "sass:map";
-
 //
 // Color mixins.
 //
+// stylelint-disable scss/dollar-variable-pattern
+@use 'sass:map';
+@use 'sass:string';
+@use 'sass:color';
 
 //
 // Get a color from the pre-defined list of colors.
 //
 @function civic-color($name) {
   $all-colors: civic-all-colors();
-  @if map-get($all-colors, $name) == null {
+
+  @if map.get($all-colors, $name) == null {
     @error '"#{$name}" is not an available color.';
   }
+
   @return map.get($all-colors, $name);
 }
 
@@ -36,5 +40,21 @@
   $all-colors: map.merge($all-colors, $civic-default-colors-neutrals);
   $all-colors: map.merge($all-colors, $civic-default-colors-elements);
   $all-colors: map.merge($all-colors, $civic-colors);
+
   @return $all-colors;
+}
+
+@function civic-encode-color($string) {
+  @if type-of($string) == 'color' and string.index(#{$string}, '#') == 1 {
+    $hex: string.slice(color.ie-hex-str($string), 4);
+    $string: string.unquote('#{$hex}');
+
+    @return '%23' + $string;
+  }
+
+  @return $string;
+}
+
+@function civic-svg-fill($svg, $color) {
+  @return civic-str-replace($svg, "fill=''", "fill='#{civic-encode-color($color)}'");
 }

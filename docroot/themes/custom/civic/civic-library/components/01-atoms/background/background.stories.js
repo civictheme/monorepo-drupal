@@ -1,7 +1,7 @@
 import { radios, select } from '@storybook/addon-knobs';
 
 export default {
-  title: 'Atom/Background',
+  title: 'Atoms/Background',
   parameters: {
     layout: 'centered',
   },

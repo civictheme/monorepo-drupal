@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civic_social_icons
+label: 'Social icons'
+revision: 0
+description: ''

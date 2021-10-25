@@ -2,7 +2,7 @@ _meta:
   version: '1.0'
   entity_type: media
   uuid: b8ae7216-9d98-4f61-8ac1-638b39ce5276
-  bundle: icon
+  bundle: civic_icon
   default_langcode: en
   depends:
     f203e18d-4de6-421e-a7e9-11b7e4fa13d7: file

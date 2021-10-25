@@ -17,13 +17,20 @@ Civic component library with Storybook integration.
 
     npm run build
 
+## Linting
+
+    npm run lint
+
+    npm run lint:fix
+
 This will build:
-  - CSS and JS assets in the `dist` directory. These files can be included
-    directly into your HTML page, provided that it has components implemented
-    with the same markup as components in the `componets` directory.
-  - Storybook assets as compiled HTML page in the `storybook-static` directory.
-    These files can be served publically to show all components available in
-    the library.
+
+- CSS and JS assets in the `dist` directory. These files can be included
+  directly into your HTML page, provided that it has components implemented with
+  the same markup as components in the `componets` directory.
+- Storybook assets as compiled HTML page in the `storybook-static` directory.
+  These files can be served publically to show all components available in the
+  library.
 
 ## Running locally
 
@@ -34,7 +41,8 @@ This will build:
 Icons library is generated from provided files and stored in `icon_library.twig`
 file to avoid constant re-compilation.
 
-When icon set is update, run the script below to update the contents of `icon_library.twig`:
+When icon set is update, run the script below to update the contents
+of `icon_library.twig`:
 
     npm run generate-icon-library
 
@@ -42,9 +50,11 @@ When icon set is update, run the script below to update the contents of `icon_li
 
 ## Spacing
 
-Spacing (such as margin or padding) can be applied using the `civic-space` function.
+Spacing (such as margin or padding) can be applied using the `civic-space`
+function.
 
-Spaces are defined in `$civic-spacing` list variable (currently 8 defined spaces).
+Spaces are defined in `$civic-spacing` list variable (currently 8 defined
+spaces).
 
 ```scss
 div {
@@ -78,8 +88,9 @@ $civic-colors: (
 );
 ```
 
-Every colour used on the site should have a corresponding variable, with an appended `!default`.
-This ensures subsites can override any individual colour by redefinind the variable.
+Every colour used on the site should have a corresponding variable, with an
+appended `!default`. This ensures subsites can override any individual colour by
+redefinind the variable.
 
 ```scss
 $civic-card-heading: civic-color('primary') !default;
@@ -91,9 +102,10 @@ $civic-card-heading: civic-color('primary') !default;
 
 ## Element sizing
 
-All element sizes should be defined in `px` but converted to `rem` through the `rem()` mixin.
-This provides a clear size coversion from the designs, while allowing for whole-page scalability.
-The only exception where `px` should be used is on single pixel borders.
+All element sizes should be defined in `px` but converted to `rem` through
+the `rem()` mixin. This provides a clear size coversion from the designs, while
+allowing for whole-page scalability. The only exception where `px` should be
+used is on single pixel borders.
 
 ```scss
 div {
@@ -133,10 +145,11 @@ div {
 }
 ```
 
-Breakpoints should be applied from smallest to largest, with all shared rules defined before the breakpoints.
+Breakpoints should be applied from smallest to largest, with all shared rules
+defined before the breakpoints.
 
-All breakpoints use `min-width` only.
-Options for `min and max`, or `max` width has been omitted to avoid over-complicating breakpoint logic and readability.
+All breakpoints use `min-width` only. Options for `min and max`, or `max` width
+has been omitted to avoid over-complicating breakpoint logic and readability.
 
 ## Fonts
 
@@ -160,6 +173,7 @@ Where:
 * Parameter 4 = font-family
 
 Note:
+
 * font-weight and font-family are optional.
 * font-size in pixels will automatically be converted to rem.
 
@@ -175,7 +189,8 @@ $civic-font: (
 
 Given the defined breakpoints (see breakpoints section):
 
-The breakpoint labels can be used to define the typgraphy to show at that breakpoint.
+The breakpoint labels can be used to define the typgraphy to show at that
+breakpoint.
 
 ```scss
 h1 {
@@ -206,7 +221,8 @@ h1 {
 
 ## Focus
 
-Civic provides a mixin `civic_outline()` that can be used to apply a focus outline.
+Civic provides a mixin `civic_outline()` that can be used to apply a focus
+outline.
 
 ```scss
 .button {
@@ -229,7 +245,8 @@ Component stylesheets are broken into 4 sections:
 3. Mixins - Where mixins for all component styles are provided.
 4. Selectors - Where the mixins are connected to selectors.
 
-Breaking the styles into distinct `mixins` and `selectors` sections allows for parts of components to be reused without duplicating the rules.
+Breaking the styles into distinct `mixins` and `selectors` sections allows for
+parts of components to be reused without duplicating the rules.
 
 ```scss
 //

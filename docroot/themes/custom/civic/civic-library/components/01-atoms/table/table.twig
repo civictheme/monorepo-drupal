@@ -29,14 +29,16 @@
       {% for row in rows %}
         <tr>
           {% for item in row %}
-            <td data-title="{{ header[loop.index] }}">
+            <td data-title="{{ header[loop.index0] }}">
               {{ item }}
             </td>
           {% endfor %}
         </tr>
       {% endfor %}
       </tbody>
-      <caption class="civic-table__caption">{{ caption }}</caption>
+      {% if caption %}
+        <caption class="civic-table__caption">{{ caption }}</caption>
+      {% endif %}
     </table>
   </div>
 {% endif %}

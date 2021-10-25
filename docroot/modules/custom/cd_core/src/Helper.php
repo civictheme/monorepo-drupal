@@ -299,6 +299,45 @@ class Helper {
   }
 
   /**
+   * Find menu item by link.
+   *
+   * @param string $menu
+   *   The menu name.
+   * @param string $title
+   *   The title to search for.
+   * @param int $idx
+   *   The index of the result to return. Defaults to NULL. If specified, but
+   *   an item with this index does not exist - FALSE is returned. If not
+   *   specified - a first item from the match is returned.
+   *
+   * @return bool|\Drupal\menu_link_content\MenuLinkContentInterface
+   *   Found menu item or FALSE.
+   */
+  public static function findMenuItemByTitle($menu, $title, $idx = NULL) {
+    /** @var \Drupal\menu_link_content\MenuLinkContentStorage $storage */
+    $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+
+    $menu_items = $storage->loadByProperties([
+      'menu_name' => $menu,
+      'title' => $title,
+    ]);
+
+    if (empty($menu_items)) {
+      return FALSE;
+    }
+
+    if (!is_null($idx)) {
+      $menu_item = $menu_items[$idx] ?? FALSE;
+    }
+    else {
+      // Return the first item.
+      $menu_item = array_shift($menu_items);
+    }
+
+    return $menu_item;
+  }
+
+  /**
    * Recursively flatten previously loaded menu tree.
    */
   public static function flattenMenuTree($tree) {

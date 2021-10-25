@@ -3,10 +3,9 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicButton from './button.twig';
-import './button.scss';
 
 export default {
-  title: 'Atom/Button',
+  title: 'Atoms/Button',
   parameters: {
     layout: 'centered',
   },

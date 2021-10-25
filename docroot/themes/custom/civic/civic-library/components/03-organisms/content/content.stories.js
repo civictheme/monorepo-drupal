@@ -1,12 +1,8 @@
-import {
-  radios,
-  boolean,
-} from '@storybook/addon-knobs';
+import { boolean, radios } from '@storybook/addon-knobs';
 import CivicContent from './content.twig';
-import { CardContainer } from '../card-container/card-container.stories';
-import { Heading } from '../../01-atoms/heading/heading.stories';
-
-import './content.scss';
+import { BasicContent } from '../../02-molecules/basic-content/basic-content.stories';
+// @todo Replace with 'side-navigation' component once it is ready.
+import { Navigation } from '../navigation/navigation.stories';
 
 export default {
   title: 'Organisms/Content',
@@ -25,11 +21,11 @@ export const Content = () => {
       'light',
       generalKnobTab,
     ),
-    content_left: boolean('Sidebar', false, generalKnobTab) ? Heading : false,
+    content_left: boolean('Sidebar', false, generalKnobTab) ? Navigation : false,
   };
 
   return CivicContent({
     ...generalKnobs,
-    content: CardContainer,
+    content: BasicContent,
   });
 };

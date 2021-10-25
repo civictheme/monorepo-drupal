@@ -6,6 +6,7 @@
 
 .civic-banner {
   $root: &;
+
   position: relative;
 
   #{$root}__wrapper {

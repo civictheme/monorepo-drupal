@@ -1,81 +1,112 @@
-{% set classes = ['civic-footer'] %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set classes = classes|merge([theme_class]) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<footer class="{{ classes|join(' ') }}" role="contentinfo" data-component-name="civic-footer">
-  <div class="container">
-    <div class="civic-footer__top civic-footer__region">
-      <div class="row">
+{% if content_top1 is not empty or content_top2 is not empty or content_middle1 is not empty or content_middle2 is not empty or content_middle3 is not empty or content_middle4 is not empty or content_bottom1 is not empty or content_bottom2 is not empty %}
+  <footer class="civic-footer {{ modifier_class }}" role="contentinfo" data-component-name="civic-footer">
 
-        <div class="col-xs-12 col-m-4 col-l-3">
-          {% block logo %}
-            {% if logo is not empty %}
-              <div class="civic-footer__logo">
-                {{ logo }}
+    {% if content_top1 is not empty or content_top2 is not empty %}
+      <div class="container civic-footer__top">
+        <div class="row">
+
+          {% if content_top1 is not empty %}
+            {%- block content_top1 %}
+              <div class="col-xs-12 col-m-6">
+                <div class="civic-footer__top__content-top1">
+                  {{- content_top1 -}}
+                </div>
               </div>
-            {% endif %}
-          {% endblock %}
-        </div>
+            {% endblock -%}
+          {% endif %}
 
-        <div class="col-xs-12 col-m-4 col-l-3">
-          {% block top_left %}
-            <div class="civic-footer__top--left">
-              {{ top_left }}
-            </div>
-          {% endblock %}
-        </div>
+          {% if content_top2 is not empty %}
+            {%- block content_top2 %}
+              <div class="col-xs-12 col-m-6">
+                <div class="civic-footer__top__content-top2">
+                  {{- content_top2 -}}
+                </div>
+              </div>
+            {% endblock -%}
+          {% endif %}
 
-        <div class="col-xs-12 col-m-4 col-l-3 col-l-offset-3">
-          {% block top_right %}
-            <div class="civic-footer__top--right">
-              {{ top_right }}
-            </div>
-          {% endblock %}
         </div>
       </div>
-    </div>
+    {% endif %}
 
-    {% block middle %}
-      {% if middle_1 or middle_2 or middle_3 or middle_4 %}
-        <div class="civic-footer__middle civic-footer__region">
-          <div class="civic-footer__middle-inner row">
-              {% block middle_1 %}
-                  {{ middle_1 }}
-              {% endblock %}
-              {% block middle_2 %}
-                  {{ middle_2 }}
-              {% endblock %}
-              {% block middle_3 %}
-                  {{ middle_3 }}
-              {% endblock %}
-              {% block middle_4 %}
-                  {{ middle_4 }}
-              {% endblock %}
-          </div>
-        </div>
-      {% endif %}
-    {% endblock %}
+    {% if content_middle1 is not empty or content_middle2 is not empty or content_middle3 is not empty or content_middle4 is not empty %}
+      <div class="container civic-footer__middle">
+        <div class="row">
 
-    <div class="civic-footer__bottom civic-footer__region">
-      <div class="row">
+          {% if content_middle1 is not empty %}
+            {%- block content_middle1 %}
+              <div class="col-xs-12 col-m-3">
+                <div class="civic-footer__middle__content-middle1">
+                  {{- content_middle1 -}}
+                </div>
+              </div>
+            {% endblock -%}
+          {% endif %}
 
-        <div class="col-xs-12 col-m-7">
-          {% block bottom_left %}
-            <div class="civic-footer__bottom--left">
-              {{ bottom_left }}
-            </div>
-          {% endblock %}
-        </div>
+          {% if content_middle2 is not empty %}
+            {%- block content_middle2 %}
+              <div class="col-xs-12 col-m-3">
+                <div class="civic-footer__middle__content-middle2">
+                  {{- content_middle2 -}}
+                </div>
+              </div>
+            {% endblock -%}
+          {% endif %}
 
-        <div class="col-xs-12 col-m-4 col-l-3 col-l-offset-2">
-          {% block bottom_right %}
-            <div class="civic-footer__bottom--right">
-              {{ bottom_right }}
-            </div>
-          {% endblock %}
+          {% if content_middle3 is not empty %}
+            {%- block content_middle3 %}
+              <div class="col-xs-12 col-m-3">
+                <div class="civic-footer__middle__content-middle3">
+                  {{- content_middle3 -}}
+                </div>
+              </div>
+            {% endblock -%}
+          {% endif %}
+
+          {% if content_middle4 is not empty %}
+            {%- block content_middle4 %}
+              <div class="col-xs-12 col-m-3">
+                <div class="civic-footer__middle__content-middle4">
+                  {{- content_middle4 -}}
+                </div>
+              </div>
+            {% endblock -%}
+          {% endif %}
+
         </div>
       </div>
-    </div>
-  </div>
-</footer>
+    {% endif %}
 
+    {% if content_bottom1 is not empty or content_bottom2 is not empty %}
+      <div class="container civic-footer__bottom">
+        <div class="row">
+
+          {% if content_bottom1 is not empty %}
+            {%- block content_bottom1 %}
+              <div class="col-xs-12 col-m-7">
+                <div class="civic-footer__bottom__content-bottom1">
+                  {{- content_bottom1 -}}
+                </div>
+              </div>
+            {% endblock -%}
+          {% endif %}
+
+          {% if content_bottom2 is not empty %}
+            {%- block content_bottom2 %}
+              <div class="col-xs-12 col-m-5">
+                <div class="civic-footer__bottom__content-bottom2">
+                  {{- content_bottom2 -}}
+                </div>
+              </div>
+            {% endblock -%}
+          {% endif %}
+
+        </div>
+      </div>
+    {% endif %}
+
+  </footer>
+{% endif %}

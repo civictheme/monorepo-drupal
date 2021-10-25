@@ -13,15 +13,14 @@ regions:
   highlighted: 'Highlighted'
   content: 'Content'
   content_left: 'Content left'
-  footer_logo: 'Footer logo'
-  footer_top_left: 'Footer top left'
-  footer_top_right: 'Footer top right'
+  footer_top_1: 'Footer top 1'
+  footer_top_2: 'Footer top 2'
   footer_middle_1: 'Footer middle 1'
   footer_middle_2: 'Footer middle 2'
   footer_middle_3: 'Footer middle 3'
   footer_middle_4: 'Footer middle 4'
-  footer_bottom_left: 'Footer bottom left'
-  footer_bottom_right: 'Footer bottom right'
+  footer_bottom_1: 'Footer bottom 1'
+  footer_bottom_2: 'Footer bottom 2'
 
 libraries-override:
   civic/global:
@@ -30,6 +29,9 @@ libraries-override:
         dist/civic.css: dist/styles.css
     js:
       dist/civic.js: dist/scripts.js
+
+ckeditor_stylesheets:
+  - dist/styles.css
 
 components:
   namespaces:

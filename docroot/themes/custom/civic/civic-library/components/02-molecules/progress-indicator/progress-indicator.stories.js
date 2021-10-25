@@ -5,7 +5,7 @@ import CivicProgressIndicator from './progress-indicator.twig';
  * Storybook Definition.
  */
 export default {
-  title: 'Molecule/Progress Indicator',
+  title: 'Molecules/Progress Indicator',
   component: CivicProgressIndicator,
 };
 

@@ -1,0 +1,7 @@
+.civic-menu__item--active-trail {
+  > .civic-menu__item__link {
+    &::after {
+      content: ' (active trail)';
+    }
+  }
+}

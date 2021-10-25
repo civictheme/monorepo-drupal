@@ -5,12 +5,14 @@
 
 .civic-navigation-card {
   $root: &;
+
   position: relative;
-  @include civic-box-shadow;
   border-radius: $civic-border-radius;
 
+  @include civic-box-shadow();
+
   &:focus-within {
-    @include civic-outline;
+    @include civic-outline();
   }
 
   #{$root}__image-wrapper {
@@ -29,6 +31,7 @@
 
   #{$root}__title {
     @include civic-typography(heading-5);
+
     margin-bottom: civic-space(2);
   }
 
@@ -61,6 +64,7 @@
 
   #{$root}__summary {
     @include civic-typography(card-summary);
+
     padding-right: civic-space(3);
   }
 
@@ -91,7 +95,7 @@
     background-color: $civic-navigation-card-light-background-color;
 
     &:focus {
-      @include civic-outline(false)
+      @include civic-outline(false);
     }
 
     #{$root}__title {
@@ -119,7 +123,7 @@
     background-color: $civic-navigation-card-dark-background-color;
 
     &:focus {
-      @include civic-outline(true)
+      @include civic-outline(true);
     }
 
     #{$root}__title {
@@ -134,7 +138,7 @@
       }
 
       &:active {
-        color: $civic-navigation-card-dark-heading-color-active
+        color: $civic-navigation-card-dark-heading-color-active;
       }
     }
 

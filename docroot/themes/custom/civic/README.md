@@ -39,6 +39,7 @@ Everything above applies, except for:
   2. Civic theme repo will still need to have a "reference site" (similar to this one) to show how components are working.
 
 ## Usage
+
 Install
 
     npm install
@@ -46,6 +47,12 @@ Install
 Build
 
     npm run build
+
+Lint
+
+    npm run lint
+
+    npm run lint:fix
 
 Storybook
 

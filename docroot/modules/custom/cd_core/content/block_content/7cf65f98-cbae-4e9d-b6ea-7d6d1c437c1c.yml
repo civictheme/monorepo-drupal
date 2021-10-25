@@ -10,7 +10,7 @@ default:
       value: true
   info:
     -
-      value: 'Acknowledgment of country'
+      value: 'Footer - Acknowledgment of country'
   reusable:
     -
       value: true

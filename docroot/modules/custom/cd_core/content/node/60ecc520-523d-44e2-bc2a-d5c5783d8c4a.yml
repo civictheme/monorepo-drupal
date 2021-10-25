@@ -66,6 +66,39 @@ default:
           field_c_p_theme:
             -
               value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 33643629-f288-4f96-9fa1-23c387d97a4a
+          bundle: civic_search
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1634754495
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_button_text:
+            -
+              value: Search
+          field_c_p_placeholder:
+            -
+              value: 'Enter keyword'
+          field_c_p_search_url:
+            -
+              value: /search
+          field_c_p_title:
+            -
+              value: Search
   field_c_n_banner_components_bott:
     -
       entity:
@@ -85,9 +118,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_cards:
             -
               entity:
@@ -107,9 +137,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -142,9 +169,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -177,9 +201,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -212,9 +233,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       uri: 'http://example.com'

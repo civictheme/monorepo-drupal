@@ -10,7 +10,7 @@ default:
       value: true
   info:
     -
-      value: Copyright
+      value: 'Footer - Copyright'
   reusable:
     -
       value: true

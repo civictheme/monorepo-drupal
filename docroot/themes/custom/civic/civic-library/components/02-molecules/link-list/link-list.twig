@@ -11,26 +11,30 @@
  */
 #}
 
-{% set classes = ['civic-link-list'] %}
-{% set type_class = 'civic-link-list--%s'|format(type|default('default')) %}
-{% set classes = classes|merge([type_class]) %}
-{% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
-{% set theme_class = 'civic-theme--%s'|format(theme|default('light')) %}
-{% set classes = classes|merge([theme_class]) %}
+{% set is_inline_class = is_inline ? 'civic-link-list--inline' : '' %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_inline_class, modifier_class|default('')) %}
 
 {% if links %}
-  <ul class="{{ classes|join(' ') }}">
-    {% for link in links %}
-      <li class="civic-link-list__item">
-        {% include '@atoms/link/link.twig' with {
-          theme: theme,
-          text: link.title,
-          url: link.url,
-          new_window: link.new_window ? link.new_window : false,
-          is_external: link.is_external ? link.is_external : false,
-          modifier_class: link.modifier_class ? link.modifier_class : '',
-        } only %}
-      </li>
-    {% endfor %}
-  </ul>
+  <div class="civic-link-list {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
+    {% if title %}
+      <div class="civic-link-list__title">
+        {{ title }}
+      </div>
+    {% endif %}
+
+    <ul class="civic-link-list__list">
+      {% for link in links %}
+        <li class="civic-link-list__list__item">
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: link.title,
+            url: link.url,
+            new_window: link.new_window ? link.new_window : false,
+            is_external: link.is_external ? link.is_external : false,
+          } only %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endif %}
