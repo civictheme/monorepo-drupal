@@ -4,14 +4,14 @@ dependencies:
   config:
     - field.storage.paragraph.field_c_p_icon
     - media.type.civic_icon
-    - paragraphs.paragraphs_type.civic_attachment
-id: paragraph.civic_attachment.field_c_p_icon
+    - paragraphs.paragraphs_type.civic_social_icon
+id: paragraph.civic_social_icon.field_c_p_icon
 field_name: field_c_p_icon
 entity_type: paragraph
-bundle: civic_attachment
+bundle: civic_social_icon
 label: Icon
 description: ''
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
@@ -24,5 +24,5 @@ settings:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: civic_icon
+    auto_create_bundle: ''
 field_type: entity_reference

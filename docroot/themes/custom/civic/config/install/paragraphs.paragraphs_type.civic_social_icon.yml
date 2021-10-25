@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civic_social_icon
+label: 'Social Icon'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

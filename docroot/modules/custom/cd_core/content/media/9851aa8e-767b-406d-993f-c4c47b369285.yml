@@ -1,11 +1,11 @@
 _meta:
   version: '1.0'
   entity_type: media
-  uuid: b8ae7216-9d98-4f61-8ac1-638b39ce5276
+  uuid: 9851aa8e-767b-406d-993f-c4c47b369285
   bundle: civic_icon
   default_langcode: en
   depends:
-    f203e18d-4de6-421e-a7e9-11b7e4fa13d7: file
+    2f22afdb-ed5d-47ed-942c-097a56f4e571: file
 default:
   status:
     -
@@ -15,10 +15,10 @@ default:
       target_id: 1
   name:
     -
-      value: user-secret-svgrepo-com.svg
+      value: icons8-youtube.svg
   created:
     -
-      value: 1631869401
+      value: 1635056928
   revision_translation_affected:
     -
       value: true
@@ -29,6 +29,6 @@ default:
       pathauto: 0
   field_c_m_icon:
     -
-      entity: f203e18d-4de6-421e-a7e9-11b7e4fa13d7
+      entity: 2f22afdb-ed5d-47ed-942c-097a56f4e571
       display: false
       description: ''

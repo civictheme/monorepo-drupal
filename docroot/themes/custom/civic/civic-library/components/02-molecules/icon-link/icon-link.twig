@@ -17,12 +17,15 @@
 {% set with_border_class = with_border ? 'civic-icon-link--with-border':'' %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, size_class, with_border_class, modifier_class|default('')) %}
 
-{% if url %}
+{% if url or content %}
   <a class="civic-icon-link {{ modifier_class }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }} {% if text %} title="{{ text }}" {% endif %}>
     <span class="visually-hidden">{{ text }}</span>
     {% include '@atoms/icon/icon.twig' with {
       symbol: symbol,
       size: size
     }  only %}
+    {% if content %}
+      {{ content }}
+    {% endif %}
   </a>
 {% endif %}

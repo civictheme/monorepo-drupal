@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: e902308b-d8d0-4ef7-a1d8-23ed013ff619
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: icons8-facebook.svg
+  uri:
+    -
+      value: 'public://icons/icons8-facebook.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 371
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1635056845
