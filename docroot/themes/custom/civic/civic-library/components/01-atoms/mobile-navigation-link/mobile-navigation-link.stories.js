@@ -6,7 +6,7 @@ import CivicMobileNavigationLink from './mobile-navigation-link.twig';
 import './mobile-navigation-link.scss';
 
 export default {
-  title: 'Atom/Mobile Navigation Link',
+  title: 'Atoms/Mobile Navigation Link',
   parameters: {
     layout: 'centered',
   },
