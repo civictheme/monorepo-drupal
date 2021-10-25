@@ -36,23 +36,19 @@
     color: $civic-collapsible-light-color;
 
     [data-collapsible-trigger] {
-
       &::after {
         content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-light-icon-color);
       }
     }
-
   }
 
   &.civic-theme-dark {
     color: $civic-collapsible-dark-color;
 
     [data-collapsible-trigger] {
-
       &::after {
         content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-dark-icon-color);
       }
     }
-
   }
 }
