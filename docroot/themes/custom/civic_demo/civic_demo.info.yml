@@ -4,6 +4,10 @@ base theme: civic
 description: 'Civic Demo theme.'
 core_version_requirement: ^8 || ^9
 
+dependencies:
+  - core/drupal
+  - core/drupalSettings
+
 regions:
   header_top: 'Header'
   header_logo: 'Header logo'

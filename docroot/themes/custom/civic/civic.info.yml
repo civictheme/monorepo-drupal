@@ -8,6 +8,8 @@ libraries:
   - 'civic/global'
 
 dependencies:
+  - core/drupal
+  - core/drupalSettings
   - components:components
   - field_group:field_group
   - menu_block:menu_block
