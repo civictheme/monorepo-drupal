@@ -47,11 +47,10 @@
 
   &__transcript,
   &__share {
-    & > .civic-icon {
+    & > .civic-icon:not(.civic-link__external-icon) {
       #{$root}.civic-theme-light & {
         fill: $civic-video-light-icon-color;
       }
-
       #{$root}.civic-theme-dark & {
         fill: $civic-video-dark-icon-color;
       }
