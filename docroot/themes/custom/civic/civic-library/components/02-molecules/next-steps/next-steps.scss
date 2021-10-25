@@ -79,7 +79,7 @@
 
     #{$root}__read-more {
       .civic-icon {
-        fill: civic-color(primary);
+        fill: civic-color('primary');
       }
     }
   }
@@ -125,7 +125,7 @@
 
     #{$root}__read-more {
       .civic-icon {
-        fill: civic-color(accent);
+        fill: civic-color('accent');
       }
     }
   }
