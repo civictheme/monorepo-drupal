@@ -4,19 +4,20 @@ function CivicFlyout(el) {
   }
 
   this.el = el;
-  this.flyoutTrigger = this.el.querySelector('.civic-flyout__trigger');
-  this.flyoutClose = this.el.querySelector('.civic-flyout__close');
-  this.flyoutCloseAll = this.el.querySelector('.civic-flyout__close-all');
-  this.flyoutPanel = this.el.querySelector('.civic-flyout__content');
-  this.el.expanded = this.el.classList.contains('civic-flyout--expanded');
+  this.trigger = this.el.querySelector('[data-flyout-trigger]');
+  this.close = this.el.querySelector('[data-flyout-close]');
+  this.closeAll = this.el.querySelector('[data-flyout-close-all]');
+  this.panel = this.el.querySelector('[data-flyout-panel]');
+  this.duration = this.el.querySelector('[data-flyout-duration]') || 500;
+  this.el.expanded = this.el.hasAttribute('data-flyout-expanded');
   this.isToggling = false;
 
   // Add event listener to element.
-  this.flyoutTrigger.addEventListener('click', this.clickEvent.bind(this));
-  this.flyoutTrigger.expand = true;
-  this.flyoutClose.addEventListener('click', this.clickEvent.bind(this));
-  this.flyoutClose.expand = false;
-  this.flyoutCloseAll.addEventListener('click', this.closeAllClickEvent.bind(this));
+  this.trigger.addEventListener('click', this.clickEvent.bind(this));
+  this.trigger.expand = true;
+  this.close.addEventListener('click', this.clickEvent.bind(this));
+  this.close.expand = false;
+  this.closeAll.addEventListener('click', this.closeAllClickEvent.bind(this));
 }
 
 // eslint-disable-next-line func-names
@@ -41,35 +42,35 @@ CivicFlyout.prototype.closeAllClickEvent = function (e) {
 // eslint-disable-next-line func-names
 CivicFlyout.prototype.expand = function () {
   this.el.expanded = true;
-  this.flyoutTrigger.setAttribute('aria-expanded', true);
-  this.flyoutTrigger.classList.add('civic-flyout__trigger--expanding');
+  this.trigger.setAttribute('aria-expanded', true);
+  this.trigger.classList.add('civic-flyout__trigger--expanding');
   setTimeout(() => {
-    this.flyoutTrigger.classList.remove('civic-flyout__trigger--expanding');
-  }, 500);
-  this.flyoutPanel.style.visibility = 'visible';
+    this.trigger.classList.remove('civic-flyout__trigger--expanding');
+  }, this.duration);
+  this.panel.style.visibility = 'visible';
 
   // Add required classes.
-  this.flyoutTrigger.classList.add('civic-flyout__trigger--expanded');
+  this.trigger.classList.add('civic-flyout__trigger--expanded');
   this.el.classList.add('civic-flyout--expanded');
-  this.flyoutPanel.classList.add('civic-flyout__content--expanded');
-  this.flyoutPanel.setAttribute('aria-hidden', false);
+  this.panel.classList.add('civic-flyout__content--expanded');
+  this.panel.setAttribute('aria-hidden', false);
 };
 
 // eslint-disable-next-line func-names
 CivicFlyout.prototype.collapse = function () {
   this.el.expanded = false;
-  this.flyoutTrigger.setAttribute('aria-expanded', false);
-  this.flyoutTrigger.classList.remove('civic-flyout__trigger--expanded');
+  this.trigger.setAttribute('aria-expanded', false);
+  this.trigger.classList.remove('civic-flyout__trigger--expanded');
   this.el.classList.remove('civic-flyout--expanded');
-  this.flyoutPanel.classList.remove('civic-flyout__content--expanded');
-  const currentPanel = this.flyoutPanel;
-  this.flyoutTrigger.classList.add('civic-flyout__trigger--collapsing');
+  this.panel.classList.remove('civic-flyout__content--expanded');
+  const currentPanel = this.panel;
+  this.trigger.classList.add('civic-flyout__trigger--collapsing');
   setTimeout(() => {
-    this.flyoutTrigger.classList.remove('civic-flyout__trigger--collapsing');
+    this.trigger.classList.remove('civic-flyout__trigger--collapsing');
     currentPanel.style.visibility = '';
   }, 500);
 
-  this.flyoutPanel.setAttribute('aria-hidden', true);
+  this.panel.setAttribute('aria-hidden', true);
 };
 
 // Initialize CivicFlyout on every element.
