@@ -6,9 +6,9 @@ import CivicBanner from './banner.twig';
 
 import CivicButton from '../../01-atoms/button/button.twig';
 import CivicSearch from '../../02-molecules/search/search.twig';
-import CivicBreadcrumb from '../../03-organisms/breadcrumb/breadcrumb.twig';
+import CivicBreadcrumb from '../breadcrumb/breadcrumb.twig';
 import CivicCard from '../../02-molecules/navigation-card/navigation-card.twig';
-import CivicCardContainer from '../../03-organisms/card-container/card-container.twig';
+import CivicCardContainer from '../card-container/card-container.twig';
 
 import imageFile from '../../../assets/image.png';
 
@@ -32,33 +32,33 @@ export const Banner = () => {
     generalKnobTab,
   );
 
-  const show_breadcrumbs = boolean('Show breadcrumbs', true, generalKnobTab);
-  const show_content_text = boolean('Show content text', true, generalKnobTab);
-  const show_content_search = boolean('Show content search', false, generalKnobTab);
-  const show_content_below = boolean('Show content below', false, generalKnobTab);
+  const showBreadcrumbs = boolean('Show breadcrumbs', true, generalKnobTab);
+  const showContentText = boolean('Show content text', true, generalKnobTab);
+  const showContentSearch = boolean('Show content search', false, generalKnobTab);
+  const showContentBelow = boolean('Show content below', false, generalKnobTab);
 
-  let content_html = ``;
+  let contentHtml = ``;
 
-  if (show_content_text) {
-    content_html += CivicButton({
-      theme: theme,
+  if (showContentText) {
+    contentHtml += CivicButton({
+      theme,
       text: 'Learn about our mission',
       type: 'primary',
     });
   }
 
-  if (show_content_search) {
-    content_html += CivicSearch({
-      theme: theme,
+  if (showContentSearch) {
+    contentHtml += CivicSearch({
+      theme,
       placeholder: 'Enter keywords or phrase',
       button_text: 'Search',
       description: 'Search by keyword',
     });
   }
 
-  let content_below_html = ``
+  let contentBelowHtml = ``;
 
-  if (show_content_below) {
+  if (showContentBelow) {
     const card = CivicCard({
       theme: 'dark',
       title: 'Register for a workshop',
@@ -69,7 +69,7 @@ export const Banner = () => {
       column_count: 4,
       cards: [card, card, card, card],
     });
-    content_below_html = `<div class="civic-banner__content__example">${container}</div>`
+    contentBelowHtml = `<div class="civic-banner__content__example">${container}</div>`;
   }
 
   const generalKnobs = {
@@ -81,16 +81,16 @@ export const Banner = () => {
       alt: 'Featured image alt',
     } : null,
     decorative: boolean('Decorative', true, generalKnobTab),
-    breadcrumbs: show_breadcrumbs ? CivicBreadcrumb({
-      theme: theme,
+    breadcrumbs: showBreadcrumbs ? CivicBreadcrumb({
+      theme,
       links: [
-        { 'text': 'Home', 'url': 'http://example.com'},
-        { 'text': 'Sub Page', 'url': 'http://example.com'},
-        { 'text': 'Active Page', 'url': 'http://example.com'}
-      ]
+        { text: 'Home', url: 'http://example.com' },
+        { text: 'Sub Page', url: 'http://example.com' },
+        { text: 'Active Page', url: 'http://example.com' },
+      ],
     }) : null,
-    content: content_html,
-    content_bottom: content_below_html,
+    content: contentHtml,
+    content_bottom: contentBelowHtml,
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
