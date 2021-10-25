@@ -746,8 +746,8 @@ $civic-flyout-light-background-color: civic-color('neutral');
 $civic-flyout-dark-color: civic-color('neutral');
 $civic-flyout-dark-background-color: civic-color('shade_45');
 $civic-flyout-direction-transforms: (
-  'from-right': translateX(100%),
-  'from-left': translateX(-100%),
-  'from-top': translateY(-100%),
-  'from-bottom': translateY(100%),
+  'right': translateX(100%),
+  'left': translateX(-100%),
+  'top': translateY(-100%),
+  'bottom': translateY(100%),
 );

@@ -43,16 +43,16 @@ CivicFlyout.prototype.closeAllClickEvent = function (e) {
 CivicFlyout.prototype.expand = function () {
   this.el.expanded = true;
   this.trigger.setAttribute('aria-expanded', true);
-  this.trigger.classList.add('civic-flyout__trigger--expanding');
+  // this.trigger.classList.add('civic-flyout__trigger--expanding');
   setTimeout(() => {
-    this.trigger.classList.remove('civic-flyout__trigger--expanding');
+    // this.trigger.classList.remove('civic-flyout__trigger--expanding');
   }, this.duration);
   this.panel.style.visibility = 'visible';
 
   // Add required classes.
-  this.trigger.classList.add('civic-flyout__trigger--expanded');
-  this.el.classList.add('civic-flyout--expanded');
-  this.panel.classList.add('civic-flyout__content--expanded');
+  // this.trigger.classList.add('civic-flyout__trigger--expanded');
+  this.el.setAttribute('data-flyout-expanded', true);
+  // this.panel.classList.add('civic-flyout__content--expanded');
   this.panel.setAttribute('aria-hidden', false);
 };
 
@@ -60,13 +60,10 @@ CivicFlyout.prototype.expand = function () {
 CivicFlyout.prototype.collapse = function () {
   this.el.expanded = false;
   this.trigger.setAttribute('aria-expanded', false);
-  this.trigger.classList.remove('civic-flyout__trigger--expanded');
-  this.el.classList.remove('civic-flyout--expanded');
-  this.panel.classList.remove('civic-flyout__content--expanded');
+  this.el.removeAttribute('data-flyout-expanded');
   const currentPanel = this.panel;
-  this.trigger.classList.add('civic-flyout__trigger--collapsing');
   setTimeout(() => {
-    this.trigger.classList.remove('civic-flyout__trigger--collapsing');
+    // this.trigger.classList.remove('civic-flyout__trigger--collapsing');
     currentPanel.style.visibility = '';
   }, 500);
 
@@ -74,7 +71,7 @@ CivicFlyout.prototype.collapse = function () {
 };
 
 // Initialize CivicFlyout on every element.
-document.querySelectorAll('[data-component-name="civic-flyout"]').forEach((flyout) => {
+document.querySelectorAll('[data-flyout]').forEach((flyout) => {
   // eslint-disable-next-line no-new
   new CivicFlyout(flyout);
 });

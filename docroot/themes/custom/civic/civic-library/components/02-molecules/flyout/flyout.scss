@@ -4,13 +4,13 @@
 
 @import '../../00-base/base';
 
-.civic-flyout {
+[data-flyout='true'] {
   $root: &;
-  &__trigger, &__close {
+  [data-flyout-trigger], [data-flyout-close] {
     cursor: pointer;
   }
 
-  &__content {
+  [data-flyout-panel] {
     $content: &;
     overflow: hidden auto;
     transition: transform .5s;
@@ -20,15 +20,14 @@
     right: 0;
     bottom: 0;
     visibility: hidden;
+    padding: civic-space(2);
     @include civic-box-shadow;
     @include civic-typography('body');
+  }
 
-    &--inner {
-      padding: civic-space(2);
-    }
-
-    &--expanded {
-      border-top: none;
+  &[data-flyout-expanded] {
+    [data-flyout-panel] {
+      transition: transform .5s;
       transform: translate(0, 0);
       z-index: 10;
       visibility: visible;
@@ -36,26 +35,28 @@
   }
 
   @each $direction, $transform in $civic-flyout-direction-transforms {
-    &--#{$direction} {
-      #{$root}__content {
+    &[data-flyout-from='#{$direction}'] {
+      [data-flyout-panel] {
         transform: $transform;
       }
-      #{$root}__content--expanded {
-        transform: translate(0, 0);
+      &[data-flyout-expanded] {
+        [data-flyout-panel] {
+          transform: translate(0, 0);
+        }
       }
     }
   }
 
   &,
   &.civic-theme-light {
-    #{$root}__content {
+    [data-flyout-panel] {
       color: $civic-flyout-light-color;
       background: $civic-flyout-light-background-color;
     }
   }
 
   &.civic-theme-dark {
-    #{$root}__content {
+    [data-flyout-panel] {
       color: $civic-flyout-dark-color;
       background: $civic-flyout-dark-background-color;
     }
