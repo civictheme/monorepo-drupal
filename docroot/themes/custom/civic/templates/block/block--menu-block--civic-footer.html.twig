@@ -7,7 +7,7 @@
 
 {% include '@organisms/navigation/navigation.twig' with  {
   theme: theme,
-  title: configuration.label,
+  title: configuration.label_display ? configuration.label : '',
   items: content['#items'],
   attributes: attributes,
 } only%}
