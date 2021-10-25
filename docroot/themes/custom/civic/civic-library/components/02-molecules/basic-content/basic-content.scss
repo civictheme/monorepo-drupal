@@ -12,8 +12,6 @@
 
   @include civic-typography('body');
 
-  padding: civic-space();
-
   &.civic-theme-light {
     background-color: $civic-basic-content-light-background-color;
     color: $civic-basic-content-light-base-color;
