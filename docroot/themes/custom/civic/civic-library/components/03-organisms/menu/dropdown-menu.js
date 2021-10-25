@@ -1,3 +1,5 @@
+/* eslint-disable no-new, func-names */
+
 function CivicDropdown(el) {
   if (!el) {
     return;

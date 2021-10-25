@@ -6,61 +6,78 @@
 
 .civic-header {
   $root: &;
+
   @include civic-typography('body');
+
   &__top {
     @include civic-breakpoint-upto($civic-header-desktop-menu-breakpoint) {
       display: none;
     }
+
     @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
       padding: civic-space(2) 0;
     }
   }
+
   &__top-inner {
     display: flex;
   }
+
   &__slogan {
     margin-right: auto;
   }
+
   &__middle-inner {
     display: flex;
   }
+
   &__logo {
     display: flex;
     margin-right: auto;
     padding: civic-space(2) 0;
+
     .civic-image {
       margin: 0;
     }
   }
+
   &__menu-open-ctrl {
     background-color: transparent;
   }
+
   &__menu-close-ctrl {
     background-color: $civic-header-dark-menu-close-ctrl-color;
     border-radius: civic-space(6);
     padding: 0 civic-space(1);
   }
+
   &__menu-back-ctrl {
     padding: civic-space(1);
   }
+
   &__menu-back-ctrl,
   &__menu-open-ctrl,
   &__menu-close-ctrl {
     display: flex;
     align-self: center;
     margin-left: auto;
+
     @include civic-typography('label-tag');
+
     border: none;
     cursor: pointer;
+
     .civic-icon {
       padding-left: civic-space(1);
     }
+
     @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
       & {
         display: none;
       }
     }
   }
+
   .civic-top-menu {
     .civic-top__menu-link {
       position: relative;
@@ -72,12 +89,15 @@
       }
     }
   }
+
   &__middle {
     width: 100%;
   }
+
   &__content {
     border-bottom: 1px solid;
   }
+
   &__bottom {
     border-top: 1px solid;
     border-bottom: 1px solid;
@@ -90,6 +110,7 @@
       background-color: $civic-header-light-top-background-color;
       color: $civic-header-light-top-color;
     }
+
     .civic-top-menu {
       .civic-top__menu-link {
         color: $civic-header-light-top-menu-link;
@@ -107,6 +128,7 @@
       border-color: $civic-header-light-border-color;
     }
   }
+
   &.civic-theme-dark {
     background-color: $civic-header-dark-background-color;
     color: $civic-header-dark-color;
@@ -114,6 +136,7 @@
       background-color: $civic-header-dark-top-background-color;
       color: $civic-header-dark-top-color;
     }
+
     .civic-top-menu {
       .civic-top__menu-link {
         color: $civic-header-dark-top-menu-link;

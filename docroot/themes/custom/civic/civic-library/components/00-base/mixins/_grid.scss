@@ -81,8 +81,8 @@
     }
   }
 
-    // If no col number is passed then arg is set to "auto" by default
-    // "auto" mode fills the horizontal space with evenly sized containers
+  // If no col number is passed then arg is set to "auto" by default
+  // "auto" mode fills the horizontal space with evenly sized containers
   @else if $col-number == 'auto' {
     box-sizing: border-box;
     flex-grow: 1;

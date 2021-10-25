@@ -23,6 +23,7 @@ $civic-default-colors-shades: (
   'shade_30': color.mix(black, civic-base-color('primary'), 30%),
   'shade_45': color.mix(black, civic-base-color('primary'), 45%),
   'shade_60': color.mix(black, civic-base-color('primary'), 60%),
+  'shade_80': color.mix(white, civic-base-color('primary'), 80%),
   'shade_90': color.mix(white, civic-base-color('primary'), 90%),
 );
 $civic-default-colors-neutral-base: civic-base-color('primary') !default;
@@ -773,7 +774,6 @@ $civic-header-light-submenu-menu-link-hover-color: civic-color('neutral') !defau
 $civic-header-light-submenu-menu-link-active-color: civic-color('neutral') !default;
 $civic-header-light-submenu-menu-link-hover-background-color: civic-color('shade_15') !default;
 $civic-header-light-submenu-menu-link-active-background-color: civic-color('shade_60') !default;
-
 $civic-header-dark-color: civic-color('neutral') !default;
 $civic-header-dark-top-color: civic-color('neutral_20') !default;
 $civic-header-dark-menu-open-ctrl-color: civic-color('neutral') !default;
