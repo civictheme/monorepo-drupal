@@ -1,4 +1,4 @@
-import { radios, text } from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicBasicContent from './basic-content.twig';
 import CivicLink from '../../01-atoms/link/link.twig';
@@ -30,7 +30,7 @@ export const BasicContent = () => {
 
   let html = '';
 
-  // Headings
+  // Headings.
   html += `
     <h1>Heading 1</h1>
     <h2>Heading 2</h2>
@@ -40,21 +40,25 @@ export const BasicContent = () => {
     <h6>Heading 6</h6>
   `;
 
-  // Paragraphs
+  // Paragraphs.
   html += `
     <p class="lead">Lead sed aute in sed consequat veniam excepteur minim mollit.</p>
     <p>Body veniam reprehenderit velit ea veniam occaecat magna est sed duis quis elit occaecat dolore ut enim est do in dolor non elit aliquip commodo aliquip sint veniam ullamco adipisicing tempor ad.</p>
     <p class="small">Small <span>duis sunt velit.</span><span>Ea eu non.</span></p>
-    <p>In mollit in minim ut non ${CivicLink({ theme, text: 'commodo dolore', url: 'https://example.com' })} nisi anim.</p>
+    <p>In mollit in minim ut non ${CivicLink({
+    theme,
+    text: 'commodo dolore',
+    url: 'https://example.com',
+  })} nisi anim.</p>
     <p>Deserunt in ex dolore. <sup>Super cupidatat esse.</sup> <sub>Sub do mollit aute labore.</sub></p>
   `;
 
-  // Blockquote
+  // Blockquote.
   html += `
     <blockquote cite="https://example.com">Culpa laboris sit fugiat minim ad commodo eu id sint eu sed nisi.</blockquote>
   `;
 
-  // Lists
+  // Lists.
   html += `
     <ul>
       <li>Sint pariatur quis tempor.</li>
@@ -68,7 +72,7 @@ export const BasicContent = () => {
     </ol>
   `;
 
-  // Image
+  // Image.
   html += CivicImage({
     theme,
     src: imageFile,
@@ -76,13 +80,13 @@ export const BasicContent = () => {
     caption: 'Commodo anim sint minim.',
   });
 
-  // Video
+  // Video.
   html += CivicVideo({
     theme,
     src: 'https://www.youtube.com/embed/C0DPdy98e4c',
   });
 
-  // Table
+  // Table.
   html += CivicTable({
     theme,
     header: [
@@ -111,7 +115,8 @@ export const BasicContent = () => {
 
   const generalKnobs = {
     theme,
-    content: text('Content', html, generalKnobTab),
+    content: boolean('Content', true, generalKnobTab) ? html : null,
+    modifier_class: text('Additional class', ''),
   };
 
   return CivicBasicContent(generalKnobs);
