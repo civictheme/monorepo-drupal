@@ -189,3 +189,54 @@ function _civic_preprocess_block_content(&$variables) {
       break;
   }
 }
+
+/**
+ * Implements template_preprocess_input().
+ */
+function civic_preprocess_input(&$variables) {
+  if (isset($variables['attributes']['class'])) {
+    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
+    unset($variables['attributes']['class']);
+  }
+}
+
+/**
+ * Implements template_preprocess_select().
+ */
+function civic_preprocess_select(&$variables) {
+  if (isset($variables['attributes']['class'])) {
+    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
+    unset($variables['attributes']['class']);
+  }
+}
+
+/**
+ * Implements template_preprocess_form_element().
+ */
+function civic_preprocess_form_element(&$variables) {
+  if (isset($variables['attributes']['class'])) {
+    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
+    unset($variables['attributes']['class']);
+  }
+}
+
+/**
+ * Implements template_preprocess_form_element_label().
+ */
+function civic_preprocess_form_element_label(&$variables) {
+  if (isset($variables['attributes']['class'])) {
+    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
+    unset($variables['attributes']['class']);
+  }
+}
+
+/**
+ * Implements template_preprocess_form_element_label().
+ */
+/**
+ * Implements hook_form_alter().
+ */
+function civic_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  print_r($form_id);
+  $form['#attributes']['novalidate'] = 'novalidate';
+}

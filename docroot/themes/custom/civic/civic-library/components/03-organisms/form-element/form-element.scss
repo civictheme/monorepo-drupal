@@ -1,0 +1,36 @@
+//
+// Form element.
+//
+
+@import '../../00-base/base';
+
+.civic-form-element {
+  margin-bottom: civic-space(2);
+
+  &--radio {
+    margin-bottom: civic-space();
+  }
+
+  .civic-input {
+    margin: civic-space() auto;
+  }
+
+  .civic-message {
+    padding: civic-space();
+    margin-bottom: civic-space(2);
+    display: inline-flex;
+    align-items: center;
+    @include civic-typography('label-small');
+
+    .civic-icon {
+      width: rem(18px);
+      height: rem(18px);
+      vertical-align: middle;
+    }
+
+    .civic-message__icon {
+      width: rem(18px);
+      margin-right: civic-space();
+    }
+  }
+}

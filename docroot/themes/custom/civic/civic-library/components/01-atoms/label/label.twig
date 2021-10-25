@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override for a form element label.
+ *
+ * Available variables:
+ * - title: The label's text.
+ * - title_display: Elements title_display setting.
+ * - required: An indicator for whether the associated form element is required.
+ * - theme: [string] theme: light, dark.
+ * - attributes: HTML attributes for the containing element.
+ * - modifier_class: [string] Additional classes to modify component styling.
+ *
+ */
+#}
+{%
+  set classes = [
+  'civic-label',
+  title_display == 'after' ? 'option',
+  title_display == 'invisible' ? 'visually-hidden',
+  required ? 'form-required',
+  modifier_class ? modifier_class,
+]
+%}
+{% if title is not empty or required -%}
+  <label class="{{ classes|join(' ') }}" {{ attributes }}>{{ title }}</label>
+{%- endif %}

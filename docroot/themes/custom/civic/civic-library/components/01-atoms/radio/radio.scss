@@ -1,0 +1,75 @@
+//
+// Civic input.
+//
+
+@import '../../00-base/base';
+
+.civic-radio {
+  position: absolute;
+  opacity: 0;
+  width: rem(26px);
+  height: rem(26px);
+  z-index: 1;
+
+  & + span {
+    &:before {
+      content: '';
+      border-radius: 50%;
+      border: 1px solid;
+      display: inline-block;
+      width: rem(26px);
+      height: rem(26px);
+      position: relative;
+      margin-right: 1em;
+      vertical-align: middle;
+      cursor: pointer;
+      text-align: center;
+      transition: all 250ms ease;
+    }
+  }
+
+  &:checked {
+    & + span {
+      &:before {
+        border-width: 2px;
+        box-shadow: inset 0 0 0 5px;
+      }
+    }
+  }
+
+  &.civic-theme-light {
+    & + span {
+      &:before {
+        border-color: $civic-radio-light-border-color;
+      }
+    }
+
+    &:checked {
+      & + span {
+        &:before {
+          background-color: $civic-radio-light-selected-background-color;
+          border-color: $civic-radio-light-selected-background-color;
+          box-shadow: inset 0 0 0 5px $civic-radio-light-background-color;
+        }
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    & + span {
+      &:before {
+        border-color: $civic-radio-dark-border-color;
+      }
+    }
+
+    &:checked {
+      & + span {
+        &:before {
+          background-color: $civic-radio-dark-selected-background-color;
+          border-color: $civic-radio-dark-selected-background-color;
+          box-shadow: inset 0 0 0 5px $civic-radio-dark-background-color;
+        }
+      }
+    }
+  }
+}

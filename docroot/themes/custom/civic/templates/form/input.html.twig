@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Default theme implementation for an 'input' #type form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ */
+#}
+
+{% include '@atoms/input/input.twig' with {
+  type: attributes.offsetGet('type'),
+  value: attributes.offsetGet('value'),
+  attributes: attributes|without('type', 'value'),
+} %}

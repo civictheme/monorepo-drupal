@@ -1,0 +1,12 @@
+{% set classes = [
+  'civic-radio',
+  'civic-input__element',
+  'civic-theme-%s'|format(theme|default('light')),
+  modifier_class ? modifier_class : '',
+  disabled ? 'disabled' : '',
+  required ? 'required' : '',
+  state and (state != 'none') ? 'civic-input--%s'|format(state) : ''
+] %}
+
+<input class="{{ classes|join(' ') }}" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} />
+<span></span>

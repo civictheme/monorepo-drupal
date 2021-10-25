@@ -734,3 +734,14 @@ $civic-collapsible-light-icon-color: $civic-collapsible-light-color;
 $civic-collapsible-dark-color: civic-color('neutral') !default;
 $civic-collapsible-dark-background-color: civic-color('shade_60') !default;
 $civic-collapsible-dark-icon-color: $civic-collapsible-dark-color;
+
+//
+// Radio
+//
+$civic-radio-light-border-color: civic-color('neutral_60') !default;
+$civic-radio-light-background-color: civic-color('neutral_10') !default;
+$civic-radio-light-selected-background-color: civic-color('primary') !default;
+
+$civic-radio-dark-border-color: civic-color('neutral_40') !default;
+$civic-radio-dark-background-color: civic-color('primary') !default;
+$civic-radio-dark-selected-background-color: civic-color('accent') !default;

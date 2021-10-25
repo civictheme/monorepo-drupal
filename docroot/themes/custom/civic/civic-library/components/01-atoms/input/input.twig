@@ -16,22 +16,22 @@
  * - autocomplete: [boolean] Autocomplete state.
  */
 #}
+{% set classes = [
+  'civic-input',
+  'civic-theme-%s'|format(theme|default('light')),
+  disabled ? 'disabled' : '',
+  required ? 'required' : '',
+  state and (state != 'none') ? 'civic-input--%s'|format(state) : '',
+  type ? 'civic-input--%s'|format(type) : '',
+  modifier_class ? modifier_class : ''
+] %}
 
-{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set type = type|default('text') %}
-{% set disabled_class = disabled ? 'civic-input--disabled' : '' %}
-{% set required_class = required ? 'civic-input--required' : '' %}
-{% set state_class = state and (state != 'none') ? 'civic-input--%s'|format(state) : '' %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, disabled_class, required_class, state_class, modifier_class) %}
 {% set state_icon = (state == 'error') ? 'userinterface_close_2' : 'userinterface_approve' %}
 
-<div class="civic-input {{ modifier_class }}">
-  {% if label %}
-    <label class="civic-input__label" for="{{ input_name }}">{{ label }}</label>
-  {% endif %}
+<div class="{{ classes|join(' ') }}">
   {% if type == 'textarea' %}
-    <textarea class="civic-input__element" value="{{ value }}" {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} rows="5"></textarea>
-  {% else %}
+    <textarea class="civic-input__element" value="{{ value }}" {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} rows="5" cols="58"></textarea>
+  {% elseif type == 'text' %}
     <input class="civic-input__element" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} {{ autocomplete ? 'autocomplete' }} />
 
     {% if state and (state != 'none') %}
@@ -41,5 +41,11 @@
         } %}
       </span>
     {% endif %}
+  {% elseif type == 'radio' %}
+    {% include '@atoms/radio/radio.twig' %}
+  {% else %}
+    <input class="civic-input__element" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} />
   {% endif %}
+
+  {{ children }}
 </div>

@@ -1,0 +1,11 @@
+//
+// Form element.
+//
+
+@import '../../00-base/base';
+
+.civic-label {
+  margin-bottom: civic-space();
+
+  @include civic-typography('label-regular');
+}
