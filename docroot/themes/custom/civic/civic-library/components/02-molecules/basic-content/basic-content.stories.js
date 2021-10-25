@@ -4,7 +4,7 @@ import CivicBasicContent from './basic-content.twig';
 import CivicLink from '../../01-atoms/link/link.twig';
 import CivicTable from '../../01-atoms/table/table.twig';
 import CivicImage from '../../01-atoms/image/image.twig';
-import CivicVideo from '../../01-atoms/video/video.twig';
+import CivicVideo from '../video/video.twig';
 import imageFile from '../../../assets/image.png';
 
 export default {

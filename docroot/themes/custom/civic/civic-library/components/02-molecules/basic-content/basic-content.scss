@@ -6,11 +6,12 @@
 
 .civic-basic-content {
   $root: &;
-  $basic-content-vertical-spacing: civic-space(3);
-  $basic-content-list-marker-width: rem(28px);
-  $basic-content-list-marker-margin: rem(16px);
+  $civic-basic-content-vertical-spacing: civic-space(3);
+  $civic-basic-content-list-marker-width: rem(28px);
+  $civic-basic-content-list-marker-margin: rem(16px);
 
   @include civic-typography('body');
+
   padding: civic-space();
 
   &.civic-theme-light {
@@ -125,12 +126,18 @@
     }
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin: 0;
   }
 
   h1 {
     @include civic-typography('heading-1');
+
     margin-bottom: rem(22px);
 
     @include civic-breakpoint('m') {
@@ -140,6 +147,7 @@
 
   h2 {
     @include civic-typography('heading-2');
+
     margin-bottom: rem(22px);
 
     @include civic-breakpoint('m') {
@@ -149,6 +157,7 @@
 
   h3 {
     @include civic-typography('heading-3');
+
     margin-bottom: rem(16px);
 
     @include civic-breakpoint('m') {
@@ -158,6 +167,7 @@
 
   h4 {
     @include civic-typography('heading-4');
+
     margin-bottom: rem(16px);
 
     @include civic-breakpoint('m') {
@@ -167,6 +177,7 @@
 
   h5 {
     @include civic-typography('heading-5');
+
     margin-bottom: rem(8px);
 
     @include civic-breakpoint('m') {
@@ -176,6 +187,7 @@
 
   h6 {
     @include civic-typography('heading-6');
+
     margin-bottom: rem(8px);
 
     @include civic-breakpoint('m') {
@@ -184,8 +196,8 @@
   }
 
   p {
-    margin-top: $basic-content-vertical-spacing;
-    margin-bottom: $basic-content-vertical-spacing;
+    margin-top: $civic-basic-content-vertical-spacing;
+    margin-bottom: $civic-basic-content-vertical-spacing;
   }
 
   .lead {
@@ -198,10 +210,11 @@
 
   blockquote {
     @include civic-typography('quote');
+
     position: relative;
     margin: 0;
-    margin-top: $basic-content-vertical-spacing;
-    margin-bottom: $basic-content-vertical-spacing;
+    margin-top: $civic-basic-content-vertical-spacing;
+    margin-bottom: $civic-basic-content-vertical-spacing;
     padding: civic-space(2) civic-space(3);
 
     &::before {
@@ -217,15 +230,16 @@
   }
 
   ul {
-    margin-top: $basic-content-vertical-spacing;
-    margin-bottom: $basic-content-vertical-spacing;
+    margin-top: $civic-basic-content-vertical-spacing;
+    margin-bottom: $civic-basic-content-vertical-spacing;
     padding: 0;
     list-style: none;
 
     li {
       @include civic-typography('unordered-list');
+
       position: relative;
-      padding-left: $basic-content-list-marker-width + $basic-content-list-marker-margin;
+      padding-left: $civic-basic-content-list-marker-width + $civic-basic-content-list-marker-margin;
 
       &::before {
         content: '';
@@ -241,37 +255,38 @@
   }
 
   ol {
-    margin-top: $basic-content-vertical-spacing;
-    margin-bottom: $basic-content-vertical-spacing;
+    margin-top: $civic-basic-content-vertical-spacing;
+    margin-bottom: $civic-basic-content-vertical-spacing;
     counter-reset: ordered_counter;
     padding: 0;
     list-style: none;
 
     li {
       @include civic-typography('ordered-list');
+
       counter-increment: ordered_counter;
-      padding-left: $basic-content-list-marker-width + $basic-content-list-marker-margin;
+      padding-left: $civic-basic-content-list-marker-width + $civic-basic-content-list-marker-margin;
 
       &::before {
         content: counter(ordered_counter);
         display: inline-block;
         text-align: center;
-        width: $basic-content-list-marker-width;
-        margin-left: -$basic-content-list-marker-width - $basic-content-list-marker-margin;
-        margin-right: $basic-content-list-marker-margin;
+        width: $civic-basic-content-list-marker-width;
+        margin-left: -$civic-basic-content-list-marker-width - $civic-basic-content-list-marker-margin;
+        margin-right: $civic-basic-content-list-marker-margin;
       }
     }
   }
 
   img {
     max-width: 100%;
-    margin-top: $basic-content-vertical-spacing * 2;
-    margin-bottom: $basic-content-vertical-spacing * 2;
+    margin-top: $civic-basic-content-vertical-spacing * 2;
+    margin-bottom: $civic-basic-content-vertical-spacing * 2;
   }
 
   figure {
-    margin-top: $basic-content-vertical-spacing * 2;
-    margin-bottom: $basic-content-vertical-spacing * 2;
+    margin-top: $civic-basic-content-vertical-spacing * 2;
+    margin-bottom: $civic-basic-content-vertical-spacing * 2;
 
     img {
       margin-top: 0;

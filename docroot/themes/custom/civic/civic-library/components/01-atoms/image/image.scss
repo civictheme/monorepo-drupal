@@ -5,9 +5,9 @@
 
 .civic-image {
   $root: &;
+
   margin: 0;
   border-radius: $civic-image-border-radius;
-  margin: 0;
 
   &.civic-theme-light {
     color: $civic-image-caption-light-color;
