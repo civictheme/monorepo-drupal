@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_c_p_image
-    - media.type.image
+    - media.type.civic_image
     - paragraphs.paragraphs_type.civic_next_step
 id: paragraph.civic_next_step.field_c_p_image
 field_name: field_c_p_image

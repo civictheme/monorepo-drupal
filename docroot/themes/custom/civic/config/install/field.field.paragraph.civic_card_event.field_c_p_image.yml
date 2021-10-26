@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_c_p_image
-    - media.type.image
+    - media.type.civic_image
     - paragraphs.paragraphs_type.civic_card_event
 id: paragraph.civic_card_event.field_c_p_image
 field_name: field_c_p_image

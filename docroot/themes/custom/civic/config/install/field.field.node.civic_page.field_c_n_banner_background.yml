@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_c_n_banner_background
-    - media.type.image
+    - media.type.civic_image
     - node.type.civic_page
 id: node.civic_page.field_c_n_banner_background
 field_name: field_c_n_banner_background
