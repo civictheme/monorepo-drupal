@@ -4,7 +4,7 @@ import {
 
 import CivicFlyout from './flyout.twig';
 import './flyout.scss';
-import './flyout.js';
+import './flyout';
 
 export default {
   title: 'Molecules/Flyout',

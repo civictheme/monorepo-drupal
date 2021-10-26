@@ -4,7 +4,7 @@ import {
 } from '@storybook/addon-knobs';
 import CivicMobileNavigation from './mobile-navigation.twig';
 import './mobile-navigation.scss';
-import '../../02-molecules/flyout/flyout.js';
+import '../../02-molecules/flyout/flyout';
 import '../../02-molecules/flyout/flyout.scss';
 
 export default {
@@ -22,7 +22,7 @@ export const MobileNavigation = () => {
       below: [
         {
           title: 'Menu item',
-          url: '#'
+          url: '#',
         },
         {
           title: 'Test Second Level',

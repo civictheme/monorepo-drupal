@@ -34,7 +34,7 @@ CivicFlyout.prototype.clickEvent = function (e) {
   e.preventDefault();
   e.stopImmediatePropagation();
 
-  e.currentTarget.expand ? this.expand() : this.collapse();
+  return e.currentTarget.expand ? this.expand() : this.collapse();
 };
 
 // eslint-disable-next-line func-names
