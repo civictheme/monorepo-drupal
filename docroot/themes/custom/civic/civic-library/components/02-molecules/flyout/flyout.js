@@ -43,8 +43,16 @@ CivicFlyout.prototype.closeAllClickEvent = function (e) {
   e.preventDefault();
   e.stopImmediatePropagation();
 
-  // todo: add collapse for each flyout
-  this.collapse();
+  // Collapse all panels.
+  document.querySelectorAll('[data-flyout-expanded]').forEach((flyout) => {
+    flyout.removeAttribute('data-flyout-expanded', false);
+  });
+  document.querySelectorAll('[data-flyout-panel]').forEach((panel) => {
+    panel.setAttribute('aria-hidden', true);
+  });
+  document.querySelectorAll('[data-flyout-trigger]').forEach((trigger) => {
+    trigger.setAttribute('aria-expanded', false);
+  });
 };
 
 // eslint-disable-next-line func-names
