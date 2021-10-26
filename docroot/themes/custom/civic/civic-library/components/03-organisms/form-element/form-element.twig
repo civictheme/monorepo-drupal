@@ -64,6 +64,9 @@
   description_display == 'invisible' ? 'visually-hidden',
 ]
 %}
+
+{% set description_classes = description_modifier_class ? description_classes|merge([description_modifier_class]) ? description_classes %}
+
 <div class="{{ classes|join(' ') }}" {{ attributes }}>
   {% if label_display in ['before', 'invisible'] %}
     {{ label }}

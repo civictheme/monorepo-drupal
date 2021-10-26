@@ -56,6 +56,14 @@
       }
     }
 
+    &:hover {
+      & + span {
+        &:before {
+          box-shadow: 0 0 0 1px $civic-radio-light-border-color;
+        }
+      }
+    }
+
     &:focus {
       & + span {
         &:before {
@@ -86,6 +94,14 @@
       & + span {
         &:before {
           @include civic-outline();
+        }
+      }
+    }
+
+    &:hover {
+      & + span {
+        &:before {
+          box-shadow: 0 0 0 1px $civic-radio-dark-border-color;
         }
       }
     }

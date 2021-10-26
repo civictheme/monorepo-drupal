@@ -72,7 +72,7 @@
     }
   }
 
-  &.success, &:valid {
+  &.success, &--success {
     #{$root}__element {
       border-color: civic-color('success') !important;
     }
