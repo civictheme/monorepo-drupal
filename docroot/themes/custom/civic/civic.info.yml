@@ -118,7 +118,6 @@ config_devel:
     - core.entity_form_display.paragraph.civic_slider_slide.default
     - core.entity_form_display.paragraph.civic_slider_slide_reference.default
     - core.entity_form_display.paragraph.civic_social_icon.default
-    - core.entity_form_mode.media.media_library
     - core.entity_view_display.block_content.civic_banner.default
     - core.entity_view_display.block_content.civic_component_block.default
     - core.entity_view_display.block_content.civic_social_icons.default
@@ -129,12 +128,12 @@ config_devel:
     - core.entity_view_display.media.civic_icon.default
     - core.entity_view_display.media.civic_icon.media_library
     - core.entity_view_display.media.civic_image.default
+    - core.entity_view_display.media.civic_image.embedded
     - core.entity_view_display.media.civic_image.media_library
     - core.entity_view_display.media.civic_remote_video.default
     - core.entity_view_display.media.civic_remote_video.media_library
     - core.entity_view_display.media.civic_video.default
     - core.entity_view_display.media.civic_video.media_library
-    - core.entity_view_display.media.civic_image.embedded
     - core.entity_view_display.node.civic_event.civic_card_event
     - core.entity_view_display.node.civic_event.civic_card_navigation
     - core.entity_view_display.node.civic_event.civic_card_promo
@@ -173,7 +172,6 @@ config_devel:
     - core.entity_view_display.paragraph.civic_slider_slide_reference.default
     - core.entity_view_display.paragraph.civic_social_icon.default
     - core.entity_view_mode.media.embedded
-    - core.entity_view_mode.media.media_library
     - core.entity_view_mode.node.civic_card_event
     - core.entity_view_mode.node.civic_card_navigation
     - core.entity_view_mode.node.civic_card_promo
@@ -422,8 +420,8 @@ config_devel:
     - views.view.civic_listing
     - views.view.civic_pages
   optional:
-    - media.type.image
-    - media.type.document
+    - core.entity_view_mode.media.media_library
+    - core.entity_form_mode.media.media_library
+    - core.entity_view_mode.node.teaser
     - image.style.medium
     - image.style.thumbnail
-    - core.entity_view_mode.node.teaser
