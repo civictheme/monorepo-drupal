@@ -10,21 +10,25 @@
  */
 #}
 
+{% set classes = ['civic-select', 'civic-input__element'] %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class | default('')) %}
+{% set classes = classes|merge([theme_class]) %}
+{% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
+{% set classes = disabled ? classes|merge(['disabled']) : classes %}
+{% set classes = required ? classes|merge(['required']) : classes %}
+{% set state_class = state and (state != 'none') ? 'civic-select--%s'|format(state) : '' %}
+{% set classes = state_class != '' ? classes|merge([state_class]) : classes %}
 
-<div class="civic-input civic-input--select {{ modifier_class }}">
-  <select {{ attributes }}>
-    {% for option in options %}
-      {% if option.type == 'optgroup' %}
-        <optgroup label="{{ option.label }}">
-          {% for sub_option in option.options %}
-            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
-          {% endfor %}
-        </optgroup>
-      {% elseif option.type == 'option' %}
-        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
-      {% endif %}
-    {% endfor %}
-  </select>
-</div>
+<select class="{{ classes|join(' ') }}" {{ attributes }} {{ disabled ? 'disabled' }} {{ required ? 'required' }}>
+  {% for option in options %}
+    {% if option.type == 'optgroup' %}
+      <optgroup label="{{ option.label }}">
+        {% for sub_option in option.options %}
+          <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+        {% endfor %}
+      </optgroup>
+    {% elseif option.type == 'option' %}
+      <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+    {% endif %}
+  {% endfor %}
+</select>

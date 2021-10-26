@@ -1,6 +1,6 @@
-import { boolean, radios, text, object } from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 
-import CivicSelect from './select.twig';
+import CivicCheckbox from './checkbox.twig';
 
 export default {
   title: 'Atoms/Input',
@@ -9,7 +9,7 @@ export default {
   },
 };
 
-export const Select = () => CivicSelect({
+export const Checkbox = () => CivicCheckbox({
   theme: radios(
     'Theme',
     {
@@ -18,12 +18,9 @@ export const Select = () => CivicSelect({
     },
     'light',
   ),
-  options: object('Options', [
-    { 'type': 'option', 'value': 'option1', 'label': 'Option 1' },
-    { 'type': 'option', 'value': 'option2', 'label': 'Option 2' },
-    { 'type': 'option', 'value': 'option3', 'label': 'Option 3' },
-    { 'type': 'option', 'value': 'option4', 'label': 'Option 4' },
-  ]),
+  type: 'checkbox',
+  value: text('Value', 'Civic input'),
+  label: text('Label', 'Civic input label'),
   state: radios(
     'State',
     {

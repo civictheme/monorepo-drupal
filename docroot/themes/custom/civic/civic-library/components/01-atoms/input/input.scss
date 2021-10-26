@@ -38,7 +38,11 @@
     display: inline;
   }
 
-  &.disabled {
+  &--checkbox {
+    display: inline;
+  }
+
+  &.disabled, &--disabled {
     #{$root}__element {
       color: civic-color('neutral_40');
       background-color: civic-color('neutral_10');
@@ -56,7 +60,7 @@
     }
   }
 
-  &.error {
+  &.error, &--error {
     #{$root}__element {
       border-color: civic-color('error') !important;
     }
@@ -68,7 +72,7 @@
     }
   }
 
-  &.success {
+  &.success, &:valid {
     #{$root}__element {
       border-color: civic-color('success') !important;
     }

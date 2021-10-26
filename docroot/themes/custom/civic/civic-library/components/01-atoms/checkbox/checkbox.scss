@@ -4,7 +4,7 @@
 
 @import '../../00-base/base';
 
-.civic-radio {
+.civic-checkbox {
   position: absolute;
   opacity: 0;
   width: rem(26px);
@@ -14,8 +14,8 @@
   & + span {
     &:before {
       content: '';
-      border-radius: 50%;
       border: 1px solid;
+      border-radius: 2px;
       display: inline-block;
       width: rem(24px);
       height: rem(24px);
@@ -85,7 +85,7 @@
     &:focus {
       & + span {
         &:before {
-          @include civic-outline();
+          @include civic-outline(1);
         }
       }
     }
@@ -110,6 +110,6 @@
   }
 }
 
-.radios--wrapper {
+.checkboxes--wrapper {
   @include civic-typography('body');
 }

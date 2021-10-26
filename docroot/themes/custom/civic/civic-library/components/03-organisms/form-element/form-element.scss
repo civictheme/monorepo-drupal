@@ -9,6 +9,17 @@
 
   &--radio {
     margin-bottom: civic-space();
+
+    .civic-label {
+      margin-bottom: 0;
+    }
+  }
+
+  &--checkbox {
+    margin-bottom: civic-space();
+    .civic-label {
+      margin-bottom: 0;
+    }
   }
 
   .civic-input {

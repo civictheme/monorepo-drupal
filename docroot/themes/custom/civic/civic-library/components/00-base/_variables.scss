@@ -736,7 +736,21 @@ $civic-collapsible-dark-background-color: civic-color('shade_60') !default;
 $civic-collapsible-dark-icon-color: $civic-collapsible-dark-color;
 
 //
-// Radio
+// Input
+//
+$civic-input-light-color: civic-color('neutral_80') !default;
+$civic-input-light-border-color: civic-color('neutral_20') !default;
+$civic-input-light-border-hover-color: civic-color('neutral_60') !default;
+$civic-input-light-background-color: civic-color('neutral_5') !default;
+$civic-input-light-focus-background-color: civic-color('neutral') !default;
+
+$civic-input-light-disabled-color: civic-color('neutral_40') !default;
+$civic-input-light-disabled-background-color: civic-color('neutral_10') !default;
+
+$civic-input-border-error-color: civic-color('error') !default;
+
+//
+// Radio, Checkbox
 //
 $civic-radio-light-border-color: civic-color('neutral_60') !default;
 $civic-radio-light-background-color: civic-color('neutral_10') !default;
@@ -745,3 +759,24 @@ $civic-radio-light-selected-background-color: civic-color('primary') !default;
 $civic-radio-dark-border-color: civic-color('neutral_40') !default;
 $civic-radio-dark-background-color: civic-color('primary') !default;
 $civic-radio-dark-selected-background-color: civic-color('accent') !default;
+
+//
+// Select
+//
+$civic-select-light-color: civic-color('neutral_80') !default;
+$civic-select-light-background-color: civic-color('neutral') !default;
+$civic-select-light-border-color: civic-color('neutral_20') !default;
+$civic-select-light-border-hover-color: civic-color('neutral_60') !default;
+$civic-select-light-border-success-color: civic-color('success') !default;
+$civic-select-light-disabled-color: civic-color('neutral_40') !default;
+$civic-select-light-disabled-background-color: civic-color('neutral_10') !default;
+
+$civic-select-dark-color: civic-color('neutral') !default;
+$civic-select-dark-background-color: civic-color('shade_45') !default;
+$civic-select-dark-border-color: civic-color('neutral_40') !default;
+$civic-select-dark-border-hover-color: civic-color('neutral_10') !default;
+$civic-select-dark-border-focus-color: civic-color('accent') !default;
+$civic-select-dark-border-error-color: civic-color('error') !default;
+$civic-select-dark-border-success-color: civic-color('success') !default;
+$civic-select-dark-disabled-color: civic-color('neutral_40') !default;
+$civic-select-dark-disabled-background-color: civic-color('neutral_80') !default;

@@ -1,0 +1,67 @@
+//
+// Civic input.
+//
+
+@import '../../00-base/base';
+
+.civic-select {
+  $root: &;
+  @include civic-typography('body');
+  font-weight: 600;
+  padding: civic-space() * 1.5 civic-space(3) civic-space() * 1.5 civic-space(2);
+
+  &.civic-theme-light {
+    color: $civic-select-light-color;
+    background-color: $civic-select-light-background-color;
+
+    &:hover {
+      box-shadow: 0 0 0 1px $civic-select-light-border-hover-color;
+    }
+
+    &.error, &.civic-select--error {
+      border-color: $civic-input-border-error-color;
+      box-shadow: 0 0 0 1px $civic-input-border-error-color;
+    }
+
+    &.civic-select--success {
+      border-color: $civic-select-light-border-success-color;
+      box-shadow: 0 0 0 1px $civic-select-light-border-success-color;
+    }
+
+    &.disabled {
+      color: $civic-select-light-disabled-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    color: $civic-select-dark-color;
+    background-color: $civic-select-dark-background-color;
+    border-color: $civic-select-dark-border-color;
+
+    &:hover {
+      border-color: $civic-select-dark-border-hover-color;
+      box-shadow: 0 0 0 1px $civic-select-dark-border-hover-color;
+    }
+
+    &:focus {
+      border-color: $civic-select-dark-border-focus-color;
+      box-shadow: 0 0 0 1px $civic-select-dark-border-focus-color;
+    }
+
+    &:invalid, &.error, &.civic-select--error {
+      border-color: $civic-select-dark-border-error-color;
+      box-shadow: 0 0 0 1px $civic-select-dark-border-error-color;
+    }
+
+    &:valid, &.civic-select--success {
+      border-color: $civic-select-dark-border-success-color;
+      box-shadow: 0 0 0 1px $civic-select-dark-border-success-color;
+    }
+
+    &.disabled {
+      border-color: $civic-select-dark-disabled-color;
+      color: $civic-select-dark-disabled-color;
+      background-color: $civic-select-dark-disabled-background-color;
+    }
+  }
+}

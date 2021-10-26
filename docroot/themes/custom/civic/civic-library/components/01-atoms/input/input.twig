@@ -43,6 +43,8 @@
     {% endif %}
   {% elseif type == 'radio' %}
     {% include '@atoms/radio/radio.twig' %}
+  {% elseif type == 'checkbox' %}
+    {% include '@atoms/checkbox/checkbox.twig' %}
   {% else %}
     <input class="civic-input__element" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} />
   {% endif %}
