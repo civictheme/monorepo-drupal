@@ -4,7 +4,7 @@ import {
 
 import CivicFlyout from './flyout.twig';
 import './flyout.scss';
-import './flyout';
+import './flyout.js';
 
 export default {
   title: 'Molecules/Flyout',
@@ -14,7 +14,7 @@ export default {
 };
 
 export const Flyout = () => {
-  const content = '<p><a href="#" data-flyout-close>Close</a></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur harum magnam modi obcaecati vitae voluptatibus! Accusamus atque deleniti, distinctio esse facere, nam odio officiis omnis porro quibusdam quis repudiandae veritatis.</p>';
+  const content = `<p><a href="#" data-flyout-close>Close</a></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur harum magnam modi obcaecati vitae voluptatibus! Accusamus atque deleniti, distinctio esse facere, nam odio officiis omnis porro quibusdam quis repudiandae veritatis.</p>`;
 
   const html = CivicFlyout({
     theme: radios(

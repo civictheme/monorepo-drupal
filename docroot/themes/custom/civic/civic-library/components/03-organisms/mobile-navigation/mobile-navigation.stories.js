@@ -4,8 +4,8 @@ import {
 } from '@storybook/addon-knobs';
 import CivicMobileNavigation from './mobile-navigation.twig';
 import './mobile-navigation.scss';
+import '../../02-molecules/flyout/flyout.js';
 import '../../02-molecules/flyout/flyout.scss';
-import '../../02-molecules/flyout/flyout';
 
 export default {
   title: 'Organisms/Mobile Navigation',
@@ -21,6 +21,10 @@ export const MobileNavigation = () => {
       url: '#',
       below: [
         {
+          title: 'Menu item',
+          url: '#'
+        },
+        {
           title: 'Test Second Level',
           url: '#',
           below: [
@@ -29,10 +33,6 @@ export const MobileNavigation = () => {
               url: 'https://www.google.com',
             },
           ],
-        },
-        {
-          title: 'Menu item',
-          url: '#',
         },
         {
           title: 'Menu item',

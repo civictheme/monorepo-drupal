@@ -66,7 +66,7 @@
     {% for item in items %}
       <li class="civic-mobile-navigation__item {{ item.below ? 'civic-mobile-navigation__item--has-submenu' : '' }}">
         {% if item.below %}
-          <div data-flyout>
+          <div data-flyout="true" data-flyout-from="right">
             <div data-flyout-trigger>
               {% include '@atoms/mobile-navigation-link/mobile-navigation-link.twig' with {
                 theme: theme,

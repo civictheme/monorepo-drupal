@@ -13,11 +13,19 @@ function CivicFlyout(el) {
   this.isToggling = false;
 
   // Add event listener to element.
-  this.trigger.addEventListener('click', this.clickEvent.bind(this));
-  this.trigger.expand = true;
-  this.close.addEventListener('click', this.clickEvent.bind(this));
-  this.close.expand = false;
-  this.closeAll.addEventListener('click', this.closeAllClickEvent.bind(this));
+  if (this.trigger) {
+    this.trigger.addEventListener('click', this.clickEvent.bind(this));
+    this.trigger.expand = true;
+  }
+
+  if (this.close) {
+    this.close.addEventListener('click', this.clickEvent.bind(this));
+    this.close.expand = false;
+  }
+
+  if (this.closeAll) {
+    this.closeAll.addEventListener('click', this.closeAllClickEvent.bind(this));
+  }
 }
 
 // eslint-disable-next-line func-names
