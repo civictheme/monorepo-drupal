@@ -189,3 +189,26 @@ function _civic_preprocess_block_content(&$variables) {
       break;
   }
 }
+
+/**
+ * Implement template_preprocess_menu_local_tasks().
+ */
+function civic_preprocess_menu_local_tasks(&$variables) {
+  $local_task_types = ['primary', 'secondary'];
+  $theme = theme_get_setting('civic_header_theme') ?? 'light';
+  foreach ($local_task_types as $local_task_type) {
+    $variables['links'][$local_task_type] = [];
+    foreach ($variables[$local_task_type] as $link) {
+      if (!empty($link['#access']) && $link['#access']->isAllowed()) {
+        $variables['links'][$local_task_type][] = [
+          'theme' => $theme,
+          'title' => $link['#link']['title'],
+          'url' => $link['#link']['url']->toString(),
+          'new_window' => FALSE,
+          'is_external' => $link['#link']['url']->isExternal(),
+        ];
+      }
+    }
+    unset($variables[$local_task_type]);
+  }
+}
