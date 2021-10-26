@@ -134,7 +134,7 @@ config_devel:
     - core.entity_view_display.media.civic_remote_video.media_library
     - core.entity_view_display.media.civic_video.default
     - core.entity_view_display.media.civic_video.media_library
-    - core.entity_view_display.media.image.embedded
+    - core.entity_view_display.media.civic_image.embedded
     - core.entity_view_display.node.civic_event.civic_card_event
     - core.entity_view_display.node.civic_event.civic_card_navigation
     - core.entity_view_display.node.civic_event.civic_card_promo
@@ -194,10 +194,6 @@ config_devel:
     - field.field.media.civic_remote_video.field_c_m_title
     - field.field.media.civic_remote_video.field_c_m_transcript_link
     - field.field.media.civic_video.field_c_m_video_file
-    - field.field.media.image.field_c_m_caption
-    - field.field.media.remote_video.field_c_m_share_link
-    - field.field.media.remote_video.field_c_m_title
-    - field.field.media.remote_video.field_c_m_transcript_link
     - field.field.node.civic_event.field_c_n_attachments
     - field.field.node.civic_event.field_c_n_body
     - field.field.node.civic_event.field_c_n_date
