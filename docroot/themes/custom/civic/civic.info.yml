@@ -12,7 +12,6 @@ dependencies:
   - field_group:field_group
   - menu_block:menu_block
   - paragraphs:paragraphs
-  - webform:webform
 
 regions:
   header_top: 'Header'
