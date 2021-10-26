@@ -78,5 +78,5 @@ filters:
       allowed_view_modes:
         embedded: embedded
       allowed_media_types:
-        image: image
-        remote_video: remote_video
+        civic_image: civic_image
+        civic_remote_video: civic_remote_video

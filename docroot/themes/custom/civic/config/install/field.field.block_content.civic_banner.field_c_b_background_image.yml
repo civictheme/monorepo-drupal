@@ -19,7 +19,7 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
-      image: image
+      civic_image: civic_image
     sort:
       field: _none
       direction: ASC

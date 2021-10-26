@@ -19,7 +19,7 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
-      document: document
+      civic_document: civic_document
     sort:
       field: _none
       direction: ASC

@@ -420,8 +420,6 @@ config_devel:
     - views.view.civic_listing
     - views.view.civic_pages
   optional:
-    - core.entity_view_mode.media.media_library
-    - core.entity_form_mode.media.media_library
     - core.entity_view_mode.node.teaser
     - image.style.medium
     - image.style.thumbnail
