@@ -42,7 +42,8 @@
     display: inline;
   }
 
-  &.disabled, &--disabled {
+  &.disabled,
+  &--disabled {
     #{$root}__element {
       color: civic-color('neutral_40');
       background-color: civic-color('neutral_10');
@@ -60,7 +61,8 @@
     }
   }
 
-  &.error, &--error {
+  &.error,
+  &--error {
     #{$root}__element {
       border-color: civic-color('error') !important;
     }
@@ -72,7 +74,8 @@
     }
   }
 
-  &.success, &--success {
+  &.success,
+  &--success {
     #{$root}__element {
       border-color: civic-color('success') !important;
     }

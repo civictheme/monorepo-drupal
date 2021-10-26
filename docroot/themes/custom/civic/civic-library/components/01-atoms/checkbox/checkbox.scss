@@ -6,13 +6,15 @@
 
 .civic-checkbox {
   position: absolute;
+  // stylelint-disable alpha-value-notation
   opacity: 0;
+  // stylelint-enable alpha-value-notation
   width: rem(26px);
   height: rem(26px);
   z-index: 1;
 
   & + span {
-    &:before {
+    &::before {
       content: '';
       border: 1px solid;
       border-radius: 2px;
@@ -30,7 +32,7 @@
 
   &:checked {
     & + span {
-      &:before {
+      &::before {
         width: rem(22px);
         height: rem(22px);
         border-width: 2px;
@@ -41,14 +43,14 @@
 
   &.civic-theme-light {
     & + span {
-      &:before {
+      &::before {
         border-color: $civic-radio-light-border-color;
       }
     }
 
     &:checked {
       & + span {
-        &:before {
+        &::before {
           background-color: $civic-radio-light-selected-background-color;
           border-color: $civic-radio-light-selected-background-color;
           box-shadow: inset 0 0 0 3px $civic-radio-light-background-color;
@@ -58,7 +60,7 @@
 
     &:hover {
       & + span {
-        &:before {
+        &::before {
           box-shadow: 0 0 0 1px $civic-radio-light-border-color;
         }
       }
@@ -66,7 +68,7 @@
 
     &:focus {
       & + span {
-        &:before {
+        &::before {
           @include civic-outline();
         }
       }
@@ -75,14 +77,14 @@
 
   &.civic-theme-dark {
     & + span {
-      &:before {
+      &::before {
         border-color: $civic-radio-dark-border-color;
       }
     }
 
     &:checked {
       & + span {
-        &:before {
+        &::before {
           background-color: $civic-radio-dark-selected-background-color;
           border-color: $civic-radio-dark-selected-background-color;
           box-shadow: inset 0 0 0 3px $civic-radio-dark-background-color;
@@ -92,7 +94,7 @@
 
     &:focus {
       & + span {
-        &:before {
+        &::before {
           @include civic-outline(1);
         }
       }
@@ -100,24 +102,24 @@
 
     &:hover {
       & + span {
-        &:before {
+        &::before {
           box-shadow: 0 0 0 1px $civic-radio-dark-border-color;
         }
       }
     }
   }
 
-
-  &.error, &.civic-input--error {
+  &.error,
+  &.civic-input--error {
     & + span {
-      &:before {
+      &::before {
         border-color: $civic-input-border-error-color;
       }
     }
 
     &:checked {
       & + span {
-        &:before {
+        &::before {
           border-color: $civic-input-border-error-color;
           background-color: $civic-input-border-error-color;
         }

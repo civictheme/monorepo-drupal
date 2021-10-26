@@ -6,7 +6,9 @@
 
 .civic-select {
   $root: &;
+
   @include civic-typography('body');
+
   font-weight: 600;
   padding: civic-space() * 1.5 civic-space(3) civic-space() * 1.5 civic-space(2);
 
@@ -18,7 +20,8 @@
       box-shadow: 0 0 0 1px $civic-select-light-border-hover-color;
     }
 
-    &.error, &.civic-select--error {
+    &.error,
+    &.civic-select--error {
       border-color: $civic-input-border-error-color;
       box-shadow: 0 0 0 1px $civic-input-border-error-color;
     }
@@ -48,12 +51,15 @@
       box-shadow: 0 0 0 1px $civic-select-dark-border-focus-color;
     }
 
-    &:invalid, &.error, &.civic-select--error {
+    &:invalid,
+    &.error,
+    &.civic-select--error {
       border-color: $civic-select-dark-border-error-color;
       box-shadow: 0 0 0 1px $civic-select-dark-border-error-color;
     }
 
-    &:valid, &.civic-select--success {
+    &:valid,
+    &.civic-select--success {
       border-color: $civic-select-dark-border-success-color;
       box-shadow: 0 0 0 1px $civic-select-dark-border-success-color;
     }

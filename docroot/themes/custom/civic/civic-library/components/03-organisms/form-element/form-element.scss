@@ -17,6 +17,7 @@
 
   &--checkbox {
     margin-bottom: civic-space();
+
     .civic-label {
       margin-bottom: 0;
     }
@@ -31,6 +32,7 @@
     margin-bottom: civic-space(2);
     display: inline-flex;
     align-items: center;
+
     @include civic-typography('label-small');
 
     .civic-icon {
