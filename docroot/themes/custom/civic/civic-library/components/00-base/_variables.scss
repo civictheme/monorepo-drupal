@@ -17,6 +17,12 @@ $civic-default-colors: (
   'secondary': #9263de,
   'accent': #61daff,
   'neutral': #fff,
+  'translucent': #0000,
+  'outline': #05f,
+  'information': #007cbf,
+  'warning': #c95100,
+  'error': #ce3836,
+  'success': #008482,
 );
 $civic-default-colors-shades: (
   'shade_15': color.mix(black, civic-base-color('primary'), 15%),
@@ -37,33 +43,10 @@ $civic-default-colors-neutrals: (
   'neutral_90': color.mix($civic-default-colors-neutral, white, 90%),
 );
 
-// @todo: Refactor these into component variables.
-$civic-default-colors-elements: (
-  'translucent': #0000,
-  'heading': #1f2833,
-  'heading-link': civic-base-color('primary'),
-  'body': #536570,
-  'link': #8258c4,
-  'link-light-visited': #8258c4,
-  'link-dark-visited': #a275eb,
-  'status': #007cbf,
-  'information': #007cbf,
-  'success': #008583,
-  'warning': #c95100,
-  'error': #cf3836,
-  'outline': #05f,
-  'dark-text': #e5f0f4,
-  'validation-light-error': #f8e1e1,
-  'validation-light-warning': #fae6d9,
-  'validation-light-info': #d9f2f8,
-  'validation-light-status': #d9f2f8,
-  'validation-light-success': color.mix(#088c8a, white, 15%),
-  'validation-dark-error': #cf3836,
-  'validation-dark-warning': #dc5800,
-  'validation-dark-info': #00a7ce,
-  'validation-dark-status': #00a7ce,
-  'validation-dark-success': #009694,
-);
+// Common colors.
+$civic-colors-heading: civic-color('neutral_80') !default;
+$civic-colors-body: civic-color('neutral_60') !default;
+$civic-colors-link-light: color.adjust(civic-color('secondary'), $hue: 6deg, $saturation: 25%, $lightness: 14%) !default;
 
 //
 // Breakpoints.
@@ -265,27 +248,27 @@ $civic-link-light-background-hover: civic-color('primary') !default;
 $civic-link-dark-color: civic-color('accent') !default;
 $civic-link-dark-color-hover: civic-color('shade_60') !default;
 $civic-link-dark-background-hover: civic-color('accent') !default;
-$civic-link-light-color-visited: civic-color('link-light-visited') !default;
+$civic-link-light-color-visited: civic-color('secondary') !default;
 $civic-link-light-color-visited-hover: civic-color('neutral') !default;
-$civic-link-light-background-visited-hover: civic-color('link-light-visited') !default;
-$civic-link-dark-color-visited: civic-color('link-dark-visited') !default;
+$civic-link-light-background-visited-hover: civic-color('secondary') !default;
+$civic-link-dark-color-visited: $civic-colors-link-light !default;
 $civic-link-dark-color-visited-hover: civic-color('shade_60') !default;
-$civic-link-dark-background-visited-hover: civic-color('link-dark-visited') !default;
+$civic-link-dark-background-visited-hover: $civic-colors-link-light !default;
 
 //
 // Table.
 //
-$civic-table-light-color: civic-color('body') !default;
+$civic-table-light-color: $civic-colors-body !default;
 $civic-table-light-link-color: $civic-link-light-color !default;
 $civic-table-light-link-hover-color: $civic-link-light-color-hover !default;
 $civic-table-light-heading-color: civic-color('neutral_90') !default;
-$civic-table-light-border-color: civic-color('body') !default;
+$civic-table-light-border-color: $civic-colors-body !default;
 $civic-table-light-background-color: civic-color('neutral') !default;
-$civic-table-light-row-odd-color: civic-color('body') !default;
+$civic-table-light-row-odd-color: $civic-colors-body !default;
 $civic-table-light-row-odd-link-color: $civic-link-light-color !default;
 $civic-table-light-row-odd-link-hover-color: $civic-link-light-color-hover !default;
 $civic-table-light-row-odd-background-color: civic-color('neutral') !default;
-$civic-table-light-row-even-color: civic-color('body') !default;
+$civic-table-light-row-even-color: $civic-colors-body !default;
 $civic-table-light-row-even-link-color: $civic-link-light-color !default;
 $civic-table-light-row-even-link-hover-color: $civic-link-light-color-hover !default;
 $civic-table-light-row-even-background-color: civic-color('neutral_5') !default;
@@ -308,23 +291,23 @@ $civic-table-dark-row-even-background-color: civic-color('shade_30') !default;
 // Callout.
 //
 $civic-callout-light-background-color: civic-color('neutral_5') !default;
-$civic-callout-light-color: civic-color('body') !default;
-$civic-callout-light-heading-color: civic-color('heading') !default;
+$civic-callout-light-color: $civic-colors-body !default;
+$civic-callout-light-heading-color: $civic-colors-heading !default;
 $civic-callout-dark-background-color: civic-color('shade_15') !default;
-$civic-callout-dark-color: civic-color('dark-text') !default;
+$civic-callout-dark-color: civic-color('shade_90') !default;
 $civic-callout-dark-heading-color: civic-color('neutral') !default;
-$civic-callout-light-stripe-color: civic-color('secondary') !default;
-$civic-callout-dark-stripe-color: $civic-callout-light-stripe-color !default;
+$civic-callout-light-border-color: civic-color('secondary') !default;
+$civic-callout-dark-border-color: $civic-callout-light-border-color !default;
 
 // Basic content
 $civic-basic-content-light-background-color: inherit !default;
-$civic-basic-content-light-base-color: civic-color('body') !default;
-$civic-basic-content-light-heading-1-color: civic-color('heading') !default;
-$civic-basic-content-light-heading-2-color: civic-color('heading') !default;
-$civic-basic-content-light-heading-3-color: civic-color('heading') !default;
-$civic-basic-content-light-heading-4-color: civic-color('heading') !default;
-$civic-basic-content-light-heading-5-color: civic-color('heading') !default;
-$civic-basic-content-light-heading-6-color: civic-color('heading') !default;
+$civic-basic-content-light-base-color: $civic-colors-body !default;
+$civic-basic-content-light-heading-1-color: $civic-colors-heading !default;
+$civic-basic-content-light-heading-2-color: $civic-colors-heading !default;
+$civic-basic-content-light-heading-3-color: $civic-colors-heading !default;
+$civic-basic-content-light-heading-4-color: $civic-colors-heading !default;
+$civic-basic-content-light-heading-5-color: $civic-colors-heading !default;
+$civic-basic-content-light-heading-6-color: $civic-colors-heading !default;
 $civic-basic-content-light-blockquote-color: civic-color('neutral_80') !default;
 $civic-basic-content-light-blockquote-block: civic-color('secondary') !default;
 $civic-basic-content-light-ul-li-color: civic-color('neutral_80') !default;
@@ -349,11 +332,11 @@ $civic-basic-content-dark-ol-li-marker-color: civic-color('accent') !default;
 //
 // Attachment.
 //
-$civic-attachment-light-color: civic-color('body') !default;
+$civic-attachment-light-color: $civic-colors-body !default;
 $civic-attachment-light-icon-color: civic-color('primary') !default;
 $civic-attachment-light-border-color: civic-color('neutral_20') !default;
 $civic-attachment-light-date-color: civic-color('neutral_60') !default;
-$civic-attachment-light-heading-color: civic-color('heading') !default;
+$civic-attachment-light-heading-color: $civic-colors-heading !default;
 $civic-attachment-light-heading-color-hover: civic-color('secondary') !default;
 $civic-attachment-light-heading-color-active: civic-color('shade_30') !default;
 $civic-attachment-dark-background-color: civic-color('shade_45') !default;
@@ -369,7 +352,7 @@ $civic-attachment-dark-icon-color: civic-color('accent') !default;
 //
 
 $civic-card-container-light-background: civic-color('neutral_5') !default;
-$civic-card-container-light-heading-color: civic-color('heading') !default;
+$civic-card-container-light-heading-color: $civic-colors-heading !default;
 $civic-card-container-dark-background: civic-color('shade_60') !default;
 $civic-card-container-dark-heading-color: civic-color('neutral') !default;
 
@@ -377,8 +360,8 @@ $civic-card-container-dark-heading-color: civic-color('neutral') !default;
 // Navigation card.
 //
 $civic-navigation-card-light-background-color: civic-color('neutral') !default;
-$civic-navigation-card-light-color: civic-color('body') !default;
-$civic-navigation-card-light-heading-color: civic-color('heading') !default;
+$civic-navigation-card-light-color: $civic-colors-body !default;
+$civic-navigation-card-light-heading-color: $civic-colors-heading !default;
 $civic-navigation-card-light-color-hover: civic-color('secondary') !default;
 $civic-navigation-card-light-heading-color-active: civic-color('shade_30') !default;
 $civic-navigation-card-dark-background-color: civic-color('shade_45') !default;
@@ -392,8 +375,8 @@ $civic-navigation-card-dark-heading-color-active: civic-color('neutral_20') !def
 //
 $civic-event-card-border-top-color: civic-color('secondary') !default;
 $civic-event-card-light-background-color: civic-color('neutral') !default;
-$civic-event-card-light-heading-color: civic-color('heading') !default;
-$civic-event-card-light-body-color: civic-color('body') !default;
+$civic-event-card-light-heading-color: $civic-colors-heading !default;
+$civic-event-card-light-body-color: $civic-colors-body !default;
 $civic-event-card-light-date-background-color: civic-color('neutral_5') !default;
 $civic-event-card-light-date-color: civic-color('neutral_80') !default;
 $civic-event-card-light-tag-background-color: civic-color('primary') !default;
@@ -414,8 +397,8 @@ $civic-event-card-dark-color-active: civic-color('neutral_20') !default;
 //
 $civic-promo-card-light-border-top-color: civic-color('secondary') !default;
 $civic-promo-card-light-background-color: civic-color('neutral') !default;
-$civic-promo-card-light-heading-color: civic-color('heading') !default;
-$civic-promo-card-light-body-color: civic-color('body') !default;
+$civic-promo-card-light-heading-color: $civic-colors-heading !default;
+$civic-promo-card-light-body-color: $civic-colors-body !default;
 $civic-promo-card-light-date-color: civic-color('neutral_80') !default;
 $civic-promo-card-light-color-hover: civic-color('secondary') !default;
 $civic-promo-card-light-color-active: civic-color('shade_30') !default;
@@ -458,7 +441,7 @@ $civic-button-dark-tertiary-background-color: civic-color('neutral') !default;
 $civic-button-dark-tertiary-color: civic-color('primary') !default;
 $civic-button-dark-focus-color: civic-color('primary') !default;
 $civic-button-dark-focus-background-color: civic-color('accent') !default;
-$civic-button-dark-hover-background-color: civic-color('link') !default;
+$civic-button-dark-hover-background-color: civic-color('secondary') !default;
 $civic-button-dark-active-background-color: civic-color('shade_30') !default;
 $civic-button-dark-disabled-background-color: civic-color('neutral_60') !default;
 $civic-button-dark-state-color: civic-color('neutral') !default;
@@ -466,51 +449,56 @@ $civic-button-dark-state-color: civic-color('neutral') !default;
 //
 // Message.
 //
-$civic-message-light-color: civic-color('neutral_90') !default;
-$civic-message-light-background-colors: (
-  'info': civic-color('validation-light-info'),
-  'status': civic-color('validation-light-status'),
-  'warning': civic-color('validation-light-warning'),
-  'error': civic-color('validation-light-error'),
-  'success': civic-color('validation-light-success'),
-) !default;
-$civic-message-light-icon-colors: (
-  'info': civic-color('information'),
-  'status': civic-color('status'),
+$civic-message-light-text-color: civic-color('neutral_90') !default;
+$civic-message-light-background-colors-default: (
+  'status': color.mix(white, civic-color('information'), 85%),
+  'warning': color.mix(white, civic-color('warning'), 85%),
+  'error': color.mix(white, civic-color('error'), 85%),
+  'success': color.mix(white, civic-color('success'), 85%),
+);
+$civic-message-light-background-colors: () !default;
+$civic-message-light-icon-colors-default: (
+  'status': civic-color('information'),
   'warning': civic-color('warning'),
   'error': civic-color('error'),
   'success': civic-color('success'),
-) !default;
-$civic-message-dark-color: civic-color('neutral_90') !default;
-$civic-message-dark-background-colors: (
-  'info': civic-color('validation-light-info'),
-  'status': civic-color('validation-light-status'),
-  'warning': civic-color('validation-light-warning'),
-  'error': civic-color('validation-light-error'),
-  'success': civic-color('validation-light-success'),
-) !default;
-$civic-message-dark-icon-colors: (
-  'info': civic-color('information'),
-  'status': civic-color('status'),
+);
+$civic-message-light-icon-colors: () !default;
+$civic-message-light-border-colors-default: (
+  'status': civic-color('information'),
   'warning': civic-color('warning'),
   'error': civic-color('error'),
   'success': civic-color('success'),
-) !default;
+);
+$civic-message-light-border-colors: () !default;
+$civic-message-light-text-colors-default: (
+  'status': $civic-message-light-text-color,
+  'warning': $civic-message-light-text-color,
+  'error': $civic-message-light-text-color,
+  'success': $civic-message-light-text-color,
+);
+$civic-message-light-text-colors: () !default;
+$civic-message-dark-text-color: $civic-message-light-text-color !default;
+$civic-message-dark-background-colors-default: $civic-message-light-background-colors-default;
+$civic-message-dark-background-colors: () !default;
+$civic-message-dark-icon-colors-default: $civic-message-light-icon-colors-default;
+$civic-message-dark-icon-colors: () !default;
+$civic-message-dark-border-colors-default: $civic-message-light-border-colors-default;
+$civic-message-dark-border-colors: () !default;
+$civic-message-dark-text-colors-default: $civic-message-light-text-colors-default;
+$civic-message-dark-text-colors: () !default;
 
 //
 // Alert.
 //
-
 $civic-alert-light-color: civic-color('neutral') !default;
 $civic-alert-light-background-colors: (
-  'info': civic-color('information'),
   'status': civic-color('information'),
   'warning': civic-color('warning'),
   'error': civic-color('error'),
   'success': civic-color('success'),
 ) !default;
 $civic-alert-light-icon-colors: (
-  'info': $civic-alert-light-color,
   'status': $civic-alert-light-color,
   'warning': $civic-alert-light-color,
   'error': $civic-alert-light-color,
@@ -518,14 +506,12 @@ $civic-alert-light-icon-colors: (
 ) !default;
 $civic-alert-dark-color: civic-color('neutral') !default;
 $civic-alert-dark-background-colors: (
-  'info': civic-color('information'),
   'status': civic-color('information'),
   'warning': civic-color('warning'),
   'error': civic-color('error'),
   'success': civic-color('success'),
 ) !default;
 $civic-alert-dark-icon-colors: (
-  'info': $civic-alert-dark-color,
   'status': $civic-alert-dark-color,
   'warning': $civic-alert-dark-color,
   'error': $civic-alert-dark-color,
@@ -536,7 +522,7 @@ $civic-alert-dark-icon-colors: (
 // Tag.
 //
 $civic-tag-light-background-color: civic-color('neutral_5') !default;
-$civic-tag-light-color: civic-color('body') !default;
+$civic-tag-light-color: $civic-colors-body !default;
 $civic-tag-dark-background-color: civic-color('shade_30') !default;
 $civic-tag-dark-color: civic-color('neutral') !default;
 
@@ -547,7 +533,7 @@ $civic-service-card-border-top-color: civic-color('secondary') !default;
 $civic-service-card-light-background-color: civic-color('neutral') !default;
 $civic-service-card-light-color-hover: civic-color('secondary') !default;
 $civic-service-card-light-color-active: civic-color('shade_30') !default;
-$civic-service-card-light-heading-color: civic-color('heading') !default;
+$civic-service-card-light-heading-color: $civic-colors-heading !default;
 $civic-service-card-dark-background-color: civic-color('shade_45') !default;
 $civic-service-card-dark-heading-color: civic-color('neutral') !default;
 $civic-service-card-dark-color-hover: civic-color('accent') !default;
@@ -556,7 +542,7 @@ $civic-service-card-dark-color-active: civic-color('neutral_20') !default;
 //
 // Progress indicator.
 //
-$civic-progress-indicator-light-color: civic-color('body') !default;
+$civic-progress-indicator-light-color: $civic-colors-body !default;
 $civic-progress-indicator-light-icon-color: civic-color('primary') !default;
 $civic-progress-indicator-light-border-color: civic-color('neutral_40') !default;
 $civic-progress-indicator-light-active-color: civic-color('neutral_5') !default;
@@ -579,7 +565,7 @@ $civic-breadcrumbs-dark-color-hover: civic-color('shade_60') !default;
 $civic-skip-link-light-background-color: civic-color('shade_90') !default;
 $civic-skip-link-light-color: civic-color('shade_30') !default;
 $civic-skip-link-dark-background-color: civic-color('shade_60') !default;
-$civic-skip-link-dark-color: civic-color('dark-text') !default;
+$civic-skip-link-dark-color: civic-color('shade_90') !default;
 
 //
 // Directional link
@@ -613,23 +599,27 @@ $civic-filter-chip-dark-active-color: civic-color('accent') !default;
 $civic-filter-chip-dark-active-background-color: civic-color('shade_60') !default;
 $civic-filter-chip-dark-active-border-color: civic-color('accent') !default;
 
+//
 // Next steps.
+//
 $civic-next-steps-stripe-color: civic-color('secondary') !default;
 $civic-next-steps-light-background-color: civic-color('neutral_5') !default;
-$civic-next-steps-light-color: civic-color('body') !default;
-$civic-next-steps-light-heading-color: civic-color('heading') !default;
+$civic-next-steps-light-color: $civic-colors-body !default;
+$civic-next-steps-light-heading-color: $civic-colors-heading !default;
 $civic-next-steps-light-color-hover: civic-color('secondary') !default;
 $civic-next-steps-light-color-active: civic-color('shade_30') !default;
+$civic-next-steps-light-icon-color: civic-color('primary') !default;
 $civic-next-steps-dark-background-color: civic-color('shade_15') !default;
 $civic-next-steps-dark-color-hover: civic-color('accent') !default;
 $civic-next-steps-dark-color-active: civic-color('neutral_20') !default;
 $civic-next-steps-dark-color: civic-color('neutral_10') !default;
 $civic-next-steps-dark-heading-color: civic-color('neutral_10') !default;
+$civic-next-steps-dark-icon-color: civic-color('accent') !default;
 
 //
 // Accordion.
 //
-$civic-accordion-light-color: civic-color('body') !default;
+$civic-accordion-light-color: $civic-colors-body !default;
 $civic-accordion-light-button-background-color: civic-color('neutral') !default;
 $civic-accordion-light-icon-color: civic-color('primary') !default;
 $civic-accordion-light-border-color: civic-color('neutral_20') !default;
@@ -642,9 +632,11 @@ $civic-accordion-dark-border-color: civic-color('primary') !default;
 $civic-accordion-dark-background-color: civic-color('shade_45') !default;
 $civic-accordion-dark-expanded-border-color: civic-color('secondary') !default;
 
+//
 // Icon link.
+//
 $civic-icon-link-light-color: civic-color('primary') !default;
-$civic-icon-link-light-color-hover: civic-color('link') !default;
+$civic-icon-link-light-color-hover: civic-color('secondary') !default;
 $civic-icon-link-light-color-focus: civic-color('primary') !default;
 $civic-icon-link-light-color-active: civic-color('shade_30') !default;
 $civic-icon-link-light-color-visited: civic-color('primary') !default;
@@ -656,14 +648,18 @@ $civic-icon-link-dark-color-active: civic-color('shade_90') !default;
 $civic-icon-link-dark-color-visited: civic-color('neutral') !default;
 $civic-icon-link-dark-color-disabled: civic-color('neutral_40') !default;
 
+//
 // Image.
+//
 $civic-image-border-radius: $civic-border-radius !default;
 $civic-image-caption-light-color: civic-color('neutral_60') !default;
 $civic-image-caption-icon-light-color: $civic-image-caption-light-color !default;
 $civic-image-caption-dark-color: civic-color('shade_90') !default;
 $civic-image-caption-icon-dark-color: $civic-image-caption-dark-color !default;
 
+//
 // Video
+//
 $civic-video-padding-bottom: 56.25% !default;
 $civic-video-light-icon-color: civic-color('primary') !default;
 $civic-video-light-icon-hover-color: civic-color('primary') !default;
@@ -680,6 +676,7 @@ $civic-subject-card-light-color-hover: civic-color('secondary') !default;
 $civic-subject-card-light-color-active: civic-color('shade_30') !default;
 $civic-subject-card-dark-color-accent: civic-color('accent') !default;
 $civic-subject-card-dark-color-active: civic-color('neutral_20') !default;
+$civic-subject-card-image-background-color: civic-color('neutral_90') !default;
 
 //
 // Banner.
@@ -712,7 +709,7 @@ $civic-footer-light-link-color: civic-color('neutral_90') !default;
 $civic-footer-light-link-hover-color: civic-color('shade_30') !default;
 $civic-footer-light-background-color: civic-color('neutral_20') !default;
 $civic-footer-light-border-color: civic-color('neutral_40') !default;
-$civic-footer-light-outline-color: civic-color('link-light-visited') !default;
+$civic-footer-light-outline-color: civic-color('secondary') !default;
 $civic-footer-collapsible-light-border-color: civic-color('neutral_40') !default;
 $civic-footer-dark-color: civic-color('neutral') !default;
 $civic-footer-dark-background-color: civic-color('shade_60') !default;
@@ -720,7 +717,7 @@ $civic-footer-dark-border-color: civic-color('primary') !default;
 $civic-footer-dark-mobile-border-color: civic-color('shade_15') !default;
 $civic-footer-dark-link-color: civic-color('neutral') !default;
 $civic-footer-dark-link-hover-color: civic-color('accent') !default;
-$civic-footer-dark-outline-color: civic-color('link-dark-visited') !default;
+$civic-footer-dark-outline-color: $civic-colors-link-light !default;
 $civic-footer-collapsible-dark-border-color: civic-color('shade_30') !default;
 
 //
@@ -734,3 +731,39 @@ $civic-collapsible-light-icon-color: $civic-collapsible-light-color;
 $civic-collapsible-dark-color: civic-color('neutral') !default;
 $civic-collapsible-dark-background-color: civic-color('shade_60') !default;
 $civic-collapsible-dark-icon-color: $civic-collapsible-dark-color;
+
+//
+// Search.
+//
+$civic-search-light-input-background-color: civic-color('neutral') !default;
+$civic-search-light-input-border-color: civic-color('shade_30') !default;
+$civic-search-light-input-text-color: civic-color('neutral_60') !default;
+$civic-search-light-input-helper-text-color: civic-color('neutral') !default;
+
+//
+// Input.
+//
+$civic-input-light-background-color: civic-color('neutral_5') !default;
+$civic-input-light-border-color: civic-color('neutral_20') !default;
+$civic-input-light-border-hover-color: civic-color('neutral_60') !default;
+$civic-input-light-background-focus-color: civic-color('neutral') !default;
+$civic-input-light-text-focus-color: civic-color('neutral_80') !default;
+$civic-input-light-outline-focus-color: civic-color('neutral_80') !default;
+$civic-input-light-border-focus-color: civic-color('neutral_80') !default;
+$civic-input-light-disabled-text-color: civic-color('neutral_40') !default;
+$civic-input-light-disabled-background-color: civic-color('neutral_10') !default;
+$civic-input-light-error-border-color: civic-color('error') !default;
+$civic-input-light-error-icon-color: civic-color('error') !default;
+$civic-input-light-success-border-color: civic-color('success') !default;
+$civic-input-light-success-icon-color: civic-color('success') !default;
+$civic-input-dark-base-text-color: civic-color('neutral') !default;
+$civic-input-dark-background-color: civic-color('shade_15') !default;
+$civic-input-dark-text-color: civic-color('neutral_10') !default;
+$civic-input-dark-border-color: civic-color('shade_30') !default;
+$civic-input-dark-border-hover-color: civic-color('neutral_10') !default;
+$civic-input-dark-text-focus-color: civic-color('neutral') !default;
+$civic-input-dark-outline-focus-color: civic-color('neutral') !default;
+$civic-input-dark-border-focus-color: civic-color('neutral') !default;
+$civic-input-dark-icon-color: civic-color('neutral') !default;
+$civic-input-dark-disabled-text-color: civic-color('neutral_10') !default;
+$civic-input-dark-disabled-background-color: civic-color('neutral_60') !default;

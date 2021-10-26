@@ -38,7 +38,6 @@
   $all-colors: map.merge($all-colors, $civic-default-colors);
   $all-colors: map.merge($all-colors, $civic-default-colors-shades);
   $all-colors: map.merge($all-colors, $civic-default-colors-neutrals);
-  $all-colors: map.merge($all-colors, $civic-default-colors-elements);
   $all-colors: map.merge($all-colors, $civic-colors);
 
   @return $all-colors;

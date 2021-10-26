@@ -6,7 +6,7 @@
 
 .civic-callout {
   border-radius: $civic-border-radius;
-  border-left: rem(6px) civic-color('secondary') solid;
+  border-left: rem(6px) solid transparent;
   display: flex;
   flex-direction: column;
   padding: civic-space(3) civic-space(3);
@@ -63,6 +63,7 @@
   }
 
   &.civic-theme-light {
+    border-left-color: $civic-callout-light-border-color;
     background-color: $civic-callout-light-background-color;
     color: $civic-callout-light-color;
 
@@ -74,6 +75,7 @@
   }
 
   &.civic-theme-dark {
+    border-left-color: $civic-callout-dark-border-color;
     background-color: $civic-callout-dark-background-color;
     color: $civic-callout-dark-color;
 
