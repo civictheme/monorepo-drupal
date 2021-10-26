@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: civic_menu_3
-label: 'Civic footer menu 3'
-description: ''
-locked: false
