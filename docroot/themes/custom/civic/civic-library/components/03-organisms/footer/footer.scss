@@ -104,6 +104,10 @@
         outline-color: $civic-footer-light-outline-color;
       }
     }
+
+    [data-collapsible='true'] {
+      border-top: solid rem(1px) $civic-footer-collapsible-light-border-color;
+    }
   }
 
   &.civic-theme-dark {
@@ -134,6 +138,10 @@
       &:focus {
         outline-color: $civic-footer-dark-outline-color;
       }
+    }
+
+    [data-collapsible='true'] {
+      border-top: solid rem(1px) $civic-footer-collapsible-dark-border-color;
     }
   }
 
