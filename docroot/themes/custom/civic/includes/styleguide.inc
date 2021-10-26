@@ -273,9 +273,9 @@ function _civic_styleguide_random_media_image($name = NULL) {
   $generator = \Drupal::service('styleguide.generator');
 
   return Media::create([
-    'bundle' => 'image',
+    'bundle' => 'civic_image',
     'name' => $name ? $name : $generator->words(3),
-    'field_media_image' => File::create([
+    'field_c_m_image' => File::create([
       'uri' => $generator->image($generator->words(), 'png'),
     ]),
   ]);
@@ -294,9 +294,9 @@ function _civic_styleguide_random_media_document($name = NULL, $extension = '.tx
   }
 
   return Media::create([
-    'bundle' => 'document',
+    'bundle' => 'civic_document',
     'name' => $name ? $name : $generator->words(3),
-    'field_media_file' => File::create([
+    'field_c_m_document' => File::create([
       'uri' => $filename,
     ]),
   ]);
