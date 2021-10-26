@@ -2,7 +2,6 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicFormElement from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
 import Select from '../../01-atoms/select/select.twig';
-import Label from '../../01-atoms/label/label.twig';
 
 export default {
   title: 'Organisms/Form Element',
@@ -12,10 +11,9 @@ export default {
 };
 
 export const FormElement = () => {
-
   const generalKnobTab = 'General';
 
-  const input_field = radios(
+  const inputField = radios(
     'Type',
     {
       Input: 'input',
@@ -33,7 +31,7 @@ export const FormElement = () => {
     },
     'light',
     generalKnobTab,
-  )
+  );
 
   const generalKnobs = {
     theme,
@@ -59,7 +57,7 @@ export const FormElement = () => {
     description: {
       content: text('Description', 'Civic input description', generalKnobTab),
     },
-  }
+  };
 
   const inputKnobTab = 'Input';
 
@@ -92,7 +90,7 @@ export const FormElement = () => {
       inputKnobTab,
     ),
     disabled: boolean('Disabled', false, inputKnobTab),
-  }
+  };
 
   const selectKnobs = {
     theme,
@@ -107,19 +105,19 @@ export const FormElement = () => {
       inputKnobTab,
     ),
     options: [
-      { 'type': 'option', 'value': 'option1', 'label': 'Option 1' },
-      { 'type': 'option', 'value': 'option2', 'label': 'Option 2' },
-      { 'type': 'option', 'value': 'option3', 'label': 'Option 3' },
-      { 'type': 'option', 'value': 'option4', 'label': 'Option 4' },
+      { type: 'option', value: 'option1', label: 'Option 1' },
+      { type: 'option', value: 'option2', label: 'Option 2' },
+      { type: 'option', value: 'option3', label: 'Option 3' },
+      { type: 'option', value: 'option4', label: 'Option 4' },
     ],
-  }
+  };
 
   const children = [];
-  if (input_field == 'input') {
+  if (inputField === 'input') {
     children.push(Input(inputKnobs));
   }
 
-  if (input_field == 'select') {
+  if (inputField === 'select') {
     children.push(Select(selectKnobs));
   }
 
@@ -127,4 +125,4 @@ export const FormElement = () => {
     ...generalKnobs,
     children,
   });
-}
+};

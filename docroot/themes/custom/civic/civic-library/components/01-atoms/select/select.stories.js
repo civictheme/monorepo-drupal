@@ -1,4 +1,7 @@
-import { boolean, radios, text, object } from '@storybook/addon-knobs';
+import {
+  boolean, radios, text, object,
+}
+  from '@storybook/addon-knobs';
 
 import CivicSelect from './select.twig';
 
@@ -19,10 +22,10 @@ export const Select = () => CivicSelect({
     'light',
   ),
   options: object('Options', [
-    { 'type': 'option', 'value': 'option1', 'label': 'Option 1' },
-    { 'type': 'option', 'value': 'option2', 'label': 'Option 2' },
-    { 'type': 'option', 'value': 'option3', 'label': 'Option 3' },
-    { 'type': 'option', 'value': 'option4', 'label': 'Option 4' },
+    { type: 'option', value: 'option1', label: 'Option 1' },
+    { type: 'option', value: 'option2', label: 'Option 2' },
+    { type: 'option', value: 'option3', label: 'Option 3' },
+    { type: 'option', value: 'option4', label: 'Option 4' },
   ]),
   state: radios(
     'State',
