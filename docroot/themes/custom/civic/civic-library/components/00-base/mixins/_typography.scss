@@ -9,23 +9,25 @@
 //
 // Include font size, height, weight and family for one-to-many breakpoints.
 //
-// @include typography('heading-l');
+// @include civic-typography('heading-l');
 // or
-// @include typography((24px, 1.2em, 400));
+// @include civic-typography((24px, 1.2em, 400));
 // or
-// @include typography((
+// @include civic-typography((
 //   'xs': (16px, 1.5em, 400),
 //   'l': (24px, 1.2em, 600)
 // ));
 //
 @mixin civic-typography($ruleset) {
+  $all-typographies: civic-all-typographies();
+
   // Print preset
   @if type-of($ruleset) == string {
-    @if map.get($civic-typography, $ruleset) == null {
+    @if map.get($all-typographies, $ruleset) == null {
       @error '"#{$ruleset}" is not an available typeset';
     }
 
-    $ruleset: map.get($civic-typography, $ruleset);
+    $ruleset: map.get($all-typographies, $ruleset);
   }
 
   // Print rules
@@ -48,8 +50,16 @@
 }
 
 //
+// Helper class to compile all typographies into a single map.
+// For using a typography, use civic-typography() instead.
+//
+@function civic-all-typographies () {
+  @return map.merge($civic-typography-default, $civic-typography);
+}
+
+//
 // Do not use directly.
-// Use @include typography() mixin instead.
+// Use @include civic-typography() mixin instead.
 //
 @mixin _civic-typography-print-rules($rules) {
   $font-size: list.nth($rules, 1);
@@ -75,7 +85,7 @@
 
 //
 // Do not use directly.
-// Use @include typography() mixin instead.
+// Use @include civic-typography() mixin instead.
 //
 @mixin _civic-typography-font($font-size: 's', $line-height: 1.2em, $font-weight: 'default', $font-family: 'none', $letter-spacing: 'normal') {
   font-size: rem($font-size);

@@ -1,5 +1,7 @@
 .typography-wrapper {
-  @include civic-generate-class-variations-from-map($civic-typography) using($name, $value, $index) {
+  $all-typographies: civic-all-typographies();
+
+  @include civic-generate-class-variations-from-map($all-typographies) using($name, $value, $index) {
     @include civic-typography($name);
   }
 }

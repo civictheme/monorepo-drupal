@@ -151,7 +151,8 @@ $civic-font-primary: 'Lexend', sans-serif;
 $civic-font: (
   'primary': $civic-font-primary
 ) !default;
-$civic-typography: (
+$civic-typography: () !default;
+$civic-typography-default: (
   'display-xl': (56px, 60px, 700, 'primary', -1px),
   'display-l': (39px, 44px, 700, 'primary', -0.7px),
   'display-m': (28px, 32px, 700, 'primary'),
@@ -237,7 +238,7 @@ $civic-typography: (
   'label-small': (12px, 26px, 600, 'primary'),
   'tag': (14px, 20px, 400, 'primary', -0.1px),
   'small-and-captions': (14px, 23px, 400, 'primary'),
-) !default;
+);
 
 //
 // Link.
