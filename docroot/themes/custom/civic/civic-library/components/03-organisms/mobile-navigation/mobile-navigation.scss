@@ -93,4 +93,60 @@
       background-color: $civic-mobile-navigation-dark-content-bottom-background-color;
     }
   }
+
+  &__link.civic-directional-link {
+    $root: &;
+    display: flex;
+    background: none;
+    border-bottom: none;
+    text-decoration: none;
+    justify-content: space-between;
+  
+    &,
+    &.civic-theme-light {
+      color: $civic-mobile-navigation-link-light-color;
+      border-bottom: 1px solid $civic-mobile-navigation-link-light-border-color;
+      display: flex;
+      padding: math.div(civic-space(3), 2) civic-space();
+      @include civic-typography($civic-mobile-navigation-link-typography);
+  
+      &:hover {
+        color: $civic-mobile-navigation-link-light-color-hover;
+      }
+  
+      &:focus {
+        color: $civic-mobile-navigation-link-light-color-focus;
+      }
+  
+      &:visited {
+        color: $civic-mobile-navigation-link-light-color-visited;
+      }
+  
+      .civic-icon {
+        fill: $civic-mobile-navigation-link-light-icon-color;
+      }
+    }
+  
+    &.civic-theme-dark {
+      color: $civic-mobile-navigation-link-dark-color;
+      border-bottom: 1px solid $civic-mobile-navigation-link-dark-border-color;
+  
+      &:hover {
+        color: $civic-mobile-navigation-link-dark-color-hover;
+      }
+  
+      &:focus {
+        color: $civic-mobile-navigation-link-dark-color-focus;
+      }
+  
+      &:visited {
+        color: $civic-mobile-navigation-link-dark-color-visited;
+      }
+  
+      .civic-icon {
+        fill: $civic-mobile-navigation-link-dark-icon-color;
+      }
+    }
+  }
+  
 }

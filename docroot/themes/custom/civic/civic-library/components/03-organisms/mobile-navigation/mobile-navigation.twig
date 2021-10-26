@@ -68,11 +68,12 @@
         {% if item.below %}
           <div data-flyout="true" data-flyout-from="right">
             <div data-flyout-trigger>
-              {% include '@atoms/mobile-navigation-link/mobile-navigation-link.twig' with {
+              {% include '@molecules/directional-link/directional-link.twig' with {
                 theme: theme,
+                direction: 'right',
                 text: item.title,
                 url: item.url,
-                icon: item.below ? 'arrows_rightarrow_3' : null,
+                modifier_class: 'civic-mobile-navigation__link',
               } only %}
             </div>
             <div data-flyout-panel>
@@ -80,10 +81,12 @@
             </div>
           </div>
         {% else %}
-          {% include '@atoms/mobile-navigation-link/mobile-navigation-link.twig' with {
+          {% include '@molecules/directional-link/directional-link.twig' with {
             theme: theme,
+            direction: null,
             text: item.title,
             url: item.url,
+            modifier_class: 'civic-mobile-navigation__link',
           } only %}
         {% endif %}
       </li>
