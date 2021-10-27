@@ -4,7 +4,7 @@
 
 @import '../../00-base/base';
 
-.civic-radio {
+%civic-checkbox-radio {
   position: absolute;
   // stylelint-disable alpha-value-notation
   opacity: 0;
@@ -82,6 +82,16 @@
         }
       }
     }
+
+    &:disabled {
+      & + span {
+        &::before {
+          cursor: default;
+          color: $civic-input-light-disabled-color;
+          background-color: $civic-input-light-disabled-background-color;
+        }
+      }
+    }
   }
 
   &.civic-theme-dark {
@@ -107,12 +117,22 @@
       }
     }
 
-      &:checked {
+    &:checked {
       & + span {
         &::before {
           background-color: $civic-radio-dark-selected-background-color;
           border-color: $civic-radio-dark-selected-background-color;
           box-shadow: inset 0 0 0 3px $civic-radio-dark-background-color;
+        }
+      }
+    }
+
+    &:disabled {
+      & + span {
+        &::before {
+          cursor: default;
+          color: $civic-input-dark-disabled-color;
+          background-color: $civic-input-dark-disabled-background-color;
         }
       }
     }
@@ -135,6 +155,10 @@
       }
     }
   }
+}
+
+.civic-radio {
+  @extend %civic-checkbox-radio;
 }
 
 .radios--wrapper {

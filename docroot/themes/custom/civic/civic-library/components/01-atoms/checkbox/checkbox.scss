@@ -3,11 +3,10 @@
 //
 
 @import '../../00-base/base';
-
 @import '../radio/radio';
 
 .civic-checkbox {
-  @extend .civic-radio;
+  @extend %civic-checkbox-radio;
 
   &.civic-input__element + span {
     &::before {
