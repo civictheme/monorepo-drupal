@@ -367,11 +367,12 @@ $civic-attachment-dark-icon-color: civic-color('accent') !default;
 //
 // Card container.
 //
-
+$civic-card-container-light-color: civic-color('neutral_80') !default;
 $civic-card-container-light-background: civic-color('neutral_5') !default;
 $civic-card-container-light-heading-color: civic-color('heading') !default;
 $civic-card-container-dark-background: civic-color('shade_60') !default;
 $civic-card-container-dark-heading-color: civic-color('neutral') !default;
+$civic-card-container-dark-color: civic-color('neutral') !default;
 
 //
 // Navigation card.
