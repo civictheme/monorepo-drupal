@@ -79,8 +79,18 @@ config_devel:
     - core.entity_form_display.block_content.civic_banner.default
     - core.entity_form_display.block_content.civic_component_block.default
     - core.entity_form_display.block_content.civic_social_icons.default
+    - core.entity_form_display.media.civic_audio.default
+    - core.entity_form_display.media.civic_audio.media_library
+    - core.entity_form_display.media.civic_document.default
+    - core.entity_form_display.media.civic_document.media_library
     - core.entity_form_display.media.civic_icon.default
     - core.entity_form_display.media.civic_icon.media_library
+    - core.entity_form_display.media.civic_image.default
+    - core.entity_form_display.media.civic_image.media_library
+    - core.entity_form_display.media.civic_remote_video.default
+    - core.entity_form_display.media.civic_remote_video.media_library
+    - core.entity_form_display.media.civic_video.default
+    - core.entity_form_display.media.civic_video.media_library
     - core.entity_form_display.node.civic_event.default
     - core.entity_form_display.node.civic_page.default
     - core.entity_form_display.paragraph.civic_accordion.default
@@ -111,9 +121,19 @@ config_devel:
     - core.entity_view_display.block_content.civic_banner.default
     - core.entity_view_display.block_content.civic_component_block.default
     - core.entity_view_display.block_content.civic_social_icons.default
+    - core.entity_view_display.media.civic_audio.default
+    - core.entity_view_display.media.civic_audio.media_library
+    - core.entity_view_display.media.civic_document.default
+    - core.entity_view_display.media.civic_document.media_library
     - core.entity_view_display.media.civic_icon.default
     - core.entity_view_display.media.civic_icon.media_library
-    - core.entity_view_display.media.image.embedded
+    - core.entity_view_display.media.civic_image.default
+    - core.entity_view_display.media.civic_image.embedded
+    - core.entity_view_display.media.civic_image.media_library
+    - core.entity_view_display.media.civic_remote_video.default
+    - core.entity_view_display.media.civic_remote_video.media_library
+    - core.entity_view_display.media.civic_video.default
+    - core.entity_view_display.media.civic_video.media_library
     - core.entity_view_display.node.civic_event.civic_card_event
     - core.entity_view_display.node.civic_event.civic_card_navigation
     - core.entity_view_display.node.civic_event.civic_card_promo
@@ -162,11 +182,16 @@ config_devel:
     - field.field.block_content.civic_banner.field_c_b_theme
     - field.field.block_content.civic_component_block.field_c_b_components
     - field.field.block_content.civic_social_icons.field_c_b_social_icons
+    - field.field.media.civic_audio.field_c_m_audio_file
+    - field.field.media.civic_document.field_c_m_document
     - field.field.media.civic_icon.field_c_m_icon
-    - field.field.media.image.field_c_m_caption
-    - field.field.media.remote_video.field_c_m_share_link
-    - field.field.media.remote_video.field_c_m_title
-    - field.field.media.remote_video.field_c_m_transcript_link
+    - field.field.media.civic_image.field_c_m_caption
+    - field.field.media.civic_image.field_c_m_image
+    - field.field.media.civic_remote_video.field_c_m_oembed_video
+    - field.field.media.civic_remote_video.field_c_m_share_link
+    - field.field.media.civic_remote_video.field_c_m_title
+    - field.field.media.civic_remote_video.field_c_m_transcript_link
+    - field.field.media.civic_video.field_c_m_video_file
     - field.field.node.civic_event.field_c_n_attachments
     - field.field.node.civic_event.field_c_n_body
     - field.field.node.civic_event.field_c_n_date
@@ -291,11 +316,16 @@ config_devel:
     - field.storage.block_content.field_c_b_components
     - field.storage.block_content.field_c_b_social_icons
     - field.storage.block_content.field_c_b_theme
+    - field.storage.media.field_c_m_audio_file
     - field.storage.media.field_c_m_caption
+    - field.storage.media.field_c_m_document
     - field.storage.media.field_c_m_icon
+    - field.storage.media.field_c_m_image
+    - field.storage.media.field_c_m_oembed_video
     - field.storage.media.field_c_m_share_link
     - field.storage.media.field_c_m_title
     - field.storage.media.field_c_m_transcript_link
+    - field.storage.media.field_c_m_video_file
     - field.storage.node.field_c_n_attachments
     - field.storage.node.field_c_n_banner_background
     - field.storage.node.field_c_n_banner_components
@@ -352,7 +382,12 @@ config_devel:
     - image.style.promo_card
     - image.style.topic__desktop
     - image.style.topic__mobile
+    - media.type.civic_audio
+    - media.type.civic_document
     - media.type.civic_icon
+    - media.type.civic_image
+    - media.type.civic_remote_video
+    - media.type.civic_video
     - node.type.civic_event
     - node.type.civic_page
     - node.type.civic_project
@@ -387,6 +422,6 @@ config_devel:
     - views.view.civic_listing
     - views.view.civic_pages
   optional:
-    - media.type.image
-    - media.type.document
     - core.entity_view_mode.node.teaser
+    - image.style.medium
+    - image.style.thumbnail

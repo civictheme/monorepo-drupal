@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_c_p_attachments
-    - media.type.document
+    - media.type.civic_document
     - paragraphs.paragraphs_type.civic_attachment
 id: paragraph.civic_attachment.field_c_p_attachments
 field_name: field_c_p_attachments
@@ -19,7 +19,7 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
-      document: document
+      civic_document: civic_document
     sort:
       field: _none
       direction: ASC
