@@ -47,10 +47,7 @@
     height: 100%;
 
     .civic-input__element {
-      @include civic-typography((
-        'm': (20px, 34px, 400),
-        'xs': (16px, 26px, 400)
-      ));
+      @include civic-typography('lead');
 
       background-color: $civic-search-light-input-background-color;
       border: 1px solid $civic-search-light-input-border-color;
