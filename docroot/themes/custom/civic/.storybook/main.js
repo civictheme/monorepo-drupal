@@ -27,12 +27,8 @@ module.exports = {
   ],
   addons: [
     '@storybook/addon-knobs',
-    '@storybook/addon-a11y',
     '@storybook/addon-essentials',
     '@storybook/addon-links',
-    '@whitespace/storybook-addon-html',
-    'addon-screen-reader',
-    'storybook-addon-pseudo-states',
   ],
   webpackFinal: async (config) => {
     // Add stories CSS.
