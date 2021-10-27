@@ -8,8 +8,8 @@ Feature: View of Page content type with event cards
       | filename       | uri                                | path           |
       | test_image.jpg | public://civic_test/test_image.jpg | test_image.jpg |
 
-    And "image" media:
-      | name               | field_media_image |
+    And "civic_image" media:
+      | name               | field_c_m_image |
       | [TEST] Civic Image | test_image.jpg    |
 
     And "civic_page" content:
