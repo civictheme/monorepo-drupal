@@ -79,7 +79,7 @@
   }
 
   &__content {
-    @include civic-typography(card-summary);
+    @include civic-typography('card-summary');
 
     padding: civic-space(3);
     flex: 1;

@@ -67,7 +67,7 @@
   }
 
   &__helper-text {
-    @include civic-typography(body);
+    @include civic-typography('body');
 
     color: $civic-search-light-input-helper-text-color;
   }

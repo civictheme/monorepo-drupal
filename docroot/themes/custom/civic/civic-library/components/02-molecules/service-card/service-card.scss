@@ -22,7 +22,7 @@
   }
 
   #{$root}__title {
-    @include civic-typography(heading-4);
+    @include civic-typography('heading-4');
 
     margin: 0;
     padding: 0 civic-space(4);
@@ -41,7 +41,7 @@
   #{$root}__link__item {
     margin-bottom: civic-space(2);
 
-    @include civic-typography(label-large);
+    @include civic-typography('label-large');
 
     &:last-child {
       margin-bottom: 0;

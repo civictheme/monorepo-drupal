@@ -39,7 +39,7 @@
   }
 
   #{$root}__title {
-    @include civic-typography(heading-4);
+    @include civic-typography('heading-4');
 
     margin-bottom: civic-space(2);
   }
@@ -67,13 +67,13 @@
   }
 
   #{$root}__location {
-    @include civic-typography(subtitle);
+    @include civic-typography('subtitle');
 
     margin-bottom: civic-space(2);
   }
 
   #{$root}__summary {
-    @include civic-typography(card-summary);
+    @include civic-typography('card-summary');
   }
 
   #{$root}__bottom-wrapper {

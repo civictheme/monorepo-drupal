@@ -13,7 +13,7 @@
     display: inline-block;
     padding: civic-space(1);
 
-    @include civic-typography(label-regular);
+    @include civic-typography('label-regular');
   }
 
   &,
