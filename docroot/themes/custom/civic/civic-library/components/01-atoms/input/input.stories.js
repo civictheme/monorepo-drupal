@@ -36,11 +36,11 @@ export const Input = () => CivicInput({
   state: radios(
     'State',
     {
-      None: 'none',
+      None: 'default',
       Error: 'error',
       Success: 'success',
     },
-    'none',
+    'default',
   ),
   disabled: boolean('Disabled', false),
   required: boolean('Required', false),

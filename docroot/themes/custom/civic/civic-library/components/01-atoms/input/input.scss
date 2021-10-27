@@ -57,14 +57,6 @@
         box-shadow: 0 0 0 1px $civic-input-light-focus-border-color;
       }
     }
-
-    &.disabled,
-    &--disabled {
-      #{$root}__element {
-        color: $civic-input-light-disabled-color;
-        background-color: $civic-input-light-disabled-background-color;
-      }
-    }
   }
 
   &.civic-theme-dark {
@@ -92,8 +84,18 @@
         fill: $civic-input-dark-focus-color;
       }
     }
+  }
 
-    &.disabled {
+  &.disabled,
+  &--disabled {
+    &.civic-theme-light {
+      #{$root}__element {
+        color: $civic-input-light-disabled-color;
+        background-color: $civic-input-light-disabled-background-color;
+      }
+    }
+
+    &.civic-theme-dark {
       #{$root}__element {
         color: $civic-input-dark-disabled-color;
         background-color: $civic-input-dark-disabled-background-color;

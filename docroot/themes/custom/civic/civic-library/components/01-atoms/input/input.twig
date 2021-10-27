@@ -19,9 +19,9 @@
 {% set classes = [
   'civic-input',
   'civic-theme-%s'|format(theme|default('light')),
-  disabled ? 'disabled' : '',
-  required ? 'required' : '',
-  state and (state != 'none') ? 'civic-input--%s'|format(state) : '',
+  disabled ? 'civic-input--disabled' : '',
+  required ? 'civic-input--required' : '',
+  'civic-input--%s'|format(state|default('default')),
   type ? 'civic-input--%s'|format(type) : '',
   modifier_class ? modifier_class : ''
 ] %}
@@ -34,7 +34,7 @@
   {% elseif type in ['text', 'email'] %}
     <input class="civic-input__element" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} {{ autocomplete ? 'autocomplete' }} />
 
-    {% if state and (state != 'none') %}
+    {% if state and (state != 'default') %}
       <span class="civic-input__state">
         {% include '@atoms/icon/icon.twig' with {
           symbol: state_icon
@@ -47,7 +47,7 @@
     {% include '@atoms/checkbox/checkbox.twig' %}
   {% else %}
     <input class="civic-input__element" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} />
-    {% if state and (state != 'none') %}
+    {% if state and (state != 'deafult') %}
       <span class="civic-input__state">
         {% include '@atoms/icon/icon.twig' with {
           symbol: state_icon
