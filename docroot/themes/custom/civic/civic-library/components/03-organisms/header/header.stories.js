@@ -7,8 +7,8 @@ export default {
   title: 'Organisms/Header',
 };
 
-export const Header = () => {
-  const generalKnobTab = 'General';
+export const Header = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
     theme: radios(

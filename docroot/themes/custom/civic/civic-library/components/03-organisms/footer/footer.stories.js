@@ -16,8 +16,8 @@ export default {
   },
 };
 
-export const Footer = () => {
-  const generalKnobTab = 'General';
+export const Footer = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
     theme: radios(

@@ -1,5 +1,5 @@
 import {
-  boolean, object, radios, text,
+  boolean, radios, text,
 } from '@storybook/addon-knobs';
 import CivicSocialLinks from './social-links.twig';
 import './social-links.scss';
@@ -11,8 +11,10 @@ export default {
   },
 };
 
-export const SocialLinks = () => {
-  const socialLinks = [
+export const SocialLinks = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const links = [
     {
       symbol: 'brands_facebook',
       size: 'regular',
@@ -33,8 +35,6 @@ export const SocialLinks = () => {
     },
   ];
 
-  const generalKnobTab = 'General';
-
   const generalKnobs = {
     theme: radios(
       'Theme',
@@ -45,7 +45,7 @@ export const SocialLinks = () => {
       'light',
       generalKnobTab,
     ),
-    links: object('Links', socialLinks, generalKnobTab),
+    links: boolean('With links', true, generalKnobTab) ? links : null,
     with_border: boolean('With border', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };

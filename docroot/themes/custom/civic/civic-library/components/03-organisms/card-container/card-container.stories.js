@@ -10,8 +10,8 @@ export default {
   title: 'Organisms/Card Container',
 };
 
-export const CardContainer = () => {
-  const generalKnobTab = 'General';
+export const CardContainer = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
     theme: radios(

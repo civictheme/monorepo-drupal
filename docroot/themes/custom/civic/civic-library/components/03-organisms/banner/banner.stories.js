@@ -12,8 +12,8 @@ export default {
   },
 };
 
-export const Banner = () => {
-  const generalKnobTab = 'General';
+export const Banner = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const theme = radios(
     'Theme',
