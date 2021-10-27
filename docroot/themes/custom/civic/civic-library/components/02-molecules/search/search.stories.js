@@ -8,8 +8,8 @@ export default {
   },
 };
 
-export const Search = () => {
-  const generalKnobTab = 'General';
+export const Search = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
     theme: radios(

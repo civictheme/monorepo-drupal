@@ -16,3 +16,21 @@ export const getSlots = (names) => {
 
   return obj;
 };
+
+export const randomUrl = (domain) => {
+  domain = domain || 'http://example.com';
+  return `${domain}/${(Math.random() + 1).toString(36).substring(7)}`;
+};
+
+export const randomLinks = (count, domain) => {
+  const links = [];
+
+  for (let i = 0; i < count; i++) {
+    links.push({
+      text: `Link ${i + 1}`,
+      url: randomUrl(domain),
+    });
+  }
+
+  return links;
+};

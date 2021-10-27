@@ -8,26 +8,36 @@ export default {
   },
 };
 
-export const DirectionalLink = () => CivicDirectionalLink({
-  theme: radios(
-    'Theme', {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-  ),
-  direction: radios(
-    'Direction', {
-      Top: 'top',
-      Bottom: 'bottom',
-      Left: 'left',
-      Right: 'right',
-    },
-    'left',
-  ),
-  text: text('Text', 'Top'),
-  url: text('URL', '#top'),
-  title: text('Text', 'Top link title'),
-  disabled: boolean('Disabled', false),
-  modifier_class: text('Additional class', ''),
-});
+export const DirectionalLink = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const generalKnobs = {
+    theme: radios(
+      'Theme', {
+        Light: 'light',
+        Dark: 'dark',
+      },
+      'light',
+      generalKnobTab,
+    ),
+    direction: radios(
+      'Direction', {
+        Top: 'top',
+        Bottom: 'bottom',
+        Left: 'left',
+        Right: 'right',
+      },
+      'left',
+      generalKnobTab,
+    ),
+    text: text('Text', 'Top', generalKnobTab),
+    url: text('URL', '#top', generalKnobTab),
+    title: text('Text', 'Top link title', generalKnobTab),
+    disabled: boolean('Disabled', false, generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
+  };
+
+  return CivicDirectionalLink({
+    ...generalKnobs,
+  });
+};

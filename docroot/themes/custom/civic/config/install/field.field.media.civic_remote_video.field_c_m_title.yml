@@ -3,15 +3,15 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_c_m_title
-    - media.type.remote_video
-id: media.remote_video.field_c_m_title
+    - media.type.civic_remote_video
+id: media.civic_remote_video.field_c_m_title
 field_name: field_c_m_title
 entity_type: media
-bundle: remote_video
+bundle: civic_remote_video
 label: Title
 description: ''
-required: false
-translatable: false
+required: true
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }

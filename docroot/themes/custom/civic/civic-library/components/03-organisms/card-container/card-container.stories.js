@@ -10,8 +10,10 @@ export default {
   title: 'Organisms/Card Container',
 };
 
-export const CardContainer = () => {
-  const generalKnobTab = 'General';
+export const CardContainer = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const description = 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta. Nulla porttitor accumsan tincidunt.';
 
   const generalKnobs = {
     theme: radios(
@@ -24,6 +26,7 @@ export const CardContainer = () => {
       generalKnobTab,
     ),
     title: text('Title', 'Card container title', generalKnobTab),
+    description: text('Description', description, generalKnobTab),
     header_link_text: text('Header link Text', 'View all', generalKnobTab),
     header_link_url: text('Header link URL', 'http://example.com', generalKnobTab),
     footer_link_text: text('Footer link Text', 'View all', generalKnobTab),

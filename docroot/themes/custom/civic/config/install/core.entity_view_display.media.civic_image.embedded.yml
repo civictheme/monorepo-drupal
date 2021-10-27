@@ -3,9 +3,9 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.embedded
-    - field.field.media.image.field_c_m_caption
-    - field.field.media.image.field_media_image
-    - media.type.image
+    - field.field.media.civic_image.field_c_m_caption
+    - field.field.media.civic_image.field_c_m_image
+    - media.type.civic_image
   module:
     - image
     - layout_builder
@@ -13,30 +13,30 @@ third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
-id: media.image.embedded
+id: media.civic_image.embedded
 targetEntityType: media
-bundle: image
+bundle: civic_image
 mode: embedded
 content:
   field_c_m_caption:
-    type: string
     weight: 1
-    region: content
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    type: string
+    region: content
   thumbnail:
     type: image
     weight: 0
+    region: content
     label: hidden
     settings:
       image_style: ''
       image_link: ''
-    region: content
     third_party_settings: {  }
 hidden:
   created: true
-  field_media_image: true
+  field_c_m_image: true
   name: true
   uid: true

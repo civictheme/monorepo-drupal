@@ -72,7 +72,15 @@
     }
   }
 
+  &__description {
+    @include civic-typography('body');
+
+    margin-top: civic-space(2);
+  }
+
   &.civic-theme-light {
+    color: $civic-card-container-light-color;
+
     &#{$root}--with-spacing {
       background-color: $civic-card-container-light-background;
     }
@@ -83,6 +91,8 @@
   }
 
   &.civic-theme-dark {
+    color: $civic-card-container-dark-color;
+
     &#{$root}--with-spacing {
       background-color: $civic-card-container-dark-background;
     }
