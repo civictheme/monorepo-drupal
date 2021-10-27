@@ -31,7 +31,7 @@
 <div class="{{ classes|join(' ') }}">
   {% if type == 'textarea' %}
     <textarea class="civic-input__element" value="{{ value }}" {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} rows="5" cols="58"></textarea>
-  {% elseif type == 'text' %}
+  {% elseif type in ['text', 'email'] %}
     <input class="civic-input__element" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} {{ autocomplete ? 'autocomplete' }} />
 
     {% if state and (state != 'none') %}
@@ -47,6 +47,13 @@
     {% include '@atoms/checkbox/checkbox.twig' %}
   {% else %}
     <input class="civic-input__element" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} />
+    {% if state and (state != 'none') %}
+      <span class="civic-input__state">
+        {% include '@atoms/icon/icon.twig' with {
+          symbol: state_icon
+        } %}
+      </span>
+    {% endif %}
   {% endif %}
 
   {{ children }}

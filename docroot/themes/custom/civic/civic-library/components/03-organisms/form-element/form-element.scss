@@ -32,6 +32,7 @@
     margin-bottom: civic-space(2);
     display: inline-flex;
     align-items: center;
+    border:none;
 
     @include civic-typography('label-small');
 

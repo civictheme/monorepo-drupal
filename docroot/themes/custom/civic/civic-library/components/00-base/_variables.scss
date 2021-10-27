@@ -738,14 +738,27 @@ $civic-collapsible-dark-icon-color: $civic-collapsible-dark-color;
 //
 // Input
 //
+$civic-input-success-border-color: civic-color('success') !default;
+$civic-input-error-border-color: civic-color('error') !default;
 $civic-input-light-color: civic-color('neutral_80') !default;
-$civic-input-light-border-color: civic-color('neutral_20') !default;
-$civic-input-light-border-hover-color: civic-color('neutral_60') !default;
+$civic-input-light-border-color: civic-color('neutral_60') !default;
 $civic-input-light-background-color: civic-color('neutral_5') !default;
-$civic-input-light-focus-background-color: civic-color('neutral') !default;
+$civic-input-focus-background-color: civic-color('neutral') !default;
 $civic-input-light-disabled-color: civic-color('neutral_40') !default;
 $civic-input-light-disabled-background-color: civic-color('neutral_10') !default;
+$civic-input-light-focus-color: civic-color('neutral_80') !default;
+$civic-input-light-focus-border-color: civic-color('neutral_80') !default;
+$civic-input-light-focus-outline-color: civic-color('neutral_80') !default;
 $civic-input-border-error-color: civic-color('error') !default;
+$civic-input-dark-color: civic-color('neutral') !default;
+$civic-input-dark-input-color: civic-color('neutral_10') !default;
+$civic-input-dark-background-color: civic-color('shade_15') !default;
+$civic-input-dark-border-color: civic-color('neutral_40') !default;
+$civic-input-dark-focus-color: civic-color('neutral') !default;
+$civic-input-dark-focus-border-color: civic-color('neutral') !default;
+$civic-input-dark-focus-outline-color: civic-color('neutral') !default;
+$civic-input-dark-disabled-color: civic-color('neutral_10') !default;
+$civic-input-dark-disabled-background-color: civic-color('neutral_60') !default;
 
 //
 // Radio, Checkbox

@@ -13,21 +13,9 @@
   }
 
   &__element {
-    background-color: civic-color('neutral_5');
-    border: rem(1px) solid civic-color('neutral_20');
+    border: rem(1px) solid;
     border-radius: rem(4px);
     padding: ($civic-space * 1.5) civic-space(5) ($civic-space * 1.5) civic-space(2);
-
-    &:hover {
-      border-color: civic-color('neutral_60');
-    }
-
-    &:focus {
-      background-color: civic-color('neutral');
-      color: civic-color('neutral_80');
-      outline: civic-color('neutral_80');
-      border-color: civic-color('neutral_80');
-    }
 
     &::placeholder {
       @include civic-typography('body');
@@ -40,14 +28,6 @@
 
   &--checkbox {
     display: inline;
-  }
-
-  &.disabled,
-  &--disabled {
-    #{$root}__element {
-      color: civic-color('neutral_40');
-      background-color: civic-color('neutral_10');
-    }
   }
 
   &__state {
@@ -64,12 +44,16 @@
   &.error,
   &--error {
     #{$root}__element {
-      border-color: civic-color('error') !important;
+      border-color: $civic-input-error-border-color !important;
+
+      &:hover {
+        box-shadow: 0 0 0 1px $civic-input-error-border-color;
+      }
     }
 
     #{$root}__state {
       svg {
-        fill: civic-color('error');
+        fill: $civic-input-error-border-color;
       }
     }
   }
@@ -77,45 +61,76 @@
   &.success,
   &--success {
     #{$root}__element {
-      border-color: civic-color('success') !important;
+      border-color: $civic-input-success-border-color !important;
+
+      &:hover {
+        box-shadow: 0 0 0 1px $civic-input-success-border-color;
+      }
     }
 
     #{$root}__state {
       svg {
-        fill: civic-color('success');
+        fill: $civic-input-success-border-color;
+      }
+    }
+  }
+
+  &.civic-theme-light {
+    #{$root}__element {
+      border-color: $civic-input-light-border-color;
+
+      &:hover {
+        box-shadow: 0 0 0 1px $civic-input-light-border-color;
+      }
+
+      &:focus {
+        background-color: $civic-input-focus-background-color;
+        color: $civic-input-light-focus-color;
+        outline: $civic-input-light-focus-outline-color;
+        border-color: $civic-input-light-focus-border-color;
+        box-shadow: 0 0 0 1px $civic-input-light-focus-border-color;
+      }
+    }
+
+    &.disabled,
+    &--disabled {
+      #{$root}__element {
+        color: $civic-input-light-disabled-color;
+        background-color: $civic-input-light-disabled-background-color;
       }
     }
   }
 
   &.civic-theme-dark {
-    color: civic-color('neutral');
+    color: $civic-input-dark-color;
 
     #{$root}__element {
-      background-color: civic-color('shade_15');
-      color: civic-color('neutral_10');
-      border-color: civic-color('shade_30');
+      background-color: $civic-input-dark-background-color;
+      color: $civic-input-dark-input-color;
+      border-color: $civic-input-dark-border-color;
 
       &:hover {
-        border-color: civic-color('neutral_10');
+        box-shadow: 0 0 0 1px $civic-input-dark-border-color;
       }
 
       &:focus {
-        color: civic-color('neutral');
-        outline: civic-color('neutral');
-        border-color: civic-color('neutral');
+        color: $civic-input-dark-focus-color;
+        outline: $civic-input-dark-focus-outline-color;
+        border-color: $civic-input-dark-focus-border-color;
+        box-shadow: 0 0 0 1px $civic-input-dark-focus-border-color;
       }
     }
 
     #{$root}__state {
       svg {
-        fill: civic-color('neutral');
+        fill: $civic-input-dark-focus-color;
       }
     }
 
     &.disabled {
       #{$root}__element {
-        color: civic-color('neutral_10');
-        background-color: civic-color('neutral_60');
+        color: $civic-input-dark-disabled-color;
+        background-color: $civic-input-dark-disabled-background-color;
       }
     }
   }

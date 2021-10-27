@@ -194,8 +194,14 @@ function _civic_preprocess_block_content(&$variables) {
  * Implements template_preprocess_input().
  */
 function civic_preprocess_input(&$variables) {
+  $variables['state'] = 'none';
   if (isset($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
+
+    if (in_array('error', $variables['attributes']['class'])) {
+      $variables['state'] = 'error';
+    }
+
     unset($variables['attributes']['class']);
   }
 }
