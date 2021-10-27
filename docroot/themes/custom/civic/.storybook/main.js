@@ -27,7 +27,14 @@ module.exports = {
   ],
   addons: [
     '@storybook/addon-knobs',
-    '@storybook/addon-essentials',
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        controls: false,
+        docs: false,
+        actions: false,
+      }
+    },
     '@storybook/addon-links',
   ],
   webpackFinal: async (config) => {
