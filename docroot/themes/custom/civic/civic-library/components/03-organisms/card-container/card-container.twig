@@ -50,6 +50,12 @@
              </div>
            {% endif %}
 
+           {% if description %}
+             <div class="civic-card-container__description">
+               {{ description }}
+             </div>
+           {% endif %}
+
            {% if content_top %}
              <div class="civic-card-container__content-top">
                {{ content_top }}
