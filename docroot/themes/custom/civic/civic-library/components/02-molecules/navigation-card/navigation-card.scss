@@ -8,6 +8,7 @@
 
   position: relative;
   border-radius: $civic-border-radius;
+  overflow: hidden;
 
   @include civic-box-shadow();
 
