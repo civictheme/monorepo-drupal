@@ -1,4 +1,5 @@
 // @todo This is an unfinished component. Stories still need to be implemented!
+import { radios } from '@storybook/addon-knobs';
 import CivicPage from './page.twig';
 
 export default {
@@ -8,4 +9,22 @@ export default {
   },
 };
 
-export const Page = () => CivicPage();
+export const Page = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const generalKnobs = {
+    theme: radios(
+      'Theme',
+      {
+        Light: 'light',
+        Dark: 'dark',
+      },
+      'light',
+      generalKnobTab,
+    ),
+  };
+
+  return CivicPage({
+    ...generalKnobs,
+  });
+};

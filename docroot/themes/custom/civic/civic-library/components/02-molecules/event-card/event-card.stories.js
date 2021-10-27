@@ -13,8 +13,8 @@ export default {
   },
 };
 
-export const EventCard = () => {
-  const generalKnobTab = 'General';
+export const EventCard = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
     theme: radios(
@@ -47,7 +47,7 @@ export const EventCard = () => {
   // Adding dynamic promo card tags.
   const tagKnobTab = 'Tags';
   const tagNum = number(
-    'Number of tags (0-4)',
+    'Number of tags',
     1,
     {
       range: true,
