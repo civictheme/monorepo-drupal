@@ -21,6 +21,10 @@
       margin-right: civic-space(1);
       margin-bottom: 0;
     }
+
+    svg {
+      fill: $civic-search-icon-color;
+    }
   }
 
   &__icon {
