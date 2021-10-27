@@ -9,10 +9,10 @@ default:
       target_id: 1
   filename:
     -
-      value: civic_pattern_light_1.jpg
+      value: civic_background_light_1.jpg
   uri:
     -
-      value: 'public://2021-10/civic_pattern_light_1_0.jpg'
+      value: 'public://2021-10/civic_background_light_1_0.jpg'
   filemime:
     -
       value: image/jpeg
