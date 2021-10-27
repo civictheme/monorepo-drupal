@@ -12,6 +12,7 @@
   width: rem(26px);
   height: rem(26px);
   z-index: 1;
+  cursor: pointer;
 
   & + span {
     &::before {
@@ -36,7 +37,15 @@
         width: rem(22px);
         height: rem(22px);
         border-width: 2px;
-        box-shadow: inset 0 0 0 3px;
+      }
+    }
+  }
+
+  &:focus,
+  &:hover {
+    & + span {
+      &::before {
+        box-shadow: 0 0 0 1px;
       }
     }
   }
@@ -45,6 +54,22 @@
     & + span {
       &::before {
         border-color: $civic-radio-light-border-color;
+      }
+    }
+
+    &:focus {
+      & + span {
+        &::before {
+          @include civic-outline();
+        }
+      }
+    }
+
+    &:hover {
+      & + span {
+        &::before {
+          box-shadow: inset 0 0 0 5px $civic-radio-light-background-color;
+        }
       }
     }
 
@@ -57,22 +82,6 @@
         }
       }
     }
-
-    &:hover {
-      & + span {
-        &::before {
-          box-shadow: 0 0 0 1px $civic-radio-light-border-color;
-        }
-      }
-    }
-
-    &:focus {
-      & + span {
-        &::before {
-          @include civic-outline();
-        }
-      }
-    }
   }
 
   &.civic-theme-dark {
@@ -82,12 +91,10 @@
       }
     }
 
-    &:checked {
+    &:hover {
       & + span {
         &::before {
-          background-color: $civic-radio-dark-selected-background-color;
-          border-color: $civic-radio-dark-selected-background-color;
-          box-shadow: inset 0 0 0 3px $civic-radio-dark-background-color;
+          box-shadow: inset 0 0 0 5px $civic-radio-dark-background-color;
         }
       }
     }
@@ -100,10 +107,12 @@
       }
     }
 
-    &:hover {
+      &:checked {
       & + span {
         &::before {
-          box-shadow: 0 0 0 1px $civic-radio-dark-border-color;
+          background-color: $civic-radio-dark-selected-background-color;
+          border-color: $civic-radio-dark-selected-background-color;
+          box-shadow: inset 0 0 0 3px $civic-radio-dark-background-color;
         }
       }
     }
