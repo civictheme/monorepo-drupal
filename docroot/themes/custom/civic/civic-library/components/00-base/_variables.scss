@@ -754,6 +754,18 @@ $civic-tooltip-dark-description-color: civic-color('neutral');
 $civic-tooltip-dark-description-background-color: civic-color('shade_30');
 
 //
+// Search.
+//
+$civic-search-light-color: civic-color('neutral_60');
+$civic-search-light-background-color: civic-color('neutral');
+$civic-search-light-border-color: civic-color('shade_30');
+$civic-search-light-help-color: $civic-search-light-color;
+$civic-search-dark-color: civic-color('neutral_60');
+$civic-search-dark-background-color: civic-color('neutral');
+$civic-search-dark-border-color: civic-color('shade_30');
+$civic-search-dark-help-color: $civic-search-dark-color;
+
+//
 // Input
 //
 $civic-input-success-border-color: civic-color('success') !default;
