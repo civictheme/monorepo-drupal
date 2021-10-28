@@ -36,7 +36,7 @@
 
   <div class="{{ classes|join(' ') }}">
     {% if type == 'textarea' %}
-      <textarea class="civic-input__element" {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} rows="5" cols="58">{{ value }}</textarea>
+      <textarea class="civic-input__element" {% if attributes %}{{ attributes }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} rows="5" cols="58">{{ value }}</textarea>
     {% elseif type in ['text', 'email'] %}
       <input class="civic-input__element" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} {{ autocomplete ? 'autocomplete' }} />
 
