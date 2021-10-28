@@ -735,3 +735,18 @@ $civic-collapsible-light-icon-color: $civic-collapsible-light-color;
 $civic-collapsible-dark-color: civic-color('neutral') !default;
 $civic-collapsible-dark-background-color: civic-color('shade_60') !default;
 $civic-collapsible-dark-icon-color: $civic-collapsible-dark-color;
+
+//
+// Tooltip.
+//
+$civic-tooltip-width: rem(230px);
+$civic-tooltip-triangle-width: civic-space();
+$civic-tooltip-triangle-height: civic-space();
+$civic-tooltip-light-icon-color: civic-color('neutral');
+$civic-tooltip-light-icon-hover-color: civic-color('accent');
+$civic-tooltip-light-description-color: civic-color('neutral');
+$civic-tooltip-light-description-background-color: civic-color('shade_30');
+$civic-tooltip-dark-icon-color: civic-color('shade_30');
+$civic-tooltip-dark-icon-hover-color: civic-color('secondary');
+$civic-tooltip-dark-description-color: civic-color('neutral');
+$civic-tooltip-dark-description-background-color: civic-color('primary');
