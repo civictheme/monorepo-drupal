@@ -3,20 +3,20 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_c_m_share_link
-    - media.type.remote_video
+    - media.type.civic_remote_video
   module:
     - link
-id: media.remote_video.field_c_m_share_link
+id: media.civic_remote_video.field_c_m_share_link
 field_name: field_c_m_share_link
 entity_type: media
-bundle: remote_video
+bundle: civic_remote_video
 label: 'Share link'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  title: 1
   link_type: 17
+  title: 0
 field_type: link

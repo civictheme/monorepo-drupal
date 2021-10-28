@@ -10,31 +10,38 @@ export default {
   },
 };
 
-const linkTab = 'General';
-export const Link = () => CivicLink({
-  theme: radios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-    linkTab,
-  ),
-  modifier_class: select(
-    'Modifiers',
-    {
-      None: '',
-      Visited: 'civic-link--visited',
-    },
-    '',
-    linkTab,
-  ),
-  text: text('Text', 'Link text', linkTab),
-  title: text('Title', 'Link title', linkTab),
-  context: text('Link context', 'Link context', linkTab),
-  url: text('URL', 'http://example.com', linkTab),
-  is_external: boolean('Is external', false, linkTab),
-  new_window: boolean('Open in a new window', false, linkTab),
-  attributes: text('Additional attributes', '', linkTab),
-});
+export const Link = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const generalKnobs = {
+    theme: radios(
+      'Theme',
+      {
+        Light: 'light',
+        Dark: 'dark',
+      },
+      'light',
+      generalKnobTab,
+    ),
+    modifier_class: select(
+      'Modifiers',
+      {
+        None: '',
+        Visited: 'civic-link--visited',
+      },
+      '',
+      generalKnobTab,
+    ),
+    text: text('Text', 'Link text', generalKnobTab),
+    title: text('Title', 'Link title', generalKnobTab),
+    context: text('Link context', 'Link context', generalKnobTab),
+    url: text('URL', 'http://example.com', generalKnobTab),
+    is_external: boolean('Is external', false, generalKnobTab),
+    new_window: boolean('Open in a new window', false, generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
+  };
+
+  return CivicLink({
+    ...generalKnobs,
+  });
+};

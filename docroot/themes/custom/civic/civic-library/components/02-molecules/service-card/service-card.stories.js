@@ -10,8 +10,8 @@ export default {
   },
 };
 
-export const ServiceCard = () => {
-  const generalKnobTab = 'General';
+export const ServiceCard = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   // Current component parameters.
   const generalKnobs = {
