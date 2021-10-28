@@ -24,7 +24,7 @@ export const Tooltip = () => {
         Light: 'light',
         Dark: 'dark',
       },
-      'dark',
+      'light',
       generalKnobTab,
     ),
     symbol: select('Symbol', icons, defaultIcon !== -1 ? icons[defaultIcon] : icons[0], generalKnobTab),
