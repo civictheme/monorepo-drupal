@@ -59,16 +59,28 @@ function civic_preprocess_form_element_label(&$variables) {
  * Implements template_preprocess_fieldset().
  */
 function civic_preprocess_fieldset(&$variables) {
+  $variables['type'] = $variables['type'] ?? 'fieldset';
   if (isset($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
     unset($variables['attributes']['class']);
   }
-
-  if (isset($variables['description']['attributes']['class'])) {
-    $variables['description_modifier_class'] = implode(' ', $variables['description']['attributes']['class']);
+  if (isset($variables['legend_span']['attributes'])) {
+    $variables['legend_span_attributes'] = $variables['legend_span']['attributes'];
   }
-
+  if (isset($variables['legend']['title'])) {
+    $variables['legend'] = $variables['legend']['title'];
+  }
   if (isset($variables['legend']['attributes']['class'])) {
     $variables['legend_modifier_class'] = implode(' ', $variables['legend']['attributes']['class']);
+    unset($variables['legend']['attributes']['class']);
+    $variables['legend_attributes'] = $variables['legend']['attributes'] ?? '';
+  }
+
+  if (isset($variables['description']['content'])) {
+    $variables['description_attributes'] = $variables['description']['attributes'] ?? '';
+    if (isset($variables['description']['attributes']['class'])) {
+      $variables['description_modifier_class'] = implode(' ', $variables['description']['attributes']['class']);
+    }
+    $variables['description'] = $variables['description']['content'];
   }
 }
