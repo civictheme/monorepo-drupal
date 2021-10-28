@@ -1,7 +1,7 @@
 import {
   radios, text, object,
 } from '@storybook/addon-knobs';
-import CivicTableOfContents from './table-of-contents.twig';
+import CivicTableOfContentsStories from './table-of-contents.stories.twig';
 
 export default {
   title: 'Organisms/Table Of Contents',
@@ -59,7 +59,7 @@ export const TableOfContents = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicTableOfContents({
+  return CivicTableOfContentsStories({
     ...generalKnobs,
   });
 };

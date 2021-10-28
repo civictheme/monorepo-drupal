@@ -1,0 +1,26 @@
+<div class="toc-scope">
+  {% include '@organisms/table-of-contents/table-of-contents.twig' with {
+    theme: theme,
+    title: title,
+    links: links,
+    modifier_class: modifier_class,
+  } only %}
+
+  {% include '@molecules/basic-content/basic-content.twig' with {
+    theme: theme,
+    content: '
+<h2 id="existing-id">Section 1</h2>
+<p>Commodo nostrud ea eu amet dolore labore qui tempor non ex laborum anim minim ut officia tempor anim amet ea cupidatat ea commodo laborum id dolore elit occaecat ea.</p>
+<h2>Section 2</h2>
+<h2>Section 1</h2>
+<p>Nisi pariatur et aute do incididunt elit ex culpa veniam adipisicing ex nostrud reprehenderit amet eiusmod irure in ullamco consequat pariatur aliqua dolore dolor nostrud dolor commodo non laborum aliqua ea nisi excepteur laboris.</p>
+<h2 id="existing-id">Section 3</h2>
+<p>Labore do id ut nostrud culpa id tempor ullamco nisi proident ut aliquip non nulla non dolore cupidatat aliquip sint velit officia adipisicing eiusmod ea nulla irure velit laboris et.</p>
+<h2>Section 1</h2>
+<h3>Section 3</h3>
+<p>Anim ea sunt laborum sint enim et est nulla qui esse elit quis.</p>
+<h2>Existing ID</h2>
+<p>Anim ea sunt laborum sint enim et est nulla qui esse elit quis.</p>
+'
+  } only %}
+</div>

@@ -16,10 +16,10 @@
 {% if title or links -%}
   <div class="civic-table-of-contents {{ modifier_class }}">
     {% if title -%}
-      <h2 class="civic-table-of-contents__title">{{ title }}</h2>
+      <div class="civic-table-of-contents__title" id="civic-table-of-contents-title">{{ title }}</div>
     {%- endif %}
     {% if links -%}
-      <ul class="civic-table-of-contents__links">
+      <ul class="civic-table-of-contents__links" aria-labelledby="civic-table-of-contents-title">
         {% for link in links -%}
           <li class="civic-table-of-contents__link-item">
             <a class="civic-table-of-contents__link" href="{{ link.url }}">{{ link.text }}</a>
