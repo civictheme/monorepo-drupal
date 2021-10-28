@@ -59,3 +59,13 @@
   left: 0;
   right: 0;
 }
+
+.example-container {
+  margin-bottom: civic-space(2);
+}
+
+.example-container__title {
+  @include civic-typography('heading-4');
+
+  margin-bottom: civic-space();
+}
