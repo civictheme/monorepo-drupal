@@ -27,6 +27,8 @@ export const Image = (knobTab) => {
     src: boolean('With image', true, generalKnobTab) ? imageFile : false,
     alt: text('Image alt text', 'Civic image alt', generalKnobTab),
     caption: text('Caption', 'This is a default image caption.', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicImage({
