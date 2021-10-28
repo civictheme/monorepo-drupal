@@ -9,56 +9,157 @@
 #}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
-<div data-collapsible data-collapsible-collapsed>
-  <div data-collapsible-trigger>
-    Collapsible demo trigger - initially collapsed
-  </div>
-  <div data-collapsible-panel>
-    Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
-    elit. Consectetur harum magnam modi obcaecati vitae voluptatibus! Accusamus
-    atque deleniti, distinctio esse facere, nam odio officiis omnis porro
-    quibusdam quis repudiandae veritatis.
+<div class="example-container">
+  <div class="example-container__title">Initially expanded</div>
+
+  <div data-collapsible>
+    <div data-collapsible-trigger>
+      TRIGGER (click me)
+    </div>
+    <div data-collapsible-panel>
+      Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Consectetur harum magnam modi obcaecati vitae voluptatibus!
+      Accusamus
+      atque deleniti, distinctio esse facere, nam odio officiis omnis porro
+      quibusdam quis repudiandae veritatis.
+    </div>
   </div>
 </div>
 
-<hr/>
+<div class="example-container">
+  <div class="example-container__title">Initially collapsed</div>
 
-<div data-collapsible>
-  <div data-collapsible-trigger>
-    Collapsible demo trigger - initially expanded
-  </div>
-  <div data-collapsible-panel>
-    Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
-    elit. Consectetur harum magnam modi obcaecati vitae voluptatibus! Accusamus
-    atque deleniti, distinctio esse facere, nam odio officiis omnis porro
-    quibusdam quis repudiandae veritatis.
-  </div>
-</div>
-
-<hr/>
-
-<div data-collapsible>
-  <div>
-    Collapsible demo trigger - minimal data attributes
-  </div>
-  <div>
-    Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
-    elit. Consectetur harum magnam modi obcaecati vitae voluptatibus! Accusamus
-    atque deleniti, distinctio esse facere, nam odio officiis omnis porro
-    quibusdam quis repudiandae veritatis.
+  <div data-collapsible data-collapsible-collapsed>
+    <div data-collapsible-trigger>
+      TRIGGER (click me)
+    </div>
+    <div data-collapsible-panel>
+      Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Consectetur harum magnam modi obcaecati vitae voluptatibus!
+      Accusamus
+      atque deleniti, distinctio esse facere, nam odio officiis omnis porro
+      quibusdam quis repudiandae veritatis.
+    </div>
   </div>
 </div>
 
-<hr/>
+<div class="example-container">
+  <div class="example-container__title">Long animation</div>
 
-<div data-collapsible class="{{ theme_class }}">
-  <div>
-    Collapsible demo trigger - themed
+  <div data-collapsible data-collapsible-collapsed data-collapsible-duration="2000">
+    <div data-collapsible-trigger>
+      TRIGGER (click me)
+    </div>
+    <div data-collapsible-panel>
+      Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Consectetur harum magnam modi obcaecati vitae voluptatibus!
+      Accusamus
+      atque deleniti, distinctio esse facere, nam odio officiis omnis porro
+      quibusdam quis repudiandae veritatis.
+    </div>
   </div>
-  <div>
-    Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
-    elit. Consectetur harum magnam modi obcaecati vitae voluptatibus! Accusamus
-    atque deleniti, distinctio esse facere, nam odio officiis omnis porro
-    quibusdam quis repudiandae veritatis.
+</div>
+
+<div class="example-container">
+  <div class="example-container__title">No animation</div>
+
+  <div data-collapsible data-collapsible-collapsed data-collapsible-duration="0">
+    <div data-collapsible-trigger>
+      TRIGGER (click me)
+    </div>
+    <div data-collapsible-panel>
+      Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Consectetur harum magnam modi obcaecati vitae voluptatibus!
+      Accusamus
+      atque deleniti, distinctio esse facere, nam odio officiis omnis porro
+      quibusdam quis repudiandae veritatis.
+    </div>
+  </div>
+</div>
+
+<div class="example-container">
+  <div class="example-container__title">Minimal data attributes</div>
+
+  <div data-collapsible>
+    <div>
+      TRIGGER (click me)
+    </div>
+    <div>
+      Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Consectetur harum magnam modi obcaecati vitae voluptatibus!
+      Accusamus
+      atque deleniti, distinctio esse facere, nam odio officiis omnis porro
+      quibusdam quis repudiandae veritatis.
+    </div>
+  </div>
+</div>
+
+<div class="example-container">
+  <div class="example-container__title">No trigger icon</div>
+
+  <div data-collapsible data-collapsible-trigger-no-icon>
+    <div>
+      TRIGGER (click me)
+    </div>
+    <div>
+      Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Consectetur harum magnam modi obcaecati vitae voluptatibus!
+      Accusamus
+      atque deleniti, distinctio esse facere, nam odio officiis omnis porro
+      quibusdam quis repudiandae veritatis.
+    </div>
+  </div>
+</div>
+
+<div class="example-container">
+  <div class="example-container__title">Inline trigger</div>
+
+  <div data-collapsible>
+    <span data-collapsible-trigger>
+      TRIGGER (click me)
+    </span>
+    <div data-collapsible-panel>
+      Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Consectetur harum magnam modi obcaecati vitae voluptatibus!
+      Accusamus
+      atque deleniti, distinctio esse facere, nam odio officiis omnis porro
+      quibusdam quis repudiandae veritatis.
+    </div>
+  </div>
+</div>
+
+<div class="example-container" style="height: 300px">
+  <div class="example-container__title">Absolute panel</div>
+
+  <div data-collapsible style="position: relative">
+    <span data-collapsible-trigger>
+      TRIGGER (click me)
+    </span>
+    <div data-collapsible-panel style="position: absolute; background-color: rgba(200,200,200, 0.8);">
+      Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Consectetur harum magnam modi obcaecati vitae voluptatibus!
+      Accusamus
+      atque deleniti, distinctio esse facere, nam odio officiis omnis porro
+      quibusdam quis repudiandae veritatis.
+    </div>
+  </div>
+
+  Text behind absolutely positioned panel.
+</div>
+
+<div class="example-container">
+  <div class="example-container__title">Themed</div>
+
+  <div data-collapsible class="{{ theme_class }}">
+    <div>
+      TRIGGER (click me)
+    </div>
+    <div>
+      Collapsible demo panel Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Consectetur harum magnam modi obcaecati vitae voluptatibus!
+      Accusamus
+      atque deleniti, distinctio esse facere, nam odio officiis omnis porro
+      quibusdam quis repudiandae veritatis.
+    </div>
   </div>
 </div>
