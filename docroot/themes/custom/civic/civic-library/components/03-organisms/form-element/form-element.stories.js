@@ -2,6 +2,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicFormElement from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
 import Select from '../../01-atoms/select/select.twig';
+import CivicLabel from '../../01-atoms/label/label.twig';
 
 export default {
   title: 'Organisms/Form Element',
@@ -35,7 +36,6 @@ export const FormElement = () => {
 
   const generalKnobs = {
     theme,
-    label: text('Label', 'Civic input label', generalKnobTab),
     label_display: radios(
       'Label position',
       {
@@ -57,6 +57,9 @@ export const FormElement = () => {
     description: {
       content: text('Description', 'Civic input description', generalKnobTab),
     },
+    modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
+    errors: boolean('With error', false, generalKnobTab) ? 'Sample error message' : false,
   };
 
   const inputKnobTab = 'Input';
@@ -82,11 +85,11 @@ export const FormElement = () => {
     state: radios(
       'State',
       {
-        None: 'none',
+        None: 'default',
         Error: 'error',
         Success: 'success',
       },
-      'none',
+      'default',
       inputKnobTab,
     ),
     disabled: boolean('Disabled', false, inputKnobTab),
@@ -97,11 +100,11 @@ export const FormElement = () => {
     state: radios(
       'State',
       {
-        None: 'none',
+        None: 'default',
         Error: 'error',
         Success: 'success',
       },
-      'none',
+      'default',
       inputKnobTab,
     ),
     options: [
@@ -110,6 +113,21 @@ export const FormElement = () => {
       { type: 'option', value: 'option3', label: 'Option 3' },
       { type: 'option', value: 'option4', label: 'Option 4' },
     ],
+  };
+
+  const labelKnobTab = 'Label';
+  const labelKnobs = {
+    theme,
+    title: text('Label', 'Label for input', labelKnobTab),
+    title_display: radios(
+      'Label position',
+      {
+        Before: 'before',
+        After: 'after',
+      },
+      'before',
+      labelKnobTab,
+    ),
   };
 
   const children = [];
@@ -121,8 +139,11 @@ export const FormElement = () => {
     children.push(Select(selectKnobs));
   }
 
+  const label = [CivicLabel(labelKnobs)];
+
   return CivicFormElement({
     ...generalKnobs,
+    label,
     children,
   });
 };

@@ -8,4 +8,12 @@
   margin-bottom: civic-space();
 
   @include civic-typography('label-regular');
+
+  &.civic-theme-light {
+    color: $civic-label-light-color;
+  }
+
+  &.civic-theme-dark {
+    color: $civic-label-dark-color;
+  }
 }

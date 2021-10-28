@@ -794,5 +794,16 @@ $civic-select-dark-disabled-background-color: civic-color('neutral_80') !default
 //
 // Search
 //
-
 $civic-search-icon-color: civic-color('neutral_80') !default;
+
+//
+// Form element
+//
+$civic-form-element-light-color: civic-color('neutral_80') !default;
+$civic-form-element-dark-color: civic-color('neutral') !default;
+
+//
+// Form element label
+//
+$civic-label-light-color: civic-color('neutral_80') !default;
+$civic-label-dark-color: civic-color('neutral') !default;

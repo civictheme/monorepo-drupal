@@ -48,11 +48,12 @@
 {%
   set classes = [
   'civic-form-element',
-  'civic-form-element--%s'|format(type),
-  'civic-form-element--%s'|format(name),
-  title_display not in ['after', 'before'] ? 'civic-form-element--no-label',
-  disabled == 'disabled' ? 'civic-form-element--form-disabled',
-  errors ? 'civic-form-element--error',
+  type is not empty ? 'civic-form-element--%s'|format(type) : '',
+  'civic-theme-%s'|format(theme|default('light')),
+  name ? 'civic-form-element--%s'|format(name) : '',
+  title_display not in ['after', 'before'] ? 'civic-form-element--no-label' : '',
+  disabled == 'disabled' ? 'civic-form-element--form-disabled' : '',
+  errors is not empty ? 'civic-form-element--error' : '',
 ]
 %}
 
@@ -60,12 +61,12 @@
 
 {%
   set description_classes = [
-  'description',
-  description_display == 'invisible' ? 'visually-hidden',
+  'civic-form-element--description',
+  description_display == 'invisible' ? 'visually-hidden' : '',
 ]
 %}
 
-{% set description_classes = description_modifier_class ? description_classes|merge([description_modifier_class]) ? description_classes %}
+{% set description_classes = description_modifier_class ? description_classes|merge([description_modifier_class]) : description_classes %}
 
 <div class="{{ classes|join(' ') }}" {{ attributes }}>
   {% if label_display in ['before', 'invisible'] %}

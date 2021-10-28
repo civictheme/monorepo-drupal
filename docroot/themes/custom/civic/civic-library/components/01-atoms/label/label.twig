@@ -16,10 +16,11 @@
 {%
   set classes = [
   'civic-label',
-  title_display == 'after' ? 'option',
-  title_display == 'invisible' ? 'visually-hidden',
-  required ? 'form-required',
-  modifier_class ? modifier_class,
+  'civic-theme-%s'|format(theme|default('light')),
+  title_display == 'after' ? 'civic-label--option' : '',
+  title_display == 'invisible' ? 'visually-hidden' : '',
+  required ? 'civic-label--required' : '',
+  modifier_class ? modifier_class : '',
 ]
 %}
 {% if title is not empty or required -%}
