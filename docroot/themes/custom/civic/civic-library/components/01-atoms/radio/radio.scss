@@ -6,9 +6,8 @@
 
 %civic-checkbox-radio {
   position: absolute;
-  // stylelint-disable alpha-value-notation
+  // stylelint-disable-next-line alpha-value-notation
   opacity: 0;
-  // stylelint-enable alpha-value-notation
   width: rem(26px);
   height: rem(26px);
   z-index: 1;

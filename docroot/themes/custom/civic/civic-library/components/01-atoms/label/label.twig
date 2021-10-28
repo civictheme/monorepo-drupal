@@ -1,28 +1,24 @@
 {#
 /**
  * @file
- * Theme override for a form element label.
+ * Civic form element label component.
  *
  * Available variables:
- * - title: The label's text.
- * - title_display: Elements title_display setting.
- * - required: An indicator for whether the associated form element is required.
+ * - title: [string] The label's text.
+ * - title_display: [string] Elements title_display setting.
+ * - required: [string] An indicator for whether the associated form element is required.
  * - theme: [string] theme: light, dark.
- * - attributes: HTML attributes for the containing element.
+ * - attributes: [string] HTML attributes for the containing element.
  * - modifier_class: [string] Additional classes to modify component styling.
- *
  */
 #}
-{%
-  set classes = [
-  'civic-label',
-  'civic-theme-%s'|format(theme|default('light')),
-  title_display == 'after' ? 'civic-label--option' : '',
-  title_display == 'invisible' ? 'visually-hidden' : '',
-  required ? 'civic-label--required' : '',
-  modifier_class ? modifier_class : '',
-]
-%}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set title_position = title_display == 'after' ? 'civic-label--option' : '' %}
+{% set visibility_class =  title_display == 'invisible' ? 'visually-hidden' : '' %}
+{% set required_class =  required ? 'civic-label--required' : '' %}
+{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, title_position, visibility_class, required_class, required_class, modifier_class|default('')) %}
+
 {% if title is not empty or required -%}
-  <label class="{{ classes|join(' ') }}" {{ attributes }}>{{ title }}</label>
+  <label class="civic-label {{ modifier_class }}" {{ attributes }}>{{ title }}</label>
 {%- endif %}
