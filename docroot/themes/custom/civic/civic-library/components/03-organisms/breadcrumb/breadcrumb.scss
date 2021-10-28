@@ -4,7 +4,7 @@
 
 @import '../../00-base/base';
 
-.civic-breadcrumbs {
+.civic-breadcrumb {
   $root: &;
 
   @include civic-typography('label-tag');
@@ -50,31 +50,31 @@
     }
 
     &.civic-theme-light {
-      color: $civic-breadcrumbs-light-color;
+      color: $civic-breadcrumb-light-color;
 
       &:hover {
-        color: $civic-breadcrumbs-dark-color;
+        color: $civic-breadcrumb-dark-color;
       }
     }
 
     &.civic-theme-dark {
-      color: $civic-breadcrumbs-dark-color;
+      color: $civic-breadcrumb-dark-color;
 
       &:hover {
-        color: $civic-breadcrumbs-dark-color-hover;
+        color: $civic-breadcrumb-dark-color-hover;
       }
     }
   }
 
   .civic-icon {
-    fill: $civic-breadcrumbs-icon-color;
+    fill: $civic-breadcrumb-icon-color;
   }
 
   &.civic-theme-light {
-    color: $civic-breadcrumbs-light-color;
+    color: $civic-breadcrumb-light-color;
   }
 
   &.civic-theme-dark {
-    color: $civic-breadcrumbs-dark-color;
+    color: $civic-breadcrumb-dark-color;
   }
 }
