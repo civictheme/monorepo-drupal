@@ -1,0 +1,11 @@
+//
+// Content.
+//
+
+.civic-content {
+  &--content-left {
+    > div {
+      margin-bottom: civic-space(4);
+    }
+  }
+}
