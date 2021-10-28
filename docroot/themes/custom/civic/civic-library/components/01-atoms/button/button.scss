@@ -39,6 +39,12 @@
   }
 
   &.civic-theme-light {
+    &:focus,
+    &:active {
+      border: rem(2px) solid $civic-button-light-border-color;
+      border-radius: rem(8px);
+    }
+
     &:focus {
       box-shadow: $civic-outline-boxshadow;
       background-color: $civic-button-light-focus-background-color;
@@ -50,7 +56,7 @@
 
     &:active {
       background-color: $civic-button-light-active-background-color;
-      box-shadow: none;
+      
     }
 
     &[disabled] {
@@ -70,6 +76,12 @@
   }
 
   &.civic-theme-dark {
+    &:focus,
+    &:active {
+      border: rem(2px) solid $civic-button-dark-border-color;
+      border-radius: rem(8px);
+    }
+
     &:focus {
       box-shadow: $civic-outline-boxshadow;
       background-color: $civic-button-dark-focus-background-color;
@@ -86,7 +98,6 @@
 
     &:active {
       background-color: $civic-button-dark-active-background-color;
-      box-shadow: none;
     }
 
     &[disabled] {
@@ -124,13 +135,18 @@
       background-color: $civic-button-light-secondary-background-color;
       color: $civic-button-light-secondary-color;
       border: rem(3px) solid $civic-button-light-secondary-border-color;
+      border-radius: rem(8px);
+
+      &:focus {
+        border-color: $civic-button-light-border-color;
+      }
 
       &:hover {
-        border-color: $civic-button-light-hover-background-color;
+        border-color: $civic-button-light-border-color;
       }
 
       &:active {
-        border-color: $civic-button-light-active-background-color;
+        border-color: $civic-button-light-border-color;
       }
 
       &[disabled] {
@@ -147,12 +163,16 @@
       color: $civic-button-dark-secondary-color;
       border: rem(3px) solid $civic-button-dark-secondary-border-color;
 
+      &:focus {
+        border-color: $civic-button-dark-border-color;
+      }
+      
       &:hover {
         border-color: $civic-button-dark-hover-background-color;
       }
 
       &:active {
-        border-color: $civic-button-dark-active-background-color;
+        border-color: $civic-button-dark-border-color;
       }
 
       &[disabled] {

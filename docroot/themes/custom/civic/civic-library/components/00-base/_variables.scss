@@ -44,6 +44,7 @@ $civic-default-colors-elements: (
   'heading': #1f2833,
   'heading-link': civic-base-color('primary'),
   'body': #536570,
+  'button-light-dark':#1F2A33,
   'link': #8258c4,
   'link-light-visited': #8258c4,
   'link-dark-visited': #a275eb,
@@ -134,7 +135,7 @@ $civic-border-width: 0.125rem !default;
 $civic-outline: 0.1875rem solid civic-color('outline') !default;
 $civic-outline-accent: 0.1875rem solid civic-color('accent') !default;
 $civic-outline-offset: 0 !default;
-$civic-outline-boxshadow: 0 0 0 3pt civic-color('outline') !default;
+$civic-outline-boxshadow: 0 0 0 3pt civic-color('secondary') !default;
 $civic-outline-accent-boxshadow: 0 0 0 3pt civic-color('accent') !default;
 
 //
@@ -442,6 +443,9 @@ $civic-promo-card-dark-link-color: civic-color('accent') !default;
 //
 // Button
 //
+
+$civic-button-light-border-color: civic-color('neutral') !default;
+$civic-button-dark-border-color: civic-color('shade_30') !default;
 $civic-button-light-primary-background-color: civic-color('primary') !default;
 $civic-button-light-primary-color: civic-color('neutral') !default;
 $civic-button-light-secondary-background-color: civic-color('translucent') !default;
@@ -450,8 +454,8 @@ $civic-button-light-secondary-color: civic-color('primary') !default;
 $civic-button-light-tertiary-background-color: civic-color('translucent') !default;
 $civic-button-light-tertiary-color: civic-color('primary') !default;
 $civic-button-light-focus-background-color: civic-color('primary') !default;
-$civic-button-light-hover-background-color: civic-color('secondary') !default;
-$civic-button-light-active-background-color: civic-color('shade_30') !default;
+$civic-button-light-hover-background-color: civic-color('button-light-dark') !default;
+$civic-button-light-active-background-color: civic-color('button-light-dark') !default;
 $civic-button-light-disabled-background-color: civic-color('neutral_20') !default;
 $civic-button-light-disabled-color: civic-color('neutral_60') !default;
 $civic-button-light-state-color: civic-color('neutral') !default;
@@ -464,8 +468,8 @@ $civic-button-dark-tertiary-background-color: civic-color('neutral') !default;
 $civic-button-dark-tertiary-color: civic-color('primary') !default;
 $civic-button-dark-focus-color: civic-color('primary') !default;
 $civic-button-dark-focus-background-color: civic-color('accent') !default;
-$civic-button-dark-hover-background-color: civic-color('link') !default;
-$civic-button-dark-active-background-color: civic-color('shade_30') !default;
+$civic-button-dark-hover-background-color: civic-color('primary') !default;
+$civic-button-dark-active-background-color: civic-color('primary') !default;
 $civic-button-dark-disabled-background-color: civic-color('neutral_60') !default;
 $civic-button-dark-state-color: civic-color('neutral') !default;
 
