@@ -569,8 +569,10 @@ $civic-progress-indicator-dark-active-color: civic-color('shade_30') !default;
 //
 // Breadcrumb.
 //
-$civic-breadcrumb-icon-color: civic-color('neutral_40') !default;
+$civic-breadcrumb-light-icon-color: civic-color('neutral_40') !default;
 $civic-breadcrumb-light-color: civic-color('neutral_90') !default;
+$civic-breadcrumb-light-color-hover: civic-color('neutral_5') !default;
+$civic-breadcrumb-dark-icon-color: civic-color('neutral_40') !default;
 $civic-breadcrumb-dark-color: civic-color('neutral_5') !default;
 $civic-breadcrumb-dark-color-hover: civic-color('shade_60') !default;
 

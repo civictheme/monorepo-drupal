@@ -48,33 +48,39 @@
     &:hover {
       padding: 0;
     }
+  }
 
-    &.civic-theme-light {
-      color: $civic-breadcrumb-light-color;
+  &.civic-theme-light {
+    color: $civic-breadcrumb-light-color;
 
-      &:hover {
-        color: $civic-breadcrumb-dark-color;
-      }
+    .civic-icon {
+      fill: $civic-breadcrumb-light-icon-color;
     }
 
-    &.civic-theme-dark {
+    .civic-link {
+      color: $civic-breadcrumb-light-color;
+      text-decoration-color: $civic-breadcrumb-light-color;
+
+      &:hover {
+        color: $civic-breadcrumb-light-color-hover;
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    color: $civic-breadcrumb-dark-color;
+
+    .civic-icon {
+      fill: $civic-breadcrumb-dark-icon-color;
+    }
+
+    .civic-link {
       color: $civic-breadcrumb-dark-color;
+      text-decoration-color: $civic-breadcrumb-dark-color;
 
       &:hover {
         color: $civic-breadcrumb-dark-color-hover;
       }
     }
-  }
-
-  .civic-icon {
-    fill: $civic-breadcrumb-icon-color;
-  }
-
-  &.civic-theme-light {
-    color: $civic-breadcrumb-light-color;
-  }
-
-  &.civic-theme-dark {
-    color: $civic-breadcrumb-dark-color;
   }
 }
