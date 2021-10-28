@@ -1,7 +1,7 @@
 {% extends './banner.twig' %}
 
-{% if show_breadcrumbs %}
-  {% set breadcrumbs %}
+{% if show_breadcrumb %}
+  {% set breadcrumb %}
     {% include '@organisms/breadcrumb/breadcrumb.twig' with {
       theme: theme,
       links: [

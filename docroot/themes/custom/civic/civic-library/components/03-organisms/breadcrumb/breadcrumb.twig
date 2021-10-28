@@ -13,15 +13,15 @@
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set component_class = 'civic-breadcrumbs' %}
+{% set component_class = 'civic-breadcrumb' %}
 {% set links_count = links|length %}
 {% set parent = false %}
 
 {% if links %}
-  <nav class="{{ '%s %s'|format(component_class, theme_class) }}" aria-label="breadcrumbs">
-    <ul class="civic-breadcrumbs__links">
+  <nav class="{{ '%s %s'|format(component_class, theme_class) }}" aria-label="breadcrumb">
+    <ul class="civic-breadcrumb__links">
       {% for linkObj in links %}
-        <li class="civic-breadcrumbs__links--link">
+        <li class="civic-breadcrumb__links--link">
 
           {% if loop.index == links_count - 1 %}
             {% set parent = linkObj %}
@@ -47,7 +47,7 @@
       {% endfor %}
 
       {% if parent is not empty %}
-        <li class="civic-breadcrumbs__links--link mobile-only">
+        <li class="civic-breadcrumb__links--link mobile-only">
           {% include '@atoms/icon/icon.twig' with {
             symbol: 'arrows_leftarrow_2',
           } only %}
