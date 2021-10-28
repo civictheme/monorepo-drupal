@@ -9,6 +9,13 @@
 
   @include civic-typography('label-regular');
 
+  &--required::after {
+    color: $civic-label-required-color;
+    content: ' (Required)';
+
+    @include civic-typography('small-and-captions');
+  }
+
   &.civic-theme-light {
     color: $civic-label-light-color;
   }

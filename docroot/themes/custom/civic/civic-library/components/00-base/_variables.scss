@@ -831,3 +831,9 @@ $civic-form-element-dark-color: civic-color('neutral') !default;
 //
 $civic-label-light-color: civic-color('neutral_80') !default;
 $civic-label-dark-color: civic-color('neutral') !default;
+$civic-label-required-color: civic-color('error') !default;
+
+//
+// Fieldset
+//
+$civic-fieldset-required-color: civic-color('error') !default;
