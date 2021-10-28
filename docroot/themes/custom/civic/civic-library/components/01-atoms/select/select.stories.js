@@ -6,7 +6,7 @@ import {
 import CivicSelect from './select.twig';
 
 export default {
-  title: 'Atoms/Input',
+  title: 'Atoms/Form/Select',
   parameters: {
     layout: 'centered',
   },

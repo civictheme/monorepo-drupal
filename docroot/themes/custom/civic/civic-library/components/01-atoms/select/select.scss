@@ -21,12 +21,12 @@
     }
 
     &.error,
-    &.civic-select--error {
+    &.civic-input--error {
       border-color: $civic-input-border-error-color;
       box-shadow: 0 0 0 1px $civic-input-border-error-color;
     }
 
-    &.civic-select--success {
+    &.civic-input--success {
       border-color: $civic-select-light-border-success-color;
       box-shadow: 0 0 0 1px $civic-select-light-border-success-color;
     }

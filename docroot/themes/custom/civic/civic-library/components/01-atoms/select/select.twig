@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default theme implementation for a select element.
+ * Civic Select element theme implementation.
  *
  * Available variables:
  * - attributes: HTML attributes for the <select> tag.
@@ -10,16 +10,15 @@
  */
 #}
 
-{% set classes = ['civic-select', 'civic-input__element'] %}
-{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set classes = classes|merge([theme_class]) %}
-{% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
-{% set classes = disabled ? classes|merge(['disabled']) : classes %}
-{% set classes = required ? classes|merge(['required']) : classes %}
-{% set state_class = state and (state != 'none') ? 'civic-select--%s'|format(state) : '' %}
-{% set classes = state_class != '' ? classes|merge([state_class]) : classes %}
 
-<select class="{{ classes|join(' ') }}" {{ attributes }} {{ disabled ? 'disabled' }} {{ required ? 'required' }}>
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set state = state is empty or state == 'none' ? 'default' : state %}
+{% set state_class = 'civic-input--%s'|format(state) %}
+{% set disabled_class = disabled ? 'disabled' : '' %}
+{% set required_class = required ? 'required' : '' %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, modifier_class|default('')) %}
+
+<select class="civic-select civic-input__element {{ modifier_class }}" {{ attributes }} {{ disabled ? 'disabled' }} {{ required ? 'required' }}>
   {% for option in options %}
     {% if option.type == 'optgroup' %}
       <optgroup label="{{ option.label }}">
