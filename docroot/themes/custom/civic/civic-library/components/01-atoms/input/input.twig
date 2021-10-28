@@ -19,49 +19,23 @@
 
 {% if type %}
 
-  {% set classes = [
-    'civic-input',
-    'civic-theme-%s'|format(theme|default('light')),
-    disabled ? 'civic-input--disabled' : '',
-    required ? 'civic-input--required' : '',
-    'civic-input--%s'|format(state|default('default')),
-    type ? 'civic-input--%s'|format(type) : '',
-    modifier_class ? modifier_class : ''
-  ] %}
+  {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+  {% set state = state is empty or state == 'none' ? 'default' : state %}
+  {% set state_class = 'civic-input--%s'|format(state) %}
+  {% set disabled_class = disabled ? 'civic-input--disabled' : '' %}
+  {% set required_class = required ? 'civic-input--required' : '' %}
+  {% set type_class = 'civic-input--%s'|format(type) %}
+  {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, type_class, modifier_class|default('')) %}
 
-  {% set icons = {
-    error: 'userinterface_close_2',
-    success: 'userinterface_approve',
-  } %}
-
-  <div class="{{ classes|join(' ') }}">
+  <div class="civic-input {{ modifier_class }}">
     {% if type == 'textarea' %}
-      <textarea class="civic-input__element" {% if attributes %}{{ attributes }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} rows="5" cols="58">{{ value }}</textarea>
-    {% elseif type in ['text', 'email'] %}
-      <input class="civic-input__element" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} {{ autocomplete ? 'autocomplete' }} />
-
-      {% if icons[state] is defined %}
-        <span class="civic-input__state" >
-          {% include '@atoms/icon/icon.twig' with {
-            symbol: icons[state]
-          } %}
-        </span>
-      {% endif %}
+      {% include '@atoms/input/textarea.twig' %}
     {% elseif type == 'radio' %}
       {% include '@atoms/radio/radio.twig' %}
     {% elseif type == 'checkbox' %}
       {% include '@atoms/checkbox/checkbox.twig' %}
     {% else %}
-      <input class="civic-input__element" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} />
-      {% if icons[state] is defined %}
-        <span class="civic-input__state">
-          {% include '@atoms/icon/icon.twig' with {
-            symbol: icons[state]
-          } %}
-        </span>
-      {% endif %}
+      {% include '@atoms/input/textfield.twig' %}
     {% endif %}
-
-    {{ children }}
   </div>
 {% endif %}

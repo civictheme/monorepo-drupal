@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicInput from './input.twig';
 
 export default {
-  title: 'Atoms/Input',
+  title: 'Atoms/Form/Input',
   parameters: {
     layout: 'centered',
   },

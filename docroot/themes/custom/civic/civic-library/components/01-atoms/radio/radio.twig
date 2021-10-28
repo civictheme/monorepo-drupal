@@ -1,12 +1,9 @@
-{% set classes = [
-  'civic-radio',
-  'civic-input__element',
-  'civic-theme-%s'|format(theme|default('light')),
-  modifier_class ? modifier_class : '',
-  disabled ? 'disabled' : '',
-  required ? 'required' : '',
-  state and (state != 'none') ? 'civic-input--%s'|format(state) : ''
-] %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set state = state is empty or state == 'none' ? 'default' : state %}
+{% set state_class = 'civic-input--%s'|format(state) %}
+{% set disabled_class = disabled ? 'disabled' : '' %}
+{% set required_class = required ? 'required' : '' %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, modifier_class|default('')) %}
 
-<input class="{{ classes|join(' ') }}" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
+<input class="civic-radio civic-input__element {{ modifier_class }}" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
 <span></span>

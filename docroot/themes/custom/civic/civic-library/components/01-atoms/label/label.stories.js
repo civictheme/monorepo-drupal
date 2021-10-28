@@ -2,7 +2,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicLabel from './label.twig';
 
 export default {
-  title: 'Atoms/Form',
+  title: 'Atoms/Form/Label',
   parameters: {
     layout: 'centered',
   },
@@ -10,7 +10,6 @@ export default {
 
 export const Label = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-
   const generalKnobs = {
     theme: radios(
       'Theme',
