@@ -14,7 +14,7 @@ exports.default = function () {
     '@storybook/addon-links',
   ];
 
-  // Accessibility, html and pseudo knobs.
+  // Html and pseudo knobs.
   if (process.env.STORYBOOK_FULL === '1') {
     config = [
       ...config,
