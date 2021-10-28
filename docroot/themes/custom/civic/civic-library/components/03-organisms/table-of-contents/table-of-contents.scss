@@ -1,0 +1,118 @@
+//
+// Table of contents.
+//
+
+@import '../../00-base/base';
+
+.civic-table-of-contents {
+  $root: &;
+
+  min-width: rem(276px);
+
+  &__title {
+    @include civic-typography('heading-5');
+    margin-top: 0;
+    margin-bottom: civic-space(3);
+
+    #{$root}.civic-theme-light & {
+      color: $civic-table-of-contents-light-title-color;
+    }
+
+    #{$root}.civic-theme-dark & {
+      color: $civic-table-of-contents-dark-title-color;
+    }
+  }
+
+  &__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__link {
+    @include civic-typography('tag');
+
+    display: block;
+    position: relative;
+    padding: civic-space(1) civic-space(2) civic-space(1) (civic-space(2) + rem(4px));
+    border-width: 1px;
+    border-style: solid;
+    text-decoration: none;
+
+    #{$root}.civic-theme-light & {
+      color: $civic-table-of-contents-light-link-color;
+      border-color: $civic-table-of-contents-light-link-border-color;
+    }
+
+    #{$root}.civic-theme-dark & {
+      color: $civic-table-of-contents-dark-link-color;
+      border-color: $civic-table-of-contents-dark-link-border-color;
+    }
+
+    &::before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      width: rem(4px);
+
+      #{$root}.civic-theme-light & {
+        background-color: $civic-table-of-contents-light-link-before-background-color;
+      }
+
+      #{$root}.civic-theme-dark & {
+        background-color: $civic-table-of-contents-dark-link-before-background-color;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      #{$root}.civic-theme-light & {
+        background-color: $civic-table-of-contents-light-link-hover-background-color;
+        border-color: $civic-table-of-contents-light-link-hover-border-color;
+      }
+
+      #{$root}.civic-theme-dark & {
+        background-color: $civic-table-of-contents-dark-link-hover-background-color;
+        border-color: $civic-table-of-contents-dark-link-hover-border-color;
+      }
+
+      &::before {
+        #{$root}.civic-theme-light & {
+          background-color: $civic-table-of-contents-light-link-before-hover-background-color;
+        }
+
+        #{$root}.civic-theme-dark & {
+          background-color: $civic-table-of-contents-dark-link-before-hover-background-color;
+        }
+      }
+    }
+
+    &:active {
+      outline: 0 !important;
+      border-radius: 0 rem(4px) rem(4px) 0;
+
+      #{$root}.civic-theme-light & {
+        border-color: $civic-table-of-contents-light-active-border-color;
+      }
+
+      #{$root}.civic-theme-dark & {
+        background-color: $civic-table-of-contents-dark-active-background-color;
+      }
+    }
+
+    &:focus {
+      z-index: 1;
+
+      #{$root}.civic-theme-light & {
+        @include civic-outline();
+      }
+
+      #{$root}.civic-theme-dark & {
+        @include civic-outline(true);
+      }
+    }
+  }
+}

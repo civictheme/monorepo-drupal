@@ -981,3 +981,24 @@ $civic-label-required-color: civic-color('error') !default;
 // Fieldset
 //
 $civic-fieldset-required-color: civic-color('error') !default;
+
+//
+// Table Of Contents
+//
+$civic-table-of-contents-light-title-color: civic-color('neutral_80') !default;
+$civic-table-of-contents-light-link-color: civic-color('neutral_80') !default;
+$civic-table-of-contents-light-link-border-color: civic-color('translucent') !default;
+$civic-table-of-contents-light-link-before-background-color: civic-color('neutral_10') !default;
+$civic-table-of-contents-light-link-hover-background-color: civic-color('neutral_5') !default;
+$civic-table-of-contents-light-link-hover-border-color: civic-color('translucent') !default;
+$civic-table-of-contents-light-link-before-hover-background-color: civic-color('primary') !default;
+$civic-table-of-contents-light-active-border-color: civic-color('neutral_20') !default;
+
+$civic-table-of-contents-dark-title-color: civic-color('neutral') !default;
+$civic-table-of-contents-dark-link-color: civic-color('neutral') !default;
+$civic-table-of-contents-dark-link-border-color: civic-color('translucent') !default;
+$civic-table-of-contents-dark-link-before-background-color: civic-color('shade_30') !default;
+$civic-table-of-contents-dark-link-hover-background-color: civic-color('translucent') !default;
+$civic-table-of-contents-dark-link-hover-border-color: civic-color('translucent') !default;
+$civic-table-of-contents-dark-link-before-hover-background-color: civic-color('accent') !default;
+$civic-table-of-contents-dark-active-background-color: civic-color('shade_30') !default;

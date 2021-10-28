@@ -1,0 +1,31 @@
+{#
+/**
+ * @file Table of Contents component.
+ *
+ * Available variables:
+ * - theme: [string] Theme: light, dark.
+ * - title: [string] Title.
+ * - links: [array] Array of link data.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if title or links -%}
+  <div class="civic-table-of-contents {{ modifier_class }}">
+    {% if title -%}
+      <h2 class="civic-table-of-contents__title">{{ title }}</h2>
+    {%- endif %}
+    {% if links -%}
+      <ul class="civic-table-of-contents__links">
+        {% for link in links -%}
+          <li class="civic-table-of-contents__link-item">
+            <a class="civic-table-of-contents__link" href="{{ link.url }}">{{ link.text }}</a>
+          </li>
+        {%- endfor %}
+      </ul>
+    {%- endif %}
+  </div>
+{%- endif %}
