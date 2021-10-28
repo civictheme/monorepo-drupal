@@ -60,6 +60,7 @@ export const FormElement = () => {
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
     errors: boolean('With error', false, generalKnobTab) ? 'Sample error message' : false,
+    required: boolean('Required', false, generalKnobTab),
   };
 
   const inputKnobTab = 'Input';
@@ -93,6 +94,7 @@ export const FormElement = () => {
       inputKnobTab,
     ),
     disabled: boolean('Disabled', false, inputKnobTab),
+    required: generalKnobs.required,
   };
 
   const selectKnobs = {
@@ -128,6 +130,7 @@ export const FormElement = () => {
       'before',
       labelKnobTab,
     ),
+    required: generalKnobs.required,
   };
 
   const children = [];
