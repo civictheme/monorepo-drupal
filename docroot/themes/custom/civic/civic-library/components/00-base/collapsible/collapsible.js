@@ -22,7 +22,7 @@ function CivicCollapsible(el) {
   this.el = el;
   this.trigger = this.el.querySelector('[data-collapsible-trigger]') || this.el.firstElementChild;
   this.panel = this.el.querySelector('[data-collapsible-panel]') || this.el.firstElementChild.nextElementSibling;
-  this.duration = this.el.querySelector('[data-collapsible-duration]') || 500;
+  this.duration = this.el.hasAttribute('data-collapsible-duration') ? this.el.getAttribute('data-collapsible-duration') : 500;
   this.el.collapsed = this.el.hasAttribute('data-collapsible-collapsed');
 
   // Make sure that both trigger and a panel have required attributes sethis.
@@ -87,7 +87,7 @@ CivicCollapsible.prototype.collapse = function (animate) {
   this.panel.setAttribute('aria-hidden', true);
   this.trigger.setAttribute('aria-expanded', false);
 
-  if (animate) {
+  if (animate && this.duration > 0) {
     const transition = this.panel.style.transition || `height ${this.duration}ms ease-out`;
     this.panel.style.transition = '';
     this.panel.style.overflow = 'hidden';
@@ -120,8 +120,9 @@ CivicCollapsible.prototype.expand = function (animate) {
   this.el.removeAttribute('data-collapsible-collapsed');
   this.panel.setAttribute('aria-hidden', false);
   this.trigger.setAttribute('aria-expanded', true);
+  this.panel.style.display = 'block';
 
-  if (animate) {
+  if (animate && this.duration > 0) {
     const h = this.panel.scrollHeight;
     this.panel.style.transition = this.panel.style.transition || `height ${this.duration}ms ease-out`;
     this.panel.style.height = `${h}px`;
@@ -132,6 +133,7 @@ CivicCollapsible.prototype.expand = function (animate) {
       t.panel.removeEventListener('transitionend', arguments.callee);
       if (!t.el.collapsed) {
         t.panel.style.height = '';
+        t.panel.style.overflow = '';
       }
     });
   } else {
