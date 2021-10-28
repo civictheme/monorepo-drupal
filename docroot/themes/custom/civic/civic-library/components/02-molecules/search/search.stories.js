@@ -23,7 +23,8 @@ export const Search = (knobTab) => {
     ),
     placeholder: text('Placeholder', 'Enter keywords or phrase', generalKnobTab),
     button_text: text('Button text', 'Search', generalKnobTab),
-    description: text('Description', 'Search by keyword', generalKnobTab),
+    help_text: text('Description', 'Search by keyword', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   const html = CivicSearch({
