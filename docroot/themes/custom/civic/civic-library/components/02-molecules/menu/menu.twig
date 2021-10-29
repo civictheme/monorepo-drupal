@@ -28,9 +28,9 @@
 {% macro menu_links(items, menu_level, modifier_class) %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul class="civic-menu {{ modifier_class }}" data-component-name="civic-menu">
+      <ul class="civic-menu civic-menu--level-{{ menu_level }} {{ modifier_class }} " data-component-name="civic-menu" {{ attributes|default('') }}>
     {% else %}
-      <ul class="civic-menu civic-menu__sub-menu">
+      <ul class="civic-menu civic-menu__sub-menu civic-menu--level-{{ menu_level }}">
     {% endif %}
 
     {% for item in items %}
@@ -40,7 +40,7 @@
         item.is_expanded ? 'civic-menu__item--expanded' : '',
         item.in_active_trail ? 'civic-menu__item--active-trail' : '',
       ] %}
-      <li class="{{ item_classes|join(' ') }}">
+      <li class="{{ item_classes|join(' ') }}" {{ item.attributes|default('') }}>
 
         {% block menu_item_link %}
           {% include '@atoms/link/link.twig' with {
@@ -49,6 +49,7 @@
             title: item.title,
             url: item.url,
             modifier_class: 'civic-menu__item__link',
+            attributes: item.link_attributes|default(''),
           } only %}
         {% endblock %}
 
