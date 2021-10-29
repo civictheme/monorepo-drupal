@@ -8,8 +8,8 @@ export default {
   title: 'Organisms/Content',
 };
 
-export const Content = () => {
-  const generalKnobTab = 'General';
+export const Content = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
     theme: radios(

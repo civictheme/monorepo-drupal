@@ -8,4 +8,12 @@
   &__content__example {
     margin-bottom: civic-space(6);
   }
+
+  &__content__example-last-updated {
+    @include civic-typography('small');
+  }
+
+  &__content__example-summary {
+    @include civic-typography('lead');
+  }
 }

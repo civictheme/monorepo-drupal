@@ -3,15 +3,15 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_c_m_caption
-    - media.type.image
-id: media.image.field_c_m_caption
+    - media.type.civic_image
+id: media.civic_image.field_c_m_caption
 field_name: field_c_m_caption
 entity_type: media
-bundle: image
+bundle: civic_image
 label: Caption
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }

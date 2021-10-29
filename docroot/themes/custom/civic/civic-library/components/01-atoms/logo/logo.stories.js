@@ -13,8 +13,8 @@ export default {
   },
 };
 
-export const Logo = () => {
-  const generalKnobTab = 'General';
+export const Logo = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
     theme: radios('Theme', {

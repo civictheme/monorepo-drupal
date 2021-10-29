@@ -6,8 +6,8 @@ export default {
   title: 'Molecules/Attachment',
 };
 
-export const Attachment = () => {
-  const generalKnobTab = 'General';
+export const Attachment = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const date = new Date().toLocaleDateString('en-uk', {
     year: 'numeric',
@@ -15,7 +15,7 @@ export const Attachment = () => {
     day: 'numeric',
   });
 
-  return CivicAttachment({
+  const generalKnobs = {
     theme: radios(
       'Theme',
       {
@@ -66,6 +66,10 @@ export const Attachment = () => {
       },
     ], generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+  };
+
+  return CivicAttachment({
+    ...generalKnobs,
     ...getSlots([
       'content_top',
       'content_bottom',

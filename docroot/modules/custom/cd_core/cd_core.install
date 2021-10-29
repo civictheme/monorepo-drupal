@@ -81,6 +81,7 @@ function cd_core_update_9002() {
     'lokender.singh@salsadigital.com.au',
     'richard.gaunt@salsadigital.com.au',
     'satyajit.das@salsadigital.com.au',
+    'arpita.jain@salsadigital.com.au',
     'john.cloys@salsadigital.com.au',
   ];
 

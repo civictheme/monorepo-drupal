@@ -1,14 +1,15 @@
 /* eslint-disable camelcase */
 import { boolean, number } from '@storybook/addon-knobs';
 
-export function generateMenuLinks(count, level, is_active_trail) {
+export function generateMenuLinks(count, level, is_active_trail, title) {
   const links = [];
+  title = title || 'Item ';
 
   const active_trail_idx = is_active_trail ? Math.floor(Math.random() * count) : null;
 
   for (let i = 0; i < count; i++) {
     const link = {
-      title: `Item ${i + 1}`,
+      title: `${title}${i + 1}`,
       url: `http://example.com/${(Math.random() + 1).toString(36).substring(7)}`,
     };
 
@@ -17,7 +18,7 @@ export function generateMenuLinks(count, level, is_active_trail) {
     }
 
     if (level > 1) {
-      link.below = generateMenuLinks(count, level - 1, active_trail_idx === i);
+      link.below = generateMenuLinks(count, level - 1, active_trail_idx === i, link.title);
       link.is_expanded = true;
     }
 
@@ -27,7 +28,9 @@ export function generateMenuLinks(count, level, is_active_trail) {
   return links;
 }
 
-export default function getMenuLinks() {
+export default function getMenuLinks(knobTab) {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
   const links_per_level = number(
     'Links per level',
     3,
@@ -37,6 +40,7 @@ export default function getMenuLinks() {
       max: 5,
       step: 1,
     },
+    generalKnobTab,
   );
   const levels = number(
     'Number of levels',
@@ -47,8 +51,9 @@ export default function getMenuLinks() {
       max: 5,
       step: 1,
     },
+    generalKnobTab,
   );
-  const activeTrail = boolean('Show active trail (random)', false);
+  const activeTrail = boolean('Show active trail (random)', false, generalKnobTab);
 
   return generateMenuLinks(links_per_level, levels, activeTrail);
 }

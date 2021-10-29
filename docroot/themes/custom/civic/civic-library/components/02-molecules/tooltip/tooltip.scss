@@ -1,0 +1,106 @@
+//
+// Tooltip.
+//
+
+@use 'sass:math';
+
+.civic-tooltip {
+  $root: &;
+
+  display: inline-block;
+  position: relative;
+
+  &__button {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    position: relative;
+    background-color: transparent;
+    padding: 0;
+
+    &:focus {
+      @include civic-outline(true);
+    }
+  }
+
+  &__description {
+    // stylelint-disable-next-line scss/dollar-variable-pattern
+    $tooltip-width-half: math.div($civic-tooltip-width, 2);
+
+    @include civic-typography('tag');
+
+    display: none;
+    border-radius: $civic-border-radius;
+    box-shadow: 0 rem(4px) rem(8px) rgba(0, 0, 0, 16%);
+    box-sizing: border-box;
+    position: absolute;
+    width: $civic-tooltip-width;
+    margin-left: calc(50% - #{$tooltip-width-half});
+    margin-top: $civic-tooltip-triangle-height + math.div(civic-space(), 2);
+
+    // Triangle.
+    &::before {
+      // stylelint-disable-next-line scss/dollar-variable-pattern
+      $triangle-width-half: math.div($civic-tooltip-triangle-width, 2);
+
+      content: '';
+      display: inline-block;
+      position: absolute;
+      width: $civic-tooltip-triangle-width;
+      height: $civic-tooltip-triangle-height;
+      transform: rotateZ(45deg);
+      top: -1 * math.div($civic-tooltip-triangle-height, 2);
+      left: calc(50% - #{$triangle-width-half});
+    }
+  }
+
+  &__description__inner {
+    margin: civic-space(2);
+  }
+
+  &.civic-theme-light {
+    #{$root}__button {
+      svg {
+        fill: $civic-tooltip-light-icon-color;
+      }
+
+      &:hover {
+        svg {
+          fill: $civic-tooltip-light-icon-hover-color;
+        }
+      }
+    }
+
+    #{$root}__description {
+      color: $civic-tooltip-light-description-color;
+      background-color: $civic-tooltip-light-description-background-color;
+
+      &::before {
+        background-color: $civic-tooltip-light-description-background-color;
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__button {
+      svg {
+        fill: $civic-tooltip-dark-icon-color;
+      }
+
+      &:hover {
+        svg {
+          fill: $civic-tooltip-dark-icon-hover-color;
+        }
+      }
+    }
+
+    #{$root}__description {
+      color: $civic-tooltip-dark-description-color;
+      background-color: $civic-tooltip-dark-description-background-color;
+
+      &::before {
+        background-color: $civic-tooltip-dark-description-background-color;
+      }
+    }
+  }
+}

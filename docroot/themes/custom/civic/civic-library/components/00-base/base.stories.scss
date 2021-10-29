@@ -3,6 +3,7 @@
 //
 
 @use 'sass:color';
+@use 'sass:map';
 @import '../variables';
 @import 'base';
 
@@ -30,7 +31,7 @@
 }
 
 .story-wrapper-size--large {
-  max-width: 992px;
+  max-width: map.get($civic-breakpoints, 'xxl');
 }
 
 .story-wrapper-centered {
@@ -58,4 +59,14 @@
   top: 4em;
   left: 0;
   right: 0;
+}
+
+.example-container {
+  margin-bottom: civic-space(2);
+}
+
+.example-container__title {
+  @include civic-typography('heading-4');
+
+  margin-bottom: civic-space();
 }
