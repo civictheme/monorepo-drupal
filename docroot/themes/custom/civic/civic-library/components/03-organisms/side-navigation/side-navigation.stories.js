@@ -10,7 +10,9 @@ export default {
   },
 };
 
-export const SideNavigation = () => {
+export const SideNavigation = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
   const generalKnobs = {
     theme: radios(
       'Theme',
@@ -19,11 +21,12 @@ export const SideNavigation = () => {
         Dark: 'dark',
       },
       'light',
+      generalKnobTab,
     ),
-    title: text('Title', 'Side Navigation title'),
-    items: getMenuLinks(),
-    modifier_class: text('Additional class', ''),
-    attributes: text('Additional attributes', ''),
+    title: text('Title', 'Side Navigation title', generalKnobTab),
+    items: getMenuLinks('Links'),
+    modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicSideNavigation({

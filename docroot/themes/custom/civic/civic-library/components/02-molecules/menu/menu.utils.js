@@ -28,7 +28,9 @@ export function generateMenuLinks(count, level, is_active_trail, title) {
   return links;
 }
 
-export default function getMenuLinks() {
+export default function getMenuLinks(knobTab) {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
   const links_per_level = number(
     'Links per level',
     3,
@@ -38,6 +40,7 @@ export default function getMenuLinks() {
       max: 5,
       step: 1,
     },
+    generalKnobTab,
   );
   const levels = number(
     'Number of levels',
@@ -48,8 +51,9 @@ export default function getMenuLinks() {
       max: 5,
       step: 1,
     },
+    generalKnobTab,
   );
-  const activeTrail = boolean('Show active trail (random)', false);
+  const activeTrail = boolean('Show active trail (random)', false, generalKnobTab);
 
   return generateMenuLinks(links_per_level, levels, activeTrail);
 }

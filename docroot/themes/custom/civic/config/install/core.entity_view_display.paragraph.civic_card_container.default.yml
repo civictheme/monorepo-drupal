@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.paragraph.civic_card_container.field_c_p_cards
     - field.field.paragraph.civic_card_container.field_c_p_column_count
+    - field.field.paragraph.civic_card_container.field_c_p_description
     - field.field.paragraph.civic_card_container.field_c_p_fill_width
     - field.field.paragraph.civic_card_container.field_c_p_footer_link
     - field.field.paragraph.civic_card_container.field_c_p_header_link
@@ -34,6 +35,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_c_p_description:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
     region: content
   field_c_p_fill_width:
     weight: 4

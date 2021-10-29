@@ -11,16 +11,27 @@ export default {
   },
 };
 
-export const Image = () => CivicImage({
-  theme: radios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-  ),
-  src: boolean('With image', true) ? imageFile : false,
-  alt: text('Image alt text', 'Civic image alt'),
-  caption: text('Caption', 'This is a default image caption.'),
-});
+export const Image = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const generalKnobs = {
+    theme: radios(
+      'Theme',
+      {
+        Light: 'light',
+        Dark: 'dark',
+      },
+      'light',
+      generalKnobTab,
+    ),
+    src: boolean('With image', true, generalKnobTab) ? imageFile : false,
+    alt: text('Image alt text', 'Civic image alt', generalKnobTab),
+    caption: text('Caption', 'This is a default image caption.', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
+  };
+
+  return CivicImage({
+    ...generalKnobs,
+  });
+};

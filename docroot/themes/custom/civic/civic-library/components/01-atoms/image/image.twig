@@ -10,10 +10,11 @@
  */
 #}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if src %}
-  <figure class="civic-image {{ theme_class }}">
-    <img src="{{ src }}" alt="{{ alt }}">
+  <figure class="civic-image {{ modifier_class }}">
+    <img src="{{ src }}" alt="{{ alt }}" {{ attributes }}>
 
     {% if caption is not empty %}
       <figcaption class="civic-image__caption">

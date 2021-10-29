@@ -5,6 +5,8 @@
  * Functions to support theming in the Civic theme.
  */
 
+use Drupal\Core\Url;
+
 require_once 'includes/block--system_branding.inc';
 require_once 'includes/civic_banner.inc';
 require_once 'includes/civic_cards.inc';
@@ -122,15 +124,6 @@ function civic_theme_preprocess_pager(&$variables) {
 }
 
 /**
- * Implements template_preprocess_civic_breadcrumb().
- */
-function civic_preprocess_civic_breadcrumb(&$variables) {
-  if (!empty($variables['display_theme'])) {
-    $variables['theme'] = $variables['display_theme'];
-  }
-}
-
-/**
  * Implements hook_theme().
  */
 function civic_theme() {
@@ -151,7 +144,45 @@ function civic_theme() {
       ],
       'template' => 'content/civic-basic-content',
     ],
+    'civic_icon_link' => [
+      'variables' => [
+        'symbol' => '',
+        'text' => '',
+        'size' => 'small',
+        'modifier_class' => '',
+        'new_window' => FALSE,
+        'url' => NULL,
+      ],
+      'template' => 'misc/icon-link',
+    ],
+    'civic_description_list' => [
+      'variables' => [
+        'items' => [],
+        'is_inline' => '',
+        'modifier_class' => '',
+      ],
+      'template' => 'misc/description-list',
+    ],
   ];
+}
+
+/**
+ * Implements template_preprocess_civic_breadcrumb().
+ */
+function civic_preprocess_civic_breadcrumb(&$variables) {
+  if (!empty($variables['display_theme'])) {
+    $variables['theme'] = $variables['display_theme'];
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
+function civic_preprocess_civic_icon_link(&$variables) {
+  if ($variables['url'] instanceof Url) {
+    $variables['url'] = $variables['url']->toString();
+  }
+  $variables['#theme_wrappers'] = [];
 }
 
 /**
@@ -187,5 +218,17 @@ function _civic_preprocess_block_content(&$variables) {
       $variables['attributes']['class'][] = 'copyright';
       $variables['attributes']['class'][] = 'civic-text-regular';
       break;
+  }
+}
+
+/**
+ * Implements template_preprocess_image().
+ */
+function civic_preprocess_image(&$variables) {
+  if (isset($variables['attributes']['src'])) {
+    $variables['src'] = $variables['attributes']['src'];
+  }
+  elseif (!empty($variables['uri'])) {
+    $variables['attributes']['src'] = file_url_transform_relative(file_create_url($variables['uri']));
   }
 }

@@ -16,7 +16,7 @@ function civic_preprocess_paragraph__civic_search(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $variables['button_text'] = $paragraph->get('field_c_p_button_text')->getString();
-  $variables['helper_text'] = $paragraph->get('field_c_p_help_text')->getString();
+  $variables['help_text'] = $paragraph->get('field_c_p_help_text')->getString();
   $variables['placeholder'] = $paragraph->get('field_c_p_placeholder')->getString();
   $search_url = $paragraph->get('field_c_p_search_url')->getString();
 

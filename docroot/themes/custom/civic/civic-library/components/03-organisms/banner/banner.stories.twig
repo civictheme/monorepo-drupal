@@ -1,7 +1,7 @@
 {% extends './banner.twig' %}
 
-{% if show_breadcrumbs %}
-  {% set breadcrumbs %}
+{% if show_breadcrumb %}
+  {% set breadcrumb %}
     {% include '@organisms/breadcrumb/breadcrumb.twig' with {
       theme: theme,
       links: [
@@ -34,15 +34,14 @@
   {% set content %}
     <div class="civic-banner__content__example">
       {% include '@molecules/search/search.twig' with {
+        theme: theme,
         placeholder: 'Enter keywords or phrase',
         button_text: 'Search',
-        description: 'Search by keyword',
+        help_text: 'Search by keyword',
       } only %}
     </div>
   {% endset %}
 {% endif %}
-
-
 
 {% if show_content_below %}
   {% set card %}

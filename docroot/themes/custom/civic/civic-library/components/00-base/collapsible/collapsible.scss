@@ -9,7 +9,6 @@
   [data-collapsible-trigger] {
     cursor: pointer;
     padding-right: list.nth(map.get(map.get($civic-icon-sizes, 'regular'), $civic-collapsible-icon-size), 1);
-    display: block;
     position: relative;
 
     &::after {
@@ -28,6 +27,16 @@
     [data-collapsible-trigger] {
       &::after {
         transform: rotate(0deg);
+      }
+    }
+  }
+
+  &[data-collapsible-trigger-no-icon] {
+    [data-collapsible-trigger] {
+      padding-right: 0;
+
+      &::after {
+        display: none;
       }
     }
   }

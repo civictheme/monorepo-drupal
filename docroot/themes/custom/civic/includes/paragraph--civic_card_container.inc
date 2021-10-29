@@ -27,6 +27,8 @@ function civic_preprocess_paragraph__civic_card_container(&$variables) {
   $variables['footer_link_text'] = $footer_link['title'] ?? NULL;
   $variables['footer_link_url'] = $footer_link['uri'] ?? NULL;
 
+  $variables['description'] = $paragraph->hasField('field_c_p_description') ? $paragraph->get('field_c_p_description')->getString() : FALSE;
+
   $variables['cards'] = array_filter($variables['content']['field_c_p_cards'], function ($key) {
     return is_numeric($key);
   }, ARRAY_FILTER_USE_KEY);

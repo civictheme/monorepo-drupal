@@ -4,7 +4,7 @@ dependencies:
   config:
     - block_content.type.civic_banner
     - field.storage.block_content.field_c_b_background_image
-    - media.type.image
+    - media.type.civic_image
 id: block_content.civic_banner.field_c_b_background_image
 field_name: field_c_b_background_image
 entity_type: block_content
@@ -19,7 +19,7 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
-      image: image
+      civic_image: civic_image
     sort:
       field: _none
       direction: ASC

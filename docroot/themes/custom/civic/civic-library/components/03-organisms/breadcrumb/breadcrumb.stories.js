@@ -1,14 +1,17 @@
-import { boolean, object, radios } from '@storybook/addon-knobs';
+import {
+  boolean, number, radios,
+} from '@storybook/addon-knobs';
 import CivicBreadcrumb from './breadcrumb.twig';
+import { randomLinks } from '../../00-base/base.stories';
 
 export default {
   title: 'Organisms/Breadcrumb',
 };
 
-export const Breadcrumb = () => {
-  const generalKnobTab = 'General';
+export const Breadcrumb = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
-  return CivicBreadcrumb({
+  const generalKnobs = {
     theme: radios(
       'Theme',
       {
@@ -19,23 +22,20 @@ export const Breadcrumb = () => {
       generalKnobTab,
     ),
     active_is_link: boolean('Active is link', false, generalKnobTab),
-    links: object('Links', {
-      link1: {
-        text: 'Link 1',
-        url: 'http://example.com',
+    links: randomLinks(number(
+      'Number of links',
+      3,
+      {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
       },
-      link2: {
-        text: 'Link 2 title',
-        url: 'http://example.com',
-      },
-      link3: {
-        text: 'Link 3 title',
-        url: 'http://example.com',
-      },
-      link4: {
-        text: 'Link 4 title',
-        url: 'http://example.com',
-      },
-    }, generalKnobTab),
+      generalKnobTab,
+    )),
+  };
+
+  return CivicBreadcrumb({
+    ...generalKnobs,
   });
 };
