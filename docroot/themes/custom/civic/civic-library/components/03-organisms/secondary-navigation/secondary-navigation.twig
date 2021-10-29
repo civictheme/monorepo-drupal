@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Secondary navigation component.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if items is not empty %}
+  <div class="civic-secondary-navigation {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
+    {% include '@molecules/menu/menu.twig' with {
+      theme: theme,
+      items: items,
+      modifier_class: 'civic-secondary-navigation__menu',
+    } only %}
+  </div>
+{% endif %}
