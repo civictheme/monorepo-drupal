@@ -1,0 +1,31 @@
+//.civic-navigation {
+//  @include civic-typography('text-regular');
+//
+//  &__title {
+//    @include civic-typography('heading-5');
+//
+//    margin-bottom: civic-space(2);
+//  }
+//
+//  &__menu {
+//    &.civic-menu,
+//    .civic-menu {
+//      list-style: none;
+//      padding: 0;
+//      margin: 0;
+//    }
+//
+//    .civic-menu__sub-menu {
+//      margin-top: civic-space(2);
+//    }
+//
+//    .civic-menu__item {
+//      margin-bottom: civic-space(2);
+//      margin-left: civic-space(2);
+//    }
+//
+//    &.civic-menu > .civic-menu__item {
+//      margin-left: 0;
+//    }
+//  }
+//}
