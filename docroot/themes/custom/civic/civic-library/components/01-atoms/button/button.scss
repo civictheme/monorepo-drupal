@@ -42,7 +42,6 @@
     &:focus,
     &:active {
       border: rem(2px) solid $civic-button-light-border-color;
-      border-radius: rem(8px);
     }
 
     &:focus {
@@ -56,7 +55,6 @@
 
     &:active {
       background-color: $civic-button-light-active-background-color;
-      
     }
 
     &[disabled] {
@@ -79,7 +77,6 @@
     &:focus,
     &:active {
       border: rem(2px) solid $civic-button-dark-border-color;
-      border-radius: rem(8px);
     }
 
     &:focus {
@@ -135,7 +132,6 @@
       background-color: $civic-button-light-secondary-background-color;
       color: $civic-button-light-secondary-color;
       border: rem(3px) solid $civic-button-light-secondary-border-color;
-      border-radius: rem(8px);
 
       &:focus {
         border-color: $civic-button-light-border-color;
@@ -166,7 +162,7 @@
       &:focus {
         border-color: $civic-button-dark-border-color;
       }
-      
+
       &:hover {
         border-color: $civic-button-dark-hover-background-color;
       }
