@@ -39,16 +39,4 @@
       margin-bottom: auto;
     }
   }
-
-  &--local-tasks {
-    padding: civic-space(2) 0 civic-space(2) civic-space(2);
-
-    &.civic-theme-light {
-      background-color: $civic-local-tasks-light-background-color;
-    }
-
-    &.civic-theme-dark {
-      background-color: $civic-local-tasks-dark-background-color;
-    }
-  }
 }
