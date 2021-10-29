@@ -1,0 +1,39 @@
+//
+// Back to top button.
+//
+
+@import '../../00-base/base';
+
+.civic-back-to-top {
+  $root: &;
+
+  position: fixed;
+  right: civic-space(1);
+  bottom: civic-space(8);
+
+  &__button {
+    display: block;
+    padding: rem(8px);
+    border-radius: 50%;
+  }
+
+  &.civic-theme-light {
+    #{$root}__button {
+      background-color: $civic-back-to-top-light-background-color;
+
+      svg {
+        fill: $civic-back-to-top-light-color;
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__button {
+      background-color: $civic-back-to-top-dark-background-color;
+
+      svg {
+        fill: $civic-back-to-top-dark-color;
+      }
+    }
+  }
+}

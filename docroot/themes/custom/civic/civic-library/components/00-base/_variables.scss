@@ -1154,3 +1154,11 @@ $civic-table-of-contents-dark-link-hover-background-color: civic-color('transluc
 $civic-table-of-contents-dark-link-hover-border-color: civic-color('translucent') !default;
 $civic-table-of-contents-dark-link-before-hover-background-color: civic-color('accent') !default;
 $civic-table-of-contents-dark-active-background-color: civic-color('shade_dark_30') !default;
+
+//
+// Back to top.
+//
+$civic-back-to-top-light-background-color: civic-color('secondary') !default;
+$civic-back-to-top-light-color: civic-color('neutral') !default;
+$civic-back-to-top-dark-background-color: civic-color('accent') !default;
+$civic-back-to-top-dark-color: civic-color('secondary') !default;

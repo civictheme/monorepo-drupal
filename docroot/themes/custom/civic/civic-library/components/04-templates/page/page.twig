@@ -41,6 +41,12 @@
     } only %}
   {% endblock %}
 
+  {% block back_to_top %}
+    {% include '@molecules/back-to-top/back-to-top.twig' with {
+      theme: theme,
+    } only %}
+  {% endblock %}
+
   {% block footer %}
     {% include '@organisms/footer/footer.twig' with {
       theme: footer_theme,
