@@ -1,13 +1,10 @@
 import {
-  radios, text, object,
+  boolean, radios, text,
 } from '@storybook/addon-knobs';
 import CivicTableOfContentsStories from './table-of-contents.stories.twig';
 
 export default {
-  title: 'Organisms/Table Of Contents',
-  parameters: {
-    layout: 'centered',
-  },
+  title: 'Organisms/Navigation',
 };
 
 export const TableOfContents = (knobTab) => {
@@ -24,38 +21,32 @@ export const TableOfContents = (knobTab) => {
       generalKnobTab,
     ),
     title: text('Title', 'On this page', generalKnobTab),
-    links: object('Links', [
+    links: boolean('Use manual links', false, generalKnobTab) ? [
       {
-        text: 'Introduction',
+        title: 'Introduction',
         url: '#introduction',
-        active: '',
       },
       {
-        text: 'Section 1',
+        title: 'Section 1',
         url: '#section-1',
-        active: '',
       },
       {
-        text: 'Section 2',
+        title: 'Section 2',
         url: '#section-2',
-        active: '',
       },
       {
-        text: 'Section 3',
+        title: 'Section 3',
         url: '#section-3',
-        active: '',
       },
       {
-        text: 'Section 4',
+        title: 'Section 4',
         url: '#section-4',
-        active: '',
       },
       {
-        text: 'Section 5',
+        title: 'Section 5',
         url: '#section-5',
-        active: '',
       },
-    ], generalKnobTab),
+    ] : null,
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
