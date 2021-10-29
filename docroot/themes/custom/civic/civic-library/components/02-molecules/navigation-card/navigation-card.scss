@@ -39,6 +39,7 @@
   #{$root}__title-link {
     text-decoration: none;
     display: flex;
+    justify-content: space-between;
 
     &:hover,
     &:active {

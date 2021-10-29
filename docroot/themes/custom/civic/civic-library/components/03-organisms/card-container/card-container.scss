@@ -16,15 +16,16 @@
   &--with-spacing {
     padding-top: civic-space(6);
     padding-bottom: civic-space(6);
+  }
 
-    #{$root}__card {
-      margin-top: civic-space(3);
-    }
+  &__card {
+    margin-bottom: civic-space(3);
   }
 
   &__header {
     display: flex;
     flex-direction: column;
+    margin-bottom: civic-space(3);
 
     @include civic-breakpoint('m') {
       flex-direction: row;
@@ -75,7 +76,7 @@
   &__description {
     @include civic-typography('body');
 
-    margin-top: civic-space(2);
+    margin-bottom: civic-space(3);
   }
 
   &.civic-theme-light {
