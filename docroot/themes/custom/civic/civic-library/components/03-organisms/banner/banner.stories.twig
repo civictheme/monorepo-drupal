@@ -16,11 +16,15 @@
 {% if show_content_text %}
   {% set content %}
     <div class="civic-banner__content__example">
-      <p>Last updated: 26 Oct 2020</p>
-      <p>Government grade set of high quality design themes that are
-        accessible,
-        inclusive and provide a consistent digital experience for your
-        citizen. </p>
+      <div class="civic-banner__content__example-last-updated">
+        <p>Last updated: 26 Oct 2020</p>
+      </div>
+      <div class="civic-banner__content__example-summary">
+        <p>Government grade set of high quality design themes that are
+          accessible,
+          inclusive and provide a consistent digital experience for your
+          citizen. </p>
+      </div>
       {% include '@atoms/button/button.twig' with {
         text: 'Learn about our mission',
         type: 'primary',
