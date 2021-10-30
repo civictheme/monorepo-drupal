@@ -1,5 +1,4 @@
 .civic-secondary-navigation {
-
   &__menu {
     &.civic-menu,
     .civic-menu {
@@ -16,7 +15,9 @@
     .civic-menu__item {
       .civic-link {
         background: none;
+
         @include civic-typography('body');
+
         text-decoration: none;
 
         &:hover,
@@ -25,7 +26,6 @@
           background: none;
           color: inherit;
         }
-
       }
 
       // Links - level 0.
@@ -38,7 +38,7 @@
       }
 
       > .civic-link {
-        &:after {
+        &::after {
           margin-top: 3px;
         }
       }

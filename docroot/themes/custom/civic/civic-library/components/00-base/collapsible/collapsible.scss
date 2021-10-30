@@ -27,7 +27,7 @@
     }
   }
 
-  &:not([data-collapsible-duration="0"]) {
+  &:not([data-collapsible-duration='0']) {
     [data-collapsible-trigger] {
       &::after {
         transition: transform 0.5s;

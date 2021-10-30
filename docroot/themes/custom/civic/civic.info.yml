@@ -14,10 +14,13 @@ dependencies:
   - paragraphs:paragraphs
 
 regions:
-  header_top: 'Header'
-  header_logo: 'Header logo'
-  header_content: 'Header content'
-  header_bottom: 'Header bottom'
+  header_top_1: 'Header top 1'
+  header_top_2: 'Header top 2'
+  header_top_3: 'Header top 3'
+  header_middle_1: 'Header middle 1'
+  header_middle_2: 'Header middle 2'
+  header_middle_3: 'Header middle 3'
+  header_bottom_1: 'Header bottom 1'
   banner: 'Banner'
   highlighted: 'Highlighted'
   content: 'Content'

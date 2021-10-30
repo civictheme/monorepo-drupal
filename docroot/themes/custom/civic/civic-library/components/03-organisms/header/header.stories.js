@@ -1,14 +1,14 @@
-import { boolean, number, radios, text } from '@storybook/addon-knobs';
+import {
+  boolean, number, radios,
+} from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
 import CivicHeaderExample from './header.stories.twig';
 
-// import '../menu/dropdown-menu';
-// import '../menu/mobile-menu';
 import logoDesktopLight from '../../../assets/logo-desktop-light.png';
 import logoDesktopDark from '../../../assets/logo-desktop-dark.png';
 import logoMobileLight from '../../../assets/logo-mobile-light.png';
 import logoMobileDark from '../../../assets/logo-mobile-dark.png';
-import getMenuLinks from "../../02-molecules/menu/menu.utils";
+import getMenuLinks from '../../02-molecules/menu/menu.utils';
 
 export default {
   title: 'Organisms/Header',
@@ -32,7 +32,7 @@ export const Header = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    show_content_top2: boolean('Sjow slogan', true, generalKnobTab),
+    show_content_top2: boolean('Show slogan', true, generalKnobTab),
     show_content_top3: boolean('Show Secondary Navigation', true, generalKnobTab),
     show_content_middle3: boolean('Show Primary Navigation', true, generalKnobTab),
   };

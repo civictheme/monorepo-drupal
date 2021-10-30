@@ -35,6 +35,7 @@
           padding-top: civic-space(2);
           padding-bottom: civic-space(2);
           padding-left: civic-space(2);
+
           // Accommodate for the trigger.
           padding-right: rem(list.nth(map.get(map.get($civic-icon-sizes, 'regular'), $civic-collapsible-icon-size), 1)) + civic-space();
           text-decoration: none;
@@ -44,7 +45,7 @@
             background: none;
           }
 
-          &:after {
+          &::after {
             right: civic-space();
             margin-top: 3px;
           }
@@ -77,8 +78,9 @@
       margin: 0;
       margin-top: $civic-primary-navigation-dropdown-top-offset;
       z-index: $civic-primary-navigation-dropdown-zindex;
+
       // @todo Replace with elevation4.
-      @include civic-box-shadow;
+      @include civic-box-shadow();
 
       // Submenu.
       .civic-menu__sub-menu {
@@ -88,15 +90,11 @@
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
+
           @include civic-container();
+
           margin-bottom: civic-space(4);
         }
-      }
-
-      .civic-menu__item--level-1 {
-        padding: 0;
-        margin: 0;
-        flex-basis: math.div(100%, $civic-primary-navigation-dropdown-cols);
       }
 
       // Reset some styles for all links in the dropdown.
@@ -111,16 +109,19 @@
       }
 
       .civic-menu__item--level-1 {
-        margin-top: civic-space(4);
+        padding: 0;
+        margin: civic-space(4) 0 0;
+        flex-basis: math.div(100%, $civic-primary-navigation-dropdown-cols);
 
         > .civic-link {
           @include civic-typography('heading-5');
+
           color: civic-color('heading');
           text-decoration: none;
         }
       }
 
-      .civic-menu__sub-menu__wrapper--level-2{
+      .civic-menu__sub-menu__wrapper--level-2 {
         margin-top: civic-space(4);
       }
 
@@ -131,12 +132,9 @@
         width: 100%;
         margin-bottom: civic-space(1);
 
-        &:hover {
-
-        }
-
         > .civic-link {
           @include civic-typography('label-menu');
+
           color: civic-color('shade_15');
           text-decoration: none;
           display: block;
@@ -189,14 +187,12 @@
         }
 
         .civic-menu__item--level-1 {
+          // stylelint-disable-next-line scss/dollar-variable-pattern
           $basis: math.div(100%, $i);
-          flex-basis: calc(#{$basis} - #{$civic-primary-navigation-dropdown-column-gutter})
+
+          flex-basis: calc(#{$basis} - #{$civic-primary-navigation-dropdown-column-gutter});
         }
       }
     }
-  }
-
-  &.civic-theme-light {
-
   }
 }

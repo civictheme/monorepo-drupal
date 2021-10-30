@@ -837,8 +837,10 @@ $civic-header-dark-submenu-menu-link-active-background-color: civic-color('accen
 //
 // Maximum number of columns a dropdown may have.
 $civic-primary-navigation-dropdown-cols: 4;
+
 // Top offset for the dropdown from the bottom of the trigger.
 $civic-primary-navigation-dropdown-top-offset: civic-space(3);
+
 // Gutter size between columns.
 $civic-primary-navigation-dropdown-column-gutter: civic-space(4);
 $civic-primary-navigation-dropdown-zindex: 10;
