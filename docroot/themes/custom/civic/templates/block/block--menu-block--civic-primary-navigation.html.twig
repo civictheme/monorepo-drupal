@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Override theme implementation for a Primary Navigation menu block.
+ */
+#}
+
+{% include '@organisms/primary-navigation/primary-navigation.twig' with  {
+  theme: theme,
+  title: configuration.label_display ? configuration.label : '',
+  items: content['#items'],
+  attributes: attributes,
+} only%}

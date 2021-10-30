@@ -64,6 +64,8 @@ config_devel:
     - block.block.civic_footer_menu_2
     - block.block.civic_footer_menu_3
     - block.block.civic_footer_menu_4
+    - block.block.civic_primarynavigation_menu
+    - block.block.civic_secondarynavigation_menu
     - block.block.civic_footer_sitebranding
     - block.block.civic_help
     - block.block.civic_mainnavigation
@@ -419,6 +421,8 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider_slide
     - paragraphs.paragraphs_type.civic_slider_slide_reference
     - paragraphs.paragraphs_type.civic_social_icon
+    - system.menu.civic_primary_navigation
+    - system.menu.civic_secondary_navigation
     - system.menu.civic_footer
     - taxonomy.vocabulary.civic_topics
     - views.view.civic_events

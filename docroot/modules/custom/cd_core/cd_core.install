@@ -195,3 +195,190 @@ function cd_core_update_9004($sandbox) {
       return FALSE;
     });
 }
+
+/**
+ * Provisions links in Primary and Secondary navigation menus.
+ */
+function cd_core_update_9005() {
+  Helper::saveMenuTree('civic_primary_navigation', [
+    'General' => [
+      'link' => '/<front>',
+      'children' => [
+        'For individuals' => [
+          'link' => '/node/36',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+        'For businesses' => [
+          'link' => '/civic/pages',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+        'For government' => [
+          'link' => '/node/31',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+        'News & events' => [
+          'link' => '/node/9',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+      ],
+    ],
+    'About us' => [
+      'link' => '/<front>',
+      'children' => [
+        'For individuals' => [
+          'link' => '/node/36',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+        'For businesses' => [
+          'link' => '/civic/pages',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+          ],
+        ],
+        'For government' => [
+          'link' => '/node/31',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+            'Menu item on one or two lines item on one or two lines 5' => '/',
+          ],
+        ],
+        'News & events' => [
+          'link' => '/node/9',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+      ],
+    ],
+    'Help' => [
+      'link' => '/<front>',
+      'children' => [
+        'For individuals' => [
+          'link' => '/node/36',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+        'For businesses' => [
+          'link' => '/civic/pages',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+        'For government' => [
+          'link' => '/node/31',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+        'News & events' => [
+          'link' => '/node/9',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+      ],
+    ],
+    'Services' => [
+      'link' => '/<front>',
+      'children' => [
+        'For individuals' => [
+          'link' => '/node/36',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+        'For businesses' => [
+          'link' => '/civic/pages',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+        'For government' => [
+          'link' => '/node/31',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+        'News & events' => [
+          'link' => '/node/9',
+          'children' => [
+            'Menu item on one or two lines item on one or two lines 1' => '/',
+            'Menu item on one or two lines item on one or two lines 2' => '/',
+            'Menu item on one or two lines item on one or two lines 3' => '/',
+            'Menu item on one or two lines item on one or two lines 4' => '/',
+          ],
+        ],
+      ],
+    ],
+  ]);
+
+  Helper::saveMenuTree('civic_secondary_navigation', [
+    'General' => [
+      'link' => '/<front>',
+    ],
+    'About us' => [
+      'link' => '/<front>',
+    ],
+    'Help' => [
+      'link' => '/<front>',
+    ],
+    'Services' => [
+      'link' => '/<front>',
+    ],
+  ]);
+}
