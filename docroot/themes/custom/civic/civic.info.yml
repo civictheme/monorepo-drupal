@@ -68,7 +68,6 @@ config_devel:
     - block.block.civic_secondarynavigation_menu
     - block.block.civic_footer_sitebranding
     - block.block.civic_help
-    - block.block.civic_mainnavigation
     - block.block.civic_messages
     - block.block.civic_primaryadminactions
     - block.block.civic_sitebranding

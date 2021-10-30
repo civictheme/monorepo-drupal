@@ -24,7 +24,7 @@ settings:
   depth: 1
   expand_all_items: false
   parent: 'civic_secondary_navigation:'
-  suggestion: civic_secondary_navigation_menu
+  suggestion: civic_secondary_navigation
   label_type: block
   label_link: false
 visibility: {  }

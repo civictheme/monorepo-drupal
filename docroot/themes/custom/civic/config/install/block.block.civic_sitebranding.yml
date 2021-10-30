@@ -1,5 +1,5 @@
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -7,7 +7,7 @@ dependencies:
     - civic
 id: civic_sitebranding
 theme: civic
-region: header_logo
+region: header_top_1
 weight: -3
 provider: null
 plugin: system_branding_block

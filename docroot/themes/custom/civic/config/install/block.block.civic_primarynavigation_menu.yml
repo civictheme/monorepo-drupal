@@ -10,7 +10,7 @@ dependencies:
 id: civic_primarynavigation_menu
 theme: civic_demo
 region: header_middle_3
-weight: 0
+weight: -7
 provider: null
 plugin: 'menu_block:civic_primary_navigation'
 settings:
@@ -24,7 +24,7 @@ settings:
   depth: 3
   expand_all_items: true
   parent: 'civic_primary_navigation:'
-  suggestion: civic_primary_navigation_menu
+  suggestion: civic_primary_navigation
   label_type: block
   label_link: false
 visibility: {  }
