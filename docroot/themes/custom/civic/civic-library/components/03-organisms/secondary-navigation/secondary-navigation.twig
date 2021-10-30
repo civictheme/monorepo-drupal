@@ -7,7 +7,7 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
-{% set menu_id = menu_id|default('secondary-menu') %}
+{% set menu_id = menu_id|default('secondary-navigation') %}
 
 {% if items is not empty %}
 

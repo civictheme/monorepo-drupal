@@ -78,6 +78,7 @@
       margin: 0;
       margin-top: $civic-primary-navigation-dropdown-top-offset;
       z-index: $civic-primary-navigation-dropdown-zindex;
+      background-color: civic-color('neutral');
 
       // @todo Replace with elevation4.
       @include civic-box-shadow();
