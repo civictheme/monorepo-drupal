@@ -159,7 +159,7 @@ CivicCollapsible.prototype.keydownEvent = function (e) {
 CivicCollapsible.prototype.closeGroup = function (group) {
   const currentEl = this.el;
   // eslint-disable-next-line prefer-template
-  document.querySelectorAll('[data-collapsible-group="' + group + '"]:not([data-collapsible-collapsed])').forEach((el) => {
+  document.querySelectorAll('[data-collapsible-group=' + group + ']:not([data-collapsible-collapsed])').forEach((el) => {
     if (el !== currentEl) {
       el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
     }
