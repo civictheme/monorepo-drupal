@@ -6,9 +6,9 @@ dependencies:
   module:
     - menu_block
   theme:
-    - civic_demo
+    - civic
 id: civic_primarynavigation_menu
-theme: civic_demo
+theme: civic
 region: header_middle_3
 weight: -7
 provider: null
