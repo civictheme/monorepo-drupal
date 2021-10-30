@@ -42,13 +42,15 @@ function CivicCollapsible(el) {
   this.trigger.addEventListener('click', this.clickEvent.bind(this));
   this.trigger.addEventListener('keydown', this.keydownEvent.bind(this.trigger));
 
-  // // Collapse if was set as initially collapsed.
+  // Collapse if was set as initially collapsed.
   if (this.collapsed) {
     this.collapse();
   }
-  //
-  this.el.addEventListener('civic.collapsible.collapse', () => {
-    this.collapse(true);
+
+  this.el.addEventListener('civic.collapsible.collapse', (evt) => {
+    // For some cases (like group collapse) - the animation should be disabled.
+    const animate = evt.detail || false;
+    this.collapse(animate);
   });
 
   this.el.addEventListener('civic.collapsible.expand', () => {
@@ -118,7 +120,7 @@ CivicCollapsible.prototype.clickEvent = function (e) {
   if (this.collapsed) {
     this.el.dispatchEvent(new CustomEvent('civic.collapsible.expand', { bubbles: true }));
   } else {
-    this.el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
+    this.el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
   }
 };
 
@@ -140,7 +142,7 @@ CivicCollapsible.prototype.keydownEvent = function (e) {
   if (this !== document) {
     // Up.
     if (e.which === 38) {
-      this.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
+      this.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
       return;
     }
 

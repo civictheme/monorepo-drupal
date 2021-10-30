@@ -23,8 +23,8 @@ $civic-default-colors-shades: (
   'shade_30': color.mix(black, civic-base-color('primary'), 30%),
   'shade_45': color.mix(black, civic-base-color('primary'), 45%),
   'shade_60': color.mix(black, civic-base-color('primary'), 60%),
-  'shade_80': color.mix(white, civic-base-color('primary'), 80%),
-  'shade_90': color.mix(white, civic-base-color('primary'), 90%),
+  'shade_80': color.mix(black, civic-base-color('primary'), 80%),
+  'shade_90': color.mix(black, civic-base-color('primary'), 90%),
 );
 $civic-default-colors-neutral-base: civic-base-color('primary') !default;
 $civic-default-colors-neutral: color.adjust(color.adjust($civic-default-colors-neutral-base, $saturation: -20%), $lightness: -1 * math.max(color.lightness($civic-default-colors-neutral-base) - 5%, 0%));
@@ -831,3 +831,21 @@ $civic-header-dark-submenu-menu-link-hover-color: civic-color('neutral') !defaul
 $civic-header-dark-submenu-menu-link-active-color: civic-color('shade_30') !default;
 $civic-header-dark-submenu-menu-link-hover-background-color: civic-color('shade_60') !default;
 $civic-header-dark-submenu-menu-link-active-background-color: civic-color('accent') !default;
+
+//
+// Primary navigation.
+//
+// Maximum number of columns a dropdown may have.
+$civic-primary-navigation-dropdown-cols: 4;
+// Top offset for the dropdown from the bottom of the trigger.
+$civic-primary-navigation-dropdown-top-offset: civic-space(3);
+// Gutter size between columns.
+$civic-primary-navigation-dropdown-column-gutter: civic-space(4);
+$civic-primary-navigation-dropdown-zindex: 10;
+
+//
+// Secondary navigation.
+//
+// Top offset for the dropdown from the bottom of the trigger.
+$civic-secondary-navigation-dropdown-top-offset: civic-space(1);
+$civic-secondary-navigation-dropdown-zindex: 11;

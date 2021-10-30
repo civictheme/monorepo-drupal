@@ -7,8 +7,30 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set menu_id = menu_id|default('secondary-menu') %}
 
 {% if items is not empty %}
+
+  {% if title %}
+    {% block title %}
+      <div class="civic-navigation__title">
+        {{ title }}
+      </div>
+    {% endblock %}
+  {% endif %}
+
+  {% for key in items|keys %}
+    {% if items[key].below %}
+      {# Item attributes to convert them into a collapsible element. #}
+      {% set item_attributes = 'data-collapsible data-collapsible-collapsed data-collapsible-group="' ~ menu_id ~ '"' %}
+      {# Item classes to style dynamically. #}
+      {% set item_modifier_class = 'civic-secondary-navigation__has-dropdown' %}
+      {# Update item with attributes and classes. #}
+      {% set new_item = items[key]|merge({'attributes': item_attributes, 'modifier_class': item_modifier_class }) %}
+      {% set items = items|merge({(key): new_item}) %}
+    {% endif %}
+  {% endfor %}
+
   <div class="civic-secondary-navigation {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
     {% include '@molecules/menu/menu.twig' with {
       theme: theme,

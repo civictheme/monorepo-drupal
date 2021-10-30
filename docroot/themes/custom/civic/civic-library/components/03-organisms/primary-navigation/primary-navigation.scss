@@ -1,31 +1,202 @@
-//.civic-navigation {
-//  @include civic-typography('text-regular');
-//
-//  &__title {
-//    @include civic-typography('heading-5');
-//
-//    margin-bottom: civic-space(2);
-//  }
-//
-//  &__menu {
-//    &.civic-menu,
-//    .civic-menu {
-//      list-style: none;
-//      padding: 0;
-//      margin: 0;
-//    }
-//
-//    .civic-menu__sub-menu {
-//      margin-top: civic-space(2);
-//    }
-//
-//    .civic-menu__item {
-//      margin-bottom: civic-space(2);
-//      margin-left: civic-space(2);
-//    }
-//
-//    &.civic-menu > .civic-menu__item {
-//      margin-left: 0;
-//    }
-//  }
-//}
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+
+.civic-primary-navigation {
+  align-items: center;
+  height: 100%;
+  display: flex;
+
+  &__menu {
+    // Reset all menu styles.
+    &.civic-menu,
+    .civic-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    &.civic-menu--level-0 {
+      // First-level items to be displayed inline.
+      display: flex;
+    }
+
+    .civic-menu__item {
+      // Links - level 0.
+      &--level-0 {
+        border-bottom: solid 4px civic-color('primary');
+
+        &:hover {
+          background-color: civic-color('neutral_5');
+        }
+
+        > .civic-link {
+          display: block;
+          padding-top: civic-space(2);
+          padding-bottom: civic-space(2);
+          padding-left: civic-space(2);
+          // Accommodate for the trigger.
+          padding-right: rem(list.nth(map.get(map.get($civic-icon-sizes, 'regular'), $civic-collapsible-icon-size), 1)) + civic-space();
+          text-decoration: none;
+
+          &:hover {
+            color: civic-color('primary');
+            background: none;
+          }
+
+          &:after {
+            right: civic-space();
+            margin-top: 3px;
+          }
+        }
+
+        &[data-collapsible-collapsed] {
+          border-bottom-color: transparent;
+
+          &:hover {
+            background-color: transparent;
+            border-bottom-color: civic-color('primary');
+          }
+
+          > .civic-link {
+            color: civic-color('shade_80');
+          }
+        }
+      }
+    }
+  }
+
+  // Menu item with dropdown.
+  &__has-dropdown {
+    // Dropdown (submenu) wrapper.
+    .civic-menu__sub-menu__wrapper--level-1 {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: 0;
+      margin: 0;
+      margin-top: $civic-primary-navigation-dropdown-top-offset;
+      z-index: $civic-primary-navigation-dropdown-zindex;
+      // @todo Replace with elevation4.
+      @include civic-box-shadow;
+
+      // Submenu.
+      .civic-menu__sub-menu {
+        &.civic-menu--level-1 {
+          padding: 0;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          @include civic-container();
+          margin-bottom: civic-space(4);
+        }
+      }
+
+      .civic-menu__item--level-1 {
+        padding: 0;
+        margin: 0;
+        flex-basis: math.div(100%, $civic-primary-navigation-dropdown-cols);
+      }
+
+      // Reset some styles for all links in the dropdown.
+      .civic-link {
+        background: none;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: none;
+        }
+      }
+
+      .civic-menu__item--level-1 {
+        margin-top: civic-space(4);
+
+        > .civic-link {
+          @include civic-typography('heading-5');
+          color: civic-color('heading');
+          text-decoration: none;
+        }
+      }
+
+      .civic-menu__sub-menu__wrapper--level-2{
+        margin-top: civic-space(4);
+      }
+
+      .civic-menu__item--level-2,
+      .civic-menu__item--level-3,
+      .civic-menu__item--level-4,
+      .civic-menu__item--level-5 {
+        width: 100%;
+        margin-bottom: civic-space(1);
+
+        &:hover {
+
+        }
+
+        > .civic-link {
+          @include civic-typography('label-menu');
+          color: civic-color('shade_15');
+          text-decoration: none;
+          display: block;
+          border-radius: $civic-border-radius;
+          padding: 0;
+
+          &:hover {
+            color: civic-color('neutral');
+            background-color: civic-color('primary');
+            padding-left: civic-space();
+            padding-right: civic-space();
+          }
+
+          &:active {
+            color: civic-color('neutral');
+          }
+        }
+
+        &.civic-menu__item--active-trail {
+          > .civic-link {
+            background-color: civic-color('shade_60');
+            color: civic-color('neutral');
+            padding-left: civic-space();
+            padding-right: civic-space();
+          }
+        }
+      }
+    }
+  }
+
+  // Fill column width if there are less columns than expected.
+  &__dropdown-columns--fill {
+    .civic-menu__sub-menu__wrapper--level-1 {
+      .civic-menu__item--level-1 {
+        flex: 1;
+      }
+    }
+  }
+
+  // Allow to override column width based on the explicitly set columns number
+  // class.
+  @for $i from 1 through $civic-primary-navigation-dropdown-cols * 2 {
+    &__dropdown-columns--#{$i} {
+      .civic-menu__sub-menu__wrapper--level-1 {
+        .civic-menu--level-1 {
+          // @todo: Implement gutters using :nth() to make the last gutter
+          // in the row collapse. Note that for "fill column width" option
+          // this already works automatically.
+          column-gap: $civic-primary-navigation-dropdown-column-gutter;
+        }
+
+        .civic-menu__item--level-1 {
+          $basis: math.div(100%, $i);
+          flex-basis: calc(#{$basis} - #{$civic-primary-navigation-dropdown-column-gutter})
+        }
+      }
+    }
+  }
+
+  &.civic-theme-light {
+
+  }
+}

@@ -1,9 +1,5 @@
 .civic-secondary-navigation {
 
-  .civic-menu--level-0 {
-    display: flex;
-  }
-
   &__menu {
     &.civic-menu,
     .civic-menu {
@@ -12,57 +8,57 @@
       margin: 0;
     }
 
-    .civic-menu__item {
-      margin-left: civic-space(2);
+    // First-level items to be displayed inline.
+    &.civic-menu--level-0 {
+      display: flex;
     }
 
-    &.civic-menu > .civic-menu__item {
-      margin-left: 0;
+    .civic-menu__item {
+      .civic-link {
+        background: none;
+        @include civic-typography('body');
+        text-decoration: none;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: none;
+          color: inherit;
+        }
+
+      }
+
+      // Links - level 0.
+      &--level-0 {
+        margin-right: civic-space(2);
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      > .civic-link {
+        &:after {
+          margin-top: 3px;
+        }
+      }
     }
   }
 
+  &__has-dropdown {
+    .civic-menu__sub-menu__wrapper--level-1 {
+      position: absolute;
+      z-index: $civic-secondary-navigation-dropdown-zindex;
+      margin-top: $civic-secondary-navigation-dropdown-top-offset;
+      background-color: civic-color('neutral_20');
 
-    //#{$root}__title {
-    //  margin-right: civic-space(2);
-    //  margin-bottom: auto;
-    //}
-    //
-    //#{$root}__list {
-    //  display: flex;
-    //}
-    //
-    //#{$root}__list__item {
-    //  margin-right: civic-space(2);
-    //  margin-bottom: auto;
-    //}
+      .civic-menu__sub-menu {
+        margin-left: civic-space(2);
 
-
-
-  //
-  //
-  //
-
-//
-
-//  &__menu {
-//    &.civic-menu,
-//    .civic-menu {
-//      list-style: none;
-//      padding: 0;
-//      margin: 0;
-//    }
-//
-//    .civic-menu__sub-menu {
-//      margin-top: civic-space(2);
-//    }
-//
-//    .civic-menu__item {
-//      margin-bottom: civic-space(2);
-//      margin-left: civic-space(2);
-//    }
-//
-//    &.civic-menu > .civic-menu__item {
-//      margin-left: 0;
-//    }
-//  }
+        &.civic-menu--level-1 {
+          margin: civic-space(2);
+        }
+      }
+    }
+  }
 }
