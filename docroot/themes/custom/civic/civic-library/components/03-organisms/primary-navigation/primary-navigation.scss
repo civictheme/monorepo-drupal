@@ -3,6 +3,8 @@
 @use 'sass:math';
 
 .civic-primary-navigation {
+  $root: &;
+
   align-items: center;
   height: 100%;
   display: flex;
@@ -24,11 +26,7 @@
     .civic-menu__item {
       // Links - level 0.
       &--level-0 {
-        border-bottom: solid 4px civic-color('primary');
-
-        &:hover {
-          background-color: civic-color('neutral_5');
-        }
+        border-bottom: solid 4px;
 
         > .civic-link {
           display: block;
@@ -40,27 +38,9 @@
           padding-right: rem(list.nth(map.get(map.get($civic-icon-sizes, 'regular'), $civic-collapsible-icon-size), 1)) + civic-space();
           text-decoration: none;
 
-          &:hover {
-            color: civic-color('primary');
-            background: none;
-          }
-
           &::after {
             right: civic-space();
             margin-top: 3px;
-          }
-        }
-
-        &[data-collapsible-collapsed] {
-          border-bottom-color: transparent;
-
-          &:hover {
-            background-color: transparent;
-            border-bottom-color: civic-color('primary');
-          }
-
-          > .civic-link {
-            color: civic-color('shade_80');
           }
         }
       }
@@ -78,7 +58,6 @@
       margin: 0;
       margin-top: $civic-primary-navigation-dropdown-top-offset;
       z-index: $civic-primary-navigation-dropdown-zindex;
-      background-color: civic-color('neutral');
 
       // @todo Replace with elevation4.
       @include civic-box-shadow();
@@ -98,17 +77,6 @@
         }
       }
 
-      // Reset some styles for all links in the dropdown.
-      .civic-link {
-        background: none;
-
-        &:hover,
-        &:active,
-        &:focus {
-          background: none;
-        }
-      }
-
       .civic-menu__item--level-1 {
         padding: 0;
         margin: civic-space(4) 0 0;
@@ -117,7 +85,6 @@
         > .civic-link {
           @include civic-typography('heading-5');
 
-          color: civic-color('heading');
           text-decoration: none;
         }
       }
@@ -136,21 +103,14 @@
         > .civic-link {
           @include civic-typography('label-menu');
 
-          color: civic-color('shade_15');
           text-decoration: none;
           display: block;
           border-radius: $civic-border-radius;
           padding: 0;
 
           &:hover {
-            color: civic-color('neutral');
-            background-color: civic-color('primary');
             padding-left: civic-space();
             padding-right: civic-space();
-          }
-
-          &:active {
-            color: civic-color('neutral');
           }
         }
 
@@ -192,6 +152,218 @@
           $basis: math.div(100%, $i);
 
           flex-basis: calc(#{$basis} - #{$civic-primary-navigation-dropdown-column-gutter});
+        }
+      }
+    }
+  }
+
+  &.civic-theme-light {
+    #{$root}__menu {
+      .civic-menu__item {
+        // Links - level 0.
+        &--level-0 {
+          border-color: $civic-primary-navigation-light-border-color;
+
+          &:hover {
+            background-color: $civic-primary-navigation-light-menu-item-hover-background-color;
+          }
+
+          &:active {
+            background-color: $civic-primary-navigation-light-menu-item-active-border-color;
+          }
+
+          &[data-collapsible-collapsed] {
+            border-bottom-color: $civic-primary-navigation-light-menu-item-border-color;
+
+            &:hover {
+              background-color: $civic-primary-navigation-light-menu-item-hover-background-color;
+              border-bottom-color: $civic-primary-navigation-light-menu-item-hover-border-color;
+            }
+
+            &:active {
+              background-color: $civic-primary-navigation-light-menu-item-active-background-color;
+              border-bottom-color: $civic-primary-navigation-light-menu-item-active-border-color;
+            }
+          }
+
+          > .civic-link {
+            background-color: $civic-primary-navigation-light-menu-item-background-color;
+            color: $civic-primary-navigation-light-color;
+
+            &:hover {
+              color: $civic-primary-navigation-light-hover-color;
+              background-color: $civic-primary-navigation-light-menu-item-hover-background-color;
+            }
+
+            &[aria-expanded='true'],
+            &:active {
+              color: $civic-primary-navigation-light-active-color;
+              background-color: $civic-primary-navigation-light-menu-item-active-background-color;
+            }
+          }
+        }
+      }
+    }
+    #{$root}__has-dropdown {
+      .civic-menu__sub-menu__wrapper--level-1 {
+        background-color: $civic-primary-navigation-light-sub-menu-background-color;
+
+        // Reset some styles for all links in the dropdown.
+        .civic-link {
+          background: none;
+
+          &:hover,
+          &:active,
+          &:focus {
+            background: none;
+          }
+        }
+
+        .civic-menu__item--level-1 {
+          > .civic-link {
+            color: $civic-primary-navigation-light-sub-menu-item-heading-hover-color;
+
+            &:hover {
+              color: $civic-primary-navigation-light-sub-menu-item-heading-hover-color;
+            }
+
+            &:active {
+              color: $civic-primary-navigation-light-sub-menu-item-heading-active-color;
+            }
+          }
+        }
+
+        .civic-menu__item--level-2,
+        .civic-menu__item--level-3,
+        .civic-menu__item--level-4,
+        .civic-menu__item--level-5 {
+          > .civic-link {
+            color: $civic-primary-navigation-light-sub-menu-item-color;
+            background-color: $civic-primary-navigation-light-sub-menu-item-background-color;
+
+            &:hover {
+              color: $civic-primary-navigation-light-sub-menu-item-hover-color;
+              background-color: $civic-primary-navigation-light-sub-menu-item-hover-background-color;
+            }
+
+            &:active {
+              color: $civic-primary-navigation-light-sub-menu-item-active-color;
+              background-color: $civic-primary-navigation-light-sub-menu-item-active-background-color;
+            }
+          }
+
+          &.civic-menu__item--active-trail {
+            > .civic-link {
+              background-color: $civic-primary-navigation-light-menu-item-active-trail-background-color;
+              color: $civic-primary-navigation-light-menu-item-active-trail-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__menu {
+      .civic-menu__item {
+        // Links - level 0.
+        &--level-0 {
+          border-color: $civic-primary-navigation-dark-border-color;
+
+          &:hover {
+            background-color: $civic-primary-navigation-dark-menu-item-hover-background-color;
+          }
+
+          &:active {
+            background-color: $civic-primary-navigation-dark-menu-item-active-border-color;
+          }
+
+          &[data-collapsible-collapsed] {
+            border-bottom-color: $civic-primary-navigation-dark-menu-item-border-color;
+
+            &:hover {
+              background-color: $civic-primary-navigation-dark-menu-item-hover-background-color;
+              border-bottom-color: $civic-primary-navigation-dark-menu-item-hover-border-color;
+            }
+
+            &:active {
+              background-color: $civic-primary-navigation-dark-menu-item-active-background-color;
+              border-bottom-color: $civic-primary-navigation-dark-menu-item-active-border-color;
+            }
+          }
+
+          > .civic-link {
+            background-color: $civic-primary-navigation-dark-menu-item-background-color;
+            color: $civic-primary-navigation-dark-color;
+
+            &:hover {
+              color: $civic-primary-navigation-dark-hover-color;
+              background-color: $civic-primary-navigation-dark-menu-item-hover-background-color;
+            }
+
+            &[aria-expanded='true'],
+            &:active {
+              color: $civic-primary-navigation-dark-active-color;
+              background-color: $civic-primary-navigation-dark-menu-item-active-background-color;
+            }
+          }
+        }
+      }
+    }
+    #{$root}__has-dropdown {
+      .civic-menu__sub-menu__wrapper--level-1 {
+        background-color: $civic-primary-navigation-dark-sub-menu-background-color;
+
+        // Reset some styles for all links in the dropdown.
+        .civic-link {
+          background: none;
+
+          &:hover,
+          &:active,
+          &:focus {
+            background: none;
+          }
+        }
+
+        .civic-menu__item--level-1 {
+          > .civic-link {
+            color: $civic-primary-navigation-dark-sub-menu-item-heading-hover-color;
+
+            &:hover {
+              color: $civic-primary-navigation-dark-sub-menu-item-heading-hover-color;
+            }
+
+            &:active {
+              color: $civic-primary-navigation-dark-sub-menu-item-heading-active-color;
+            }
+          }
+        }
+
+        .civic-menu__item--level-2,
+        .civic-menu__item--level-3,
+        .civic-menu__item--level-4,
+        .civic-menu__item--level-5 {
+          > .civic-link {
+            color: $civic-primary-navigation-dark-sub-menu-item-color;
+            background-color: $civic-primary-navigation-dark-sub-menu-item-background-color;
+
+            &:hover {
+              color: $civic-primary-navigation-dark-sub-menu-item-hover-color;
+              background-color: $civic-primary-navigation-dark-sub-menu-item-hover-background-color;
+            }
+
+            &:active {
+              color: $civic-primary-navigation-dark-sub-menu-item-active-color;
+              background-color: $civic-primary-navigation-dark-sub-menu-item-active-background-color;
+            }
+          }
+
+          &.civic-menu__item--active-trail {
+            > .civic-link {
+              background-color: $civic-primary-navigation-dark-menu-item-active-trail-background-color;
+              color: $civic-primary-navigation-dark-menu-item-active-trail-color;
+            }
+          }
         }
       }
     }

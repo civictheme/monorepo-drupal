@@ -1,4 +1,6 @@
 .civic-secondary-navigation {
+  $root: &;
+
   &__menu {
     &.civic-menu,
     .civic-menu {
@@ -14,18 +16,9 @@
 
     .civic-menu__item {
       .civic-link {
-        background: none;
-
         @include civic-typography('body');
 
         text-decoration: none;
-
-        &:hover,
-        &:active,
-        &:focus {
-          background: none;
-          color: inherit;
-        }
       }
 
       // Links - level 0.
@@ -50,7 +43,10 @@
       position: absolute;
       z-index: $civic-secondary-navigation-dropdown-zindex;
       margin-top: $civic-secondary-navigation-dropdown-top-offset;
-      background-color: civic-color('neutral_20');
+      border-bottom-left-radius: $civic-border-radius;
+      border-bottom-right-radius: $civic-border-radius;
+
+      @include civic-box-shadow();
 
       .civic-menu__sub-menu {
         margin-left: civic-space(2);
@@ -58,6 +54,57 @@
         &.civic-menu--level-1 {
           margin: civic-space(2);
         }
+      }
+    }
+  }
+
+  &.civic-theme-light {
+    #{$root}__menu {
+      .civic-menu__item {
+        .civic-link {
+          background: $civic-secondary-navigation-light-menu-item-background-color;
+
+          &:hover {
+            background: $civic-secondary-navigation-light-menu-item-hover-background-color;
+            color: inherit;
+          }
+
+          &:active {
+            background: $civic-secondary-navigation-light-menu-item-active-background-color;
+            color: inherit;
+          }
+        }
+      }
+    }
+    #{$root}__has-dropdown {
+      .civic-menu__sub-menu__wrapper--level-1 {
+        background-color: $civic-secondary-navigation-light-sub-menu-background-color;
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__menu {
+      .civic-menu__item {
+        .civic-link {
+          background: $civic-secondary-navigation-dark-menu-item-background-color;
+
+          &:hover {
+            background: $civic-secondary-navigation-dark-menu-item-hover-background-color;
+            color: inherit;
+          }
+
+          &:active {
+            background: $civic-secondary-navigation-dark-menu-item-active-background-color;
+            color: inherit;
+          }
+        }
+      }
+    }
+
+    #{$root}__has-dropdown {
+      .civic-menu__sub-menu__wrapper--level-1 {
+        background-color: $civic-secondary-navigation-dark-sub-menu-background-color;
       }
     }
   }

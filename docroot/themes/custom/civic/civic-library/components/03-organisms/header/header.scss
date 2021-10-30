@@ -20,7 +20,7 @@
 
   &__middle {
     .container {
-      border-bottom: solid 1px civic-color('neutral_10');
+      border-bottom: solid 1px;
     }
   }
 
@@ -38,11 +38,31 @@
 
   &.civic-theme-light {
     #{$root}__top {
-      background-color: civic-color('neutral_10');
+      background-color: $civic-header-light-top-background-color;
+      color: $civic-header-light-top-color;
     }
 
     #{$root}__middle {
-      background-color: civic-color('neutral');
+      background-color: $civic-header-light-background-color;
+
+      .container {
+        border-color: $civic-header-light-middle-border-color;
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__top {
+      background-color: $civic-header-dark-top-background-color;
+      color: $civic-header-dark-top-color;
+    }
+
+    #{$root}__middle {
+      background-color: $civic-header-dark-background-color;
+
+      .container {
+        border-color: $civic-header-dark-middle-border-color;
+      }
     }
   }
 }
