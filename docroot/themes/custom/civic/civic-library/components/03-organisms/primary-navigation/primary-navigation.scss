@@ -7,7 +7,12 @@
 
   align-items: center;
   height: 100%;
-  display: flex;
+
+  display: none;
+
+  @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+    display: flex;
+  }
 
   &__menu {
     // Reset all menu styles.

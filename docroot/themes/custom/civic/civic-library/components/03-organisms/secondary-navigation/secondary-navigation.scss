@@ -1,6 +1,12 @@
 .civic-secondary-navigation {
   $root: &;
 
+  display: none;
+
+  @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+    display: flex;
+  }
+
   &__menu {
     &.civic-menu,
     .civic-menu {
@@ -63,15 +69,16 @@
       .civic-menu__item {
         .civic-link {
           background: $civic-secondary-navigation-light-menu-item-background-color;
+          color: $civic-secondary-navigation-light-menu-item-color;
 
           &:hover {
             background: $civic-secondary-navigation-light-menu-item-hover-background-color;
-            color: inherit;
+            color: $civic-secondary-navigation-light-menu-item-hover-color;
           }
 
           &:active {
             background: $civic-secondary-navigation-light-menu-item-active-background-color;
-            color: inherit;
+            color: $civic-secondary-navigation-light-menu-item-active-color;
           }
         }
       }
@@ -79,6 +86,21 @@
     #{$root}__has-dropdown {
       .civic-menu__sub-menu__wrapper--level-1 {
         background-color: $civic-secondary-navigation-light-sub-menu-background-color;
+
+        .civic-link {
+          background: $civic-secondary-navigation-light-sub-menu-item-background-color;
+          color: $civic-secondary-navigation-light-sub-menu-item-color;
+
+          &:hover {
+            background: $civic-secondary-navigation-light-sub-menu-item-hover-background-color;
+            color: $civic-secondary-navigation-light-sub-menu-item-hover-color;
+          }
+
+          &:active {
+            background: $civic-secondary-navigation-light-sub-menu-item-active-background-color;
+            color: $civic-secondary-navigation-light-sub-menu-item-active-color;
+          }
+        }
       }
     }
   }
@@ -88,15 +110,16 @@
       .civic-menu__item {
         .civic-link {
           background: $civic-secondary-navigation-dark-menu-item-background-color;
+          color: $civic-secondary-navigation-dark-menu-item-color;
 
           &:hover {
             background: $civic-secondary-navigation-dark-menu-item-hover-background-color;
-            color: inherit;
+            color: $civic-secondary-navigation-dark-menu-item-hover-color;
           }
 
           &:active {
             background: $civic-secondary-navigation-dark-menu-item-active-background-color;
-            color: inherit;
+            color: $civic-secondary-navigation-dark-menu-item-active-color;
           }
         }
       }
@@ -105,6 +128,21 @@
     #{$root}__has-dropdown {
       .civic-menu__sub-menu__wrapper--level-1 {
         background-color: $civic-secondary-navigation-dark-sub-menu-background-color;
+
+        .civic-link {
+          background: $civic-secondary-navigation-dark-sub-menu-item-background-color;
+          color: $civic-secondary-navigation-dark-sub-menu-item-color;
+
+          &:hover {
+            background: $civic-secondary-navigation-dark-sub-menu-item-hover-background-color;
+            color: $civic-secondary-navigation-dark-sub-menu-item-hover-color;
+          }
+
+          &:active {
+            background: $civic-secondary-navigation-dark-sub-menu-item-active-background-color;
+            color: $civic-secondary-navigation-dark-sub-menu-item-active-color;
+          }
+        }
       }
     }
   }
