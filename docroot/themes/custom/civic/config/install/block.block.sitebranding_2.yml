@@ -5,18 +5,18 @@ dependencies:
     - system
   theme:
     - civic
-id: civic_sitebranding
+id: sitebranding_2
 theme: civic
-region: header_middle_2
-weight: -7
+region: header_top_2
+weight: 0
 provider: null
 plugin: system_branding_block
 settings:
   id: system_branding_block
-  label: 'Site branding'
+  label: 'Site slogan'
   provider: system
   label_display: '0'
-  use_site_logo: true
+  use_site_logo: false
   use_site_name: false
-  use_site_slogan: false
+  use_site_slogan: true
 visibility: {  }
