@@ -131,6 +131,7 @@ function cd_core_update_9003() {
 
   $config = \Drupal::configFactory()->getEditable('system.site');
   $config->set('slogan', 'Visually engaging digital experiences');
+  $config->save();
 }
 
 /**
