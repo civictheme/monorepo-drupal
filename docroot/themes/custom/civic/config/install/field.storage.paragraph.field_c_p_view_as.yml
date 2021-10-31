@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_c_p_view_as
+field_name: field_c_p_view_as
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: civic_card_promo
+      label: Promo
+    -
+      value: civic_card_navigation
+      label: Navigation
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
