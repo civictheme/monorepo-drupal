@@ -108,6 +108,7 @@ config_devel:
     - core.entity_form_display.paragraph.civic_card_subject_reference.default
     - core.entity_form_display.paragraph.civic_card_task.default
     - core.entity_form_display.paragraph.civic_content.default
+    - core.entity_form_display.paragraph.civic_listing.default
     - core.entity_form_display.paragraph.civic_map.default
     - core.entity_form_display.paragraph.civic_next_step.default
     - core.entity_form_display.paragraph.civic_promo.default
@@ -161,6 +162,7 @@ config_devel:
     - core.entity_view_display.paragraph.civic_card_subject_reference.default
     - core.entity_view_display.paragraph.civic_card_task.default
     - core.entity_view_display.paragraph.civic_content.default
+    - core.entity_view_display.paragraph.civic_listing.default
     - core.entity_view_display.paragraph.civic_map.default
     - core.entity_view_display.paragraph.civic_next_step.default
     - core.entity_view_display.paragraph.civic_promo.default
@@ -273,6 +275,19 @@ config_devel:
     - field.field.paragraph.civic_card_task.field_c_p_title
     - field.field.paragraph.civic_content.field_c_p_content
     - field.field.paragraph.civic_content.field_c_p_theme
+    - field.field.paragraph.civic_listing.field_c_p_content_type
+    - field.field.paragraph.civic_listing.field_c_p_hide_count
+    - field.field.paragraph.civic_listing.field_c_p_limit_type
+    - field.field.paragraph.civic_listing.field_c_p_link
+    - field.field.paragraph.civic_listing.field_c_p_listing_f_exposed
+    - field.field.paragraph.civic_listing.field_c_p_listing_limit
+    - field.field.paragraph.civic_listing.field_c_p_listing_multi_select
+    - field.field.paragraph.civic_listing.field_c_p_read_more
+    - field.field.paragraph.civic_listing.field_c_p_show_filters
+    - field.field.paragraph.civic_listing.field_c_p_show_pager
+    - field.field.paragraph.civic_listing.field_c_p_title
+    - field.field.paragraph.civic_listing.field_c_p_topics
+    - field.field.paragraph.civic_listing.field_c_p_view_as
     - field.field.paragraph.civic_map.field_c_p_address
     - field.field.paragraph.civic_map.field_c_p_share_link
     - field.field.paragraph.civic_map.field_c_p_theme
@@ -349,6 +364,7 @@ config_devel:
     - field.storage.paragraph.field_c_p_cards
     - field.storage.paragraph.field_c_p_column_count
     - field.storage.paragraph.field_c_p_content
+    - field.storage.paragraph.field_c_p_content_type
     - field.storage.paragraph.field_c_p_date
     - field.storage.paragraph.field_c_p_default_panel
     - field.storage.paragraph.field_c_p_description
@@ -357,21 +373,31 @@ config_devel:
     - field.storage.paragraph.field_c_p_footer_link
     - field.storage.paragraph.field_c_p_header_link
     - field.storage.paragraph.field_c_p_help_text
+    - field.storage.paragraph.field_c_p_hide_count
     - field.storage.paragraph.field_c_p_icon
     - field.storage.paragraph.field_c_p_image
     - field.storage.paragraph.field_c_p_image_position
+    - field.storage.paragraph.field_c_p_limit_type
     - field.storage.paragraph.field_c_p_link
     - field.storage.paragraph.field_c_p_links
+    - field.storage.paragraph.field_c_p_listing_f_exposed
+    - field.storage.paragraph.field_c_p_listing_limit
+    - field.storage.paragraph.field_c_p_listing_multi_select
     - field.storage.paragraph.field_c_p_panels
     - field.storage.paragraph.field_c_p_placeholder
+    - field.storage.paragraph.field_c_p_read_more
     - field.storage.paragraph.field_c_p_reference
     - field.storage.paragraph.field_c_p_search_url
     - field.storage.paragraph.field_c_p_share_link
+    - field.storage.paragraph.field_c_p_show_filters
+    - field.storage.paragraph.field_c_p_show_pager
     - field.storage.paragraph.field_c_p_slides
     - field.storage.paragraph.field_c_p_summary
     - field.storage.paragraph.field_c_p_theme
     - field.storage.paragraph.field_c_p_title
     - field.storage.paragraph.field_c_p_topic
+    - field.storage.paragraph.field_c_p_topics
+    - field.storage.paragraph.field_c_p_view_as
     - field.storage.paragraph.field_c_p_view_link
     - field.storage.paragraph.field_c_p_with_spacing
     - field.storage.paragraph.field_c_p_zoom
@@ -406,6 +432,7 @@ config_devel:
     - paragraphs.paragraphs_type.civic_card_subject_reference
     - paragraphs.paragraphs_type.civic_card_task
     - paragraphs.paragraphs_type.civic_content
+    - paragraphs.paragraphs_type.civic_listing
     - paragraphs.paragraphs_type.civic_map
     - paragraphs.paragraphs_type.civic_next_step
     - paragraphs.paragraphs_type.civic_promo
