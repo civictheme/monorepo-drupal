@@ -37,7 +37,11 @@
     </div>
   {% endif %}
   <div class="civic-message__content">
-    <div class="civic-message__title">{{ title }}</div>
-    <div class="civic-message__summary">{{ description|striptags('<strong>,<a>,<pre>,<ul>,<ol>,<li>')|raw }}</div>
+    {% if title %}
+      <div class="civic-message__title">{{ title }}</div>
+    {% endif %}
+    {% if description %}
+      <div class="civic-message__summary">{{ description|striptags('<strong>,<a>,<pre>,<ul>,<ol>,<li>')|raw }}</div>
+    {% endif %}
   </div>
 </div>

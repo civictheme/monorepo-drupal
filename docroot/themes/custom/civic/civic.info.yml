@@ -428,6 +428,7 @@ config_devel:
     - views.view.civic_events
     - views.view.civic_listing
     - views.view.civic_pages
+    - webform.webform.civic_enquiry
   optional:
     - core.entity_view_mode.node.teaser
     - image.style.medium
