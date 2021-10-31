@@ -8,6 +8,8 @@
 use Drupal\Core\Url;
 
 require_once 'includes/block--system_branding.inc';
+require_once 'includes/block--primary-navigation.inc';
+require_once 'includes/block--secondary-navigation.inc';
 require_once 'includes/civic_banner.inc';
 require_once 'includes/civic_cards.inc';
 require_once 'includes/civic_pages.inc';
@@ -156,6 +158,14 @@ function civic_theme() {
       ],
       'template' => 'misc/icon-link',
     ],
+    'civic_description_list' => [
+      'variables' => [
+        'items' => [],
+        'is_inline' => '',
+        'modifier_class' => '',
+      ],
+      'template' => 'misc/description-list',
+    ],
   ];
 }
 
@@ -223,5 +233,28 @@ function civic_preprocess_image(&$variables) {
   }
   elseif (!empty($variables['uri'])) {
     $variables['attributes']['src'] = file_url_transform_relative(file_create_url($variables['uri']));
+  }
+}
+
+/**
+ * Implement template_preprocess_menu_local_tasks().
+ */
+function civic_preprocess_menu_local_tasks(&$variables) {
+  $local_task_types = ['primary', 'secondary'];
+  $theme = theme_get_setting('civic_header_theme') ?? 'light';
+  foreach ($local_task_types as $local_task_type) {
+    $variables['links'][$local_task_type] = [];
+    foreach ($variables[$local_task_type] as $link) {
+      if (!empty($link['#access']) && $link['#access']->isAllowed()) {
+        $variables['links'][$local_task_type][] = [
+          'theme' => $theme,
+          'title' => $link['#link']['title'],
+          'url' => $link['#link']['url']->toString(),
+          'new_window' => FALSE,
+          'is_external' => $link['#link']['url']->isExternal(),
+        ];
+      }
+    }
+    unset($variables[$local_task_type]);
   }
 }

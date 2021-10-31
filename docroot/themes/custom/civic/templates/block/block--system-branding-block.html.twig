@@ -14,12 +14,13 @@
  * @ingroup themeable
  */
 #}
+{% if show_site_logo %}
+  {% include '@atoms/logo/logo.twig' %}
+{% endif %}
 
-{% include '@atoms/logo/logo.twig' %}
-
-{% if site_name %}
+{% if show_site_name and site_name %}
   <a href="{{ path('<front>') }}" rel="home">{{ site_name }}</a>
 {% endif %}
-{% if site_slogan %}
+{% if show_site_slogan and site_slogan %}
   {{ site_slogan }}
 {% endif %}
