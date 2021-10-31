@@ -5,6 +5,8 @@
  * System branding block theme alterations.
  */
 
+use Drupal\block\Entity\Block;
+
 /**
  * Implements template_preprocess_block__HOOK().
  */
