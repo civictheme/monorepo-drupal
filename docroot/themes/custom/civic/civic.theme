@@ -8,6 +8,8 @@
 use Drupal\Core\Url;
 
 require_once 'includes/block--system_branding.inc';
+require_once 'includes/block--primary-navigation.inc';
+require_once 'includes/block--secondary-navigation.inc';
 require_once 'includes/civic_banner.inc';
 require_once 'includes/civic_cards.inc';
 require_once 'includes/civic_pages.inc';

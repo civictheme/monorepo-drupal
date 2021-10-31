@@ -386,7 +386,3 @@ function cd_core_update_9005() {
     ],
   ]);
 }
-
-function cd_core_update_9006() {
-
-}

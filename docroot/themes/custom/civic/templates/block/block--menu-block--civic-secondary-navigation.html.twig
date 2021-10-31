@@ -5,10 +5,4 @@
  */
 #}
 
-{% include '@organisms/secondary-navigation/secondary-navigation.twig' with  {
-  theme: theme,
-  title: configuration.label_display ? configuration.label : '',
-  items: content['#items'],
-  attributes: attributes,
-  modifier_class: 'civic-justify-content-end'
-} only %}
+{% include '@organisms/secondary-navigation/secondary-navigation.twig' %}
