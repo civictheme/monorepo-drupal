@@ -14,7 +14,7 @@
 $civic-colors: () !default;
 $civic-default-colors: (
   'primary': #00698f,
-  'secondary': #9263de,
+  'secondary': #1f2a33,
   'accent': #61daff,
   'neutral': #fff,
 );
@@ -52,7 +52,7 @@ $civic-default-colors-elements: (
   'success': #008583,
   'warning': #c95100,
   'error': #cf3836,
-  'outline': #05f,
+  'outline': #9263de,
   'dark-text': #e5f0f4,
   'validation-light-error': #f8e1e1,
   'validation-light-warning': #fae6d9,
@@ -134,7 +134,7 @@ $civic-border-width: 0.125rem !default;
 $civic-outline: 0.1875rem solid civic-color('outline') !default;
 $civic-outline-accent: 0.1875rem solid civic-color('accent') !default;
 $civic-outline-offset: 0 !default;
-$civic-outline-boxshadow: 0 0 0 3pt civic-color('secondary') !default;
+$civic-outline-boxshadow: 0 0 0 3pt civic-color('outline') !default;
 $civic-outline-accent-boxshadow: 0 0 0 3pt civic-color('accent') !default;
 
 //
@@ -453,8 +453,8 @@ $civic-button-light-secondary-color: civic-color('primary') !default;
 $civic-button-light-tertiary-background-color: civic-color('translucent') !default;
 $civic-button-light-tertiary-color: civic-color('primary') !default;
 $civic-button-light-focus-background-color: civic-color('primary') !default;
-$civic-button-light-hover-background-color: civic-color('heading') !default;
-$civic-button-light-active-background-color: civic-color('heading') !default;
+$civic-button-light-hover-background-color: civic-color('secondary') !default;
+$civic-button-light-active-background-color: civic-color('secondary') !default;
 $civic-button-light-disabled-background-color: civic-color('neutral_20') !default;
 $civic-button-light-disabled-color: civic-color('neutral_60') !default;
 $civic-button-light-state-color: civic-color('neutral') !default;
