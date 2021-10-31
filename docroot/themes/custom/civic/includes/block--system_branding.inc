@@ -25,6 +25,7 @@ function civic_preprocess_block__system_branding_block(&$variables) {
     $mobile_logo = theme_get_setting('civic_footer_logo_mobile') ?? '';
   }
   else {
+    $variables['modifier_class'] = 'civic-header__logo';
     $desktop_logo = theme_get_setting('logo')['url'] ?? '';
     $mobile_logo = theme_get_setting('civic_header_logo_mobile') ?? '';
   }
