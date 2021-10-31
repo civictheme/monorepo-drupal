@@ -13,43 +13,83 @@
  * - data-collapsible-duration - duration in milliseconds. Defaults to 500.
  */
 function CivicCollapsible(el) {
-  // Use 'data-collapsible''s attribute value to identify if this component was
+  // Use "data-collapsible"'s attribute value to identify if this component was
   // already initialised.
   if (el.getAttribute('data-collapsible') === 'true' || this.el) {
     return;
   }
 
-  this.el = el;
-  this.trigger = this.el.querySelector('[data-collapsible-trigger]') || this.el.firstElementChild;
-  this.panel = this.el.querySelector('[data-collapsible-panel]') || this.el.firstElementChild.nextElementSibling;
-  this.duration = this.el.hasAttribute('data-collapsible-duration') ? this.el.getAttribute('data-collapsible-duration') : 500;
-  this.el.collapsed = this.el.hasAttribute('data-collapsible-collapsed');
+  const trigger = el.querySelector('[data-collapsible-trigger]') || el.firstElementChild;
+  const panel = el.querySelector('[data-collapsible-panel]') || el.firstElementChild.nextElementSibling;
 
-  // Make sure that both trigger and a panel have required attributes sethis.
+  // Exit early if trigger or panel were not found.
+  if (!trigger || !panel) {
+    return;
+  }
+
+  this.el = el;
+  this.trigger = trigger;
+  this.panel = panel;
+  this.collapsed = this.el.hasAttribute('data-collapsible-collapsed');
+  this.duration = this.el.hasAttribute('data-collapsible-duration') ? this.el.getAttribute('data-collapsible-duration') : 500;
+  this.group = this.el.hasAttribute('data-collapsible-group') ? this.el.getAttribute('data-collapsible-group') : null;
+
+  // Make sure that both trigger and a panel have required attributes set.
   this.trigger.setAttribute('data-collapsible-trigger', '');
   this.panel.setAttribute('data-collapsible-panel', '');
 
-  // If trigger was found.
-  if (this.trigger) {
-    // Attach even listener.
-    this.trigger.addEventListener('click', this.clickEvent.bind(this));
-    // Collapse if was set as initially collapsed.
-    if (this.el.collapsed) {
-      this.collapse();
-    }
+  // Attach event listener.
+  this.trigger.addEventListener('click', this.clickEvent.bind(this));
+  this.trigger.addEventListener('keydown', this.keydownEvent.bind(this.trigger));
+
+  // Collapse if was set as initially collapsed.
+  if (this.collapsed) {
+    this.collapse();
   }
+
+  this.el.addEventListener('civic.collapsible.collapse', (evt) => {
+    // For some cases (like group collapse) - the animation should be disabled.
+    const animate = evt.detail || false;
+    this.collapse(animate);
+  });
+
+  this.el.addEventListener('civic.collapsible.expand', () => {
+    this.expand(true);
+  });
+
+  // Attach global keydown event listener to allow closing all collapsibles.
+  document.addEventListener('keydown', CivicCollapsible.prototype.keydownEvent);
+  document.addEventListener('click', CivicCollapsible.prototype.collapseAllGroups);
+
   // Mark as initialized.
   this.el.setAttribute('data-collapsible', 'true');
 }
 
+/**
+ * Destroy an instance.
+ */
 CivicCollapsible.prototype.destroy = function (el) {
+  if (el.getAttribute('data-collapsible') !== 'true' || !this.el) {
+    return;
+  }
+  const trigger = el.querySelector('[data-collapsible-trigger]') || el.firstElementChild;
+  const panel = el.querySelector('[data-collapsible-panel]') || el.firstElementChild.nextElementSibling;
+
+  // Exit early if trigger or panel were not found.
+  if (!trigger || !panel) {
+    return;
+  }
+
   this.el = el;
-  this.trigger = this.el.querySelector('[data-collapsible-trigger]') || this.el.firstElementChild;
+  this.trigger = trigger;
+  this.panel = panel;
+
   // Remove any attached event listeners.
   // eslint-disable-next-line no-self-assign
   this.trigger.outerHTML = this.trigger.outerHTML;
-  this.panel = this.el.querySelector('[data-collapsible-panel]') || this.el.firstElementChild.nextElementSibling;
+  // Remove inline overrides.
   this.panel.style.height = '';
+  this.panel.style.overflow = '';
 
   this.trigger.removeAttribute('aria-expanded');
   this.panel.removeAttribute('aria-hidden');
@@ -60,8 +100,9 @@ CivicCollapsible.prototype.destroy = function (el) {
   delete this.el;
   delete this.trigger;
   delete this.panel;
-
-  return true;
+  delete this.collapsed;
+  delete this.duration;
+  delete this.group;
 };
 
 /**
@@ -72,7 +113,66 @@ CivicCollapsible.prototype.clickEvent = function (e) {
   e.preventDefault();
   e.stopImmediatePropagation();
 
-  this.toggle();
+  if (this.group) {
+    this.closeGroup(this.group);
+  }
+
+  if (this.collapsed) {
+    this.el.dispatchEvent(new CustomEvent('civic.collapsible.expand', { bubbles: true }));
+  } else {
+    this.el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
+  }
+};
+
+/**
+ * React on pressed keys.
+ */
+CivicCollapsible.prototype.keydownEvent = function (e) {
+  if (!/(38|40|27)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  // ESC.
+  if (e.which === 27) {
+    CivicCollapsible.prototype.collapseAllGroups();
+    return;
+  }
+
+  if (this !== document) {
+    // Up.
+    if (e.which === 38) {
+      this.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
+      return;
+    }
+
+    // Down.
+    if (e.which === 40) {
+      this.dispatchEvent(new CustomEvent('civic.collapsible.expand', { bubbles: true }));
+    }
+  }
+};
+
+/**
+ * Close "other" instances in the group.
+ */
+CivicCollapsible.prototype.closeGroup = function (group) {
+  const currentEl = this.el;
+  // eslint-disable-next-line prefer-template
+  document.querySelectorAll('[data-collapsible-group=' + group + ']:not([data-collapsible-collapsed])').forEach((el) => {
+    if (el !== currentEl) {
+      el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
+    }
+  });
+};
+
+/**
+ * Close all grouped instances on the page.
+ */
+CivicCollapsible.prototype.collapseAllGroups = function () {
+  document.querySelectorAll('[data-collapsible-group]').forEach((el) => {
+    el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
+  });
 };
 
 /**
@@ -82,30 +182,57 @@ CivicCollapsible.prototype.clickEvent = function (e) {
  *   Flag to collapse with animation.
  */
 CivicCollapsible.prototype.collapse = function (animate) {
-  this.el.collapsed = true;
-  this.el.setAttribute('data-collapsible-collapsed', '');
-  this.panel.setAttribute('aria-hidden', true);
-  this.trigger.setAttribute('aria-expanded', false);
+  const t = this;
 
-  if (animate && this.duration > 0) {
-    const transition = this.panel.style.transition || `height ${this.duration}ms ease-out`;
-    this.panel.style.transition = '';
-    this.panel.style.overflow = 'hidden';
+  if (t.el.hasAttribute('data-collapsible-collapsed')) {
+    return;
+  }
 
-    const h = this.panel.scrollHeight;
+  // Helper to set attributes after collapsing.
+  const setAttributes = function (obj) {
+    obj.panel.style.transition = '';
+    obj.panel.style.overflow = 'hidden';
+    obj.el.setAttribute('data-collapsible-collapsed', '');
+    obj.panel.setAttribute('aria-hidden', true);
+    obj.trigger.setAttribute('aria-expanded', false);
+    obj.collapsed = true;
+  };
+
+  if (animate && t.duration > 0) {
+    // Support already set transitions.
+    const transition = t.panel.style.transition || `height ${t.duration}ms ease-out`;
+    // Reset transition and set overflow before animation starts.
+    t.panel.style.transition = '';
+    t.panel.style.overflow = 'hidden';
+    // Get height before animation starts.
+    const h = t.panel.scrollHeight;
     requestAnimationFrame(() => {
-      this.panel.style.transition = transition;
-      this.panel.style.height = `${h}px`;
+      // Prepare for animation by setting initial values.
+      t.panel.style.transition = transition;
+      t.panel.style.height = `${h}px`;
+      // Set progress state.
+      t.el.setAttribute('data-collapsible-collapsing', '');
       requestAnimationFrame(() => {
-        this.panel.style.height = `${0}px`;
+        // Register an event listener to fire at the end of the transition.
+        t.panel.addEventListener('transitionend', function () {
+          // Remove the event listener straight away.
+          // eslint-disable-next-line no-caller, no-restricted-properties
+          t.panel.removeEventListener('transitionend', arguments.callee);
+          // Remove progress state.
+          t.el.removeAttribute('data-collapsible-collapsing');
+          // Set all required attributes.
+          setAttributes(t);
+        });
+        // Finally, change the height, triggering the transition.
+        t.panel.style.height = '0px';
       });
     });
   } else {
-    const { transition } = this.panel.style;
-    this.panel.style.transition = '';
-    this.panel.style.overflow = 'hidden';
-    this.panel.style.height = `${0}px`;
-    this.panel.style.transition = transition;
+    // Store current transition before it will be reset.
+    const transition = t.panel.style;
+    setAttributes(t);
+    // Restore transition.
+    t.panel.style.transition = transition;
   }
 };
 
@@ -116,43 +243,52 @@ CivicCollapsible.prototype.collapse = function (animate) {
  *   Flag to expand with animation.
  */
 CivicCollapsible.prototype.expand = function (animate) {
-  this.el.collapsed = false;
-  this.el.removeAttribute('data-collapsible-collapsed');
-  this.panel.setAttribute('aria-hidden', false);
-  this.trigger.setAttribute('aria-expanded', true);
-  this.panel.style.display = 'block';
+  const t = this;
 
-  if (animate && this.duration > 0) {
-    const h = this.panel.scrollHeight;
-    this.panel.style.transition = this.panel.style.transition || `height ${this.duration}ms ease-out`;
-    this.panel.style.height = `${h}px`;
+  if (!t.el.hasAttribute('data-collapsible-collapsed')) {
+    return;
+  }
 
-    const t = this;
-    this.panel.addEventListener('transitionend', function () {
-      // eslint-disable-next-line no-caller, no-restricted-properties
-      t.panel.removeEventListener('transitionend', arguments.callee);
-      if (!t.el.collapsed) {
-        t.panel.style.height = '';
-        t.panel.style.overflow = '';
-      }
+  // Helper to set attributes after collapsing.
+  const setAttributes = function (obj) {
+    obj.panel.style.transition = '';
+    obj.panel.style.overflow = '';
+    obj.panel.style.height = '';
+    obj.panel.setAttribute('aria-hidden', false);
+    obj.trigger.setAttribute('aria-expanded', true);
+    obj.el.removeAttribute('data-collapsible-collapsed');
+    obj.collapsed = false;
+  };
+
+  if (animate && t.duration > 0) {
+    // Get height before animation starts.
+    const h = t.panel.scrollHeight;
+
+    // Set progress state.
+    t.el.setAttribute('data-collapsible-collapsing', '');
+    requestAnimationFrame(() => {
+      // Prepare for animation by setting initial values.
+      t.panel.style.transition = t.panel.style.transition || `height ${t.duration}ms ease-out`;
+
+      requestAnimationFrame(() => {
+        // Register an event listener to fire at the end of the transition.
+        t.panel.addEventListener('transitionend', function () {
+          // Remove the event listener straight away.
+          // eslint-disable-next-line no-caller, no-restricted-properties
+          t.panel.removeEventListener('transitionend', arguments.callee);
+          // Set all required attributes.
+          setAttributes(t);
+          // Remove progress state.
+          t.el.removeAttribute('data-collapsible-collapsing');
+        });
+        // Finally, change the height, triggering the transition.
+        t.panel.style.height = `${h}px`;
+      });
     });
   } else {
-    const { transition } = this.panel.style;
-    this.panel.style.transition = '';
-    this.panel.style.overflow = '';
-    this.panel.style.height = '';
-    this.panel.style.transition = transition;
-  }
-};
-
-/**
- * Toggle between states.
- */
-CivicCollapsible.prototype.toggle = function () {
-  if (this.el.collapsed) {
-    this.expand(true);
-  } else {
-    this.collapse(true);
+    const transition = t.panel.style;
+    setAttributes(t);
+    t.panel.style.transition = transition;
   }
 };
 

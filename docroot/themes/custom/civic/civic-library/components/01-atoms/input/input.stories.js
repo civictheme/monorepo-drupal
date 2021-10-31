@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicInput from './input.twig';
 
 export default {
-  title: 'Atoms/Input',
+  title: 'Atoms/Form/Input',
   parameters: {
     layout: 'centered',
   },
@@ -41,11 +41,11 @@ export const Input = (knobTab) => {
     state: radios(
       'State',
       {
-        None: 'none',
+        None: 'default',
         Error: 'error',
         Success: 'success',
       },
-      'none',
+      'default',
       generalKnobTab,
     ),
     disabled: boolean('Disabled', false, generalKnobTab),

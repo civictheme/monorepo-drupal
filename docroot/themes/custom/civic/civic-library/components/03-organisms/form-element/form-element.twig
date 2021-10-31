@@ -1,0 +1,55 @@
+{%
+  set classes = [
+  'civic-form-element',
+  type is not empty ? 'civic-form-element--%s'|format(type) : '',
+  'civic-theme-%s'|format(theme|default('light')),
+  name ? 'civic-form-element--%s'|format(name) : '',
+  title_display not in ['after', 'before'] ? 'civic-form-element--no-label' : '',
+  disabled == 'disabled' ? 'civic-form-element--form-disabled' : '',
+  errors is not empty ? 'civic-form-element--error' : '',
+]
+%}
+
+{% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
+
+{%
+  set description_classes = [
+  'civic-form-element--description',
+  description_display == 'invisible' ? 'visually-hidden' : '',
+]
+%}
+
+{% set description_classes = description_modifier_class ? description_classes|merge([description_modifier_class]) : description_classes %}
+
+<div class="{{ classes|join(' ') }}" {{ attributes }}>
+  {% if label_display in ['before', 'invisible'] %}
+    {{ label }}
+  {% endif %}
+  {% if prefix is not empty %}
+    <span class="field-prefix">{{ prefix }}</span>
+  {% endif %}
+  {% if description_display == 'before' and description.content %}
+    <div{{ description.attributes }}>
+      {{ description.content }}
+    </div>
+  {% endif %}
+  {{ children }}
+  {% if suffix is not empty %}
+    <span class="field-suffix">{{ suffix }}</span>
+  {% endif %}
+  {% if label_display == 'after' %}
+    {{ label }}
+  {% endif %}
+  {% if errors %}
+    {% include '@organisms/message/message.twig' with {
+      theme: theme,
+      type: 'error',
+      title: errors
+    } only %}
+  {% endif %}
+  {% if description_display in ['after', 'invisible'] and description.content %}
+    <div class="{{ description_classes|join(' ') }}" {{ description.attributes }}>
+      {{ description.content }}
+    </div>
+  {% endif %}
+</div>

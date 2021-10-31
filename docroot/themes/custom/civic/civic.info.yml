@@ -14,10 +14,13 @@ dependencies:
   - paragraphs:paragraphs
 
 regions:
-  header_top: 'Header'
-  header_logo: 'Header logo'
-  header_content: 'Header content'
-  header_bottom: 'Header bottom'
+  header_top_1: 'Header top 1'
+  header_top_2: 'Header top 2'
+  header_top_3: 'Header top 3'
+  header_middle_1: 'Header middle 1'
+  header_middle_2: 'Header middle 2'
+  header_middle_3: 'Header middle 3'
+  header_bottom_1: 'Header bottom 1'
   banner: 'Banner'
   highlighted: 'Highlighted'
   content: 'Content'
@@ -61,12 +64,14 @@ config_devel:
     - block.block.civic_footer_menu_2
     - block.block.civic_footer_menu_3
     - block.block.civic_footer_menu_4
+    - block.block.civic_primarynavigation_menu
+    - block.block.civic_secondarynavigation_menu
     - block.block.civic_footer_sitebranding
     - block.block.civic_help
-    - block.block.civic_mainnavigation
     - block.block.civic_messages
     - block.block.civic_primaryadminactions
     - block.block.civic_sitebranding
+    - block.block.sitebranding_2
     - block.block.civic_tabs
     - block_content.type.civic_banner
     - block_content.type.civic_component_block
@@ -416,11 +421,14 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider_slide
     - paragraphs.paragraphs_type.civic_slider_slide_reference
     - paragraphs.paragraphs_type.civic_social_icon
+    - system.menu.civic_primary_navigation
+    - system.menu.civic_secondary_navigation
     - system.menu.civic_footer
     - taxonomy.vocabulary.civic_topics
     - views.view.civic_events
     - views.view.civic_listing
     - views.view.civic_pages
+    - webform.webform.civic_enquiry
   optional:
     - core.entity_view_mode.node.teaser
     - image.style.medium

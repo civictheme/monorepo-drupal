@@ -22,3 +22,5 @@ dependencies:
   - field_group:field_group
   - menu_block:menu_block
   - paragraphs:paragraphs
+  - drupal:inline_form_errors
+  - webform:webform
