@@ -130,7 +130,7 @@ function cd_core_update_9003() {
   $config->save();
 
   $config = \Drupal::configFactory()->getEditable('system.site');
-  $config->set('site_slogan', 'Visually engaging digital experiences');
+  $config->set('slogan', 'Visually engaging digital experiences');
 }
 
 /**
@@ -384,4 +384,8 @@ function cd_core_update_9005() {
       'link' => '/<front>',
     ],
   ]);
+}
+
+function cd_core_update_9006() {
+
 }
