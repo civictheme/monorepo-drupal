@@ -97,7 +97,7 @@ function cd_core_update_9002() {
 }
 
 /**
- * Sets civic_demo theme settings.
+ * Sets civic_demo theme settings and site slogan.
  */
 function cd_core_update_9003() {
   $logo_header_desktop = '/themes/custom/civic_demo/assets/logo-desktop-dark.png';
@@ -128,6 +128,9 @@ function cd_core_update_9003() {
   $config->set('civic_footer_theme', 'dark');
 
   $config->save();
+
+  $config = \Drupal::configFactory()->getEditable('system.site');
+  $config->set('site_slogan', 'Visually engaging digital experiences');
 }
 
 /**
