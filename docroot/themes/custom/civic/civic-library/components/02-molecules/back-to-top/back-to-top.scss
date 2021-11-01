@@ -15,6 +15,10 @@
     display: block;
     padding: rem(8px);
     border-radius: 50%;
+
+    &:focus {
+      box-shadow: $civic-outline-boxshadow;
+    }
   }
 
   &.civic-theme-light {

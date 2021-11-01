@@ -11,7 +11,7 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
 <div class="civic-back-to-top {{ theme_class }}">
-  <a class="civic-back-to-top__button" href="#civic-top-of-page">
+  <a class="civic-back-to-top__button"  data-component-name="back-to-top" href="#civic-top-of-page">
     {% include '@atoms/icon/icon.twig' with {
       symbol: 'arrows_uparrow_1',
     } only %}

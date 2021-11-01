@@ -1,10 +1,8 @@
 // Set focous on top of page element.
-const backToTop = document.querySelector('.civic-back-to-top__button');
-if (backToTop !== null) {
-  backToTop.addEventListener('click', () => {
-    const topOfPage = document.getElementById('#civic-top-of-page');
-    if (topOfPage !== null) {
-      topOfPage.focus();
-    }
-  }, false);
-}
+// @todo Check window scroll to show/hide back to top button.
+document.querySelector('[data-component-name="back-to-top"]').addEventListener('click', () => {
+  const topOfPage = document.getElementById('#civic-top-of-page');
+  if (topOfPage !== null) {
+    topOfPage.focus();
+  }
+}, false);
