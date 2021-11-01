@@ -1,4 +1,5 @@
-<main class="civic-content container" role="main">
+{% set container_class = content_left is not empty ? 'container' : '' %}
+<main class="civic-content {{ container_class }}" role="main">
   <a id="main-content" tabindex="-1"></a>
 
   <div class="row">
