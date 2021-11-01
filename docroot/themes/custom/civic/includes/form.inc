@@ -5,6 +5,8 @@
  * Form alterations.
  */
 
+use Drupal\Core\Template\AttributeArray;
+
 /**
  * Implements template_preprocess_input().
  */
@@ -40,8 +42,8 @@ function civic_preprocess_form_element(&$variables) {
     unset($variables['attributes']['class']);
   }
 
-  if (isset($variables['description']['attributes']['class'])) {
-    $variables['description_modifier_class'] = implode(' ', $variables['description']['attributes']['class']);
+  if (isset($variables['description']['attributes']['class']) && $variables['description']['attributes']['class'] instanceof AttributeArray) {
+    $variables['description_modifier_class'] = implode(' ', $variables['description']['attributes']['class']->value());
   }
 }
 
