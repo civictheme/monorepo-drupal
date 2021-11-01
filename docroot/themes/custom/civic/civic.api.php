@@ -16,7 +16,7 @@
  * @param string $view
  *   The name of the view used in listing component.
  */
-function hook_civic_listing_view_name_alter(array &$view) {
+function hook_civic_listing_view_name_alter(string &$view) {
   $view = 'civic_listing';
 }
 

@@ -7,7 +7,6 @@
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -85,7 +84,6 @@ function _civic_render_listing_paragraph(Paragraph $paragraph) {
   $view = Views::getView($view_name);
 
   if ($view) {
-
     // Fallback to default display if requested display not loading.
     if (!$view->setDisplay($view_display)) {
       $view->setDisplay($default_view_display);
