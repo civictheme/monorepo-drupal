@@ -3,14 +3,11 @@
 //
 
 .civic-content {
+  & > div,
   &--content-left {
     > div {
       margin-bottom: civic-space(4);
     }
-  }
-
-  > div {
-    margin-bottom: 2rem;
   }
 
   &--has-sidebar {
