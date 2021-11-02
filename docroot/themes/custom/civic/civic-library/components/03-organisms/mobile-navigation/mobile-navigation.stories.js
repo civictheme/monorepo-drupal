@@ -14,6 +14,8 @@ export default {
 
 export const MobileNavigation = () => {
   const generalKnobTab = 'General';
+  const primaryNavigationKnobTab = 'Primary navigation';
+  const secondaryNavigationKnobTab = 'Secondary navigation';
 
   const generalKnobs = {
     theme: radios(
@@ -25,7 +27,8 @@ export const MobileNavigation = () => {
       'light',
       generalKnobTab,
     ),
-    items: getMenuLinks(),
+    primary_navigation_items: getMenuLinks(primaryNavigationKnobTab),
+    secondary_navigation_items: getMenuLinks(secondaryNavigationKnobTab),
     icon_size: radios(
       'Icon Size',
       {

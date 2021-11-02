@@ -5,7 +5,8 @@
   * Available variables:
   * - theme: [string] theme: light, dark.
   * - modifier_class: [string] Additional classes for the component.
-  * - items: [array] array of list items.
+  * - primary_navigation_items: [array] array of list items.
+  * - secondary_navigation_items: [array] array of list items.
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
@@ -22,7 +23,8 @@
 
   {% include '@organisms/mobile-navigation/mobile-navigation.twig' with {
     'theme': theme,
-    'items': items,
+    'primary_navigation_items': primary_navigation_items,
+    'primary_navigation_items': secondary_navigation_items,
     'modifier_class': 'show-xs hide-m',
     'attributes': 'data-flyout-panel'
   } %}

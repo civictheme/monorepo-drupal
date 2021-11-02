@@ -4,7 +4,8 @@
  *
  * Available variables:
  * - theme: [string] Theme: light, dark.
- * - items: [array] Menu links array.
+ * - primary_navigation_items: [array] Menu links array.
+ * - secondary_navigation_items: [array] Menu links array.
  */
 #}
 
@@ -12,31 +13,47 @@
 {% set modifier_class = 'civic-mobile-navigation %s %s'|format(theme_class, modifier_class|default('')) %}
 
 <div class="civic-mobile-navigation {{ modifier_class }}" data-component-name="civic-mobile-navigation" {{ attributes }}>
-  <div class="civic-mobile-navigation__wrapper">
-    {% if items is not empty %}
-      {% for key in items|keys %}
-        {% if items[key].below %}
-          {% set item_modifier_class = 'civic-mobile-navigation__item civic-mobile-navigation__item--has-submenu' %}
-        {% else %}
-          {% set item_modifier_class = 'civic-mobile-navigation__item' %}
-        {% endif %}
-        {% set new_item = items[key]|merge({'modifier_class': item_modifier_class }) %}
-        {% set items = items|merge({(key): new_item}) %}
-      {% endfor %}
+  {% block content_top %}
+    <div class="civic-mobile-navigation__content-top">
+        {% if primary_navigation_items is not empty %}
+        {% for key in primary_navigation_items|keys %}
+          {% if primary_navigation_items[key].below %}
+            {% set item_modifier_class = 'civic-mobile-navigation__item civic-mobile-navigation__item--has-submenu' %}
+          {% else %}
+            {% set item_modifier_class = 'civic-mobile-navigation__item' %}
+          {% endif %}
+          {% set new_item = primary_navigation_items[key]|merge({'modifier_class': item_modifier_class }) %}
+          {% set primary_navigation_items = primary_navigation_items|merge({(key): new_item}) %}
+        {% endfor %}
 
-      {% include '@organisms/mobile-navigation/mobile-menu.twig' with {
-        theme: theme,
-        items: items,
-        modifier_class: modifier_class,
-        parent_link: null,
-      } only %}
+        {% include '@organisms/mobile-navigation/mobile-menu.twig' with {
+          theme: theme,
+          items: primary_navigation_items,
+          parent_link: null,
+        } only %}
+      {% endif %}
+    </div>
+  {% endblock %}
+  {% block content_bottom %}
+    {% if secondary_navigation_items is not empty %}
+      <div class="civic-mobile-navigation__content-bottom">
+
+        {% for key in secondary_navigation_items|keys %}
+          {% if secondary_navigation_items[key].below %}
+            {# Item classes to style dynamically. #}
+            {% set item_modifier_class = 'civic-secondary-navigation__has-dropdown' %}
+            {# Update item with attributes and classes. #}
+            {% set new_item = secondary_navigation_items[key]|merge({'attributes': item_attributes, 'modifier_class': item_modifier_class, 'below' : [] }) %}
+            {% set secondary_navigation_items = secondary_navigation_items|merge({(key): new_item}) %}
+          {% endif %}
+        {% endfor %}
+
+        {% include '@organisms/navigation/navigation.twig' with {
+          theme: theme,
+          items: secondary_navigation_items,
+          modifier_class: 'civic-navigation__menu',
+        } only %}
+    </div>
     {% endif %}
-    {% if block('content_bottom') is defined %}
-        <div class="civic-mobile-navigation__content-bottom">
-          {%- block content_bottom %}
-            {{- content_bottom -}}
-          {% endblock -%}
-        </div>
-    {% endif %}
-  </div>
+  {% endblock %}
 </div>

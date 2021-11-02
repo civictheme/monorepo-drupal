@@ -9,14 +9,22 @@
 .civic-mobile-navigation {
   $root: &;
 
-  display: block;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
+  height: calc(100vh - #{civic-space(4)});
   width: 100%;
-  padding: civic-space(2);
+  overflow: auto;
 
-  &__wrapper {
-    height: calc(100vh - #{civic-space(4)});
-    overflow: auto;
+  &__content-top {
+    padding: civic-space(2);
+  }
+
+  &__content-bottom {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding: civic-space(4) civic-space(3) civic-space(8);
   }
 
   &.civic-mobile-navigation--expanded .civic-dropdown__menu--expanded {
