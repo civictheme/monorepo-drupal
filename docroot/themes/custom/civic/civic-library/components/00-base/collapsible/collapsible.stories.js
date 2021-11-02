@@ -8,7 +8,8 @@ export default {
   title: 'Base/Collapsible',
 };
 
-export const Collapsible = () => {
+export const Collapsible = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
   const html = CivicCollapsible({
     theme: radios(
       'Theme', {
@@ -17,6 +18,7 @@ export const Collapsible = () => {
       },
       'light',
     ),
+    generalKnobTab,
   });
 
   return `<div class="story-wrapper-centered story-wrapper-size--medium">${html}</div>`;

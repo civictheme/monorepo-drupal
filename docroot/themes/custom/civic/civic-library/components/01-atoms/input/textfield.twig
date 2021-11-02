@@ -1,0 +1,14 @@
+{% set icons = {
+  error: 'userinterface_close_2',
+  success: 'userinterface_approve',
+} %}
+
+<input class="civic-input__element" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} {{ autocomplete ? 'autocomplete' }} />
+
+{% if icons[state] is defined %}
+  <span class="civic-input__state" >
+    {% include '@atoms/icon/icon.twig' with {
+      symbol: icons[state]
+    } %}
+  </span>
+{% endif %}

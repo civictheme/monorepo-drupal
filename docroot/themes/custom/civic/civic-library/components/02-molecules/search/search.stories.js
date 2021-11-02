@@ -8,8 +8,8 @@ export default {
   },
 };
 
-export const Search = () => {
-  const generalKnobTab = 'General';
+export const Search = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
     theme: radios(
@@ -23,7 +23,8 @@ export const Search = () => {
     ),
     placeholder: text('Placeholder', 'Enter keywords or phrase', generalKnobTab),
     button_text: text('Button text', 'Search', generalKnobTab),
-    description: text('Description', 'Search by keyword', generalKnobTab),
+    help_text: text('Description', 'Search by keyword', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   const html = CivicSearch({

@@ -2,7 +2,7 @@ _meta:
   version: '1.0'
   entity_type: media
   uuid: 86c9cd2b-225e-485b-9c6a-2963cd993b7b
-  bundle: image
+  bundle: civic_image
   default_langcode: en
   depends:
     4a5c5b53-bad3-4ac6-adb8-d07f3167bb28: file
@@ -27,7 +27,7 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_media_image:
+  field_c_m_image:
     -
       entity: 4a5c5b53-bad3-4ac6-adb8-d07f3167bb28
       alt: Avengers

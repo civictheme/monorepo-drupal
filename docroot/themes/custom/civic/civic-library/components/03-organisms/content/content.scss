@@ -1,0 +1,18 @@
+//
+// Content.
+//
+
+.civic-content {
+  & > div:not(.civic-component--with-spacing),
+  &--content-left {
+    > div {
+      margin-bottom: civic-space(4);
+    }
+  }
+
+  &--has-sidebar {
+    .civic-card-container.civic-theme-light {
+      background-color: transparent;
+    }
+  }
+}

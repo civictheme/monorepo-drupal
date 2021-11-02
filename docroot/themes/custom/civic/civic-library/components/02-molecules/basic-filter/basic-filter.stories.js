@@ -9,21 +9,34 @@ export default {
   },
 };
 
-export const BasicFilter = () => CivicBasicFilter({
-  theme: radios('Theme', {
-    Light: 'light',
-    Dark: 'dark',
-  }, 'light', 'Theme'),
-  is_multiple: boolean('Multiple', false, 'Theme'),
-  items: [
-    {
-      text: text('Text', 'Basic filter 1', 'Chip 1'),
-    },
-    {
-      text: text('Text', 'Basic filter 2', 'Chip 2'),
-    },
-    {
-      text: text('Text', 'Basic filter 3', 'Chip 3'),
-    },
-  ],
-});
+export const BasicFilter = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const generalKnobs = {
+    theme: radios(
+      'Theme',
+      {
+        Light: 'light',
+        Dark: 'dark',
+      },
+      'light',
+      generalKnobTab,
+    ),
+    is_multiple: boolean('Multiple', false, generalKnobTab),
+    items: boolean('With items', true, generalKnobTab) ? [
+      {
+        text: text('Text', 'Basic filter 1', generalKnobTab),
+      },
+      {
+        text: text('Text', 'Basic filter 2', generalKnobTab),
+      },
+      {
+        text: text('Text', 'Basic filter 3', generalKnobTab),
+      },
+    ] : null,
+  };
+
+  return CivicBasicFilter({
+    ...generalKnobs,
+  });
+};

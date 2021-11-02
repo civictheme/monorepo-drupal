@@ -5,9 +5,11 @@
 @import '../../00-base/base';
 
 .civic-pager {
+  $root: &;
+
   @include civic-typography('label-large');
 
-  &__items {
+  #{$root}__items {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -17,37 +19,33 @@
     justify-content: center;
   }
 
-  &__item {
-    margin-right: rem(4px);
+  #{$root}__item {
+    margin-right: civic-space();
+  }
 
-    .civic-link {
-      width: civic-space(3);
-      display: block;
-      text-align: center;
+  #{$root}__link {
+    width: civic-space(3);
+    display: block;
+    text-align: center;
+    text-decoration-color: transparent;
 
-      &:hover {
-        background: transparent;
-        padding: rem(3px) 0 rem(2px) 0;
-      }
-
-      &:not(.is-active) {
-        border-bottom-color: transparent;
-      }
+    &:hover {
+      background: transparent;
     }
   }
 
   &.civic-theme-light {
     color: $civic-pagination-light-link-color;
 
-    .civic-link {
+    #{$root}__link {
       color: $civic-pagination-light-link-color;
-
-      &.is-active {
-        border-bottom-color: $civic-pagination-light-link-active-border-color;
-      }
 
       &:hover {
         color: $civic-pagination-light-link-hover-color;
+      }
+
+      &--active {
+        text-decoration-color: $civic-pagination-light-link-active-border-color;
       }
     }
   }
@@ -55,15 +53,15 @@
   &.civic-theme-dark {
     color: $civic-pagination-dark-link-color;
 
-    .civic-link {
+    #{$root}__link {
       color: $civic-pagination-dark-link-color;
-
-      &.is-active {
-        border-bottom-color: $civic-pagination-dark-link-active-border-color;
-      }
 
       &:hover {
         color: $civic-pagination-dark-link-hover-color;
+      }
+
+      &--active {
+        text-decoration-color: $civic-pagination-dark-link-active-border-color;
       }
     }
   }

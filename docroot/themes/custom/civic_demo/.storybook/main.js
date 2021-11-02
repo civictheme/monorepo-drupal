@@ -11,6 +11,7 @@ const scssVariables = require('./importer.scss_variables.js')
 const iconUtils = require('../components-combined/01-atoms/icon/icon.utils.js')
 const backgroundUtils = require('../components-combined/01-atoms/background/background.utils.js')
 const path = require('path');
+const addonConfig = require('./addon-config').default();
 
 const customPlugin = new webpack.DefinePlugin({
   SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
@@ -25,15 +26,7 @@ module.exports = {
   stories: [
     '../components-combined/**/*.stories.js'
   ],
-  addons: [
-    '@storybook/addon-knobs',
-    '@storybook/addon-a11y',
-    '@storybook/addon-essentials',
-    '@storybook/addon-links',
-    '@whitespace/storybook-addon-html',
-    'addon-screen-reader',
-    'storybook-addon-pseudo-states',
-  ],
+  addons: addonConfig,
   webpackFinal: async (config) => {
     // Add stories CSS.
     custom.entry.push(path.resolve(__dirname, 'css.stories.js'));
