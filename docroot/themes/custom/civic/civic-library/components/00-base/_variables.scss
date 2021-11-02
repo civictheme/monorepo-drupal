@@ -166,8 +166,10 @@ $civic-font-import-default: true !default;
 $civic-font-base-size: 16px !default;
 $civic-font-scale: 1.25 !default;
 $civic-font-primary: 'Lexend', sans-serif;
+$civic-font-secondary: 'Public Sans';
 $civic-font: (
-  'primary': $civic-font-primary
+  'primary': $civic-font-primary,
+  'secondary': $civic-font-secondary,
 ) !default;
 $civic-typography: (
   'display-xl': (56px, 60px, 700, 'primary', -1px),
@@ -689,8 +691,10 @@ $civic-image-caption-icon-dark-color: $civic-image-caption-dark-color !default;
 
 // Video
 $civic-video-padding-bottom: 56.25% !default;
-$civic-video-light-icon-color: civic-color('primary') !default;
-$civic-video-light-icon-hover-color: civic-color('primary') !default;
+$civic-video-light-link-color: civic-color('shade_15') !default;
+$civic-video-light-link-hover-color: civic-color('neutral') !default;
+$civic-video-light-icon-color: civic-color('shade_15') !default;
+$civic-video-light-icon-hover-color: civic-color('shade_30') !default;
 $civic-video-dark-link-color: civic-color('neutral') !default;
 $civic-video-dark-link-hover-color: civic-color('shade_60') !default;
 $civic-video-dark-icon-color: civic-color('accent') !default;

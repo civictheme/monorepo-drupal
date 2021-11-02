@@ -23,14 +23,23 @@
     }
 
     .civic-link {
-      @include civic-typography('small');
+      @include civic-typography((
+        'xxs': (14px, 23px, 600, 'secondary', 0),
+        'm': (16px, 26px, 600, 'secondary', 0),
+      ));
 
-      #{$root}.civic-theme-dark & {
-        color: $civic-video-dark-link-color;
+      &.civic-theme-light {
+        color: $civic-video-light-link-color;
+
+        &:hover {
+          color: $civic-video-light-link-hover-color;
+        }
       }
 
-      &:hover {
-        #{$root}.civic-theme-dark & {
+      &.civic-theme-dark {
+        color: $civic-video-dark-link-color;
+
+        &:hover {
           color: $civic-video-dark-link-hover-color;
         }
       }
