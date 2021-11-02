@@ -25,8 +25,12 @@
 
 {% import _self as menus %}
 
-{% macro menu_links(items, menu_level, modifier_class) %}
+{% macro menu_links(items, menu_level, modifier_class, parent_link) %}
   {% if items %}
+    {% if block('content_top') is defined %}
+      {%- block content_top %}
+      {% endblock -%}
+    {% endif %}
     {% if menu_level == 0 %}
       <ul class="civic-menu civic-menu--level-{{ menu_level }} {{ modifier_class }} " data-component-name="civic-menu" {{ attributes|default('') }}>
     {% else %}
@@ -57,7 +61,7 @@
 
         {% if item.below %}
           {% block menu_item_below %}
-            {{ menus.menu_links(item.below, menu_level + 1, classes) }}
+            {{ menus.menu_links(item.below, menu_level + 1, classes, item) }}
           {% endblock %}
         {% endif %}
 
@@ -73,4 +77,4 @@
   {% endif %}
 {% endmacro %}
 
-{{ menus.menu_links(items, 0, modifier_class) }}
+{{ menus.menu_links(items, 0, modifier_class, null) }}

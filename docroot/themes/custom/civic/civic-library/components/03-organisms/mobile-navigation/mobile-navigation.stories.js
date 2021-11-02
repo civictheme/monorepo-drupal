@@ -1,97 +1,18 @@
-import {
-  radios,
-  object,
-} from '@storybook/addon-knobs';
+import { radios } from '@storybook/addon-knobs';
 import CivicMobileNavigation from './mobile-navigation.twig';
 import './mobile-navigation.scss';
 import '../../02-molecules/flyout/flyout';
 import '../../02-molecules/flyout/flyout.scss';
+import getMenuLinks from '../../02-molecules/menu/menu.utils';
 
 export default {
-  title: 'Organisms/Mobile Navigation',
+  title: 'Organisms/Navigation/Mobile Navigation',
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
 };
 
 export const MobileNavigation = () => {
-  const links = [
-    {
-      title: 'About us',
-      url: '#',
-      below: [
-        {
-          title: 'Menu item',
-          url: '#',
-        },
-        {
-          title: 'Test Second Level',
-          url: '#',
-          below: [
-            {
-              title: 'Test Third Level',
-              url: 'https://www.google.com',
-            },
-          ],
-        },
-        {
-          title: 'Menu item',
-          url: '#',
-        },
-        {
-          title: 'Menu item',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Help',
-      url: '#',
-      below: [
-        {
-          title: 'Menu item',
-          url: '#',
-        },
-        {
-          title: 'Menu item',
-          url: '#',
-        },
-        {
-          title: 'Menu item',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Services',
-      url: '#',
-      below: [
-        {
-          title: 'External link',
-          url: '#',
-          new_window: true,
-          is_external: true,
-        },
-        {
-          title: 'External link',
-          url: '#',
-          new_window: true,
-          is_external: true,
-        },
-        {
-          title: 'External link',
-          url: '#',
-          new_window: true,
-          is_external: true,
-        },
-      ],
-    },
-    {
-      title: 'Contact Us',
-      url: 'https://www.example.com',
-    },
-  ];
-
   const generalKnobTab = 'General';
 
   const generalKnobs = {
@@ -104,7 +25,7 @@ export const MobileNavigation = () => {
       'light',
       generalKnobTab,
     ),
-    items: object('Links', links, generalKnobTab),
+    items: getMenuLinks(),
     icon_size: radios(
       'Icon Size',
       {

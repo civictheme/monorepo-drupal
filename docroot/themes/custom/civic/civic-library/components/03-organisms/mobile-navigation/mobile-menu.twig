@@ -1,0 +1,79 @@
+{% extends '@molecules/menu/menu.twig' %}
+
+{% block content_top %}
+  <div class="civic-mobile-navigation__close">
+    {%- block close %}
+      {% if close is empty %}
+        <a data-flyout-close-all class="civic-mobile-navigation__close-button" href="#" role="button">
+          Close
+          {% include '@atoms/icon/icon.twig' with {
+            symbol: 'userinterface_cancel',
+            size: icon_size ? icon_size : 'regular',
+            color: 'footer',
+          } only %}
+        </a>
+      {% else %}
+        {{- close -}}
+      {% endif %}
+    {% endblock -%}
+  </div>
+
+  {% if block('content_top_2') is defined %}
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="civic-mobile-navigation__content-top">
+          {%- block content_top_2 %}
+            {{- content_top_2 -}}
+          {% endblock -%}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if menu_level == 0 %}
+    <div class="civic-mobile-navigation__parent-link">Home</div>
+  {% else %}
+    <a class="civic-mobile-navigation__back-button" data-flyout-close href="#" tabindex="0" role="button">
+      {% include '@atoms/icon/icon.twig' with {
+        symbol: 'arrows_leftarrow_1',
+        size: icon_size ? icon_size : 'regular',
+        color: 'footer',
+        modifier_class: 'civic-mobile-navigation__back-arrow',
+      } only %}
+      <div class="civic-mobile-navigation__parent-link">{{ parent_link.title }}</div>
+    </a>
+  {% endif %}
+{% endblock %}
+
+{% block  menu_item_link %}
+  {% if item.below %}
+    <div class="{{ theme_class }}" data-flyout="true" data-flyout-from="right">
+      <div data-flyout-trigger>
+        {% include '@molecules/directional-link/directional-link.twig' with {
+          theme: theme,
+          direction: 'right',
+          text: item.title,
+          url: item.url,
+          modifier_class: 'civic-mobile-navigation__link',
+        } only %}
+      </div>
+      <div data-flyout-panel>
+        {{ menus.menu_links(item.below, menu_level + 1, modifier_class, item) }}
+      </div>
+    </div>
+  {% else %}
+    {% include '@molecules/directional-link/directional-link.twig' with {
+      theme: theme,
+      direction: null,
+      text: item.title,
+      url: item.url,
+      modifier_class: 'civic-mobile-navigation__link',
+    } only %}
+  {% endif %}
+{% endblock %}
+
+{% block menu_item_below %}
+  <div data-flyout-panel>
+    {{ menus.menu_links(item.below, menu_level + 1, modifier_class, item) }}
+  </div>
+{% endblock %}

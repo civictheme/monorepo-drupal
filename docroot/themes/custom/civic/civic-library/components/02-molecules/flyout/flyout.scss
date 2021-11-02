@@ -6,14 +6,15 @@
 
 [data-flyout='true'] {
   $root: &;
-  [data-flyout-trigger], [data-flyout-close] {
+
+  [data-flyout-trigger],
+  [data-flyout-close] {
     cursor: pointer;
   }
 
   [data-flyout-panel] {
-    $content: &;
     overflow: hidden auto;
-    transition: transform .5s;
+    transition: transform 0.5s;
     position: fixed;
     top: 0;
     left: 0;
@@ -21,13 +22,14 @@
     bottom: 0;
     visibility: hidden;
     padding: civic-space(2);
-    @include civic-box-shadow;
+
+    @include civic-box-shadow();
     @include civic-typography('body');
   }
 
   &[data-flyout-expanded] {
     > [data-flyout-panel] {
-      transition: transform .5s;
+      transition: transform 0.5s;
       transform: translate(0, 0);
       z-index: 10;
       visibility: visible;
@@ -39,6 +41,7 @@
       [data-flyout-panel] {
         transform: $transform;
       }
+
       &[data-flyout-expanded] {
         > [data-flyout-panel] {
           transform: translate(0, 0);
@@ -47,7 +50,6 @@
     }
   }
 
-  &,
   &.civic-theme-light {
     [data-flyout-panel] {
       color: $civic-flyout-light-color;

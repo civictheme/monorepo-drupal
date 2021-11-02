@@ -8,92 +8,36 @@
  */
 #}
 
-{% set classes = ['civic-mobile-navigation'] %}
+{% set classes = [] %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = modifier_class|default('') %}
-{% set classes = classes|merge([theme_class]) %}
-{% set classes = classes|merge([modifier_class]) %}
+{% set modifier_class = 'civic-mobile-navigation %s %s'|format(theme_class, modifier_class|default('')) %}
 
-{% import _self as menus %}
-{% macro menu_links(items, menu_level, classes, parent_link) %}
-  <div class="{{ classes|join(' ') }}" data-component-name="civic-mobile-navigation">
-  {% if items %}
-    <div class="civic-mobile-navigation__close">
-      {%- block close %}
-        {% if close is empty %}
-        <a data-flyout-close-all class="civic-mobile-navigation__close-button" href="#" role="button">
-          Close
-          {% include '@atoms/icon/icon.twig' with {
-            symbol: 'userinterface_cancel',
-            size: icon_size ? icon_size : 'regular',
-            color: 'footer',
-          } only %}
-        </a>
+<div class="civic-mobile-navigation {{ modifier_class }}" data-component-name="civic-mobile-navigation">
+  <div class="civic-mobile-navigation__wrapper">
+    {% if items is not empty %}
+      {% for key in items|keys %}
+        {% if items[key].below %}
+          {% set item_modifier_class = 'civic-mobile-navigation__item civic-mobile-navigation__item--has-submenu' %}
         {% else %}
-        {{- close -}}
+          {% set item_modifier_class = 'civic-mobile-navigation__item' %}
         {% endif %}
-      {% endblock -%}
-    </div>
-  
-    {% if block('content_top') is defined %}
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="civic-mobile-navigation__content-top">
-            {%- block content_top %}
-              {{- content_top -}}
-            {% endblock -%}
-          </div>
+        {% set new_item = items[key]|merge({'modifier_class': item_modifier_class }) %}
+        {% set items = items|merge({(key): new_item}) %}
+      {% endfor %}
+
+      {% include '@organisms/mobile-navigation/mobile-menu.twig' with {
+        theme: theme,
+        items: items,
+        modifier_class: modifier_class,
+        parent_link: null,
+      } only %}
+    {% endif %}
+    {% if block('content_bottom') is defined %}
+        <div class="civic-mobile-navigation__content-bottom">
+          {%- block content_bottom %}
+            {{- content_bottom -}}
+          {% endblock -%}
         </div>
-      </div>
     {% endif %}
-
-    {% set top_level_menu = (menu_level == 0) %}
-    {% if top_level_menu %}
-      <div class="civic-mobile-navigation__parent-link">Home</div>
-    {% else %}
-      <a class="civic-mobile-navigation__back-button" data-flyout-close href="#" tabindex="0" role="button">
-        {% include '@atoms/icon/icon.twig' with {
-          symbol: 'arrows_leftarrow_1',
-          size: icon_size ? icon_size : 'regular',
-          color: 'footer',
-          modifier_class: 'civic-mobile-navigation__back-arrow',
-        } only %}
-        <div class="civic-mobile-navigation__parent-link">{{ parent_link }}</div>
-      </a>
-    {% endif %}
-
-    <ul class="civic-mobile-navigation__links-list">
-    {% for item in items %}
-      <li class="civic-mobile-navigation__item {{ item.below ? 'civic-mobile-navigation__item--has-submenu' : '' }}">
-        {% if item.below %}
-          <div data-flyout="true" data-flyout-from="right">
-            <div data-flyout-trigger>
-              {% include '@molecules/directional-link/directional-link.twig' with {
-                theme: theme,
-                direction: 'right',
-                text: item.title,
-                url: item.url,
-                modifier_class: 'civic-mobile-navigation__link',
-              } only %}
-            </div>
-            <div data-flyout-panel>
-              {{ menus.menu_links(item.below, menu_level + 1, classes, item.title) }}
-            </div>
-          </div>
-        {% else %}
-          {% include '@molecules/directional-link/directional-link.twig' with {
-            theme: theme,
-            direction: null,
-            text: item.title,
-            url: item.url,
-            modifier_class: 'civic-mobile-navigation__link',
-          } only %}
-        {% endif %}
-      </li>
-    {% endfor %}
-    </ul>
-  {% endif %}
   </div>
-{% endmacro %}
-
-{{ menus.menu_links(items, 0, classes) }}
+</div>

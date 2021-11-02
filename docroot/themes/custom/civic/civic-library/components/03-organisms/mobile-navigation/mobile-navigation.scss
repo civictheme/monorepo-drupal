@@ -3,15 +3,22 @@
 //
 @use 'sass:math';
 @import '../../00-base/base';
-@import '../../02-molecules/flyout/flyout.scss';
+@import '../../02-molecules/flyout/flyout';
 
 // Mobile Navigation.
 .civic-mobile-navigation {
   $root: &;
+
   display: block;
   box-sizing: border-box;
   width: 100%;
   padding: civic-space(2);
+
+  &__wrapper {
+    height: calc(100vh - #{civic-space(4)});
+    overflow: auto;
+  }
+
   &.civic-mobile-navigation--expanded .civic-dropdown__menu--expanded {
     z-index: 1;
   }
@@ -22,11 +29,11 @@
     height: 100vh;
     left: 0;
     top: 0;
-    background-color: white;
 
     .civic-mobile-navigation--main {
       display: block;
     }
+
     .civic-dropdown__menu--expanded {
       .civic-menu__sub-menu {
         box-shadow: none;
@@ -35,26 +42,32 @@
     }
   }
 
-  &__links-list {
+  .civic-menu {
     list-style: none;
     padding: 0;
     margin: 0;
   }
+
   &__parent-link {
     @include civic-typography($civic-mobile-navigation-parent-link-typography);
+
     margin: civic-space() 0 civic-space(3) 0;
   }
+
   &__back-button {
     display: block;
     text-decoration: none;
   }
+
   &__close {
     justify-content: end;
     display: flex;
     margin-bottom: civic-space(2);
   }
+
   &__close-button {
     @include civic-typography($civic-mobile-navigation-close-typography);
+
     text-decoration: none;
     align-items: center;
     display: flex;
@@ -62,8 +75,8 @@
     padding: math.div(civic-space(), 2) math.div(civic-space(), 2) math.div(civic-space(), 2) civic-space();
   }
 
-  &,
   &.civic-theme-light {
+    background-color: $civic-mobile-navigation-light-background-color;
     #{$root}__back-arrow {
       fill: $civic-mobile-navigation-light-back-arrow-icon-color;
     }
@@ -78,7 +91,9 @@
       background-color: $civic-mobile-navigation-light-content-bottom-background-color;
     }
   }
+
   &.civic-theme-dark {
+    background-color: $civic-mobile-navigation-dark-background-color;
     #{$root}__back-arrow {
       fill: $civic-mobile-navigation-dark-back-arrow-icon-color;
     }
@@ -96,57 +111,57 @@
 
   &__link.civic-directional-link {
     $root: &;
+
     display: flex;
     background: none;
     border-bottom: none;
     text-decoration: none;
     justify-content: space-between;
-  
-    &,
+    padding: civic-space(2) civic-space();
+
     &.civic-theme-light {
       color: $civic-mobile-navigation-link-light-color;
       border-bottom: 1px solid $civic-mobile-navigation-link-light-border-color;
       display: flex;
-      padding: math.div(civic-space(3), 2) civic-space();
+
       @include civic-typography($civic-mobile-navigation-link-typography);
-  
+
       &:hover {
         color: $civic-mobile-navigation-link-light-color-hover;
       }
-  
+
       &:focus {
         color: $civic-mobile-navigation-link-light-color-focus;
       }
-  
+
       &:visited {
         color: $civic-mobile-navigation-link-light-color-visited;
       }
-  
+
       .civic-icon {
         fill: $civic-mobile-navigation-link-light-icon-color;
       }
     }
-  
+
     &.civic-theme-dark {
       color: $civic-mobile-navigation-link-dark-color;
       border-bottom: 1px solid $civic-mobile-navigation-link-dark-border-color;
-  
+
       &:hover {
         color: $civic-mobile-navigation-link-dark-color-hover;
       }
-  
+
       &:focus {
         color: $civic-mobile-navigation-link-dark-color-focus;
       }
-  
+
       &:visited {
         color: $civic-mobile-navigation-link-dark-color-visited;
       }
-  
+
       .civic-icon {
         fill: $civic-mobile-navigation-link-dark-icon-color;
       }
     }
   }
-  
 }

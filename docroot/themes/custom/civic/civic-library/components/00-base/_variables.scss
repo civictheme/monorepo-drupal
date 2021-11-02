@@ -981,6 +981,7 @@ $civic-mobile-navigation-link-light-color-focus: civic-color('shade_15');
 $civic-mobile-navigation-link-light-color-visited: civic-color('shade_15');
 $civic-mobile-navigation-link-light-icon-color: civic-color('secondary');
 $civic-mobile-navigation-link-light-border-color: civic-color('neutral_10');
+$civic-mobile-navigation-light-background-color: civic-color('neutral');
 $civic-mobile-navigation-link-dark-color: civic-color('neutral');
 $civic-mobile-navigation-link-dark-color-hover: civic-color('neutral');
 $civic-mobile-navigation-link-dark-color-focus: civic-color('neutral');
@@ -988,6 +989,7 @@ $civic-mobile-navigation-link-dark-color-visited: civic-color('neutral');
 $civic-mobile-navigation-link-dark-icon-color: civic-color('secondary');
 $civic-mobile-navigation-link-dark-border-color: civic-color('shade_30');
 $civic-mobile-navigation-link-typography: (18px, 24px, 500, 'primary', 0);
+$civic-mobile-navigation-dark-background-color: civic-color('shade_30');
 
 //
 // Flyout.
