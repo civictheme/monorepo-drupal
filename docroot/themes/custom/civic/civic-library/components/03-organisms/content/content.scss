@@ -3,7 +3,7 @@
 //
 
 .civic-content {
-  & > div,
+  & > div:not(.civic-component--with-spacing),
   &--content-left {
     > div {
       margin-bottom: civic-space(4);

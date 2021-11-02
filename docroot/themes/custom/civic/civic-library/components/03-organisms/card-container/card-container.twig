@@ -22,7 +22,7 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set column_class = 'col-m-%s'|format(12 / column_count|default(1)) %}
 {% set fill_width_class = fill_width ? 'civic-card-container--fill-width' : '' %}
-{% set spacing_class = with_spacing ? 'civic-card-container--with-spacing' : '' %}
+{% set spacing_class = with_spacing ? 'civic-card-container--with-spacing civic-component--with-spacing' : '' %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, fill_width_class, spacing_class, modifier_class|default('')) %}
 
  {% if (title is not empty) or (cards is not empty) or (content_top is not empty) or (content_bottom is not empty) %}
