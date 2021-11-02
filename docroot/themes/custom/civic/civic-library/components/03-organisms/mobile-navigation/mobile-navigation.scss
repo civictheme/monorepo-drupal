@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  height: calc(100vh - #{civic-space(4)});
+  height: calc(100vh);
   width: 100%;
   overflow: auto;
 
@@ -22,8 +22,9 @@
 
   &__content-bottom {
     position: fixed;
-    width: 100%;
+    width: calc(100vw - #{civic-space(6)});
     bottom: 0;
+    left: 0;
     padding: civic-space(4) civic-space(3) civic-space(8);
   }
 
