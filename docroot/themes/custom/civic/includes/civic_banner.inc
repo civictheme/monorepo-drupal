@@ -24,20 +24,6 @@ define('CIVIC_BANNER_TYPE_LARGE', 'large');
 define('CIVIC_BANNER_DEFAULT_THEME', 'light');
 
 /**
- * Civic banner block theme suggestion.
- *
- * @SuppressWarnings(PHPMD)
- */
-function _civic_theme_suggestions_civic_banner(array &$suggestions, array $variables) {
-  if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'block_content') {
-    $entity = $variables['elements']['content']['#block_content'];
-    if ($entity->bundle() == 'civic_banner') {
-      $suggestions[] = 'block__' . $entity->bundle() . '__default';
-    }
-  }
-}
-
-/**
  * Preprocess for Programmatic Block - Banner block.
  *
  * @SuppressWarnings(PHPMD)
