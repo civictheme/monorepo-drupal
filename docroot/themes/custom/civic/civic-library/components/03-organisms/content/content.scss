@@ -8,4 +8,9 @@
       margin-bottom: civic-space(4);
     }
   }
+  &--has-sidebar {
+    .civic-card-container.civic-theme-light {
+      background-color: transparent;
+    }
+  }
 }
