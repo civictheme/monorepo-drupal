@@ -9,6 +9,10 @@
     }
   }
 
+  > div {
+    margin-bottom: 2rem;
+  }
+
   &--has-sidebar {
     .civic-card-container.civic-theme-light {
       background-color: transparent;
