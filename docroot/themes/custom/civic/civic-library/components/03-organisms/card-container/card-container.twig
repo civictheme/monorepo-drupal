@@ -27,7 +27,8 @@
 
  {% if (title is not empty) or (cards is not empty) or (content_top is not empty) or (content_bottom is not empty) %}
    <div class="civic-card-container {{ modifier_class }}">
-     <div class="row">
+     <div class="container">
+      <div class="row">
        <div class="col-m-12">
 
          {% if (title is not empty) or (header_link_url is not empty and header_link_text is not empty) %}
@@ -90,6 +91,7 @@
            </div>
          {% endif %}
        </div>
+     </div>
      </div>
    </div>
  {% endif %}
