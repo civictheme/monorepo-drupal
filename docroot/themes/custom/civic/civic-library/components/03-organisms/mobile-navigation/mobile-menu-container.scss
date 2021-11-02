@@ -1,0 +1,32 @@
+.civic-mobile-menu-wrapper {
+  $root: &;
+
+  display: flex;
+  margin-left: auto;
+
+  @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+    display: none;
+  }
+
+  &__open-ctrl {
+    @include civic-typography('body');
+
+    margin-left: auto;
+    display: flex;
+    align-self: center;
+    background-color: transparent;
+    border: none;
+
+    &.civic-theme-light {
+      color: $civic-mobile-navigation-light-open-ctrl-color;
+    }
+
+    &.civic-theme-dark {
+      color: $civic-mobile-navigation-dark-open-ctrl-color;
+    }
+  }
+
+  &__ctrl-icon {
+    padding-left: civic-space();
+  }
+}

@@ -1,5 +1,13 @@
 {% extends './header.twig' %}
 
+{% block content_top2 %}
+  <div class="hide-xs show-m col-m-6">
+    <div class="civic-header__content-top2">
+      {{ content_top2 }}
+    </div>
+  </div>
+{% endblock %}
+
 {% if show_content_top2 %}
   {% set content_top2 %}
     Visually engaging digital experiences
@@ -11,7 +19,7 @@
     {% include '@organisms/secondary-navigation/secondary-navigation.twig' with {
       'theme': theme,
       'items': secondary_navigation_items,
-      'modifier_class': 'civic-justify-content-end',
+      'modifier_class': 'civic-justify-content-end hide-xs show-m',
     } only %}
   {% endset %}
 {% endif %}
@@ -23,6 +31,11 @@
       'logos': logos,
       'modifier_class': 'civic-header__logo',
     } only %}
+
+    {% include '@organisms/mobile-navigation/mobile-menu-container.twig' with {
+      theme: theme,
+      items: primary_navigation_items,
+    } %}
   {% endset %}
 {% endif %}
 

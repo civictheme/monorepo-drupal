@@ -1,0 +1,29 @@
+{#
+/**
+  * Civic theme implementation of mobile menu with trigger and menu.
+  *
+  * Available variables:
+  * - theme: [string] theme: light, dark.
+  * - modifier_class: [string] Additional classes for the component.
+  * - items: [array] array of list items.
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<div class="civic-mobile-menu-wrapper {{ modifier_class }}" data-flyout="true" data-flyout-from="right">
+  {% include '@organisms/mobile-navigation/mobile-navigation-control.twig' with {
+    'type': 'open',
+    'theme': theme,
+    'attributes': 'data-flyout-trigger',
+    'label': 'Menu',
+    'icon': 'content_bars'
+  } only %}
+
+  {% include '@organisms/mobile-navigation/mobile-navigation.twig' with {
+    'theme': theme,
+    'items': items,
+    'modifier_class': 'show-xs hide-m',
+    'attributes': 'data-flyout-panel'
+  } %}
+</div>

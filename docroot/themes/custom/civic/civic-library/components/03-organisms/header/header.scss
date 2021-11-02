@@ -10,12 +10,26 @@
   @include civic-typography('body');
 
   &__top {
-    padding-top: civic-space();
-    padding-bottom: civic-space();
+    @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+      padding-top: civic-space();
+      padding-bottom: civic-space();
+    }
   }
 
   &__logo {
-    padding: civic-space(3) 0;
+    padding: civic-space(2) civic-space() civic-space();
+
+    @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+      padding: civic-space(3) 0;
+    }
+  }
+
+  &__content-middle2 {
+    display: flex;
+
+    @include civic-breakpoint('m') {
+      display: block;
+    }
   }
 
   &__middle {
@@ -31,7 +45,7 @@
   .civic-logo {
     max-width: rem($civic-header-logo-mobile-width);
 
-    @include civic-breakpoint('m') {
+    @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
       max-width: rem($civic-header-logo-desktop-width);
     }
   }

@@ -8,11 +8,10 @@
  */
 #}
 
-{% set classes = [] %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = 'civic-mobile-navigation %s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civic-mobile-navigation {{ modifier_class }}" data-component-name="civic-mobile-navigation">
+<div class="civic-mobile-navigation {{ modifier_class }}" data-component-name="civic-mobile-navigation" {{ attributes }}>
   <div class="civic-mobile-navigation__wrapper">
     {% if items is not empty %}
       {% for key in items|keys %}

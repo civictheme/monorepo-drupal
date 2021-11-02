@@ -12,6 +12,10 @@
       display: table;
     }
 
+    .show-#{$breakpoint}-flex {
+      display: flex;
+    }
+
     .hide-#{$breakpoint} {
       display: none;
     }
