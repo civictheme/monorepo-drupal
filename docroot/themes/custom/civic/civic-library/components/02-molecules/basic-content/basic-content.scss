@@ -197,14 +197,6 @@
     margin-bottom: $civic-basic-content-vertical-spacing;
   }
 
-  .lead {
-    @include civic-typography('lead');
-  }
-
-  .small {
-    @include civic-typography('small');
-  }
-
   blockquote {
     @include civic-typography('quote');
 
