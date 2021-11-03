@@ -5,6 +5,5 @@
 // components.
 //
 // These overrides will not be visible in the Storybook.
-@import "block/block--example";
-@import "block/local-task";
-@import "ckeditor";
+@import 'block/local-tasks';
+@import 'ckeditor';
