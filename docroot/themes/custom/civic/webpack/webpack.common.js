@@ -13,6 +13,7 @@ module.exports = {
     // Add explicitly imported entries from the current theme.
     entries.push(path.resolve(__dirname, 'theme_js.js'));
     entries.push(path.resolve(__dirname, 'theme_css.js'));
+    entries.push(path.resolve(__dirname, 'fonts.js'));
     return entries;
   }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js')),
   output: {
@@ -56,6 +57,17 @@ module.exports = {
             },
           },
         ],
+      },
+      // File loader (for fonts).
+      {
+        test: /\.(woff|woff2)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'static/fonts'
+          }
+        }
       },
       // Twig loader.
       {

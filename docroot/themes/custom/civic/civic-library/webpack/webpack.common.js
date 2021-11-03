@@ -10,6 +10,7 @@ module.exports = {
     let entries = glob.sync(pattern);
     // Add explicitly imported (S)CSS entries from css.js.
     entries.push(path.resolve(__dirname, 'css.js'));
+    entries.push(path.resolve(__dirname, 'fonts.js'));
     return entries;
   }('../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'),
   output: {
@@ -53,6 +54,17 @@ module.exports = {
             },
           },
         ],
+      },
+      // File loader (for fonts).
+      {
+        test: /\.(woff|woff2)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'static/fonts'
+          }
+        }
       },
       // Twig loader.
       {
