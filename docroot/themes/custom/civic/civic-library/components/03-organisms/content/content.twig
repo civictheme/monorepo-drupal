@@ -1,4 +1,5 @@
-<main class="civic-content container" role="main">
+{% set container_class = content_left is not empty ? 'container' : '' %}
+<main class="civic-content {{ container_class }}" role="main">
   <a id="main-content" tabindex="-1"></a>
 
   <div class="row">
@@ -10,7 +11,7 @@
     {% endif %}
 
     {# Content #}
-    {% set content_classes = (content_left is empty) or ( not content_left) ? ' col-m-12' : ' col-m-8 col-m-offset-1' %}
+    {% set content_classes = (content_left is empty) or ( not content_left) ? ' col-m-12' : ' col-m-8 col-m-offset-1 civic-content--has-sidebar' %}
     <section class="civic-content--main{{ content_classes }}">
       <div class="civic-content">
         {{ content }}

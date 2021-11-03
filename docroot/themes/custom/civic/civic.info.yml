@@ -215,7 +215,6 @@ config_devel:
     - field.field.node.civic_page.field_c_n_components
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_thumbnail
-    - field.field.paragraph.civic_accordion.field_c_p_default_panel
     - field.field.paragraph.civic_accordion.field_c_p_expand
     - field.field.paragraph.civic_accordion.field_c_p_panels
     - field.field.paragraph.civic_accordion.field_c_p_theme
@@ -233,6 +232,7 @@ config_devel:
     - field.field.paragraph.civic_callout.field_c_p_summary
     - field.field.paragraph.civic_callout.field_c_p_theme
     - field.field.paragraph.civic_callout.field_c_p_title
+    - field.field.paragraph.civic_card_container.field_c_p_theme
     - field.field.paragraph.civic_card_container.field_c_p_cards
     - field.field.paragraph.civic_card_container.field_c_p_column_count
     - field.field.paragraph.civic_card_container.field_c_p_description
