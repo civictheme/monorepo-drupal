@@ -29,7 +29,6 @@ Feature: Tests the Accordion
     And I press the "field_c_n_components_civic_accordion_add_more" button
     And I wait for AJAX to finish
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]']" element
-    And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]'].required" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_expand][value]']" element

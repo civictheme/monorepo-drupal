@@ -4,33 +4,36 @@
  *
  * Available variables:
  * - theme: [string] Theme: light, dark.
- * - links: [array] Menu links array.
+ * - links: [array] Array of link data.
+ * - items: [array] Alternative array of links.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civic-social-links {{ modifier_class }}">
-  {% if links %}
-    {% for link in links %}
-      <div class="civic-social-links__item">
-        {% include '@molecules/icon-link/icon-link.twig' with {
-          theme: theme,
-          symbol: link.symbol,
-          size: link.size,
-          url: link.url,
-          with_border: with_border,
-        } only %}
-      </div>
-    {% endfor %}
-  {% endif %}
+{% if links or items %}
+  <div class="civic-social-links {{ modifier_class }}">
+    {% if links %}
+      {% for link in links %}
+        <div class="civic-social-links__item">
+          {% include '@molecules/icon-link/icon-link.twig' with {
+            theme: theme,
+            symbol: link.symbol,
+            size: link.size,
+            url: link.url,
+            with_border: with_border,
+          } only %}
+        </div>
+      {% endfor %}
+    {% endif %}
 
-  {% if items %}
-    {% for item in items %}
-      <div class="civic-social-links__item">
-        {{ item.content }}
-      </div>
-    {% endfor %}
-  {% endif %}
-</div>
+    {% if items %}
+      {% for item in items %}
+        <div class="civic-social-links__item">
+          {{ item.content }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+{% endif %}

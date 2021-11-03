@@ -20,12 +20,12 @@
             </div>
           {% endif %}
 
-          {% if breadcrumbs or content_top2 %}
+          {% if breadcrumb or content_top2 %}
             <div class="row">
-              {%- block breadcrumbs %}
+              {%- block breadcrumb %}
                 <div class="col-xs-12 col-m-6">
-                  <div class="civic-banner__breadcrumbs">
-                    {{- breadcrumbs -}}
+                  <div class="civic-banner__breadcrumb">
+                    {{- breadcrumb -}}
                   </div>
                 </div>
               {% endblock -%}

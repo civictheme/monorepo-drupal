@@ -1,10 +1,6 @@
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:civic_component_block:d7098a8c-3ba3-48f7-bc0c-5787ebaa0427'
-  module:
-    - block_content
   theme:
     - civic
 id: civic_copyright

@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.civic_image.field_c_m_caption
+    - field.field.media.civic_image.field_c_m_image
+    - media.type.civic_image
+  module:
+    - image
+id: media.civic_image.default
+targetEntityType: media
+bundle: civic_image
+mode: default
+content:
+  field_c_m_caption:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_c_m_image:
+    label: visually_hidden
+    weight: 0
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

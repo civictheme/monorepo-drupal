@@ -2,10 +2,14 @@
 
   {% block header %}
     {% include '@organisms/header/header.twig' with {
-      top: header_top,
-      logo: header_logo,
-      content: header_content,
-      bottom: header_bottom,
+      theme: header_theme,
+      content_top1: header_top_1,
+      content_top2: header_top_2,
+      content_top3: header_top_3,
+      content_middle1: header_middle_1,
+      content_middle2: header_middle_2,
+      content_middle3: header_middle_3,
+      content_bottom1: header_bottom_1,
     } only %}
   {% endblock %}
 

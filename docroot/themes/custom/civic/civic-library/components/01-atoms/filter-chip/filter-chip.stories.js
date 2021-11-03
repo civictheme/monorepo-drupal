@@ -9,18 +9,27 @@ export default {
   },
 };
 
-export const FilterChip = () => CivicFilterChip({
-  theme: radios(
-    'Theme', {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-  ),
-  text: text('Text', 'Filter Chip text'),
-  id: text('Input ID', 'filter-chip-1'),
-  name: text('Input name', 'chip'),
-  is_multiple: boolean('Is multiple', false),
-  modifier_class: text('Additional class', ''),
-  attributes: text('Additional attributes', ''),
-});
+export const FilterChip = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const generalKnobs = {
+    theme: radios(
+      'Theme', {
+        Light: 'light',
+        Dark: 'dark',
+      },
+      'light',
+      generalKnobTab,
+    ),
+    text: text('Text', 'Filter Chip text', generalKnobTab),
+    id: text('Input ID', 'filter-chip-1', generalKnobTab),
+    name: text('Input name', 'chip', generalKnobTab),
+    is_multiple: boolean('Is multiple', false, generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
+  };
+
+  return CivicFilterChip({
+    ...generalKnobs,
+  });
+};

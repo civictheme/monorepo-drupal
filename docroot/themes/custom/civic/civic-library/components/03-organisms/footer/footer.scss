@@ -7,6 +7,10 @@
 .civic-footer {
   $root: &;
 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
   &__top {
     padding-top: civic-space(4);
     padding-bottom: civic-space(2);

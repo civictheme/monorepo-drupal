@@ -1,0 +1,10 @@
+.civic-fieldset {
+  .civic-label {
+    &--required::after {
+      color: $civic-fieldset-required-color;
+      content: ' (Required)';
+
+      @include civic-typography('small-and-captions');
+    }
+  }
+}

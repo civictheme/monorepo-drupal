@@ -29,28 +29,30 @@
   }
 } %}
 
-<div class="civic-progress-indicator {{ modifier_class }}" aria-live="polite">
-  {% for step in steps %}
-    {% if step.title is not empty %}
-      <div class="civic-progress-indicator__step {{ 'civic-progress-indicator__step--%s'|format(step.status) }}">
-        {% if step.status is defined %}
-          {% include '@atoms/icon/icon.twig' with {
-            symbol: statuses[step.status].icon,
-          } only %}
-        {% endif %}
-
-        <div class="civic-progress-indicator__step--inner">
+{% if steps %}
+  <div class="civic-progress-indicator {{ modifier_class }}" aria-live="polite">
+    {% for step in steps %}
+      {% if step.title is not empty %}
+        <div class="civic-progress-indicator__step {{ 'civic-progress-indicator__step--%s'|format(step.status) }}">
           {% if step.status is defined %}
-            <div class="civic-progress-indicator__step--status">
-              {{ statuses[step.status].text }}
-            </div>
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: statuses[step.status].icon,
+            } only %}
           {% endif %}
 
-          <div class="civic-progress-indicator__step--title">
-            {{ step.title }}
+          <div class="civic-progress-indicator__step--inner">
+            {% if step.status is defined %}
+              <div class="civic-progress-indicator__step--status">
+                {{ statuses[step.status].text }}
+              </div>
+            {% endif %}
+
+            <div class="civic-progress-indicator__step--title">
+              {{ step.title }}
+            </div>
           </div>
         </div>
-      </div>
-    {% endif %}
-  {% endfor %}
-</div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

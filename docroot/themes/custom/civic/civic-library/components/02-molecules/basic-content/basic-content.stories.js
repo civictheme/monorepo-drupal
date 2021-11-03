@@ -17,8 +17,9 @@ export default {
   },
 };
 
-export const BasicContent = () => {
-  const generalKnobTab = 'General';
+export const BasicContent = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
   const theme = radios(
     'Theme', {
       Light: 'light',
@@ -116,8 +117,10 @@ export const BasicContent = () => {
   const generalKnobs = {
     theme,
     content: boolean('Content', true, generalKnobTab) ? html : null,
-    modifier_class: text('Additional class', ''),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicBasicContent(generalKnobs);
+  return CivicBasicContent({
+    ...generalKnobs,
+  });
 };

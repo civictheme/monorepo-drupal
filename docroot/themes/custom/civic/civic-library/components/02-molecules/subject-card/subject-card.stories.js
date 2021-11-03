@@ -10,8 +10,8 @@ export default {
   },
 };
 
-export const SubjectCard = () => {
-  const generalKnobTab = 'General';
+export const SubjectCard = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
     theme: radios(

@@ -1,4 +1,6 @@
-import { boolean, radios, text } from '@storybook/addon-knobs';
+import {
+  boolean, radios, select, text,
+} from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
 import CivicFooter from './footer.stories.twig';
 import logoDesktopLight from '../../../assets/logo-desktop-light.png';
@@ -16,18 +18,21 @@ export default {
   },
 };
 
-export const Footer = () => {
-  const generalKnobTab = 'General';
+export const Footer = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const theme = radios(
+    'Theme',
+    {
+      Light: 'light',
+      Dark: 'dark',
+    },
+    'light',
+    generalKnobTab,
+  );
 
   const generalKnobs = {
-    theme: radios(
-      'Theme', {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
+    theme,
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
@@ -52,6 +57,10 @@ export const Footer = () => {
     generalKnobs.links2 = generateMenuLinks(4, 1, false);
     generalKnobs.links3 = generateMenuLinks(4, 1, false);
     generalKnobs.links4 = generateMenuLinks(4, 1, false);
+  }
+
+  if (boolean('Show background image', false, generalKnobTab)) {
+    generalKnobs.background_image = BACKGROUNDS[theme][select('Background', Object.keys(BACKGROUNDS[theme]), Object.keys(BACKGROUNDS[theme])[0], generalKnobTab)];
   }
 
   return CivicFooter({
