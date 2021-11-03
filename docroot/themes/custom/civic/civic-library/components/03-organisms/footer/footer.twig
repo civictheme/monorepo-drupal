@@ -1,8 +1,29 @@
+{#
+/**
+ * @file
+ * Footer component.
+ *
+ * Variables:
+ * - type: [string] Alert type: Info, Error, Warning, Success.
+ * - theme: [string] Light, Dark.
+ * - content_top1: [string] Top content column slot.
+ * - content_top2: [string] Top content column slot.
+ * - content_middle1: [string] Middle content column slot.
+ * - content_middle2: [string] Middle content column slot.
+ * - content_middle3: [string] Middle content column slot.
+ * - content_middle4: [string] Middle content column slot.
+ * - content_bottom1: [string] Bottom content column slot.
+ * - content_bottom2: [string] Bottom content column slot.
+ * - background_image: [string] Background image displayed behind content.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if content_top1 is not empty or content_top2 is not empty or content_middle1 is not empty or content_middle2 is not empty or content_middle3 is not empty or content_middle4 is not empty or content_bottom1 is not empty or content_bottom2 is not empty %}
-  <footer class="civic-footer {{ modifier_class }}" role="contentinfo" data-component-name="civic-footer">
+  <footer class="civic-footer {{ modifier_class }}" role="contentinfo" data-component-name="civic-footer" {% if background_image %}style="background-image: url('{{ background_image }} ')"{% endif %}>
 
     {% if content_top1 is not empty or content_top2 is not empty %}
       <div class="container civic-footer__top">
