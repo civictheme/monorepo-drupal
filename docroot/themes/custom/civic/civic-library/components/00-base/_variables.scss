@@ -160,8 +160,39 @@ $civic-icon-sizes: (
 ) !default;
 
 //
-// Typography.
+// Fonts.
 //
+// $civic-font-directory - The directory of the fonts after webpack compilation.
+// $civic-fonts - Local font importing.
+// $civic-font-import-default - Imports "Lexend" font. Set to false when using custom fonts.
+//
+// Adding a custom font:
+//
+// Given these files exist:
+//   - assets/fonts/noto_sans.woff
+//   - assets/fonts/noto_sans.woff2
+//
+// Add the following configuration:
+//   $civic-fonts: (
+//     'Noto Sans': ('file': 'noto_sans', 'format': ('woff2', 'woff')),
+//   );
+//   $civic-font-import-default: false;
+//   $civic-font: (
+//     'primary': 'Noto Sans',
+//   );
+//
+// $civic-fonts
+//
+// Support multiple font entries in the following format:
+//   '[Font name]': ('file': '[file]', 'format': ('[format 1]', '[format 2]') )
+//
+// Where the variables are:
+//   - Font name:  Name of the font in CSS.
+//   - file:       File name of the font in assets/fonts/ (omit file extension)
+//   - format:     Supports 'woff2' and 'woff'.
+//
+$civic-fonts: () !default;
+$civic-font-directory: './static/fonts/' !default;
 $civic-font-import-default: true !default;
 $civic-font-base-size: 16px !default;
 $civic-font-scale: 1.25 !default;
@@ -171,6 +202,10 @@ $civic-font: (
   'primary': $civic-font-primary,
   'secondary': $civic-font-secondary,
 ) !default;
+
+//
+// Typography.
+//
 $civic-typography: (
   'display-xl': (56px, 60px, 700, 'primary', -1px),
   'display-l': (39px, 44px, 700, 'primary', -0.7px),
@@ -352,6 +387,9 @@ $civic-basic-content-dark-ul-li-color: $civic-basic-content-dark-base-color !def
 $civic-basic-content-dark-ul-li-marker-color: civic-color('accent') !default;
 $civic-basic-content-dark-ol-li-color: $civic-basic-content-dark-base-color !default;
 $civic-basic-content-dark-ol-li-marker-color: civic-color('accent') !default;
+$civic-basic-content-vertical-spacing: 1.5rem !default;
+$civic-basic-content-list-marker-width: 1.75rem !default;
+$civic-basic-content-list-marker-margin: 1rem !default;
 
 //
 // Attachment.

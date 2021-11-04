@@ -6,9 +6,6 @@
 
 .civic-basic-content {
   $root: &;
-  $civic-basic-content-vertical-spacing: civic-space(3);
-  $civic-basic-content-list-marker-width: rem(28px);
-  $civic-basic-content-list-marker-margin: rem(16px);
 
   @include civic-typography('body');
 
@@ -138,74 +135,66 @@
   h1 {
     @include civic-typography('heading-1');
 
-    margin-bottom: rem(22px);
+    margin-bottom: civic-space(3);
 
     @include civic-breakpoint('m') {
-      margin-bottom: rem(26px);
+      margin-bottom: civic-space(4);
     }
   }
 
   h2 {
     @include civic-typography('heading-2');
 
-    margin-bottom: rem(22px);
+    margin-bottom: civic-space(3);
 
     @include civic-breakpoint('m') {
-      margin-bottom: rem(26px);
+      margin-bottom: civic-space(4);
     }
   }
 
   h3 {
     @include civic-typography('heading-3');
 
-    margin-bottom: rem(16px);
+    margin-bottom: civic-space(2);
 
     @include civic-breakpoint('m') {
-      margin-bottom: rem(24px);
+      margin-bottom: civic-space(3);
     }
   }
 
   h4 {
     @include civic-typography('heading-4');
 
-    margin-bottom: rem(16px);
+    margin-bottom: civic-space(2);
 
     @include civic-breakpoint('m') {
-      margin-bottom: rem(24px);
+      margin-bottom: civic-space(3);
     }
   }
 
   h5 {
     @include civic-typography('heading-5');
 
-    margin-bottom: rem(8px);
+    margin-bottom: civic-space();
 
     @include civic-breakpoint('m') {
-      margin-bottom: rem(16px);
+      margin-bottom: civic-space(2);
     }
   }
 
   h6 {
     @include civic-typography('heading-6');
 
-    margin-bottom: rem(8px);
+    margin-bottom: civic-space();
 
     @include civic-breakpoint('m') {
-      margin-bottom: rem(16px);
+      margin-bottom: civic-space(2);
     }
   }
 
   p {
     margin-top: $civic-basic-content-vertical-spacing;
     margin-bottom: $civic-basic-content-vertical-spacing;
-  }
-
-  .lead {
-    @include civic-typography('lead');
-  }
-
-  .small {
-    @include civic-typography('small');
   }
 
   blockquote {
@@ -225,7 +214,7 @@
       top: 0;
       bottom: 0;
       left: 0;
-      border-radius: rem(4px);
+      border-radius: $civic-border-radius;
     }
   }
 
