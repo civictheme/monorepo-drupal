@@ -18,6 +18,7 @@ const childThemeName = __dirname
 
 // Output directory of merged components.
 const outputDir = __dirname + '/components-combined'
+const civicComponentsDir = __dirname + '/components-civic';
 
 // Periodic rebuild of combined storybook.
 let periodicCleanup = function cleanUp() {
@@ -29,6 +30,9 @@ let periodicCleanup = function cleanUp() {
 // Add files to combined storybook.
 function buildTask(cb) {
   let filePath
+  // Import civic components to child theme to allow extending.
+  src(civicStorybookWatchDir)
+    .pipe(dest(civicComponentsDir));
 
   src(civicStorybookWatchDir)
     .pipe(flatMap((stream , file) => {
