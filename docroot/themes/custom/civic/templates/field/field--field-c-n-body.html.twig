@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Custom theme implementation to display a body field.
+ *
+ * Body field is always displayed as a Basic Content component.
+ */
+#}
+{% if multiple %}
+  {% for item in items %}
+    {% include '@molecules/basic-content/basic-content.twig' with {
+      content: item.content,
+    } only %}
+  {% endfor %}
+{% else %}
+  {% for item in items %}
+    {% include '@molecules/basic-content/basic-content.twig' with {
+      content: item.content,
+    } only %}
+  {% endfor %}
+{% endif %}

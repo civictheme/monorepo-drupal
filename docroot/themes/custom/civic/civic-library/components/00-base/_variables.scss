@@ -1018,7 +1018,7 @@ $civic-label-required-color: civic-color('error') !default;
 $civic-fieldset-required-color: civic-color('error') !default;
 
 //
-// Table Of Contents
+// Table Of Contents.
 //
 $civic-table-of-contents-width: 50% !default;
 $civic-table-of-contents-light-title-color: civic-color('neutral_80') !default;
@@ -1037,3 +1037,10 @@ $civic-table-of-contents-dark-link-hover-background-color: civic-color('transluc
 $civic-table-of-contents-dark-link-hover-border-color: civic-color('translucent') !default;
 $civic-table-of-contents-dark-link-before-hover-background-color: civic-color('accent') !default;
 $civic-table-of-contents-dark-active-background-color: civic-color('shade_30') !default;
+
+//
+// Content.
+//
+
+$civic-content-light-background-color: inherit !default;
+$civic-content-dark-background-color: inherit !default;

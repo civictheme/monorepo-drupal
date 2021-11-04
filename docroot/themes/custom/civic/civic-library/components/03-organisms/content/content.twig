@@ -1,22 +1,66 @@
-{% set container_class = content_left is not empty ? 'container' : '' %}
-<main class="civic-content {{ container_class }}" role="main">
-  <a id="main-content" tabindex="-1"></a>
+{#
+/**
+ * @file
+ * Content component.
+ *
+ * Renders as edge-to-edge if sidebar is not provided, or contained if the
+ * sidebar is provided.
+ *
+ * All inner components must manage their own layout whether they are rendered
+ * with or without a sidebar. Current Civic grid .container implementation
+ * allows contained elments to correctly narrow their width to fit into content
+ * on the page with sidebar present.
+ *
+ * Available variables:
+ * - content_top: [string] Content top elements.
+ * - content: [string] Content elements.
+ * - content_bottom: [string] Content bottom elements.
+ * - sidebar: [string] Sidebar elements.
+ * - theme: [string] Theme: light, dark.
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - sidebar_attributes: [string] Sidebar attributes.
+ * - content_attributes: [string] Content attributes.
+ */
+#}
 
-  <div class="row">
-    {# Sidebar #}
-    {% if content_left %}
-      <aside class="col-m-3 civic-content--content-left" role="complementary" {% if sidebar_attributes %}{{ sidebar_attributes }}{% endif %}>
-        {{ content_left }}
-      </aside>
+{% set has_sidebar = sidebar is not empty %}
+{% set container_class = has_sidebar or contained ? 'civic-content--contained container' : '' %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, container_class, modifier_class|default('')) %}
+
+{% if content or sidebar %}
+  <main class="civic-content {{ modifier_class }}" role="main">
+    <a id="main-content" tabindex="-1"></a>
+
+    {% if has_sidebar or contained %}
+    <div class="row">
     {% endif %}
 
-    {# Content #}
-    {% set content_classes = (content_left is empty) or ( not content_left) ? ' col-m-12' : ' col-m-8 col-m-offset-1 civic-content--has-sidebar' %}
-    <section class="civic-content--main{{ content_classes }}">
-      <div class="civic-content" {% if content_attributes %}{{ content_attributes }}{% endif %}>
-        {{ content }}
-      </div>
-    </section>
-  </div>
+      {% if sidebar %}
+        {% block sidebar %}
+          <aside class="civic-content__sidebar {% if has_sidebar %}col-m-3{% endif %}" role="complementary" {% if sidebar_attributes %}{{ sidebar_attributes }}{% endif %}>
+            {{ sidebar }}
+          </aside>
+        {% endblock %}
+      {% endif %}
 
-</main>
+      {% block content %}
+        <section class="civic-content__main {% if has_sidebar %}col-m-8 col-m-offset-1{% elseif contained %} col-m-12{% endif %}" {% if content_attributes %}{{ content_attributes }}{% endif %}>
+          {% if content_top %}
+            {{ content_top }}
+          {% endif %}
+
+          {{ content }}
+
+          {% if content_bottom %}
+            {{ content_bottom }}
+          {% endif %}
+        </section>
+      {% endblock %}
+
+    {% if has_sidebar or contained %}
+    </div>
+    {% endif %}
+
+  </main>
+{% endif %}

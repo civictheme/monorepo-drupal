@@ -24,7 +24,7 @@ regions:
   banner: 'Banner'
   highlighted: 'Highlighted'
   content: 'Content'
-  content_left: 'Content left'
+  sidebar: 'Sidebar'
   footer_top_1: 'Footer top 1'
   footer_top_2: 'Footer top 2'
   footer_middle_1: 'Footer middle 1'

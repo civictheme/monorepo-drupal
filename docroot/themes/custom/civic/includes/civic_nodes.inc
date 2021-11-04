@@ -6,24 +6,6 @@
  */
 
 /**
- * Generic preprocess for all view mode of nodes.
- */
-function _civic_preprocess_node(&$variables) {
-  $node = $variables['node'];
-
-  // Add Table of Contents if the value is set on node.
-  if ($node && $node->hasField('field_c_n_show_toc') && $node->field_c_n_show_toc->getString()) {
-    $variables['content_attributes']['data-table-of-contents-position'] = 'prepend';
-    $variables['content_attributes']['data-table-of-contents-theme'] = 'light';
-    $variables['content_attributes']['data-table-of-contents-anchor-selector'] = 'h2';
-    $variables['content_attributes']['data-table-of-contents-title'] = t('On this page');
-    // @todo Update selector to '.civic-content--main .civic-content' once
-    // container layout is fixed.
-    $variables['content_attributes']['data-table-of-contents-anchor-scope-selector'] = '[data-table-of-contents-initialised]';
-  }
-}
-
-/**
  * Preprocess Full view mode of nodes.
  *
  * @see civic_preprocess_node()

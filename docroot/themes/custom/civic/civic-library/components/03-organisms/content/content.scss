@@ -3,16 +3,16 @@
 //
 
 .civic-content {
-  & > div:not(.civic-component--with-spacing),
-  &--content-left {
-    > div {
-      margin-bottom: civic-space(4);
-    }
+  &--contained {
+    margin-top: civic-space(4);
+    margin-bottom: civic-space(4);
   }
 
-  &--has-sidebar {
-    .civic-card-container.civic-theme-light {
-      background-color: transparent;
-    }
+  &.civic-theme-light {
+    background: $civic-content-light-background-color;
+  }
+
+  &.civic-theme-dark {
+    background: $civic-content-dark-background-color;
   }
 }

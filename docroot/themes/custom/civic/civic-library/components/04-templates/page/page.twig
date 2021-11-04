@@ -32,7 +32,12 @@
   {% block content %}
     {% include '@organisms/content/content.twig' with {
       content: content,
-      content_left: content_left,
+      content_top: content_top,
+      content_bottom: content_bottom,
+      sidebar: sidebar,
+      contained: content_contained,
+      sidebar_attributes: sidebar_attributes,
+      content_attributes: content_attributes,
     } only %}
   {% endblock %}
 
