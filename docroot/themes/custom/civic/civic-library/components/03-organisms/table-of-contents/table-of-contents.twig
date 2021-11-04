@@ -20,14 +20,19 @@
 {% if title or links -%}
   <div
     class="civic-table-of-contents {{ modifier_class }}"
-    data-use-js="{{ links ? 'false' : 'true' }}"
-    data-anchors="{{ anchor_selector|default('h2') }}"
-    data-anchor-scope="{{ anchor_scope_selector|default('.civic-basic-content') }}"
+    data-table-of-contents
+    data-table-of-contents-use-js="{{ links ? 'false' : 'true' }}"
+    data-table-of-contents-anchors="{{ anchor_selector|default('h2') }}"
+    data-table-of-contents-anchor-scope="{{ anchor_scope_selector|default('.civic-basic-content') }}"
   >
     {% if title -%}
-      <div class="civic-table-of-contents__title" id="civic-table-of-contents-title{{ index ? '-' ~ index : '' }}">{{ title }}</div>
+      <div
+        data-table-of-contents-title
+        class="civic-table-of-contents__title"
+        id="civic-table-of-contents-title{{ index ? '-' ~ index : '' }}"
+      >{{ title }}</div>
     {%- endif %}
-    <div class="civic-table-of-contents__content">
+    <div data-table-of-contents-content class="civic-table-of-contents__content">
       {# TODO - Eventual plans to use menu component in place of these. #}
       {% if links -%}
         <ul class="civic-table-of-contents__links" aria-labelledby="civic-table-of-contents-title{{ index ? '-' ~ index : '' }}">

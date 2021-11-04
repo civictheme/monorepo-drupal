@@ -11,9 +11,12 @@ CivicTableOfContents.prototype.init = function () {
 
   this.elements.forEach((elToc, tocIndex) => {
     // Find all selectors in scope.
-    const useJS = elToc.dataset.useJs;
+    const useJS = elToc.dataset.tableOfContentsUseJs;
     if (useJS === 'true') {
-      const { anchors, anchorScope } = elToc.dataset;
+      const {
+        tableOfContentsAnchors: anchors,
+        tableOfContentsAnchorScope: anchorScope,
+      } = elToc.dataset;
       const links = [];
 
       // Extract links.
@@ -40,8 +43,8 @@ CivicTableOfContents.prototype.init = function () {
 
       // Update TOC.
       if (links.length > 0) {
-        const elContent = elToc.querySelector('.civic-table-of-contents__content');
-        const elTitle = elToc.querySelector('.civic-table-of-contents__title');
+        const elContent = elToc.querySelector('[data-table-of-contents-content]');
+        const elTitle = elToc.querySelector('[data-table-of-contents-title]');
 
         if (elContent) {
           elContent.innerHTML = '';
@@ -76,5 +79,5 @@ CivicTableOfContents.prototype.anchorName = function (str) {
     .replace(/\s+/gm, '-');
 };
 
-const toc = document.querySelectorAll('.civic-table-of-contents');
+const toc = document.querySelectorAll('[data-table-of-contents]');
 new CivicTableOfContents(toc);

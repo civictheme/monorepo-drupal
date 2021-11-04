@@ -21,7 +21,7 @@ export const TableOfContents = (knobTab) => {
       generalKnobTab,
     ),
     title: text('Title', 'On this page', generalKnobTab),
-    links: boolean('Use manual links', false, generalKnobTab) ? [
+    links: boolean('Set manual / automatic links', false, generalKnobTab) ? [
       {
         title: 'Introduction',
         url: '#introduction',
@@ -47,6 +47,8 @@ export const TableOfContents = (knobTab) => {
         url: '#section-5',
       },
     ] : null,
+    anchor_selector: text('Anchor Selector', 'h3', generalKnobTab),
+    anchor_scope_selector: text('Anchor Scope Selector', '.civic-basic-content', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
