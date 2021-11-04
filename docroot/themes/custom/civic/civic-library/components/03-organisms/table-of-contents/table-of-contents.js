@@ -1,77 +1,137 @@
-/* eslint-disable no-new, func-names */
+/**
+ * Table of contents component.
+ *
+ * Attaches to markup with 'data-table-of-contents-position' attribute.
+ *
+ * Available attributes:
+ * - data-table-of-contents-position: Placed on the target element to init TOC.
+ *   Values are: before, after, prepend, append. Value defaults to 'before'.
+ * - data-table-of-contents-theme (optional): Theme of the TOC. Values are:
+ *   light, dark. Defaults to 'light'.
+ * - data-table-of-contents-anchor-selector (optional): The selector of the
+ *   anchors. Defaults to 'h2'.
+ * - data-table-of-contents-anchor-scope-selector (optional): The scope for
+ *   the anchors. Defaults to '.civic-basic-content'.
+ * - data-table-of-contents-title (optional): The title of TOC.
+ */
 
 function CivicTableOfContents(el) {
-  this.elements = el;
+  // Check if current target is already initialised.
+  if (el.hasAttribute('data-table-of-contents-initialised')) {
+    return;
+  }
+
+  // Get options from attributes.
+  this.target = el;
+  this.position = this.target.getAttribute('data-table-of-contents-position').trim();
+  this.theme = this.target.hasAttribute('data-table-of-contents-theme') ? this.target.getAttribute('data-table-of-contents-theme').trim() : 'light';
+  this.anchorSelector = this.target.hasAttribute('data-table-of-contents-anchor-selector') ? this.target.getAttribute('data-table-of-contents-anchor-selector').trim() : 'h2';
+  this.anchorScopeSelector = this.target.hasAttribute('data-table-of-contents-anchor-scope-selector') ? this.target.getAttribute('data-table-of-contents-anchor-scope-selector').trim() : '.civic-basic-content';
+  this.title = this.target.hasAttribute('data-table-of-contents-title') ? this.target.getAttribute('data-table-of-contents-title').trim() : '';
+
+  // Normalise attribute values.
+  this.position = ['before', 'after', 'prepend', 'append'].indexOf(this.position.trim()) > 0 ? this.position : 'before';
+  this.theme = this.theme === 'dark' ? 'dark' : 'light';
+  this.anchorSelector = this.anchorSelector !== '' ? this.anchorSelector : 'h2';
+  this.anchorScopeSelector = this.anchorScopeSelector !== '' ? this.anchorScopeSelector : '.civic-basic-content';
+
+  // Initialise component.
   this.init();
+
+  // Mark target as initialised.
+  this.target.setAttribute('data-table-of-contents-initialised', 'true');
 }
 
 CivicTableOfContents.prototype.init = function () {
-  // Store all used names to resolve duplicates.
-  const listIndex = {};
+  let html = '';
 
-  this.elements.forEach((elToc, tocIndex) => {
-    // Find all selectors in scope.
-    const useJS = elToc.dataset.tableOfContentsUseJs;
-    if (useJS === 'true') {
-      const {
-        tableOfContentsAnchors: anchors,
-        tableOfContentsAnchorScope: anchorScope,
-      } = elToc.dataset;
-      const links = [];
+  const links = this.findLinks(this.anchorSelector, this.anchorScopeSelector);
 
-      // Extract links.
-      document.querySelectorAll(anchorScope).forEach((elScope) => {
-        elScope.querySelectorAll(anchors).forEach((elAnchor) => {
-          const existingId = elAnchor.id;
-          const anchorText = elAnchor.innerText;
-          const anchorId = existingId || this.anchorName(anchorText);
-          let count = 0;
-          if (listIndex[anchorId]) {
-            listIndex[anchorId]++;
-            count = listIndex[anchorId];
-          } else {
-            listIndex[anchorId] = 1;
-          }
-          const correctedId = count > 0 ? `${anchorId}-${count}` : anchorId;
-          links.push({
-            title: anchorText,
-            url: `#${correctedId}`,
-          });
-          elAnchor.id = correctedId;
-        });
-      });
+  if (!links.length) {
+    return;
+  }
 
-      // Update TOC.
-      if (links.length > 0) {
-        const elContent = elToc.querySelector('[data-table-of-contents-content]');
-        const elTitle = elToc.querySelector('[data-table-of-contents-title]');
+  if (this.title) {
+    html += this.renderTitle(this.title);
+  }
 
-        if (elContent) {
-          elContent.innerHTML = '';
-        }
+  html += this.renderLinks(links);
 
-        const titleId = `civic-table-of-contents-title-${tocIndex}`;
-        elTitle.id = titleId;
-        let html = `<ul class="civic-table-of-contents__links" aria-labelledby="${titleId}">`;
-        links.forEach((link) => {
-          html += `
-            <li class="civic-table-of-contents__link-item">
-              <a class="civic-table-of-contents__link" href="${link.url}">${link.title}</a>
-            </li>
-          `;
-        });
-        html += '</ul>';
+  html = this.renderContainer(html, this.theme, this.position);
 
-        // Create and append links to DOM.
-        const elTemp = document.createElement('template');
-        elTemp.innerHTML = html;
-        elContent.append(elTemp.content.firstChild);
-      }
-    }
-  });
+  this.place(this.target, this.position, html);
 };
 
-CivicTableOfContents.prototype.anchorName = function (str) {
+CivicTableOfContents.prototype.findLinks = function (anchorSelector, scopeSelector) {
+  const links = [];
+
+  // Fins links within provided scope selector.
+  document.querySelectorAll(scopeSelector).forEach((elScope) => {
+    elScope.querySelectorAll(anchorSelector).forEach((elAnchor) => {
+      // Respect existing ID.
+      let anchorId = elAnchor.id || null;
+      const anchorText = elAnchor.innerText;
+
+      // Generate new ID if no existing ID.
+      if (!anchorId || anchorId.length === 0) {
+        anchorId = this.makeAnchorId(anchorText);
+        // Check if generated ID is already present on the page.
+        if (elScope.querySelectorAll(`#${anchorId}`).length) {
+          // Add random 3 character suffix.
+          anchorId = `${anchorId}-${Math.random().toString(36).substring(2, 5)}`;
+        }
+      }
+
+      links.push({
+        title: anchorText,
+        url: `#${anchorId}`,
+      });
+
+      // Update anchor with the id. This will "fix" any anchors with duplicated
+      // IDs, which is not a valid HTML content.
+      elAnchor.id = anchorId;
+    });
+  });
+
+  return links;
+};
+
+CivicTableOfContents.prototype.renderTitle = function (title) {
+  return `<div class="civic-table-of-contents__title">${title}</div>`;
+};
+
+CivicTableOfContents.prototype.renderLinks = function (links) {
+  let html = '';
+
+  html += `<ul class="civic-table-of-contents__links">`;
+  for (const i in links) {
+    html += `
+      <li class="civic-table-of-contents__link-item">
+        <a class="civic-table-of-contents__link" href="${links[i].url}">${links[i].title}</a>
+      </li>
+    `;
+  }
+  html += '</ul>';
+
+  return html;
+};
+
+CivicTableOfContents.prototype.renderContainer = function (html, theme, position) {
+  return `<div class="civic-table-of-contents civic-theme-${theme} civic-table-of-contents--position-${position}">${html}</div>`;
+};
+
+CivicTableOfContents.prototype.place = function (el, position, html) {
+  const positionMap = {
+    before: 'beforebegin',
+    after: 'afterend',
+    prepend: 'afterbegin',
+    append: 'beforeend',
+  };
+
+  el.insertAdjacentHTML(positionMap[position], html);
+};
+
+CivicTableOfContents.prototype.makeAnchorId = function (str) {
   return str.toLowerCase()
     .replace(/(&\w+?;)/gim, ' ')
     .replace(/[_.~"<>%|'!*();:@&=+$,/?%#[\]{}\n`^\\]/gim, '')
@@ -79,5 +139,6 @@ CivicTableOfContents.prototype.anchorName = function (str) {
     .replace(/\s+/gm, '-');
 };
 
-const toc = document.querySelectorAll('[data-table-of-contents]');
-new CivicTableOfContents(toc);
+document.querySelectorAll('[data-table-of-contents-position]').forEach((el) => {
+  new CivicTableOfContents(el);
+});
