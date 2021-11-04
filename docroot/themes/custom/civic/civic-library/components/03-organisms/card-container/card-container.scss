@@ -6,6 +6,14 @@
 .civic-card-container {
   $root: &;
 
+  &.civic-theme-light {
+    color: $civic-card-container-light-color;
+  }
+
+  &.civic-theme-dark {
+    color: $civic-card-container-dark-color;
+  }
+
   &--fill-width {
     [class*='col-'] {
       max-width: 100%;
@@ -16,6 +24,14 @@
   &--with-spacing {
     padding-top: civic-space(6);
     padding-bottom: civic-space(6);
+
+    &.civic-theme-light {
+      background-color: $civic-card-container-light-background;
+    }
+
+    &.civic-theme-dark {
+      background-color: $civic-card-container-dark-background;
+    }
   }
 
   &__card {
@@ -32,15 +48,23 @@
     }
   }
 
-  &__header__heading {
+  &__header-title {
     @include civic-typography('heading-3');
 
     @include civic-breakpoint('m') {
       margin-right: auto;
     }
+
+    #{$root}.civic-theme-light & {
+      color: $civic-card-container-light-heading-color;
+    }
+
+    #{$root}.civic-theme-dark & {
+      color: $civic-card-container-dark-heading-color;
+    }
   }
 
-  &__header__link {
+  &__header-link {
     @include civic-typography('label-regular');
 
     @include civic-breakpoint('m') {
@@ -62,10 +86,10 @@
     }
   }
 
-  &__footer__link {
-    margin-top: civic-space(4);
-
+  &__footer-link {
     @include civic-typography('label-regular');
+
+    margin-top: civic-space(4);
 
     @include civic-breakpoint('m') {
       align-self: center;
@@ -77,29 +101,5 @@
     @include civic-typography('body');
 
     margin-bottom: civic-space(3);
-  }
-
-  &.civic-theme-light {
-    color: $civic-card-container-light-color;
-
-    &#{$root}--with-spacing {
-      background-color: $civic-card-container-light-background;
-    }
-
-    #{$root}__header__heading {
-      color: $civic-card-container-light-heading-color;
-    }
-  }
-
-  &.civic-theme-dark {
-    color: $civic-card-container-dark-color;
-
-    &#{$root}--with-spacing {
-      background-color: $civic-card-container-dark-background;
-    }
-
-    #{$root}__header__heading {
-      color: $civic-card-container-dark-heading-color;
-    }
   }
 }
