@@ -13,7 +13,7 @@ require_once 'includes/block--primary-navigation.inc';
 require_once 'includes/block--secondary-navigation.inc';
 require_once 'includes/civic_banner.inc';
 require_once 'includes/civic_cards.inc';
-require_once 'includes/civic_pages.inc';
+require_once 'includes/civic_pager.inc';
 require_once 'includes/civic_paragraphs.inc';
 require_once 'includes/civic_utilities.inc';
 require_once 'includes/civic_views.inc';
