@@ -5,6 +5,7 @@
 // Font imports.
 //
 // stylelint-disable no-invalid-position-at-import-rule
+// stylelint-disable scss/dollar-variable-pattern
 
 @import 'variables';
 
@@ -18,10 +19,12 @@
     $file-name: map.get($value, 'file');
     $formats: map.get($value, 'format');
     $src-list: ();
+
     @each $format in $formats {
       $font-path: '#{$civic-font-directory}#{$file-name}.#{$format}';
       $src-list: list.append($src-list, url($font-path) format($format), comma);
     }
+
     font-family: $family;
     src: $src-list;
   }
