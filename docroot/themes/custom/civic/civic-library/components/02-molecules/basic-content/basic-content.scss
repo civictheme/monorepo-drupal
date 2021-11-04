@@ -81,6 +81,10 @@
   p {
     margin-top: $civic-basic-content-vertical-spacing;
     margin-bottom: $civic-basic-content-vertical-spacing;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   blockquote {
