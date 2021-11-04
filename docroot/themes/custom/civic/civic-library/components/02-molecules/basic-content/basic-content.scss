@@ -9,120 +9,6 @@
 
   @include civic-typography('body');
 
-  &.civic-theme-light {
-    background-color: $civic-basic-content-light-background-color;
-    color: $civic-basic-content-light-base-color;
-
-    h1 {
-      color: $civic-basic-content-light-heading-1-color;
-    }
-
-    h2 {
-      color: $civic-basic-content-light-heading-2-color;
-    }
-
-    h3 {
-      color: $civic-basic-content-light-heading-3-color;
-    }
-
-    h4 {
-      color: $civic-basic-content-light-heading-4-color;
-    }
-
-    h5 {
-      color: $civic-basic-content-light-heading-5-color;
-    }
-
-    h6 {
-      color: $civic-basic-content-light-heading-6-color;
-    }
-
-    blockquote {
-      color: $civic-basic-content-light-blockquote-color;
-
-      &::before {
-        background-color: $civic-basic-content-light-blockquote-block;
-      }
-    }
-
-    ul {
-      li {
-        color: $civic-basic-content-light-ul-li-color;
-
-        &::before {
-          background-color: $civic-basic-content-light-ul-li-marker-color;
-        }
-      }
-    }
-
-    ol {
-      li {
-        color: $civic-basic-content-light-ol-li-color;
-
-        &::before {
-          color: $civic-basic-content-light-ol-li-marker-color;
-        }
-      }
-    }
-  }
-
-  &.civic-theme-dark {
-    background-color: $civic-basic-content-dark-background-color;
-    color: $civic-basic-content-dark-base-color;
-
-    h1 {
-      color: $civic-basic-content-dark-heading-1-color;
-    }
-
-    h2 {
-      color: $civic-basic-content-dark-heading-2-color;
-    }
-
-    h3 {
-      color: $civic-basic-content-dark-heading-3-color;
-    }
-
-    h4 {
-      color: $civic-basic-content-dark-heading-4-color;
-    }
-
-    h5 {
-      color: $civic-basic-content-dark-heading-5-color;
-    }
-
-    h6 {
-      color: $civic-basic-content-dark-heading-6-color;
-    }
-
-    blockquote {
-      color: $civic-basic-content-dark-blockquote-color;
-
-      &::before {
-        background-color: $civic-basic-content-dark-blockquote-block;
-      }
-    }
-
-    ul {
-      li {
-        color: $civic-basic-content-dark-ul-li-color;
-
-        &::before {
-          background-color: $civic-basic-content-dark-ul-li-marker-color;
-        }
-      }
-    }
-
-    ol {
-      li {
-        color: $civic-basic-content-dark-ol-li-color;
-
-        &::before {
-          color: $civic-basic-content-dark-ol-li-marker-color;
-        }
-      }
-    }
-  }
-
   h1,
   h2,
   h3,
@@ -280,6 +166,120 @@
     img {
       margin-top: 0;
       margin-bottom: 0;
+    }
+  }
+
+  &.civic-theme-light {
+    background-color: $civic-basic-content-light-background-color;
+    color: $civic-basic-content-light-base-color;
+
+    h1 {
+      color: $civic-basic-content-light-heading-1-color;
+    }
+
+    h2 {
+      color: $civic-basic-content-light-heading-2-color;
+    }
+
+    h3 {
+      color: $civic-basic-content-light-heading-3-color;
+    }
+
+    h4 {
+      color: $civic-basic-content-light-heading-4-color;
+    }
+
+    h5 {
+      color: $civic-basic-content-light-heading-5-color;
+    }
+
+    h6 {
+      color: $civic-basic-content-light-heading-6-color;
+    }
+
+    blockquote {
+      color: $civic-basic-content-light-blockquote-color;
+
+      &::before {
+        background-color: $civic-basic-content-light-blockquote-block;
+      }
+    }
+
+    ul {
+      li {
+        color: $civic-basic-content-light-ul-li-color;
+
+        &::before {
+          background-color: $civic-basic-content-light-ul-li-marker-color;
+        }
+      }
+    }
+
+    ol {
+      li {
+        color: $civic-basic-content-light-ol-li-color;
+
+        &::before {
+          color: $civic-basic-content-light-ol-li-marker-color;
+        }
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-basic-content-dark-background-color;
+    color: $civic-basic-content-dark-base-color;
+
+    h1 {
+      color: $civic-basic-content-dark-heading-1-color;
+    }
+
+    h2 {
+      color: $civic-basic-content-dark-heading-2-color;
+    }
+
+    h3 {
+      color: $civic-basic-content-dark-heading-3-color;
+    }
+
+    h4 {
+      color: $civic-basic-content-dark-heading-4-color;
+    }
+
+    h5 {
+      color: $civic-basic-content-dark-heading-5-color;
+    }
+
+    h6 {
+      color: $civic-basic-content-dark-heading-6-color;
+    }
+
+    blockquote {
+      color: $civic-basic-content-dark-blockquote-color;
+
+      &::before {
+        background-color: $civic-basic-content-dark-blockquote-block;
+      }
+    }
+
+    ul {
+      li {
+        color: $civic-basic-content-dark-ul-li-color;
+
+        &::before {
+          background-color: $civic-basic-content-dark-ul-li-marker-color;
+        }
+      }
+    }
+
+    ol {
+      li {
+        color: $civic-basic-content-dark-ol-li-color;
+
+        &::before {
+          color: $civic-basic-content-dark-ol-li-marker-color;
+        }
+      }
     }
   }
 }
