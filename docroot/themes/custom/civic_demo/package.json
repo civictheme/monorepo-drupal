@@ -46,6 +46,7 @@
     "gulp-newer": "^1.4.0",
     "gulp-rename": "^2.0.0",
     "html-webpack-plugin": "^4.5.2",
+    "lorem-ipsum": "^2.0.4",
     "mini-css-extract-plugin": "^1.6.2",
     "node-sass-magic-importer": "^5.3.2",
     "sass": "^1.41.0",

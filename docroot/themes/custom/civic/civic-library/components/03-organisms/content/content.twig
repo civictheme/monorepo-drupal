@@ -5,7 +5,7 @@
   <div class="row">
     {# Sidebar #}
     {% if content_left %}
-      <aside class="col-m-3 civic-content--content-left" role="complementary">
+      <aside class="col-m-3 civic-content--content-left" role="complementary" {% if sidebar_attributes %}{{ sidebar_attributes }}{% endif %}>
         {{ content_left }}
       </aside>
     {% endif %}
@@ -13,7 +13,7 @@
     {# Content #}
     {% set content_classes = (content_left is empty) or ( not content_left) ? ' col-m-12' : ' col-m-8 col-m-offset-1 civic-content--has-sidebar' %}
     <section class="civic-content--main{{ content_classes }}">
-      <div class="civic-content">
+      <div class="civic-content" {% if content_attributes %}{{ content_attributes }}{% endif %}>
         {{ content }}
       </div>
     </section>

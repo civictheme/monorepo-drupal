@@ -1,5 +1,3 @@
-/* eslint-disable no-new, func-names */
-
 /**
  * Responsive utility component.
  *

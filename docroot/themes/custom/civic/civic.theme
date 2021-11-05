@@ -44,6 +44,10 @@ function civic_preprocess_page(&$variables) {
  * Implements hook_preprocess_HOOK() for node.html.twig.
  */
 function civic_preprocess_node(&$variables) {
+  // Generic node pre-processing.
+  _civic_preprocess_node($variables);
+
+  // Per-view mode preprocessing.
   $view_mode = $variables['elements']['#view_mode'];
   $preprocessor_function = '_civic_preprocess_node__' . $view_mode;
   if (function_exists($preprocessor_function)) {

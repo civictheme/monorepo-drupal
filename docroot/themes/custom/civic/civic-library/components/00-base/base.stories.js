@@ -3,6 +3,7 @@
 //
 
 import { boolean } from '@storybook/addon-knobs';
+import { LoremIpsum } from 'lorem-ipsum';
 
 export const getSlots = (names) => {
   const showSlots = boolean('Show story-slots', false, 'Slots');
@@ -33,4 +34,19 @@ export const randomLinks = (count, domain) => {
   }
 
   return links;
+};
+
+export const randomText = (words) => {
+  const lorem = new LoremIpsum({
+    sentencesPerParagraph: {
+      max: 8,
+      min: 4,
+    },
+    wordsPerSentence: {
+      max: 16,
+      min: 4,
+    },
+  });
+
+  return lorem.generateWords(words);
 };
