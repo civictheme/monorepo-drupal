@@ -5,6 +5,7 @@
  * Functions to support theming in the Civic theme.
  */
 
+use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 
 require_once 'includes/block--civic-component-block.inc';
@@ -13,7 +14,7 @@ require_once 'includes/block--primary-navigation.inc';
 require_once 'includes/block--secondary-navigation.inc';
 require_once 'includes/civic_banner.inc';
 require_once 'includes/civic_cards.inc';
-require_once 'includes/civic_pages.inc';
+require_once 'includes/civic_pager.inc';
 require_once 'includes/civic_paragraphs.inc';
 require_once 'includes/civic_utilities.inc';
 require_once 'includes/civic_views.inc';
@@ -30,20 +31,68 @@ if (file_exists('includes/styleguide.inc')) {
  * Implements hook_preprocess_HOOK() for page.html.twig.
  */
 function civic_preprocess_page(&$variables) {
-  // Adding header and footer theme to page variables.
+  // Set header and footer theme from theme settings.
   $variables['page']['header_theme'] = theme_get_setting('civic_header_theme') ?? 'light';
   $variables['page']['footer_theme'] = theme_get_setting('civic_footer_theme') ?? 'dark';
-  // Adding all the regions from page.
-  $regions = array_filter($variables['page'], function ($key) {
+
+  // Always contain page content.
+  $variables['page']['content_contained'] = TRUE;
+
+  // Generic node pages pre-processing.
+  _civic_preprocess_page_node($variables);
+
+  // Please do not add anything below this line or components will not be able
+  // to discover variables.
+  // Add all page variables to the root variables. This is required so that
+  // child themes could add page-level variables without have to extend page
+  // template (the variables there are not scoped as a exception).
+  $page_variables = array_filter($variables['page'], function ($key) {
     return strpos($key, '#') !== 0;
   }, ARRAY_FILTER_USE_KEY);
-  $variables += $regions;
+  $variables += $page_variables;
+}
+
+/**
+ * Generic preprocess for all view mode of nodes.
+ */
+function _civic_preprocess_page_node(&$variables) {
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = $variables['node'] ?? NULL;
+
+  if (!$node) {
+    return;
+  }
+
+  // "Un-contain" content if it is on a content type that can be edge-to-edge.
+  $edge_to_edge_bundles = ['civic_page'];
+  if ($node && in_array($node->bundle(), $edge_to_edge_bundles)) {
+    $variables['page']['content_contained'] = FALSE;
+  }
+
+  // Add Table of Contents if the value is set on node.
+  if ($node->hasField('field_c_n_show_toc') && $node->field_c_n_show_toc->getString()) {
+    $toc_attributes = [];
+    $toc_attributes['data-table-of-contents-position'] = 'prepend';
+    $toc_attributes['data-table-of-contents-theme'] = 'light';
+    $toc_attributes['data-table-of-contents-anchor-selector'] = 'h2';
+    $toc_attributes['data-table-of-contents-title'] = t('On this page');
+    $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.civic-content__main';
+    $toc_attributes = new Attribute($toc_attributes);
+
+    // Inject TOC wrapper into 'content_top' slot of the Content component.
+    // We need to do this because content area may not be contained, but TOC
+    // always has to be.
+    $variables['page']['content_top']['toc'] = [
+      '#markup' => '<div class="container"><div class="row"><div class="table-of-contents-container col-m-12" ' . $toc_attributes . '></div></div></div>',
+    ];
+  }
 }
 
 /**
  * Implements hook_preprocess_HOOK() for node.html.twig.
  */
 function civic_preprocess_node(&$variables) {
+  // Per-view mode preprocessing.
   $view_mode = $variables['elements']['#view_mode'];
   $preprocessor_function = '_civic_preprocess_node__' . $view_mode;
   if (function_exists($preprocessor_function)) {
@@ -141,13 +190,6 @@ function civic_theme() {
         'links' => [],
       ],
       'template' => 'navigation/breadcrumb',
-    ],
-    'civic_basic_content' => [
-      'variables' => [
-        'content' => NULL,
-        'display_theme' => NULL,
-      ],
-      'template' => 'content/civic-basic-content',
     ],
     'civic_icon_link' => [
       'variables' => [

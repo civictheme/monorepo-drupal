@@ -14,6 +14,7 @@ Feature: Fields on Page content type
     When I go to "admin/structure/types/manage/civic_event/fields"
     And I should see the text "field_c_n_attachments" in the "Attachments" row
     And I should see the text "field_c_n_body" in the "Body" row
+    And I should see the text "field_c_n_show_toc" in the "Show Table of Contents" row
     And I should see the text "field_c_n_date" in the "Event date" row
     And I should see the text "field_c_n_image" in the "Featured image" row
     And I should see the text "field_c_n_location" in the "Location" row
@@ -34,6 +35,7 @@ Feature: Fields on Page content type
 
     And I see field "Tagline"
     And I see field "field_c_n_body[0][value]"
+    And I see field "field_c_n_show_toc[value]"
     And I should see an "input[name='field_c_n_location_civic_map_add_more']" element
     And I should see an "input[name='field_c_n_attachments_civic_attachment_add_more']" element
     And I should see an "input[name='field_c_n_thumbnail-media-library-open-button']" element

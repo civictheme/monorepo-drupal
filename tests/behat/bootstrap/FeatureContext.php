@@ -18,6 +18,7 @@ use DrevOps\BehatSteps\ParagraphsTrait;
 use DrevOps\BehatSteps\PathTrait;
 use DrevOps\BehatSteps\SelectTrait;
 use DrevOps\BehatSteps\TaxonomyTrait;
+use DrevOps\BehatSteps\VisibilityTrait;
 use DrevOps\BehatSteps\WaitTrait;
 use DrevOps\BehatSteps\WatchdogTrait;
 use Drupal\DrupalExtension\Context\DrupalContext;
@@ -40,6 +41,7 @@ class FeatureContext extends DrupalContext {
   use TaxonomyTrait;
   use WatchdogTrait;
   use WaitTrait;
+  use VisibilityTrait;
 
   /**
    * @Then I see content in iframe with id :id
