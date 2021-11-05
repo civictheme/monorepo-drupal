@@ -5,32 +5,8 @@
  */
 #}
 
-{% include '@templates/page/page.twig' with {
-  header_top_1: page.header_top_1,
-  header_top_2: page.header_top_2,
-  header_top_3: page.header_top_3,
-  header_middle_1: page.header_middle_1,
-  header_middle_2: page.header_middle_2,
-  header_middle_3: page.header_middle_3,
-  header_bottom_1: page.header_bottom_1,
-  banner: page.banner,
-  highlighted: page.highlighted,
-  content: page.content,
-  content_top: page.content_top,
-  content_bottom: page.content_bottom,
-  sidebar: page.sidebar,
-  content_attributes: page.content_attributes,
-  sidebar_attributes: page.sidebar_attributes,
-  content_contained: page.content_contained,
-  footer_top_1: page.footer_top_1,
-  footer_top_2: page.footer_top_2,
-  footer_middle_1: page.footer_middle_1,
-  footer_middle_2: page.footer_middle_2,
-  footer_middle_3: page.footer_middle_3,
-  footer_middle_4: page.footer_middle_4,
-  footer_bottom_1: page.footer_bottom_1,
-  footer_bottom_2: page.footer_bottom_2,
-  header_theme: page.header_theme,
-  footer_theme: page.footer_theme,
-  footer_logo: page.footer_logo,
-} only %}
+{#
+ # Note that variables are not scoped so that child themes could add more
+ # variables without the need to change this template.
+#}
+{% include '@templates/page/page.twig' %}
