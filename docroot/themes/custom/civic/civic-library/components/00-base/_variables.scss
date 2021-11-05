@@ -415,9 +415,15 @@ $civic-attachment-dark-icon-color: civic-color('accent') !default;
 $civic-card-container-light-color: civic-color('neutral_80') !default;
 $civic-card-container-light-background: civic-color('neutral_5') !default;
 $civic-card-container-light-heading-color: civic-color('heading') !default;
+$civic-card-container-light-heading-hover-color: civic-color('neutral') !default;
+$civic-card-container-light-footer-link-color: civic-color('heading') !default;
+$civic-card-container-light-footer-link-hover-color: civic-color('neutral') !default;
+$civic-card-container-dark-color: civic-color('neutral') !default;
 $civic-card-container-dark-background: civic-color('shade_60') !default;
 $civic-card-container-dark-heading-color: civic-color('neutral') !default;
-$civic-card-container-dark-color: civic-color('neutral') !default;
+$civic-card-container-dark-heading-hover-color: civic-color('shade_60') !default;
+$civic-card-container-dark-footer-link-color: civic-color('neutral') !default;
+$civic-card-container-dark-footer-link-hover-color: civic-color('shade_60') !default;
 
 //
 // Navigation card.
