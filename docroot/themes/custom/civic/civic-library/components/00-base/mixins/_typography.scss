@@ -1,7 +1,6 @@
 //
 // Typography mixins.
 //
-// stylelint-disable scss/dollar-variable-pattern
 
 @use 'sass:map';
 @use 'sass:list';
@@ -59,6 +58,7 @@
 // Do not use directly.
 // Use @include civic-typography() mixin instead.
 //
+// stylelint-disable-next-line scss/at-function-pattern
 @function _civic-typography-all() {
   @return map.merge($civic-typography-default, $civic-typography);
 }

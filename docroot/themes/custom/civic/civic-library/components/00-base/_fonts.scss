@@ -1,12 +1,9 @@
-@use 'sass:list';
-@use 'sass:map';
-
 //
 // Font imports.
 //
 // stylelint-disable no-invalid-position-at-import-rule
-// stylelint-disable scss/dollar-variable-pattern
-
+@use 'sass:list';
+@use 'sass:map';
 @import 'variables';
 
 @if $civic-font-import-default {
