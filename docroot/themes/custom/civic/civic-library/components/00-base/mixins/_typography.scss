@@ -9,6 +9,8 @@
 //
 // Include font size, height, weight and family for one-to-many breakpoints.
 //
+// @code
+//
 // @include civic-typography('heading-1');
 // or
 // @include civic-typography((24px, 1.2em, 400));
@@ -18,8 +20,10 @@
 //   'l': (24px, 1.2em, 600)
 // ));
 //
+// @endcode
+//
 @mixin civic-typography($ruleset) {
-  $all-typographies: civic-all-typographies();
+  $all-typographies: _civic-typography-all();
 
   // Print preset
   @if type-of($ruleset) == string {
@@ -50,13 +54,17 @@
 }
 
 //
-// Helper class to compile all typographies into a single map.
-// For using a typography, use civic-typography() instead.
+// Compile all typographies into a single map.
 //
-@function civic-all-typographies() {
+// Do not use directly.
+// Use @include civic-typography() mixin instead.
+//
+@function _civic-typography-all() {
   @return map.merge($civic-typography-default, $civic-typography);
 }
 
+//
+// Print typography rules.
 //
 // Do not use directly.
 // Use @include civic-typography() mixin instead.
@@ -80,14 +88,6 @@
     $letter-spacing: list.nth($rules, 5);
   }
 
-  @include _civic-typography-font($font-size, $line-height, $font-weight, $font-family, $letter-spacing);
-}
-
-//
-// Do not use directly.
-// Use @include civic-typography() mixin instead.
-//
-@mixin _civic-typography-font($font-size: 's', $line-height: 1.2em, $font-weight: 'default', $font-family: 'none', $letter-spacing: 'normal') {
   font-size: rem($font-size);
   line-height: $line-height;
   letter-spacing: $letter-spacing;

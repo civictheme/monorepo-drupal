@@ -5,7 +5,7 @@
   flex-flow: row wrap;
 
   // stylelint-disable-next-line scss/dollar-variable-pattern
-  $all-colors: civic-all-colors();
+  $all-colors: _civic-colors-all();
 
   @include civic-generate-class-variations-from-map($all-colors, 'story-color') using($key, $value, $index) {
     width: 100px;

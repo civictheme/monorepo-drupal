@@ -1,6 +1,6 @@
 // stylelint-disable scss/dollar-variable-pattern
 .story-typography-wrapper {
-  $all-typographies: civic-all-typographies();
+  $all-typographies: _civic-typography-all();
 
   @include civic-generate-class-variations-from-map($all-typographies) using($name, $value, $index) {
     @include civic-typography($name);

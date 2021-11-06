@@ -8,7 +8,7 @@
 //
 
 // All Civic palette is defined in $civic-default-colors maps. $civic-colors is
-// available (and empty) so that any sub-themes can place their colours in
+// available (and empty) so that any sub-themes can place their colors in
 // here to override the defaults. This allows Civic to make palette additions
 // (if required) without breaking sub-themes.
 $civic-colors: () !default;
@@ -25,14 +25,14 @@ $civic-default-colors: (
   'success': #008482,
 );
 $civic-default-colors-shades: (
-  'shade_15': color.mix(black, civic-base-color('primary'), 15%),
-  'shade_30': color.mix(black, civic-base-color('primary'), 30%),
-  'shade_45': color.mix(black, civic-base-color('primary'), 45%),
-  'shade_60': color.mix(black, civic-base-color('primary'), 60%),
-  'shade_80': color.mix(black, civic-base-color('primary'), 80%),
-  'shade_90': color.mix(black, civic-base-color('primary'), 90%),
+  'shade_15': color.mix(black, civic-color-base('primary'), 15%),
+  'shade_30': color.mix(black, civic-color-base('primary'), 30%),
+  'shade_45': color.mix(black, civic-color-base('primary'), 45%),
+  'shade_60': color.mix(black, civic-color-base('primary'), 60%),
+  'shade_80': color.mix(black, civic-color-base('primary'), 80%),
+  'shade_90': color.mix(black, civic-color-base('primary'), 90%),
 );
-$civic-default-colors-neutral-base: civic-base-color('primary') !default;
+$civic-default-colors-neutral-base: civic-color-base('primary') !default;
 $civic-default-colors-neutral: color.adjust(color.adjust($civic-default-colors-neutral-base, $saturation: -20%), $lightness: -1 * math.max(color.lightness($civic-default-colors-neutral-base) - 5%, 0%));
 $civic-default-colors-neutrals: (
   'neutral_5': color.mix($civic-default-colors-neutral, white, 5%),

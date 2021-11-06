@@ -69,7 +69,7 @@
 
     [data-collapsible-trigger] {
       &::after {
-        content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-light-icon-color);
+        content: civic-color-svg-fill($civic-collapsible-icon, $civic-collapsible-light-icon-color);
       }
     }
   }
@@ -79,7 +79,7 @@
 
     [data-collapsible-trigger] {
       &::after {
-        content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-dark-icon-color);
+        content: civic-color-svg-fill($civic-collapsible-icon, $civic-collapsible-dark-icon-color);
       }
     }
   }

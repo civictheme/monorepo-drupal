@@ -10,7 +10,7 @@
 // Get a color from the pre-defined list of colors.
 //
 @function civic-color($name) {
-  $all-colors: civic-all-colors();
+  $all-colors: _civic-colors-all();
 
   @if map.get($all-colors, $name) == null {
     @error '"#{$name}" is not an available color.';
@@ -20,20 +20,24 @@
 }
 
 //
-// Do not use.
-// This provides only base color palette access. Used for generating the other
-// derivative palettes (e.g. shades / neutrals / elements).
-// Use civic-color(name) instead.
+// Base color palette access.
 //
-@function civic-base-color($name) {
+// Do not use directly.
+// Provides only base color palette access. Used for generating the other
+// derivative palettes (e.g. shades / neutrals / elements).
+// Use @include civic-color() instead.
+//
+@function civic-color-base($name) {
   @return map.get(map.merge($civic-default-colors, $civic-colors), $name);
 }
 
 //
-// Helper class to compile all colors into a single map.
-// For resolving names to colors, use civic-color(name) instead.
+// Compile all colors into a single map.
 //
-@function civic-all-colors() {
+// Do not use directly.
+// Use @include civic-color() mixin instead.
+//
+@function _civic-colors-all() {
   $all-colors: ();
   $all-colors: map.merge($all-colors, $civic-default-colors);
   $all-colors: map.merge($all-colors, $civic-default-colors-shades);
@@ -43,7 +47,10 @@
   @return $all-colors;
 }
 
-@function civic-encode-color($string) {
+//
+// Encode color to be suitable for embedding.
+//
+@function civic-color-encode($string) {
   @if type-of($string) == 'color' and string.index(#{$string}, '#') == 1 {
     $hex: string.slice(color.ie-hex-str($string), 4);
     $string: string.unquote('#{$hex}');
@@ -54,6 +61,9 @@
   @return $string;
 }
 
-@function civic-svg-fill($svg, $color) {
-  @return civic-str-replace($svg, "fill=''", "fill='#{civic-encode-color($color)}'");
+//
+// String to fill SVG with color.
+//
+@function civic-color-svg-fill($svg, $color) {
+  @return civic-str-replace($svg, "fill=''", "fill='#{civic-color-encode($color)}'");
 }

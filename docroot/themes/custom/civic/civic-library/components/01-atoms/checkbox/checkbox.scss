@@ -28,7 +28,7 @@
     &:checked {
       & + span {
         &::after {
-          content: civic-svg-fill($civic-radio-check, $civic-radio-light-check-color);
+          content: civic-color-svg-fill($civic-radio-check, $civic-radio-light-check-color);
         }
       }
     }
@@ -38,7 +38,7 @@
     &:checked {
       & + span {
         &::after {
-          content: civic-svg-fill($civic-radio-check, $civic-radio-dark-check-color);
+          content: civic-color-svg-fill($civic-radio-check, $civic-radio-dark-check-color);
         }
       }
     }
