@@ -9,24 +9,28 @@ export default {
   },
 };
 
-export const Icon = () => {
+export const Icon = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
   const { icons } = ICONS;
   const colors = [...new Set([...SCSS_VARIABLES['civic-default-colors'], ...SCSS_VARIABLES['civic-colors']])];
   const sizes = SCSS_VARIABLES['civic-icon-sizes'];
 
   return CivicIcon({
-    symbol: select('Symbol', icons, icons[0]),
-    color: select('Color', colors, 'primary'),
-    size: radios('Size', sizes, sizes[0]),
+    symbol: select('Symbol', icons, icons[0], generalKnobTab),
+    color: select('Color', colors, 'primary', generalKnobTab),
+    size: radios('Size', sizes, sizes[0], generalKnobTab),
   });
 };
 
-export const IconLibrary = () => {
+export const IconLibrary = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
   const { packs } = ICONS;
   const colors = [...new Set([...SCSS_VARIABLES['civic-default-colors'], ...SCSS_VARIABLES['civic-colors']])];
   const sizes = SCSS_VARIABLES['civic-icon-sizes'];
 
-  const selectedPack = select('Pack', Object.keys(packs), Object.keys(packs).length ? Object.keys(packs)[0] : null);
+  const selectedPack = select('Pack', Object.keys(packs), Object.keys(packs).length ? Object.keys(packs)[0] : null, generalKnobTab);
 
   let html = ``;
 
@@ -35,8 +39,8 @@ export const IconLibrary = () => {
     packs[selectedPack].forEach((icon) => {
       html += CivicIcon({
         symbol: icon,
-        color: select('Color', colors, 'primary'),
-        size: radios('Size', sizes, sizes[0]),
+        color: select('Color', colors, 'primary', generalKnobTab),
+        size: radios('Size', sizes, sizes[0], generalKnobTab),
       });
     });
 

@@ -1,10 +1,31 @@
+@use 'sass:list';
+@use 'sass:map';
+
 //
 // Font imports.
 //
 // stylelint-disable no-invalid-position-at-import-rule
+// stylelint-disable scss/dollar-variable-pattern
 
 @import 'variables';
 
 @if $civic-font-import-default {
-  @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+}
+
+@each $font, $value in $civic-fonts {
+  @font-face {
+    $family: $font;
+    $file-name: map.get($value, 'file');
+    $formats: map.get($value, 'format');
+    $src-list: ();
+
+    @each $format in $formats {
+      $font-path: '#{$civic-font-directory}#{$file-name}.#{$format}';
+      $src-list: list.append($src-list, url($font-path) format($format), comma);
+    }
+
+    font-family: $family;
+    src: $src-list;
+  }
 }

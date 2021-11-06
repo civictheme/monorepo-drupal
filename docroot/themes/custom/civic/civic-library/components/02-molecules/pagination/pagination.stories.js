@@ -1,15 +1,36 @@
 import {
-  boolean, object, radios, text,
+  boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import CivicPagination from './pagination.twig';
+import { randomUrl } from '../../00-base/base.stories';
 
 export default {
   title: 'Molecules/Pagination',
 };
 
-export const Pagination = () => {
-  const generalKnobTab = 'General';
-  return CivicPagination({
+export const Pagination = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const pageCount = number(
+    'Number of pages',
+    5,
+    {
+      range: true,
+      min: 0,
+      max: 10,
+      step: 1,
+    },
+    generalKnobTab,
+  );
+
+  const pages = {};
+  for (let i = 0; i < pageCount; i++) {
+    pages[i + 1] = {
+      href: randomUrl(),
+    };
+  }
+
+  const generalKnobs = {
     theme: radios(
       'Theme',
       {
@@ -20,38 +41,36 @@ export const Pagination = () => {
       generalKnobTab,
     ),
     heading_id: text('Heading Id', 'civic-pager-demo', generalKnobTab),
-    items: object('Pagination items', {
+    items: {
       previous: {
         text: 'Previous',
-        href: '#',
+        href: randomUrl(),
       },
-      pages: {
-        1: {
-          href: '#',
-        },
-        2: {
-          href: '#',
-        },
-        3: {
-          href: '#',
-        },
-        4: {
-          href: '#',
-        },
-        5: {
-          href: '#',
-        },
-      },
+      pages,
       next: {
         text: 'Next',
-        href: '#',
+        href: randomUrl(),
       },
-    }, generalKnobTab),
+    },
     ellipses: boolean('With ellipses', true, generalKnobTab) ? {
       previous: 0,
       next: 1,
     } : false,
-    current: text('Current Page', 2, generalKnobTab),
+    current: number(
+      'Current page',
+      Math.floor(pageCount / 2),
+      {
+        range: true,
+        min: 1,
+        max: pageCount,
+        step: 1,
+      },
+      generalKnobTab,
+    ),
     modifier_class: text('Additional class', '', generalKnobTab),
+  };
+
+  return CivicPagination({
+    ...generalKnobs,
   });
 };

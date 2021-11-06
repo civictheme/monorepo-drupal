@@ -42,6 +42,7 @@
     &:focus {
       box-shadow: $civic-outline-boxshadow;
       background-color: $civic-button-light-focus-background-color;
+      border: rem(2px) solid $civic-button-light-border-color;
     }
 
     &:hover {
@@ -50,7 +51,7 @@
 
     &:active {
       background-color: $civic-button-light-active-background-color;
-      box-shadow: none;
+      border: rem(2px) solid $civic-button-light-border-color;
     }
 
     &[disabled] {
@@ -74,6 +75,7 @@
       box-shadow: $civic-outline-boxshadow;
       background-color: $civic-button-dark-focus-background-color;
       color: $civic-button-dark-focus-color;
+      border: rem(2px) solid $civic-button-dark-border-color;
 
       .civic-icon {
         fill: $civic-button-dark-focus-color;
@@ -82,20 +84,25 @@
 
     &:hover {
       background-color: $civic-button-dark-hover-background-color;
+      color: $civic-button-dark-state-color;
+
+      .civic-icon {
+        fill: $civic-button-dark-state-color;
+      }
     }
 
     &:active {
       background-color: $civic-button-dark-active-background-color;
-      box-shadow: none;
+      border: rem(2px) solid $civic-button-dark-border-color;
+      color: $civic-button-dark-state-color;
+
+      .civic-icon {
+        fill: $civic-button-dark-state-color;
+      }
     }
 
     &[disabled] {
       background-color: $civic-button-dark-disabled-background-color;
-    }
-
-    &:hover,
-    &:active,
-    &[disabled] {
       color: $civic-button-dark-state-color;
 
       .civic-icon {
@@ -125,12 +132,16 @@
       color: $civic-button-light-secondary-color;
       border: rem(3px) solid $civic-button-light-secondary-border-color;
 
+      &:focus {
+        border-color: $civic-button-light-border-color;
+      }
+
       &:hover {
-        border-color: $civic-button-light-hover-background-color;
+        border-color: $civic-button-light-border-color;
       }
 
       &:active {
-        border-color: $civic-button-light-active-background-color;
+        border-color: $civic-button-light-border-color;
       }
 
       &[disabled] {
@@ -147,12 +158,16 @@
       color: $civic-button-dark-secondary-color;
       border: rem(3px) solid $civic-button-dark-secondary-border-color;
 
+      &:focus {
+        border-color: $civic-button-dark-border-color;
+      }
+
       &:hover {
         border-color: $civic-button-dark-hover-background-color;
       }
 
       &:active {
-        border-color: $civic-button-dark-active-background-color;
+        border-color: $civic-button-dark-border-color;
       }
 
       &[disabled] {

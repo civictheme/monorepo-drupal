@@ -9,15 +9,24 @@ export default {
   },
 };
 
-export const SkipLink = () => CivicSkipLink({
-  theme: radios(
-    'Theme', {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-  ),
-  text: text('Text', 'Skip to main content'),
-  url: text('URL', '#main-content'),
-  modifier_class: text('Additional class', ''),
-});
+export const SkipLink = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const generalKnobs = {
+    theme: radios(
+      'Theme', {
+        Light: 'light',
+        Dark: 'dark',
+      },
+      'light',
+      generalKnobTab,
+    ),
+    text: text('Text', 'Skip to main content', generalKnobTab),
+    url: text('URL', '#main-content', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
+  };
+
+  return CivicSkipLink({
+    ...generalKnobs,
+  });
+};

@@ -11,11 +11,14 @@ export default {
   },
 };
 
-export const IconLink = () => {
+export const IconLink = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
   const { icons } = ICONS;
   const sizes = SCSS_VARIABLES['civic-icon-sizes'];
   const defaultIcon = icons.indexOf('brands_facebook');
-  return CivicIconLink({
+
+  const generalKnobs = {
     theme: radios(
       'Theme',
       {
@@ -23,13 +26,18 @@ export const IconLink = () => {
         Dark: 'dark',
       },
       'light',
+      generalKnobTab,
     ),
-    symbol: select('Symbol', icons, defaultIcon !== -1 ? icons[defaultIcon] : icons[0]),
-    size: radios('Size', sizes, sizes[0]),
-    text: text('Text', 'Go to service'),
-    url: text('URL', 'http://example.com'),
-    with_border: boolean('Add border', true),
-    new_window: boolean('Open in a new window', false),
-    modifier_class: text('Additional class', ''),
+    symbol: select('Symbol', icons, defaultIcon !== -1 ? icons[defaultIcon] : icons[0], generalKnobTab),
+    size: radios('Size', sizes, sizes[0], generalKnobTab),
+    text: text('Text', 'Go to service', generalKnobTab),
+    url: text('URL', 'http://example.com', generalKnobTab),
+    with_border: boolean('Add border', true, generalKnobTab),
+    new_window: boolean('Open in a new window', false, generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
+  };
+
+  return CivicIconLink({
+    ...generalKnobs,
   });
 };

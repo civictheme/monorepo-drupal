@@ -1,0 +1,16 @@
+@import 'components/00-base/variables';
+@import 'components/00-base/base';
+
+.block-local-tasks-block {
+  .civic-link-list--local-tasks {
+    padding: civic-space(2) 0 civic-space(2);
+
+    &.civic-theme-light {
+      background-color: civic-color('neutral');
+    }
+
+    &.civic-theme-dark {
+      background-color: civic-color('primary');
+    }
+  }
+}

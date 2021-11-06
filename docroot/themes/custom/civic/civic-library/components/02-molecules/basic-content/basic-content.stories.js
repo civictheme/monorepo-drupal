@@ -17,8 +17,9 @@ export default {
   },
 };
 
-export const BasicContent = () => {
-  const generalKnobTab = 'General';
+export const BasicContent = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
   const theme = radios(
     'Theme', {
       Light: 'light',
@@ -42,9 +43,10 @@ export const BasicContent = () => {
 
   // Paragraphs.
   html += `
-    <p class="lead">Lead sed aute in sed consequat veniam excepteur minim mollit.</p>
-    <p>Body veniam reprehenderit velit ea veniam occaecat magna est sed duis quis elit occaecat dolore ut enim est do in dolor non elit aliquip commodo aliquip sint veniam ullamco adipisicing tempor ad.</p>
-    <p class="small">Small <span>duis sunt velit.</span><span>Ea eu non.</span></p>
+    <p>Text without a class sed aute in sed consequat veniam excepteur minim mollit.</p>
+    <p class="civic-text-large">Large text sed aute in sed consequat veniam excepteur minim mollit.</p>
+    <p class="civic-text-regular">Regular text veniam reprehenderit velit ea veniam occaecat magna est sed duis quis elit occaecat dolore ut enim est do in dolor non elit aliquip commodo aliquip sint veniam ullamco adipisicing tempor ad.</p>
+    <p class="civic-text-small">Small text <span>duis sunt velit.</span><span>Ea eu non.</span></p>
     <p>In mollit in minim ut non ${CivicLink({
     theme,
     text: 'commodo dolore',
@@ -116,8 +118,10 @@ export const BasicContent = () => {
   const generalKnobs = {
     theme,
     content: boolean('Content', true, generalKnobTab) ? html : null,
-    modifier_class: text('Additional class', ''),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicBasicContent(generalKnobs);
+  return CivicBasicContent({
+    ...generalKnobs,
+  });
 };

@@ -18,3 +18,6 @@ rules:
   quotes: [ 2, "single", { "avoidEscape": true, "allowTemplateLiterals": true } ]
   no-continue: 0
   no-plusplus: 0
+  no-param-reassign: 0
+  no-new: 0
+  func-names: 0

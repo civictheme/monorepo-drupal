@@ -5,6 +5,8 @@
 @import '../../00-base/base';
 
 .civic-search {
+  $root: &;
+
   &__form {
     @include civic-breakpoint(m) {
       display: flex;
@@ -20,6 +22,10 @@
       flex-grow: 1;
       margin-right: civic-space(1);
       margin-bottom: 0;
+    }
+
+    svg {
+      fill: currentColor;
     }
   }
 
@@ -47,12 +53,11 @@
     height: 100%;
 
     .civic-input__element {
-      @include civic-typography('lead');
+      @include civic-typography('heading-5');
 
-      background-color: $civic-search-light-input-background-color;
-      border: 1px solid $civic-search-light-input-border-color;
-      border-radius: rem(4px);
-      color: $civic-search-light-input-text-color;
+      border-radius: $civic-border-radius;
+      border-width: 1px;
+      border-style: solid;
       padding: civic-space(2) civic-space(3) civic-space(2) civic-space(7);
       width: 100%;
       height: 100%;
@@ -63,9 +68,42 @@
     }
   }
 
-  &__helper-text {
+  &__help_text {
     @include civic-typography('body');
+  }
 
-    color: $civic-search-light-input-helper-text-color;
+  &.civic-theme-light {
+    #{$root}__field {
+      color: $civic-search-light-color;
+    }
+
+    #{$root}__input {
+      .civic-input__element {
+        background-color: $civic-search-light-background-color;
+        border-color: $civic-search-light-border-color;
+      }
+    }
+
+    &__help_text {
+      color: $civic-search-light-help-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__field {
+      color: $civic-search-dark-color;
+    }
+
+    #{$root}__input {
+      .civic-input__element {
+        background-color: $civic-search-dark-background-color;
+        border-color: $civic-search-dark-border-color;
+        color: $civic-search-dark-color;
+      }
+    }
+
+    &__help_text {
+      color: $civic-search-dark-help-color;
+    }
   }
 }

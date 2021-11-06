@@ -1,5 +1,3 @@
-/* eslint-disable no-new, func-names */
-
 /**
  * Responsive utility component.
  *
@@ -103,7 +101,7 @@ CivicResponsive.prototype.mediaQueryChange = function (breakpoint, evt) {
  *   Element to be passed to the constructor.
  *
  * @return {*}
- *   Attached object, detach result or false if expression did not match.
+ *   Attached object or false if expression did not match.
  */
 CivicResponsive.prototype.evaluate = function (breakpointExpr, func, el) {
   if (CivicResponsive.prototype.matchExpr(breakpointExpr, this.breakpoint)) {
@@ -111,7 +109,8 @@ CivicResponsive.prototype.evaluate = function (breakpointExpr, func, el) {
     return new func(el);
   }
   if (typeof func.prototype.destroy !== 'undefined') {
-    return func.prototype.destroy(el);
+    func.prototype.destroy(el);
+    return true;
   }
   return false;
 };

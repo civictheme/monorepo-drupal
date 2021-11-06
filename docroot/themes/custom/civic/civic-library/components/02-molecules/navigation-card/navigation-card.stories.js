@@ -13,8 +13,9 @@ export default {
   },
 };
 
-export const NavigationCard = () => {
-  const generalKnobTab = 'General';
+export const NavigationCard = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
   const generalKnobs = {
     theme: radios(
       'Theme',

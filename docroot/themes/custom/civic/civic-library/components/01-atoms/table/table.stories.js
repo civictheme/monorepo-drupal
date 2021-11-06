@@ -8,8 +8,8 @@ export default {
   title: 'Atoms/Table',
 };
 
-export const Table = () => {
-  const generalKnobTab = 'General';
+export const Table = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   // Table controls.
   const header = [

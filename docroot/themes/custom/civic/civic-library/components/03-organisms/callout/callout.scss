@@ -5,19 +5,23 @@
 @import '../../00-base/base';
 
 .civic-callout {
-  border-radius: $civic-border-radius;
-  border-left: rem(6px) solid transparent;
-  display: flex;
-  flex-direction: column;
-  padding: civic-space(3) civic-space(3);
-  align-items: flex-start;
-  flex: none;
-  order: 1;
-  flex-grow: 1;
-  margin: 0;
+  $root: &;
 
-  @include civic-breakpoint(m) {
-    padding: civic-space(3) civic-space(5) civic-space(4) civic-space(3);
+  &--wrapper {
+    border-radius: $civic-border-radius;
+    border-left: rem(6px) solid transparent;
+    display: flex;
+    flex-direction: column;
+    padding: civic-space(3) civic-space(3);
+    align-items: flex-start;
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+    margin: 0;
+
+    @include civic-breakpoint(m) {
+      padding: civic-space(3) civic-space(5) civic-space(4) civic-space(3);
+    }
   }
 
   &__summary {
@@ -61,8 +65,11 @@
 
   &.civic-theme-light {
     border-left-color: $civic-callout-light-border-color;
-    background-color: $civic-callout-light-background-color;
-    color: $civic-callout-light-color;
+
+    #{$root}--wrapper {
+      background-color: $civic-callout-light-background-color;
+      color: $civic-callout-light-color;
+    }
 
     .civic-callout {
       &__title {
@@ -73,8 +80,11 @@
 
   &.civic-theme-dark {
     border-left-color: $civic-callout-dark-border-color;
-    background-color: $civic-callout-dark-background-color;
-    color: $civic-callout-dark-color;
+
+    #{$root}--wrapper {
+      background-color: $civic-callout-dark-background-color;
+      color: $civic-callout-dark-color;
+    }
 
     .civic-callout {
       &__title {

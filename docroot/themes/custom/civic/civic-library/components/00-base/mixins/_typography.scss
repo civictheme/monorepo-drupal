@@ -53,7 +53,7 @@
 // Helper class to compile all typographies into a single map.
 // For using a typography, use civic-typography() instead.
 //
-@function civic-all-typographies () {
+@function civic-all-typographies() {
   @return map.merge($civic-typography-default, $civic-typography);
 }
 

@@ -2,7 +2,7 @@ _meta:
   version: '1.0'
   entity_type: media
   uuid: 67b42d97-926d-425b-b9db-488627bcbd1f
-  bundle: image
+  bundle: civic_image
   default_langcode: en
   depends:
     448d08b2-d9b1-4a67-ac21-36afe67f77d7: file
@@ -30,7 +30,7 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_media_image:
+  field_c_m_image:
     -
       entity: 448d08b2-d9b1-4a67-ac21-36afe67f77d7
       alt: 'Light banner background image'

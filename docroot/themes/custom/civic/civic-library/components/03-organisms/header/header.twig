@@ -1,51 +1,109 @@
-<header class="civic-header" role="banner">
-  <div class="container">
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-    {% block top %}
-      {% if top is not empty %}
-        <div class="row">
-          <div class="col-m-12">
-            <div class="civic-header__top">
-              {{ top }}
+{% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty or content_middle1 is not empty or content_middle2 is not empty or content_middle3 is not empty  or content_bottom1 is not empty %}
+  <header class="civic-header {{ modifier_class }}" role="banner">
+
+    {% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty %}
+      <div class="civic-header__top">
+
+        {% if content_top1 is not empty %}
+          {% block content_top1 %}
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="civic-header__content-top1">
+                    {{ content_top1 }}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      {% endif %}
-    {% endblock %}
-
-    {% block logocontent %}
-      <div class="row">
-        {% if logo is not empty %}
-          <div class="col-m-4">
-            {% block logo %}
-              {{ logo }}
-            {% endblock %}
-          </div>
+          {% endblock %}
         {% endif %}
 
-        {% if content is not empty %}
-          <div class="col-m-8">
-            {% block content %}
-              <div class="civic-header__content">
-                {{ content }}
-              </div>
-            {% endblock %}
+        {% if content_top2 is not empty or content_top3 is not empty %}
+          <div class="container">
+            <div class="row">
+
+              {% if content_top2 is not empty %}
+                {% block content_top2 %}
+                  <div class="col-xs-6">
+                    <div class="civic-header__content-top2">
+                      {{ content_top2 }}
+                    </div>
+                  </div>
+                {% endblock %}
+              {% endif %}
+
+              {% if content_top3 is not empty %}
+                {% block content_top3 %}
+                  <div class="col-xs-6">
+                    <div class="civic-header__content-top3">
+                      {{ content_top3 }}
+                    </div>
+                  </div>
+                {% endblock %}
+              {% endif %}
+
+            </div>
           </div>
         {% endif %}
       </div>
-    {% endblock %}
+    {% endif %}
 
-    {% block bottom %}
-      {% if bottom %}
-        <div class="row">
-          <div class="col-m-12">
-            <div class="civic-header__bottom">
-              {{ bottom }}
+    {% if content_middle1 is not empty or content_middle2 is not empty or content_middle3 is not empty %}
+      <div class="civic-header__middle">
+
+        {% if content_middle1 is not empty %}
+          {% block content_middle1 %}
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="civic-header__content-middle1">
+                    {{ content_middle1 }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endblock %}
+        {% endif %}
+
+        {% if content_middle2 is not empty or content_middle3 is not empty %}
+          <div class="container">
+            <div class="row">
+              {% block content_middle2 %}
+                <div class="col-xs-12 col-m-6">
+                  <div class="civic-header__content-middle2">
+                    {{ content_middle2 }}
+                  </div>
+                </div>
+              {% endblock %}
+
+              {% block content_middle3 %}
+                <div class="col-xs-12 col-m-6">
+                  <div class="civic-header__content-middle3">
+                    {{ content_middle3 }}
+                  </div>
+                </div>
+              {% endblock %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if content_bottom1 %}
+      {% block content_bottom1 %}
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="civic-header__content-bottom1">
+                {{ content_bottom1 }}
+              </div>
             </div>
           </div>
         </div>
-      {% endif %}
-    {% endblock %}
+      {% endblock %}
+    {% endif %}
 
-  </div>
-</header>
+  </header>
+{% endif %}

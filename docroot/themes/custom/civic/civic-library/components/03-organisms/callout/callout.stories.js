@@ -8,8 +8,8 @@ export default {
   },
 };
 
-export const Callout = () => {
-  const calloutKnobTab = 'Callout';
+export const Callout = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
   const cta1KnobTab = 'CTA 1';
   const cta2KnobTab = 'CTA 2';
 
@@ -21,10 +21,10 @@ export const Callout = () => {
         Dark: 'dark',
       },
       'light',
-      calloutKnobTab,
+      generalKnobTab,
     ),
-    title: text('Title', 'Callout title from knob', calloutKnobTab),
-    summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', calloutKnobTab),
+    title: text('Title', 'Callout title from knob', generalKnobTab),
+    summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', generalKnobTab),
     links: [
       {
         text: text('Text', 'CTA 1', cta1KnobTab),

@@ -120,13 +120,13 @@ function _civic_preprocess_civic_banner_breadcrumb(&$variables) {
 
   $route_match = \Drupal::routeMatch();
   $breadcrumb_manager = \Drupal::service('breadcrumb');
-  $breadcrumbs = $breadcrumb_manager->build($route_match);
-  if ($breadcrumbs) {
-    $variables['breadcrumbs'] = $breadcrumbs->toRenderable();
+  $breadcrumb = $breadcrumb_manager->build($route_match);
+  if ($breadcrumb) {
+    $variables['breadcrumb'] = $breadcrumb->toRenderable();
     if (isset($variables['theme'])) {
       // Changing to Civic theme to pass other variables to template.
-      $variables['breadcrumbs']['#theme'] = 'civic_breadcrumb';
-      $variables['breadcrumbs']['#display_theme'] = $variables['theme'];
+      $variables['breadcrumb']['#theme'] = 'civic_breadcrumb';
+      $variables['breadcrumb']['#display_theme'] = $variables['theme'];
     }
   }
 }

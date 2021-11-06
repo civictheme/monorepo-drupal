@@ -1,0 +1,18 @@
+//
+// Content.
+//
+
+.civic-content {
+  &--contained {
+    margin-top: civic-space(4);
+    margin-bottom: civic-space(4);
+  }
+
+  &.civic-theme-light {
+    background: $civic-content-light-background-color;
+  }
+
+  &.civic-theme-dark {
+    background: $civic-content-dark-background-color;
+  }
+}
