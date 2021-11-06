@@ -7,7 +7,7 @@ export default {
 
 export const Grid = () => `
   <h2>Columns</h2>
-  <div class="grid-wrapper">
+  <div class="story-grid-wrapper">
     <div class="container">
       <div class="row">
         <div class="col-xs-1"><span>1</span></div>
