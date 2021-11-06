@@ -27,7 +27,7 @@
 // Use @include civic-color() instead.
 //
 @function civic-color-base($name) {
-  @return map.get(map.merge($civic-default-colors, $civic-colors), $name);
+  @return map.get(map.merge($civic-colors-default, $civic-colors), $name);
 }
 
 //
@@ -39,9 +39,9 @@
 // stylelint-disable-next-line scss/at-function-pattern
 @function _civic-colors-all() {
   $all-colors: ();
-  $all-colors: map.merge($all-colors, $civic-default-colors);
-  $all-colors: map.merge($all-colors, $civic-default-colors-shades);
-  $all-colors: map.merge($all-colors, $civic-default-colors-neutrals);
+  $all-colors: map.merge($all-colors, $civic-colors-default);
+  $all-colors: map.merge($all-colors, $civic-colors-default-shades);
+  $all-colors: map.merge($all-colors, $civic-colors-default-neutrals);
   $all-colors: map.merge($all-colors, $civic-colors);
 
   @return $all-colors;
