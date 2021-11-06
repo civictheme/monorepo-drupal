@@ -1,3 +1,40 @@
+//
+// Civic variables.
+//
+// Do not copy this file for customisations.
+// Use `components/variables.scss` instead.
+//
+// Variables organisation rules:
+// 1. Variables are grouped by their atomic type.
+// 2. For every component, variables are ordered by:
+//    a. generic values
+//    b. light theme
+//    c. dark theme
+// 3. For every light theme variable, there is a dark theme counterpart.
+// 4. Variables named according to the pattern:
+//    $civic-[component]-[theme]-[?subcomponent]-[?state]-[rule]
+//    where:
+//    a. [component] is a hyphen delimited name of the component
+//    b. [theme] is a theme name (light or dark)
+//    c. [subcomponent] is an optional hyphen-delimited name of the subcomponent
+//    d. [state] is a single or multiple hyphen-delimited name of the state
+//    e. [rule] is an exact CSS rule name
+//
+//    Example 1:
+//    $civic-link-light-visited-hover-background
+//    [component]=link
+//    [theme]=light
+//    [state]=hover over visited
+//    [rule]=background-color
+//
+//    Example 2:
+//    $civic-secondary-navigation-light-menu-item-active-background-color
+//    [component]=secondary-navigation
+//    [theme]=light
+//    [subcomponent]=menu-item
+//    [state]=active
+//    [rule]=background-color
+
 @use 'sass:map';
 @use 'sass:math';
 @use 'sass:color';
