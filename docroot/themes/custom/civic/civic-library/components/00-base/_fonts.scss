@@ -1,7 +1,7 @@
 //
 // Font imports.
 //
-// stylelint-disable no-invalid-position-at-import-rule
+// stylelint-disable no-invalid-position-at-import-rule, scss/dollar-variable-pattern
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:string';
@@ -15,11 +15,13 @@ $all-fonts: _civic-fonts-all();
   @if not (map.has-key($font-map, 'family')) {
     @error "Font #{$font-name} value is missing the 'family' key.";
   }
+
   $font-family: map.get($font-map, 'family');
 
   @if not (map.has-key($font-map, 'uri')) {
     @error "Font #{$font-name} value is missing the 'uri' key.";
   }
+
   $uri: map.get($font-map, 'uri');
 
   // Convert scalar value to a list.
@@ -30,21 +32,23 @@ $all-fonts: _civic-fonts-all();
   // Validate list: either single URL OR single or multiple local files.
   @each $path in $uri {
     $has-url: false;
-    @if (string.index($path, 'http') == 1 and list.length($uri) > 1) {
+
+    @if string.index($path, 'http') == 1 and list.length($uri) > 1 {
       @error "Font #{$font-name} 'uri' value must have only one absolute URL.";
     }
   }
 
   $local-src-list: ();
-  @each $path in $uri {
 
-    @if (string.index($path, 'http') == 1) {
+  @each $path in $uri {
+    @if string.index($path, 'http') == 1 {
       // Import from remote URL.
       @import url('#{$path}');
-    } @else {
+    }
+    @else {
       // Extract format from file extension.
       $format: string.slice($path, civic-string-last-index($path, '.') + 1);
-      $local-src-list: list.append($local-src-list, url('#{$path}') format('#{$format}'), comma)
+      $local-src-list: list.append($local-src-list, url('#{$path}') format('#{$format}'), comma);
     }
   }
 

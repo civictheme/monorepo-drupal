@@ -29,5 +29,6 @@
   $all-fonts: ();
   $all-fonts: map.merge($all-fonts, $civic-fonts-default);
   $all-fonts: map.merge($all-fonts, $civic-fonts);
+
   @return $all-fonts;
 }

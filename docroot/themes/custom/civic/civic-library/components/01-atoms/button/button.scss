@@ -73,6 +73,7 @@
   &.civic-theme-dark {
     &:focus {
       @include civic-outline();
+
       background-color: $civic-button-dark-focus-background-color;
       color: $civic-button-dark-focus-color;
       border: rem(2px) solid $civic-button-dark-border-color;

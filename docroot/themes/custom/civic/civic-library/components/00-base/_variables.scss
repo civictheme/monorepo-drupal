@@ -49,6 +49,7 @@
 // Assets directory.
 //
 $civic-assets-directory: '/assets/' !default;
+
 @debug $civic-assets-directory;
 
 //
@@ -59,6 +60,7 @@ $civic-assets-directory: '/assets/' !default;
 // the defaults. This allows Civic to make palette additions without breaking
 // sub-themes.
 $civic-colors: () !default;
+
 // Default Civic colors palette.
 $civic-colors-default: (
   'primary': #00698f,
@@ -72,6 +74,7 @@ $civic-colors-default: (
   'error': #ce3836,
   'success': #008482,
 );
+
 // Default Civic colors dark shades.
 $civic-colors-default-shades-base: civic-color-base('primary') !default;
 $civic-colors-default-shades: (
@@ -87,6 +90,7 @@ $civic-colors-default-shades: (
   'shade_80': color.mix(black, $civic-colors-default-shades-base, 80%),
   'shade_90': color.mix(black, $civic-colors-default-shades-base, 90%),
 );
+
 // Default Civic colors neutrals.
 $civic-colors-default-neutral-base: civic-color-base('primary') !default;
 $_civic-colors-default-neutral: color.adjust(color.adjust($civic-colors-default-neutral-base, $saturation: -20%), $lightness: -1 * math.max(color.lightness($civic-colors-default-neutral-base) - 5%, 0%));
@@ -143,21 +147,26 @@ $civic-breakpoints: (
 // Grid.
 //
 $civic-grid-columns: 12 !default;
+
 // Grid spacing used to calculate grid spacings. Since the grid is based on
 // pixel values instead of rems (for consistency), the spacing is also based on
 // pixel values.
 $civic-grid-space: 8px !default;
+
 // The lowest breakpoint where column classes should start applying.
 $civic-grid-lowest-breakpoint: 'xxs' !default;
+
 // The width of the fluid container at max width. Used to contain fluid
 // containers on wide screens. Set to 'auto' to keep fluid.
 $civic-grid-max-width: map.get($civic-breakpoints, 'xxl') !default;
+
 // Spacing between columns in a row.
 $civic-grid-gutters: (
   'xxs': $civic-grid-space * 2,
   'xs': $civic-grid-space * 2,
   's': $civic-grid-space * 3
 ) !default;
+
 // Side spacing between the edge of the viewport and a start of the grid.
 $civic-grid-offsets: (
   'xxs': $civic-grid-space * 3,
@@ -180,6 +189,7 @@ $civic-visibility-lowest-breakpoint: 'xxs' !default;
 //
 // Base font size.
 $civic-font-base-size: 16px !default;
+
 // Use $civic-fonts to override any font family values. It is available
 // (and empty) so that any sub-themes could specify their fonts in here to
 // override the defaults. This allows Civic to make font additions without
@@ -238,10 +248,6 @@ $civic-fonts: () !default;
 
 // The directory to import local fonts from.
 //$civic-fonts-local-directory: '../assets/fonts/' !default;
-
-
-
-
 
 //
 // Typography.
@@ -361,6 +367,7 @@ $civic-icon-sizes: (
 //
 // Border radius.
 $civic-border-radius: 0.25rem !default;
+
 // Outline.
 $civic-outline-offset: 0 !default;
 $civic-outline: 0.1875rem solid civic-color('outline') !default;

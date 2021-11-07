@@ -1,5 +1,4 @@
 exports.default = function () {
-
   // Lean storybook config.
   let config = [
     '@storybook/addon-knobs',
@@ -9,7 +8,7 @@ exports.default = function () {
         controls: false,
         docs: false,
         actions: false,
-      }
+      },
     },
     '@storybook/addon-links',
   ];
@@ -21,9 +20,9 @@ exports.default = function () {
       ...[
         '@whitespace/storybook-addon-html',
         'storybook-addon-pseudo-states',
-      ]
-    ]
+      ],
+    ];
   }
 
   return config;
-}
+};

@@ -1,4 +1,4 @@
-var Twig = require('twig')
+require('twig');
 
 export const parameters = {
   options: {
@@ -31,7 +31,7 @@ export const parameters = {
           width: '368px',
           height: '568px',
         },
-        type: 'mobile'
+        type: 'mobile',
       },
       s: {
         name: 'S',
@@ -39,7 +39,7 @@ export const parameters = {
           width: '576px',
           height: '896px',
         },
-        type: 'mobile'
+        type: 'mobile',
       },
       m: {
         name: 'M',
@@ -47,7 +47,7 @@ export const parameters = {
           width: '768px',
           height: '1112px',
         },
-        type: 'tablet'
+        type: 'tablet',
       },
       l: {
         name: 'L',
@@ -55,7 +55,7 @@ export const parameters = {
           width: '992px',
           height: '1112px',
         },
-        type: 'desktop'
+        type: 'desktop',
       },
       xl: {
         name: 'XL',
@@ -63,7 +63,7 @@ export const parameters = {
           width: '1280px',
           height: '1024px',
         },
-        type: 'desktop'
+        type: 'desktop',
       },
       xxl: {
         name: 'XXL',
@@ -71,7 +71,7 @@ export const parameters = {
           width: '1440px',
           height: '900px',
         },
-        type: 'desktop'
+        type: 'desktop',
       },
     },
   },
