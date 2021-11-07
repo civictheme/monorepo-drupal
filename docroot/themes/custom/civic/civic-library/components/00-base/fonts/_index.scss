@@ -39,13 +39,12 @@ $all-fonts: _civic-fonts-all();
 
   @each $path in $uri {
     @if string.index($path, 'http') == 1 {
-      // Use interpolated CSS @import to bypass importers' functionality to
-      // import resources when used in partials.
-      @#{"import"} url('#{$path}');
+      @include civic-font-url-import($path);
     }
     @else {
       // Extract format from file extension.
       $format: string.slice($path, civic-string-last-index($path, '.') + 1);
+
       // noinspection CssInvalidFunction
       $local-src-list: list.append($local-src-list, url('#{$path}') format('#{$format}'), comma);
     }

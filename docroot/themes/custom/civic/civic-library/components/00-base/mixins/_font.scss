@@ -32,3 +32,10 @@
 
   @return $all-fonts;
 }
+
+@mixin civic-font-url-import($path) {
+  // Use interpolated CSS @import to bypass importers' functionality to
+  // import resources when used in partials.
+  // stylelint-disable
+  @#{"import"} url('#{$path}');
+};
