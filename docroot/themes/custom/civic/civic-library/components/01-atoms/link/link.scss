@@ -74,8 +74,4 @@
 
 .civic-link {
   @include civic-link-base();
-
-  &--visited {
-    @include civic-link-visited();
-  }
 }
