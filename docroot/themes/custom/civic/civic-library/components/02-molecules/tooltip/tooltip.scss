@@ -24,7 +24,6 @@
   }
 
   &__description {
-    // stylelint-disable-next-line scss/dollar-variable-pattern
     $tooltip-width-half: math.div($civic-tooltip-width, 2);
 
     @include civic-typography('tag');
@@ -40,7 +39,6 @@
 
     // Triangle.
     &::before {
-      // stylelint-disable-next-line scss/dollar-variable-pattern
       $triangle-width-half: math.div($civic-tooltip-triangle-width, 2);
 
       content: '';

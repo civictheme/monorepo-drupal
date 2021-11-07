@@ -12,7 +12,6 @@
 }
 
 @mixin civic-button-type($type) {
-  // stylelint-disable-next-line scss/dollar-variable-pattern
   $types: ('primary', 'secondary', 'tertiary');
 
   @if not index($types, $type) {

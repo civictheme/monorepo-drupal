@@ -152,7 +152,6 @@
         }
 
         .civic-menu__item--level-1 {
-          // stylelint-disable-next-line scss/dollar-variable-pattern
           $basis: math.div(100%, $i);
 
           flex-basis: calc(#{$basis} - #{$civic-primary-navigation-dropdown-column-gutter});

@@ -4,7 +4,6 @@
   display: flex;
   flex-flow: row wrap;
 
-  // stylelint-disable-next-line scss/dollar-variable-pattern
   $all-colors: _civic-colors-all();
 
   @include civic-generate-class-variations-from-map($all-colors, 'story-color') using($key, $value, $index) {
@@ -16,7 +15,6 @@
     position: relative;
     background-color: civic-color($key);
 
-    // stylelint-disable-next-line scss/dollar-variable-pattern
     $content: string.to-upper-case(string.slice($key, 1, 1)) + string.slice($key, 2) + '\A' + string.to-upper-case(#{$value});
 
     &::after {
