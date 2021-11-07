@@ -1,7 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CustomDemoButton from './demo-button.twig';
-import './demo-button.scss';
 import './demo-button';
 
 export default {
