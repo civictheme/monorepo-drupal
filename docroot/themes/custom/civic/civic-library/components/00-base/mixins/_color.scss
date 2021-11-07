@@ -40,7 +40,7 @@
 @function _civic-colors-all() {
   $all-colors: ();
   $all-colors: map.merge($all-colors, $civic-colors-default);
-  $all-colors: map.merge($all-colors, $civic-colors-default-shades);
+  $all-colors: map.merge($all-colors, $civic-colors-default-shades-dark);
   $all-colors: map.merge($all-colors, $civic-colors-default-neutrals);
   $all-colors: map.merge($all-colors, $civic-colors);
 
