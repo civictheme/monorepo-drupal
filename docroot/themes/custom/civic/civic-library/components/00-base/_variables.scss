@@ -88,6 +88,22 @@ $civic-colors-default-shades-dark: (
   'shade_dark_90': color.mix(black, $civic-colors-default-shades-dark-base, 90%),
 );
 
+// Default Civic colors light shades.
+$civic-colors-default-shades-light-base: civic-color-base('primary') !default;
+$civic-colors-default-shades-light: (
+  'shade_light_5': color.mix(white, $civic-colors-default-shades-light-base, 5%),
+  'shade_light_10': color.mix(white, $civic-colors-default-shades-light-base, 10%),
+  'shade_light_15': color.mix(white, $civic-colors-default-shades-light-base, 15%),
+  'shade_light_20': color.mix(white, $civic-colors-default-shades-light-base, 20%),
+  'shade_light_30': color.mix(white, $civic-colors-default-shades-light-base, 30%),
+  'shade_light_40': color.mix(white, $civic-colors-default-shades-light-base, 40%),
+  'shade_light_50': color.mix(white, $civic-colors-default-shades-light-base, 50%),
+  'shade_light_60': color.mix(white, $civic-colors-default-shades-light-base, 60%),
+  'shade_light_70': color.mix(white, $civic-colors-default-shades-light-base, 70%),
+  'shade_light_80': color.mix(white, $civic-colors-default-shades-light-base, 80%),
+  'shade_light_90': color.mix(white, $civic-colors-default-shades-light-base, 90%),
+);
+
 // Default Civic colors neutrals.
 $civic-colors-default-neutral-base: civic-color-base('primary') !default;
 $_civic-colors-default-neutral: color.adjust(color.adjust($civic-colors-default-neutral-base, $saturation: -20%), $lightness: -1 * math.max(color.lightness($civic-colors-default-neutral-base) - 5%, 0%));

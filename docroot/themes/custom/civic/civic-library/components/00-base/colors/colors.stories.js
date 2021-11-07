@@ -6,6 +6,7 @@ export const Colors = () => {
   const types = {
     'civic-colors-default': 'Standard colors',
     'civic-colors-default-shades-dark': 'Dark shades',
+    'civic-colors-default-shades-light': 'Light shades',
     'civic-colors-default-neutrals': 'Neutrals',
     'civic-colors': 'Custom colors',
   };
