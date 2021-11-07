@@ -5,9 +5,6 @@
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:string';
-@import 'mixins/functions';
-@import 'mixins/font';
-@import 'variables';
 
 $all-fonts: _civic-fonts-all();
 
@@ -42,12 +39,14 @@ $all-fonts: _civic-fonts-all();
 
   @each $path in $uri {
     @if string.index($path, 'http') == 1 {
-      // Import from remote URL.
-      @import url('#{$path}');
+      // Use interpolated CSS @import to bypass importers' functionality to
+      // import resources when used in partials.
+      @#{"import"} url('#{$path}');
     }
     @else {
       // Extract format from file extension.
       $format: string.slice($path, civic-string-last-index($path, '.') + 1);
+      // noinspection CssInvalidFunction
       $local-src-list: list.append($local-src-list, url('#{$path}') format('#{$format}'), comma);
     }
   }

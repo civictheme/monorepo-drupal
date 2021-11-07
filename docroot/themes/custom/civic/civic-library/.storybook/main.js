@@ -28,8 +28,10 @@ module.exports = {
   ],
   addons: addonConfig,
   webpackFinal: async (config) => {
-    // Add stories CSS.
-    custom.entry.push(path.resolve(__dirname, 'css.stories.js'));
+    // Replace normal CSS import with stories CSS import, which already includes
+    // normal CSS import. This is to allow to resolve variables and mixins in
+    // stories CSS.
+    custom.entry = custom.entry.map((value) => (value.indexOf('css.js') > -1 ? path.resolve(__dirname, 'css.stories.js') : value));
 
     // Modify common configs to let Storybook take over.
     delete custom.output;
@@ -37,7 +39,7 @@ module.exports = {
       customPlugin,
     ];
     // Special case: override whatever loader is used to load styles with a
-    // style-loader in oder to have styles injected during the runtime.
+    // style-loader in order to have styles injected during the runtime.
     custom.module.rules[1].use[0] = 'style-loader';
 
     return merge(config, custom);

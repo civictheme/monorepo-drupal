@@ -38,8 +38,7 @@
 @use 'sass:map';
 @use 'sass:math';
 @use 'sass:color';
-@import 'mixins/color';
-@import 'mixins/font';
+@import 'mixins';
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                 BASE                                       //
@@ -49,8 +48,6 @@
 // Assets directory.
 //
 $civic-assets-directory: '/assets/' !default;
-
-@debug $civic-assets-directory;
 
 //
 // Colors.
@@ -206,48 +203,6 @@ $civic-fonts-default: (
   ),
 ) !default;
 $civic-fonts: () !default;
-
-// Import default primary Civic fonts. Set to false if default primary font is
-// not required.
-//$civic-fonts-import-primary-default: true !default;
-// Imports default secondary Civic fonts. Set to false if default secondary font
-// is not required.
-//$civic-fonts-import-secondary-default: true !default;
-// Adding a local font.
-//
-// Add the following configuration:
-//   $civic-fonts-imports: (
-//     '[font name]': ('file': '[file]', 'format': ('[format 1]', '[format 2]'))
-//   );
-//   $civic-font: (
-//     'primary': '[font name]'
-//   );
-//
-// Where the variables are:
-//   - [font name]: Name of the font in CSS.
-//   - [file]:      File name of the font in assets/fonts/ (omit file extension)
-//   - [format]:    Supports 'woff2' and 'woff'.
-//
-// Example:
-//
-// Given these files exist:
-//   - assets/fonts/noto_sans.woff
-//   - assets/fonts/noto_sans.woff2
-//
-// Add the following configuration:
-//   $civic-fonts: (
-//     'Noto Sans': ('file': 'noto_sans', 'format': ('woff2', 'woff')),
-//   );
-// Support multiple font entries in the following format:
-//   '[Font name]': ('file': '[file]', 'format': ('[format 1]', '[format 2]') )
-//
-// Where the variables are:
-//   - Font name:  Name of the font in CSS.
-//   - file:       File name of the font in assets/fonts/ (omit file extension)
-//   - format:     Supports 'woff2' and 'woff'.
-
-// The directory to import local fonts from.
-//$civic-fonts-local-directory: '../assets/fonts/' !default;
 
 //
 // Typography.

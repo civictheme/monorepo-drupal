@@ -1,6 +1,11 @@
+//
+// Styles.
+//
 // stylelint-disable scss/at-import-partial-extension
 @import '~normalize.css';
 @import 'variables';
+
+// Load all non-stories mixins.
 @import '00-base/**/!(*.stories).scss';
 @import '01-atoms/**/!(*.stories).scss';
 @import '02-molecules/**/!(*.stories).scss';

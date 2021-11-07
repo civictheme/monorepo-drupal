@@ -1,7 +1,5 @@
 import CivicResponsive from './responsive.stories.twig';
 import './responsive';
-
-import '../collapsible/collapsible.scss';
 import '../collapsible/collapsible';
 
 export default {

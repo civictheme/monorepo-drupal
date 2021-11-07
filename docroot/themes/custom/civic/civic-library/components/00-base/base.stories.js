@@ -1,5 +1,5 @@
 //
-// Shared stories JS helpers.
+// Shared JS helpers for Storybook stories.
 //
 
 import { boolean } from '@storybook/addon-knobs';
