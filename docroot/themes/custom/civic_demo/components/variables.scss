@@ -5,5 +5,12 @@
 
 // Define custom font.
 $civic-fonts: (
-  'DancingScript': ('file': 'DancingScript-Regular', 'format': ('woff')),
+  'tertiary': (
+    'family': 'Dancing Script',
+    'uri': (
+      '#{$civic-assets-directory}fonts/DancingScript-Regular.woff',
+      '#{$civic-assets-directory}fonts/DancingScript-Regular.woff2',
+      '#{$civic-assets-directory}fonts/DancingScript-Regular.ttf',
+    ),
+  ),
 );
