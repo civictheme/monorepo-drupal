@@ -797,12 +797,14 @@ $civic-video-dark-icon-hover-color: civic-color('accent') !default;
 //
 // Subject card.
 //
-$civic-subject-card-color: civic-color('neutral') !default;
-$civic-subject-card-light-color-hover: civic-color('primary') !default;
+$civic-subject-card-light-color: civic-color('neutral') !default;
+$civic-subject-card-light-color-hover: civic-color('neutral') !default;
 $civic-subject-card-light-color-active: civic-color('shade_40') !default;
+$civic-subject-card-light-image-background-color: civic-color('neutral_90') !default;
+$civic-subject-card-dark-color: civic-color('neutral') !default;
 $civic-subject-card-dark-color-accent: civic-color('accent') !default;
 $civic-subject-card-dark-color-active: civic-color('neutral_20') !default;
-$civic-subject-card-image-background-color: civic-color('neutral_90') !default;
+$civic-subject-card-dark-image-background-color: civic-color('neutral_90') !default;
 
 //
 // Banner.
