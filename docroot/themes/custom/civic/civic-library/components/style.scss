@@ -3,6 +3,7 @@
 //
 // stylelint-disable scss/at-import-partial-extension
 @import '~normalize.css';
+
 // Allow custom variables to based their values on default Civic's values.
 @import '00-base/variables';
 @import 'variables';
