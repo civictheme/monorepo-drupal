@@ -4,25 +4,54 @@
 // stylelint-disable no-invalid-position-at-import-rule
 @use 'sass:list';
 @use 'sass:map';
+@use 'sass:string';
+@import 'mixins/functions';
+@import 'mixins/font';
 @import 'variables';
 
-@if $civic-font-import-default {
-  @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
-}
+$all-fonts: _civic-fonts-all();
 
-@each $font, $value in $civic-fonts {
-  @font-face {
-    $family: $font;
-    $file-name: map.get($value, 'file');
-    $formats: map.get($value, 'format');
-    $src-list: ();
+@each $font-name, $font-map in $all-fonts {
+  @if not (map.has-key($font-map, 'family')) {
+    @error "Font #{$font-name} value is missing the 'family' key.";
+  }
+  $font-family: map.get($font-map, 'family');
 
-    @each $format in $formats {
-      $font-path: '#{$civic-font-directory}#{$file-name}.#{$format}';
-      $src-list: list.append($src-list, url($font-path) format($format), comma);
+  @if not (map.has-key($font-map, 'uri')) {
+    @error "Font #{$font-name} value is missing the 'uri' key.";
+  }
+  $uri: map.get($font-map, 'uri');
+
+  // Convert scalar value to a list.
+  @if not (type-of($uri) == 'list') {
+    $uri: ($uri);
+  }
+
+  // Validate list: either single URL OR single or multiple local files.
+  @each $path in $uri {
+    $has-url: false;
+    @if (string.index($path, 'http') == 1 and list.length($uri) > 1) {
+      @error "Font #{$font-name} 'uri' value must have only one absolute URL.";
     }
+  }
 
-    font-family: $family;
-    src: $src-list;
+  $local-src-list: ();
+  @each $path in $uri {
+
+    @if (string.index($path, 'http') == 1) {
+      // Import from remote URL.
+      @import url('#{$path}');
+    } @else {
+      // Extract format from file extension.
+      $format: string.slice($path, civic-string-last-index($path, '.') + 1);
+      $local-src-list: list.append($local-src-list, url('#{$path}') format('#{$format}'), comma)
+    }
+  }
+
+  @if list.length($local-src-list) > 0 {
+    @font-face {
+      font-family: string.unquote($font-family);
+      src: $local-src-list;
+    }
   }
 }

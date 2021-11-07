@@ -39,10 +39,17 @@
 @use 'sass:math';
 @use 'sass:color';
 @import 'mixins/color';
+@import 'mixins/font';
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                 BASE                                       //
 ////////////////////////////////////////////////////////////////////////////////
+
+//
+// Assets directory.
+//
+$civic-assets-directory: '/assets/' !default;
+@debug $civic-assets-directory;
 
 //
 // Colors.
@@ -169,46 +176,49 @@ $civic-grid-offsets: (
 $civic-visibility-lowest-breakpoint: 'xxs' !default;
 
 //
-// Misc Variables.
-//
-$civic-border-radius: 0.25rem !default;
-$civic-border-width: 0.125rem !default;
-$civic-outline: 0.1875rem solid civic-color('outline') !default;
-$civic-outline-accent: 0.1875rem solid civic-color('accent') !default;
-$civic-outline-offset: 0 !default;
-$civic-outline-boxshadow: 0 0 0 3pt civic-color('outline') !default;
-$civic-outline-accent-boxshadow: 0 0 0 3pt civic-color('accent') !default;
-
-//
-// Icon size.
-//
-$civic-icon-sizes: (
-  'small': (
-    'xxs': (16px, 16px),
-    'm': (20px, 20px),
-  ),
-  'regular': (
-    'xxs': (20px, 20px),
-    'm': (24px, 24px),
-  ),
-  'large': (
-    'xxs': (40px, 40px),
-    'm': (48px, 48px),
-  ),
-  'extra-large': (
-    'xxs': (48px, 48px),
-    'm': (64px, 64px),
-  )
-) !default;
-
-//
 // Fonts.
 //
-// $civic-font-directory - The directory of the fonts after webpack compilation.
-// $civic-fonts - Local font importing.
-// $civic-font-import-default - Imports "Lexend" font. Set to false when using custom fonts.
+// Base font size.
+$civic-font-base-size: 16px !default;
+// Use $civic-fonts to override any font family values. It is available
+// (and empty) so that any sub-themes could specify their fonts in here to
+// override the defaults. This allows Civic to make font additions without
+// breaking sub-themes.
+$civic-fonts: () !default;
+$civic-fonts-default: (
+  'primary': (
+    'family': '"Lexend", sans-serif',
+    'uri': 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap',
+  ),
+  'secondary': (
+    'family': '"Public Sans", sans-serif',
+    'uri': 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&display=swap',
+  ),
+) !default;
+$civic-fonts: () !default;
+
+// Import default primary Civic fonts. Set to false if default primary font is
+// not required.
+//$civic-fonts-import-primary-default: true !default;
+// Imports default secondary Civic fonts. Set to false if default secondary font
+// is not required.
+//$civic-fonts-import-secondary-default: true !default;
+// Adding a local font.
 //
-// Adding a custom font:
+// Add the following configuration:
+//   $civic-fonts-imports: (
+//     '[font name]': ('file': '[file]', 'format': ('[format 1]', '[format 2]'))
+//   );
+//   $civic-font: (
+//     'primary': '[font name]'
+//   );
+//
+// Where the variables are:
+//   - [font name]: Name of the font in CSS.
+//   - [file]:      File name of the font in assets/fonts/ (omit file extension)
+//   - [format]:    Supports 'woff2' and 'woff'.
+//
+// Example:
 //
 // Given these files exist:
 //   - assets/fonts/noto_sans.woff
@@ -218,13 +228,6 @@ $civic-icon-sizes: (
 //   $civic-fonts: (
 //     'Noto Sans': ('file': 'noto_sans', 'format': ('woff2', 'woff')),
 //   );
-//   $civic-font-import-default: false;
-//   $civic-font: (
-//     'primary': 'Noto Sans',
-//   );
-//
-// $civic-fonts
-//
 // Support multiple font entries in the following format:
 //   '[Font name]': ('file': '[file]', 'format': ('[format 1]', '[format 2]') )
 //
@@ -232,18 +235,13 @@ $civic-icon-sizes: (
 //   - Font name:  Name of the font in CSS.
 //   - file:       File name of the font in assets/fonts/ (omit file extension)
 //   - format:     Supports 'woff2' and 'woff'.
-//
-$civic-fonts: () !default;
-$civic-font-directory: './static/fonts/' !default;
-$civic-font-import-default: true !default;
-$civic-font-base-size: 16px !default;
-$civic-font-scale: 1.25 !default;
-$civic-font-primary: 'Lexend', sans-serif;
-$civic-font-secondary: 'Public Sans';
-$civic-font: (
-  'primary': $civic-font-primary,
-  'secondary': $civic-font-secondary,
-) !default;
+
+// The directory to import local fonts from.
+//$civic-fonts-local-directory: '../assets/fonts/' !default;
+
+
+
+
 
 //
 // Typography.
@@ -313,7 +311,7 @@ $civic-typography-default: (
   ),
   'ordered-list': (
     'xxs': (16px, 26px, 400, 'primary', 0),
-    'm': (16px, 28px, 400 'primary', 0)
+    'm': (16px, 28px, 400, 'primary', 0)
   ),
   'label-large': (
     'xxs': (18px, 24px, 600, 'primary', -0.1px),
@@ -335,6 +333,42 @@ $civic-typography-default: (
   'tag': (14px, 20px, 500, 'primary', -0.1px),
   'small-and-captions': (14px, 23px, 400, 'primary'),
 );
+
+//
+// Icon size.
+//
+$civic-icon-sizes: (
+  'small': (
+    'xxs': (16px, 16px),
+    'm': (20px, 20px),
+  ),
+  'regular': (
+    'xxs': (20px, 20px),
+    'm': (24px, 24px),
+  ),
+  'large': (
+    'xxs': (40px, 40px),
+    'm': (48px, 48px),
+  ),
+  'extra-large': (
+    'xxs': (48px, 48px),
+    'm': (64px, 64px),
+  )
+) !default;
+
+//
+// Misc Variables.
+//
+// Border radius.
+$civic-border-radius: 0.25rem !default;
+// Outline.
+$civic-outline-offset: 0 !default;
+$civic-outline: 0.1875rem solid civic-color('outline') !default;
+$civic-outline-accent: 0.1875rem solid civic-color('accent') !default;
+
+////////////////////////////////////////////////////////////////////////////////
+//                                 ATOMS                                      //
+////////////////////////////////////////////////////////////////////////////////
 
 //
 // Link.

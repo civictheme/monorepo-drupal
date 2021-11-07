@@ -47,7 +47,7 @@
 
 .civic-attachment {
   border-radius: $civic-border-radius;
-  border: solid $civic-border-width $civic-attachment-light-border-color;
+  border: solid 1px $civic-attachment-light-border-color;
   display: flex;
   flex-wrap: wrap;
   flex: none;

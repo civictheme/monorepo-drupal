@@ -7,9 +7,9 @@ export default {
 
 export const Colors = () => {
   const colors = [...new Set([
-    ...SCSS_VARIABLES['civic-default-colors'],
-    ...SCSS_VARIABLES['civic-default-colors-shades'],
-    ...SCSS_VARIABLES['civic-default-colors-neutrals'],
+    ...SCSS_VARIABLES['civic-colors-default'],
+    ...SCSS_VARIABLES['civic-colors-default-shades'],
+    ...SCSS_VARIABLES['civic-colors-default-neutrals'],
     ...SCSS_VARIABLES['civic-colors'],
   ])];
 
