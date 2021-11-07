@@ -1,5 +1,7 @@
-import { object, radios, text } from '@storybook/addon-knobs';
-import { getSlots } from '../../00-base/base.stories';
+import {
+  boolean, radios, text,
+} from '@storybook/addon-knobs';
+import { getSlots, randomUrl } from '../../00-base/base.stories';
 
 import CivicServiceCard from './service-card.twig';
 
@@ -25,32 +27,32 @@ export const ServiceCard = (knobTab) => {
       generalKnobTab,
     ),
     title: text('Title', 'Services category title across one or two lines', generalKnobTab),
-    links: object('Links', [
+    links: boolean('With links', true, generalKnobTab) ? [
       {
-        url: 'http://example.com',
+        url: randomUrl(),
         text: 'Service link 1',
         new_window: false,
         is_external: false,
       },
       {
-        url: 'http://example.com',
+        url: randomUrl(),
         text: 'Service link 2',
         new_window: false,
         is_external: false,
       },
       {
-        url: 'http://example.com',
+        url: randomUrl(),
         text: 'Service link 3',
         new_window: false,
         is_external: false,
       },
       {
-        url: 'http://example.com',
+        url: randomUrl(),
         text: 'Service link 4',
         new_window: false,
         is_external: false,
       },
-    ], generalKnobTab),
+    ] : null,
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 

@@ -3,6 +3,7 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicIconLink from './icon-link.twig';
+import { randomUrl } from '../../00-base/base.stories';
 
 export default {
   title: 'Molecules/Icon Link',
@@ -31,7 +32,7 @@ export const IconLink = (knobTab) => {
     symbol: select('Symbol', icons, defaultIcon !== -1 ? icons[defaultIcon] : icons[0], generalKnobTab),
     size: radios('Size', sizes, sizes[0], generalKnobTab),
     text: text('Text', 'Go to service', generalKnobTab),
-    url: text('URL', 'http://example.com', generalKnobTab),
+    url: text('URL', randomUrl(), generalKnobTab),
     with_border: boolean('Add border', true, generalKnobTab),
     new_window: boolean('Open in a new window', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
