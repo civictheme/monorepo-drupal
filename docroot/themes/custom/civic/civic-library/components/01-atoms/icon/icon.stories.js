@@ -13,7 +13,7 @@ export const Icon = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const { icons } = ICONS;
-  const colors = [...new Set([...SCSS_VARIABLES['civic-default-colors'], ...SCSS_VARIABLES['civic-colors']])];
+  const colors = [...new Set([...SCSS_VARIABLES['civic-colors-default'], ...SCSS_VARIABLES['civic-colors']])];
   const sizes = SCSS_VARIABLES['civic-icon-sizes'];
 
   return CivicIcon({
@@ -27,7 +27,7 @@ export const IconLibrary = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const { packs } = ICONS;
-  const colors = [...new Set([...SCSS_VARIABLES['civic-default-colors'], ...SCSS_VARIABLES['civic-colors']])];
+  const colors = [...new Set([...SCSS_VARIABLES['civic-colors-default'], ...SCSS_VARIABLES['civic-colors']])];
   const sizes = SCSS_VARIABLES['civic-icon-sizes'];
 
   const selectedPack = select('Pack', Object.keys(packs), Object.keys(packs).length ? Object.keys(packs)[0] : null, generalKnobTab);
