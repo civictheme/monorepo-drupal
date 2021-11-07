@@ -6,10 +6,10 @@
 // unify the building pipeline.
 const custom = require('./../webpack/webpack.prod.js');
 const {merge} = require('webpack-merge');
-const webpack = require('webpack')
-const scssVariables = require('./importer.scss_variables.js')
-const iconUtils = require('../components/01-atoms/icon/icon.utils.js')
-const backgroundUtils = require('../components/01-atoms/background/background.utils.js')
+const webpack = require('webpack');
+const scssVariables = require('./importer.scss_variables.js');
+const iconUtils = require('../components/01-atoms/icon/icon.utils.js');
+const backgroundUtils = require('../components/01-atoms/background/background.utils.js');
 const path = require('path');
 const addonConfig = require('./addon-config').default();
 

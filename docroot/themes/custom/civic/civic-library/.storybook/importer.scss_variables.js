@@ -17,13 +17,15 @@ function getVariables() {
 }
 
 function getVariablesFromFile(file) {
-  const importedFile = fs.readFileSync(file, {encoding: 'utf8'})
+  let importedFile = fs.readFileSync(file, {encoding: 'utf8'})
+
+  importedFile = removeComments(importedFile);
 
   const allGroups = {}
 
   // Get all variable groups.
   const groups = []
-  const re = new RegExp('\\$[a-z-]+:\\s\\(([\\s\\S\\r])+?\\;', 'gi')
+  const re = new RegExp('\\$[a-z-]+:\\s?\\(([\\s\\S\\r])+?\\;', 'gi')
   let lastMatch = re.exec(importedFile)
   while (lastMatch !== null) {
     groups.push(lastMatch[0])
@@ -36,7 +38,9 @@ function getVariablesFromFile(file) {
     let match = re.exec(group)
     if (match) {
       let name = match[0].replace(/[\$\:]/gi, '')
-      const strippedGroup = group.replace(/\$[a-z-]+\:/gi, '').replace(/\(.+?\)/gi, '').replace(/:\s\([\s\S\n\r]+?\)/gi, '')
+      let strippedGroup = group.replace(/\$[a-z-]+\:/gi, '');
+      strippedGroup = strippedGroup.replace(/\(.+?\)/gi, '');
+      strippedGroup = strippedGroup.replace(/:\s\([\s\S\n\r]+?\)/gi, '')
       allGroups[name] = getSassVariablesFromGroup(strippedGroup)
     }
   })
@@ -56,6 +60,14 @@ function getSassVariablesFromGroup(group) {
   }
 
   return vars
+}
+
+function removeComments(string) {
+  let lines = string.split(/\r?\n/);
+  lines = lines.filter(function (line) {
+    return line.indexOf('//') !== 0;
+  });
+  return lines.join("\n");
 }
 
 module.exports = {
