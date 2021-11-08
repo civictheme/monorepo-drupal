@@ -2,7 +2,7 @@ export default {
   title: 'Base/Space',
 };
 
-export const Space = () => `<div class="space-wrapper">
+export const Space = () => `<div class="story-space-wrapper">
   <div class="space--8">
     <div class="space--7">
       <div class="space--6">

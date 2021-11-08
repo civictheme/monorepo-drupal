@@ -7,7 +7,7 @@ export default {
 
 export const Grid = () => `
   <h2>Columns</h2>
-  <div class="grid-wrapper">
+  <div class="story-grid-wrapper">
     <div class="container">
       <div class="row">
         <div class="col-xs-1"><span>1</span></div>
@@ -50,7 +50,7 @@ export const Grid = () => `
   </div>
 
   <h2>Responsive</h2>
-  <div class="grid-wrapper">
+  <div class="story-grid-wrapper">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-s-6 col-m-5 col-l-4 col-xl-3 col-xxl-2"><span>Column</span></div>
@@ -65,7 +65,7 @@ export const Grid = () => `
   </div>
 
   <h2>Grid in a grid</h2>
-  <div class="grid-wrapper">
+  <div class="story-grid-wrapper">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-s-8">
@@ -83,7 +83,7 @@ export const Grid = () => `
   </div>
 
   <h2>Auto Column</h2>
-  <div class="grid-wrapper">
+  <div class="story-grid-wrapper">
     <div class="container">
       <div class="row">
         <div class="col"><span>A</span></div>
@@ -95,7 +95,7 @@ export const Grid = () => `
   </div>
 
   <h2>Reverse Row</h2>
-  <div class="grid-wrapper">
+  <div class="story-grid-wrapper">
     <div class="container">
       <div class="row reverse">
       <div class="col"><span>A</span></div>

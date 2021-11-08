@@ -1,0 +1,24 @@
+//
+// Form element.
+//
+
+.civic-label {
+  margin-bottom: civic-space();
+
+  @include civic-typography('label-regular');
+
+  &--required::after {
+    color: $civic-label-required-color;
+    content: ' (Required)';
+
+    @include civic-typography('small-and-captions');
+  }
+
+  &.civic-theme-light {
+    color: $civic-label-light-color;
+  }
+
+  &.civic-theme-dark {
+    color: $civic-label-dark-color;
+  }
+}

@@ -1,5 +1,6 @@
 import { radios, text } from '@storybook/addon-knobs';
 import CivicNextSteps from './next-steps.twig';
+import { randomUrl } from '../../00-base/base.stories';
 
 export default {
   title: 'Molecules/Next Steps',
@@ -20,7 +21,7 @@ export const NextSteps = (knobTab) => {
     ),
     title: text('Title', 'Next step title from knob', generalKnobTab),
     summary: text('Summary', 'Short summary explaining why this link is relevant.', generalKnobTab),
-    url: text('Link', 'http://example.com', generalKnobTab),
+    url: text('Link', randomUrl(), generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 

@@ -1,0 +1,68 @@
+//
+// Form element.
+//
+
+.civic-form-element {
+  margin-bottom: civic-space(2);
+
+  @include civic-typography('body');
+
+  &--radio {
+    margin-bottom: civic-space();
+
+    .civic-label {
+      margin-bottom: 0;
+    }
+  }
+
+  &--checkbox {
+    margin-bottom: civic-space();
+
+    .civic-label {
+      margin-bottom: 0;
+    }
+  }
+
+  .civic-input {
+    margin: civic-space() auto;
+  }
+
+  .civic-message {
+    padding: civic-space();
+    margin-bottom: civic-space(2);
+    display: inline-flex;
+    align-items: center;
+    border: none;
+
+    @include civic-typography('label-small');
+
+    &__title {
+      font-weight: 400;
+    }
+
+    .civic-icon {
+      width: rem(18px);
+      height: rem(18px);
+      vertical-align: middle;
+    }
+
+    .civic-message__icon {
+      width: rem(18px);
+      margin-right: civic-space();
+    }
+  }
+
+  &--description {
+    margin-top: civic-space(2);
+
+    @include civic-typography('text-small');
+  }
+
+  &.civic-theme-light {
+    color: $civic-form-element-light-color;
+  }
+
+  &.civic-theme-dark {
+    color: $civic-form-element-dark-color;
+  }
+}

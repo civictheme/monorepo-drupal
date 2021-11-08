@@ -56,10 +56,8 @@ export const Accordion = (knobTab) => {
     panels,
   };
 
-  const html = CivicAccordion({
+  return CivicAccordion({
     ...generalKnobs,
     ...panelKnobs,
   });
-
-  return `<div class="story-wrapper-size--medium">${html}</div>`;
 };

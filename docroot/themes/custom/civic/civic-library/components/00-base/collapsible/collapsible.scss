@@ -3,23 +3,50 @@
 //
 @use 'sass:list';
 @use 'sass:map';
-@import '../../00-base/base';
 
 [data-collapsible='true'] {
   [data-collapsible-trigger] {
     cursor: pointer;
-    padding-right: list.nth(map.get(map.get($civic-icon-sizes, 'regular'), $civic-collapsible-icon-size), 1);
-    position: relative;
+  }
 
-    &::after {
-      @include civic-icon-size('regular');
+  &:not([data-collapsible-trigger-no-icon]) {
+    [data-collapsible-trigger] {
+      padding-right: list.nth(map.get(map.get($civic-icon-sizes, 'regular'), $civic-collapsible-icon-size), 1);
+      position: relative;
 
-      content: $civic-collapsible-icon;
-      position: absolute;
-      right: 0;
-      transform: rotate(-180deg);
-      transition: transform 0.5s;
-      line-height: 0;
+      &::after {
+        @include civic-icon-size('regular');
+
+        content: $civic-collapsible-icon;
+        position: absolute;
+        right: 0;
+        transform: rotate(-180deg);
+        line-height: 0;
+      }
+    }
+  }
+
+  &:not([data-collapsible-duration='0']) {
+    [data-collapsible-trigger] {
+      &::after {
+        transition: transform 0.5s;
+      }
+    }
+  }
+
+  &[data-collapsible-collapsing] {
+    [data-collapsible-trigger] {
+      &::after {
+        transform: rotate(0deg);
+      }
+    }
+
+    &[data-collapsible-collapsed] {
+      [data-collapsible-trigger] {
+        &::after {
+          transform: rotate(-180deg);
+        }
+      }
     }
   }
 
@@ -29,15 +56,10 @@
         transform: rotate(0deg);
       }
     }
-  }
 
-  &[data-collapsible-trigger-no-icon] {
-    [data-collapsible-trigger] {
-      padding-right: 0;
-
-      &::after {
-        display: none;
-      }
+    [data-collapsible-panel] {
+      height: 0;
+      overflow: hidden;
     }
   }
 
@@ -46,7 +68,7 @@
 
     [data-collapsible-trigger] {
       &::after {
-        content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-light-icon-color);
+        content: civic-color-svg-fill($civic-collapsible-icon, $civic-collapsible-light-icon-color);
       }
     }
   }
@@ -56,7 +78,7 @@
 
     [data-collapsible-trigger] {
       &::after {
-        content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-dark-icon-color);
+        content: civic-color-svg-fill($civic-collapsible-icon, $civic-collapsible-dark-icon-color);
       }
     }
   }

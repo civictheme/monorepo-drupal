@@ -3,7 +3,6 @@
 //
 
 @use 'sass:map';
-@import '../../00-base/base';
 
 .civic-message {
   $root: &;
@@ -35,38 +34,38 @@
     margin-top: civic-space();
   }
 
-  &.civic-theme-light {
-    color: $civic-message-light-color;
-  }
-
-  &.civic-theme-dark {
-    color: $civic-message-dark-color;
-  }
-
-  @each $type, $values in $civic-message-light-background-colors {
+  @each $type, $values in $civic-message-light-background-colors-default {
     &#{$root}--#{$type} {
       &.civic-theme-light {
-        background-color: map.get($civic-message-light-background-colors, '#{$type}');
-        border-color: map.get($civic-message-light-icon-colors, '#{$type}');
+        $civic-light-merged-background-colors: map.merge($civic-message-light-background-colors-default, $civic-message-light-background-colors);
+        $civic-light-merged-border-colors: map.merge($civic-message-light-border-colors-default, $civic-message-light-border-colors);
+        $civic-light-merged-text-colors: map.merge($civic-message-light-text-colors-default, $civic-message-light-text-colors);
+        $civic-light-merged-icon-colors: map.merge($civic-message-light-icon-colors-default, $civic-message-light-icon-colors);
+
+        background-color: map.get($civic-light-merged-background-colors, '#{$type}');
+        border-color: map.get($civic-light-merged-border-colors, '#{$type}');
+        color: map.get($civic-light-merged-text-colors, '#{$type}');
 
         #{$root}__icon {
           .civic-icon {
-            fill: map.get($civic-message-light-icon-colors, '#{$type}');
+            fill: map.get($civic-light-merged-icon-colors, '#{$type}');
           }
         }
       }
-    }
-  }
 
-  @each $type, $values in $civic-message-dark-background-colors {
-    &#{$root}--#{$type} {
       &.civic-theme-dark {
-        background-color: map.get($civic-message-dark-background-colors, '#{$type}');
-        border-color: map.get($civic-message-dark-icon-colors, '#{$type}');
+        $civic-dark-merged-background-colors: map.merge($civic-message-dark-background-colors-default, $civic-message-dark-background-colors);
+        $civic-dark-merged-border-colors: map.merge($civic-message-dark-border-colors-default, $civic-message-dark-border-colors);
+        $civic-dark-merged-text-colors: map.merge($civic-message-dark-text-colors-default, $civic-message-dark-text-colors);
+        $civic-dark-merged-icon-colors: map.merge($civic-message-dark-icon-colors-default, $civic-message-dark-icon-colors);
+
+        background-color: map.get($civic-dark-merged-background-colors, '#{$type}');
+        border-color: map.get($civic-dark-merged-border-colors, '#{$type}');
+        color: map.get($civic-dark-merged-text-colors, '#{$type}');
 
         #{$root}__icon {
           .civic-icon {
-            fill: map.get($civic-message-dark-icon-colors, '#{$type}');
+            fill: map.get($civic-dark-merged-icon-colors, '#{$type}');
           }
         }
       }

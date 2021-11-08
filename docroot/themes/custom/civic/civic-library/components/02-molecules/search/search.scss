@@ -2,8 +2,6 @@
 // Search.
 //
 
-@import '../../00-base/base';
-
 .civic-search {
   $root: &;
 
@@ -22,6 +20,10 @@
       flex-grow: 1;
       margin-right: civic-space(1);
       margin-bottom: 0;
+    }
+
+    svg {
+      fill: currentColor;
     }
   }
 
@@ -65,7 +67,7 @@
   }
 
   &__help_text {
-    @include civic-typography(body);
+    @include civic-typography('body');
   }
 
   &.civic-theme-light {

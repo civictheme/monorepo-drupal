@@ -1,13 +1,11 @@
 @use 'sass:map';
-@import '../../00-base/base';
 
 .civic-icon {
   vertical-align: bottom;
   fill: currentColor;
 
   // Generate color classes for all pre-set colors.
-  // stylelint-disable-next-line scss/dollar-variable-pattern
-  $all-colors: map.merge($civic-default-colors, $civic-colors);
+  $all-colors: map.merge($civic-colors-default, $civic-colors);
 
   @each $key, $value in $all-colors {
     &--color-#{$key} {

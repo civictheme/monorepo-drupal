@@ -1,0 +1,49 @@
+//
+// Civic input.
+//
+
+@import '../radio/radio';
+
+.civic-checkbox {
+  @extend %civic-checkbox-radio;
+
+  &.civic-input__element + span {
+    &::before {
+      content: '';
+      border-radius: rem(4px);
+    }
+
+    &::after {
+      position: absolute;
+      display: inline-block;
+      width: rem(22px);
+      height: rem(22px);
+      transform: translateY(rem(2px)) translateX(rem(-40px));
+      content: '';
+    }
+  }
+
+  &.civic-theme-light {
+    &:checked {
+      & + span {
+        &::after {
+          content: civic-color-svg-fill($civic-radio-check, $civic-radio-light-check-color);
+        }
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    &:checked {
+      & + span {
+        &::after {
+          content: civic-color-svg-fill($civic-radio-check, $civic-radio-dark-check-color);
+        }
+      }
+    }
+  }
+}
+
+.checkboxes--wrapper {
+  @include civic-typography('body');
+}

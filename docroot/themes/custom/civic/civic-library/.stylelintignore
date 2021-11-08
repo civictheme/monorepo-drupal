@@ -1,0 +1,2 @@
+# Ignore files that are marked as false positives by the processor and emit CssSyntaxError.
+components/00-base/mixins/_font.scss

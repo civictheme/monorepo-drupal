@@ -25,12 +25,11 @@ export const Alert = (knobTab) => {
       'Type',
       {
         Status: 'status',
-        Info: 'info',
         Error: 'error',
         Warning: 'warning',
         Success: 'success',
       },
-      'info',
+      'status',
       generalKnobTab,
     ),
     title: text('Title', 'Site information', generalKnobTab),

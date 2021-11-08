@@ -2,8 +2,6 @@
 // Button.
 //
 
-@import '../../00-base/base';
-
 //
 // Mixins.
 //
@@ -14,7 +12,6 @@
 }
 
 @mixin civic-button-type($type) {
-  // stylelint-disable-next-line scss/dollar-variable-pattern
   $types: ('primary', 'secondary', 'tertiary');
 
   @if not index($types, $type) {
@@ -40,8 +37,9 @@
 
   &.civic-theme-light {
     &:focus {
-      box-shadow: $civic-outline-boxshadow;
+      box-shadow: 0 0 0 3pt civic-color('outline');
       background-color: $civic-button-light-focus-background-color;
+      border: rem(2px) solid $civic-button-light-border-color;
     }
 
     &:hover {
@@ -50,7 +48,7 @@
 
     &:active {
       background-color: $civic-button-light-active-background-color;
-      box-shadow: none;
+      border: rem(2px) solid $civic-button-light-border-color;
     }
 
     &[disabled] {
@@ -71,9 +69,11 @@
 
   &.civic-theme-dark {
     &:focus {
-      box-shadow: $civic-outline-boxshadow;
+      @include civic-outline();
+
       background-color: $civic-button-dark-focus-background-color;
       color: $civic-button-dark-focus-color;
+      border: rem(2px) solid $civic-button-dark-border-color;
 
       .civic-icon {
         fill: $civic-button-dark-focus-color;
@@ -82,20 +82,25 @@
 
     &:hover {
       background-color: $civic-button-dark-hover-background-color;
+      color: $civic-button-dark-state-color;
+
+      .civic-icon {
+        fill: $civic-button-dark-state-color;
+      }
     }
 
     &:active {
       background-color: $civic-button-dark-active-background-color;
-      box-shadow: none;
+      border: rem(2px) solid $civic-button-dark-border-color;
+      color: $civic-button-dark-state-color;
+
+      .civic-icon {
+        fill: $civic-button-dark-state-color;
+      }
     }
 
     &[disabled] {
       background-color: $civic-button-dark-disabled-background-color;
-    }
-
-    &:hover,
-    &:active,
-    &[disabled] {
       color: $civic-button-dark-state-color;
 
       .civic-icon {
@@ -125,12 +130,16 @@
       color: $civic-button-light-secondary-color;
       border: rem(3px) solid $civic-button-light-secondary-border-color;
 
+      &:focus {
+        border-color: $civic-button-light-border-color;
+      }
+
       &:hover {
-        border-color: $civic-button-light-hover-background-color;
+        border-color: $civic-button-light-border-color;
       }
 
       &:active {
-        border-color: $civic-button-light-active-background-color;
+        border-color: $civic-button-light-border-color;
       }
 
       &[disabled] {
@@ -147,12 +156,16 @@
       color: $civic-button-dark-secondary-color;
       border: rem(3px) solid $civic-button-dark-secondary-border-color;
 
+      &:focus {
+        border-color: $civic-button-dark-border-color;
+      }
+
       &:hover {
         border-color: $civic-button-dark-hover-background-color;
       }
 
       &:active {
-        border-color: $civic-button-dark-active-background-color;
+        border-color: $civic-button-dark-border-color;
       }
 
       &[disabled] {
@@ -207,7 +220,7 @@
 
 .civic-button {
   cursor: pointer;
-  border: $civic-border-width solid transparent;
+  border: 2px solid transparent;
   border-radius: $civic-border-radius;
 
   @include civic-button-size('regular');

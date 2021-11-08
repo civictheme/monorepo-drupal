@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Civic Select element theme implementation.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the <select> tag.
+ * - options: The <option> element children.
+ * - modifier_class: [string] Additional classes to modify component styling.
+ */
+#}
+
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set state = state is empty or state == 'none' ? 'default' : state %}
+{% set state_class = 'civic-input--%s'|format(state) %}
+{% set disabled_class = disabled ? 'civic-input--disabled disabled' : '' %}
+{% set required_class = required ? 'civic-input--required required' : '' %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, modifier_class|default('')) %}
+
+<select class="civic-select civic-input__element {{ modifier_class }}" {{ attributes }} {{ disabled ? 'disabled' }} {{ required ? 'required' }}>
+  {% for option in options %}
+    {% if option.type == 'optgroup' %}
+      <optgroup label="{{ option.label }}">
+        {% for sub_option in option.options %}
+          <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+        {% endfor %}
+      </optgroup>
+    {% elseif option.type == 'option' %}
+      <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+    {% endif %}
+  {% endfor %}
+</select>

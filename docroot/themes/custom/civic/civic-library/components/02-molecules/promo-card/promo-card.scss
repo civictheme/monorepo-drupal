@@ -2,8 +2,6 @@
 // Callout.
 //
 
-@import '../../00-base/base';
-
 .civic-promo-card {
   $root: &;
 
@@ -44,13 +42,13 @@
   }
 
   #{$root}__date {
-    @include civic-typography(small);
+    @include civic-typography('small');
 
     margin-bottom: civic-space(2);
   }
 
   #{$root}__title {
-    @include civic-typography(heading-5);
+    @include civic-typography('heading-5');
 
     margin-bottom: civic-space(2);
   }
@@ -78,7 +76,7 @@
   }
 
   #{$root}__summary {
-    @include civic-typography(card-summary);
+    @include civic-typography('card-summary');
   }
 
   #{$root}__bottom-wrapper {

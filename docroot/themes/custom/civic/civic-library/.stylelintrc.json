@@ -42,7 +42,7 @@
     "scss/at-if-no-null": null,
     "scss/comment-no-empty": null,
     "scss/comment-no-loud": true,
-    "scss/dollar-variable-pattern": "^(root|civic-.+)",
+    "scss/dollar-variable-pattern": ["^(root|_?civic-.+)", {"ignore": "local"}],
     "scss/at-function-parentheses-space-before": "never",
     "selector-class-pattern": null,
     "string-quotes": "single"

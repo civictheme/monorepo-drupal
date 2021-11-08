@@ -1,0 +1,169 @@
+//
+// publication card.
+//
+
+.civic-publication-card {
+  $root: &;
+
+  position: relative;
+  border-radius: $civic-border-radius;
+  overflow: hidden;
+
+  @include civic-box-shadow();
+
+  &:focus-within {
+    @include civic-outline();
+  }
+
+  #{$root}__image-wrapper {
+    position: relative;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  #{$root}__content {
+    padding: civic-space(3);
+  }
+
+  #{$root}__title {
+    @include civic-typography((
+      'xxs': (16px, 24px, 700, 'primary', 0),
+      'm': (20px, 28px, 700, 'primary', -0.2px),
+    ));
+
+    margin-bottom: civic-space(2);
+  }
+
+  #{$root}__title-link {
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  #{$root}__icon {
+    margin-bottom: civic-space(2);
+  }
+
+  #{$root}__summary {
+    @include civic-typography(card-summary);
+
+    padding-right: civic-space(3);
+  }
+
+  #{$root}__attachment-link {
+    margin-top: rem(16px);
+
+    .civic-link--attachment {
+      @include civic-typography('label-regular');
+
+      letter-spacing: -0.1px;
+    }
+  }
+
+  &#{$root}--large {
+    @include civic-breakpoint(m) {
+      display: flex;
+    }
+
+    #{$root}__image-wrapper {
+      @include civic-breakpoint(m) {
+        max-width: 12.5rem;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &.civic-theme-light {
+    background-color: $civic-publication-card-light-background-color;
+
+    &:focus {
+      @include civic-outline(false);
+    }
+
+    #{$root}__title {
+      color: $civic-publication-card-light-heading-color;
+    }
+
+    #{$root}__title-link {
+      color: $civic-publication-card-light-heading-color;
+
+      &:hover {
+        color: $civic-publication-card-light-color-hover;
+      }
+
+      &:active {
+        color: $civic-publication-card-light-heading-color-active;
+      }
+    }
+
+    #{$root}__summary {
+      color: $civic-publication-card-light-color;
+    }
+
+    #{$root}__attachment-link {
+      .civic-link--attachment {
+        color: $civic-publication-card-light-attachment-color;
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-publication-card-dark-background-color;
+
+    &:focus {
+      @include civic-outline(true);
+    }
+
+    #{$root}__title {
+      color: $civic-publication-card-dark-heading-color;
+    }
+
+    #{$root}__title-link {
+      color: $civic-publication-card-dark-heading-color;
+
+      &:hover {
+        color: $civic-publication-card-dark-color-accent;
+      }
+
+      &:active {
+        color: $civic-publication-card-dark-heading-color-active;
+      }
+
+      .civic-icon {
+        fill: $civic-publication-card-dark-color-accent;
+      }
+    }
+
+    #{$root}__summary {
+      color: $civic-publication-card-dark-color;
+    }
+
+    #{$root}__attachment-link {
+      .civic-link--attachment {
+        color: $civic-publication-card-dark-attachment-color;
+      }
+    }
+  }
+}

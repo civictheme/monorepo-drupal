@@ -84,9 +84,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_button_text:
             -
               value: Search
@@ -265,6 +262,304 @@ default:
   field_c_n_banner_type:
     -
       value: large
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 99c5c9c9-2c94-4dec-a539-2596637c7289
+          bundle: civic_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635771704
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_content:
+            -
+              value: "<h2>Heading 2</h2>\r\n\r\n<h3>Heading 3</h3>\r\n\r\n<h4>Heading 4</h4>\r\n\r\n<h5>Heading 5</h5>\r\n\r\n<h6>Heading 6</h6>\r\n\r\n<p class=\"civic-text-large\">Lead paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p>Normal paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p class=\"civic-text-small\">Small paragraph Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni praesentium tempora temporibus veniam. Deserunt, necessitatibus!</p>\r\n\r\n<p><strong>Ordered list:</strong></p>\r\n\r\n<ol>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ol>\r\n\t\t<li>Nested List item 1</li>\r\n\t\t<li>Nested List item 2</li>\r\n\t</ol>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ol>\r\n\r\n<p><strong>Unordered list</strong>:</p>\r\n\r\n<ul>\r\n\t<li>List item 1</li>\r\n\t<li>List item 2</li>\r\n\t<li>List item 3\r\n\t<ul>\r\n\t\t<li>Nested item 1</li>\r\n\t\t<li>Nested item 2</li>\r\n\t</ul>\r\n\t</li>\r\n\t<li>List item 4</li>\r\n</ul>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"d0ff700e-b452-4b72-a94d-7e509e2a8b80\"></drupal-media>\r\n"
+              format: civic_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 77cf6482-fcb2-4653-a4d7-8e0fb40616f5
+          bundle: civic_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635771713
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_content:
+            -
+              value: "<h2>Second section of content</h2>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur autem quibusdam ratione repudiandae ullam. Hic impedit, incidunt possimus qui quisquam voluptas voluptatibus. Ex ipsam laboriosam obcaecati soluta voluptatem. Aut dolores est fuga inventore iure! Adipisci dolor facere laudantium nisi quae ratione tempora! Adipisci at delectus distinctio error itaque similique, tempora?</p>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"0953800f-c751-4943-af5e-ed5ff82422a9\"></drupal-media>\r\n"
+              format: civic_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 63b671c2-152b-435f-82ff-16c9b01cd63c
+          bundle: civic_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635771732
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_content:
+            -
+              value: "<h3>Third section with call to action</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae consequuntur dolorem dolorum ducimus natus quidem reprehenderit vero. Assumenda, consectetur, consequuntur delectus eum explicabo harum laudantium molestiae nesciunt nisi pariatur, unde?</p>\r\n\r\n<p><a class=\"civic-button civic-button--primary civic-button--regular civic-theme-light\" href=\"/\">Call to action</a> <a class=\"civic-button civic-button--regular civic-button--secondary civic-theme-light\" href=\"/\">Call to action 2</a></p>\r\n"
+              format: civic_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 10c1b3dd-7884-47eb-b6eb-6b2597b8039d
+          bundle: civic_accordion
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635772260
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_expand:
+            -
+              value: false
+          field_c_p_panels:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 6abdd9c7-6bc0-4ff4-9395-7a965e189a99
+                  bundle: civic_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1635772260
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos est explicabo magnam. Deleniti dolorum eos ipsam ipsum optio, quae voluptates? Accusamus amet delectus et officiis quaerat quas quis repellendus totam?</p>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"d0ff700e-b452-4b72-a94d-7e509e2a8b80\"></drupal-media>\r\n"
+                      format: civic_rich_text
+                  field_c_p_expand:
+                    -
+                      value: true
+                  field_c_p_title:
+                    -
+                      value: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, reprehenderit!'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 848b23e5-a8ab-4910-acf4-52259d997e1b
+                  bundle: civic_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1635772260
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos est explicabo magnam. Deleniti dolorum eos ipsam ipsum optio, quae voluptates? Accusamus amet delectus et officiis quaerat quas quis repellendus totam?</p>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"d0ff700e-b452-4b72-a94d-7e509e2a8b80\"></drupal-media>\r\n"
+                      format: civic_rich_text
+                  field_c_p_expand:
+                    -
+                      value: true
+                  field_c_p_title:
+                    -
+                      value: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, reprehenderit!'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 48a5fae7-f44f-4693-9503-24fe4eab4f50
+                  bundle: civic_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1635772260
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos est explicabo magnam. Deleniti dolorum eos ipsam ipsum optio, quae voluptates? Accusamus amet delectus et officiis quaerat quas quis repellendus totam?</p>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"d0ff700e-b452-4b72-a94d-7e509e2a8b80\"></drupal-media>\r\n"
+                      format: civic_rich_text
+                  field_c_p_expand:
+                    -
+                      value: true
+                  field_c_p_title:
+                    -
+                      value: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, reprehenderit!'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 2a405b49-e452-4cd3-a7d2-69c3f858f125
+                  bundle: civic_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1635772260
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos est explicabo magnam. Deleniti dolorum eos ipsam ipsum optio, quae voluptates? Accusamus amet delectus et officiis quaerat quas quis repellendus totam?</p>\r\n\r\n<drupal-media data-entity-type=\"media\" data-entity-uuid=\"d0ff700e-b452-4b72-a94d-7e509e2a8b80\"></drupal-media>\r\n"
+                      format: civic_rich_text
+                  field_c_p_expand:
+                    -
+                      value: true
+                  field_c_p_title:
+                    -
+                      value: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, reprehenderit!'
+          field_c_p_theme:
+            -
+              value: dark
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ca8ea4bf-2aac-44f5-8a73-e92c071b875d
+          bundle: civic_promo
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635772322
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_link:
+            -
+              uri: 'internal:/test'
+              title: 'Call to action'
+              options: {  }
+          field_c_p_summary:
+            -
+              value: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, reprehenderit!'
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Lorem ipsum dolor sit amet. Lorem ipsum'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: cb741784-4bd2-41c8-a278-922bca50332a
+          bundle: civic_callout
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635772351
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_links:
+            -
+              uri: 'internal:/test'
+              title: Testing
+              options: {  }
+          field_c_p_summary:
+            -
+              value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos est explicabo magnam. Deleniti dolorum eos ipsam ipsum optio, quae voluptates? Accusamus amet delectus et officiis quaerat quas quis repellendus totam?\r\n"
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Lorem ipsum dolor sit amet. Lorem ipsum'
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

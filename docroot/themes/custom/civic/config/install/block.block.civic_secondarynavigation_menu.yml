@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.civic_secondary_navigation
+  module:
+    - menu_block
+  theme:
+    - civic
+id: civic_secondarynavigation_menu
+theme: civic
+region: header_top_3
+weight: 0
+provider: null
+plugin: 'menu_block:civic_secondary_navigation'
+settings:
+  id: 'menu_block:civic_secondary_navigation'
+  label: 'Civic Secondary Navigation'
+  provider: menu_block
+  label_display: '0'
+  follow: false
+  follow_parent: child
+  level: 1
+  depth: 1
+  expand_all_items: false
+  parent: 'civic_secondary_navigation:'
+  suggestion: civic_secondary_navigation
+  label_type: block
+  label_link: false
+visibility: {  }

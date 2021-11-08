@@ -2,10 +2,12 @@
 // Footer.
 //
 
-@import '../../00-base/base';
-
 .civic-footer {
   $root: &;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   &__top {
     padding-top: civic-space(4);

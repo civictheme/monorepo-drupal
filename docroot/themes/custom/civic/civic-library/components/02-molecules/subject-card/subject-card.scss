@@ -2,8 +2,6 @@
 // Callout.
 //
 
-@import '../../00-base/base';
-
 .civic-subject-card {
   $root: &;
 
@@ -23,7 +21,6 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background-color: civic-color('neutral_90');
 
     @include civic-breakpoint('m') {
       padding: civic-space(4) civic-space(3);
@@ -46,16 +43,14 @@
   }
 
   &__title {
-    @include civic-typography(heading-5);
+    @include civic-typography('heading-5');
 
     margin-bottom: civic-space(2);
     z-index: 1;
-    color: $civic-subject-card-color;
   }
 
   &__title-link {
     text-decoration: none;
-    color: $civic-subject-card-color;
 
     &:hover,
     &:active {
@@ -81,7 +76,17 @@
       @include civic-outline(false);
     }
 
+    #{$root}__image-wrapper {
+      background-color: $civic-subject-card-light-image-background-color;
+    }
+
+    #{$root}__title {
+      color: $civic-subject-card-light-color;
+    }
+
     #{$root}__title-link {
+      color: $civic-subject-card-light-color;
+
       &:hover {
         color: $civic-subject-card-light-color-hover;
       }
@@ -97,7 +102,17 @@
       @include civic-outline(true);
     }
 
+    #{$root}__image-wrapper {
+      background-color: $civic-subject-card-dark-image-background-color;
+    }
+
+    #{$root}__title {
+      color: $civic-subject-card-dark-color;
+    }
+
     #{$root}__title-link {
+      color: $civic-subject-card-dark-color;
+
       &:hover {
         color: $civic-subject-card-dark-color-accent;
       }

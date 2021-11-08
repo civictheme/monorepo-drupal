@@ -1,7 +1,6 @@
 //
 // Navigation card.
 //
-@import '../../00-base/base';
 
 .civic-navigation-card {
   $root: &;
@@ -31,7 +30,7 @@
   }
 
   #{$root}__title {
-    @include civic-typography(heading-5);
+    @include civic-typography('heading-5');
 
     margin-bottom: civic-space(2);
   }
@@ -65,7 +64,7 @@
   }
 
   #{$root}__summary {
-    @include civic-typography(card-summary);
+    @include civic-typography('card-summary');
 
     padding-right: civic-space(3);
   }
@@ -83,13 +82,13 @@
     }
 
     #{$root}__title {
-      @include civic-typography(heading-4);
+      @include civic-typography('heading-4');
     }
   }
 
   &#{$root}--small {
     #{$root}__title {
-      @include civic-typography(heading-5);
+      @include civic-typography('heading-5');
     }
   }
 

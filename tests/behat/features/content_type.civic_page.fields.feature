@@ -44,3 +44,6 @@ Feature: Fields on Page content type
     And I should see text matching "Components"
     And should see an "input[name='field_c_n_components_civic_content_add_more']" element
     And should see an "input[name='field_c_n_components_civic_card_container_add_more']" element
+
+    And I should see text matching "Show Table of Contents"
+    And should see an "input[name='field_c_n_show_toc[value]']" element
