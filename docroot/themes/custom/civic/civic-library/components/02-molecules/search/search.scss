@@ -82,7 +82,7 @@
       }
     }
 
-    &__help_text {
+    #{$root}__help_text {
       color: $civic-search-light-help-color;
     }
   }
@@ -100,7 +100,7 @@
       }
     }
 
-    &__help_text {
+    #{$root}__help_text {
       color: $civic-search-dark-help-color;
     }
   }
