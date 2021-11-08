@@ -11,6 +11,7 @@ const del = require('del');
 const newer = require('gulp-newer');
 
 // Component file globs.
+// @codingStandardsIgnoreLine
 const civicStorybookWatchDir = `${__dirname}/../civic/components/**`;
 const civicChildStorybookWatchDir = `${__dirname}/components/**`;
 
@@ -37,7 +38,7 @@ function buildTask(cb) {
       if (filePath !== undefined) {
         filePath = filePath
           .replace(__dirname, '')
-          .replace(baseThemeName, childThemeName)
+          .replace(baseThemeName, childThemeName);
         if (fs.existsSync(filePath)) {
           return src(filePath)
             .pipe(rename((path) => {
