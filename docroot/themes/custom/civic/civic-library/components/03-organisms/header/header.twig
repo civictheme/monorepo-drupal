@@ -2,7 +2,7 @@
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty or content_middle1 is not empty or content_middle2 is not empty or content_middle3 is not empty  or content_bottom1 is not empty %}
-  <header class="civic-header {{ modifier_class }}" role="banner">
+  <header class="civic-header {{ modifier_class }}" data-component-name="header" role="banner">
 
     {% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty %}
       <div class="civic-header__top">

@@ -2,41 +2,68 @@
 // Back to top button.
 //
 
-@import '../../00-base/base';
-
 .civic-back-to-top {
   $root: &;
 
+  opacity: 0%;
   position: fixed;
   right: civic-space(1);
   bottom: civic-space(8);
 
-  &__button {
-    display: block;
-    padding: rem(8px);
-    border-radius: 50%;
+  &#{$root}--fade-in {
+    animation: fade-in-animation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 
-    &:focus {
-      box-shadow: $civic-outline-boxshadow;
+    @keyframes fade-in-animation {
+      0% {
+        opacity: 0%;
+      }
+
+      100% {
+        opacity: 100%;
+      }
+    }
+  }
+
+  &#{$root}--fade-out {
+    animation: fade-out-animation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+    @keyframes fade-out-animation {
+      0% {
+        opacity: 100%;
+      }
+
+      100% {
+        opacity: 0%;
+      }
     }
   }
 
   &.civic-theme-light {
-    #{$root}__button {
+    .civic-icon {
       background-color: $civic-back-to-top-light-background-color;
+      fill: $civic-back-to-top-light-color;
+    }
 
-      svg {
-        fill: $civic-back-to-top-light-color;
+    .civic-icon-link--with-border {
+      .civic-icon {
+        border-color: $civic-back-to-top-light-background-color;
       }
     }
   }
 
   &.civic-theme-dark {
-    #{$root}__button {
+    .civic-icon {
       background-color: $civic-back-to-top-dark-background-color;
+      fill: $civic-back-to-top-dark-color;
+    }
 
-      svg {
-        fill: $civic-back-to-top-dark-color;
+    .civic-icon-link--with-border {
+      .civic-icon {
+        border-color: $civic-back-to-top-dark-background-color;
       }
     }
   }

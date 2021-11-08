@@ -10,10 +10,12 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
-<div class="civic-back-to-top {{ theme_class }}">
-  <a class="civic-back-to-top__button"  data-component-name="back-to-top" href="#civic-top-of-page">
-    {% include '@atoms/icon/icon.twig' with {
-      symbol: 'arrows_uparrow_1',
-    } only %}
-  </a>
+<div class="civic-back-to-top {{ theme_class }}" data-component-name="back-to-top">
+   {% include '@molecules/icon-link/icon-link.twig' with {
+    theme: theme,
+    symbol: 'arrows_uparrow_1',
+    url: '#civic-top-of-page',
+    with_border: true,
+    text:'Return focus to top of page',
+  } only %}
 </div>
