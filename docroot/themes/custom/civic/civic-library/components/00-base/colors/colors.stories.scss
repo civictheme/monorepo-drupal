@@ -4,8 +4,7 @@
   display: flex;
   flex-flow: row wrap;
 
-  // stylelint-disable-next-line scss/dollar-variable-pattern
-  $all-colors: civic-all-colors();
+  $all-colors: _civic-colors-all();
 
   @include civic-generate-class-variations-from-map($all-colors, 'story-color') using($key, $value, $index) {
     width: 100px;
@@ -16,16 +15,18 @@
     position: relative;
     background-color: civic-color($key);
 
-    // stylelint-disable-next-line scss/dollar-variable-pattern
     $content: string.to-upper-case(string.slice($key, 1, 1)) + string.slice($key, 2) + '\A' + string.to-upper-case(#{$value});
 
     &::after {
       content: '#{$content}';
       text-align: center;
       display: block;
-      padding: 1em;
+      padding: 1em 0;
       position: absolute;
       top: 100%;
+      font-family: 'Courier New', monospace, sans-serif;
+      font-size: 80%;
+      line-height: 150%;
     }
   }
 }

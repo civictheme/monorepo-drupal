@@ -1,6 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import imageFile from '../../../assets/image.png';
-import { getSlots } from '../../00-base/base.stories';
+import { getSlots, randomUrl } from '../../00-base/base.stories';
 import CivicSubjectCard from './subject-card.twig';
 
 export default {
@@ -24,7 +24,7 @@ export const SubjectCard = (knobTab) => {
       generalKnobTab,
     ),
     title: text('Title', 'Subject card title which runs across two or three lines', generalKnobTab),
-    url: text('Link URL', 'http://example.com', generalKnobTab),
+    url: text('Link URL', randomUrl(), generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
       src: imageFile,
       alt: 'Image alt text',

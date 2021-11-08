@@ -1,7 +1,6 @@
 //
 // Tag.
 //
-@import '../../00-base/base';
 
 .civic-tag {
   $root: &;
@@ -10,7 +9,7 @@
   padding: rem(2px) civic-space(1) rem(2px) rem(4px);
   display: inline-block;
 
-  @include civic-typography(tag);
+  @include civic-typography('tag');
 
   &--no-icon {
     padding-left: civic-space(1);

@@ -2,8 +2,6 @@
 // Button.
 //
 
-@import '../../00-base/base';
-
 //
 // Mixins.
 //
@@ -14,7 +12,6 @@
 }
 
 @mixin civic-button-type($type) {
-  // stylelint-disable-next-line scss/dollar-variable-pattern
   $types: ('primary', 'secondary', 'tertiary');
 
   @if not index($types, $type) {
@@ -40,7 +37,7 @@
 
   &.civic-theme-light {
     &:focus {
-      box-shadow: $civic-outline-boxshadow;
+      box-shadow: 0 0 0 3pt civic-color('outline');
       background-color: $civic-button-light-focus-background-color;
       border: rem(2px) solid $civic-button-light-border-color;
     }
@@ -72,7 +69,8 @@
 
   &.civic-theme-dark {
     &:focus {
-      box-shadow: $civic-outline-boxshadow;
+      @include civic-outline();
+
       background-color: $civic-button-dark-focus-background-color;
       color: $civic-button-dark-focus-color;
       border: rem(2px) solid $civic-button-dark-border-color;
@@ -222,7 +220,7 @@
 
 .civic-button {
   cursor: pointer;
-  border: $civic-border-width solid transparent;
+  border: 2px solid transparent;
   border-radius: $civic-border-radius;
 
   @include civic-button-size('regular');

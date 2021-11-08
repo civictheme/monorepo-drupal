@@ -2,8 +2,6 @@
 // Civic input.
 //
 
-@import '../../00-base/base';
-
 .civic-select {
   $root: &;
 
@@ -22,8 +20,8 @@
 
     &.error,
     &.civic-input--error {
-      border-color: $civic-input-border-error-color;
-      box-shadow: 0 0 0 1px $civic-input-border-error-color;
+      border-color: $civic-input-light-error-border-color;
+      box-shadow: 0 0 0 1px $civic-input-light-error-border-color;
     }
 
     &.civic-input--success {
@@ -39,7 +37,7 @@
   &.civic-theme-dark {
     color: $civic-select-dark-color;
     background-color: $civic-select-dark-background-color;
-    border-color: $civic-select-dark-border-color;
+    border-color: $civic-input-dark-error-border-color;
 
     &:hover {
       border-color: $civic-select-dark-border-hover-color;

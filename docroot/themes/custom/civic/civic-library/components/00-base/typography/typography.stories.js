@@ -2,7 +2,7 @@ export default {
   title: 'Base/Typography',
 };
 
-export const Typography = () => `<div class="typography-wrapper">
+export const Typography = () => `<div class="story-typography-wrapper">
 <hr/>
 <div class="display-xl">XL - Desktop Display Text</div>
 <div class="display-l">L - Tablet Display Text</div>

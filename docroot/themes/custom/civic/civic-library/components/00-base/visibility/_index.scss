@@ -3,7 +3,7 @@
 //
 
 @each $breakpoint, $value in $civic-breakpoints {
-  @if $breakpoint == $civic-grid-visible-lowest-breakpoint {
+  @if $breakpoint == $civic-visibility-lowest-breakpoint {
     .show-#{$breakpoint} {
       display: block;
     }

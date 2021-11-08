@@ -1,7 +1,6 @@
 //
 // Typography mixins.
 //
-// stylelint-disable scss/dollar-variable-pattern
 
 @use 'sass:map';
 @use 'sass:list';
@@ -9,23 +8,29 @@
 //
 // Include font size, height, weight and family for one-to-many breakpoints.
 //
-// @include typography('heading-l');
+// @code
+//
+// @include civic-typography('heading-1');
 // or
-// @include typography((24px, 1.2em, 400));
+// @include civic-typography((24px, 1.2em, 400));
 // or
-// @include typography((
+// @include civic-typography((
 //   'xs': (16px, 1.5em, 400),
 //   'l': (24px, 1.2em, 600)
 // ));
 //
+// @endcode
+//
 @mixin civic-typography($ruleset) {
+  $all-typographies: _civic-typography-all();
+
   // Print preset
   @if type-of($ruleset) == string {
-    @if map.get($civic-typography, $ruleset) == null {
+    @if map.get($all-typographies, $ruleset) == null {
       @error '"#{$ruleset}" is not an available typeset';
     }
 
-    $ruleset: map.get($civic-typography, $ruleset);
+    $ruleset: map.get($all-typographies, $ruleset);
   }
 
   // Print rules
@@ -48,14 +53,27 @@
 }
 
 //
+// Compile all typographies into a single map.
+//
 // Do not use directly.
-// Use @include typography() mixin instead.
+// Use @include civic-typography() mixin instead.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _civic-typography-all() {
+  @return map.merge($civic-typography-default, $civic-typography);
+}
+
+//
+// Print typography rules.
+//
+// Do not use directly.
+// Use @include civic-typography() mixin instead.
 //
 @mixin _civic-typography-print-rules($rules) {
   $font-size: list.nth($rules, 1);
   $line-height: list.nth($rules, 2);
   $font-weight: 'default';
-  $font-family: 'none';
+  $font-name: 'none';
   $letter-spacing: normal;
 
   @if length($rules) >= 3 {
@@ -63,27 +81,19 @@
   }
 
   @if length($rules) >= 4 {
-    $font-family: list.nth($rules, 4);
+    $font-name: list.nth($rules, 4);
   }
 
   @if length($rules) >= 5 {
     $letter-spacing: list.nth($rules, 5);
   }
 
-  @include _civic-typography-font($font-size, $line-height, $font-weight, $font-family, $letter-spacing);
-}
-
-//
-// Do not use directly.
-// Use @include typography() mixin instead.
-//
-@mixin _civic-typography-font($font-size: 's', $line-height: 1.2em, $font-weight: 'default', $font-family: 'none', $letter-spacing: 'normal') {
   font-size: rem($font-size);
   line-height: $line-height;
   letter-spacing: $letter-spacing;
 
-  @if $font-family != 'none' {
-    font-family: map.get($civic-font, $font-family);
+  @if $font-name != 'none' {
+    font-family: civic-font($font-name);
   }
 
   @if $font-weight != 'default' {

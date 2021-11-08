@@ -1,4 +1,5 @@
 /**
  * Import styles to be discoverable by the loader.
  */
-import '../components/style.stories.scss';
+
+import '../components-combined/style.stories.scss';

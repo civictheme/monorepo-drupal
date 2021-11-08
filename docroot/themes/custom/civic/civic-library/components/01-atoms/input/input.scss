@@ -2,8 +2,6 @@
 // Civic input.
 //
 
-@import '../../00-base/base';
-
 .civic-input {
   $root: &;
 
@@ -50,21 +48,21 @@
       }
 
       &:focus {
-        background-color: $civic-input-focus-background-color;
-        color: $civic-input-light-focus-color;
-        outline: $civic-input-light-focus-outline-color;
-        border-color: $civic-input-light-focus-border-color;
-        box-shadow: 0 0 0 1px $civic-input-light-focus-border-color;
+        background-color: $civic-input-light-background-focus-color;
+        color: $civic-input-light-text-focus-color;
+        outline: $civic-input-light-outline-focus-color;
+        border-color: $civic-input-light-border-focus-color;
+        box-shadow: 0 0 0 1px $civic-input-light-border-focus-color;
       }
     }
   }
 
   &.civic-theme-dark {
-    color: $civic-input-dark-color;
+    color: $civic-input-dark-text-color;
 
     #{$root}__element {
       background-color: $civic-input-dark-background-color;
-      color: $civic-input-dark-input-color;
+      color: $civic-input-dark-text-color;
       border-color: $civic-input-dark-border-color;
 
       &:hover {
@@ -72,16 +70,17 @@
       }
 
       &:focus {
-        color: $civic-input-dark-focus-color;
-        outline: $civic-input-dark-focus-outline-color;
-        border-color: $civic-input-dark-focus-border-color;
-        box-shadow: 0 0 0 1px $civic-input-dark-focus-border-color;
+        color: $civic-input-dark-text-focus-color;
+        background-color: $civic-input-dark-background-focus-color;
+        outline: $civic-input-dark-outline-focus-color;
+        border-color: $civic-input-dark-border-focus-color;
+        box-shadow: 0 0 0 1px $civic-input-dark-border-focus-color;
       }
     }
 
     #{$root}__state {
       svg {
-        fill: $civic-input-dark-focus-color;
+        fill: $civic-input-dark-text-focus-color;
       }
     }
   }
@@ -90,14 +89,14 @@
   &--disabled {
     &.civic-theme-light {
       #{$root}__element {
-        color: $civic-input-light-disabled-color;
+        color: $civic-input-light-disabled-text-color;
         background-color: $civic-input-light-disabled-background-color;
       }
     }
 
     &.civic-theme-dark {
       #{$root}__element {
-        color: $civic-input-dark-disabled-color;
+        color: $civic-input-dark-disabled-text-color;
         background-color: $civic-input-dark-disabled-background-color;
       }
     }
@@ -106,13 +105,13 @@
   &.error,
   &--error {
     #{$root}__element {
-      border-color: $civic-input-error-border-color !important;
-      box-shadow: 0 0 0 1px $civic-input-error-border-color !important;
+      border-color: $civic-input-dark-error-border-color !important;
+      box-shadow: 0 0 0 1px $civic-input-dark-error-border-color !important;
     }
 
     #{$root}__state {
       svg {
-        fill: $civic-input-error-border-color;
+        fill: $civic-input-dark-error-icon-color;
       }
     }
   }
@@ -120,13 +119,13 @@
   &.success,
   &--success {
     #{$root}__element {
-      border-color: $civic-input-success-border-color !important;
-      box-shadow: 0 0 0 1px $civic-input-success-border-color;
+      border-color: $civic-input-dark-success-border-color !important;
+      box-shadow: 0 0 0 1px $civic-input-dark-success-border-color;
     }
 
     #{$root}__state {
       svg {
-        fill: $civic-input-success-border-color;
+        fill: $civic-input-dark-success-icon-color;
       }
     }
   }

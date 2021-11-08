@@ -1,7 +1,6 @@
 //
 // Helper functions to extend SASS functionality.
 //
-// stylelint-disable scss/dollar-variable-pattern
 
 @use 'sass:map';
 @use 'sass:string';
@@ -72,4 +71,19 @@
   }
 
   @return $string;
+}
+
+@function civic-string-last-index($string, $needle) {
+  $index: string.index($string, $needle);
+  $result: $index;
+
+  @if $index {
+    @for $i from $index + string.length($needle) through string.length($string) {
+      @if string.slice($string, $i, $i + string.length($needle) - 1) == $needle {
+        $result: $i;
+      }
+    }
+  }
+
+  @return $result;
 }

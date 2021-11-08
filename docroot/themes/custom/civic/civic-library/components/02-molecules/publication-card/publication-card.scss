@@ -1,7 +1,6 @@
 //
 // publication card.
 //
-@import '../../00-base/base';
 
 .civic-publication-card {
   $root: &;
@@ -125,7 +124,7 @@
 
     #{$root}__attachment-link {
       .civic-link--attachment {
-        color: $civic-publication-card-light-attachement-color;
+        color: $civic-publication-card-light-attachment-color;
       }
     }
   }
@@ -163,7 +162,7 @@
 
     #{$root}__attachment-link {
       .civic-link--attachment {
-        color: $civic-publication-card-dark-attachement-color;
+        color: $civic-publication-card-dark-attachment-color;
       }
     }
   }

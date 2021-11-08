@@ -2,7 +2,6 @@ import {
   boolean, radios, text,
 } from '@storybook/addon-knobs';
 import CivicSocialLinks from './social-links.twig';
-import './social-links.scss';
 
 export default {
   title: 'Organisms/Social Links',

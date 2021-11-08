@@ -1,5 +1,15 @@
+//
+// Style for Storybook.
+//
+// This file replaces normal CSS to allow resolving of variables and mixins in
+// stories CSS.
+//
 // stylelint-disable scss/at-import-partial-extension
-@import 'variables';
+//
+// Override assets directory as Storybook serves assets from the root.
+$civic-assets-directory: '/';
+
+@import 'style';
 @import '00-base/**/*.stories.scss';
 @import '01-atoms/**/*.stories.scss';
 @import '02-molecules/**/*.stories.scss';

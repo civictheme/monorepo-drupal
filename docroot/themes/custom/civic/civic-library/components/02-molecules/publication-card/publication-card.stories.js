@@ -4,7 +4,7 @@ import {
 import imageFile from '../../../assets/image.png';
 
 import CivicPublicationCard from './publication-card.twig';
-import { getSlots } from '../../00-base/base.stories';
+import { getSlots, randomUrl } from '../../00-base/base.stories';
 
 export default {
   title: 'Molecules/Card/Publication Card',
@@ -37,7 +37,7 @@ export const PublicationCard = (knobTab) => {
     ),
     title: text('Title', 'Publication or whitepaper main title.', generalKnobTab),
     summary: text('Summary', 'Publication summary', generalKnobTab),
-    url: text('URL', 'http://example.com', generalKnobTab),
+    url: text('URL', randomUrl(), generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
       src: imageFile,
       alt: 'Image alt text',

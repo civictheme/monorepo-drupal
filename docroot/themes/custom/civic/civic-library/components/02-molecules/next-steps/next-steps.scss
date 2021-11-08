@@ -2,8 +2,6 @@
 // Next steps.
 //
 
-@import '../../00-base/base';
-
 .civic-next-steps {
   $root: &;
 
@@ -25,7 +23,7 @@
   &__summary {
     margin-top: 16px;
 
-    @include civic-typography(body);
+    @include civic-typography('body');
   }
 
   &__read-more {
@@ -47,7 +45,6 @@
     }
 
     &:hover {
-
       #{$root}__title {
         color: $civic-next-steps-light-color-hover;
         text-decoration: underline;
@@ -79,7 +76,7 @@
 
     #{$root}__read-more {
       .civic-icon {
-        fill: civic-color(primary);
+        fill: $civic-next-steps-light-icon-color;
       }
     }
   }
@@ -93,7 +90,6 @@
     }
 
     &:hover {
-
       #{$root}__title {
         color: $civic-next-steps-dark-color-hover;
         text-decoration: underline;
@@ -125,7 +121,7 @@
 
     #{$root}__read-more {
       .civic-icon {
-        fill: civic-color(accent);
+        fill: $civic-next-steps-dark-icon-color;
       }
     }
   }
