@@ -47,19 +47,9 @@
 {% endblock %}
 
 {% block content_middle3 %}
-  <div class="col-xs-12 col-m-6">
-    <div class="civic-header__content-middle3">
+  <div class="col-xs-12 col-m-9">
+    <div class="civic-header__content-middle3 civic-header__content-middle3--civic_demo">
       {{ content_middle3 }}
     </div>
-  </div>
-  <div class="col-xs-12 col-m-3">
-    {% include '@atoms/button/button.twig' with {
-      'theme': theme,
-      'kind': 'link',
-      'type': 'primary',
-      'size': 'large',
-      'text': 'Subscribe',
-      'url': 'https://www.example.com',
-    } %}
   </div>
 {% endblock %}

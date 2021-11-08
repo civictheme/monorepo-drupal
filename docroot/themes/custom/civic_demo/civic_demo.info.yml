@@ -38,20 +38,6 @@ ckeditor_stylesheets:
 
 components:
   namespaces:
-    # Allows access for components to be extended from within storybook and then used in Drupal. Do not use directly
-    # in Drupal as it bypasses the inheritance system.
-    civic-base:
-      - /themes/custom/civic/components/00-base
-    civic-atoms:
-      - /themes/custom/civic/components/01-atoms
-    civic-molecules:
-      - /themes/custom/civic/components/02-molecules
-    civic-organisms:
-      - /themes/custom/civic/components/03-organisms
-    civic-templates:
-      - /themes/custom/civic/components/04-templates
-    civic-pages:
-      - /themes/custom/civic/components/05-pages
     # Child theme component namespacing if a namespace does not exist then we will use civic theme.
     base:
       - components/00-base
