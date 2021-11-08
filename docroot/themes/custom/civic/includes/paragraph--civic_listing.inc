@@ -64,8 +64,9 @@ function _civic_render_listing_paragraph(Paragraph $paragraph) {
 
   $view_name = 'civic_listing';
 
-  // Call modules that implement the hook, and let them change the view name.
+  // Call modules/theme that implement the hook, and let them change the view.
   \Drupal::moduleHandler()->alter('civic_listing_view_name', $view_name);
+  \Drupal::service('theme.manager')->alter('civic_listing_view_name', $view_name);
 
   $default_view_display = $view_display = 'civic_listing_block';
   $fallback_limit = CIVIC_LISTINGS_FULL_FALLBACK_LIMIT;
