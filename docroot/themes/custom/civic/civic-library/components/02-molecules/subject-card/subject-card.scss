@@ -88,11 +88,11 @@
       color: $civic-subject-card-light-color;
 
       &:hover {
-        color: $civic-subject-card-light-color-hover;
+        color: $civic-subject-card-light-hover-color;
       }
 
       &:active {
-        color: $civic-subject-card-light-color-active;
+        color: $civic-subject-card-light-active-color;
       }
     }
   }
@@ -118,7 +118,7 @@
       }
 
       &:active {
-        color: $civic-subject-card-dark-color-active;
+        color: $civic-subject-card-dark-active-color;
       }
     }
   }

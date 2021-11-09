@@ -107,11 +107,11 @@
       color: $civic-navigation-card-light-heading-color;
 
       &:hover {
-        color: $civic-navigation-card-light-color-hover;
+        color: $civic-navigation-card-light-hover-color;
       }
 
       &:active {
-        color: $civic-navigation-card-light-heading-color-active;
+        color: $civic-navigation-card-light-heading-active-color;
       }
     }
 
@@ -139,7 +139,7 @@
       }
 
       &:active {
-        color: $civic-navigation-card-dark-heading-color-active;
+        color: $civic-navigation-card-dark-heading-active-color;
       }
     }
 

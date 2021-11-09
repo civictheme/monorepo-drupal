@@ -83,7 +83,7 @@
       & + span {
         &::before {
           cursor: default;
-          color: $civic-input-light-disabled-text-color;
+          color: $civic-input-light-disabled-color;
           background-color: $civic-input-light-disabled-background-color;
         }
       }
@@ -127,7 +127,7 @@
       & + span {
         &::before {
           cursor: default;
-          color: $civic-input-dark-disabled-text-color;
+          color: $civic-input-dark-disabled-color;
           background-color: $civic-input-dark-disabled-background-color;
         }
       }

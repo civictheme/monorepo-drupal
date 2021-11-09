@@ -15,7 +15,7 @@
     background-color: $civic-select-light-background-color;
 
     &:hover {
-      box-shadow: 0 0 0 1px $civic-select-light-border-hover-color;
+      box-shadow: 0 0 0 1px $civic-select-light-hover-border-color;
     }
 
     &.error,
@@ -40,13 +40,13 @@
     border-color: $civic-input-dark-error-border-color;
 
     &:hover {
-      border-color: $civic-select-dark-border-hover-color;
-      box-shadow: 0 0 0 1px $civic-select-dark-border-hover-color;
+      border-color: $civic-select-dark-hover-border-color;
+      box-shadow: 0 0 0 1px $civic-select-dark-hover-border-color;
     }
 
     &:focus {
-      border-color: $civic-select-dark-border-focus-color;
-      box-shadow: 0 0 0 1px $civic-select-dark-border-focus-color;
+      border-color: $civic-select-dark-focus-border-color;
+      box-shadow: 0 0 0 1px $civic-select-dark-focus-border-color;
     }
 
     &:invalid,

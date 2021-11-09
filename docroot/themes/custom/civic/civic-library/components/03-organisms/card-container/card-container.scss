@@ -82,7 +82,7 @@
     color: $civic-card-container-light-color;
 
     &#{$root}--with-spacing {
-      background-color: $civic-card-container-light-background;
+      background-color: $civic-card-container-light-background-color;
     }
 
     #{$root}__header-link {
@@ -110,7 +110,7 @@
     color: $civic-card-container-dark-color;
 
     &#{$root}--with-spacing {
-      background-color: $civic-card-container-dark-background;
+      background-color: $civic-card-container-dark-background-color;
     }
 
     #{$root}__header-link {

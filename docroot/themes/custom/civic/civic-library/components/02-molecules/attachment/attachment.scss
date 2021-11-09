@@ -22,11 +22,11 @@
     color: $civic-attachment-light-heading-color;
 
     &:hover {
-      color: $civic-attachment-light-heading-color-hover;
+      color: $civic-attachment-light-heading-hover-color;
     }
 
     &:active {
-      color: $civic-attachment-light-heading-color-active;
+      color: $civic-attachment-light-heading-active-color;
     }
   }
 
@@ -34,11 +34,11 @@
     color: $civic-attachment-dark-heading-color;
 
     &:hover {
-      color: $civic-attachment-dark-heading-color-hover;
+      color: $civic-attachment-dark-heading-hover-color;
     }
 
     &:active {
-      color: $civic-attachment-dark-heading-color-active;
+      color: $civic-attachment-dark-heading-active-color;
     }
   }
 }

@@ -66,7 +66,7 @@ div {
 
 ## Colours
 
-Core civic colours live in `$civic-default-colors`.
+Core civic colors live in `$civic-default-colors`.
 
 ```scss
 $civic-default-colors: (
@@ -77,7 +77,7 @@ $civic-default-colors: (
 );
 ```
 
-Subsites can override or extended these core colours by using `$civic-colors`.
+Subsites can override or extended these core colors by using `$civic-colors`.
 
 ```scss
 $civic-colors: (
@@ -88,8 +88,8 @@ $civic-colors: (
 );
 ```
 
-Every colour used on the site should have a corresponding variable, with an
-appended `!default`. This ensures subsites can override any individual colour by
+Every color used on the site should have a corresponding variable, with an
+appended `!default`. This ensures subsites can override any individual color by
 redefinind the variable.
 
 ```scss

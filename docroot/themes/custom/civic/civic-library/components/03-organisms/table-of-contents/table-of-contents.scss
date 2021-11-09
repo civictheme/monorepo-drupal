@@ -70,7 +70,7 @@
       border-color: $civic-table-of-contents-light-link-border-color;
 
       &::before {
-        background-color: $civic-table-of-contents-light-link-before-background-color;
+        background-color: $civic-table-of-contents-light-link-strip-background-color;
       }
 
       &:hover,
@@ -79,7 +79,7 @@
         border-color: $civic-table-of-contents-light-link-hover-border-color;
 
         &::before {
-          background-color: $civic-table-of-contents-light-link-before-hover-background-color;
+          background-color: $civic-table-of-contents-light-link-strip-hover-background-color;
         }
       }
 
@@ -103,7 +103,7 @@
       border-color: $civic-table-of-contents-dark-link-border-color;
 
       &::before {
-        background-color: $civic-table-of-contents-dark-link-before-background-color;
+        background-color: $civic-table-of-contents-dark-link-strip-background-color;
       }
 
       &:hover,
@@ -112,7 +112,7 @@
         border-color: $civic-table-of-contents-dark-link-hover-border-color;
 
         &::before {
-          background-color: $civic-table-of-contents-dark-link-before-hover-background-color;
+          background-color: $civic-table-of-contents-dark-link-strip-hover-background-color;
         }
       }
 

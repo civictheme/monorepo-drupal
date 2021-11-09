@@ -5,8 +5,9 @@
 .civic-next-steps {
   $root: &;
 
-  border-radius: $civic-border-radius;
-  border-left: rem(6px) $civic-next-steps-stripe-color solid;
+  border-radius: $civic-next-steps-border-radius;
+  border-left-width: civic-space(0.75);
+  border-left-style: solid;
   display: block;
   padding: civic-space(3) civic-space(3);
   position: relative;
@@ -37,8 +38,9 @@
   }
 
   &.civic-theme-light {
-    background-color: $civic-next-steps-light-background-color;
     color: $civic-next-steps-light-color;
+    background-color: $civic-next-steps-light-background-color;
+    border-left-color: $civic-next-steps-light-stripe-color;
 
     &:focus {
       @include civic-outline(false);
@@ -46,26 +48,26 @@
 
     &:hover {
       #{$root}__title {
-        color: $civic-next-steps-light-color-hover;
+        color: $civic-next-steps-light-hover-color;
         text-decoration: underline;
       }
 
       #{$root}__read-more {
         .civic-icon {
-          fill: $civic-next-steps-light-color-hover;
+          fill: $civic-next-steps-light-hover-color;
         }
       }
     }
 
     &:active {
       .civic-next-steps__title {
-        color: $civic-next-steps-light-color-active;
+        color: $civic-next-steps-light-active-color;
         text-decoration: underline;
       }
 
       #{$root}__read-more {
         .civic-icon {
-          fill: $civic-next-steps-light-color-active;
+          fill: $civic-next-steps-light-active-color;
         }
       }
     }
@@ -82,8 +84,9 @@
   }
 
   &.civic-theme-dark {
-    background-color: $civic-next-steps-dark-background-color;
     color: $civic-next-steps-dark-color;
+    background-color: $civic-next-steps-dark-background-color;
+    border-left-color: $civic-next-steps-dark-stripe-color;
 
     &:focus {
       @include civic-outline(true);
@@ -91,26 +94,26 @@
 
     &:hover {
       #{$root}__title {
-        color: $civic-next-steps-dark-color-hover;
+        color: $civic-next-steps-dark-hover-color;
         text-decoration: underline;
       }
 
       #{$root}__read-more {
         .civic-icon {
-          fill: $civic-next-steps-dark-color-hover;
+          fill: $civic-next-steps-dark-hover-color;
         }
       }
     }
 
     &:active {
       #{$root}__title {
-        color: $civic-next-steps-dark-color-active;
+        color: $civic-next-steps-dark-active-color;
         text-decoration: underline;
       }
 
       #{$root}__read-more {
         .civic-icon {
-          fill: $civic-next-steps-dark-color-active;
+          fill: $civic-next-steps-dark-active-color;
         }
       }
     }

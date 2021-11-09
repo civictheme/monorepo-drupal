@@ -110,11 +110,11 @@
       color: $civic-publication-card-light-heading-color;
 
       &:hover {
-        color: $civic-publication-card-light-color-hover;
+        color: $civic-publication-card-light-hover-color;
       }
 
       &:active {
-        color: $civic-publication-card-light-heading-color-active;
+        color: $civic-publication-card-light-heading-active-color;
       }
     }
 
@@ -148,7 +148,7 @@
       }
 
       &:active {
-        color: $civic-publication-card-dark-heading-color-active;
+        color: $civic-publication-card-dark-heading-active-color;
       }
 
       .civic-icon {

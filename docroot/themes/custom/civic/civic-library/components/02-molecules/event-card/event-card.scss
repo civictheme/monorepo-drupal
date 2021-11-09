@@ -95,11 +95,11 @@
       color: $civic-event-card-light-heading-color;
 
       &:hover {
-        color: $civic-event-card-light-color-hover;
+        color: $civic-event-card-light-hover-color;
       }
 
       &:active {
-        color: $civic-event-card-light-color-active;
+        color: $civic-event-card-light-active-color;
       }
     }
 
@@ -133,7 +133,7 @@
       }
 
       &:active {
-        color: $civic-event-card-dark-color-active;
+        color: $civic-event-card-dark-active-color;
       }
     }
 
