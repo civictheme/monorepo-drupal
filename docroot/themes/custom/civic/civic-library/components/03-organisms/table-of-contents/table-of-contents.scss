@@ -35,7 +35,7 @@
 
     display: block;
     position: relative;
-    padding: civic-space(1) civic-space(2) civic-space(1) (civic-space(2) + rem(4px));
+    padding: civic-space() civic-space(2) civic-space() civic-space(2.5);
     border-width: 1px;
     border-style: solid;
     text-decoration: none;

@@ -177,13 +177,13 @@
     margin-bottom: 0;
 
     [data-collapsible-trigger] {
-      padding: civic-space(2) civic-space(1);
+      padding: civic-space(2) civic-space();
       margin-bottom: 0;
     }
 
     [data-collapsible-panel] {
-      padding-left: civic-space(1);
-      padding-right: civic-space(1);
+      padding-left: civic-space();
+      padding-right: civic-space();
     }
   }
 }

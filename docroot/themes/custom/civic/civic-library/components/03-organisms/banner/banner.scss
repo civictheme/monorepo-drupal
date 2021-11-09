@@ -15,8 +15,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding-top: $civic-space * 12;
-    padding-bottom: $civic-space * 15;
+    padding-top: civic-space(12);
+    padding-bottom: civic-space(15);
   }
 
   &#{$root}--decorative {
@@ -52,7 +52,7 @@
       display: block;
       position: absolute;
       bottom: civic-space(4);
-      top: $civic-space * 12;
+      top: civic-space(12);
       right: 0;
 
       & * {

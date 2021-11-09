@@ -11,7 +11,7 @@
   padding: civic-space(2);
 
   @include civic-breakpoint('m') {
-    padding: civic-space(2) * 1.5;
+    padding: civic-space(3);
   }
 
   @include civic-typography('tag');

@@ -127,16 +127,6 @@ $civic-colors-default-neutrals: (
 // Use @include civic-space() function instead.
 //
 $civic-space: 0.5rem !default; // 8px
-$civic-spaces: (
-  $civic-space, // 8px
-  $civic-space * 2, // 16px
-  $civic-space * 3, // 24px
-  $civic-space * 4, // 32px
-  $civic-space * 5, // 40px
-  $civic-space * 6, // 48px
-  $civic-space * 8, // 64px
-  $civic-space * 10 // 80px
-) !default;
 
 //
 // Breakpoints.
@@ -930,7 +920,7 @@ $civic-banner-dark-background-color: civic-color('shade_dark_60') !default;
 $civic-banner-light-color: civic-color('neutral_90') !default;
 $civic-banner-dark-color: civic-color('neutral') !default;
 $civic-banner-decorative-mobile-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{civic-space(5)}), 0% 100%) !default;
-$civic-banner-decorative-desktop-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{$civic-space * 11}), 0% 100%) !default;
+$civic-banner-decorative-desktop-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{civic-space(11)}), 0% 100%) !default;
 $civic-banner-featured-image-clip-path: polygon(13% 10%, 100% 0, 100% 100%, 0% 100%) !default;
 
 //
@@ -1105,7 +1095,7 @@ $civic-primary-navigation-dark-menu-item-active-trail-background-color: civic-co
 // Navigation/Secondary navigation.
 //
 // Top offset for the dropdown from the bottom of the trigger.
-$civic-secondary-navigation-dropdown-top-offset: civic-space(1);
+$civic-secondary-navigation-dropdown-top-offset: civic-space();
 $civic-secondary-navigation-dropdown-zindex: 11;
 $civic-secondary-navigation-light-menu-item-color: civic-color('shade_dark_80') !default;
 $civic-secondary-navigation-light-menu-item-hover-color: civic-color('primary') !default;

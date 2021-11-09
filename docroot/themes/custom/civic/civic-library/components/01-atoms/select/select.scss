@@ -8,7 +8,7 @@
   @include civic-typography('body');
 
   font-weight: 600;
-  padding: civic-space() * 1.5 civic-space(3) civic-space() * 1.5 civic-space(2);
+  padding: civic-space(1.5) civic-space(3) civic-space(1.5) civic-space(2);
 
   &.civic-theme-light {
     color: $civic-select-light-color;

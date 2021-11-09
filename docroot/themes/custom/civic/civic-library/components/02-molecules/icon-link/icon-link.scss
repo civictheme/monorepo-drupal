@@ -16,7 +16,7 @@
       padding: civic-space();
 
       @include civic-breakpoint('m') {
-        padding: civic-space() * 1.5;
+        padding: civic-space(1.5);
       }
     }
   }

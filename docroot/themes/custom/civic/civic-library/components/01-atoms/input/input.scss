@@ -7,13 +7,13 @@
 
   &__label {
     display: block;
-    margin-bottom: civic-space(1);
+    margin-bottom: civic-space();
   }
 
   &__element {
     border: rem(1px) solid;
     border-radius: rem(4px);
-    padding: ($civic-space * 1.5) civic-space(5) ($civic-space * 1.5) civic-space(2);
+    padding: civic-space(1.5) civic-space(5) civic-space(1.5) civic-space(2);
 
     &::placeholder {
       @include civic-typography('body');

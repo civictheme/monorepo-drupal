@@ -6,18 +6,18 @@
   $root: &;
 
   border-radius: $civic-border-radius;
-  padding: rem(2px) civic-space(1) rem(2px) rem(4px);
+  padding: civic-space(0.25) civic-space() civic-space(0.25) civic-space(0.5);
   display: inline-block;
 
   @include civic-typography('tag');
 
   &--no-icon {
-    padding-left: civic-space(1);
+    padding-left: civic-space();
   }
 
   &--icon-after {
     padding-right: rem(4px);
-    padding-left: civic-space(1);
+    padding-left: civic-space();
   }
 
   .civic-icon {

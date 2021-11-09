@@ -102,7 +102,7 @@
       .civic-menu__item--level-4,
       .civic-menu__item--level-5 {
         width: 100%;
-        margin-bottom: civic-space(1);
+        margin-bottom: civic-space();
 
         > .civic-link {
           @include civic-typography('label-menu');

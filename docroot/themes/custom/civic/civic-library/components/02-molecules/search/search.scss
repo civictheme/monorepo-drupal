@@ -18,7 +18,7 @@
 
     @include civic-breakpoint(m) {
       flex-grow: 1;
-      margin-right: civic-space(1);
+      margin-right: civic-space();
       margin-bottom: 0;
     }
 
@@ -56,7 +56,7 @@
       border-radius: $civic-border-radius;
       border-width: 1px;
       border-style: solid;
-      padding: civic-space(2) civic-space(3) civic-space(2) civic-space(7);
+      padding: civic-space(2) civic-space(3) civic-space(2) civic-space(8);
       width: 100%;
       height: 100%;
 
