@@ -5,7 +5,7 @@
 .civic-filter-chip {
   $root: &;
 
-  @include civic-typography('label-tag');
+  @include civic-typography('label-small');
 
   cursor: pointer;
   position: relative;

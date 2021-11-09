@@ -22,7 +22,7 @@
 
     .civic-menu__item {
       .civic-link {
-        @include civic-typography('body');
+        @include civic-typography('text-regular');
 
         text-decoration: none;
       }

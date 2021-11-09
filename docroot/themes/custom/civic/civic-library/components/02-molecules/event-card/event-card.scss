@@ -65,13 +65,14 @@
   }
 
   #{$root}__location {
-    @include civic-typography('subtitle');
+    @include civic-typography('text-regular');
 
+    font-weight: 600;
     margin-bottom: civic-space(2);
   }
 
   #{$root}__summary {
-    @include civic-typography('card-summary');
+    @include civic-typography('text-regular');
   }
 
   #{$root}__bottom-wrapper {

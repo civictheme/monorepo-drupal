@@ -1,15 +1,10 @@
 //
 // Typography classes and generators.
 //
+@use 'sass:map';
 
-.civic-text-large {
-  @include civic-typography('text-large');
-}
-
-.civic-text-regular {
-  @include civic-typography('text-regular');
-}
-
-.civic-text-small {
-  @include civic-typography('text-small');
+@each $name in map.keys(_civic-typography-all()) {
+  .civic-#{$name} {
+    @include civic-typography($name);
+  }
 }

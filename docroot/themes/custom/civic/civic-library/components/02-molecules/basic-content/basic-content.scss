@@ -5,7 +5,7 @@
 .civic-basic-content {
   $root: &;
 
-  @include civic-typography('body');
+  @include civic-typography('text-regular');
 
   h1,
   h2,
@@ -113,8 +113,6 @@
     list-style: none;
 
     li {
-      @include civic-typography('unordered-list');
-
       position: relative;
       padding-left: $civic-basic-content-list-marker-width + $civic-basic-content-list-marker-margin;
 
@@ -139,8 +137,6 @@
     list-style: none;
 
     li {
-      @include civic-typography('ordered-list');
-
       counter-increment: ordered_counter;
       padding-left: $civic-basic-content-list-marker-width + $civic-basic-content-list-marker-margin;
 

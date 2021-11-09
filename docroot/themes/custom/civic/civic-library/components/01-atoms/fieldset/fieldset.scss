@@ -4,7 +4,7 @@
       color: $civic-fieldset-required-color;
       content: ' (Required)';
 
-      @include civic-typography('small-and-captions');
+      @include civic-typography('label-small');
     }
   }
 }

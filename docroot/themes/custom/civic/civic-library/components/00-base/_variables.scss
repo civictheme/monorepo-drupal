@@ -194,8 +194,6 @@ $civic-visibility-lowest-breakpoint: 'xxs' !default;
 //
 // Fonts.
 //
-// Base font size.
-$civic-font-base-size: 16px !default;
 
 // Use $civic-fonts to override any font family values. It is available
 // (and empty) so that any sub-themes could specify their fonts in here to
@@ -235,92 +233,64 @@ $civic-fonts: () !default;
 //
 // Typography.
 //
+// Base font size.
+$civic-font-base-size: 16px !default;
+$civic-font-base-line-height: $civic-font-base-size !default;
 $civic-typography: () !default;
 $civic-typography-default: (
+  // Headings.
   'heading-1': (
-    'xxs': (32px, 40px, 700, 'primary', -0.6px),
-    'm': (48px, 60px, 700, 'primary', -1px)
+    'xxs': ($civic-font-base-size * 2, $civic-font-base-line-height * 2.5, 700, 'primary', -0.6px),
+    'm': ($civic-font-base-size * 3, $civic-font-base-line-height * 3.75, 700, 'primary', -1px)
   ),
   'heading-2': (
-    'xxs': (28px, 35px, 700, 'primary', -0.5px),
-    'm': (39px, 48px, 700, 'primary', -0.8px)
+    'xxs': ($civic-font-base-size * 1.75, $civic-font-base-line-height * 2.25, 700, 'primary', -0.5px),
+    'm': ($civic-font-base-size * 2.5, $civic-font-base-line-height * 3, 700, 'primary', -0.8px)
   ),
   'heading-3': (
-    'xxs': (24px, 31px, 700, 'primary', 0.35px),
-    'm': (32px, 40px, 700, 'primary', -0.6px)
+    'xxs': ($civic-font-base-size * 1.5, $civic-font-base-line-height * 2, 700, 'primary', 0.35px),
+    'm': ($civic-font-base-size * 2, $civic-font-base-line-height * 2.5, 700, 'primary', -0.6px)
   ),
   'heading-4': (
-    'xxs': (20px, 25px, 700, 'primary', -0.25px),
-    'm': (25px, 31px, 700, 'primary', -0.4px)
+    'xxs': ($civic-font-base-size * 1.25, $civic-font-base-line-height * 1.5, 700, 'primary', -0.25px),
+    'm': ($civic-font-base-size * 1.5, $civic-font-base-line-height * 2, 700, 'primary', -0.4px)
   ),
   'heading-5': (
-    'xxs': (16px, 22px, 700, 'primary', 0),
-    'm': (20px, 25px, 700, 'primary', -0.2px)
+    'xxs': ($civic-font-base-size, $civic-font-base-line-height * 1.375, 700, 'primary', 0),
+    'm': ($civic-font-base-size * 1.2, $civic-font-base-line-height * 1.5, 700, 'primary', -0.2px)
   ),
-  'heading-6': (16px, 26px, 700, 'primary', 0),
-  'lead': (
-    'xxs': (18px, 29px, 400, 'primary', 0),
-    'm': (20px, 34px, 400, 'primary', '0')
-  ),
-  'subtitle': (
-    'xxs': (16px, 26px, 600, 'primary', 0),
-    'm': (16px, 28px, 600, 'primary', 0)
-  ),
-  'body': (
-    'xxs': (16px, 26px, 400, 'primary', 0),
-    'm': (16px, 28px, 400, 'primary', 0)
-  ),
-  'small': (
-    'xxs': (14px, 23px, 400, 'primary', 0),
-    'm': (14px, 25px, 400, 'primary', 0)
-  ),
+  'heading-6': ($civic-font-base-size, $civic-font-base-line-height * 1.625, 700, 'primary', 0),
+  // Text.
   'text-large': (
-    'xxs': (18px, 29px, 400, 'primary', 0),
-    'm': (20px, 34px, 400, 'primary', '0')
+    'xxs': ($civic-font-base-size * 1.125, $civic-font-base-line-height * 1.75, 400, 'primary', 0),
+    'm': ($civic-font-base-size * 1.25, $civic-font-base-line-height * 2.125, 400, 'primary', '0')
   ),
   'text-regular': (
-    'xxs': (14px, 25px, 400, 'primary', 0),
-    'm': (16px, 28px, 400, 'primary', 0)
+    'xxs': ($civic-font-base-size * 0.875, $civic-font-base-line-height * 1.5, 400, 'primary', 0),
+    'm': ($civic-font-base-size, $civic-font-base-line-height * 1.75, 400, 'primary', 0)
   ),
   'text-small': (
-    'xxs': (12px, 20px, 400, 'primary', 0),
-    'm': (14px, 25px, 400, 'primary', 0),
+    'xxs': ($civic-font-base-size * 0.75, $civic-font-base-line-height * 1.25, 400, 'primary', 0),
+    'm': ($civic-font-base-size * 0.875, $civic-font-base-line-height * 1.5, 400, 'primary', 0),
   ),
-  'card-summary': (
-    'xxs': (14px, 25px, 400, 'primary', 0),
-    'm': (16px, 28px, 400, 'primary', 0)
-  ),
-  'quote': (
-    'xxs': (18px, 29px, 400, 'primary', -0.15px),
-    'm': (25px, 40px, 400, 'primary', -0.35px)
-  ),
-  'unordered-list': (
-    'xxs': (16px, 26px, 400, 'primary', 0),
-    'm': (16px, 28px, 400, 'primary', 0)
-  ),
-  'ordered-list': (
-    'xxs': (16px, 26px, 400, 'primary', 0),
-    'm': (16px, 28px, 400, 'primary', 0)
-  ),
+  // Labels.
   'label-large': (
-    'xxs': (18px, 24px, 600, 'primary', -0.1px),
-    'm': (18px, 24px, 600, 'primary', 0)
+    'xxs': ($civic-font-base-size * 1.125, $civic-font-base-line-height * 1.5, 600, 'primary', -0.1px),
+    'm': ($civic-font-base-size * 1.125, $civic-font-base-line-height * 1.5, 600, 'primary', 0)
   ),
   'label-regular': (
-    'xxs': (16px, 20px, 600, 'primary', -0.1px),
-    'm': (16px, 20px, 600, 'primary', 0)
+    'xxs': ($civic-font-base-size, $civic-font-base-line-height * 1.25, 600, 'primary', -0.1px),
+    'm': ($civic-font-base-size, $civic-font-base-line-height * 1.25, 600, 'primary', 0)
   ),
-  'label-menu': (
-    'xs': (16px, 20px, 600, 'primary', 0),
-    'm': (17px, 29px, 600, 'primary', 0),
+  'label-small': (
+    'xxs': ($civic-font-base-size * 0.75, $civic-font-base-line-height * 1.25, 600, 'primary', -0.1px),
+    'm': ($civic-font-base-size * 0.875, $civic-font-base-line-height * 1.125, 600, 'primary', 0)
   ),
-  'label-tag': (
-    'xxs': (12px, 20px, 400, 'primary', -0.1px),
-    'm': (14px, 20px, 400, 'primary', -0.1px)
+  // Special elements.
+  'quote': (
+    'xxs': ($civic-font-base-size * 1.25, $civic-font-base-line-height * 1.185, 400, 'primary', -0.15px),
+    'm': ($civic-font-base-size * 1.5, $civic-font-base-size * 2.5, 400, 'primary', -0.35px)
   ),
-  'label-small': (12px, 26px, 600, 'primary'),
-  'tag': (14px, 20px, 500, 'primary', -0.1px),
-  'small-and-captions': (14px, 23px, 400, 'primary'),
 );
 
 //

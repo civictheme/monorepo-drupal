@@ -105,7 +105,7 @@
         margin-bottom: civic-space();
 
         > .civic-link {
-          @include civic-typography('label-menu');
+          @include civic-typography('label-regular');
 
           text-decoration: none;
           display: block;

@@ -61,7 +61,7 @@
     height: 0;
     transition: height 0.5s, visibility 0.5s;
 
-    @include civic-typography('body');
+    @include civic-typography('text-regular');
 
     &--expanded {
       height: auto;

@@ -9,7 +9,7 @@
   padding: civic-space(0.25) civic-space() civic-space(0.25) civic-space(0.5);
   display: inline-block;
 
-  @include civic-typography('tag');
+  @include civic-typography('label-small');
 
   &--no-icon {
     padding-left: civic-space();

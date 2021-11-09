@@ -42,7 +42,7 @@
   }
 
   #{$root}__date {
-    @include civic-typography('small');
+    @include civic-typography('text-small');
 
     margin-bottom: civic-space(2);
   }
@@ -76,7 +76,7 @@
   }
 
   #{$root}__summary {
-    @include civic-typography('card-summary');
+    @include civic-typography('text-regular');
   }
 
   #{$root}__bottom-wrapper {

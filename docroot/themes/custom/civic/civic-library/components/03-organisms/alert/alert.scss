@@ -14,7 +14,7 @@
     padding: civic-space(3);
   }
 
-  @include civic-typography('tag');
+  @include civic-typography('label-small');
 
   #{$root}__title {
     @include civic-typography('heading-6');

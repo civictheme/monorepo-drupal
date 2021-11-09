@@ -25,11 +25,11 @@
     }
 
     &--title {
-      @include civic-typography('body');
+      @include civic-typography('text-regular');
     }
 
     &--status {
-      @include civic-typography('small');
+      @include civic-typography('text-small');
     }
   }
 

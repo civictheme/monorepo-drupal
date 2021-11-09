@@ -5,7 +5,7 @@
 .civic-header {
   $root: &;
 
-  @include civic-typography('body');
+  @include civic-typography('text-regular');
 
   &__top {
     padding-top: civic-space();

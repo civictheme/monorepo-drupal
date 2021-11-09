@@ -64,7 +64,7 @@
   }
 
   #{$root}__summary {
-    @include civic-typography('card-summary');
+    @include civic-typography('text-regular');
 
     padding-right: civic-space(3);
   }

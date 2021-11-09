@@ -5,7 +5,7 @@
 .civic-breadcrumb {
   $root: &;
 
-  @include civic-typography('label-tag');
+  @include civic-typography('label-small');
 
   &__links {
     list-style: none;
@@ -40,7 +40,7 @@
   }
 
   .civic-link {
-    @include civic-typography('label-tag');
+    @include civic-typography('label-small');
 
     padding: 0;
 

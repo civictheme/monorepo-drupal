@@ -67,7 +67,7 @@
   }
 
   &__help_text {
-    @include civic-typography('body');
+    @include civic-typography('text-regular');
   }
 
   &.civic-theme-light {

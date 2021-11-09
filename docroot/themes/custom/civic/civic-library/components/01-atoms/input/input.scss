@@ -16,7 +16,7 @@
     padding: civic-space(1.5) civic-space(5) civic-space(1.5) civic-space(2);
 
     &::placeholder {
-      @include civic-typography('body');
+      @include civic-typography('text-regular');
     }
   }
 

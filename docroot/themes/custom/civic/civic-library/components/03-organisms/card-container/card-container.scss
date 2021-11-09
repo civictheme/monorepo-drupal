@@ -73,7 +73,7 @@
   }
 
   &__description {
-    @include civic-typography('body');
+    @include civic-typography('text-regular');
 
     margin-bottom: civic-space(3);
   }

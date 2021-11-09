@@ -31,7 +31,7 @@
   }
 
   &__link {
-    @include civic-typography('tag');
+    @include civic-typography('text-small');
 
     display: block;
     position: relative;

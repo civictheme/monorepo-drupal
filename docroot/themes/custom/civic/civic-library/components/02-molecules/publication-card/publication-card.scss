@@ -30,10 +30,7 @@
   }
 
   #{$root}__title {
-    @include civic-typography((
-      'xxs': (16px, 24px, 700, 'primary', 0),
-      'm': (20px, 28px, 700, 'primary', -0.2px),
-    ));
+    @include civic-typography('heading-5');
 
     margin-bottom: civic-space(2);
   }
@@ -67,7 +64,7 @@
   }
 
   #{$root}__summary {
-    @include civic-typography(card-summary);
+    @include civic-typography(text-regular);
 
     padding-right: civic-space(3);
   }
