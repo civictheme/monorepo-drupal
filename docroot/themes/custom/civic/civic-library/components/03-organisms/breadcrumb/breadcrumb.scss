@@ -12,6 +12,7 @@
     margin: 0;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     padding: 0;
 
@@ -19,6 +20,7 @@
       margin-right: civic-space();
       display: flex;
       align-items: center;
+      white-space: nowrap;
 
       @include civic-breakpoint-upto('m') {
         display: none;
