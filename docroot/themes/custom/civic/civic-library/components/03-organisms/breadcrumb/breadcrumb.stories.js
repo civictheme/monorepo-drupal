@@ -24,7 +24,7 @@ export const Breadcrumb = (knobTab) => {
     active_is_link: boolean('Active is link', false, generalKnobTab),
     links: randomLinks(number(
       'Number of links',
-      7,
+      3,
       {
         range: true,
         min: 0,

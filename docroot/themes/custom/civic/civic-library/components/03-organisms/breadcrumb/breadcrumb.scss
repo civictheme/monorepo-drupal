@@ -20,7 +20,6 @@
       margin-right: civic-space();
       display: flex;
       align-items: center;
-      white-space: nowrap;
 
       @include civic-breakpoint-upto('m') {
         display: none;
