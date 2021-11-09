@@ -26,11 +26,7 @@
 //
 // stylelint-disable-next-line scss/at-function-pattern
 @function _civic-fonts-all() {
-  $all-fonts: ();
-  $all-fonts: map.merge($all-fonts, $civic-fonts-default);
-  $all-fonts: map.merge($all-fonts, $civic-fonts);
-
-  @return $all-fonts;
+  @return map.merge($civic-fonts-default, $civic-fonts);
 }
 
 @mixin civic-font-url-import($path) {

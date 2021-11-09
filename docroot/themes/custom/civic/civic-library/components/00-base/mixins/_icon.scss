@@ -56,11 +56,7 @@
 //
 // stylelint-disable-next-line scss/at-function-pattern
 @function _civic-icon-sizes-all() {
-  $all-icon-sizes: ();
-  $all-icon-sizes: map.merge($all-icon-sizes, $civic-icon-sizes-default);
-  $all-icon-sizes: map.merge($all-icon-sizes, $civic-icon-sizes);
-
-  @return $all-icon-sizes;
+  @return map.merge($civic-icon-sizes-default, $civic-icon-sizes);
 }
 
 //
