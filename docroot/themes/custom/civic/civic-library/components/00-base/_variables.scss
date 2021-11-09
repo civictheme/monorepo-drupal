@@ -66,10 +66,10 @@ $civic-colors-default: (
   'neutral': #fff,
   'translucent': #0000,
   'outline': #8258c4,
-  'information': #007cbf,
+  'status': #007cbf,
   'warning': #c95100,
   'error': #ce3836,
-  'success': #008482,
+  'success': #008583,
 );
 
 // Default Civic colors dark shades.
@@ -887,7 +887,7 @@ $civic-accordion-dark-expanded-border-color: civic-color('secondary') !default;
 //
 $civic-alert-light-color: civic-color('neutral') !default;
 $civic-alert-light-background-colors: (
-  'status': civic-color('information'),
+  'status': civic-color('status'),
   'warning': civic-color('warning'),
   'error': civic-color('error'),
   'success': civic-color('success'),
@@ -900,7 +900,7 @@ $civic-alert-light-icon-colors: (
 ) !default;
 $civic-alert-dark-color: civic-color('neutral') !default;
 $civic-alert-dark-background-colors: (
-  'status': civic-color('information'),
+  'status': civic-color('status'),
   'warning': civic-color('warning'),
   'error': civic-color('error'),
   'success': civic-color('success'),
@@ -993,44 +993,38 @@ $civic-footer-collapsible-dark-border-color: civic-color('shade_dark_30') !defau
 //
 // Message.
 //
-$civic-message-light-text-color: civic-color('neutral_90') !default;
-$civic-message-light-background-colors-default: (
-  'status': color.mix(white, civic-color('information'), 85%),
-  'warning': color.mix(white, civic-color('warning'), 85%),
-  'error': color.mix(white, civic-color('error'), 85%),
-  'success': color.mix(white, civic-color('success'), 85%),
-);
-$civic-message-light-background-colors: () !default;
-$civic-message-light-icon-colors-default: (
-  'status': civic-color('information'),
-  'warning': civic-color('warning'),
-  'error': civic-color('error'),
-  'success': civic-color('success'),
-);
-$civic-message-light-icon-colors: () !default;
-$civic-message-light-border-colors-default: (
-  'status': civic-color('information'),
-  'warning': civic-color('warning'),
-  'error': civic-color('error'),
-  'success': civic-color('success'),
-);
-$civic-message-light-border-colors: () !default;
-$civic-message-light-text-colors-default: (
-  'status': $civic-message-light-text-color,
-  'warning': $civic-message-light-text-color,
-  'error': $civic-message-light-text-color,
-  'success': $civic-message-light-text-color,
-);
-$civic-message-light-text-colors: () !default;
-$civic-message-dark-text-color: $civic-message-light-text-color !default;
-$civic-message-dark-background-colors-default: $civic-message-light-background-colors-default;
-$civic-message-dark-background-colors: () !default;
-$civic-message-dark-icon-colors-default: $civic-message-light-icon-colors-default;
-$civic-message-dark-icon-colors: () !default;
-$civic-message-dark-border-colors-default: $civic-message-light-border-colors-default;
-$civic-message-dark-border-colors: () !default;
-$civic-message-dark-text-colors-default: $civic-message-light-text-colors-default;
-$civic-message-dark-text-colors: () !default;
+$civic-message-status-light-color: civic-color('neutral_90') !default;
+$civic-message-warning-light-color: civic-color('neutral_90') !default;
+$civic-message-error-light-color: civic-color('neutral_90') !default;
+$civic-message-success-light-color: civic-color('neutral_90') !default;
+$civic-message-status-light-background-color: color.mix(white, civic-color('status'), 85%) !default;
+$civic-message-warning-light-background-color: color.mix(white, civic-color('warning'), 85%) !default;
+$civic-message-error-light-background-color: color.mix(white, civic-color('error'), 85%) !default;
+$civic-message-success-light-background-color: color.mix(white, civic-color('success'), 85%) !default;
+$civic-message-status-light-icon-color: civic-color('status') !default;
+$civic-message-warning-light-icon-color: civic-color('warning') !default;
+$civic-message-error-light-icon-color: civic-color('error') !default;
+$civic-message-success-light-icon-color: civic-color('success') !default;
+$civic-message-status-light-border-color: civic-color('status') !default;
+$civic-message-warning-light-border-color: civic-color('warning') !default;
+$civic-message-error-light-border-color: civic-color('error') !default;
+$civic-message-success-light-border-color: civic-color('success') !default;
+$civic-message-status-dark-color: civic-color('neutral_90') !default;
+$civic-message-warning-dark-color: civic-color('neutral_90') !default;
+$civic-message-error-dark-color: civic-color('neutral_90') !default;
+$civic-message-success-dark-color: civic-color('neutral_90') !default;
+$civic-message-status-dark-background-color: color.mix(white, civic-color('status'), 85%) !default;
+$civic-message-warning-dark-background-color: color.mix(white, civic-color('warning'), 85%) !default;
+$civic-message-error-dark-background-color: color.mix(white, civic-color('error'), 85%) !default;
+$civic-message-success-dark-background-color: color.mix(white, civic-color('success'), 85%) !default;
+$civic-message-status-dark-icon-color: civic-color('status') !default;
+$civic-message-warning-dark-icon-color: civic-color('warning') !default;
+$civic-message-error-dark-icon-color: civic-color('error') !default;
+$civic-message-success-dark-icon-color: civic-color('success') !default;
+$civic-message-status-dark-border-color: civic-color('status') !default;
+$civic-message-warning-dark-border-color: civic-color('warning') !default;
+$civic-message-error-dark-border-color: civic-color('error') !default;
+$civic-message-success-dark-border-color: civic-color('success') !default;
 
 //
 // Navigation/Primary navigation.
