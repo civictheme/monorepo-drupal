@@ -1,17 +1,17 @@
 const path = require('path');
 const glob = require('glob');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const magicImporter = require('node-sass-magic-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: function (pattern) {
+  entry: (function (pattern) {
     // Scan for all JS.
-    let entries = glob.sync(pattern);
+    const entries = glob.sync(pattern);
     // Add explicitly imported (S)CSS entries from css.js.
     entries.push(path.resolve(__dirname, 'css.js'));
     return entries;
-  }('../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'),
+  }('../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js')),
   output: {
     filename: 'civic.js',
     path: path.resolve(__dirname, '../dist'),
@@ -58,26 +58,26 @@ module.exports = {
       {
         test: /\.twig$/,
         use: [{
-          loader: 'twigjs-loader'
-        }]
+          loader: 'twigjs-loader',
+        }],
       },
       // Wrap JS with DOMContentLoaded.
       {
-        test: /components\/[^\/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
+        test: /components\/[^/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
         exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
         use: [{
           loader: 'babel-loader',
           options: {
             presets: [
-              '@babel/preset-env'
+              '@babel/preset-env',
             ],
             plugins: [
               './node_modules/babel-plugin-syntax-dynamic-import',
               './webpack/babel-plugin-script-wrapper.js',
             ],
-          }
-        }]
-      }
+          },
+        }],
+      },
     ],
   },
   resolve: {
@@ -88,7 +88,7 @@ module.exports = {
       '@organisms': path.resolve(__dirname, '../components/03-organisms'),
       '@templates': path.resolve(__dirname, '../components/04-templates'),
       '@pages': path.resolve(__dirname, '../components/05-pages'),
-    }
+    },
   },
   stats: {
     errorDetails: true,

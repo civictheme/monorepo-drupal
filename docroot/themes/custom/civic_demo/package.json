@@ -10,8 +10,8 @@
     "storybook-full": "STORYBOOK_FULL=1 npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s ./assets\"\n",
     "gulp:build": "gulp",
     "gulp:watch": "gulp watch",
-    "lint": "eslint ./components ./.storybook && stylelint 'components/**/*.scss'",
-    "lint:fix": "eslint ./components ./.storybook --fix && stylelint 'components/**/*.scss' --fix",
+    "lint": "eslint ./components ./.storybook ./webpack && stylelint 'components/**/*.scss'",
+    "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
     "generate-icon-library": "npm run gulp:build && node ./components-combined/01-atoms/icon/icon.generate-library.script.js"

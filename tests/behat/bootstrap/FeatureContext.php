@@ -49,7 +49,7 @@ class FeatureContext extends DrupalContext {
   public function iSeeContentInIframe($id) {
     $driver = $this->getSession()->getDriver();
     if (!$driver instanceof Selenium2Driver) {
-      throw new \RuntimeException('Unsupported driver for this step');
+      throw new RuntimeException('Unsupported driver for this step');
     }
 
     $page_iframe_elements = $driver->find('//iframe[@id="' . $id . '"]');
@@ -61,7 +61,7 @@ class FeatureContext extends DrupalContext {
     $driver->switchToIFrame($id);
 
     if (!$driver->find('//body')) {
-      throw new \Exception(sprintf('The contents of the iFrame with id "%s" was not loaded', $id));
+      throw new Exception(sprintf('The contents of the iFrame with id "%s" was not loaded', $id));
     }
 
     // Reset frame to the default window.

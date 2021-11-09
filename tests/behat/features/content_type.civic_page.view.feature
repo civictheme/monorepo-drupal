@@ -11,7 +11,7 @@ Feature: View of Page content type
 
     And "civic_image" media:
       | name               | field_c_m_image |
-      | [TEST] Civic Image | test_image.jpg    |
+      | [TEST] Civic Image | test_image.jpg  |
 
     And "civic_page" content:
       | title                             | status |
