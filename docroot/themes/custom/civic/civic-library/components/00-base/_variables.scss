@@ -885,32 +885,30 @@ $civic-accordion-dark-expanded-border-color: civic-color('secondary') !default;
 //
 // Alert.
 //
-$civic-alert-light-color: civic-color('neutral') !default;
-$civic-alert-light-background-colors: (
-  'status': civic-color('status'),
-  'warning': civic-color('warning'),
-  'error': civic-color('error'),
-  'success': civic-color('success'),
-) !default;
-$civic-alert-light-icon-colors: (
-  'status': $civic-alert-light-color,
-  'warning': $civic-alert-light-color,
-  'error': $civic-alert-light-color,
-  'success': $civic-alert-light-color,
-) !default;
-$civic-alert-dark-color: civic-color('neutral') !default;
-$civic-alert-dark-background-colors: (
-  'status': civic-color('status'),
-  'warning': civic-color('warning'),
-  'error': civic-color('error'),
-  'success': civic-color('success'),
-) !default;
-$civic-alert-dark-icon-colors: (
-  'status': $civic-alert-dark-color,
-  'warning': $civic-alert-dark-color,
-  'error': $civic-alert-dark-color,
-  'success': $civic-alert-dark-color,
-) !default;
+$civic-alert-status-light-color: civic-color('neutral') !default;
+$civic-alert-warning-light-color: civic-color('neutral') !default;
+$civic-alert-error-light-color: civic-color('neutral') !default;
+$civic-alert-success-light-color: civic-color('neutral') !default;
+$civic-alert-status-light-background-color: civic-color('status') !default;
+$civic-alert-warning-light-background-color: civic-color('warning') !default;
+$civic-alert-error-light-background-color: civic-color('error') !default;
+$civic-alert-success-light-background-color: civic-color('success') !default;
+$civic-alert-status-light-icon-color: $civic-alert-status-light-color !default;
+$civic-alert-warning-light-icon-color: $civic-alert-warning-light-color !default;
+$civic-alert-error-light-icon-color: $civic-alert-error-light-color !default;
+$civic-alert-success-light-icon-color: $civic-alert-success-light-color !default;
+$civic-alert-status-dark-color: civic-color('neutral') !default;
+$civic-alert-warning-dark-color: civic-color('neutral') !default;
+$civic-alert-error-dark-color: civic-color('neutral') !default;
+$civic-alert-success-dark-color: civic-color('neutral') !default;
+$civic-alert-status-dark-background-color: civic-color('status') !default;
+$civic-alert-warning-dark-background-color: civic-color('warning') !default;
+$civic-alert-error-dark-background-color: civic-color('error') !default;
+$civic-alert-success-dark-background-color: civic-color('success') !default;
+$civic-alert-status-dark-icon-color: $civic-alert-status-dark-color !default;
+$civic-alert-warning-dark-icon-color: $civic-alert-warning-dark-color !default;
+$civic-alert-error-dark-icon-color: $civic-alert-error-dark-color !default;
+$civic-alert-success-dark-icon-color: $civic-alert-success-dark-color !default;
 
 //
 // Banner.

@@ -58,38 +58,70 @@
     }
   }
 
-  &.civic-theme-light {
-    color: $civic-alert-light-color;
-  }
+  // SASS does not allow variables interpolation, so we are creating a local
+  // map to easily generate rules.
+  $map: (
+    'status': (
+      'light': (
+        'color': $civic-alert-status-light-color,
+        'background-color': $civic-alert-status-light-background-color,
+        'icon-color': $civic-alert-status-light-icon-color,
+      ),
+      'dark': (
+        'color': $civic-alert-status-dark-color,
+        'background-color': $civic-alert-status-dark-background-color,
+        'icon-color': $civic-alert-status-dark-icon-color,
+      )
+    ),
+    'warning': (
+      'light': (
+        'color': $civic-alert-warning-light-color,
+        'background-color': $civic-alert-warning-light-background-color,
+        'icon-color': $civic-alert-warning-light-icon-color,
+      ),
+      'dark': (
+        'color': $civic-alert-warning-dark-color,
+        'background-color': $civic-alert-warning-dark-background-color,
+        'icon-color': $civic-alert-warning-dark-icon-color,
+      )
+    ),
+    'error': (
+      'light': (
+        'color': $civic-alert-error-light-color,
+        'background-color': $civic-alert-error-light-background-color,
+        'icon-color': $civic-alert-error-light-icon-color,
+      ),
+      'dark': (
+        'color': $civic-alert-error-dark-color,
+        'background-color': $civic-alert-error-dark-background-color,
+        'icon-color': $civic-alert-error-dark-icon-color,
+      )
+    ),
+    'success': (
+      'light': (
+        'color': $civic-alert-success-light-color,
+        'background-color': $civic-alert-success-light-background-color,
+        'icon-color': $civic-alert-success-light-icon-color,
+      ),
+      'dark': (
+        'color': $civic-alert-success-dark-color,
+        'background-color': $civic-alert-success-dark-background-color,
+        'icon-color': $civic-alert-success-dark-icon-color,
+      )
+    ),
+  );
 
-  &.civic-theme-dark {
-    color: $civic-alert-dark-color;
-  }
-
-  @each $type, $values in $civic-alert-light-background-colors {
+  @each $type, $type-map in $map {
     &#{$root}--#{$type} {
-      &.civic-theme-light {
-        background-color: map.get($civic-alert-light-background-colors, '#{$type}');
-        border-color: map.get($civic-alert-light-icon-colors, '#{$type}');
+      @each $theme, $values in $type-map {
+        &.civic-theme-#{$theme} {
+          background-color: map.get($values, 'background-color');
+          color: map.get($values, 'color');
 
-        #{$root}__icon {
-          .civic-icon {
-            fill: map.get($civic-alert-light-icon-colors, '#{$type}');
-          }
-        }
-      }
-    }
-  }
-
-  @each $type, $values in $civic-alert-dark-background-colors {
-    &#{$root}--#{$type} {
-      &.civic-theme-dark {
-        background-color: map.get($civic-alert-dark-background-colors, '#{$type}');
-        border-color: map.get($civic-alert-dark-icon-colors, '#{$type}');
-
-        #{$root}__icon {
-          .civic-icon {
-            fill: map.get($civic-alert-dark-icon-colors, '#{$type}');
+          #{$root}__icon {
+            .civic-icon {
+              fill: map.get($values, 'icon-color');
+            }
           }
         }
       }
