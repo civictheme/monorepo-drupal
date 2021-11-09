@@ -14,7 +14,10 @@ export const Icon = (knobTab) => {
 
   const { icons } = ICONS;
   const colors = [...new Set([...SCSS_VARIABLES['civic-colors-default'], ...SCSS_VARIABLES['civic-colors']])];
-  const sizes = SCSS_VARIABLES['civic-icon-sizes'];
+  const sizes = [...new Set([
+    ...SCSS_VARIABLES['civic-icon-sizes-default'],
+    ...SCSS_VARIABLES['civic-icon-sizes'],
+  ])];
 
   return CivicIcon({
     symbol: select('Symbol', icons, icons[0], generalKnobTab),

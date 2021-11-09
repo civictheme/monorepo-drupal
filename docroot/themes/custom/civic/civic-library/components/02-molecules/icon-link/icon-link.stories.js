@@ -16,7 +16,11 @@ export const IconLink = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const { icons } = ICONS;
-  const sizes = SCSS_VARIABLES['civic-icon-sizes'];
+  const sizes = [...new Set([
+    ...SCSS_VARIABLES['civic-icon-sizes-default'],
+    ...SCSS_VARIABLES['civic-icon-sizes'],
+  ])];
+
   const defaultIcon = icons.indexOf('brands_facebook');
 
   const generalKnobs = {

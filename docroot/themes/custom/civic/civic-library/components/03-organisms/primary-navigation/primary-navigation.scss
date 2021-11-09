@@ -39,7 +39,7 @@
           padding-left: civic-space(2);
 
           // Accommodate for the trigger.
-          padding-right: rem(list.nth(map.get(map.get($civic-icon-sizes, 'regular'), $civic-collapsible-icon-size), 1)) + civic-space();
+          padding-right: civic-icon-size-dimension('regular', $civic-collapsible-icon-size, 'width') + civic-space();
           text-decoration: none;
 
           &::after {

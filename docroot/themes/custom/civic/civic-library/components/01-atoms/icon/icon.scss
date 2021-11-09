@@ -14,7 +14,7 @@
   }
 
   // Generate size classes for all pre-set sizes.
-  @each $size, $values in $civic-icon-sizes {
+  @each $size, $values in _civic-icon-sizes-all() {
     &--size-#{$size} {
       @include civic-icon-size($size);
     }

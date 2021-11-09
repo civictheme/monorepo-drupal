@@ -22,7 +22,7 @@
 // Compile all fonts into a single map.
 //
 // Do not use directly.
-// Use @include civic-font() mixin instead.
+// Use @include civic-font() function instead.
 //
 // stylelint-disable-next-line scss/at-function-pattern
 @function _civic-fonts-all() {

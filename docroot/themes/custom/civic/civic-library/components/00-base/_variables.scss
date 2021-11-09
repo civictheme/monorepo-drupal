@@ -326,7 +326,8 @@ $civic-typography-default: (
 //
 // Icon size.
 //
-$civic-icon-sizes: (
+$civic-icon-sizes: () !default;
+$civic-icon-sizes-default: (
   'small': (
     'xxs': (16px, 16px),
     'm': (20px, 20px),
@@ -982,7 +983,6 @@ $civic-header-dark-middle-border-color: transparent !default;
 //
 $civic-footer-logo-desktop-width: 190px;
 $civic-footer-logo-mobile-width: 190px;
-
 $civic-footer-light-color: civic-color('neutral_90') !default;
 $civic-footer-light-background-color: civic-color('neutral_20') !default;
 $civic-footer-light-border-color: civic-color('neutral_40') !default;
