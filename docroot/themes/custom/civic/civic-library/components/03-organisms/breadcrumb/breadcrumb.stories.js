@@ -22,17 +22,31 @@ export const Breadcrumb = (knobTab) => {
       generalKnobTab,
     ),
     active_is_link: boolean('Active is link', false, generalKnobTab),
-    links: randomLinks(number(
-      'Number of links',
-      3,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      generalKnobTab,
-    )),
+    links: randomLinks(
+      number(
+        'Number of links',
+        3,
+        {
+          range: true,
+          min: 0,
+          max: 10,
+          step: 1,
+        },
+        generalKnobTab,
+      ),
+      null,
+      number(
+        'Length of links',
+        6,
+        {
+          range: true,
+          min: 6,
+          max: 100,
+          step: 1,
+        },
+        generalKnobTab,
+      ) - 6,
+    ),
   };
 
   return CivicBreadcrumb({
