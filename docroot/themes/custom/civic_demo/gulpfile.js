@@ -28,7 +28,7 @@ const civicComponentsDir = `${__dirname}/.components-civic`;
 // Add files to combined storybook.
 function buildTask(cb) {
   let filePath;
-  // Import civic components to child theme to allow extending.
+  // Copy civic components to child theme to allow extending.
   src(civicStorybookWatchDir)
     .pipe(dest(civicComponentsDir));
 

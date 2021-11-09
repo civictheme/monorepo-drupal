@@ -36,9 +36,11 @@ libraries-override:
 ckeditor_stylesheets:
   - dist/styles.css
 
+# Child theme components. Any components not provided in this theme will be auto-discovered from the
+# parent theme (Civic).
+# Components may include parent theme's components using `@civic-` prefix in the namespace, e.g..  `@civic-atoms`.
 components:
   namespaces:
-    # Child theme component namespacing if a namespace does not exist then we will use civic theme.
     base:
       - components/00-base
     atoms:
