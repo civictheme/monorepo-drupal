@@ -6,7 +6,7 @@
   $root: &;
 
   &--wrapper {
-    border-radius: $civic-border-radius;
+    border-radius: $civic-callout-border-radius;
     border-left: rem(6px) solid transparent;
     display: flex;
     flex-direction: column;

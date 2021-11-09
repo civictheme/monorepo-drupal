@@ -52,7 +52,7 @@
 
     &:active {
       outline: 0 !important;
-      border-radius: 0 rem(4px) rem(4px) 0;
+      border-radius: 0 $civic-table-of-contents-link-active-border-radius $civic-table-of-contents-link-active-border-radius 0;
     }
 
     &:focus {

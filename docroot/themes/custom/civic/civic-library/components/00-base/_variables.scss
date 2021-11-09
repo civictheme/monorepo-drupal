@@ -349,6 +349,7 @@ $civic-icon-sizes-default: (
 //
 // Misc Variables.
 //
+
 // Border radius.
 $civic-border-radius: 0.25rem !default;
 
@@ -376,6 +377,7 @@ $civic-collapsible-dark-icon-color: $civic-collapsible-dark-color;
 //
 // Button.
 //
+$civic-button-border-radius: $civic-border-radius !default;
 $civic-button-light-border-color: civic-color('neutral') !default;
 $civic-button-dark-border-color: civic-color('shade_dark_30') !default;
 $civic-button-light-primary-background-color: civic-color('primary') !default;
@@ -424,6 +426,7 @@ $civic-link-dark-visited-hover-background-color: $civic-link-dark-visited-color 
 //
 // Input.
 //
+$civic-input-border-radius: math.div($civic-border-radius, 2) !default;
 $civic-input-light-background-color: civic-color('neutral_5') !default;
 $civic-input-light-border-color: civic-color('neutral_20') !default;
 $civic-input-light-hover-border-color: civic-color('neutral_60') !default;
@@ -457,6 +460,8 @@ $civic-input-dark-disabled-background-color: civic-color('neutral_60') !default;
 //
 // Radio, Checkbox.
 //
+$civic-checkbox-border-radius: math.div($civic-border-radius, 2) !default;
+$civic-radio-border-radius: math.div($civic-border-radius, 2) !default;
 $civic-radio-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='' title='approvetick' width='22' height='22' viewBox='0 0 24 24' aria-hidden='true'%3E%3Cpath d='M18.7104 7.20998C18.6175 7.11625 18.5069 7.04186 18.385 6.99109C18.2632 6.94032 18.1324 6.91418 18.0004 6.91418C17.8684 6.91418 17.7377 6.94032 17.6159 6.99109C17.494 7.04186 17.3834 7.11625 17.2904 7.20998L9.84044 14.67L6.71044 11.53C6.61392 11.4367 6.49998 11.3634 6.37512 11.3142C6.25026 11.265 6.11694 11.2409 5.98276 11.2432C5.84858 11.2455 5.71617 11.2743 5.59309 11.3278C5.47001 11.3812 5.35868 11.4585 5.26544 11.555C5.1722 11.6515 5.09889 11.7654 5.04968 11.8903C5.00048 12.0152 4.97635 12.1485 4.97867 12.2827C4.98099 12.4168 5.00972 12.5493 5.06321 12.6723C5.1167 12.7954 5.19392 12.9067 5.29044 13L9.13044 16.84C9.2234 16.9337 9.334 17.0081 9.45586 17.0589C9.57772 17.1096 9.70843 17.1358 9.84044 17.1358C9.97245 17.1358 10.1032 17.1096 10.225 17.0589C10.3469 17.0081 10.4575 16.9337 10.5504 16.84L18.7104 8.67998C18.8119 8.58634 18.893 8.47269 18.9484 8.34619C19.0038 8.21969 19.0324 8.08308 19.0324 7.94498C19.0324 7.80688 19.0038 7.67028 18.9484 7.54378C18.893 7.41728 18.8119 7.30363 18.7104 7.20998Z'%3E%3C/path%3E%3C/svg%3E");
 $civic-radio-light-border-color: civic-color('neutral_60') !default;
 $civic-radio-light-background-color: civic-color('neutral_10') !default;
@@ -572,6 +577,7 @@ $civic-table-dark-row-even-background-color: civic-color('shade_dark_30') !defau
 //
 // Tag.
 //
+$civic-tag-border-radius: $civic-border-radius !default;
 $civic-tag-light-background-color: civic-color('neutral_5') !default;
 $civic-tag-light-color: civic-color('neutral_60') !default;
 $civic-tag-dark-background-color: civic-color('shade_dark_30') !default;
@@ -584,6 +590,7 @@ $civic-tag-dark-color: civic-color('neutral') !default;
 //
 // Attachment.
 //
+$civic-attachment-border-radius: $civic-border-radius;
 $civic-attachment-light-color: civic-color('neutral_60') !default;
 $civic-attachment-light-icon-color: civic-color('primary') !default;
 $civic-attachment-light-border-color: civic-color('neutral_20') !default;
@@ -607,6 +614,7 @@ $civic-attachment-dark-background-color: civic-color('shade_dark_40') !default;
 $civic-basic-content-vertical-spacing: 1.5rem !default;
 $civic-basic-content-list-marker-width: 1.75rem !default;
 $civic-basic-content-list-marker-margin: 1rem !default;
+$civic-basic-content-blockquote-border-radius: $civic-border-radius !default;
 $civic-basic-content-light-background-color: $civic-theme-light-background-color !default;
 $civic-basic-content-light-base-color: civic-color('neutral_60') !default;
 $civic-basic-content-light-heading-1-color: civic-color('neutral_80') !default;
@@ -665,6 +673,7 @@ $civic-card-container-dark-footer-link-hover-color: civic-color('shade_dark_60')
 //
 // Card/Event card.
 //
+$civic-event-card-border-radius: $civic-border-radius !default;
 $civic-event-card-border-top-color: civic-color('secondary') !default;
 $civic-event-card-light-background-color: civic-color('neutral') !default;
 $civic-event-card-light-heading-color: civic-color('neutral_80') !default;
@@ -687,6 +696,7 @@ $civic-event-card-dark-active-color: civic-color('neutral_20') !default;
 //
 // Card/Navigation card.
 //
+$civic-navigation-card-border-radius: $civic-border-radius !default;
 $civic-navigation-card-light-background-color: civic-color('neutral') !default;
 $civic-navigation-card-light-color: civic-color('neutral_60') !default;
 $civic-navigation-card-light-heading-color: civic-color('neutral_80') !default;
@@ -701,6 +711,7 @@ $civic-navigation-card-dark-heading-active-color: civic-color('neutral_20') !def
 //
 // Card/Promo card.
 //
+$civic-promo-card-border-radius: $civic-border-radius !default;
 $civic-promo-card-light-border-top-color: civic-color('secondary') !default;
 $civic-promo-card-light-background-color: civic-color('neutral') !default;
 $civic-promo-card-light-heading-color: civic-color('neutral_80') !default;
@@ -725,6 +736,7 @@ $civic-promo-card-dark-link-color: civic-color('accent') !default;
 //
 // Card/Publication card.
 //
+$civic-publication-card-border-radius: $civic-border-radius !default;
 $civic-publication-card-light-background-color: civic-color('neutral') !default;
 $civic-publication-card-light-color: civic-color('neutral_60') !default;
 $civic-publication-card-light-attachment-color: civic-color('neutral_80') !default;
@@ -741,6 +753,7 @@ $civic-publication-card-dark-heading-active-color: civic-color('neutral_20') !de
 //
 // Card/Service card.
 //
+$civic-service-card-border-radius: $civic-border-radius !default;
 $civic-service-card-border-top-color: civic-color('secondary') !default;
 $civic-service-card-light-background-color: civic-color('neutral') !default;
 $civic-service-card-light-hover-color: civic-color('secondary') !default;
@@ -754,6 +767,7 @@ $civic-service-card-dark-active-color: civic-color('neutral_20') !default;
 //
 // Card/Subject card.
 //
+$civic-subject-card-border-radius: $civic-border-radius !default;
 $civic-subject-card-light-color: civic-color('neutral') !default;
 $civic-subject-card-light-hover-color: civic-color('neutral') !default;
 $civic-subject-card-light-active-color: civic-color('shade_dark_40') !default;
@@ -766,6 +780,7 @@ $civic-subject-card-dark-image-background-color: civic-color('neutral_90') !defa
 //
 // Icon link.
 //
+$civic-icon-link-border-radius: $civic-border-radius !default;
 $civic-icon-link-light-color: civic-color('primary') !default;
 $civic-icon-link-light-hover-color: civic-color('secondary') !default;
 $civic-icon-link-light-focus-color: civic-color('primary') !default;
@@ -854,6 +869,7 @@ $civic-skip-link-dark-background-color: civic-color('shade_dark_60') !default;
 $civic-tooltip-width: rem(230px);
 $civic-tooltip-triangle-width: civic-space();
 $civic-tooltip-triangle-height: civic-space();
+$civic-tooltip-description-border-radius: $civic-border-radius !default;
 $civic-tooltip-light-icon-color: civic-color('shade_dark_30');
 $civic-tooltip-light-icon-hover-color: civic-color('secondary');
 $civic-tooltip-light-description-color: civic-color('neutral');
@@ -883,6 +899,9 @@ $civic-video-dark-icon-hover-color: civic-color('accent') !default;
 //
 // Accordion.
 //
+$civic-accordion-header-border-radius: $civic-border-radius !default;
+$civic-accordion-button-border-radius: $civic-border-radius !default;
+$civic-accordion-item-border-radius: $civic-border-radius !default;
 $civic-accordion-light-color: civic-color('neutral_60') !default;
 $civic-accordion-light-background-color: civic-color('neutral') !default;
 $civic-accordion-light-border-color: civic-color('neutral_20') !default;
@@ -948,6 +967,7 @@ $civic-breadcrumb-dark-icon-color: civic-color('neutral_40') !default;
 //
 // Callout.
 //
+$civic-callout-border-radius: $civic-border-radius !default;
 $civic-callout-light-color: civic-color('neutral_60') !default;
 $civic-callout-light-background-color: civic-color('neutral_5') !default;
 $civic-callout-light-border-color: civic-color('secondary') !default;
@@ -1001,6 +1021,7 @@ $civic-footer-dark-collapsible-border-color: civic-color('shade_dark_30') !defau
 //
 // Message.
 //
+$civic-message-border-radius: $civic-border-radius !default;
 $civic-message-status-light-color: civic-color('neutral_90') !default;
 $civic-message-warning-light-color: civic-color('neutral_90') !default;
 $civic-message-error-light-color: civic-color('neutral_90') !default;
@@ -1099,6 +1120,7 @@ $civic-primary-navigation-dark-menu-item-active-trail-background-color: civic-co
 // Top offset for the dropdown from the bottom of the trigger.
 $civic-secondary-navigation-dropdown-top-offset: civic-space();
 $civic-secondary-navigation-dropdown-zindex: 11;
+$civic-secondary-navigation-dropdown-border-radius: $civic-border-radius !default;
 $civic-secondary-navigation-light-menu-item-color: civic-color('shade_dark_80') !default;
 $civic-secondary-navigation-light-menu-item-hover-color: civic-color('primary') !default;
 $civic-secondary-navigation-light-menu-item-active-color: civic-color('primary') !default;
@@ -1130,6 +1152,7 @@ $civic-secondary-navigation-dark-sub-menu-item-active-background-color: none !de
 // Navigation/Table Of Contents.
 //
 $civic-table-of-contents-width: 50% !default;
+$civic-table-of-contents-link-active-border-radius: math.div($civic-border-radius, 2) !default;
 $civic-table-of-contents-light-title-color: civic-color('neutral_80') !default;
 $civic-table-of-contents-light-link-color: civic-color('neutral_80') !default;
 $civic-table-of-contents-light-link-border-color: civic-color('translucent') !default;

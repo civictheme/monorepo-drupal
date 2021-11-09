@@ -10,7 +10,7 @@
   &.civic-input__element + span {
     &::before {
       content: '';
-      border-radius: rem(4px);
+      border-radius: $civic-radio-border-radius;
     }
 
     &::after {

@@ -12,7 +12,7 @@
 
   &__element {
     border: rem(1px) solid;
-    border-radius: rem(4px);
+    border-radius: $civic-input-border-radius;
     padding: civic-space(1.5) civic-space(5) civic-space(1.5) civic-space(2);
 
     &::placeholder {

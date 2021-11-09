@@ -14,7 +14,7 @@
   & + span {
     &::before {
       content: '';
-      border-radius: 50%;
+      border-radius: $civic-checkbox-border-radius;
       border: 1px solid;
       display: inline-block;
       width: rem(24px);

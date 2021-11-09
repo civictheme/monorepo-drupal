@@ -5,7 +5,7 @@
 .civic-tag {
   $root: &;
 
-  border-radius: $civic-border-radius;
+  border-radius: $civic-tag-border-radius;
   padding: civic-space(0.25) civic-space() civic-space(0.25) civic-space(0.5);
   display: inline-block;
 

@@ -6,7 +6,7 @@
   $root: &;
 
   position: relative;
-  border-radius: $civic-border-radius;
+  border-radius: $civic-subject-card-border-radius;
 
   @include civic-box-shadow();
 

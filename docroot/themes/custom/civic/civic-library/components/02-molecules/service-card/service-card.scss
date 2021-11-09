@@ -6,7 +6,7 @@
   $root: &;
 
   border-top: rem(6px) solid $civic-service-card-border-top-color;
-  border-radius: $civic-border-radius;
+  border-radius: $civic-service-card-border-radius;
   text-align: center;
 
   @include civic-box-shadow();

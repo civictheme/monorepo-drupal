@@ -221,7 +221,7 @@
 .civic-button {
   cursor: pointer;
   border: 2px solid transparent;
-  border-radius: $civic-border-radius;
+  border-radius: $civic-button-border-radius;
 
   @include civic-button-size('regular');
 
