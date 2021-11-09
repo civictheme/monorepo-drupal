@@ -103,7 +103,13 @@ module.exports = {
       '@organisms': path.resolve(__dirname, '../components-combined/03-organisms'),
       '@templates': path.resolve(__dirname, '../components-combined/04-templates'),
       '@pages': path.resolve(__dirname, '../components-combined/05-pages'),
-    }
+      '@civic-base': path.resolve(__dirname, '../.components-civic/00-base'),
+      '@civic-atoms': path.resolve(__dirname, '../.components-civic/01-atoms'),
+      '@civic-molecules': path.resolve(__dirname, '../.components-civic/02-molecules'),
+      '@civic-organisms': path.resolve(__dirname, '../.components-civic/03-organisms'),
+      '@civic-templates': path.resolve(__dirname, '../.components-civic/04-templates'),
+      '@civic-pages': path.resolve(__dirname, '../.components-civic/05-pages'),
+    },
   },
   stats: {
     errorDetails: true,
