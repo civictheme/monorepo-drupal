@@ -5,7 +5,7 @@
 .civic-basic-content {
   $root: &;
 
-  @include civic-typography('body');
+  @include civic-typography('text-regular');
 
   h1,
   h2,
@@ -102,7 +102,7 @@
       top: 0;
       bottom: 0;
       left: 0;
-      border-radius: $civic-border-radius;
+      border-radius: $civic-basic-content-blockquote-border-radius;
     }
   }
 
@@ -113,8 +113,6 @@
     list-style: none;
 
     li {
-      @include civic-typography('unordered-list');
-
       position: relative;
       padding-left: $civic-basic-content-list-marker-width + $civic-basic-content-list-marker-margin;
 
@@ -139,8 +137,6 @@
     list-style: none;
 
     li {
-      @include civic-typography('ordered-list');
-
       counter-increment: ordered_counter;
       padding-left: $civic-basic-content-list-marker-width + $civic-basic-content-list-marker-margin;
 

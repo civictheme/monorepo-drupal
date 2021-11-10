@@ -11,7 +11,7 @@
 
   &:not([data-collapsible-trigger-no-icon]) {
     [data-collapsible-trigger] {
-      padding-right: list.nth(map.get(map.get($civic-icon-sizes, 'regular'), $civic-collapsible-icon-size), 1);
+      padding-right: civic-icon-size-dimension('regular', $civic-collapsible-icon-size, 'width');
       position: relative;
 
       &::after {

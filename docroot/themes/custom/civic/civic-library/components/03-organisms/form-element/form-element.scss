@@ -5,7 +5,7 @@
 .civic-form-element {
   margin-bottom: civic-space(2);
 
-  @include civic-typography('body');
+  @include civic-typography('text-regular');
 
   &--radio {
     margin-bottom: civic-space();

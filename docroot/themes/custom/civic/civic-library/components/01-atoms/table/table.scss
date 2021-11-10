@@ -76,10 +76,10 @@
   tr {
     th,
     td {
-      padding: (civic-space() * 1.5) civic-space();
+      padding: civic-space(1.5) civic-space();
 
       @include civic-breakpoint('m') {
-        padding: (civic-space() * 1.5) civic-space(3);
+        padding: civic-space(1.5) civic-space(3);
       }
     }
   }

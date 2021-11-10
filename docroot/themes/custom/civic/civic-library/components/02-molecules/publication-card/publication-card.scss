@@ -6,7 +6,7 @@
   $root: &;
 
   position: relative;
-  border-radius: $civic-border-radius;
+  border-radius: $civic-publication-card-border-radius;
   overflow: hidden;
 
   @include civic-box-shadow();
@@ -30,10 +30,7 @@
   }
 
   #{$root}__title {
-    @include civic-typography((
-      'xxs': (16px, 24px, 700, 'primary', 0),
-      'm': (20px, 28px, 700, 'primary', -0.2px),
-    ));
+    @include civic-typography('heading-5');
 
     margin-bottom: civic-space(2);
   }
@@ -67,7 +64,7 @@
   }
 
   #{$root}__summary {
-    @include civic-typography(card-summary);
+    @include civic-typography(text-regular);
 
     padding-right: civic-space(3);
   }
@@ -110,11 +107,11 @@
       color: $civic-publication-card-light-heading-color;
 
       &:hover {
-        color: $civic-publication-card-light-color-hover;
+        color: $civic-publication-card-light-hover-color;
       }
 
       &:active {
-        color: $civic-publication-card-light-heading-color-active;
+        color: $civic-publication-card-light-heading-active-color;
       }
     }
 
@@ -148,7 +145,7 @@
       }
 
       &:active {
-        color: $civic-publication-card-dark-heading-color-active;
+        color: $civic-publication-card-dark-heading-active-color;
       }
 
       .civic-icon {

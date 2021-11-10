@@ -207,7 +207,7 @@
   @else if $size == 'small' {
     @include civic-typography('label-#{$size}');
 
-    padding: civic-space(1) civic-space(3);
+    padding: civic-space() civic-space(3);
   }
   @else {
     @error '"#{$size}" is not one of allowed #{$sizes}.';
@@ -221,7 +221,7 @@
 .civic-button {
   cursor: pointer;
   border: 2px solid transparent;
-  border-radius: $civic-border-radius;
+  border-radius: $civic-button-border-radius;
 
   @include civic-button-size('regular');
 

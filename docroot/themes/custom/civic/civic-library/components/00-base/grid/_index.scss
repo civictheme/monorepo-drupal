@@ -24,7 +24,7 @@
   // Make columns at the lowest breakpoint to act as a single column per row.
   @include _civic-grid-col($civic-grid-lowest-breakpoint, $civic-grid-columns);
 
-  $next-bp: map-get-next($civic-breakpoints, $civic-grid-lowest-breakpoint, map.get($civic-breakpoints, 'xxs'), key);
+  $next-bp: civic-map-get-next($civic-breakpoints, $civic-grid-lowest-breakpoint, map.get($civic-breakpoints, 'xxs'), key);
 
   // Spawn columns to fit into as single row for larger breakpoints.
   @include civic-breakpoint($next-bp) {

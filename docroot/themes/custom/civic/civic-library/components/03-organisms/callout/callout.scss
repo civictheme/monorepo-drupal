@@ -6,7 +6,7 @@
   $root: &;
 
   &--wrapper {
-    border-radius: $civic-border-radius;
+    border-radius: $civic-callout-border-radius;
     border-left: rem(6px) solid transparent;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@
   }
 
   &__summary {
-    @include civic-typography('card-summary');
+    @include civic-typography('text-regular');
 
     margin-top: civic-space(2);
   }

@@ -6,7 +6,7 @@
   $root: &;
 
   position: relative;
-  border-radius: $civic-border-radius;
+  border-radius: $civic-promo-card-border-radius;
 
   @include civic-box-shadow();
 
@@ -42,7 +42,7 @@
   }
 
   #{$root}__date {
-    @include civic-typography('small');
+    @include civic-typography('text-small');
 
     margin-bottom: civic-space(2);
   }
@@ -76,7 +76,7 @@
   }
 
   #{$root}__summary {
-    @include civic-typography('card-summary');
+    @include civic-typography('text-regular');
   }
 
   #{$root}__bottom-wrapper {
@@ -120,11 +120,11 @@
       color: $civic-promo-card-light-heading-color;
 
       &:hover {
-        color: $civic-promo-card-light-color-hover;
+        color: $civic-promo-card-light-hover-color;
       }
 
       &:active {
-        color: $civic-promo-card-light-color-active;
+        color: $civic-promo-card-light-active-color;
       }
     }
 
@@ -157,7 +157,7 @@
       }
 
       &:active {
-        color: $civic-promo-card-dark-color-active;
+        color: $civic-promo-card-dark-active-color;
       }
     }
 

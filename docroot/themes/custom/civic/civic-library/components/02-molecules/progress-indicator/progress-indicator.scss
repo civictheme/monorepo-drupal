@@ -21,25 +21,27 @@
     }
 
     &--inner {
-      margin-left: civic-space(1);
+      margin-left: civic-space();
     }
 
     &--title {
-      @include civic-typography('body');
+      @include civic-typography('text-regular');
     }
 
     &--status {
-      @include civic-typography('small');
+      @include civic-typography('text-small');
     }
   }
 
   &.civic-theme-light {
     #{$root}__step {
+      color: $civic-progress-indicator-light-color;
       border-color: $civic-progress-indicator-light-border-color;
+      background-color: $civic-progress-indicator-light-background-color;
 
       &--doing {
-        background-color: $civic-progress-indicator-light-active-color;
-        border-color: $civic-progress-indicator-light-icon-color;
+        border-color: $civic-progress-indicator-light-active-border-color;
+        background-color: $civic-progress-indicator-light-active-background-color;
       }
 
       svg {
@@ -51,12 +53,12 @@
   &.civic-theme-dark {
     #{$root}__step {
       color: $civic-progress-indicator-dark-color;
-      border-color: transparent;
+      border-color: $civic-progress-indicator-dark-border-color;
       background-color: $civic-progress-indicator-dark-background-color;
 
       &--doing {
-        background-color: $civic-progress-indicator-dark-active-color;
-        border-color: $civic-progress-indicator-dark-icon-color;
+        border-color: $civic-progress-indicator-dark-active-border-color;
+        background-color: $civic-progress-indicator-dark-active-background-color;
       }
 
       svg {
