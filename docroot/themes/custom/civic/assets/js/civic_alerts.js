@@ -4,7 +4,6 @@
  */
 
 (function ($, Drupal) {
-
   'use strict';
 
   function checkPageVisibility(page_visibility_string) {
@@ -33,7 +32,6 @@
 
   Drupal.behaviors.AlertBannersRestBlock = {
     attach: function (context, settings) {
-
       // Process the Close button of each alert.
       $('.civic-alerts .civic-alert__close-icon', context).click(function (event) {
         event.stopPropagation();
