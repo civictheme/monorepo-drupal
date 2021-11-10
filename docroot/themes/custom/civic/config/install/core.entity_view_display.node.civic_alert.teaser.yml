@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.civic_alert.field_c_n_alert_page_visibility
+    - field.field.node.civic_alert.field_c_n_date_range
+    - field.field.node.civic_alert.field_c_n_message
+    - field.field.node.civic_alert.field_c_n_type
+    - node.type.civic_alert
+  module:
+    - user
+id: node.civic_alert.teaser
+targetEntityType: node
+bundle: civic_alert
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_c_n_alert_page_visibility: true
+  field_c_n_date_range: true
+  field_c_n_message: true
+  field_c_n_type: true

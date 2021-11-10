@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_c_n_message
+    - node.type.civic_alert
+  module:
+    - text
+id: node.civic_alert.field_c_n_message
+field_name: field_c_n_message
+entity_type: node
+bundle: civic_alert
+label: Message
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
