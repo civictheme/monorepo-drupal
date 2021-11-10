@@ -209,7 +209,7 @@ $civic-fonts-default: (
     'family': '"Public Sans", sans-serif',
     'uri': 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&display=swap',
   ),
-) !default;
+);
 
 // Add custom fonts to $civic-fonts with the same key as above to override
 // fonts or with a new key to add a new font kind.
