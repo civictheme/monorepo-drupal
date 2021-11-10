@@ -11,8 +11,8 @@ type: list_string
 settings:
   allowed_values:
     -
-      value: info
-      label: Info
+      value: status
+      label: Status
     -
       value: success
       label: Success
