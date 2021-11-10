@@ -9,7 +9,7 @@
   border-radius: $civic-publication-card-border-radius;
   overflow: hidden;
 
-  @include civic-box-shadow();
+  @include civic-elevation(3);
 
   &:focus-within {
     @include civic-outline();

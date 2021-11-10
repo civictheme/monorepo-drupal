@@ -63,8 +63,7 @@
       margin-top: $civic-primary-navigation-dropdown-top-offset;
       z-index: $civic-primary-navigation-dropdown-zindex;
 
-      // @todo Replace with elevation4.
-      @include civic-box-shadow();
+      @include civic-elevation(4);
 
       // Submenu.
       .civic-menu__sub-menu {

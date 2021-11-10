@@ -8,7 +8,7 @@
   position: relative;
   border-radius: $civic-subject-card-border-radius;
 
-  @include civic-box-shadow();
+  @include civic-elevation(3);
 
   &:focus-within {
     @include civic-outline();

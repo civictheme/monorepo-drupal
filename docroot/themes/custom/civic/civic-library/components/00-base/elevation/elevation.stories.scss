@@ -1,0 +1,17 @@
+@use 'sass:string';
+
+.story-elevation-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+
+  @include civic-generate-class-variations-from-map($civic-elevations, 'story-elevation') using($key, $value, $index) {
+    width: 150px;
+    height: 150px;
+    margin: civic-space(6) civic-space(10) 100px 0;
+    border-radius: civic-space(0.5);
+    position: relative;
+    background-color: white;
+
+    @include civic-elevation($key);
+  }
+}

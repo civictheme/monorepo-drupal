@@ -1,0 +1,22 @@
+//
+// elevation mixins.
+//
+@use 'sass:list';
+@use 'sass:string';
+
+//
+// Elevation from the pre-defined list of elevations.
+//
+@mixin civic-elevation($index: 1) {
+  @if list.nth($civic-elevations, $index) == null {
+    @error '"#{$index}" is not an available elevation.';
+  }
+
+  $box-shadow: list.nth($civic-elevations, $index);
+
+  @if civic-string-is-quoted($box-shadow) {
+    $box-shadow: string.unquote($box-shadow);
+  }
+
+  box-shadow: $box-shadow;
+}

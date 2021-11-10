@@ -314,6 +314,16 @@ $civic-icon-sizes-default: (
     'xxs': (48px, 48px),
     'm': (64px, 64px),
   )
+);
+
+//
+// Elevations.
+//
+$civic-elevations: (
+  0 2px civic-space(1) rgba(0, 0, 0, 20%),
+  0 civic-space(0.5) civic-space(2) rgba(0, 0, 0, 20%),
+  0 civic-space(1) civic-space(4) rgba(0, 0, 0, 20%),
+  0 civic-space(2) civic-space(8) rgba(0, 0, 0, 20%),
 ) !default;
 
 //
