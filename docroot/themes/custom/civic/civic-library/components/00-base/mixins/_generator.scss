@@ -10,9 +10,9 @@
 
   @each $key, $value in $map {
     // Handle lists.
-    @if $value == null {
+    @if type-of($map) == 'list' or $value == null {
       $value: $key;
-      $key: $index;
+      $key: $index + 1;
     }
 
     $classname: $key;

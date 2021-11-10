@@ -9,7 +9,7 @@
   border-radius: $civic-service-card-border-radius;
   text-align: center;
 
-  @include civic-box-shadow();
+  @include civic-elevation(3);
 
   #{$root}__content {
     padding: civic-space(3) 0 civic-space(3) 0;
