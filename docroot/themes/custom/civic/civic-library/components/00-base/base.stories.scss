@@ -60,11 +60,19 @@
 }
 
 .example-container {
-  margin-bottom: civic-space(2);
+  margin-bottom: civic-space(4);
 }
 
 .example-container__title {
-  @include civic-typography('heading-4');
+  @include civic-typography('label-large');
 
-  margin-bottom: civic-space();
+  border-bottom: solid 1px;
+  margin-bottom: civic-space(2);
+
+  code {
+    text-transform: lowercase;
+    font-family: 'Courier New', monospace;
+    background: #eee;
+    padding: 0 0.25em;
+  }
 }

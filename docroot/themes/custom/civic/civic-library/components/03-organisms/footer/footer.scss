@@ -77,6 +77,46 @@
     }
   }
 
+  .civic-logo {
+    max-width: rem($civic-footer-logo-mobile-width);
+
+    @include civic-breakpoint('m') {
+      max-width: rem($civic-footer-logo-desktop-width);
+    }
+  }
+
+  .copyright {
+    @include civic-breakpoint('m') {
+      text-align: right;
+    }
+  }
+
+  .civic-social-links {
+    @include civic-breakpoint('m') {
+      justify-content: flex-end;
+    }
+  }
+
+  .civic-navigation {
+    @include civic-breakpoint-upto(m) {
+      margin-bottom: civic-space(3);
+    }
+  }
+
+  [data-collapsible='true'] {
+    margin-bottom: 0;
+
+    [data-collapsible-trigger] {
+      padding: civic-space(2) civic-space();
+      margin-bottom: 0;
+    }
+
+    [data-collapsible-panel] {
+      padding-left: civic-space();
+      padding-right: civic-space();
+    }
+  }
+
   &.civic-theme-light {
     background-color: $civic-footer-light-background-color;
     color: $civic-footer-light-color;
@@ -108,7 +148,7 @@
     }
 
     [data-collapsible='true'] {
-      border-top: solid rem(1px) $civic-footer-collapsible-light-border-color;
+      border-top: solid rem(1px) $civic-footer-light-collapsible-border-color;
     }
   }
 
@@ -143,47 +183,7 @@
     }
 
     [data-collapsible='true'] {
-      border-top: solid rem(1px) $civic-footer-collapsible-dark-border-color;
-    }
-  }
-
-  .civic-logo {
-    max-width: rem($civic-footer-logo-mobile-width);
-
-    @include civic-breakpoint('m') {
-      max-width: rem($civic-footer-logo-desktop-width);
-    }
-  }
-
-  .copyright {
-    @include civic-breakpoint('m') {
-      text-align: right;
-    }
-  }
-
-  .civic-social-links {
-    @include civic-breakpoint('m') {
-      justify-content: flex-end;
-    }
-  }
-
-  .civic-navigation {
-    @include civic-breakpoint-upto(m) {
-      margin-bottom: civic-space(3);
-    }
-  }
-
-  [data-collapsible='true'] {
-    margin-bottom: 0;
-
-    [data-collapsible-trigger] {
-      padding: civic-space(2) civic-space(1);
-      margin-bottom: 0;
-    }
-
-    [data-collapsible-panel] {
-      padding-left: civic-space(1);
-      padding-right: civic-space(1);
+      border-top: solid rem(1px) $civic-footer-dark-collapsible-border-color;
     }
   }
 }

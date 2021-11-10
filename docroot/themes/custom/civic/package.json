@@ -8,8 +8,8 @@
     "build-storybook": "build-storybook -s ./assets",
     "storybook": "start-storybook -s ./assets",
     "storybook-full": "STORYBOOK_FULL=1 start-storybook -s ./assets",
-    "lint": "eslint ./components ./.storybook && stylelint 'components/**/*.scss'",
-    "lint:fix": "eslint ./components ./.storybook --fix && stylelint 'components/**/*.scss' --fix",
+    "lint": "eslint ./components ./.storybook ./webpack && stylelint 'components/**/*.scss'",
+    "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "webpack --config ./webpack/webpack.dev.js"
   },

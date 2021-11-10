@@ -6,6 +6,23 @@
 @use 'sass:list';
 
 //
+// Include pre-defined typography preset.
+//
+// @code
+//
+// @include civic-typography('heading-1');
+//
+// @endcode
+//
+@mixin civic-typography($name) {
+  @if type-of($name) != string {
+    @error 'Only scalar names can be used as a typography preset.';
+  }
+
+  @include civic-typography-ruleset($name);
+}
+
+//
 // Include font size, height, weight and family for one-to-many breakpoints.
 //
 // @code
@@ -21,10 +38,13 @@
 //
 // @endcode
 //
-@mixin civic-typography($ruleset) {
+// Try using @include civic-typography() mixin instead to keep custom
+// typography to the minimum.
+//
+@mixin civic-typography-ruleset($ruleset) {
   $all-typographies: _civic-typography-all();
 
-  // Print preset
+  // Ruleset is a name of the preset - print preset.
   @if type-of($ruleset) == string {
     @if map.get($all-typographies, $ruleset) == null {
       @error '"#{$ruleset}" is not an available typeset';
@@ -33,12 +53,12 @@
     $ruleset: map.get($all-typographies, $ruleset);
   }
 
-  // Print rules
+  // Ruleset is a list of rule - print rules.
   @if type-of($ruleset) == list {
     @include _civic-typography-print-rules($ruleset);
   }
 
-  // Print breakpoints
+  // Ruleset is a full ruleset definition - print all rules with breakpoints.
   @if type-of($ruleset) == map {
     $breakpoints: map.keys($ruleset);
 

@@ -14,7 +14,7 @@
   & + span {
     &::before {
       content: '';
-      border-radius: 50%;
+      border-radius: $civic-checkbox-border-radius;
       border: 1px solid;
       display: inline-block;
       width: rem(24px);
@@ -83,7 +83,7 @@
       & + span {
         &::before {
           cursor: default;
-          color: $civic-input-light-disabled-text-color;
+          color: $civic-input-light-disabled-color;
           background-color: $civic-input-light-disabled-background-color;
         }
       }
@@ -127,7 +127,7 @@
       & + span {
         &::before {
           cursor: default;
-          color: $civic-input-dark-disabled-text-color;
+          color: $civic-input-dark-disabled-color;
           background-color: $civic-input-dark-disabled-background-color;
         }
       }
@@ -158,5 +158,5 @@
 }
 
 .radios--wrapper {
-  @include civic-typography('body');
+  @include civic-typography('text-regular');
 }

@@ -1,13 +1,13 @@
 const path = require('path');
 const glob = require('glob');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const magicImporter = require('node-sass-magic-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: function (pattern) {
+  entry: (function (pattern) {
     // Scan for all JS.
-    let entries = glob.sync(pattern);
+    const entries = glob.sync(pattern);
     // Add explicitly imported entries from components.
     entries.push(path.resolve(__dirname, 'components_css.js'));
     // Add explicitly imported entries from the current theme.
@@ -15,7 +15,7 @@ module.exports = {
     entries.push(path.resolve(__dirname, 'theme_css.js'));
     entries.push(path.resolve(__dirname, 'fonts.js'));
     return entries;
-  }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js')),
+  }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
   output: {
     filename: 'civic.js',
     path: path.resolve(__dirname, '../dist'),
@@ -65,34 +65,34 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            outputPath: 'static/fonts'
-          }
-        }
+            outputPath: 'static/fonts',
+          },
+        },
       },
       // Twig loader.
       {
         test: /\.twig$/,
         use: [{
-          loader: 'twigjs-loader'
-        }]
+          loader: 'twigjs-loader',
+        }],
       },
       // Wrap JS into Drupal.behaviours.
       {
-        test: /components\/[^\/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
+        test: /components\/[^/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
         exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
         use: [{
           loader: 'babel-loader',
           options: {
             presets: [
-              '@babel/preset-env'
+              '@babel/preset-env',
             ],
             plugins: [
               './node_modules/babel-plugin-syntax-dynamic-import',
               './node_modules/babel-plugin-drupal-behaviors',
             ],
-          }
-        }]
-      }
+          },
+        }],
+      },
     ],
   },
   resolve: {
@@ -103,7 +103,7 @@ module.exports = {
       '@organisms': path.resolve(__dirname, '../components/03-organisms'),
       '@templates': path.resolve(__dirname, '../components/04-templates'),
       '@pages': path.resolve(__dirname, '../components/05-pages'),
-    }
+    },
   },
   stats: {
     errorDetails: true,

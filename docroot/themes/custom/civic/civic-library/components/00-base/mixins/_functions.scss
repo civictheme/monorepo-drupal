@@ -10,7 +10,7 @@
 //
 // @see https://gist.github.com/agorilla/9df052eb1e15d8aea446
 //
-@function map-get-next($map, $key, $fallback: false, $return: value) {
+@function civic-map-get-next($map, $key, $fallback: false, $return: value) {
   // Check if map is valid.
   @if type-of($map) == map {
     // Check if key exists in map.
@@ -86,4 +86,12 @@
   }
 
   @return $result;
+}
+
+@function civic-string-is-quoted($string) {
+  @if type-of($string) != string {
+    @return false;
+  }
+
+  @return "#{$string#{''}}" != $string;
 }

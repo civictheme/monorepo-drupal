@@ -17,7 +17,7 @@
   }
 
   &__caption {
-    @include civic-typography('small-and-captions');
+    @include civic-typography('label-small');
 
     .civic-icon {
       #{$root}.civic-theme-light & {

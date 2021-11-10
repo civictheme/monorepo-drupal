@@ -18,19 +18,19 @@ export const SocialLinks = (knobTab) => {
       symbol: 'brands_facebook',
       size: 'regular',
       url: 'www.facebook.com',
-      title: 'facebook',
+      text: 'Facebook',
     },
     {
       symbol: 'brands_twitter',
       size: 'regular',
       url: 'www.facebook.com',
-      title: 'twitter',
+      text: 'Twitter',
     },
     {
       symbol: 'brands_linkedin',
       size: 'regular',
       url: 'www.facebook.com',
-      title: 'Linkedin',
+      text: 'LinkedIn',
     },
   ];
 

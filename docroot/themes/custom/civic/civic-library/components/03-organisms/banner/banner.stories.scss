@@ -8,10 +8,10 @@
   }
 
   &__content__example-last-updated {
-    @include civic-typography('small');
+    @include civic-typography('text-small');
   }
 
   &__content__example-summary {
-    @include civic-typography('lead');
+    @include civic-typography('text-large');
   }
 }

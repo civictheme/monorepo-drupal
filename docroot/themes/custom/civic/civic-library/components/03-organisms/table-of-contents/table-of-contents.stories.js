@@ -102,7 +102,7 @@ export const TableOfContents = (knobTab) => {
 
     const attributesStr = Object.keys(attributes).map((key) => (attributes[key] !== '' ? `${key}="${attributes[key]}"` : '')).join(' ');
 
-    wrappers.push(`<div class="civic-basic-content civic-basic-content-${i + 1}" ${attributesStr}>${html}</div>`);
+    wrappers.push(`<div class="civic-basic-content civic-basic-content-${i + 1} civic-theme-${attributes['data-table-of-contents-theme']}" ${attributesStr}>${html}</div>`);
   }
 
   return wrappers.join(' ');

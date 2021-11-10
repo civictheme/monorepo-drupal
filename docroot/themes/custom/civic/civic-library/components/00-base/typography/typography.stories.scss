@@ -1,7 +1,0 @@
-.story-typography-wrapper {
-  $all-typographies: _civic-typography-all();
-
-  @include civic-generate-class-variations-from-map($all-typographies) using($name, $value, $index) {
-    @include civic-typography($name);
-  }
-}

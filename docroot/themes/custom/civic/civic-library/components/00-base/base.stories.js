@@ -18,24 +18,6 @@ export const getSlots = (names) => {
   return obj;
 };
 
-export const randomUrl = (domain) => {
-  domain = domain || 'http://example.com';
-  return `${domain}/${(Math.random() + 1).toString(36).substring(7)}`;
-};
-
-export const randomLinks = (count, domain) => {
-  const links = [];
-
-  for (let i = 0; i < count; i++) {
-    links.push({
-      text: `Link ${i + 1}`,
-      url: randomUrl(domain),
-    });
-  }
-
-  return links;
-};
-
 export const randomText = (words) => {
   const lorem = new LoremIpsum({
     sentencesPerParagraph: {
@@ -49,4 +31,25 @@ export const randomText = (words) => {
   });
 
   return lorem.generateWords(words);
+};
+
+export const randomString = (length) => randomText(length).substring(0, length).trim();
+
+export const randomUrl = (domain) => {
+  domain = domain || 'http://example.com';
+  return `${domain}/${(Math.random() + 1).toString(36).substring(7)}`;
+};
+
+export const randomLinks = (count, domain, length) => {
+  const links = [];
+  length = length || 0;
+
+  for (let i = 0; i < count; i++) {
+    links.push({
+      text: `Link ${i + 1}${length ? ` ${randomString(length)}` : ''}`,
+      url: randomUrl(domain),
+    });
+  }
+
+  return links;
 };

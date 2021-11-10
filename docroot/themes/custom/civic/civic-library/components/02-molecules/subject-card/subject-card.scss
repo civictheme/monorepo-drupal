@@ -6,7 +6,7 @@
   $root: &;
 
   position: relative;
-  border-radius: $civic-border-radius;
+  border-radius: $civic-subject-card-border-radius;
 
   @include civic-box-shadow();
 
@@ -88,11 +88,11 @@
       color: $civic-subject-card-light-color;
 
       &:hover {
-        color: $civic-subject-card-light-color-hover;
+        color: $civic-subject-card-light-hover-color;
       }
 
       &:active {
-        color: $civic-subject-card-light-color-active;
+        color: $civic-subject-card-light-active-color;
       }
     }
   }
@@ -118,7 +118,7 @@
       }
 
       &:active {
-        color: $civic-subject-card-dark-color-active;
+        color: $civic-subject-card-dark-active-color;
       }
     }
   }

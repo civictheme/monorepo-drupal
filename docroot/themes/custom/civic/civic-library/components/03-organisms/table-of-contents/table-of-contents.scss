@@ -31,11 +31,11 @@
   }
 
   &__link {
-    @include civic-typography('tag');
+    @include civic-typography('text-small');
 
     display: block;
     position: relative;
-    padding: civic-space(1) civic-space(2) civic-space(1) (civic-space(2) + rem(4px));
+    padding: civic-space() civic-space(2) civic-space() civic-space(2.5);
     border-width: 1px;
     border-style: solid;
     text-decoration: none;
@@ -52,7 +52,7 @@
 
     &:active {
       outline: 0 !important;
-      border-radius: 0 rem(4px) rem(4px) 0;
+      border-radius: 0 $civic-table-of-contents-link-active-border-radius $civic-table-of-contents-link-active-border-radius 0;
     }
 
     &:focus {
@@ -70,7 +70,7 @@
       border-color: $civic-table-of-contents-light-link-border-color;
 
       &::before {
-        background-color: $civic-table-of-contents-light-link-before-background-color;
+        background-color: $civic-table-of-contents-light-link-strip-background-color;
       }
 
       &:hover,
@@ -79,7 +79,7 @@
         border-color: $civic-table-of-contents-light-link-hover-border-color;
 
         &::before {
-          background-color: $civic-table-of-contents-light-link-before-hover-background-color;
+          background-color: $civic-table-of-contents-light-link-strip-hover-background-color;
         }
       }
 
@@ -103,7 +103,7 @@
       border-color: $civic-table-of-contents-dark-link-border-color;
 
       &::before {
-        background-color: $civic-table-of-contents-dark-link-before-background-color;
+        background-color: $civic-table-of-contents-dark-link-strip-background-color;
       }
 
       &:hover,
@@ -112,7 +112,7 @@
         border-color: $civic-table-of-contents-dark-link-hover-border-color;
 
         &::before {
-          background-color: $civic-table-of-contents-dark-link-before-hover-background-color;
+          background-color: $civic-table-of-contents-dark-link-strip-hover-background-color;
         }
       }
 

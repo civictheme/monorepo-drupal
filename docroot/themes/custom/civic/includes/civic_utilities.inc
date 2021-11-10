@@ -6,10 +6,10 @@
  */
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Template\Attribute;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
-use Drupal\Core\Template\Attribute;
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**
