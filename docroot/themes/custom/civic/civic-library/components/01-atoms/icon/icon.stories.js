@@ -35,10 +35,10 @@ export const IconLibrary = (knobTab) => {
 
   const selectedPack = select('Pack', Object.keys(packs), Object.keys(packs).length ? Object.keys(packs)[0] : null, generalKnobTab);
 
-  let html = ``;
+  let html = `<div class="example-container">`;
 
   if (selectedPack) {
-    html += `<h2>${selectedPack.charAt(0).toUpperCase()}${selectedPack.slice(1)}</h2>`;
+    html += `<div class="example-container__title">${selectedPack.charAt(0).toUpperCase()}${selectedPack.slice(1)}</div>`;
     packs[selectedPack].forEach((icon) => {
       html += CivicIcon({
         symbol: icon,
@@ -49,6 +49,8 @@ export const IconLibrary = (knobTab) => {
 
     html = `<div class="story-icon-wrapper story-wrapper-size--medium">${html}</div>`;
   }
+
+  html += '</div>';
 
   return html;
 };
