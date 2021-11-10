@@ -7,3 +7,6 @@ global:
   dependencies:
     - core/drupal
     - core/drupalSettings
+    - core/jquery
+    - core/jquery.cookie
+    - core/jquery.once
