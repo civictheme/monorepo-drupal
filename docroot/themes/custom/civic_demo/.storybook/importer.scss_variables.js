@@ -10,7 +10,7 @@ const importedFiles = [
 
 function removeComments(string) {
   let lines = string.split(/\r?\n/);
-  lines = lines.filter((line) => line.indexOf('//') !== 0);
+  lines = lines.filter((line) => !/\s*\/\/[^\n]*/.test(line));
   return lines.join('\n');
 }
 
