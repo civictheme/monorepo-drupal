@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_c_n_type
+    - field.storage.node.field_c_n_alert_type
     - node.type.civic_alert
   module:
     - options
-id: node.civic_alert.field_c_n_type
-field_name: field_c_n_type
+id: node.civic_alert.field_c_n_alert_type
+field_name: field_c_n_alert_type
 entity_type: node
 bundle: civic_alert
 label: Type

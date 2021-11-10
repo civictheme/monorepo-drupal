@@ -3,7 +3,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_c_n_alert_page_visibility
-    - field.storage.node.field_c_n_type
+    - field.storage.node.field_c_n_alert_type
     - node.type.civic_alert
   module:
     - datetime
@@ -308,10 +308,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_c_n_type:
-          id: field_c_n_type
-          table: node__field_c_n_type
-          field: field_c_n_type
+        field_c_n_alert_type:
+          id: field_c_n_alert_type
+          table: node__field_c_n_alert_type
+          field: field_c_n_alert_type
           relationship: none
           group_type: group
           admin_label: ''
@@ -572,7 +572,7 @@ display:
         - 'config:core.entity_view_display.node.govcms_standard_page.default'
         - 'config:core.entity_view_display.node.govcms_standard_page.teaser'
         - 'config:field.storage.node.field_c_n_alert_page_visibility'
-        - 'config:field.storage.node.field_c_n_type'
+        - 'config:field.storage.node.field_c_n_alert_type'
   rest_export_civic_alerts:
     display_plugin: rest_export
     id: rest_export_civic_alerts
@@ -603,7 +603,7 @@ display:
             field_c_n_alert_page_visibility:
               alias: page_visibility
               raw_output: false
-            field_c_n_type:
+            field_c_n_alert_type:
               alias: alert_type
               raw_output: false
     cache_metadata:
@@ -640,4 +640,4 @@ display:
         - 'config:core.entity_view_display.node.govcms_standard_page.default'
         - 'config:core.entity_view_display.node.govcms_standard_page.teaser'
         - 'config:field.storage.node.field_c_n_alert_page_visibility'
-        - 'config:field.storage.node.field_c_n_type'
+        - 'config:field.storage.node.field_c_n_alert_type'

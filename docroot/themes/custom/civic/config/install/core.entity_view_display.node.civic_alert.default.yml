@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.civic_alert.body
     - field.field.node.civic_alert.field_c_n_alert_page_visibility
+    - field.field.node.civic_alert.field_c_n_alert_type
     - field.field.node.civic_alert.field_c_n_date_range
-    - field.field.node.civic_alert.field_c_n_message
-    - field.field.node.civic_alert.field_c_n_type
     - node.type.civic_alert
   module:
     - datetime_range
@@ -17,12 +17,26 @@ targetEntityType: node
 bundle: civic_alert
 mode: default
 content:
+  body:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   field_c_n_alert_page_visibility:
     weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: content
+  field_c_n_alert_type:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
   field_c_n_date_range:
     weight: 2
@@ -33,20 +47,6 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: daterange_default
-    region: content
-  field_c_n_message:
-    weight: 1
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
-  field_c_n_type:
-    weight: 0
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
     region: content
 hidden:
   links: true
