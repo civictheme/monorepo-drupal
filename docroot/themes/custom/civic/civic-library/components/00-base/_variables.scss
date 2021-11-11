@@ -279,12 +279,12 @@ $civic-typography-default: (
     'm': ($civic-font-base-size * 1.125, $civic-font-base-line-height * 1.5, 600, 'primary', 0)
   ),
   'label-regular': (
-    'xxs': ($civic-font-base-size, $civic-font-base-line-height * 1.25, 600, 'primary', -0.1px),
-    'm': ($civic-font-base-size, $civic-font-base-line-height * 1.25, 600, 'primary', 0)
+    'xxs': ($civic-font-base-size, $civic-font-base-line-height * 1.25, 500, 'primary', -0.1px),
+    'm': ($civic-font-base-size, $civic-font-base-line-height * 1.25, 500, 'primary', 0)
   ),
   'label-small': (
-    'xxs': ($civic-font-base-size * 0.75, $civic-font-base-line-height * 1.25, 600, 'primary', -0.1px),
-    'm': ($civic-font-base-size * 0.875, $civic-font-base-line-height * 1.125, 600, 'primary', 0)
+    'xxs': ($civic-font-base-size * 0.75, $civic-font-base-line-height * 1.25, 400, 'primary', -0.1px),
+    'm': ($civic-font-base-size * 0.875, $civic-font-base-line-height * 1.125, 400, 'primary', 0)
   ),
   // Special elements.
   'quote': (
@@ -683,10 +683,14 @@ $civic-table-dark-row-even-background-color: civic-color('shade_dark_30') !defau
 // Tag.
 //
 $civic-tag-border-radius: $civic-border-radius !default;
-$civic-tag-light-background-color: civic-color('neutral_5') !default;
 $civic-tag-light-color: civic-color('neutral_60') !default;
-$civic-tag-dark-background-color: civic-color('shade_dark_30') !default;
+$civic-tag-light-background-color: civic-color('neutral_5') !default;
+$civic-tag-light-alt-color: civic-color('neutral') !default;
+$civic-tag-light-alt-background-color: civic-color('primary') !default;
 $civic-tag-dark-color: civic-color('neutral') !default;
+$civic-tag-dark-background-color: civic-color('shade_dark_30') !default;
+$civic-tag-dark-alt-color: civic-color('neutral_80') !default;
+$civic-tag-dark-alt-background-color: civic-color('accent') !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               MOLECULES                                    //
