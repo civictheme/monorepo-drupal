@@ -9,31 +9,25 @@
 
   @include civic-typography('label-regular');
 
-  &--required {
-    &::after {
-      content: ' (Required)';
+  &--required-text {
+    margin-left: civic-space();
 
-      @include civic-typography('label-small');
-    }
+    @include civic-typography('label-small');
   }
 
   &.civic-theme-light {
     color: $civic-label-light-color;
 
-    #{$root}--required {
-      &::after {
-        color: $civic-label-light-required-color;
-      }
+    #{$root}--required-text {
+      color: $civic-label-light-required-color;
     }
   }
 
   &.civic-theme-dark {
     color: $civic-label-dark-color;
 
-    #{$root}--required {
-      &::after {
-        color: $civic-label-dark-required-color;
-      }
+    #{$root}--required-text {
+      color: $civic-label-dark-required-color;
     }
   }
 }
