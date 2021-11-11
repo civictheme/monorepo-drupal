@@ -1,5 +1,5 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s'|format(theme_class) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 <div class="civic-search {{ modifier_class }}">
   <div class="civic-search__form">
