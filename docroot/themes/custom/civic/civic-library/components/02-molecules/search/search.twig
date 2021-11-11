@@ -1,5 +1,6 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set button_type = button_type|default('primary') %}
 <div class="civic-search {{ modifier_class }}">
   <div class="civic-search__form">
     <div class="civic-search__field">
@@ -19,7 +20,7 @@
     </div>
     {% include '@atoms/button/button.twig' with {
       text: button_text,
-      type: 'primary',
+      type: button_type,
       theme: theme,
       modifier_class: 'civic-search__button',
     } only %}
