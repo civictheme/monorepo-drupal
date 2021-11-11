@@ -263,7 +263,7 @@ $civic-typography-default: (
   // Text.
   'text-large': (
     'xxs': ($civic-font-base-size * 1.125, $civic-font-base-line-height * 1.75, 400, 'primary', 0),
-    'm': ($civic-font-base-size * 1.25, $civic-font-base-line-height * 2.125, 400, 'primary', '0')
+    'm': ($civic-font-base-size * 1.25, $civic-font-base-line-height * 2.125, 400, 'primary', 0)
   ),
   'text-regular': (
     'xxs': ($civic-font-base-size * 0.875, $civic-font-base-line-height * 1.5, 400, 'primary', 0),
