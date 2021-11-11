@@ -60,11 +60,12 @@
         <a class="civic-publication-card__title-link" href="{{ url }}">
           {% endif %}
           {{ title }}
-          {% if url %}
+          {% if link %}
           <span>
             {% include '@atoms/icon/icon.twig' with {
               symbol: 'arrows_download',
-              color: 'primary'
+              color: 'primary',
+              modifier_class: 'civic-publication-card__icon--download',
             } only %}
           </span>
         </a>
@@ -92,7 +93,7 @@
           url: link.url,
           modifier_class: 'civic-link--attachment'
         } only %}
-      </div>  
+      </div>
     {% endif %}
 
     {% if content_bottom %}

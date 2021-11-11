@@ -850,18 +850,22 @@ $civic-promo-card-dark-icon-arrow-color: civic-color('accent') !default;
 // Card/Publication card.
 //
 $civic-publication-card-border-radius: $civic-border-radius !default;
-$civic-publication-card-light-background-color: civic-color('neutral') !default;
 $civic-publication-card-light-color: civic-color('neutral_60') !default;
-$civic-publication-card-light-attachment-color: civic-color('neutral_80') !default;
+$civic-publication-card-light-background-color: civic-color('neutral') !default;
 $civic-publication-card-light-heading-color: civic-color('neutral_80') !default;
-$civic-publication-card-light-hover-color: civic-color('primary') !default;
+$civic-publication-card-light-heading-hover-color: civic-color('primary') !default;
 $civic-publication-card-light-heading-active-color: civic-color('shade_dark_40') !default;
-$civic-publication-card-dark-background-color: civic-color('shade_dark_40') !default;
+$civic-publication-card-light-icon-color: civic-color('primary') !default;
+$civic-publication-card-light-attachment-icon-color: civic-color('primary') !default;
+$civic-publication-card-light-attachment-link-color: civic-color('neutral_80') !default;
 $civic-publication-card-dark-color: civic-color('neutral_5') !default;
-$civic-publication-card-dark-attachment-color: civic-color('neutral') !default;
+$civic-publication-card-dark-background-color: civic-color('shade_dark_40') !default;
 $civic-publication-card-dark-heading-color: civic-color('neutral') !default;
-$civic-publication-card-dark-color-accent: civic-color('accent') !default;
+$civic-publication-card-dark-heading-hover-color: civic-color('accent') !default;
 $civic-publication-card-dark-heading-active-color: civic-color('neutral_20') !default;
+$civic-publication-card-dark-icon-color: civic-color('accent') !default;
+$civic-publication-card-dark-attachment-icon-color: civic-color('accent') !default;
+$civic-publication-card-dark-attachment-link-color: civic-color('neutral') !default;
 
 //
 // Card/Service card.

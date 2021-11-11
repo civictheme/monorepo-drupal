@@ -1,5 +1,5 @@
 import {
-  boolean, object, radios, select, text,
+  boolean, radios, select, text,
 } from '@storybook/addon-knobs';
 import imageFile from '../../../assets/image.png';
 
@@ -42,10 +42,10 @@ export const PublicationCard = (knobTab) => {
       src: imageFile,
       alt: 'Image alt text',
     } : false,
-    link: object('File', {
+    link: boolean('With file', true, generalKnobTab) ? {
       url: 'https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.doc',
       text: 'Filename.pdf (175.96KB)',
-    }, generalKnobTab),
+    } : null,
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
