@@ -8,6 +8,9 @@
   position: relative;
   border-radius: $civic-event-card-border-radius;
 
+  // Prevent image from "spilling" over the border radius.
+  overflow: hidden;
+
   @include civic-elevation(3);
 
   &:focus-within {
