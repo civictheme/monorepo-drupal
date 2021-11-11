@@ -3,7 +3,7 @@ import CivicMenu from './menu.twig';
 import getMenuLinks from './menu.utils';
 
 export default {
-  title: 'Molecules/Menu',
+  title: 'Base/Menu',
   parameters: {
     layout: 'centered',
   },

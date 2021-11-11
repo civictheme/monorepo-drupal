@@ -9,7 +9,7 @@ import logoMobileLight from '../../../assets/logo-mobile-light.png';
 import logoMobileDark from '../../../assets/logo-mobile-dark.png';
 import '../../00-base/responsive/responsive';
 import '../../00-base/collapsible/collapsible';
-import { generateMenuLinks } from '../../02-molecules/menu/menu.utils';
+import { generateMenuLinks } from '../../00-base/menu/menu.utils';
 
 export default {
   title: 'Organisms/Footer',

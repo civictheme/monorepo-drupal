@@ -1,6 +1,6 @@
 import { radios, text } from '@storybook/addon-knobs';
 import CivicPrimaryNavigation from './primary-navigation.twig';
-import getMenuLinks from '../../02-molecules/menu/menu.utils';
+import getMenuLinks from '../../00-base/menu/menu.utils';
 
 export default {
   title: 'Organisms/Navigation/Primary Navigation',
