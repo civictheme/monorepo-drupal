@@ -15,17 +15,14 @@
   }
 
   &#{$root}--no-image {
-    border-top: rem(6px) solid $civic-event-card-border-top-color;
+    border-top-width: civic-space(0.75);
+    border-top-style: solid;
   }
 
   #{$root}__image-wrapper {
     position: relative;
 
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
+    @include civic-image-fit ();
   }
 
   #{$root}__content {
@@ -43,25 +40,9 @@
   }
 
   #{$root}__title-link {
-    text-decoration: none;
-
-    &:hover,
-    &:active {
-      text-decoration: underline;
-    }
-
-    &:focus {
-      outline: 0;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
+    @include civic-link-decoration ();
+    @include civic-link-no-outline ();
+    @include civic-link-cover-parent ();
   }
 
   #{$root}__location {
@@ -88,30 +69,28 @@
       @include civic-outline(false);
     }
 
+    &#{$root}--no-image {
+      border-top-color: $civic-event-card-light-border-top-color;
+    }
+
     #{$root}__title {
       color: $civic-event-card-light-heading-color;
     }
 
     #{$root}__title-link {
-      color: $civic-event-card-light-heading-color;
-
-      &:hover {
-        color: $civic-event-card-light-hover-color;
-      }
-
-      &:active {
-        color: $civic-event-card-light-active-color;
-      }
+      @include civic-link-colors($civic-event-card-light-heading-color, $civic-event-card-light-heading-hover-color, $active: $civic-event-card-light-heading-active-color);
     }
 
-    #{$root}__location,
+    #{$root}__location {
+      color: $civic-event-card-light-location-color;
+    }
+
     #{$root}__summary {
-      color: $civic-event-card-light-body-color;
+      color: $civic-event-card-light-summary-color;
     }
 
-    #{$root}__tag {
-      background-color: $civic-event-card-light-tag-background-color;
-      color: $civic-event-card-light-tag-color;
+    #{$root}__icon {
+      @include civic-icon-fill-color($civic-event-card-light-arrow-color);
     }
   }
 
@@ -122,36 +101,28 @@
       @include civic-outline(true);
     }
 
+    &#{$root}--no-image {
+      border-top-color: $civic-event-card-dark-border-top-color;
+    }
+
     #{$root}__title {
       color: $civic-event-card-dark-heading-color;
     }
 
     #{$root}__title-link {
-      color: $civic-event-card-dark-heading-color;
-
-      &:hover {
-        color: $civic-event-card-dark-color-accent;
-      }
-
-      &:active {
-        color: $civic-event-card-dark-active-color;
-      }
+      @include civic-link-colors($civic-event-card-dark-heading-color, $civic-event-card-dark-heading-hover-color, $active: $civic-event-card-dark-heading-active-color);
     }
 
-    #{$root}__summary,
     #{$root}__location {
-      color: $civic-event-card-dark-body-color;
+      color: $civic-event-card-dark-location-color;
     }
 
-    #{$root}__tag {
-      background-color: $civic-event-card-dark-color-accent;
-      color: $civic-event-card-dark-tag-color;
+    #{$root}__summary {
+      color: $civic-event-card-dark-summary-color;
     }
 
     #{$root}__icon {
-      .civic-icon {
-        fill: $civic-event-card-dark-color-accent;
-      }
+      @include civic-icon-fill-color($civic-event-card-dark-arrow-color, true);
     }
   }
 }
