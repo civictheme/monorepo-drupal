@@ -23,32 +23,35 @@
     }
   }
 
-  .civic-input {
-    margin: civic-space() auto;
-  }
+  &__wrapper {
+    width: 100%;
 
-  .civic-message {
-    padding: civic-space();
-    margin-bottom: civic-space(2);
-    display: inline-flex;
-    align-items: center;
-    border: none;
-
-    @include civic-typography('label-small');
-
-    &__title {
-      font-weight: 400;
+    .civic-input {
+      margin: civic-space() auto;
     }
 
-    .civic-icon {
-      width: rem(18px);
-      height: rem(18px);
-      vertical-align: middle;
-    }
+    .civic-message {
+      padding: civic-space();
+      margin-bottom: civic-space(2);
+      align-items: center;
+      border: none;
 
-    .civic-message__icon {
-      width: rem(18px);
-      margin-right: civic-space();
+      @include civic-typography('label-small');
+
+      &__title {
+        font-weight: 400;
+      }
+
+      .civic-icon {
+        width: rem(18px);
+        height: rem(18px);
+        vertical-align: middle;
+      }
+
+      .civic-message__icon {
+        width: rem(18px);
+        margin-right: civic-space();
+      }
     }
   }
 

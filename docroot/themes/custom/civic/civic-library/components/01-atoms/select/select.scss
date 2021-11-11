@@ -5,6 +5,8 @@
 .civic-select {
   $root: &;
 
+  width: 100%;
+
   @include civic-typography('text-regular');
 
   font-weight: 600;

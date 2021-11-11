@@ -5,14 +5,18 @@
 .civic-input {
   $root: &;
 
+  position: relative;
+
   &__label {
     display: block;
     margin-bottom: civic-space();
   }
 
   &__element {
+    width: 100%;
     border: rem(1px) solid;
     border-radius: $civic-input-border-radius;
+    box-sizing: border-box;
     padding: civic-space(1.5) civic-space(5) civic-space(1.5) civic-space(2);
 
     &::placeholder {
@@ -29,13 +33,16 @@
   }
 
   &__state {
-    position: relative;
-    margin-left: - civic-space(4);
+    position: absolute;
+    width: civic-space(2);
+    height: civic-space(2);
+    right: civic-space(2);
+    top: civic-space(1.5);
 
     svg {
       width: civic-space(2);
       height: civic-space(2);
-      vertical-align: middle;
+      vertical-align: unset;
     }
   }
 

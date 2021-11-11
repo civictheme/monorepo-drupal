@@ -33,20 +33,22 @@
       {{ description.content }}
     </div>
   {% endif %}
-  {{ children }}
-  {% if suffix is not empty %}
-    <span class="field-suffix">{{ suffix }}</span>
-  {% endif %}
-  {% if label_display == 'after' %}
-    {{ label }}
-  {% endif %}
-  {% if errors %}
-    {% include '@organisms/message/message.twig' with {
-      theme: theme,
-      type: 'error',
-      title: errors
-    } only %}
-  {% endif %}
+  <div class="civic-form-element__wrapper">
+    {{ children }}
+    {% if suffix is not empty %}
+      <span class="field-suffix">{{ suffix }}</span>
+    {% endif %}
+    {% if label_display == 'after' %}
+      {{ label }}
+    {% endif %}
+    {% if errors %}
+      {% include '@organisms/message/message.twig' with {
+        theme: theme,
+        type: 'error',
+        title: errors
+      } only %}
+    {% endif %}
+  </div>
   {% if description_display in ['after', 'invisible'] and description.content %}
     <div class="{{ description_classes|join(' ') }}" {{ description.attributes }}>
       {{ description.content }}
