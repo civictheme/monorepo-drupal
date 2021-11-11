@@ -92,8 +92,8 @@
       color: $civic-event-card-light-summary-color;
     }
 
-    #{$root}__icon {
-      @include civic-icon-fill-color($civic-event-card-light-arrow-color);
+    #{$root}__icon--arrow {
+      @include civic-icon-fill-color($civic-event-card-light-icon-arrow-color);
     }
   }
 
@@ -124,8 +124,8 @@
       color: $civic-event-card-dark-summary-color;
     }
 
-    #{$root}__icon {
-      @include civic-icon-fill-color($civic-event-card-dark-arrow-color, true);
+    #{$root}__icon--arrow {
+      @include civic-icon-fill-color($civic-event-card-dark-icon-arrow-color, true);
     }
   }
 }
