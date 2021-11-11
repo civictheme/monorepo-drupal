@@ -4,7 +4,7 @@
   "private": true,
   "description": "Components for Civic Drupal theme",
   "scripts": {
-    "build": "npm run dist && STORYBOOK_FULL=1 build-storybook --quiet",
+    "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook --quiet",
     "build-storybook": "npm run gulp:build && build-storybook -s ./assets",
     "storybook": "npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s ./assets\"\n",
     "storybook-full": "STORYBOOK_FULL=1 npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s ./assets\"\n",
