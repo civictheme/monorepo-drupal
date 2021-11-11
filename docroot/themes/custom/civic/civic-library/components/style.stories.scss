@@ -6,8 +6,6 @@
 //
 // stylelint-disable scss/at-import-partial-extension
 //
-// Override assets directory as Storybook serves assets from the root.
-$civic-assets-directory: './';
 
 @import 'style';
 @import '00-base/**/*.stories.scss';
