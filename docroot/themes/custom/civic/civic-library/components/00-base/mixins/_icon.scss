@@ -81,3 +81,19 @@
     }
   }
 }
+
+//
+// Fill icon color.
+//
+@mixin civic-icon-fill-color($color, $self: false) {
+  @if $self {
+    &.civic-icon {
+      fill: $color;
+    }
+  }
+  @else {
+    .civic-icon {
+      fill: $color;
+    }
+  }
+}

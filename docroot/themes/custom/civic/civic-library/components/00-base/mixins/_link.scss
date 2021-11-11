@@ -1,0 +1,89 @@
+//
+// Link mixins.
+//
+
+//
+// Set link colors.
+//
+@mixin civic-link-colors($normal, $hover: $normal, $visited: $normal, $active: $normal, $focus: false) {
+  color: $normal;
+
+  @if $hover != false {
+    &:hover {
+      color: $hover;
+    }
+  }
+
+  @if $visited != false {
+    &:visited {
+      color: $visited;
+    }
+  }
+
+  @if $active != false {
+    &:active {
+      color: $active;
+    }
+  }
+
+  @if $focus != false {
+    &:focus {
+      color: $focus;
+    }
+  }
+}
+
+//
+// Add text decoration to a link.
+//
+@mixin civic-link-decoration($underline: false, $underline-hover: true, $underline-active: true) {
+  @if $underline {
+    text-decoration: underline;
+  }
+  @else {
+    text-decoration: none;
+  }
+
+  &:hover {
+    @if $underline-hover {
+      text-decoration: underline;
+    }
+    @else {
+      text-decoration: none;
+    }
+  }
+
+  &:active {
+    @if $underline-active {
+      text-decoration: underline;
+    }
+    @else {
+      text-decoration: none;
+    }
+  }
+}
+
+//
+// Remove an outline from the link.
+//
+@mixin civic-link-no-outline() {
+  outline: 0;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+//
+// Cover parent to allow the whole element to become a link.
+//
+@mixin civic-link-cover-parent() {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
