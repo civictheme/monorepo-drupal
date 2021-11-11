@@ -81,9 +81,9 @@
           <div class="civic-promo-card__tags">
             {% for tag in tags %}
               {% include '@atoms/tag/tag.twig' with {
-                theme: theme == 'light' ? 'dark' : 'light',
+                theme: theme,
                 text: tag,
-                modifier_class: 'civic-tag--card',
+                is_alt: true,
               } only %}
             {% endfor %}
           </div>
@@ -91,7 +91,8 @@
         {% if url %}
           {% include '@atoms/icon/icon.twig' with {
             symbol: 'arrows_rightarrow_3',
-            color: 'primary'
+            color: 'primary',
+            modifier_class: 'civic-promo-card__icon--arrow',
           } only %}
         {% endif %}
       </div>

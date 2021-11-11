@@ -827,26 +827,24 @@ $civic-navigation-card-dark-icon-arrow-color: civic-color('accent') !default;
 // Card/Promo card.
 //
 $civic-promo-card-border-radius: $civic-border-radius !default;
-$civic-promo-card-light-border-top-color: civic-color('secondary') !default;
 $civic-promo-card-light-background-color: civic-color('neutral') !default;
+$civic-promo-card-light-border-top-color: civic-color('secondary') !default;
 $civic-promo-card-light-heading-color: civic-color('neutral_80') !default;
-$civic-promo-card-light-body-color: civic-color('neutral_60') !default;
+$civic-promo-card-light-heading-hover-color: civic-color('primary') !default;
+$civic-promo-card-light-heading-active-color: civic-color('shade_dark_40') !default;
+$civic-promo-card-light-summary-color: civic-color('neutral_60') !default;
 $civic-promo-card-light-date-color: civic-color('neutral_80') !default;
-$civic-promo-card-light-hover-color: civic-color('primary') !default;
-$civic-promo-card-light-active-color: civic-color('shade_dark_40') !default;
-$civic-promo-card-light-tag-color: civic-color('neutral') !default;
-$civic-promo-card-light-tag-background-color: civic-color('primary') !default;
-$civic-promo-card-light-link-color: civic-color('primary') !default;
-$civic-promo-card-dark-border-top-color: civic-color('secondary') !default;
+$civic-promo-card-light-date-background-color: civic-color('translucent') !default;
+$civic-promo-card-light-icon-arrow-color: inherit !default;
 $civic-promo-card-dark-background-color: civic-color('shade_dark_40') !default;
+$civic-promo-card-dark-border-top-color: civic-color('secondary') !default;
 $civic-promo-card-dark-heading-color: civic-color('neutral') !default;
-$civic-promo-card-dark-body-color: civic-color('neutral_5') !default;
+$civic-promo-card-dark-heading-hover-color: civic-color('accent') !default;
+$civic-promo-card-dark-heading-active-color: civic-color('neutral_20') !default;
+$civic-promo-card-dark-summary-color: civic-color('neutral_5') !default;
 $civic-promo-card-dark-date-color: civic-color('neutral') !default;
-$civic-promo-card-dark-tag-color: civic-color('neutral_80') !default;
-$civic-promo-card-dark-tag-background-color: civic-color('accent') !default;
-$civic-promo-card-dark-color-accent: civic-color('accent') !default;
-$civic-promo-card-dark-active-color: civic-color('neutral_20') !default;
-$civic-promo-card-dark-link-color: civic-color('accent') !default;
+$civic-promo-card-dark-date-background-color: civic-color('translucent') !default;
+$civic-promo-card-dark-icon-arrow-color: civic-color('accent') !default;
 
 //
 // Card/Publication card.
