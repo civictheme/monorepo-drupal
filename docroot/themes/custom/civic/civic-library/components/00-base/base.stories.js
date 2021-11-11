@@ -39,6 +39,11 @@ export const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
+export const getRandomBool = (skew) => {
+  skew = skew || 0.5;
+  return Math.random() > skew;
+};
+
 export const randomString = (length) => randomText(length).substring(0, length).trim();
 
 export const randomUrl = (domain) => {
@@ -46,14 +51,16 @@ export const randomUrl = (domain) => {
   return `${domain}/${(Math.random() + 1).toString(36).substring(7)}`;
 };
 
-export const randomLinks = (count, domain, length) => {
+export const randomLinks = (count, length, domain) => {
   const links = [];
   length = length || 0;
 
   for (let i = 0; i < count; i++) {
     links.push({
-      text: `Link ${i + 1}${length ? ` ${randomString(length)}` : ''}`,
+      text: `Link ${i + 1}${length ? ` ${randomString(getRandomInt(1, length))}` : ''}`,
       url: randomUrl(domain),
+      new_window: getRandomBool(),
+      is_external: getRandomBool(0.8),
     });
   }
 

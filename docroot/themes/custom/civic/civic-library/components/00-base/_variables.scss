@@ -871,15 +871,16 @@ $civic-publication-card-dark-attachment-link-color: civic-color('neutral') !defa
 // Card/Service card.
 //
 $civic-service-card-border-radius: $civic-border-radius !default;
-$civic-service-card-border-top-color: civic-color('secondary') !default;
 $civic-service-card-light-background-color: civic-color('neutral') !default;
-$civic-service-card-light-hover-color: civic-color('secondary') !default;
-$civic-service-card-light-active-color: civic-color('shade_dark_30') !default;
+$civic-service-card-light-border-top-color: civic-color('secondary') !default;
 $civic-service-card-light-heading-color: civic-color('neutral_80') !default;
+$civic-service-card-light-heading-hover-color: civic-color('secondary') !default;
+$civic-service-card-light-heading-active-color: civic-color('shade_dark_30') !default;
 $civic-service-card-dark-background-color: civic-color('shade_dark_40') !default;
+$civic-service-card-dark-border-top-color: civic-color('secondary') !default;
 $civic-service-card-dark-heading-color: civic-color('neutral') !default;
-$civic-service-card-dark-hover-color: civic-color('accent') !default;
-$civic-service-card-dark-active-color: civic-color('neutral_20') !default;
+$civic-service-card-dark-heading-hover-color: civic-color('accent') !default;
+$civic-service-card-dark-heading-active-color: civic-color('neutral_20') !default;
 
 //
 // Card/Subject card.

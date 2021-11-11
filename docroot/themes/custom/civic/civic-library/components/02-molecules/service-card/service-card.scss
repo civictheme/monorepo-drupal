@@ -5,7 +5,8 @@
 .civic-service-card {
   $root: &;
 
-  border-top: rem(6px) solid $civic-service-card-border-top-color;
+  border-top-width: civic-space(0.75);
+  border-top-style: solid;
   border-radius: $civic-service-card-border-radius;
   text-align: center;
 
@@ -30,10 +31,6 @@
     list-style: none;
     margin-bottom: 0;
     padding: 0 civic-space(3);
-
-    .civic-link {
-      border-bottom: 0;
-    }
   }
 
   #{$root}__link__item {
@@ -48,6 +45,7 @@
 
   &.civic-theme-light {
     background-color: $civic-service-card-light-background-color;
+    border-top-color: $civic-service-card-light-border-top-color;
 
     #{$root}__title {
       color: $civic-service-card-light-heading-color;
@@ -56,6 +54,7 @@
 
   &.civic-theme-dark {
     background-color: $civic-service-card-dark-background-color;
+    border-top-color: $civic-service-card-dark-border-top-color;
 
     #{$root}__title {
       color: $civic-service-card-dark-heading-color;
