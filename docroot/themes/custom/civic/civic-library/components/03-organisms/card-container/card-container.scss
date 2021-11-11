@@ -1,7 +1,6 @@
 //
 // Card container.
 //
-@import '../../00-base/base';
 
 .civic-card-container {
   $root: &;
@@ -32,7 +31,7 @@
     }
   }
 
-  &__header__heading {
+  &__header-title {
     @include civic-typography('heading-3');
 
     @include civic-breakpoint('m') {
@@ -40,7 +39,7 @@
     }
   }
 
-  &__header__link {
+  &__header-link {
     @include civic-typography('label-regular');
 
     @include civic-breakpoint('m') {
@@ -62,10 +61,10 @@
     }
   }
 
-  &__footer__link {
-    margin-top: civic-space(4);
-
+  &__footer-link {
     @include civic-typography('label-regular');
+
+    margin-top: civic-space(4);
 
     @include civic-breakpoint('m') {
       align-self: center;
@@ -74,7 +73,7 @@
   }
 
   &__description {
-    @include civic-typography('body');
+    @include civic-typography('text-regular');
 
     margin-bottom: civic-space(3);
   }
@@ -83,11 +82,27 @@
     color: $civic-card-container-light-color;
 
     &#{$root}--with-spacing {
-      background-color: $civic-card-container-light-background;
+      background-color: $civic-card-container-light-background-color;
     }
 
-    #{$root}__header__heading {
-      color: $civic-card-container-light-heading-color;
+    #{$root}__header-link {
+      .civic-link {
+        color: $civic-card-container-light-heading-color;
+
+        &:hover {
+          color: $civic-card-container-light-heading-hover-color;
+        }
+      }
+    }
+
+    #{$root}__footer-link {
+      .civic-link {
+        color: $civic-card-container-light-footer-link-color;
+
+        &:hover {
+          color: $civic-card-container-light-footer-link-hover-color;
+        }
+      }
     }
   }
 
@@ -95,11 +110,27 @@
     color: $civic-card-container-dark-color;
 
     &#{$root}--with-spacing {
-      background-color: $civic-card-container-dark-background;
+      background-color: $civic-card-container-dark-background-color;
     }
 
-    #{$root}__header__heading {
-      color: $civic-card-container-dark-heading-color;
+    #{$root}__header-link {
+      .civic-link {
+        color: $civic-card-container-dark-heading-color;
+
+        &:hover {
+          color: $civic-card-container-dark-heading-hover-color;
+        }
+      }
+    }
+
+    #{$root}__footer-link {
+      .civic-link {
+        color: $civic-card-container-dark-footer-link-color;
+
+        &:hover {
+          color: $civic-card-container-dark-footer-link-hover-color;
+        }
+      }
     }
   }
 }

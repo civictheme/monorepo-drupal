@@ -2,23 +2,21 @@
 // Civic input.
 //
 
-@import '../../00-base/base';
-
 .civic-input {
   $root: &;
 
   &__label {
     display: block;
-    margin-bottom: civic-space(1);
+    margin-bottom: civic-space();
   }
 
   &__element {
     border: rem(1px) solid;
-    border-radius: rem(4px);
-    padding: ($civic-space * 1.5) civic-space(5) ($civic-space * 1.5) civic-space(2);
+    border-radius: $civic-input-border-radius;
+    padding: civic-space(1.5) civic-space(5) civic-space(1.5) civic-space(2);
 
     &::placeholder {
-      @include civic-typography('body');
+      @include civic-typography('text-regular');
     }
   }
 
@@ -50,7 +48,7 @@
       }
 
       &:focus {
-        background-color: $civic-input-focus-background-color;
+        background-color: $civic-input-light-focus-background-color;
         color: $civic-input-light-focus-color;
         outline: $civic-input-light-focus-outline-color;
         border-color: $civic-input-light-focus-border-color;
@@ -64,7 +62,7 @@
 
     #{$root}__element {
       background-color: $civic-input-dark-background-color;
-      color: $civic-input-dark-input-color;
+      color: $civic-input-dark-color;
       border-color: $civic-input-dark-border-color;
 
       &:hover {
@@ -73,6 +71,7 @@
 
       &:focus {
         color: $civic-input-dark-focus-color;
+        background-color: $civic-input-dark-focus-background-color;
         outline: $civic-input-dark-focus-outline-color;
         border-color: $civic-input-dark-focus-border-color;
         box-shadow: 0 0 0 1px $civic-input-dark-focus-border-color;
@@ -106,13 +105,13 @@
   &.error,
   &--error {
     #{$root}__element {
-      border-color: $civic-input-error-border-color !important;
-      box-shadow: 0 0 0 1px $civic-input-error-border-color !important;
+      border-color: $civic-input-dark-error-border-color !important;
+      box-shadow: 0 0 0 1px $civic-input-dark-error-border-color !important;
     }
 
     #{$root}__state {
       svg {
-        fill: $civic-input-error-border-color;
+        fill: $civic-input-dark-error-icon-color;
       }
     }
   }
@@ -120,13 +119,13 @@
   &.success,
   &--success {
     #{$root}__element {
-      border-color: $civic-input-success-border-color !important;
-      box-shadow: 0 0 0 1px $civic-input-success-border-color;
+      border-color: $civic-input-dark-success-border-color !important;
+      box-shadow: 0 0 0 1px $civic-input-dark-success-border-color;
     }
 
     #{$root}__state {
       svg {
-        fill: $civic-input-success-border-color;
+        fill: $civic-input-dark-success-icon-color;
       }
     }
   }

@@ -2,14 +2,12 @@
 // Directional link.
 //
 
-@import '../../00-base/base';
-
 .civic-directional-link {
   $root: &;
 
   padding: civic-space(2) civic-space(3);
 
-  @include civic-typography('label-large');
+  @include civic-typography('text-regular');
 
   display: flex;
   text-decoration: none;
@@ -19,12 +17,12 @@
   }
 
   .civic-icon {
-    margin-left: civic-space(1);
+    margin-left: civic-space();
 
     &--left {
       order: -1;
       margin-left: 0;
-      margin-right: civic-space(1);
+      margin-right: civic-space();
     }
   }
 

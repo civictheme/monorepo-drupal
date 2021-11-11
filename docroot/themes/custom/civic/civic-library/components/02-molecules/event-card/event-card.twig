@@ -21,7 +21,7 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type_class = image is empty ? 'civic-event-card--no-image' : '' %}
-{% set modifier_class = '%s %s'|format(theme_class, type_class) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
 
 <div class="civic-event-card {{ modifier_class }}">
   {% if image.src is not empty %}
@@ -88,9 +88,9 @@
           <div class="civic-event-card__tags">
             {% for tag in tags %}
               {% include '@atoms/tag/tag.twig' with {
-                theme: theme == 'light' ? 'dark' : 'light',
+                theme: theme,
                 text: tag,
-                modifier_class: 'civic-tag--card',
+                is_alt: true,
               } only %}
             {% endfor %}
           </div>
@@ -98,7 +98,8 @@
         {% if url %}
           {% include '@atoms/icon/icon.twig' with {
             symbol: 'arrows_rightarrow_3',
-            color: 'primary'
+            color: 'primary',
+            modifier_class: 'civic-event-card__icon--arrow',
           } only %}
         {% endif %}
       </div>

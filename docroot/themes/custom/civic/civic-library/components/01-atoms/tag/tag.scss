@@ -1,24 +1,19 @@
 //
 // Tag.
 //
-@import '../../00-base/base';
 
 .civic-tag {
   $root: &;
 
-  border-radius: $civic-border-radius;
-  padding: rem(2px) civic-space(1) rem(2px) rem(4px);
+  border-radius: $civic-tag-border-radius;
+  padding: civic-space(0.5) civic-space();
   display: inline-block;
 
-  @include civic-typography(tag);
-
-  &--no-icon {
-    padding-left: civic-space(1);
-  }
+  @include civic-typography('label-small');
 
   &--icon-after {
     padding-right: rem(4px);
-    padding-left: civic-space(1);
+    padding-left: civic-space();
   }
 
   .civic-icon {
@@ -30,8 +25,13 @@
     background-color: $civic-tag-light-background-color;
     color: $civic-tag-light-color;
 
-    .civic-icon {
-      fill: $civic-tag-light-color;
+    @include civic-icon-fill-color($civic-tag-light-color);
+
+    &#{$root}--is-alt {
+      background-color: $civic-tag-light-alt-background-color;
+      color: $civic-tag-light-alt-color;
+
+      @include civic-icon-fill-color($civic-tag-light-alt-color);
     }
   }
 
@@ -39,8 +39,13 @@
     background-color: $civic-tag-dark-background-color;
     color: $civic-tag-dark-color;
 
-    .civic-icon {
-      fill: $civic-tag-dark-color;
+    @include civic-icon-fill-color($civic-tag-dark-color);
+
+    &#{$root}--is-alt {
+      background-color: $civic-tag-dark-alt-background-color;
+      color: $civic-tag-dark-alt-color;
+
+      @include civic-icon-fill-color($civic-tag-dark-alt-color);
     }
   }
 }

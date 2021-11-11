@@ -2,25 +2,38 @@
 // Form element.
 //
 
-@import '../../00-base/base';
-
 .civic-label {
+  $root: &;
+
   margin-bottom: civic-space();
 
   @include civic-typography('label-regular');
 
-  &--required::after {
-    color: $civic-label-required-color;
-    content: ' (Required)';
+  &--required {
+    &::after {
+      content: ' (Required)';
 
-    @include civic-typography('small-and-captions');
+      @include civic-typography('label-small');
+    }
   }
 
   &.civic-theme-light {
     color: $civic-label-light-color;
+
+    #{$root}--required {
+      &::after {
+        color: $civic-label-light-required-color;
+      }
+    }
   }
 
   &.civic-theme-dark {
     color: $civic-label-dark-color;
+
+    #{$root}--required {
+      &::after {
+        color: $civic-label-dark-required-color;
+      }
+    }
   }
 }

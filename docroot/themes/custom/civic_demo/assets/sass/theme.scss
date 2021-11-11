@@ -5,4 +5,6 @@
 // components.
 //
 // These overrides will not be visible in the Storybook.
-@import "block/block--example";
+// @todo Refactor webpack config to use direct import from the Civic theme.
+@import 'block/local-tasks';
+@import 'ckeditor';

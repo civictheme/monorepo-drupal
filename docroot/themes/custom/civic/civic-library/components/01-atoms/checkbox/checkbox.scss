@@ -2,7 +2,6 @@
 // Civic input.
 //
 
-@import '../../00-base/base';
 @import '../radio/radio';
 
 .civic-checkbox {
@@ -11,7 +10,7 @@
   &.civic-input__element + span {
     &::before {
       content: '';
-      border-radius: rem(4px);
+      border-radius: $civic-radio-border-radius;
     }
 
     &::after {
@@ -28,7 +27,7 @@
     &:checked {
       & + span {
         &::after {
-          content: civic-svg-fill($civic-radio-check, $civic-radio-light-check-color);
+          content: civic-color-svg-fill($civic-radio-check, $civic-radio-light-check-color);
         }
       }
     }
@@ -38,7 +37,7 @@
     &:checked {
       & + span {
         &::after {
-          content: civic-svg-fill($civic-radio-check, $civic-radio-dark-check-color);
+          content: civic-color-svg-fill($civic-radio-check, $civic-radio-dark-check-color);
         }
       }
     }
@@ -46,5 +45,5 @@
 }
 
 .checkboxes--wrapper {
-  @include civic-typography('body');
+  @include civic-typography('text-regular');
 }

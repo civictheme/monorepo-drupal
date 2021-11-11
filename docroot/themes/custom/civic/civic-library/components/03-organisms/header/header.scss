@@ -2,12 +2,10 @@
 // Header.
 //
 
-@import '../../00-base/base';
-
 .civic-header {
   $root: &;
 
-  @include civic-typography('body');
+  @include civic-typography('text-regular');
 
   &__top {
     padding-top: civic-space();
@@ -43,7 +41,7 @@
     }
 
     #{$root}__middle {
-      background-color: $civic-header-light-background-color;
+      background-color: $civic-header-light-middle-background-color;
 
       .container {
         border-color: $civic-header-light-middle-border-color;
@@ -58,7 +56,7 @@
     }
 
     #{$root}__middle {
-      background-color: $civic-header-dark-background-color;
+      background-color: $civic-header-dark-middle-background-color;
 
       .container {
         border-color: $civic-header-dark-middle-border-color;

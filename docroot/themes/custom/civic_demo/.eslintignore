@@ -1,1 +1,2 @@
 **/*.min.js
+.storybook/drupal_behaviors.js

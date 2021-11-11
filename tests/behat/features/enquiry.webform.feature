@@ -1,8 +1,8 @@
-@civic @webform @form_element @wip
+@civic @webform @form_element
 Feature: Tests the Civic form integration with webform
 
   @api
-    Scenario: Form inputs are correctly validated
+  Scenario: Form inputs are correctly validated
 
     Given I am an anonymous user
     When I visit "/form/civic-enquiry"
@@ -21,7 +21,7 @@ Feature: Tests the Civic form integration with webform
     And I should see "The email address test is not valid."
 
   @api
-    Scenario: Contact webform can be filled in and submitted correctly and form label, selectors, id are present
+  Scenario: Contact webform can be filled in and submitted correctly and form label, selectors, id are present
     Given I am an anonymous user
     When I visit "/form/civic-enquiry"
     Then I fill in "First name" with "[TEST] Name"

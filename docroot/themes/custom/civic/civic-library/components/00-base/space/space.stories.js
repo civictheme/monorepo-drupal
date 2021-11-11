@@ -2,15 +2,19 @@ export default {
   title: 'Base/Space',
 };
 
-export const Space = () => `<div class="space-wrapper">
-  <div class="space--8">
-    <div class="space--7">
-      <div class="space--6">
-        <div class="space--5">
-          <div class="space--4">
-            <div class="space--3">
-              <div class="space--2">
-                <div class="space--1"></div>
+export const Space = () => `<div class="story-space-wrapper">
+  <div class="story-space--10">
+    <div class="story-space--9">
+      <div class="story-space--8">
+        <div class="story-space--7">
+          <div class="story-space--6">
+            <div class="story-space--5">
+              <div class="story-space--4">
+                <div class="story-space--3">
+                  <div class="story-space--2">
+                    <div class="story-space--1"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

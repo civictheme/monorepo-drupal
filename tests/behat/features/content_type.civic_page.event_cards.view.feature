@@ -10,7 +10,7 @@ Feature: View of Page content type with event cards
 
     And "civic_image" media:
       | name               | field_c_m_image |
-      | [TEST] Civic Image | test_image.jpg    |
+      | [TEST] Civic Image | test_image.jpg  |
 
     And "civic_page" content:
       | title                          | status |
@@ -73,7 +73,7 @@ Feature: View of Page content type with event cards
     And I should see 4 "div.civic-event-card__content" elements
     And I should see 4 "div.civic-event-card__title" elements
     And I should see 4 "div.civic-event-card__summary" elements
-    And I should see 3 "div.civic-event-card__tags .civic-tag--card" elements
+    And I should see 3 "div.civic-event-card__tags .civic-tag" elements
     And I should see the text "Event card title 1"
     And I should see the text "Event card title 2"
     And I should see the text "Event card title 3"

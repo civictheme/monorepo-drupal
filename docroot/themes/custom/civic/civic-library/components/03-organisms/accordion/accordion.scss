@@ -1,9 +1,6 @@
 //
 // Accordion.
 //
-// stylelint-disable scss/dollar-variable-pattern
-
-@import '../../00-base/base';
 
 .civic-accordion {
   $root: &;
@@ -23,8 +20,8 @@
 
     display: block;
     margin: 0;
-    border-top-left-radius: $civic-border-radius;
-    border-top-right-radius: $civic-border-radius;
+    border-top-left-radius: $civic-accordion-header-border-radius;
+    border-top-right-radius: $civic-accordion-header-border-radius;
 
     &__button--expanded {
       border-bottom: none;
@@ -41,7 +38,7 @@
 
       width: 100%;
       padding: civic-space(3);
-      border-radius: $civic-border-radius;
+      border-radius: $civic-accordion-button-border-radius;
       margin: 0;
       border: none;
       cursor: pointer;
@@ -64,7 +61,7 @@
     height: 0;
     transition: height 0.5s, visibility 0.5s;
 
-    @include civic-typography('body');
+    @include civic-typography('text-regular');
 
     &--expanded {
       height: auto;
@@ -85,7 +82,7 @@
   &__list-item {
     position: relative;
     border: 1px solid;
-    border-radius: $civic-border-radius;
+    border-radius: $civic-accordion-item-border-radius;
     margin-bottom: civic-space(2);
 
     &::before {
@@ -96,8 +93,8 @@
       top: 0;
       left: 0;
       width: 0;
-      border-top-left-radius: $civic-border-radius;
-      border-bottom-left-radius: $civic-border-radius;
+      border-top-left-radius: $civic-accordion-item-border-radius;
+      border-bottom-left-radius: $civic-accordion-item-border-radius;
       transition: width 0.25s;
     }
 

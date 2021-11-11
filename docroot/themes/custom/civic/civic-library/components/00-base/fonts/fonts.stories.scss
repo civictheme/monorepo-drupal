@@ -1,0 +1,10 @@
+@use 'sass:string';
+
+.story-fonts-wrapper {
+  $all-fonts: _civic-fonts-all();
+
+  @include civic-generate-class-variations-from-map($all-fonts, 'story-font') using($key, $value, $index) {
+    font-family: civic-font($key);
+    font-size: 3em;
+  }
+}

@@ -5,6 +5,7 @@
  * Paragraph theme alterations.
  */
 
+require_once 'paragraph--civic_accordion.inc';
 require_once 'paragraph--civic_attachment.inc';
 require_once 'paragraph--civic_callout.inc';
 require_once 'paragraph--civic_card_container.inc';
@@ -13,13 +14,12 @@ require_once 'paragraph--civic_card_navigation.inc';
 require_once 'paragraph--civic_card_promo.inc';
 require_once 'paragraph--civic_card_subject.inc';
 require_once 'paragraph--civic_card_task.inc';
-require_once 'paragraph--civic_quick_links.inc';
-require_once 'paragraph--civic_service_card.inc';
 require_once 'paragraph--civic_content.inc';
+require_once 'paragraph--civic_listing.inc';
+require_once 'paragraph--civic_quick_links.inc';
 require_once 'paragraph--civic_search.inc';
+require_once 'paragraph--civic_service_card.inc';
 require_once 'paragraph--civic_social_icon.inc';
-
-require_once 'paragraph--civic_accordion.inc';
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().

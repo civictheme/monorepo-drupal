@@ -1,7 +1,8 @@
 import {
-  boolean, radios, select, text,
+  boolean, radios, text,
 } from '@storybook/addon-knobs';
 import CivicLink from './link.twig';
+import { randomUrl } from '../../00-base/base.stories';
 
 export default {
   title: 'Atoms/Link',
@@ -23,21 +24,13 @@ export const Link = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    modifier_class: select(
-      'Modifiers',
-      {
-        None: '',
-        Visited: 'civic-link--visited',
-      },
-      '',
-      generalKnobTab,
-    ),
     text: text('Text', 'Link text', generalKnobTab),
     title: text('Title', 'Link title', generalKnobTab),
     context: text('Link context', 'Link context', generalKnobTab),
-    url: text('URL', 'http://example.com', generalKnobTab),
+    url: text('URL', randomUrl(), generalKnobTab),
     is_external: boolean('Is external', false, generalKnobTab),
     new_window: boolean('Open in a new window', false, generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 

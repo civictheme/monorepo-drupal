@@ -1,7 +1,6 @@
 import { radios } from '@storybook/addon-knobs';
 
 import CivicCollapsible from './collapsible.stories.twig';
-import './collapsible.scss';
 import './collapsible';
 
 export default {

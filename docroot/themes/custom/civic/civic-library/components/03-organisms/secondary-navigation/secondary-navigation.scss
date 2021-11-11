@@ -22,7 +22,7 @@
 
     .civic-menu__item {
       .civic-link {
-        @include civic-typography('body');
+        @include civic-typography('text-regular');
 
         text-decoration: none;
       }
@@ -49,10 +49,10 @@
       position: absolute;
       z-index: $civic-secondary-navigation-dropdown-zindex;
       margin-top: $civic-secondary-navigation-dropdown-top-offset;
-      border-bottom-left-radius: $civic-border-radius;
-      border-bottom-right-radius: $civic-border-radius;
+      border-bottom-left-radius: $civic-secondary-navigation-dropdown-border-radius;
+      border-bottom-right-radius: $civic-secondary-navigation-dropdown-border-radius;
 
-      @include civic-box-shadow();
+      @include civic-elevation(4);
 
       .civic-menu__sub-menu {
         margin-left: civic-space(2);

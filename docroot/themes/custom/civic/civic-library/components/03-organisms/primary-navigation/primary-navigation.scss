@@ -39,7 +39,7 @@
           padding-left: civic-space(2);
 
           // Accommodate for the trigger.
-          padding-right: rem(list.nth(map.get(map.get($civic-icon-sizes, 'regular'), $civic-collapsible-icon-size), 1)) + civic-space();
+          padding-right: civic-icon-size-dimension('regular', $civic-collapsible-icon-size, 'width') + civic-space();
           text-decoration: none;
 
           &::after {
@@ -62,9 +62,7 @@
       margin: 0;
       margin-top: $civic-primary-navigation-dropdown-top-offset;
       z-index: $civic-primary-navigation-dropdown-zindex;
-
-      // @todo Replace with elevation4.
-      @include civic-box-shadow();
+      box-shadow: 0 civic-space(2) civic-space(4) rgba(0, 0, 0, 20%);
 
       // Submenu.
       .civic-menu__sub-menu {
@@ -102,10 +100,10 @@
       .civic-menu__item--level-4,
       .civic-menu__item--level-5 {
         width: 100%;
-        margin-bottom: civic-space(1);
+        margin-bottom: civic-space();
 
         > .civic-link {
-          @include civic-typography('label-menu');
+          @include civic-typography('label-regular');
 
           text-decoration: none;
           display: block;
@@ -120,7 +118,7 @@
 
         &.civic-menu__item--active-trail {
           > .civic-link {
-            background-color: civic-color('shade_60');
+            background-color: civic-color('shade_dark_60');
             color: civic-color('neutral');
             padding-left: civic-space();
             padding-right: civic-space();
@@ -152,7 +150,6 @@
         }
 
         .civic-menu__item--level-1 {
-          // stylelint-disable-next-line scss/dollar-variable-pattern
           $basis: math.div(100%, $i);
 
           flex-basis: calc(#{$basis} - #{$civic-primary-navigation-dropdown-column-gutter});

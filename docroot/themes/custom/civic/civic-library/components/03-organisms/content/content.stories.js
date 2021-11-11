@@ -1,8 +1,6 @@
-import { boolean, radios } from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicContent from './content.twig';
-import { BasicContent } from '../../02-molecules/basic-content/basic-content.stories';
-// @todo Replace with 'side-navigation' component once it is ready.
-import { Navigation } from '../navigation/navigation.stories';
+import { getSlots, randomText } from '../../00-base/base.stories';
 
 export default {
   title: 'Organisms/Content',
@@ -21,11 +19,19 @@ export const Content = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    content_left: boolean('Sidebar', false, generalKnobTab) ? Navigation : false,
+    content: boolean('Show content', true, generalKnobTab) ? `<strong>Content text</strong> ${randomText(30)}` : false,
+    sidebar: boolean('Show sidebar', false, generalKnobTab) ? `<strong>Sidebar text</strong> ${randomText(20)}` : false,
+    contained: boolean('Contained (implied when sidebar is present)', false, generalKnobTab),
+    content_attributes: text('Content attributes', '', generalKnobTab),
+    sidebar_attributes: text('Sidebar attributes', '', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   return CivicContent({
     ...generalKnobs,
-    content: BasicContent,
+    ...getSlots([
+      'content_top',
+      'content_bottom',
+    ]),
   });
 };

@@ -1,5 +1,4 @@
 @use 'sass:math';
-@import '../../00-base/base';
 
 .civic-icon-link {
   $root: &;
@@ -7,7 +6,7 @@
   display: block;
   background: none;
   border-bottom: none;
-  border-radius: $civic-border-radius;
+  border-radius: $civic-icon-link-border-radius;
   text-decoration: none;
 
   &#{$root}--with-border {
@@ -17,31 +16,30 @@
       padding: civic-space();
 
       @include civic-breakpoint('m') {
-        padding: civic-space() * 1.5;
+        padding: civic-space(1.5);
       }
     }
   }
 
-  &,
   &.civic-theme-light {
     color: $civic-icon-link-light-color;
 
     &:hover {
-      color: $civic-icon-link-light-color-hover;
+      color: $civic-icon-link-light-hover-color;
     }
 
     &:focus {
       @include civic-outline(false);
 
-      color: $civic-icon-link-light-color-focus;
+      color: $civic-icon-link-light-focus-color;
     }
 
     &:active {
-      color: $civic-icon-link-light-color-active;
+      color: $civic-icon-link-light-active-color;
     }
 
     &:visited {
-      color: $civic-icon-link-light-color-visited;
+      color: $civic-icon-link-light-visited-color;
     }
   }
 
@@ -49,21 +47,21 @@
     color: $civic-icon-link-dark-color;
 
     &:hover {
-      color: $civic-icon-link-dark-color-hover;
+      color: $civic-icon-link-dark-hover-color;
     }
 
     &:focus {
       @include civic-outline(false);
 
-      color: $civic-icon-link-dark-color-focus;
+      color: $civic-icon-link-dark-focus-color;
     }
 
     &:active {
-      color: $civic-icon-link-dark-color-active;
+      color: $civic-icon-link-dark-active-color;
     }
 
     &:visited {
-      color: $civic-icon-link-dark-color-visited;
+      color: $civic-icon-link-dark-visited-color;
     }
   }
 }

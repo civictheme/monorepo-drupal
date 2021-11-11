@@ -15,7 +15,10 @@ export const Tooltip = () => {
 
   const { icons } = ICONS;
   const defaultIcon = icons.indexOf('userinterface_informationmark');
-  const sizes = SCSS_VARIABLES['civic-icon-sizes'];
+  const sizes = [...new Set([
+    ...SCSS_VARIABLES['civic-icon-sizes-default'],
+    ...SCSS_VARIABLES['civic-icon-sizes'],
+  ])];
 
   const generalKnobs = {
     theme: radios(

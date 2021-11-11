@@ -18,6 +18,7 @@ use DrevOps\BehatSteps\ParagraphsTrait;
 use DrevOps\BehatSteps\PathTrait;
 use DrevOps\BehatSteps\SelectTrait;
 use DrevOps\BehatSteps\TaxonomyTrait;
+use DrevOps\BehatSteps\VisibilityTrait;
 use DrevOps\BehatSteps\WaitTrait;
 use DrevOps\BehatSteps\WatchdogTrait;
 use Drupal\DrupalExtension\Context\DrupalContext;
@@ -40,6 +41,7 @@ class FeatureContext extends DrupalContext {
   use TaxonomyTrait;
   use WatchdogTrait;
   use WaitTrait;
+  use VisibilityTrait;
 
   /**
    * @Then I see content in iframe with id :id
@@ -47,7 +49,7 @@ class FeatureContext extends DrupalContext {
   public function iSeeContentInIframe($id) {
     $driver = $this->getSession()->getDriver();
     if (!$driver instanceof Selenium2Driver) {
-      throw new \RuntimeException('Unsupported driver for this step');
+      throw new RuntimeException('Unsupported driver for this step');
     }
 
     $page_iframe_elements = $driver->find('//iframe[@id="' . $id . '"]');
@@ -59,7 +61,7 @@ class FeatureContext extends DrupalContext {
     $driver->switchToIFrame($id);
 
     if (!$driver->find('//body')) {
-      throw new \Exception(sprintf('The contents of the iFrame with id "%s" was not loaded', $id));
+      throw new Exception(sprintf('The contents of the iFrame with id "%s" was not loaded', $id));
     }
 
     // Reset frame to the default window.

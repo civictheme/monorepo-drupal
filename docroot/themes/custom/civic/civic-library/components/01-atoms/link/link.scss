@@ -2,8 +2,6 @@
 // Button.
 //
 
-@import '../../00-base/base';
-
 //
 // Mixins.
 //
@@ -27,8 +25,8 @@
     color: $civic-link-light-color;
 
     &:hover {
-      background-color: $civic-link-light-background-hover;
-      color: $civic-link-light-color-hover;
+      background-color: $civic-link-light-hover-background-color;
+      color: $civic-link-light-hover-color;
     }
 
     .civic-link__external-icon {
@@ -40,8 +38,8 @@
     color: $civic-link-dark-color;
 
     &:hover {
-      background-color: $civic-link-dark-background-hover;
-      color: $civic-link-dark-color-hover;
+      background-color: $civic-link-dark-hover-background-color;
+      color: $civic-link-dark-hover-color;
     }
   }
 
@@ -52,20 +50,20 @@
 
 @mixin civic-link-visited() {
   &.civic-theme-light {
-    color: $civic-link-light-color-visited;
+    color: $civic-link-light-visited-color;
 
     &:hover {
-      background-color: $civic-link-light-background-visited-hover;
-      color: $civic-link-light-color-visited-hover;
+      background-color: $civic-link-light-visited-hover-background-color;
+      color: $civic-link-light-visited-hover-color;
     }
   }
 
   &.civic-theme-dark {
-    color: $civic-link-dark-color-visited;
+    color: $civic-link-dark-visited-color;
 
     &:hover {
-      background-color: $civic-link-dark-background-visited-hover;
-      color: $civic-link-dark-color-visited-hover;
+      background-color: $civic-link-dark-visited-hover-background-color;
+      color: $civic-link-dark-visited-hover-color;
     }
   }
 }
@@ -76,8 +74,4 @@
 
 .civic-link {
   @include civic-link-base();
-
-  &--visited {
-    @include civic-link-visited();
-  }
 }

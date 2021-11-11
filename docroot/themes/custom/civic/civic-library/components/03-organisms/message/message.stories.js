@@ -22,12 +22,11 @@ export const Message = (knobTab) => {
       'Type',
       {
         Status: 'status',
-        Info: 'info',
         Error: 'error',
         Warning: 'warning',
         Success: 'success',
       },
-      'info',
+      'status',
       generalKnobTab,
     ),
     title: text('Title', 'The information on this page is currently being updated.', generalKnobTab),

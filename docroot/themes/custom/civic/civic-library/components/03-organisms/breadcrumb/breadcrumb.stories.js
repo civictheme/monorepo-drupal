@@ -32,7 +32,17 @@ export const Breadcrumb = (knobTab) => {
         step: 1,
       },
       generalKnobTab,
-    )),
+    ), number(
+      'Length of links',
+      6,
+      {
+        range: true,
+        min: 6,
+        max: 100,
+        step: 1,
+      },
+      generalKnobTab,
+    ) - 6),
   };
 
   return CivicBreadcrumb({

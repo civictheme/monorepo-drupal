@@ -16,7 +16,7 @@
 {% set text = text|default('Top') %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set disabled_class = disabled ? 'civic-directional-link--disabled': '' %}
-{% set modifier_class = '%s %s %s'|format(theme_class, disabled_class, modifier_class) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, disabled_class, modifier_class|default('')) %}
 
 {% set icons = {
   top: 'arrows_uparrow_1',

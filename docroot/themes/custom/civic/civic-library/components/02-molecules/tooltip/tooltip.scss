@@ -24,14 +24,14 @@
   }
 
   &__description {
-    // stylelint-disable-next-line scss/dollar-variable-pattern
     $tooltip-width-half: math.div($civic-tooltip-width, 2);
 
-    @include civic-typography('tag');
+    @include civic-typography('label-small');
 
-    display: none;
-    border-radius: $civic-border-radius;
-    box-shadow: 0 rem(4px) rem(8px) rgba(0, 0, 0, 16%);
+    border-radius: $civic-tooltip-description-border-radius;
+
+    @include civic-elevation(2);
+
     box-sizing: border-box;
     position: absolute;
     width: $civic-tooltip-width;
@@ -40,7 +40,6 @@
 
     // Triangle.
     &::before {
-      // stylelint-disable-next-line scss/dollar-variable-pattern
       $triangle-width-half: math.div($civic-tooltip-triangle-width, 2);
 
       content: '';

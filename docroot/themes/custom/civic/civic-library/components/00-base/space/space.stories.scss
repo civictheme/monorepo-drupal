@@ -1,18 +1,23 @@
-// stylelint-disable scss/dollar-variable-pattern
-
 @use 'sass:color';
+@use 'sass:list';
 
-.space-wrapper {
+.story-space-wrapper {
   max-width: 960px;
 
   div {
     position: relative;
     width: 100%;
-    min-height: $civic-space;
+    min-height: civic-space();
     box-sizing: border-box;
   }
 
-  @include civic-generate-class-variations-from-map($civic-spaces, 'space') using($name, $value, $index) {
+  $spaces: ();
+
+  @for $index from 1 through 11 {
+    $spaces: list.append($spaces, civic-space($index));
+  }
+
+  @include civic-generate-class-variations-from-map($spaces, 'story-space') using($name, $value, $index) {
     padding: $value 0 0 $value;
 
     $transparency: if($index % 2 == 0, 25%, 50%);

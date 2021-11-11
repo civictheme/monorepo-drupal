@@ -1,7 +1,6 @@
 //
 // Heading.
 //
-@import '../../00-base/base';
 
 .civic-image {
   $root: &;
@@ -18,7 +17,7 @@
   }
 
   &__caption {
-    @include civic-typography('small-and-captions');
+    @include civic-typography('label-small');
 
     .civic-icon {
       #{$root}.civic-theme-light & {

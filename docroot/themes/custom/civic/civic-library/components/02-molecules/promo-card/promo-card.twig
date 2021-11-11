@@ -22,7 +22,7 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type_class = image is empty ? 'civic-promo-card--no-image' : '' %}
 {% set image_over_class = image_over ? 'civic-promo-card--image-over' : '' %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, type_class, image_over_class, modifier_class) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, type_class, image_over_class, modifier_class|default('')) %}
 
 <div class="civic-promo-card {{ modifier_class }}">
   {% if image or image_over %}
@@ -81,9 +81,9 @@
           <div class="civic-promo-card__tags">
             {% for tag in tags %}
               {% include '@atoms/tag/tag.twig' with {
-                theme: theme == 'light' ? 'dark' : 'light',
+                theme: theme,
                 text: tag,
-                modifier_class: 'civic-tag--card',
+                is_alt: true,
               } only %}
             {% endfor %}
           </div>
@@ -91,7 +91,8 @@
         {% if url %}
           {% include '@atoms/icon/icon.twig' with {
             symbol: 'arrows_rightarrow_3',
-            color: 'primary'
+            color: 'primary',
+            modifier_class: 'civic-promo-card__icon--arrow',
           } only %}
         {% endif %}
       </div>

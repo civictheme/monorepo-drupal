@@ -1,5 +1,3 @@
-/* eslint-disable no-new, func-names */
-
 /**
  * Collapsible utility component.
  *

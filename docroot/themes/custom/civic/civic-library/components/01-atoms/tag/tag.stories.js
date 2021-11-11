@@ -23,6 +23,7 @@ export const Tag = (knobTab) => {
       'light',
       generalKnobTab,
     ),
+    is_alt: boolean('Alternative colors', false, generalKnobTab),
     text: text('Text', 'Tag text', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };

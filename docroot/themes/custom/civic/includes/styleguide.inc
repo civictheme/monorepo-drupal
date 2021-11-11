@@ -27,7 +27,7 @@ function civic_styleguide_alter(&$items) {
   // @code
   // /admin/appearance/styleguide/civic?debug-component=slider
   // @endcode
-  $debug_component = Drupal::request()->get('debug-component');
+  $debug_component = \Drupal::request()->get('debug-component');
 
   // Cleanup component name.
   $debug_component = !empty($debug_component) ? Xss::filter($debug_component) : NULL;
@@ -106,7 +106,7 @@ function _civic_styleguide_paragraph_render($options, $do_render = FALSE) {
 
   $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   $pre_render = $view_builder->build($view_builder->view($paragraph));
-  return $do_render ? Drupal::service('renderer')->render($pre_render) : $pre_render;
+  return $do_render ? \Drupal::service('renderer')->render($pre_render) : $pre_render;
 }
 
 /**

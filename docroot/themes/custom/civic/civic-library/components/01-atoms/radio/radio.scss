@@ -2,8 +2,6 @@
 // Civic input.
 //
 
-@import '../../00-base/base';
-
 %civic-checkbox-radio {
   position: absolute;
   // stylelint-disable-next-line alpha-value-notation
@@ -16,7 +14,7 @@
   & + span {
     &::before {
       content: '';
-      border-radius: 50%;
+      border-radius: $civic-checkbox-border-radius;
       border: 1px solid;
       display: inline-block;
       width: rem(24px);
@@ -140,15 +138,15 @@
   &.civic-input--error {
     & + span {
       &::before {
-        border-color: $civic-input-border-error-color;
+        border-color: $civic-input-dark-error-border-color;
       }
     }
 
     &:checked {
       & + span {
         &::before {
-          border-color: $civic-input-border-error-color;
-          background-color: $civic-input-border-error-color;
+          border-color: $civic-input-dark-error-border-color;
+          background-color: $civic-input-dark-error-border-color;
         }
       }
     }
@@ -160,5 +158,5 @@
 }
 
 .radios--wrapper {
-  @include civic-typography('body');
+  @include civic-typography('text-regular');
 }

@@ -2,18 +2,17 @@
 // Breadcrumb.
 //
 
-@import '../../00-base/base';
-
 .civic-breadcrumb {
   $root: &;
 
-  @include civic-typography('label-tag');
+  @include civic-typography('label-small');
 
   &__links {
     list-style: none;
     margin: 0;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     padding: 0;
 
@@ -41,7 +40,7 @@
   }
 
   .civic-link {
-    @include civic-typography('label-tag');
+    @include civic-typography('label-small');
 
     padding: 0;
 
@@ -62,7 +61,7 @@
       text-decoration-color: $civic-breadcrumb-light-color;
 
       &:hover {
-        color: $civic-breadcrumb-light-color-hover;
+        color: $civic-breadcrumb-light-hover-color;
       }
     }
   }
@@ -79,7 +78,7 @@
       text-decoration-color: $civic-breadcrumb-dark-color;
 
       &:hover {
-        color: $civic-breadcrumb-dark-color-hover;
+        color: $civic-breadcrumb-dark-hover-color;
       }
     }
   }

@@ -2,8 +2,6 @@
 // Attachment.
 //
 
-@import '../../00-base/base';
-
 @mixin civic-card-heading-state() {
   & {
     border-bottom: 0;
@@ -24,11 +22,11 @@
     color: $civic-attachment-light-heading-color;
 
     &:hover {
-      color: $civic-attachment-light-heading-color-hover;
+      color: $civic-attachment-light-heading-hover-color;
     }
 
     &:active {
-      color: $civic-attachment-light-heading-color-active;
+      color: $civic-attachment-light-heading-active-color;
     }
   }
 
@@ -36,18 +34,18 @@
     color: $civic-attachment-dark-heading-color;
 
     &:hover {
-      color: $civic-attachment-dark-heading-color-hover;
+      color: $civic-attachment-dark-heading-hover-color;
     }
 
     &:active {
-      color: $civic-attachment-dark-heading-color-active;
+      color: $civic-attachment-dark-heading-active-color;
     }
   }
 }
 
 .civic-attachment {
-  border-radius: $civic-border-radius;
-  border: solid $civic-border-width $civic-attachment-light-border-color;
+  border-radius: $civic-attachment-border-radius;
+  border: solid 1px $civic-attachment-light-border-color;
   display: flex;
   flex-wrap: wrap;
   flex: none;
@@ -79,7 +77,7 @@
   }
 
   &__content {
-    @include civic-typography(card-summary);
+    @include civic-typography('text-regular');
 
     padding: civic-space(3);
     flex: 1;
@@ -121,7 +119,7 @@
     }
 
     &--last-updated {
-      @include civic-typography('small');
+      @include civic-typography('text-small');
     }
   }
 

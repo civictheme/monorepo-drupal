@@ -1,7 +1,6 @@
 //
 // Video.
 //
-@import '../../00-base/base';
 
 .civic-video {
   $root: &;
@@ -23,10 +22,15 @@
     }
 
     .civic-link {
-      @include civic-typography((
-        'xxs': (14px, 23px, 600, 'secondary', 0),
-        'm': (16px, 26px, 600, 'secondary', 0),
-      ));
+      @include civic-typography('text-regular');
+
+      @include breakpoint(xss) {
+        font-family: civic-font('secondary');
+      }
+
+      @include breakpoint(m) {
+        font-family: civic-font('secondary');
+      }
 
       &.civic-theme-light {
         color: $civic-video-light-link-color;
@@ -60,6 +64,7 @@
       #{$root}.civic-theme-light & {
         fill: $civic-video-light-icon-color;
       }
+
       #{$root}.civic-theme-dark & {
         fill: $civic-video-dark-icon-color;
       }

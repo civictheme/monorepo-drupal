@@ -3,7 +3,6 @@
 //
 @use 'sass:list';
 @use 'sass:map';
-@import '../../00-base/base';
 
 [data-collapsible='true'] {
   [data-collapsible-trigger] {
@@ -12,7 +11,7 @@
 
   &:not([data-collapsible-trigger-no-icon]) {
     [data-collapsible-trigger] {
-      padding-right: list.nth(map.get(map.get($civic-icon-sizes, 'regular'), $civic-collapsible-icon-size), 1);
+      padding-right: civic-icon-size-dimension('regular', $civic-collapsible-icon-size, 'width');
       position: relative;
 
       &::after {
@@ -67,9 +66,11 @@
   &.civic-theme-light {
     color: $civic-collapsible-light-color;
 
-    [data-collapsible-trigger] {
-      &::after {
-        content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-light-icon-color);
+    &:not([data-collapsible-trigger-no-icon]) {
+      [data-collapsible-trigger] {
+        &::after {
+          content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-light-icon-color);
+        }
       }
     }
   }
@@ -77,9 +78,11 @@
   &.civic-theme-dark {
     color: $civic-collapsible-dark-color;
 
-    [data-collapsible-trigger] {
-      &::after {
-        content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-dark-icon-color);
+    &:not([data-collapsible-trigger-no-icon]) {
+      [data-collapsible-trigger] {
+        &::after {
+          content: civic-svg-fill($civic-collapsible-icon, $civic-collapsible-dark-icon-color);
+        }
       }
     }
   }

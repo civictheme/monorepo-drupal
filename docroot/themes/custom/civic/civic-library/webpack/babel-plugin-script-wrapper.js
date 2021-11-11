@@ -1,11 +1,12 @@
 const template = require('babel-template');
+const babelTransform = require('babel-plugin-transform-strict-mode');
 
 const wrapper = template(`document.addEventListener('DOMContentLoaded', () => {{BODY}});`);
 module.exports = function (babel) {
   const t = babel.types;
 
   return {
-    inherits: require("babel-plugin-transform-strict-mode"),
+    inherits: babelTransform,
     visitor: {
       Program: {
         exit(path) {
@@ -14,13 +15,13 @@ module.exports = function (babel) {
 
             path.replaceWith(
               t.program([wrapper({
-                BODY: path.node.body
-              })])
+                BODY: path.node.body,
+              })]),
             );
           }
           path.node.directives = [];
-        }
-      }
-    }
+        },
+      },
+    },
   };
 };
