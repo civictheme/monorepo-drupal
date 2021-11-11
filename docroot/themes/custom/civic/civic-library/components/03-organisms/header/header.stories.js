@@ -8,7 +8,7 @@ import logoDesktopLight from '../../../assets/logo-desktop-light.png';
 import logoDesktopDark from '../../../assets/logo-desktop-dark.png';
 import logoMobileLight from '../../../assets/logo-mobile-light.png';
 import logoMobileDark from '../../../assets/logo-mobile-dark.png';
-import getMenuLinks from '../../02-molecules/menu/menu.utils';
+import getMenuLinks from '../../00-base/menu/menu.utils';
 
 export default {
   title: 'Organisms/Header',
