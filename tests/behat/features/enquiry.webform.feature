@@ -1,4 +1,4 @@
-@civic @webform @form_element @wip
+@civic @webform @form_element
 Feature: Tests the Civic form integration with webform
 
   @api
