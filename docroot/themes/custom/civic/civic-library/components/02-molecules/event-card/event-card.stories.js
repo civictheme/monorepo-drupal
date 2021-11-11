@@ -2,7 +2,7 @@ import {
   boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';
 import imageFile from '../../../assets/image.png';
-import { getSlots, randomUrl } from '../../00-base/base.stories';
+import { getSlots, randomTags, randomUrl } from '../../00-base/base.stories';
 
 import CivicEventCard from './event-card.twig';
 
@@ -35,6 +35,17 @@ export const EventCard = (knobTab) => {
       src: imageFile,
       alt: 'Image alt text',
     } : false,
+    tags: randomTags(number(
+      'Number of tags',
+      2,
+      {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      generalKnobTab,
+    ), true),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
@@ -44,35 +55,8 @@ export const EventCard = (knobTab) => {
     day: 'numeric',
   });
 
-  // Adding dynamic promo card tags.
-  const tagKnobTab = 'Tags';
-  const tagNum = number(
-    'Number of tags',
-    1,
-    {
-      range: true,
-      min: 0,
-      max: 10,
-      step: 1,
-    },
-    tagKnobTab,
-  );
-
-  // Adding dynamic number of tags.
-  const tags = {};
-  let itr = 1;
-  while (itr <= tagNum) {
-    tags[`tag${itr}`] = text(`tag${itr}`, `Topic ${itr}`, tagKnobTab);
-    itr += 1;
-  }
-  const tagKnobs = {
-    tags,
-    tagNum,
-  };
-
   const html = CivicEventCard({
     ...generalKnobs,
-    ...tagKnobs,
     ...getSlots([
       'image_over',
       'content_top',

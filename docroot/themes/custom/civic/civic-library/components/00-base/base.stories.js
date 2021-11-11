@@ -33,6 +33,12 @@ export const randomText = (words) => {
   return lorem.generateWords(words);
 };
 
+export const getRandomInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
+};
+
 export const randomString = (length) => randomText(length).substring(0, length).trim();
 
 export const randomUrl = (domain) => {
@@ -52,4 +58,15 @@ export const randomLinks = (count, domain, length) => {
   }
 
   return links;
+};
+
+export const randomTags = (count, rand) => {
+  const tags = [];
+  rand = rand || false;
+
+  for (let i = 0; i < count; i++) {
+    tags.push(`Topic ${i + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`);
+  }
+
+  return tags;
 };
