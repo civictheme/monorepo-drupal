@@ -1,9 +1,10 @@
 //
 // Color mixins.
 //
-@use 'sass:map';
-@use 'sass:string';
 @use 'sass:color';
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:string';
 
 //
 // Get a color from the pre-defined list of colors.
@@ -16,6 +17,20 @@
   }
 
   @return map.get($all-colors, $name);
+}
+
+@function civic-color-shade-dark($number) {
+  @return color.mix(black, $civic-colors-default-shades-dark-base, math.percentage(math.div($number, 100))),;
+}
+
+@function civic-color-shade-light($number) {
+  @return color.mix(white, $civic-colors-default-shades-light-base, math.percentage(math.div($number, 100))),;
+}
+
+@function civic-color-neutral($number) {
+  $neutral: color.adjust(color.adjust($civic-colors-default-neutral-base, $saturation: -20%), $lightness: -1 * math.max(color.lightness($civic-colors-default-neutral-base) - 5%, 0%));
+
+  @return color.mix($neutral, white, math.percentage(math.div($number, 100)));
 }
 
 //
@@ -38,14 +53,7 @@
 //
 // stylelint-disable-next-line scss/at-function-pattern
 @function _civic-colors-all() {
-  $all-colors: ();
-  $all-colors: map.merge($all-colors, $civic-colors-default);
-  $all-colors: map.merge($all-colors, $civic-colors-default-shades-dark);
-  $all-colors: map.merge($all-colors, $civic-colors-default-shades-light);
-  $all-colors: map.merge($all-colors, $civic-colors-default-neutrals);
-  $all-colors: map.merge($all-colors, $civic-colors);
-
-  @return $all-colors;
+  @return map.merge($civic-colors, $civic-colors-default);
 }
 
 //

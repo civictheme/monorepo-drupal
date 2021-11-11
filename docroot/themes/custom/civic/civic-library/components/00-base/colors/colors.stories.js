@@ -14,8 +14,17 @@ export const Colors = () => {
   };
 
   // Show only custom colors without overrides of standard colors.
-  const standardTypes = vars['civic-colors-default'].concat(vars['civic-colors-default-shades-dark'], vars['civic-colors-default-shades-light'], vars['civic-colors-default-neutrals']);
-  vars['civic-colors'] = vars['civic-colors'].filter((n) => standardTypes.indexOf(n) === -1);
+  vars['civic-colors'] = vars['civic-colors'].filter((n) => vars['civic-colors-default'].indexOf(n) === -1);
+
+  vars['civic-colors-default-shades-dark'] = [];
+  vars['civic-colors-default-shades-light'] = [];
+  vars['civic-colors-default-neutrals'] = [];
+
+  for (let i = 0; i <= 100; i += 10) {
+    vars['civic-colors-default-shades-dark'].push(`dark-shade-${i}`);
+    vars['civic-colors-default-shades-light'].push(`light-shade-${i}`);
+    vars['civic-colors-default-neutrals'].push(`neutral-${i}`);
+  }
 
   let html = '';
 
