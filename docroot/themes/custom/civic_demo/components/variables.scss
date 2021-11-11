@@ -2,6 +2,10 @@
 // Custom variables overrides.
 //
 // Civic variables can be found in components/00-base/_variables.scss
+//
+
+// Copy the default value from original variables as this file is loaded first.
+$civic-assets-directory: './assets/';
 
 // Define custom font.
 $civic-fonts: (
@@ -13,4 +17,12 @@ $civic-fonts: (
       '#{$civic-assets-directory}fonts/DancingScript-Regular.ttf',
     ),
   ),
+);
+$civic-colors: (
+  // Override palette color.
+  'success': green,
+  // Define custom colors.
+  'custom1': red,
+  'custom2': orange,
+  'custom3': blue,
 );
