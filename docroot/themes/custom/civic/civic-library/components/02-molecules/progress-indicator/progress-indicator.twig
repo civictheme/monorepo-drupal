@@ -12,7 +12,7 @@
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% set statuses = {
   todo: {

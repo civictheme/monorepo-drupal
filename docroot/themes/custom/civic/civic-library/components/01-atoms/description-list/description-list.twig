@@ -13,7 +13,7 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set display_class = is_inline  ? 'civic-description-list--inline' :'' %}
-{% set modifier_class = '%s %s %s'|format(theme_class, display_class, modifier_class) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, display_class, modifier_class|default('')) %}
 
 {% if items %}
   <dl class="civic-description-list {{ modifier_class }}">
