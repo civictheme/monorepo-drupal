@@ -25,6 +25,7 @@ export const Accordion = (knobTab) => {
       generalKnobTab,
     ),
     expand_all: boolean('Expand all', false, generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   // Adding dynamic number of accordion panels.

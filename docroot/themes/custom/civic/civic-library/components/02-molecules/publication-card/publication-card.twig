@@ -23,7 +23,7 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set size = size|default('large') %}
 {% set size_class = size == 'large'?'civic-publication-card--large' : 'civic-publication-card--small' %}
-{% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
 
 <div class="civic-publication-card {{ modifier_class }}">
   {% if image.src is not empty %}
