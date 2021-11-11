@@ -5,7 +5,7 @@
 .civic-pager {
   $root: &;
 
-  @include civic-typography('label-large');
+  @include civic-typography('label-regular');
 
   #{$root}__items {
     list-style: none;
@@ -36,7 +36,7 @@
     color: $civic-pagination-light-link-color;
 
     #{$root}__link {
-      color: $civic-pagination-light-link-color;
+      @include civic-link-colors($civic-pagination-light-link-color, $civic-pagination-light-link-hover-color, $active: $civic-pagination-light-link-active-border-color);
 
       &:hover {
         color: $civic-pagination-light-link-hover-color;
@@ -52,7 +52,7 @@
     color: $civic-pagination-dark-link-color;
 
     #{$root}__link {
-      color: $civic-pagination-dark-link-color;
+      @include civic-link-colors($civic-pagination-dark-link-color, $civic-pagination-dark-link-hover-color, $active: $civic-pagination-dark-link-active-border-color);
 
       &:hover {
         color: $civic-pagination-dark-link-hover-color;
