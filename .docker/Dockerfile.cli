@@ -75,9 +75,6 @@ COPY . /app
 
 # Compile front-end assets. Running this after copying all files as we need
 # sources to compile assets.
-RUN cd /app/docroot/themes/custom/civic/civic-library \
-    && mkdir -p /app/docroot/themes/custom/civic/civic-library storybook-static \
-    && fix-permissions /app/docroot/themes/custom/civic/civic-library storybook-static \
-    && npm run build
+RUN cd /app/docroot/themes/custom/civic/civic-library && npm run build
 RUN cd docroot/themes/custom/civic && npm run build
 RUN cd docroot/themes/custom/civic_demo && npm run build
