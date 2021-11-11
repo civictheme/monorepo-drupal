@@ -6,14 +6,10 @@
   $root: &;
 
   border-radius: $civic-tag-border-radius;
-  padding: civic-space(0.25) civic-space() civic-space(0.25) civic-space(0.5);
+  padding: civic-space(0.5) civic-space();
   display: inline-block;
 
   @include civic-typography('label-small');
-
-  &--no-icon {
-    padding-left: civic-space();
-  }
 
   &--icon-after {
     padding-right: rem(4px);
@@ -29,8 +25,13 @@
     background-color: $civic-tag-light-background-color;
     color: $civic-tag-light-color;
 
-    .civic-icon {
-      fill: $civic-tag-light-color;
+    @include civic-icon-fill-color($civic-tag-light-color);
+
+    &#{$root}--is-alt {
+      background-color: $civic-tag-light-alt-background-color;
+      color: $civic-tag-light-alt-color;
+
+      @include civic-icon-fill-color($civic-tag-light-alt-color);
     }
   }
 
@@ -38,8 +39,13 @@
     background-color: $civic-tag-dark-background-color;
     color: $civic-tag-dark-color;
 
-    .civic-icon {
-      fill: $civic-tag-dark-color;
+    @include civic-icon-fill-color($civic-tag-dark-color);
+
+    &#{$root}--is-alt {
+      background-color: $civic-tag-dark-alt-background-color;
+      color: $civic-tag-dark-alt-color;
+
+      @include civic-icon-fill-color($civic-tag-dark-alt-color);
     }
   }
 }
