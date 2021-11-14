@@ -53,7 +53,7 @@
 //
 // stylelint-disable-next-line scss/at-function-pattern
 @function _civic-colors-all() {
-  @return map.merge($civic-colors, $civic-colors-default);
+  @return map.merge($civic-colors-default, $civic-colors);
 }
 
 //
