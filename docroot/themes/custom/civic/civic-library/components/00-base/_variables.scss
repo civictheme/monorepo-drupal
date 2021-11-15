@@ -75,9 +75,9 @@ $civic-colors-default: (
 // Default Civic colors for shades and neutrals.
 // Use civic-color-shade-dark(), civic-color-shade-light() and
 // civic-color-neutrals() mixins to get the value.
-$civic-colors-default-shades-dark-base: civic-color-base('primary') !default;
-$civic-colors-default-shades-light-base: civic-color-base('primary') !default;
-$civic-colors-default-neutral-base: civic-color-base('primary') !default;
+$civic-colors-default-shades-dark-base: civic-color('primary') !default;
+$civic-colors-default-shades-light-base: civic-color('primary') !default;
+$civic-colors-default-neutral-base: civic-color('primary') !default;
 
 // Theme-based background colors for components.
 $civic-theme-light-background-color: civic-color('neutral');

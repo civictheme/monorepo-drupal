@@ -34,18 +34,6 @@
 }
 
 //
-// Base color palette access.
-//
-// Do not use directly.
-// Provides only base color palette access. Used for generating the other
-// derivative palettes (e.g. shades / neutrals / elements).
-// Use @include civic-color() instead.
-//
-@function civic-color-base($name) {
-  @return map.get(map.merge($civic-colors-default, $civic-colors), $name);
-}
-
-//
 // Compile all colors into a single map.
 //
 // Do not use directly.
