@@ -10,11 +10,24 @@ $civic-assets-directory: './assets/';
 // Define custom font.
 $civic-fonts: (
   'tertiary': (
-    'family': 'Dancing Script',
-    'uri': (
-      '#{$civic-assets-directory}fonts/DancingScript-Regular.woff',
-      '#{$civic-assets-directory}fonts/DancingScript-Regular.woff2',
-      '#{$civic-assets-directory}fonts/DancingScript-Regular.ttf',
+    'family': 'Roboto',
+    'types': (
+      (
+        'uri': (
+          '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.ttf',
+          '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.woff',
+          '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.eot',
+        ),
+      ),
+      (
+        'italic': true,
+        'weight': 'bold',
+        'uri': (
+          '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.ttf',
+          '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.woff',
+          '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.eot',
+        ),
+      ),
     ),
   ),
 );

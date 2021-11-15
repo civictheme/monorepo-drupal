@@ -15,45 +15,78 @@ $all-fonts: _civic-fonts-all();
 
   $font-family: map.get($font-map, 'family');
 
-  @if not (map.has-key($font-map, 'uri')) {
-    @error "Font #{$font-name} value is missing the 'uri' key.";
+  @if not (map.has-key($font-map, 'types')) {
+    @error "Font #{$font-name} value is missing the 'types' key.";
   }
 
-  $uri: map.get($font-map, 'uri');
+  $types: map.get($font-map, 'types');
 
-  // Convert scalar value to a list.
-  @if not (type-of($uri) == 'list') {
-    $uri: ($uri);
+  @if not type-of($types) == 'list' {
+    @error "Font #{$font-name} value 'types' must be a list.";
   }
 
-  // Validate list: either single URL OR single or multiple local files.
-  @each $path in $uri {
-    $has-url: false;
-
-    @if string.index($path, 'http') == 1 and list.length($uri) > 1 {
-      @error "Font #{$font-name} 'uri' value must have only one absolute URL.";
+  @each $type-map in $types {
+    @if not (map.has-key($type-map, 'uri')) {
+      @error "Font #{$font-name} value is missing the 'uri' key.";
     }
-  }
 
-  $local-src-list: ();
+    $uri: map.get($type-map, 'uri');
 
-  @each $path in $uri {
-    @if string.index($path, 'http') == 1 {
-      @include civic-font-url-import($path);
+    // Convert scalar value to a list.
+    @if not (type-of($uri) == 'list') {
+      $uri: ($uri);
     }
-    @else {
-      // Extract format from file extension.
-      $format: string.slice($path, civic-string-last-index($path, '.') + 1);
 
-      // noinspection CssInvalidFunction
-      $local-src-list: list.append($local-src-list, url('#{$path}') format('#{$format}'), comma);
+    // Validate list: either single URL OR single or multiple local files.
+    @each $path in $uri {
+      $has-url: false;
+
+      @if string.index($path, 'http') == 1 and list.length($uri) > 1 {
+        @error "Font #{$font-name} 'uri' value must have only one absolute URL.";
+      }
     }
-  }
 
-  @if list.length($local-src-list) > 0 {
-    @font-face {
-      font-family: string.unquote($font-family);
-      src: $local-src-list;
+    $local-src-list: ();
+    $extra-src: null;
+
+    @each $path in $uri {
+      @if string.index($path, 'http') == 1 {
+        @include civic-font-url-import($path);
+      }
+      @else {
+        // Extract format from file extension.
+        $format: string.slice($path, civic-string-last-index($path, '.') + 1);
+
+        // Handle special case for EOT and IE.
+        @if $format == 'eot' {
+          $extra-src: url('#{$path}');
+          $path: '#{$path}?#iefix';
+          $format: 'embedded-opentype';
+        }
+
+        // noinspection CssInvalidFunction
+        $local-src-list: list.append($local-src-list, url('#{$path}') format('#{$format}'), comma);
+      }
+    }
+
+    @if list.length($local-src-list) > 0 {
+      @font-face {
+        font-family: string.unquote($font-family);
+
+        @if $extra-src {
+          src: $extra-src;
+        }
+
+        src: $local-src-list;
+
+        @if map.get($type-map, 'italic') == true {
+          font-style: italic;
+        }
+
+        @if map.get($type-map, 'weight') != null {
+          font-weight: map.get($type-map, 'weight');
+        }
+      }
     }
   }
 }
