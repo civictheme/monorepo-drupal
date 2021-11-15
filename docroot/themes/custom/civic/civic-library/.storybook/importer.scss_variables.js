@@ -39,7 +39,7 @@ function getVariablesFromFile(file) {
 
   // Extract variables from every group.
   groups.forEach((group) => {
-    const re = new RegExp('(\\$[a-z-]+:)', 'gim');
+    const re = new RegExp('(\\$[a-z-_][a-z-_0-9]+:)', 'gim');
     const match = re.exec(group);
     if (match) {
       const name = match[0].replace(/[$:]/gi, '');
