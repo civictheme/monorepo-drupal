@@ -4,10 +4,6 @@ import {
 import { getSlots } from '../../00-base/base.stories';
 import CivicHeaderExample from './header.stories.twig';
 
-import logoDesktopLight from '../../../assets/logo-desktop-light.png';
-import logoDesktopDark from '../../../assets/logo-desktop-dark.png';
-import logoMobileLight from '../../../assets/logo-mobile-light.png';
-import logoMobileDark from '../../../assets/logo-mobile-dark.png';
 import getMenuLinks from '../../00-base/menu/menu.utils';
 
 export default {
@@ -39,11 +35,11 @@ export const Header = (knobTab) => {
 
   generalKnobs.logos = boolean('Show Logo', true, generalKnobTab) ? {
     mobile: {
-      src: generalKnobs.theme === 'light' ? logoMobileDark : logoMobileLight,
+      src: LOGOS.mobile[generalKnobs.theme],
       alt: 'Logo mobile alt text',
     },
     desktop: {
-      src: generalKnobs.theme === 'light' ? logoDesktopDark : logoDesktopLight,
+      src: LOGOS.desktop[generalKnobs.theme],
       alt: 'Logo desktop alt text',
     },
   } : null;

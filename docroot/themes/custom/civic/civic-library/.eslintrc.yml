@@ -5,10 +5,11 @@ env:
   es6: false
   browser: true
 globals:
-  Set: true
-  SCSS_VARIABLES: true
-  ICONS: true
   BACKGROUNDS: true
+  ICONS: true
+  LOGOS: true
+  SCSS_VARIABLES: true
+  Set: true
 rules:
   strict: 0
   import/no-extraneous-dependencies: 0

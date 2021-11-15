@@ -100,10 +100,10 @@ function cd_core_update_9002() {
  * Sets civic_demo theme settings and site slogan.
  */
 function cd_core_update_9003() {
-  $logo_header_desktop = '/themes/custom/civic_demo/assets/logo-desktop-dark.png';
-  $logo_header_mobile = '/themes/custom/civic_demo/assets/logo-mobile-dark.png';
-  $logo_footer_desktop = '/themes/custom/civic_demo/assets/logo-desktop-light.png';
-  $logo_footer_mobile = '/themes/custom/civic_demo/assets/logo-mobile-light.png';
+  $logo_header_desktop = '/themes/custom/civic_demo/assets/logos/civic_demo_logo_desktop_light.png';
+  $logo_header_mobile = '/themes/custom/civic_demo/assets/logos/civic_demo_logo_mobile_light.png';
+  $logo_footer_desktop = '/themes/custom/civic_demo/assets/logos/civic_demo_logo_desktop_dark.png';
+  $logo_footer_mobile = '/themes/custom/civic_demo/assets/logos/civic_demo_logo_mobile_dark.png';
 
   $favicon = '/themes/custom/civic_demo/assets/favicon.ico';
 
