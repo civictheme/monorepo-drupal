@@ -14,43 +14,43 @@ function removeComments(string) {
   return lines.join('\n');
 }
 
-function getSassVariablesFromGroup(group) {
+function getSassVariablesFromValue(value) {
   const vars = [];
 
   const re = new RegExp('\'[a-z-_0-9]+\'', 'gi');
 
-  let match = re.exec(group);
+  let match = re.exec(value);
   while (match !== null) {
     vars.push(match[0].replace(/[':]/gi, ''));
-    match = re.exec(group);
+    match = re.exec(value);
   }
 
   return vars;
 }
 
 function getVariablesFromFile(file) {
-  const allGroups = {};
+  const allValues = {};
 
-  let importedFile = fs.readFileSync(file, { encoding: 'utf8' });
+  let importedFile = fs.readFileSync(file, {encoding: 'utf8'});
 
   importedFile = removeComments(importedFile);
 
-  const groups = importedFile.split(/;(?=(?:[^"']*['"][^"']*['"])*[^"']*$)/gi);
+  const values = importedFile.split(/;(?=(?:[^"']*['"][^"']*['"])*[^"']*$)/gi);
 
-  // Extract variables from every group.
-  groups.forEach((group) => {
+  // Extract variables from every value expression.
+  values.forEach((value) => {
     const re = new RegExp('(\\$[a-z-_][a-z-_0-9]+:)', 'gim');
-    const match = re.exec(group);
+    const match = re.exec(value);
     if (match) {
       const name = match[0].replace(/[$:]/gi, '');
-      let strippedGroup = group.replace(/\$[a-z-]+:/gi, '');
-      strippedGroup = strippedGroup.replace(/\(.+?\)/gi, '');
-      strippedGroup = strippedGroup.replace(/:\s\([\s\S\n\r]+?\)/gi, '');
-      allGroups[name] = getSassVariablesFromGroup(strippedGroup);
+      let valueStripped = value.replace(/\$[a-z-]+:/gi, '');
+      valueStripped = valueStripped.replace(/\(.+?\)/gi, '');
+      valueStripped = valueStripped.replace(/:\s\([\s\S\n\r]+?\)/gi, '');
+      allValues[name] = getSassVariablesFromValue(valueStripped);
     }
   });
 
-  return allGroups;
+  return allValues;
 }
 
 function getVariables() {
