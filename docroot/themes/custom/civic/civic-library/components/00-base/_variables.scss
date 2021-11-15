@@ -162,11 +162,19 @@ $civic-fonts: () !default;
 $civic-fonts-default: (
   'primary': (
     'family': '"Lexend", sans-serif',
-    'uri': 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap',
+    'types': (
+      (
+        'uri': 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap',
+      ),
+    ),
   ),
   'secondary': (
     'family': '"Public Sans", sans-serif',
-    'uri': 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&display=swap',
+    'types': (
+      (
+        'uri': 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&display=swap',
+      ),
+    ),
   ),
 );
 
@@ -175,15 +183,32 @@ $civic-fonts-default: (
 // 'uri' can be a URL to the external font or a list of local files with
 // extensions to be imported. The font type will be taken from the file extensions.
 // Use $civic-assets-directory to provide a relative path.
+//
+// IMPORTANT: Make sure to put commas at the end of every list or SASS will not
+// be able to distinguish lists and values.
+//
 // Example:
 //
 // $civic-fonts: (
 //   'tertiary': (
-//     'family': 'Dancing Script',
-//     'uri': (
-//       '#{$civic-assets-directory}fonts/DancingScript-Regular.woff',
-//       '#{$civic-assets-directory}fonts/DancingScript-Regular.woff2',
-//       '#{$civic-assets-directory}fonts/DancingScript-Regular.ttf',
+//     'family': 'Roboto',
+//     'types': (
+//       (
+//         'uri': (
+//           '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.ttf',
+//           '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.woff',
+//           '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.eot',
+//         ),
+//       ),
+//       (
+//         'italic': true,
+//         'weight': 'bold',
+//         'uri': (
+//           '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.ttf',
+//           '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.woff',
+//           '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.eot',
+//         ),
+//       ),
 //     ),
 //   ),
 // );

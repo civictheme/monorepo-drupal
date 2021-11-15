@@ -60,12 +60,13 @@ module.exports = {
       },
       // File loader (for fonts).
       {
-        test: /\.(woff|woff2|ttf)$/,
+        test: /\.(woff|woff2|ttf|eot)$/,
         use: {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            outputPath: 'assets/fonts',
+            // Preserve relative path.
+            outputPath: (url, resourcePath, context) => path.relative(context, resourcePath),
           },
         },
       },
