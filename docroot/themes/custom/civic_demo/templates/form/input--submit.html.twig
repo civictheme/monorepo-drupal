@@ -1,9 +1,12 @@
-{% set classes = [
-  'civic-button--primary',
-  'civic-button--large'
-] %}
+{% if 'primary' in attributes.class|join(' ') %}
+  {% set type = 'primary' %}
+{% elseif 'secondary' in attributes.class|join(' ') %}
+  {% set type = 'secondary' %}
+{% endif %}
 
 {% include "@atoms/button/button.twig" with {
+  type: type,
   text: attributes.value,
-  modifier_class: classes | join(' ')
+  modifier_class: attributes.class,
+  attributes: attributes|without('class')
 } only %}
