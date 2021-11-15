@@ -14,18 +14,30 @@ $civic-fonts: (
     'types': (
       (
         'uri': (
-          '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.ttf',
-          '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.woff',
-          '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.eot',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Regular.ttf',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Regular.woff',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Regular.eot',
         ),
       ),
       (
         'italic': true,
         'weight': 'bold',
         'uri': (
-          '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.ttf',
-          '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.woff',
-          '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.eot',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-BoldItalic.ttf',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-BoldItalic.woff',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-BoldItalic.eot',
+        ),
+      ),
+    ),
+  ),
+  'quartary': (
+    'family': 'Dancing Script',
+    'types': (
+      (
+        'uri': (
+          '#{$civic-assets-directory}fonts/DancingScript/DancingScript-Regular.ttf',
+          '#{$civic-assets-directory}fonts/DancingScript/DancingScript-Regular.woff',
+          '#{$civic-assets-directory}fonts/DancingScript/DancingScript-Regular.woff2',
         ),
       ),
     ),
@@ -39,3 +51,6 @@ $civic-colors: (
   'custom2': orange,
   'custom3': blue,
 );
+
+// Example to override component's variable.
+$civic-button-light-primary-hover-color: civic-color('custom2');
