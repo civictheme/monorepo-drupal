@@ -14,8 +14,9 @@
 
 {%
   set description_classes = [
-  'civic-form-element--description',
+  'civic-form-element__description',
   description_display == 'invisible' ? 'visually-hidden' : '',
+  description_display ? 'civic-form-element__description--%s'|format(description_display),
 ]
 %}
 
@@ -29,7 +30,7 @@
     <span class="field-prefix">{{ prefix }}</span>
   {% endif %}
   {% if description_display == 'before' and description.content %}
-    <div{{ description.attributes }}>
+    <div class="{{ description_classes|join(' ') }}" {{ description.attributes }}>
       {{ description.content }}
     </div>
   {% endif %}

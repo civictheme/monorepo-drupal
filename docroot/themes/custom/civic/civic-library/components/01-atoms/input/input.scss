@@ -13,11 +13,18 @@
   &__element {
     border: rem(1px) solid;
     border-radius: $civic-input-border-radius;
+    box-sizing: border-box;
     padding: civic-space(1.5) civic-space(5) civic-space(1.5) civic-space(2);
+    width: 100%;
 
     &::placeholder {
       @include civic-typography('text-regular');
     }
+  }
+
+  &--tel {
+    width: 50%;
+    margin: 0 auto 0 0;
   }
 
   &--radio {

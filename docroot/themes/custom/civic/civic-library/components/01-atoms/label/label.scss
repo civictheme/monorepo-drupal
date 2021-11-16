@@ -5,6 +5,7 @@
 .civic-label {
   $root: &;
 
+  display: block;
   margin-bottom: civic-space();
 
   @include civic-typography('label-regular');
