@@ -84,7 +84,13 @@ $all-fonts: _civic-fonts-all();
         }
 
         @if map.get($type-map, 'weight') != null {
-          font-weight: map.get($type-map, 'weight');
+          $weight: map.get($type-map, 'weight');
+
+          @if civic-string-is-quoted($weight) {
+            $weight: $weight;
+          }
+
+          font-weight: $weight;
         }
       }
     }

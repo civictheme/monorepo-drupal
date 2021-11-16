@@ -1,0 +1,57 @@
+//
+// Custom base variables overrides.
+//
+// Civic variables can be found in components/00-base/_variables.base.scss
+//
+// Variables values in this file cannot be based on any variables
+// in _variables.base.scss
+//
+// stylelint-disable scss/dollar-variable-pattern
+
+// Copy the default value from original variables as this file is loaded first.
+$civic-assets-directory: './assets/';
+
+// Define custom font.
+$civic-fonts: (
+  'tertiary': (
+    'family': 'Roboto',
+    'types': (
+      (
+        'uri': (
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Regular.ttf',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Regular.woff',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Regular.eot',
+        ),
+      ),
+      (
+        'italic': true,
+        'weight': 'bold',
+        'uri': (
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-BoldItalic.ttf',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-BoldItalic.woff',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-BoldItalic.eot',
+        ),
+      ),
+    ),
+  ),
+  'quartary': (
+    'family': 'Dancing Script',
+    'types': (
+      (
+        'uri': (
+          '#{$civic-assets-directory}fonts/DancingScript/DancingScript-Regular.ttf',
+          '#{$civic-assets-directory}fonts/DancingScript/DancingScript-Regular.woff',
+          '#{$civic-assets-directory}fonts/DancingScript/DancingScript-Regular.woff2',
+        ),
+      ),
+    ),
+  ),
+);
+$civic-colors: (
+  // Override palette color.
+  'success': green,
+  // Define custom colors.
+  'custom1': red,
+  'custom2': orange,
+  'custom3': blue,
+);
