@@ -10,7 +10,7 @@ entity_type: paragraph
 bundle: civic_promo
 label: Summary
 description: ''
-required: true
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
