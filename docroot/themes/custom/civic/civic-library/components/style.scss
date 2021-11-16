@@ -3,8 +3,10 @@
 //
 // stylelint-disable scss/at-import-partial-extension
 @import '~normalize.css';
-@import 'variables';
-@import '00-base/variables';
+@import 'variables.base';
+@import '00-base/variables.base';
+@import 'variables.components';
+@import '00-base/variables.components';
 
 // Load all non-stories mixins.
 @import '00-base/**/!(*.stories|_variables).scss';
