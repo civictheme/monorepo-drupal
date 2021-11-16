@@ -7,11 +7,11 @@
 // Variables are split into 2 files:
 // - _variables.base.scss - base variables that are used to calculate other
 //   variables' values.
-// - _variables.components.scss - variables that control look of components.
+// - _variables.components.scss - variables that control the look of components.
 //
 // These are split into 2 files to allow changing base variables without the
-// need to provide component variables in custom themes (e.g., to apply custom
-// primary color and have it propagated to components).
+// need to provide component variables in custom themes (e.g., to override
+// primary color in child theme and have it propagate to components).
 //
 // Variables organisation rules:
 // 1. Variables are grouped by their atomic type.
@@ -119,7 +119,7 @@ $civic-breakpoints: (
 //
 $civic-grid-columns: 12 !default;
 
-// Grid spacing used to calculate grid spacings. Since the grid is based on
+// Grid spacing used to calculate gutter spacings. Since the grid is based on
 // pixel values instead of rems (for consistency), the spacing is also based on
 // pixel values.
 $civic-grid-space: 8px !default;
