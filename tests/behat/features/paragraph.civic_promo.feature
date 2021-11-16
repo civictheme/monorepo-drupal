@@ -33,6 +33,6 @@ Feature: Tests the Promo paragraph
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]']" element
-    And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]'].required" element
+    And should not see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_link][0][uri]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_link][0][uri]'].required" element
