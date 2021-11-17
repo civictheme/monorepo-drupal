@@ -138,7 +138,7 @@ function cd_core_update_9003() {
  * Provisions links in footer and updates menu block configurations.
  */
 function cd_core_update_9004($sandbox) {
-  Helper::saveMenuTree('civic_footer', [
+  Helper::saveMenuTree('civic-footer', [
     'General' => [
       'link' => '/<front>',
       'children' => [
@@ -180,10 +180,10 @@ function cd_core_update_9004($sandbox) {
   $theme = \Drupal::theme()->getActiveTheme()->getName();
 
   $map = [
-    $theme . '_footer_menu_1' => Helper::findMenuItemByTitle('civic_footer', 'General'),
-    $theme . '_footer_menu_2' => Helper::findMenuItemByTitle('civic_footer', 'About us'),
-    $theme . '_footer_menu_3' => Helper::findMenuItemByTitle('civic_footer', 'Help'),
-    $theme . '_footer_menu_4' => Helper::findMenuItemByTitle('civic_footer', 'Services'),
+    $theme . '_footer_menu_1' => Helper::findMenuItemByTitle('civic-footer', 'General'),
+    $theme . '_footer_menu_2' => Helper::findMenuItemByTitle('civic-footer', 'About us'),
+    $theme . '_footer_menu_3' => Helper::findMenuItemByTitle('civic-footer', 'Help'),
+    $theme . '_footer_menu_4' => Helper::findMenuItemByTitle('civic-footer', 'Services'),
   ];
 
   \Drupal::classResolver(ConfigEntityUpdater::class)
@@ -191,7 +191,7 @@ function cd_core_update_9004($sandbox) {
       if (strpos($block->getPluginId(), 'menu_block:') === 0) {
         if (!empty($map[$block->id()])) {
           $block_settings = $block->get('settings');
-          $block_settings['parent'] = 'civic_footer:menu_link_content:' . $map[$block->id()]->uuid();
+          $block_settings['parent'] = 'civic-footer:menu_link_content:' . $map[$block->id()]->uuid();
           $block->set('settings', $block_settings);
           return TRUE;
         }
@@ -204,7 +204,7 @@ function cd_core_update_9004($sandbox) {
  * Provisions links in Primary and Secondary navigation menus.
  */
 function cd_core_update_9005() {
-  Helper::saveMenuTree('civic_primary_navigation', [
+  Helper::saveMenuTree('civic-primary-navigation', [
     'General' => [
       'link' => '/<front>',
       'children' => [
@@ -371,7 +371,7 @@ function cd_core_update_9005() {
     ],
   ]);
 
-  Helper::saveMenuTree('civic_secondary_navigation', [
+  Helper::saveMenuTree('civic-secondary-navigation', [
     'General' => [
       'link' => '/<front>',
     ],

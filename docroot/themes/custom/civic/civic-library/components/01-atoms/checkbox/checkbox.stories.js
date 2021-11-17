@@ -21,7 +21,6 @@ export const Checkbox = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    type: 'checkbox',
     value: text('Value', 'Civic input', generalKnobTab),
     label: text('Label', 'Civic input label', generalKnobTab),
     state: radios(

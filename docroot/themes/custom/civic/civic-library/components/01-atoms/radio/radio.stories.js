@@ -21,7 +21,6 @@ export const Radio = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    type: 'radio',
     value: text('Value', 'Civic input', generalKnobTab),
     label: text('Label', 'Civic input label', generalKnobTab),
     state: radios(

@@ -7,7 +7,9 @@
 
   @include civic-typography('text-regular');
 
+  display: block;
   font-weight: 600;
+  margin: 0 auto 0.5rem;
   padding: civic-space(1.5) civic-space(3) civic-space(1.5) civic-space(2);
 
   &.civic-theme-light {

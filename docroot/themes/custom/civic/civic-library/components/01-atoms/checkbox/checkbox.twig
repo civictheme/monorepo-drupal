@@ -5,5 +5,7 @@
 {% set required_class = required ? 'civic-input--required required' : '' %}
 {% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, modifier_class|default('')) %}
 
-<input class="civic-checkbox civic-input__element {{ modifier_class }}" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
-<span></span>
+<div class="civic-checkbox">
+  <input class="civic-checkbox__element civic-input__element {{ modifier_class }}" type="checkbox" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
+  <span class="civic-checkbox__state"></span>
+</div>

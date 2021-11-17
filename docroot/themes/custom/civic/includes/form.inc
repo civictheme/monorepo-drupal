@@ -5,6 +5,7 @@
  * Form alterations.
  */
 
+use Drupal\Core\Render\Element;
 use Drupal\Core\Template\AttributeArray;
 
 /**
@@ -61,7 +62,24 @@ function civic_preprocess_form_element_label(&$variables) {
  * Implements template_preprocess_fieldset().
  */
 function civic_preprocess_fieldset(&$variables) {
-  $variables['type'] = $variables['type'] ?? 'fieldset';
+  $children = Element::children($variables['element']);
+  // Fieldset's for radio checkbox form groups are have different typography
+  // compared to field section fieldsets.
+  foreach ($children as $child) {
+    if (!isset($variables['element'][$child]['#type'])) {
+      continue;
+    }
+    $is_radio_or_checkbox = in_array(
+      $variables['element'][$child]['#type'],
+      ['radio', 'checkbox']
+    );
+    if ($is_radio_or_checkbox) {
+      break;
+    }
+  }
+  $type = $is_radio_or_checkbox ? 'fieldset-radio' : 'fieldset';
+  $variables['type'] = $variables['type'] ?? $type;
+
   if (isset($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
     unset($variables['attributes']['class']);
