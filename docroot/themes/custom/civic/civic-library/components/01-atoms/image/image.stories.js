@@ -1,8 +1,7 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicImage from './image.twig';
-
-import imageFile from '../../../assets/image.png';
+import { demoImage } from '../../00-base/base.stories';
 
 export default {
   title: 'Atoms/Image',
@@ -24,7 +23,7 @@ export const Image = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    src: boolean('With image', true, generalKnobTab) ? imageFile : false,
+    src: boolean('With image', true, generalKnobTab) ? demoImage() : false,
     alt: text('Image alt text', 'Civic image alt', generalKnobTab),
     caption: text('Caption', 'This is a default image caption.', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),

@@ -1,10 +1,9 @@
 import {
   boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';
-import imageFile from '../../../assets/image.png';
 import CivicCardContainer from './card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
-import { getSlots } from '../../00-base/base.stories';
+import { demoImage, getSlots } from '../../00-base/base.stories';
 
 export default {
   title: 'Organisms/Card Container',
@@ -75,7 +74,7 @@ export const CardContainer = (knobTab) => {
     summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', cardsKnobTab),
     url: text('Link URL', 'http://example.com', cardsKnobTab),
     image: boolean('With image', true, cardsKnobTab) ? {
-      src: imageFile,
+      src: demoImage(),
       alt: 'Image alt text',
     } : false,
     modifier_class: text('Additional class', '', cardsKnobTab),

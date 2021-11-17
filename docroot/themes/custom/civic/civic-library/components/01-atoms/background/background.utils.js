@@ -11,7 +11,7 @@ function getBackgrounds() {
     const theme = path.match(/[^_]+_background_([^_]+)/)[1];
     if (theme) {
       urls[theme] = urls[theme] || {};
-      urls[theme][path] = `${dir.replace('../../../assets/', '')}/${path}`;
+      urls[theme][path] = `${dir.replace('../../../', '')}/${path}`;
     }
   });
   return urls;

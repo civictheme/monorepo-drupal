@@ -5,9 +5,9 @@
   "description": "Components for Civic Drupal theme",
   "scripts": {
     "build": "npm run dist && STORYBOOK_FULL=1 build-storybook --quiet",
-    "build-storybook": "build-storybook -s assets",
-    "storybook": "start-storybook -s assets",
-    "storybook-full": "STORYBOOK_FULL=1 start-storybook -s assets",
+    "build-storybook": "build-storybook",
+    "storybook": "start-storybook",
+    "storybook-full": "STORYBOOK_FULL=1 start-storybook",
     "lint": "eslint ./components ./.storybook ./webpack && stylelint 'components/**/*.scss'",
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "webpack --config ./webpack/webpack.prod.js",

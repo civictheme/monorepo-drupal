@@ -77,3 +77,5 @@ export const randomTags = (count, rand) => {
 
   return tags;
 };
+
+export const demoImage = () => './assets/images/demo.png';
