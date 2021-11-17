@@ -14,6 +14,10 @@
     flex-wrap: wrap;
     .civic-form-element__description {
       width: 100%;
+      padding-left: civic-space(4);
+    }
+    label {
+      margin: rem(4px) 0;
     }
   }
 
