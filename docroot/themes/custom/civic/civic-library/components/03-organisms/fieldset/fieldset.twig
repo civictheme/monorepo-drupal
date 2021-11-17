@@ -10,6 +10,9 @@
     <span{{ legend_span_attributes }}>{{ legend }}</span>
   </legend>
   <div class="civic-fieldset__wrapper">
+    {% if description %}
+      <div class="description {{ description_modifier_class }}" {{ description_attributes }}>{{ description }}</div>
+    {% endif %}
     {% if errors %}
       <div>
         {{ errors }}
@@ -18,12 +21,11 @@
     {% if prefix %}
       <span class="civic-fieldset__prefix">{{ prefix }}</span>
     {% endif %}
-    {{ children }}
+    {% block children %}
+      {{ children }}
+    {% endblock %}
     {% if suffix %}
       <span class="civic-fieldset__suffix">{{ suffix }}</span>
-    {% endif %}
-    {% if description %}
-      <div class="description {{ description_modifier_class }}" {{ description_attributes }}>{{ description }}</div>
     {% endif %}
   </div>
 </fieldset>
