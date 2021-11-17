@@ -2,25 +2,24 @@
 // Civic input.
 //
 
-@import '../radio/radio';
+@import "../../00-base/mixins/form";
 
 .civic-checkbox {
+  position: relative;
+
   &__element {
 
     @include civic-checkbox-radio('checkbox');
 
     &.civic-input__element + .civic-checkbox__state {
-      &::before {
-        content: '';
-        border-radius: $civic-radio-border-radius;
-      }
 
       &::after {
         position: absolute;
+        top: 2px;
+        left: 2px;
         display: inline-block;
         width: rem(22px);
         height: rem(22px);
-        transform: translateY(rem(2px)) translateX(rem(-40px));
         content: '';
       }
     }
