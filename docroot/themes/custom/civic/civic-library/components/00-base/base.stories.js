@@ -84,6 +84,8 @@ export const randomTags = (count, rand) => {
   return tags;
 };
 
+export const demoImage = () => './assets/images/demo.png';
+
 export const randomFormElements = (count, theme, rand) => {
   rand = rand || false;
 

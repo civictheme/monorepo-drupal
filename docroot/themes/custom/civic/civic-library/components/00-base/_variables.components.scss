@@ -1,8 +1,18 @@
 //
-// Civic variables.
+// Civic components default variables.
+//
 //
 // Do not copy this file for customisations.
-// Use `components/variables.scss` instead.
+// Use `components/variables.components.scss` instead.
+//
+// Variables are split into 2 files:
+// - _variables.base.scss - base variables that are used to calculate other
+//   variables' values.
+// - _variables.components.scss - variables that control look of components.
+//
+// These are split into 2 files to allow changing base variables without the
+// need to provide component variables in custom themes (e.g., to apply custom
+// primary color and have it propagated to components).
 //
 // Variables organisation rules:
 // 1. Variables are grouped by their atomic type.
@@ -43,278 +53,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 //                                 BASE                                       //
 ////////////////////////////////////////////////////////////////////////////////
-
-//
-// Assets directory.
-//
-$civic-assets-directory: './assets/' !default;
-
-//
-// Colors.
-//
-// Use $civic-colors to override any color values. It is available (and empty)
-// so that any sub-themes could specify their colors in here to override
-// the defaults. This allows Civic to make palette additions without breaking
-// sub-themes.
-$civic-colors: () !default;
-
-// Default Civic colors palette.
-$civic-colors-default: (
-  'primary': #00698f,
-  'secondary': #1f2a33,
-  'accent': #61daff,
-  'neutral': #fff,
-  'translucent': #0000,
-  'outline': #8258c4,
-  'status': #007cbf,
-  'warning': #c95100,
-  'error': #ce3836,
-  'success': #008583,
-);
-
-// Default Civic colors for shades and neutrals.
-// Use civic-color-shade-dark(), civic-color-shade-light() and
-// civic-color-neutrals() mixins to get the value.
-$civic-colors-default-shades-dark-base: civic-color-base('primary') !default;
-$civic-colors-default-shades-light-base: civic-color-base('primary') !default;
-$civic-colors-default-neutral-base: civic-color-base('primary') !default;
-
-// Theme-based background colors for components.
-$civic-theme-light-background-color: civic-color('neutral');
-$civic-theme-dark-background-color: civic-color-shade-dark(40);
-
-//
-// Spacing.
-//
-// Do not use these directly.
-// Use @include civic-space() function instead.
-//
-$civic-space: 0.5rem !default; // 8px
-
-//
-// Breakpoints.
-//
-// The value denotes the "start" of the breakpoint range.
-//
-// Do not use these directly.
-// Use @include civic-breakpoint() mixin instead.
-//
-$civic-breakpoints: (
-  'xxs': 0,
-  'xs': 368px,
-  's': 576px,
-  'm': 768px,
-  'l': 992px,
-  'xl': 1280px,
-  'xxl': 1440px
-) !default;
-
-//
-// Grid.
-//
-$civic-grid-columns: 12 !default;
-
-// Grid spacing used to calculate grid spacings. Since the grid is based on
-// pixel values instead of rems (for consistency), the spacing is also based on
-// pixel values.
-$civic-grid-space: 8px !default;
-
-// The lowest breakpoint where column classes should start applying.
-$civic-grid-lowest-breakpoint: 'xxs' !default;
-
-// The width of the fluid container at max width. Used to contain fluid
-// containers on wide screens. Set to 'auto' to keep fluid.
-$civic-grid-max-width: map.get($civic-breakpoints, 'xxl') !default;
-
-// Spacing between columns in a row.
-$civic-grid-gutters: (
-  'xxs': $civic-grid-space * 2,
-  'xs': $civic-grid-space * 2,
-  's': $civic-grid-space * 3
-) !default;
-
-// Side spacing between the edge of the viewport and a start of the grid.
-$civic-grid-offsets: (
-  'xxs': $civic-grid-space * 3,
-  'xs': $civic-grid-space * 3,
-  's': $civic-grid-space * 3,
-  'm': $civic-grid-space * 3,
-  'l': $civic-grid-space * 6,
-  'xl': $civic-grid-space * 6,
-  'xxl': $civic-grid-space * 12,
-) !default;
-
-//
-// Visibility.
-//
-// The lowest breakpoint where visibility classes should apply.
-$civic-visibility-lowest-breakpoint: 'xxs' !default;
-
-//
-// Fonts.
-//
-
-// Use $civic-fonts to override any font family values. It is available
-// (and empty) so that any sub-themes could specify their fonts in here to
-// override the defaults. This allows Civic to make font additions without
-// breaking sub-themes.
-$civic-fonts: () !default;
-$civic-fonts-default: (
-  'primary': (
-    'family': '"Lexend", sans-serif',
-    'types': (
-      (
-        'uri': 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap',
-      ),
-    ),
-  ),
-  'secondary': (
-    'family': '"Public Sans", sans-serif',
-    'types': (
-      (
-        'uri': 'https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&display=swap',
-      ),
-    ),
-  ),
-);
-
-// Add custom fonts to $civic-fonts with the same key as above to override
-// fonts or with a new key to add a new font kind.
-// 'uri' can be a URL to the external font or a list of local files with
-// extensions to be imported. The font type will be taken from the file extensions.
-// Use $civic-assets-directory to provide a relative path.
-//
-// IMPORTANT: Make sure to put commas at the end of every list or SASS will not
-// be able to distinguish lists and values.
-//
-// Example:
-//
-// $civic-fonts: (
-//   'tertiary': (
-//     'family': 'Roboto',
-//     'types': (
-//       (
-//         'uri': (
-//           '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.ttf',
-//           '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.woff',
-//           '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.eot',
-//         ),
-//       ),
-//       (
-//         'italic': true,
-//         'weight': 'bold',
-//         'uri': (
-//           '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.ttf',
-//           '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.woff',
-//           '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.eot',
-//         ),
-//       ),
-//     ),
-//   ),
-// );
-
-//
-// Typography.
-//
-// Base font size.
-$civic-font-base-size: 16px !default;
-$civic-font-base-line-height: $civic-font-base-size !default;
-$civic-typography: () !default;
-$civic-typography-default: (
-  // Headings.
-  'heading-1': (
-    'xxs': ($civic-font-base-size * 2, $civic-font-base-line-height * 2.5, 700, 'primary', -0.6px),
-    'm': ($civic-font-base-size * 3, $civic-font-base-line-height * 3.75, 700, 'primary', -1px)
-  ),
-  'heading-2': (
-    'xxs': ($civic-font-base-size * 1.75, $civic-font-base-line-height * 2.25, 700, 'primary', -0.5px),
-    'm': ($civic-font-base-size * 2.5, $civic-font-base-line-height * 3, 700, 'primary', -0.8px)
-  ),
-  'heading-3': (
-    'xxs': ($civic-font-base-size * 1.5, $civic-font-base-line-height * 2, 700, 'primary', 0.35px),
-    'm': ($civic-font-base-size * 2, $civic-font-base-line-height * 2.5, 700, 'primary', -0.6px)
-  ),
-  'heading-4': (
-    'xxs': ($civic-font-base-size * 1.25, $civic-font-base-line-height * 1.5, 700, 'primary', -0.25px),
-    'm': ($civic-font-base-size * 1.5, $civic-font-base-line-height * 2, 700, 'primary', -0.4px)
-  ),
-  'heading-5': (
-    'xxs': ($civic-font-base-size, $civic-font-base-line-height * 1.375, 700, 'primary', 0),
-    'm': ($civic-font-base-size * 1.2, $civic-font-base-line-height * 1.5, 700, 'primary', -0.2px)
-  ),
-  'heading-6': ($civic-font-base-size, $civic-font-base-line-height * 1.625, 700, 'primary', 0),
-  // Text.
-  'text-large': (
-    'xxs': ($civic-font-base-size * 1.125, $civic-font-base-line-height * 1.75, 400, 'primary', 0),
-    'm': ($civic-font-base-size * 1.25, $civic-font-base-line-height * 2.125, 400, 'primary', 0)
-  ),
-  'text-regular': (
-    'xxs': ($civic-font-base-size * 0.875, $civic-font-base-line-height * 1.5, 400, 'primary', 0),
-    'm': ($civic-font-base-size, $civic-font-base-line-height * 1.75, 400, 'primary', 0)
-  ),
-  'text-small': (
-    'xxs': ($civic-font-base-size * 0.75, $civic-font-base-line-height * 1.25, 400, 'primary', 0),
-    'm': ($civic-font-base-size * 0.875, $civic-font-base-line-height * 1.5, 400, 'primary', 0),
-  ),
-  // Labels.
-  'label-large': (
-    'xxs': ($civic-font-base-size * 1.125, $civic-font-base-line-height * 1.5, 600, 'primary', -0.1px),
-    'm': ($civic-font-base-size * 1.125, $civic-font-base-line-height * 1.5, 600, 'primary', 0)
-  ),
-  'label-regular': (
-    'xxs': ($civic-font-base-size, $civic-font-base-line-height * 1.25, 500, 'primary', -0.1px),
-    'm': ($civic-font-base-size, $civic-font-base-line-height * 1.25, 500, 'primary', 0)
-  ),
-  'label-small': (
-    'xxs': ($civic-font-base-size * 0.75, $civic-font-base-line-height * 1.25, 400, 'primary', -0.1px),
-    'm': ($civic-font-base-size * 0.875, $civic-font-base-line-height * 1.125, 400, 'primary', 0)
-  ),
-  // Special elements.
-  'quote': (
-    'xxs': ($civic-font-base-size * 1.25, $civic-font-base-line-height * 1.185, 400, 'primary', -0.15px),
-    'm': ($civic-font-base-size * 1.5, $civic-font-base-size * 2.5, 400, 'primary', -0.35px)
-  ),
-);
-
-//
-// Icon size.
-//
-$civic-icon-sizes: () !default;
-$civic-icon-sizes-default: (
-  'small': (
-    'xxs': (16px, 16px),
-    'm': (20px, 20px),
-  ),
-  'regular': (
-    'xxs': (20px, 20px),
-    'm': (24px, 24px),
-  ),
-  'large': (
-    'xxs': (40px, 40px),
-    'm': (48px, 48px),
-  ),
-  'extra-large': (
-    'xxs': (48px, 48px),
-    'm': (64px, 64px),
-  )
-);
-
-//
-// Elevations.
-//
-$civic-elevations: (
-  0 2px civic-space(1) rgba(0, 0, 0, 20%),
-  0 civic-space(0.5) civic-space(2) rgba(0, 0, 0, 20%),
-  0 civic-space(1) civic-space(4) rgba(0, 0, 0, 20%),
-  0 civic-space(2) civic-space(8) rgba(0, 0, 0, 20%),
-) !default;
-
-//
-// Misc Variables.
-//
-
-// Border radius.
-$civic-border-radius: 0.25rem !default;
 
 // Outline.
 $civic-outline-offset: 0 !default;
@@ -598,7 +336,7 @@ $civic-label-dark-required-color: civic-color('error') !default;
 // Fieldset.
 //
 $civic-fieldset-required-color: civic-color('error') !default;
-$civic-fieldset-light-color: civic-color-neutral(80) !default;
+$civic-fieldset-light-color: black !default;;
 $civic-fieldset-dark-color: civic-color-neutral(5) !default;
 
 //

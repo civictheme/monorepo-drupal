@@ -27,20 +27,6 @@
       @include civic-typography('label-small');
     }
   }
-
-  &.civic-theme-light {
-    legend,
-    .description {
-      color: $civic-fieldset-light-color;
-    }
-  }
-
-  &.civic-theme-light {
-    legend,
-    .description {
-      color: $civic-fieldset-dark-color;
-    }
-  }
 }
 
 

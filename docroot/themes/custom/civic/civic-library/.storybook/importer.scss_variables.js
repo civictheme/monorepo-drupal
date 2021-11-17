@@ -4,8 +4,10 @@
 const fs = require('fs');
 
 const importedFiles = [
-  './components/00-base/_variables.scss',
-  './components/variables.scss',
+  './components/00-base/_variables.base.scss',
+  './components/variables.base.scss',
+  './components/00-base/_variables.components.scss',
+  './components/variables.components.scss',
 ];
 
 function removeComments(string) {
