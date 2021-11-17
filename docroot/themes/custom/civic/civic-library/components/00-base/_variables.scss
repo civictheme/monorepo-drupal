@@ -598,6 +598,8 @@ $civic-label-dark-required-color: civic-color('error') !default;
 // Fieldset.
 //
 $civic-fieldset-required-color: civic-color('error') !default;
+$civic-fieldset-light-color: civic-color-neutral(80) !default;
+$civic-fieldset-dark-color: civic-color-neutral(5) !default;
 
 //
 // Filter chip.
