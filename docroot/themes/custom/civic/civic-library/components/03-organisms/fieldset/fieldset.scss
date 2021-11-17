@@ -10,10 +10,9 @@
 
   &.civic-form-element--fieldset-radio {
     legend {
-      @include civic-typography('label-regular')
+      @include civic-typography('label-regular');
     }
   }
-
 
   .description {
     margin-bottom: civic-space(2);
@@ -28,5 +27,3 @@
     }
   }
 }
-
-

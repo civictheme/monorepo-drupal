@@ -69,7 +69,10 @@ function civic_preprocess_fieldset(&$variables) {
     if (!isset($variables['element'][$child]['#type'])) {
       continue;
     }
-    $is_radio_or_checkbox = in_array($variables['element'][$child]['#type'], ['radio', 'checkbox']);
+    $is_radio_or_checkbox = in_array(
+      $variables['element'][$child]['#type'],
+      ['radio', 'checkbox']
+    );
     if ($is_radio_or_checkbox) {
       break;
     }
