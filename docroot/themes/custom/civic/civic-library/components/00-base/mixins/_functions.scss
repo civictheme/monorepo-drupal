@@ -2,6 +2,7 @@
 // Helper functions to extend SASS functionality.
 //
 
+@use 'sass:list';
 @use 'sass:map';
 @use 'sass:string';
 
@@ -94,4 +95,28 @@
   }
 
   @return "#{$string#{''}}" != $string;
+}
+
+@function civic-unquote($value) {
+  @if type-of($value) != string {
+    @return $value;
+  }
+
+  @return string.unquote($value);
+}
+
+@function civic-string-split($string, $separator) {
+  $result: ();
+  $index: string.index($string, $separator);
+
+  @while $index != null {
+    $substring: string.slice($string, 1, $index - 1);
+    $result: list.append($result, $substring);
+    $string: string.slice($string, $index + string.length($separator));
+    $index: string.index($string, $separator);
+  }
+
+  $split-arr: list.append($result, $string);
+
+  @return $split-arr;
 }
