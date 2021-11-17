@@ -11,7 +11,7 @@
   .description {
     margin-bottom: civic-space(2);
   }
-  
+
   .civic-label {
     &--required::after {
       color: $civic-fieldset-required-color;
