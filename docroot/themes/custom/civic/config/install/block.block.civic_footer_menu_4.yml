@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.civic_footer
+    - system.menu.civic-footer
   module:
     - menu_block
   theme:
@@ -12,9 +12,9 @@ theme: civic
 region: footer_middle_4
 weight: 0
 provider: null
-plugin: 'menu_block:civic_footer'
+plugin: 'menu_block:civic-footer'
 settings:
-  id: 'menu_block:civic_footer'
+  id: 'menu_block:civic-footer'
   label: 'Footer menu'
   provider: menu_block
   label_display: visible
@@ -23,7 +23,7 @@ settings:
   level: 1
   depth: 0
   expand_all_items: false
-  parent: 'civic_footer:menu_link_content:b392e4a2-1b78-42d7-a624-c896dec78143'
+  parent: 'civic-footer:menu_link_content:b392e4a2-1b78-42d7-a624-c896dec78143'
   suggestion: civic_footer_menu
   label_type: fixed
   label_link: false

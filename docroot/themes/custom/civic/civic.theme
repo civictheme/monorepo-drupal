@@ -241,7 +241,7 @@ function _civic_preprocess_menu_block_civic_footer_menu(&$variables) {
   }
 
   $menu_name = strtr($variables['elements']['#derivative_plugin_id'], '-', '_');
-  if ($menu_name == 'civic_footer') {
+  if ($menu_name == 'civic-footer') {
     // Set menu theme as per footer theme.
     $variables['theme'] = theme_get_setting('civic_footer_theme') ?? 'dark';
 
