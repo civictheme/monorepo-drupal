@@ -463,9 +463,9 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider_slide
     - paragraphs.paragraphs_type.civic_slider_slide_reference
     - paragraphs.paragraphs_type.civic_social_icon
-    - system.menu.civic_primary_navigation
-    - system.menu.civic_secondary_navigation
-    - system.menu.civic_footer
+    - system.menu.civic-primary-navigation
+    - system.menu.civic-secondary-navigation
+    - system.menu.civic-footer
     - taxonomy.vocabulary.civic_topics
     - views.view.civic_events
     - views.view.civic_listing
