@@ -15,7 +15,7 @@ function getLogos() {
         const theme = match[2] === 'dark' ? 'dark' : 'light';
         urls[type] = urls[type] || {};
         urls[type][theme] = urls[type][theme] || {};
-        urls[type][theme] = `${dir.replace('../../../assets/', '')}/${path}`;
+        urls[type][theme] = `${dir.replace('../../../', '')}/${path}`;
       }
     }
   });

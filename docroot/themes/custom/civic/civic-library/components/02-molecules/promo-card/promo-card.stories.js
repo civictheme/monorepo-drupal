@@ -1,8 +1,12 @@
 import {
   boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';
-import imageFile from '../../../assets/image.png';
-import { getSlots, randomTags, randomUrl } from '../../00-base/base.stories';
+import {
+  demoImage,
+  getSlots,
+  randomTags,
+  randomUrl,
+} from '../../00-base/base.stories';
 
 import CivicPromoCard from './promo-card.twig';
 
@@ -31,7 +35,7 @@ export const PromoCard = (knobTab) => {
     date: date('Date', new Date(), generalKnobTab),
     url: text('Link URL', randomUrl(), generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
-      src: imageFile,
+      src: demoImage(),
       alt: 'Image alt text',
     } : false,
     tags: randomTags(number(

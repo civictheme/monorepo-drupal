@@ -5,7 +5,7 @@ import CivicLink from '../../01-atoms/link/link.twig';
 import CivicTable from '../../01-atoms/table/table.twig';
 import CivicImage from '../../01-atoms/image/image.twig';
 import CivicVideo from '../video/video.twig';
-import imageFile from '../../../assets/image.png';
+import { demoImage } from '../../00-base/base.stories';
 
 export default {
   title: 'Molecules/Basic Content',
@@ -77,7 +77,7 @@ export const BasicContent = (knobTab) => {
   // Image.
   html += CivicImage({
     theme,
-    src: imageFile,
+    src: demoImage(),
     alt: 'Occaecat laborum voluptate cupidatat.',
     caption: 'Commodo anim sint minim.',
   });
