@@ -18,18 +18,6 @@ export const FormElement = () => {
   const inputKnobTab = 'Input';
   const radioKnobTab = 'General';
 
-  const inputField = radios(
-    'Type',
-    {
-      Input: 'input',
-      Select: 'select',
-      Radio: 'radio',
-      Checkbox: 'checkbox',
-    },
-    'input',
-    generalKnobTab,
-  );
-
   const theme = radios(
     'Theme',
     {
@@ -57,7 +45,7 @@ export const FormElement = () => {
         Before: 'before',
         After: 'after',
       },
-      'before',
+      'after',
       generalKnobTab,
     ),
     description: {
@@ -74,23 +62,24 @@ export const FormElement = () => {
     Error: 'error',
     Success: 'success',
   };
+  const inputType = radios(
+    'Type',
+    {
+      Text: 'text',
+      Textarea: 'textarea',
+      Email: 'email',
+      Tel: 'tel',
+      Password: 'password',
+      Select: 'select',
+      Radio: 'radio',
+      Checkbox: 'checkbox',
+    },
+    'text',
+    inputKnobTab,
+  );
 
   const inputKnobs = {
     theme,
-    type: radios(
-      'Type',
-      {
-        Text: 'text',
-        Textarea: 'textarea',
-        Email: 'email',
-        Tel: 'tel',
-        Password: 'password',
-        Radio: 'radio',
-        Checkbox: 'checkbox',
-      },
-      'text',
-      inputKnobTab,
-    ),
     value: text('Value', 'Civic input', inputKnobTab),
     placeholder: text('Placeholder', 'Civic input', inputKnobTab),
     state: radios(
@@ -130,6 +119,17 @@ export const FormElement = () => {
     required: generalKnobs.required,
   };
 
+  const checkboxKnobs = {
+    theme,
+    state: radios(
+      'State',
+      states,
+      'default',
+      radioKnobTab,
+    ),
+    required: generalKnobs.required,
+  };
+
   const labelKnobTab = 'Label';
   const labelKnobs = {
     theme,
@@ -148,23 +148,28 @@ export const FormElement = () => {
 
   const children = [];
 
-  switch (inputField) {
-    case 'input':
-      children.push(Input(inputKnobs));
-      break;
+  switch (inputType) {
     case 'radio':
       children.push(Radio(radioKnobs));
       break;
+    case 'checkbox':
+      children.push(Checkbox(checkboxKnobs));
+      break;
     case 'select':
-    default:
       children.push(Select(selectKnobs));
       break;
+    default:
+      children.push(Input({
+        ...inputKnobs,
+        type: inputType,
+      }));
   }
 
   const label = [CivicLabel(labelKnobs)];
 
   const html = CivicFormElement({
     ...generalKnobs,
+    type: inputType,
     label,
     children,
   });

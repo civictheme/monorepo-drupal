@@ -2,7 +2,7 @@
 // Civic input.
 //
 
-%civic-checkbox-radio {
+@mixin civic-checkbox-radio($type: 'radio') {
   position: absolute;
   // stylelint-disable-next-line alpha-value-notation
   opacity: 0;
@@ -11,10 +11,15 @@
   z-index: 1;
   cursor: pointer;
 
-  & + span {
+  & + .civic-#{$type}__state {
     &::before {
       content: '';
-      border-radius: $civic-checkbox-border-radius;
+      @if $type == radio {
+        border-radius: $civic-radio-border-radius;
+      }
+      @else if $type == checkbox {
+        border-radius: $civic-checkbox-border-radius;
+      }
       border: 1px solid;
       display: inline-block;
       width: rem(24px);
@@ -28,7 +33,7 @@
   }
 
   &:checked {
-    & + span {
+    & + .civic-#{$type}__state {
       &::before {
         width: rem(22px);
         height: rem(22px);
@@ -39,7 +44,7 @@
 
   &:focus,
   &:hover {
-    & + span {
+    & + .civic-#{$type}__state {
       &::before {
         box-shadow: 0 0 0 1px;
       }
@@ -47,14 +52,14 @@
   }
 
   &.civic-theme-light {
-    & + span {
+    & + .civic-#{$type}__state {
       &::before {
         border-color: $civic-radio-light-border-color;
       }
     }
 
     &:focus {
-      & + span {
+      & + .civic-#{$type}__state {
         &::before {
           @include civic-outline();
         }
@@ -62,7 +67,7 @@
     }
 
     &:hover {
-      & + span {
+      & + .civic-#{$type}__state {
         &::before {
           box-shadow: inset 0 0 0 5px $civic-radio-light-background-color;
         }
@@ -70,7 +75,7 @@
     }
 
     &:checked {
-      & + span {
+      & + .civic-#{$type}__state {
         &::before {
           background-color: $civic-radio-light-selected-background-color;
           border-color: $civic-radio-light-selected-background-color;
@@ -80,7 +85,7 @@
     }
 
     &:disabled {
-      & + span {
+      & + .civic-#{$type}__state {
         &::before {
           cursor: default;
           color: $civic-input-light-disabled-color;
@@ -91,14 +96,14 @@
   }
 
   &.civic-theme-dark {
-    & + span {
+    & + .civic-#{$type}__state {
       &::before {
         border-color: $civic-radio-dark-border-color;
       }
     }
 
     &:hover {
-      & + span {
+      & + .civic-#{$type}__state {
         &::before {
           box-shadow: inset 0 0 0 5px $civic-radio-dark-background-color;
         }
@@ -106,7 +111,7 @@
     }
 
     &:focus {
-      & + span {
+      & + .civic-#{$type}__state {
         &::before {
           @include civic-outline();
         }
@@ -114,7 +119,7 @@
     }
 
     &:checked {
-      & + span {
+      & + .civic-#{$type}__state {
         &::before {
           background-color: $civic-radio-dark-selected-background-color;
           border-color: $civic-radio-dark-selected-background-color;
@@ -124,7 +129,7 @@
     }
 
     &:disabled {
-      & + span {
+      & + .civic-#{$type}__state {
         &::before {
           cursor: default;
           color: $civic-input-dark-disabled-color;
@@ -136,14 +141,14 @@
 
   &.error,
   &.civic-input--error {
-    & + span {
+    & + .civic-#{$type}__state {
       &::before {
         border-color: $civic-input-dark-error-border-color;
       }
     }
 
     &:checked {
-      & + span {
+      & + .civic-#{$type}__state {
         &::before {
           border-color: $civic-input-dark-error-border-color;
           background-color: $civic-input-dark-error-border-color;
@@ -154,7 +159,9 @@
 }
 
 .civic-radio {
-  @extend %civic-checkbox-radio;
+  .civic-radio__element {
+    @include civic-checkbox-radio('radio');
+  }
 }
 
 .radios--wrapper {

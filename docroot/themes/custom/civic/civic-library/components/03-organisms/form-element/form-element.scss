@@ -8,24 +8,13 @@
 
   @include civic-typography('text-regular');
 
-  &--radio {
-    margin-bottom: civic-space();
-
-    .civic-label {
-      margin-bottom: 0;
-    }
-  }
-
+  &--radio,
   &--checkbox {
-    margin-bottom: civic-space();
-
+    display: flex;
+    flex-wrap: wrap;
     .civic-label {
-      margin-bottom: 0;
+      width: 100%;
     }
-  }
-
-  .civic-input {
-    margin: 0 auto civic-space();
   }
 
   .civic-message {

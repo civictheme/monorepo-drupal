@@ -1,28 +1,15 @@
-{%
-  set classes = [
-  'civic-form-element',
-  type is not empty ? 'civic-form-element--%s'|format(type) : '',
-  'civic-theme-%s'|format(theme|default('light')),
-  name ? 'civic-form-element--%s'|format(name) : '',
-  title_display not in ['after', 'before'] ? 'civic-form-element--no-label' : '',
-  disabled == 'disabled' ? 'civic-form-element--form-disabled' : '',
-  errors is not empty ? 'civic-form-element--error' : '',
-]
-%}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type_class =  type is not empty ? 'civic-form-element--%s'|format(type) : '' %}
+{% set name_class = name is not empty ?  'civic-form-element--%s'|format(name) : '' %}
+{% set label_class = title_display not in ['after', 'before'] ? 'civic-form-element--no-label' : '' %}
+{% set disabled_class =  disabled == 'disabled' ? 'civic-form-element--form-disabled' : '' %}
+{% set error_class =  errors is not empty ? 'civic-form-element--error' : '' %}
 
-{% set classes = modifier_class ? classes|merge([modifier_class]) : classes %}
+{% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, type_class, name_class, label_class, disabled_class, error_class, modifier_class|default('')) %}
 
-{%
-  set description_classes = [
-  'civic-form-element__description',
-  description_display == 'invisible' ? 'visually-hidden' : '',
-  description_display ? 'civic-form-element__description--%s'|format(description_display),
-]
-%}
+{% set description_modifier_class = '%s %s'|format(description_visibility_class, description_display_class %}
 
-{% set description_classes = description_modifier_class ? description_classes|merge([description_modifier_class]) : description_classes %}
-
-<div class="{{ classes|join(' ') }}" {{ attributes }}>
+<div class="civic-form-element {{ modifier_class }}" {{ attributes }}>
   {% if label_display in ['before', 'invisible'] %}
     {{ label }}
   {% endif %}
@@ -30,7 +17,7 @@
     <span class="field-prefix">{{ prefix }}</span>
   {% endif %}
   {% if description_display == 'before' and description.content %}
-    <div class="{{ description_classes|join(' ') }}" {{ description.attributes }}>
+    <div class="civic-form-element__description {{ description_modifier_class }}" {{ description.attributes }}>
       {{ description.content }}
     </div>
   {% endif %}
@@ -49,7 +36,7 @@
     } only %}
   {% endif %}
   {% if description_display in ['after', 'invisible'] and description.content %}
-    <div class="{{ description_classes|join(' ') }}" {{ description.attributes }}>
+    <div class="civic-form-element__description {{ description_modifier_class }}" {{ description.attributes }}>
       {{ description.content }}
     </div>
   {% endif %}
