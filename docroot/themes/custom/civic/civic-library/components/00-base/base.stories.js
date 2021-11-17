@@ -4,6 +4,12 @@
 
 import { boolean } from '@storybook/addon-knobs';
 import { LoremIpsum } from 'lorem-ipsum';
+import Input from '../01-atoms/input/input.twig';
+import Select from '../01-atoms/select/select.twig';
+import Checkbox from '../01-atoms/checkbox/checkbox.twig';
+import Radio from '../01-atoms/radio/radio.twig';
+import FormElement from '../03-organisms/form-element/form-element.twig';
+import Label from '../01-atoms/label/label.twig';
 
 export const getSlots = (names) => {
   const showSlots = boolean('Show story-slots', false, 'Slots');
@@ -76,4 +82,67 @@ export const randomTags = (count, rand) => {
   }
 
   return tags;
+};
+
+export const randomFormElements = (count, theme, rand) => {
+  rand = rand || false;
+
+  const inputTypes = [
+    'text',
+    'textarea',
+    'tel',
+    'password',
+    'radio',
+    'checkbox',
+    'select',
+  ];
+
+  const requiredOptions = ['required', ''];
+
+  const formElements = [];
+  for (let i = 0; i < count; i++) {
+    const inputType = inputTypes[Math.floor(Math.random() * inputTypes.length)];
+    const isCheckboxOrRadio = inputType === 'checkbox' || inputType === 'radio';
+    const required = requiredOptions[Math.floor(Math.random() * requiredOptions.length)];
+
+    const formElementOptions = {
+      theme,
+      type: inputType,
+      label: Label({
+        title: `Input title ${i + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
+        attributes: `for="form-element-${i}"`,
+        title_position: isCheckboxOrRadio ? 'after' : 'before',
+        required,
+      }),
+      label_display: isCheckboxOrRadio ? 'after' : 'before',
+      description_display: isCheckboxOrRadio ? 'after' : 'before',
+      description: {
+        content: `Input description ${i + 1}${rand ? ` ${randomText(getRandomInt(2, 8))}` : ''}`,
+      },
+      children: [],
+    };
+    const inputOptions = {
+      theme,
+      type: inputType,
+      attributes: `id="form-element-${i}"`,
+      required,
+    };
+
+    switch (inputType) {
+      case 'radio':
+        formElementOptions.children.push(Radio(inputOptions));
+        break;
+      case 'checkbox':
+        formElementOptions.children.push(Checkbox(inputOptions));
+        break;
+      case 'select':
+        formElementOptions.children.push(Select(inputOptions));
+        break;
+      default:
+        formElementOptions.children.push(Input(inputOptions));
+    }
+    formElements.push(FormElement(formElementOptions));
+  }
+
+  return formElements;
 };

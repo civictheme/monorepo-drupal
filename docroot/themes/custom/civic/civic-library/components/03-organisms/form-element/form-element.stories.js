@@ -7,7 +7,7 @@ import Radio from '../../01-atoms/radio/radio.twig';
 import CivicLabel from '../../01-atoms/label/label.twig';
 
 export default {
-  title: 'Organisms/Form Element',
+  title: 'Organisms/Form/Form Element',
 };
 
 export const FormElement = () => {
@@ -90,6 +90,7 @@ export const FormElement = () => {
       'default',
       inputKnobTab,
     ),
+    attributes: `id="input-${inputType}"`,
     disabled: boolean('Disabled', false, inputKnobTab),
     required: generalKnobs.required,
   };
@@ -102,6 +103,7 @@ export const FormElement = () => {
       'default',
       inputKnobTab,
     ),
+    attributes: `id="input-${inputType}"`,
     options: [
       { type: 'option', value: 'option1', label: 'Option 1' },
       { type: 'option', value: 'option2', label: 'Option 2' },
@@ -118,6 +120,7 @@ export const FormElement = () => {
       'default',
       radioKnobTab,
     ),
+    attributes: `id="input-${inputType}"`,
     required: generalKnobs.required,
   };
 
@@ -129,6 +132,7 @@ export const FormElement = () => {
       'default',
       radioKnobTab,
     ),
+    attributes: `id="input-${inputType}"`,
     required: generalKnobs.required,
   };
 
@@ -145,6 +149,7 @@ export const FormElement = () => {
       'before',
       labelKnobTab,
     ),
+    attributes: `for="input-${inputType}"`,
     required: generalKnobs.required,
   };
 

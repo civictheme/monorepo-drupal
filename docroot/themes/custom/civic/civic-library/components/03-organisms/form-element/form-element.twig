@@ -1,13 +1,14 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type_class =  type is not empty ? 'civic-form-element--%s'|format(type) : '' %}
 {% set name_class = name is not empty ?  'civic-form-element--%s'|format(name) : '' %}
-{% set label_class = title_display not in ['after', 'before'] ? 'civic-form-element--no-label' : '' %}
+{% set label_class = label_display not in ['after', 'before'] ? 'civic-form-element--no-label' : 'civic-form-element--label--%s'|format(title_display) %}
+{% set description_class = label_display not in ['after', 'before'] ? 'civic-form-element--no-description' : 'civic-form-element--label--%s'|format(description_display) %}
 {% set disabled_class =  disabled == 'disabled' ? 'civic-form-element--form-disabled' : '' %}
 {% set error_class =  errors is not empty ? 'civic-form-element--error' : '' %}
 
-{% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, type_class, name_class, label_class, disabled_class, error_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s %s %s %s %s'|format(theme_class, type_class, name_class, label_class, description_class, disabled_class, error_class, modifier_class|default('')) %}
 
-{% set description_modifier_class = '%s %s'|format(description_visibility_class, description_display_class %}
+{% set description_modifier_class = '%s %s'|format(description_visibility_class, description_display_class) %}
 
 <div class="civic-form-element {{ modifier_class }}" {{ attributes }}>
   {% if label_display in ['before', 'invisible'] %}

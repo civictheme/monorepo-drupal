@@ -4,9 +4,6 @@ import CivicInput from './input.twig';
 
 export default {
   title: 'Atoms/Form/Input',
-  parameters: {
-    layout: 'centered',
-  },
 };
 
 export const Input = (knobTab) => {

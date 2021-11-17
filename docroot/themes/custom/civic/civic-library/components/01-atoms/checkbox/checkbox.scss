@@ -2,16 +2,15 @@
 // Civic input.
 //
 
-@import "../../00-base/mixins/form";
+@import '../../00-base/mixins/form';
 
 .civic-checkbox {
   position: relative;
-  &__element {
 
+  &__element {
     @include civic-checkbox-radio('checkbox');
 
     &.civic-input__element + .civic-checkbox__state {
-
       &::after {
         position: absolute;
         top: 2px;

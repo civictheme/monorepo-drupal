@@ -14,12 +14,14 @@
   & + .civic-#{$type}__state {
     &::before {
       content: '';
+
       @if $type == radio {
         border-radius: $civic-radio-border-radius;
       }
       @else if $type == checkbox {
         border-radius: $civic-checkbox-border-radius;
       }
+
       border: 1px solid;
       display: block;
       width: rem(24px);
