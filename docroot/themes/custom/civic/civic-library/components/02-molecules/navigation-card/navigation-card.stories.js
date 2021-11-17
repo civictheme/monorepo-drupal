@@ -1,10 +1,9 @@
 import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
-import imageFile from '../../../assets/image.png';
 
 import CivicNavigationCard from './navigation-card.twig';
-import { getSlots, randomUrl } from '../../00-base/base.stories';
+import { demoImage, getSlots, randomUrl } from '../../00-base/base.stories';
 
 export default {
   title: 'Molecules/Card/Navigation Card',
@@ -39,7 +38,7 @@ export const NavigationCard = (knobTab) => {
     summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', generalKnobTab),
     url: text('URL', randomUrl(), generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
-      src: imageFile,
+      src: demoImage(),
       alt: 'Image alt text',
     } : false,
     modifier_class: text('Additional class', '', generalKnobTab),

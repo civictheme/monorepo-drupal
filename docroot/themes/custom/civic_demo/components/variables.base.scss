@@ -8,9 +8,6 @@
 //
 // stylelint-disable scss/dollar-variable-pattern
 
-// Copy the default value from original variables as this file is loaded first.
-$civic-assets-directory: './assets/';
-
 // Define custom font.
 $civic-fonts: (
   'tertiary': (

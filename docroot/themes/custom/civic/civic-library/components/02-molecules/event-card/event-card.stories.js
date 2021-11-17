@@ -1,8 +1,12 @@
 import {
   boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';
-import imageFile from '../../../assets/image.png';
-import { getSlots, randomTags, randomUrl } from '../../00-base/base.stories';
+import {
+  demoImage,
+  getSlots,
+  randomTags,
+  randomUrl,
+} from '../../00-base/base.stories';
 
 import CivicEventCard from './event-card.twig';
 
@@ -32,7 +36,7 @@ export const EventCard = (knobTab) => {
     summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', generalKnobTab),
     url: text('Link URL', randomUrl(), generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
-      src: imageFile,
+      src: demoImage(),
       alt: 'Image alt text',
     } : false,
     tags: randomTags(number(
