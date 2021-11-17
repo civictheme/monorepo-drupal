@@ -6,7 +6,6 @@
 
 .civic-checkbox {
   position: relative;
-
   &__element {
 
     @include civic-checkbox-radio('checkbox');

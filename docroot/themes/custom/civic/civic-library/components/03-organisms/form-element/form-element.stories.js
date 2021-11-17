@@ -8,9 +8,6 @@ import CivicLabel from '../../01-atoms/label/label.twig';
 
 export default {
   title: 'Organisms/Form Element',
-  parameters: {
-    layout: 'fullscreen',
-  },
 };
 
 export const FormElement = () => {
@@ -28,9 +25,29 @@ export const FormElement = () => {
     generalKnobTab,
   );
 
+  const inputType = radios(
+    'Type',
+    {
+      Text: 'text',
+      Textarea: 'textarea',
+      Email: 'email',
+      Tel: 'tel',
+      Password: 'password',
+      Select: 'select',
+      Radio: 'radio',
+      Checkbox: 'checkbox',
+    },
+    'text',
+    generalKnobTab,
+  );
+
+  // We don't allow before and after label for radio or checkbox it is always
+  // after.
+  const isRadioOrCheckbox = inputType === 'radio' || inputType === 'checkbox';
+
   const generalKnobs = {
     theme,
-    label_display: radios(
+    label_display: isRadioOrCheckbox ? 'after' : radios(
       'Label position',
       {
         Before: 'before',
@@ -39,8 +56,8 @@ export const FormElement = () => {
       'before',
       generalKnobTab,
     ),
-    description_display: radios(
-      'description position',
+    description_display: isRadioOrCheckbox ? 'after' : radios(
+      'Description position',
       {
         Before: 'before',
         After: 'after',
@@ -62,21 +79,6 @@ export const FormElement = () => {
     Error: 'error',
     Success: 'success',
   };
-  const inputType = radios(
-    'Type',
-    {
-      Text: 'text',
-      Textarea: 'textarea',
-      Email: 'email',
-      Tel: 'tel',
-      Password: 'password',
-      Select: 'select',
-      Radio: 'radio',
-      Checkbox: 'checkbox',
-    },
-    'text',
-    inputKnobTab,
-  );
 
   const inputKnobs = {
     theme,

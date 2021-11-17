@@ -28,16 +28,16 @@
   {% if label_display == 'after' %}
     {{ label }}
   {% endif %}
+  {% if description_display in ['after', 'invisible'] and description.content %}
+    <div class="civic-form-element__description {{ description_modifier_class }}" {{ description.attributes }}>
+      {{ description.content }}
+    </div>
+  {% endif %}
   {% if errors %}
     {% include '@organisms/message/message.twig' with {
       theme: theme,
       type: 'error',
       title: errors
     } only %}
-  {% endif %}
-  {% if description_display in ['after', 'invisible'] and description.content %}
-    <div class="civic-form-element__description {{ description_modifier_class }}" {{ description.attributes }}>
-      {{ description.content }}
-    </div>
   {% endif %}
 </div>
