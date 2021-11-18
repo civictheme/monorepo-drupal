@@ -85,6 +85,10 @@
       background-color: $civic-card-container-light-background-color;
     }
 
+    #{$root}__header-title {
+      color: $civic-card-container-light-heading-title-color;
+    }
+
     #{$root}__header-link {
       .civic-link {
         color: $civic-card-container-light-heading-color;
@@ -111,6 +115,10 @@
 
     &#{$root}--with-spacing {
       background-color: $civic-card-container-dark-background-color;
+    }
+
+    #{$root}__header-title {
+      color: $civic-card-container-dark-heading-title-color;
     }
 
     #{$root}__header-link {
