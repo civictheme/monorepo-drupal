@@ -48,6 +48,9 @@ module.exports = {
     // style-loader in oder to have styles injected during the runtime.
     custom.module.rules[1].use[0] = 'style-loader';
 
+    // Override assets location for Storybook.
+    custom.module.rules[1].use[2].options.additionalData = "$civic-assets-directory: './assets/';";
+
     return merge(config, custom);
   },
 };
