@@ -28,6 +28,7 @@ Feature: Tests the Promo paragraph
     And I wait for AJAX to finish
     And I press the "field_c_n_components_civic_promo_add_more" button
     And I wait for AJAX to finish
+    And the option "Light" from select "Theme" is selected
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]'].required" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element

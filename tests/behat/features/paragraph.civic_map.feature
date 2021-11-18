@@ -45,6 +45,7 @@ Feature: Tests the Map paragraph
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_zoom][0][value]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_view_link][0][uri]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_share_link][0][uri]']" element
+    And the option "Light" from select "Theme" is selected
 
   @api @javascript
   Scenario: Civic Component paragraph reference exists and works
@@ -61,3 +62,4 @@ Feature: Tests the Map paragraph
     And should see an "input[name='field_c_b_components[0][subform][field_c_p_zoom][0][value]'].required" element
     And should see an "input[name='field_c_b_components[0][subform][field_c_p_view_link][0][uri]']" element
     And should see an "input[name='field_c_b_components[0][subform][field_c_p_share_link][0][uri]']" element
+    And the option "Light" from select "Theme" is selected

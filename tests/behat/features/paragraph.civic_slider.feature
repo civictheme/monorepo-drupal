@@ -30,6 +30,7 @@ Feature: Tests the Slider paragraph
     And I wait for AJAX to finish
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-theme" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-theme select.required" element
+    And the option "Light" from select "Theme" is selected
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-link-0-uri" element
     And I should see an "div.field--name-field-c-p-slides" element
