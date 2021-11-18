@@ -18,6 +18,11 @@ Feature: Fields on Page content type
     Then I should see the text "Banner components" in the "field_c_n_banner_components" row
     Then I should see the text "Banner components bottom" in the "field_c_n_banner_components_bott" row
     Then I should see the text "Banner featured image" in the "field_c_n_banner_featured_image" row
+    Then I should see the text "Components" in the "field_c_n_components" row
+    Then I should see the text "Show Table of Contents" in the "field_c_n_show_toc" row
+    Then I should see the text "Summary" in the "field_c_n_summary" row
+    Then I should see the text "Thumbnail" in the "field_c_n_thumbnail" row
+    Then I should see the text "Topics" in the "field_c_n_topics" row
 
   @api
   Scenario: Page content type page has the relevant fields
@@ -47,3 +52,7 @@ Feature: Fields on Page content type
 
     And I should see text matching "Show Table of Contents"
     And should see an "input[name='field_c_n_show_toc[value]']" element
+
+    And I should see text matching "Topics"
+    And I should see an "input[name='field_c_n_topics[0][target_id]']" element
+    And I should see an "input[name='field_c_n_thumbnail-media-library-open-button']" element
