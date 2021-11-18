@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.civic_page.field_c_n_show_toc
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_thumbnail
+    - field.field.node.civic_page.field_c_n_topics
     - node.type.civic_page
   module:
     - content_moderation
@@ -73,6 +74,7 @@ third_party_settings:
       children:
         - title
         - field_c_n_summary
+        - field_c_n_topics
         - field_c_n_thumbnail
       parent_name: group_civic_tabs
       weight: 9
@@ -195,11 +197,21 @@ content:
     type: string_textarea
     region: content
   field_c_n_thumbnail:
-    weight: 4
+    weight: 5
     settings:
       media_types: {  }
     third_party_settings: {  }
     type: media_library_widget
+    region: content
+  field_c_n_topics:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   moderation_state:
     type: moderation_state_default
