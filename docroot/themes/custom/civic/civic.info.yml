@@ -467,6 +467,9 @@ config_devel:
     - system.menu.civic-secondary-navigation
     - system.menu.civic-footer
     - taxonomy.vocabulary.civic_topics
+    - user.role.civic_content_approver
+    - user.role.civic_content_author
+    - user.role.civic_site_administrator
     - views.view.civic_events
     - views.view.civic_listing
     - views.view.civic_pages
