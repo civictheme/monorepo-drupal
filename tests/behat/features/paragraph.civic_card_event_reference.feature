@@ -55,3 +55,4 @@ Feature: Tests the Event reference card paragraph
     And I wait for AJAX to finish
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_theme]'].required" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_reference][0][target_id]'].required" element
+    And the option "Light" from select "Theme" is selected

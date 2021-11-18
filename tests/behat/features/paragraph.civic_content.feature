@@ -28,6 +28,7 @@ Feature: Tests the Content paragraph
     And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-content-0-value" element
     And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-theme" element
     And I should see an ".js-form-item-field-c-n-banner-components-0-subform-field-c-p-theme .required" element
+    And the option "Light" from select "Theme" is selected
 
     And I press the "field_c_n_banner_components_bott_civic_content_add_more" button
     And I wait for AJAX to finish

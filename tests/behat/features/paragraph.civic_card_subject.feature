@@ -37,6 +37,7 @@ Feature: Tests the Subject card paragraph
     And I wait 1 second
     And I press the "field_c_n_components_civic_card_container_add_more" button
     And I wait for AJAX to finish
+    And the option "Light" from select "Theme" is selected
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-header-link-0-uri" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-column-count select.required" element

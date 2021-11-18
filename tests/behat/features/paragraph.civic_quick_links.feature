@@ -36,6 +36,7 @@ Feature: Tests the Quick links paragraph type and fields.
     And I wait for AJAX to finish
     And should see an "select[name='field_c_b_components[0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_b_components[0][subform][field_c_p_theme]'].required" element
+    And the option "Light" from select "Theme" is selected
     And should see an "input[name='field_c_b_components[0][subform][field_c_p_title][0][value]']" element
     And should see an "input[name='field_c_b_components[0][subform][field_c_p_links][0][uri]']" element
     And should see an "input[name='field_c_b_components[0][subform][field_c_p_links][0][uri]'].required" element
