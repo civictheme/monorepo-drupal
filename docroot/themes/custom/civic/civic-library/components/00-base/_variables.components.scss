@@ -433,6 +433,7 @@ $civic-attachment-light-date-color: civic-color-neutral(60) !default;
 $civic-attachment-light-heading-color: civic-color-neutral(80) !default;
 $civic-attachment-light-heading-hover-color: civic-color('secondary') !default;
 $civic-attachment-light-heading-active-color: civic-color-shade-dark(30) !default;
+$civic-attachment-light-title-color: civic-color-neutral(80) !default;
 $civic-attachment-light-background-color: transparent !default;
 $civic-attachment-dark-color: civic-color-neutral(10) !default;
 $civic-attachment-dark-icon-color: civic-color('accent') !default;
@@ -441,6 +442,7 @@ $civic-attachment-dark-date-color: civic-color-neutral(10) !default;
 $civic-attachment-dark-heading-color: civic-color('neutral') !default;
 $civic-attachment-dark-heading-hover-color: civic-color('accent') !default;
 $civic-attachment-dark-heading-active-color: civic-color('neutral') !default;
+$civic-attachment-dark-title-color: civic-color('neutral') !default;
 $civic-attachment-dark-background-color: civic-color-shade-dark(40) !default;
 
 //
@@ -496,12 +498,14 @@ $civic-card-container-light-color: civic-color-neutral(80) !default;
 $civic-card-container-light-background-color: civic-color-neutral(5) !default;
 $civic-card-container-light-heading-color: civic-color-neutral(80) !default;
 $civic-card-container-light-heading-hover-color: civic-color('neutral') !default;
+$civic-card-container-light-heading-title-color: civic-color-neutral(80) !default;
 $civic-card-container-light-footer-link-color: civic-color-neutral(80) !default;
 $civic-card-container-light-footer-link-hover-color: civic-color('neutral') !default;
 $civic-card-container-dark-color: civic-color('neutral') !default;
 $civic-card-container-dark-background-color: civic-color-shade-dark(60) !default;
 $civic-card-container-dark-heading-color: civic-color('neutral') !default;
 $civic-card-container-dark-heading-hover-color: civic-color-shade-dark(60) !default;
+$civic-card-container-dark-heading-title-color: civic-color('neutral') !default;
 $civic-card-container-dark-footer-link-color: civic-color('neutral') !default;
 $civic-card-container-dark-footer-link-hover-color: civic-color-shade-dark(60) !default;
 
