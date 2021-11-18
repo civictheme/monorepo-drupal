@@ -406,12 +406,15 @@ $civic-table-dark-row-even-background-color: civic-color-shade-dark(30) !default
 // Tag.
 //
 $civic-tag-border-radius: $civic-border-radius !default;
+$civic-tag-border-width: 0 !default;
 $civic-tag-light-color: civic-color-neutral(60) !default;
 $civic-tag-light-background-color: civic-color-neutral(5) !default;
+$civic-tag-light-border-color: civic-color-neutral(20) !default;
 $civic-tag-light-alt-color: civic-color('neutral') !default;
 $civic-tag-light-alt-background-color: civic-color('primary') !default;
 $civic-tag-dark-color: civic-color('neutral') !default;
 $civic-tag-dark-background-color: civic-color-shade-dark(30) !default;
+$civic-tag-dark-border-color: civic-color-neutral(80) !default;
 $civic-tag-dark-alt-color: civic-color-neutral(80) !default;
 $civic-tag-dark-alt-background-color: civic-color('accent') !default;
 
@@ -747,12 +750,14 @@ $civic-accordion-light-color: civic-color-neutral(60) !default;
 $civic-accordion-light-background-color: civic-color('neutral') !default;
 $civic-accordion-light-border-color: civic-color-neutral(20) !default;
 $civic-accordion-light-button-background-color: civic-color('neutral') !default;
+$civic-accordion-light-button-color: civic-color-neutral(60) !default;
 $civic-accordion-light-icon-color: civic-color('primary') !default;
 $civic-accordion-light-expanded-border-color: civic-color('secondary') !default;
 $civic-accordion-dark-color: civic-color('neutral') !default;
 $civic-accordion-dark-background-color: civic-color-shade-dark(40) !default;
 $civic-accordion-dark-border-color: civic-color('primary') !default;
 $civic-accordion-dark-button-background-color: transparent !default;
+$civic-accordion-dark-button-color: civic-color('neutral') !default;
 $civic-accordion-dark-icon-color: civic-color('accent') !default;
 $civic-accordion-dark-expanded-border-color: civic-color('secondary') !default;
 
