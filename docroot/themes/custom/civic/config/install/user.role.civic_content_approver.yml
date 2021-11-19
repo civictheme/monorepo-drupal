@@ -6,7 +6,10 @@ label: 'Content Approver'
 weight: -7
 is_admin: null
 permissions:
+  - 'access content overview'
   - 'access contextual links'
+  - 'access files overview'
+  - 'access media overview'
   - 'access toolbar'
   - 'bypass honeypot protection'
   - 'setup own tfa'
