@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: civic_content_approver
-label: 'Content Approver'
+label: 'Civic Content Approver'
 weight: -7
 is_admin: null
 permissions:

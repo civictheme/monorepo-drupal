@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: civic_content_author
-label: 'Content Author'
+label: 'Civic Content Author'
 weight: -8
 is_admin: null
 permissions:

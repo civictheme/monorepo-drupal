@@ -5,13 +5,13 @@ Feature: Test the Next step paragraph
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Next step" in the "civic_next_step" row
 
   @api
   Scenario: Next step paragraph exists with fields.
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_next_step/fields"
     And I should see the text "field_c_p_icon" in the "Icon" row
     And I should see the text "field_c_p_image" in the "Image" row
@@ -21,7 +21,7 @@ Feature: Test the Next step paragraph
 
   @api
   Scenario: Node type Page field_c_n_components fields settings.
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/structure/types/manage/civic_page/fields/node.civic_page.field_c_n_components"
     And the "Label" field should contain "Components"
     Then the option "Default" from select "Reference method" is selected
@@ -30,7 +30,7 @@ Feature: Test the Next step paragraph
 
   @api
   Scenario: Block type Civic Component field_c_b_components fields settings.
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/structure/block/block-content/manage/civic_component_block/fields/block_content.civic_component_block.field_c_b_components"
     And the "Label" field should contain "Components"
     Then the option "Default" from select "Reference method" is selected
@@ -39,7 +39,7 @@ Feature: Test the Next step paragraph
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element

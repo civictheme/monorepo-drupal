@@ -5,7 +5,7 @@ Feature: Check for custom fields on Civic theme page
 
   @api
   Scenario: The theme settings has all relevant custom fields
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I visit "/admin/appearance/settings/civic"
     Then the response status code should be 200
 
