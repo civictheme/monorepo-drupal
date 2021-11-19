@@ -3,10 +3,14 @@
 //
 
 .civic-form-element {
+  @include civic-typography('text-regular');
+
   margin-bottom: civic-space(2);
   width: 100%;
 
-  @include civic-typography('text-regular');
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &--radio,
   &--checkbox {
