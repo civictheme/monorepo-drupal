@@ -6,6 +6,8 @@
   $root: &;
 
   border-radius: $civic-tag-border-radius;
+  border-style: solid;
+  border-width: $civic-tag-border-width;
   padding: civic-space(0.5) civic-space();
   display: inline-block;
 
@@ -23,6 +25,7 @@
 
   &.civic-theme-light {
     background-color: $civic-tag-light-background-color;
+    border-color: $civic-tag-light-border-color;
     color: $civic-tag-light-color;
 
     @include civic-icon-fill-color($civic-tag-light-color);
@@ -37,6 +40,7 @@
 
   &.civic-theme-dark {
     background-color: $civic-tag-dark-background-color;
+    border-color: $civic-tag-dark-border-color;
     color: $civic-tag-dark-color;
 
     @include civic-icon-fill-color($civic-tag-dark-color);

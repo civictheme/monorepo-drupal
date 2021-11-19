@@ -40,6 +40,7 @@ Feature: Tests the Attachment
     And should see an "#field_c_p_attachments-media-library-wrapper-field_c_n_components-0-subform" element
     And should see an "#field_c_p_attachments-media-library-wrapper-field_c_n_components-0-subform.required" element
     And should see an "#field_c_p_icon-media-library-wrapper-field_c_n_components-0-subform" element
+    And the option "Light" from select "Theme" is selected
 
   @api @javascript
   Scenario: Civic Component paragraph reference exists and works

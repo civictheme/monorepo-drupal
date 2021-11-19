@@ -51,6 +51,7 @@ Feature: Tests the Navigation reference card paragraph
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_column_count]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]']" element
     Then I click on "div.field--name-field-c-p-cards .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And the option "Light" from select "Theme" is selected
     And I wait 1 second
     And I press the "field_c_n_components_0_subform_field_c_p_cards_civic_card_navigation_reference_add_more" button
     And I wait for AJAX to finish

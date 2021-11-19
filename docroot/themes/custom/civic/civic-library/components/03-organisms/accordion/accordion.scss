@@ -110,7 +110,7 @@
 
     #{$root}__header__button {
       background-color: $civic-accordion-light-button-background-color;
-      color: $civic-accordion-light-color;
+      color: $civic-accordion-light-button-color;
 
       svg {
         fill: $civic-accordion-light-icon-color;
@@ -140,7 +140,7 @@
     #{$root}__header__button {
       border-top: 1px solid $civic-accordion-dark-border-color;
       background-color: $civic-accordion-dark-button-background-color;
-      color: $civic-accordion-dark-color;
+      color: $civic-accordion-dark-button-color;
 
       svg {
         fill: $civic-accordion-dark-icon-color;

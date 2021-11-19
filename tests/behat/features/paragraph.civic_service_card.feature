@@ -44,6 +44,7 @@ Feature: Tests the Service card paragraph
     And I press the "field_c_n_components_0_subform_field_c_p_cards_civic_service_card_add_more" button
     And I wait for AJAX to finish
     Then select "field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_theme]" should have an option "light"
+    And the option "Light" from select "Theme" is selected
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_title][0][value]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_title][0][value]'].required" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_links][0][uri]']" element
