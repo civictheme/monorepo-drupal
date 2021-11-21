@@ -1,0 +1,42 @@
+.civic-dropdown-filter {
+  $root: &;
+
+  position: relative;
+  padding: rem(4px) 0;
+
+  &__filter-text {
+    @include civic-typography('label-regular');
+  }
+
+  &__filter-options {
+    position: absolute;
+    min-width: 280px;
+    margin-top: civic-space(2);
+    left: -(civic-space(3));
+  }
+
+  &__filter-options-wrapper {
+    padding: civic-space(2);
+    border-radius: $civic-border-radius;
+    @include civic-elevation(2);
+  }
+
+  &__fieldset {
+    &.civic-fieldset {
+      legend {
+
+        @include civic-typography('label-regular');
+      }
+    }
+  }
+
+  &.civic-theme-light {
+    #{$root}__filter-text {
+      color: civic-color('primary');
+    }
+  }
+
+  &.civic-theme-dark {
+
+  }
+}

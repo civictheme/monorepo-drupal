@@ -24,6 +24,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '../dist/styles.css',
     }),
+    new MiniCssExtractPlugin({
+      filename: '../dist/ckeditor.css',
+    }),
     new CleanWebpackPlugin(),
   ],
   module: {
@@ -52,7 +55,14 @@ module.exports = {
             options: {
               // Inject path to assets so that it does not have to be provided
               // in variables.base.scss
-              additionalData: "$civic-assets-directory: '/themes/custom/civic_demo/dist/assets/';",
+              // additionalData: "$civic-assets-directory: '/themes/custom/civic_demo/dist/assets/';",
+              additionalData: (content, loaderContext) => {
+                // More information about available properties https://webpack.js.org/api/loaders/.
+                const { resourcePath, rootContext } = loaderContext;
+                const relativePath = path.relative(rootContext, resourcePath);
+                console.log(loaderContext);
+                return "$civic-assets-directory: '/themes/custom/civic_demo/dist/assets/'; .rg-wrapper {" + content + '}';
+              },
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),

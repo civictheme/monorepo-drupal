@@ -1,0 +1,21 @@
+.civic-large-filter {
+  $root: &;
+
+  &__filters {
+    display: inline-flex;
+    border: none;
+
+    legend {
+      display: block;
+      float: left;
+      margin-right: civic-space(5);
+
+      @include civic-typography('text-regular');
+    }
+
+    .civic-dropdown-filter {
+      margin-right: civic-space(3);
+    }
+  }
+
+}

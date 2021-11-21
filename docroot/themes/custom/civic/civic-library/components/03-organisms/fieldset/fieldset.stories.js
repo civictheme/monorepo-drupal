@@ -27,7 +27,8 @@ export const Fieldset = () => {
 
   const numOfElements = number(
     'Number of form elements',
-    1, {
+    1,
+    {
       range: true,
       min: 0,
       max: 10,

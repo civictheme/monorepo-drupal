@@ -27,6 +27,7 @@ export const FilterChip = (knobTab) => {
     is_multiple: boolean('Is multiple', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
+    is_selected: boolean('Is selected', false, generalKnobTab),
   };
 
   return CivicFilterChip({

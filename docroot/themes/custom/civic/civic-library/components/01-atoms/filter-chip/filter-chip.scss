@@ -9,7 +9,7 @@
 
   cursor: pointer;
   position: relative;
-  display: inline-block;
+  display: flex;
 
   #{$root}__field {
     position: absolute;
@@ -29,6 +29,22 @@
     border-radius: civic-space(3);
     padding: civic-space() civic-space(2);
     display: block;
+  }
+
+  #{$root}__deselect-button {
+    cursor: pointer;
+    margin-left: civic-space(3);
+    position: absolute;
+    top: civic-space(2);
+    right: civic-space(2);
+    background-color: transparent;
+    padding: 0;
+
+    @include civic-breakpoint(m) {
+      position: static;
+      align-self: center;
+      margin-left: auto;
+    }
   }
 
   &.civic-theme-light {

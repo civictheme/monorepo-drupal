@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Large Filter component.
+ *
+ * Display of Large Filter component.
+ *
+ * Variables:
+ * - theme: [string] Theme for large filter.
+ * - type: [string] Large filter type.
+ * - filter_text: [string] Card title.
+ * - filter_group: [string] Filter group name.
+ * - options_title: [string] Options title
+ * - options: [array] Array of form elements:
+ * - settings: [object] Filter settings
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type_class = type is empty ? 'civic-large-filter--%s'|format(type) : '' %}
+
+<div class="civic-large-filter" data-component-name="civic-large-filter">
+  <fieldset class="civic-large-filter__filters" data-large-filter-filters>
+    <legend>{{ filter_title|default('Filter search results by:') }}</legend>
+    {{ filters }}
+  </fieldset>
+    <div class="civic-large-filter__selected-filters" data-large-filter-tags>
+      {% if tags is not empty %}
+        <span class="civic-large-filter__selected-filters-title">{{ tags_title|default('Selected filters:') }}</span>
+        <ul class="civic-large-filter__tags">
+          {{ tags }}
+        </ul>
+      {% endif %}
+    </div>
+</div>
