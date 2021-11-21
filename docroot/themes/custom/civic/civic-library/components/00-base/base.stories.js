@@ -94,6 +94,7 @@ export const formElement = (inputType, options, theme, rand, itr) => {
     theme,
     type: inputType,
     label: Label({
+      theme,
       title: `Input title ${itr + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
       attributes: `for="form-element-${itr}"`,
       title_position: isCheckboxOrRadio ? 'after' : 'before',
@@ -127,7 +128,7 @@ export const formElement = (inputType, options, theme, rand, itr) => {
       formElementOptions.children.push(Checkbox(inputOptions));
       break;
     case 'select':
-      formElementOptions.children.push(Select(inputOptions));
+      formElementOptions.children.push(Select({ ...inputOptions, options: inputOptions.value }));
       break;
     default:
       formElementOptions.children.push(Input(inputOptions));
@@ -177,6 +178,7 @@ export const dropDownFilter = (filterType, numOfOptions, theme, rand, itr) => {
     options_title: Math.round(Math.random()) ? 'Options title (optional)' : '',
   };
   const children = [];
+  let count = itr * numOfOptions;
   for (let i = 1; i <= numOfOptions; i++) {
     const options = {
       required: false,
@@ -185,7 +187,7 @@ export const dropDownFilter = (filterType, numOfOptions, theme, rand, itr) => {
       value: randomString(getRandomInt(1, 8)),
     };
     options.attributes += filterType === 'radio' ? ` name="test_${itr}"` : ` name="${randomString(getRandomInt(3, 8))}"`;
-    children.push(formElement(filterType, options, theme, true, i));
+    children.push(formElement(filterType, options, theme, true, count++));
   }
 
   return DropdownFilter({

@@ -9,7 +9,24 @@
 
   cursor: pointer;
   position: relative;
-  display: flex;
+  display: inline-block;
+
+  &--selected {
+    #{$root}__selected-icon {
+      display: inline-block;
+    }
+  }
+
+  &__selected-icon {
+    display: none;
+
+    &::after {
+      content: '';
+      width: rem(24px);
+      height: rem(24px);
+      display: inherit;
+    }
+  }
 
   #{$root}__field {
     position: absolute;
@@ -19,36 +36,45 @@
     width: 0;
     height: 0;
 
-    &:focus + #{$root}__text {
+    &:focus + #{$root}__wrapper {
       @include civic-outline(1);
     }
   }
 
-  #{$root}__text {
+  #{$root}__wrapper {
     border: solid 1px transparent;
     border-radius: civic-space(3);
     padding: civic-space() civic-space(2);
-    display: block;
-  }
+    display: flex;
+    align-items: center;
 
-  #{$root}__deselect-button {
-    cursor: pointer;
-    margin-left: civic-space(3);
-    position: absolute;
-    top: civic-space(2);
-    right: civic-space(2);
-    background-color: transparent;
-    padding: 0;
+    &--button {
+      cursor: pointer;
 
-    @include civic-breakpoint(m) {
-      position: static;
-      align-self: center;
-      margin-left: auto;
+      &:focus {
+        @include civic-outline(1);
+      }
+
+      span {
+        pointer-events: none;
+      }
     }
   }
 
   &.civic-theme-light {
-    #{$root}__text {
+    &#{$root}--selected {
+      #{$root}__wrapper {
+        &--button {
+          #{$root}__selected-icon {
+            &::after {
+              background-image: civic-color-svg-fill($civic-filter-chip-selected-icon, $civic-filter-chip-light-selected-icon-color);
+            }
+          }
+        }
+      }
+    }
+
+    #{$root}__wrapper {
       color: $civic-filter-chip-light-color;
       border-color: $civic-filter-chip-light-border-color;
       background-color: $civic-filter-chip-light-background-color;
@@ -61,7 +87,7 @@
     }
 
     #{$root}__field {
-      &:checked + #{$root}__text {
+      &:checked + #{$root}__wrapper {
         &,
         &:focus {
           color: $civic-filter-chip-light-active-color;
@@ -79,7 +105,31 @@
   }
 
   &.civic-theme-dark {
-    #{$root}__text {
+    &#{$root}--selected {
+      #{$root}__wrapper {
+        &--button {
+          background-color: $civic-filter-chip-dark-selected-background-color;
+          border-color: $civic-filter-chip-dark-selected-border-color;
+          color: $civic-filter-chip-dark-selected-color;
+
+          &:hover {
+            #{$root}__selected-icon {
+              &::after {
+                background-image: civic-color-svg-fill($civic-filter-chip-selected-icon, $civic-filter-chip-dark-selected-icon-hover-color);
+              }
+            }
+          }
+
+          #{$root}__selected-icon {
+            &::after {
+              background-image: civic-color-svg-fill($civic-filter-chip-selected-icon, $civic-filter-chip-dark-selected-icon-color);
+            }
+          }
+        }
+      }
+    }
+
+    #{$root}__wrapper {
       color: $civic-filter-chip-dark-color;
       border-color: $civic-filter-chip-dark-border-color;
       background-color: $civic-filter-chip-dark-background-color;
@@ -93,7 +143,7 @@
     }
 
     #{$root}__field {
-      &:checked + #{$root}__text {
+      &:checked + #{$root}__wrapper {
         &,
         &:focus {
           color: $civic-filter-chip-dark-active-color;

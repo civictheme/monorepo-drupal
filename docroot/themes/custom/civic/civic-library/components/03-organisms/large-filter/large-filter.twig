@@ -7,29 +7,38 @@
  *
  * Variables:
  * - theme: [string] Theme for large filter.
- * - type: [string] Large filter type.
- * - filter_text: [string] Card title.
- * - filter_group: [string] Filter group name.
- * - options_title: [string] Options title
- * - options: [array] Array of form elements:
- * - settings: [object] Filter settings
+ * - filter_title: [string] Title for filters.
+ * - filters: [string] Filter HTML.
+ * - tags_title: [string] Selected tags title.
+ * - clear_text: [array] Text for clear button.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set type_class = type is empty ? 'civic-large-filter--%s'|format(type) : '' %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civic-large-filter" data-component-name="civic-large-filter">
-  <fieldset class="civic-large-filter__filters" data-large-filter-filters>
-    <legend>{{ filter_title|default('Filter search results by:') }}</legend>
-    {{ filters }}
-  </fieldset>
-    <div class="civic-large-filter__selected-filters" data-large-filter-tags>
-      {% if tags is not empty %}
-        <span class="civic-large-filter__selected-filters-title">{{ tags_title|default('Selected filters:') }}</span>
-        <ul class="civic-large-filter__tags">
-          {{ tags }}
-        </ul>
-      {% endif %}
+{% if filters is not empty %}
+  <div class="civic-large-filter {{ modifier_class }}" data-component-name="civic-large-filter" data-large-filter-theme="{{ theme }}">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <fieldset class="civic-large-filter__filters" data-large-filter-filters>
+            <legend>{{ filter_title|default('Filter search results by:') }}</legend>
+            {{ filters }}
+          </fieldset>
+          <div class="civic-large-filter__selected-filters civic-large-filter__selected-filters--hidden" data-large-filter-selected-filters>
+            <span id="civic-large-filter-tags-title" class="civic-large-filter__selected-filters-title">{{ tags_title|default('Selected filters:') }}</span>
+            <ul class="civic-large-filter__tags" aria-labelledby="civic-large-filter-tags-title" data-large-filter-tags></ul>
+            <button class="civic-large-filter__clear-all" data-large-filter-clear>
+              <span class="civic-large-filter__clear-all-label">{{ clear_text|default('Clear all') }}</span>
+              {% include '@atoms/icon/icon.twig' with {
+                symbol: 'userinterface_close_2',
+                color: 'error',
+              } only %}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+{% endif %}
