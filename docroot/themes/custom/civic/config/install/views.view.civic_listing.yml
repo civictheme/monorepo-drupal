@@ -171,9 +171,9 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              govcms_content_author: '0'
-              govcms_content_approver: '0'
-              govcms_site_administrator: '0'
+              civic_content_author: '0'
+              civic_content_approver: '0'
+              civic_site_administrator: '0'
               anonymous: '0'
             placeholder: ''
           is_grouped: false
@@ -216,9 +216,9 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              govcms_content_author: '0'
-              govcms_content_approver: '0'
-              govcms_site_administrator: '0'
+              civic_content_author: '0'
+              civic_content_approver: '0'
+              civic_site_administrator: '0'
               anonymous: '0'
             reduce: false
           is_grouped: false
@@ -265,9 +265,9 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              govcms_content_author: '0'
-              govcms_content_approver: '0'
-              govcms_site_administrator: '0'
+              civic_content_author: '0'
+              civic_content_approver: '0'
+              civic_site_administrator: '0'
               anonymous: '0'
             placeholder: ''
             min_placeholder: ''
@@ -312,9 +312,9 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              govcms_content_author: '0'
-              govcms_content_approver: '0'
-              govcms_site_administrator: '0'
+              civic_content_author: '0'
+              civic_content_approver: '0'
+              civic_site_administrator: '0'
               anonymous: '0'
             reduce: false
           is_grouped: false

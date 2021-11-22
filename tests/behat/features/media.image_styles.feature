@@ -5,7 +5,7 @@ Feature: Tests the civic image styles
 
   @api
   Scenario Outline: Image styles exist with fields.
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/config/media/image-styles/manage/<machine_name>"
     And the "Image style name" field should contain "<style>"
     And I should see <effect>
