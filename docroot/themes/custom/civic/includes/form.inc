@@ -62,6 +62,7 @@ function civic_preprocess_form_element_label(&$variables) {
  * Implements template_preprocess_fieldset().
  */
 function civic_preprocess_fieldset(&$variables) {
+  $is_radio_or_checkbox = false;
   $children = Element::children($variables['element']);
   // Fieldset's for radio checkbox form groups are have different typography
   // compared to field section fieldsets.
