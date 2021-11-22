@@ -27,6 +27,17 @@
     }
   }
 
+  &--button,
+  &--submit {
+    display: inline-block;
+    width: auto;
+    margin-left: civic-space(2);
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
   .civic-message {
     padding: civic-space();
     margin-bottom: civic-space();
