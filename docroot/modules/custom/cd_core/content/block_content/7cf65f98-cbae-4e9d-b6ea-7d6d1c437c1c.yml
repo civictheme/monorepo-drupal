@@ -45,4 +45,4 @@ default:
               format: rich_text
           field_c_p_theme:
             -
-              value: light
+              value: dark
