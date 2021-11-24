@@ -9,11 +9,11 @@
  * Variables:
  * - type: [string] Alert type: Info, Error, Warning, Success.
  * - theme: [string] Light, Dark.
+ * - id: [string] Alert id.
  * - title: [string] Alert title.
  * - description: [string] Alert summary.
  */
 #}
-
 {% set type = type|default('info') %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type_class = 'civic-alert--%s'|format(type, type) %}
@@ -27,7 +27,7 @@
   success: 'userinterface_approve',
 } %}
 
-<div class="civic-alert {{ modifier_class }}" data-component-name="civic-alert">
+<div class="civic-alert {{ modifier_class }}" data-alert-id="{{ id }}" data-alert-type="{{ type }}" data-component-name="civic-alert">
   <div class="container">
     <div class="row">
       <div class="civic-alert__title col-xs-12 col-m-3">

@@ -11,6 +11,15 @@ export default {
 export const Alert = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
+  const generateAlerts = (count, alertType) {
+    const alerts = [];
+    for(let i = 0; i < count; i++) {
+      alerts.push({
+
+      })
+    }
+  }
+
   const generalKnobs = {
     theme: radios(
       'Theme',

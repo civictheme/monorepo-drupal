@@ -35,55 +35,63 @@
       // Process the Close button of each alert.
       $('.civic-alerts .civic-alert__close-icon', context).click(function (event) {
         event.stopPropagation();
-        var alert_id = $(event.currentTarget).attr('data-alert-id');
-        $.cookie('civic_alert_hide_id_' + alert_id, true);
-        $('article[data-alert-id="' + alert_id + '"]').remove();
+        var alertId = $(event.currentTarget).attr('data-alert-id');
+        this.setAlertCookie(`civic_alert_hide_id_${alertId}`);
+        $('article[data-alert-id="' + alertId + '"]').remove();
       });
 
       // Loads the alerts for REST endpoint.
-      $('.civic-alerts:not(.civic-alerts--processed)', context).once('civic-alerts--load').each(function (index, element) {
-        var endpoint = $(element).attr('data-alert-endpoint');
-        if ((typeof endpoint == 'undefined') || !endpoint || endpoint.length === 0) {
-          endpoint = '/api/civic_alerts?_format=json';
-        }
-        $.getJSON(endpoint, function (response) {
-          if (response.length) {
-            var $placeholder = $(element);
-            $placeholder.html('').addClass('civic-alerts--processed');
-            for (var i = 0, len = response.length; i < len; i++) {
-              var alert_item = response[i];
-              var alert_id = response[i].alert_id;
-              // Skips the alert hidden by user session.
-              if (typeof $.cookie('civic_alert_hide_id_' + alert_id) !== 'undefined') {
-                continue;
-              }
-
-              // Determine page visibility for this alert.
-              if (!checkPageVisibility(alert_item.page_visibility)) {
-                // Path doesn't match, skip it.
-                continue;
-              }
-
-              // Build the alert.
-              var $alert = $('<article role="article" data-alert-id="' + alert_id + '"><div class="civic-alert__content"></div></article>');
-              // Set alert type and priority.
-              if ((typeof alert_item.alert_type !== 'undefined') && (alert_item.alert_type !== "")) {
-                $alert.attr('data-alert-type', alert_item.alert_type);
-              }
-
-              // Sets the message.
-              if (typeof alert_item.message !== 'undefined') {
-                var alert_message = $(alert_item.message);
-                alert_message.find('.civic-alert__close-icon').attr('data-alert-id', alert_id);
-                alert_message.appendTo($alert.find('.civic-alert__content'));
-              }
-              $alert.appendTo($placeholder);
-            }
-            Drupal.behaviors.AlertBannersRestBlock.attach(context, settings);
+      this.getAlerts();
+    },
+    hasCookie(cookie) {
+      return (document.cookie.split(';').some((item) => item.trim().startsWith(`${cookie}=`)));
+    },
+    setAlertCookie(cookie) {
+      if (!this.hasCookie(cookie)) {
+        document.cookie = `${cookie}=1`;
+      }
+    },
+    getAlerts(retry = false) {
+      const endpoint = '/api/civic_alerts?_format=json';
+      const request = new XMLHttpRequest();
+      request.open('Get', endpoint);
+      request.onreadystatechange = () => {
+        if (request.readyState === 4) {
+          if (request.status === 200) {
+            const response = JSON.parse(request.responseText);
+            this.setAlerts(response);
+            return;
           }
-        });
-      });
-    }
+          // If failed try again once.
+          if (retry === false) {
+            this.getAlerts(true);
+          }
+        }
+      };
+      request.send();
+    },
+    setAlerts(response) {
+      if (response.length) {
+        // var $placeholder = $(element);
+        // $placeholder.html('').addClass('civic-alerts--processed');
+        let alertHtml = '';
+        for (let i = 0, len = response.length; i < len; i++) {
+          const alertItem = response[i];
+          // Skips the alert hidden by user session.
+          if (this.hasCookie(`civic_alert_hide_id_${alertItem.alert_id}`)) {
+            continue;
+          }
+          // Determine page visibility for this alert.
+          if (!checkPageVisibility(alertItem.page_visibility)) {
+            // Path doesn't match, skip it.
+            continue;
+          }
+          alertHtml += alertItem.message;
+        }
+        // Build the alert.
+        document.querySelector('.civic-alerts').insertAdjacentHTML('beforeend', alertHtml);
+      }
+    },
   };
 
 })(jQuery, Drupal);
