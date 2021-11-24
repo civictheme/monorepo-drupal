@@ -15,6 +15,8 @@ function CivicPasswordIndicator(el) {
 
   this.el = el;
 
+  const themeClass = Array.from(this.el.classList).filter((item) => (item.indexOf('civic-theme') === 0)).pop();
+
   const group = el.getAttribute('data-password-indicator-group');
   this.elUsername = document.querySelector(`[data-password-indicator-username][data-password-indicator-group="${group}"]`);
   this.elConfirmPassword = document.querySelector(`[data-password-indicator-confirmation][data-password-indicator-group="${group}"]`);
@@ -22,6 +24,8 @@ function CivicPasswordIndicator(el) {
   // Create container to display password indicator.
   this.alert = document.createElement('div');
   this.alert.classList.add('civic-password-indicator');
+  this.alert.classList.add(themeClass || 'civic-theme-light');
+  this.alert.classList.add('civic-theme-light');
   this.alert.innerHTML = `
 <div class="civic-password-indicator__progress">
   <span class="civic-password-indicator__progress-bar"></span>
@@ -151,7 +155,7 @@ CivicPasswordIndicator.prototype.updatePassword = function (password, username, 
 
   // Clear any existing progress classes.
   this.alert.classList.forEach((item) => {
-    if (item !== 'civic-password-indicator') {
+    if (item.indexOf('civic-password-indicator--') === 0) {
       this.alert.classList.remove(item);
     }
   });
