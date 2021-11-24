@@ -86,7 +86,7 @@ default:
                   field_c_p_content:
                     -
                       value: "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\r\n"
-                      format: rich_text
+                      format: civic_rich_text
                   field_c_p_expand:
                     -
                       value: true
@@ -114,7 +114,7 @@ default:
                   field_c_p_content:
                     -
                       value: "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\r\n"
-                      format: rich_text
+                      format: civic_rich_text
                   field_c_p_expand:
                     -
                       value: false
@@ -142,7 +142,7 @@ default:
                   field_c_p_content:
                     -
                       value: "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\r\n"
-                      format: rich_text
+                      format: civic_rich_text
                   field_c_p_expand:
                     -
                       value: true

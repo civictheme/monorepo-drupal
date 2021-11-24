@@ -42,7 +42,7 @@ default:
           field_c_p_content:
             -
               value: "<p>© Commonwealth of Australia</p>\r\n"
-              format: rich_text
+              format: civic_rich_text
           field_c_p_theme:
             -
               value: dark

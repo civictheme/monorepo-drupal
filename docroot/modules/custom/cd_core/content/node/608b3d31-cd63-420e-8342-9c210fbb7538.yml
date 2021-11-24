@@ -39,7 +39,7 @@ default:
   field_c_n_body:
     -
       value: "<p>Nulla tincidunt facilisis risus vel volutpat. Vestibulum consectetur nulla quis nibh dapibus elementum. Maecenas mattis accumsan est quis pellentesque. Curabitur aliquet sit amet tellus et aliquam. Duis varius felis ligula, et laoreet ex dictum et. Sed tristique nisi eu diam aliquam facilisis. Aenean porta, tortor quis vestibulum pulvinar, dolor quam maximus enim, id sodales ligula sem ac eros. Donec vel mi nec est vestibulum egestas. Duis nunc magna, dignissim ac lobortis in, volutpat in massa. Aenean tellus diam, pellentesque ac metus ornare, luctus gravida metus. Quisque bibendum arcu sed lacus consequat, sit amet consectetur neque lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque eu nisl rhoncus, mattis orci et, tincidunt massa. Integer ligula erat, molestie commodo leo eu, iaculis posuere lacus. Mauris imperdiet dictum odio, at commodo justo mollis ac.</p>\r\n"
-      format: rich_text
+      format: civic_rich_text
   field_c_n_date:
     -
       value: '2021-10-15T02:27:55'
