@@ -5,6 +5,7 @@
  * Form alterations.
  */
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\AttributeArray;
 
@@ -38,6 +39,32 @@ function civic_preprocess_select(&$variables) {
  * Implements template_preprocess_form_element().
  */
 function civic_preprocess_form_element(&$variables) {
+  // Add missing core Drupal form element classes that are added in template
+  // file.
+  $variables['attributes']['class'][] = 'form-item';
+  $variables['attributes']['class'][] = 'js-form-item';
+
+  if (!empty($variables['type'])) {
+    $variables['attributes']['class'][] = 'form-type-' . Html::getClass($variables['type']);
+    $variables['attributes']['class'][] = 'js-form-type-' . Html::getClass($variables['type']);
+  }
+
+  if (!empty($variables['name'])) {
+    $variables['attributes']['class'][] = 'form-item-' . Html::getClass($variables['name']);
+    $variables['attributes']['class'][] = 'js-form-item-' . Html::getClass($variables['name']);
+  }
+
+  if (!empty($variables['errors'])) {
+    $variables['attributes']['class'][] = 'form-item--error';
+  }
+
+  if (isset($variables['description'])) {
+    if (empty($variables['description']['attributes'])) {
+      $variables['description']['attributes'] = new Attribute();
+    }
+    $variables['description']['attributes']->addClass('description');
+  }
+
   if (isset($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
     unset($variables['attributes']['class']);
@@ -52,6 +79,11 @@ function civic_preprocess_form_element(&$variables) {
  * Implements template_preprocess_form_element_label().
  */
 function civic_preprocess_form_element_label(&$variables) {
+  // Adding in core template classes.
+  if (!empty($variables['required'])) {
+    $variables['attributes']['class'][] = 'js-form-required';
+    $variables['attributes']['class'][] = 'form-required';
+  }
   if (isset($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
     unset($variables['attributes']['class']);
@@ -62,7 +94,14 @@ function civic_preprocess_form_element_label(&$variables) {
  * Implements template_preprocess_fieldset().
  */
 function civic_preprocess_fieldset(&$variables) {
-  $is_radio_or_checkbox = FALSE;
+  // Add core drupal form classes.
+  $variables['attributes']['class'] = $variables['attributes']['class'] ?? [];
+  $variables['attributes']['class'] = array_merge($variables['attributes']['class'], [
+    'js-form-item',
+    'form-item',
+    'js-form-wrapper',
+    'form-wrapper',
+  ]);
   $children = Element::children($variables['element']);
   // Fieldset's for radio checkbox form groups are have different typography
   // compared to field section fieldsets.
