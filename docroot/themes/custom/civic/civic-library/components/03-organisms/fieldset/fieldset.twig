@@ -1,0 +1,32 @@
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set form_element_type_class = 'civic-form-element--%s'|format(type|default('default')) %}
+{% set form_element_name_class = name is not empty ? 'civic-form-element--%s'|format(name) : '' %}
+{% set required_class = required ? 'civic-form-element--form-required' : '' %}
+{% set label_required_class = required ? 'civic-label--required': '' %}
+{% set error_class = errors ? 'civic-form-element--error' : '' %}
+{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, form_element_type_class, form_element_name_class, required_class, error_class, modifier_class|default('')) %}
+
+<fieldset class="civic-fieldset civic-form-element {{ modifier_class }}" {{ attributes }}>
+  <legend class="civic-label {{ legend_modifier_class }} {{ label_required_class }}" {{ legend.attributes }}>
+    <span{{ legend_span_attributes }}>{{ legend }}</span>
+  </legend>
+  <div class="civic-fieldset__wrapper">
+    {% if description %}
+      <div class="description {{ description_modifier_class }}" {{ description_attributes }}>{{ description }}</div>
+    {% endif %}
+    {% if errors %}
+      <div>
+        {{ errors }}
+      </div>
+    {% endif %}
+    {% if prefix %}
+      <span class="civic-fieldset__prefix">{{ prefix }}</span>
+    {% endif %}
+    {% block children %}
+      {{ children }}
+    {% endblock %}
+    {% if suffix %}
+      <span class="civic-fieldset__suffix">{{ suffix }}</span>
+    {% endif %}
+  </div>
+</fieldset>

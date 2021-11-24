@@ -37,6 +37,7 @@ export const Video = (knobTab) => {
       new_window: boolean('Share link opens in new window', true, generalKnobTab),
       is_external: boolean('Share link - is external', true, generalKnobTab),
     },
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   return CivicVideo({

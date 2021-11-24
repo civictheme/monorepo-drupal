@@ -16,7 +16,7 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type_class = image is empty ? 'civic-subject-card--no-image' : '' %}
-{% set modifier_class = '%s %s'|format(theme_class, type_class) %}
+{% set modifier_class = '%s %s'|format(theme_class, type_class, modifier_class|default('')) %}
 
 <div class="civic-subject-card {{ modifier_class }}">
   <div class="civic-subject-card__image-wrapper">

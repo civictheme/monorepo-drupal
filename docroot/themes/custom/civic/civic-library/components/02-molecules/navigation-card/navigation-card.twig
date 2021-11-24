@@ -22,7 +22,7 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set size = size|default('large') %}
 {% set size_class = size == 'large'?'civic-navigation-card--large' : 'civic-navigation-card--small' %}
-{% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
 
 <div class="civic-navigation-card {{ modifier_class }}">
   {% if image.src is not empty %}
@@ -49,6 +49,7 @@
           symbol: icon,
           size: 'large',
           color: 'primary',
+          modifier_class: 'civic-navigation-card__icon',
         } only %}
       </div>
     {% endif %}
@@ -63,7 +64,8 @@
           <span>
             {% include '@atoms/icon/icon.twig' with {
               symbol: 'arrows_rightarrow_3',
-              color: 'primary'
+              color: 'primary',
+              modifier_class: 'civic-navigation-card__icon--arrow',
             } only %}
           </span>
         </a>

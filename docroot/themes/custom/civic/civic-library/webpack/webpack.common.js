@@ -10,6 +10,7 @@ module.exports = {
     const entries = glob.sync(pattern);
     // Add explicitly imported (S)CSS entries from css.js.
     entries.push(path.resolve(__dirname, 'css.js'));
+    entries.push(path.resolve(__dirname, 'assets.js'));
     return entries;
   }('../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js')),
   output: {
@@ -46,6 +47,9 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
+              // Inject path to assets so that it does not have to be provided
+              // in variables.base.scss
+              additionalData: "$civic-assets-directory: './assets/';",
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),
@@ -53,6 +57,18 @@ module.exports = {
             },
           },
         ],
+      },
+      // Load all assets files to be available for distributions and Storybook.
+      {
+        test: /\.(jpe?g|png|svg|ico|woff|woff2|ttf|eot)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            // Preserve relative path.
+            outputPath: (url, resourcePath, context) => path.relative(context, resourcePath),
+          },
+        },
       },
       // Twig loader.
       {

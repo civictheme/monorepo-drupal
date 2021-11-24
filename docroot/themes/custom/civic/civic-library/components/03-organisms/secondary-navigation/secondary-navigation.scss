@@ -52,7 +52,7 @@
       border-bottom-left-radius: $civic-secondary-navigation-dropdown-border-radius;
       border-bottom-right-radius: $civic-secondary-navigation-dropdown-border-radius;
 
-      @include civic-box-shadow();
+      @include civic-elevation(4);
 
       .civic-menu__sub-menu {
         margin-left: civic-space(2);

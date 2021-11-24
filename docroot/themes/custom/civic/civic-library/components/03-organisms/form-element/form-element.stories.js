@@ -2,27 +2,18 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicFormElement from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
 import Select from '../../01-atoms/select/select.twig';
+import Checkbox from '../../01-atoms/checkbox/checkbox.twig';
+import Radio from '../../01-atoms/radio/radio.twig';
 import CivicLabel from '../../01-atoms/label/label.twig';
 
 export default {
-  title: 'Organisms/Form Element',
-  parameters: {
-    layout: 'centered',
-  },
+  title: 'Organisms/Form/Form Element',
 };
 
 export const FormElement = () => {
   const generalKnobTab = 'General';
-
-  const inputField = radios(
-    'Type',
-    {
-      Input: 'input',
-      Select: 'select',
-    },
-    'input',
-    generalKnobTab,
-  );
+  const inputKnobTab = 'Input';
+  const radioKnobTab = 'General';
 
   const theme = radios(
     'Theme',
@@ -34,9 +25,29 @@ export const FormElement = () => {
     generalKnobTab,
   );
 
+  const inputType = radios(
+    'Type',
+    {
+      Text: 'text',
+      Textarea: 'textarea',
+      Email: 'email',
+      Tel: 'tel',
+      Password: 'password',
+      Select: 'select',
+      Radio: 'radio',
+      Checkbox: 'checkbox',
+    },
+    'text',
+    generalKnobTab,
+  );
+
+  // We don't allow before and after label for radio or checkbox it is always
+  // after.
+  const isRadioOrCheckbox = inputType === 'radio' || inputType === 'checkbox';
+
   const generalKnobs = {
     theme,
-    label_display: radios(
+    label_display: isRadioOrCheckbox ? 'after' : radios(
       'Label position',
       {
         Before: 'before',
@@ -45,8 +56,8 @@ export const FormElement = () => {
       'before',
       generalKnobTab,
     ),
-    description_display: radios(
-      'description position',
+    description_display: isRadioOrCheckbox ? 'after' : radios(
+      'Description position',
       {
         Before: 'before',
         After: 'after',
@@ -63,36 +74,23 @@ export const FormElement = () => {
     required: boolean('Required', false, generalKnobTab),
   };
 
-  const inputKnobTab = 'Input';
+  const states = {
+    None: 'default',
+    Error: 'error',
+    Success: 'success',
+  };
 
   const inputKnobs = {
     theme,
-    type: radios(
-      'Type',
-      {
-        Text: 'text',
-        Textarea: 'textarea',
-        Email: 'email',
-        Tel: 'tel',
-        Password: 'password',
-        Radio: 'radio',
-        Checkbox: 'checkbox',
-      },
-      'text',
-      inputKnobTab,
-    ),
     value: text('Value', 'Civic input', inputKnobTab),
     placeholder: text('Placeholder', 'Civic input', inputKnobTab),
     state: radios(
       'State',
-      {
-        None: 'default',
-        Error: 'error',
-        Success: 'success',
-      },
+      states,
       'default',
       inputKnobTab,
     ),
+    attributes: `id="input-${inputType}"`,
     disabled: boolean('Disabled', false, inputKnobTab),
     required: generalKnobs.required,
   };
@@ -101,20 +99,41 @@ export const FormElement = () => {
     theme,
     state: radios(
       'State',
-      {
-        None: 'default',
-        Error: 'error',
-        Success: 'success',
-      },
+      states,
       'default',
       inputKnobTab,
     ),
+    attributes: `id="input-${inputType}"`,
     options: [
       { type: 'option', value: 'option1', label: 'Option 1' },
       { type: 'option', value: 'option2', label: 'Option 2' },
       { type: 'option', value: 'option3', label: 'Option 3' },
       { type: 'option', value: 'option4', label: 'Option 4' },
     ],
+  };
+
+  const radioKnobs = {
+    theme,
+    state: radios(
+      'State',
+      states,
+      'default',
+      radioKnobTab,
+    ),
+    attributes: `id="input-${inputType}"`,
+    required: generalKnobs.required,
+  };
+
+  const checkboxKnobs = {
+    theme,
+    state: radios(
+      'State',
+      states,
+      'default',
+      radioKnobTab,
+    ),
+    attributes: `id="input-${inputType}"`,
+    required: generalKnobs.required,
   };
 
   const labelKnobTab = 'Label';
@@ -130,23 +149,37 @@ export const FormElement = () => {
       'before',
       labelKnobTab,
     ),
+    attributes: `for="input-${inputType}"`,
     required: generalKnobs.required,
   };
 
   const children = [];
-  if (inputField === 'input') {
-    children.push(Input(inputKnobs));
-  }
 
-  if (inputField === 'select') {
-    children.push(Select(selectKnobs));
+  switch (inputType) {
+    case 'radio':
+      children.push(Radio(radioKnobs));
+      break;
+    case 'checkbox':
+      children.push(Checkbox(checkboxKnobs));
+      break;
+    case 'select':
+      children.push(Select(selectKnobs));
+      break;
+    default:
+      children.push(Input({
+        ...inputKnobs,
+        type: inputType,
+      }));
   }
 
   const label = [CivicLabel(labelKnobs)];
 
-  return CivicFormElement({
+  const html = CivicFormElement({
     ...generalKnobs,
+    type: inputType,
     label,
     children,
   });
+
+  return `<div class="container"><div class="row"><div class="col-xs-12">${html}</div></div></div>`;
 };

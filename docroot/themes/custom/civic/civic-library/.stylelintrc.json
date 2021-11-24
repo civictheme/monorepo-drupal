@@ -20,7 +20,8 @@
           "mixin",
           "return",
           "use",
-          "warn"
+          "warn",
+          "while"
         ]
       }
     ],

@@ -34,7 +34,7 @@
   {% endfor %}
 
   <div class="civic-primary-navigation {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
-    {% include '@molecules/menu/menu.twig' with {
+    {% include '@base/menu/menu.twig' with {
       theme: theme,
       items: items,
       modifier_class: 'civic-primary-navigation__menu',

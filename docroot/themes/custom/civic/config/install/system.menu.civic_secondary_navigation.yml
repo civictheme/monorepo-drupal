@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: civic_secondary_navigation
-label: 'Civic Secondary Navigation'
-description: 'Secondary Navigation menu provided by Civic.'
-locked: false

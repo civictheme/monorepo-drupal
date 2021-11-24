@@ -1,10 +1,6 @@
 import { radios, text } from '@storybook/addon-knobs';
 
 import CivicLogo from './logo.twig';
-import logoDesktopLight from '../../../assets/logo-desktop-light.png';
-import logoDesktopDark from '../../../assets/logo-desktop-dark.png';
-import logoMobileLight from '../../../assets/logo-mobile-light.png';
-import logoMobileDark from '../../../assets/logo-mobile-dark.png';
 
 export default {
   title: 'Atoms/Logo',
@@ -21,20 +17,20 @@ export const Logo = (knobTab) => {
       Light: 'light',
       Dark: 'dark',
     }, 'light', generalKnobTab),
+    logos: {},
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   generalKnobs.logos = {
     mobile: {
-      src: generalKnobs.theme === 'light' ? logoMobileDark : logoMobileLight,
+      src: LOGOS.mobile[generalKnobs.theme],
       alt: 'Logo mobile alt text',
     },
     desktop: {
-      src: generalKnobs.theme === 'light' ? logoDesktopDark : logoDesktopLight,
+      src: LOGOS.desktop[generalKnobs.theme],
       alt: 'Logo desktop alt text',
     },
   };
-
-  generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
 
   const html = CivicLogo({
     ...generalKnobs,

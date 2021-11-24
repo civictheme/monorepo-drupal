@@ -1,0 +1,21 @@
+//
+// Image mixins.
+//
+
+//
+// Fit image into parent object.
+//
+@mixin civic-image-fit($self: false) {
+  @if $self {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  @else {
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}

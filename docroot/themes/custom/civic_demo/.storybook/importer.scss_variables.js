@@ -4,53 +4,119 @@
 const fs = require('fs');
 
 const importedFiles = [
-  './components-combined/00-base/_variables.scss',
-  './components-combined/variables.scss',
+  './components-combined/00-base/_variables.base.scss',
+  './components-combined/variables.base.scss',
+  './components-combined/00-base/_variables.components.scss',
+  './components-combined/variables.components.scss',
 ];
 
 function removeComments(string) {
   let lines = string.split(/\r?\n/);
-  lines = lines.filter((line) => line.indexOf('//') !== 0);
+  lines = lines.filter((line) => !/\s*\/\/[^\n]*/.test(line));
   return lines.join('\n');
 }
 
-function getSassVariablesFromGroup(group) {
-  const vars = [];
+function getSassVariablesFromValueMap(string, maxLevel) {
+  maxLevel = maxLevel || 1;
 
-  const re = new RegExp('\'[a-z-_0-9]+\'', 'gi');
+  const tokens = [];
+  let braces = 0;
+  let quotes = 0;
 
-  let match = re.exec(group);
-  while (match !== null) {
-    vars.push(match[0].replace(/[':]/gi, ''));
-    match = re.exec(group);
+  string = string.trim();
+  if (string.substring(0, 1) === '(' && (string.substring(string.length - 1) === ')' || string.substring(string.length - 2) === ');')) {
+    string = string.substring(1);
+    string = string.substring(string.length - 1) === ')' ? string.substring(0, string.length - 1) : string.substring(0, string.length - 2);
+  }
+
+  // Validate structures.
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === '(') {
+      braces++;
+    } else if (string[i] === ')') {
+      braces--;
+    } else if (string[i] === "'") {
+      quotes++;
+    }
+  }
+
+  if (braces !== 0) {
+    throw new Error('Missing paired parenthesis.');
+  }
+
+  if (quotes % 2 !== 0) {
+    throw new Error('Missing closing quotes.');
+  }
+
+  let token = '';
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === '(') {
+      braces++;
+    } else if (string[i] === ')') {
+      braces--;
+    } else if (string[i] === "'") {
+      quotes++;
+    } else if (quotes > 0) {
+      if (quotes % 2 === 1) {
+        if (braces < maxLevel) {
+          token += string[i];
+        }
+      } else if (braces < maxLevel) {
+        tokens.push(token);
+        token = '';
+        quotes = 0;
+      }
+    }
+  }
+
+  return tokens.filter((value) => value || false);
+}
+
+function getSassVariablesFromValue(value) {
+  let vars = [];
+
+  if (value.indexOf('(') !== -1) {
+    vars = getSassVariablesFromValueMap(value);
+  } else {
+    const re = new RegExp('\'[a-z-_0-9]+\'', 'gi');
+
+    let match = re.exec(value);
+    while (match !== null) {
+      vars.push(match[0].replace(/[':]/gi, ''));
+      match = re.exec(value);
+    }
   }
 
   return vars;
 }
 
 function getVariablesFromFile(file) {
-  const allGroups = {};
+  const allValues = {};
 
   let importedFile = fs.readFileSync(file, { encoding: 'utf8' });
 
   importedFile = removeComments(importedFile);
 
-  const groups = importedFile.split(/;(?=(?:[^"']*['"][^"']*['"])*[^"']*$)/gi);
+  const values = importedFile.split(/;(?=(?:[^"']*['"][^"']*['"])*[^"']*$)/gi);
 
-  // Extract variables from every group.
-  groups.forEach((group) => {
-    const re = new RegExp('(\\$[a-z-]+:)', 'gim');
-    const match = re.exec(group);
+  // Extract variables from every value expression.
+  values.forEach((value) => {
+    const re = new RegExp('(\\$[a-z-_][a-z-_0-9]+:)', 'gim');
+    const match = re.exec(value);
     if (match) {
       const name = match[0].replace(/[$:]/gi, '');
-      let strippedGroup = group.replace(/\$[a-z-]+:/gi, '');
-      strippedGroup = strippedGroup.replace(/\(.+?\)/gi, '');
-      strippedGroup = strippedGroup.replace(/:\s\([\s\S\n\r]+?\)/gi, '');
-      allGroups[name] = getSassVariablesFromGroup(strippedGroup);
+      let valueStripped = value;
+      valueStripped = valueStripped.trim();
+      // Remove name.
+      valueStripped = valueStripped.replace(/\$[a-z-]+:/gi, '');
+      // Remove new lines and double spaces.
+      valueStripped = valueStripped.replace(/[\n\r]/gi, '');
+      valueStripped = valueStripped.replace(/[\s]{2,}/gi, ' ');
+      allValues[name] = getSassVariablesFromValue(valueStripped);
     }
   });
 
-  return allGroups;
+  return allValues;
 }
 
 function getVariables() {

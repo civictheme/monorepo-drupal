@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.civic_primary_navigation
+    - system.menu.civic-primary-navigation
   module:
     - menu_block
   theme:
@@ -12,9 +12,9 @@ theme: civic
 region: header_middle_3
 weight: -7
 provider: null
-plugin: 'menu_block:civic_primary_navigation'
+plugin: 'menu_block:civic-primary-navigation'
 settings:
-  id: 'menu_block:civic_primary_navigation'
+  id: 'menu_block:civic-primary-navigation'
   label: 'Civic Primary Navigation'
   provider: menu_block
   label_display: '0'
@@ -23,8 +23,8 @@ settings:
   level: 1
   depth: 3
   expand_all_items: true
-  parent: 'civic_primary_navigation:'
-  suggestion: civic_primary_navigation
+  parent: 'civic-primary-navigation:'
+  suggestion: civic-primary-navigation
   label_type: block
   label_link: false
 visibility: {  }

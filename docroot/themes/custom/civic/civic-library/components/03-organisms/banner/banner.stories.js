@@ -1,9 +1,8 @@
 import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
-import { getSlots } from '../../00-base/base.stories';
+import { demoImage, getSlots } from '../../00-base/base.stories';
 import CivicBannerExample from './banner.stories.twig';
-import imageFile from '../../../assets/image.png';
 
 export default {
   title: 'Organisms/Banner',
@@ -30,7 +29,7 @@ export const Banner = (knobTab) => {
     title: text('Title', 'Providing visually engaging digital experiences', generalKnobTab),
     background_image: BACKGROUNDS[theme][select('Background', Object.keys(BACKGROUNDS[theme]), Object.keys(BACKGROUNDS[theme])[0], generalKnobTab)],
     featured_image: boolean('With featured image', true, generalKnobTab) ? {
-      src: imageFile,
+      src: demoImage(),
       alt: 'Featured image alt',
     } : null,
     decorative: boolean('Decorative', true, generalKnobTab),

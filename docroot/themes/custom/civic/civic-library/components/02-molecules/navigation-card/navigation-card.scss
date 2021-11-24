@@ -7,9 +7,11 @@
 
   position: relative;
   border-radius: $civic-navigation-card-border-radius;
+
+  // Prevent image from "spilling" over the border radius.
   overflow: hidden;
 
-  @include civic-box-shadow();
+  @include civic-elevation(3);
 
   &:focus-within {
     @include civic-outline();
@@ -18,11 +20,7 @@
   #{$root}__image-wrapper {
     position: relative;
 
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
+    @include civic-image-fit();
   }
 
   #{$root}__content {
@@ -36,27 +34,12 @@
   }
 
   #{$root}__title-link {
-    text-decoration: none;
+    @include civic-link-decoration ();
+    @include civic-link-no-outline ();
+    @include civic-link-cover-parent ();
+
     display: flex;
     justify-content: space-between;
-
-    &:hover,
-    &:active {
-      text-decoration: underline;
-    }
-
-    &:focus {
-      outline: 0;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
   }
 
   #{$root}__icon {
@@ -104,19 +87,19 @@
     }
 
     #{$root}__title-link {
-      color: $civic-navigation-card-light-heading-color;
-
-      &:hover {
-        color: $civic-navigation-card-light-hover-color;
-      }
-
-      &:active {
-        color: $civic-navigation-card-light-heading-active-color;
-      }
+      @include civic-link-colors($civic-navigation-card-light-heading-color, $civic-navigation-card-light-heading-hover-color, $active: $civic-navigation-card-light-heading-active-color);
     }
 
     #{$root}__summary {
       color: $civic-navigation-card-light-color;
+    }
+
+    #{$root}__icon {
+      @include civic-icon-fill-color($civic-navigation-card-light-icon-color, true);
+    }
+
+    #{$root}__icon--arrow {
+      @include civic-icon-fill-color($civic-navigation-card-light-icon-arrow-color, true);
     }
   }
 
@@ -132,19 +115,19 @@
     }
 
     #{$root}__title-link {
-      color: $civic-navigation-card-dark-heading-color;
-
-      &:hover {
-        color: $civic-navigation-card-dark-color-accent;
-      }
-
-      &:active {
-        color: $civic-navigation-card-dark-heading-active-color;
-      }
+      @include civic-link-colors($civic-navigation-card-dark-heading-color, $civic-navigation-card-dark-heading-hover-color, $active: $civic-navigation-card-dark-heading-active-color);
     }
 
     #{$root}__summary {
       color: $civic-navigation-card-dark-color;
+    }
+
+    #{$root}__icon {
+      @include civic-icon-fill-color($civic-navigation-card-dark-icon-color, true);
+    }
+
+    #{$root}__icon--arrow {
+      @include civic-icon-fill-color($civic-navigation-card-dark-icon-arrow-color, true);
     }
   }
 }

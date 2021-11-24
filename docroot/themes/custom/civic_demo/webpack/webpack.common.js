@@ -13,7 +13,7 @@ module.exports = {
     // Add explicitly imported entries from the current theme.
     entries.push(path.resolve(__dirname, 'theme_js.js'));
     entries.push(path.resolve(__dirname, 'theme_css.js'));
-    entries.push(path.resolve(__dirname, 'fonts.js'));
+    entries.push(path.resolve(__dirname, 'assets.js'));
     return entries;
   }(path.resolve(__dirname, '../components-combined/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
   output: {
@@ -50,6 +50,9 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
+              // Inject path to assets so that it does not have to be provided
+              // in variables.base.scss
+              additionalData: "$civic-assets-directory: '/themes/custom/civic_demo/dist/assets/';",
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),
@@ -58,14 +61,15 @@ module.exports = {
           },
         ],
       },
-      // File loader (for fonts).
+      // Load all assets files to be available for distributions and Storybook.
       {
-        test: /\.(woff|woff2)$/,
+        test: /\.(jpe?g|png|svg|ico|woff|woff2|ttf|eot)$/,
         use: {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            outputPath: 'static/fonts',
+            // Preserve relative path.
+            outputPath: (url, resourcePath, context) => path.relative(context, resourcePath),
           },
         },
       },

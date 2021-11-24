@@ -9,7 +9,7 @@
   border-radius: $civic-publication-card-border-radius;
   overflow: hidden;
 
-  @include civic-box-shadow();
+  @include civic-elevation(3);
 
   &:focus-within {
     @include civic-outline();
@@ -18,11 +18,7 @@
   #{$root}__image-wrapper {
     position: relative;
 
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
+    @include civic-image-fit();
   }
 
   #{$root}__content {
@@ -36,27 +32,12 @@
   }
 
   #{$root}__title-link {
-    text-decoration: none;
+    @include civic-link-decoration();
+    @include civic-link-no-outline();
+    @include civic-link-cover-parent();
+
     display: flex;
     justify-content: space-between;
-
-    &:hover,
-    &:active {
-      text-decoration: underline;
-    }
-
-    &:focus {
-      outline: 0;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
   }
 
   #{$root}__icon {
@@ -70,12 +51,10 @@
   }
 
   #{$root}__attachment-link {
-    margin-top: rem(16px);
+    margin-top: civic-space(2);
 
     .civic-link--attachment {
       @include civic-typography('label-regular');
-
-      letter-spacing: -0.1px;
     }
   }
 
@@ -99,20 +78,17 @@
       @include civic-outline(false);
     }
 
+    #{$root}__icon {
+      @include civic-icon-fill-color($civic-publication-card-light-icon-color);
+    }
+
     #{$root}__title {
       color: $civic-publication-card-light-heading-color;
     }
 
     #{$root}__title-link {
-      color: $civic-publication-card-light-heading-color;
-
-      &:hover {
-        color: $civic-publication-card-light-hover-color;
-      }
-
-      &:active {
-        color: $civic-publication-card-light-heading-active-color;
-      }
+      @include civic-link-colors($civic-publication-card-light-heading-color, $civic-publication-card-light-heading-hover-color, $active: $civic-publication-card-light-heading-active-color);
+      @include civic-icon-fill-color($civic-publication-card-light-attachment-icon-color);
     }
 
     #{$root}__summary {
@@ -121,7 +97,7 @@
 
     #{$root}__attachment-link {
       .civic-link--attachment {
-        color: $civic-publication-card-light-attachment-color;
+        @include civic-link-colors($civic-publication-card-light-attachment-link-color);
       }
     }
   }
@@ -133,24 +109,17 @@
       @include civic-outline(true);
     }
 
+    #{$root}__icon {
+      @include civic-icon-fill-color($civic-publication-card-dark-icon-color);
+    }
+
     #{$root}__title {
       color: $civic-publication-card-dark-heading-color;
     }
 
     #{$root}__title-link {
-      color: $civic-publication-card-dark-heading-color;
-
-      &:hover {
-        color: $civic-publication-card-dark-color-accent;
-      }
-
-      &:active {
-        color: $civic-publication-card-dark-heading-active-color;
-      }
-
-      .civic-icon {
-        fill: $civic-publication-card-dark-color-accent;
-      }
+      @include civic-link-colors($civic-publication-card-dark-heading-color, $civic-publication-card-dark-heading-hover-color, $active: $civic-publication-card-dark-heading-active-color);
+      @include civic-icon-fill-color($civic-publication-card-dark-attachment-icon-color);
     }
 
     #{$root}__summary {
@@ -159,7 +128,7 @@
 
     #{$root}__attachment-link {
       .civic-link--attachment {
-        color: $civic-publication-card-dark-attachment-color;
+        @include civic-link-colors($civic-publication-card-dark-heading-color);
       }
     }
   }

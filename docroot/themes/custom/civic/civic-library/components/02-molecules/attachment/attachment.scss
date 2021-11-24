@@ -150,7 +150,7 @@
   &.civic-theme-light {
     .civic-attachment {
       &__title {
-        color: $civic-attachment-light-heading-color;
+        color: $civic-attachment-light-title-color;
       }
 
       &__links {
@@ -178,7 +178,7 @@
       }
 
       &__title {
-        color: $civic-attachment-dark-heading-color;
+        color: $civic-attachment-dark-title-color;
       }
 
       &__links {

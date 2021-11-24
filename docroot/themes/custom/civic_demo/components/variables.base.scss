@@ -1,0 +1,86 @@
+//
+// Custom base variables overrides.
+//
+// Civic variables can be found in components/00-base/_variables.base.scss
+//
+// Variables values in this file cannot be based on any variables
+// in _variables.base.scss
+//
+// stylelint-disable scss/dollar-variable-pattern
+
+// Define custom font.
+$civic-fonts: (
+  'tertiary': (
+    'family': 'Roboto, sans-serif',
+    'types': (
+      (
+        'uri': (
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Regular.ttf',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Regular.woff',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Regular.eot',
+        ),
+      ),
+      (
+        'italic': true,
+        'uri': (
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Italic.ttf',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Italic.woff',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Italic.eot',
+        ),
+      ),
+      (
+        'weight': 'bold',
+        'uri': (
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Bold.ttf',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Bold.woff',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Bold.eot',
+        ),
+      ),
+      (
+        'italic': true,
+        'weight': 'bold',
+        'uri': (
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-BoldItalic.ttf',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-BoldItalic.woff',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-BoldItalic.eot',
+        ),
+      ),
+      (
+        'weight': 300,
+        'uri': (
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Thin.ttf',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Thin.woff',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Thin.eot',
+        ),
+      ),
+      (
+        'weight': 700,
+        'uri': (
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Black.ttf',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Black.woff',
+          '#{$civic-assets-directory}fonts/Roboto/Roboto-Black.eot',
+        ),
+      ),
+    ),
+  ),
+  'quartary': (
+    'family': '"Dancing Script", serif',
+    'types': (
+      (
+        'uri': (
+          '#{$civic-assets-directory}fonts/DancingScript/DancingScript-Regular.ttf',
+          '#{$civic-assets-directory}fonts/DancingScript/DancingScript-Regular.woff',
+          '#{$civic-assets-directory}fonts/DancingScript/DancingScript-Regular.woff2',
+        ),
+      ),
+    ),
+  ),
+);
+$civic-colors: (
+  // Override palette color.
+  'success': green,
+  // Define custom colors.
+  'custom1': red,
+  'custom2': orange,
+  'custom3': blue,
+);

@@ -3,33 +3,33 @@
 //
 
 .civic-form-element {
-  margin-bottom: civic-space(2);
-
   @include civic-typography('text-regular');
 
-  &--radio {
-    margin-bottom: civic-space();
+  margin-bottom: civic-space(2);
+  width: 100%;
 
-    .civic-label {
-      margin-bottom: 0;
-    }
+  &:last-child {
+    margin-bottom: 0;
   }
 
+  &--radio,
   &--checkbox {
-    margin-bottom: civic-space();
+    display: flex;
+    flex-wrap: wrap;
 
-    .civic-label {
-      margin-bottom: 0;
+    .civic-form-element__description {
+      width: 100%;
+      padding-left: civic-space(4);
     }
-  }
 
-  .civic-input {
-    margin: civic-space() auto;
+    label {
+      margin: rem(4px) 0;
+    }
   }
 
   .civic-message {
     padding: civic-space();
-    margin-bottom: civic-space(2);
+    margin-bottom: civic-space();
     display: inline-flex;
     align-items: center;
     border: none;
@@ -52,8 +52,8 @@
     }
   }
 
-  &--description {
-    margin-top: civic-space(2);
+  &__description {
+    margin-bottom: civic-space(1);
 
     @include civic-typography('text-small');
   }

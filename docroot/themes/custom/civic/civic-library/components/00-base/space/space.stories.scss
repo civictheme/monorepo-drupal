@@ -17,7 +17,7 @@
     $spaces: list.append($spaces, civic-space($index));
   }
 
-  @include civic-generate-class-variations-from-map($spaces, 'space') using($name, $value, $index) {
+  @include civic-generate-class-variations-from-map($spaces, 'story-space') using($name, $value, $index) {
     padding: $value 0 0 $value;
 
     $transparency: if($index % 2 == 0, 25%, 50%);

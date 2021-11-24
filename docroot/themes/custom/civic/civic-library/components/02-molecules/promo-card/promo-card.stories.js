@@ -1,8 +1,12 @@
 import {
-  boolean, number, radios, text,
+  boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';
-import imageFile from '../../../assets/image.png';
-import { getSlots, randomUrl } from '../../00-base/base.stories';
+import {
+  demoImage,
+  getSlots,
+  randomTags,
+  randomUrl,
+} from '../../00-base/base.stories';
 
 import CivicPromoCard from './promo-card.twig';
 
@@ -28,12 +32,23 @@ export const PromoCard = (knobTab) => {
     ),
     title: text('Title', 'Promo name which runs across two or three lines', generalKnobTab),
     summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', generalKnobTab),
-    date: text('Date', '1 Jun 1970', generalKnobTab),
+    date: date('Date', new Date(), generalKnobTab),
     url: text('Link URL', randomUrl(), generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
-      src: imageFile,
+      src: demoImage(),
       alt: 'Image alt text',
     } : false,
+    tags: randomTags(number(
+      'Number of tags',
+      2,
+      {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      generalKnobTab,
+    ), true),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
@@ -43,35 +58,8 @@ export const PromoCard = (knobTab) => {
     day: 'numeric',
   });
 
-  // Adding dynamic promo card tags.
-  const tagKnobTab = 'Tags';
-  const tagNum = number(
-    'Number of tags',
-    1,
-    {
-      range: true,
-      min: 0,
-      max: 10,
-      step: 1,
-    },
-    tagKnobTab,
-  );
-
-  // Adding dynamic number of tags.
-  const tags = {};
-  let itr = 1;
-  while (itr <= tagNum) {
-    tags[`tag${itr}`] = text(`tag${itr}`, `Topic ${itr}`, tagKnobTab);
-    itr += 1;
-  }
-  const tagKnobs = {
-    tags,
-    tagNum,
-  };
-
   const html = CivicPromoCard({
     ...generalKnobs,
-    ...tagKnobs,
     ...getSlots([
       'image_over',
       'content_top',

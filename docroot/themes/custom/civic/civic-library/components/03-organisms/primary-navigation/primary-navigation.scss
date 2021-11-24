@@ -62,9 +62,7 @@
       margin: 0;
       margin-top: $civic-primary-navigation-dropdown-top-offset;
       z-index: $civic-primary-navigation-dropdown-zindex;
-
-      // @todo Replace with elevation4.
-      @include civic-box-shadow();
+      box-shadow: 0 civic-space(2) civic-space(4) rgba(0, 0, 0, 20%);
 
       // Submenu.
       .civic-menu__sub-menu {
@@ -120,7 +118,7 @@
 
         &.civic-menu__item--active-trail {
           > .civic-link {
-            background-color: civic-color('shade_dark_60');
+            background-color: civic-color-shade-dark(60);
             color: civic-color('neutral');
             padding-left: civic-space();
             padding-right: civic-space();

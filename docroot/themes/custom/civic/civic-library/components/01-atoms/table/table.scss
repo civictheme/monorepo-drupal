@@ -21,7 +21,7 @@
 
     @include civic-breakpoint-upto('m') {
       thead {
-        display: none;
+        @include civic-visually-hidden();
       }
 
       tbody tr {

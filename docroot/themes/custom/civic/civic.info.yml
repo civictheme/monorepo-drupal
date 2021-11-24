@@ -76,15 +76,15 @@ config_devel:
     - block.block.civic_footer_menu_2
     - block.block.civic_footer_menu_3
     - block.block.civic_footer_menu_4
+    - block.block.civic_primarynavigation_menu
+    - block.block.civic_secondarynavigation_menu
     - block.block.civic_footer_sitebranding
     - block.block.civic_help
     - block.block.civic_messages
     - block.block.civic_primaryadminactions
-    - block.block.civic_primarynavigation_menu
-    - block.block.civic_secondarynavigation_menu
     - block.block.civic_sitebranding
-    - block.block.civic_tabs
     - block.block.sitebranding_2
+    - block.block.civic_tabs
     - block_content.type.civic_banner
     - block_content.type.civic_component_block
     - block_content.type.civic_social_icons
@@ -236,9 +236,10 @@ config_devel:
     - field.field.node.civic_page.field_c_n_banner_theme
     - field.field.node.civic_page.field_c_n_banner_type
     - field.field.node.civic_page.field_c_n_components
-    - field.field.node.civic_page.field_c_n_show_toc
     - field.field.node.civic_page.field_c_n_summary
+    - field.field.node.civic_page.field_c_n_show_toc
     - field.field.node.civic_page.field_c_n_thumbnail
+    - field.field.node.civic_page.field_c_n_topics
     - field.field.paragraph.civic_accordion.field_c_p_expand
     - field.field.paragraph.civic_accordion.field_c_p_panels
     - field.field.paragraph.civic_accordion.field_c_p_theme
@@ -256,13 +257,13 @@ config_devel:
     - field.field.paragraph.civic_callout.field_c_p_summary
     - field.field.paragraph.civic_callout.field_c_p_theme
     - field.field.paragraph.civic_callout.field_c_p_title
+    - field.field.paragraph.civic_card_container.field_c_p_theme
     - field.field.paragraph.civic_card_container.field_c_p_cards
     - field.field.paragraph.civic_card_container.field_c_p_column_count
     - field.field.paragraph.civic_card_container.field_c_p_description
     - field.field.paragraph.civic_card_container.field_c_p_fill_width
     - field.field.paragraph.civic_card_container.field_c_p_footer_link
     - field.field.paragraph.civic_card_container.field_c_p_header_link
-    - field.field.paragraph.civic_card_container.field_c_p_theme
     - field.field.paragraph.civic_card_container.field_c_p_title
     - field.field.paragraph.civic_card_container.field_c_p_with_spacing
     - field.field.paragraph.civic_card_event.field_c_p_date
@@ -475,10 +476,13 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider_slide
     - paragraphs.paragraphs_type.civic_slider_slide_reference
     - paragraphs.paragraphs_type.civic_social_icon
-    - system.menu.civic_footer
-    - system.menu.civic_primary_navigation
-    - system.menu.civic_secondary_navigation
+    - system.menu.civic-primary-navigation
+    - system.menu.civic-secondary-navigation
+    - system.menu.civic-footer
     - taxonomy.vocabulary.civic_topics
+    - user.role.civic_content_approver
+    - user.role.civic_content_author
+    - user.role.civic_site_administrator
     - views.view.civic_events
     - views.view.civic_listing
     - views.view.civic_pages
