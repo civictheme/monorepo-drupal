@@ -1,19 +1,30 @@
 function CivicPasswordIndicator(el) {
-  this.settings = {
-    tooShort: 'Your password is too short',
-    addLowerCase: 'Your password needs lowercase letters',
-    addUpperCase: 'Your password needs uppercase letters',
-    addNumbers: 'Your password needs numbers',
-    addPunctuation: 'Your password needs punctuation',
-    sameAsUsername: 'Your password is the same as your username',
-    weak: 'Your password is very weak',
-    fair: 'Your password is so-so',
-    good: 'Your password is good',
-    strong: 'Your password is great',
-    hasWeaknesses: 'Your password has weaknesses',
-  };
-
   this.el = el;
+
+  // Get settings.
+  this.settings = {};
+
+  // Text messages to display.
+  this.settings.tooShort = this.el.getAttribute('data-password-indicator-setting-short-text') || 'Your password is too short';
+  this.settings.addLowerCase = this.el.getAttribute('data-password-indicator-setting-lower-text') || 'Your password needs lowercase letters';
+  this.settings.addUpperCase = this.el.getAttribute('data-password-indicator-setting-upper-text') || 'Your password needs uppercase letters';
+  this.settings.addNumbers = this.el.getAttribute('data-password-indicator-setting-number-text') || 'Your password needs numbers';
+  this.settings.addPunctuation = this.el.getAttribute('data-password-indicator-setting-punctuation-text') || 'Your password needs punctuation';
+  this.settings.sameAsUsername = this.el.getAttribute('data-password-indicator-setting-username-text') || 'Your password is the same as your username';
+  this.settings.weak = this.el.getAttribute('data-password-indicator-setting-weak-text') || 'Your password is very weak';
+  this.settings.fair = this.el.getAttribute('data-password-indicator-setting-fair-text') || 'Your password is so-so';
+  this.settings.good = this.el.getAttribute('data-password-indicator-setting-good-text') || 'Your password is good';
+  this.settings.strong = this.el.getAttribute('data-password-indicator-setting-great-text') || 'Your password is great';
+  this.settings.hasWeaknesses = this.el.getAttribute('data-password-indicator-setting-weakness-text') || 'Your password has weaknesses';
+
+  // Checks to perform.
+  this.settings.checkSize = this.el.getAttribute('data-password-indicator-setting-short') === 'false' ? false : true
+  this.settings.checkLower = this.el.getAttribute('data-password-indicator-setting-lower') === 'false' ? false : true
+  this.settings.checkUpper = this.el.getAttribute('data-password-indicator-setting-upper') === 'false' ? false : true
+  this.settings.checkNumber = this.el.getAttribute('data-password-indicator-setting-number') === 'false' ? false : true
+  this.settings.checkPunctuation = this.el.getAttribute('data-password-indicator-setting-punctuation') === 'false' ? false : true
+  this.settings.checkUsername = this.el.getAttribute('data-password-indicator-setting-username') === 'false' ? false : true
+  this.settings.checkMinSize = this.el.getAttribute('data-password-indicator-setting-min-count') || 12
 
   const themeClass = Array.from(this.el.classList).filter((item) => (item.indexOf('civic-theme') === 0)).pop();
 
@@ -61,35 +72,45 @@ CivicPasswordIndicator.prototype.evaluatePasswordStrength = function (password, 
   let weaknesses = 0;
   let strength = 100;
   let msg = [];
-  const hasLowercase = /[a-z]/.test(password);
-  const hasUppercase = /[A-Z]/.test(password);
-  const hasNumbers = /[0-9]/.test(password);
-  const hasPunctuation = /[^a-zA-Z0-9]/.test(password);
-  const { username } = passwordSettings;
 
-  if (password.length < 12) {
-    msg.push(passwordSettings.tooShort);
-    strength -= (12 - password.length) * 5 + 30;
+  if (passwordSettings.checkSize) {
+    const minSize = passwordSettings.checkMinSize;
+    if (password.length < minSize) {
+      msg.push(passwordSettings.tooShort);
+      strength -= (minSize - password.length) * 5 + 30;
+    }
   }
 
-  if (!hasLowercase) {
-    msg.push(passwordSettings.addLowerCase);
-    weaknesses += 1;
+  if (passwordSettings.checkLower) {
+    const hasLowercase = /[a-z]/.test(password);
+    if (!hasLowercase) {
+      msg.push(passwordSettings.addLowerCase);
+      weaknesses += 1;
+    }
   }
 
-  if (!hasUppercase) {
-    msg.push(passwordSettings.addUpperCase);
-    weaknesses += 1;
+  if (passwordSettings.checkUpper) {
+    const hasUppercase = /[A-Z]/.test(password);
+    if (!hasUppercase) {
+      msg.push(passwordSettings.addUpperCase);
+      weaknesses += 1;
+    }
   }
 
-  if (!hasNumbers) {
-    msg.push(passwordSettings.addNumbers);
-    weaknesses += 1;
+  if (passwordSettings.checkNumber) {
+    const hasNumbers = /[0-9]/.test(password);
+    if (!hasNumbers) {
+      msg.push(passwordSettings.addNumbers);
+      weaknesses += 1;
+    }
   }
 
-  if (!hasPunctuation) {
-    msg.push(passwordSettings.addPunctuation);
-    weaknesses += 1;
+  if (passwordSettings.checkPunctuation) {
+    const hasPunctuation = /[^a-zA-Z0-9]/.test(password);
+    if (!hasPunctuation) {
+      msg.push(passwordSettings.addPunctuation);
+      weaknesses += 1;
+    }
   }
 
   switch (weaknesses) {
@@ -113,9 +134,12 @@ CivicPasswordIndicator.prototype.evaluatePasswordStrength = function (password, 
       break;
   }
 
-  if (password !== '' && password.toLowerCase() === username.toLowerCase()) {
-    msg.push(passwordSettings.sameAsUsername);
-    strength = 5;
+  if (passwordSettings.checkUsername) {
+    const { username } = passwordSettings;
+    if (password !== '' && password.toLowerCase() === username.toLowerCase()) {
+      msg.push(passwordSettings.sameAsUsername);
+      strength = 5;
+    }
   }
 
   const cssClasses = {
