@@ -1,3 +1,12 @@
+/**
+ * Alert component.
+ *
+ * Attaches to markup with 'data-component-name="civic-alerts"' attribute.
+ *
+ * Available attributes:
+ * - data-alert-endpoint: Alert REST configurable API endpoint.
+ */
+
 function CivicAlerts(el) {
   this.alertContainer = el;
   this.endpoint = this.alertContainer.getAttribute('data-alert-endpoint');
@@ -129,7 +138,7 @@ CivicAlerts.prototype.parents = function (element, selector) {
 };
 
 // Initialise alerts.
-const alertContainer = document.querySelector('.civic-alerts');
+const alertContainer = document.querySelector('[data-component-name="civic-alerts"]');
 if (alertContainer !== null) {
   new CivicAlerts(alertContainer);
 }
