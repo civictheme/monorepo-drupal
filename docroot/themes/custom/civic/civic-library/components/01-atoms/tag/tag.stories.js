@@ -1,6 +1,9 @@
 import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
+import {
+  randomUrl,
+} from '../../00-base/base.stories';
 
 import CivicTag from './tag.twig';
 
@@ -44,8 +47,16 @@ export const Tag = (knobTab) => {
     ) : null,
   };
 
+  const linkKnobTab = 'Link';
+  const withLink = boolean('With link', false, linkKnobTab);
+  const linkKnobs = {
+    url: withLink ? text('URL', randomUrl(), linkKnobTab) : null,
+    new_window: withLink ? boolean('Open in a new window', false, linkKnobTab) : null,
+  };
+
   return CivicTag({
     ...generalKnobs,
     ...iconKnobs,
+    ...linkKnobs,
   });
 };
