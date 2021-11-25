@@ -65,7 +65,7 @@ function civic_preprocess_form_element(&$variables) {
     $variables['description']['attributes']->addClass('description');
   }
 
-  if (isset($variables['attributes']['class'])) {
+  if (isset($variables['attributes']['class']) && is_array($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
     unset($variables['attributes']['class']);
   }
