@@ -124,7 +124,7 @@ CivicAlert.prototype.insertAlerts = function (html) {
 CivicAlert.prototype.setDismissAlertListeners = function () {
   // Process the Close button of each alert.
   document
-    .querySelectorAll('[data-alert-trigger]')
+    .querySelectorAll('[data-alert-dismiss]')
     .forEach((element) => {
       element.addEventListener('click', (event) => {
         event.stopPropagation();
