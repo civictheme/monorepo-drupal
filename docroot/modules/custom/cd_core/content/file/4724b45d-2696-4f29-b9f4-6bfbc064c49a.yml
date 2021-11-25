@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 4724b45d-2696-4f29-b9f4-6bfbc064c49a
+  default_langcode: en
+  depends:
+    20c5e78c-33ab-4f85-ba06-28626a53f77d: user
+default:
+  uid:
+    -
+      entity: 20c5e78c-33ab-4f85-ba06-28626a53f77d
+  filename:
+    -
+      value: carl-heyerdahl-KE0nC8-58MQ-unsplash_crop.jpg
+  uri:
+    -
+      value: 'public://images/2021-11/carl-heyerdahl-KE0nC8-58MQ-unsplash_crop.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 672750
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1637031263

@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 33ec0e62-3317-435d-b1cb-1e42e42e3260
+  default_langcode: en
+  depends:
+    20c5e78c-33ab-4f85-ba06-28626a53f77d: user
+default:
+  uid:
+    -
+      entity: 20c5e78c-33ab-4f85-ba06-28626a53f77d
+  filename:
+    -
+      value: pexels-ricardo-esquivel-3041347_crop.jpg
+  uri:
+    -
+      value: 'public://images/2021-11/pexels-ricardo-esquivel-3041347_crop.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 754013
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1637031388

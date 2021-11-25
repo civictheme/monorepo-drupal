@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 68d50fea-aae4-4dde-832c-b385ff9731e1
+  bundle: civic_image
+  default_langcode: en
+  depends:
+    20c5e78c-33ab-4f85-ba06-28626a53f77d: user
+    570c6899-92bc-4317-aa07-274a431d618f: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 20c5e78c-33ab-4f85-ba06-28626a53f77d
+  name:
+    -
+      value: 2016-04-20-govCMS_VisualWhitePaper_crop.jpg
+  created:
+    -
+      value: 1637031487
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 570c6899-92bc-4317-aa07-274a431d618f
+      alt: 'Computer and devices displaying GovCMS site'
+      title: ''
+      width: 786
+      height: 442
