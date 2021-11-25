@@ -12,6 +12,7 @@ dependencies:
   - field_group:field_group
   - menu_block:menu_block
   - paragraphs:paragraphs
+  - drupal:rest
 
 regions:
   header_top_1: 'Header top 1'
