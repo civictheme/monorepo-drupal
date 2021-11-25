@@ -127,7 +127,7 @@ CivicAlert.prototype.setDismissAlertListeners = function () {
     .forEach((element) => {
       element.addEventListener('click', (event) => {
         event.stopPropagation();
-        const alert = this.parents(event.currentTarget, '[data-component-name="civic-alert"]');
+        const alert = this.parent(event.currentTarget, '[data-component-name="civic-alert"]');
         this.dismissAlert(alert);
       });
     });
@@ -147,7 +147,7 @@ CivicAlert.prototype.dismissAlert = function (alert) {
 /**
  * Traversal helper to get a parent element matching a selector.
  */
-CivicAlert.prototype.parents = function (element, selector) {
+CivicAlert.prototype.parent = function (element, selector) {
   while (element !== null && !element.matches(selector)) {
     element = element.parentNode;
   }
