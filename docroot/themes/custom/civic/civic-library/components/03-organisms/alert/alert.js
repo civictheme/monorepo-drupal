@@ -89,8 +89,8 @@ CivicAlert.prototype.getAlerts = function (retry = false) {
  * Filters out alerts not to show ie dismissed, page-specific alerts.
  */
 CivicAlert.prototype.filterAlerts = function (response) {
+  let alertHtml = '';
   if (response.length) {
-    let alertHtml = '';
     for (let i = 0, len = response.length; i < len; i++) {
       const alertItem = response[i];
       // Skips the alert hidden by user session.
@@ -104,9 +104,8 @@ CivicAlert.prototype.filterAlerts = function (response) {
       }
       alertHtml += alertItem.message;
     }
-
-    return alertHtml;
   }
+  return alertHtml;
 };
 
 /**
@@ -116,7 +115,7 @@ CivicAlert.prototype.insertAlerts = function (html) {
   // Build the alert.
   this.alertContainer.insertAdjacentHTML('beforeend', html);
   this.setDismissAlertListeners();
-}
+};
 
 /**
  * Sets dismiss listeners to alerts.
@@ -129,13 +128,20 @@ CivicAlert.prototype.setDismissAlertListeners = function () {
       element.addEventListener('click', (event) => {
         event.stopPropagation();
         const alert = this.parents(event.currentTarget, '[data-component-name="civic-alert"]');
-        if (alert !== null) {
-          const alertId = alert.getAttribute('data-alert-id');
-          this.setCookie(`civic_alert_hide_id_${alertId}`);
-          alert.parentNode.removeChild(alert);
-        }
+        this.dismissAlert(alert);
       });
     });
+};
+
+/**
+ * Dismisses an alert and adds cookie to dismiss for session.
+ */
+CivicAlert.prototype.dismissAlert = function (alert) {
+  if (alert !== null) {
+    const alertId = alert.getAttribute('data-alert-id');
+    this.setCookie(`civic_alert_hide_id_${alertId}`);
+    alert.parentNode.removeChild(alert);
+  }
 };
 
 /**
