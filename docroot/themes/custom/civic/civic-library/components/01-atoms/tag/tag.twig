@@ -9,6 +9,8 @@
  * - icon: [boolean] Icon visibility: true, false.
  * - icon_placement: [string] Icon position: before, after.
  * - hidden_label: [string] Can be set to provide additional context to screen readers.
+ * - url: [string] URL for the tag link.
+ * - new_window: [boolean] Open in a new window.
  * - modifier_class: [string] Additional classes to modify component styling.
  */
 #}
@@ -43,5 +45,13 @@
 {% endset %}
 
 {% if tag_text %}
-  <div class="civic-tag {{ modifier_class }}" aria-label="{{ text }}">{{ tag_text }}</div>
+  <div class="civic-tag {{ modifier_class }}" aria-label="{{ text }}">
+    {% if url %}
+      <a class="civic-tag__link" href="{{ url }}" title="{{ text }}" aria-label="{{ text }}" {{ new_window ? 'target="_blank"' }}>
+    {% endif %}
+        {{ tag_text }}
+    {% if url %}
+      </a>
+    {% endif %}
+  </div>
 {% endif %}

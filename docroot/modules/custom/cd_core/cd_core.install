@@ -28,7 +28,6 @@ function cd_core_install() {
   // Reset all post_update updates for this module.
   $key_value = \Drupal::keyValue('post_update');
   $executed_updates = $key_value->get('existing_updates', []);
-  // Run all post-update functions when installing this module.
   foreach ($executed_updates as $k => $function) {
     if (strpos($function, 'cd_core_post_update_') === 0) {
       unset($executed_updates[$k]);

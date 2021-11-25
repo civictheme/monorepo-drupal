@@ -231,6 +231,7 @@ config_devel:
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_show_toc
     - field.field.node.civic_page.field_c_n_thumbnail
+    - field.field.node.civic_page.field_c_n_topics
     - field.field.paragraph.civic_accordion.field_c_p_expand
     - field.field.paragraph.civic_accordion.field_c_p_panels
     - field.field.paragraph.civic_accordion.field_c_p_theme
@@ -467,6 +468,9 @@ config_devel:
     - system.menu.civic-secondary-navigation
     - system.menu.civic-footer
     - taxonomy.vocabulary.civic_topics
+    - user.role.civic_content_approver
+    - user.role.civic_content_author
+    - user.role.civic_site_administrator
     - views.view.civic_events
     - views.view.civic_listing
     - views.view.civic_pages

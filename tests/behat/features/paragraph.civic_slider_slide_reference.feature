@@ -5,19 +5,19 @@ Feature: Tests the Slider slide - reference paragraph
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Slider slide - reference" in the "civic_slider_slide_reference" row
 
   @api
   Scenario: Slider slide - reference paragraph exists with fields.
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_slider_slide_reference/fields"
     And I should see the text "field_c_p_reference" in the "Reference" row
 
   @api
   Scenario: Slider slide - reference paragraph field field_c_p_reference settings.
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_slider_slide_reference/fields/paragraph.civic_slider_slide_reference.field_c_p_reference"
     And the "Label" field should contain "Reference"
     And the "Required field" checkbox should be checked
@@ -28,7 +28,7 @@ Feature: Tests the Slider slide - reference paragraph
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
@@ -46,7 +46,7 @@ Feature: Tests the Slider slide - reference paragraph
 
   @api
   Scenario: Civic slider paragraph field_c_p_slides field settings.
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_slider/fields/paragraph.civic_slider.field_c_p_slides"
     And the "Label" field should contain "Slides"
     Then the option "Default" from select "Reference method" is selected

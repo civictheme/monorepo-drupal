@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 ##
-# Example of the custom per-project command that will run after website is installed.
-#
-# Clone this file and modify it to your needs or simply remove it.
+# Enable modules.
 #
 # shellcheck disable=SC2086
 
@@ -11,9 +9,6 @@ set -e
 
 # Path to the application.
 APP="${APP:-/app}"
-
-# Path to the DOCROOT.
-WEBROOT="${WEBROOT:-docroot}"
 
 # Drush alias.
 DRUSH_ALIAS="${DRUSH_ALIAS:-}"
@@ -25,6 +20,7 @@ drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush
 
 # Use cd_core.info.yml to declare all dependencies that must be installed in all environments.
 # Use cd_core.install to add other post-install operations.
+# Use cd_core.post_update.php to content-related post-install operations.
 $drush ${DRUSH_ALIAS} pm-enable cd_core -y
 
 # Perform operations based on the current environment.

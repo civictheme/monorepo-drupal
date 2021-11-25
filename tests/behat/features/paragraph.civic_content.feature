@@ -5,20 +5,20 @@ Feature: Tests the Content paragraph
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Content" in the "civic_content" row
 
   @api
   Scenario: Content paragraph exists with fields.
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_content/fields"
     And I should see the text "field_c_p_content" in the "Content" row
     And I should see the text "field_c_p_theme" in the "Theme" row
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     And I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
 
@@ -28,6 +28,7 @@ Feature: Tests the Content paragraph
     And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-content-0-value" element
     And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-theme" element
     And I should see an ".js-form-item-field-c-n-banner-components-0-subform-field-c-p-theme .required" element
+    And the option "Light" from select "Theme" is selected
 
     And I press the "field_c_n_banner_components_bott_civic_content_add_more" button
     And I wait for AJAX to finish

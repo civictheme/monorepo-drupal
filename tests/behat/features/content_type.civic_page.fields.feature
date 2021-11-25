@@ -10,7 +10,7 @@ Feature: Fields on Page content type
 
   @api
   Scenario: Civic banner block type exists with fields.
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/structure/types/manage/civic_page/fields"
     Then I should see the text "Banner background" in the "field_c_n_banner_background" row
     Then I should see the text "Banner components" in the "field_c_n_banner_components" row
@@ -18,10 +18,15 @@ Feature: Fields on Page content type
     Then I should see the text "Banner components" in the "field_c_n_banner_components" row
     Then I should see the text "Banner components bottom" in the "field_c_n_banner_components_bott" row
     Then I should see the text "Banner featured image" in the "field_c_n_banner_featured_image" row
+    Then I should see the text "Components" in the "field_c_n_components" row
+    Then I should see the text "Show Table of Contents" in the "field_c_n_show_toc" row
+    Then I should see the text "Summary" in the "field_c_n_summary" row
+    Then I should see the text "Thumbnail" in the "field_c_n_thumbnail" row
+    Then I should see the text "Topics" in the "field_c_n_topics" row
 
   @api
   Scenario: Page content type page has the relevant fields
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I visit "node/add/civic_page"
     Then the response status code should be 200
 
@@ -47,3 +52,7 @@ Feature: Fields on Page content type
 
     And I should see text matching "Show Table of Contents"
     And should see an "input[name='field_c_n_show_toc[value]']" element
+
+    And I should see text matching "Topics"
+    And I should see an "input[name='field_c_n_topics[0][target_id]']" element
+    And I should see an "input[name='field_c_n_thumbnail-media-library-open-button']" element

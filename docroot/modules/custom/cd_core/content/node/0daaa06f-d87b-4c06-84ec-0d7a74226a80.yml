@@ -1,0 +1,88 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 0daaa06f-d87b-4c06-84ec-0d7a74226a80
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    20c5e78c-33ab-4f85-ba06-28626a53f77d: user
+    b47b16fa-422e-494d-9d28-de099979e0ce: user
+    9ff721a1-bb70-461d-9c6b-c4ff42d6d017: media
+    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
+default:
+  revision_uid:
+    -
+      entity: 20c5e78c-33ab-4f85-ba06-28626a53f77d
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: b47b16fa-422e-494d-9d28-de099979e0ce
+  title:
+    -
+      value: 'Thinking about GovCMS?'
+  created:
+    -
+      value: 1637029912
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 3f4ba5b4-690d-4e70-9555-271f45ac6c36
+          bundle: civic_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1637031285
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_content:
+            -
+              value: "<h2>To GovCMS or not to GovCMS?</h2>\r\n\r\n<p>I recently had the pleasure of being interviewed by The Mandarin (along side Chris Harrop, GovCMS Director from Acquia) to comment on state adoption of GovCMS following strong traction at the federal level. In preparing for this interview I reflected on two common questions I find myself being asked: ‘Is GovCMS going to work for me/my site?’ and ‘How do I get ready for a GovCMS project?’ So I decided it was well and truly time to blog on the subject.</p>\r\n\r\n<p>First steps<br />\r\nSo, the first thing you should do is actually take a step back — from the technology and perhaps from your existing site, too. Think at that higher, strategic level. What’s your purpose? What are you trying to do (or what would you love to do)? If you’re going to add real value to citizens as a public agency what do you need to be thinking about?</p>\r\n\r\n<p>Put the technology aside for the moment and ask yourself:</p>\r\n\r\n<p>Who is my audience? Who are we serving? Why do they come to us? What type of info are they looking for and how could they get that info?</p>\r\n\r\n<p>How will my content support the audience’s tasks? Content is king! The Digital Transformation Agency (formerly DTO) has some fantastic tips for online writing. You should also ask yourself these questions:</p>\r\n\r\n<p>a. How much content should we include?</p>\r\n\r\n<p>b. What sort of language/writing style will our users respond to?</p>\r\n\r\n<p>c. Do we use simple language that citizens can understand? (The DTA recommends content should be “as simple as its users need”.)</p>\r\n\r\n<p>d. How will we classify our different types of content?</p>\r\n\r\n<p>What functions and features will support my end users’ needs? Maybe it’s a calendar of events, or search, or something else? Features have the biggest influence on whether GovCMS is right for you (but more about that later...for the moment we want to focus on what your citizens need).</p>\r\n\r\n<p>What should my site look like? What visual designs might appeal to our citizens/users? It’s a great idea at this stage to have a look at sites you like and flag them as inspirational designs.</p>\r\n\r\n<p>How will citizens interact with my site (thinking about the user interface). Key questions to consider here are:</p>\r\n\r\n<p>a. How will they browse our site, what pathways will they take (informing the information architecture)?</p>\r\n\r\n<p>b. What sorts of searches will they do?</p>\r\n\r\n<p>c. What devices will they be viewing our site on?</p>\r\n\r\n<p>d. Do they have any specific accessibility requirements?</p>\r\n\r\n<p>Once you’ve laid this groundwork, you’re ready to dive into the technology.</p>\r\n\r\n<p>The technology<br />\r\nWe naturally think GovCMS is great, but is it right for you? If not entirely convinced or just simply not sure the best way to answer this question is to conduct a GovCMS viability or readiness assessment.</p>\r\n\r\n<p>GovCMS can accommodate any content and any design, so the area we need to focus on is functions and features. A viability assessment literally maps your essential (and desired) functions and features (point 3 above) to GovCMS out-of-the-box. Can GovCMS accommodate all of your essential features? Can it also deliver on your digital roadmap and thus accommodate future features?</p>\r\n\r\n<p>A viability assessment will look at your high level requirements and map them onto GovCMS to work out how suitable the platform is and what (if any) adaptations would be required. Within the GovCMS platform there are also two offerings: Software as a Service (SaaS) and Platform as a Service (PaaS). I won’t get into the differences here, but suffice to say a viability assessment would help you decide which option is better for you.</p>\r\n\r\n<p>Preparing for GovCMS<br />\r\nOkay, so let’s say you’ve done all of the above and decided GovCMS is for you. The next question I get asked a lot is: ‘What does an agency need to provide or prepare before starting a GovCMS project?” And it’s a good question :)</p>\r\n\r\n<p>When we’re working with an agency coming across to GovCMS, these are the types of questions we need answered before we can start:</p>\r\n\r\n<p>What are your business drivers?<br />\r\nWhy are you doing this?<br />\r\nWhat are your users’ pain points?<br />\r\nWhat are your criteria for success? (These can be high level and succinct.)<br />\r\nWho is your target audience? Have you done user stories for them?<br />\r\nWhat user based research (if any) have you conducted?<br />\r\nWhat functions and features does your website need to have?<br />\r\nAre you looking to migrate from an existing site or build a new site?<br />\r\nWhat are some visual designs that inspire you?<br />\r\nWhat stage are you at with content, information architecture?<br />\r\nAt this point you’re ready to start work with a provider and you’ll need to find a reputable, proven and certified partner. (By the way, we strongly recommend us ; )) This will ensure the success of your project, increase the chance of internal adoption, and avoid a negative experience and/or things going wrong during development before the site even gets to internal stakeholders or your target audience.</p>\r\n\r\n<p>Start small, consider a pilot study<br />\r\nSome of our past government clients have had great success starting small, with a smaller site that acts as a pilot study for a broader GovCMS adoption. This delivers lots of benefits, such as:</p>\r\n\r\n<p>Giving you an opportunity to test drive GovCMS.<br />\r\nReducing risk (a smaller budget and less resources initially).<br />\r\nDelivering quick wins.<br />\r\nBuilding support within your agency and creating a business case for the larger project.<br />\r\nGiving content and tech staff time to upskill gradually by managing a smaller site first.<br />\r\nDon’t forget the training<br />\r\nThe final piece of the GovCMS puzzle is training. While GovCMS is intuitive (especially the content management side of it), training is still essential. Proper training will ensure your staff are getting the most out of GovCMS and using it to its full capacity.</p>\r\n\r\n<p>Next steps?<br />\r\nGovCMS delivers many benefits to agencies coming across to this government-approved content management system. However like any project, preparation and groundwork is an essential element of success. I hope this blog has given you a good summary of what to do now/next!\"</p>\r\n"
+              format: civic_rich_text
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: ' Considering GovCMS? Here are some key things you should think about.'
+  field_c_n_thumbnail:
+    -
+      entity: 9ff721a1-bb70-461d-9c6b-c4ff42d6d017
+  field_c_n_topics:
+    -
+      entity: d95f5188-650c-4dea-abcb-df8ea008919b
