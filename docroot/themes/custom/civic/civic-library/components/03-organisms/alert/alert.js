@@ -18,43 +18,46 @@ function CivicAlert(el) {
 /**
  * Checks whether an alert is to be shown on a specified page.
  */
-CivicAlert.prototype.checkPageVisibility = function (pageVisibilityString) {
-  if ((typeof pageVisibilityString !== 'undefined') && pageVisibilityString !== false && pageVisibilityString !== '') {
-    let pageVisibility = pageVisibilityString.replace(/\*/g, '[^ ]*');
-    // Replace '<front>' with "/".
-    pageVisibility = pageVisibility.replace('<front>', '/');
-    // Replace all occurrences of '/' with '\/'.
-    // eslint-disable-next-line
-    pageVisibility = pageVisibility.replace('/', '\/');
-    const pageVisibilityRules = pageVisibility.split(/\r?\n/);
-    if (pageVisibilityRules.length !== 0) {
-      const path = window.location.pathname;
-      for (let r = 0, rlen = pageVisibilityRules.length; r < rlen; r++) {
-        if (path === pageVisibilityRules[r]) {
-          return true;
-        }
-        if (pageVisibilityRules[r].indexOf('*') !== -1 && path.match(new RegExp(`^${pageVisibilityRules[r]}`))) {
-          return true;
-        }
-      }
-      return false;
-    }
+CivicAlert.prototype.isVisible = function (pageVisibilityString) {
+  if ((typeof pageVisibilityString === 'undefined') || pageVisibilityString === false || pageVisibilityString === '') {
+    return true;
   }
+
+  let pageVisibility = pageVisibilityString.replace(/\*/g, '[^ ]*');
+  // Replace '<front>' with "/".
+  pageVisibility = pageVisibility.replace('<front>', '/');
+  // Replace all occurrences of '/' with '\/'.
+  // eslint-disable-next-line
+  pageVisibility = pageVisibility.replace('/', '\/');
+  const pageVisibilityRules = pageVisibility.split(/\r?\n/);
+  if (pageVisibilityRules.length !== 0) {
+    const path = window.location.pathname;
+    for (let r = 0, rlen = pageVisibilityRules.length; r < rlen; r++) {
+      if (path === pageVisibilityRules[r]) {
+        return true;
+      }
+      if (pageVisibilityRules[r].indexOf('*') !== -1 && path.match(new RegExp(`^${pageVisibilityRules[r]}`))) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   return true;
 };
 
 /**
  * Checks whether an alert cookie is already set.
  */
-CivicAlert.prototype.hasAlertCookie = function (cookie) {
-  return (document.cookie.split(';').some((item) => item.trim().startsWith(`${cookie}=`)));
+CivicAlert.prototype.hasCookie = function (cookie) {
+  return document.cookie.split(';').some((item) => item.trim().startsWith(`${cookie}=`));
 };
 
 /**
  * Sets an alert cookie.
  */
-CivicAlert.prototype.setAlertCookie = function (cookie) {
-  if (!this.hasAlertCookie(cookie)) {
+CivicAlert.prototype.setCookie = function (cookie) {
+  if (!this.hasCookie(cookie)) {
     document.cookie = `${cookie}=1; SameSite=Strict`;
   }
 };
@@ -69,7 +72,8 @@ CivicAlert.prototype.getAlerts = function (retry = false) {
     if (request.readyState === 4) {
       if (request.status === 200) {
         const response = JSON.parse(request.responseText);
-        this.insertAlerts(response);
+        const alerts = this.filterAlerts(response);
+        this.insertAlerts(alerts);
         return;
       }
       // If failed try again once.
@@ -82,30 +86,37 @@ CivicAlert.prototype.getAlerts = function (retry = false) {
 };
 
 /**
- * Inserts active alerts into page.
+ * Filters out alerts not to show ie dismissed, page-specific alerts.
  */
-CivicAlert.prototype.insertAlerts = function (response) {
+CivicAlert.prototype.filterAlerts = function (response) {
   if (response.length) {
     let alertHtml = '';
     for (let i = 0, len = response.length; i < len; i++) {
       const alertItem = response[i];
       // Skips the alert hidden by user session.
-      if (this.hasAlertCookie(`civic_alert_hide_id_${alertItem.alert_id}`)) {
+      if (this.hasCookie(`civic_alert_hide_id_${alertItem.alert_id}`)) {
         continue;
       }
       // Determine page visibility for this alert.
-      if (!this.checkPageVisibility(alertItem.page_visibility)) {
+      if (!this.isVisible(alertItem.page_visibility)) {
         // Path doesn't match, skip it.
         continue;
       }
       alertHtml += alertItem.message;
     }
-    // Build the alert.
-    const alertContainer = document.querySelector('.civic-alerts');
-    alertContainer.insertAdjacentHTML('beforeend', alertHtml);
-    this.setDismissAlertListeners();
+
+    return alertHtml;
   }
 };
+
+/**
+ * Insert alerts into container.
+ */
+CivicAlert.prototype.insertAlerts = function (html) {
+  // Build the alert.
+  this.alertContainer.insertAdjacentHTML('beforeend', html);
+  this.setDismissAlertListeners();
+}
 
 /**
  * Sets dismiss listeners to alerts.
@@ -113,14 +124,14 @@ CivicAlert.prototype.insertAlerts = function (response) {
 CivicAlert.prototype.setDismissAlertListeners = function () {
   // Process the Close button of each alert.
   document
-    .querySelectorAll('.civic-alerts .civic-alert__close-icon')
+    .querySelectorAll('[data-alert-trigger]')
     .forEach((element) => {
       element.addEventListener('click', (event) => {
         event.stopPropagation();
-        const alert = this.parents(event.currentTarget, '.civic-alert');
+        const alert = this.parents(event.currentTarget, '[data-component-name="civic-alert"]');
         if (alert !== null) {
           const alertId = alert.getAttribute('data-alert-id');
-          this.setAlertCookie(`civic_alert_hide_id_${alertId}`);
+          this.setCookie(`civic_alert_hide_id_${alertId}`);
           alert.parentNode.removeChild(alert);
         }
       });

@@ -29,7 +29,7 @@
     <div class="row">
       <div class="civic-alert__title col-xs-12 col-m-3">
         {% if icons[type] is defined %}
-          <span class="civic-alert__icon">
+          <span class="civic-alert__icon" data-alert-trigger>
             {% include "@atoms/icon/icon.twig" with {
               symbol: icons[type],
               modifier_class: "%s civic-icon--%s"|format(theme_class, type)
