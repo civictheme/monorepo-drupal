@@ -18,13 +18,13 @@ function CivicPasswordIndicator(el) {
   this.settings.hasWeaknesses = this.el.getAttribute('data-password-indicator-setting-weakness-text') || 'Your password has weaknesses';
 
   // Checks to perform.
-  this.settings.checkSize = this.el.getAttribute('data-password-indicator-setting-short') === 'false' ? false : true
-  this.settings.checkLower = this.el.getAttribute('data-password-indicator-setting-lower') === 'false' ? false : true
-  this.settings.checkUpper = this.el.getAttribute('data-password-indicator-setting-upper') === 'false' ? false : true
-  this.settings.checkNumber = this.el.getAttribute('data-password-indicator-setting-number') === 'false' ? false : true
-  this.settings.checkPunctuation = this.el.getAttribute('data-password-indicator-setting-punctuation') === 'false' ? false : true
-  this.settings.checkUsername = this.el.getAttribute('data-password-indicator-setting-username') === 'false' ? false : true
-  this.settings.checkMinSize = this.el.getAttribute('data-password-indicator-setting-min-count') || 12
+  this.settings.checkSize = !(this.el.getAttribute('data-password-indicator-setting-short') === 'false');
+  this.settings.checkLower = !(this.el.getAttribute('data-password-indicator-setting-lower') === 'false');
+  this.settings.checkUpper = !(this.el.getAttribute('data-password-indicator-setting-upper') === 'false');
+  this.settings.checkNumber = !(this.el.getAttribute('data-password-indicator-setting-number') === 'false');
+  this.settings.checkPunctuation = !(this.el.getAttribute('data-password-indicator-setting-punctuation') === 'false');
+  this.settings.checkUsername = !(this.el.getAttribute('data-password-indicator-setting-username') === 'false');
+  this.settings.checkMinSize = this.el.getAttribute('data-password-indicator-setting-min-count') || 12;
 
   const themeClass = Array.from(this.el.classList).filter((item) => (item.indexOf('civic-theme') === 0)).pop();
 
