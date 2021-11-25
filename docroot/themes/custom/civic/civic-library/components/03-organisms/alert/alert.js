@@ -113,7 +113,7 @@ CivicAlert.prototype.filterAlerts = function (response) {
  */
 CivicAlert.prototype.insertAlerts = function (html) {
   // Build the alert.
-  this.alertContainer.insertAdjacentHTML('beforeend', html);
+  this.alertContainer.insertAdjacentHTML('afterbegin', html);
   this.setDismissAlertListeners();
 };
 
