@@ -1,4 +1,4 @@
-import { radios, text } from '@storybook/addon-knobs';
+import { number, radios, text } from '@storybook/addon-knobs';
 import CivicAlert from './alert.twig';
 
 export default {
@@ -10,7 +10,6 @@ export default {
 
 export const Alert = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-
   const generalKnobs = {
     theme: radios(
       'Theme',
@@ -37,7 +36,23 @@ export const Alert = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicAlert({
-    ...generalKnobs,
-  });
+  const numOfAlerts = number(
+    'Number of alerts',
+    1,
+    {
+      range: true,
+      min: 1,
+      max: 5,
+      step: 1,
+    },
+    generalKnobTab,
+  );
+  let html = '';
+  for (let i = 0; i < numOfAlerts; i++) {
+    html += CivicAlert({
+      ...generalKnobs,
+    });
+  }
+
+  return html;
 };

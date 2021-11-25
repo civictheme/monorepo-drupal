@@ -780,6 +780,7 @@ $civic-alert-status-light-icon-color: $civic-alert-status-light-color !default;
 $civic-alert-warning-light-icon-color: $civic-alert-warning-light-color !default;
 $civic-alert-error-light-icon-color: $civic-alert-error-light-color !default;
 $civic-alert-success-light-icon-color: $civic-alert-success-light-color !default;
+$civic-alert-light-divider-color: civic-color('neutral') !default;
 $civic-alert-status-dark-color: civic-color('neutral') !default;
 $civic-alert-warning-dark-color: civic-color('neutral') !default;
 $civic-alert-error-dark-color: civic-color('neutral') !default;
@@ -792,6 +793,7 @@ $civic-alert-status-dark-icon-color: $civic-alert-status-dark-color !default;
 $civic-alert-warning-dark-icon-color: $civic-alert-warning-dark-color !default;
 $civic-alert-error-dark-icon-color: $civic-alert-error-dark-color !default;
 $civic-alert-success-dark-icon-color: $civic-alert-success-dark-color !default;
+$civic-alert-dark-divider-color: civic-color-shade-dark(40) !default;
 
 //
 // Banner.
