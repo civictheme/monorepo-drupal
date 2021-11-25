@@ -82,7 +82,6 @@ function cd_core_update_9002() {
     'satyajit.das@salsadigital.com.au',
     'arpita.jain@salsadigital.com.au',
     'john.cloys@salsadigital.com.au',
-    'danielle.sheffler@salsadigital.com.au',
   ];
 
   foreach ($emails as $email) {
