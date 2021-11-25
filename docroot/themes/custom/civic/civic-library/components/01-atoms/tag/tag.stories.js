@@ -44,8 +44,16 @@ export const Tag = (knobTab) => {
     ) : null,
   };
 
+  const linkKnobTab = 'Link';
+  const withLink = boolean('With link', false, linkKnobTab);
+  const linkKnobs = {
+    url: withLink ? text('URL', 'http://example.com', linkKnobTab) : null,
+    new_window: withLink ? boolean('Open in a new window', false, linkKnobTab) : null,
+  }
+
   return CivicTag({
     ...generalKnobs,
     ...iconKnobs,
+    ...linkKnobs,
   });
 };
