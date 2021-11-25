@@ -49,7 +49,7 @@ export const Tag = (knobTab) => {
   const linkKnobs = {
     url: withLink ? text('URL', 'http://example.com', linkKnobTab) : null,
     new_window: withLink ? boolean('Open in a new window', false, linkKnobTab) : null,
-  }
+  };
 
   return CivicTag({
     ...generalKnobs,
