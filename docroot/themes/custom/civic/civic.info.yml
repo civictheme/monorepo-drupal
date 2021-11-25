@@ -12,6 +12,7 @@ dependencies:
   - field_group:field_group
   - menu_block:menu_block
   - paragraphs:paragraphs
+  - drupal:rest
 
 regions:
   header_top_1: 'Header top 1'
@@ -89,6 +90,7 @@ config_devel:
     - block_content.type.civic_component_block
     - block_content.type.civic_social_icons
     - civic.settings
+    - core.base_field_override.node.civic_alert.promote
     - core.base_field_override.node.civic_event.promote
     - core.base_field_override.node.civic_page.promote
     - core.base_field_override.node.civic_project.promote
@@ -108,6 +110,7 @@ config_devel:
     - core.entity_form_display.media.civic_remote_video.media_library
     - core.entity_form_display.media.civic_video.default
     - core.entity_form_display.media.civic_video.media_library
+    - core.entity_form_display.node.civic_alert.default
     - core.entity_form_display.node.civic_event.default
     - core.entity_form_display.node.civic_page.default
     - core.entity_form_display.paragraph.civic_accordion.default
@@ -152,6 +155,8 @@ config_devel:
     - core.entity_view_display.media.civic_remote_video.media_library
     - core.entity_view_display.media.civic_video.default
     - core.entity_view_display.media.civic_video.media_library
+    - core.entity_view_display.node.civic_alert.default
+    - core.entity_view_display.node.civic_alert.teaser
     - core.entity_view_display.node.civic_event.civic_card_event
     - core.entity_view_display.node.civic_event.civic_card_navigation
     - core.entity_view_display.node.civic_event.civic_card_promo
@@ -211,6 +216,10 @@ config_devel:
     - field.field.media.civic_remote_video.field_c_m_title
     - field.field.media.civic_remote_video.field_c_m_transcript_link
     - field.field.media.civic_video.field_c_m_video_file
+    - field.field.node.civic_alert.field_c_n_alert_page_visibility
+    - field.field.node.civic_alert.field_c_n_date_range
+    - field.field.node.civic_alert.body
+    - field.field.node.civic_alert.field_c_n_alert_type
     - field.field.node.civic_event.field_c_n_attachments
     - field.field.node.civic_event.field_c_n_body
     - field.field.node.civic_event.field_c_n_date
@@ -361,6 +370,7 @@ config_devel:
     - field.storage.media.field_c_m_title
     - field.storage.media.field_c_m_transcript_link
     - field.storage.media.field_c_m_video_file
+    - field.storage.node.field_c_n_alert_page_visibility
     - field.storage.node.field_c_n_attachments
     - field.storage.node.field_c_n_banner_background
     - field.storage.node.field_c_n_banner_components
@@ -371,6 +381,7 @@ config_devel:
     - field.storage.node.field_c_n_body
     - field.storage.node.field_c_n_components
     - field.storage.node.field_c_n_date
+    - field.storage.node.field_c_n_date_range
     - field.storage.node.field_c_n_image
     - field.storage.node.field_c_n_location
     - field.storage.node.field_c_n_more_information
@@ -379,6 +390,7 @@ config_devel:
     - field.storage.node.field_c_n_tagline
     - field.storage.node.field_c_n_thumbnail
     - field.storage.node.field_c_n_topics
+    - field.storage.node.field_c_n_alert_type
     - field.storage.paragraph.field_c_p_address
     - field.storage.paragraph.field_c_p_attachments
     - field.storage.paragraph.field_c_p_button_text
@@ -435,6 +447,7 @@ config_devel:
     - media.type.civic_image
     - media.type.civic_remote_video
     - media.type.civic_video
+    - node.type.civic_alert
     - node.type.civic_event
     - node.type.civic_page
     - node.type.civic_project
@@ -474,6 +487,7 @@ config_devel:
     - views.view.civic_events
     - views.view.civic_listing
     - views.view.civic_pages
+    - views.view.civic_alerts
     - webform.webform.civic_enquiry
   optional:
     - core.entity_view_mode.node.teaser

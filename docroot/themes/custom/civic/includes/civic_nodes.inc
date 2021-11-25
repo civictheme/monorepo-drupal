@@ -67,3 +67,16 @@ function _civic_preprocess_node__default(&$variables) {
 function _civic_preprocess_node__civic_page__full(&$variables) {
   $variables['components'] = $variables['content']['field_c_n_components'];
 }
+
+/**
+ * Preprocess Civic alert nodes.
+ *
+ * @SuppressWarnings(PHPMD)
+ */
+function _civic_preprocess_node__civic_alert__full(&$variables) {
+  $node = $variables['node'];
+  $variables['id'] = $node->id();
+  $variables['title'] = $node->label();
+  $variables['description'] = $variables['content']['body'];
+  $variables['type'] = $node->get('field_c_n_alert_type')->getString();
+}
