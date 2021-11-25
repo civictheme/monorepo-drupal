@@ -7,7 +7,7 @@
  * - data-alert-endpoint: Alert REST configurable API endpoint.
  */
 
-function CivicAlerts(el) {
+function CivicAlert(el) {
   this.alertContainer = el;
   this.endpoint = this.alertContainer.getAttribute('data-alert-endpoint');
   if (this.endpoint !== null) {
@@ -18,7 +18,7 @@ function CivicAlerts(el) {
 /**
  * Checks whether an alert is to be shown on a specified page.
  */
-CivicAlerts.prototype.checkPageVisibility = function (pageVisibilityString) {
+CivicAlert.prototype.checkPageVisibility = function (pageVisibilityString) {
   if ((typeof pageVisibilityString !== 'undefined') && pageVisibilityString !== false && pageVisibilityString !== '') {
     let pageVisibility = pageVisibilityString.replace(/\*/g, '[^ ]*');
     // Replace '<front>' with "/".
@@ -46,14 +46,14 @@ CivicAlerts.prototype.checkPageVisibility = function (pageVisibilityString) {
 /**
  * Checks whether an alert cookie is already set.
  */
-CivicAlerts.prototype.hasAlertCookie = function (cookie) {
+CivicAlert.prototype.hasAlertCookie = function (cookie) {
   return (document.cookie.split(';').some((item) => item.trim().startsWith(`${cookie}=`)));
 };
 
 /**
  * Sets an alert cookie.
  */
-CivicAlerts.prototype.setAlertCookie = function (cookie) {
+CivicAlert.prototype.setAlertCookie = function (cookie) {
   if (!this.hasAlertCookie(cookie)) {
     document.cookie = `${cookie}=1; SameSite=Strict`;
   }
@@ -62,7 +62,7 @@ CivicAlerts.prototype.setAlertCookie = function (cookie) {
 /**
  * Gets alerts from endpoint.
  */
-CivicAlerts.prototype.getAlerts = function (retry = false) {
+CivicAlert.prototype.getAlerts = function (retry = false) {
   const request = new XMLHttpRequest();
   request.open('Get', this.endpoint);
   request.onreadystatechange = () => {
@@ -84,7 +84,7 @@ CivicAlerts.prototype.getAlerts = function (retry = false) {
 /**
  * Inserts active alerts into page.
  */
-CivicAlerts.prototype.insertAlerts = function (response) {
+CivicAlert.prototype.insertAlerts = function (response) {
   if (response.length) {
     let alertHtml = '';
     for (let i = 0, len = response.length; i < len; i++) {
@@ -110,7 +110,7 @@ CivicAlerts.prototype.insertAlerts = function (response) {
 /**
  * Sets dismiss listeners to alerts.
  */
-CivicAlerts.prototype.setDismissAlertListeners = function () {
+CivicAlert.prototype.setDismissAlertListeners = function () {
   // Process the Close button of each alert.
   document
     .querySelectorAll('.civic-alerts .civic-alert__close-icon')
@@ -130,7 +130,7 @@ CivicAlerts.prototype.setDismissAlertListeners = function () {
 /**
  * Traversal helper to get a parent element matching a selector.
  */
-CivicAlerts.prototype.parents = function (element, selector) {
+CivicAlert.prototype.parents = function (element, selector) {
   while (element !== null && !element.matches(selector)) {
     element = element.parentNode;
   }
@@ -140,5 +140,5 @@ CivicAlerts.prototype.parents = function (element, selector) {
 // Initialise alerts.
 const alertContainer = document.querySelector('[data-component-name="civic-alerts"]');
 if (alertContainer !== null) {
-  new CivicAlerts(alertContainer);
+  new CivicAlert(alertContainer);
 }
