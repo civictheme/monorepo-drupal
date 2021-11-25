@@ -124,8 +124,8 @@ CivicAlert.prototype.setDismissAlertListeners = function () {
   // Process the Close button of each alert.
   document
     .querySelectorAll('[data-alert-dismiss]')
-    .forEach((element) => {
-      element.addEventListener('click', (event) => {
+    .forEach((el) => {
+      el.addEventListener('click', (event) => {
         event.stopPropagation();
         const alert = this.parent(event.currentTarget, '[data-component-name="civic-alert"]');
         this.dismissAlert(alert);
@@ -155,7 +155,6 @@ CivicAlert.prototype.parent = function (element, selector) {
 };
 
 // Initialise alerts.
-const alertContainer = document.querySelector('[data-component-name="civic-alerts"]');
-if (alertContainer !== null) {
-  new CivicAlert(alertContainer);
-}
+document.querySelectorAll('[data-component-name="civic-alerts"]').forEach((el) => {
+  new CivicAlert(el);
+});
