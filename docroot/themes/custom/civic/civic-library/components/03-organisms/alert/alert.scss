@@ -55,12 +55,14 @@
     }
   }
 
-  #{$root}__close-icon {
+  #{$root}__dismiss-button {
     cursor: pointer;
     margin-left: civic-space(3);
     position: absolute;
     top: civic-space(2);
     right: civic-space(2);
+    background-color: transparent;
+    padding: 0;
 
     @include civic-breakpoint(m) {
       position: static;
@@ -136,7 +138,7 @@
         &.civic-theme-#{$theme} {
           background-color: map.get($values, 'background-color');
           color: map.get($values, 'color');
-
+          #{$root}__dismiss-button,
           #{$root}__icon {
             .civic-icon {
               fill: map.get($values, 'icon-color');

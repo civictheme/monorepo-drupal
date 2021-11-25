@@ -51,6 +51,7 @@ export const Alert = (knobTab) => {
   for (let i = 0; i < numOfAlerts; i++) {
     html += CivicAlert({
       ...generalKnobs,
+      id: i,
     });
   }
 
