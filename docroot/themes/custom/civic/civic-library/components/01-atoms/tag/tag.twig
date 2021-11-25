@@ -46,7 +46,7 @@
 
 {% if tag_text %}
   {% if url %}
-    <a href="{{ url }}" title="{{ text }}" {{ new_window ? 'target="_blank"' }}>
+    <a href="{{ url }}" title="{{ text }}" aria-label="{{ text }}" {{ new_window ? 'target="_blank"' }}>
   {% endif %}
       <div class="civic-tag {{ modifier_class }}" aria-label="{{ text }}">{{ tag_text }}</div>
   {% if url %}
