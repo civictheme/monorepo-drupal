@@ -152,7 +152,6 @@ export const randomFormElements = (count, theme, rand) => {
   return formElements;
 };
 
-// Does this conflict randomTags()?
 export const randomTagsComponent = (count, theme) => {
   const tags = [];
   for (let i = 0; i < count; i++) {
@@ -178,26 +177,32 @@ export const randomButtonsComponent = (count, theme) => {
   return tags;
 };
 
-export const randomSlides = (count, theme, rand, template) => {
+export const randomSlidesComponent = (count, theme, rand, template) => {
   const slides = [];
 
   const inverseTheme = theme === 'dark' ? 'light' : 'dark';
 
   for (let i = 0; i < count; i++) {
-    const slide = {
-      theme: theme,
-      content_top: template?.content_top || randomTagsComponent(getRandomInt(0, 4)).join(' '),
-      title: template?.title || `Title ${i + 1}${rand ? ` ${randomString(getRandomInt(5, 30))}` : ''}`,
-      summary: template?.summary || `Summary ${i + 1}${rand ? ` ${randomString(getRandomInt(5, 250))}` : ''}`,
-      links: template?.links || randomButtonsComponent(getRandomInt(0, 4), inverseTheme).join(''),
-      image: template?.image || {
-        src: demoImage(),
-        alt: randomText(4),
-      },
-      content_bottom: template?.content_bottom || '',
-      attributes: template?.attributes || 'data-component-civic-slider-slide',
+    const contentTop = (template && template.content_top) ? template.content_top : randomTagsComponent(getRandomInt(0, 4)).join(' ');
+    const title = (template && template.title) ? template.title : `Title ${i + 1}${rand ? ` ${randomString(getRandomInt(5, 30))}` : ''}`;
+    const summary = (template && template.summary) ? template.summary : `Summary ${i + 1}${rand ? ` ${randomString(getRandomInt(5, 250))}` : ''}`;
+    const links = (template && template.links) ? template.links : randomButtonsComponent(getRandomInt(0, 4), inverseTheme).join('');
+    const image = (template && template.image) ? template.image : {
+      src: demoImage(),
+      alt: randomText(4),
     };
-    slides.push(Slide(slide));
+    const contentBottom = (template && template.content_bottom) ? template.content_bottom : '';
+    const attributes = (template && template.attributes) ? template.attributes : 'data-component-civic-slider-slide';
+    slides.push(Slide({
+      theme,
+      content_top: contentTop,
+      title,
+      summary,
+      links,
+      image,
+      content_bottom: contentBottom,
+      attributes,
+    }));
   }
   return slides;
 };
