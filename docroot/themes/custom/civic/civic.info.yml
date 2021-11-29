@@ -2,7 +2,7 @@ name: Civic
 type: theme
 base theme: false
 description: A flexible component based theme.
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9
 
 libraries:
   - 'civic/global'
