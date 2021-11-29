@@ -1,7 +1,8 @@
 import {
   radios, text, number, boolean,
 } from '@storybook/addon-knobs';
-import { randomSlidesComponent, getSlots } from '../../00-base/base.stories';
+import { randomUrl, getSlots } from '../../00-base/base.stories';
+import { randomSlidesComponent } from './slider.utils';
 import CivicSlider from './slider.twig';
 import CivicButton from '../../01-atoms/button/button.twig';
 
@@ -25,7 +26,7 @@ export const Slider = () => {
     generalKnobTab,
   );
 
-  const numOfElements = number(
+  const numOfSlides = number(
     'Number of slides',
     5, {
       range: true,
@@ -36,7 +37,7 @@ export const Slider = () => {
     slidesKnobTab,
   );
 
-  const slides = randomSlidesComponent(numOfElements, theme, true, {
+  const slides = randomSlidesComponent(numOfSlides, theme, true, {
     ...getSlots([
       'content_top',
       'links',
@@ -52,9 +53,11 @@ export const Slider = () => {
       text: 'Slider link',
       type: 'secondary',
       kind: 'link',
-      url: 'https://www.salsadigital.com.au',
+      url: randomUrl(),
     }) : null,
     slides,
+    previous_label: text('Previous Label', 'Previous', generalKnobTab),
+    next_label: text('Next Label', 'Next', generalKnobTab),
   };
 
   return CivicSlider({

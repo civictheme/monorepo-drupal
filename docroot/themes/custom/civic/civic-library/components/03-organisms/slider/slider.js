@@ -140,6 +140,5 @@ CivicSlider.prototype.updateProgress = function () {
 };
 
 document.querySelectorAll('[data-component-civic-slider]').forEach((slider) => {
-  // eslint-disable-next-line no-new
   new CivicSlider(slider);
 });
