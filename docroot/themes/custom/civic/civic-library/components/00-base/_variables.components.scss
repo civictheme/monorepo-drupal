@@ -1038,3 +1038,27 @@ $civic-table-of-contents-dark-link-hover-border-color: civic-color('translucent'
 $civic-table-of-contents-dark-link-strip-background-color: civic-color-shade-dark(30) !default;
 $civic-table-of-contents-dark-link-strip-hover-background-color: civic-color('accent') !default;
 $civic-table-of-contents-dark-active-background-color: civic-color-shade-dark(30) !default;
+
+//
+// Slider.
+//
+$civic-slider-border-radius: $civic-border-radius !default;
+$civic-slider-progress-indicator-border-radius: $civic-border-radius !default;
+$civic-slider-light-background-color: civic-color('neutral') !default;
+$civic-slider-light-title-color: civic-color('secondary') !default;
+$civic-slider-light-progress-indicator-background-color: civic-color-neutral(5) !default;
+$civic-slider-light-progress-indicator-color: civic-color-neutral(60) !default;
+$civic-slider-dark-background-color: civic-color-shade-dark(45) !default;
+$civic-slider-dark-title-color: civic-color('neutral') !default;
+$civic-slider-dark-progress-indicator-background-color: civic-color-shade-dark(60) !default;
+$civic-slider-dark-progress-indicator-color: civic-color-neutral(5) !default;
+
+//
+// Slide.
+//
+$civic-slide-light-background-color: civic-color-shade-dark(45) !default;
+$civic-slide-light-title-color: civic-color('neutral') !default;
+$civic-slide-light-summary-color: civic-color-neutral(5) !default;
+$civic-slide-dark-background-color: civic-color('neutral') !default;
+$civic-slide-dark-title-color: civic-color-neutral(80) !default;
+$civic-slide-dark-summary-color: civic-color-neutral(60) !default;
