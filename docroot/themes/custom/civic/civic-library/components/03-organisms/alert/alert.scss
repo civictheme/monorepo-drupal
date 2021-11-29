@@ -16,6 +16,12 @@
 
   @include civic-typography('label-small');
 
+  border-bottom: 1px solid;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
   #{$root}__title {
     @include civic-typography('heading-6');
 
@@ -43,23 +49,38 @@
 
   #{$root}__summary {
     display: flex;
+
+    @include civic-breakpoint(m) {
+      position: relative;
+    }
   }
 
-  #{$root}__close-icon {
+  #{$root}__dismiss-button {
     cursor: pointer;
     margin-left: civic-space(3);
     position: absolute;
     top: civic-space(2);
     right: civic-space(2);
+    background-color: transparent;
+    padding: 0;
 
     @include civic-breakpoint(m) {
       position: static;
       align-self: center;
+      margin-left: auto;
     }
   }
 
   // SASS does not allow variables interpolation, so we are creating a local
   // map to easily generate rules.
+  &.civic-theme-light {
+    border-color: $civic-alert-light-divider-color;
+  }
+
+  &.civic-theme-dark {
+    border-color: $civic-alert-dark-divider-color;
+  }
+
   $map: (
     'status': (
       'light': (
@@ -117,7 +138,7 @@
         &.civic-theme-#{$theme} {
           background-color: map.get($values, 'background-color');
           color: map.get($values, 'color');
-
+          #{$root}__dismiss-button,
           #{$root}__icon {
             .civic-icon {
               fill: map.get($values, 'icon-color');

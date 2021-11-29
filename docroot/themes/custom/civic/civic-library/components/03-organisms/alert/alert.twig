@@ -3,17 +3,14 @@
  * @file
  * Alert component.
  *
- * This is strictly an exmaple file to demonstrate markup in Storybook.
- * It is not intended to be included in any other component.
- *
  * Variables:
  * - type: [string] Alert type: Info, Error, Warning, Success.
  * - theme: [string] Light, Dark.
+ * - id: [string] Alert id.
  * - title: [string] Alert title.
  * - description: [string] Alert summary.
  */
 #}
-
 {% set type = type|default('info') %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type_class = 'civic-alert--%s'|format(type, type) %}
@@ -27,7 +24,7 @@
   success: 'userinterface_approve',
 } %}
 
-<div class="civic-alert {{ modifier_class }}" data-component-name="civic-alert">
+<div class="civic-alert {{ modifier_class }}" data-alert-id="{{ id }}" data-alert-type="{{ type }}" data-component-name="civic-alert">
   <div class="container">
     <div class="row">
       <div class="civic-alert__title col-xs-12 col-m-3">
@@ -43,11 +40,14 @@
       </div>
       <div class="civic-alert__summary col-xs-12 col-m-9">
         {{ description }}
-        <span class="civic-alert__close-icon" data-action="close">
-          {% include '@atoms/icon/icon.twig' with {
-            symbol: 'userinterface_cancel',
-          } only %}
-        </span>
+        {% include "@atoms/button/button.twig" with {
+          type: 'button',
+          theme: theme,
+          modifier_class: 'civic-alert__dismiss-button',
+          text: '',
+          icon: 'userinterface_cancel',
+          attributes: 'id=dismiss-alert-'~id~' data-alert-dismiss'
+        } %}
       </div>
     </div>
   </div>

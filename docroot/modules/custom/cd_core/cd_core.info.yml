@@ -1,9 +1,8 @@
-name: Cd Core
+name: 'Cd Core'
 type: module
-description: Core feature for site settings.
+description: 'Core feature for site settings.'
 core_version_requirement: ^9
 package: cd
-
 dependencies:
   - admin_toolbar:admin_toolbar
   - admin_toolbar:admin_toolbar_tools
@@ -15,7 +14,6 @@ dependencies:
   - shield:shield
   - stage_file_proxy:stage_file_proxy
   - styleguide:styleguide
-  # Required for Civic theme.
   - components:components
   - default_content:default_content
   - drupal:block_content
@@ -24,3 +22,5 @@ dependencies:
   - paragraphs:paragraphs
   - drupal:inline_form_errors
   - webform:webform
+  - drupal:rest
+  - menu_ui
