@@ -94,22 +94,3 @@ function civic_companion_update_9003() {
     }
   }
 }
-
-/**
- * Removes image styles.
- */
-function civic_companion_update_9004() {
-  $names = [
-    'large',
-    'medium',
-    'thumbnail',
-    'wide',
-  ];
-
-  foreach ($names as $name) {
-    $entity = Drupal::entityTypeManager()->getStorage('image_style')->load($name);
-    if ($entity) {
-      $entity->delete();
-    }
-  }
-}
