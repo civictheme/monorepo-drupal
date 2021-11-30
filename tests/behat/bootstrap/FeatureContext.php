@@ -14,6 +14,7 @@ use DrevOps\BehatSteps\FileTrait;
 use DrevOps\BehatSteps\JsTrait;
 use DrevOps\BehatSteps\LinkTrait;
 use DrevOps\BehatSteps\MediaTrait;
+use DrevOps\BehatSteps\OverrideTrait;
 use DrevOps\BehatSteps\ParagraphsTrait;
 use DrevOps\BehatSteps\PathTrait;
 use DrevOps\BehatSteps\SelectTrait;
@@ -35,6 +36,7 @@ class FeatureContext extends DrupalContext {
   use JsTrait;
   use LinkTrait;
   use MediaTrait;
+  use OverrideTrait;
   use PathTrait;
   use ParagraphsTrait;
   use SelectTrait;
@@ -66,6 +68,30 @@ class FeatureContext extends DrupalContext {
 
     // Reset frame to the default window.
     $driver->switchToIFrame();
+  }
+
+  /**
+   * Navigate to delete page with specified type and title.
+   *
+   * @code
+   * When I delete "article" "Test article"
+   * @endcode
+   *
+   * @When I delete :type :title
+   */
+  public function contentDeletePageWithTitle($type, $title) {
+    $nids = $this->contentNodeLoadMultiple($type, [
+      'title' => $title,
+    ]);
+
+    if (empty($nids)) {
+      throw new \RuntimeException(sprintf('Unable to find %s page "%s"', $type, $title));
+    }
+
+    $nid = current($nids);
+    $path = $this->locatePath('/node/' . $nid) . '/delete';
+    print $path;
+    $this->getSession()->visit($path);
   }
 
 }
