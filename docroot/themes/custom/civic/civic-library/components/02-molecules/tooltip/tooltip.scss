@@ -37,6 +37,7 @@
     width: $civic-tooltip-width;
     margin-left: calc(50% - #{$tooltip-width-half});
     margin-top: $civic-tooltip-triangle-height + math.div(civic-space(), 2);
+    z-index: $civic-tooltip-z-index;
 
     // Triangle.
     &::before {
