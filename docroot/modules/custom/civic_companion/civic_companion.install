@@ -1,0 +1,115 @@
+<?php
+
+/**
+ * @file
+ * Install file for Civic Companion module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function civic_companion_install() {
+  module_load_include('php', 'civic_companion', 'civic_companion.post_update');
+  $functions = get_defined_functions();
+  // Run all update functions when installing this module.
+  foreach ($functions['user'] as $function) {
+    if (strpos($function, 'civic_companion_update_') === 0) {
+      $sandbox = [];
+      call_user_func($function, $sandbox);
+    }
+  }
+}
+
+/**
+ * Removes GovCMS content types.
+ */
+function civic_companion_update_9000() {
+  $names = [
+    'govcms_blog_article',
+    'govcms_event',
+    'govcms_foi',
+    'govcms_news_and_media',
+    'govcms_standard_page',
+  ];
+
+  foreach ($names as $name) {
+    $entity = Drupal::entityTypeManager()->getStorage('node_type')->load($name);
+    if ($entity) {
+      $entity->delete();
+    }
+  }
+}
+
+/**
+ * Removes media types.
+ */
+function civic_companion_update_9001() {
+  $names = [
+    'audio',
+    'document',
+    'image',
+    'remote_video',
+    'video',
+  ];
+
+  foreach ($names as $name) {
+    $entity = Drupal::entityTypeManager()->getStorage('media_type')->load($name);
+    if ($entity) {
+      $entity->delete();
+    }
+  }
+}
+
+/**
+ * Removes text formats.
+ */
+function civic_companion_update_9002() {
+  $names = [
+    'plain_text',
+    'rich_text',
+  ];
+
+  foreach ($names as $name) {
+    $entity = Drupal::entityTypeManager()->getStorage('filter_format')->load($name);
+    if ($entity) {
+      $entity->delete();
+    }
+  }
+}
+
+/**
+ * Removes user roles.
+ */
+function civic_companion_update_9003() {
+  $names = [
+    'govcms_site_administrator',
+    'govcms_content_approver',
+    'govcms_content_author',
+  ];
+
+  foreach ($names as $name) {
+    $entity = Drupal::entityTypeManager()->getStorage('user_role')->load($name);
+    if ($entity) {
+      $entity->delete();
+    }
+  }
+}
+
+/**
+ * Removes image styles.
+ */
+function civic_companion_update_9004() {
+  $names = [
+    'large',
+    'medium',
+    'thumbnail',
+    'wide',
+  ];
+
+  foreach ($names as $name) {
+    $entity = Drupal::entityTypeManager()->getStorage('image_style')->load($name);
+    if ($entity) {
+      $entity->delete();
+    }
+  }
+}

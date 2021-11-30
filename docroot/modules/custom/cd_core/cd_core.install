@@ -8,7 +8,6 @@
 use Drupal\block\BlockInterface;
 use Drupal\cd_core\Helper;
 use Drupal\Core\Config\Entity\ConfigEntityUpdater;
-use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
 /**
@@ -55,20 +54,9 @@ function cd_core_update_9000() {
 }
 
 /**
- * Grants all permissions to govcms_site_administrator roles.
- */
-function cd_core_update_9001() {
-  /** @var \Drupal\user\Entity\Role $admin_role */
-  $admin_role = Role::load('govcms_site_administrator');
-
-  $permissions = \Drupal::service('user.permissions')->getPermissions();
-  user_role_grant_permissions($admin_role->id(), array_keys($permissions));
-}
-
-/**
  * Creates administrator users.
  */
-function cd_core_update_9002() {
+function cd_core_update_9001() {
   $emails = [
     'alan@salsadigital.com.au',
     'akhil.bhandari@salsadigital.com.au',
@@ -88,7 +76,7 @@ function cd_core_update_9002() {
     $user = User::create();
     $user->setUsername($email);
     $user->setEmail($email);
-    $user->addRole('govcms_site_administrator');
+    $user->addRole('civic_site_administrator');
     $user->activate();
     $user->enforceIsNew();
     $user->save();
@@ -98,7 +86,7 @@ function cd_core_update_9002() {
 /**
  * Sets civic_demo theme settings and site slogan.
  */
-function cd_core_update_9003() {
+function cd_core_update_9002() {
   $logo_header_desktop = '/themes/custom/civic_demo/dist/assets/logos/civic_demo_logo_desktop_light.png';
   $logo_header_mobile = '/themes/custom/civic_demo/dist/assets/logos/civic_demo_logo_mobile_light.png';
   $logo_footer_desktop = '/themes/custom/civic_demo/dist/assets/logos/civic_demo_logo_desktop_dark.png';
@@ -136,7 +124,7 @@ function cd_core_update_9003() {
 /**
  * Provisions links in footer and updates menu block configurations.
  */
-function cd_core_update_9004($sandbox) {
+function cd_core_update_9003($sandbox) {
   Helper::saveMenuTree('civic-footer', [
     'General' => [
       'link' => '/<front>',
@@ -202,7 +190,7 @@ function cd_core_update_9004($sandbox) {
 /**
  * Provisions links in Primary and Secondary navigation menus.
  */
-function cd_core_update_9005() {
+function cd_core_update_9004() {
   Helper::saveMenuTree('civic-primary-navigation', [
     'General' => [
       'link' => '/<front>',
