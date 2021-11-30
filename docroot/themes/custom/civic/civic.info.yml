@@ -436,11 +436,11 @@ config_devel:
     - field.storage.paragraph.field_c_p_zoom
     - filter.format.civic_plain_text
     - filter.format.civic_rich_text
-    - image.style.navigation
-    - image.style.promo_banner
-    - image.style.promo_card
-    - image.style.topic__desktop
-    - image.style.topic__mobile
+    - image.style.civic_navigation_card
+    - image.style.civic_promo_banner
+    - image.style.civic_promo_card
+    - image.style.civic_topic_desktop
+    - image.style.civic_topic_mobile
     - media.type.civic_audio
     - media.type.civic_document
     - media.type.civic_icon
