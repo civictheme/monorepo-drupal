@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-name: navigation
-label: 'Navigation card'
+name: civic_navigation_card
+label: 'Civic Navigation card'
 effects:
   b8e5a34c-7858-461d-9db3-c71f97aeca04:
     uuid: b8e5a34c-7858-461d-9db3-c71f97aeca04

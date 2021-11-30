@@ -4,7 +4,7 @@ dependencies:
   config:
     - field.field.media.civic_image.field_c_m_caption
     - field.field.media.civic_image.field_c_m_image
-    - image.style.thumbnail
+    - image.style.civic_thumbnail
     - media.type.civic_image
   module:
     - image
