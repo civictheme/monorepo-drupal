@@ -20,7 +20,7 @@ content:
     type: image
     label: hidden
     settings:
-      image_style: medium
+      image_style: civic_medium
       image_link: ''
     weight: 0
     third_party_settings: {  }

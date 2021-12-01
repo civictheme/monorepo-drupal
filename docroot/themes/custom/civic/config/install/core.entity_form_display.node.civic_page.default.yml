@@ -15,7 +15,6 @@ dependencies:
     - field.field.node.civic_page.field_c_n_topics
     - node.type.civic_page
   module:
-    - content_moderation
     - field_group
     - media_library
     - paragraphs
