@@ -436,9 +436,11 @@ config_devel:
     - field.storage.paragraph.field_c_p_zoom
     - filter.format.civic_plain_text
     - filter.format.civic_rich_text
+    - image.style.civic_medium
     - image.style.civic_navigation_card
     - image.style.civic_promo_banner
     - image.style.civic_promo_card
+    - image.style.civic_thumbnail
     - image.style.civic_topic_desktop
     - image.style.civic_topic_mobile
     - media.type.civic_audio
@@ -491,5 +493,3 @@ config_devel:
     - webform.webform.civic_enquiry
   optional:
     - core.entity_view_mode.node.teaser
-    - image.style.medium
-    - image.style.thumbnail
