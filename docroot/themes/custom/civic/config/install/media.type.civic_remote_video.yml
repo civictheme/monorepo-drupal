@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: civic_remote_video
-label: 'Civic Remote video'
+label: 'Remote video'
 description: 'A remotely hosted video from YouTube or Vimeo.'
 source: 'oembed:video'
 queue_thumbnail_downloads: false
@@ -13,4 +13,5 @@ source_configuration:
     - YouTube
     - Vimeo
   source_field: field_c_m_oembed_video
-field_map: {  }
+field_map:
+  title: name

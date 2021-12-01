@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-name: topic__desktop
+name: civic_topic_desktop
 label: 'Topic desktop'
 effects:
   b871b9ed-7922-4361-9034-9b29e4cd2239:

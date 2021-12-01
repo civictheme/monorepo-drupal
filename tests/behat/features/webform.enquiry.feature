@@ -3,7 +3,6 @@ Feature: Tests the Civic form integration with webform
 
   @api
   Scenario: Form inputs are correctly validated
-
     Given I am an anonymous user
     When I visit "/form/civic-enquiry"
     Then I press the "Send" button

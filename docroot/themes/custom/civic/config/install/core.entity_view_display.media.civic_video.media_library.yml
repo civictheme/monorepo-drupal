@@ -4,7 +4,7 @@ dependencies:
   config:
     - core.entity_view_mode.media.media_library
     - field.field.media.civic_video.field_c_m_video_file
-    - image.style.medium
+    - image.style.civic_medium
     - media.type.civic_video
   module:
     - image
@@ -17,7 +17,7 @@ content:
     type: image
     label: hidden
     settings:
-      image_style: medium
+      image_style: civic_medium
       image_link: ''
     weight: 0
     third_party_settings: {  }

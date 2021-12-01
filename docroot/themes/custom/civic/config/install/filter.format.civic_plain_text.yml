@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-name: 'Civic Plain text'
+name: 'Plain text'
 format: civic_plain_text
 weight: 10
 filters:

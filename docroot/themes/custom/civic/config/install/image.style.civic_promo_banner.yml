@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-name: promo_banner
+name: civic_promo_banner
 label: 'Promo banner'
 effects:
   a85d68b7-a682-4599-87c7-88befc578ee1:

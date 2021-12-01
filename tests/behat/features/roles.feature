@@ -9,7 +9,7 @@ Feature: Roles
     And I go to the homepage
     And I save screenshot
     Examples:
-      | role                      |
-      | civic_content_author      |
-      | civic_content_approver    |
-      | civic_site_administrator  |
+      | role                     |
+      | civic_content_author     |
+      | civic_content_approver   |
+      | civic_site_administrator |

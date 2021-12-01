@@ -5,13 +5,13 @@ Feature: Tests the Slider Slide paragraph
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Slider slide" in the "civic_slider_slide" row
 
   @api
   Scenario: Slider Slide paragraph exists with fields.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_slider_slide/fields"
     And I should see the text "field_c_p_image" in the "Image" row
     And I should see the text "field_c_p_image_position" in the "Image position" row
@@ -22,7 +22,7 @@ Feature: Tests the Slider Slide paragraph
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element

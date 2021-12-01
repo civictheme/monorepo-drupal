@@ -36,8 +36,6 @@ commands:
     usage: Build and start all or specified Docker containers.
     cmd: |
       docker-compose up -d "$@" && if docker-compose logs | grep -q "\[Error\]"; then exit 1; fi
-      # Write Livereload host port information into a socket file.
-      mkdir -p docroot/sites/default/files && docker-compose port cli 35729 | cut -d : -f 2 | xargs -I{} ahoy cli 'echo {} > /app/docroot/sites/default/files/livereload.sock'
 
   down:
     usage: Stop Docker containers and remove container, images, volumes and networks.
@@ -51,8 +49,6 @@ commands:
     usage: Start all or specified existing Docker containers.
     cmd: |
       docker-compose start "$@"
-      # Write Livereload host port information into a socket file.
-      mkdir -p docroot/sites/default/files && docker-compose port cli 35729 | cut -d : -f 2 | xargs -I{} ahoy cli 'echo {} > /app/docroot/sites/default/files/livereload.sock'
 
   stop:
     usage: Stop all or specified running Docker containers.

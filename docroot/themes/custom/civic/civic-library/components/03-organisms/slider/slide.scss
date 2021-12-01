@@ -1,0 +1,120 @@
+.civic-slide {
+  $root: &;
+
+  position: absolute;
+
+  &--hidden {
+    display: none !important;
+  }
+
+  @include civic-breakpoint('l') {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
+  }
+
+  &__content-top {
+    margin-bottom: civic-space(3);
+
+    @include civic-breakpoint('l') {
+      margin-bottom: civic-space(4);
+    }
+  }
+
+  &__title {
+    @include civic-typography('heading-2');
+
+    margin-bottom: civic-space(3);
+
+    @include civic-breakpoint('l') {
+      margin-bottom: civic-space(2);
+    }
+  }
+
+  &__summary {
+    @include civic-typography('text-regular');
+
+    margin-bottom: civic-space(4);
+
+    @include civic-breakpoint('l') {
+      margin-bottom: civic-space(5);
+    }
+  }
+
+  &__links {
+    margin-bottom: civic-space(4);
+
+    @include civic-breakpoint('l') {
+      margin-bottom: civic-space(5);
+    }
+
+    .civic-button {
+      margin: 0 civic-space() civic-space() 0;
+    }
+  }
+
+  &__content {
+    box-sizing: border-box;
+    flex-grow: 1;
+    padding: civic-space(4) civic-space(3);
+    display: flex;
+    align-items: center;
+
+    @include civic-breakpoint('l') {
+      padding: (civic-space() * 13) civic-space(10);
+    }
+  }
+
+  &__content-inner {
+    width: 100%;
+
+    & > div:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    @include civic-breakpoint('l') {
+      width: rem(500px);
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      height: civic-space() * 26;
+
+      @include civic-breakpoint('l') {
+        height: 100%;
+      }
+    }
+  }
+
+  &.civic-theme-light {
+    background-color: $civic-slide-light-background-color;
+
+    #{$root}__title {
+      color: $civic-slide-light-title-color;
+    }
+
+    #{$root}__summary {
+      color: $civic-slide-light-summary-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-slide-dark-background-color;
+
+    #{$root}__title {
+      color: $civic-slide-dark-title-color;
+    }
+
+    #{$root}__summary {
+      color: $civic-slide-dark-summary-color;
+    }
+  }
+}

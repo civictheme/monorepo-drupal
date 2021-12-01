@@ -8,7 +8,7 @@ dependencies:
     - node
     - user
 id: civic_pages
-label: 'Civic pages'
+label: Pages
 module: views
 description: ''
 tag: ''

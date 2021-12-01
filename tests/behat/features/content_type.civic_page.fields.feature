@@ -10,7 +10,7 @@ Feature: Fields on Page content type
 
   @api
   Scenario: Civic banner block type exists with fields.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/types/manage/civic_page/fields"
     Then I should see the text "Banner background" in the "field_c_n_banner_background" row
     Then I should see the text "Banner components" in the "field_c_n_banner_components" row
@@ -26,7 +26,7 @@ Feature: Fields on Page content type
 
   @api
   Scenario: Page content type page has the relevant fields
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     Then the response status code should be 200
 

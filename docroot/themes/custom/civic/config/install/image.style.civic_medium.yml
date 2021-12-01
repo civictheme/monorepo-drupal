@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-name: medium
-label: 'Medium (220×220)'
+name: civic_medium
+label: Medium
 effects:
   bddf0d06-42f9-4c75-a700-a33cafa25ea0:
     uuid: bddf0d06-42f9-4c75-a700-a33cafa25ea0
