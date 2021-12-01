@@ -450,16 +450,6 @@ display:
         - 'config:core.entity_view_display.node.civic_page.civic_card_subject'
         - 'config:core.entity_view_display.node.civic_page.civic_slider_slide'
         - 'config:core.entity_view_display.node.civic_page.default'
-        - 'config:core.entity_view_display.node.govcms_blog_article.default'
-        - 'config:core.entity_view_display.node.govcms_blog_article.teaser'
-        - 'config:core.entity_view_display.node.govcms_event.default'
-        - 'config:core.entity_view_display.node.govcms_event.teaser'
-        - 'config:core.entity_view_display.node.govcms_foi.default'
-        - 'config:core.entity_view_display.node.govcms_foi.teaser'
-        - 'config:core.entity_view_display.node.govcms_news_and_media.default'
-        - 'config:core.entity_view_display.node.govcms_news_and_media.teaser'
-        - 'config:core.entity_view_display.node.govcms_standard_page.default'
-        - 'config:core.entity_view_display.node.govcms_standard_page.teaser'
         - 'config:field.storage.node.field_c_n_alert_page_visibility'
   rest_export_civic_alerts:
     display_plugin: rest_export
@@ -474,25 +464,19 @@ display:
           uses_fields: false
           formats:
             json: json
-      path: api/civic_alerts
+      path: api/civic-alerts
       row:
         type: data_field
         options:
           field_options:
-            title:
-              alias: title
-              raw_output: false
             rendered_entity:
               alias: message
               raw_output: false
             nid:
-              alias: alert_id
+              alias: id
               raw_output: false
             field_c_n_alert_page_visibility:
-              alias: page_visibility
-              raw_output: false
-            field_c_n_alert_type:
-              alias: alert_type
+              alias: visibility
               raw_output: false
     cache_metadata:
       max-age: -1
@@ -517,14 +501,4 @@ display:
         - 'config:core.entity_view_display.node.civic_page.civic_card_subject'
         - 'config:core.entity_view_display.node.civic_page.civic_slider_slide'
         - 'config:core.entity_view_display.node.civic_page.default'
-        - 'config:core.entity_view_display.node.govcms_blog_article.default'
-        - 'config:core.entity_view_display.node.govcms_blog_article.teaser'
-        - 'config:core.entity_view_display.node.govcms_event.default'
-        - 'config:core.entity_view_display.node.govcms_event.teaser'
-        - 'config:core.entity_view_display.node.govcms_foi.default'
-        - 'config:core.entity_view_display.node.govcms_foi.teaser'
-        - 'config:core.entity_view_display.node.govcms_news_and_media.default'
-        - 'config:core.entity_view_display.node.govcms_news_and_media.teaser'
-        - 'config:core.entity_view_display.node.govcms_standard_page.default'
-        - 'config:core.entity_view_display.node.govcms_standard_page.teaser'
         - 'config:field.storage.node.field_c_n_alert_page_visibility'

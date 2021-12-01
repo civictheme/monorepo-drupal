@@ -90,3 +90,19 @@
 .example-container__subcontent {
   margin-bottom: civic-space(2);
 }
+
+.docs-container {
+  border: solid 1px #ccc;
+  padding: civic-space(4);
+  margin: civic-space(8) auto;
+  max-width: 60%;
+  min-width: 600px;
+}
+
+.docs-container__title {
+  @include civic-typography('label-large');
+}
+
+.docs-container__content {
+  margin-bottom: civic-space(4);
+}

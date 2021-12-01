@@ -218,7 +218,7 @@ config_devel:
     - field.field.media.civic_video.field_c_m_video_file
     - field.field.node.civic_alert.field_c_n_alert_page_visibility
     - field.field.node.civic_alert.field_c_n_date_range
-    - field.field.node.civic_alert.body
+    - field.field.node.civic_alert.field_c_n_body
     - field.field.node.civic_alert.field_c_n_alert_type
     - field.field.node.civic_event.field_c_n_attachments
     - field.field.node.civic_event.field_c_n_body

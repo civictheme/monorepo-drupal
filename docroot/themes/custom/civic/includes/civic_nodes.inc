@@ -77,6 +77,6 @@ function _civic_preprocess_node__civic_alert__full(&$variables) {
   $node = $variables['node'];
   $variables['id'] = $node->id();
   $variables['title'] = $node->label();
-  $variables['description'] = $variables['content']['body'];
+  $variables['description'] = $node->get('field_c_n_body')->value;
   $variables['type'] = $node->get('field_c_n_alert_type')->getString();
 }
