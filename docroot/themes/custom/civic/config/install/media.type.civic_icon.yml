@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: civic_icon
-label: 'Civic Icon'
+label: Icon
 description: 'SVG icon'
 source: file
 queue_thumbnail_downloads: false

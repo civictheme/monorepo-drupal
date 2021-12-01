@@ -8,7 +8,7 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'Civic Project'
+name: Project
 type: civic_project
 description: '<em>Civic</em>. Use Project pages to describe project information.'
 help: ''

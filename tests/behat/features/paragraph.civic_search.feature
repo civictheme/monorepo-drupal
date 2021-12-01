@@ -7,7 +7,7 @@ Feature: Tests the Civic search paragraph
   Scenario: Paragraph type appears in the paragraph types page
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
-    Then I should see the text "Civic search" in the "civic_search" row
+    Then I should see the text "Search" in the "civic_search" row
 
   @api
   Scenario: Content paragraph exists with fields.
@@ -37,9 +37,9 @@ Feature: Tests the Civic search paragraph
 
   @api
   Scenario: Civic page node field_c_n_banner_components fields settings.
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/types/manage/civic_page/fields/node.civic_page.field_c_n_banner_components"
     And the "Label" field should contain "Banner components"
     Then the option "Default" from select "Reference method" is selected
     Then the "Include the selected below" checkbox should be checked
-    And the "Civic search" checkbox should be checked
+    And the "Search" checkbox should be checked

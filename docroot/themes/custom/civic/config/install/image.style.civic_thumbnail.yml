@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 name: civic_thumbnail
-label: 'Civic Thumbnail'
+label: Thumbnail
 effects:
   1cfec298-8620-4749-b100-ccb6c4500779:
     uuid: 1cfec298-8620-4749-b100-ccb6c4500779

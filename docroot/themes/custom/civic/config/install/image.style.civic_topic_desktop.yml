@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 name: civic_topic_desktop
-label: 'Civic Topic desktop'
+label: 'Topic desktop'
 effects:
   b871b9ed-7922-4361-9034-9b29e4cd2239:
     uuid: b871b9ed-7922-4361-9034-9b29e4cd2239

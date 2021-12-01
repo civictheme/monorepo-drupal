@@ -23,7 +23,7 @@ Feature: Tests the Event reference card paragraph
     And the "Label" field should contain "Reference"
     Then the option "Default" from select "Reference method" is selected
     Then the "Create referenced entities if they don't already exist" checkbox should not be checked
-    And the "Civic Event" checkbox should be checked
+    And the "Event" checkbox should be checked
 
   @api
   Scenario: Card container paragraph field_c_p_cards fields settings.

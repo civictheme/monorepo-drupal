@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: civic_document
-label: 'Civic Document'
+label: Document
 description: 'An uploaded file or document, such as a PDF.'
 source: file
 queue_thumbnail_downloads: false

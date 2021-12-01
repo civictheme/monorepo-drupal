@@ -11,7 +11,7 @@ dependencies:
     - serialization
     - user
 id: civic_alerts
-label: 'Civic alerts'
+label: Alerts
 module: views
 description: ''
 tag: ''

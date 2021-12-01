@@ -2,6 +2,6 @@ langcode: en
 status: true
 dependencies: {  }
 id: civic-primary-navigation
-label: 'Civic Primary Navigation'
+label: 'Primary Navigation'
 description: 'Primary Navigation menu provided by Civic.'
 locked: false

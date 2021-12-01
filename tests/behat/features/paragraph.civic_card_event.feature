@@ -11,7 +11,7 @@ Feature: Tests the Event Card paragraph
 
   @api
   Scenario: Event card paragraph exists with fields.
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_card_event/fields"
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_title" in the "Title" row

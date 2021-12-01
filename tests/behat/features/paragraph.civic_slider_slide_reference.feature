@@ -22,9 +22,9 @@ Feature: Tests the Slider slide - reference paragraph
     And the "Label" field should contain "Reference"
     And the "Required field" checkbox should be checked
     Then the option "Default" from select "Reference method" is selected
-    And the "Civic Event" checkbox should be checked
-    And the "Civic Page" checkbox should be checked
-    And the "Civic Project" checkbox should be checked
+    And the "Event" checkbox should be checked
+    And the "Page" checkbox should be checked
+    And the "Project" checkbox should be checked
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
