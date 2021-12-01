@@ -29,6 +29,7 @@ load _helper
   assert_dir_exists "$dir/dist/assets/icons"
   assert_dir_exists "$dir/dist/assets/images"
   assert_dir_exists "$dir/dist/assets/logos"
+  assert_dir_not_exists "$dir/dist/assets/api"
 
   # Files managed by static Storybook build.
   assert_dir_exists "$dir/storybook-static"
@@ -45,6 +46,7 @@ load _helper
   assert_dir_not_exists "$dir/storybook-static/icons"
   assert_dir_not_exists "$dir/storybook-static/images"
   assert_dir_not_exists "$dir/storybook-static/logos"
+  assert_dir_exists "$dir/storybook-static/api"
 }
 
 @test "Civic Theme assets" {
@@ -70,6 +72,7 @@ load _helper
   assert_dir_not_exists "$dir/dist/assets/icons"
   assert_dir_exists "$dir/dist/assets/images"
   assert_dir_exists "$dir/dist/assets/logos"
+  assert_dir_not_exists "$dir/dist/assets/api"
 
   # Files managed by static Storybook build.
   assert_dir_exists "$dir/storybook-static"
@@ -86,6 +89,7 @@ load _helper
   assert_dir_not_exists "$dir/storybook-static/icons"
   assert_dir_not_exists "$dir/storybook-static/images"
   assert_dir_not_exists "$dir/storybook-static/logos"
+  assert_dir_exists "$dir/storybook-static/api"
 }
 
 @test "Civic Demo Theme assets" {
@@ -111,6 +115,7 @@ load _helper
   assert_dir_exists "$dir/dist/assets/icons"
   assert_dir_exists "$dir/dist/assets/images"
   assert_dir_exists "$dir/dist/assets/logos"
+  assert_dir_not_exists "$dir/dist/assets/api"
 
   # Files managed by static Storybook build.
   assert_dir_exists "$dir/storybook-static"
@@ -127,4 +132,5 @@ load _helper
   assert_dir_not_exists "$dir/storybook-static/icons"
   assert_dir_not_exists "$dir/storybook-static/images"
   assert_dir_not_exists "$dir/storybook-static/logos"
+  assert_dir_exists "$dir/storybook-static/api"
 }
