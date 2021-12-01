@@ -5,13 +5,13 @@ Feature: Tests the Listing paragraph
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Listing" in the "civic_listing" row
 
   @api
   Scenario: Listing paragraph exists with fields.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_listing/fields"
     And I should see the text "field_c_p_content_type" in the "Content type" row
     And I should see the text "field_c_p_listing_f_exposed" in the "Filters" row
@@ -29,7 +29,7 @@ Feature: Tests the Listing paragraph
 
   @api
   Scenario: Civic Page field_c_n_components fields settings.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/types/manage/civic_page/fields/node.civic_page.field_c_n_components"
     And the "Label" field should contain "Components"
     Then the option "Default" from select "Reference method" is selected

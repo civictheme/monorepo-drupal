@@ -5,13 +5,13 @@ Feature: Tests the Civic search paragraph
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Civic search" in the "civic_search" row
 
   @api
   Scenario: Content paragraph exists with fields.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_search/fields"
     And I should see the text "field_c_p_button_text" in the "Button text" row
     And I should see the text "field_c_p_help_text" in the "Help text" row

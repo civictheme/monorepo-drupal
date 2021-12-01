@@ -5,7 +5,7 @@ Feature: Tests the Event Card paragraph
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Event card" in the "civic_card_event" row
 

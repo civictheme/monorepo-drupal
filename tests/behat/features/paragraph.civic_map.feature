@@ -5,13 +5,13 @@ Feature: Tests the Map paragraph
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Map" in the "civic_map" row
 
   @api
   Scenario: Map paragraph exists with fields.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_map/fields"
     And I should see the text "field_c_p_address" in the "Address" row
     And I should see the text "field_c_p_share_link" in the "Share link" row
@@ -21,7 +21,7 @@ Feature: Tests the Map paragraph
 
   @api
   Scenario: Page content type field_c_n_components fields settings.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/types/manage/civic_page/fields/node.civic_page.field_c_n_components"
     And the "Label" field should contain "Components"
     Then the option "Default" from select "Reference method" is selected

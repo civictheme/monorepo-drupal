@@ -5,13 +5,13 @@ Feature: Tests the Card task paragraph
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Card task" in the "civic_card_task" row
 
   @api
   Scenario: Content paragraph exists with fields.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_card_task/fields"
     And I should see the text "field_c_p_icon" in the "Icon" row
     And I should see the text "field_c_p_link" in the "Link" row

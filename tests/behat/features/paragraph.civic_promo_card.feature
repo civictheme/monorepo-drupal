@@ -5,13 +5,13 @@ Feature: Tests the Promo card
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Promo card" in the "civic_card_promo" row
 
   @api
   Scenario: Content paragraph exists with fields.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_card_promo/fields"
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_theme" in the "Theme" row
@@ -19,7 +19,6 @@ Feature: Tests the Promo card
     And I should see the text "field_c_p_link" in the "Link" row
     And I should see the text "field_c_p_image" in the "Image" row
     And I should see the text "field_c_p_date" in the "Date" row
-
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' and 'field Banner components' selected
@@ -47,7 +46,6 @@ Feature: Tests the Promo card
     And should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_cards][0][subform][field_c_p_date][0][value][date]']" element
     And should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_cards][0][subform][field_c_p_link][0][uri]']" element
     And should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_cards][0][subform][field_c_p_link][0][uri]'].required" element
-
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' and 'field Components' selected

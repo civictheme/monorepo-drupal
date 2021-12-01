@@ -5,13 +5,13 @@ Feature: Tests the Accordion
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Accordion" in the "civic_accordion" row
 
   @api
   Scenario: Accordion panel paragraph exists with fields.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_accordion/fields"
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_theme" in the "Theme" row

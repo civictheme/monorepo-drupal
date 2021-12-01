@@ -19,7 +19,7 @@ Feature: Tests the Quick links paragraph type and fields.
 
   @api
   Scenario: Block type field_c_b_components fields settings.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/block/block-content/manage/civic_component_block/fields/block_content.civic_component_block.field_c_b_components"
     And the "Label" field should contain "Components"
     Then the option "Default" from select "Reference method" is selected

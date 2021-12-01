@@ -5,13 +5,13 @@ Feature: Tests the Attachment
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Attachment" in the "civic_attachment" row
 
   @api
   Scenario: Attachment paragraph exists with fields.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_attachment/fields"
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_theme" in the "Theme" row
@@ -43,7 +43,7 @@ Feature: Tests the Attachment
     And the option "Light" from select "Theme" is selected
 
   @api @javascript
-  Scenario: Civic Component paragraph reference exists and works
+  Scenario: Civic Component paragraph reference exists on Component block
     Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "block/add/civic_component_block"
     And I click on "div.field--name-field-c-b-components .paragraphs-add-wrapper .dropbutton-toggle button" element
