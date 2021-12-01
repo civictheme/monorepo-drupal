@@ -24,7 +24,7 @@ Feature: Fields on Page content type
 
   @api
   Scenario: Event content type page has the relevant fields
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_event"
     Then the response status code should be 200
 

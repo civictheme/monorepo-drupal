@@ -15,7 +15,7 @@ Feature: Tests the Civic Component block
 
   @api
   Scenario: Civic Component paragraph reference exists and works
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I go to "block/add/civic_component_block"
     And I should see an "div.field--name-field-c-b-components" element
     And I should see an "input[value='Add Card container']" element

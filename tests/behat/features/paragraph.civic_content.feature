@@ -18,7 +18,7 @@ Feature: Tests the Content paragraph
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     And I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
 

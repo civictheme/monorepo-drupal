@@ -22,7 +22,7 @@ Feature: Tests the Promo card
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' and 'field Banner components' selected
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-1 a" element
@@ -49,7 +49,7 @@ Feature: Tests the Promo card
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' and 'field Components' selected
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element

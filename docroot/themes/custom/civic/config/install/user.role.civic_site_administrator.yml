@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: civic_site_administrator
-label: 'Civic Site Administrator'
+label: 'Site Administrator'
 weight: -6
 is_admin: null
 permissions:

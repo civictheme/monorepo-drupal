@@ -21,7 +21,7 @@ Feature: Tests the Civic search paragraph
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-1 a" element
@@ -37,7 +37,7 @@ Feature: Tests the Civic search paragraph
 
   @api
   Scenario: Civic page node field_c_n_banner_components fields settings.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I go to "admin/structure/types/manage/civic_page/fields/node.civic_page.field_c_n_banner_components"
     And the "Label" field should contain "Banner components"
     Then the option "Default" from select "Reference method" is selected

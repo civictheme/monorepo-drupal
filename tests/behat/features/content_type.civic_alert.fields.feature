@@ -25,7 +25,7 @@ Feature: Fields on Civic alert content type
 
   @api
   Scenario: Civic alert content type page has the relevant fields
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_alert"
     Then the response status code should be 200
 

@@ -26,7 +26,7 @@ Feature: Fields on Page content type
 
   @api
   Scenario: Page content type page has the relevant fields
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     Then the response status code should be 200
 

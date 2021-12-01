@@ -20,7 +20,7 @@ Feature: Tests the Callout
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
@@ -40,7 +40,7 @@ Feature: Tests the Callout
 
   @api @javascript
   Scenario: Civic Component paragraph reference exists and works
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I go to "block/add/civic_component_block"
     And I click on "div.field--name-field-c-b-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
