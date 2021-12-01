@@ -57,8 +57,8 @@ $settings['hash_salt'] = hash('sha256', 'CHANGE_ME');
 $config['system.performance']['cache']['page']['max_age'] = 900;
 
 // Aggregate CSS and JS files.
-$config['system.performance']['css']['preprocess'] = 0;
-$config['system.performance']['js']['preprocess'] = 0;
+$config['system.performance']['css']['preprocess'] = 1;
+$config['system.performance']['js']['preprocess'] = 1;
 
 // Fast404.
 $settings['fast404_exts'] = '/^(?!robots).*\.(txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
