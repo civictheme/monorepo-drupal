@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: civic_image
-label: 'Civic Image'
+label: Image
 description: 'Use local images for reusable media.'
 source: image
 queue_thumbnail_downloads: false

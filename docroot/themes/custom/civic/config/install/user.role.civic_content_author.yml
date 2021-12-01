@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: civic_content_author
-label: 'Civic Content Author'
+label: 'Content Author'
 weight: -8
 is_admin: null
 permissions:
@@ -16,6 +16,7 @@ permissions:
   - 'administer media'
   - 'administer url aliases'
   - 'bypass honeypot protection'
+  - 'create civic_alert content'
   - 'create civic_audio media'
   - 'create civic_document media'
   - 'create civic_event content'
@@ -28,6 +29,7 @@ permissions:
   - 'create media'
   - 'create url aliases'
   - 'delete all revisions'
+  - 'delete any civic_alert content'
   - 'delete any civic_audio media'
   - 'delete any civic_document media'
   - 'delete any civic_event content'
@@ -38,10 +40,12 @@ permissions:
   - 'delete any civic_remote_video media'
   - 'delete any civic_video media'
   - 'delete any media'
+  - 'delete civic_alert revisions'
   - 'delete civic_event revisions'
   - 'delete civic_page revisions'
   - 'delete civic_project revisions'
   - 'delete media'
+  - 'delete own civic_alert content'
   - 'delete own civic_audio media'
   - 'delete own civic_document media'
   - 'delete own civic_event content'
@@ -51,6 +55,7 @@ permissions:
   - 'delete own civic_project content'
   - 'delete own civic_remote_video media'
   - 'delete own civic_video media'
+  - 'edit any civic_alert content'
   - 'edit any civic_audio media'
   - 'edit any civic_document media'
   - 'edit any civic_event content'
@@ -60,6 +65,7 @@ permissions:
   - 'edit any civic_project content'
   - 'edit any civic_remote_video media'
   - 'edit any civic_video media'
+  - 'edit own civic_alert content'
   - 'edit own civic_audio media'
   - 'edit own civic_document media'
   - 'edit own civic_event content'
@@ -70,6 +76,7 @@ permissions:
   - 'edit own civic_remote_video media'
   - 'edit own civic_video media'
   - 'revert all revisions'
+  - 'revert civic_alert revisions'
   - 'revert civic_event revisions'
   - 'revert civic_page revisions'
   - 'revert civic_project revisions'
@@ -84,6 +91,7 @@ permissions:
   - 'view all media revisions'
   - 'view all revisions'
   - 'view any unpublished content'
+  - 'view civic_alert revisions'
   - 'view civic_event revisions'
   - 'view civic_page revisions'
   - 'view civic_project revisions'
