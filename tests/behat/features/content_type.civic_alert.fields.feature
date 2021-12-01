@@ -16,7 +16,7 @@ Feature: Fields on Civic alert content type
 
   @api
   Scenario: Civic alert content type exists with fields.
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I go to "admin/structure/types/manage/civic_alert/fields"
     Then I should see the text "Date range" in the "field_c_n_date_range" row
     Then I should see the text "Message" in the "body" row
@@ -25,7 +25,7 @@ Feature: Fields on Civic alert content type
 
   @api
   Scenario: Civic alert content type page has the relevant fields
-    Given I am logged in as a user with the "Site Administrator" role
+    Given I am logged in as a user with the "Civic Site Administrator" role
     When I visit "node/add/civic_alert"
     Then the response status code should be 200
 
