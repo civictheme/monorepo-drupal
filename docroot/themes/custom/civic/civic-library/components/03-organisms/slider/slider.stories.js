@@ -1,10 +1,9 @@
 import {
-  radios, text, number, boolean,
+  radios, text, number, boolean, select,
 } from '@storybook/addon-knobs';
 import { randomUrl, getSlots } from '../../00-base/base.stories';
 import { randomSlidesComponent } from './slider.utils';
 import CivicSlider from './slider.twig';
-import CivicButton from '../../01-atoms/button/button.twig';
 
 export default {
   title: 'Organisms/Slider',
@@ -38,6 +37,7 @@ export const Slider = () => {
   );
 
   const slides = randomSlidesComponent(numOfSlides, theme, true, {
+    image_position: select('Image Position', ['right', 'left'], 'right', generalKnobTab),
     ...getSlots([
       'content_top',
       'links',
@@ -48,13 +48,11 @@ export const Slider = () => {
   const generalKnobs = {
     theme,
     title: text('Title', 'Slider title', generalKnobTab),
-    link: boolean('Show link', true, generalKnobTab) ? CivicButton({
-      theme,
-      text: 'Slider link',
+    link: boolean('Show link', true, generalKnobTab) ? {
       type: 'secondary',
-      kind: 'link',
+      text: 'Slider link',
       url: randomUrl(),
-    }) : null,
+    } : null,
     slides,
     previous_label: text('Previous Label', 'Previous', generalKnobTab),
     next_label: text('Next Label', 'Next', generalKnobTab),

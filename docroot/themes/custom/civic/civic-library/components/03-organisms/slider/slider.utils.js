@@ -36,7 +36,8 @@ export const randomSlidesComponent = (count, theme, rand, template) => {
   const inverseTheme = theme === 'dark' ? 'light' : 'dark';
 
   for (let i = 0; i < count; i++) {
-    const contentTop = (template && template.content_top) ? template.content_top : randomTagsComponent(getRandomInt(0, 4)).join(' ');
+    const contentTop = (template && template.content_top) ? template.content_top : randomTagsComponent(getRandomInt(0, 4), theme).join(' ');
+    const imagePosition = (template && template.image_position) ? template.image_position : 'right';
     const title = (template && template.title) ? template.title : `Title ${i + 1}${rand ? ` ${randomString(getRandomInt(5, 30))}` : ''}`;
     const summary = (template && template.summary) ? template.summary : `Summary ${i + 1}${rand ? ` ${randomString(getRandomInt(5, 250))}` : ''}`;
     const links = (template && template.links) ? template.links : randomButtonsComponent(getRandomInt(0, 4), inverseTheme).join('');
@@ -48,6 +49,7 @@ export const randomSlidesComponent = (count, theme, rand, template) => {
     const attributes = (template && template.attributes) ? template.attributes : 'data-component-civic-slider-slide';
     slides.push(Slide({
       theme,
+      image_position: imagePosition,
       content_top: contentTop,
       title,
       summary,
