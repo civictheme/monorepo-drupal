@@ -127,7 +127,7 @@ CivicCollapsible.prototype.clickEvent = function (e) {
  * React on pressed keys.
  */
 CivicCollapsible.prototype.keydownEvent = function (e) {
-  if (!/(38|40|27)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return;
+  if (!/(32|27|38|40)/.test(e.which) || e.altKey || e.ctrlKey || e.metaKey || /input|textarea/i.test(e.target.tagName)) return;
 
   e.preventDefault();
   e.stopPropagation();
@@ -139,14 +139,14 @@ CivicCollapsible.prototype.keydownEvent = function (e) {
   }
 
   if (this !== document) {
-    // Up.
-    if (e.which === 38) {
+    // Up or space bar.
+    if ((e.which === 32 || e.which === 38) && !e.shiftKey) {
       this.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
       return;
     }
 
-    // Down.
-    if (e.which === 40) {
+    // Down or space bar.
+    if ((e.which === 32 || e.which === 40) && !e.shiftKey) {
       this.dispatchEvent(new CustomEvent('civic.collapsible.expand', { bubbles: true }));
     }
   }
