@@ -38,7 +38,17 @@
       background: cornflowerblue;
     }
 
+    .example-menu-focus *:focus {
+      outline: solid 2px green;
+    }
 
+    .example-menu-focus button:focus {
+      outline: solid 2px orange;
+    }
+
+    .example-menu-focus [data-collapsible-trigger]:focus {
+      outline: solid 2px red;
+    }
 
     .example-container {
       margin-bottom: 1em;
@@ -264,9 +274,13 @@
   </div>
 
 
-  <div class="example-container example-menu-multiple-inline-with-absolute-panels" style="height: 300px">
+  <div class="example-container example-menu-multiple-inline-with-absolute-panels example-menu-focus" style="height: 300px">
     <div class="example-container__title">
-      Multiple inline with absolute panels
+      Multiple inline with absolute panels and focus
+    </div>
+
+    <div>
+      <button>Example button before</button>
     </div>
 
     <ul style="display: flex;">
@@ -315,6 +329,10 @@
     </ul>
 
     Text behind absolutely positioned panels.
+
+    <div>
+      <button>Example button after</button>
+    </div>
   </div>
 
 </div>

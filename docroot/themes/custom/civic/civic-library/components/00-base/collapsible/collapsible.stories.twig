@@ -36,6 +36,18 @@
   .example-menu-multiple-inline-with-absolute-panels ul li[data-collapsible] li a:hover {
     background: cornflowerblue;
   }
+
+  .example-menu-focus *:focus {
+    outline: solid 2px green;
+  }
+
+  .example-menu-focus button:focus {
+    outline: solid 2px orange;
+  }
+
+  .example-menu-focus [data-collapsible-trigger]:focus {
+    outline: solid 2px red;
+  }
 </style>
 
 <div class="example-container">
@@ -298,4 +310,65 @@
   </ul>
 
   Text behind absolutely positioned panels.
+</div>
+
+<div class="example-container example-menu-multiple-inline-with-absolute-panels example-menu-focus" style="height: 300px">
+  <div class="example-container__title">
+    Multiple inline with absolute panels and focus
+  </div>
+
+  <div>
+    <button>Example button before</button>
+  </div>
+
+  <ul style="display: flex;">
+    <li data-collapsible data-collapsible-collapsed data-collapsible-group="menu2" style="display: flex;">
+      <a href="#" data-collapsible-trigger>Item 1</a>
+      <ul data-collapsible-panel style="position: absolute; background-color: rgba(150,200,200, 0.8);">
+        <li>
+          <a href="#">Item 11</a>
+        </li>
+        <li>
+          <a href="#">Item 12</a>
+        </li>
+        <li>
+          <a href="#">Item 13</a>
+        </li>
+      </ul>
+    </li>
+    <li data-collapsible data-collapsible-collapsed data-collapsible-group="menu2" style="display: flex;">
+      <a href="#" data-collapsible-trigger>Item 2</a>
+      <ul data-collapsible-panel style="position: absolute; background-color: rgba(150,200,200, 0.8);">
+        <li>
+          <a href="#">Item 21</a>
+        </li>
+        <li>
+          <a href="#">Item 22</a>
+        </li>
+        <li>
+          <a href="#">Item 23</a>
+        </li>
+      </ul>
+    </li>
+    <li data-collapsible data-collapsible-collapsed data-collapsible-group="menu2" style="display: flex;">
+      <a href="#" data-collapsible-trigger>Item 3</a>
+      <ul data-collapsible-panel style="position: absolute; background-color: rgba(150,200,200, 0.8);">
+        <li>
+          <a href="#">Item 31</a>
+        </li>
+        <li>
+          <a href="#">Item 32</a>
+        </li>
+        <li>
+          <a href="#">Item 33</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  Text behind absolutely positioned panels.
+
+  <div>
+    <button>Example button after</button>
+  </div>
 </div>

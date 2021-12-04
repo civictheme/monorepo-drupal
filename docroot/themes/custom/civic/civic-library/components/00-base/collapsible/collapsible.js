@@ -17,8 +17,8 @@ function CivicCollapsible(el) {
     return;
   }
 
-  const trigger = el.querySelector('[data-collapsible-trigger]') || el.firstElementChild;
-  const panel = el.querySelector('[data-collapsible-panel]') || el.firstElementChild.nextElementSibling;
+  const trigger = this.getTrigger(el);
+  const panel = this.getPanel(el);
 
   // Exit early if trigger or panel were not found.
   if (!trigger || !panel) {
@@ -28,7 +28,7 @@ function CivicCollapsible(el) {
   this.el = el;
   this.trigger = trigger;
   this.panel = panel;
-  this.collapsed = this.el.hasAttribute('data-collapsible-collapsed');
+  this.collapsed = this.isCollapsed(el);
   this.duration = this.el.hasAttribute('data-collapsible-duration') ? this.el.getAttribute('data-collapsible-duration') : 500;
   this.group = this.el.hasAttribute('data-collapsible-group') ? this.el.getAttribute('data-collapsible-group') : null;
 
@@ -39,7 +39,10 @@ function CivicCollapsible(el) {
   // Attach event listener.
   this.trigger.addEventListener('click', this.clickEvent.bind(this));
   this.trigger.addEventListener('keydown', this.keydownEvent.bind(this.trigger));
+  this.trigger.addEventListener('focusout', this.focusoutEvent.bind(this));
   this.panel.addEventListener('click', (e) => e.stopPropagation());
+  this.panel.addEventListener('focusout', this.focusoutEvent.bind(this));
+  this.panel.addEventListener('focusin', this.focusinEvent.bind(this));
 
   // Collapse if was set as initially collapsed.
   if (this.collapsed) {
@@ -54,6 +57,14 @@ function CivicCollapsible(el) {
 
   this.el.addEventListener('civic.collapsible.expand', () => {
     this.expand(true);
+  });
+
+  this.el.addEventListener('civic.collapsible.toggle', () => {
+    if (this.isCollapsed(this.el)) {
+      this.el.dispatchEvent(new CustomEvent('civic.collapsible.expand', { bubbles: true }));
+    } else {
+      this.el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
+    }
   });
 
   // Attach global keydown event listener to allow closing all collapsibles.
@@ -124,13 +135,33 @@ CivicCollapsible.prototype.clickEvent = function (e) {
 };
 
 /**
+ * Focus in event handler.
+ */
+CivicCollapsible.prototype.focusinEvent = function (e) {
+  const focusable = this.findFocusable(e.relatedTarget, e.target);
+  if (focusable) {
+    focusable.focus();
+  }
+};
+
+/**
+ * Focusout event handler.
+ */
+CivicCollapsible.prototype.focusoutEvent = function (e) {
+  // Close when trigger or panel leaves a focus.
+  if (!this.panel.contains(e.relatedTarget) && !this.trigger.contains(e.relatedTarget)) {
+    e.target.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
+  }
+};
+
+/**
  * React on pressed keys.
  */
 CivicCollapsible.prototype.keydownEvent = function (e) {
-  if (!/(32|27|38|40)/.test(e.which) || e.altKey || e.ctrlKey || e.metaKey || /input|textarea/i.test(e.target.tagName)) return;
+  if (!/(32|27|38|40)/.test(e.which) || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select|button|object/i.test(e.target.tagName)) return;
 
-  e.preventDefault();
   e.stopPropagation();
+  e.preventDefault();
 
   // ESC.
   if (e.which === 27) {
@@ -139,15 +170,20 @@ CivicCollapsible.prototype.keydownEvent = function (e) {
   }
 
   if (this !== document) {
-    // Up or space bar.
-    if ((e.which === 32 || e.which === 38) && !e.shiftKey) {
+    // Up.
+    if (e.which === 38 && !e.shiftKey) {
       this.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
       return;
     }
 
-    // Down or space bar.
-    if ((e.which === 32 || e.which === 40) && !e.shiftKey) {
+    // Down.
+    if (e.which === 40 && !e.shiftKey) {
       this.dispatchEvent(new CustomEvent('civic.collapsible.expand', { bubbles: true }));
+    }
+
+    // Space.
+    if (e.which === 32) {
+      this.dispatchEvent(new CustomEvent('civic.collapsible.toggle', { bubbles: true }));
     }
   }
 };
@@ -183,7 +219,7 @@ CivicCollapsible.prototype.collapseAllGroups = function () {
 CivicCollapsible.prototype.collapse = function (animate) {
   const t = this;
 
-  if (t.el.hasAttribute('data-collapsible-collapsed')) {
+  if (this.isCollapsed(t.el)) {
     return;
   }
 
@@ -244,7 +280,7 @@ CivicCollapsible.prototype.collapse = function (animate) {
 CivicCollapsible.prototype.expand = function (animate) {
   const t = this;
 
-  if (!t.el.hasAttribute('data-collapsible-collapsed')) {
+  if (!this.isCollapsed(t.el)) {
     return;
   }
 
@@ -289,6 +325,168 @@ CivicCollapsible.prototype.expand = function (animate) {
     setAttributes(t);
     t.panel.style.transition = transition;
   }
+};
+
+CivicCollapsible.prototype.isCollapsed = function (el) {
+  return el.hasAttribute('data-collapsible-collapsed');
+};
+
+CivicCollapsible.prototype.isCollapsibleEl = function (el) {
+  return el.hasAttribute('data-collapsible');
+};
+
+CivicCollapsible.prototype.getTrigger = function (el) {
+  return el.querySelector('[data-collapsible-trigger]') || el.firstElementChild || null;
+};
+
+CivicCollapsible.prototype.getPanel = function (el) {
+  return el.querySelector('[data-collapsible-panel]') || this.getTrigger(el).nextElementSibling || null;
+};
+
+/**
+ * Find next or previous element in the DOM, based on elements position.
+ */
+CivicCollapsible.prototype.findFocusable = function (el, nextEl) {
+  const documentElements = Array.from(document.querySelectorAll('*'));
+  // Decide the direction of tabbing based on the position of the elements in
+  // DOM.
+  if (documentElements.indexOf(el) < documentElements.indexOf(nextEl)) {
+    return this.findNextFocusable(el);
+  }
+
+  return this.findPreviousFocusable(el);
+};
+
+/**
+ * Find next focusable element in DOM.
+ */
+CivicCollapsible.prototype.findNextFocusable = function (el) {
+  const focusable = this.allFocusable();
+
+  for (let i = 0; i < focusable.length; i++) {
+    if (focusable[i] === el) {
+      return focusable[i + 1];
+    }
+  }
+
+  return null;
+};
+
+/**
+ * Find previous focusable element in DOM.
+ */
+CivicCollapsible.prototype.findPreviousFocusable = function (el) {
+  const focusable = this.allFocusable();
+
+  for (let i = 0; i < focusable.length; i++) {
+    if (focusable[i] === el) {
+      return i > 0 ? focusable[i - 1] : null;
+    }
+  }
+
+  return null;
+};
+
+/**
+ * Get all focusable elements.
+ */
+CivicCollapsible.prototype.allFocusable = function () {
+  const focusable = [];
+
+  // Limit a set of supported focusable elements.
+  const elements = Array.from(document.querySelectorAll('input,select,textarea,button,object,area,a'));
+  for (let i = 0; i < elements.length; i++) {
+    if (this.isFocusable(elements[i])) {
+      focusable.push(elements[i]);
+    }
+  }
+
+  return focusable;
+};
+
+/**
+ * Check if the element is focusable.
+ */
+CivicCollapsible.prototype.isFocusable = function (element) {
+  const nodeName = element.nodeName.toLowerCase();
+  const tabIndex = element.getAttribute('tabindex');
+  const isTabIndexNaN = Number.isNaN(tabIndex);
+
+  // Get all parents of an element.
+  function getParents(el) {
+    const parents = [];
+    while (el) {
+      parents.unshift(el);
+      el = el.parentElement;
+    }
+    return parents;
+  }
+
+  // Check if an element itself is visible.
+  function elIsVisible(el) {
+    if (!(el instanceof Element)) throw Error('DomUtil: el is not an element.');
+
+    const style = getComputedStyle(el);
+
+    if (style.display === 'none'
+      || style.visibility !== 'visible'
+      || style.opacity < 0.1
+      || (
+        el.offsetWidth
+        + el.offsetHeight
+        + el.getBoundingClientRect().height
+        + el.getBoundingClientRect().width === 0)
+    ) {
+      return false;
+    }
+
+    const elemCenter = {
+      x: el.getBoundingClientRect().left + el.offsetWidth / 2,
+      y: el.getBoundingClientRect().top + el.offsetHeight / 2,
+    };
+    if (elemCenter.x < 0
+      || elemCenter.y < 0
+      || elemCenter.x > (document.documentElement.clientWidth || window.innerWidth)
+      || elemCenter.y > (document.documentElement.clientHeight || window.innerHeight)
+    ) {
+      return false;
+    }
+
+    let pointContainer = document.elementFromPoint(elemCenter.x, elemCenter.y);
+    do {
+      if (pointContainer === el) return true;
+      // eslint-disable-next-line no-cond-assign
+    } while (pointContainer.parentNode && (pointContainer = pointContainer.parentNode));
+
+    return false;
+  }
+
+  // Check if an element is visible.
+  function isVisible(el) {
+    const parents = getParents(el);
+    // Visible if the element and all of it's parents are visible. If at least
+    // one of the parents is not visible - the element is not visible.
+    return elIsVisible(el) && parents.filter((elem) => elIsVisible(elem)).length === parents.length;
+  }
+
+  // Special handling for image maps.
+  if (nodeName === 'area') {
+    const map = element.parentNode;
+    const mapName = map.name;
+    if (!element.href || !mapName || map.nodeName.toLowerCase() !== 'map') {
+      return false;
+    }
+    const img = document.querySelectorAll(`img[usemap=#${mapName}]`)[0];
+    return !!img && isVisible(img);
+  }
+
+  // One of the supported elements.
+  if (/^(input|select|textarea|button|object)$/.test(nodeName)) {
+    return !element.disabled && isVisible(element) && (isTabIndexNaN || tabIndex >= 0);
+  }
+
+  // Or a visible link with a href.
+  return (nodeName === 'a' ? element.href || !isTabIndexNaN : !isTabIndexNaN) && isVisible(element) && (isTabIndexNaN || tabIndex >= 0);
 };
 
 document.querySelectorAll('[data-collapsible]').forEach((el) => {
