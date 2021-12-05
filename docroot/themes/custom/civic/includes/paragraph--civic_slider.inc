@@ -5,8 +5,6 @@
  * Civic Slider paragraph component.
  */
 
-use Drupal\paragraphs\Entity\Paragraph;
-use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Url;
 
 /**
@@ -17,19 +15,28 @@ use Drupal\Core\Url;
 function civic_preprocess_paragraph__civic_slider(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $slider_title = $paragraph->get('field_c_p_title')->first();
-  $variables['title'] = !empty($slider_title) ? $slider_title->getString() : NULL;
-  $variables['theme'] = $paragraph->get('field_c_p_theme')->getString();
-  $link = $paragraph->get('field_c_p_link')->first();
-  $variables['link'] = [
-    'type' => 'primary',
-    'size' => 'regular',
-    'text' => $link->get('title')->getString(),
-    'url' => Url::fromUri($link->get('uri')->getString()),
-  ];
-  $variables['slides'] = \Drupal::service('renderer')->render($variables['content']['field_c_p_slides']);
+
+  _civic_preprocess_paragraph_theme($variables);
+  _civic_preprocess_paragraph_title($variables);
+
   $variables['previous_label'] = t('Previous');
   $variables['next_label'] = t('Next');
+
+  // Link.
+  if ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) {
+    $link = $paragraph->get('field_c_p_link')->first();
+    $variables['link'] = [
+      'type' => 'secondary',
+      'size' => 'regular',
+      'text' => $link->get('title')->getString(),
+      'url' => Url::fromUri($link->get('uri')->getString()),
+    ];
+  }
+
+  // Slides.
+  if (!empty($variables['content']['field_c_p_slides'])) {
+    $variables['slides'] = \Drupal::service('renderer')->render($variables['content']['field_c_p_slides']);
+  }
 }
 
 /**
@@ -40,19 +47,19 @@ function civic_preprocess_paragraph__civic_slider(&$variables) {
 function civic_preprocess_paragraph__civic_slider_slide(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  // Theme.
-  if ($paragraph->hasField('field_c_p_theme') && !$paragraph->get('field_c_p_theme')->isEmpty()) {
-    $variables['theme'] = $paragraph->get('field_c_p_theme')->getString();
-  }
+
+  _civic_preprocess_paragraph_theme($variables);
+  _civic_preprocess_paragraph_title($variables);
+  _civic_preprocess_paragraph_card__image($variables);
+
+  $variables['attributes']['data-component-civic-slider-slide'] = '';
+
   // Image position.
   if ($paragraph->hasField('field_c_p_image_position') && !$paragraph->get('field_c_p_image_position')->isEmpty()) {
     $variables['image_position'] = $paragraph->get('field_c_p_image_position')->getString();
   }
-  // Title.
-  if ($paragraph->hasField('field_c_p_title') && !$paragraph->get('field_c_p_title')->isEmpty()) {
-    $variables['title'] = $paragraph->get('field_c_p_title')->first()->getString();
-  }
-  // Topic. - how do we render this out? Card Event has it hard-coded in the civic template.
+
+  // Topic.
   if ($paragraph->hasField('field_c_p_topic') && !$paragraph->get('field_c_p_topic')->isEmpty()) {
     $topics = [];
     foreach ($paragraph->get('field_c_p_topic')->referencedEntities() as $topic) {
@@ -66,17 +73,15 @@ function civic_preprocess_paragraph__civic_slider_slide(&$variables) {
       '#tags' => $topics,
     ];
   }
+
   // Summary.
   if ($paragraph->hasField('field_c_p_content') && !$paragraph->get('field_c_p_content')->isEmpty()) {
     $variables['summary'] = text_summary($paragraph->get('field_c_p_content')->getValue()[0]['value'], NULL, 100);
   }
+
   // Links.
   if ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) {
-    if ($variables['theme'] === 'dark') {
-      $inverse_theme = 'light';
-    } else {
-      $inverse_theme = 'dark';
-    }
+    $inverse_theme = $variables['theme'] === 'dark' ? 'light' : 'dark';
     $link = $paragraph->get('field_c_p_link')->first();
     $links = [];
     $links[] = [
@@ -91,10 +96,4 @@ function civic_preprocess_paragraph__civic_slider_slide(&$variables) {
       '#links' => $links,
     ];
   }
-  // Image.
-  if ($paragraph->hasField('field_c_p_image') && !$paragraph->get('field_c_p_image')->isEmpty()) {
-    $media = $paragraph->get('field_c_p_image')->first()->get('entity')->getTarget()->getValue();
-    $variables['image'] = _civic_media_image($media);
-  }
-  $variables['attributes']['data-component-civic-slider-slide'] = '';
 }
