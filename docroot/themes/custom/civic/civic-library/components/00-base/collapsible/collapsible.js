@@ -148,8 +148,8 @@ CivicCollapsible.prototype.focusinEvent = function (e) {
  * Focusout event handler.
  */
 CivicCollapsible.prototype.focusoutEvent = function (e) {
-  // Close when trigger or panel leaves a focus.
-  if (!this.panel.contains(e.relatedTarget) && !this.trigger.contains(e.relatedTarget)) {
+  // Close when trigger or panel leaves a focus, but only for grouped ones.
+  if (!this.panel.contains(e.relatedTarget) && !this.trigger.contains(e.relatedTarget) && this.group) {
     e.target.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
   }
 };
@@ -158,7 +158,7 @@ CivicCollapsible.prototype.focusoutEvent = function (e) {
  * React on pressed keys.
  */
 CivicCollapsible.prototype.keydownEvent = function (e) {
-  if (!/(32|27|38|40)/.test(e.which) || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select|button|object/i.test(e.target.tagName)) return;
+  if (!/(32|27|38|40)/.test(e.which) || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select|object/i.test(e.target.tagName)) return;
 
   e.stopPropagation();
   e.preventDefault();
@@ -453,10 +453,12 @@ CivicCollapsible.prototype.isFocusable = function (element) {
     }
 
     let pointContainer = document.elementFromPoint(elemCenter.x, elemCenter.y);
-    do {
-      if (pointContainer === el) return true;
-      // eslint-disable-next-line no-cond-assign
-    } while (pointContainer.parentNode && (pointContainer = pointContainer.parentNode));
+    while (pointContainer) {
+      if (pointContainer === el) {
+        return true;
+      }
+      pointContainer = pointContainer.parentNode;
+    }
 
     return false;
   }
