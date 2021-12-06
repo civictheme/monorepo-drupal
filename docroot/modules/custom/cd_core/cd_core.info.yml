@@ -1,8 +1,8 @@
-name: 'Cd Core'
+name: 'Civic Demo Core'
 type: module
 description: 'Core feature for site settings.'
 core_version_requirement: ^9
-package: cd
+package: Civic
 dependencies:
   - admin_toolbar:admin_toolbar
   - admin_toolbar:admin_toolbar_tools

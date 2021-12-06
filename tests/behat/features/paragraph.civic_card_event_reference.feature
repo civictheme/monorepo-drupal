@@ -5,29 +5,29 @@ Feature: Tests the Event reference card paragraph
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Event reference card" in the "civic_card_event_reference" row
 
   @api
   Scenario: Content paragraph exists with fields.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_card_event_reference/fields"
     And I should see the text "field_c_p_reference" in the "Reference" row
     And I should see the text "field_c_p_theme" in the "Theme" row
 
   @api
   Scenario: Event reference card paragraph field_c_p_reference fields settings.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_card_event_reference/fields/paragraph.civic_card_event_reference.field_c_p_reference"
     And the "Label" field should contain "Reference"
     Then the option "Default" from select "Reference method" is selected
     Then the "Create referenced entities if they don't already exist" checkbox should not be checked
-    And the "Civic Event" checkbox should be checked
+    And the "Event" checkbox should be checked
 
   @api
   Scenario: Card container paragraph field_c_p_cards fields settings.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civic_card_container/fields/paragraph.civic_card_container.field_c_p_cards"
     And the "Label" field should contain "Cards"
     Then the option "Default" from select "Reference method" is selected
@@ -36,7 +36,7 @@ Feature: Tests the Event reference card paragraph
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_page"
     And I fill in "Title" with "[TEST] Page fields"
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element

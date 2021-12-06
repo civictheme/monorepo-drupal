@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: civic_audio
-label: 'Civic Audio'
+label: Audio
 description: 'A locally hosted audio file.'
 source: file
 queue_thumbnail_downloads: false

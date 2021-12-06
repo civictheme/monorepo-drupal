@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 name: civic_promo_card
-label: 'Civic Promo card'
+label: 'Promo card'
 effects:
   be9e65ef-2aa0-46f9-a42e-53694e9e5f5b:
     uuid: be9e65ef-2aa0-46f9-a42e-53694e9e5f5b

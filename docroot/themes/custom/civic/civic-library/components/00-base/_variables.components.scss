@@ -735,6 +735,7 @@ $civic-tooltip-width: rem(230px);
 $civic-tooltip-triangle-width: civic-space();
 $civic-tooltip-triangle-height: civic-space();
 $civic-tooltip-description-border-radius: $civic-border-radius !default;
+$civic-tooltip-z-index: 99;
 $civic-tooltip-light-icon-color: civic-color-shade-dark(30);
 $civic-tooltip-light-icon-hover-color: civic-color('secondary');
 $civic-tooltip-light-description-color: civic-color('neutral');

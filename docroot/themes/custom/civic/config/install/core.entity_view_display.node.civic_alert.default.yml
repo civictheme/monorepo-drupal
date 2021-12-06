@@ -2,9 +2,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.civic_alert.body
     - field.field.node.civic_alert.field_c_n_alert_page_visibility
     - field.field.node.civic_alert.field_c_n_alert_type
+    - field.field.node.civic_alert.field_c_n_body
     - field.field.node.civic_alert.field_c_n_date_range
     - node.type.civic_alert
   module:
@@ -17,13 +17,6 @@ targetEntityType: node
 bundle: civic_alert
 mode: default
 content:
-  body:
-    weight: 4
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
   field_c_n_alert_page_visibility:
     weight: 3
     label: hidden
@@ -37,6 +30,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_c_n_body:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
     region: content
   field_c_n_date_range:
     weight: 2

@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: civic_video
-label: 'Civic Video'
+label: Video
 description: 'A locally hosted video file.'
 source: video_file
 queue_thumbnail_downloads: false

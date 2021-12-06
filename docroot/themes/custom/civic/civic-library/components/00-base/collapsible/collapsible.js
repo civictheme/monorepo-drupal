@@ -39,6 +39,7 @@ function CivicCollapsible(el) {
   // Attach event listener.
   this.trigger.addEventListener('click', this.clickEvent.bind(this));
   this.trigger.addEventListener('keydown', this.keydownEvent.bind(this.trigger));
+  this.panel.addEventListener('click', (e) => e.stopPropagation());
 
   // Collapse if was set as initially collapsed.
   if (this.collapsed) {

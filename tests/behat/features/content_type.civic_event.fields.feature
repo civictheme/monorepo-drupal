@@ -10,7 +10,7 @@ Feature: Fields on Page content type
 
   @api
   Scenario: Event content type exists with fields.
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/types/manage/civic_event/fields"
     And I should see the text "field_c_n_attachments" in the "Attachments" row
     And I should see the text "field_c_n_body" in the "Body" row
@@ -24,7 +24,7 @@ Feature: Fields on Page content type
 
   @api
   Scenario: Event content type page has the relevant fields
-    Given I am logged in as a user with the "Civic Site Administrator" role
+    Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civic_event"
     Then the response status code should be 200
 

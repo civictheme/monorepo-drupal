@@ -15,7 +15,7 @@ provider: null
 plugin: 'menu_block:civic-primary-navigation'
 settings:
   id: 'menu_block:civic-primary-navigation'
-  label: 'Civic Primary Navigation'
+  label: 'Primary Navigation'
   provider: menu_block
   label_display: '0'
   follow: false

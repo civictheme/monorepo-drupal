@@ -4,6 +4,6 @@ dependencies:
   module:
     - node
 id: node.civic_slider_slide
-label: 'Civic slider slide'
+label: 'Slider slide'
 targetEntityType: node
 cache: true

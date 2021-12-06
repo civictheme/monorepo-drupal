@@ -7,7 +7,7 @@ third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-name: 'Civic Alert'
+name: Alert
 type: civic_alert
 description: '<em>Civic</em>. Use alerts to provide information for site users using a status bar.'
 help: ''

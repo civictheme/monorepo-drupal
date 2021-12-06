@@ -1,4 +1,6 @@
-import { number, radios, text } from '@storybook/addon-knobs';
+import {
+  button, number, radios, text,
+} from '@storybook/addon-knobs';
 import CivicAlert from './alert.twig';
 
 export default {
@@ -56,4 +58,27 @@ export const Alert = (knobTab) => {
   }
 
   return html;
+};
+
+export const AlertApi = () => {
+  const endpoint = radios(
+    'Payload',
+    {
+      Default: 'default',
+      Updated: 'updated',
+    },
+    'default',
+  ) === 'default' ? 'api/alerts1.json' : 'api/alerts2.json';
+
+  button('Clear cookie', () => {
+    document.cookie = 'civic-alert-hide=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  });
+
+  let docs = '';
+  docs += 'Dismiss alerts by clicking on [X] button.<br/><br/>';
+  docs += 'Navigate to another component and return here to assert that dismissed alerts do not appear.<br/><br/>';
+  docs += 'Dismissed alerts will be revealed if their content was updated. Change payload to "Updated" to see dismissed alerts appear again.<br/><br/>';
+  docs += 'Press "Clear cookie" button to clear alert dismissal settings.';
+
+  return `<div data-component-name="civic-alerts" data-alert-endpoint="${endpoint}" data-test-path="/"></div><div class="docs-container"><div class="docs-container__content">${docs}</div></div>`;
 };

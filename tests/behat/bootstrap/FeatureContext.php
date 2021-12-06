@@ -22,6 +22,7 @@ use DrevOps\BehatSteps\TaxonomyTrait;
 use DrevOps\BehatSteps\VisibilityTrait;
 use DrevOps\BehatSteps\WaitTrait;
 use DrevOps\BehatSteps\WatchdogTrait;
+use DrevOps\BehatSteps\WysiwygTrait;
 use Drupal\DrupalExtension\Context\DrupalContext;
 
 /**
@@ -43,6 +44,7 @@ class FeatureContext extends DrupalContext {
   use TaxonomyTrait;
   use WatchdogTrait;
   use WaitTrait;
+  use WysiwygTrait;
   use VisibilityTrait;
 
   /**
