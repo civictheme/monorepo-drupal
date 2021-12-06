@@ -19,6 +19,7 @@ Feature: Tests the Slider Slide paragraph
     And I should see the text "field_c_p_content" in the "Content" row
     And I should see the text "field_c_p_link" in the "Link" row
     And I should see the text "field_c_p_topic" in the "Topic" row
+    And I should see the text "field_c_p_theme" in the "Theme" row
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected

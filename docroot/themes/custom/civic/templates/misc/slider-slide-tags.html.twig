@@ -1,0 +1,6 @@
+{% for tag in tags %}
+  {% include '@atoms/tag/tag.twig' with {
+    theme: tag.theme,
+    text: tag.text,
+  } only %}
+{% endfor %}

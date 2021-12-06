@@ -39,6 +39,10 @@ function civic_preprocess_select(&$variables) {
  * Implements template_preprocess_form_element().
  */
 function civic_preprocess_form_element(&$variables) {
+  // Handle any malformed attribute class properties.
+  $variables['attributes']['class'] = $variables['attributes']['class'] ?? [];
+  $variables['attributes']['class'] = is_string($variables['attributes']['class']) ? [$variables['attributes']['class']] : $variables['attributes']['class'];
+
   // Add missing core Drupal form element classes that are added in template
   // file.
   $variables['attributes']['class'][] = 'form-item';

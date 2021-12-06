@@ -1,0 +1,10 @@
+{% for link in links %}
+  {% include '@atoms/button/button.twig' with {
+    theme: component_theme,
+    kind: 'link',
+    type: link.type,
+    size: link.size,
+    text: link.text,
+    url: link.url,
+  } only %}
+{% endfor %}
