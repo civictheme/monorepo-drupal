@@ -1,7 +1,7 @@
 import {
-  radios, text, number, boolean, select,
+  boolean, number, radios, text,
 } from '@storybook/addon-knobs';
-import { randomUrl, getSlots } from '../../00-base/base.stories';
+import { getSlots, randomUrl } from '../../00-base/base.stories';
 import { randomSlidesComponent } from './slider.utils';
 import CivicSlider from './slider.twig';
 
@@ -37,7 +37,10 @@ export const Slider = () => {
   );
 
   const slides = randomSlidesComponent(numOfSlides, theme, true, {
-    image_position: select('Image Position', ['right', 'left'], 'right', generalKnobTab),
+    image_position: radios('Image Position', {
+      Left: 'left',
+      Right: 'right',
+    }, 'right', generalKnobTab),
     ...getSlots([
       'content_top',
       'links',
