@@ -135,7 +135,7 @@ CivicCollapsible.prototype.clickEvent = function (e) {
 };
 
 /**
- * Focus in event handler.
+ * Focusin event handler.
  */
 CivicCollapsible.prototype.focusinEvent = function (e) {
   const focusable = this.findFocusable(e.relatedTarget, e.target);
@@ -331,18 +331,23 @@ CivicCollapsible.prototype.expand = function (animate) {
   }
 };
 
+/**
+ * Check if the collapsible is collapsed.
+ */
 CivicCollapsible.prototype.isCollapsed = function (el) {
   return el.hasAttribute('data-collapsible-collapsed');
 };
 
-CivicCollapsible.prototype.isCollapsibleEl = function (el) {
-  return el.hasAttribute('data-collapsible');
-};
-
+/**
+ * Get trigger element.
+ */
 CivicCollapsible.prototype.getTrigger = function (el) {
   return el.querySelector('[data-collapsible-trigger]') || el.firstElementChild || null;
 };
 
+/**
+ * Get panel element.
+ */
 CivicCollapsible.prototype.getPanel = function (el) {
   return el.querySelector('[data-collapsible-panel]') || this.getTrigger(el).nextElementSibling || null;
 };
