@@ -149,7 +149,11 @@ CivicCollapsible.prototype.focusinEvent = function (e) {
  */
 CivicCollapsible.prototype.focusoutEvent = function (e) {
   // Close when trigger or panel leaves a focus, but only for grouped ones.
-  if (!this.panel.contains(e.relatedTarget) && !this.trigger.contains(e.relatedTarget) && this.group) {
+  if (
+    !this.panel.contains(e.relatedTarget)
+    && !this.trigger.contains(e.relatedTarget)
+    && this.group
+  ) {
     e.target.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
   }
 };
