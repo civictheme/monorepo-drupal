@@ -60,7 +60,7 @@ function civic_preprocess_page(&$variables) {
  */
 function _civic_preprocess_page_node(&$variables) {
   /** @var \Drupal\node\Entity\Node $node */
-  $node = $variables['node'] ?? NULL;
+  $node = _civic_load_node_or_revision($variables);
 
   if (!$node) {
     return;
@@ -92,6 +92,24 @@ function _civic_preprocess_page_node(&$variables) {
 }
 
 /**
+ * Gets node or if the route is a node revision the node revision.
+ */
+function _civic_load_node_or_revision($variables) {
+  $node = $variables['node'] ?? NULL;
+  if (is_numeric($node)) {
+    // Check to see if it's a node revision route.
+    /** @var \Drupal\Core\Routing\RouteMatchInterface $route_match */
+    $route_match = \Drupal::service('current_route_match');
+    $node_revision_id = $route_match->getParameter('node_revision');
+    if ($node_revision_id !== NULL) {
+      $node = node_revision_load($node_revision_id);
+    }
+  }
+
+  return $node;
+}
+
+/**
  * Page preprocess to support showing of alerts.
  */
 function _civic_preprocess_page_alerts(&$variables) {
@@ -106,6 +124,10 @@ function civic_preprocess_node(&$variables) {
   // Per-view mode preprocessing.
   $view_mode = $variables['elements']['#view_mode'];
   $preprocessor_function = '_civic_preprocess_node__' . $view_mode;
+  // Do not display node title on revision pages.
+  if ($view_mode === 'full') {
+    unset($variables['label']);
+  }
   if (function_exists($preprocessor_function)) {
     $preprocessor_function($variables);
   }
