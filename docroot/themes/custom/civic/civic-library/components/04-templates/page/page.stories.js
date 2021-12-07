@@ -1,5 +1,5 @@
 // @todo This is an unfinished component. Stories still need to be implemented!
-import { radios } from '@storybook/addon-knobs';
+import { radios, text } from '@storybook/addon-knobs';
 import CivicPage from './page.twig';
 
 export default {
@@ -22,6 +22,8 @@ export const Page = (knobTab) => {
       'light',
       generalKnobTab,
     ),
+    modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicPage({

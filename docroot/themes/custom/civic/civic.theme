@@ -41,11 +41,14 @@ function civic_preprocess_page(&$variables) {
   // Generic node pages pre-processing.
   _civic_preprocess_page_node($variables);
 
+  // Pre-process page to support alerts.
+  _civic_preprocess_page_alerts($variables);
+
   // Please do not add anything below this line or components will not be able
   // to discover variables.
   // Add all page variables to the root variables. This is required so that
   // child themes could add page-level variables without have to extend page
-  // template (the variables there are not scoped as a exception).
+  // template (the variables there are not scoped as an exception).
   $page_variables = array_filter($variables['page'], function ($key) {
     return strpos($key, '#') !== 0;
   }, ARRAY_FILTER_USE_KEY);
@@ -53,7 +56,7 @@ function civic_preprocess_page(&$variables) {
 }
 
 /**
- * Generic preprocess for all view mode of nodes.
+ * Generic page preprocess for all view mode of nodes.
  */
 function _civic_preprocess_page_node(&$variables) {
   /** @var \Drupal\node\Entity\Node $node */
@@ -86,6 +89,14 @@ function _civic_preprocess_page_node(&$variables) {
       '#markup' => '<div class="container"><div class="row"><div class="table-of-contents-container col-m-12" ' . $toc_attributes . '></div></div></div>',
     ];
   }
+}
+
+/**
+ * Page preprocess to support showing of alerts.
+ */
+function _civic_preprocess_page_alerts(&$variables) {
+  $variables['attributes']['data-component-name'] = 'civic-alerts';
+  $variables['attributes']['data-alert-endpoint'] = '/api/civic-alerts?_format=json';
 }
 
 /**

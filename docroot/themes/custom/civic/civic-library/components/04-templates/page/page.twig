@@ -1,4 +1,6 @@
-<div class="layout-container" data-component-name="civic-alerts" data-alert-endpoint="/api/civic-alerts?_format=json">
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+<div class="layout-container {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
 
   {% block header %}
     {% include '@organisms/header/header.twig' with {
