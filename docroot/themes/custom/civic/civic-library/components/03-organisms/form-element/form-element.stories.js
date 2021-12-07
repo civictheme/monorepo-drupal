@@ -37,7 +37,7 @@ export const FormElement = () => {
       Radio: 'radio',
       Checkbox: 'checkbox',
     },
-    'text',
+    'checkbox',
     generalKnobTab,
   );
 
@@ -66,7 +66,7 @@ export const FormElement = () => {
       generalKnobTab,
     ),
     description: {
-      content: text('Description', 'Civic input description', generalKnobTab),
+      content: text('Description', 'Civic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input descriptionCivic input description', generalKnobTab),
     },
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
@@ -139,7 +139,7 @@ export const FormElement = () => {
   const labelKnobTab = 'Label';
   const labelKnobs = {
     theme,
-    title: text('Label', 'Label for input', labelKnobTab),
+    title: text('Label', 'Label for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for input', labelKnobTab),
     title_display: radios(
       'Label position',
       {
