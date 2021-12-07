@@ -1,0 +1,2 @@
+# Drupal templates
+

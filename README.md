@@ -17,7 +17,7 @@ Drupal 9 implementation of Civic Demo site
 
 ## Local environment setup
 
-- Make sure that you have latest versions of all required software installed:
+- Make sure that you have the latest versions of all required software installed:
   - [Docker](https://www.docker.com/)
   - [Pygmy](https://pygmy.readthedocs.io/)
   - [Ahoy](https://github.com/ahoy-cli/ahoy)
@@ -53,6 +53,7 @@ Copy `default.docker-compose.override.yml` to `docker-compose.override.yml`.
 3. Enables Civic theme and imports its configuration.
 4. Enables Civic Demo theme and sets it as a default theme.
 5. Provisions content using Default Content module.
+6. Enables `civic_sompanion` module to remove out-of-the-box GovCMS content types.
 
 See sections below on using development tools.
 
@@ -72,71 +73,26 @@ Most used commands:
     lint         Lint back-end and front-end code.
     test-bdd     Run BDD tests.
 
-## Behat tests
-
-Behat configuration uses multiple extensions:
-- [Drupal Behat Extension](https://github.com/jhedstrom/drupalextension) - Drupal integration layer. Allows to work with Drupal API from within step definitions.
-- [Behat Screenshot Extension](https://github.com/integratedexperts/behat-screenshot) - Behat extension and a step definition to create HTML and image screenshots on demand or test fail.
-- [Behat Progress Fail Output Extension](https://github.com/integratedexperts/behat-format-progress-fail) - Behat output formatter to show progress as TAP and fail messages inline. Useful to get feedback about failed tests while continuing test run.
-- `FeatureContext` - Site-specific context with custom step definitions.
-
-Add `@skipped` tag to failing tests if you would like to skip them.
-
-## Automated builds (Continuous Integration)
-
-In software engineering, continuous integration (CI) is the practice of merging all developer working copies to a shared mainline several times a day.
-Before feature changes can be merged into a shared mainline, a complete build must run and pass all tests on CI server.
-
-This project uses [Circle CI](https://circleci.com/) as a CI server: it imports production backups into fully built codebase and runs code linting and tests. When tests pass, a deployment process is triggered for nominated branches (usually, `master` and `develop`).
-
-Add `[skip ci]` to the commit subject to skip CI build. Useful for documentation changes.
-
 ## Development
+Please refer to [development documentation](DEVELOPMENT.md).
 
-### Compiling theme assets
+## Testing
+Please refer to [testing documentation](TESTING.md).
 
-To compile all assets in all themes: `ahoy fe`
+## CI
+Please refer to [CI documentation](CI.md).
 
-For development:
-1. `civic-library`
+## Deployment
+Please refer to [deployment documentation](DEPLOYMENT.md).
 
-       cd docroot/themes/custom/civic/civic-library
-       npm run build
-
-2. `civic`
-
-       cd docroot/themes/custom/civic
-       npm run build
-
-2. `civic_demo`
-
-       cd docroot/themes/custom/civic_demo
-       npm run build
-
-### Theme configuration export
-
-Configuration is captured into Civic Drupal theme's `config/install` and
-`config/optional` with
-
-    drush cde civic
-
-To add new configuration to the export, add configuration name to `civic.info.yml`.
-
-Tip: You can get the configuration name by exporting configuration with `drush cex -y`
-to `config/default` and using file names without `.yml` extension. Do not forget
-to remove all exported configuration files from `config/default` or the next site
-install will fail.
-
-Note that configuration for blocks in `civic` will be copied to `civic_demo` on
-installation of `civic_demo`. We do not capture configuration for `civic_demo`.
-
-### Demo content export
-
-    drush dcer --folder=modules/custom/cd_core/content <entity_type> <entity_id>
-
-    # Example
-    drush dcer --folder=modules/custom/cd_core/content node 50
+## Releasing
+Please refer to [releasing documentation](RELEASING.md).
 
 ## FAQs
+Please refer to [FAQs](FAQs.md).
 
-Please refer to [FAQs](FAQs.md)
+## Civic Drupal theme
+Please refer to [Civic Drupal theme documentation](docroot/themes/custom/civic/docs/introduction.md).
+
+## Civic components library
+Please refer to [Civic components Library documentation](docroot/themes/custom/civic/civic-library/docs/introduction.md).
