@@ -3,14 +3,19 @@
 
   position: absolute;
 
-  &--hidden {
-    display: none !important;
-  }
-
   @include civic-breakpoint('l') {
     display: flex;
     flex-wrap: nowrap;
-    flex-direction: row-reverse;
+  }
+
+  &--image-position-right {
+    @include civic-breakpoint('l') {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &--hidden {
+    display: none !important;
   }
 
   &__content-top {

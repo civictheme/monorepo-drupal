@@ -6,6 +6,7 @@
  * Variables:
  * - theme: [string] Light, Dark.
  * - image: [object] object with src and alt tag { src: '', alt: '' }
+ * - image_position: [string] left / right
  * - content_top: [string] Slot above title.
  * - title: [string] Slide title.
  * - summary: [string] Slide summary.
@@ -16,7 +17,8 @@
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set image_position_class = 'civic-slide--image-position-%s'|format(image_position|default('right')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, image_position_class, modifier_class|default('')) %}
 
 <div class="civic-slide {{ modifier_class }}" {{ attributes }}>
   {% if image is not empty %}
@@ -35,7 +37,7 @@
         <div class="civic-slide__title">{{ title }}</div>
       {% endif %}
       {% if summary %}
-        <div class="civic-slide__summary">{{ summary }}</div>
+        <div class="civic-slide__summary">{{ summary|raw }}</div>
       {% endif %}
       {% if links %}
         <div class="civic-slide__links">{{ links }}</div>

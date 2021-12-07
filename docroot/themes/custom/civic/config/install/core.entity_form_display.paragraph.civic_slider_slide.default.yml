@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.civic_slider_slide.field_c_p_image
     - field.field.paragraph.civic_slider_slide.field_c_p_image_position
     - field.field.paragraph.civic_slider_slide.field_c_p_link
+    - field.field.paragraph.civic_slider_slide.field_c_p_theme
     - field.field.paragraph.civic_slider_slide.field_c_p_title
     - field.field.paragraph.civic_slider_slide.field_c_p_topic
     - paragraphs.paragraphs_type.civic_slider_slide
@@ -46,6 +47,12 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_c_p_theme:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_c_p_title:
     weight: 0
