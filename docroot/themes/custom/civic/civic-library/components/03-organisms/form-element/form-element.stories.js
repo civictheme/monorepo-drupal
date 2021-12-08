@@ -1,9 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicFormElement from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
-import Select from '../../01-atoms/select/select.twig';
-import Checkbox from '../../01-atoms/checkbox/checkbox.twig';
-import Radio from '../../01-atoms/radio/radio.twig';
 import CivicLabel from '../../01-atoms/label/label.twig';
 
 export default {
@@ -157,18 +154,27 @@ export const FormElement = () => {
 
   switch (inputType) {
     case 'radio':
-      children.push(Radio(radioKnobs));
+      children.push(Input({
+        type: inputType,
+        ...radioKnobs,
+      }));
       break;
     case 'checkbox':
-      children.push(Checkbox(checkboxKnobs));
+      children.push(Input({
+        type: inputType,
+        ...checkboxKnobs,
+      }));
       break;
     case 'select':
-      children.push(Select(selectKnobs));
+      children.push(Input({
+        type: inputType,
+        ...selectKnobs,
+      }));
       break;
     default:
       children.push(Input({
-        ...inputKnobs,
         type: inputType,
+        ...inputKnobs,
       }));
   }
 

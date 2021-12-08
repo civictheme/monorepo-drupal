@@ -5,7 +5,7 @@
 @import '../../00-base/mixins/form';
 
 .civic-checkbox {
-  position: relative;
+  position: absolute;
 
   &__element {
     @include civic-checkbox-radio('checkbox');

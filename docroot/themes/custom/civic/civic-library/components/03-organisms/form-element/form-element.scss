@@ -17,13 +17,21 @@
     display: flex;
     flex-wrap: wrap;
 
+    .civic-input {
+      margin: 0;
+    }
+
+    .civic-form-element__description,
+    label {
+      padding-left: civic-space(5);
+    }
+
     .civic-form-element__description {
       width: 100%;
-      padding-left: civic-space(4);
     }
 
     label {
-      margin: rem(4px) 0;
+      margin: civic-space(0.5) 0;
     }
   }
 
