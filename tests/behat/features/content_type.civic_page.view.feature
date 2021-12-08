@@ -22,6 +22,7 @@ Feature: View of Page content type
       | [TEST] Page Service cards test    | 1      |
       | [TEST] Page Tasks cards test      | 1      |
       | [TEST] Page Reference cards test  | 1      |
+      | [TEST] Page Revision test  | 1      |
 
     And "civic_event" content:
       | title                                  | status |
@@ -252,4 +253,16 @@ Feature: View of Page content type
     And I should see 1 "div.civic-promo-card__content" elements
     And I should see 3 "div.civic-card-container__card .civic-theme-light" elements
     And I should see 1 "div.civic-card-container__card .civic-theme-dark" elements
+    And save screenshot
+
+  @api @javascript @smoke
+  Scenario: Civic page revisions can be viewed without error
+
+    Given I am logged in as a user with the "Site Administrator" role
+    When I edit "civic_page" "[TEST] Page Revision test"
+    And I fill in "Title" with "[TEST] Page New Revision test"
+    And I press "Save"
+    And I click "Revisions"
+    And I click on ".node-revision-table .even a" element
+    And I should see "Revision of [TEST] Page Revision test"
     And save screenshot
