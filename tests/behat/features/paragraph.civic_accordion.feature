@@ -33,7 +33,6 @@ Feature: Tests the Accordion
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_expand][value]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_panels][0][subform][field_c_p_title][0][value]']" element
-    And should see an "input[name='field_c_n_components[0][subform][field_c_p_panels][0][subform][field_c_p_title][0][value]'].required" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_panels][0][subform][field_c_p_content][0][value]']" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_panels][0][subform][field_c_p_content][0][value]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_panels][0][subform][field_c_p_expand][value]']" element
