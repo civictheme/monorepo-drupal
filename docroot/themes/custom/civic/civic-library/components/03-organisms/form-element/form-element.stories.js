@@ -139,7 +139,7 @@ export const FormElement = () => {
   const labelKnobTab = 'Label';
   const labelKnobs = {
     theme,
-    title: text('Label', 'Label for input', labelKnobTab),
+    title: text('Label', 'Label for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for input', labelKnobTab),
     title_display: radios(
       'Label position',
       {
@@ -157,18 +157,27 @@ export const FormElement = () => {
 
   switch (inputType) {
     case 'radio':
-      children.push(Radio(radioKnobs));
+      children.push(Input({
+        type: inputType,
+        ...radioKnobs,
+      }));
       break;
     case 'checkbox':
-      children.push(Checkbox(checkboxKnobs));
+      children.push(Input({
+        type: inputType,
+        ...checkboxKnobs,
+      }));
       break;
     case 'select':
-      children.push(Select(selectKnobs));
+      children.push(Input({
+        type: inputType,
+        ...selectKnobs,
+      }));
       break;
     default:
       children.push(Input({
-        ...inputKnobs,
         type: inputType,
+        ...inputKnobs,
       }));
   }
 

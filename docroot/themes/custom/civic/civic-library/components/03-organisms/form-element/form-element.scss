@@ -17,6 +17,10 @@
     display: flex;
     flex-wrap: wrap;
 
+    .civic-input {
+      margin: 0;
+    }
+
     .civic-form-element__description,
     label {
       padding-left: civic-space(5);
