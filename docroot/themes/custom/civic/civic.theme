@@ -7,6 +7,7 @@
 
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
 
 require_once 'includes/block--civic-component-block.inc';
 require_once 'includes/block--system_branding.inc';
@@ -100,9 +101,13 @@ function _civic_load_node_or_revision($variables) {
     // Check to see if it's a node revision route.
     /** @var \Drupal\Core\Routing\RouteMatchInterface $route_match */
     $route_match = \Drupal::service('current_route_match');
-    $node_revision_id = $route_match->getParameter('node_revision');
-    if ($node_revision_id !== NULL) {
-      $node = node_revision_load($node_revision_id);
+    $node_revision = $route_match->getParameter('node_revision');
+    // Handling API change in Drupal 9.30.
+    if (is_numeric($node_revision)) {
+      $node = node_revision_load($node_revision);
+    }
+    elseif ($node_revision instanceof NodeInterface) {
+      $node = $node_revision;
     }
   }
 

@@ -138,7 +138,7 @@ function _civic_preprocess_civic_banner_node(&$variables) {
   /** @var \Drupal\node\Entity\Node $node */
   $node = \Drupal::routeMatch()->getParameter('node');
   $node_revision = \Drupal::routeMatch()->getParameter('node_revision');
-  if ($node_revision) {
+  if ($node_revision !== NULL) {
     $node = node_revision_load($node_revision);
   }
   if (is_null($node)) {
