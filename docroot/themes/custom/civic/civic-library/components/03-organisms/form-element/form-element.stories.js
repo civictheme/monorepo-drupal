@@ -1,9 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicFormElement from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
-import Select from '../../01-atoms/select/select.twig';
-import Checkbox from '../../01-atoms/checkbox/checkbox.twig';
-import Radio from '../../01-atoms/radio/radio.twig';
 import CivicLabel from '../../01-atoms/label/label.twig';
 
 export default {
@@ -139,7 +136,7 @@ export const FormElement = () => {
   const labelKnobTab = 'Label';
   const labelKnobs = {
     theme,
-    title: text('Label', 'Label for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for inputLabel for input', labelKnobTab),
+    title: text('Label', 'Label for input', labelKnobTab),
     title_display: radios(
       'Label position',
       {
