@@ -12,10 +12,6 @@
   display: flex;
   text-decoration: none;
 
-  &:focus {
-    @include civic-outline();
-  }
-
   .civic-icon {
     margin-left: civic-space();
 
@@ -31,6 +27,10 @@
 
     .civic-icon {
       fill: $civic-directional-link-light-color;
+    }
+
+    &:focus {
+      @include civic-outline();
     }
 
     &:hover {
@@ -58,6 +58,10 @@
 
     .civic-icon {
       fill: $civic-directional-link-dark-color;
+    }
+
+    &:focus {
+      @include civic-outline(true);
     }
 
     &:hover {
