@@ -12,7 +12,7 @@ ahoy mycommand -- myarg1 myarg2 --myoption1 --myoption2=myvalue
 
 ## How to clear Drupal cache?
 ```
-ahoy drush cr
+ahoy drush -- cr
 ```
 
 ## How to login to Drupal site?
@@ -61,3 +61,18 @@ case, use `ahoy build`.
 
 ## Site install fails with error about configuration.
 Make sure that you have removed all files from `config/default` directory.
+## Adding patches for Drupal modules
+
+1. Add `title` and `url` to patch on https://drupal.org to the `patches` array in `extra` section in `composer.json`.
+
+```
+    "extra": {
+        "patches": {
+            "drupal/core": {
+                "Contextual links should not be added inside another link - https://www.drupal.org/node/2898875": "https://www.drupal.org/files/issues/contextual_links_should-2898875-3.patch"
+            }
+        }
+    }
+```
+
+2. `composer update --lock`

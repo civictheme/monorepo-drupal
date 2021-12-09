@@ -40,7 +40,7 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<a href hreflang data-entity-substitution data-entity-type data-entity-uuid class="civic-button civic-theme-light civic-theme-dark civic-button--primary civic-button--large civic-button--regular civic-button--secondary"> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id class> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid> <u> <s> <sup> <sub> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <p class="civic-text-large civic-text-small"> <drupal-entity alt title data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button><drupal-media data-entity-type data-entity-uuid>'
+      allowed_html: '<a href hreflang data-entity-substitution data-entity-type data-entity-uuid class="civic-button civic-theme-light civic-theme-dark civic-button--primary civic-button--large civic-button--regular civic-button--secondary"> <br> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id class> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid> <u> <s> <sup> <sub> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <p class="civic-text-large civic-text-small"> <drupal-entity alt title data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button><drupal-media data-entity-type data-entity-uuid>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:

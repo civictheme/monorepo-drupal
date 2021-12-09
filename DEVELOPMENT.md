@@ -53,3 +53,47 @@ The forklifted repository will have the following costraints:
 1. Allow adjusting Civic theme styling from the Drupal theme settings (V1.2).
 2. Drupal sub-theme starter kit.
 3. Integration with a quick install wizard.
+
+## Compiling theme assets
+
+To compile all assets in all themes: `ahoy fe`
+
+For development:
+1. `civic-library`
+
+       cd docroot/themes/custom/civic/civic-library
+       npm run build
+
+2. `civic`
+
+       cd docroot/themes/custom/civic
+       npm run build
+
+2. `civic_demo`
+
+       cd docroot/themes/custom/civic_demo
+       npm run build
+
+## Theme configuration export
+
+Configuration is captured into Civic Drupal theme's `config/install` and
+`config/optional` with
+
+    drush cde civic
+
+To add new configuration to the export, add configuration name to `civic.info.yml`.
+
+Tip: You can get the configuration name by exporting configuration with `drush cex -y`
+to `config/default` and using file names without `.yml` extension. Do not forget
+to remove all exported configuration files from `config/default` or the next site
+install will fail.
+
+Note that configuration for blocks in `civic` will be copied to `civic_demo` on
+installation of `civic_demo`. We do not capture configuration for `civic_demo`.
+
+## Demo content export
+
+    drush dcer --folder=modules/custom/cd_core/content <entity_type> <entity_id>
+
+    # Example
+    drush dcer --folder=modules/custom/cd_core/content node 50
