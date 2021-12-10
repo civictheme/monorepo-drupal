@@ -10,7 +10,7 @@ entity_type: paragraph
 bundle: civic_accordion_panel
 label: Title
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''

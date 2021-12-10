@@ -37,17 +37,17 @@
             {% for fold in panels %}
               {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
               <li class="civic-accordion__list-item">
-                {% if fold.title %}
-                  <div class="civic-accordion__header">
-                    {% set is_open = is_expanded ? 'is-selected' : '' %}
-                    <button class="civic-accordion__header__button {{ is_open }}">
+                <div class="civic-accordion__header">
+                  {% set is_open = is_expanded ? 'is-selected' : '' %}
+                  <button class="civic-accordion__header__button {{ is_open }}">
+                    {% if fold.title %}
                       <span>{{ fold.title }}</span>
-                      {% include '@atoms/icon/icon.twig' with {
-                        symbol: 'arrows_downarrow_1'
-                      } only %}
-                    </button>
-                  </div>
-                {% endif %}
+                    {% endif %}
+                    {% include '@atoms/icon/icon.twig' with {
+                      symbol: 'arrows_downarrow_1'
+                    } only %}
+                  </button>
+                </div>
 
                 {% if fold.content %}
                   {% set is_open = is_expanded ? 'civic-accordion__content--expanded' : '' %}
