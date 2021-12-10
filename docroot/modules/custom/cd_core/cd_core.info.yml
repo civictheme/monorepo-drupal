@@ -14,6 +14,8 @@ dependencies:
   - shield:shield
   - stage_file_proxy:stage_file_proxy
   - styleguide:styleguide
+  - simple_sitemap:simple_sitemap
+  # Required for Civic theme.
   - components:components
   - default_content:default_content
   - drupal:block_content
