@@ -12,7 +12,7 @@
   <div class="civic-side-navigation {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
     {% if title %}
       {% block title %}
-        <div class="civic-navigation__title">
+        <div class="civic-side-navigation__title">
           {{ title }}
         </div>
       {% endblock %}
@@ -21,7 +21,7 @@
     {% include '@base/menu/menu.twig' with {
       theme: theme,
       items: items,
-      modifier_class: 'civic-navigation__menu',
+      modifier_class: 'civic-side-navigation__menu',
     } only %}
 
   </div>

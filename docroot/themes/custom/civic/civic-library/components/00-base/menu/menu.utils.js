@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import { boolean, number } from '@storybook/addon-knobs';
+import { getRandomBool } from '../base.stories';
 
 export function generateMenuLinks(count, level, is_active_trail, title) {
   const links = [];
@@ -19,7 +20,7 @@ export function generateMenuLinks(count, level, is_active_trail, title) {
 
     if (level > 1) {
       link.below = generateMenuLinks(count, level - 1, active_trail_idx === i, link.title);
-      link.is_expanded = true;
+      link.is_expanded = getRandomBool(0.5);
     }
 
     links.push(link);
