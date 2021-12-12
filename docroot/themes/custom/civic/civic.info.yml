@@ -79,6 +79,7 @@ config_devel:
     - block.block.civic_footer_menu_4
     - block.block.civic_primarynavigation_menu
     - block.block.civic_secondarynavigation_menu
+    - block.block.civic_side_navigation_menu
     - block.block.civic_footer_sitebranding
     - block.block.civic_help
     - block.block.civic_messages
