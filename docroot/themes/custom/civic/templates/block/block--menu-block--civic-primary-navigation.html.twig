@@ -5,4 +5,8 @@
  */
 #}
 
-{% include '@organisms/primary-navigation/primary-navigation.twig' %}
+{% if in_sidebar %}
+  {% include '@organisms/side-navigation/side-navigation.twig' %}
+{% else %}
+  {% include '@organisms/primary-navigation/primary-navigation.twig' %}
+{% endif %}
