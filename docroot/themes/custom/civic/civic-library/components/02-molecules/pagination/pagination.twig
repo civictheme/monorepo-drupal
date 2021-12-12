@@ -24,13 +24,18 @@
     <ul class="civic-pager__items">
       {# Print previous item. #}
       <li class="civic-pager__item civic-pager__item--previous">
+        {% if current - 1 %}
+          {% set title = 'Go to previous page - page %s'|format(current - 1) %}
+        {% else %}
+          {% set title = 'Go to previous page' %}
+        {% endif %}
         {% include '@molecules/directional-link/directional-link.twig' with {
           theme: theme,
           text: items.previous.text|default('Previous'),
-          title: 'Go to previous page',
+          title: title,
           context: 'Previous page',
           url: items.previous.href,
-          disabled: items.previous ? 0 : 1,
+          disabled: (current - 1) ? 0 : 1,
           direction: 'left',
         } only %}
       </li>
@@ -61,7 +66,7 @@
           {% if current == key %}
             {% set title = 'Current page' %}
           {% else %}
-            {% set title = 'Go to page %s'|format(key) %}
+            {% set title = 'Go to page %s of %s'|format(key, items.pages|length) %}
           {% endif %}
           {% include '@atoms/link/link.twig' with {
             theme: theme,
@@ -83,13 +88,18 @@
 
       {# Print next item if we are not on the last page. #}
       <li class="civic-pager__item civic-pager__item--next">
+        {% if current != items.pages|length %}
+          {% set title = 'Go to next page - page %s'|format(current + 1) %}
+        {% else %}
+          {% set title = 'Go to next page' %}
+        {% endif %}
         {% include '@molecules/directional-link/directional-link.twig' with {
           theme: theme,
           text: items.next.text|default('Next'),
-          title: 'Go to next page',
+          title: title,
           context: 'Next page',
           url: items.previous.href,
-          disabled: items.next ? 0 : 1,
+          disabled: (current != items.pages|length) ? 0 : 1,
           direction: 'right',
         } only %}
       </li>

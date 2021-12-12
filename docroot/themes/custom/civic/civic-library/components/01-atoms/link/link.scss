@@ -16,13 +16,13 @@
     padding: 3px 0 4px;
   }
 
-  &:focus {
-    @include civic-outline();
-  }
-
   &,
   &.civic-theme-light {
     color: $civic-link-light-color;
+
+    &:focus {
+      @include civic-outline();
+    }
 
     &:hover {
       background-color: $civic-link-light-hover-background-color;
@@ -36,6 +36,10 @@
 
   &.civic-theme-dark {
     color: $civic-link-dark-color;
+
+    &:focus {
+      @include civic-outline(true);
+    }
 
     &:hover {
       background-color: $civic-link-dark-hover-background-color;

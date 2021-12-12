@@ -373,3 +373,26 @@ function cd_core_update_9004() {
     ],
   ]);
 }
+
+/**
+ * Adds sitemap configuration.
+ */
+function cd_core_update_9005() {
+  /** @var \Drupal\simple_sitemap\Simplesitemap $generator */
+  $generator = \Drupal::service('simple_sitemap.generator');
+
+  $settings = [
+    'index' => TRUE,
+    'priority' => 0.5,
+    'changefreq' => '',
+    'include_images' => FALSE,
+  ];
+  foreach ($generator->getSitemapManager()->getSitemapVariants(NULL, FALSE) as $variant => $definition) {
+    $generator->setVariants($variant);
+
+    $bundles = ['civic_page', 'civic_event', 'civic_project'];
+    foreach ($bundles as $bundle) {
+      $generator->setBundleSettings('node', $bundle, $settings);
+    }
+  }
+}
