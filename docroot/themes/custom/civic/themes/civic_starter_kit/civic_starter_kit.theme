@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Template for Civic Demo theme.
+ * Template for Civic Starter Kit theme.
  */
 
 use Drupal\Core\Site\Settings;
