@@ -27,16 +27,18 @@
           </div>
         {% endif %}
         <div class="civic-callout__text">
-          <div class="civic-callout__title">
-            {{ title }}
-          </div>
+          {% include '@atoms/heading/heading.twig' with {
+            title: title,
+            level: 4,
+            modifier_class: 'civic-callout--title'
+          } only %}
 
-          <div class="civic-callout__summary">
+          <p class="civic-callout__summary">
             {{ summary }}
-          </div>
+          </p>
         </div>
 
-        <div class="civic-callout__links">
+       <div class="civic-callout__links">
           {% for linkObj in links %}
             {% if linkObj.url is not empty %}
               {% include '@atoms/button/button.twig' with {
@@ -59,5 +61,4 @@
       </div>
     </div>
   </div>
-
 </div>
