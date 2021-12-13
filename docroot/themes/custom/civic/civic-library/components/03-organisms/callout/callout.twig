@@ -40,7 +40,7 @@
 
        <div class="civic-callout__links">
           {% for linkObj in links %}
-            {% if linkObj.url %}
+            {% if linkObj.url is not empty %}
               {% include '@atoms/button/button.twig' with {
                 theme: theme,
                 kind: 'link',
