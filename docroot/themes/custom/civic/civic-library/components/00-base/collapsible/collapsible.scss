@@ -4,7 +4,7 @@
 @use 'sass:list';
 @use 'sass:map';
 
-[data-collapsible='true'] {
+[data-collapsible] {
   [data-collapsible-trigger] {
     cursor: pointer;
   }

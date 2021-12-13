@@ -53,6 +53,15 @@
 
   // Menu item with dropdown.
   &__has-dropdown {
+    // Since 'data-collapsible-panel' is not added through a menu structure, we
+    // need to imitate the initially collapsed panel behaviour.
+    &[data-collapsible-collapsed] {
+      > .civic-menu__sub-menu__wrapper {
+        height: 0;
+        overflow: hidden;
+      }
+    }
+
     // Dropdown (submenu) wrapper.
     .civic-menu__sub-menu__wrapper--level-1 {
       position: absolute;

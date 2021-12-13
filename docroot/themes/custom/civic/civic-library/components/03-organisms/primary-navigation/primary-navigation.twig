@@ -22,7 +22,7 @@
   {% for key in items|keys %}
     {% if items[key].below %}
       {# Item attributes to convert them into a collapsible element. #}
-      {% set item_attributes = 'data-collapsible data-collapsible-collapsed data-collapsible-group=' ~ menu_id %}
+      {% set item_attributes = 'data-collapsible data-collapsible-collapsed data-collapsible-duration="0" data-collapsible-group=' ~ menu_id %}
       {# Item classes to style dynamically. #}
       {% set item_dropdown_columns_class = dropdown_columns ? 'civic-primary-navigation__dropdown-columns--%s'|format(dropdown_columns) : '' %}
       {% set item_dropdown_columns_fill_class = dropdown_columns_fill ? 'civic-primary-navigation__dropdown-columns--fill' : '' %}
