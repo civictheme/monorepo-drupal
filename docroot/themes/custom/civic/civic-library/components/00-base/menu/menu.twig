@@ -38,6 +38,7 @@
       {% set item_classes = [
         'civic-menu__item',
         'civic-menu__item--level-' ~ menu_level,
+        item.below ? 'civic-menu__item--has-children' : '',
         item.is_expanded ? 'civic-menu__item--expanded' : '',
         item.in_active_trail ? 'civic-menu__item--active-trail' : '',
         item.modifier_class|default(''),

@@ -6,8 +6,8 @@ dependencies:
 third_party_settings:
   menu_ui:
     available_menus:
-      - main
-    parent: 'main:'
+      - civic-primary-navigation
+    parent: 'civic-primary-navigation:'
 name: Page
 type: civic_page
 description: '<em>Civic</em>. Use pages for your static content such as an ''About us'' page or other informational pages that will always be accessible on the site. These can be simple content pages or pages with a complex layout.'
