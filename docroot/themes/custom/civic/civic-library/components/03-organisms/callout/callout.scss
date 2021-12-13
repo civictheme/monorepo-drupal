@@ -28,8 +28,8 @@
     margin-top: civic-space(2);
   }
 
-  &__title {
-    @include civic-typography('heading-4');
+  &--title {
+    margin: 0;
   }
 
   &__links {
@@ -70,8 +70,12 @@
     }
 
     .civic-callout {
-      &__title {
+      &--title {
         color: $civic-callout-light-heading-color;
+      }
+
+      &__summary {
+        color: $civic-callout-light-summary-color;
       }
     }
   }
@@ -85,8 +89,12 @@
     }
 
     .civic-callout {
-      &__title {
+      &--title {
         color: $civic-callout-dark-heading-color;
+      }
+
+      &__summary {
+        color: $civic-callout-dark-summary-color;
       }
     }
   }
