@@ -5,6 +5,9 @@
  * Civic event card paragraph component.
  */
 
+use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\Url;
+
 /**
  * Implements template_preprocess_paragraph().
  *
@@ -16,6 +19,9 @@ function civic_preprocess_paragraph__civic_card_event(&$variables) {
 
   // Event url.
   $link = ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
+  if (!empty($link['uri']) && !UrlHelper::isExternal($link['uri'])) {
+    $link['uri'] = Url::fromUri($link['uri'])->toString();
+  }
   $variables['url'] = $link['uri'] ?? NULL;
 
   // Event date.
@@ -29,4 +35,7 @@ function civic_preprocess_paragraph__civic_card_event(&$variables) {
       $variables['tags'][] = $topic->label();
     }
   }
+
+  // Event location.
+  $variables['location'] = ($paragraph->hasField('field_c_p_location') && !$paragraph->get('field_c_p_location')->isEmpty()) ? $paragraph->get('field_c_p_location')->getString() : NULL;
 }

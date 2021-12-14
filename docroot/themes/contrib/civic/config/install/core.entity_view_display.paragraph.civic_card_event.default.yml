@@ -5,6 +5,7 @@ dependencies:
     - field.field.paragraph.civic_card_event.field_c_p_date
     - field.field.paragraph.civic_card_event.field_c_p_image
     - field.field.paragraph.civic_card_event.field_c_p_link
+    - field.field.paragraph.civic_card_event.field_c_p_location
     - field.field.paragraph.civic_card_event.field_c_p_summary
     - field.field.paragraph.civic_card_event.field_c_p_theme
     - field.field.paragraph.civic_card_event.field_c_p_title
@@ -47,6 +48,14 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
+  field_c_p_location:
+    weight: 7
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_c_p_summary:
     weight: 3
