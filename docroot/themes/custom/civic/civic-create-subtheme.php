@@ -133,10 +133,12 @@ function prepare_stub($drupal_root) {
  * Process stub directory.
  */
 function process_stub($dir, $options) {
+  $machine_name_hyphenated = str_replace('_', '-', $options['machine_name']);
   // @formatter:off
   // phpcs:disable Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
   // phpcs:disable Drupal.WhiteSpace.Comma.TooManySpaces
   file_replace_dir_content('civic_starter_kit',              $options['machine_name'], $dir);
+  file_replace_dir_content('civic-starter-kit',              $machine_name_hyphenated, $dir);
   file_replace_dir_content('Civic Starter Kit description.', $options['description'],  $dir);
   file_replace_dir_content('Civic Starter Kit',              $options['name'],         $dir);
 
