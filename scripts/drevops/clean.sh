@@ -11,6 +11,7 @@ rm -rf \
   ./docroot/core \
   ./docroot/profiles/contrib \
   ./docroot/modules/contrib \
+  ./docroot/themes/custom/civic_demo \
   ./docroot/themes/custom/*/build \
   ./docroot/themes/custom/*/scss/_components.scss \
   ./docroot/sites/default/settings.generated.php
