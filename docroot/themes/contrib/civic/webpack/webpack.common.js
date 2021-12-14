@@ -15,14 +15,14 @@ module.exports = {
     entries.push(path.resolve(__dirname, 'theme_css.js'));
     entries.push(path.resolve(__dirname, 'assets.js'));
     return entries;
-  }(path.resolve(__dirname, '../components-combined/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
+  }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
   output: {
-    filename: 'scripts.js',
+    filename: 'civic.js',
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '../dist/styles.css',
+      filename: '../dist/civic.css',
     }),
     new CleanWebpackPlugin(),
   ],
@@ -52,7 +52,7 @@ module.exports = {
             options: {
               // Inject path to assets so that it does not have to be provided
               // in variables.base.scss
-              additionalData: "$civic-assets-directory: '/themes/custom/civic_starter_kit/dist/assets/';",
+              additionalData: "$civic-assets-directory: '/themes/contrib/civic/dist/assets/';",
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),
@@ -82,7 +82,7 @@ module.exports = {
       },
       // Wrap JS into Drupal.behaviours.
       {
-        test: /components-combined\/[^/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
+        test: /components\/[^/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
         exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
         use: [{
           loader: 'babel-loader',
@@ -101,18 +101,12 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@base': path.resolve(__dirname, '../components-combined/00-base'),
-      '@atoms': path.resolve(__dirname, '../components-combined/01-atoms'),
-      '@molecules': path.resolve(__dirname, '../components-combined/02-molecules'),
-      '@organisms': path.resolve(__dirname, '../components-combined/03-organisms'),
-      '@templates': path.resolve(__dirname, '../components-combined/04-templates'),
-      '@pages': path.resolve(__dirname, '../components-combined/05-pages'),
-      '@civic-base': path.resolve(__dirname, '../.components-civic/00-base'),
-      '@civic-atoms': path.resolve(__dirname, '../.components-civic/01-atoms'),
-      '@civic-molecules': path.resolve(__dirname, '../.components-civic/02-molecules'),
-      '@civic-organisms': path.resolve(__dirname, '../.components-civic/03-organisms'),
-      '@civic-templates': path.resolve(__dirname, '../.components-civic/04-templates'),
-      '@civic-pages': path.resolve(__dirname, '../.components-civic/05-pages'),
+      '@base': path.resolve(__dirname, '../components/00-base'),
+      '@atoms': path.resolve(__dirname, '../components/01-atoms'),
+      '@molecules': path.resolve(__dirname, '../components/02-molecules'),
+      '@organisms': path.resolve(__dirname, '../components/03-organisms'),
+      '@templates': path.resolve(__dirname, '../components/04-templates'),
+      '@pages': path.resolve(__dirname, '../components/05-pages'),
     },
   },
   stats: {

@@ -61,17 +61,17 @@ To compile all assets in all themes: `ahoy fe`
 For development:
 1. `civic-library`
 
-       cd docroot/themes/custom/civic/civic-library
+       cd docroot/themes/contrib/civic/civic-library
        npm run build
 
 2. `civic`
 
-       cd docroot/themes/custom/civic
+       cd docroot/themes/contrib/civic
        npm run build
 
 2. `civic_demo`
 
-       cd docroot/themes/custom/civic_demo
+       cd docroot/themes/contrib/civic_demo
        npm run build
 
 ## Theme configuration export

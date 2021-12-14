@@ -131,6 +131,7 @@
         "preserve-paths": [
             "docroot/modules/custom",
             "docroot/themes/custom",
+            "docroot/themes/contrib/civic",
             "docroot/drush",
             "docroot/sites/default/settings.php",
             "docroot/sites/default/services.yml",

@@ -92,7 +92,7 @@ Please refer to [releasing documentation](RELEASING.md).
 Please refer to [FAQs](FAQs.md).
 
 ## Civic Drupal theme
-Please refer to [Civic Drupal theme documentation](docroot/themes/custom/civic/docs/introduction.md).
+Please refer to [Civic Drupal theme documentation](docroot/themes/contrib/civic/docs/introduction.md).
 
 ## Civic components library
-Please refer to [Civic components Library documentation](docroot/themes/custom/civic/civic-library/docs/introduction.md).
+Please refer to [Civic components Library documentation](docroot/themes/contrib/civic/civic-library/docs/introduction.md).
