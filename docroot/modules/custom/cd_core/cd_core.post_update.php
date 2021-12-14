@@ -226,7 +226,7 @@ function cd_core_post_update_provision_primary_secondary_navigation_links() {
 /**
  * Provisions links in footer and updates menu block configurations.
  */
-function cd_core_post_update_provision_footer_links($sandbox) {
+function cd_core_post_update_provision_footer_links() {
   $added = PostConfigImportUpdateHelper::registerPostConfigImportUpdate();
   if ($added) {
     return TRUE;
@@ -280,6 +280,7 @@ function cd_core_post_update_provision_footer_links($sandbox) {
     $theme . '_footer_menu_4' => Helper::findMenuItemByTitle('civic-footer', 'Services'),
   ];
 
+  $sandbox = [];
   \Drupal::classResolver(ConfigEntityUpdater::class)
     ->update($sandbox, 'block', function (BlockInterface $block) use ($map) {
       if (strpos($block->getPluginId(), 'menu_block:') === 0) {
