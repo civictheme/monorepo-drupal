@@ -50,7 +50,7 @@ function CivicLargeFilter(el) {
       getKey: (element) => element.id,
       getLabel: (element) => {
         const label = element.closest('.civic-form-element').querySelector('label').innerText;
-        const value = element.value ? element.querySelector('option[value="' + element.value + '"]').innerText : '';
+        const value = element.value ? element.querySelector(`option[value="${element.value}"]`).innerText : '';
         return `${label} - ${value}`;
       },
     },

@@ -1,4 +1,6 @@
-import { radios, number, text, boolean } from '@storybook/addon-knobs';
+import {
+  radios, number, text, boolean,
+} from '@storybook/addon-knobs';
 
 import { dropDownFilter, formElement } from '../../00-base/base.stories';
 
@@ -36,7 +38,6 @@ export const LargeFilter = () => {
   const filterGroup = 'filter_group';
 
   if (boolean('Show example filters', true, generalKnobTab)) {
-
     // Example checkbox dropdown.
     filters.push(DropdownFilter({
       theme,
@@ -60,17 +61,9 @@ export const LargeFilter = () => {
       filter_group: filterGroup,
       type: 'date',
       options: [
-        formElement('date', {
-          required: false,
-          description: false,
-          value: '',
-        }, theme, false, count++),
-        formElement('date', {
-          required: false,
-          description: false,
-          value: '',
-        }, theme, false, count++),
-       ].join(''),
+        formElement('date', { value: '' }, theme, false, count++),
+        formElement('date', { value: '' }, theme, false, count++),
+      ].join(''),
     }));
   }
 
@@ -109,7 +102,7 @@ export const LargeFilter = () => {
             { type: 'option', value: 'a-z', label: 'A-Z' },
             { type: 'option', value: 'z-a', label: 'Z-A' },
           ],
-          attributes: 'data-large-filter-ignore'
+          attributes: 'data-large-filter-ignore',
         }, theme, false, count++),
       ],
     }));
