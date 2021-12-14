@@ -12,7 +12,7 @@ Civic theme development
 
 ## Requirements and constraints
 - Can be used out of the box without any customizations
-- MUST not be changed for customizations. If customizations are required - a
+- MUST NOT be changed for customizations. If customizations are required - a
   consumer theme MUST be created and used as a sub-theme of the Civic theme.
 - Fully compatible with GovCMS 9:
   - MUST NOT have any modules
