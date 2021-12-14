@@ -91,7 +91,7 @@ Every color used within the Civic Component Library has a corresponding variable
 This allows consumer themes to override any the variable's color without needing to change Civic Component Library SASS.
 
 Copy and paste variables as needed into your child theme, modify their values, and remove the !default flag. 
-If a variable has already been assigned in your child theme, then it won’t be re-assigned by the default values in Bootstrap.
+If a variable has already been assigned in your child theme, then it won’t be re-assigned by the default values in Civic Component Library.
 
 You will find the complete list of Civic Component Library’s color variables 
 in [_variables.components.scss](docroot/themes/custom/civic/civic-library/components/00-base/_variables.components.scss). 
