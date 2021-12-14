@@ -1,48 +1,76 @@
 # Grid
 
-Civic theme provides a customisable grid system.
+Civic theme provides a customisable grid utilising a flex-based system.
 
-The grid system is defined within `_variables.base.scss` which provides plenty of options that can be
-overridden in the child theme.
+## Grid System
 
-```sass
-//
-// Grid.
-//
-$civic-grid-columns: 12 !default;
+Civic Component Library's grid system uses a series of containers, rows, and columns to layout and align content.
+It’s built with flexbox and is fully responsive. 
 
-// Grid spacing used to calculate gutter spacings. Since the grid is based on
-// pixel values instead of rems (for consistency), the spacing is also based on
-// pixel values.
-$civic-grid-space: 8px !default;
+The system is adapted from the [SASS flexbox grid](http://sassflexboxgrid.com/).
 
-// The lowest breakpoint where column classes should start applying.
-$civic-grid-lowest-breakpoint: 'xxs' !default;
+### Example grid system markup
 
-// The width of the fluid container at max width. Used to contain fluid
-// containers on wide screens. Set to 'auto' to keep fluid.
-$civic-grid-max-width: map.get($civic-breakpoints, 'xxl') !default;
+```html
 
-// Spacing between columns in a row.
-$civic-grid-gutters: (
-  'xxs': $civic-grid-space * 2,
-  'xs': $civic-grid-space * 2,
-  's': $civic-grid-space * 3
-) !default;
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-l-6">100% extra-small viewport / 50% large viewport</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-m-4 col-l-3">50% extra-small viewport / 33% medium viewport / 25% large viewport</div>
+        <div class="col-xs-6 col-m-4 col-l-3">50% extra-small viewport / 33% medium viewport / 25% large viewport</div>
+        <div class="col-xs-6 col-m-4 col-l-3">50% extra-small viewport / 33% medium viewport / 25% large viewport</div>
+        <div class="col-xs-6 col-m-4 col-l-3">50% extra-small viewport / 33% medium viewport / 25% large viewport</div>
+        <div class="col-xs-6 col-m-4 col-l-3">50% extra-small viewport / 33% medium viewport / 25% large viewport</div>
+    </div>
+    <div class="row">
+        <div class="col-xxs-12 ">100% at all viewports</div>
+    </div>
+    <div class="row">
+        <div class="col-l-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-l-12">Nested column is set within 50% width parent and so is 50% parent container width</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-// Side spacing between the edge of the viewport and a start of the grid.
-$civic-grid-offsets: (
-  'xxs': $civic-grid-space * 3,
-  'xs': $civic-grid-space * 3,
-  's': $civic-grid-space * 3,
-  'm': $civic-grid-space * 3,
-  'l': $civic-grid-space * 6,
-  'xl': $civic-grid-space * 6,
-  'xxl': $civic-grid-space * 12,
-) !default;
+
 ```
 
-For a visual demonstration the grid system can be viewed in storybook.
+## Containers and rows
 
-Changing the grid system radically can require extensive changes to the templates as they rely on 12 columns
-to mean 100% width within a container.
+Containers are used to contain and center content to a max-width per breakpoint. These are set via the `$civic-breakpoints` map.
+If no container is set then columns spread full-width - this is utlised in Civic Page without sidebar where we have full-width
+components and constraining of content is done on the component level.
+
+Rows are wrappers for columns. Each column has horizontal padding (called a gutter) for controlling
+the space between them. This padding is then counteracted on the rows with negative margins to ensure the content
+in your columns is visually aligned down the left side.
+
+## Columns
+
+There are 12 columns available per row, allowing you to create different combinations of elements that span
+any number of columns. 
+
+Column classes indicate the number of template columns to span (e.g., col-4 spans four).
+Widths are set in percentages so you always have the same relative sizing.
+
+## Nested Grids
+
+The grid system allows for nested grids. If a parent is 50% width (`col-xs-12`) and a container, row and column is placed inside of this
+column then the max-width of the child column (with `col-xs-12` class) is 50% of the parent.
+
+## Utilities
+
+Civic component library come with a variety of [Grid utility mixins](../civic-library/components/00-base/mixins/_grid.scss)
+including offset, row-reverse, flex-column among others.
+
+## [Breakpoints](breakpoints.md)
+
+## Advanced
+For more advanced modification and overriding, the grid system internals are defined within `_variables.base.scss` 
+which provides plenty of options to change the grid system
