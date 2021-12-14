@@ -180,7 +180,7 @@ if ($settings['environment'] == ENVIRONMENT_PROD) {
 }
 
 if ($settings['environment'] !== ENVIRONMENT_PROD) {
-  $config['stage_file_proxy.settings']['origin'] = 'http://civic-demo.salsadigital.com.au/';
+  $config['stage_file_proxy.settings']['origin'] = 'http://civictheme.salsadigital.com.au/';
   $config['stage_file_proxy.settings']['hotlink'] = FALSE;
 }
 

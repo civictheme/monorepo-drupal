@@ -13,7 +13,7 @@ Drupal 9 implementation of Civic Demo site
 
 - PROD: [https://civic:civic2021@nginx-php.master.civic.au2.amazee.io](https://civic:civic2021@nginx-php.master.civic.au2.amazee.io)
 - DEV: [https://civic:civic2021@nginx-php.develop.civic.au2.amazee.io](https://civic:civic2021@nginx-php.develop.civic.au2.amazee.io)
-- LOCAL: [http://civic-demo.docker.amazee.io/](http://civic-demo.docker.amazee.io/)
+- LOCAL: [http://civictheme.docker.amazee.io/](http://civictheme.docker.amazee.io/)
 
 ## Local environment setup
 
