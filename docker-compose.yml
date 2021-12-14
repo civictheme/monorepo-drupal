@@ -12,7 +12,7 @@ version: '2.3'
 # Project name. Used in multiple places to name built Docker images.
 # Do not change here, instead update .env file.
 x-project:
-  &project ${PROJECT:-civic_demo}
+  &project ${PROJECT:-civictheme}
 
 # Volumes available in each container to share application data.
 x-volumes:

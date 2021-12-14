@@ -43,16 +43,9 @@ if [ -z "${LINT_TYPE##*be*}" ]; then
   [ "${ALLOW_BE_LINT_FAIL}" -eq 1 ]
 fi
 
-if [ -z "${LINT_TYPE##*fe*}" ] && [ -n "${DRUPAL_THEME_BASE}" ] && grep -q lint "docroot/themes/custom/${DRUPAL_THEME_BASE}/civic-library/package.json"; then
+if [ -z "${LINT_TYPE##*fe*}" ] && [ -n "${DRUPAL_THEME}" ] && grep -q lint "docroot/themes/custom/${DRUPAL_THEME}/civic-library/package.json"; then
   # Lint code using front-end linter.
-  npm run --prefix "docroot/themes/custom/${DRUPAL_THEME_BASE}/civic-library" lint || \
-  # Flag to allow lint to fail.
-  [ "${ALLOW_FE_LINT_FAIL}" -eq 1 ]
-fi
-
-if [ -z "${LINT_TYPE##*fe*}" ] && [ -n "${DRUPAL_THEME_BASE}" ] && grep -q lint "docroot/themes/custom/${DRUPAL_THEME_BASE}/package.json"; then
-  # Lint code using front-end linter.
-  npm run --prefix "docroot/themes/custom/${DRUPAL_THEME_BASE}" lint || \
+  npm run --prefix "docroot/themes/custom/${DRUPAL_THEME}/civic-library" lint || \
   # Flag to allow lint to fail.
   [ "${ALLOW_FE_LINT_FAIL}" -eq 1 ]
 fi
