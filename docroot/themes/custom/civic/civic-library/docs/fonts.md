@@ -1,10 +1,14 @@
 # Fonts
 
+Civic Component Library provides a system for easily consuming and extending typography mixins and variables.
+
+### How to use the typography mixin
+
 Font and typography can be set using the `civic-typography()` mixin.
 
 It can be used in 3 ways:
 
-1. Passing a ruleset
+#### 1. Passing a ruleset
 
 ```scss
 h1 {
@@ -29,10 +33,10 @@ The font-family is defined in a map:
 ```scss
 $civic-font: (
   'primary': $civic-font-primary
-);
+) !default;
 ```
 
-2. Passing a ruleset for multiple breakpoints
+#### 2. Passing a ruleset for multiple breakpoints
 
 Given the defined breakpoints (see breakpoints section):
 
@@ -48,7 +52,7 @@ h1 {
 }
 ```
 
-3. Presets
+#### 3. Presets
 
 Given the typography presets e.g:
 
@@ -64,4 +68,44 @@ A font can be used by passing a preset name:
 h1 {
   @include typography('heading-l');
 }
+```
+
+### Including custom fonts
+
+Civic component library allows consumer themes to modify and extend the list of fonts that are used.
+
+Add custom fonts to $civic-fonts with the same key as above to override
+fonts or with a new key to add a new font kind.
+'uri' can be a URL to the external font or a list of local files with 
+extensions to be imported. The font type will be taken from the file extensions.
+Use $civic-assets-directory to provide a relative path.
+
+IMPORTANT: Make sure to put commas at the end of every list or SASS will not
+be able to distinguish lists and values.
+
+#### Example custom font.
+```sass
+$civic-fonts: (
+  'tertiary': (
+    'family': 'Roboto',
+    'types': (
+      (
+        'uri': (
+          '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.ttf',
+          '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.woff',
+          '#{$civic-assets-directory}fonts/roboto/Roboto-Regular.eot',
+        ),
+      ),
+      (
+        'italic': true,
+        'weight': 'bold',
+        'uri': (
+          '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.ttf',
+          '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.woff',
+          '#{$civic-assets-directory}fonts/roboto/Roboto-BoldItalic.eot',
+        ),
+      ),
+    ),
+  ),
+);
 ```
