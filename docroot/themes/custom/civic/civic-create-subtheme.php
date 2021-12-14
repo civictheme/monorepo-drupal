@@ -6,7 +6,7 @@
  *
  * Usage:
  * @code
- * php civic.php new_machine_name "Human name" "Human description"
+ * php civic-create-subtheme.php new_machine_name "Human name" "Human description"
  * @endcode
  *
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingBefore
@@ -78,7 +78,7 @@ Options:
   --help               This help.
 
 Examples:
-  php civic.php civic_demo "Civic Demo" "Demo sub-theme for a Civic theme."
+  php civic-create-subtheme.php civic_demo "Civic Demo" "Demo sub-theme for a Civic theme."
 
 EOF;
   print PHP_EOL;
@@ -107,8 +107,8 @@ EOF;
  * Validate theme machine name.
  */
 function validate_theme_machine_name($name) {
-  if (!preg_match('/[a-z][a-z_0-9]*/', $name)) {
-    throw new \RuntimeException('Theme machine name can start with lowercase letters and contain lowercase letters, numbers and underscores.');
+  if (!preg_match('/^[a-z][a-z_0-9]*$/', $name)) {
+    throw new \RuntimeException('Invalid machine name. Theme machine name can only start with lowercase letters and contain lowercase letters, numbers and underscores.');
   }
 }
 
@@ -151,12 +151,12 @@ function process_stub($dir, $options) {
  */
 function find_starter_kit_dir($drupal_root) {
   $candidates = [
-    $drupal_root . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'custom' . DIRECTORY_SEPARATOR . 'civic' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'civic_starter_kit',
-    $drupal_root . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'all' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'custom' . DIRECTORY_SEPARATOR . 'civic' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'civic_starter_kit',
-    $drupal_root . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'all' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . 'civic' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'civic_starter_kit',
-    $drupal_root . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'contrib' . DIRECTORY_SEPARATOR . 'civic' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'civic_starter_kit',
-    $drupal_root . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'all' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'contrib' . DIRECTORY_SEPARATOR . 'civic' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'civic_starter_kit',
-    $drupal_root . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'all' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'civic' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'civic_starter_kit',
+    $drupal_root . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'custom' . DIRECTORY_SEPARATOR . 'civic' . DIRECTORY_SEPARATOR . 'civic_starter_kit',
+    $drupal_root . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'all' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'custom' . DIRECTORY_SEPARATOR . 'civic' . DIRECTORY_SEPARATOR . 'civic_starter_kit',
+    $drupal_root . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'all' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . 'civic' . DIRECTORY_SEPARATOR . 'civic_starter_kit',
+    $drupal_root . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'contrib' . DIRECTORY_SEPARATOR . 'civic' . DIRECTORY_SEPARATOR . 'civic_starter_kit',
+    $drupal_root . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'all' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'contrib' . DIRECTORY_SEPARATOR . 'civic' . DIRECTORY_SEPARATOR . 'civic_starter_kit',
+    $drupal_root . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'all' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'civic' . DIRECTORY_SEPARATOR . 'civic_starter_kit',
   ];
 
   foreach ($candidates as $candidate) {
@@ -496,6 +496,6 @@ try {
   exit($code);
 }
 catch (RuntimeException $exception) {
-  print 'ERROR: ' . $exception->getMessage() . PHP_EOL;
+  print PHP_EOL . 'ERROR: ' . $exception->getMessage() . PHP_EOL;
   exit($exception->getCode() == 0 ? SCAFFOLD_EXIT_ERROR : $exception->getCode());
 }
