@@ -1,6 +1,5 @@
 # Introduction
 
-- [Breakpoints](breakpoints.md)
 - [Colors](colors.md)
 - [Fonts](fonts.md)
 - [Grid](grid.md)
