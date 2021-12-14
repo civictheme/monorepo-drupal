@@ -448,7 +448,7 @@ function file_tempdir($dir = NULL, $prefix = 'tmp_', $mode = 0700, $max_attempts
   } while (!mkdir($path, $mode) && $attempts++ < $max_attempts);
 
   if (!is_dir($path) || !is_writable($path)) {
-    throw new RuntimeException(sprintf('Unable to create temporary directory "%s".', $path));
+    throw new \RuntimeException(sprintf('Unable to create temporary directory "%s".', $path));
   }
 
   return $path;
@@ -493,11 +493,11 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
 try {
   $code = main($argv, $argc);
   if (is_null($code)) {
-    throw new Exception('Script exited without providing an exit code.');
+    throw new \Exception('Script exited without providing an exit code.');
   }
   exit($code);
 }
-catch (RuntimeException $exception) {
+catch (\Exception $exception) {
   print PHP_EOL . 'ERROR: ' . $exception->getMessage() . PHP_EOL;
   exit($exception->getCode() == 0 ? SCAFFOLD_EXIT_ERROR : $exception->getCode());
 }
