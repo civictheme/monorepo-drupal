@@ -1,9 +1,8 @@
 # Introduction
 
+- [Variables](variables.md)
 - [Colors](colors.md)
-- [Fonts](fonts.md)
+- [Typography](typography.md)
 - [Grid](grid.md)
 - [Icon](icon.md)
-- [Sizing](sizing.md)
-- [Spacing](spacing.md)
-- [Variables](variables.md)
+- [Utilities](utilities.md)
