@@ -71,7 +71,7 @@ For development:
 
 2. `civic_demo`
 
-       cd docroot/themes/contrib/civic_demo
+       cd docroot/themes/custom/civic_demo
        npm run build
 
 ## Theme configuration export

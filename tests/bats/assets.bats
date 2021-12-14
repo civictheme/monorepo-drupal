@@ -93,7 +93,7 @@ load _helper
 }
 
 @test "Civic Demo Theme assets" {
-  dir="docroot/themes/contrib/civic_demo"
+  dir="docroot/themes/custom/civic_demo"
 
   # Files managed by the developer.
   assert_dir_exists "$dir/assets"

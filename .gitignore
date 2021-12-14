@@ -57,4 +57,4 @@ docker-compose.override.yml
 /config/*
 
 # Ignore generated theme.
-docroot/themes/contrib/civic_demo
+docroot/themes/custom/civic_demo

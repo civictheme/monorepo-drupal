@@ -12,12 +12,12 @@
  * Sets civic_demo theme settings and site slogan.
  */
 function cd_core_civic_demo_update_theme_settings() {
-  $logo_header_desktop = '/themes/contrib/civic_demo/dist/assets/logos/civic_demo_logo_desktop_light.png';
-  $logo_header_mobile = '/themes/contrib/civic_demo/dist/assets/logos/civic_demo_logo_mobile_light.png';
-  $logo_footer_desktop = '/themes/contrib/civic_demo/dist/assets/logos/civic_demo_logo_desktop_dark.png';
-  $logo_footer_mobile = '/themes/contrib/civic_demo/dist/assets/logos/civic_demo_logo_mobile_dark.png';
+  $logo_header_desktop = '/themes/custom/civic_demo/dist/assets/logos/civic_demo_logo_desktop_light.png';
+  $logo_header_mobile = '/themes/custom/civic_demo/dist/assets/logos/civic_demo_logo_mobile_light.png';
+  $logo_footer_desktop = '/themes/custom/civic_demo/dist/assets/logos/civic_demo_logo_desktop_dark.png';
+  $logo_footer_mobile = '/themes/custom/civic_demo/dist/assets/logos/civic_demo_logo_mobile_dark.png';
 
-  $favicon = '/themes/contrib/civic_demo/dist/favicon.ico';
+  $favicon = '/themes/custom/civic_demo/dist/favicon.ico';
 
   $config = \Drupal::service('config.factory')->getEditable('civic_demo.settings');
 

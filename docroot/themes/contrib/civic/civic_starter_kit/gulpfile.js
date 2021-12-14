@@ -17,7 +17,7 @@ const civicChildStorybookWatchDir = `${__dirname}/components/**`;
 
 // Theme names - `civic_starter_kit` needs to be updated to civic child theme name.
 // @todo Extract child theme name dynamically.
-const baseThemeName = __dirname.replace('contrib/civic_starter_kit', 'contrib/civic');
+const baseThemeName = __dirname.replace('custom/civic_starter_kit', 'contrib/civic');
 
 const childThemeName = __dirname;
 
