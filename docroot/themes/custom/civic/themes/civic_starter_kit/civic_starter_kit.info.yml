@@ -1,7 +1,7 @@
 name: Civic Starter Kit
 type: theme
 base theme: civic
-description: 'Civic Starter Kit theme.'
+description: 'Civic Starter Kit description.'
 core_version_requirement: ^8 || ^9
 
 regions:
