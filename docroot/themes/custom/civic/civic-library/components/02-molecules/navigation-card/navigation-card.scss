@@ -98,7 +98,8 @@
       @include civic-icon-fill-color($civic-navigation-card-light-icon-color, true);
     }
 
-    #{$root}__icon--arrow {
+    #{$root}__icon--arrow,
+    #{$root}__icon--external {
       @include civic-icon-fill-color($civic-navigation-card-light-icon-arrow-color, true);
     }
   }
@@ -126,7 +127,8 @@
       @include civic-icon-fill-color($civic-navigation-card-dark-icon-color, true);
     }
 
-    #{$root}__icon--arrow {
+    #{$root}__icon--arrow,
+    #{$root}__icon--external {
       @include civic-icon-fill-color($civic-navigation-card-dark-icon-arrow-color, true);
     }
   }
