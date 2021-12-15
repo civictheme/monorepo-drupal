@@ -6,19 +6,18 @@
  * Variables:
  * - theme: [string] theme: light, dark.
  * - is_selected: [string] Additional attributes.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes to modify component styling.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set selected_class = is_selected ? 'civic-filter-chip--selected' : '' %}
+{% set selected_class = is_selected ? 'civic-filter-chip-button--selected' : '' %}
 {% set modifier_class = '%s %s %s'|format(theme_class, selected_class, modifier_class|default('')) %}
 
 {% if text %}
-  <div class="civic-filter-chip {{ modifier_class }}" data-component-name="filter-chip">
-    <button class="civic-filter-chip__wrapper civic-filter-chip__wrapper--button">
-      <span class="civic-filter-chip__text">{{ text }}</span>
-      <span class="civic-filter-chip__selected-icon"></span>
-    </button>
-  </div>
+  <button class="civic-filter-chip-button {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
+    <span class="civic-filter-chip-button__text">{{ text }}</span>
+    <span class="civic-filter-chip-button__selected-icon"></span>
+  </button>
 {% endif %}

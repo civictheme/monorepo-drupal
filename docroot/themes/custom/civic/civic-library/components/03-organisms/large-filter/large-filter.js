@@ -145,12 +145,10 @@ CivicLargeFilter.prototype.getHTMLFilterItem = function (key, label, theme) {
   // Return a filter-chip-button template, wrapped in a list item.
   return `
     <li class="civic-large-filter__tag">
-      <div class="civic-filter-chip civic-theme-${theme} civic-filter-chip--selected" data-component-name="filter-chip">
-        <button class="civic-filter-chip__wrapper civic-filter-chip__wrapper--button" data-id="${key}">
-          <span class="civic-filter-chip__text">${label}</span>
-          <span class="civic-filter-chip__selected-icon"></span>
-        </button>
-      </div>
+      <button class="civic-filter-chip-button civic-theme-${theme} civic-filter-chip-button--selected" data-id="${key}">
+        <span class="civic-filter-chip-button__text">${label}</span>
+        <span class="civic-filter-chip-button__selected-icon"></span>
+      </button>
     </li>
   `;
 };
