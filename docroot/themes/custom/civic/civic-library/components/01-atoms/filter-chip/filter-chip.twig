@@ -12,15 +12,12 @@
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 {% set type = is_multiple ? 'checkbox' : 'radio' %}
 
 {% if id is not empty or name is not empty %}
   <label class="civic-filter-chip {{ modifier_class }}" for="{{ id }}" data-component-name="filter-chip">
     <input class="civic-filter-chip__field" type="{{ type }}" id="{{ id }}" name="{{ name }}" {% if attributes %}{{ attributes }}{% endif %} />
-    <span class="civic-filter-chip__wrapper">
-      <span class="civic-filter-chip__text">{{ text }}</span>
-      <span class="civic-filter-chip__selected-icon"></span>
-    </span>
+    <span class="civic-filter-chip__text">{{ text }}</span>
   </label>
 {% endif %}
