@@ -14,6 +14,9 @@ docroot/modules/*
 !docroot/themes/
 docroot/themes/*
 !docroot/themes/custom/
+!docroot/themes/contrib/
+docroot/themes/contrib/*
+!docroot/themes/contrib/civic
 !docroot/profiles/
 docroot/profiles/*
 !docroot/profiles/custom/
@@ -52,3 +55,6 @@ docker-compose.override.yml
 
 # Ignore configuration as this site is installed from profile.
 /config/*
+
+# Ignore generated theme.
+docroot/themes/custom/civic_demo

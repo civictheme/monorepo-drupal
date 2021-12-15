@@ -1,0 +1,56 @@
+{# Extending base civic component #}
+{% extends '@civic-organisms/header/header.twig' %}
+
+{% if show_content_top2 %}
+  {% set content_top2 %}
+    Visually engaging digital experiences
+  {% endset %}
+{% endif %}
+
+{% if show_content_top3 %}
+  {% set content_top3 %}
+    {% include '@organisms/secondary-navigation/secondary-navigation.twig' with {
+      'theme': theme,
+      'items': secondary_navigation_items,
+      'modifier_class': 'civic-justify-content-end',
+    } only %}
+  {% endset %}
+{% endif %}
+
+{% if logos %}
+  {% set content_middle2 %}
+    {% include '@atoms/logo/logo.twig' with {
+      'theme': theme == 'light' ? 'dark' : 'light',
+      'logos': logos,
+      'modifier_class': 'civic-header__logo',
+    } only %}
+  {% endset %}
+{% endif %}
+
+{% if show_content_middle3 %}
+  {% set content_middle3 %}
+    {% include '@organisms/primary-navigation/primary-navigation.twig' with {
+      'theme': theme,
+      'items': primary_navigation_items,
+      'dropdown_columns': primary_navigation_dropdown_columns,
+      'dropdown_columns_fill': primary_navigation_dropdown_columns_fill,
+      'modifier_class': 'civic-justify-content-end',
+    } only %}
+  {% endset %}
+{% endif %}
+
+{% block content_middle2 %}
+  <div class="col-xs-12 col-m-3">
+    <div class="civic-header__content-middle2">
+      {{ content_middle2 }}
+    </div>
+  </div>
+{% endblock %}
+
+{% block content_middle3 %}
+  <div class="col-xs-12 col-m-9">
+    <div class="civic-header__content-middle3 civic-header__content-middle3--civic_starter_kit">
+      {{ content_middle3 }}
+    </div>
+  </div>
+{% endblock %}

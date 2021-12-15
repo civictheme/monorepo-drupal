@@ -23,20 +23,20 @@ Feature: XML Sitemap
       | [TEST] Published alert | 1      | /test-published-alert |
       | [TEST] Draft alert     | 0      | /test-draft-alert     |
 
-    Given I run drush "simple-sitemap:generate --uri=http://civic-demo.docker.amazee.io"
+    Given I run drush "simple-sitemap:generate --uri=http://civictheme.docker.amazee.io"
 
     When I go to "sitemap.xml"
     Then the response status code should be 200
-    And the response should contain "http://civic-demo.docker.amazee.io/"
+    And the response should contain "http://civictheme.docker.amazee.io/"
 
-    And the response should contain "http://civic-demo.docker.amazee.io/test-published-page"
-    And the response should not contain "http://civic-demo.docker.amazee.io/test-draft-page"
+    And the response should contain "http://civictheme.docker.amazee.io/test-published-page"
+    And the response should not contain "http://civictheme.docker.amazee.io/test-draft-page"
 
-    And the response should contain "http://civic-demo.docker.amazee.io/test-published-event"
-    And the response should not contain "http://civic-demo.docker.amazee.io/test-draft-event"
+    And the response should contain "http://civictheme.docker.amazee.io/test-published-event"
+    And the response should not contain "http://civictheme.docker.amazee.io/test-draft-event"
 
-    And the response should contain "http://civic-demo.docker.amazee.io/test-published-project"
-    And the response should not contain "http://civic-demo.docker.amazee.io/test-draft-project"
+    And the response should contain "http://civictheme.docker.amazee.io/test-published-project"
+    And the response should not contain "http://civictheme.docker.amazee.io/test-draft-project"
 
-    And the response should not contain "http://civic-demo.docker.amazee.io/test-published-alert"
-    And the response should not contain "http://civic-demo.docker.amazee.io/test-draft-project"
+    And the response should not contain "http://civictheme.docker.amazee.io/test-published-alert"
+    And the response should not contain "http://civictheme.docker.amazee.io/test-draft-project"
