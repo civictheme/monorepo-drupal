@@ -41,8 +41,9 @@ function CivicCollapsible(el) {
   this.trigger.addEventListener('keydown', this.keydownEvent.bind(this.trigger));
   this.trigger.addEventListener('focusout', this.focusoutEvent.bind(this));
   this.panel.addEventListener('click', (e) => e.stopPropagation());
-  this.panel.addEventListener('focusout', this.focusoutEvent.bind(this));
-  this.panel.addEventListener('focusin', this.focusinEvent.bind(this));
+  // @todo - These lines have been disabled as they break the CivicLargeFilter dropdowns.
+  // this.panel.addEventListener('focusout', this.focusoutEvent.bind(this));
+  // this.panel.addEventListener('focusin', this.focusinEvent.bind(this));
 
   // Collapse if was set as initially collapsed.
   if (this.collapsed) {

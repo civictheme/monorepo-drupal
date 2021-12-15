@@ -20,11 +20,11 @@
 }
 
 @function civic-color-shade-dark($number) {
-  @return color.mix(black, $civic-colors-default-shades-dark-base, math.percentage(math.div($number, 100))),;
+  @return color.mix(black, $civic-colors-default-shades-dark-base, math.percentage(math.div($number, 100)));
 }
 
 @function civic-color-shade-light($number) {
-  @return color.mix(white, $civic-colors-default-shades-light-base, math.percentage(math.div($number, 100))),;
+  @return color.mix(white, $civic-colors-default-shades-light-base, math.percentage(math.div($number, 100)));
 }
 
 @function civic-color-neutral($number) {
