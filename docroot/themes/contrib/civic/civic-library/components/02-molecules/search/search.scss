@@ -5,7 +5,7 @@
 .civic-search {
   $root: &;
 
-  &__form {
+  &__field-wrapper {
     @include civic-breakpoint(m) {
       display: flex;
     }
