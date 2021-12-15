@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Template for Civic Demo theme.
+ * Template for Civic Starter Kit theme.
  */
 
 use Drupal\Core\Site\Settings;
@@ -10,14 +10,14 @@ use Drupal\Core\Site\Settings;
 /**
  * Implements template_preprocess_html().
  */
-function civic_demo_preprocess_html(&$variables) {
-  _civic_demo_preprocess_admin_toolbar($variables);
+function civic_starter_kit_preprocess_html(&$variables) {
+  _civic_starter_kit_preprocess_admin_toolbar($variables);
 }
 
 /**
  * Preprocess admin toolbar.
  */
-function _civic_demo_preprocess_admin_toolbar(&$variables) {
+function _civic_starter_kit_preprocess_admin_toolbar(&$variables) {
   // Hide admin toolbar.
   if (Settings::get('hide_admin_toolbar')) {
     if (!empty($variables['attributes']['class'])) {

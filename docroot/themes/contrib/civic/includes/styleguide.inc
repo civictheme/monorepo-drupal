@@ -123,7 +123,7 @@ function _civic_styleguide_block_placement_render(BlockContent $block) {
   $breakout_class = in_array($bundle, _civic_breakout_components()) ? 'container-breakout' : '';
 
   // Replicated preprocess behaviours for block placement field.
-  // @see themes/custom/civic/templates/field/field--paragraph--field-bp-block--block-placement.html.twig
+  // @see themes/contrib/civic/templates/field/field--paragraph--field-bp-block--block-placement.html.twig
   return [
     '#type' => 'inline_template',
     '#template' => '<div class="block__{{ bundle }} {{ breakout_class }}">{{ content }}</div>',

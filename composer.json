@@ -1,6 +1,6 @@
 {
-    "name": "civic_demo_org/civic_demo",
-    "description": "Drupal 9 implementation of Civic Demo for Civic Demo Org",
+    "name": "salsadigital/civictheme",
+    "description": "Drupal 9 implementation of CivicTheme for Salsa digital.",
     "license": "proprietary",
     "require": {
         "php": ">=7.4",
@@ -131,6 +131,7 @@
         "preserve-paths": [
             "docroot/modules/custom",
             "docroot/themes/custom",
+            "docroot/themes/contrib/civic",
             "docroot/drush",
             "docroot/sites/default/settings.php",
             "docroot/sites/default/services.yml",

@@ -1,8 +1,8 @@
 {
-  "name": "civic-demo-theme",
+  "name": "civic-starter-kit-theme",
   "version": "1.0.0",
   "private": true,
-  "description": "Civic Demo consumer theme",
+  "description": "Civic Starter Kit consumer theme",
   "scripts": {
     "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet",
     "build-storybook": "npm run gulp:build && build-storybook -s .storybook/static",

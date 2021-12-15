@@ -23,21 +23,21 @@ function civic_form_system_theme_settings_alter(&$form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Header mobile logo path'),
     '#default_value' => theme_get_setting('civic_header_logo_mobile'),
-    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-header-mobile.svg, or themes/custom/civic/assets/images/svg/logo-header-mobile.svg.'),
+    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-header-mobile.svg, or themes/contrib/civic/assets/images/svg/logo-header-mobile.svg.'),
   ];
 
   $form['logo']['settings']['civic_footer_logo_desktop'] = [
     '#type' => 'textfield',
     '#title' => t('Footer desktop logo path'),
     '#default_value' => theme_get_setting('civic_footer_logo_desktop'),
-    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-footer-desktop.svg, or themes/custom/civic/dist/images/svg/logo-footer-desktop.svg.'),
+    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-footer-desktop.svg, or themes/contrib/civic/dist/images/svg/logo-footer-desktop.svg.'),
   ];
 
   $form['logo']['settings']['civic_footer_logo_mobile'] = [
     '#type' => 'textfield',
     '#title' => t('Footer mobile logo path'),
     '#default_value' => theme_get_setting('civic_footer_logo_mobile'),
-    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-footer-mobile.svg, or themes/custom/civic/dist/images/svg/logo-footer-mobile.svg.'),
+    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-footer-mobile.svg, or themes/contrib/civic/dist/images/svg/logo-footer-mobile.svg.'),
   ];
 
   $form['logo']['settings']['civic_site_logo_alt'] = [
@@ -94,7 +94,7 @@ function civic_form_system_theme_settings_alter(&$form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Footer background image path'),
     '#default_value' => theme_get_setting('civic_footer_background_image'),
-    '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://footer-background.png, or themes/custom/civic/dist/images/svg/footer-background.png.'),
+    '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://footer-background.png, or themes/contrib/civic/dist/images/svg/footer-background.png.'),
   ];
 
   // Show compiled Storybook.

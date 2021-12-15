@@ -12,12 +12,12 @@ const newer = require('gulp-newer');
 
 // Component file globs.
 // @codingStandardsIgnoreLine
-const civicStorybookWatchDir = `${__dirname}/../civic/components/**`;
+const civicStorybookWatchDir = `${__dirname}/../../contrib/civic/components/**`;
 const civicChildStorybookWatchDir = `${__dirname}/components/**`;
 
-// Theme names - `civic_demo` needs to be updated to civic child theme name.
+// Theme names - `civic_starter_kit` needs to be updated to civic child theme name.
 // @todo Extract child theme name dynamically.
-const baseThemeName = __dirname.replace('civic_demo', 'civic');
+const baseThemeName = __dirname.replace('custom/civic_starter_kit', 'contrib/civic');
 
 const childThemeName = __dirname;
 
