@@ -7,9 +7,11 @@
 {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, form_element_type_class, form_element_name_class, required_class, error_class, modifier_class|default('')) %}
 
 <fieldset class="civic-fieldset civic-form-element {{ modifier_class }}" {{ attributes }}>
-  <legend class="civic-label {{ legend_modifier_class }} {{ label_required_class }}" {{ legend.attributes }}>
-    <span{{ legend_span_attributes }}>{{ legend }}</span>
-  </legend>
+  {% if legend is not empty %}
+    <legend class="civic-label {{ legend_modifier_class }} {{ label_required_class }}" {{ legend.attributes }}>
+      <span{{ legend_span_attributes }}>{{ legend }}</span>
+    </legend>
+  {% endif %}
   <div class="civic-fieldset__wrapper">
     {% if description %}
       <div class="description {{ description_modifier_class }}" {{ description_attributes }}>{{ description }}</div>
