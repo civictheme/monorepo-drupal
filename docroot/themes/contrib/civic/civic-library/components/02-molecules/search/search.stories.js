@@ -22,6 +22,7 @@ export const Search = (knobTab) => {
       generalKnobTab,
     ),
     placeholder: text('Placeholder', 'Enter keywords or phrase', generalKnobTab),
+    search_url: text('Searcyh URL', '/search', generalKnobTab),
     button_text: text('Button text', 'Search', generalKnobTab),
     button_type: select('Button type', [
       'primary',
