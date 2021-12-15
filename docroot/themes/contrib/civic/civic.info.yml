@@ -271,6 +271,7 @@ config_devel:
     - field.field.paragraph.civic_card_event.field_c_p_date
     - field.field.paragraph.civic_card_event.field_c_p_image
     - field.field.paragraph.civic_card_event.field_c_p_link
+    - field.field.paragraph.civic_card_event.field_c_p_location
     - field.field.paragraph.civic_card_event.field_c_p_summary
     - field.field.paragraph.civic_card_event.field_c_p_theme
     - field.field.paragraph.civic_card_event.field_c_p_title
@@ -418,6 +419,7 @@ config_devel:
     - field.storage.paragraph.field_c_p_listing_f_exposed
     - field.storage.paragraph.field_c_p_listing_limit
     - field.storage.paragraph.field_c_p_listing_multi_select
+    - field.storage.paragraph.field_c_p_location
     - field.storage.paragraph.field_c_p_panels
     - field.storage.paragraph.field_c_p_placeholder
     - field.storage.paragraph.field_c_p_read_more

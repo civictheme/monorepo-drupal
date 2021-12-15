@@ -1,4 +1,4 @@
-Civic Demo Drupal theme
+Civic Starter Kit Drupal theme
 =======================
 
 Based on Civic Drupal theme

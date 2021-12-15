@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fcbc7830a1d63ceef4c5628641b3ed59",
+    "content-hash": "2e3436a81d5767f7be6de8a9bb4f0349",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -9845,7 +9845,7 @@
             "extra": {
                 "drupal": {
                     "version": "6.0.5",
-                    "datestamp": "1629909787",
+                    "datestamp": "1638988008",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
