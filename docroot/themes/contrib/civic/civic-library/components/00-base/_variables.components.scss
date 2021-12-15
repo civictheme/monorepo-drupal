@@ -875,10 +875,12 @@ $civic-callout-light-color: civic-color-neutral(60) !default;
 $civic-callout-light-background-color: civic-color-neutral(5) !default;
 $civic-callout-light-border-color: civic-color('secondary') !default;
 $civic-callout-light-heading-color: civic-color-neutral(80) !default;
+$civic-callout-light-summary-color: civic-color-neutral(60) !default;
 $civic-callout-dark-color: civic-color-shade-dark(90) !default;
 $civic-callout-dark-background-color: civic-color-shade-dark(15) !default;
 $civic-callout-dark-border-color: $civic-callout-light-border-color !default;
 $civic-callout-dark-heading-color: civic-color('neutral') !default;
+$civic-callout-dark-summary-color: civic-color-shade-light(90) !default;
 
 //
 // Content.
