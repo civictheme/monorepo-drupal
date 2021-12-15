@@ -14,6 +14,7 @@
  * - summary: [string] Summary of the card.
  * - image: [string] Card type: large, small.
  * - url: [string] Card link.
+ * - is_external: [boolean] Link is external.
  * - content_bottom: [string] Component slot for bottom of Card.
  * - modifier_class: [string] Classes to modify the default component styling.
  */
@@ -62,11 +63,19 @@
           {{ title }}
           {% if url %}
           <span>
-            {% include '@atoms/icon/icon.twig' with {
-              symbol: 'arrows_rightarrow_3',
-              color: 'primary',
-              modifier_class: 'civic-navigation-card__icon--arrow',
-            } only %}
+            {% if is_external %}
+              {% include '@atoms/icon/icon.twig' with {
+                symbol: 'arrows_upperrightarrow',
+                color: 'primary',
+                modifier_class: 'civic-navigation-card__icon--external'
+              } only %}
+            {% else %}
+              {% include '@atoms/icon/icon.twig' with {
+                symbol: 'arrows_rightarrow_3',
+                color: 'primary',
+                modifier_class: 'civic-navigation-card__icon--arrow',
+              } only %}
+            {% endif %}
           </span>
         </a>
         {% endif %}

@@ -10,6 +10,7 @@ import Checkbox from '../01-atoms/checkbox/checkbox.twig';
 import Radio from '../01-atoms/radio/radio.twig';
 import FormElement from '../03-organisms/form-element/form-element.twig';
 import Label from '../01-atoms/label/label.twig';
+import DropdownFilter from '../02-molecules/dropdown-filter/dropdown-filter.twig';
 
 export const getSlots = (names) => {
   const showSlots = boolean('Show story-slots', false, 'Slots');
@@ -86,6 +87,56 @@ export const randomTags = (count, rand) => {
 
 export const demoImage = () => './assets/images/demo.png';
 
+export const formElement = (inputType, options, theme, rand, itr) => {
+  const isCheckboxOrRadio = inputType === 'checkbox' || inputType === 'radio';
+
+  const formElementOptions = {
+    theme,
+    type: inputType,
+    label: Label({
+      theme,
+      title: `Input title ${itr + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
+      attributes: `for="form-element-${itr}"`,
+      title_position: isCheckboxOrRadio ? 'after' : 'before',
+      required: options.required,
+    }),
+    label_display: isCheckboxOrRadio ? 'after' : 'before',
+    description_display: isCheckboxOrRadio ? 'after' : 'before',
+    description: {
+      content: options.description ? `Input description ${itr + 1}${rand ? ` ${randomText(getRandomInt(4, 10))}` : ''}` : '',
+    },
+    children: [],
+  };
+  let attributes = `id="form-element-${itr}"`;
+  if (typeof options.attributes !== 'undefined') {
+    attributes += options.attributes;
+  }
+
+  const inputOptions = {
+    theme,
+    type: inputType,
+    attributes,
+    required: options.required,
+    value: typeof options.value !== 'undefined' ? options.value : randomString(getRandomInt(3, 8)),
+  };
+
+  switch (inputType) {
+    case 'radio':
+      formElementOptions.children.push(Radio(inputOptions));
+      break;
+    case 'checkbox':
+      formElementOptions.children.push(Checkbox(inputOptions));
+      break;
+    case 'select':
+      formElementOptions.children.push(Select({ ...inputOptions, options: inputOptions.value }));
+      break;
+    default:
+      formElementOptions.children.push(Input(inputOptions));
+  }
+
+  return FormElement(formElementOptions);
+};
+
 export const randomFormElements = (count, theme, rand) => {
   rand = rand || false;
 
@@ -104,47 +155,45 @@ export const randomFormElements = (count, theme, rand) => {
   const formElements = [];
   for (let i = 0; i < count; i++) {
     const inputType = inputTypes[Math.floor(Math.random() * inputTypes.length)];
-    const isCheckboxOrRadio = inputType === 'checkbox' || inputType === 'radio';
-    const required = requiredOptions[Math.floor(Math.random() * requiredOptions.length)];
+    const required = [Math.floor(Math.random() * requiredOptions.length)];
 
-    const formElementOptions = {
-      theme,
-      type: inputType,
-      label: Label({
-        title: `Input title ${i + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
-        attributes: `for="form-element-${i}"`,
-        title_position: isCheckboxOrRadio ? 'after' : 'before',
+    formElements.push(formElement(
+      inputType,
+      {
         required,
-      }),
-      label_display: isCheckboxOrRadio ? 'after' : 'before',
-      description_display: isCheckboxOrRadio ? 'after' : 'before',
-      description: {
-        content: `Input description ${i + 1}${rand ? ` ${randomText(getRandomInt(2, 8))}` : ''}`,
       },
-      children: [],
-    };
-    const inputOptions = {
       theme,
-      type: inputType,
-      attributes: `id="form-element-${i}"`,
-      required,
-    };
-
-    switch (inputType) {
-      case 'radio':
-        formElementOptions.children.push(Radio(inputOptions));
-        break;
-      case 'checkbox':
-        formElementOptions.children.push(Checkbox(inputOptions));
-        break;
-      case 'select':
-        formElementOptions.children.push(Select(inputOptions));
-        break;
-      default:
-        formElementOptions.children.push(Input(inputOptions));
-    }
-    formElements.push(FormElement(formElementOptions));
+      rand,
+      i,
+    ));
   }
 
   return formElements;
+};
+
+export const dropDownFilter = (filterType, numOfOptions, theme, rand, itr) => {
+  const filterOptions = {
+    filter_text: `Filter text ${itr + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
+    filter_group: 'filter_group',
+    options_title: Math.round(Math.random()) ? 'Options title (optional)' : '',
+  };
+  const children = [];
+  let count = itr * numOfOptions;
+  for (let i = 1; i <= numOfOptions; i++) {
+    const options = {
+      required: false,
+      description: false,
+      attributes: '',
+      value: randomString(getRandomInt(1, 8)),
+    };
+    options.attributes += filterType === 'radio' ? ` name="test_${itr}"` : ` name="${randomString(getRandomInt(3, 8))}"`;
+    children.push(formElement(filterType, options, theme, true, count++));
+  }
+
+  return DropdownFilter({
+    theme,
+    ...filterOptions,
+    type: filterType,
+    options: children.join(''),
+  });
 };
