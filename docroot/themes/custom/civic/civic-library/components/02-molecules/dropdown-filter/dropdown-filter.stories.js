@@ -16,8 +16,9 @@ export default {
   },
 };
 
-export const DropDownFilter = () => {
-  const generalKnobTab = 'General';
+export const DropDownFilter = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
   const theme = radios(
     'Theme',
     {
@@ -28,14 +29,7 @@ export const DropDownFilter = () => {
     generalKnobTab,
   );
 
-  const generalKnobs = {
-    theme,
-    filter_text: text('Filter text', 'Filter text', generalKnobTab),
-    filter_group: text('Filter group name', 'civic_filter_group', generalKnobTab),
-    options_title: text('Options title', 'Options title', generalKnobTab),
-  };
-
-  const inputType = radios(
+  const type = radios(
     'Filter type',
     {
       Checkboxes: 'checkbox',
@@ -44,8 +38,6 @@ export const DropDownFilter = () => {
     'radio',
     generalKnobTab,
   );
-
-  generalKnobs.type = inputType;
 
   const optionNumber = number(
     'Number of options',
@@ -59,27 +51,26 @@ export const DropDownFilter = () => {
     generalKnobTab,
   );
 
-  const withOptionTitle = boolean('With options title', true, generalKnobTab);
-
-  generalKnobs.options_title = withOptionTitle ? text('Options title', 'Options title (optional)', generalKnobTab) : '';
-
   const children = [];
   for (let i = 1; i <= optionNumber; i++) {
     const options = {
       required: false,
       description: false,
-      attributes: '',
+      attributes: (type === 'radio') ? 'name="test"' : '',
     };
-    if (inputType === 'radio') {
-      options.attributes += 'name="test"';
-    }
-    children.push(formElement(inputType, options, theme, false, i));
+    children.push(formElement(type, options, theme, false, i));
   }
 
-  const html = DropdownFilter({
-    ...generalKnobs,
+  const generalKnobs = {
+    theme,
+    filter_text: text('Filter text', 'Filter text', generalKnobTab),
+    filter_group: text('Filter group name', 'civic_filter_group', generalKnobTab),
+    type,
+    options_title: boolean('With options title', true, generalKnobTab) ? text('Options title', 'Options title (optional)', generalKnobTab) : '',
     options: children.join(''),
-  });
+  };
 
-  return `<div class="container"><div class="row"><div class="col-xs-12">${html}</div></div></div>`;
+  return DropdownFilter({
+    ...generalKnobs,
+  });
 };

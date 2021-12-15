@@ -22,7 +22,7 @@
 
   &__filter-options {
     position: absolute;
-    min-width: 280px;
+    min-width: civic-space() * 35;
     margin-top: civic-space(2);
     left: -(civic-space(3));
     z-index: 1;
@@ -33,6 +33,8 @@
 
     padding: civic-space(2);
     border-radius: $civic-border-radius;
+    border-style: solid;
+    border-width: 1px;
   }
 
   &__fieldset {
@@ -58,7 +60,7 @@
 
     #{$root}__filter-options-wrapper {
       background-color: $civic-dropdown-filter-light-filter-options-background-color;
-      border: 1px solid $civic-dropdown-filter-light-filter-options-border-color;
+      border-color: $civic-dropdown-filter-light-filter-options-border-color;
     }
   }
 
@@ -73,7 +75,7 @@
 
     #{$root}__filter-options-wrapper {
       background-color: $civic-dropdown-filter-dark-filter-options-background-color;
-      border: 1px solid $civic-dropdown-filter-dark-filter-options-border-color;
+      border-color: $civic-dropdown-filter-dark-filter-options-border-color;
     }
   }
 }
