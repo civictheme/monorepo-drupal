@@ -56,18 +56,14 @@ function CivicLargeFilter(el) {
     },
   };
 
-  this.filterElementChangeEvent = this.filterElementChange.bind(this);
-  this.tagElementChangeEvent = this.tagElementChange.bind(this);
-  this.clearElementClickEvent = this.clearElementClick.bind(this);
-
   this.init();
 }
 
 CivicLargeFilter.prototype.init = function () {
   // Add listeners.
-  this.filterElement.addEventListener('change', this.filterElementChangeEvent);
-  this.tagElement.addEventListener('click', this.tagElementChangeEvent);
-  this.clearAllButton.addEventListener('click', this.clearElementClickEvent);
+  this.filterElement.addEventListener('change', this.filterElementChangeEvent.bind(this));
+  this.tagElement.addEventListener('click', this.tagElementChangeEvent.bind(this));
+  this.clearAllButton.addEventListener('click', this.clearElementClickEvent.bind(this));
 
   // Set state values based on current filter fields.
   this.filterElement.querySelectorAll('input, select').forEach((element) => {
@@ -81,7 +77,7 @@ CivicLargeFilter.prototype.init = function () {
   });
 };
 
-CivicLargeFilter.prototype.filterElementChange = function (e) {
+CivicLargeFilter.prototype.filterElementChangeEvent = function (e) {
   const element = e.target;
   if (this.isSelectableField(element)) {
     const type = this.getElementType(element);
@@ -94,7 +90,7 @@ CivicLargeFilter.prototype.filterElementChange = function (e) {
   }
 };
 
-CivicLargeFilter.prototype.tagElementChange = function (e) {
+CivicLargeFilter.prototype.tagElementChangeEvent = function (e) {
   if (e.target.nodeName === 'BUTTON') {
     const key = e.target.dataset.id;
     const { type } = this.state[key];
@@ -102,7 +98,7 @@ CivicLargeFilter.prototype.tagElementChange = function (e) {
   }
 };
 
-CivicLargeFilter.prototype.clearElementClick = function () {
+CivicLargeFilter.prototype.clearElementClickEvent = function () {
   Object.keys(this.state).forEach((key) => {
     const { type } = this.state[key];
     this.updateState(key, this.state[key].id, this.fieldTypes[type].emptyValue, type);
@@ -141,7 +137,7 @@ CivicLargeFilter.prototype.redrawFilters = function () {
   });
 };
 
-CivicLargeFilter.prototype.getHTMLFilterItem = function (key, label, theme) {
+CivicLargeFilter.prototype.renderHTMLFilterItem = function (key, label, theme) {
   // Return a filter-chip-button template, wrapped in a list item.
   return `
     <li class="civic-large-filter__tag">
@@ -161,10 +157,10 @@ CivicLargeFilter.prototype.redrawSelected = function () {
       const el = document.getElementById(entry.id);
       const label = this.fieldTypes[entry.type].getLabel(el);
       const theme = this.el.dataset.largeFilterTheme;
-      html += this.getHTMLFilterItem(key, label, theme);
+      html += this.renderHTMLFilterItem(key, label, theme);
     }
   });
-  this.tagElement.innerHTML = html;
+  this.tagElement.innerHTML = `<ul class="civic-large-filter__tags-list">${html}</ul>`;
 };
 
 CivicLargeFilter.prototype.redrawClearButton = function () {

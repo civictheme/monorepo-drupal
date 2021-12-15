@@ -14,6 +14,9 @@
  */
 #}
 
+{% set filter_title = filter_title|default('Filter search results by:') %}
+{% set tags_title = tags_title|default('Selected filters:') %}
+{% set clear_text = clear_text|default('Clear all') %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
@@ -23,14 +26,14 @@
       <div class="row">
         <div class="col-xs-12">
           <fieldset class="civic-large-filter__filters" data-large-filter-filters>
-            <legend>{{ filter_title|default('Filter search results by:') }}</legend>
+            <legend>{{ filter_title }}</legend>
             {{ filters }}
           </fieldset>
           <div class="civic-large-filter__selected-filters civic-large-filter__selected-filters--hidden" data-large-filter-selected-filters>
-            <span id="civic-large-filter-tags-title" class="civic-large-filter__selected-filters-title">{{ tags_title|default('Selected filters:') }}</span>
-            <ul class="civic-large-filter__tags" aria-labelledby="civic-large-filter-tags-title" data-large-filter-tags></ul>
+            <span id="civic-large-filter-tags-title" class="civic-large-filter__selected-filters-title">{{ tags_title }}</span>
+            <div class="civic-large-filter__tags" aria-labelledby="civic-large-filter-tags-title" data-large-filter-tags></div>
             <button class="civic-large-filter__clear-all" data-large-filter-clear>
-              <span class="civic-large-filter__clear-all-label">{{ clear_text|default('Clear all') }}</span>
+              <span class="civic-large-filter__clear-all-label">{{ clear_text }}</span>
               {% include '@atoms/icon/icon.twig' with {
                 symbol: 'userinterface_close_2',
                 color: 'error',
