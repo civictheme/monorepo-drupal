@@ -9,6 +9,7 @@
  * - image_position: [string] left / right
  * - content_top: [string] Slot above title.
  * - title: [string] Slide title.
+ * - url: [string] Slide url on title.
  * - summary: [string] Slide summary.
  * - links: [string] links.
  * - content_bottom: [string] Slot below summary / links.
@@ -34,7 +35,15 @@
         </div>
       {% endif %}
       {% if title %}
-        <div class="civic-slide__title">{{ title }}</div>
+        <div class="civic-slide__title">
+          {% if url %}
+          <a class="civic-slide__title-link" href="{{ url }}">
+            {% endif %}
+            {{ title }}
+            {% if url %}
+          </a>
+        {% endif %}
+        </div>
       {% endif %}
       {% if summary %}
         <div class="civic-slide__summary">{{ summary|raw }}</div>
