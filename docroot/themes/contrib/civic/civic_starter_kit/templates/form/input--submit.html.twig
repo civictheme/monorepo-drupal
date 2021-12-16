@@ -1,12 +1,18 @@
-{% if 'primary' in attributes.class|join(' ') %}
-  {% set type = 'primary' %}
-{% elseif 'secondary' in attributes.class|join(' ') %}
+{% if 'secondary' in modifier_class %}
   {% set type = 'secondary' %}
+{% else %}
+  {% set type = 'primary' %}
 {% endif %}
-
-{% include "@atoms/button/button.twig" with {
-  type: type,
-  text: attributes.value,
-  modifier_class: attributes.class,
-  attributes: attributes|without('class')
+{% set children %}
+  {% include "@atoms/button/button.twig" with {
+    type: type,
+    text: attributes.value,
+    modifier_class: modifier_class,
+    attributes: attributes,
+    kind: 'submit'
+  } only %}
+{% endset %}
+{% include "@organisms/form-element/form-element.twig" with {
+  type: 'submit',
+  children: children,
 } only %}
