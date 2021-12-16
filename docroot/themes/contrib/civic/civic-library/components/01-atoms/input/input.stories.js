@@ -22,6 +22,7 @@ export const Input = (knobTab) => {
     type: radios(
       'Type',
       {
+        Submit: 'submit',
         Text: 'text',
         Textarea: 'textarea',
         Email: 'email',

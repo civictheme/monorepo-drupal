@@ -8,7 +8,8 @@
     type: type,
     text: attributes.value,
     modifier_class: attributes.class,
-    attributes: attributes|without('class')
+    attributes: attributes|without('class'),
+    kind: 'submit'
   } only %}
 {% endset %}
 {% include "@organisms/form-element/form-element.twig" with {
