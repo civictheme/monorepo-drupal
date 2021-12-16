@@ -42,26 +42,30 @@
     {% if links is not empty %}
       <ul class="civic-attachment__links">
         {% for linkObj in links %}
-          <li class="civic-attachment__links--link">
-            <span>
-              {% include '@atoms/icon/icon.twig' with {
-                symbol: linkObj.icon ? linkObj.icon : 'fileandfolders_document',
-              } only %}
-            </span>
-            <div>
-              {% include '@atoms/link/link.twig' with {
-                theme: theme,
-                text: linkObj.text,
-                url: linkObj.url,
-                modifier_class: 'civic-link--attachment'
-              } only %}
+          {% if linkObj.url is not empty %}
+            {% set file_type = 'Download %s'|format(linkObj.url|split('.')|last) %}
+            <li class="civic-attachment__links--link">
+              <span>
+                {% include '@atoms/icon/icon.twig' with {
+                  symbol: linkObj.icon ? linkObj.icon : 'fileandfolders_document',
+                } only %}
+              </span>
+              <div>
+                {% include '@atoms/link/link.twig' with {
+                  theme: theme,
+                  text: linkObj.text,
+                  title: file_type,
+                  url: linkObj.url,
+                  modifier_class: 'civic-link--attachment'
+                } only %}
 
-              {% if linkObj.last_updated is not empty %}
-                <div class="civic-attachment__links--last-updated">LAST
-                  UPDATED: {{ linkObj.last_updated }}</div>
-              {% endif %}
-            </div>
-          </li>
+                {% if linkObj.last_updated is not empty %}
+                  <div class="civic-attachment__links--last-updated">LAST
+                    UPDATED: {{ linkObj.last_updated }}</div>
+                {% endif %}
+              </div>
+            </li>
+          {% endif %}
         {% endfor %}
       </ul>
     {% endif %}
