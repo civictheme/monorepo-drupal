@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 
 /**
@@ -85,6 +86,9 @@ function _civic_render_listing_paragraph(Paragraph $paragraph) {
   $view = Views::getView($view_name);
 
   if ($view) {
+    // Set DOM ID for handling ajax views.
+    $view->dom_id = !empty($viewis->dom_id) ? $view->dom_id : hash('sha256', $view->storage->id() . REQUEST_TIME . mt_rand());
+
     // Fallback to default display if requested display not loading.
     if (!$view->setDisplay($view_display)) {
       $view->setDisplay($default_view_display);

@@ -34,6 +34,13 @@
       {% include '@atoms/radio/radio.twig' %}
     {% elseif type == 'checkbox' %}
       {% include '@atoms/checkbox/checkbox.twig' %}
+    {% elseif type == 'submit' or type == 'reset' %}
+      {% include '@atoms/button/button.twig' with {
+        kind: type,
+        text: value,
+        modifier_class: civic_input_modifier_class,
+        type: 'primary',
+      }%}
     {% else %}
       {% include '@atoms/input/textfield.twig' %}
     {% endif %}

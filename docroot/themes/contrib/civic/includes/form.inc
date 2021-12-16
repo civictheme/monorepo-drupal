@@ -10,6 +10,17 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\Template\AttributeArray;
 
 /**
+ * Implements hook_form_alter().
+ */
+function civic_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Adjusting exposed view forms to hide submit button.
+  if ($form['#form_id'] === 'views_exposed_form') {
+    $form['actions']['submit']['#attributes']['class'][] = 'hide-xs';
+    $form['#attached']['library'][] = 'civic/civic.ajax_views';
+  }
+}
+
+/**
  * Implements template_preprocess_input().
  */
 function civic_preprocess_input(&$variables) {

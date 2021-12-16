@@ -6,9 +6,10 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set state = state is empty or state == 'none' ? 'default' : state %}
 {% set state_class = 'civic-input--%s'|format(state) %}
+{% set type_class = 'civic-input--%s'|format(type) %}
 {% set disabled_class = disabled ? 'civic-input--disabled disabled' : '' %}
 {% set required_class = required ? 'civic-input--required required' : '' %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, type_class, modifier_class|default('')) %}
 
 <input class="civic-input__element {{ modifier_class }}" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} {{ autocomplete ? 'autocomplete' }} />
 
