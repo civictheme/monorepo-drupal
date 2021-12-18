@@ -203,6 +203,7 @@
     }
 
     .civic-link {
+      font-weight: 600;
       color: $civic-table-dark-link-color;
 
       &:hover {
@@ -217,6 +218,7 @@
         td {
           color: $civic-table-dark-row-odd-color;
 
+          a,
           .civic-link {
             color: $civic-table-dark-row-odd-link-color;
 
@@ -233,6 +235,7 @@
         td {
           color: $civic-table-dark-row-even-color;
 
+          a,
           .civic-link {
             color: $civic-table-dark-row-even-link-color;
 
@@ -242,6 +245,10 @@
           }
         }
       }
+    }
+
+    caption {
+      color: $civic-table-dark-row-odd-color;
     }
   }
 }

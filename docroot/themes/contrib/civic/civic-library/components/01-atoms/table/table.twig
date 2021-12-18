@@ -15,12 +15,12 @@
         <h2>{{ heading }}</h2>
       </div>
     {% endif %}
-    <table>
+    <table contenteditable="false">
       {% if header is not empty %}
         <thead>
         <tr>
           {% for item in header %}
-            <th scope="col">{{ item }}</th>
+            <th scope="col" contenteditable="true">{{ item }}</th>
           {% endfor %}
         </tr>
         </thead>
@@ -29,7 +29,7 @@
       {% for row in rows %}
         <tr>
           {% for item in row %}
-            <td data-title="{{ header[loop.index0] }}">
+            <td data-title="{{ header[loop.index0] }}" contenteditable="true">
               {{ item }}
             </td>
           {% endfor %}
