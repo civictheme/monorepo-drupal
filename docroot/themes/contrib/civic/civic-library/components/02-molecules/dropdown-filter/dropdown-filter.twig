@@ -20,7 +20,7 @@
 {% set type_class = type is empty ? 'civic-dropdown-filter--%s'|format(type) : '' %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civic-dropdown-filter {{ modifier_class }}" data-collapsible data-collapsible-collapsed="true" {% if filter_group %}data-collapsible-group="{{ filter_group }}"{% endif %} data-collapsible-duration="0">
+<div class="civic-dropdown-filter {{ modifier_class }}" data-collapsible data-collapsible-collapsed {% if filter_group %}data-collapsible-group="{{ filter_group }}"{% endif %} data-collapsible-duration="0">
   <button class="civic-dropdown-filter__filter-text" data-collapsible-trigger>{{ filter_text }}</button>
   <div class="civic-dropdown-filter__filter-options" data-collapsible-panel>
     <div class="civic-dropdown-filter__filter-options-wrapper">
