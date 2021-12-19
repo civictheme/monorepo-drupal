@@ -1,28 +1,29 @@
+uuid: 6f112469-4e2f-4f62-83a4-c61b367a3197
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_c_p_image
-    - media.type.civic_image
+    - field.storage.paragraph.field_c_p_topics
     - paragraphs.paragraphs_type.civic_card_promo
-id: paragraph.civic_card_promo.field_c_p_image
-field_name: field_c_p_image
+    - taxonomy.vocabulary.civic_topics
+id: paragraph.civic_card_promo.field_c_p_topics
+field_name: field_c_p_topics
 entity_type: paragraph
 bundle: civic_card_promo
-label: Image
+label: Topics
 description: ''
 required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:media'
+  handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      civic_image: civic_image
+      civic_topics: civic_topics
     sort:
-      field: _none
-      direction: ASC
+      field: name
+      direction: asc
     auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference
