@@ -25,7 +25,7 @@
     min-width: civic-space() * 35;
     margin-top: civic-space(2);
     left: -(civic-space(3));
-    z-index: 1;
+    z-index: $civic-dropdown-filter-zindex;
   }
 
   &__filter-options-wrapper {

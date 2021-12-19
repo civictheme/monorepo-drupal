@@ -8,6 +8,7 @@ dependencies:
     - field.field.paragraph.civic_card_promo.field_c_p_summary
     - field.field.paragraph.civic_card_promo.field_c_p_theme
     - field.field.paragraph.civic_card_promo.field_c_p_title
+    - field.field.paragraph.civic_card_promo.field_c_p_topics
     - paragraphs.paragraphs_type.civic_card_promo
   module:
     - datetime
@@ -68,5 +69,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_c_p_topics:
+    weight: 6
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
 hidden: {  }

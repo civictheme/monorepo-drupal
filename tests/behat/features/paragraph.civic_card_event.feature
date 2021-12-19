@@ -53,7 +53,7 @@ Feature: Tests the Event Card paragraph
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_link][0][uri]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_link][0][uri]'].required" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_link][0][title]']" element
-    And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_topic][0][target_id]']" element
+      And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_topic][0][target_id]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_location][0][value]']" element
     And the option "Light" from select "Theme" is selected
 
