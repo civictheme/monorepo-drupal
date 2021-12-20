@@ -23,7 +23,7 @@
   success: 'userinterface_approve',
 } %}
 
-<div class="civic-alert {{ modifier_class }}" data-alert-id="{{ id }}" data-alert-type="{{ type }}" data-component-name="civic-alert">
+<div class="civic-alert {{ modifier_class }}" data-alert-id="{{ id }}" data-alert-type="{{ type }}" data-component-name="civic-alert" role="alert">
   <div class="container">
     <div class="row">
       <div class="civic-alert__title col-xs-12 col-m-3">
@@ -45,7 +45,7 @@
           modifier_class: 'civic-alert__dismiss-button',
           text: '',
           icon: 'userinterface_cancel',
-          attributes: 'id=dismiss-alert-' ~ id ~ ' data-alert-dismiss-trigger'
+          attributes: 'id=dismiss-alert-' ~ id ~ ' data-alert-dismiss-trigger title="close ' ~ type ~ ' alert"'
         } %}
       </div>
     </div>
