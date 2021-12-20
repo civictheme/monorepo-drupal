@@ -151,7 +151,8 @@ CivicCollapsible.prototype.focusinEvent = function (e) {
 CivicCollapsible.prototype.focusoutEvent = function (e) {
   // Close when trigger or panel leaves a focus, but only for grouped ones.
   if (
-    !this.panel.contains(e.relatedTarget)
+    e.relatedTarget
+    && !this.panel.contains(e.relatedTarget)
     && !this.trigger.contains(e.relatedTarget)
     && this.group
   ) {

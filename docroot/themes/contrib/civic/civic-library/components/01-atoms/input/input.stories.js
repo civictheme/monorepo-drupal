@@ -27,6 +27,8 @@ export const Input = (knobTab) => {
         Email: 'email',
         Tel: 'tel',
         Password: 'password',
+        Submit: 'submit',
+        Reset: 'reset',
       },
       'text',
       generalKnobTab,

@@ -73,6 +73,10 @@
       &__title {
         color: $civic-callout-light-heading-color;
       }
+
+      &__summary {
+        color: $civic-callout-light-summary-color;
+      }
     }
   }
 
@@ -87,6 +91,10 @@
     .civic-callout {
       &__title {
         color: $civic-callout-dark-heading-color;
+      }
+
+      &__summary {
+        color: $civic-callout-dark-summary-color;
       }
     }
   }

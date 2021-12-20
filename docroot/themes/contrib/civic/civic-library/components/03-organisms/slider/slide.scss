@@ -36,6 +36,19 @@
     }
   }
 
+  &__title-link {
+    color: currentColor;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:focus {
+      @include civic-outline();
+    }
+  }
+
   &__summary {
     @include civic-typography('text-regular');
 
