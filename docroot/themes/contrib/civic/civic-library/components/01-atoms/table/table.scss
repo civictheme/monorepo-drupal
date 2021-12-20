@@ -203,7 +203,6 @@
     }
 
     .civic-link {
-      font-weight: 600;
       color: $civic-table-dark-link-color;
 
       &:hover {
@@ -248,7 +247,7 @@
     }
 
     caption {
-      color: $civic-table-dark-row-odd-color;
+      color: $civic-table-dark-caption-color;
     }
   }
 }
