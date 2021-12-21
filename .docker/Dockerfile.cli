@@ -68,7 +68,8 @@ RUN bash /app/scripts/build-starter-theme.sh
 # Since Drupal does not use NodeJS for production, it does not matter if we
 # install development dependencies here - they are not exposed in any way.
 RUN npm --prefix docroot/themes/contrib/civic/civic-library ci --no-audit --no-progress --unsafe-perm
-RUN npm --prefix docroot/themes/contrib/civic ci --no-audit --no-progress --unsafe-perm
+RUN npm --prefix docroot/themes/contrib/civic/civic-library ci --no-audit --no-progress --unsafe-perm
+RUN npm --prefix docroot/themes/custom/civic_demo ci --no-audit --no-progress --unsafe-perm
 
 # Copy all files into appllication source directory. Existing files are always
 # overridden.
@@ -78,3 +79,4 @@ COPY . /app
 # sources to compile assets.
 RUN cd /app/docroot/themes/contrib/civic/civic-library && npm run build
 RUN cd docroot/themes/contrib/civic && npm run build
+RUN cd docroot/themes/custom/civic_demo && npm run build
