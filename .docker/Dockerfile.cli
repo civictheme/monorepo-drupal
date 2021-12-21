@@ -59,8 +59,9 @@ RUN composer self-update --2 && composer global remove -n -q hirak/prestissimo &
 # the repository.
 # File Gruntfile.sj is copied into image as it is required to generate
 # front-end assets.
-COPY docroot/themes/contrib/civic/civic-library/package.json docroot/themes/contrib/civic/civic-library/package* /app/docroot/themes/contrib/civic/civic-library/
-COPY docroot/themes/contrib/civic/package.json docroot/themes/contrib/civic/package* /app/docroot/themes/contrib/civic/
+COPY docroot/themes/contrib/civic/ docroot/themes/contrib/civic/package* /app/docroot/themes/contrib/civic/
+
+RUN bash /app/scripts/build-starter-theme.sh
 
 # Install NodeJS dependencies.
 # Since Drupal does not use NodeJS for production, it does not matter if we
