@@ -6,8 +6,11 @@ dependencies:
     - field.field.paragraph.civic_search.field_c_p_help_text
     - field.field.paragraph.civic_search.field_c_p_placeholder
     - field.field.paragraph.civic_search.field_c_p_search_url
+    - field.field.paragraph.civic_search.field_c_p_theme
     - field.field.paragraph.civic_search.field_c_p_title
     - paragraphs.paragraphs_type.civic_search
+  module:
+    - options
 id: paragraph.civic_search.default
 targetEntityType: paragraph
 bundle: civic_search
@@ -44,6 +47,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_c_p_theme:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
   field_c_p_title:
     weight: 0
