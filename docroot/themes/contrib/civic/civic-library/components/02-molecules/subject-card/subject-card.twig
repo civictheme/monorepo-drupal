@@ -39,6 +39,21 @@
           {% endif %}
           {{ title }}
           {% if url %}
+          <span>
+            {% if is_external %}
+              {% include '@atoms/icon/icon.twig' with {
+                symbol: 'arrows_upperrightarrow',
+                color: 'primary',
+                modifier_class: 'civic-subject-card__icon--external'
+              } only %}
+            {% else %}
+              {% include '@atoms/icon/icon.twig' with {
+                symbol: 'arrows_rightarrow_3',
+                color: 'primary',
+                modifier_class: 'civic-subject-card__icon--arrow',
+              } only %}
+            {% endif %}
+          </span>
         </a>
         {% endif %}
       </div>
