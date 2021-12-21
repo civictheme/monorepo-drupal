@@ -1,6 +1,7 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicFormElement from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
+import Select from '../../01-atoms/select/select.twig';
 import CivicLabel from '../../01-atoms/label/label.twig';
 
 export default {
@@ -10,7 +11,6 @@ export default {
 export const FormElement = () => {
   const generalKnobTab = 'General';
   const inputKnobTab = 'Input';
-  const radioKnobTab = 'General';
 
   const theme = radios(
     'Theme',
@@ -101,6 +101,7 @@ export const FormElement = () => {
       inputKnobTab,
     ),
     attributes: `id="input-${inputType}"`,
+    disabled: boolean('Disabled', false, inputKnobTab),
     options: [
       { type: 'option', value: 'option1', label: 'Option 1' },
       { type: 'option', value: 'option2', label: 'Option 2' },
@@ -115,9 +116,10 @@ export const FormElement = () => {
       'State',
       states,
       'default',
-      radioKnobTab,
+      inputKnobTab,
     ),
     attributes: `id="input-${inputType}"`,
+    disabled: boolean('Disabled', false, inputKnobTab),
     required: generalKnobs.required,
   };
 
@@ -127,9 +129,10 @@ export const FormElement = () => {
       'State',
       states,
       'default',
-      radioKnobTab,
+      inputKnobTab,
     ),
     attributes: `id="input-${inputType}"`,
+    disabled: boolean('Disabled', false, inputKnobTab),
     required: generalKnobs.required,
   };
 
@@ -166,8 +169,7 @@ export const FormElement = () => {
       }));
       break;
     case 'select':
-      children.push(Input({
-        type: inputType,
+      children.push(Select({
         ...selectKnobs,
       }));
       break;
