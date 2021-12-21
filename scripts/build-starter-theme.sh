@@ -21,8 +21,6 @@ drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush
 echo "==> Create civic_demo sub-theme."
 
 pushd $APP/docroot/themes/contrib/civic >/dev/null || exit 1
-pwd
-ls
 php civic-create-subtheme.php civic_demo "Civic Demo" "Demo sub-theme for a Civic theme."
 [ ! -d $APP/docroot/themes/custom/civic_demo ] && echo "ERROR: Failed to create civic_demo sub-theme." && exit 1
 

@@ -61,11 +61,12 @@ RUN composer self-update --2 && composer global remove -n -q hirak/prestissimo &
 # front-end assets.
 COPY docroot/themes/contrib/civic/ docroot/themes/contrib/civic/package* /app/docroot/themes/contrib/civic/
 
+# Build starter theme.
 RUN bash /app/scripts/build-starter-theme.sh
 
 # Install NodeJS dependencies.
 # Since Drupal does not use NodeJS for production, it does not matter if we
-# install development dependencnies here - they are not exposed in any way.
+# install development dependencies here - they are not exposed in any way.
 RUN npm --prefix docroot/themes/contrib/civic/civic-library ci --no-audit --no-progress --unsafe-perm
 RUN npm --prefix docroot/themes/contrib/civic ci --no-audit --no-progress --unsafe-perm
 
