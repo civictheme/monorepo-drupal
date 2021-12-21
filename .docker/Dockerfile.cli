@@ -59,6 +59,7 @@ RUN composer self-update --2 && composer global remove -n -q hirak/prestissimo &
 # the repository.
 # File Gruntfile.sj is copied into image as it is required to generate
 # front-end assets.
+COPY docroot/themes/contrib/civic/civic-library/package.json docroot/themes/contrib/civic/civic-library/package* /app/docroot/themes/contrib/civic/civic-library/
 COPY docroot/themes/contrib/civic/ docroot/themes/contrib/civic/package* /app/docroot/themes/contrib/civic/
 
 # Build starter theme.
@@ -69,6 +70,7 @@ RUN bash /app/scripts/build-starter-theme.sh
 # install development dependencies here - they are not exposed in any way.
 RUN npm --prefix docroot/themes/contrib/civic/civic-library ci --no-audit --no-progress --unsafe-perm
 RUN npm --prefix docroot/themes/contrib/civic ci --no-audit --no-progress --unsafe-perm
+RUN npm --prefix docroot/themes/custom/civic_demo ci --no-audit --no-progress --unsafe-perm
 
 # Copy all files into appllication source directory. Existing files are always
 # overridden.
@@ -78,3 +80,4 @@ COPY . /app
 # sources to compile assets.
 RUN cd /app/docroot/themes/contrib/civic/civic-library && npm run build
 RUN cd docroot/themes/contrib/civic && npm run build
+RUN cd docroot/themes/custom/civic_demo && npm run build
