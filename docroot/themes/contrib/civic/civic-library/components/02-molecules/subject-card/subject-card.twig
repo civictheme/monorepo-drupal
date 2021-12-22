@@ -11,6 +11,7 @@
  * - image_over: [string] Component slot for above main content on Card.
  * - title: [string] Card title.
  * - url: [string] Url for link out from Card.
+ * - is_external: [boolean] Link is external.
  */
 #}
 
@@ -39,10 +40,24 @@
           {% endif %}
           {{ title }}
           {% if url %}
+          <span>
+            {% if is_external %}
+              {% include '@atoms/icon/icon.twig' with {
+                symbol: 'arrows_upperrightarrow',
+                color: 'primary',
+                modifier_class: 'civic-subject-card__icon--external'
+              } only %}
+            {% else %}
+              {% include '@atoms/icon/icon.twig' with {
+                symbol: 'arrows_rightarrow_3',
+                color: 'primary',
+                modifier_class: 'civic-subject-card__icon--arrow',
+              } only %}
+            {% endif %}
+          </span>
         </a>
         {% endif %}
       </div>
     {% endif %}
-
   </div>
 </div>

@@ -14,6 +14,7 @@
  * - content_middle: [string] Component slot for below main content on Card
  * - date: [string] Date text
  * - url: [string] Url for link out from Card
+ * - is_external: [boolean] Link is external.
  * - content_bottom: [string] Component slot for bottom of Card.
  * - modifier_class: [string] Additional classes for Card.
  */
@@ -54,7 +55,7 @@
     {% if title %}
       <div class="civic-promo-card__title">
         {% if url %}
-        <a class="civic-promo-card__title-link" href="{{ url }}">
+        <a class="civic-promo-card__title-link" href="{{ url }}" {% if is_external %} title="Opens in new tab" target="_blank" {% endif %}>
           {% endif %}
           {{ title }}
           {% if url %}
@@ -89,11 +90,19 @@
           </div>
         {% endif %}
         {% if url %}
-          {% include '@atoms/icon/icon.twig' with {
-            symbol: 'arrows_rightarrow_3',
-            color: 'primary',
-            modifier_class: 'civic-promo-card__icon--arrow',
-          } only %}
+          {% if is_external %}
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: 'arrows_upperrightarrow',
+              color: 'primary',
+              modifier_class: 'civic-navigation-card__icon--external'
+            } only %}
+          {% else %}
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: 'arrows_rightarrow_3',
+              color: 'primary',
+              modifier_class: 'civic-navigation-card__icon--arrow',
+            } only %}
+          {% endif %}
         {% endif %}
       </div>
     {% endif %}
