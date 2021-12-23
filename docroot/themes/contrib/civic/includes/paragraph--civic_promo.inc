@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Civic quick links paragraph component.
+ * Civic promo paragraph component.
  */
 
 use Drupal\Component\Utility\UrlHelper;
