@@ -18,7 +18,7 @@
 
 {% if logos %}
   {% set content_middle2 %}
-    {% include '@atoms/logo/logo.twig' with {
+    {% include '@molecules/logo/logo.twig' with {
       'theme': theme == 'light' ? 'dark' : 'light',
       'logos': logos,
       'modifier_class': 'civic-header__logo',
