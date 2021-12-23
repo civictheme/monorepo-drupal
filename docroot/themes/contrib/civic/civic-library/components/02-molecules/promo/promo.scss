@@ -7,7 +7,6 @@
 
   border-radius: $civic-border-radius;
   padding: civic-space(3);
-  box-sizing: border-box;
 
   @include civic-breakpoint(m) {
     border-radius: $civic-border-radius * 2;
@@ -25,11 +24,13 @@
   &__content {
     @include civic-typography('text-regular');
 
+    box-sizing: border-box;
     margin-left: auto;
   }
 
   &__button {
     width: 100%;
+    box-sizing: border-box;
 
     @include civic-breakpoint(m) {
       width: auto;
@@ -65,14 +66,14 @@
   }
 
   &.civic-theme-dark {
-    background-color: civic-color('primary');
+    background-color: $civic-promo-dark-background-color;
 
     #{$root}__title {
-      color: civic-color('neutral');
+      color: $civic-promo-dark-heading-color;
     }
 
     #{$root}__content {
-      color: civic-color('neutral');
+      color: $civic-promo-dark-body-color;
     }
   }
 }
