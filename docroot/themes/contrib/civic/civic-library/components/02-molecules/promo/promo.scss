@@ -1,0 +1,78 @@
+//
+// Civic Promo.
+//
+
+.civic-promo {
+  $root: &;
+
+  border-radius: $civic-border-radius;
+  padding: civic-space(3);
+  box-sizing: border-box;
+
+  @include civic-breakpoint(m) {
+    border-radius: $civic-border-radius * 2;
+    padding: civic-space(7) civic-space(8);
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    @include civic-typography('heading-4');
+
+    margin-bottom: civic-space(1);
+  }
+
+  &__content {
+    @include civic-typography('text-regular');
+
+    margin-left: auto;
+  }
+
+  &__button {
+    width: 100%;
+
+    @include civic-breakpoint(m) {
+      width: auto;
+      white-space: nowrap;
+    }
+  }
+
+  &__first-container {
+    @include civic-breakpoint(m) {
+      flex-grow: 1;
+      padding-right: civic-space(5);
+    }
+  }
+
+  &__second-container {
+    margin-top: civic-space(3);
+
+    @include civic-breakpoint(m) {
+      margin-top: 0;
+    }
+  }
+
+  &.civic-theme-light {
+    background-color: $civic-promo-light-background-color;
+
+    #{$root}__title {
+      color: $civic-promo-light-heading-color;
+    }
+
+    #{$root}__content {
+      color: $civic-promo-light-body-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    background-color: civic-color('primary');
+
+    #{$root}__title {
+      color: civic-color('neutral');
+    }
+
+    #{$root}__content {
+      color: civic-color('neutral');
+    }
+  }
+}

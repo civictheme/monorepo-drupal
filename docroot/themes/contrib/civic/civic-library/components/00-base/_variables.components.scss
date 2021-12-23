@@ -1174,3 +1174,16 @@ $civic-large-filter-dark-clear-all-background-color: civic-color('translucent');
 $civic-large-filter-dark-clear-all-color: civic-color('neutral');
 $civic-large-filter-dark-clear-all-icon-color: civic-color('neutral');
 $civic-large-filter-dark-selected-filters-title-color: civic-color('neutral');
+
+
+//
+// Promo.
+//
+$civic-promo-light-heading-color: civic-color-shade-dark(80) !default;
+$civic-promo-light-body-color: civic-color-neutral(60) !default;
+$civic-promo-light-background-color: civic-color('neutral') !default;
+
+$civic-promo-dark-heading-color: civic-color('neutral') !default;
+$civic-promo-dark-body-color: civic-color('neutral') !default;
+$civic-promo-dark-background-color: civic-color-shade-dark(45) !default;
+
