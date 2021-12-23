@@ -17,7 +17,7 @@ function civic_preprocess_block__system_branding_block(&$variables) {
   $variables['show_site_slogan'] = !empty($variables['elements']['#configuration']['use_site_slogan']);
   if ($variables['show_site_logo']) {
     $variables['show_logo'] = TRUE;
-    $alt_attribute = theme_get_setting('civic_site_logo_alt') ?? '';
+    $alt_attribute = theme_get_setting('civic_site_logo_alt') ?? 'CivicTheme logo';
 
     $block = Block::load($variables['elements']['#id']);
     $region = $block->getRegion();
