@@ -1,4 +1,4 @@
-@civic @content_type @civic_alert
+@civic @content_type @civic_alert @wip
 Feature: Civic alert rendering
 
   Ensure that alerts are shown correctly.
@@ -100,6 +100,7 @@ Feature: Civic alert rendering
     And I should not see the text "[TEST] Test dismissing alert body all pages"
     # Update the content.
     When I edit civic_alert "[TEST] Test dismissing alert title all pages"
+    And wait 3 second
     And I fill in WYSIWYG "Message" with "[TEST] Test dismissing alert body all pages updated"
     And I press "Save"
     When I visit "civic_page" "[TEST] Test alerts on pages"
