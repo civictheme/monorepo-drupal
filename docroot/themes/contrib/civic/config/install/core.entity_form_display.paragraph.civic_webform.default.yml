@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civic_webform.field_c_p_theme
     - field.field.paragraph.civic_webform.field_c_p_webform
     - paragraphs.paragraphs_type.civic_webform
   module:
@@ -12,12 +11,6 @@ targetEntityType: paragraph
 bundle: civic_webform
 mode: default
 content:
-  field_c_p_theme:
-    weight: 0
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_c_p_webform:
     weight: 1
     settings:
