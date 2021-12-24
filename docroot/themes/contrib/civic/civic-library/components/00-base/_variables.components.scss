@@ -441,16 +441,17 @@ $civic-table-dark-color: civic-color-shade-dark(90) !default;
 $civic-table-dark-link-color: civic-color('accent') !default;
 $civic-table-dark-link-hover-color: $civic-table-dark-link-color !default;
 $civic-table-dark-heading-color: civic-color('neutral') !default;
-$civic-table-dark-border-color: civic-color-shade-dark(90) !default;
+$civic-table-dark-border-color: civic-color-shade-light(90) !default;
 $civic-table-dark-background-color: civic-color-shade-dark(40) !default;
-$civic-table-dark-row-odd-color: $civic-table-dark-color !default;
+$civic-table-dark-row-odd-color: civic-color-shade-light(90) !default;
 $civic-table-dark-row-odd-link-color: $civic-table-dark-link-color !default;
 $civic-table-dark-row-odd-link-hover-color: $civic-table-dark-link-hover-color !default;
 $civic-table-dark-row-odd-background-color: civic-color('primary') !default;
-$civic-table-dark-row-even-color: $civic-table-dark-color !default;
+$civic-table-dark-row-even-color: civic-color-shade-light(90) !default;
 $civic-table-dark-row-even-link-color: $civic-table-dark-link-color !default;
 $civic-table-dark-row-even-link-hover-color: $civic-table-dark-link-hover-color !default;
 $civic-table-dark-row-even-background-color: civic-color-shade-dark(30) !default;
+$civic-table-dark-caption-color: civic-color-shade-light(90) !default;
 
 //
 // Tag.
@@ -670,10 +671,12 @@ $civic-subject-card-light-color: civic-color('neutral') !default;
 $civic-subject-card-light-hover-color: civic-color('neutral') !default;
 $civic-subject-card-light-active-color: civic-color-shade-dark(40) !default;
 $civic-subject-card-light-image-background-color: civic-color-neutral(80) !default;
+$civic-subject-card-light-icon-color: civic-color('neutral') !default;
 $civic-subject-card-dark-color: civic-color('neutral') !default;
 $civic-subject-card-dark-hover-color: civic-color('accent') !default;
 $civic-subject-card-dark-active-color: civic-color-neutral(20) !default;
 $civic-subject-card-dark-image-background-color: civic-color-neutral(90) !default;
+$civic-subject-card-dark-icon-color: civic-color('accent') !default;
 
 //
 // Icon link.
@@ -967,7 +970,7 @@ $civic-message-success-dark-border-color: civic-color('success') !default;
 $civic-primary-navigation-dropdown-cols: 4;
 
 // Top offset for the dropdown from the bottom of the trigger.
-$civic-primary-navigation-dropdown-top-offset: civic-space(3);
+$civic-primary-navigation-dropdown-top-offset: civic-space(2);
 
 // Gutter size between columns.
 $civic-primary-navigation-dropdown-column-gutter: civic-space(4);
@@ -1171,3 +1174,13 @@ $civic-large-filter-dark-clear-all-background-color: civic-color('translucent');
 $civic-large-filter-dark-clear-all-color: civic-color('neutral');
 $civic-large-filter-dark-clear-all-icon-color: civic-color('neutral');
 $civic-large-filter-dark-selected-filters-title-color: civic-color('neutral');
+
+//
+// Promo.
+//
+$civic-promo-light-heading-color: civic-color-shade-dark(80) !default;
+$civic-promo-light-body-color: civic-color-neutral(60) !default;
+$civic-promo-light-background-color: civic-color('neutral') !default;
+$civic-promo-dark-heading-color: civic-color('neutral') !default;
+$civic-promo-dark-body-color: civic-color('neutral') !default;
+$civic-promo-dark-background-color: civic-color('primary') !default;

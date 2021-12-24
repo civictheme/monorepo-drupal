@@ -35,6 +35,7 @@ export const EventCard = (knobTab) => {
     location: text('Location', 'Suburb, State – 16:00–17:00', generalKnobTab),
     summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', generalKnobTab),
     url: text('Link URL', randomUrl(), generalKnobTab),
+    is_external: boolean('Is external', false, generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
       src: demoImage(),
       alt: 'Image alt text',

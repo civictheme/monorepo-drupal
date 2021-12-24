@@ -11,7 +11,7 @@ const custom = require('../webpack/webpack.prod');
 const scssVariables = require('./importer.scss_variables');
 const iconUtils = require('../components-combined/01-atoms/icon/icon.utils');
 const backgroundUtils = require('../components-combined/01-atoms/background/background.utils');
-const logoUtils = require('../components-combined/01-atoms/logo/logo.utils');
+const logoUtils = require('../components-combined/02-molecules/logo/logo.utils');
 const addonConfig = require('./addon-config').default();
 
 const customPlugin = new webpack.DefinePlugin({

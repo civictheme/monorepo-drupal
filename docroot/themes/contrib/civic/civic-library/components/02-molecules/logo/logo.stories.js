@@ -1,9 +1,9 @@
 import { radios, text } from '@storybook/addon-knobs';
-
+import { randomUrl } from '../../00-base/base.stories';
 import CivicLogo from './logo.twig';
 
 export default {
-  title: 'Atoms/Logo',
+  title: 'Molecules/Logo',
   parameters: {
     layout: 'centered',
   },
@@ -18,6 +18,7 @@ export const Logo = (knobTab) => {
       Dark: 'dark',
     }, 'light', generalKnobTab),
     logos: {},
+    url: text('Link', randomUrl(), generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 

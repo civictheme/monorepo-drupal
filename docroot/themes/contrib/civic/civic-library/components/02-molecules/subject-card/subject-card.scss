@@ -49,6 +49,9 @@
     @include civic-link-decoration();
     @include civic-link-no-outline();
     @include civic-link-cover-parent();
+
+    display: flex;
+    justify-content: space-between;
   }
 
   &.civic-theme-light {
@@ -67,6 +70,11 @@
     #{$root}__title-link {
       @include civic-link-colors($civic-subject-card-light-color, $civic-subject-card-light-hover-color, $active: $civic-subject-card-light-active-color);
     }
+
+    #{$root}__icon--arrow,
+    #{$root}__icon--external {
+      @include civic-icon-fill-color($civic-subject-card-light-icon-color, true);
+    }
   }
 
   &.civic-theme-dark {
@@ -84,6 +92,11 @@
 
     #{$root}__title-link {
       @include civic-link-colors($civic-subject-card-dark-color, $civic-subject-card-dark-hover-color, $active: $civic-subject-card-dark-active-color);
+    }
+
+    #{$root}__icon--arrow,
+    #{$root}__icon--external {
+      @include civic-icon-fill-color($civic-subject-card-dark-icon-color, true);
     }
   }
 }
