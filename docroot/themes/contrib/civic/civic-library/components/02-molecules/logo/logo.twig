@@ -21,7 +21,7 @@
   {% if logo.src is not empty %}
     <div class="civic-logo {{ visibility_class }} {{ modifier_class }}">
     {% if url %}
-      <a class="civic-logo__url" href="{{ url }}">
+      <a class="civic-logo__url" href="{{ url }}" title="Click to go to the homepage">
     {% endif %}
         <img src="{{ logo.src }}" {% if logo.alt is not empty %}alt="{{ logo.alt }}"{% endif %}/>
     {% if url %}
