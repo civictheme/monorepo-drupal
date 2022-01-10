@@ -161,6 +161,10 @@
 @mixin civic-table-dark() {
   color: $civic-table-dark-color;
 
+  .civic-table__header {
+    color: $civic-table-dark-heading-color;
+  }
+
   table {
     background-color: $civic-table-dark-background-color;
   }
@@ -233,5 +237,9 @@
     &:hover {
       color: $civic-table-dark-link-hover-color;
     }
+  }
+
+  caption {
+    color: $civic-table-dark-caption-color;
   }
 }
