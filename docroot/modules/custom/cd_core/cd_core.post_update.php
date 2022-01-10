@@ -306,6 +306,7 @@ function cd_core_post_update_provision_users() {
     'chris.darke@salsadigital.com.au',
     'danielle.sheffler@salsadigital.com.au',
     'govind@salsadigital.com.au',
+    'jack.kelly@salsadigital.com.au',
     'kate.swayne@salsadigital.com.au',
     'lokender.singh@salsadigital.com.au',
     'richard.gaunt@salsadigital.com.au',
