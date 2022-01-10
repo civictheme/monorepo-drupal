@@ -15,6 +15,7 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set title = logo.alt ? logo.alt : 'CivicTheme logo' %}
 
 {% for type, logo in logos %}
   {% set visibility_class = type == 'mobile' ? 'show-xs show-sm hide-m' : 'hide-xs hide-sm show-m' %}
@@ -23,7 +24,7 @@
     {% if url %}
       <a class="civic-logo__url" href="{{ url }}" title="Click to go to the homepage">
     {% endif %}
-        <img src="{{ logo.src }}" {% if logo.alt is not empty %}alt="{{ logo.alt }}"{% endif %}/>
+        <img src="{{ logo.src }}" {% if logo.alt is not empty %}alt="{{ logo.alt }}" {% endif %} title="{{ title }}"/>
     {% if url %}
       </a>
     {% endif %}
