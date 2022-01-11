@@ -46,7 +46,7 @@ settings:
     language:
       language_list: un
     stylescombo:
-      styles: "a.civic-button.civic-theme-light.civic-button--primary.civic-button--regular|Button - primary regular\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--regular|Button - secondary regular\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--large|Button - primary large\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--large|Button - secondary large\r\na.civic-link.civic-theme-light|List Link\r\np.civic-text-large|Lead paragraph\r\np.civic-text-small|Small\r\ntable.civic-theme-light.civic-table|Table\r\ntable.civic-theme-light.civic-table.civic-table--striped|Table striped rows\r\nul.civic-link-list--embedded|Link list"
+      styles: "a.civic-button.civic-theme-light.civic-button--primary.civic-button--regular|Button - primary regular\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--regular|Button - secondary regular\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--large|Button - primary large\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--large|Button - secondary large\r\na.civic-link.civic-theme-light|Link list link\r\np.civic-text-large|Lead paragraph\r\np.civic-text-small|Small\r\ntable.civic-theme-light.civic-table|Table\r\ntable.civic-theme-light.civic-table.civic-table--striped|Table striped rows\r\nul.civic-link-list--embedded.civic-theme-light|Link list"
 image_upload:
   status: false
   scheme: public
