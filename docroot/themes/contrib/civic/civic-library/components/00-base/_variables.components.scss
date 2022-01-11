@@ -517,7 +517,7 @@ $civic-basic-content-light-ul-li-color: civic-color-neutral(80) !default;
 $civic-basic-content-light-ul-li-marker-color: civic-color('primary') !default;
 $civic-basic-content-light-ol-li-color: civic-color-neutral(80) !default;
 $civic-basic-content-light-ol-li-marker-color: civic-color('primary') !default;
-$civic-basic-content-dark-background-color: civic-color('translucent') !default;
+$civic-basic-content-dark-background-color: civic-color-shade-dark(60) !default;
 $civic-basic-content-dark-base-color: civic-color('neutral') !default;
 $civic-basic-content-dark-heading-1-color: $civic-basic-content-dark-base-color !default;
 $civic-basic-content-dark-heading-2-color: $civic-basic-content-dark-base-color !default;
