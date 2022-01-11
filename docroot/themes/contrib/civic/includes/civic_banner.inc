@@ -100,11 +100,7 @@ function _civic_preprocess_civic_banner_title(&$variables) {
   $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
   $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
-
-  if (!empty($page_title)) {
-    $plugin_block->setTitle($page_title);
-    $variables['title'] = $plugin_block->build();
-  }
+  $variables['title'] = $page_title ?? '';
 }
 
 /**
