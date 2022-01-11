@@ -106,7 +106,7 @@
     }
   }
 
-  ul:not(.civic-link-list--embedded) {
+  ul {
     margin-top: $civic-basic-content-vertical-spacing;
     margin-bottom: $civic-basic-content-vertical-spacing;
     padding: 0;
@@ -129,13 +129,18 @@
     }
   }
 
-  .civic-link-list--embedded {
+  ul.civic-link-list--embedded {
     list-style: none;
     margin: 0;
     padding: 0;
 
     li {
       margin-bottom: civic-space(2);
+      padding-left: 0;
+
+      &:before {
+        display: none;
+      }
     }
   }
 
