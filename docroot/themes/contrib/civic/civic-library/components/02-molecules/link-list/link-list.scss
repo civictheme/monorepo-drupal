@@ -10,13 +10,12 @@
     margin-bottom: civic-space(2);
   }
 
-  &--embedded,
   #{$root}__list {
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  &--embedded li,
+
   #{$root}__list__item {
     margin-bottom: civic-space(2);
   }
@@ -36,15 +35,6 @@
     #{$root}__list__item {
       margin-right: civic-space(2);
       margin-bottom: auto;
-    }
-  }
-
-  &--embedded {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    li {
-      margin-bottom: civic-space(2);
     }
   }
 }
