@@ -24,6 +24,7 @@ export const SubjectCard = (knobTab) => {
     ),
     title: text('Title', 'Subject card title which runs across two or three lines', generalKnobTab),
     url: text('Link URL', randomUrl(), generalKnobTab),
+    is_external: boolean('Is external', false, generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
       src: demoImage(),
       alt: 'Image alt text',

@@ -1,5 +1,5 @@
 import {
-  randomString, getRandomInt, demoImage, randomText, randomUrl,
+  randomString, getRandomInt, demoImage, randomText, randomUrl, getRandomBool,
 } from '../../00-base/base.stories';
 import Slide from './slide.twig';
 import Tag from '../../01-atoms/tag/tag.twig';
@@ -36,18 +36,19 @@ export const randomSlidesComponent = (count, theme, rand, template) => {
   const inverseTheme = theme === 'dark' ? 'light' : 'dark';
 
   for (let i = 0; i < count; i++) {
-    const contentTop = (template && template.content_top) ? template.content_top : randomTagsComponent(getRandomInt(0, 4), theme).join(' ');
-    const imagePosition = (template && template.image_position) ? template.image_position : 'right';
-    const title = (template && template.title) ? template.title : `Title ${i + 1}${rand ? ` ${randomString(getRandomInt(5, 30))}` : ''}`;
-    const url = (template && template.url) ? template.url : (Math.random() > 0.5 ? randomUrl() : null);
-    const summary = (template && template.summary) ? template.summary : `Summary ${i + 1}${rand ? ` ${randomString(getRandomInt(5, 250))}` : ''}`;
-    const links = (template && template.links) ? template.links : randomButtonsComponent(getRandomInt(0, 4), inverseTheme).join('');
-    const image = (template && template.image) ? template.image : {
+    const contentTop = template && template.content_top ? template.content_top : randomTagsComponent(getRandomInt(0, 4), theme).join(' ');
+    const imagePosition = template && template.image_position ? template.image_position : 'right';
+    const title = template && template.title ? template.title : `Title ${i + 1}${rand ? ` ${randomString(getRandomInt(5, 30))}` : ''}`;
+    const randURL = getRandomBool() ? randomUrl() : null;
+    const url = template && template.url ? template.url : randURL;
+    const summary = template && template.summary ? template.summary : `Summary ${i + 1}${rand ? ` ${randomString(getRandomInt(5, 250))}` : ''}`;
+    const links = template && template.links ? template.links : randomButtonsComponent(getRandomInt(0, 4), inverseTheme).join('');
+    const image = template && template.image ? template.image : {
       src: demoImage(),
       alt: randomText(4),
     };
-    const contentBottom = (template && template.content_bottom) ? template.content_bottom : '';
-    const attributes = (template && template.attributes) ? template.attributes : 'data-component-civic-slider-slide';
+    const contentBottom = template && template.content_bottom ? template.content_bottom : '';
+    const attributes = template && template.attributes ? template.attributes : 'data-component-civic-slider-slide';
     slides.push(Slide({
       theme,
       image_position: imagePosition,

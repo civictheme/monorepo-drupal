@@ -2,7 +2,7 @@
 
 {% if logos is not empty %}
   {% set content_top1 %}
-    {% include '@atoms/logo/logo.twig' with {
+    {% include '@molecules/logo/logo.twig' with {
       'theme': theme == 'light' ? 'dark' : 'light',
       'logos': logos,
       'modifier_class': 'civic-footer__logo',

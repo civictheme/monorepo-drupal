@@ -11,7 +11,7 @@ entity_type: paragraph
 bundle: civic_card_promo
 label: Image
 description: ''
-required: true
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civic_webform.field_c_p_webform
+    - paragraphs.paragraphs_type.civic_webform
+  module:
+    - webform
+id: paragraph.civic_webform.default
+targetEntityType: paragraph
+bundle: civic_webform
+mode: default
+content:
+  field_c_p_webform:
+    weight: 0
+    label: hidden
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    type: webform_entity_reference_entity_view
+    region: content
+hidden: {  }
