@@ -10,7 +10,6 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\paragraphs\Entity\Paragraph;
-use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 
 /**
