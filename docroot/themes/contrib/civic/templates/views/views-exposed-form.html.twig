@@ -16,9 +16,8 @@
   #}
 {{ q }}
 {% endif %}
-<div class="test-template"></div>
 {% include '@organisms/large-filter/large-filter.twig' with {
-  filter_title: 'Test',
+  filter_title: filter_title,
   filters: form,
   theme: 'light'
 }%}

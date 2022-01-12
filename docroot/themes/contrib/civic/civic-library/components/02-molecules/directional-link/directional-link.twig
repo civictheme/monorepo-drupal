@@ -24,18 +24,25 @@
   left: 'arrows_leftarrow_2',
   right: 'arrows_rightarrow_3',
 } %}
-
-<a class="civic-directional-link {{ modifier_class }}" title="{{ title }}" role="link"{% if not disabled %} href="{{ url }}"{% endif %}{% if disabled %}disabled="disabled" aria-disabled="true"{% endif %}>
-  {% if context %}
+{% if disabled %}
+  <span class="civic-directional-link {{ modifier_class }}" title="{{ title }}" role="link" disabled="disabled" aria-disabled="true">
+{% else %}
+  <a class="civic-directional-link {{ modifier_class }}" title="{{ title }}" role="link" href="{{ url }}">
+{% endif %}
+    {% if context %}
     <span class="visually-hidden">{{ context }}</span>
     <span aria-hidden="true">{{ text }}</span>
-  {% else %}
-    {{ text }}
-  {% endif %}
-  {% if icons[direction] is defined %}
-    {% include '@atoms/icon/icon.twig' with {
-      symbol: icons[direction],
-      modifier_class: 'civic-icon--%s'|format(direction),
-    } %}
-  {% endif %}
-</a>
+    {% else %}
+      {{ text }}
+    {% endif %}
+    {% if icons[direction] is defined %}
+      {% include '@atoms/icon/icon.twig' with {
+        symbol: icons[direction],
+        modifier_class: 'civic-icon--%s'|format(direction),
+      } %}
+    {% endif %}
+{% if disabled %}
+  </span>
+{% else %}
+  </a>
+{% endif %}

@@ -127,6 +127,7 @@ CivicLargeFilter.prototype.redraw = function () {
   this.redrawFilters();
   this.redrawSelected();
   this.redrawClearButton();
+  this.dispatchRedrawEvent();
 };
 
 CivicLargeFilter.prototype.redrawFilters = function () {
@@ -172,6 +173,11 @@ CivicLargeFilter.prototype.redrawClearButton = function () {
     }
   });
   this.selectedFiltersElement.classList.toggle('civic-large-filter__selected-filters--hidden', !showTagPanel);
+};
+
+CivicLargeFilter.prototype.dispatchRedrawEvent = function () {
+  const event = new CustomEvent('civic-large-filter-change');
+  this.el.dispatchEvent(event);
 };
 
 document.querySelectorAll('[data-component-name="civic-large-filter"]').forEach((el) => {

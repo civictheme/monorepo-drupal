@@ -17,3 +17,8 @@ function civic_preprocess_views_mini_pager(&$variables) {
     ];
   }
 }
+
+
+function civic_preprocess_views_exposed_form(&$variables) {
+  $variables['filter_title'] = 'Filter search results by:';
+}

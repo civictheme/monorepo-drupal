@@ -17,6 +17,32 @@ function civic_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
   if ($form['#form_id'] === 'views_exposed_form') {
     $form['actions']['submit']['#attributes']['class'][] = 'hide-xs';
     $form['#attached']['library'][] = 'civic/civic.ajax_views';
+    foreach ($form as $key => &$element) {
+
+      if (strpos($key, '#') === 0 || empty($element['#type'])) {
+        continue;
+      }
+
+      _civic_form_alter__convert_exposed_form_elements($element, $form);
+
+    }
+  }
+}
+
+/**
+ * Convert form elements to correct format.
+ */
+function _civic_form_alter__convert_exposed_form_elements(&$element, $form) {
+  if ($element['#type'] === 'select') {
+    if (!empty($element['#multiple'])) {
+      $element['#type'] = 'checkboxes';
+      unset($element['#multiple']);
+    }
+    else {
+      $element['#type'] = 'radios';
+    }
+
+    $element['#civic-large-filter'] = $form['#id'];
   }
 }
 
@@ -157,5 +183,42 @@ function civic_preprocess_fieldset(&$variables) {
       $variables['description_modifier_class'] = implode(' ', $variables['description']['attributes']['class']);
     }
     $variables['description'] = $variables['description']['content'];
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civic_theme_suggestions_checkboxes_alter(array &$suggestions, array $variables) {
+  if (!empty($variables['element']['#civic-large-filter'])) {
+    switch ($variables['element']['#type']) {
+      case 'checkboxes':
+        $suggestions[] = 'checkboxes__civic_dropdown_filter';
+        break;
+      case 'radios':
+      $suggestions[] = 'radios__civic_dropdown_filter';
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_checkboxes().
+ */
+function civic_preprocess_checkboxes(&$variables) {
+  $element = &$variables['element'];
+  // Remove composite form element wrapper.
+  array_pop($element['#theme_wrappers']);
+  $variables['type'] = $element['#type'];
+  $variables['filter_text'] = $element['#title'];
+  $variables['options_title'] = $element['#description'] ?? '';
+  $variables['filter_group'] = $element['#civic-large-filter'];
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function civic_element_info_alter(array &$types) {
+  if (isset($types['checkboxes'])) {
+    unset($types['checkboxes']['#pre_render']);
   }
 }
