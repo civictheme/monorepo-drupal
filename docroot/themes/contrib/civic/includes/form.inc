@@ -220,7 +220,7 @@ function civic_preprocess_checkboxes(&$variables) {
     $variables['required'] = $element['#required'] ?? FALSE;
     $variables['type'] = 'fieldset-radio';
     $variables['fieldset_legend'] = $element['#title'];
-    $variables['modifier_class'] = empty($variables['element']['#attributes']['class']) ? implode(' ', $variables['element']['#attributes']['class']) : '';
+    $variables['modifier_class'] = !empty($variables['element']['#attributes']['class']) ? implode(' ', $variables['element']['#attributes']['class']) : '';
     $variables['fieldset_attributes'] = $variables['element']['attributes'] ?? '';
   }
 }
