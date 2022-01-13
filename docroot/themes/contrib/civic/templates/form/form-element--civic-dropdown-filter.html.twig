@@ -7,7 +7,7 @@
  * - attributes: A list of HTML attributes for the wrapper element.
  * - children: The rendered checkboxes.
  *
- * @see template_preprocess_checkboxes()
+0 * @see template_preprocess_checkboxes()
  *
  * @ingroup themeable
  */
@@ -18,9 +18,7 @@
   {% block filter_options %}
     {% embed '@organisms/fieldset/fieldset.twig' with {
       legend: options_title is not empty ? options_title : null,
-      children: children,
       modifier_class: 'civic-dropdown-filter__fieldset',
-      type: type,
     } %}
       {% block children %}
         {% include '@organisms/form-element/form-element.twig' with {
