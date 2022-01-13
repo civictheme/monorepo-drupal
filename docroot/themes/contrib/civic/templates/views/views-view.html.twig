@@ -42,13 +42,14 @@
   {{ title }}
   {{ title_suffix }}
 
+  {{ exposed }}
+
   {% if header %}
     <header class="civic-listing__header" tabindex="0">
       {{ header }}
     </header>
   {% endif %}
 
-  {{ exposed }}
   {{ attachment_before }}
 
   {% if rows -%}

@@ -206,12 +206,23 @@ function civic_theme_suggestions_checkboxes_alter(array &$suggestions, array $va
  */
 function civic_preprocess_checkboxes(&$variables) {
   $element = &$variables['element'];
-  // Remove composite form element wrapper.
-  array_pop($element['#theme_wrappers']);
-  $variables['type'] = $element['#type'];
-  $variables['filter_text'] = $element['#title'];
-  $variables['options_title'] = $element['#description'] ?? '';
-  $variables['filter_group'] = $element['#civic-large-filter'];
+  if (isset($element['#civic-large-filter'])) {
+    $variables['type'] = $element['#type'];
+    $variables['filter_text'] = $element['#title'];
+    $variables['options_title'] = $element['#description'] ?? '';
+    $variables['filter_group'] = $element['#civic-large-filter'];
+  }
+  else {
+    // Standard theme wrapper for checkboxes was removed to allow for
+    // civic large filter checkboxes and so we need to add it back as a
+    // preprocess function as we cannot add a pre_render function at theme
+    // level.
+    $variables['required'] = $element['#required'] ?? FALSE;
+    $variables['type'] = 'fieldset-radio';
+    $variables['fieldset_legend'] = $element['#title'];
+    $variables['modifier_class'] = empty($variables['element']['#attributes']['class']) ? implode(' ', $variables['element']['#attributes']['class']) : '';
+    $variables['fieldset_attributes'] = $variables['element']['attributes'] ?? '';
+  }
 }
 
 /**
@@ -219,6 +230,10 @@ function civic_preprocess_checkboxes(&$variables) {
  */
 function civic_element_info_alter(array &$types) {
   if (isset($types['checkboxes'])) {
+    // Checkboxes adds a wrapping fieldset to the checkboxes element
+    // which we do not want when rendering dropdown filters.
+    // The fieldset wrapper is added back manually for all other fieldsets.
+    // @see civic_preprocess_checkboxes
     unset($types['checkboxes']['#pre_render']);
   }
 }

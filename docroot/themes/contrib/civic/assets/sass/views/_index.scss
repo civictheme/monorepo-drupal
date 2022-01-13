@@ -1,0 +1,8 @@
+@import 'components/00-base/variables';
+
+.civic-listing {
+  &__header {
+    @include civic-typography('heading-5');
+    padding: civic-space(3) 0;
+  }
+}
