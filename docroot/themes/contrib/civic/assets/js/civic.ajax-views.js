@@ -6,6 +6,7 @@ Drupal.behaviors.civic_ajax_views = {
     let debounce;
     $form
       .find('.civic-large-filter')
+      // Custom event from .
       .on('civic-large-filter-change', () => {
         // We do not want to submit on every click, we want user to be able
         // to select several checkboxes or radio buttons without submitting.

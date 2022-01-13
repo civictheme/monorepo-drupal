@@ -18,7 +18,9 @@ function civic_preprocess_views_mini_pager(&$variables) {
   }
 }
 
-
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function civic_preprocess_views_exposed_form(&$variables) {
   $variables['filter_title'] = 'Filter search results by:';
 }
