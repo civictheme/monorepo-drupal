@@ -19,10 +19,14 @@
     {% embed '@organisms/fieldset/fieldset.twig' with {
       legend: options_title is not empty ? options_title : null,
       modifier_class: 'civic-dropdown-filter__fieldset',
+
     } %}
       {% block children %}
         {% include '@organisms/form-element/form-element.twig' with {
-          description: ''
+          description: {
+            content: '',
+            attributes: ''
+          }
         } %}
       {% endblock %}
     {% endembed %}

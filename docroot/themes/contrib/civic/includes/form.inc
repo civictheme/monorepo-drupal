@@ -120,6 +120,9 @@ function civic_preprocess_form_element(&$variables) {
     $variables['filter_text'] = $element['#title'];
     $variables['options_title'] = $element['#description'] ?? '';
     $variables['filter_group'] = $element['#civic-large-filter'];
+    if (isset($variables['description'])) {
+      unset($variables['description']);
+    }
   }
 }
 
@@ -244,6 +247,9 @@ function civic_preprocess_checkboxes(&$variables) {
   }
 }
 
+/**
+ * Implements template_preprocess_radios().
+ */
 function civic_preprocess_radios(&$variables) {
   $element = &$variables['element'];
   if (isset($element['#civic-large-filter'])) {
