@@ -33,6 +33,7 @@ function civic_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
  * Convert form elements to correct format.
  */
 function _civic_form_alter__convert_exposed_form_elements(&$element, $form) {
+  // Convert select to either radio buttons or checkboxes.
   if ($element['#type'] === 'select') {
     if (!empty($element['#multiple'])) {
       $element['#type'] = 'checkboxes';
@@ -41,9 +42,8 @@ function _civic_form_alter__convert_exposed_form_elements(&$element, $form) {
     else {
       $element['#type'] = 'radios';
     }
-
-    $element['#civic-large-filter'] = $form['#id'];
   }
+  $element['#civic-large-filter'] = $form['#id'];
 }
 
 /**
@@ -76,6 +76,7 @@ function civic_preprocess_select(&$variables) {
  * Implements template_preprocess_form_element().
  */
 function civic_preprocess_form_element(&$variables) {
+  $element = $variables['element'];
   // Handle any malformed attribute class properties.
   $variables['attributes']['class'] = $variables['attributes']['class'] ?? [];
   $variables['attributes']['class'] = is_string($variables['attributes']['class']) ? [$variables['attributes']['class']] : $variables['attributes']['class'];
@@ -113,6 +114,12 @@ function civic_preprocess_form_element(&$variables) {
 
   if (isset($variables['description']['attributes']['class']) && $variables['description']['attributes']['class'] instanceof AttributeArray) {
     $variables['description_modifier_class'] = implode(' ', $variables['description']['attributes']['class']->value());
+  }
+  if (isset($element['#civic-large-filter'])) {
+    $variables['type'] = $element['#type'];
+    $variables['filter_text'] = $element['#title'];
+    $variables['options_title'] = $element['#description'] ?? '';
+    $variables['filter_group'] = $element['#civic-large-filter'];
   }
 }
 
@@ -191,13 +198,25 @@ function civic_preprocess_fieldset(&$variables) {
  */
 function civic_theme_suggestions_checkboxes_alter(array &$suggestions, array $variables) {
   if (!empty($variables['element']['#civic-large-filter'])) {
-    switch ($variables['element']['#type']) {
-      case 'checkboxes':
         $suggestions[] = 'checkboxes__civic_dropdown_filter';
-        break;
-      case 'radios':
-      $suggestions[] = 'radios__civic_dropdown_filter';
-    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civic_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
+  if (!empty($variables['element']['#civic-large-filter'])) {
+    $suggestions[] = 'form_element__civic_dropdown_filter';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civic_theme_suggestions_radios_alter(array &$suggestions, array $variables) {
+  if (!empty($variables['element']['#civic-large-filter'])) {
+    $suggestions[] = 'radios__civic_dropdown_filter';
   }
 }
 

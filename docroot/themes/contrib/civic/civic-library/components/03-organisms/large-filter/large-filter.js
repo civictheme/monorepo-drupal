@@ -60,6 +60,7 @@ function CivicLargeFilter(el) {
 }
 
 CivicLargeFilter.prototype.init = function () {
+  const that = this;
   // Add listeners.
   this.filterElement.addEventListener('change', this.filterElementChangeEvent.bind(this));
   this.tagElement.addEventListener('click', this.tagElementChangeEvent.bind(this));
@@ -68,10 +69,13 @@ CivicLargeFilter.prototype.init = function () {
   // Set state values based on current filter fields.
   this.filterElement.querySelectorAll('input, select').forEach((element) => {
     if (this.isSelectableField(element)) {
-      const type = this.getElementType(element);
-      const key = this.fieldTypes[type].getKey(element);
-      const id = this.fieldTypes[type].getId(element);
-      const value = this.fieldTypes[type].getValue(element);
+      const type = that.getElementType(element);
+      if (typeof that.fieldTypes[type] === 'undefined') {
+        return;
+      }
+      const key = that.fieldTypes[type].getKey(element);
+      const id = that.fieldTypes[type].getId(element);
+      const value = that.fieldTypes[type].getValue(element);
       this.updateState(key, id, value, type);
     }
   });

@@ -15,7 +15,7 @@ Drupal.behaviors.civic_ajax_views = {
         }
         debounce = setTimeout(() => {
           $form.find('[type="submit"]').trigger('click');
-        }, 500);
+        }, 1500);
       });
     // Stop clear filter function from submitting form.
     $form
