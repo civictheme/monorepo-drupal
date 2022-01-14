@@ -160,11 +160,11 @@ function _civic_render_listing_paragraph(Paragraph $paragraph) {
 
     $view->initHandlers();
     // Show exposed form if available for this block display.
-    if ($show_filters) {
-      /** @var \Drupal\views\Plugin\views\exposed_form\ExposedFormPluginInterface $exposed_form */
-      $exposed_form = $view->display_handler->getPlugin('exposed_form');
-      $markup['exposed_form'] = $exposed_form->renderExposedForm();
-    }
+//    if ($show_filters) {
+//      /** @var \Drupal\views\Plugin\views\exposed_form\ExposedFormPluginInterface $exposed_form */
+//      $exposed_form = $view->display_handler->getPlugin('exposed_form');
+//      $markup['exposed_form'] = $exposed_form->renderExposedForm();
+//    }
 
     $markup['view'] = $view->render();
   }
