@@ -1,3 +1,6 @@
+/**
+ * Handles views exposed filter forms providing auto-submit functionality.
+ */
 Drupal.behaviors.civic_ajax_views = {
   // eslint-disable-next-line no-unused-vars
   attach: function attach(context, settings) {
@@ -5,7 +8,7 @@ Drupal.behaviors.civic_ajax_views = {
     const $form = jQuery('[data-civic-filter]', context).once('civicAjaxView');
     if ($form.length > 0) {
       let debounce;
-      // Submit handler for both filter types.
+      // Submit handler for both large and basic filter types.
       const submitHandler = () => {
         // We do not want to submit on every click, we want user to be able
         // to select several checkboxes or radio buttons without submitting.

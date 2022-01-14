@@ -32,14 +32,10 @@ function CivicLargeFilter(el) {
     },
     input_radio: {
       emptyValue: false,
-      setValue: (element, value) => {
-        element.checked = value;
-      },
+      setValue: (element, value) => { element.checked = value; },
       getValue: (element) => {
-        let group = document.getElementsByName(element.name);
-        group = Array.from(group);
-        let selectedOptionElement = group.filter((item) => item.checked);
-        selectedOptionElement = selectedOptionElement.pop();
+        const group = document.getElementsByName(element.name);
+        const selectedOptionElement = Array.from(group).filter((item) => item.checked).pop();
         return (selectedOptionElement && selectedOptionElement.checked === true) ? selectedOptionElement.value : '';
       },
       getId: (element) => element.id,
