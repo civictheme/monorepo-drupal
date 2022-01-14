@@ -50,7 +50,7 @@ display:
       pager:
         type: full
         options:
-          items_per_page: 12
+          items_per_page: 6
           offset: 0
           id: 0
           total_pages: null
@@ -72,7 +72,7 @@ display:
         type: grid
         options:
           uses_fields: false
-          columns: 4
+          columns: 3
           automatic_width: true
           alignment: horizontal
           col_class_default: true
@@ -146,51 +146,6 @@ display:
             operator_limit_selection: false
             operator_list: {  }
           group: 1
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: title_op
-            label: Keyword
-            description: ''
-            use_operator: false
-            operator: title_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: title
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              civic_content_author: '0'
-              civic_content_approver: '0'
-              civic_site_administrator: '0'
-              anonymous: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: string
         type:
           id: type
           table: node_field_data
@@ -205,7 +160,7 @@ display:
           expose:
             operator_id: type_op
             label: 'Content type'
-            description: ''
+            description: 'Select a content type to filter by'
             use_operator: false
             operator: type_op
             operator_limit_selection: false
@@ -213,13 +168,14 @@ display:
             identifier: type
             required: false
             remember: false
-            multiple: true
+            multiple: false
             remember_roles:
               authenticated: authenticated
               civic_content_author: '0'
               civic_content_approver: '0'
               civic_site_administrator: '0'
               anonymous: '0'
+              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -236,57 +192,6 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '>='
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-          group: 1
-          exposed: true
-          expose:
-            operator_id: created_op
-            label: Date
-            description: ''
-            use_operator: false
-            operator: created_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: created
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              civic_content_author: '0'
-              civic_content_approver: '0'
-              civic_site_administrator: '0'
-              anonymous: '0'
-            placeholder: ''
-            min_placeholder: ''
-            max_placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: created
-          plugin_id: date
         tid:
           id: tid
           table: taxonomy_index
@@ -301,7 +206,7 @@ display:
           expose:
             operator_id: tid_op
             label: Topics
-            description: ''
+            description: 'Select a topic to filter by.'
             use_operator: false
             operator: tid_op
             operator_limit_selection: false
@@ -316,6 +221,7 @@ display:
               civic_content_approver: '0'
               civic_site_administrator: '0'
               anonymous: '0'
+              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -336,6 +242,52 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: word
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: title_op
+            label: Title
+            description: 'Enter a keyword within the title'
+            use_operator: false
+            operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              civic_content_author: '0'
+              civic_content_approver: '0'
+              civic_site_administrator: '0'
+              anonymous: '0'
+              administrator: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: title
+          plugin_id: string
       sorts:
         created:
           id: created
@@ -345,7 +297,7 @@ display:
           group_type: group
           admin_label: ''
           order: DESC
-          exposed: true
+          exposed: false
           expose:
             label: 'Date range'
           granularity: second
@@ -374,7 +326,7 @@ display:
           admin_label: ''
           empty: true
           tokenize: false
-          content: 'No results found.'
+          content: '<div class="civic-basic-content"><p>No results found.</p></div>'
           plugin_id: text_custom
       relationships:
         field_c_n_topics:
@@ -487,8 +439,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -507,8 +457,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -516,11 +464,12 @@ display:
   civic_listing_page:
     display_plugin: page
     id: civic_listing_page
-    display_title: Page
+    display_title: 'Complex filter'
     position: 2
     display_options:
       display_extenders: {  }
       path: civic/listing
+      display_description: 'Multiple filters'
     cache_metadata:
       max-age: -1
       contexts:
@@ -528,9 +477,179 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
         - user
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  page_1:
+    display_plugin: page
+    id: page_1
+    display_title: 'Basic Listing'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      path: civic/listing-basic
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: type_op
+            label: 'Content type'
+            description: 'Select a content type to filter by'
+            use_operator: false
+            operator: type_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: type
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              civic_content_author: '0'
+              civic_content_approver: '0'
+              civic_site_administrator: '0'
+              anonymous: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+      defaults:
+        filters: false
+        filter_groups: false
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      display_description: 'Single exposed filter (non-textfield)'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  page_2:
+    display_plugin: page
+    id: page_2
+    display_title: 'Basic Listing with multiple value'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      path: civic/listing-basic-multi
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: type_op
+            label: 'Content type'
+            description: 'Select a content type to filter by'
+            use_operator: false
+            operator: type_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: type
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              civic_content_author: '0'
+              civic_content_approver: '0'
+              civic_site_administrator: '0'
+              anonymous: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+      defaults:
+        filters: false
+        filter_groups: false
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      display_description: 'Single exposed filter (non-textfield)'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
