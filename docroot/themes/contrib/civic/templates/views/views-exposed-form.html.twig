@@ -16,8 +16,19 @@
   #}
 {{ q }}
 {% endif %}
-{% include '@organisms/large-filter/large-filter.twig' with {
-  filter_title: filter_title,
-  filters: form,
-  theme: 'light'
-}%}
+{% if large_filter %}
+  {% include '@organisms/large-filter/large-filter.twig' with {
+    filter_title: filter_title,
+    filters: form,
+    theme: 'light'
+  }%}
+{% else %}
+  {% embed '@molecules/basic-filter/basic-filter.twig' with {
+    theme: 'light',
+    items: form
+  }%}
+    {% block filters %}
+      {{ form }}
+    {% endblock %}
+  {% endembed %}
+{% endif %}

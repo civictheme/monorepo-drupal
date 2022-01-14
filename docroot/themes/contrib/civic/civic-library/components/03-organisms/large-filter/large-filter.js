@@ -114,7 +114,7 @@ CivicLargeFilter.prototype.filterElementChangeEvent = function (e) {
  * Filter chips click event listener.
  */
 CivicLargeFilter.prototype.tagElementChangeEvent = function (e) {
-  if (e.target.nodeName === 'BUTTON' && this.isDismissibleFilter(e.target)) {
+  if (e.target.nodeName === 'BUTTON') {
     const key = e.target.dataset.id;
     const { type } = this.state[key];
     this.updateState(key, this.state[key].id, this.fieldTypes[type].emptyValue, type);
@@ -133,10 +133,6 @@ CivicLargeFilter.prototype.clearElementClickEvent = function () {
 
 CivicLargeFilter.prototype.isSelectableField = function (element) {
   return !element.hasAttribute('data-large-filter-ignore');
-};
-
-CivicLargeFilter.prototype.isDismissableFilter = function (element) {
-  return element.hasAttribute('data-dismissible-civic-filter');
 };
 
 /**
@@ -188,7 +184,7 @@ CivicLargeFilter.prototype.renderHTMLFilterItem = function (key, label, type, th
   if (type !== 'input_radio') {
     return `
     <li class="civic-large-filter__tag">
-      <button class="civic-filter-chip-button civic-theme-${theme} civic-filter-chip-button--selected" data-dismissible-civic-filter data-id="${key}">
+      <button class="civic-filter-chip-button civic-theme-${theme} civic-filter-chip-button--selected" data-id="${key}">
         <span class="civic-filter-chip-button__text">${label}</span>
         <span class="civic-filter-chip-button__selected-icon"></span>
       </button>

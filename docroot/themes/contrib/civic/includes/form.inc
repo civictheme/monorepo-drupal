@@ -18,7 +18,9 @@ function civic_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
     $form['actions']['submit']['#attributes']['class'][] = 'hide-xs';
     $form['#attached']['library'][] = 'civic/civic.ajax_views';
     $is_civic_large_filter = _civic_get_number_of_exposed_form_elements($form) > 1;
-
+    $form['#attributes']['data-civic-filter-type'] = $is_civic_large_filter ? 'large' : 'basic';
+    $form['#attributes']['data-civic-filter'] = '';
+    $form['#large_filter'] = $is_civic_large_filter;
     foreach ($form as $key => &$element) {
       if (strpos($key, '#') === 0 || empty($element['#type'])) {
         continue;
@@ -28,6 +30,9 @@ function civic_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
   }
 }
 
+/**
+ * Counts how many filters are in the form.
+ */
 function _civic_get_number_of_exposed_form_elements($form) {
   $num_of_elements = 0;
   foreach ($form as $key => &$element) {
@@ -54,8 +59,11 @@ function _civic_form_alter__convert_exposed_form_elements(&$element, $form, $is_
       $element['#type'] = 'radios';
     }
   }
-  $filter_key = $is_large_filter ? '#civic-large-filter' : '#civic-basic-filter';
+  // Only radio buttons and checkboxes work with filter chips.
+  $filter_key = !$is_large_filter && in_array($element['#type'], ['radios', 'checkboxes'])
+    ? '#civic-basic-filter' : '#civic-large-filter';
   $element[$filter_key] = $form['#id'];
+  $element['#attributes'][$filter_key] = $form['#id'];
 }
 
 /**
@@ -135,6 +143,16 @@ function civic_preprocess_form_element(&$variables) {
     if (isset($variables['description'])) {
       unset($variables['description']);
     }
+  }
+  elseif (isset($element['#attributes']['#civic-basic-filter'])) {
+    $variables['text'] = $element['#title'] ?? '';
+    $variables['is_multiple'] = $element['#type'] === 'checkbox';
+    $variables['id'] = $element['#attributes']['id'];
+    $variables['name'] = $element['#attributes']['name'];
+    unset($element['#attributes']['name']);
+    unset($element['#attributes']['id']);
+    unset($element['#attributes']['#civic-basic-filter']);
+    $variables['attributes'] = new \Drupal\Core\Template\Attribute($element['#attributes']);
   }
 }
 
@@ -218,8 +236,14 @@ function civic_theme_suggestions_checkboxes_alter(array &$suggestions, array $va
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
-function civic_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
-  _civic_theme_suggestions_civic_filter($suggestions, $variables);
+function civic_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $type = NULL) {
+  _civic_theme_suggestions_civic_filter($suggestions, $variables, 'form_element');
+  // For civic basic filter both radios / checkboxes and checkbox / radio
+  // require custom templates.
+  if (in_array($variables['element']['#type'], ['radio', 'checkbox'])
+    && isset($variables['element']['#attributes']['#civic-basic-filter'])) {
+    $suggestions[] = 'form_element__civic_filter_chip';
+  }
 }
 
 /**
@@ -232,15 +256,16 @@ function civic_theme_suggestions_radios_alter(array &$suggestions, array $variab
 /**
  * Sets theme suggestions of civic filter elements.
  */
-function _civic_theme_suggestions_civic_filter(array &$suggestions, array $variables) {
+function _civic_theme_suggestions_civic_filter(array &$suggestions, array $variables, $type = NULL) {
   if (empty($variables['element']['#type'])) {
     return;
   }
+  $type = $type ?? $variables['element']['#type'];
   if (!empty($variables['element']['#civic-large-filter'])) {
-    $suggestions[] = $variables['element']['#type'] . '__civic_dropdown_filter';
+    $suggestions[] = $type . '__civic_dropdown_filter';
   }
   elseif (!empty($variables['element']['#civic-basic-filter'])){
-    $suggestions[] = $variables['element']['#type'] . '__civic_basic_filter';
+    $suggestions[] = $type . '__civic_basic_filter';
   }
 }
 
@@ -291,6 +316,8 @@ function civic_preprocess_radios(&$variables) {
     $variables['fieldset_attributes'] = $variables['element']['attributes'] ?? '';
   }
 }
+
+
 
 /**
  * Implements hook_element_info_alter().
