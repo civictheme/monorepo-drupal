@@ -909,8 +909,8 @@ $civic-header-dark-middle-border-color: transparent !default;
 //
 // Footer.
 //
-$civic-footer-logo-desktop-width: 190px;
-$civic-footer-logo-mobile-width: 190px;
+$civic-footer-logo-desktop-width: 190px !default;
+$civic-footer-logo-mobile-width: 190px !default;
 $civic-footer-light-color: civic-color-neutral(90) !default;
 $civic-footer-light-background-color: civic-color-neutral(20) !default;
 $civic-footer-light-border-color: civic-color-neutral(40) !default;
