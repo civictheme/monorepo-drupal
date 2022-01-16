@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Civic theme override of a views exposed form.
+ * Civic theme implementation of views exposed form.
  *
  * Available variables:
  * - form: A render element representing the form.
@@ -16,6 +16,7 @@
   #}
 {{ q }}
 {% endif %}
+{# Large filter is printed if there is more than 1 exposed filter in the view #}
 {% if large_filter %}
   {% include '@organisms/large-filter/large-filter.twig' with {
     filter_title: filter_title,
