@@ -6,13 +6,15 @@
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Template\Attribute;
 use Drupal\Core\Template\AttributeArray;
 
 /**
  * Implements hook_form_alter().
  */
-function civic_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function civic_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Adjusting exposed view forms to hide submit button.
   if ($form['#form_id'] === 'views_exposed_form') {
     $form['actions']['submit']['#attributes']['class'][] = 'hide-xs';
@@ -36,7 +38,8 @@ function civic_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_sta
 function _civic_get_number_of_exposed_form_elements($form) {
   $num_of_elements = 0;
   foreach ($form as $key => &$element) {
-    if (strpos($key, '#') === 0 || empty($element['#type']) || in_array($element['#type'],['actions', 'hidden'])) {
+    if (strpos($key, '#') === 0 || empty($element['#type'])
+      || in_array($element['#type'], ['actions', 'hidden'])) {
       continue;
     }
     $num_of_elements++;
@@ -60,8 +63,10 @@ function _civic_form_alter__convert_exposed_form_elements(&$element, $form, $is_
     }
   }
   // Only radio buttons and checkboxes work with filter chips.
-  $filter_key = !$is_large_filter && in_array($element['#type'], ['radios', 'checkboxes'])
-    ? '#civic-basic-filter' : '#civic-large-filter';
+  $filter_key = !$is_large_filter && in_array($element['#type'], [
+    'radios',
+    'checkboxes',
+  ]) ? '#civic-basic-filter' : '#civic-large-filter';
   $element[$filter_key] = $form['#id'];
   $element['#attributes'][$filter_key] = $form['#id'];
 }
@@ -152,7 +157,7 @@ function civic_preprocess_form_element(&$variables) {
     unset($element['#attributes']['name']);
     unset($element['#attributes']['id']);
     unset($element['#attributes']['#civic-basic-filter']);
-    $variables['attributes'] = new \Drupal\Core\Template\Attribute($element['#attributes']);
+    $variables['attributes'] = new Attribute($element['#attributes']);
   }
 }
 
@@ -250,7 +255,7 @@ function civic_theme_suggestions_form_element_alter(array &$suggestions, array $
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function civic_theme_suggestions_radios_alter(array &$suggestions, array $variables) {
-  _civic_theme_suggestions_civic_filter($suggestions,$variables);
+  _civic_theme_suggestions_civic_filter($suggestions, $variables);
 }
 
 /**
@@ -264,7 +269,7 @@ function _civic_theme_suggestions_civic_filter(array &$suggestions, array $varia
   if (!empty($variables['element']['#civic-large-filter'])) {
     $suggestions[] = $type . '__civic_dropdown_filter';
   }
-  elseif (!empty($variables['element']['#civic-basic-filter'])){
+  elseif (!empty($variables['element']['#civic-basic-filter'])) {
     $suggestions[] = $type . '__civic_basic_filter';
   }
 }
@@ -306,8 +311,6 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     $variables['fieldset_attributes'] = $variables['element']['attributes'] ?? '';
   }
 }
-
-
 
 /**
  * Implements hook_element_info_alter().
