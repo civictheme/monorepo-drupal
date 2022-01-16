@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Civic theme implementation for a 'checkboxes' #type form element.
+ * Civic theme implementation for a 'radios' #type form element.
  *
  * Available variables
  * - attributes: A list of HTML attributes for the wrapper element.
@@ -21,6 +21,6 @@
   attributes: fieldset_attributes
 } %}
   {% block children %}
-    <div{{ attributes.addClass('form-checkboxes') }}>{{ children }}</div>
+    <div{{ attributes }}>{{ children }}</div>
   {% endblock %}
 {% endembed %}
