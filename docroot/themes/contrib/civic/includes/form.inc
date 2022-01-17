@@ -307,12 +307,12 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     $variables['required'] = $element['#required'] ?? FALSE;
     $variables['type'] = 'fieldset-radio';
     $variables['fieldset_legend'] = $element['#title'];
-    $variables['modifier_class'] = !empty($element['#attributes']['class']) ? implode(' ', $variables['element']['#attributes']['class']) : '';
-    $variables['fieldset_attributes'] = $element['attributes'] ?? '';
     $variables['errors'] = $element['#errors'] ?? NULL;
     $variables['attributes'] += $element['#attributes'];
     $attributes = new Attribute($variables['attributes']);
-    $variables['modifier_class'] = implode(' ', $attributes->getClass()->value()) . ' ' . $variables['modifier_class'];
+    $attributes = implode(' ', $attributes->getClass()->value());
+    $variables['modifier_class'] = !empty($element['#attributes']['class']) ? implode(' ', $variables['element']['#attributes']['class']) : '';
+    $variables['modifier_class'] = sprintf('%s %s %s %s', $variables['modifier_class'], $attributes, 'js-form-type-' . $element['#type'], $variables['required'] ? 'required' : '');
   }
 }
 
