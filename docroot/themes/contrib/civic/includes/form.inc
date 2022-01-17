@@ -307,8 +307,12 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     $variables['required'] = $element['#required'] ?? FALSE;
     $variables['type'] = 'fieldset-radio';
     $variables['fieldset_legend'] = $element['#title'];
-    $variables['modifier_class'] = !empty($variables['element']['#attributes']['class']) ? implode(' ', $variables['element']['#attributes']['class']) : '';
-    $variables['fieldset_attributes'] = $variables['element']['attributes'] ?? '';
+    $variables['modifier_class'] = !empty($element['#attributes']['class']) ? implode(' ', $variables['element']['#attributes']['class']) : '';
+    $variables['fieldset_attributes'] = $element['attributes'] ?? '';
+    $variables['errors'] = $element['#errors'] ?? NULL;
+    $variables['attributes'] += $element['#attributes'];
+    $attributes = new Attribute($variables['attributes']);
+    $variables['modifier_class'] = implode(' ', $attributes->getClass()->value()) . ' ' . $variables['modifier_class'];
   }
 }
 
@@ -325,7 +329,7 @@ function civic_element_info_alter(array &$types) {
   }
 
   if (isset($types['radios'])) {
-    // Checkboxes adds a wrapping fieldset to the checkboxes element
+    // Radios adds a wrapping fieldset to the checkboxes element
     // which we do not want when rendering dropdown filters.
     // The fieldset wrapper is added back manually for all other fieldsets.
     // @see civic_preprocess_checkboxes

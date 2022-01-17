@@ -1,4 +1,4 @@
-@civic @content_type @civic_alert @wip
+@civic @content_type @civic_alert
 Feature: Civic alert rendering
 
   Ensure that alerts are shown correctly.

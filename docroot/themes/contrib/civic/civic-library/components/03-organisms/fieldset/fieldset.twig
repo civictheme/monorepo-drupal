@@ -17,9 +17,11 @@
       <div class="description {{ description_modifier_class }}" {{ description_attributes }}>{{ description }}</div>
     {% endif %}
     {% if errors %}
-      <div>
-        {{ errors }}
-      </div>
+      {% include '@organisms/message/message.twig' with {
+        theme: theme,
+        type: 'error',
+        title: errors
+      } only %}
     {% endif %}
     {% if prefix %}
       <span class="civic-fieldset__prefix">{{ prefix }}</span>

@@ -18,9 +18,11 @@
   legend_span: fieldset_legend_span,
   modifier_class: fieldset_modifier_class,
   legend_span_attributes: fieldset_legend_span_attributes,
-  attributes: fieldset_attributes
+  attributes: attributes,
+  required: required,
+  errors: errors,
 } %}
   {% block children %}
-    <div{{ attributes }}>{{ children }}</div>
+    <div class="form-radios">{{ children }}</div>
   {% endblock %}
 {% endembed %}

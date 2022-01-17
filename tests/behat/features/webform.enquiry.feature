@@ -10,7 +10,7 @@ Feature: Tests the Civic form integration with webform
     And I should see "Last name field is required."
     And I should see "Phone number field is required."
     And I should see "Email field is required."
-    And I should see " Contact me by field is required"
+    And I should see "Contact me by field is required"
     And I fill in "First name" with "[TEST] Name"
     And I fill in "Last name" with "[TEST] Name"
     And I fill in "edit-enquiry" with "[TEST] Message"
