@@ -15,7 +15,7 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
-{% set title = logo.alt ? logo.alt : 'CivicTheme logo' %}
+{% set title = 'CivicTheme logo' %}
 
 {% for type, logo in logos %}
   {% set visibility_class = type == 'mobile' ? 'show-xs show-sm hide-m' : 'hide-xs hide-sm show-m' %}
