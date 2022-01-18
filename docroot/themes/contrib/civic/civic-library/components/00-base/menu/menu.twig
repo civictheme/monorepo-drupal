@@ -1,0 +1,77 @@
+{#
+/**
+ * @file
+ * Menu component.
+ *
+ * Used to output hierarchical menu structure.
+ *
+ * Specific navigation component implementations that use menu hierarchies
+ * should extend this template and may override 'menu_item_link' and
+ * 'menu_item_below' blocks with specific markup.
+ *
+ * Available variables:
+ * - theme: [string] Theme: light, dark.
+ * - items: [array] Menu links array. Each item contains:
+ *   - title: [string] The title of the link.
+ *   - url: [string] The link url.
+ *   - below: [array] Array of submenu items.
+ *   - is_expanded: [boolean] Flag if the current item has visible child.
+ *   - in_active_trail: [boolean] Flag if the current item is in the active trail.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% import _self as menus %}
+
+{% macro menu_links(items, menu_level, modifier_class) %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      <ul class="civic-menu civic-menu--level-{{ menu_level }} {{ modifier_class }} " data-component-name="civic-menu" {{ attributes|default('') }}>
+    {% else %}
+      <div class="civic-menu__sub-menu__wrapper civic-menu__sub-menu__wrapper--level-{{ menu_level }}">
+        <ul class="civic-menu civic-menu__sub-menu civic-menu--level-{{ menu_level }}">
+    {% endif %}
+
+    {% for item in items %}
+      {% set item_classes = [
+        'civic-menu__item',
+        'civic-menu__item--level-' ~ menu_level,
+        item.below ? 'civic-menu__item--has-children' : '',
+        item.is_expanded ? 'civic-menu__item--expanded' : '',
+        item.in_active_trail ? 'civic-menu__item--active-trail' : '',
+        item.modifier_class|default(''),
+      ] %}
+      <li class="{{ item_classes|join(' ') }}" {{ item.attributes|default('') }}>
+
+        {% block menu_item_link %}
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: item.title,
+            title: item.title,
+            url: item.url,
+            modifier_class: 'civic-menu__item__link',
+            attributes: item.link_attributes|default(''),
+          } only %}
+        {% endblock %}
+
+        {% if item.below %}
+          {% block menu_item_below %}
+            {{ menus.menu_links(item.below, menu_level + 1, classes) }}
+          {% endblock %}
+        {% endif %}
+
+      </li>
+    {% endfor %}
+
+    {% if menu_level == 0 %}
+      </ul>
+    {% else %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endif %}
+{% endmacro %}
+
+{{ menus.menu_links(items, 0, modifier_class) }}

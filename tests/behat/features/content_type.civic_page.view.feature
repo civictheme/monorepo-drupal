@@ -22,7 +22,7 @@ Feature: View of Page content type
       | [TEST] Page Service cards test    | 1      |
       | [TEST] Page Tasks cards test      | 1      |
       | [TEST] Page Reference cards test  | 1      |
-      | [TEST] Page Revision test  | 1      |
+      | [TEST] Page Revision test         | 1      |
 
     And "civic_event" content:
       | title                                  | status |

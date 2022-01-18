@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Large Filter component.
+ *
+ * Display of Large Filter component.
+ *
+ * Variables:
+ * - theme: [string] Theme for large filter.
+ * - type: [string] Large filter type.
+ * - filter_text: [string] Card title.
+ * - filter_group: [string] Filter group name.
+ * - options_title: [string] Options title
+ * - options: [array] Array of form elements:
+ * - settings: [object] Filter settings
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type_class = type is empty ? 'civic-dropdown-filter--%s'|format(type) : '' %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<div class="civic-dropdown-filter {{ modifier_class }}" data-collapsible data-collapsible-collapsed {% if filter_group %}data-collapsible-group="{{ filter_group }}"{% endif %} data-collapsible-duration="0">
+  <button class="civic-dropdown-filter__filter-text" data-collapsible-trigger>{{ filter_text }}</button>
+  <div class="civic-dropdown-filter__filter-options" data-collapsible-panel>
+    <div class="civic-dropdown-filter__filter-options-wrapper">
+      {% include '@organisms/fieldset/fieldset.twig' with {
+        legend: options_title is not empty ? options_title : null,
+        children: options,
+        modifier_class: 'civic-dropdown-filter__fieldset',
+        type: type,
+      } %}
+    </div>
+  </div>
+</div>

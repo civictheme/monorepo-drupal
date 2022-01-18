@@ -1,0 +1,122 @@
+{#
+/**
+ * @file
+ * Pagination component.
+ *
+ * Display of pagination component.
+ *
+ * Variables:
+ * - theme: [string] Theme for pagiation.
+ * - heading_id: [string] pagination heading html id.
+ * - items: [array] Array of pagination items.
+ * - current: [string] Current page number.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if items %}
+  <nav class="civic-pager {{ modifier_class }}" role="navigation" aria-labelledby="{{ heading_id }}">
+    <h4 id="{{ heading_id }}" class="visually-hidden">{{ 'Pagination' }}</h4>
+
+    <ul class="civic-pager__items">
+      {# Print previous item. #}
+      <li class="civic-pager__item civic-pager__item--previous">
+        {% if current - 1 %}
+          {% set title = 'Go to previous page - page %s'|format(current - 1) %}
+        {% else %}
+          {% set title = 'Go to previous page' %}
+        {% endif %}
+        {% include '@molecules/directional-link/directional-link.twig' with {
+          theme: theme,
+          text: items.previous.text|default('Previous'),
+          title: title,
+          context: 'Previous page',
+          url: items.previous.href,
+          disabled: (current - 1) ? 0 : 1,
+          direction: 'left',
+        } only %}
+      </li>
+
+      {# Add an ellipsis if there are further previous pages. #}
+      {% if ellipses.previous %}
+        <li class="civic-pager__item civic-pager__item--ellipsis" role="presentation">
+          &hellip;
+        </li>
+      {% endif %}
+      {# Print first item if we are not on the first page. #}
+      {% if items.first %}
+        <li class="civic-pager__item civic-pager__item--first">
+          {% include '@molecules/directional-link/directional-link.twig' with {
+            theme: theme,
+            text: items.first.text|default('First'),
+            title: 'Go to first page',
+            context: 'First page',
+            url: items.first.href,
+            direction: 'left',
+          } only %}
+        </li>
+      {% endif %}
+
+      {# Now generate the actual pager piece. #}
+      {% for key, item in items.pages %}
+        <li class="civic-pager__item {{ current == key ? ' civic-pager__item--active' : '' }}">
+          {% if current == key %}
+            {% set title = 'Current page' %}
+          {% else %}
+            {% set title = 'Go to page %s of %s'|format(key, items.pages|length) %}
+          {% endif %}
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: key,
+            title: title,
+            context: current == key ? 'Current page' : 'Page',
+            url: item.href,
+            modifier_class: 'civic-pager__link ' ~ (current == key ? 'civic-pager__link--active' : ''),
+          } only %}
+        </li>
+      {% endfor %}
+
+      {# Add an ellipsis if there are further next pages. #}
+      {% if ellipses.next %}
+        <li class="civic-pager__item civic-pager__item--ellipsis" role="presentation">
+          &hellip;
+        </li>
+      {% endif %}
+
+      {# Print next item if we are not on the last page. #}
+      <li class="civic-pager__item civic-pager__item--next">
+        {% if current != items.pages|length %}
+          {% set title = 'Go to next page - page %s'|format(current + 1) %}
+        {% else %}
+          {% set title = 'Go to next page' %}
+        {% endif %}
+        {% include '@molecules/directional-link/directional-link.twig' with {
+          theme: theme,
+          text: items.next.text|default('Next'),
+          title: title,
+          context: 'Next page',
+          url: items.previous.href,
+          disabled: (current != items.pages|length) ? 0 : 1,
+          direction: 'right',
+        } only %}
+      </li>
+
+      {# Print last item if we are not on the last page. #}
+      {% if items.last %}
+        <li class="civic-pager__item civic-pager__item--last">
+          {% include '@molecules/directional-link/directional-link.twig' with {
+            theme: theme,
+            text: items.last.text|default('Last'),
+            title: 'Go to last page',
+            context: 'Last page',
+            url: items.last.href,
+            direction: 'right',
+          } only %}
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}

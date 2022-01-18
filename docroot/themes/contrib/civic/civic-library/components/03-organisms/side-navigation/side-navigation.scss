@@ -1,0 +1,229 @@
+//
+// Side navigation.
+//
+
+.civic-side-navigation {
+  $root: &;
+
+  &__title {
+    @include civic-typography('heading-5');
+
+    margin-top: 0;
+    margin-bottom: civic-space(2);
+  }
+
+  @for $i from 0 through 10 {
+    .civic-menu--level-#{$i} {
+      .civic-menu__item__link {
+        padding-left: ($i + 1) * civic-space(2);
+      }
+    }
+  }
+
+  &__menu {
+    &,
+    .civic-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .civic-menu__item {
+      .civic-menu {
+        display: none;
+      }
+    }
+
+    .civic-menu__item--has-children {
+      > .civic-menu__item__link {
+        &::after {
+          @include civic-icon-size('regular');
+
+          content: $civic-side-navigation-link-expanded-icon;
+          position: absolute;
+          right: civic-space(1);
+          transform: rotate(-180deg);
+          line-height: 0;
+        }
+      }
+    }
+
+    .civic-menu__item--expanded {
+      .civic-menu {
+        display: block;
+      }
+
+      > .civic-menu__item__link {
+        &::after {
+          transform: rotate(0);
+        }
+      }
+    }
+
+    .civic-menu__item__link {
+      @include civic-typography('text-regular');
+
+      display: block;
+      position: relative;
+      padding: civic-space() civic-space(2) civic-space() civic-space(2.5);
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      text-decoration: none;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: -1px;
+        bottom: -1px;
+        left: -1px;
+        width: rem(4px);
+      }
+
+      &:active {
+        outline: 0 !important;
+        border-radius: 0 $civic-side-navigation-link-active-border-radius $civic-side-navigation-link-active-border-radius 0;
+      }
+
+      &:focus {
+        z-index: 1;
+      }
+    }
+  }
+
+  &.civic-theme-light {
+    #{$root}__title {
+      color: $civic-side-navigation-light-title-color;
+    }
+
+    #{$root}__menu {
+      .civic-menu__item {
+        .civic-menu__item__link {
+          color: $civic-side-navigation-light-link-color;
+          border-color: $civic-side-navigation-light-link-border-color;
+          background-color: $civic-side-navigation-light-link-background-color;
+
+          &::before {
+            background-color: $civic-side-navigation-light-link-strip-background-color;
+          }
+
+          &:hover,
+          &:focus {
+            background-color: $civic-side-navigation-light-link-hover-background-color;
+            border-color: $civic-side-navigation-light-link-hover-border-color;
+
+            &::before {
+              background-color: $civic-side-navigation-light-link-strip-hover-background-color;
+            }
+          }
+
+          &:active {
+            border-color: $civic-side-navigation-light-active-border-color;
+          }
+
+          &:focus {
+            @include civic-outline();
+          }
+        }
+      }
+
+      .civic-menu__item--has-children {
+        > .civic-menu__item__link {
+          &::after {
+            color: $civic-side-navigation-light-link-expanded-icon-color;
+          }
+        }
+      }
+
+      .civic-menu__item--active-trail {
+        > .civic-menu__item__link {
+          &::before {
+            background-color: $civic-side-navigation-light-active-trail-link-strip-border-color;
+          }
+        }
+
+        .civic-menu__item__link {
+          color: $civic-side-navigation-light-active-trail-link-color;
+          background-color: $civic-side-navigation-light-active-trail-link-background-color;
+          border-color: $civic-side-navigation-light-active-trail-link-border-color;
+        }
+
+        &:not(.civic-menu__item--level-0) {
+          .civic-menu__item__link {
+            color: $civic-side-navigation-light-active-trail-child-link-color;
+            background-color: $civic-side-navigation-light-active-trail-child-link-background-color;
+            border-color: $civic-side-navigation-light-active-trail-child-link-border-color;
+          }
+        }
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__title {
+      color: $civic-side-navigation-dark-title-color;
+    }
+
+    #{$root}__menu {
+      .civic-menu__item {
+        .civic-menu__item__link {
+          color: $civic-side-navigation-dark-link-color;
+          border-color: $civic-side-navigation-dark-link-border-color;
+          background-color: $civic-side-navigation-dark-link-background-color;
+
+          &::before {
+            background-color: $civic-side-navigation-dark-link-strip-background-color;
+          }
+
+          &:hover,
+          &:focus {
+            background-color: $civic-side-navigation-dark-link-hover-background-color;
+            border-color: $civic-side-navigation-dark-link-hover-border-color;
+
+            &::before {
+              background-color: $civic-side-navigation-dark-link-strip-hover-background-color;
+            }
+          }
+
+          &:active {
+            border-color: $civic-side-navigation-dark-active-border-color;
+          }
+
+          &:focus {
+            @include civic-outline();
+          }
+        }
+      }
+
+      .civic-menu__item--has-children {
+        > .civic-menu__item__link {
+          &::after {
+            color: $civic-side-navigation-dark-link-expanded-icon-color;
+          }
+        }
+      }
+
+      .civic-menu__item--active-trail {
+        > .civic-menu__item__link {
+          &::before {
+            background-color: $civic-side-navigation-dark-active-trail-link-strip-border-color;
+          }
+        }
+
+        .civic-menu__item__link {
+          color: $civic-side-navigation-dark-active-trail-link-color;
+          background-color: $civic-side-navigation-dark-active-trail-link-background-color;
+          border-color: $civic-side-navigation-dark-active-trail-link-border-color;
+        }
+
+        &:not(.civic-menu__item--level-0) {
+          .civic-menu__item__link {
+            color: $civic-side-navigation-dark-active-trail-child-link-color;
+            background-color: $civic-side-navigation-dark-active-trail-child-link-background-color;
+            border-color: $civic-side-navigation-dark-active-trail-child-link-border-color;
+          }
+        }
+      }
+    }
+  }
+}

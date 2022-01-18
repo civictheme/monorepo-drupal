@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Override theme implementation for a Primary Navigation menu block.
+ */
+#}
+
+{% if in_sidebar %}
+  {% include '@organisms/side-navigation/side-navigation.twig' %}
+{% else %}
+  {% include '@organisms/primary-navigation/primary-navigation.twig' %}
+{% endif %}

@@ -1,0 +1,18 @@
+{# Example of extending of the base Civic component. #}
+{% extends '@civic-organisms/header/header.twig' %}
+
+{% block content_middle2 %}
+  <div class="col-xs-12 col-m-3">
+    <div class="civic-header__content-middle2">
+      {{ content_middle2 }}
+    </div>
+  </div>
+{% endblock %}
+
+{% block content_middle3 %}
+  <div class="col-xs-12 col-m-9">
+    <div class="civic-header__content-middle3 civic-header__content-middle3--civic_starter_kit">
+      {{ content_middle3 }}
+    </div>
+  </div>
+{% endblock %}

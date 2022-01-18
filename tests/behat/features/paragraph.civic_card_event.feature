@@ -20,6 +20,7 @@ Feature: Tests the Event Card paragraph
     And I should see the text "field_c_p_summary" in the "Summary" row
     And I should see the text "field_c_p_date" in the "Date" row
     And I should see the text "field_c_p_topic" in the "Topic" row
+    And I should see the text "field_c_p_location" in the "Location" row
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
@@ -53,6 +54,7 @@ Feature: Tests the Event Card paragraph
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_link][0][uri]'].required" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_link][0][title]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_topic][0][target_id]']" element
+    And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_location][0][value]']" element
     And the option "Light" from select "Theme" is selected
 
   @api @javascript
@@ -82,36 +84,40 @@ Feature: Tests the Event Card paragraph
       | field_c_p_header_link  | 0: View all events - 1: https://example.com |
       | field_c_p_fill_width   | 0                                           |
     And "field_c_p_cards" in "civic_card_container" "paragraph" with "field_c_p_title" of "[TEST] Event card container" has "civic_card_event" paragraph:
-      | field_c_p_date    | 2021-04-30                            |
-      | field_c_p_image   | [TEST] Civic Image                    |
-      | field_c_p_link    | 0: Test link - 1: https://example.com |
-      | field_c_p_summary | Summary text                          |
-      | field_c_p_theme   | light                                 |
-      | field_c_p_title   | Event card title                      |
-      | field_c_p_topic   | [TEST] Topic 1                        |
+      | field_c_p_date     | 2021-04-30                            |
+      | field_c_p_image    | [TEST] Civic Image                    |
+      | field_c_p_link     | 0: Test link - 1: https://example.com |
+      | field_c_p_summary  | Summary text                          |
+      | field_c_p_theme    | light                                 |
+      | field_c_p_title    | Event card title                      |
+      | field_c_p_topic    | [TEST] Topic 1                        |
+      | field_c_p_location | [TEST] Location 1                     |
     And "field_c_p_cards" in "civic_card_container" "paragraph" with "field_c_p_title" of "[TEST] Event card container" has "civic_card_event" paragraph:
-      | field_c_p_date    | 2021-04-30                                  |
-      | field_c_p_image   | [TEST] Civic Image                          |
-      | field_c_p_link    | 0: Test link - 1: https://example.com/card1 |
-      | field_c_p_summary | Summary text 2                              |
-      | field_c_p_theme   | dark                                        |
-      | field_c_p_title   | Event card title 1                          |
-      | field_c_p_topic   | [TEST] Topic 2                              |
+      | field_c_p_date     | 2021-04-30                                  |
+      | field_c_p_image    | [TEST] Civic Image                          |
+      | field_c_p_link     | 0: Test link - 1: https://example.com/card1 |
+      | field_c_p_summary  | Summary text 2                              |
+      | field_c_p_theme    | dark                                        |
+      | field_c_p_title    | Event card title 1                          |
+      | field_c_p_topic    | [TEST] Topic 2                              |
+      | field_c_p_location | [TEST] Location 2                           |
     And "field_c_p_cards" in "civic_card_container" "paragraph" with "field_c_p_title" of "[TEST] Event card container" has "civic_card_event" paragraph:
-      | field_c_p_date    | 2022-05-30                                  |
-      | field_c_p_image   | [TEST] Civic Image                          |
-      | field_c_p_link    | 0: Test link - 1: https://example.com/card2 |
-      | field_c_p_summary | Summary text 3                              |
-      | field_c_p_theme   | light                                       |
-      | field_c_p_title   | Event card title 2                          |
-      | field_c_p_topic   | [TEST] Topic 1                              |
+      | field_c_p_date     | 2022-05-30                                  |
+      | field_c_p_image    | [TEST] Civic Image                          |
+      | field_c_p_link     | 0: Test link - 1: https://example.com/card2 |
+      | field_c_p_summary  | Summary text 3                              |
+      | field_c_p_theme    | light                                       |
+      | field_c_p_title    | Event card title 2                          |
+      | field_c_p_topic    | [TEST] Topic 1                              |
+      | field_c_p_location | [TEST] Location 3                           |
     And "field_c_p_cards" in "civic_card_container" "paragraph" with "field_c_p_title" of "[TEST] Event card container" has "civic_card_event" paragraph:
-      | field_c_p_date    | 2023-06-30                                  |
-      | field_c_p_image   | [TEST] Civic Image                          |
-      | field_c_p_link    | 0: Test link - 1: https://example.com/card3 |
-      | field_c_p_summary | Summary text 3                              |
-      | field_c_p_theme   | dark                                        |
-      | field_c_p_title   | Event card title 3                          |
+      | field_c_p_date     | 2023-06-30                                  |
+      | field_c_p_image    | [TEST] Civic Image                          |
+      | field_c_p_link     | 0: Test link - 1: https://example.com/card3 |
+      | field_c_p_summary  | Summary text 3                              |
+      | field_c_p_theme    | dark                                        |
+      | field_c_p_title    | Event card title 3                          |
+      | field_c_p_location | [TEST] Location 4                           |
 
     When I visit "civic_page" "[TEST] Page - Event cards test"
     And I should see the text "[TEST] Event card container"
@@ -131,6 +137,8 @@ Feature: Tests the Event Card paragraph
     And I should see the text "Event card title"
     And I should see the text "[TEST] Topic 1"
     And I should see the text "[TEST] Topic 2"
+    And I should see the text "[TEST] Location 1"
+    And I should see the text "[TEST] Location 2"
     And I should not see the text "[TEST] Topic 3"
     And I should see the text "29 Apr 2021"
     And I should see the text "29 May 2022"

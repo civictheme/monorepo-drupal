@@ -1,0 +1,61 @@
+{#
+/**
+ * @file
+ * Slide.
+ *
+ * Variables:
+ * - theme: [string] Light, Dark.
+ * - image: [object] object with src and alt tag { src: '', alt: '' }
+ * - image_position: [string] left / right
+ * - content_top: [string] Slot above title.
+ * - title: [string] Slide title.
+ * - url: [string] Slide url on title.
+ * - summary: [string] Slide summary.
+ * - links: [string] links.
+ * - content_bottom: [string] Slot below summary / links.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set image_position_class = 'civic-slide--image-position-%s'|format(image_position|default('right')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, image_position_class, modifier_class|default('')) %}
+
+<div class="civic-slide {{ modifier_class }}" {{ attributes }}>
+  {% if image is not empty %}
+    <div class="civic-slide__image">
+      <img src="{{ image.src }}" alt="{{ image.alt }}"/>
+    </div>
+  {% endif %}
+  <div class="civic-slide__content">
+    <div class="civic-slide__content-inner">
+      {% if content_top %}
+        <div class="civic-slide__content-top">
+          {{ content_top }}
+        </div>
+      {% endif %}
+      {% if title %}
+        <div class="civic-slide__title">
+          {% if url %}
+          <a class="civic-slide__title-link" href="{{ url }}">
+          {% endif %}
+            {{ title }}
+          {% if url %}
+          </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if summary %}
+        <div class="civic-slide__summary">{{ summary|raw }}</div>
+      {% endif %}
+      {% if links %}
+        <div class="civic-slide__links">{{ links }}</div>
+      {% endif %}
+      {% if content_bottom %}
+        <div class="civic-slide__content-bottom">
+          {{ content_bottom }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
