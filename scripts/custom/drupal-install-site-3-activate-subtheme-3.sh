@@ -1,7 +1,38 @@
+#!/usr/bin/env bash
+##
+# Run post-config updates.
+#
+# These usually run during the site install phase and rely on the already
+# enabled modules, but for this project, the cd_core module is not yet
+# installed at the time when these updates run, so we have to re-run them again.
+#
+# shellcheck disable=SC2086
+
+set -e
+[ -n "${DREVOPS_DEBUG}" ] && set -x
+
+# Path to the application.
+APP="${APP:-/app}"
+
+# Drush alias.
+DRUSH_ALIAS="${DRUSH_ALIAS:-}"
+
+# ------------------------------------------------------------------------------
+
+# Use local or global Drush, giving priority to a local drush.
+drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush"; else command -v drush; fi)"
+
+if [ ! -d $APP/docroot/themes/custom/civic_demo ]; then
+  echo "  > Creating civic_demo subtheme."
+  pushd $APP/docroot/themes/contrib/civic >/dev/null || exit 1
+  php civic-create-subtheme.php civic_demo "Civic Demo" "Demo sub-theme for a Civic theme."
+  [ ! -d $APP/docroot/themes/custom/civic_demo ] && echo "ERROR: Failed to create civic_demo sub-theme." && exit 1
+fi
+
 echo "  > Installing civic_demo theme."
 $drush ${DRUSH_ALIAS} theme:enable civic_demo -y
 
-echo "  > Making civic_demo a default theme."
+echo "  > Setting civic_demo as a default theme."
 $drush ${DRUSH_ALIAS} config-set system.theme default civic_demo -y
 
 echo "  > Updating civic_demo theme settings."
