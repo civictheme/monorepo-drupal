@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 ##
-# Run post-config updates.
-#
-# These usually run during the site install phase and rely on the already
-# enabled modules, but for this project, the cd_core module is not yet
-# installed at the time when these updates run, so we have to re-run them again.
+# Optionally install and activate a sub-theme.
 #
 # shellcheck disable=SC2086
 
