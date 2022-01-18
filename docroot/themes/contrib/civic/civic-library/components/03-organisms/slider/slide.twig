@@ -24,7 +24,7 @@
 <div class="civic-slide {{ modifier_class }}" {{ attributes }}>
   {% if image is not empty %}
     <div class="civic-slide__image">
-      <img src="{{ image.src }}" alt="{{ image.alt }}" />
+      <img src="{{ image.src }}" alt="{{ image.alt }}"/>
     </div>
   {% endif %}
   <div class="civic-slide__content">
@@ -38,11 +38,11 @@
         <div class="civic-slide__title">
           {% if url %}
           <a class="civic-slide__title-link" href="{{ url }}">
-            {% endif %}
+          {% endif %}
             {{ title }}
-            {% if url %}
+          {% if url %}
           </a>
-        {% endif %}
+          {% endif %}
         </div>
       {% endif %}
       {% if summary %}
