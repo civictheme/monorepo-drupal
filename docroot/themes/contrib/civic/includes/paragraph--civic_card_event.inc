@@ -23,6 +23,7 @@ function civic_preprocess_paragraph__civic_card_event(&$variables) {
     $link['uri'] = Url::fromUri($link['uri'])->toString();
   }
   $variables['url'] = $link['uri'] ?? NULL;
+  $variables['is_external'] = !empty($link['uri']) ? UrlHelper::isExternal($link['uri']) : FALSE;
 
   // Event date.
   if ($paragraph->hasField('field_c_p_date') && !$paragraph->get('field_c_p_date')->isEmpty()) {

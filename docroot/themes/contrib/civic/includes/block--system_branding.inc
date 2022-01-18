@@ -6,6 +6,7 @@
  */
 
 use Drupal\block\Entity\Block;
+use Drupal\Core\Url;
 
 /**
  * Implements template_preprocess_block__HOOK().
@@ -16,7 +17,7 @@ function civic_preprocess_block__system_branding_block(&$variables) {
   $variables['show_site_slogan'] = !empty($variables['elements']['#configuration']['use_site_slogan']);
   if ($variables['show_site_logo']) {
     $variables['show_logo'] = TRUE;
-    $alt_attribute = theme_get_setting('civic_site_logo_alt') ?? '';
+    $alt_attribute = theme_get_setting('civic_site_logo_alt') ?? 'CivicTheme logo';
 
     $block = Block::load($variables['elements']['#id']);
     $region = $block->getRegion();
@@ -30,6 +31,7 @@ function civic_preprocess_block__system_branding_block(&$variables) {
       $variables['modifier_class'] = 'civic-header__logo';
       $desktop_logo = theme_get_setting('logo')['url'] ?? '';
       $mobile_logo = theme_get_setting('civic_header_logo_mobile') ?? '';
+      $variables['url'] = Url::fromRoute('<front>')->setAbsolute()->toString();
     }
 
     if (!empty($mobile_logo)) {

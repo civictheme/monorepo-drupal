@@ -20,6 +20,7 @@ exports.default = function () {
       ...[
         '@whitespace/storybook-addon-html',
         'storybook-addon-pseudo-states',
+        '@storybook/addon-a11y',
       ],
     ];
   }

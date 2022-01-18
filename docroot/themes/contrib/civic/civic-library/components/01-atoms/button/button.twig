@@ -25,7 +25,7 @@
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set type_class = type ? 'civic-button--%s'|format(type) %}
+{% set type_class = type ? 'civic-button--%s'|format(type) : '' %}
 {% set size_class = 'civic-button--%s'|format(size) %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, type_class, size_class, modifier_class|default('')) %}
 
@@ -54,7 +54,7 @@
 {% if kind == 'button' %}
   <button class="civic-button {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %} data-component-name="button" {% if disabled %}disabled="disabled" aria-disabled="true"{% endif %}>{{ button_text }}</button>
 {% elseif kind == 'link' %}
-  <a class="civic-button {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %} role="button" data-component-name="button" {% if url %}href="{{ url }}" {% endif %}title="{{ text }}" {{ new_window ? 'target="_blank"' }} {% if disabled %}disabled="disabled" aria-disabled="true"{% endif %}>{{ button_text }}</a>
+  <a class="civic-button {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %} role="button" data-component-name="button" {% if url %}href="{{ url }}"{% endif %} title="{{ text }}"  {{ new_window ? 'target="_blank"' }} {% if disabled %}disabled="disabled" aria-disabled="true"{% endif %}>{{ button_text }}</a>
 {% elseif kind == 'reset' or kind == 'submit' %}
-  <input class="civic-button {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %} type="{{ kind }}" data-component-name="button" {% if disabled %}disabled="disabled" aria-disabled="true"{% endif %} value="{{ button_text|trim }}" />
+  <input class="civic-button {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %} type="{{ kind }}" data-component-name="button" {% if disabled %}disabled="disabled" aria-disabled="true"{% endif %} value="{{ button_text|trim }}"/>
 {% endif %}

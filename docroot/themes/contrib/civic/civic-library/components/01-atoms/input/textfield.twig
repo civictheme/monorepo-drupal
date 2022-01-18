@@ -14,7 +14,7 @@
 <input class="civic-input__element {{ modifier_class }}" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} {{ autocomplete ? 'autocomplete' }} />
 
 {% if icons[state] is defined %}
-  <span class="civic-input__state" >
+  <span class="civic-input__state">
     {% include '@atoms/icon/icon.twig' with {
       symbol: icons[state]
     } %}

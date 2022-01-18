@@ -25,7 +25,7 @@
   right: 'arrows_rightarrow_3',
 } %}
 
-<a class="civic-directional-link {{ modifier_class }}" title="{{ title }}" role="link"{% if not disabled %} href="{{ url }}"{% endif %}{% if disabled %}disabled="disabled" aria-disabled="true"{% endif %}>
+<a class="civic-directional-link {{ modifier_class }}" title="{{ title }}" role="link"{% if not disabled %} href="{{ url }}" {% endif %}{% if disabled %}disabled="disabled" aria-disabled="true"{% endif %}>
   {% if context %}
     <span class="visually-hidden">{{ context }}</span>
     <span aria-hidden="true">{{ text }}</span>

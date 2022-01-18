@@ -19,6 +19,7 @@ function civic_preprocess_paragraph__civic_search(&$variables) {
   $variables['help_text'] = $paragraph->get('field_c_p_help_text')->getString();
   $variables['placeholder'] = $paragraph->get('field_c_p_placeholder')->getString();
   $search_url = $paragraph->get('field_c_p_search_url')->getString();
+  $variables['theme'] = $paragraph->get('field_c_p_theme')->getString();
 
   // Check if the url is valid.
   if (UrlHelper::isValid($search_url)) {

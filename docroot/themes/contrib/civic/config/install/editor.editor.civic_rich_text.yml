@@ -31,10 +31,11 @@ settings:
             - BulletedList
             - NumberedList
         -
-          name: Media
+          name: Insert
           items:
             - Blockquote
             - DrupalMediaLibrary
+            - Table
         -
           name: Tools
           items:
@@ -45,7 +46,7 @@ settings:
     language:
       language_list: un
     stylescombo:
-      styles: "a.civic-button.civic-theme-light.civic-button--primary.civic-button--regular|Button - primary regular\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--regular|Button - secondary regular\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--large|Button - primary large\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--large|Button - secondary large\r\np.civic-text-large|Lead paragraph\r\np.civic-text-small|Small"
+      styles: "a.civic-button.civic-theme-light.civic-button--primary.civic-button--regular|Button - primary regular\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--regular|Button - secondary regular\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--large|Button - primary large\r\na.civic-button.civic-theme-light.civic-button--secondary.civic-button--large|Button - secondary large\r\np.civic-text-large|Lead paragraph\r\np.civic-text-small|Small\r\ntable.civic-theme-light.civic-table|Table\r\ntable.civic-theme-light.civic-table.civic-table--striped|Table striped rows"
 image_upload:
   status: false
   scheme: public
