@@ -17,12 +17,22 @@ use Drupal\Core\Template\AttributeArray;
 function civic_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Adjusting exposed view forms to hide submit button.
   if ($form['#form_id'] === 'views_exposed_form') {
-    $form['actions']['submit']['#attributes']['class'][] = 'hide-xs';
-    $form['#attached']['library'][] = 'civic/civic.ajax_views';
     $is_civic_large_filter = _civic_get_number_of_exposed_form_elements($form) > 1;
     $form['#attributes']['data-civic-filter-type'] = $is_civic_large_filter ? 'large' : 'basic';
     $form['#attributes']['data-civic-filter'] = '';
     $form['#large_filter'] = $is_civic_large_filter;
+    $ajax_filter = $form_state->get('view')->ajaxEnabled();
+    $form['#attributes']['data-civic-filter-ajax'] = $ajax_filter ? 'true' : 'false';
+    if ($ajax_filter) {
+      $form['actions']['submit']['#attributes']['class'][] = 'hide-xs';
+      $form['#attached']['library'][] = 'civic/civic.ajax_views';
+    }
+    else {
+      $form['actions']['submit']['#attributes']['class'] = [
+        'civic-button--secondary',
+        'civic-button--small',
+      ];
+    }
     foreach ($form as $key => &$element) {
       if (strpos($key, '#') === 0 || empty($element['#type'])) {
         continue;

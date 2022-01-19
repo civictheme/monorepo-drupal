@@ -179,7 +179,7 @@ CivicLargeFilter.prototype.renderHTMLFilterItem = function (key, label, type, th
   if (type !== 'input_radio') {
     return `
     <li class="civic-large-filter__tag">
-      <button class="civic-filter-chip-button civic-theme-${theme} civic-filter-chip-button--selected" data-id="${key}">
+      <button class="civic-filter-chip-button civic-theme-${theme} civic-filter-chip-button--selected" data-id="${key}" data-civic-filter-chip>
         <span class="civic-filter-chip-button__text">${label}</span>
         <span class="civic-filter-chip-button__selected-icon"></span>
       </button>

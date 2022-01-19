@@ -78,6 +78,7 @@ function _civic_render_listing_paragraph(Paragraph $paragraph) {
   $items_per_page = (int) $paragraph->field_c_p_listing_limit->value;
   $show_pager = !empty($paragraph->field_c_p_show_pager->value);
   $show_count = empty($paragraph->field_c_p_hide_count->value);
+  $show_filters = (int) $paragraph->field_c_p_show_filters->value;
 
   $view = Views::getView($view_name);
 
@@ -153,10 +154,18 @@ function _civic_render_listing_paragraph(Paragraph $paragraph) {
     }
 
     $view->initHandlers();
-    $view = $view->buildRenderable();
+    // Show exposed form if available for this block display.
+    if ($show_filters) {
+      /** @var \Drupal\views\Plugin\views\exposed_form\ExposedFormPluginInterface $exposed_form */
+      $exposed_form = $view->display_handler->getPlugin('exposed_form');
+      $markup['exposed_form'] = $exposed_form->renderExposedForm(TRUE);
+      $markup['exposed_form']['#action'] = Url::fromRoute('<current>')->toString();
+      $view->display_handler->displaysExposed();
+    }
+    $markup['listing'] = $view->render();
   }
 
-  return $view;
+  return $markup;
 }
 
 /**
