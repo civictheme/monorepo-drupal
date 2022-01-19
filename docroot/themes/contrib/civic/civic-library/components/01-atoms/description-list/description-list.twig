@@ -18,7 +18,7 @@
 {% if items %}
   <dl class="civic-description-list {{ modifier_class }}">
     {% for item in items %}
-      <div class="civic-description-list__item {% if item.modifier_class %}{{ item.modifier_class}}{% endif %}">
+      <div class="civic-description-list__item {% if item.modifier_class %}{{ item.modifier_class }}{% endif %}">
         <dt class="civic-description-list__item__term">{{ item.term }}</dt>
         <dd class="civic-description-list__item__description">{{ item.description }}</dd>
       </div>

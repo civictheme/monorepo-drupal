@@ -138,6 +138,7 @@
         &.civic-theme-#{$theme} {
           background-color: map.get($values, 'background-color');
           color: map.get($values, 'color');
+
           #{$root}__dismiss-button,
           #{$root}__icon {
             .civic-icon {
