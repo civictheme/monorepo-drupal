@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.paragraph.civic_next_step.field_c_p_icon
     - field.field.paragraph.civic_next_step.field_c_p_image
+    - field.field.paragraph.civic_next_step.field_c_p_space
     - field.field.paragraph.civic_next_step.field_c_p_summary
     - field.field.paragraph.civic_next_step.field_c_p_theme
     - field.field.paragraph.civic_next_step.field_c_p_title
@@ -28,6 +29,12 @@ content:
       media_types: {  }
     third_party_settings: {  }
     type: media_library_widget
+    region: content
+  field_c_p_space:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_c_p_summary:
     weight: 1

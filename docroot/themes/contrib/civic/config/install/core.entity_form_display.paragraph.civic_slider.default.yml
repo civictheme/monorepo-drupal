@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.paragraph.civic_slider.field_c_p_link
     - field.field.paragraph.civic_slider.field_c_p_slides
+    - field.field.paragraph.civic_slider.field_c_p_space
     - field.field.paragraph.civic_slider.field_c_p_theme
     - field.field.paragraph.civic_slider.field_c_p_title
     - paragraphs.paragraphs_type.civic_slider
@@ -34,6 +35,12 @@ content:
       form_display_mode: default
       default_paragraph_type: ''
     third_party_settings: {  }
+    region: content
+  field_c_p_space:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_c_p_theme:
     weight: 3

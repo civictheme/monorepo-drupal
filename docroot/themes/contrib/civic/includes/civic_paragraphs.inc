@@ -73,6 +73,7 @@ function _civic_preprocess_paragraph(&$variables) {
   _civic_preprocess_paragraph_theme($variables);
   _civic_preprocess_paragraph_title($variables);
   _civic_preprocess_paragraph_summary($variables);
+  _civic_preprocess_paragraph_space($variables);
 
   _civic_preprocess_paragraph_card($variables);
 
@@ -108,6 +109,18 @@ function _civic_preprocess_paragraph_title(&$variables) {
   $paragraph = $variables['paragraph'];
   if ($paragraph->hasField('field_c_p_title') && !$paragraph->get('field_c_p_title')->isEmpty()) {
     $variables['title'] = $paragraph->get('field_c_p_title')->getString();
+  }
+}
+
+/**
+ * Preprocess "with space" for Civic paragraphs.
+ */
+function _civic_preprocess_paragraph_space(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  if ($paragraph->hasField('field_c_p_space') && !$paragraph->get('field_c_p_space')->isEmpty()) {
+    $component_name = $type = $paragraph->getType();
+    $variables['modifier_class'] = $component_name . '--with-space-'. $paragraph->get('field_c_p_space')->getString();
   }
 }
 
