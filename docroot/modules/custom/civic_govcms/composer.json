@@ -1,0 +1,9 @@
+{
+    "name": "salsadigital/civic_govcms",
+    "description": "GovCMS adjustments for Civic theme.",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.4",
+        "govcms/govcms": "^2"
+    }
+}
