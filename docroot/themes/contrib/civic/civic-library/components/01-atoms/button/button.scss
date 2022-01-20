@@ -291,11 +291,6 @@
             @include _civic-button-print-rules($type-kind-values);
           }
         }
-        @else if $type-kind == 'visited' {
-          &:visited {
-            @include _civic-button-print-rules($type-kind-values);
-          }
-        }
         @else if $type-kind == 'active' {
           &:active {
             @include _civic-button-print-rules($type-kind-values);
