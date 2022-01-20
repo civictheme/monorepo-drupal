@@ -173,7 +173,10 @@
   }
 
   &.civic-theme-light {
-    background-color: $civic-basic-content-light-background-color;
+    &.civic-basic-content--with-background {
+      background-color: $civic-basic-content-light-background-color;
+    }
+
     color: $civic-basic-content-light-base-color;
 
     h1 {
@@ -234,7 +237,10 @@
   }
 
   &.civic-theme-dark {
-    background-color: $civic-basic-content-dark-background-color;
+    &.civic-basic-content--with-background {
+      background-color: $civic-basic-content-dark-background-color;
+    }
+
     color: $civic-basic-content-dark-base-color;
 
     h1 {
