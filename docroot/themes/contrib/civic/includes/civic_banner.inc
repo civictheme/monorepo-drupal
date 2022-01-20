@@ -94,9 +94,6 @@ function _civic_preprocess_civic_banner(&$variables) {
  */
 function _civic_preprocess_civic_banner_title(&$variables) {
   // Banner title.
-  $block_manager = \Drupal::service('plugin.manager.block');
-  $plugin_block = $block_manager->createInstance('page_title_block');
-
   $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
   $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
