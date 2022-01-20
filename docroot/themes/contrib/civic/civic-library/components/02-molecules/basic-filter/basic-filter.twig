@@ -13,7 +13,7 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
-<div class="civic-basic-filter {{ theme_class }}">
+<div class="civic-basic-filter {{ theme_class }}" data-component-name="civic-basic-filter">
   <div class="civic-basic-filter__list">
     {% block filters %}
       {% for item in items %}

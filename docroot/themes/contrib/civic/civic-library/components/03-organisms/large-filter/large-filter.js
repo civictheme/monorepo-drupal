@@ -117,7 +117,7 @@ CivicLargeFilter.prototype.tagElementChangeEvent = function (e) {
 };
 
 /**
- * Clear
+ * Clear state from all selected filters.
  */
 CivicLargeFilter.prototype.clearElementClickEvent = function () {
   Object.keys(this.state).forEach((key) => {
@@ -231,7 +231,7 @@ CivicLargeFilter.prototype.redrawClearButton = function () {
  * Custom event allowing other JS libraries to operate on filter events.
  */
 CivicLargeFilter.prototype.dispatchRedrawEvent = function () {
-  const event = new CustomEvent('civic-large-filter-change');
+  const event = new CustomEvent('civic.largeFilter.change');
   this.el.dispatchEvent(event);
 };
 

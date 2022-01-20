@@ -6,6 +6,7 @@
  * - theme: [string] card theme: light, dark.
  * - size: [string] Card type: large, small.
  * - image: [object] Consist details of the card image like src, width, height, alt text.
+ * - image_as_icon: boolean
  * - image_over: [string] Component slot for image_over of Card.
  * - icon: [string] Icon name.
  * - content_top: [string] Component slot for top  of Card.
@@ -19,14 +20,14 @@
  * - modifier_class: [string] Classes to modify the default component styling.
  */
 #}
-
+{% set iamge_as_icon = image_as_icon is empty ? false : image_as_icon %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set size = size|default('large') %}
 {% set size_class = size == 'large'?'civic-navigation-card--large' : 'civic-navigation-card--small' %}
 {% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
 
 <div class="civic-navigation-card {{ modifier_class }}">
-  {% if image.src is not empty %}
+  {% if image.src is not empty and image_as_icon == false %}
     <div class="civic-navigation-card__image-wrapper">
       <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
       {% if image_over %}

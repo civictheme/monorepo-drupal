@@ -40,7 +40,7 @@ function civic_preprocess_paragraph__civic_listing(&$variables) {
   $variables['limit'] = $paragraph->field_c_p_listing_limit->value;
   $variables['uniqId'] = Html::getUniqueId('listing-' . $paragraph->id());
 
-  $variables['listing'] = _civic_render_listing_paragraph($paragraph);
+  $variables['listing'] = _civic_listing_element($paragraph);
 
   _civic_render_listing_paragraph_add_read_more($paragraph, $variables);
 }
@@ -52,14 +52,14 @@ function civic_preprocess_paragraph__civic_listing(&$variables) {
  * this way on purpose to ease readability and debugging.
  *
  * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   The paragraph to render.
+ *   The paragraph containing view conditions.
  *
- * @return null|string
- *   The rendered paragraph markup or NULL.
+ * @return array
+ *   The render array for view and exposed form.
  *
  * @SuppressWarnings(PHPMD)
  */
-function _civic_render_listing_paragraph(Paragraph $paragraph) {
+function _civic_listing_element(Paragraph $paragraph) {
   $view_name = 'civic_listing';
 
   // Call modules/theme that implement the hook, and let them change the view.
@@ -154,18 +154,23 @@ function _civic_render_listing_paragraph(Paragraph $paragraph) {
     }
 
     $view->initHandlers();
+    $element = [];
     // Show exposed form if available for this block display.
     if ($show_filters) {
       /** @var \Drupal\views\Plugin\views\exposed_form\ExposedFormPluginInterface $exposed_form */
       $exposed_form = $view->display_handler->getPlugin('exposed_form');
-      $markup['exposed_form'] = $exposed_form->renderExposedForm(TRUE);
-      $markup['exposed_form']['#action'] = Url::fromRoute('<current>')->toString();
+      $element['exposed_form'] = $exposed_form->renderExposedForm(TRUE);
+      // Fixes drupal views bug where if there is a page display within a view
+      // even if you are wanting to render the block view form the action path
+      // of the exposed form points to the page display view.
+      // @see https://www.drupal.org/project/drupal/issues/2844823
+      $element['exposed_form']['#action'] = Url::fromRoute('<current>')->toString();
       $view->display_handler->displaysExposed();
     }
-    $markup['listing'] = $view->render();
+    $element['view'] = $view->render();
   }
 
-  return $markup;
+  return $element;
 }
 
 /**

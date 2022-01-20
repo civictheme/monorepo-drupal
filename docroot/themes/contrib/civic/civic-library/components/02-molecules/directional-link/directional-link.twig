@@ -29,18 +29,18 @@
 {% else %}
   <a class="civic-directional-link {{ modifier_class }}" title="{{ title }}" role="link" href="{{ url }}">
 {% endif %}
-    {% if context %}
-    <span class="visually-hidden">{{ context }}</span>
-    <span aria-hidden="true">{{ text }}</span>
-    {% else %}
-      {{ text }}
-    {% endif %}
-    {% if icons[direction] is defined %}
-      {% include '@atoms/icon/icon.twig' with {
-        symbol: icons[direction],
-        modifier_class: 'civic-icon--%s'|format(direction),
-      } %}
-    {% endif %}
+  {% if context %}
+  <span class="visually-hidden">{{ context }}</span>
+  <span aria-hidden="true">{{ text }}</span>
+  {% else %}
+    {{ text }}
+  {% endif %}
+  {% if icons[direction] is defined %}
+    {% include '@atoms/icon/icon.twig' with {
+      symbol: icons[direction],
+      modifier_class: 'civic-icon--%s'|format(direction),
+    } %}
+  {% endif %}
 {% if disabled %}
   </span>
 {% else %}

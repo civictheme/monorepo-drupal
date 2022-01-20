@@ -24,12 +24,5 @@
     theme: 'light'
   }%}
 {% else %}
-  {% embed '@molecules/basic-filter/basic-filter.twig' with {
-    theme: 'light',
-    items: form
-  }%}
-    {% block filters %}
-      {{ form }}
-    {% endblock %}
-  {% endembed %}
+  {{ form }}
 {% endif %}

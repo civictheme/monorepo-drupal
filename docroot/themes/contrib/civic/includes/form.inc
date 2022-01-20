@@ -12,36 +12,33 @@ use Drupal\Core\Template\Attribute;
 use Drupal\Core\Template\AttributeArray;
 
 /**
- * Implements hook_form_alter().
+ * Implements hook_form_BASE_FORM_ID_alter().
  */
-function civic_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  // Adjusting exposed view forms to hide submit button.
-  if ($form['#form_id'] === 'views_exposed_form') {
-    // Determines whether we render a large filter or a basic filter.
-    // If the view exposed form has more than one filter we render a large
-    // filter.
-    $is_civic_large_filter = _civic_get_number_of_exposed_form_elements($form) > 1;
-    $form['#attributes']['data-civic-filter-type'] = $is_civic_large_filter ? 'large' : 'basic';
-    $form['#attributes']['data-civic-filter'] = '';
-    $form['#large_filter'] = $is_civic_large_filter;
-    $ajax_filter = $form_state->get('view')->ajaxEnabled();
-    $form['#attributes']['data-civic-filter-ajax'] = $ajax_filter ? 'true' : 'false';
-    // Ajax exposed view forms hide the submit to have auto-updates.
-    if ($ajax_filter) {
-      $form['actions']['submit']['#attributes']['class'][] = 'hide-xs';
+function civic_form_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
+  // Determine whether we render a large filter or a basic filter.
+  // If the view exposed form has more than one filter we render a large
+  // filter.
+  $is_civic_large_filter = _civic_get_number_of_exposed_form_elements($form) > 1;
+  $form['#attributes']['data-civic-filter-type'] = $is_civic_large_filter ? 'large' : 'basic';
+  $form['#attributes']['data-civic-filter'] = '';
+  $form['#large_filter'] = $is_civic_large_filter;
+  $ajax_filter = $form_state->get('view')->ajaxEnabled();
+  $form['#attributes']['data-civic-filter-ajax'] = $ajax_filter ? 'true' : 'false';
+  // Ajax exposed view forms hides submit button to have auto-load.
+  if ($ajax_filter) {
+    $form['actions']['submit']['#attributes']['class'][] = 'hide-xs';
+  }
+  else {
+    $form['actions']['submit']['#attributes']['class'] = [
+      'civic-button--secondary',
+      'civic-button--small',
+    ];
+  }
+  foreach ($form as $key => &$element) {
+    if (strpos($key, '#') === 0 || empty($element['#type'])) {
+      continue;
     }
-    else {
-      $form['actions']['submit']['#attributes']['class'] = [
-        'civic-button--secondary',
-        'civic-button--small',
-      ];
-    }
-    foreach ($form as $key => &$element) {
-      if (strpos($key, '#') === 0 || empty($element['#type'])) {
-        continue;
-      }
-      _civic_form_alter__convert_exposed_form_elements($element, $form, $is_civic_large_filter);
-    }
+    _civic_form_alter__convert_exposed_form_elements($element, $form, $is_civic_large_filter);
   }
 }
 
@@ -62,7 +59,7 @@ function _civic_get_number_of_exposed_form_elements($form) {
 }
 
 /**
- * Convert form elements to correct civic filter format.
+ * Alter form elements to work within civic large and basic filters.
  */
 function _civic_form_alter__convert_exposed_form_elements(&$element, $form, $is_large_filter) {
   // Convert select to either radio buttons or checkboxes.
@@ -114,7 +111,6 @@ function civic_preprocess_select(&$variables) {
  * Implements template_preprocess_form_element().
  */
 function civic_preprocess_form_element(&$variables) {
-  $element = $variables['element'];
   // Handle any malformed attribute class properties.
   $variables['attributes']['class'] = $variables['attributes']['class'] ?? [];
   $variables['attributes']['class'] = is_string($variables['attributes']['class']) ? [$variables['attributes']['class']] : $variables['attributes']['class'];
@@ -153,6 +149,15 @@ function civic_preprocess_form_element(&$variables) {
   if (isset($variables['description']['attributes']['class']) && $variables['description']['attributes']['class'] instanceof AttributeArray) {
     $variables['description_modifier_class'] = implode(' ', $variables['description']['attributes']['class']->value());
   }
+
+  _civic_preprocess_civic_filter_form_element_alter($variables);
+}
+
+/**
+ * Preprocess form elements used in civic large and basic filters.
+ */
+function _civic_preprocess_civic_filter_form_element_alter(&$variables) {
+  $element = $variables['element'];
   if (isset($element['#civic-large-filter'])) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
@@ -245,49 +250,6 @@ function civic_preprocess_fieldset(&$variables) {
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter().
- */
-function civic_theme_suggestions_checkboxes_alter(array &$suggestions, array $variables) {
-  _civic_theme_suggestions_civic_filter($suggestions, $variables);
-}
-
-/**
- * Implements hook_theme_suggestions_HOOK_alter().
- */
-function civic_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $type = NULL) {
-  _civic_theme_suggestions_civic_filter($suggestions, $variables, 'form_element');
-  // For civic basic filter both radios / checkboxes and checkbox / radio
-  // require custom templates.
-  if (in_array($variables['element']['#type'], ['radio', 'checkbox'])
-    && isset($variables['element']['#attributes']['#civic-basic-filter'])) {
-    $suggestions[] = 'form_element__civic_filter_chip';
-  }
-}
-
-/**
- * Implements hook_theme_suggestions_HOOK_alter().
- */
-function civic_theme_suggestions_radios_alter(array &$suggestions, array $variables) {
-  _civic_theme_suggestions_civic_filter($suggestions, $variables);
-}
-
-/**
- * Sets theme suggestions of civic filter elements.
- */
-function _civic_theme_suggestions_civic_filter(array &$suggestions, array $variables, $type = NULL) {
-  if (empty($variables['element']['#type'])) {
-    return;
-  }
-  $type = $type ?? $variables['element']['#type'];
-  if (!empty($variables['element']['#civic-large-filter'])) {
-    $suggestions[] = $type . '__civic_dropdown_filter';
-  }
-  elseif (!empty($variables['element']['#civic-basic-filter'])) {
-    $suggestions[] = $type . '__civic_basic_filter';
-  }
-}
-
-/**
  * Implements template_preprocess_checkboxes().
  */
 function civic_preprocess_checkboxes(&$variables) {
@@ -323,7 +285,7 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     $variables['errors'] = $element['#errors'] ?? NULL;
     $variables['attributes'] += $element['#attributes'];
     $attributes = new Attribute($variables['attributes']);
-    $attributes = implode(' ', $attributes->getClass()->value());
+    $attributes = $attributes->getClass() !== NULL ? implode(' ', $attributes->getClass()->value()) : '';
     $variables['modifier_class'] = !empty($element['#attributes']['class']) ? implode(' ', $variables['element']['#attributes']['class']) : '';
     $variables['modifier_class'] = sprintf('%s %s %s %s', $variables['modifier_class'], $attributes, 'js-form-type-' . $element['#type'], $variables['required'] ? 'required' : '');
   }
