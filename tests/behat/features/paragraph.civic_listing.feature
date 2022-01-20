@@ -1,4 +1,4 @@
-@civic @paragraph @civic_listing
+@civic @paragraph @civic_listing @wip
 Feature: Tests the Listing paragraph
 
   Ensure that Listing paragraph exists and has the expected fields.

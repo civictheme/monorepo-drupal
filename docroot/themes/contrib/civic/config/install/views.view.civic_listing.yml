@@ -450,6 +450,9 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
+      use_ajax: false
+      defaults:
+        use_ajax: false
     cache_metadata:
       max-age: -1
       contexts:
