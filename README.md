@@ -53,7 +53,8 @@ Copy `default.docker-compose.override.yml` to `docker-compose.override.yml`.
 3. Enables Civic theme and imports its configuration.
 4. Creates Civic Demo sub-theme using provided scaffolding script and sets it as a default theme.
 5. Provisions content using Default Content module.
-6. Enables `civic_companion` module to remove out-of-the-box GovCMS content types.
+6. Enables `civic_govcms` module to remove out-of-the-box GovCMS content types.
+7. Enables `civic_default_content` module to add default content to installation.
 
 See sections below on using development tools.
 

@@ -246,6 +246,24 @@ jobs:
             DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/themes/contrib/civic/civic-library" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
+      - run:
+          name: Deploy release to Civic GovCMS repository.
+          command: |
+            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civic_govcms.git \
+            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/modules/custom/civic_govcms" \
+            ./scripts/deploy-code-release.sh
+          no_output_timeout: 30m
+      - run:
+          name: Deploy release to Civic Default Content repository.
+          command: |
+            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civic_default_content.git \
+            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/modules/custom/civic_default_content" \
+            ./scripts/deploy-code-release.sh
+          no_output_timeout: 30m
       - store_artifacts:
           path: *test_artifact_dir
 
