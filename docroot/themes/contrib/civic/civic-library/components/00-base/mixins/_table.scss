@@ -122,7 +122,8 @@
       td {
         color: $civic-table-light-row-odd-color;
 
-        .civic-link {
+        .civic-link,
+        a {
           color: $civic-table-light-row-odd-link-color;
 
           &:hover {
@@ -138,7 +139,8 @@
       td {
         color: $civic-table-light-row-even-color;
 
-        .civic-link {
+        .civic-link,
+        a {
           color: $civic-table-light-row-even-link-color;
 
           &:hover {
@@ -204,7 +206,8 @@
       td {
         color: $civic-table-dark-row-odd-color;
 
-        .civic-link {
+        .civic-link,
+        a {
           color: $civic-table-dark-row-odd-link-color;
 
           &:hover {
@@ -220,7 +223,8 @@
       td {
         color: $civic-table-dark-row-even-color;
 
-        .civic-link {
+        .civic-link,
+        a {
           color: $civic-table-dark-row-even-link-color;
 
           &:hover {

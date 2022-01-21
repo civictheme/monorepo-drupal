@@ -1,0 +1,7 @@
+name: 'Civic Default Content'
+type: module
+description: 'Default content for Civic theme.'
+core_version_requirement: ^9
+package: Civic
+dependencies:
+  - default_content:default_content

@@ -93,7 +93,7 @@ installation of `civic_demo`. We do not capture configuration for `civic_demo`.
 
 ## Demo content export
 
-    drush dcer --folder=modules/custom/cd_core/content <entity_type> <entity_id>
+    drush dcer --folder=modules/custom/civic_default_content/content <entity_type> <entity_id>
 
     # Example
-    drush dcer --folder=modules/custom/cd_core/content node 50
+    drush dcer --folder=modules/custom/civic_default_content/content node 50
