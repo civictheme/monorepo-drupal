@@ -21,7 +21,7 @@ function civic_preprocess_paragraph__civic_social_icon(&$variables) {
     _civic_preprocess_paragraph_card__icon($variables);
   }
   if (isset($variables['image'])) {
-    $variables['content'] = [
+    $content = [
       '#url' => $variables['image']['src'],
       '#theme' => 'image',
       '#uri' => $variables['image']['src'],
@@ -29,5 +29,9 @@ function civic_preprocess_paragraph__civic_social_icon(&$variables) {
       '#title' => $variables['image']['title'],
       '#width' => '48',
     ];
+    // Adding content for both desktop and mobile viewports.
+    $variables['content_large'] = $content;
+    $content['#width'] = 40;
+    $variables['content_small'] = $content;
   }
 }
