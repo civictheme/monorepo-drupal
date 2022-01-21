@@ -27,7 +27,7 @@ function civic_preprocess_paragraph__civic_social_icon(&$variables) {
       '#uri' => $variables['image']['src'],
       '#alt' => $variables['image']['alt'],
       '#title' => $variables['image']['title'],
-      '#width' => '24',
+      '#width' => '48',
     ];
   }
 }
