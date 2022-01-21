@@ -40,6 +40,12 @@ aliases:
   # SSH key fingerprint to deploy code to civic-library.
   - &deploy_ssh_fingerprint2 "aa:01:7b:73:2c:a8:cb:e6:d2:1a:12:c0:e1:53:39:f2"
 
+  # SSH key fingerprint to deploy code to civic_govcms.
+  - &deploy_ssh_fingerprint3 "ee:42:65:bf:d7:2d:10:f4:53:17:ab:ed:d7:6a:99:84"
+
+  # SSH key fingerprint to deploy code to civic_default_content.
+  - &deploy_ssh_fingerprint4 "ef:1c:ad:2a:dd:ec:0c:cd:1a:63:4c:bb:8a:d7:c1:b7"
+
   #-----------------------------------------------------------------------------
   # Optional variables.
   #-----------------------------------------------------------------------------
@@ -81,6 +87,8 @@ aliases:
     environment:
       DEPLOY_SSH_FINGERPRINT: *deploy_ssh_fingerprint
       DEPLOY_SSH_FINGERPRINT2: *deploy_ssh_fingerprint2
+      DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
+      DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
     docker:
       - image: drevops/ci-builder
         auth:
@@ -227,6 +235,8 @@ jobs:
           fingerprints:
             - *deploy_ssh_fingerprint
             - *deploy_ssh_fingerprint2
+            - *deploy_ssh_fingerprint3
+            - *deploy_ssh_fingerprint4
       - checkout
       - *step_process_codebase
       - run:
@@ -249,7 +259,7 @@ jobs:
       - run:
           name: Deploy release to Civic GovCMS repository.
           command: |
-            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
+            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT3 \
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civic_govcms.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/modules/custom/civic_govcms" \
@@ -258,7 +268,7 @@ jobs:
       - run:
           name: Deploy release to Civic Default Content repository.
           command: |
-            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
+            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT4 \
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civic_default_content.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/modules/custom/civic_default_content" \
