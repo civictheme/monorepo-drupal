@@ -1,6 +1,7 @@
 {
     "name": "salsadigital/civic_default_content",
     "description": "Default content for Civic theme.",
+    "type": "drupal-module",
     "license": "proprietary",
     "require": {
         "php": ">=7.4",
