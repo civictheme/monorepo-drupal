@@ -3,6 +3,9 @@ status: true
 dependencies:
   config:
     - core.entity_form_mode.media.media_library
+    - field.field.media.civic_video.field_c_m_share_link
+    - field.field.media.civic_video.field_c_m_transcript
+    - field.field.media.civic_video.field_c_m_transcript_link
     - field.field.media.civic_video.field_c_m_video_file
     - media.type.civic_video
 id: media.civic_video.media_library
@@ -20,6 +23,9 @@ content:
     region: content
 hidden:
   created: true
+  field_c_m_share_link: true
+  field_c_m_transcript: true
+  field_c_m_transcript_link: true
   field_c_m_video_file: true
   path: true
   status: true

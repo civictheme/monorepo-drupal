@@ -66,4 +66,62 @@ function civic_preprocess_media__civic_remote_video(&$variables) {
   catch (Exception $e) {
     // Handling any oEmbed exceptions in rendering remote video.
   }
+
+  // Media landing page to show transcript.
+  if ($variables['view_mode'] == 'full') {
+    $content = '';
+    if (!empty($variables['content']['field_c_m_transcript'])) {
+      $content = \Drupal::service('renderer')->render($variables['content']['field_c_m_transcript']);
+    }
+    $variables['content'] = $content;
+  }
+}
+
+/**
+ * Implements hook_preprocess__HOOK().
+ */
+function civic_preprocess_media__civic_video(&$variables) {
+  if (empty($variables['media'])) {
+    return;
+  }
+  $media = $variables['media'];
+  if ($media->hasField('field_c_m_share_link') && !$media->get('field_c_m_share_link')->isEmpty()) {
+    $variables['share_link'] = [
+      'text' => $media->get('field_c_m_share_link')->first()->get('title')->getValue(),
+      'is_external' => $media->get('field_c_m_share_link')->first()->isExternal(),
+      'new_window' => $media->get('field_c_m_share_link')->first()->isExternal(),
+      'url' => $media->get('field_c_m_share_link')->first()->getUrl()->toString(),
+    ];
+  }
+  if ($media->hasField('field_c_m_transcript_link') && !$media->get('field_c_m_transcript_link')->isEmpty()) {
+    $variables['transcript_link'] = [
+      'text' => $media->get('field_c_m_transcript_link')
+        ->first()
+        ->get('title')
+        ->getValue(),
+      'is_external' => $media->get('field_c_m_transcript_link')
+        ->first()
+        ->isExternal(),
+      'new_window' => $media->get('field_c_m_transcript_link')
+        ->first()
+        ->isExternal(),
+      'url' => $media->get('field_c_m_transcript_link')
+        ->first()
+        ->getUrl()
+        ->toString(),
+    ];
+  }
+
+  if (isset($variables['content']['field_c_m_video_file'])) {
+    $variables['oembed'] = $variables['content']['field_c_m_video_file'];
+  }
+
+  // Media landing page to show transcript.
+  if ($variables['view_mode'] == 'full') {
+    $content = '';
+    if (!empty($variables['content']['field_c_m_transcript'])) {
+      $content = \Drupal::service('renderer')->render($variables['content']['field_c_m_transcript']);
+    }
+    $variables['content'] = $content;
+  }
 }
