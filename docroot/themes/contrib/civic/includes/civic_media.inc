@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Template\Attribute;
+
 /**
  * @file
  * Media theme alterations.
@@ -30,32 +32,8 @@ function civic_preprocess_media__civic_remote_video(&$variables) {
   $variables['width'] = 854;
   $variables['height'] = 400;
   $variables['title'] = $media->get('field_c_m_title')->first() !== NULL ? $media->get('field_c_m_title')->first()->getValue()['value'] : '';
-  if ($media->hasField('field_c_m_share_link') && !$media->get('field_c_m_share_link')->isEmpty()) {
-    $variables['share_link'] = [
-      'text' => $media->get('field_c_m_share_link')->first()->get('title')->getValue(),
-      'is_external' => $media->get('field_c_m_share_link')->first()->isExternal(),
-      'new_window' => $media->get('field_c_m_share_link')->first()->isExternal(),
-      'url' => $media->get('field_c_m_share_link')->first()->getUrl()->toString(),
-    ];
-  }
-  if ($media->hasField('field_c_m_transcript_link') && !$media->get('field_c_m_transcript_link')->isEmpty()) {
-    $variables['transcript_link'] = [
-      'text' => $media->get('field_c_m_transcript_link')
-        ->first()
-        ->get('title')
-        ->getValue(),
-      'is_external' => $media->get('field_c_m_transcript_link')
-        ->first()
-        ->isExternal(),
-      'new_window' => $media->get('field_c_m_transcript_link')
-        ->first()
-        ->isExternal(),
-      'url' => $media->get('field_c_m_transcript_link')
-        ->first()
-        ->getUrl()
-        ->toString(),
-    ];
-  }
+  _civic_preprocess_media_civic_video($variables);
+
   $url_resolver = \Drupal::service('media.oembed.url_resolver');
   $resource_fetcher = \Drupal::service('media.oembed.resource_fetcher');
   try {
@@ -66,15 +44,6 @@ function civic_preprocess_media__civic_remote_video(&$variables) {
   catch (Exception $e) {
     // Handling any oEmbed exceptions in rendering remote video.
   }
-
-  // Media landing page to show transcript.
-  if ($variables['view_mode'] == 'full') {
-    $content = '';
-    if (!empty($variables['content']['field_c_m_transcript'])) {
-      $content = \Drupal::service('renderer')->render($variables['content']['field_c_m_transcript']);
-    }
-    $variables['content'] = $content;
-  }
 }
 
 /**
@@ -84,16 +53,44 @@ function civic_preprocess_media__civic_video(&$variables) {
   if (empty($variables['media'])) {
     return;
   }
+  _civic_preprocess_media_civic_video($variables);
+
+  if (isset($variables['content']['field_c_m_video_file'])) {
+    $variables['oembed'] = $variables['content']['field_c_m_video_file'];
+  }
+}
+
+/**
+ * Implements hook_preprocess__HOOK().
+ */
+function _civic_preprocess_media_civic_video(&$variables) {
+  if (empty($variables['media'])) {
+    return;
+  }
+
   $media = $variables['media'];
   if ($media->hasField('field_c_m_share_link') && !$media->get('field_c_m_share_link')->isEmpty()) {
+    $share_attributes = new Attribute();
+    $share_attributes->setAttribute('aria-label', 'Share this video ' . $media->label());
     $variables['share_link'] = [
       'text' => $media->get('field_c_m_share_link')->first()->get('title')->getValue(),
       'is_external' => $media->get('field_c_m_share_link')->first()->isExternal(),
       'new_window' => $media->get('field_c_m_share_link')->first()->isExternal(),
       'url' => $media->get('field_c_m_share_link')->first()->getUrl()->toString(),
+      'attributes' => $share_attributes,
     ];
   }
-  if ($media->hasField('field_c_m_transcript_link') && !$media->get('field_c_m_transcript_link')->isEmpty()) {
+
+  $transcript_attributes = new Attribute();
+  $transcript_attributes->setAttribute('aria-label', 'View transcript ' . $media->label());
+  if ($media->hasField('field_c_m_transcript') && !$media->get('field_c_m_transcript')->isEmpty()) {
+    $variables['transcript_link'] = [
+      'text' => "View transcript",
+      'url' => $media->toUrl()->toString(),
+      'attributes' => $transcript_attributes,
+    ];
+  }
+  else if ($media->hasField('field_c_m_transcript_link') && !$media->get('field_c_m_transcript_link')->isEmpty()) {
     $variables['transcript_link'] = [
       'text' => $media->get('field_c_m_transcript_link')
         ->first()
@@ -109,11 +106,8 @@ function civic_preprocess_media__civic_video(&$variables) {
         ->first()
         ->getUrl()
         ->toString(),
+      'attributes' => $transcript_attributes,
     ];
-  }
-
-  if (isset($variables['content']['field_c_m_video_file'])) {
-    $variables['oembed'] = $variables['content']['field_c_m_video_file'];
   }
 
   // Media landing page to show transcript.
