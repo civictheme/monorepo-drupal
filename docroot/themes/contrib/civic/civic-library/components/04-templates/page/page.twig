@@ -1,6 +1,7 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 <div class="layout-container {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
+  <a id="top"></a>
 
   {% block header %}
     {% include '@organisms/header/header.twig' with {
@@ -55,6 +56,12 @@
       content_middle4: footer_middle_4,
       content_bottom1: footer_bottom_1,
       content_bottom2: footer_bottom_2,
+    } only %}
+  {% endblock %}
+
+  {% block back_to_top %}
+    {% include '@molecules/back-to-top/back-to-top.twig' with {
+      theme: theme,
     } only %}
   {% endblock %}
 </div>
