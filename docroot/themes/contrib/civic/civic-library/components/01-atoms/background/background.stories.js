@@ -21,5 +21,5 @@ export const Background = (knobTab) => {
 
   const bg = select('Background', Object.keys(BACKGROUNDS[theme]), Object.keys(BACKGROUNDS[theme])[0], generalKnobTab);
 
-  return `<div class="story-backgrounds-wrapper story-wrapper-size--large"><img src="${BACKGROUNDS[theme][bg]}" style="max-width: 100%"/></div>`;
+  return `<div class="story-backgrounds-wrapper story-wrapper-size--large"><img src="${BACKGROUNDS[theme][bg]}" style="max-width: 100%" alt=""/></div>`;
 };
