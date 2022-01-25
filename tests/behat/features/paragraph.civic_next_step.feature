@@ -18,6 +18,7 @@ Feature: Test the Next step paragraph
     And I should see the text "field_c_p_summary" in the "Summary" row
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_title" in the "Title" row
+    And I should see the text "field_c_p_space" in the "With space" row
 
   @api
   Scenario: Node type Page field_c_n_components fields settings.
@@ -49,6 +50,7 @@ Feature: Test the Next step paragraph
     And I wait for AJAX to finish
     And I see field "field_c_n_components[0][subform][field_c_p_theme]"
     And the option "Light" from select "Theme" is selected
+    And I see field "field_c_n_components[0][subform][field_c_p_space]"
     And I see field "Title"
     And I see field "Summary"
     And I should see an "input[name='field_c_p_image-media-library-open-button-field_c_n_components-0-subform']" element

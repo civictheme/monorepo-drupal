@@ -12,6 +12,7 @@ dependencies:
     - field.field.paragraph.civic_listing.field_c_p_read_more
     - field.field.paragraph.civic_listing.field_c_p_show_filters
     - field.field.paragraph.civic_listing.field_c_p_show_pager
+    - field.field.paragraph.civic_listing.field_c_p_space
     - field.field.paragraph.civic_listing.field_c_p_title
     - field.field.paragraph.civic_listing.field_c_p_topics
     - field.field.paragraph.civic_listing.field_c_p_view_as
@@ -161,6 +162,12 @@ content:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
+  field_c_p_space:
+    weight: 19
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_c_p_title:
     weight: 0
