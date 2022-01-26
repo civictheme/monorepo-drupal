@@ -2,34 +2,36 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.media_library
+    - core.entity_view_mode.media.full
     - field.field.media.civic_video.field_c_m_share_link
     - field.field.media.civic_video.field_c_m_transcript
     - field.field.media.civic_video.field_c_m_transcript_link
     - field.field.media.civic_video.field_c_m_video_file
-    - image.style.civic_medium
     - media.type.civic_video
   module:
-    - image
-id: media.civic_video.media_library
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: media.civic_video.full
 targetEntityType: media
 bundle: civic_video
-mode: media_library
+mode: full
 content:
-  thumbnail:
-    type: image
-    label: hidden
-    settings:
-      image_style: civic_medium
-      image_link: ''
+  field_c_m_transcript:
     weight: 0
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
+    type: text_default
     region: content
 hidden:
   created: true
   field_c_m_share_link: true
-  field_c_m_transcript: true
   field_c_m_transcript_link: true
   field_c_m_video_file: true
   name: true
+  thumbnail: true
   uid: true

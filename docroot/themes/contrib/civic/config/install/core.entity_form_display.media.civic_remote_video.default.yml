@@ -5,12 +5,14 @@ dependencies:
     - field.field.media.civic_remote_video.field_c_m_oembed_video
     - field.field.media.civic_remote_video.field_c_m_share_link
     - field.field.media.civic_remote_video.field_c_m_title
+    - field.field.media.civic_remote_video.field_c_m_transcript
     - field.field.media.civic_remote_video.field_c_m_transcript_link
     - media.type.civic_remote_video
   module:
     - link
     - media
     - path
+    - text
 id: media.civic_remote_video.default
 targetEntityType: media
 bundle: civic_remote_video
@@ -18,7 +20,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -46,8 +48,16 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_c_m_transcript_link:
+  field_c_m_transcript:
     weight: 4
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_c_m_transcript_link:
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -64,7 +74,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -72,12 +82,12 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 9
     region: content
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60

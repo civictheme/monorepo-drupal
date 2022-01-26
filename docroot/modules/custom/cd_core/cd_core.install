@@ -68,3 +68,13 @@ function cd_core_update_9001() {
     }
   }
 }
+
+/**
+ * Add Media settings configuration.
+ */
+function cd_core_update_9002() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('media.settings');
+  $config->set('standalone_url', TRUE);
+  $config->save(TRUE);
+}

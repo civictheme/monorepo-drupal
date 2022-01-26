@@ -2,12 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.civic_alert.body
     - field.field.node.civic_alert.field_c_n_alert_page_visibility
     - field.field.node.civic_alert.field_c_n_alert_type
     - field.field.node.civic_alert.field_c_n_body
     - field.field.node.civic_alert.field_c_n_date_range
     - node.type.civic_alert
   module:
+    - content_moderation
     - datetime_range
     - path
     - text
@@ -101,4 +103,5 @@ content:
       match_limit: 10
     region: content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  body: true
