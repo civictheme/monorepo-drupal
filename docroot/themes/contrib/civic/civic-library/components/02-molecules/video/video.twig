@@ -56,7 +56,8 @@
             title: transcript_link.title,
             url: transcript_link.url,
             new_window: transcript_link.new_window,
-            is_external: transcript_link.is_external
+            is_external: transcript_link.is_external,
+            attributes: transcript_link.attributes
           } only %}
         </div>
       {% endif %}
@@ -74,6 +75,7 @@
             url: share_link.url,
             new_window: share_link.new_window,
             is_external: share_link.is_external,
+            attributes: share_link.attributes
           } only %}
         </div>
       {% endif %}

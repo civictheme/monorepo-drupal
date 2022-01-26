@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civic_promo.field_c_p_link
+    - field.field.paragraph.civic_promo.field_c_p_space
     - field.field.paragraph.civic_promo.field_c_p_summary
     - field.field.paragraph.civic_promo.field_c_p_theme
     - field.field.paragraph.civic_promo.field_c_p_title
@@ -26,6 +27,13 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
+  field_c_p_space:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
   field_c_p_summary:
     weight: 2

@@ -26,6 +26,7 @@ Feature: Tests the Listing paragraph
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_topics" in the "Topics" row
     And I should see the text "field_c_p_view_as" in the "View as" row
+    And I should see the text "field_c_p_space" in the "With space" row
 
   @api
   Scenario: Civic Page field_c_n_components fields settings.
@@ -46,6 +47,7 @@ Feature: Tests the Listing paragraph
     And I wait 1 second
     And I press the "field_c_n_components_civic_listing_add_more" button
     And I wait for AJAX to finish
+    And I should see an "select[name='field_c_n_components[0][subform][field_c_p_space]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_link][0][uri]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_link][0][title]']" element
