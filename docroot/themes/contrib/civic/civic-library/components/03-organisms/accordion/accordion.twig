@@ -24,7 +24,7 @@
   <div class="civic-accordion {{ modifier_class }}">
     <div class="container">
       <div class="row">
-        <div class="civic-accordion__content-top col">
+        <div class="civic-accordion__content-top col-xs-12">
           {% if title %}
             <div class="civic-accordion__title-top">
               {{ title }}
@@ -36,7 +36,7 @@
           <ul class="civic-accordion__list" data-multiselectable="true">
             {% for fold in panels %}
               {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
-              <li class="civic-accordion__list-item ">
+              <li class="civic-accordion__list-item">
                 <div class="civic-accordion__header">
                   {% set is_open = is_expanded ? 'is-selected' : '' %}
                   <button class="civic-accordion__header__button {{ is_open }}">
