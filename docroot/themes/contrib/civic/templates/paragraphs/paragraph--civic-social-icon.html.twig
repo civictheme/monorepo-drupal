@@ -4,9 +4,4 @@
  * Civic theme implementation to display a Social icon.
  */
 #}
-<div class="hide-xs show-l">
-  {% include '@molecules/icon-link/icon-link.twig' with { content: content_large } %}
-</div>
-<div class="hide-l">
-  {% include '@molecules/icon-link/icon-link.twig' with { content: content_small } %}
-</div>
+{% include '@molecules/icon-link/icon-link.twig' %}

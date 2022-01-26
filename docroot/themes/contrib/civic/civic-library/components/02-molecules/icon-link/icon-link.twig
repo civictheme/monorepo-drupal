@@ -20,10 +20,12 @@
 {% if url or content %}
   <a class="civic-icon-link {{ modifier_class }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }} {% if text %} title="{{ text }}" {% endif %}>
     <span class="visually-hidden">{{ text }}</span>
-    {% include '@atoms/icon/icon.twig' with {
-      symbol: symbol,
-      size: size
-    }  only %}
+    {% if symbol %}
+      {% include '@atoms/icon/icon.twig' with {
+        symbol: symbol,
+        size: size
+      }  only %}
+    {% endif %}
     {% if content %}
       {{ content }}
     {% endif %}

@@ -8,16 +8,22 @@
   border-bottom: none;
   border-radius: $civic-icon-link-border-radius;
   text-decoration: none;
+  padding: civic-space();
+
+  @include civic-breakpoint('m') {
+    padding: civic-space(1.5);
+  }
 
   &#{$root}--with-border {
-    .civic-icon {
-      border: 1px solid currentColor;
-      border-radius: rem(100px);
-      padding: civic-space();
+    border: 1px solid currentColor;
+    border-radius: rem(100px);
+  }
 
-      @include civic-breakpoint('m') {
-        padding: civic-space(1.5);
-      }
+  // Generate size classes for all pre-set sizes.
+  @each $size, $values in _civic-icon-sizes-all() {
+    &--size-#{$size},
+    &--size-#{$size} img {
+      @include civic-icon-size($size);
     }
   }
 
