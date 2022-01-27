@@ -16,6 +16,7 @@ function civic_preprocess_paragraph__civic_social_icon(&$variables) {
   $link = ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
   $variables['url'] = $link['uri'] ?? NULL;
   $variables['title'] = $link['title'] ?? NULL;
+  $variables['size'] = 'large';
 
   if (!isset($variables['image'])) {
     _civic_preprocess_paragraph_card__icon($variables);
@@ -27,7 +28,6 @@ function civic_preprocess_paragraph__civic_social_icon(&$variables) {
       '#uri' => $variables['image']['src'],
       '#alt' => $variables['image']['alt'],
       '#title' => $variables['image']['title'],
-      '#width' => '24',
     ];
   }
 }

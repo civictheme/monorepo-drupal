@@ -19,16 +19,15 @@ function cd_core_install() {
     }
   }
 
-  // Reset all post_update updates for this module.
+  // Run all post-update functions when installing this module.
   $key_value = \Drupal::keyValue('post_update');
   $executed_updates = $key_value->get('existing_updates', []);
-  foreach ($executed_updates as $k => $function) {
+  foreach ($executed_updates as $function) {
     if (strpos($function, 'cd_core_post_update_') === 0) {
-      unset($executed_updates[$k]);
+      $sandbox = [];
+      call_user_func($function, $sandbox);
     }
   }
-  $executed_updates = array_values($executed_updates);
-  $key_value->set('existing_updates', $executed_updates);
 }
 
 /**
@@ -67,4 +66,14 @@ function cd_core_update_9001() {
       $generator->setBundleSettings('node', $bundle, $settings);
     }
   }
+}
+
+/**
+ * Add Media settings configuration.
+ */
+function cd_core_update_9002() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('media.settings');
+  $config->set('standalone_url', TRUE);
+  $config->save(TRUE);
 }

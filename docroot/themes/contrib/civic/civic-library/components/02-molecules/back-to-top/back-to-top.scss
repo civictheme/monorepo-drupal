@@ -1,0 +1,45 @@
+//
+// Back to top button.
+//
+
+.civic-back-to-top {
+  $root: &;
+
+  position: fixed;
+  right: civic-space(1);
+  bottom: civic-space(8);
+
+  &[data-scrollspy='true'] {
+    display: none;
+
+    &.civic-scrollspy-scrolled {
+      display: block;
+    }
+  }
+
+  &.civic-theme-light {
+    .civic-icon {
+      background-color: $civic-back-to-top-light-background-color;
+      fill: $civic-back-to-top-light-color;
+    }
+
+    .civic-icon-link--with-border {
+      .civic-icon {
+        border-color: $civic-back-to-top-light-background-color;
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    .civic-icon {
+      background-color: $civic-back-to-top-dark-background-color;
+      fill: $civic-back-to-top-dark-color;
+    }
+
+    .civic-icon-link--with-border {
+      .civic-icon {
+        border-color: $civic-back-to-top-dark-background-color;
+      }
+    }
+  }
+}

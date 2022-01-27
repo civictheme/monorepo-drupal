@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.civic_alert.body
     - field.field.node.civic_alert.field_c_n_alert_page_visibility
     - field.field.node.civic_alert.field_c_n_alert_type
     - field.field.node.civic_alert.field_c_n_body
@@ -49,4 +50,5 @@ content:
     type: daterange_default
     region: content
 hidden:
+  body: true
   links: true
