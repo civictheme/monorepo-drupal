@@ -78,6 +78,13 @@
     margin-bottom: civic-space(3);
   }
 
+  &--listing {
+    #{$root}__header-title {
+      @include civic-typography('heading-5');
+      padding: civic-space(3) 0 civic-space();
+    }
+  }
+
   &.civic-theme-light {
     color: $civic-card-container-light-color;
 
