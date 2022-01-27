@@ -81,6 +81,7 @@
   &--listing {
     #{$root}__header-title {
       @include civic-typography('heading-5');
+
       padding: civic-space(3) 0 civic-space();
     }
   }

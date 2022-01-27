@@ -26,7 +26,6 @@ function civic_preprocess_views_exposed_form(&$variables) {
   $variables['large_filter'] = $variables['form']['#large_filter'];
 }
 
-
 /**
  * Implements hook_preprocess_HOOK().
  */
@@ -37,6 +36,9 @@ function civic_preprocess_views_view(&$variables) {
   }
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function civic_preprocess_views_view_grid(&$variables) {
   // On Grid view title should be added to card container.
   if ($variables['view']->getStyle()->getBaseId() === 'grid' && isset($variables['view']->header['result'])) {
