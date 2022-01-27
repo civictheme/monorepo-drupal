@@ -3,7 +3,7 @@ import { randomUrl } from '../../00-base/base.stories';
 import CivicMap from './map.twig';
 
 export default {
-  title: 'Atoms/Map',
+  title: 'Molecules/Map',
   parameters: {
     layout: 'centered',
   },
@@ -26,7 +26,6 @@ export const Map = (knobTab) => {
     address: text('Address', 'Australia', generalKnobTab),
     share_link: text('Share Link', randomUrl(), generalKnobTab),
     view_link: text('View Link', randomUrl(), generalKnobTab),
-    zoom: text('Zoom', '', generalKnobTab),
   };
 
   return CivicMap({

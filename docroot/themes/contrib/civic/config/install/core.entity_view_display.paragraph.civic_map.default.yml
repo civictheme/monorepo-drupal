@@ -8,7 +8,6 @@ dependencies:
     - field.field.paragraph.civic_map.field_c_p_space
     - field.field.paragraph.civic_map.field_c_p_theme
     - field.field.paragraph.civic_map.field_c_p_view_link
-    - field.field.paragraph.civic_map.field_c_p_zoom
     - paragraphs.paragraphs_type.civic_map
   module:
     - link
@@ -75,14 +74,5 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-    region: content
-  field_c_p_zoom:
-    weight: 2
-    label: hidden
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
-    third_party_settings: {  }
-    type: number_integer
     region: content
 hidden: {  }

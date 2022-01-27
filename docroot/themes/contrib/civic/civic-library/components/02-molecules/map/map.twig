@@ -13,9 +13,9 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
 <div class="civic-map {{ theme_class }}">
-<div class="civic-map__canvas">
-  <iframe class="civic-map_iframe" width="772" height="420" src="{{ embed_url }}" frameborder="0" scrolling="no"></iframe>
-</div>
+  <div class="civic-map__canvas">
+    <iframe class="civic-map_iframe" width="772" height="420" src="{{ embed_url }}" frameborder="0" scrolling="no"></iframe>
+  </div>
   <div class="civic-map__links">
   {% if view_link is not empty %}
     <div class="civic-map__view_link">

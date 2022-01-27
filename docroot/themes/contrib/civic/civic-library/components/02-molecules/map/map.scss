@@ -2,10 +2,6 @@
 // Civic Map.
 //
 .civic-map {
-  &.civic-theme-dark {
-    background-color: $civic-map-dark-background-color;
-  }
-
   &__canvas {
     position: relative;
     padding-bottom: $civic-map-padding-bottom;
@@ -40,22 +36,6 @@
       @include breakpoint(m) {
         font-family: civic-font('secondary');
       }
-
-      &.civic-theme-light {
-        color: $civic-map-light-link-color;
-
-        &:hover {
-          color: $civic-map-light-link-hover-color;
-        }
-      }
-
-      &.civic-theme-dark {
-        color: $civic-map-dark-link-color;
-
-        &:hover {
-          color: $civic-map-dark-link-hover-color;
-        }
-      }
     }
   }
 
@@ -64,6 +44,38 @@
 
     @include civic-breakpoint(m) {
       padding-right: civic-space(3);
+    }
+  }
+
+  &.civic-theme-light {
+    background-color: $civic-map-light-background-color;
+
+    #{&root}__links {
+      .civic-link {
+        &.civic-theme-light {
+          color: $civic-map-light-link-color;
+
+          &:hover {
+            color: $civic-map-light-link-hover-color;
+          }
+        }
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-map-dark-background-color;
+
+    #{&root}__links {
+      .civic-link {
+        &.civic-theme-dark {
+          color: $civic-map-dark-link-color;
+
+          &:hover {
+            color: $civic-map-dark-link-hover-color;
+          }
+        }
+      }
     }
   }
 }
