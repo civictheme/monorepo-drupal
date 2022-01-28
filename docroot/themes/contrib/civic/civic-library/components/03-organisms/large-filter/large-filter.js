@@ -5,6 +5,7 @@ function CivicLargeFilter(el) {
   this.clearAllButton = this.el.querySelector('[data-large-filter-clear]');
   this.selectedFiltersElement = this.el.querySelector('[data-large-filter-selected-filters]');
   this.state = {};
+  this.initialisedState = false;
   this.fieldTypes = {
     input_checkbox: {
       emptyValue: false,
@@ -84,6 +85,7 @@ CivicLargeFilter.prototype.init = function () {
       this.updateState(key, id, value, type);
     }
   });
+  this.initialisedState = true;
 };
 
 /**
@@ -189,7 +191,7 @@ CivicLargeFilter.prototype.renderHTMLFilterItem = function (key, label, type, th
   // Radio filters are rendered as non-dismissible elements.
   return `
     <li class="civic-large-filter__tag">
-      <span class="civic-filter-chip-button civic-theme-${theme} civic-filter-chip-button--selected" data-id="${key}">
+      <span class="civic-filter-chip-button civic-theme-${theme} civic-filter-chip-button--selected civic-filter-chip-button--non-dismissable" data-id="${key}">
         <span class="civic-filter-chip-button__text">${label}</span>
       </span>
     </li>
@@ -231,10 +233,15 @@ CivicLargeFilter.prototype.redrawClearButton = function () {
  * Custom event allowing other JS libraries to operate on filter events.
  */
 CivicLargeFilter.prototype.dispatchRedrawEvent = function () {
-  const event = new CustomEvent('civic.largeFilter.change');
-  this.el.dispatchEvent(event);
+  if (!this.initialisedState) {
+    return;
+  }
+  this.el.dispatchEvent(new CustomEvent('civicLargeFilterChange'));
 };
 
 document.querySelectorAll('[data-component-name="civic-large-filter"]').forEach((el) => {
-  new CivicLargeFilter(el);
+  if (el.getAttribute('data-civic-large-filter-initialised') !== 'true') {
+    new CivicLargeFilter(el);
+    el.setAttribute('data-civic-large-filter-initialised', 'true');
+  }
 });

@@ -30,7 +30,7 @@ Drupal.behaviors.civic_ajax_views = {
         $form
           .find('[data-component-name="civic-large-filter"]')
           // Custom event from civic large filter.
-          .on('civic.largeFilter.change', buttonSubmitHandler);
+          .on('civicLargeFilterChange', buttonSubmitHandler);
         // Stop clear filter function from submitting form.
         $form
           .find('[data-large-filter-clear]')
@@ -43,7 +43,7 @@ Drupal.behaviors.civic_ajax_views = {
         $form
           .find('[data-component-name="civic-large-filter"]')
           // Custom event from civic large filter.
-          .on('civic.largeFilter.change', () => {
+          .on('civicLargeFilterChange', () => {
             // Civic large filter redraws selected filters on each change in
             // the dropdown, when it redraws them we wish to re-add the button
             // submit handler to them so dismissing a filter chip reloads the
