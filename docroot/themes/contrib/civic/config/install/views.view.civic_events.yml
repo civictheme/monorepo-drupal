@@ -5,6 +5,7 @@ dependencies:
     - core.entity_view_mode.node.civic_card_event
     - node.type.civic_event
   module:
+    - datetime
     - node
     - user
 id: civic_events

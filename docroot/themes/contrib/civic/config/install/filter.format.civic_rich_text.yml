@@ -75,8 +75,9 @@ filters:
     weight: -41
     settings:
       default_view_mode: default
+      allowed_view_modes:
+        embedded: embedded
       allowed_media_types:
         civic_image: civic_image
         civic_remote_video: civic_remote_video
-      allowed_view_modes:
-        embedded: embedded
+        civic_video: civic_video
