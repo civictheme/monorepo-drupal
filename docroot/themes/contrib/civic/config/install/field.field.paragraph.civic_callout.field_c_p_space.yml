@@ -1,0 +1,21 @@
+uuid: bee8d61d-7f7a-4e84-8f2e-746c35081349
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_space
+    - paragraphs.paragraphs_type.civic_callout
+  module:
+    - options
+id: paragraph.civic_callout.field_c_p_space
+field_name: field_c_p_space
+entity_type: paragraph
+bundle: civic_callout
+label: 'With space'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

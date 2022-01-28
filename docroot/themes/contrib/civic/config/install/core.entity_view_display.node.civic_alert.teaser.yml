@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.civic_alert.body
     - field.field.node.civic_alert.field_c_n_alert_page_visibility
     - field.field.node.civic_alert.field_c_n_alert_type
     - field.field.node.civic_alert.field_c_n_body
@@ -21,6 +22,7 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  body: true
   field_c_n_alert_page_visibility: true
   field_c_n_alert_type: true
   field_c_n_body: true

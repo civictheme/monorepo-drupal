@@ -37,11 +37,15 @@ $drush ${DRUSH_ALIAS} ev "module_load_include('inc', 'cd_core', 'cd_core.civic_d
 if [ "$SKIP_SUBTHEME_FE" != "1" ] && command -v npm &> /dev/null; then
   pushd $APP/docroot/themes/custom/civic_demo >/dev/null || exit 1
 
-  echo "  > Installing FE dependencies."
-  npm ci
+  if [ ! -d $APP/docroot/themes/custom/civic_demo/dist ]; then
+    if [ ! -d $APP/docroot/themes/custom/civic_demo/node_modules ]; then
+      echo "  > Installing FE dependencies."
+      npm ci
+    fi
 
-  echo "  > Running FE build."
-  npm run build
+    echo "  > Building FE assets."
+    npm run build
+  fi
 
   popd >/dev/null || exit 1
 fi

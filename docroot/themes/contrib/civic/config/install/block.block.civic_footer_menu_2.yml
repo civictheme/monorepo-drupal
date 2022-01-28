@@ -23,7 +23,7 @@ settings:
   level: 1
   depth: 0
   expand_all_items: false
-  parent: 'civic-footer:menu_link_content:a933ab79-40a0-4b5e-b661-48d23c05717e'
+  parent: 'civic-footer:menu_link_content:db845296-747f-435d-a295-b3d2cd1ed243'
   suggestion: civic_footer_menu
   label_type: fixed
   label_link: false

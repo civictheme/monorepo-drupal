@@ -1,0 +1,85 @@
+<html>
+<head>
+  <title></title>
+
+  <script src="scrollspy.js"></script>
+  <link rel="stylesheet" href="../../../dist/civic.css">
+
+  <style>
+    .layout {
+      max-width: 992px;
+      margin: 0 auto;
+    }
+
+    .example-container__page-content {
+      height: 2000px;
+    }
+
+    .example-container__page-content.example-scrollspy::before {
+      box-shadow: 0 0 1px 1px #f00 inset;
+      height: 400px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      content: '';
+    }
+
+    .example-container__page-content.example-scrollspy::after {
+      box-shadow: 0 0 1px 1px #00f inset;
+      height: 600px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      content: '';
+    }
+
+    .example-scrollspy-target1 {
+      position: fixed;
+      bottom: 100px;
+      right: 100px;
+    }
+
+    .example-scrollspy-target2 {
+      position: fixed;
+      bottom: 50px;
+      right: 100px;
+    }
+
+    .example-scrollspy-target1.civic-scrollspy-scrolled {
+      border: solid 1px red;
+    }
+
+    .example-scrollspy-target2.civic-scrollspy-scrolled {
+      border: solid 1px blue;
+    }
+
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <div class="example-container">
+    <div class="example-container__page-content example-scrollspy"></div>
+    <button class="example-scrollspy-target1" data-scrollspy data-scrollspy-offset="400">
+      Button to scrollspy at 400px
+    </button>
+    <button class="example-scrollspy-target2" data-scrollspy data-scrollspy-offset="600">
+      Button to scrollspy at 600px
+    </button>
+  </div>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-scrollspy]').forEach((el) => {
+      new CivicScrollspy(el);
+    });
+  });
+</script>
+</body>
+</html>

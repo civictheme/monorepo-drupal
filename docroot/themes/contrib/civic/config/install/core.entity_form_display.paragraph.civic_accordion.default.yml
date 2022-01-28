@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.paragraph.civic_accordion.field_c_p_expand
     - field.field.paragraph.civic_accordion.field_c_p_panels
+    - field.field.paragraph.civic_accordion.field_c_p_space
     - field.field.paragraph.civic_accordion.field_c_p_theme
     - field.field.paragraph.civic_accordion.field_c_p_title
     - paragraphs.paragraphs_type.civic_accordion
@@ -38,6 +39,12 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
     third_party_settings: {  }
+    region: content
+  field_c_p_space:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_c_p_theme:
     weight: 4
