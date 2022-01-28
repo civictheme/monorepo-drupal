@@ -20,6 +20,7 @@ Feature: Tests the Card container paragraph
     And I should see the text "field_c_p_header_link" in the "Header link" row
     And I should see the text "field_c_p_footer_link" in the "Footer link" row
     And I should see the text "field_c_p_title" in the "Title" row
+    And I should see the text "field_c_p_space" in the "With space" row
 
   @api
   Scenario: Card container paragraph field_c_p_cards fields settings.
@@ -48,5 +49,6 @@ Feature: Tests the Card container paragraph
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-column-count select.required" element
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_column_count]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]']" element
+    And I should see an "select[name='field_c_n_components[0][subform][field_c_p_space]']" element
     And I should see an "input[name='field_c_n_components_0_subform_field_c_p_cards_civic_card_task_add_more']" element
     And the option "Light" from select "Theme" is selected

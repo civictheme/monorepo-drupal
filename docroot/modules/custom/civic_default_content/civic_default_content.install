@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Install file for civic_default_content.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function civic_default_content_install() {
+  module_load_include('php', 'civic_default_content', 'civic_default_content.post_update');
+  $functions = get_defined_functions();
+  // Run all update functions when installing this module.
+  foreach ($functions['user'] as $function) {
+    if (strpos($function, 'civic_default_content_update_') === 0) {
+      $sandbox = [];
+      call_user_func($function, $sandbox);
+    }
+  }
+
+  // Reset all post_update updates for this module.
+  $key_value = \Drupal::keyValue('post_update');
+  $executed_updates = $key_value->get('existing_updates', []);
+  foreach ($executed_updates as $k => $function) {
+    if (strpos($function, 'civic_default_content_post_update_') === 0) {
+      unset($executed_updates[$k]);
+    }
+  }
+  $executed_updates = array_values($executed_updates);
+  $key_value->set('existing_updates', $executed_updates);
+}

@@ -30,12 +30,12 @@
   <div class="civic-slide__content">
     <div class="civic-slide__content-inner">
       {% if content_top %}
-        <div class="civic-slide__content-top">
+        <div class="civic-slide__content-top" tabindex="0">
           {{ content_top }}
         </div>
       {% endif %}
       {% if title %}
-        <div class="civic-slide__title">
+        <div class="civic-slide__title" tabindex="0">
           {% if url %}
           <a class="civic-slide__title-link" href="{{ url }}">
           {% endif %}
@@ -46,7 +46,7 @@
         </div>
       {% endif %}
       {% if summary %}
-        <div class="civic-slide__summary">{{ summary|raw }}</div>
+        <div class="civic-slide__summary" tabindex="0">{{ summary|raw }}</div>
       {% endif %}
       {% if links %}
         <div class="civic-slide__links">{{ links }}</div>

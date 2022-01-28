@@ -2,7 +2,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.civic_content.field_c_p_background
     - field.field.paragraph.civic_content.field_c_p_content
+    - field.field.paragraph.civic_content.field_c_p_space
     - field.field.paragraph.civic_content.field_c_p_theme
     - paragraphs.paragraphs_type.civic_content
   module:
@@ -13,12 +15,29 @@ targetEntityType: paragraph
 bundle: civic_content
 mode: default
 content:
+  field_c_p_background:
+    weight: 2
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
   field_c_p_content:
     weight: 0
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  field_c_p_space:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
   field_c_p_theme:
     weight: 1

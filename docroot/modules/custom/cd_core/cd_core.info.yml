@@ -17,7 +17,6 @@ dependencies:
   - simple_sitemap:simple_sitemap
   # Required for Civic theme.
   - components:components
-  - default_content:default_content
   - drupal:block_content
   - field_group:field_group
   - menu_block:menu_block

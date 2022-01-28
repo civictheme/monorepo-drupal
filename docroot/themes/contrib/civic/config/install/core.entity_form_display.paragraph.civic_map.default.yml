@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.paragraph.civic_map.field_c_p_address
     - field.field.paragraph.civic_map.field_c_p_share_link
+    - field.field.paragraph.civic_map.field_c_p_space
     - field.field.paragraph.civic_map.field_c_p_theme
     - field.field.paragraph.civic_map.field_c_p_view_link
     - field.field.paragraph.civic_map.field_c_p_zoom
@@ -30,6 +31,12 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_c_p_space:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_c_p_theme:
     weight: 4

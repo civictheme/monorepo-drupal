@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Install file for Civic Companion module.
+ * Install file for Civic GovCMS module.
  */
 
 use Drupal\field\Entity\FieldConfig;
@@ -11,12 +11,11 @@ use Drupal\field\Entity\FieldStorageConfig;
 /**
  * Implements hook_install().
  */
-function civic_companion_install() {
-  module_load_include('php', 'civic_companion', 'civic_companion.post_update');
+function civic_govcms_install() {
   $functions = get_defined_functions();
   // Run all update functions when installing this module.
   foreach ($functions['user'] as $function) {
-    if (strpos($function, 'civic_companion_update_') === 0) {
+    if (strpos($function, 'civic_govcms_update_') === 0) {
       $sandbox = [];
       call_user_func($function, $sandbox);
     }
@@ -26,7 +25,7 @@ function civic_companion_install() {
 /**
  * Removes vanilla media types.
  */
-function civic_companion_update_9000() {
+function civic_govcms_update_9000() {
   $names = [
     'audio',
     'document',
@@ -46,7 +45,7 @@ function civic_companion_update_9000() {
 /**
  * Removes vanilla text formats.
  */
-function civic_companion_update_9001() {
+function civic_govcms_update_9001() {
   $names = [
     'plain_text',
     'rich_text',
@@ -63,7 +62,7 @@ function civic_companion_update_9001() {
 /**
  * Removes GovCMS fields.
  */
-function civic_companion_update_9002() {
+function civic_govcms_update_9002() {
   // A list of shared fields that needs to be removed prior to removing content
   // types. Non-shared fields will be removed when content types are removed.
   //
@@ -130,7 +129,7 @@ function civic_companion_update_9002() {
 /**
  * Removes GovCMS content types.
  */
-function civic_companion_update_9003() {
+function civic_govcms_update_9003() {
   $names = [
     'govcms_blog_article',
     'govcms_event',
@@ -150,7 +149,7 @@ function civic_companion_update_9003() {
 /**
  * Removes GovCMS vocabularies.
  */
-function civic_companion_update_9004() {
+function civic_govcms_update_9004() {
   $names = [
     'govcms_blog_article_categories',
     'govcms_event_categories',
@@ -169,7 +168,7 @@ function civic_companion_update_9004() {
 /**
  * Removes GovCMS user roles.
  */
-function civic_companion_update_9005() {
+function civic_govcms_update_9005() {
   $names = [
     'govcms_site_administrator',
     'govcms_content_approver',
@@ -187,7 +186,7 @@ function civic_companion_update_9005() {
 /**
  * Removes GovCMS menus.
  */
-function civic_companion_update_9006() {
+function civic_govcms_update_9006() {
   $names = [
     'govcms-about',
     'govcms-community',
