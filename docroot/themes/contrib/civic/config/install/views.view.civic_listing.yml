@@ -34,7 +34,7 @@ display:
         type: views_query
         options:
           disable_sql_rewrite: false
-          distinct: false
+          distinct: true
           replica: false
           query_comment: ''
           query_tags: {  }
@@ -51,7 +51,7 @@ display:
       pager:
         type: full
         options:
-          items_per_page: 6
+          items_per_page: 12
           offset: 0
           id: 0
           total_pages: null
@@ -474,6 +474,9 @@ display:
       display_extenders: {  }
       path: civic/listing
       display_description: 'Multiple filters'
+      title: 'Civic Large Filter'
+      defaults:
+        title: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -607,11 +610,22 @@ display:
       defaults:
         filters: false
         filter_groups: false
+        query: false
+        title: false
       filter_groups:
         operator: AND
         groups:
           1: AND
       display_description: 'Single exposed filter (non-textfield)'
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+          distinct: true
+          replica: false
+          query_comment: ''
+          query_tags: {  }
+      title: 'Civic Basic Filter'
     cache_metadata:
       max-age: -1
       contexts:
@@ -745,11 +759,22 @@ display:
       defaults:
         filters: false
         filter_groups: false
+        query: false
+        title: false
       filter_groups:
         operator: AND
         groups:
           1: AND
       display_description: 'Single exposed filter (non-textfield)'
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+          distinct: true
+          replica: false
+          query_comment: ''
+          query_tags: {  }
+      title: 'Civic Basic Filter with Multi-Value'
     cache_metadata:
       max-age: -1
       contexts:
