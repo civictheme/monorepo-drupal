@@ -75,6 +75,14 @@
     }
   }
 
+  &#{$root}--image-as-icon {
+    #{$root}__image-wrapper {
+      max-width: rem(48px);
+      padding: civic-space(3);
+      padding-bottom: 0;
+    }
+  }
+
   &.civic-theme-light {
     background-color: $civic-navigation-card-light-background-color;
 
