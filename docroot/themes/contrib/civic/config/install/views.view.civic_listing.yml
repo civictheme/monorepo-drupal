@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.civic_card_promo
+    - node.type.civic_page
     - taxonomy.vocabulary.civic_topics
   module:
     - node
@@ -514,9 +515,10 @@ display:
           group_type: group
           admin_label: ''
           operator: in
-          value: {  }
+          value:
+            civic_page: civic_page
           group: 1
-          exposed: true
+          exposed: false
           expose:
             operator_id: type_op
             label: 'Content type'
@@ -552,6 +554,56 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
+        field_c_n_topics_target_id:
+          id: field_c_n_topics_target_id
+          table: node__field_c_n_topics
+          field: field_c_n_topics_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_c_n_topics_target_id_op
+            label: Topics
+            description: ' Select a topic to filter by.'
+            use_operator: false
+            operator: field_c_n_topics_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_c_n_topics_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              civic_content_author: '0'
+              civic_content_approver: '0'
+              civic_site_administrator: '0'
+              anonymous: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: civic_topics
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       defaults:
         filters: false
         filter_groups: false
@@ -567,6 +619,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -600,9 +653,10 @@ display:
           group_type: group
           admin_label: ''
           operator: in
-          value: {  }
+          value:
+            civic_page: civic_page
           group: 1
-          exposed: true
+          exposed: false
           expose:
             operator_id: type_op
             label: 'Content type'
@@ -638,6 +692,56 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
+        field_c_n_topics_target_id:
+          id: field_c_n_topics_target_id
+          table: node__field_c_n_topics
+          field: field_c_n_topics_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_c_n_topics_target_id_op
+            label: Topics
+            description: ' Select a topic to filter by.'
+            use_operator: false
+            operator: field_c_n_topics_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_c_n_topics_target_id
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              civic_content_author: '0'
+              civic_content_approver: '0'
+              civic_site_administrator: '0'
+              anonymous: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: civic_topics
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       defaults:
         filters: false
         filter_groups: false
@@ -653,6 +757,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
