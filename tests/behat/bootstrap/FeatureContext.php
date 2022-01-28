@@ -96,4 +96,74 @@ class FeatureContext extends DrupalContext {
     $this->getSession()->visit($path);
   }
 
+  /**
+   * Selects a filter chip.
+   *
+   * @When I select the filter chip :label
+   */
+  public function assertSelectFilterChip($label) {
+    $element = $this->getSession()->getPage();
+    $filter_chip = $element->find('named', ['radio', $this->getSession()->getSelectorsHandler()->xpathLiteral($label)]);
+    if ($filter_chip === NULL) {
+      throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s', $label, $this->getSession()->getCurrentUrl()));
+    }
+
+    $this->clickFilterChip($label, $filter_chip, $element);
+  }
+
+  /**
+   * Checks a multi-value filter chip.
+   *
+   * @Given I check the filter chip :label
+   */
+  public function assertCheckFilterChip($label) {
+    $element = $this->getSession()->getPage();
+    $filter_chip = $element->find('named', ['checkbox', $this->getSession()->getSelectorsHandler()->xpathLiteral($label)]);
+
+    if ($filter_chip === NULL) {
+      throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s', $label, $this->getSession()->getCurrentUrl()));
+    }
+
+    if ($filter_chip->isChecked()) {
+      throw new \Exception(sprintf('Cannot check filter chip with "%s" because it already checked', $label, $this->getSession()->getCurrentUrl()));
+    }
+
+    $this->clickFilterChip($label, $filter_chip, $element);
+
+  }
+
+  /**
+   * Unchecks a multi-value filter chip.
+   *
+   * @Given I uncheck the filter chip :checkbox
+   */
+  public function assertUncheckFilterChip($label) {
+    $element = $this->getSession()->getPage();
+    $filter_chip = $element->find('named', ['checkbox', $this->getSession()->getSelectorsHandler()->xpathLiteral($label)]);
+
+    if ($filter_chip === NULL) {
+      throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s', $label, $this->getSession()->getCurrentUrl()));
+    }
+
+    if (!$filter_chip->isChecked()) {
+      throw new \Exception(sprintf('Cannot uncheck filter chip with "%s" because it not checked', $label, $this->getSession()->getCurrentUrl()));
+    }
+
+    $this->clickFilterChip($label, $filter_chip, $element);
+  }
+
+  /**
+   * Helper to get the filter chip label element which is then clicked.
+   */
+  protected function clickFilterChip($label, $filter_chip, $element) {
+    $filter_chip_id = $filter_chip->getAttribute('id');
+    $label_element = $element->find('css', "label[for='$filter_chip_id']");
+    $labelonpage = $label_element->getText();
+    if ($label != $labelonpage) {
+      throw new \Exception(sprintf("Filter chip with id '%s' has label '%s' instead of '%s' on the page %s", $filter_chip_id, $labelonpage, $label, $this->getSession()->getCurrentUrl()));
+    }
+
+    $label_element->click();
+  }
+
 }
