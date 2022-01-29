@@ -5,8 +5,6 @@
  * Civic Accordion paragraph component.
  */
 
-use Drupal\paragraphs\Entity\Paragraph;
-
 /**
  * Implements template_preprocess_paragraph().
  *
@@ -15,7 +13,6 @@ use Drupal\paragraphs\Entity\Paragraph;
 function civic_preprocess_paragraph__civic_map(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $link = $paragraph->get('field_c_p_embed_url')->getValue();
   $variables['embed_url'] = $paragraph->get('field_c_p_embed_url')->getString();
   $variables['address'] = $paragraph->get('field_c_p_address')->getString();
   if (!$paragraph->get('field_c_p_share_link')->isEmpty()) {
