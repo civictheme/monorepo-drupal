@@ -6,22 +6,26 @@
 
   &__canvas {
     position: relative;
-    padding-bottom: $civic-map-padding-bottom;
     height: 0;
     overflow: hidden;
+    padding: 0 civic-space() $civic-map-padding-bottom civic-space();
 
     .civic-map_iframe {
       position: absolute;
       top: 0;
-      left: civic-space();
-      width: 100%;
+      left: 0;
+      right: 0;
+      width: calc(100% - #{civic-space(2)});
       height: 100%;
+      padding-left: inherit;
+      padding-right: inherit;
     }
   }
 
   &__links {
     display: flex;
     margin-top: civic-space(4);
+    padding: 0 civic-space();
 
     @include civic-breakpoint-upto(s) {
       display: block;
