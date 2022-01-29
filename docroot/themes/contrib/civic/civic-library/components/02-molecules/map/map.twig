@@ -6,7 +6,10 @@
  * - embed_url: [string] Embed URL for the google map iframe.
  * - address: [string] Alternate text of the image.
  * - share_link: [string] Share Link.
+ * - share_link: [string] Share Link.
+ * - share_link_is_external: [boolean] Share link is external.
  * - view_link: [string] View link.
+ * - view_link_is_external: [boolean] View link is external.
  * - theme: [string] component theme.
  */
 #}
@@ -29,7 +32,7 @@
               theme: theme,
               text: 'View in Google Maps',
               url: view_link,
-              is_external: FALSE,
+              is_external: view_link_is_external,
             } %}
           </div>
         {% endif %}
@@ -44,7 +47,7 @@
               theme: theme,
               text: 'Share this Location',
               url: share_link,
-              is_external: FALSE,
+              is_external: share_link_is_external,
             } %}
           </div>
         {% endif %}
