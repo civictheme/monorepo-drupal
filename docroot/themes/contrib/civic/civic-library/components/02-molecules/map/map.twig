@@ -24,13 +24,16 @@
       <div class="civic-map__links col-xs-12">
         {% if view_link is not empty %}
           <div class="civic-map__view_link">
-            {% include '@atoms/icon/icon.twig' with {
-              symbol: 'locationandmaps_map',
-              color: 'primary',
-            } %}
+            {% set view_text %}
+              {% include '@atoms/icon/icon.twig' with {
+                symbol: 'locationandmaps_map',
+                modifier_class: 'civic-link__link-icon',
+              } %}
+            {% endset %}
+            {% set view_text = view_text|trim ~ 'View in Google Maps' %}
             {% include '@atoms/link/link.twig' with {
               theme: theme,
-              text: 'View in Google Maps',
+              text: view_text,
               url: view_link,
               is_external: view_link_is_external,
             } %}
@@ -39,13 +42,16 @@
 
         {% if share_link is not empty %}
           <div class="civic-map__share_link">
-            {% include '@atoms/icon/icon.twig' with {
-              symbol: 'userinterface_share',
-              color: 'primary',
-            } %}
+            {% set share_text %}
+              {% include '@atoms/icon/icon.twig' with {
+                symbol: 'userinterface_share',
+                modifier_class: 'civic-link__link-icon',
+              } %}
+            {% endset %}
+            {% set share_text = share_text|trim ~ 'Share this Location' %}
             {% include '@atoms/link/link.twig' with {
               theme: theme,
-              text: 'Share this Location',
+              text: share_text,
               url: share_link,
               is_external: share_link_is_external,
             } %}

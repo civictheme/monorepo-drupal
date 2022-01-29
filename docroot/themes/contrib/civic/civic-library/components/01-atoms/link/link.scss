@@ -16,6 +16,10 @@
     padding: 3px 0 4px;
   }
 
+  .civic-link__link-icon {
+    margin-right: rem(4px);
+  }
+
   &,
   &.civic-theme-light {
     color: $civic-link-light-color;
