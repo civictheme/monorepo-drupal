@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 35bf9ba8-6121-41cf-a82a-3d212bad614c
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: embedded-map.png
+  uri:
+    -
+      value: 'public://images/2022-01/embedded-map_0.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 69047
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1643433226
