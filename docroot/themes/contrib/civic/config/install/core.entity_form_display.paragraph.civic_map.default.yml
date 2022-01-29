@@ -3,11 +3,11 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civic_map.field_c_p_address
+    - field.field.paragraph.civic_map.field_c_p_embed_url
     - field.field.paragraph.civic_map.field_c_p_share_link
     - field.field.paragraph.civic_map.field_c_p_space
     - field.field.paragraph.civic_map.field_c_p_theme
     - field.field.paragraph.civic_map.field_c_p_view_link
-    - field.field.paragraph.civic_map.field_c_p_zoom
     - paragraphs.paragraphs_type.civic_map
   module:
     - link
@@ -23,6 +23,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_c_p_embed_url:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   field_c_p_share_link:
     weight: 3
@@ -51,13 +59,6 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
-  field_c_p_zoom:
-    weight: 1
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
     region: content
 hidden:
   created: true

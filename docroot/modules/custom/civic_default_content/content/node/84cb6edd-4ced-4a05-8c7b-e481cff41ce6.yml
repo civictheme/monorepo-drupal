@@ -1,0 +1,132 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 84cb6edd-4ced-4a05-8c7b-e481cff41ce6
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    b3c62b56-71eb-478b-86dd-d9f1a7edb0bc: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Embedded Map'
+  created:
+    -
+      value: 1643429274
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: d24e8380-a400-48b2-892d-8f36f6f4fe54
+          bundle: civic_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1643429291
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_address:
+            -
+              value: Australia
+          field_c_p_embed_url:
+            -
+              uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
+              title: ''
+              options: {  }
+          field_c_p_share_link:
+            -
+              uri: 'https://goo.gl/maps/XsNx2XM21y41UQ7P7'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_view_link:
+            -
+              uri: 'https://maps.google.com/maps?ll=-25.853564,133.545713&z=3&t=m&hl=en-US&gl=US&mapclient=embed&q=Australia'
+              title: ''
+              options: {  }
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 54fdba8d-d5ae-4a03-b80b-04d3561c63bf
+          bundle: civic_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1643429291
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_address:
+            -
+              value: Australia
+          field_c_p_embed_url:
+            -
+              uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
+              title: ''
+              options: {  }
+          field_c_p_share_link:
+            -
+              uri: 'https://goo.gl/maps/XsNx2XM21y41UQ7P7'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_view_link:
+            -
+              uri: 'https://maps.google.com/maps?ll=-25.853564,133.545713&z=3&t=m&hl=en-US&gl=US&mapclient=embed&q=Australia'
+              title: ''
+              options: {  }
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_summary:
+    -
+      value: 'Provides examples of light and dark themed embedded map.'
+  field_c_n_thumbnail:
+    -
+      entity: b3c62b56-71eb-478b-86dd-d9f1a7edb0bc

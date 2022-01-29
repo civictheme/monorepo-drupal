@@ -696,6 +696,17 @@ $civic-icon-link-dark-visited-color: civic-color('neutral') !default;
 $civic-icon-link-dark-disabled-color: civic-color-neutral(40) !default;
 
 //
+// Map
+//
+$civic-map-padding-bottom: 56.25% !default;
+$civic-map-light-link-color: civic-color-shade-dark(15) !default;
+$civic-map-light-link-hover-color: civic-color('neutral') !default;
+$civic-map-light-background-color: transparent !default;
+$civic-map-dark-link-color: civic-color('neutral') !default;
+$civic-map-dark-link-hover-color: civic-color-shade-dark(60) !default;
+$civic-map-dark-background-color: civic-color-shade-dark(45) !default;
+
+//
 // Next steps.
 //
 $civic-next-steps-border-radius: $civic-border-radius !default;

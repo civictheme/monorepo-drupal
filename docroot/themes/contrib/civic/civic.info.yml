@@ -328,10 +328,10 @@ config_devel:
     - field.field.paragraph.civic_listing.field_c_p_topics
     - field.field.paragraph.civic_listing.field_c_p_view_as
     - field.field.paragraph.civic_map.field_c_p_address
+    - field.field.paragraph.civic_map.field_c_p_embed_url
     - field.field.paragraph.civic_map.field_c_p_share_link
     - field.field.paragraph.civic_map.field_c_p_theme
     - field.field.paragraph.civic_map.field_c_p_view_link
-    - field.field.paragraph.civic_map.field_c_p_zoom
     - field.field.paragraph.civic_next_step.field_c_p_icon
     - field.field.paragraph.civic_next_step.field_c_p_image
     - field.field.paragraph.civic_next_step.field_c_p_summary
@@ -414,6 +414,7 @@ config_devel:
     - field.storage.paragraph.field_c_p_date
     - field.storage.paragraph.field_c_p_default_panel
     - field.storage.paragraph.field_c_p_description
+    - field.storage.paragraph.field_c_p_embed_url
     - field.storage.paragraph.field_c_p_expand
     - field.storage.paragraph.field_c_p_fill_width
     - field.storage.paragraph.field_c_p_footer_link
@@ -448,7 +449,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_view_link
     - field.storage.paragraph.field_c_p_webform
     - field.storage.paragraph.field_c_p_with_spacing
-    - field.storage.paragraph.field_c_p_zoom
     - filter.format.civic_plain_text
     - filter.format.civic_rich_text
     - image.style.civic_medium
