@@ -7,3 +7,12 @@ global:
   dependencies:
     - core/drupal
     - core/drupalSettings
+civic.ajax_views:
+  version: VERSION
+  js:
+    assets/js/civic.ajax-views.js: {}
+  depdencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once

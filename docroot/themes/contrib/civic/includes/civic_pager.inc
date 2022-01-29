@@ -13,6 +13,10 @@ function civic_preprocess_pager(&$variables) {
   $pager_manager = \Drupal::service('pager.manager');
   $element = $variables['pager']['#element'];
   $pager = $pager_manager->getPager($element);
+
+  // Add required class for ajax pagination.
+  $variables['pager_items_modifier_class'] = 'js-pager__items';
+
   if (isset($variables['pager']['#tags'])) {
     // Drupal seems to want to post link to first and last page
     // and the same link in the items - we only want to print the link once.

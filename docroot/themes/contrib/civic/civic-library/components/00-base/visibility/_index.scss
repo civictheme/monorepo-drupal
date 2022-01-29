@@ -5,29 +5,29 @@
 @each $breakpoint, $value in $civic-breakpoints {
   @if $breakpoint == $civic-visibility-lowest-breakpoint {
     .show-#{$breakpoint} {
-      display: block;
+      display: block !important;
     }
 
     .show-#{$breakpoint}-table {
-      display: table;
+      display: table !important;
     }
 
     .hide-#{$breakpoint} {
-      display: none;
+      display: none !important;
     }
   }
   @else {
     @include civic-breakpoint($breakpoint) {
       .show-#{$breakpoint} {
-        display: block;
+        display: block !important;
       }
 
       .show-#{$breakpoint}-table {
-        display: block;
+        display: block !important;
       }
 
       .hide-#{$breakpoint} {
-        display: none;
+        display: none !important;
       }
     }
   }
