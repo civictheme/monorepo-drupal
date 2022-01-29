@@ -5,7 +5,7 @@ import CivicMap from './map.twig';
 export default {
   title: 'Molecules/Map',
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
 };
 

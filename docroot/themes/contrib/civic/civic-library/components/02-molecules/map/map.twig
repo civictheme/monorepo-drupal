@@ -13,38 +13,42 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
 <div class="civic-map {{ theme_class }}">
-  <div class="civic-map__canvas">
-    <iframe class="civic-map_iframe" width="772" height="420" src="{{ embed_url }}" frameborder="0" scrolling="no"></iframe>
-  </div>
-  <div class="civic-map__links">
-  {% if view_link is not empty %}
-    <div class="civic-map__view_link">
-      {% include '@atoms/icon/icon.twig' with {
-        symbol: 'locationandmaps_map',
-        color: 'primary',
-      } %}
-      {% include '@atoms/link/link.twig' with {
-        theme: theme,
-        text: 'View in Google Maps',
-        url: view_link,
-        is_external: FALSE,
-      } %}
-    </div>
-  {% endif %}
+  <div class="container">
+    <div class="row">
+      <div class="civic-map__canvas col-xs-12">
+        <iframe class="civic-map_iframe"  src="{{ embed_url }}" frameborder="0" scrolling="no" allowfullscreen></iframe>
+      </div>
+      <div class="civic-map__links col-xs-12">
+        {% if view_link is not empty %}
+          <div class="civic-map__view_link">
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: 'locationandmaps_map',
+              color: 'primary',
+            } %}
+            {% include '@atoms/link/link.twig' with {
+              theme: theme,
+              text: 'View in Google Maps',
+              url: view_link,
+              is_external: FALSE,
+            } %}
+          </div>
+        {% endif %}
 
-  {% if share_link is not empty %}
-    <div class="civic-map__share_link">
-      {% include '@atoms/icon/icon.twig' with {
-        symbol: 'userinterface_share',
-        color: 'primary',
-      } %}
-      {% include '@atoms/link/link.twig' with {
-        theme: theme,
-        text: 'Share this Location',
-        url: share_link,
-        is_external: FALSE,
-      } %}
+        {% if share_link is not empty %}
+          <div class="civic-map__share_link">
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: 'userinterface_share',
+              color: 'primary',
+            } %}
+            {% include '@atoms/link/link.twig' with {
+              theme: theme,
+              text: 'Share this Location',
+              url: share_link,
+              is_external: FALSE,
+            } %}
+          </div>
+        {% endif %}
+      </div>
     </div>
-  {% endif %}
   </div>
 </div>
