@@ -16,6 +16,7 @@ require_once 'paragraph--civic_card_subject.inc';
 require_once 'paragraph--civic_card_task.inc';
 require_once 'paragraph--civic_content.inc';
 require_once 'paragraph--civic_listing.inc';
+require_once 'paragraph--civic_map.inc';
 require_once 'paragraph--civic_promo.inc';
 require_once 'paragraph--civic_quick_links.inc';
 require_once 'paragraph--civic_search.inc';
@@ -120,7 +121,7 @@ function _civic_preprocess_paragraph_space(&$variables) {
   $paragraph = $variables['paragraph'];
   if ($paragraph->hasField('field_c_p_space') && !$paragraph->get('field_c_p_space')->isEmpty()) {
     $component_name = $type = $paragraph->getType();
-    $variables['modifier_class'] = $component_name . '--with-space-'. $paragraph->get('field_c_p_space')->getString();
+    $variables['modifier_class'] = $component_name . '--with-space-' . $paragraph->get('field_c_p_space')->getString();
   }
 }
 
