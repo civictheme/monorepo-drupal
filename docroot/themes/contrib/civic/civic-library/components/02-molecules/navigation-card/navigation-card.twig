@@ -20,7 +20,7 @@
  * - modifier_class: [string] Classes to modify the default component styling.
  */
 #}
-{% set iamge_as_icon = image_as_icon is empty ? false : image_as_icon %}
+{% set image_as_icon = image_as_icon is empty ? false : image_as_icon %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set size = size|default('large') %}
 {% set size_class = size == 'large'?'civic-navigation-card--large' : 'civic-navigation-card--small' %}
