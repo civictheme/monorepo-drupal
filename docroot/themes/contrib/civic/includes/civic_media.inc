@@ -1,11 +1,11 @@
 <?php
 
-use Drupal\Core\Template\Attribute;
-
 /**
  * @file
  * Media theme alterations.
  */
+
+use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_preprocess__HOOK().
@@ -90,7 +90,7 @@ function _civic_preprocess_media_civic_video(&$variables) {
       'attributes' => $transcript_attributes,
     ];
   }
-  else if ($media->hasField('field_c_m_transcript_link') && !$media->get('field_c_m_transcript_link')->isEmpty()) {
+  elseif ($media->hasField('field_c_m_transcript_link') && !$media->get('field_c_m_transcript_link')->isEmpty()) {
     $variables['transcript_link'] = [
       'text' => $media->get('field_c_m_transcript_link')
         ->first()

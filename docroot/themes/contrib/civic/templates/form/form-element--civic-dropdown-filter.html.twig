@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Civic theme implementation for a dropdown filter for form element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The rendered checkboxes.
+ *
+ * @see template_preprocess_checkboxes()
+ *
+ * @ingroup themeable
+ */
+#}
+{% embed '@molecules/dropdown-filter/dropdown-filter.twig' %}
+  {% block filter_options %}
+    {% embed '@organisms/fieldset/fieldset.twig' with {
+      legend: options_title is not empty ? options_title : null,
+      modifier_class: 'civic-dropdown-filter__fieldset',
+
+    } %}
+      {% block children %}
+        {% include '@organisms/form-element/form-element.twig' with {
+          description: {
+            content: '',
+            attributes: ''
+          }
+        } %}
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}

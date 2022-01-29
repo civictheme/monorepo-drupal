@@ -24,12 +24,14 @@
   <button class="civic-dropdown-filter__filter-text" data-collapsible-trigger>{{ filter_text }}</button>
   <div class="civic-dropdown-filter__filter-options" data-collapsible-panel>
     <div class="civic-dropdown-filter__filter-options-wrapper">
-      {% include '@organisms/fieldset/fieldset.twig' with {
-        legend: options_title is not empty ? options_title : null,
-        children: options,
-        modifier_class: 'civic-dropdown-filter__fieldset',
-        type: type,
-      } %}
+      {% block filter_options %}
+        {% include '@organisms/fieldset/fieldset.twig' with {
+          legend: options_title is not empty ? options_title : null,
+          children: options,
+          modifier_class: 'civic-dropdown-filter__fieldset',
+          type: type,
+        } %}
+      {% endblock %}
     </div>
   </div>
 </div>

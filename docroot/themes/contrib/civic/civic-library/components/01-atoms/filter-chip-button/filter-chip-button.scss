@@ -34,9 +34,11 @@
 
     &::after {
       content: '';
-      width: rem(24px);
-      height: rem(24px);
+      width: rem(18px);
+      height: rem(18px);
       display: inherit;
+      background-position-x: 0;
+      background-position-y: -2px;
     }
   }
 
