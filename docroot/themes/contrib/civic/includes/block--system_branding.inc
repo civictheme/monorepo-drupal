@@ -21,6 +21,7 @@ function civic_preprocess_block__system_branding_block(&$variables) {
 
     $block = Block::load($variables['elements']['#id']);
     $region = $block->getRegion();
+    $variables['url'] = Url::fromRoute('<front>')->setAbsolute()->toString();
 
     // Use footer logo if it is located in on of the footer regions.
     if (strpos($region, 'footer') === 0) {
@@ -31,7 +32,6 @@ function civic_preprocess_block__system_branding_block(&$variables) {
       $variables['modifier_class'] = 'civic-header__logo';
       $desktop_logo = theme_get_setting('logo')['url'] ?? '';
       $mobile_logo = theme_get_setting('civic_header_logo_mobile') ?? '';
-      $variables['url'] = Url::fromRoute('<front>')->setAbsolute()->toString();
     }
 
     if (!empty($mobile_logo)) {
