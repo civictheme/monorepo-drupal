@@ -5,6 +5,18 @@
 .civic-basic-content {
   $root: &;
 
+  &.civic_content--with-space-top {
+    padding-top: $civic-basic-content-padding-vertical;
+  }
+
+  &.civic_content--with-space-bottom {
+    padding-bottom: $civic-basic-content-padding-vertical;
+  }
+
+  &.civic_content--with-space-both {
+    padding: $civic-basic-content-padding-vertical 0;
+  }
+
   @include civic-typography('text-regular');
 
   h1,
@@ -173,8 +185,10 @@
   }
 
   &.civic-theme-light {
-    &.civic-basic-content--with-background {
-      background-color: $civic-basic-content-light-background-color;
+    &.civic_content--with-background {
+      background-color: $civic-basic-content-light-wrapper-background-color;
+      padding-left: $civic-basic-content-padding-horizontal;
+      padding-right: $civic-basic-content-padding-horizontal;
     }
 
     color: $civic-basic-content-light-base-color;
@@ -237,8 +251,10 @@
   }
 
   &.civic-theme-dark {
-    &.civic-basic-content--with-background {
-      background-color: $civic-basic-content-dark-background-color;
+    &.civic_content--with-background {
+      background-color: $civic-basic-content-dark-wrapper-background-color;
+      padding-left: $civic-basic-content-padding-horizontal;
+      padding-right: $civic-basic-content-padding-horizontal;
     }
 
     color: $civic-basic-content-dark-base-color;

@@ -14,8 +14,9 @@
  */
 #}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civic-map {{ theme_class }}">
+<div class="civic-map {{ modifier_class }}">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
