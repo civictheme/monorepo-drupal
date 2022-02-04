@@ -43,8 +43,8 @@ function civic_preprocess_media__civic_remote_video(&$variables) {
     $doc = new DOMDocument();
     if (!empty($title) && $doc->loadHTML($resource->getHtml())) {
       $elements = $doc->getElementsByTagName('iframe');
-      // Handle that although unlikely oEmbed can be other html tags other
-      // than iframe.
+      // Handle the case when, although unlikely, oEmbed can use an HTML
+      // tag other than <iframe>.
       $iframe = $elements[0] ?? FALSE;
       $html = FALSE;
       if ($iframe) {
