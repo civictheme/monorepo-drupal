@@ -37,4 +37,16 @@
       margin-bottom: auto;
     }
   }
+
+  &.civic-theme-light {
+    #{$root}__title {
+      color: $civic-link-list-light-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__title {
+      color: $civic-link-list-dark-color;
+    }
+  }
 }
