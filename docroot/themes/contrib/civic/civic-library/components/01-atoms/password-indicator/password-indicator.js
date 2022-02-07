@@ -70,7 +70,7 @@ function CivicPasswordIndicator(el) {
   this.updatePassword(this.el.value, this.elUsername.value, false);
 
   // Mark this element as processed.
-  this.el.setAttribute('data-password-indicator-processed', true);
+  this.el.setAttribute('data-password-indicator-processed', 'true');
 }
 
 CivicPasswordIndicator.prototype.evaluatePasswordStrength = function (password, passwordSettings) {
