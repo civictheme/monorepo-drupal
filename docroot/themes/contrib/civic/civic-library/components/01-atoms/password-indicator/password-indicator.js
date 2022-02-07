@@ -2,7 +2,7 @@ function CivicPasswordIndicator(el) {
   this.el = el;
 
   // Ensure element hasn't already been processed.
-  if (!this.el.getAttribute('data-password-indicator-processed')) {
+  if (this.el.getAttribute('data-password-indicator-processed')) {
     return;
   }
 
