@@ -90,7 +90,7 @@ function _civic_preprocess_media_civic_video(&$variables) {
     $share_attributes = new Attribute();
     $share_attributes->setAttribute('aria-label', 'Share this video ' . $media->label());
     $variables['share_link'] = [
-      'text' => 'Share this video',
+      'text' => t('Share this video'),
       'is_external' => $media->get('field_c_m_share_link')->first()->isExternal(),
       'new_window' => $media->get('field_c_m_share_link')->first()->isExternal(),
       'url' => $media->get('field_c_m_share_link')->first()->getUrl()->toString(),
