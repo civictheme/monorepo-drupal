@@ -3,7 +3,7 @@ import { radios } from '@storybook/addon-knobs';
 import CivicPasswordIndicatorStory from './password-indicator.stories.twig';
 
 export default {
-  title: 'Atoms/Form',
+  title: 'Organisms/Form/Password Indicator',
 };
 
 export const PasswordIndicator = (knobTab) => {
