@@ -1,0 +1,45 @@
+uuid: ea696e4a-99a8-4888-b6e6-2efece87c1c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.component
+    - field.field.media.civic_image.field_c_m_caption
+    - field.field.media.civic_image.field_c_m_image
+    - media.type.civic_image
+  module:
+    - image
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+_core:
+  default_config_hash: aHpNOokKgcTjAIEnTk2wix5uPowJODpFEdNexlbBNBM
+id: media.civic_image.component
+targetEntityType: media
+bundle: civic_image
+mode: component
+content:
+  field_c_m_caption:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_c_m_image:
+    label: visually_hidden
+    weight: 0
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

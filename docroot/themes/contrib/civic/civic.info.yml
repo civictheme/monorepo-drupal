@@ -12,6 +12,8 @@ dependencies:
   - field_group:field_group
   - menu_block:menu_block
   - paragraphs:paragraphs
+  - drupal:layout_builder
+  - drupal:layout_discovery
   - drupal:rest
 
 regions:
@@ -152,6 +154,7 @@ config_devel:
     - core.entity_view_display.media.civic_icon.media_library
     - core.entity_view_display.media.civic_image.default
     - core.entity_view_display.media.civic_image.embedded
+    - core.entity_view_display.media.civic_image.component
     - core.entity_view_display.media.civic_image.media_library
     - core.entity_view_display.media.civic_remote_video.default
     - core.entity_view_display.media.civic_remote_video.full
@@ -201,6 +204,7 @@ config_devel:
     - core.entity_view_display.paragraph.civic_social_icon.default
     - core.entity_view_display.paragraph.civic_webform.default
     - core.entity_view_mode.media.embedded
+    - core.entity_view_display.media.civic_image.component
     - core.entity_view_mode.node.civic_card_event
     - core.entity_view_mode.node.civic_card_navigation
     - core.entity_view_mode.node.civic_card_promo
