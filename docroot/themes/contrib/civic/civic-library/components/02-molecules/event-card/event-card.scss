@@ -108,6 +108,17 @@
     #{$root}__icon--arrow {
       @include civic-icon-fill-color($civic-event-card-light-icon-arrow-color);
     }
+
+    #{$root}__date {
+      &.civic-theme-light {
+        background-color: $civic-event-card-light-date-background-color;
+        color: $civic-event-card-light-date-color;
+
+        .civic-icon {
+          fill: $civic-event-card-light-date-color;
+        }
+      }
+    }
   }
 
   &.civic-theme-dark {
@@ -139,6 +150,13 @@
 
     #{$root}__icon--arrow {
       @include civic-icon-fill-color($civic-event-card-dark-icon-arrow-color, true);
+    }
+
+    #{$root}__date {
+      &.civic-theme-dark {
+        background-color: $civic-event-card-dark-date-background-color;
+        color: $civic-event-card-dark-date-color;
+      }
     }
   }
 }
