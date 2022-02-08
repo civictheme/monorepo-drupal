@@ -1,4 +1,3 @@
-uuid: ea696e4a-99a8-4888-b6e6-2efece87c1c2
 langcode: en
 status: true
 dependencies:
@@ -14,8 +13,6 @@ third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
-_core:
-  default_config_hash: aHpNOokKgcTjAIEnTk2wix5uPowJODpFEdNexlbBNBM
 id: media.civic_image.component
 targetEntityType: media
 bundle: civic_image

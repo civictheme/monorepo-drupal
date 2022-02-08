@@ -1,4 +1,3 @@
-uuid: 38235cab-767f-4960-a511-35338f63437b
 langcode: en
 status: true
 dependencies:
@@ -61,8 +60,6 @@ third_party_settings:
       restricted_categories: {  }
       allowed_layouts:
         - civic_one_column
-_core:
-  default_config_hash: z73KK-ICXKz_KVkssgW-aqa0WeXjrriElksAxesROEw
 id: node.civic_page.default
 targetEntityType: node
 bundle: civic_page

@@ -1,4 +1,3 @@
-uuid: 18b7580f-0daf-43f1-8b07-7e0ce3155e87
 langcode: en
 status: true
 dependencies:
@@ -26,13 +25,6 @@ third_party_settings:
     allow_custom: false
     enabled: true
     sections:
-      -
-        layout_id: civic_one_column
-        layout_settings:
-          label: ''
-          context_mapping: {  }
-        components: {  }
-        third_party_settings: {  }
       -
         layout_id: civic_one_column
         layout_settings:
@@ -105,8 +97,6 @@ third_party_settings:
       allowed_layouts:
         - civic_one_column
         - civic_one_column_contained
-_core:
-  default_config_hash: 6KiG2Li9nBxKrRMJFwl0-tgi4tbd5YzXL0c3Z2QnsRI
 id: node.civic_event.default
 targetEntityType: node
 bundle: civic_event
