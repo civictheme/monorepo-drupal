@@ -15,6 +15,7 @@ dependencies:
   - drupal:layout_builder
   - drupal:layout_discovery
   - drupal:rest
+  - layout_builder_restrictions:layout_builder_restrictions
 
 regions:
   header_top_1: 'Header top 1'
