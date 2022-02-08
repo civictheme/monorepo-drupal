@@ -11,11 +11,11 @@ dependencies:
   - components:components
   - field_group:field_group
   - menu_block:menu_block
+  - layout_builder_restrictions:layout_builder_restrictions
   - paragraphs:paragraphs
   - drupal:layout_builder
   - drupal:layout_discovery
   - drupal:rest
-  - layout_builder_restrictions:layout_builder_restrictions
 
 regions:
   header_top_1: 'Header top 1'
