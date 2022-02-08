@@ -1,0 +1,8 @@
+{% set container_modifier_class = contained ? 'container' : '' %}
+
+<div class="civic-layout--single-column {{ container_modifier_class }}">
+  {% block content %}
+    <div class="civic-layout__content {{ modifier_class }}"
+    {{ content }}
+  {% endblock %}
+</div>

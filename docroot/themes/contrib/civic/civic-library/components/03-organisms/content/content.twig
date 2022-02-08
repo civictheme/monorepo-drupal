@@ -24,7 +24,7 @@
 #}
 
 {% set has_sidebar = sidebar is not empty %}
-{% set container_class = has_sidebar or contained ? 'civic-content--contained container' : '' %}
+{% set container_class = has_sidebar ? 'civic-content--contained container' : '' %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, container_class, modifier_class|default('')) %}
 
@@ -32,7 +32,7 @@
   <main class="civic-content {{ modifier_class }}" role="main">
     <a id="main-content" tabindex="-1"></a>
 
-    {% if has_sidebar or contained %}
+    {% if has_sidebar %}
     <div class="row">
     {% endif %}
 
@@ -45,7 +45,7 @@
       {% endif %}
 
       {% block content %}
-        <section class="civic-content__main {% if has_sidebar %}col-m-8 col-m-offset-1{% elseif contained %} col-m-12{% endif %}" {% if content_attributes %}{{ content_attributes }}{% endif %}>
+        <section class="civic-content__main {% if has_sidebar %}col-m-8 col-m-offset-1{% endif %}" {% if content_attributes %}{{ content_attributes }}{% endif %}>
           {% if content_top %}
             {{ content_top }}
           {% endif %}
@@ -58,7 +58,7 @@
         </section>
       {% endblock %}
 
-    {% if has_sidebar or contained %}
+    {% if has_sidebar %}
     </div>
     {% endif %}
 

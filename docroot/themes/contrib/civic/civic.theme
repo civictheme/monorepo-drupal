@@ -19,6 +19,7 @@ require_once 'includes/civic_pager.inc';
 require_once 'includes/civic_utilities.inc';
 require_once 'includes/civic_media.inc';
 require_once 'includes/form.inc';
+require_once 'includes/layouts.inc';
 require_once 'includes/nodes.inc';
 require_once 'includes/paragraphs.inc';
 require_once 'includes/views.inc';
@@ -35,9 +36,6 @@ function civic_preprocess_page(&$variables) {
   // Set header and footer theme from theme settings.
   $variables['page']['header_theme'] = theme_get_setting('civic_header_theme') ?? 'light';
   $variables['page']['footer_theme'] = theme_get_setting('civic_footer_theme') ?? 'dark';
-
-  // Always contain page content.
-  $variables['page']['content_contained'] = TRUE;
 
   // Generic node pages pre-processing.
   _civic_preprocess_page_node($variables);
@@ -65,12 +63,6 @@ function _civic_preprocess_page_node(&$variables) {
 
   if (!$node) {
     return;
-  }
-
-  // "Un-contain" content if it is on a content type that can be edge-to-edge.
-  $edge_to_edge_bundles = ['civic_page'];
-  if ($node && in_array($node->bundle(), $edge_to_edge_bundles)) {
-    $variables['page']['content_contained'] = FALSE;
   }
 
   // Add Table of Contents if the value is set on node.

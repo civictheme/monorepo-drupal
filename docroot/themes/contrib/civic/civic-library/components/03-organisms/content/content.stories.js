@@ -1,5 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicContent from './content.twig';
+import CivicLayout from '../layout/layout-single-column.twig';
 import { getSlots, randomText } from '../../00-base/base.stories';
 
 export default {
@@ -19,13 +20,20 @@ export const Content = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    content: boolean('Show content', true, generalKnobTab) ? `<strong>Content text</strong> ${randomText(30)}` : false,
     sidebar: boolean('Show sidebar', false, generalKnobTab) ? `<strong>Sidebar text</strong> ${randomText(20)}` : false,
-    contained: boolean('Contained (implied when sidebar is present)', false, generalKnobTab),
     content_attributes: text('Content attributes', '', generalKnobTab),
     sidebar_attributes: text('Sidebar attributes', '', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
+  const contained = boolean('Contained (implied when sidebar is present)', false, generalKnobTab);
+  let content = boolean('Show content', true, generalKnobTab) ? `<strong>Content text</strong> ${randomText(30)}` : false;
+  if (content) {
+    content = CivicLayout({
+      content,
+      modifier_class: contained ? 'col-m-12' : '',
+      contained,
+    });
+  }
 
   return CivicContent({
     ...generalKnobs,
@@ -33,5 +41,6 @@ export const Content = (knobTab) => {
       'content_top',
       'content_bottom',
     ]),
+    content,
   });
 };
