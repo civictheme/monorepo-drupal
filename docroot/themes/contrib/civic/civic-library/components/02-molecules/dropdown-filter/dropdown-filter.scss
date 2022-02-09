@@ -6,6 +6,11 @@
 
   &--right {
     margin-left: auto;
+
+    #{$root}__filter-options {
+      left: auto;
+      right: -(civic-space(3));
+    }
   }
 
   &__filter-text {
