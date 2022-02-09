@@ -19,7 +19,7 @@
 {% if content %}
   <div{{ attributes.addClass(classes) }}>
     <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content') }}>
-        {% include '@organisms/content/content-layout-single-column.twig' with {
+        {% include '@organisms/content/content-layout--single-column.twig' with {
           content: content.content,
           modifier_class: modifier_class,
           contained: contained,
