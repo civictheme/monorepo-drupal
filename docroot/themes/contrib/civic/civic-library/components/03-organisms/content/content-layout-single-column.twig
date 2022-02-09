@@ -1,0 +1,16 @@
+
+<div class="civic-layout--single-column">
+  {% if contained %}
+   <div class="container">
+     <div class="row">
+     {% endif %}
+      {% block content %}
+        <div class="civic-layout__content {{ modifier_class }}">
+          {{ content }}
+        </div>
+      {% endblock %}
+  {% if contained %}
+     </div>
+   </div>
+  {% endif %}
+</div>

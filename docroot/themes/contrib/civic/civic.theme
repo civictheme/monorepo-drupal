@@ -37,6 +37,11 @@ function civic_preprocess_page(&$variables) {
   $variables['page']['header_theme'] = theme_get_setting('civic_header_theme') ?? 'light';
   $variables['page']['footer_theme'] = theme_get_setting('civic_footer_theme') ?? 'dark';
 
+  // Always contain non-node page content.
+  // For nodes this is set to false via _civic_preprocess_page_node as layout is
+  // controlled via layout templates.
+  $variables['page']['content_contained'] = TRUE;
+
   // Generic node pages pre-processing.
   _civic_preprocess_page_node($variables);
 
@@ -64,6 +69,9 @@ function _civic_preprocess_page_node(&$variables) {
   if (!$node) {
     return;
   }
+
+  // Layout determines whether a node is contained and what it's layout is.
+  $variables['page']['content_contained'] = FALSE;
 
   // Add Table of Contents if the value is set on node.
   if ($node->hasField('field_c_n_show_toc') && $node->field_c_n_show_toc->getString()) {

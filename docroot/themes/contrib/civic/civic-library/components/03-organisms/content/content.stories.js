@@ -1,6 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicContent from './content.twig';
-import CivicLayout from '../layout/layout-single-column.twig';
+import CivicLayout from './content-layout-single-column.twig';
 import { getSlots, randomText } from '../../00-base/base.stories';
 
 export default {
