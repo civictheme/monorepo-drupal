@@ -1,5 +1,5 @@
 civic_one_column:
-  label: 'Single column'
+  label: 'Single column - edge to edge content'
   category: 'Civic Layouts'
   path: templates/layout/
   template: layout--single-column
@@ -10,7 +10,7 @@ civic_one_column:
     content:
       label: Main content
 civic_one_column_contained:
-  label: 'Single contained column'
+  label: 'Single column - contained content'
   category: 'Civic Layouts'
   path: templates/layout/
   template: layout--single-column
