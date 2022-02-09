@@ -1,10 +1,10 @@
 function CivicPasswordIndicator(el) {
-  this.el = el;
-
   // Ensure element hasn't already been processed.
-  if (this.el.getAttribute('data-password-indicator-processed')) {
+  if (this.el.getAttribute('data-password-indicator' === 'true' || this.el)) {
     return;
   }
+
+  this.el = el;
 
   // Get settings.
   this.settings = {};
@@ -70,7 +70,7 @@ function CivicPasswordIndicator(el) {
   this.updatePassword(this.el.value, this.elUsername.value, false);
 
   // Mark this element as processed.
-  this.el.setAttribute('data-password-indicator-processed', 'true');
+  this.el.setAttribute('data-password-indicator', 'true');
 }
 
 CivicPasswordIndicator.prototype.evaluatePasswordStrength = function (password, passwordSettings) {
