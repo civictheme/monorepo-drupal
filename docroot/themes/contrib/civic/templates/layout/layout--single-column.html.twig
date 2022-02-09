@@ -1,23 +1,20 @@
 {#
 /**
  * @file
- * Default theme implementation to display a one-column layout.
+ * Civic theme implementation to display a one-column layout.
  *
  * Available variables:
  * - content: The content for this layout.
- * - attributes: HTML attributes for the layout <div>.
+ * - contained: Whether the content should be contained
+ * - modifier_class: CSS modifying class
+ * - region_attributes: HTML attributes for the layout <div>.
  *
  * @ingroup themeable
  */
 #}
-{%
-  set classes = [
-    'layout',
-    'layout--onecol'
-  ]
-%}
+
 {% if content %}
-  <div{{ attributes.addClass(classes) }}>
+  <div class="layout">
     <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content') }}>
         {% include '@organisms/content/content-layout--single-column.twig' with {
           content: content.content,
