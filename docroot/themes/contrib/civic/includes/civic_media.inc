@@ -31,15 +31,32 @@ function civic_preprocess_media__civic_remote_video(&$variables) {
   $media = $variables['media'];
   $variables['width'] = 854;
   $variables['height'] = 400;
-  $variables['title'] = $media->get('field_c_m_title')->first() !== NULL ? $media->get('field_c_m_title')->first()->getValue()['value'] : '';
+  $title = $media->get('field_c_m_title')->first() !== NULL ? $media->get('field_c_m_title')->first()->getValue()['value'] : '';
   _civic_preprocess_media_civic_video($variables);
+  $variables['title'] = $title;
 
   $url_resolver = \Drupal::service('media.oembed.url_resolver');
   $resource_fetcher = \Drupal::service('media.oembed.resource_fetcher');
   try {
     $resource_url = $url_resolver->getResourceUrl($media->get('field_c_m_oembed_video')->first()->getValue()['value'], $variables['width'], $variables['height']);
     $resource = $resource_fetcher->fetchResource($resource_url);
-    $variables['oembed'] = $resource->getHtml();
+    $doc = new DOMDocument();
+    if (!empty($title) && $doc->loadHTML($resource->getHtml())) {
+      $elements = $doc->getElementsByTagName('iframe');
+      // Handle the case when, although unlikely, oEmbed can use an HTML
+      // tag other than <iframe>.
+      $iframe = $elements[0] ?? FALSE;
+      $html = FALSE;
+      if ($iframe) {
+        $elements[0]->setAttribute('title', $title);
+        $html = $doc->saveHTML($elements[0]);
+      }
+
+      $variables['oembed'] = $html !== FALSE ? $html : $resource->getHtml();
+    }
+    else {
+      $variables['oembed'] = $resource->getHtml();
+    }
   }
   catch (Exception $e) {
     // Handling any oEmbed exceptions in rendering remote video.
@@ -73,7 +90,7 @@ function _civic_preprocess_media_civic_video(&$variables) {
     $share_attributes = new Attribute();
     $share_attributes->setAttribute('aria-label', 'Share this video ' . $media->label());
     $variables['share_link'] = [
-      'text' => $media->get('field_c_m_share_link')->first()->get('title')->getValue(),
+      'text' => t('Share this video'),
       'is_external' => $media->get('field_c_m_share_link')->first()->isExternal(),
       'new_window' => $media->get('field_c_m_share_link')->first()->isExternal(),
       'url' => $media->get('field_c_m_share_link')->first()->getUrl()->toString(),

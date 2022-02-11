@@ -51,6 +51,7 @@
   &.civic-theme-light {
     #{$root}__element {
       border-color: $civic-input-light-border-color;
+      background-color: $civic-input-light-background-color;
 
       &:hover {
         box-shadow: 0 0 0 1px $civic-input-light-border-color;

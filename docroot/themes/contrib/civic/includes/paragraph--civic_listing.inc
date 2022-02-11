@@ -66,9 +66,41 @@ function _civic_listing_element(Paragraph $paragraph) {
   \Drupal::moduleHandler()->alter('civic_listing_view_name', $view_name);
   \Drupal::service('theme.manager')->alter('civic_listing_view_name', $view_name);
 
-  $default_view_display = $view_display = 'civic_listing_block';
-  $fallback_limit = CIVIC_LISTINGS_FULL_FALLBACK_LIMIT;
+  $view_display = 'civic_listing_block';
+  $show_filters = (int) $paragraph->field_c_p_show_filters->value;
 
+  $view = Views::getView($view_name);
+  if ($view) {
+    $view->setDisplay($view_display);
+    _civic_listing_alter_view($paragraph, $view);
+  }
+
+  if ($view) {
+    $view->initHandlers();
+    $element = [];
+    // Show exposed form if available for this block display.
+    if ($show_filters) {
+      /** @var \Drupal\views\Plugin\views\exposed_form\ExposedFormPluginInterface $exposed_form */
+      $exposed_form = $view->display_handler->getPlugin('exposed_form');
+      $element['exposed_form'] = $exposed_form->renderExposedForm(TRUE);
+      // Fixes drupal views bug where if there is a page display within a view
+      // even if you are wanting to render the block view form the action path
+      // of the exposed form points to the page display view.
+      // @see https://www.drupal.org/project/drupal/issues/2844823
+      $element['exposed_form']['#action'] = Url::fromRoute('<current>')->toString();
+      $view->display_handler->displaysExposed();
+    }
+    $element['view'] = $view->render();
+  }
+
+  return $element;
+}
+
+/**
+ * Loads and alters view for civic listing.
+ */
+function _civic_listing_alter_view($paragraph, &$view) {
+  $fallback_limit = CIVIC_LISTINGS_FULL_FALLBACK_LIMIT;
   $title = $paragraph->field_c_p_title->value;
   $content_type = $paragraph->field_c_p_content_type->value;
   $topics = _civic_get_entity_field_values($paragraph, 'field_c_p_topics', 'target_id');
@@ -78,16 +110,8 @@ function _civic_listing_element(Paragraph $paragraph) {
   $items_per_page = (int) $paragraph->field_c_p_listing_limit->value;
   $show_pager = !empty($paragraph->field_c_p_show_pager->value);
   $show_count = empty($paragraph->field_c_p_hide_count->value);
-  $show_filters = (int) $paragraph->field_c_p_show_filters->value;
-
-  $view = Views::getView($view_name);
 
   if ($view) {
-    // Fallback to default display if requested display not loading.
-    if (!$view->setDisplay($view_display)) {
-      $view->setDisplay($default_view_display);
-    }
-
     $args = [];
 
     // First view argument - content types.
@@ -152,25 +176,8 @@ function _civic_listing_element(Paragraph $paragraph) {
     if (!$show_count) {
       $view->display_handler->setOption('header', []);
     }
-
-    $view->initHandlers();
-    $element = [];
-    // Show exposed form if available for this block display.
-    if ($show_filters) {
-      /** @var \Drupal\views\Plugin\views\exposed_form\ExposedFormPluginInterface $exposed_form */
-      $exposed_form = $view->display_handler->getPlugin('exposed_form');
-      $element['exposed_form'] = $exposed_form->renderExposedForm(TRUE);
-      // Fixes drupal views bug where if there is a page display within a view
-      // even if you are wanting to render the block view form the action path
-      // of the exposed form points to the page display view.
-      // @see https://www.drupal.org/project/drupal/issues/2844823
-      $element['exposed_form']['#action'] = Url::fromRoute('<current>')->toString();
-      $view->display_handler->displaysExposed();
-    }
-    $element['view'] = $view->render();
   }
 
-  return $element;
 }
 
 /**

@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.civic_slider.field_c_p_background
     - field.field.paragraph.civic_slider.field_c_p_link
     - field.field.paragraph.civic_slider.field_c_p_slides
     - field.field.paragraph.civic_slider.field_c_p_space
@@ -16,6 +17,13 @@ targetEntityType: paragraph
 bundle: civic_slider
 mode: default
 content:
+  field_c_p_background:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_c_p_link:
     weight: 1
     settings:

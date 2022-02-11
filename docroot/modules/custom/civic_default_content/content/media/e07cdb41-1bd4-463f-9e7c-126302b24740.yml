@@ -5,7 +5,6 @@ _meta:
   bundle: civic_image
   default_langcode: en
   depends:
-    20c5e78c-33ab-4f85-ba06-28626a53f77d: user
     33ec0e62-3317-435d-b1cb-1e42e42e3260: file
 default:
   status:
@@ -13,7 +12,7 @@ default:
       value: true
   uid:
     -
-      entity: 20c5e78c-33ab-4f85-ba06-28626a53f77d
+      target_id: 1
   name:
     -
       value: pexels-ricardo-esquivel-3041347_crop.jpg

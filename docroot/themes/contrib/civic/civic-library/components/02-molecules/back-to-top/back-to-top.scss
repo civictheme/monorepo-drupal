@@ -8,6 +8,7 @@
   position: fixed;
   right: civic-space(1);
   bottom: civic-space(8);
+  border-radius: rem(100px);
 
   &[data-scrollspy='true'] {
     display: none;
@@ -18,8 +19,9 @@
   }
 
   &.civic-theme-light {
+    background-color: $civic-back-to-top-light-background-color;
+
     .civic-icon {
-      background-color: $civic-back-to-top-light-background-color;
       fill: $civic-back-to-top-light-color;
     }
 
@@ -31,8 +33,9 @@
   }
 
   &.civic-theme-dark {
+    background-color: $civic-back-to-top-dark-background-color;
+
     .civic-icon {
-      background-color: $civic-back-to-top-dark-background-color;
       fill: $civic-back-to-top-dark-color;
     }
 

@@ -44,14 +44,24 @@
 }
 
 .civic-attachment {
-  border-radius: $civic-attachment-border-radius;
-  border: solid 1px $civic-attachment-light-border-color;
   display: flex;
   flex-wrap: wrap;
   flex: none;
   order: 1;
   flex-grow: 1;
   margin: 0;
+
+  &.civic_attachment--with-space-top {
+    padding-top: $civic-attachment-padding-vertical;
+  }
+
+  &.civic_attachment--with-space-bottom {
+    padding-bottom: $civic-attachment-padding-vertical;
+  }
+
+  &.civic_attachment--with-space-both {
+    padding: $civic-attachment-padding-vertical 0;
+  }
 
   @include civic-breakpoint(m) {
     flex-direction: row;
@@ -82,6 +92,8 @@
     padding: civic-space(3);
     flex: 1;
     color: $civic-attachment-light-color;
+    border-radius: $civic-attachment-border-radius;
+    border: solid 1px $civic-attachment-light-border-color;
 
     @include civic-breakpoint('m') {
       padding: civic-space(4);
@@ -148,7 +160,17 @@
   }
 
   &.civic-theme-light {
+    &.civic_attachment--with-background {
+      background-color: $civic-attachment-light-wrapper-background-color;
+      padding-left: $civic-attachment-padding-horizontal;
+      padding-right: $civic-attachment-padding-horizontal;
+    }
+
     .civic-attachment {
+      &__content {
+        background-color: $civic-attachment-light-background-color;
+      }
+
       &__title {
         color: $civic-attachment-light-title-color;
       }
@@ -171,6 +193,12 @@
 
   &.civic-theme-dark {
     background-color: $civic-attachment-dark-background-color;
+
+    &.civic_attachment--with-background {
+      background-color: $civic-attachment-dark-wrapper-background-color;
+      padding-left: $civic-attachment-padding-horizontal;
+      padding-right: $civic-attachment-padding-horizontal;
+    }
 
     .civic-attachment {
       &__content {
