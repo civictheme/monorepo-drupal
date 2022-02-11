@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: 43835e90-21e0-4a33-81f8-e24fa0effb86
+  uuid: 2865aa62-ac91-41ed-b0a5-135adc266228
   default_langcode: en
 default:
   uid:
@@ -9,19 +9,19 @@ default:
       target_id: 1
   filename:
     -
-      value: icons8-twitter.svg
+      value: generic.png
   uri:
     -
-      value: 'public://icons/icons8-twitter_4.svg'
+      value: 'public://media-icons/generic/generic.png'
   filemime:
     -
-      value: image/svg+xml
+      value: image/png
   filesize:
     -
-      value: 835
+      value: 3900
   status:
     -
       value: true
   created:
     -
-      value: 1635056953
+      value: 1643722067

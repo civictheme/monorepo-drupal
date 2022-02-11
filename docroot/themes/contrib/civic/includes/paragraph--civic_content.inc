@@ -13,10 +13,6 @@
 function civic_preprocess_paragraph__civic_content(&$variables) {
   _civic_preprocess_paragraph($variables);
   $content = '';
-  $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_background') && (bool) $paragraph->get('field_c_p_background')->getString() === TRUE) {
-    $variables['modifier_class'] = 'civic-basic-content--with-background';
-  }
   if (!empty($variables['content']['field_c_p_content'])) {
     $content = \Drupal::service('renderer')->render($variables['content']['field_c_p_content']);
   }

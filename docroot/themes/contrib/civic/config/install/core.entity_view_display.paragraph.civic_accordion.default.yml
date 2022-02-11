@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.civic_accordion.field_c_p_background
     - field.field.paragraph.civic_accordion.field_c_p_expand
     - field.field.paragraph.civic_accordion.field_c_p_panels
     - field.field.paragraph.civic_accordion.field_c_p_space
@@ -16,6 +17,16 @@ targetEntityType: paragraph
 bundle: civic_accordion
 mode: default
 content:
+  field_c_p_background:
+    weight: 5
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
   field_c_p_expand:
     weight: 3
     label: hidden

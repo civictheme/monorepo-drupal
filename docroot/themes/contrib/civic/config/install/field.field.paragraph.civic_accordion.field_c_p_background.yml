@@ -3,15 +3,15 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_c_p_background
-    - paragraphs.paragraphs_type.civic_content
-id: paragraph.civic_content.field_c_p_background
+    - paragraphs.paragraphs_type.civic_accordion
+id: paragraph.civic_accordion.field_c_p_background
 field_name: field_c_p_background
 entity_type: paragraph
-bundle: civic_content
+bundle: civic_accordion
 label: Background
 description: 'Apply a themed background color and provide horizontal spacing to the component'
 required: false
-translatable: false
+translatable: true
 default_value:
   -
     value: 0

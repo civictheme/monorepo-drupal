@@ -1,12 +1,16 @@
 .civic-slider {
   $root: &;
 
-  padding-top: civic-space(5);
-  padding-bottom: civic-space(5);
+  &.civic_slider--with-space-top {
+    padding-top: $civic-slider-padding-vertical;
+  }
 
-  @include civic-breakpoint('m') {
-    padding-top: civic-space(10);
-    padding-bottom: civic-space(10);
+  &.civic_slider--with-space-bottom {
+    padding-bottom: $civic-slider-padding-vertical;
+  }
+
+  &.civic_slider--with-space-both {
+    padding: $civic-slider-padding-vertical 0;
   }
 
   &__upper-control-panel {
@@ -108,6 +112,12 @@
   &.civic-theme-light {
     background-color: $civic-slider-light-background-color;
 
+    &.civic_slider--with-background {
+      background-color: $civic-slider-light-wrapper-background-color;
+      padding-left: $civic-slider-padding-horizontal;
+      padding-right: $civic-slider-padding-horizontal;
+    }
+
     #{$root}__title {
       color: $civic-slider-light-title-color;
     }
@@ -120,6 +130,12 @@
 
   &.civic-theme-dark {
     background-color: $civic-slider-dark-background-color;
+
+    &.civic_slider--with-background {
+      background-color: $civic-slider-dark-wrapper-background-color;
+      padding-left: $civic-slider-padding-horizontal;
+      padding-right: $civic-slider-padding-horizontal;
+    }
 
     #{$root}__title {
       color: $civic-slider-dark-title-color;

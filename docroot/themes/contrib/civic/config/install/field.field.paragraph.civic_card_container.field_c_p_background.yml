@@ -2,16 +2,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_c_p_with_spacing
+    - field.storage.paragraph.field_c_p_background
     - paragraphs.paragraphs_type.civic_card_container
-id: paragraph.civic_card_container.field_c_p_with_spacing
-field_name: field_c_p_with_spacing
+id: paragraph.civic_card_container.field_c_p_background
+field_name: field_c_p_background
 entity_type: paragraph
 bundle: civic_card_container
-label: 'With spacing'
-description: 'Add spacing around elements of the container.'
+label: Background
+description: 'Apply a themed background color and provide horizontal spacing to the component'
 required: false
-translatable: false
+translatable: true
 default_value:
   -
     value: 0
