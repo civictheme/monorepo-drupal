@@ -17,6 +17,12 @@ addDecorator((storyFn) => {
 setupTwig(Twig);
 
 export const parameters = {
+  a11y: {
+    element: '#root',
+    config: {},
+    options: {},
+    manual: true,
+  },
   actions: { argTypesRegex: '^on[A-Z].*' },
   options: {
     storySort: {

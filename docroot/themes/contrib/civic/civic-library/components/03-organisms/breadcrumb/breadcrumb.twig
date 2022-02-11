@@ -21,29 +21,31 @@
   <nav class="{{ '%s %s'|format(component_class, theme_class) }}" aria-label="breadcrumb">
     <ul class="civic-breadcrumb__links">
       {% for linkObj in links %}
-        <li class="civic-breadcrumb__links--link">
+        {% if linkObj.text %}
+          <li class="civic-breadcrumb__links--link">
 
-          {% if loop.index == links_count - 1 %}
-            {% set parent = linkObj %}
-          {% endif %}
-
-          {% if not active_is_link and (loop.index == links_count) %}
-            <span aria-current="location">{{ linkObj.text }}</span>
-          {% else %}
-            {% include '@atoms/link/link.twig' with {
-              theme: theme,
-              text: linkObj.text,
-              url: linkObj.url,
-              attributes: loop.index == links_count ? 'aria-current="location"' : '',
-            } only %}
-            {% if (loop.index < links_count) %}
-              {% include '@atoms/icon/icon.twig' with {
-                symbol: 'arrows_rightarrow',
-              } only %}
+            {% if loop.index == links_count - 1 %}
+              {% set parent = linkObj %}
             {% endif %}
-          {% endif %}
 
-        </li>
+            {% if not active_is_link and (loop.index == links_count) %}
+              <span aria-current="location">{{ linkObj.text }}</span>
+            {% else %}
+              {% include '@atoms/link/link.twig' with {
+                theme: theme,
+                text: linkObj.text,
+                url: linkObj.url,
+                attributes: loop.index == links_count ? 'aria-current="location"' : '',
+              } only %}
+              {% if (loop.index < links_count) %}
+                {% include '@atoms/icon/icon.twig' with {
+                  symbol: 'arrows_rightarrow',
+                } only %}
+              {% endif %}
+            {% endif %}
+
+          </li>
+        {% endif %}
       {% endfor %}
 
       {% if parent is not empty %}
