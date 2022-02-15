@@ -9,15 +9,15 @@
   position: relative;
   text-decoration: none;
 
-  &.civic_next_step--with-space-top {
+  &.civic-next-step--with-space-top {
     padding-top: $civic-next-steps-padding-vertical;
   }
 
-  &.civic_next_step--with-space-bottom {
+  &.civic-next-step--with-space-bottom {
     padding-bottom: $civic-next-steps-padding-vertical;
   }
 
-  &.civic_next_step--with-space-both {
+  &.civic-next-step--with-space-both {
     padding: $civic-next-steps-padding-vertical 0;
   }
 

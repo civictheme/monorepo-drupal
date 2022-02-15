@@ -5,15 +5,15 @@
 .civic-callout {
   $root: &;
 
-  &.civic_callout--with-space-top {
+  &.civic-callout--with-space-top {
     padding-top: $civic-callout-padding-vertical;
   }
 
-  &.civic_callout--with-space-bottom {
+  &.civic-callout--with-space-bottom {
     padding-bottom: $civic-callout-padding-vertical;
   }
 
-  &.civic_callout--with-space-both {
+  &.civic-callout--with-space-both {
     padding: $civic-callout-padding-vertical 0;
   }
 

@@ -2,15 +2,15 @@
 // Civic Map.
 //
 .civic-map {
-  &.civic_map--with-space-top {
+  &.civic-map--with-space-top {
     padding-top: $civic-map-padding-vertical;
   }
 
-  &.civic_map--with-space-bottom {
+  &.civic-map--with-space-bottom {
     padding-bottom: $civic-map-padding-vertical;
   }
 
-  &.civic_map--with-space-both {
+  &.civic-map--with-space-both {
     padding: $civic-map-padding-vertical 0;
   }
 
@@ -65,7 +65,7 @@
   &.civic-theme-light {
     background-color: $civic-map-light-background-color;
 
-    &.civic_map--with-background {
+    &.civic-map--with-background {
       background-color: $civic-map-light-wrapper-background-color;
       padding-left: $civic-map-padding-horizontal;
       padding-right: $civic-map-padding-horizontal;
@@ -87,7 +87,7 @@
   &.civic-theme-dark {
     background-color: $civic-map-dark-background-color;
 
-    &.civic_map--with-background {
+    &.civic-map--with-background {
       background-color: $civic-map-dark-wrapper-background-color;
       padding-left: $civic-map-padding-horizontal;
       padding-right: $civic-map-padding-horizontal;

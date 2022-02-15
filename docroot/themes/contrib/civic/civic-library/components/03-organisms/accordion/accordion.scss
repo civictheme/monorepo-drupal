@@ -5,15 +5,15 @@
 .civic-accordion {
   $root: &;
 
-  &.civic_accordion--with-space-top {
+  &.civic-accordion--with-space-top {
     padding-top: $civic-accordion-padding-vertical;
   }
 
-  &.civic_accordion--with-space-bottom {
+  &.civic-accordion--with-space-bottom {
     padding-bottom: $civic-accordion-padding-vertical;
   }
 
-  &.civic_accordion--with-space-both {
+  &.civic-accordion--with-space-both {
     padding: $civic-accordion-padding-vertical 0;
   }
 
@@ -120,7 +120,7 @@
   &.civic-theme-light {
     color: $civic-accordion-light-color;
 
-    &.civic_accordion--with-background {
+    &.civic-accordion--with-background {
       background-color: $civic-accordion-light-wrapper-background-color;
       padding-left: $civic-accordion-padding-horizontal;
       padding-right: $civic-accordion-padding-horizontal;
@@ -150,7 +150,7 @@
   &.civic-theme-dark {
     color: $civic-accordion-dark-color;
 
-    &.civic_accordion--with-background {
+    &.civic-accordion--with-background {
       background-color: $civic-accordion-dark-wrapper-background-color;
       padding-left: $civic-accordion-padding-horizontal;
       padding-right: $civic-accordion-padding-horizontal;
