@@ -5,15 +5,15 @@
 .civic-promo {
   $root: &;
 
-  &.civic_promo--with-space-top {
+  &.civic-promo--with-space-top {
     padding-top: $civic-promo-padding-vertical;
   }
 
-  &.civic_promo--with-space-bottom {
+  &.civic-promo--with-space-bottom {
     padding-bottom: $civic-promo-padding-vertical;
   }
 
-  &.civic_promo--with-space-both {
+  &.civic-promo--with-space-both {
     padding: $civic-promo-padding-vertical 0;
   }
 

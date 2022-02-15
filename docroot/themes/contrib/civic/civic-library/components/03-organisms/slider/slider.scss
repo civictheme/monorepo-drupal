@@ -1,15 +1,15 @@
 .civic-slider {
   $root: &;
 
-  &.civic_slider--with-space-top {
+  &.civic-slider--with-space-top {
     padding-top: $civic-slider-padding-vertical;
   }
 
-  &.civic_slider--with-space-bottom {
+  &.civic-slider--with-space-bottom {
     padding-bottom: $civic-slider-padding-vertical;
   }
 
-  &.civic_slider--with-space-both {
+  &.civic-slider--with-space-both {
     padding: $civic-slider-padding-vertical 0;
   }
 
@@ -112,7 +112,7 @@
   &.civic-theme-light {
     background-color: $civic-slider-light-background-color;
 
-    &.civic_slider--with-background {
+    &.civic-slider--with-background {
       background-color: $civic-slider-light-wrapper-background-color;
       padding-left: $civic-slider-padding-horizontal;
       padding-right: $civic-slider-padding-horizontal;
@@ -131,7 +131,7 @@
   &.civic-theme-dark {
     background-color: $civic-slider-dark-background-color;
 
-    &.civic_slider--with-background {
+    &.civic-slider--with-background {
       background-color: $civic-slider-dark-wrapper-background-color;
       padding-left: $civic-slider-padding-horizontal;
       padding-right: $civic-slider-padding-horizontal;
