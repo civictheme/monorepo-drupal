@@ -35,31 +35,26 @@ CivicDropdownFilter.prototype.init = function () {
 
 
 CivicDropdownFilter.prototype.filterBasedOnInput = function (e) {
-  let query = this.searchInput.value;
+  let query = this.searchInput.value.toLowerCase();
+  let _this = this;
 
-  let hits = [];
-  // console.log(this.dropdownFilterItems.childNodes);
-  hits = [this.dropdownFilterItems].filter(item => item.querySelectorAll('label').innerHTML.includes(query));
-
-  // for (let i = 0; i < this.dropdownFilterItems; i += 1) {
-  //   // this.accordionTriggers[i].index = i;
-  //   // this.accordionTriggers[i].addEventListener('click', this.clickListener, false);
-  //   // this.accordionTriggers[i].addEventListener('keydown', this.keydownListener, false);
-  //   // this.accordionTriggers[i].addEventListener('focus', this.focusListener, false);
-
-  //   // if (this.accordionTriggers[i].classList.contains('is-selected')) {
-  //   //   this.expandedAccordions[i] = true;
-  //   // }
-  // }
-  console.log(hits);
+  this.dropdownFilterItems.forEach(function(item, index, list) {
+    if (item.querySelector('label').innerHTML.toLowerCase().includes(query)) {
+      _this.showItem(item);
+    } else {
+      _this.hideItem(item);
+    }
+  });
 }
 
 CivicDropdownFilter.prototype.showItem = function (item) {
-
+  item.classList.remove('civic-dropdown-filter__item-hidden');
+  item.classList.add('civic-dropdown-filter__item-visible');
 }
 
 CivicDropdownFilter.prototype.hideItem = function (item) {
-
+  item.classList.remove('civic-dropdown-filter__item-visible');
+  item.classList.add('civic-dropdown-filter__item-hidden');
 }
 
 // eslint-disable-next-line func-names
