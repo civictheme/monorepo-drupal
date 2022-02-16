@@ -1,4 +1,4 @@
-function CivicDropdownFilter(el, selectedIndex) {
+function CivicDropdownFilter(el) {
   if (!el) {
     return;
   }
@@ -6,12 +6,10 @@ function CivicDropdownFilter(el, selectedIndex) {
   this.el = el;
   this.dropdownFilterItems = this.el.querySelectorAll('.civic-form-element--checkbox,.civic-form-element--radio');
 
-  if (this.dropdownFilterItems.length <= 4) {
-    return;
+  if (this.dropdownFilterItems.length >= 8) {
+    this.init();
   }
-
-  this.init();
-}
+};
 
 // eslint-disable-next-line func-names
 CivicDropdownFilter.prototype.init = function () {
@@ -33,29 +31,31 @@ CivicDropdownFilter.prototype.init = function () {
   this.el.classList.add('is-initialized');
 };
 
-
+// eslint-disable-next-line func-names
 CivicDropdownFilter.prototype.filterBasedOnInput = function (e) {
   let query = this.searchInput.value.toLowerCase();
   let _this = this;
 
-  this.dropdownFilterItems.forEach(function(item, index, list) {
+  this.dropdownFilterItems.forEach(function(item) {
     if (item.querySelector('label').innerHTML.toLowerCase().includes(query)) {
       _this.showItem(item);
     } else {
       _this.hideItem(item);
     }
   });
-}
+};
 
+// eslint-disable-next-line func-names
 CivicDropdownFilter.prototype.showItem = function (item) {
   item.classList.remove('civic-dropdown-filter__item-hidden');
   item.classList.add('civic-dropdown-filter__item-visible');
-}
+};
 
+// eslint-disable-next-line func-names
 CivicDropdownFilter.prototype.hideItem = function (item) {
   item.classList.remove('civic-dropdown-filter__item-visible');
   item.classList.add('civic-dropdown-filter__item-hidden');
-}
+};
 
 // eslint-disable-next-line func-names
 CivicDropdownFilter.prototype.keyupEvent = function (e) {
