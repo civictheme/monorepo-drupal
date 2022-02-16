@@ -83,12 +83,4 @@
       border-color: $civic-dropdown-filter-dark-filter-options-border-color;
     }
   }
-
-  &__item-hidden.civic-form-element {
-    display: none;
-  }
-
-  &__item-visible.civic-form-element {
-    display: flex;
-  }
 }
