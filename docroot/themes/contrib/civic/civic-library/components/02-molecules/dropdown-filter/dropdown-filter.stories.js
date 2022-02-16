@@ -9,6 +9,8 @@ import { formElement } from '../../00-base/base.stories';
 
 import DropdownFilter from './dropdown-filter.twig';
 
+import './dropdown-filter';
+
 export default {
   title: 'Molecules/Filter',
   parameters: {
