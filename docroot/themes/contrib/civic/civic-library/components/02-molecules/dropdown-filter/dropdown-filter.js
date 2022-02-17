@@ -1,14 +1,13 @@
 function CivicDropdownFilter(el) {
-  if (!el || el.hasAttribute('data-dropdown-filter-is-initialized')) {
+  if (!el || el.hasAttribute('data-dropdown-filter-searchable')) {
     return;
   }
 
   this.el = el;
-  this.el.setAttribute('data-dropdown-filter-searchable', '');
 
   // Settings.
   this.itemSelector = this.el.getAttribute('data-dropdown-filter-item-selector') ?? '.civic-form-element--checkbox,.civic-form-element--radio';
-  this.itemThreshold = this.el.getAttribute('data-dropdown-filter-item-threshold') ?? 4;
+  this.itemThreshold = parseInt(this.el.getAttribute('data-dropdown-filter-item-threshold')) ?? 4;
   this.placeholderText = this.el.getAttribute('data-dropdown-filter-placeholder-text') ?? 'Filter by keyword';
 
   this.dropdownFilterItems = this.el.querySelectorAll(this.itemSelector);
@@ -41,7 +40,7 @@ CivicDropdownFilter.prototype.init = function () {
   // Add the search box key listener.
   this.keyupListener = this.keyupEvent.bind(this);
   this.searchInput.addEventListener('keyup', this.keyupListener, false);
-  this.el.setAttribute('data-dropdown-filter-is-initialized', '');
+  this.el.setAttribute('data-dropdown-filter-searchable', '');
 };
 
 // eslint-disable-next-line func-names
