@@ -6,15 +6,15 @@ function CivicDropdownFilter(el) {
   this.el = el;
   this.el.setAttribute('data-dropdown-filter-searchable', '');
 
-  // Options.
-  this.dropdownFilterItemSelector = this.el.getAttribute('data-dropdown-filter-item-selector') ?? '.civic-form-element--checkbox,.civic-form-element--radio';
+  // Settings.
+  this.itemSelector = this.el.getAttribute('data-dropdown-filter-item-selector') ?? '.civic-form-element--checkbox,.civic-form-element--radio';
+  this.itemThreshold = this.el.getAttribute('data-dropdown-filter-item-threshold') ?? 4;
   this.placeholderText = this.el.getAttribute('data-dropdown-filter-placeholder-text') ?? 'Filter by keyword';
-  this.threshold = this.el.getAttribute('data-dropdown-filter-threshold') ?? 4;
 
-  this.dropdownFilterItems = this.el.querySelectorAll(this.dropdownFilterItemSelector);
+  this.dropdownFilterItems = this.el.querySelectorAll(this.itemSelector);
 
   // Add a search box to the dropdown filter if there are more options than the threshold.
-  if (this.dropdownFilterItems.length >= this.threshold) {
+  if (this.dropdownFilterItems.length >= this.itemThreshold) {
     this.init();
   }
 };

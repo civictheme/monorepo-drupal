@@ -10,8 +10,11 @@
  * - type: [string] Large filter type.
  * - filter_text: [string] Card title.
  * - filter_group: [string] Filter group name.
- * - options_title: [string] Options title
- * - options: [array] Array of form elements:
+ * - options_title: [string] Options title.
+ * - options: [array] Array of form elements.
+ * - filter_item_threshold: [string] Number of checkbox/radio items allowed before a search box appears.
+ * - filter_item_selector: [string] Selector for items that can be filtered by the search box.
+ * - filter_placeholder_text: [string] Placeholder text for the search box.
  * - settings: [object] Filter settings
  */
 #}
@@ -20,7 +23,7 @@
 {% set type_class = type is empty ? 'civic-dropdown-filter--%s'|format(type) : '' %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civic-dropdown-filter {{ modifier_class }}" data-collapsible data-collapsible-collapsed {% if filter_group %}data-collapsible-group="{{ filter_group }}"{% endif %} data-collapsible-duration="0">
+<div class="civic-dropdown-filter {{ modifier_class }}" data-collapsible data-collapsible-collapsed {% if filter_group %}data-collapsible-group="{{ filter_group }}"{% endif %} data-collapsible-duration="0" {% if filter_item_selector %}data-dropdown-filter-item-selector="{{ filter_item_selector }}"{% endif %} {% if filter_item_threshold %}data-dropdown-filter-item-threshold="{{ filter_item_threshold }}"{% endif %} {% if filter_placeholder_text %}data-dropdown-filter-placeholder-text="{{ filter_placeholder_text }}"{% endif %}>
   <button class="civic-dropdown-filter__filter-text" data-collapsible-trigger>{{ filter_text }}</button>
   <div class="civic-dropdown-filter__filter-options" data-collapsible-panel>
     <div class="civic-dropdown-filter__filter-options-wrapper">
