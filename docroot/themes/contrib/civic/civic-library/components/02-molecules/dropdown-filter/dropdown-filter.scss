@@ -40,6 +40,8 @@
     border-radius: $civic-border-radius;
     border-style: solid;
     border-width: 1px;
+    max-height: civic-space() * 35;
+    overflow: auto;
   }
 
   &__fieldset {

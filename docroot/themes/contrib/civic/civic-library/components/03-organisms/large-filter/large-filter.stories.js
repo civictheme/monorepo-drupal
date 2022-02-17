@@ -51,6 +51,11 @@ export const LargeFilter = () => {
         formElement('checkbox', { value: true }, theme, false, count++),
         formElement('checkbox', { value: false }, theme, false, count++),
         formElement('checkbox', { value: false }, theme, false, count++),
+        formElement('checkbox', { value: false }, theme, false, count++),
+        formElement('checkbox', { value: false }, theme, false, count++),
+        formElement('checkbox', { value: false }, theme, false, count++),
+        formElement('checkbox', { value: false }, theme, false, count++),
+        formElement('checkbox', { value: false }, theme, false, count++),
       ].join(''),
     }));
 
