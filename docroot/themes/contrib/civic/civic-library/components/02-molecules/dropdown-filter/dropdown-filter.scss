@@ -51,6 +51,12 @@
 
         margin-bottom: civic-space(4);
       }
+
+      &[data-dropdown-filter-searchable] {
+        legend {
+          margin-bottom: civic-space(2);
+        }
+      }
     }
   }
 
@@ -84,11 +90,15 @@
     }
   }
 
-  &__item-hidden.civic-form-element {
+  [data-dropdown-filter-item-hidden] {
     display: none;
   }
 
-  &__item-visible.civic-form-element {
+  [data-dropdown-filter-item-visible] {
     display: flex;
+  }
+
+  #{$root}__search.civic-input {
+    margin-bottom: civic-space(2);
   }
 }
