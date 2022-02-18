@@ -12,4 +12,10 @@
       margin-right: 0;
     }
   }
+
+  .civic-icon-link {
+    &--with-border {
+      border-radius: rem(100px);
+    }
+  }
 }
