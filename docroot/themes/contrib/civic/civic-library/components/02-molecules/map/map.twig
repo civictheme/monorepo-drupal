@@ -14,13 +14,14 @@
  */
 #}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civic-map {{ theme_class }}">
+<div class="civic-map {{ modifier_class }}">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
         <div class="civic-map__canvas">
-          <iframe class="civic-map_iframe"  src="{{ embed_url }}" frameborder="0" scrolling="no" allowfullscreen></iframe>
+          <iframe class="civic-map_iframe"  src="{{ embed_url }}" frameborder="0" scrolling="no" allowfullscreen {% if address is not empty %} title="{{ address }}" {% endif %}></iframe>
         </div>
         <div class="civic-map__links">
           {% if view_link is not empty %}
@@ -36,6 +37,7 @@
                 theme: theme,
                 text: view_text,
                 url: view_link,
+                new_window: true,
                 is_external: view_link_is_external,
               } %}
             </div>
@@ -54,6 +56,7 @@
                 theme: theme,
                 text: share_text,
                 url: share_link,
+                new_window: true,
                 is_external: share_link_is_external,
               } %}
             </div>

@@ -1,6 +1,12 @@
 require('twig');
 
 export const parameters = {
+  a11y: {
+    element: '#root',
+    config: {},
+    options: {},
+    manual: true,
+  },
   options: {
     storySort: {
       order: ['Base', ['*', 'Collapsible', 'Responsive'], '*'],

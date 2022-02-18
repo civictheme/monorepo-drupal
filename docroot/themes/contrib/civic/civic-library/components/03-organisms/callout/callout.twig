@@ -9,6 +9,7 @@
  * - theme: [string] Theme for Callout.
  * - content_top: [string] Component slot for top of Callout.
  * - title: [string] Callout title.
+ * - modifier_class: [string] Additional classes to modify component styling.
  * - summary: [string] Callout summary.
  * - links: [array] Array of Link objects containing type, url, text
  * - content_bottom: [string] Component slot for bottom of Callout.
@@ -16,48 +17,51 @@
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set default_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, default_class, modifier_class|default('')) %}
 
-<div class="civic-callout {{ theme_class }}">
+<div class="civic-callout {{ modifier_class }}">
   <div class="container">
     <div class="row">
-      <div class="civic-callout--wrapper col-xs-12">
-        {% if content_top %}
-          <div class="civic-callout__content-top">
-            {{ content_top }}
-          </div>
-        {% endif %}
-        <div class="civic-callout__text">
-          <div class="civic-callout__title">
-            {{ title }}
+      <div class="col-xs-12">
+        <div class="civic-callout--wrapper">
+          {% if content_top %}
+            <div class="civic-callout__content-top">
+              {{ content_top }}
+            </div>
+          {% endif %}
+          <div class="civic-callout__text">
+            <div class="civic-callout__title">
+              {{ title }}
+            </div>
+
+            <div class="civic-callout__summary">
+              {{ summary }}
+            </div>
           </div>
 
-          <div class="civic-callout__summary">
-            {{ summary }}
+          <div class="civic-callout__links">
+            {% for linkObj in links %}
+              {% if linkObj.url is not empty %}
+                {% include '@atoms/button/button.twig' with {
+                  theme: theme,
+                  kind: 'link',
+                  type: linkObj.type,
+                  size: linkObj.size,
+                  text: linkObj.text,
+                  url: linkObj.url,
+                } only %}
+              {% endif %}
+            {% endfor %}
           </div>
+
+          {% if content_bottom %}
+            <div class="civic-callout__content-bottom">
+              {{ content_bottom }}
+            </div>
+          {% endif %}
         </div>
-
-        <div class="civic-callout__links">
-          {% for linkObj in links %}
-            {% if linkObj.url is not empty %}
-              {% include '@atoms/button/button.twig' with {
-                theme: theme,
-                kind: 'link',
-                type: linkObj.type,
-                size: linkObj.size,
-                text: linkObj.text,
-                url: linkObj.url,
-              } only %}
-            {% endif %}
-          {% endfor %}
-        </div>
-
-        {% if content_bottom %}
-          <div class="civic-callout__content-bottom">
-            {{ content_bottom }}
-          </div>
-        {% endif %}
       </div>
     </div>
   </div>
-
 </div>

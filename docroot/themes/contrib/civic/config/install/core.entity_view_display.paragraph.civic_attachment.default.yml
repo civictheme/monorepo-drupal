@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civic_attachment.field_c_p_attachments
+    - field.field.paragraph.civic_attachment.field_c_p_background
     - field.field.paragraph.civic_attachment.field_c_p_icon
     - field.field.paragraph.civic_attachment.field_c_p_image
     - field.field.paragraph.civic_attachment.field_c_p_space
@@ -25,6 +26,16 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
+  field_c_p_background:
+    weight: 8
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_c_p_icon:
     weight: 5

@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.civic_card_container.field_c_p_background
     - field.field.paragraph.civic_card_container.field_c_p_cards
     - field.field.paragraph.civic_card_container.field_c_p_column_count
     - field.field.paragraph.civic_card_container.field_c_p_description
@@ -11,7 +12,6 @@ dependencies:
     - field.field.paragraph.civic_card_container.field_c_p_space
     - field.field.paragraph.civic_card_container.field_c_p_theme
     - field.field.paragraph.civic_card_container.field_c_p_title
-    - field.field.paragraph.civic_card_container.field_c_p_with_spacing
     - paragraphs.paragraphs_type.civic_card_container
   module:
     - entity_reference_revisions
@@ -22,6 +22,16 @@ targetEntityType: paragraph
 bundle: civic_card_container
 mode: default
 content:
+  field_c_p_background:
+    weight: 10
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
   field_c_p_cards:
     type: entity_reference_revisions_entity_view
     weight: 2
@@ -100,15 +110,5 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
-  field_c_p_with_spacing:
-    weight: 7
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
     region: content
 hidden: {  }

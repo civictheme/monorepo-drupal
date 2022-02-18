@@ -5,14 +5,28 @@
 .civic-promo {
   $root: &;
 
-  border-radius: $civic-border-radius;
-  padding: civic-space(3);
+  &.civic-promo--with-space-top {
+    padding-top: $civic-promo-padding-vertical;
+  }
 
-  @include civic-breakpoint(m) {
-    border-radius: $civic-border-radius * 2;
-    padding: civic-space(7) civic-space(8);
-    display: flex;
-    align-items: center;
+  &.civic-promo--with-space-bottom {
+    padding-bottom: $civic-promo-padding-vertical;
+  }
+
+  &.civic-promo--with-space-both {
+    padding: $civic-promo-padding-vertical 0;
+  }
+
+  &__inner {
+    border-radius: $civic-border-radius;
+    padding: civic-space(3);
+
+    @include civic-breakpoint(m) {
+      border-radius: $civic-border-radius * 2;
+      padding: civic-space(7) civic-space(8);
+      display: flex;
+      align-items: center;
+    }
   }
 
   &__title {
@@ -54,7 +68,9 @@
   }
 
   &.civic-theme-light {
-    background-color: $civic-promo-light-background-color;
+    #{$root}__inner {
+      background-color: $civic-promo-light-background-color;
+    }
 
     #{$root}__title {
       color: $civic-promo-light-heading-color;
@@ -66,7 +82,9 @@
   }
 
   &.civic-theme-dark {
-    background-color: $civic-promo-dark-background-color;
+    #{$root}__inner {
+      background-color: $civic-promo-dark-background-color;
+    }
 
     #{$root}__title {
       color: $civic-promo-dark-heading-color;

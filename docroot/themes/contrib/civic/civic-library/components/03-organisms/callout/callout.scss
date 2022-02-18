@@ -5,6 +5,18 @@
 .civic-callout {
   $root: &;
 
+  &.civic-callout--with-space-top {
+    padding-top: $civic-callout-padding-vertical;
+  }
+
+  &.civic-callout--with-space-bottom {
+    padding-bottom: $civic-callout-padding-vertical;
+  }
+
+  &.civic-callout--with-space-both {
+    padding: $civic-callout-padding-vertical 0;
+  }
+
   &--wrapper {
     border-radius: $civic-callout-border-radius;
     border-left: rem(6px) solid transparent;
@@ -62,9 +74,9 @@
   }
 
   &.civic-theme-light {
-    border-left-color: $civic-callout-light-border-color;
 
     #{$root}--wrapper {
+      border-left-color: $civic-callout-light-border-color;
       background-color: $civic-callout-light-background-color;
       color: $civic-callout-light-color;
     }
@@ -81,9 +93,9 @@
   }
 
   &.civic-theme-dark {
-    border-left-color: $civic-callout-dark-border-color;
 
     #{$root}--wrapper {
+      border-left-color: $civic-callout-dark-border-color;
       background-color: $civic-callout-dark-background-color;
       color: $civic-callout-dark-color;
     }

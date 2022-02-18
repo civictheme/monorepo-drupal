@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civic_map.field_c_p_address
+    - field.field.paragraph.civic_map.field_c_p_background
     - field.field.paragraph.civic_map.field_c_p_embed_url
     - field.field.paragraph.civic_map.field_c_p_share_link
     - field.field.paragraph.civic_map.field_c_p_space
@@ -31,6 +32,13 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_c_p_background:
+    weight: 7
+    settings:
+      display_label: true
+    third_party_settings: { }
+    type: boolean_checkbox
     region: content
   field_c_p_share_link:
     weight: 3

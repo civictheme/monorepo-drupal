@@ -12,7 +12,7 @@ default:
       value: icons8-youtube.svg
   uri:
     -
-      value: 'public://icons/icons8-youtube.svg'
+      value: 'public://icons/icons8-youtube_4.svg'
   filemime:
     -
       value: image/svg+xml

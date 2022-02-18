@@ -75,7 +75,7 @@ function _civic_preprocess_paragraph(&$variables) {
   _civic_preprocess_paragraph_title($variables);
   _civic_preprocess_paragraph_summary($variables);
   _civic_preprocess_paragraph_space($variables);
-
+  _civic_preprocess_paragraph_background($variables);
   _civic_preprocess_paragraph_card($variables);
 
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -120,8 +120,26 @@ function _civic_preprocess_paragraph_space(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   if ($paragraph->hasField('field_c_p_space') && !$paragraph->get('field_c_p_space')->isEmpty()) {
-    $component_name = $type = $paragraph->getType();
+    $component_name = str_replace('_', '-', $paragraph->getType());
     $variables['modifier_class'] = $component_name . '--with-space-' . $paragraph->get('field_c_p_space')->getString();
+  }
+}
+
+/**
+ * Preprocess "with background" for Civic paragraphs.
+ */
+function _civic_preprocess_paragraph_background(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  if ($paragraph->hasField('field_c_p_background')
+    && !$paragraph->get('field_c_p_background')->isEmpty()
+    && $paragraph->field_c_p_background->value != FALSE
+  ) {
+    $component_name = str_replace('_', '-', $paragraph->getType());
+    if (!array_key_exists('modifier_class', $variables)) {
+      $variables['modifier_class'] = '';
+    }
+    $variables['modifier_class'] .= ' ' . $component_name . '--with-background';
   }
 }
 
