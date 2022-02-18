@@ -1005,6 +1005,8 @@ $civic-message-success-dark-border-color: civic-color('success') !default;
 //
 // Navigation/Primary navigation.
 //
+$civic-primary-navigation-breakpoint: $civic-header-desktop-menu-breakpoint !default;
+
 // Maximum number of columns a dropdown may have.
 $civic-primary-navigation-dropdown-cols: 4;
 
@@ -1065,6 +1067,8 @@ $civic-primary-navigation-dark-menu-item-active-trail-background-color: civic-co
 // Navigation/Secondary navigation.
 //
 // Top offset for the dropdown from the bottom of the trigger.
+$civic-secondary-navigation-breakpoint: $civic-header-desktop-menu-breakpoint !default;
+$civic-secondary-navigation-dropdown-top-offset: civic-space();
 $civic-secondary-navigation-dropdown-top-offset: civic-space();
 $civic-secondary-navigation-dropdown-zindex: 11;
 $civic-secondary-navigation-dropdown-border-radius: $civic-border-radius !default;
