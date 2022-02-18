@@ -1201,22 +1201,22 @@ $civic-dropdown-filter-dark-filter-options-border-color: civic-color-neutral(40)
 //
 // Large filter.
 //
-$civic-large-filter-light-background-color: civic-color('neutral');
-$civic-large-filter-light-border-color: civic-color-neutral(20);
-$civic-large-filter-light-filters-legend-color: civic-color('secondary');
-$civic-large-filter-light-selected-filters-border-color: civic-color-neutral(20);
-$civic-large-filter-light-clear-all-background-color: civic-color('translucent');
-$civic-large-filter-light-clear-all-color: civic-color('secondary');
-$civic-large-filter-light-clear-all-icon-color: civic-color('error');
-$civic-large-filter-light-selected-filters-title-color: civic-color('secondary');
-$civic-large-filter-dark-background-color: civic-color-shade-dark(45);
-$civic-large-filter-dark-border-color: civic-color-shade-dark(30);
-$civic-large-filter-dark-filters-legend-color: civic-color('neutral');
-$civic-large-filter-dark-selected-filters-border-color: civic-color-shade-dark(30);
-$civic-large-filter-dark-clear-all-background-color: civic-color('translucent');
-$civic-large-filter-dark-clear-all-color: civic-color('neutral');
-$civic-large-filter-dark-clear-all-icon-color: civic-color('neutral');
-$civic-large-filter-dark-selected-filters-title-color: civic-color('neutral');
+$civic-large-filter-light-background-color: civic-color('neutral') !default;
+$civic-large-filter-light-border-color: civic-color-neutral(20) !default;
+$civic-large-filter-light-filters-legend-color: civic-color('secondary') !default;
+$civic-large-filter-light-selected-filters-border-color: civic-color-neutral(20) !default;
+$civic-large-filter-light-clear-all-background-color: civic-color('translucent') !default;
+$civic-large-filter-light-clear-all-color: civic-color('secondary') !default;
+$civic-large-filter-light-clear-all-icon-color: civic-color('error') !default;
+$civic-large-filter-light-selected-filters-title-color: civic-color('secondary') !default;
+$civic-large-filter-dark-background-color: civic-color-shade-dark(45) !default;
+$civic-large-filter-dark-border-color: civic-color-shade-dark(30) !default;
+$civic-large-filter-dark-filters-legend-color: civic-color('neutral') !default;
+$civic-large-filter-dark-selected-filters-border-color: civic-color-shade-dark(30) !default;
+$civic-large-filter-dark-clear-all-background-color: civic-color('translucent') !default;
+$civic-large-filter-dark-clear-all-color: civic-color('neutral') !default;
+$civic-large-filter-dark-clear-all-icon-color: civic-color('neutral') !default;
+$civic-large-filter-dark-selected-filters-title-color: civic-color('neutral') !default;
 
 //
 // Promo.
