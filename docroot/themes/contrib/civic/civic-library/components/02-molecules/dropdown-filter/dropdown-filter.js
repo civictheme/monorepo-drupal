@@ -7,7 +7,7 @@ function CivicDropdownFilter(el) {
 
   // Settings.
   this.itemSelector = this.el.getAttribute('data-dropdown-filter-item-selector') ? this.el.getAttribute('data-dropdown-filter-item-selector') : '.civic-form-element--checkbox,.civic-form-element--radio';
-  this.itemThreshold = this.el.getAttribute('data-dropdown-filter-item-threshold') ? parseInt(this.el.getAttribute('data-dropdown-filter-item-threshold')) : 10;
+  this.itemThreshold = this.el.getAttribute('data-dropdown-filter-item-threshold') ? parseInt(this.el.getAttribute('data-dropdown-filter-item-threshold'), 10) : 10;
   this.placeholderText = this.el.getAttribute('data-dropdown-filter-placeholder-text') ? this.el.getAttribute('data-dropdown-filter-placeholder-text') : 'Filter by keyword';
 
   this.dropdownFilterItems = this.el.querySelectorAll(this.itemSelector);
@@ -16,17 +16,16 @@ function CivicDropdownFilter(el) {
   if (this.dropdownFilterItems.length >= this.itemThreshold) {
     this.init();
   }
-};
+}
 
 // eslint-disable-next-line func-names
 CivicDropdownFilter.prototype.init = function () {
-
   // Create the search box container.
-  let search = document.createElement('div');
+  const search = document.createElement('div');
   search.classList.add('civic-dropdown-filter__search', 'civic-input', 'civic-theme-light');
 
   // Create the search box element and add it to the container.
-  let searchInput = document.createElement('input');
+  const searchInput = document.createElement('input');
   searchInput.classList.add('civic-dropdown-filter__search__input', 'civic-input__element', 'civic-input--default', 'civic-input--text');
   searchInput.setAttribute('placeholder', this.placeholderText);
   searchInput.setAttribute('value', '');
@@ -44,11 +43,11 @@ CivicDropdownFilter.prototype.init = function () {
 };
 
 // eslint-disable-next-line func-names
-CivicDropdownFilter.prototype.filterBasedOnInput = function (e) {
-  let query = this.searchInput.value.toLowerCase();
-  let _this = this;
+CivicDropdownFilter.prototype.filterBasedOnInput = function () {
+  const query = this.searchInput.value.toLowerCase();
+  const _this = this;
 
-  this.dropdownFilterItems.forEach(function(item) {
+  this.dropdownFilterItems.forEach(function (item) {
     if (item.querySelector('label').innerHTML.toLowerCase().includes(query)) {
       _this.showItem(item);
     } else {
@@ -70,7 +69,7 @@ CivicDropdownFilter.prototype.hideItem = function (item) {
 };
 
 // eslint-disable-next-line func-names
-CivicDropdownFilter.prototype.keyupEvent = function (e) {
+CivicDropdownFilter.prototype.keyupEvent = function () {
   this.filterBasedOnInput();
 };
 
