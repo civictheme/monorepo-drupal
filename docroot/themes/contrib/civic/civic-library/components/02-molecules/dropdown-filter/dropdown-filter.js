@@ -6,9 +6,9 @@ function CivicDropdownFilter(el) {
   this.el = el;
 
   // Settings.
-  this.itemSelector = this.el.getAttribute('data-dropdown-filter-item-selector') ?? '.civic-form-element--checkbox,.civic-form-element--radio';
-  this.itemThreshold = parseInt(this.el.getAttribute('data-dropdown-filter-item-threshold')) ?? 8;
-  this.placeholderText = this.el.getAttribute('data-dropdown-filter-placeholder-text') ?? 'Filter by keyword';
+  this.itemSelector = this.el.getAttribute('data-dropdown-filter-item-selector') ? this.el.getAttribute('data-dropdown-filter-item-selector') : '.civic-form-element--checkbox,.civic-form-element--radio';
+  this.itemThreshold = this.el.getAttribute('data-dropdown-filter-item-threshold') ? parseInt(this.el.getAttribute('data-dropdown-filter-item-threshold')) : 10;
+  this.placeholderText = this.el.getAttribute('data-dropdown-filter-placeholder-text') ? this.el.getAttribute('data-dropdown-filter-placeholder-text') : 'Filter by keyword';
 
   this.dropdownFilterItems = this.el.querySelectorAll(this.itemSelector);
 
