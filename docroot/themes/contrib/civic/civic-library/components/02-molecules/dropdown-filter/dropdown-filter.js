@@ -45,13 +45,13 @@ CivicDropdownFilter.prototype.init = function () {
 // eslint-disable-next-line func-names
 CivicDropdownFilter.prototype.filterBasedOnInput = function () {
   const query = this.searchInput.value.toLowerCase();
-  const _this = this;
+  const dropdownFilter = this;
 
-  this.dropdownFilterItems.forEach(function (item) {
+  this.dropdownFilterItems.forEach(item => {
     if (item.querySelector('label').innerHTML.toLowerCase().includes(query)) {
-      _this.showItem(item);
+      dropdownFilter.showItem(item);
     } else {
-      _this.hideItem(item);
+      dropdownFilter.hideItem(item);
     }
   });
 };
