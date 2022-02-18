@@ -2,9 +2,10 @@
 import { boolean, number } from '@storybook/addon-knobs';
 import { getRandomBool } from '../base.stories';
 
-export function generateMenuLinks(count, level, is_active_trail, title) {
+export function generateMenuLinks(count, level, is_active_trail, title, title_prefix) {
   const links = [];
-  title = title || 'Item ';
+  title_prefix = title_prefix || '';
+  title = title_prefix + (title || 'Item ');
 
   const active_trail_idx = is_active_trail ? Math.floor(Math.random() * count) : null;
 
@@ -29,8 +30,9 @@ export function generateMenuLinks(count, level, is_active_trail, title) {
   return links;
 }
 
-export default function getMenuLinks(knobTab) {
+export default function getMenuLinks(knobTab, titlePrefix) {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+  titlePrefix = titlePrefix || null;
 
   const links_per_level = number(
     'Links per level',
@@ -56,5 +58,5 @@ export default function getMenuLinks(knobTab) {
   );
   const activeTrail = boolean('Show active trail (random)', false, generalKnobTab);
 
-  return generateMenuLinks(links_per_level, levels, activeTrail);
+  return generateMenuLinks(links_per_level, levels, activeTrail, null, titlePrefix);
 }
