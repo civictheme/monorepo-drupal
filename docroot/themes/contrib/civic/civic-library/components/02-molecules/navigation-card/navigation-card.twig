@@ -28,7 +28,7 @@
 {% set modifier_class = '%s %s %s %s'|format(theme_class, size_class, image_as_icon, modifier_class|default('')) %}
 
 <div class="civic-navigation-card {{ modifier_class }}">
-  {% if image.src is not empty and image_as_icon == false %}
+  {% if image.src is not empty %}
     <div class="civic-navigation-card__image-wrapper">
       <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
       {% if image_over %}

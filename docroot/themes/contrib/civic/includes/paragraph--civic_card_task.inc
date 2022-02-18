@@ -18,7 +18,7 @@ function civic_preprocess_paragraph__civic_card_task(&$variables) {
   $variables['size'] = 'small';
 
   // Added to render image as icon.
-  if (isset($variables['image']) && $paragraph->hasField('field_c_p_icon') && !$paragraph->get('field_c_p_icon')->isEmpty()) {
+  if ($paragraph->hasField('field_c_p_icon') && !$paragraph->get('field_c_p_icon')->isEmpty()) {
     $variables['image_as_icon'] = TRUE;
   }
 }
