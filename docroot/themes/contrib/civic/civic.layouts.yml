@@ -13,7 +13,7 @@ civic_one_column_contained:
   label: 'Single column - contained content'
   category: 'Civic Layouts'
   path: templates/layout/
-  template: layout--single-column
+  template: layout--single-column-contained
   default_region: content
   icon_map:
     - [first, second, second, third]

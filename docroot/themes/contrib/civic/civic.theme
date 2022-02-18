@@ -19,7 +19,6 @@ require_once 'includes/civic_pager.inc';
 require_once 'includes/civic_utilities.inc';
 require_once 'includes/civic_media.inc';
 require_once 'includes/form.inc';
-require_once 'includes/layouts.inc';
 require_once 'includes/nodes.inc';
 require_once 'includes/paragraphs.inc';
 require_once 'includes/views.inc';

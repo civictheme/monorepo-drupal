@@ -1,6 +1,9 @@
-import { boolean, radios, text } from '@storybook/addon-knobs';
+import {
+  boolean, radios, text, select,
+} from '@storybook/addon-knobs';
 import CivicContent from './content.twig';
-import CivicLayout from './content-layout--single-column.twig';
+import CivicLayoutSingleColumn from './content-layout--single-column.twig';
+import CivicLayoutSingleColumnContained from './content-layout--single-column-contained.twig';
 import { getSlots, randomText } from '../../00-base/base.stories';
 
 export default {
@@ -25,14 +28,28 @@ export const Content = (knobTab) => {
     sidebar_attributes: text('Sidebar attributes', '', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
-  const contained = boolean('Contained (implied when sidebar is present)', false, generalKnobTab);
-  let content = boolean('Show content', true, generalKnobTab) ? `<strong>Content text</strong> ${randomText(30)}` : false;
+  let content = boolean('Show content', true, generalKnobTab) ? `<strong>Content text</strong> ${randomText(30)}` : '';
+
+  const layout = select('Layout', [
+    'Single Column',
+    'Single Column Contained',
+  ], 'Single Column', generalKnobTab);
+
   if (content) {
-    content = CivicLayout({
-      content,
-      modifier_class: contained ? 'col-m-12' : '',
-      contained,
-    });
+    switch (layout) {
+      case 'Single Column':
+        content = CivicLayoutSingleColumn({
+          content,
+        });
+        break;
+      case 'Single Column Contained':
+        content = CivicLayoutSingleColumnContained({
+          content,
+        });
+        break;
+      default:
+        content = '';
+    }
   }
 
   return CivicContent({

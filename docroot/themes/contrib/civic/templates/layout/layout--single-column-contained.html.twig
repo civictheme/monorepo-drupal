@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Civic theme implementation to display a one-column edge to edge layout.
+ * Civic theme implementation to display a one-column contained layout.
  *
  * Available variables:
  * - content: The content for this layout.
@@ -16,7 +16,7 @@
 {% if content %}
   <div class="layout">
     <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content') }}>
-        {% include '@organisms/content/content-layout--single-column.twig' with {
+        {% include '@organisms/content/content-layout--single-column-contained.twig' with {
           content: content.content,
           modifier_class: modifier_class,
           contained: contained,

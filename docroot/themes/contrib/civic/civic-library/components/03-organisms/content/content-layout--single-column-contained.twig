@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Single column contained layout component
+ *
+ * Available variables:
+ * - content: The content for this layout.
+ * - modifier_class: CSS modifying class
+ *
+ */
+#}
+<div class="civic-layout--single-column">
+   <div class="container">
+     <div class="row">
+      {% block content %}
+        <div class="civic-layout__content col-m-12 {{ modifier_class }}">
+          {{ content }}
+        </div>
+      {% endblock %}
+     </div>
+   </div>
+</div>
