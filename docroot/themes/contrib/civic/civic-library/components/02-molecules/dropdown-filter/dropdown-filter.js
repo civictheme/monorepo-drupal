@@ -47,7 +47,7 @@ CivicDropdownFilter.prototype.filterBasedOnInput = function () {
   const query = this.searchInput.value.toLowerCase();
   const dropdownFilter = this;
 
-  this.dropdownFilterItems.forEach(item => {
+  this.dropdownFilterItems.forEach((item) => {
     if (item.querySelector('label').innerHTML.toLowerCase().includes(query)) {
       dropdownFilter.showItem(item);
     } else {
