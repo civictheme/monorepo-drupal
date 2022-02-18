@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: 2f22afdb-ed5d-47ed-942c-097a56f4e571
+  uuid: 5ae44305-e0fa-40d4-a1fe-bf757301d13b
   default_langcode: en
 default:
   uid:
@@ -9,19 +9,19 @@ default:
       target_id: 1
   filename:
     -
-      value: icons8-youtube.svg
+      value: generic.png
   uri:
     -
-      value: 'public://icons/icons8-youtube_4_0.svg'
+      value: 'public://media-icons/generic/generic.png'
   filemime:
     -
-      value: image/svg+xml
+      value: image/png
   filesize:
     -
-      value: 450
+      value: 3900
   status:
     -
       value: true
   created:
     -
-      value: 1635056928
+      value: 1645167825

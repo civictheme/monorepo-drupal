@@ -23,7 +23,11 @@
       }
 
       .show-#{$breakpoint}-table {
-        display: block !important;
+        display: table !important;
+      }
+
+      .show-#{$breakpoint}-flex {
+        display: flex !important;
       }
 
       .hide-#{$breakpoint} {

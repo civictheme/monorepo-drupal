@@ -1,7 +1,9 @@
 {#
 /**
  * @file
- * Menu component.
+ * Mobile Navigation menu component.
+ *
+ * Copied from '@base/menu/menu.twig' with some additions.
  *
  * Used to output hierarchical menu structure.
  *
@@ -25,6 +27,9 @@
 
 {% import _self as menus %}
 
+{#
+Copied as-is from '@base/menu/menu.twig'.
+#}
 {% macro menu_links(items, menu_level, modifier_class) %}
   {% if items %}
     {% if menu_level == 0 %}
@@ -71,15 +76,44 @@
 {% endmacro %}
 
 {#
-  Separate macro to allow "cleaner" overrides of parts of the menu.
-
-  Twig does not support overridable blocks in macro, so the only option is to
-  clone this whole file and override it as required.
-  The main macro is split into multiple macros to allow to override only the
-  required parts while preserving (cloned) main generation macro.
+Overrides for generation of child links.
 #}
 {% macro menu_links_below(items, menu_level, modifier_class, parent_item) %}
-  {{ menus.menu_links(items, menu_level, modifier_class) }}
+
+  {% include '@molecules/icon-link/icon-link.twig' with {
+    symbol: 'arrows_rightarrow_3',
+    size: 'regular',
+    modifier_class: 'civic-mobile-navigation__open-subsection-trigger',
+    attributes: 'data-flyout-open-trigger role="button"',
+    with_border: false,
+  } only %}
+
+  <div data-flyout data-flyout-direction="right">
+    <div data-flyout-panel>
+      <div class="civic-mobile-navigation__close-all-trigger">
+        {% include '@atoms/button/button.twig' with {
+          type: 'button',
+          size: 'small',
+          text: 'Close',
+          icon: 'userinterface_close',
+          icon_placement: 'after',
+          attributes: 'data-flyout-close-all-trigger',
+        } only %}
+      </div>
+
+      <div class="civic-mobile-navigation__close-trigger">
+        {% include '@molecules/icon-link/icon-link.twig' with {
+          symbol: 'arrows_leftarrow_1',
+          attributes: 'data-flyout-close-trigger role="button"',
+          with_border: false,
+          content: parent_item.title,
+        } only %}
+      </div>
+
+      {{ menus.menu_links(items, menu_level, modifier_class) }}
+    </div>
+  </div>
+
 {% endmacro %}
 
 {{ menus.menu_links(items, 0, modifier_class) }}

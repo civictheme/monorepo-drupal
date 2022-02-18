@@ -39,6 +39,9 @@ default:
           revision_translation_affected:
             -
               value: true
+          field_c_p_background:
+            -
+              value: false
           field_c_p_content:
             -
               value: "<p>© Commonwealth of Australia</p>\r\n"

@@ -1,0 +1,278 @@
+//
+// Mobile Navigation.
+//
+// Note: typography and icon sizes are specified explicitly as these elements
+// have custom appearance unique to mobile menu (i.e., no responsive sizing).
+
+@use 'sass:math';
+
+.civic-mobile-navigation {
+  $root: &;
+  $_spacing: civic-space(2);
+
+  display: block;
+
+  @include civic-breakpoint($civic-mobile-navigation-breakpoint) {
+    display: none;
+  }
+
+  #{$root}__panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #{$root}__top-menu-wrapper {
+    flex-grow: 1;
+
+    // Padding on the first and other panels looks the same, but specified
+    // separately as first panel contains other elements (not only menu items).
+    padding: 0 $_spacing;
+  }
+
+  #{$root}__bottom-menu-wrapper {
+    padding: 0 $_spacing;
+  }
+
+  .civic-menu {
+    padding: 0;
+  }
+
+  #{$root}__top-menu {
+    margin: 0;
+
+    .civic-menu__sub-menu__wrapper {
+      // Same padding as in the menu wrapper above.
+      padding: 0 $_spacing;
+    }
+
+    .civic-menu__item {
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
+
+      .civic-link {
+        width: 100%;
+        padding: civic-space(2);
+
+        @include civic-typography('label-large');
+        @include civic-link-decoration(false, false, false);
+      }
+    }
+
+    // Subsection arrow.
+    #{$root}__open-subsection-trigger {
+      border-left-width: 1px;
+      border-left-style: solid;
+      padding: $_spacing;
+
+      .civic-icon {
+        width: civic-icon-size-dimension('regular', 'm', 'width');
+        height: civic-icon-size-dimension('regular', 'm', 'height');
+      }
+    }
+  }
+
+  #{$root}__bottom-menu {
+    .civic-menu__sub-menu__wrapper {
+      // Same padding as in the menu wrapper above.
+      padding: 0 $_spacing;
+    }
+
+    .civic-menu__item {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
+
+      .civic-link {
+        width: 100%;
+        padding: civic-space(2);
+
+        @include civic-link-decoration(false, false, false);
+        @include civic-typography('label-regular');
+
+        @include civic-breakpoint('xxs') {
+          font-weight: normal;
+        }
+      }
+    }
+
+    // Subsection arrow.
+    #{$root}__open-subsection-trigger {
+      border-left-width: 1px;
+      border-left-style: solid;
+      padding: math.div($_spacing, 2);
+
+      .civic-icon {
+        width: civic-icon-size-dimension('small', 'm', 'width');
+        height: civic-icon-size-dimension('small', 'm', 'height');
+      }
+    }
+  }
+
+  // "Close all" trigger.
+  #{$root}__close-all-trigger {
+    text-align: right;
+    padding: $_spacing;
+
+    [data-flyout-close-all-trigger] {
+      float: none;
+      border-radius: rem(100px);
+      padding: civic-space(0.5) civic-space();
+
+      @include civic-typography-ruleset(($civic-font-base-size * 0.875, civic-icon-size-dimension('small', 'xxs', 'height'), 400, 'primary', 0));
+
+      .civic-icon {
+        width: civic-icon-size-dimension('small', 'xxs', 'width');
+        height: civic-icon-size-dimension('small', 'xxs', 'height');
+      }
+    }
+  }
+
+  // "Close a single panel" trigger.
+  #{$root}__close-trigger {
+    padding: $_spacing;
+    padding-top: 0;
+
+    [data-flyout-close-trigger] {
+      padding: 0;
+      float: none;
+      font-weight: bold;
+
+      @include civic-typography('label-large');
+
+      .civic-icon {
+        display: block;
+        margin-bottom: civic-space();
+      }
+    }
+  }
+
+  &.civic-theme-light {
+    [data-flyout-panel] {
+      background-color: $civic-mobile-navigation-light-panel-background-color;
+    }
+
+    .civic-mobile-navigation__top-menu-wrapper {
+      background-color: $civic-mobile-navigation-light-top-menu-background-color;
+    }
+
+    .civic-mobile-navigation__bottom-menu-wrapper {
+      background-color: $civic-mobile-navigation-light-bottom-menu-background-color;
+    }
+
+    .civic-menu__item {
+      border-bottom-color: $civic-mobile-navigation-light-menu-divider-border-color;
+
+      .civic-link {
+        @include civic-link-colors($civic-mobile-navigation-light-menu-item-color, $civic-mobile-navigation-light-menu-item-hover-color);
+        @include civic-link-backgrounds(transparent, transparent, transparent, transparent, transparent);
+      }
+    }
+
+    #{$root}__open-subsection-trigger {
+      border-left-color: $civic-mobile-navigation-light-menu-divider-border-color;
+
+      .civic-icon {
+        fill: $civic-mobile-navigation-light-subsection-trigger-color;
+      }
+    }
+
+    #{$root}__close-all-trigger {
+      [data-flyout-close-all-trigger] {
+        background-color: $civic-mobile-navigation-light-close-all-trigger-background-color;
+        color: $civic-mobile-navigation-light-close-all-trigger-color;
+      }
+    }
+
+    #{$root}__close-trigger {
+      [data-flyout-close-trigger] {
+        color: $civic-mobile-navigation-light-subsection-heading-color;
+
+        .civic-icon {
+          fill: $civic-mobile-navigation-light-subsection-heading-icon-color;
+        }
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    [data-flyout-panel] {
+      background-color: $civic-mobile-navigation-dark-panel-background-color;
+    }
+
+    .civic-mobile-navigation__top-menu-wrapper {
+      background-color: $civic-mobile-navigation-dark-top-menu-background-color;
+    }
+
+    .civic-mobile-navigation__bottom-menu-wrapper {
+      background-color: $civic-mobile-navigation-dark-bottom-menu-background-color;
+    }
+
+    .civic-menu__item {
+      border-bottom-color: $civic-mobile-navigation-dark-menu-divider-border-color;
+
+      .civic-link {
+        @include civic-link-colors($civic-mobile-navigation-dark-menu-item-color, $civic-mobile-navigation-dark-menu-item-hover-color);
+        @include civic-link-backgrounds(transparent, transparent, transparent, transparent, transparent);
+      }
+    }
+
+    #{$root}__open-subsection-trigger {
+      border-left-color: $civic-mobile-navigation-dark-menu-divider-border-color;
+
+      .civic-icon {
+        fill: $civic-mobile-navigation-dark-subsection-trigger-color;
+      }
+    }
+
+    #{$root}__close-all-trigger {
+      [data-flyout-close-all-trigger] {
+        background-color: $civic-mobile-navigation-dark-close-all-trigger-background-color;
+        color: $civic-mobile-navigation-dark-close-all-trigger-color;
+      }
+    }
+
+    #{$root}__close-trigger {
+      [data-flyout-close-trigger] {
+        color: $civic-mobile-navigation-dark-subsection-heading-color;
+
+        .civic-icon {
+          fill: $civic-mobile-navigation-dark-subsection-heading-icon-color;
+        }
+      }
+    }
+  }
+}
+
+// Mobile navigation open trigger.
+.civic-mobile-navigation__trigger {
+  background-color: transparent;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+
+  @include civic-typography-ruleset(($civic-font-base-size * 0.875, civic-icon-size-dimension('regular', 'xxs', 'height'), 400, 'primary', 0));
+
+  display: inline;
+
+  @include civic-breakpoint($civic-mobile-navigation-breakpoint) {
+    display: none;
+  }
+
+  .civic-icon {
+    width: civic-icon-size-dimension('regular', 'xxs', 'width');
+    height: civic-icon-size-dimension('regular', 'xxs', 'height');
+  }
+
+  &.civic-theme-light {
+    color: $civic-mobile-navigation-trigger-light-color;
+  }
+
+  &.civic-theme-dark {
+    color: $civic-mobile-navigation-trigger-dark-color;
+  }
+}

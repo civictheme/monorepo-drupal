@@ -12,7 +12,7 @@ default:
       value: icons8-instagram-24.svg
   uri:
     -
-      value: 'public://icons/icons8-instagram-24.svg'
+      value: 'public://icons/icons8-instagram-24_60.svg'
   filemime:
     -
       value: image/svg+xml

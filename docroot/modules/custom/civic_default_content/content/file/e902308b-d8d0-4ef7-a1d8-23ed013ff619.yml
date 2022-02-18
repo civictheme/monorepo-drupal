@@ -12,7 +12,7 @@ default:
       value: icons8-facebook.svg
   uri:
     -
-      value: 'public://icons/icons8-facebook.svg'
+      value: 'public://icons/icons8-facebook_61.svg'
   filemime:
     -
       value: image/svg+xml

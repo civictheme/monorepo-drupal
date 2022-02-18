@@ -12,7 +12,7 @@ default:
       value: icons8-twitter.svg
   uri:
     -
-      value: 'public://icons/icons8-twitter_4.svg'
+      value: 'public://icons/icons8-twitter_4_0.svg'
   filemime:
     -
       value: image/svg+xml

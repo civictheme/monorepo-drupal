@@ -324,7 +324,7 @@ $civic-flyout-direction-transforms: (
   'top': translateY(-100%),
   'bottom': translateY(100%),
 ) !default;
-$civic-flyout-zindex: 100;
+$civic-flyout-zindex: 1000 !default;
 
 //
 // Misc Variables.

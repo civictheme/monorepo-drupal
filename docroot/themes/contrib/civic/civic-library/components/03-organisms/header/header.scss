@@ -28,6 +28,11 @@
 
   &__content-middle3 {
     height: 100%;
+    position: relative;
+
+    @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+      position: static;
+    }
   }
 
   .civic-logo {
@@ -37,6 +42,13 @@
       width: auto;
       max-width: rem($civic-header-logo-desktop-width);
     }
+  }
+
+  .civic-mobile-navigation__trigger {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
   }
 
   &.civic-theme-light {

@@ -20,7 +20,7 @@
 {% if url %}
   <a class="civic-icon-link {{ modifier_class }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }} {% if text %} title="{{ text }}" {% endif %} {% if attributes %}{{ attributes }}{% endif %}>
 {% else %}
-  <div class="civic-icon-link {{ modifier_class }}" {% if text %} title="{{ text }}" {% endif %} {% if attributes %}{{ attributes }}{% endif %}>
+  <button class="civic-icon-link {{ modifier_class }}" {% if text %} title="{{ text }}" {% endif %} {% if attributes %}{{ attributes }}{% endif %}>
 {% endif %}
     <span class="visually-hidden">{{ text }}</span>
     {% if symbol is defined %}
@@ -35,5 +35,5 @@
 {% if url %}
   </a>
 {% else %}
-  </div>
+  </button>
 {% endif %}

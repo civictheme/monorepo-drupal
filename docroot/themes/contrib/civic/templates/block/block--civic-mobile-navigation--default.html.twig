@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Template to render Mobile Navigation block.
+ */
+#}
+
+{% include '@organisms/mobile-navigation/mobile-navigation-trigger.twig' with {
+  theme: trigger_theme,
+  text: trigger_text,
+} %}
+
+{% include '@organisms/mobile-navigation/mobile-navigation.twig' with {
+  theme: theme,
+  top_menu: top_menu,
+  bottom_menu: bottom_menu,
+} %}

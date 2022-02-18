@@ -1,3 +1,13 @@
+/**
+ * Flyout component.
+ *
+ * Allows introducing "fly out" behaviour to a block-level HTML element on the
+ * page by adding data attributes to elements. The component does not provide
+ * any styles, except for z-index configuration and direction transformations.
+ *
+ * Also, provides a trigger to close a single (currently opened) panel and
+ * another trigger close all open panels.
+ */
 function CivicFlyout(el) {
   if (el.getAttribute('data-flyout') === 'true' || this.el) {
     return;
@@ -48,6 +58,9 @@ function CivicFlyout(el) {
   this.el.setAttribute('data-flyout', 'true');
 }
 
+/**
+ * Find open trigger for the given flyout among provided triggers.
+ */
 CivicFlyout.prototype.findOpenTrigger = function (triggers, el) {
   // Find a trigger for the current flyout.
   for (const i in triggers) {
@@ -69,6 +82,9 @@ CivicFlyout.prototype.findOpenTrigger = function (triggers, el) {
   return null;
 };
 
+/**
+ * Click event handler to toggle flyout state.
+ */
 CivicFlyout.prototype.clickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
@@ -77,6 +93,9 @@ CivicFlyout.prototype.clickEvent = function (e) {
   return e.currentTarget.expand ? this.expand() : this.collapse();
 };
 
+/**
+ * Event handler to close all flyout components.
+ */
 CivicFlyout.prototype.closeAllTriggerClickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
@@ -88,15 +107,20 @@ CivicFlyout.prototype.closeAllTriggerClickEvent = function (e) {
   });
   document.querySelectorAll('[data-flyout-panel]').forEach((panel) => {
     panel.setAttribute('aria-hidden', true);
+    const duration = panel.parentNode.hasAttribute('data-flyout-duration') ? parseInt(panel.parentNode.getAttribute('data-flyout-duration'), 10) : 500;
     setTimeout(() => {
       panel.style.visibility = null;
-    }, 500);
+      document.body.style.overflow = null;
+    }, duration);
   });
   document.querySelectorAll('[data-flyout-trigger]').forEach((trigger) => {
     trigger.setAttribute('aria-expanded', false);
   });
 };
 
+/**
+ * Expand flyout.
+ */
 CivicFlyout.prototype.expand = function () {
   this.el.expanded = true;
   this.openTrigger.setAttribute('aria-expanded', true);
@@ -105,8 +129,12 @@ CivicFlyout.prototype.expand = function () {
   // Add required classes.
   this.el.setAttribute('data-flyout-expanded', true);
   this.panel.setAttribute('aria-hidden', false);
+  document.body.style.overflow = 'hidden';
 };
 
+/**
+ * Collapse flyout.
+ */
 CivicFlyout.prototype.collapse = function () {
   this.el.expanded = false;
   this.openTrigger.setAttribute('aria-expanded', false);
@@ -114,6 +142,7 @@ CivicFlyout.prototype.collapse = function () {
   this.panel.setAttribute('aria-hidden', true);
   setTimeout(() => {
     this.panel.style.visibility = null;
+    document.body.style.overflow = null;
   }, this.duration);
 };
 

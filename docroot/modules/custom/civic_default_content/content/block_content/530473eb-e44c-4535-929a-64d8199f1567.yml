@@ -46,6 +46,9 @@ default:
           field_c_p_attachments:
             -
               entity: 2cf05e2f-5d05-4e88-ae27-7248a11978c4
+          field_c_p_background:
+            -
+              value: false
           field_c_p_icon:
             -
               entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
