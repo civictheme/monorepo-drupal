@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: bde928ff-d995-4831-bd0e-ad03e08e48aa
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_scientist.jpg
+  uri:
+    -
+      value: 'public://corporate_scientist.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 215423
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645065726

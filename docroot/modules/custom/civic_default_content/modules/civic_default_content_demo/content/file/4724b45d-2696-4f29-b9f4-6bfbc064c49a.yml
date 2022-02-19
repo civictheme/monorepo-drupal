@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 4724b45d-2696-4f29-b9f4-6bfbc064c49a
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: demo_image_carl-heyerdahl.jpg
+  uri:
+    -
+      value: 'public://demo_image_carl-heyerdahl.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 672750
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1637031263

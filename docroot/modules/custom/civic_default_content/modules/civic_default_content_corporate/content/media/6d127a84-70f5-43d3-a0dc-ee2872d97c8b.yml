@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 6d127a84-70f5-43d3-a0dc-ee2872d97c8b
+  bundle: civic_image
+  default_langcode: en
+  depends:
+    af42e607-0099-4be4-b695-05795ac1a1e2: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 18
+  name:
+    -
+      value: Iceberg.jpg
+  created:
+    -
+      value: 1645007282
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: af42e607-0099-4be4-b695-05795ac1a1e2
+      alt: 'Image of icebergs in the ocean'
+      title: ''
+      width: 1024
+      height: 768

@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 2283dfc9-d10f-40d6-8cf5-4a3a2d2ef158
+  bundle: civic_image
+  default_langcode: en
+  depends:
+    ed8e9a4c-f7bf-4bd1-905f-450330b22859: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 18
+  name:
+    -
+      value: Koala.jpg
+  created:
+    -
+      value: 1645007707
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: ed8e9a4c-f7bf-4bd1-905f-450330b22859
+      alt: 'Photo of koala in a tree'
+      title: ''
+      width: 1024
+      height: 768

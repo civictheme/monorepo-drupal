@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: c77ca2da-b928-4f98-a39d-9b56b646bcd6
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_woman-flowers.jpg
+  uri:
+    -
+      value: 'public://corporate_woman-flowers.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 203531
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007772
