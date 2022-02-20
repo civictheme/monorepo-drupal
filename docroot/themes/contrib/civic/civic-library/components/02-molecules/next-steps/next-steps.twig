@@ -24,30 +24,37 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="civic-next-steps__content">
-          <div class="civic-next-steps__content-top">
-            {{ content_top }}
-          </div>
-
-          <div class="civic-next-steps__text">
-            <div class="civic-next-steps__title">
-              {{ title }}
+          {% block content_top %}
+            <div class="civic-next-steps__content-top">
+              {{ content_top }}
             </div>
+          {% endblock %}
 
-            <div class="civic-next-steps__summary">
-              {{ summary }}
+          {% block content %}
+            <div class="civic-next-steps__text">
+              <div class="civic-next-steps__title">
+                {{ title }}
+              </div>
+
+              <div class="civic-next-steps__summary">
+                {{ summary }}
+              </div>
             </div>
-          </div>
+          {% endblock %}
 
-          <div class="civic-next-steps__icon civic-next-steps__read-more">
-            {% include '@atoms/icon/icon.twig' with {
-              symbol: 'arrows_rightarrow_3',
-              color: 'primary'
-            } only %}
-          </div>
-
-          <div class="civic-next-steps__content-bottom">
-            {{ content_bottom }}
-          </div>
+          {% block icon %}
+            <div class="civic-next-steps__icon civic-next-steps__read-more">
+              {% include '@atoms/icon/icon.twig' with {
+                symbol: 'arrows_rightarrow_3',
+                color: 'primary'
+              } only %}
+            </div>
+          {% endblock %}
+          {% content_bottom %}
+            <div class="civic-next-steps__content-bottom">
+              {{ content_bottom }}
+            </div>
+          {% endblock %}
         </div>
       </div>
     </div>
