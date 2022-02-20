@@ -19,6 +19,7 @@ dependencies:
   - components:components
   - drupal:block_content
   - field_group:field_group
+  - layout_builder_restrictions:layout_builder_restrictions
   - menu_block:menu_block
   - paragraphs:paragraphs
   - drupal:inline_form_errors
