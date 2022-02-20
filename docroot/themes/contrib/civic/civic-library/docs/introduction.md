@@ -4,5 +4,5 @@
 - [Colors](colors.md)
 - [Typography](typography.md)
 - [Grid](grid.md)
-- [Icon](icon.md)
+- [Icons](icons.md)
 - [Utilities](utilities.md)
