@@ -15,38 +15,46 @@
 
 <div class="civic-service-card {{ modifier_class }}">
   <div class="civic-service-card__content">
-    {% if content_top %}
-      <div class="civic-service-card__content-top">
-        {{ content_top }}
-      </div>
-    {% endif %}
+    {% block content_top %}
+        {% if content_top %}
+          <div class="civic-service-card__content-top">
+            {{ content_top }}
+          </div>
+        {% endif %}
+    {% endblock %}
 
-    {% if title %}
-      <div class="civic-service-card__title">
-        {{ title }}
-      </div>
-    {% endif %}
+    {% block title %}
+        {% if title %}
+          <div class="civic-service-card__title">
+            {{ title }}
+          </div>
+        {% endif %}
+    {% endblock %}
 
-    {% if links is not empty %}
-      <ul class="civic-service-card__links">
-        {% for link in links %}
-          <li class="civic-service-card__link__item">
-            {% include '@atoms/link/link.twig' with {
-              theme: theme,
-              text: link.text,
-              url: link.url,
-              new_window: link.new_window,
-              is_external: link.is_external
-            } only %}
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
+    {% block links %}
+        {% if links is not empty %}
+          <ul class="civic-service-card__links">
+            {% for link in links %}
+              <li class="civic-service-card__link__item">
+                {% include '@atoms/link/link.twig' with {
+                  theme: theme,
+                  text: link.text,
+                  url: link.url,
+                  new_window: link.new_window,
+                  is_external: link.is_external
+                } only %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+    {% endblock %}
 
-    {% if content_bottom %}
-      <div class="civic-service-card__content-bottom">
-        {{ content_bottom }}
-      </div>
-    {% endif %}
+    {% block content_bottom %}
+        {% if content_bottom %}
+          <div class="civic-service-card__content-bottom">
+            {{ content_bottom }}
+          </div>
+        {% endif %}
+    {% endblock %}
   </div>
 </div>
