@@ -5,15 +5,15 @@
 
 !docroot
 # But still ignore sources.
-docroot/themes/custom/civic/fonts
-docroot/themes/custom/civic/images
-docroot/themes/custom/civic/js
-docroot/themes/custom/civic/scss
-docroot/themes/custom/civic/Gruntfile.js
-docroot/themes/custom/civic/package.json
-docroot/themes/custom/civic/package-lock.json
-docroot/themes/custom/civic/.eslintrc.json
-docroot/themes/custom/civic/node_modules
+docroot/themes/contrib/civic/fonts
+docroot/themes/contrib/civic/images
+docroot/themes/contrib/civic/js
+docroot/themes/contrib/civic/scss
+docroot/themes/contrib/civic/Gruntfile.js
+docroot/themes/contrib/civic/package.json
+docroot/themes/contrib/civic/package-lock.json
+docroot/themes/contrib/civic/.eslintrc.json
+docroot/themes/contrib/civic/node_modules
 docroot/sites/default/settings.generated.php
 docroot/sites/default/default.settings.php
 docroot/sites/default/default.services.yml

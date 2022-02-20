@@ -1,0 +1,116 @@
+{#
+/**
+ * @file
+ * Promo Card component.
+ *
+ * Display of Promo Card component.
+ *
+ * Variables:
+ * - theme: [string] Theme for Card.
+ * - image: [object] Image data for top of Card
+ * - content_top: [string] Component slot for above main content on Card.
+ * - title: [string] Card title.
+ * - summary: [string] Card summary.
+ * - content_middle: [string] Component slot for below main content on Card
+ * - date: [string] Date text
+ * - url: [string] Url for link out from Card
+ * - is_external: [boolean] Link is external.
+ * - content_bottom: [string] Component slot for bottom of Card.
+ * - modifier_class: [string] Additional classes for Card.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type_class = image is empty ? 'civic-promo-card--no-image' : '' %}
+{% set image_over_class = image_over ? 'civic-promo-card--image-over' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, type_class, image_over_class, modifier_class|default('')) %}
+
+<div class="civic-promo-card {{ modifier_class }}">
+  {% if image or image_over %}
+    <div class="civic-promo-card__image-wrapper">
+      {% if image.src is not empty %}
+        <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
+      {% endif %}
+      {% if image_over %}
+        <div class="civic-promo-card__image-over">
+          {{ image_over }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="civic-promo-card__content">
+    {% if content_top %}
+      <div class="civic-promo-card__content_top">
+        {{ content_top }}
+      </div>
+    {% endif %}
+
+    {% if date %}
+      <div class="civic-promo-card__date">
+        {{ date }}
+      </div>
+    {% endif %}
+
+    {% if title %}
+      <div class="civic-promo-card__title">
+        {% if url %}
+        <a class="civic-promo-card__title-link" href="{{ url }}" {% if is_external %} title="Opens in new tab" target="_blank" {% endif %}>
+          {% endif %}
+          {{ title }}
+          {% if url %}
+        </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if content_middle %}
+      <div class="civic-promo-card__content_middle">
+        {{ content_middle }}
+      </div>
+    {% endif %}
+
+    {% if summary %}
+      <div class="civic-promo-card__summary">
+        {{ summary }}
+      </div>
+    {% endif %}
+
+    {% if tags or url %}
+      <div class="civic-promo-card__bottom-wrapper">
+        {% if tags %}
+          <div class="civic-promo-card__tags">
+            {% for tag in tags %}
+              {% include '@atoms/tag/tag.twig' with {
+                theme: theme,
+                text: tag,
+                is_alt: true,
+              } only %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if url %}
+          {% if is_external %}
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: 'arrows_upperrightarrow',
+              color: 'primary',
+              modifier_class: 'civic-navigation-card__icon--external'
+            } only %}
+          {% else %}
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: 'arrows_rightarrow_3',
+              color: 'primary',
+              modifier_class: 'civic-navigation-card__icon--arrow',
+            } only %}
+          {% endif %}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if content_bottom %}
+      <div class="civic-promo-card__content-bottom">
+        {{ content_bottom }}
+      </div>
+    {% endif %}
+  </div>
+</div>

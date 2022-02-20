@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Promo Card component.
+ *
+ * Display of Promo Card component.
+ *
+ * Variables:
+ * - theme: [string] Theme for Card.
+ * - image: [object] Image data for top of Card.
+ * - image_over: [string] Component slot for above main content on Card.
+ * - title: [string] Card title.
+ * - url: [string] Url for link out from Card.
+ * - is_external: [boolean] Link is external.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type_class = image is empty ? 'civic-subject-card--no-image' : '' %}
+{% set modifier_class = '%s %s'|format(theme_class, type_class, modifier_class|default('')) %}
+
+<div class="civic-subject-card {{ modifier_class }}">
+  <div class="civic-subject-card__image-wrapper">
+    <div class="civic-subject-card__image">
+      {% if image.src is not empty %}
+        <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
+      {% endif %}
+    </div>
+
+    {% if image_over %}
+      <div class="civic-subject-card__image-over">
+        {{ image_over }}
+      </div>
+    {% endif %}
+
+    {% if title %}
+      <div class="civic-subject-card__title">
+        {% if url %}
+        <a class="civic-subject-card__title-link" href="{{ url }}">
+          {% endif %}
+          {{ title }}
+          {% if url %}
+          <span>
+            {% if is_external %}
+              {% include '@atoms/icon/icon.twig' with {
+                symbol: 'arrows_upperrightarrow',
+                color: 'primary',
+                modifier_class: 'civic-subject-card__icon--external'
+              } only %}
+            {% else %}
+              {% include '@atoms/icon/icon.twig' with {
+                symbol: 'arrows_rightarrow_3',
+                color: 'primary',
+                modifier_class: 'civic-subject-card__icon--arrow',
+              } only %}
+            {% endif %}
+          </span>
+        </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>

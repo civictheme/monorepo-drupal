@@ -15,6 +15,8 @@ Feature: Tests the Content paragraph
     When I go to "admin/structure/paragraphs_type/civic_content/fields"
     And I should see the text "field_c_p_content" in the "Content" row
     And I should see the text "field_c_p_theme" in the "Theme" row
+    And I should see the text "field_c_p_background" in the "Background" row
+    And I should see the text "field_c_p_space" in the "With space" row
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
@@ -27,6 +29,8 @@ Feature: Tests the Content paragraph
     And I wait for AJAX to finish
     And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-content-0-value" element
     And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-theme" element
+    And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-background-value" element
+    And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-space" element
     And I should see an ".js-form-item-field-c-n-banner-components-0-subform-field-c-p-theme .required" element
     And the option "Light" from select "Theme" is selected
 
@@ -34,4 +38,5 @@ Feature: Tests the Content paragraph
     And I wait for AJAX to finish
     And I should see an "div.js-form-item-field-c-n-banner-components-bott-0-subform-field-c-p-content-0-value" element
     And I should see an "div.js-form-item-field-c-n-banner-components-bott-0-subform-field-c-p-theme" element
+    And I should see an "div.js-form-item-field-c-n-banner-components-0-subform-field-c-p-background-value" element
     And I should see an ".js-form-item-field-c-n-banner-components-bott-0-subform-field-c-p-theme .required" element

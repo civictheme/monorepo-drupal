@@ -1,0 +1,99 @@
+{#
+/**
+ * @file Card container component.
+ *
+ * Available variables:
+ * - theme: [string] Theme: light, dark.
+ * - column_count: [number] Number of columns in the container.
+ * - fill_width: [boolean] Flag to stretch "hanging" cards to the full width of container.
+ * - title: [string] The text of card title.
+ * - header_link_url: [string] Heading link URL.
+ * - header_link_text: [string] Heading link test.
+ * - content_top: [string] Component slot for above cards.
+ * - url: [string] Card link.
+ * - cards: [array] Cards array.
+ * - footer_link_url: [string] Footer link URL.
+ * - footer_link_text: [string] Footer link test.
+ * - content_bottom: [string] Component slot for below cards.
+ * - modifier_class: [string] Classes to modify the default component styling.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set column_class = 'col-xs-12 col-m-%s'|format(12 / column_count|default(1)) %}
+{% set fill_width_class = fill_width ? 'civic-card-container--fill-width' : '' %}
+{% set spacing_class = with_spacing ? 'civic-card-container--with-spacing civic-component--with-spacing' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, fill_width_class, spacing_class, modifier_class|default('')) %}
+
+{% if (title is not empty) or (cards is not empty) or (content_top is not empty) or (content_bottom is not empty) %}
+  <div class="civic-card-container {{ modifier_class }}" aria-live="polite">
+    <div class="container">
+      <div class="row">
+        <div class="col-m-12">
+
+          {% if (title is not empty) or (header_link_url is not empty and header_link_text is not empty) %}
+            <div class="civic-card-container__header">
+              {% if title is not empty %}
+                <div class="civic-card-container__header-title">
+                  {{ title }}
+                </div>
+              {% endif %}
+
+              {% if header_link_url is not empty and header_link_text is not empty %}
+                <div class="civic-card-container__header-link">
+                  {% include '@atoms/link/link.twig' with {
+                    theme: theme,
+                    text: header_link_text,
+                    url: header_link_url
+                  } only %}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if description %}
+            <div class="civic-card-container__description">
+              {{ description }}
+            </div>
+          {% endif %}
+
+          {% if content_top %}
+            <div class="civic-card-container__content-top">
+              {{ content_top }}
+            </div>
+          {% endif %}
+
+          {% if cards is not empty %}
+            <div class="civic-card-container__cards">
+              <div class="row">
+                {% for card in cards %}
+                  <div class="civic-card-container__card {{ column_class }}">
+                    {{ card }}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+
+          {% if footer_link_url is not empty and footer_link_text is not empty %}
+            <div class="civic-card-container__footer">
+              <div class="civic-card-container__footer-link">
+                {% include '@atoms/link/link.twig' with {
+                  theme: theme,
+                  text: footer_link_text,
+                  url: footer_link_url
+                } only %}
+              </div>
+            </div>
+          {% endif %}
+
+          {% if content_bottom %}
+            <div class="civic-card-container__content-bottom">
+              {{ content_bottom }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

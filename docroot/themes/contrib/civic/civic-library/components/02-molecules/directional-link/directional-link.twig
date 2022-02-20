@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * Directional link component.
+ *
+ * Variables:
+ * - theme: [string] theme: light, dark.
+ * - url: [string] URL for the link button.
+ * - text: [string] Link text.
+ * - direction: [string] Direction: top, bottom, left, right.
+ * - disabled: [string] Link text.
+ * - modifier_class: [string] Additional classes to modify component styling.
+ */
+#}
+
+{% set text = text|default('Top') %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set disabled_class = disabled ? 'civic-directional-link--disabled': '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, disabled_class, modifier_class|default('')) %}
+
+{% set icons = {
+  top: 'arrows_uparrow_1',
+  bottom: 'arrows_downarrow_2',
+  left: 'arrows_leftarrow_2',
+  right: 'arrows_rightarrow_3',
+} %}
+{% if disabled %}
+  <span class="civic-directional-link {{ modifier_class }}" title="{{ title }}" role="link" disabled="disabled" aria-disabled="true">
+{% else %}
+  <a class="civic-directional-link {{ modifier_class }}" title="{{ title }}" role="link" href="{{ url }}">
+{% endif %}
+  {% if context %}
+  <span class="visually-hidden">{{ context }}</span>
+  <span aria-hidden="true">{{ text }}</span>
+  {% else %}
+    {{ text }}
+  {% endif %}
+  {% if icons[direction] is defined %}
+    {% include '@atoms/icon/icon.twig' with {
+      symbol: icons[direction],
+      modifier_class: 'civic-icon--%s'|format(direction),
+    } %}
+  {% endif %}
+{% if disabled %}
+  </span>
+{% else %}
+  </a>
+{% endif %}

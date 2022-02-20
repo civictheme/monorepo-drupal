@@ -12,7 +12,7 @@ version: '2.3'
 # Project name. Used in multiple places to name built Docker images.
 # Do not change here, instead update .env file.
 x-project:
-  &project ${PROJECT:-civic_demo}
+  &project ${PROJECT:-civictheme}
 
 # Volumes available in each container to share application data.
 x-volumes:
@@ -57,7 +57,7 @@ x-environment:
   # Local development URL. Required to make DNS request route correctly.
   # Do not change the default value here (it is set as a fallback). Instead,
   # change the value in .env file.
-  LAGOON_LOCALDEV_URL: &default-url ${LOCALDEV_URL:-civic-demo.docker.amazee.io}
+  LAGOON_LOCALDEV_URL: &default-url ${LOCALDEV_URL:-civictheme.docker.amazee.io}
   LAGOON_ROUTE: *default-url
   #
   # Allow to enable XDebug by setting external environment variable.
@@ -173,7 +173,7 @@ services:
       context: .
       dockerfile: .docker/Dockerfile.mariadb
       args:
-        IMAGE: "${DATABASE_IMAGE:-uselagoon/mariadb-drupal:21.11.0}"
+        IMAGE: "${DATABASE_IMAGE:-uselagoon/mariadb-drupal:21.12.1}"
     environment:
       <<: *default-environment
     ports:
@@ -189,7 +189,7 @@ services:
   # Redis container.
   # Used for caching.
   redis:
-    image: uselagoon/redis-6:21.11.0
+    image: uselagoon/redis-6:21.12.1
     # https://lagoon.readthedocs.io/en/latest/using_lagoon/service_types/#service-types
     labels:
       lagoon.type: redis

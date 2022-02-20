@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 7dea2844-77b7-4f1a-bb77-5d61c9d0be28
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: lorem-ipsum.pdf
+  uri:
+    -
+      value: 'public://2021-09/lorem-ipsum_26_1_6_4.pdf'
+  filemime:
+    -
+      value: application/pdf
+  filesize:
+    -
+      value: 77123
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1631856401

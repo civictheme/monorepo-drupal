@@ -1,6 +1,0 @@
-services:
-  cd_core.commands:
-    class: \Drupal\cd_core\Commands\PostConfigImportUpdateCommands
-    arguments: []
-    tags:
-      - { name: drush.command }

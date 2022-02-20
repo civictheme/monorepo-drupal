@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Template for Civic Starter Kit theme.
+ */
+
+use Drupal\Core\Site\Settings;
+
+/**
+ * Implements template_preprocess_html().
+ */
+function civic_starter_kit_preprocess_html(&$variables) {
+  _civic_starter_kit_preprocess_admin_toolbar($variables);
+}
+
+/**
+ * Preprocess admin toolbar.
+ */
+function _civic_starter_kit_preprocess_admin_toolbar(&$variables) {
+  // Hide admin toolbar.
+  if (Settings::get('hide_admin_toolbar')) {
+    if (!empty($variables['attributes']['class'])) {
+      unset($variables['page_top']['toolbar']);
+      $variables['attributes']['class'] = array_filter($variables['attributes']['class'], function ($value) {
+        return strpos($value, 'toolbar-') !== 0;
+      });
+    }
+  }
+}

@@ -1,0 +1,69 @@
+@use 'sass:math';
+
+.civic-icon-link {
+  $root: &;
+
+  display: block;
+  background: none;
+  border-bottom: none;
+  border-radius: $civic-icon-link-border-radius;
+  text-decoration: none;
+  padding: civic-space();
+
+  &#{$root}--with-border {
+    border: 1px solid currentColor;
+    border-radius: rem(100px);
+  }
+
+  // Generate size classes for all pre-set sizes.
+  @each $size, $values in _civic-icon-sizes-all() {
+    &--size-#{$size},
+    &--size-#{$size} img {
+      @include civic-icon-size($size);
+    }
+  }
+
+  &.civic-theme-light {
+    color: $civic-icon-link-light-color;
+
+    &:hover {
+      color: $civic-icon-link-light-hover-color;
+    }
+
+    &:focus {
+      @include civic-outline(false);
+
+      color: $civic-icon-link-light-focus-color;
+    }
+
+    &:active {
+      color: $civic-icon-link-light-active-color;
+    }
+
+    &:visited {
+      color: $civic-icon-link-light-visited-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    color: $civic-icon-link-dark-color;
+
+    &:hover {
+      color: $civic-icon-link-dark-hover-color;
+    }
+
+    &:focus {
+      @include civic-outline(false);
+
+      color: $civic-icon-link-dark-focus-color;
+    }
+
+    &:active {
+      color: $civic-icon-link-dark-active-color;
+    }
+
+    &:visited {
+      color: $civic-icon-link-dark-visited-color;
+    }
+  }
+}

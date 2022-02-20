@@ -1,0 +1,80 @@
+{#
+/**
+ * @file
+ * Slider.
+ *
+ * Variables:
+ * - theme: [string] Light, Dark.
+ * - title: [string] Slider title.
+ * - link: [string] Slider link.
+ * - slides: [string] Slides.
+ * - previous_label: [string] Text for previous button.
+ * - next_label: [string] Text for next button.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if slides is not empty %}
+  <div class="civic-slider {{ modifier_class }}">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="civic-slider__container" data-component-civic-slider>
+            {% block top_controls %}
+              {% if title or link %}
+                <div class="civic-slider__upper-control-panel" tabindex="0">
+                  <div class="civic-slider__title">{{ title }}</div>
+                  <div class="civic-slider__link">
+                    {% include '@atoms/button/button.twig' with {
+                      theme: theme,
+                      kind: 'link',
+                      type: link.type,
+                      size: link.size,
+                      text: link.text,
+                      url: link.url,
+                    } only %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            <div class="civic-slider__slides" data-component-civic-slider-panel>
+              <div class="civic-slider__slides-inner" data-component-civic-slider-rail>
+                {{ slides }}
+              </div>
+            </div>
+
+            <div class="civic-slider__lower-control-panel">
+              {% block controls %}
+                <div class="civic-slider__controls">
+                  {% include '@atoms/button/button.twig' with {
+                    theme: theme,
+                    text: previous_label|default('Previous'),
+                    type: 'secondary',
+                    icon: 'arrows_leftarrow_2',
+                    icon_placement: 'before',
+                    attributes: 'data-component-civic-slider-previous',
+                  } only %}
+                  {% include '@atoms/button/button.twig' with {
+                    theme: theme,
+                    text: next_label|default('Next'),
+                    type: 'secondary',
+                    icon: 'arrows_rightarrow_3',
+                    icon_placement: 'after',
+                    attributes: 'data-component-civic-slider-next',
+                  } only %}
+                </div>
+                <div class="civic-slider__steps" tabindex="0">
+                  <div class="civic-slider__progress-indicator" aria-live="polite" data-component-civic-slider-progress></div>
+                </div>
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

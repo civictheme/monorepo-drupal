@@ -1,0 +1,117 @@
+//
+// Filter Chip Button.
+//
+
+.civic-filter-chip-button {
+  $root: &;
+
+  @include civic-typography('label-small');
+
+  position: relative;
+  border: solid 1px transparent;
+  border-radius: civic-space(3);
+  padding: civic-space() civic-space(2);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:focus {
+    @include civic-outline(1);
+  }
+
+  span {
+    pointer-events: none;
+  }
+
+  &--selected {
+    #{$root}__selected-icon {
+      display: inline-block;
+    }
+  }
+
+  &__selected-icon {
+    display: none;
+
+    &::after {
+      content: '';
+      width: rem(18px);
+      height: rem(18px);
+      display: inherit;
+      background-position-x: 0;
+      background-position-y: -2px;
+    }
+  }
+
+  &.civic-theme-light {
+    color: $civic-filter-chip-button-light-color;
+    border-color: $civic-filter-chip-button-light-border-color;
+    background-color: $civic-filter-chip-button-light-background-color;
+
+    &:hover {
+      color: $civic-filter-chip-button-light-hover-color;
+      border-color: $civic-filter-chip-button-light-hover-border-color;
+      background-color: $civic-filter-chip-button-light-hover-background-color;
+    }
+
+    &#{$root}--selected {
+      color: $civic-filter-chip-button-light-selected-color;
+      border-color: $civic-filter-chip-button-light-selected-border-color;
+      background-color: $civic-filter-chip-button-light-selected-background-color;
+
+      &:hover {
+        color: $civic-filter-chip-button-light-hover-selected-color;
+        border-color: $civic-filter-chip-button-light-hover-selected-border-color;
+        background-color: $civic-filter-chip-button-light-hover-selected-background-color;
+
+        #{$root}__selected-icon {
+          &::after {
+            background-image: civic-color-svg-fill($civic-filter-chip-button-selected-icon, $civic-filter-chip-button-light-selected-icon-hover-color);
+          }
+        }
+      }
+
+      #{$root}__selected-icon {
+        &::after {
+          background-image: civic-color-svg-fill($civic-filter-chip-button-selected-icon, $civic-filter-chip-button-light-selected-icon-color);
+        }
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    color: $civic-filter-chip-button-dark-color;
+    border-color: $civic-filter-chip-button-dark-border-color;
+    background-color: $civic-filter-chip-button-dark-background-color;
+
+    &:hover {
+      color: $civic-filter-chip-button-dark-hover-color;
+      border-color: $civic-filter-chip-button-dark-hover-border-color;
+      background-color: $civic-filter-chip-button-dark-hover-background-color;
+      border-width: 2px;
+    }
+
+    &#{$root}--selected {
+      color: $civic-filter-chip-button-dark-selected-color;
+      border-color: $civic-filter-chip-button-dark-selected-border-color;
+      background-color: $civic-filter-chip-button-dark-selected-background-color;
+
+      &:hover {
+        color: $civic-filter-chip-button-dark-hover-selected-color;
+        border-color: $civic-filter-chip-button-dark-hover-selected-border-color;
+        background-color: $civic-filter-chip-button-dark-hover-selected-background-color;
+
+        #{$root}__selected-icon {
+          &::after {
+            background-image: civic-color-svg-fill($civic-filter-chip-button-selected-icon, $civic-filter-chip-button-dark-selected-icon-hover-color);
+          }
+        }
+      }
+
+      #{$root}__selected-icon {
+        &::after {
+          background-image: civic-color-svg-fill($civic-filter-chip-button-selected-icon, $civic-filter-chip-button-dark-selected-icon-color);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,152 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civic_listing.field_c_p_content_type
+    - field.field.paragraph.civic_listing.field_c_p_hide_count
+    - field.field.paragraph.civic_listing.field_c_p_limit_type
+    - field.field.paragraph.civic_listing.field_c_p_link
+    - field.field.paragraph.civic_listing.field_c_p_listing_f_exposed
+    - field.field.paragraph.civic_listing.field_c_p_listing_limit
+    - field.field.paragraph.civic_listing.field_c_p_listing_multi_select
+    - field.field.paragraph.civic_listing.field_c_p_read_more
+    - field.field.paragraph.civic_listing.field_c_p_show_filters
+    - field.field.paragraph.civic_listing.field_c_p_show_pager
+    - field.field.paragraph.civic_listing.field_c_p_space
+    - field.field.paragraph.civic_listing.field_c_p_title
+    - field.field.paragraph.civic_listing.field_c_p_topics
+    - field.field.paragraph.civic_listing.field_c_p_view_as
+    - paragraphs.paragraphs_type.civic_listing
+  module:
+    - link
+    - options
+id: paragraph.civic_listing.default
+targetEntityType: paragraph
+bundle: civic_listing
+mode: default
+content:
+  field_c_p_content_type:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_c_p_hide_count:
+    weight: 11
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_c_p_limit_type:
+    weight: 10
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_c_p_link:
+    weight: 1
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_c_p_listing_f_exposed:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_c_p_listing_limit:
+    weight: 5
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_c_p_listing_multi_select:
+    weight: 6
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_c_p_read_more:
+    weight: 12
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_c_p_show_filters:
+    weight: 9
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_c_p_show_pager:
+    weight: 8
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_c_p_space:
+    weight: 13
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_c_p_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_c_p_topics:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_c_p_view_as:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden: {  }

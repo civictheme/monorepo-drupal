@@ -13,7 +13,7 @@ Drupal 9 implementation of Civic Demo site
 
 - PROD: [https://civic:civic2021@nginx-php.master.civic.au2.amazee.io](https://civic:civic2021@nginx-php.master.civic.au2.amazee.io)
 - DEV: [https://civic:civic2021@nginx-php.develop.civic.au2.amazee.io](https://civic:civic2021@nginx-php.develop.civic.au2.amazee.io)
-- LOCAL: [http://civic-demo.docker.amazee.io/](http://civic-demo.docker.amazee.io/)
+- LOCAL: [http://civictheme.docker.amazee.io/](http://civictheme.docker.amazee.io/)
 
 ## Local environment setup
 
@@ -51,9 +51,10 @@ Copy `default.docker-compose.override.yml` to `docker-compose.override.yml`.
 1. Builds fresh site from GovCMS Drupal profile. Use `ahoy install-site` to rebuild.
 2. Enables additional modules required for development by installing `cd_core` module.
 3. Enables Civic theme and imports its configuration.
-4. Enables Civic Demo theme and sets it as a default theme.
+4. Creates Civic Demo sub-theme using provided scaffolding script and sets it as a default theme.
 5. Provisions content using Default Content module.
-6. Enables `civic_sompanion` module to remove out-of-the-box GovCMS content types.
+6. Enables `civic_govcms` module to remove out-of-the-box GovCMS content types.
+7. Enables `civic_default_content` module to add default content to installation.
 
 See sections below on using development tools.
 
@@ -92,7 +93,7 @@ Please refer to [releasing documentation](RELEASING.md).
 Please refer to [FAQs](FAQs.md).
 
 ## Civic Drupal theme
-Please refer to [Civic Drupal theme documentation](docroot/themes/custom/civic/docs/introduction.md).
+Please refer to [Civic Drupal theme documentation](docroot/themes/contrib/civic/docs/introduction.md).
 
 ## Civic components library
-Please refer to [Civic components Library documentation](docroot/themes/custom/civic/civic-library/docs/introduction.md).
+Please refer to [Civic components Library documentation](docroot/themes/contrib/civic/civic-library/docs/introduction.md).

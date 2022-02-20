@@ -18,6 +18,7 @@ Feature: Tests the Civic search paragraph
     And I should see the text "field_c_p_placeholder" in the "Placeholder text" row
     And I should see the text "field_c_p_search_url" in the "Search url" row
     And I should see the text "field_c_p_title" in the "Title" row
+    And I should see the text "field_c_p_theme" in the "Theme" row
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
@@ -34,6 +35,9 @@ Feature: Tests the Civic search paragraph
     And I should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_help_text][0][value]']" element
     And I should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_button_text][0][value]']" element
     And I should see an "input[name='field_c_n_banner_components[0][subform][field_c_p_search_url][0][value]']" element
+    And I should see an "select[name='field_c_n_banner_components[0][subform][field_c_p_theme]']" element
+    And I should see an "select[name='field_c_n_banner_components[0][subform][field_c_p_theme]'].required" element
+    And the option "Light" from select "Theme" is selected
 
   @api
   Scenario: Civic page node field_c_n_banner_components fields settings.

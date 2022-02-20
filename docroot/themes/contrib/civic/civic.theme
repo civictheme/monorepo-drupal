@@ -1,0 +1,363 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the Civic theme.
+ */
+
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
+
+require_once 'includes/block--civic-component-block.inc';
+require_once 'includes/block--system_branding.inc';
+require_once 'includes/block--primary-navigation.inc';
+require_once 'includes/block--secondary-navigation.inc';
+require_once 'includes/civic_banner.inc';
+require_once 'includes/civic_cards.inc';
+require_once 'includes/civic_pager.inc';
+require_once 'includes/civic_utilities.inc';
+require_once 'includes/civic_media.inc';
+require_once 'includes/form.inc';
+require_once 'includes/nodes.inc';
+require_once 'includes/paragraphs.inc';
+require_once 'includes/views.inc';
+
+// @todo Remove before release 1.
+if (file_exists('includes/styleguide.inc')) {
+  include 'includes/styleguide.inc';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page.html.twig.
+ */
+function civic_preprocess_page(&$variables) {
+  // Set header and footer theme from theme settings.
+  $variables['page']['header_theme'] = theme_get_setting('civic_header_theme') ?? 'light';
+  $variables['page']['footer_theme'] = theme_get_setting('civic_footer_theme') ?? 'dark';
+
+  // Always contain page content.
+  $variables['page']['content_contained'] = TRUE;
+
+  // Generic node pages pre-processing.
+  _civic_preprocess_page_node($variables);
+
+  // Pre-process page to support alerts.
+  _civic_preprocess_page_alerts($variables);
+
+  // Please do not add anything below this line or components will not be able
+  // to discover variables.
+  // Add all page variables to the root variables. This is required so that
+  // child themes could add page-level variables without have to extend page
+  // template (the variables there are not scoped as an exception).
+  $page_variables = array_filter($variables['page'], function ($key) {
+    return strpos($key, '#') !== 0;
+  }, ARRAY_FILTER_USE_KEY);
+  $variables += $page_variables;
+}
+
+/**
+ * Generic page preprocess for all view mode of nodes.
+ */
+function _civic_preprocess_page_node(&$variables) {
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = _civic_load_node_or_revision($variables);
+
+  if (!$node) {
+    return;
+  }
+
+  // "Un-contain" content if it is on a content type that can be edge-to-edge.
+  $edge_to_edge_bundles = ['civic_page'];
+  if ($node && in_array($node->bundle(), $edge_to_edge_bundles)) {
+    $variables['page']['content_contained'] = FALSE;
+  }
+
+  // Add Table of Contents if the value is set on node.
+  if ($node->hasField('field_c_n_show_toc') && $node->field_c_n_show_toc->getString()) {
+    $toc_attributes = [];
+    $toc_attributes['data-table-of-contents-position'] = 'prepend';
+    $toc_attributes['data-table-of-contents-theme'] = 'light';
+    $toc_attributes['data-table-of-contents-anchor-selector'] = 'h2';
+    $toc_attributes['data-table-of-contents-title'] = t('On this page');
+    $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.civic-content__main';
+    $toc_attributes = new Attribute($toc_attributes);
+
+    // Inject TOC wrapper into 'content_top' slot of the Content component.
+    // We need to do this because content area may not be contained, but TOC
+    // always has to be.
+    $variables['page']['content_top']['toc'] = [
+      '#markup' => '<div class="container"><div class="row"><div class="table-of-contents-container col-m-12" ' . $toc_attributes . '></div></div></div>',
+    ];
+  }
+}
+
+/**
+ * Gets node or if the route is a node revision the node revision.
+ */
+function _civic_load_node_or_revision($variables) {
+  $node = $variables['node'] ?? NULL;
+  if (is_numeric($node)) {
+    // Check to see if it's a node revision route.
+    /** @var \Drupal\Core\Routing\RouteMatchInterface $route_match */
+    $route_match = \Drupal::service('current_route_match');
+    $node_revision = $route_match->getParameter('node_revision');
+    // Handling API change in Drupal 9.30.
+    if (is_numeric($node_revision)) {
+      $node = node_revision_load($node_revision);
+    }
+    elseif ($node_revision instanceof NodeInterface) {
+      $node = $node_revision;
+    }
+  }
+
+  return $node;
+}
+
+/**
+ * Page preprocess to support showing of alerts.
+ */
+function _civic_preprocess_page_alerts(&$variables) {
+  $variables['attributes']['data-component-name'] = 'civic-alerts';
+  $variables['attributes']['data-alert-endpoint'] = '/api/civic-alerts?_format=json';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ */
+function civic_preprocess_node(&$variables) {
+  // Per-view mode preprocessing.
+  $view_mode = $variables['elements']['#view_mode'];
+  $preprocessor_function = '_civic_preprocess_node__' . $view_mode;
+  // Do not display node title on revision pages.
+  if ($view_mode === 'full') {
+    unset($variables['label']);
+  }
+  if (function_exists($preprocessor_function)) {
+    $preprocessor_function($variables);
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function civic_preprocess_paragraph(&$variables) {
+  _civic_preprocess_paragraph($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function civic_preprocess_block(&$variables) {
+  _civic_preprocess_civic_banner($variables);
+  _civic_preprocess_menu_block_civic_footer_menu($variables);
+  _civic_preprocess_block_content($variables);
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civic_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  _civic_theme_suggestions_civic_banner($suggestions, $variables);
+  _civic_theme_suggestions_civic_component_block($suggestions, $variables);
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civic_theme_suggestions_checkboxes_alter(array &$suggestions, array $variables) {
+  _civic_theme_suggestions_civic_filter($suggestions, $variables);
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civic_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $type = NULL) {
+  _civic_theme_suggestions_civic_filter($suggestions, $variables, 'form_element');
+  // For civic basic filter both radios / checkboxes and checkbox / radio
+  // require custom templates.
+  if (in_array($variables['element']['#type'], ['radio', 'checkbox'])
+    && isset($variables['element']['#attributes']['#civic-basic-filter'])) {
+    $suggestions[] = 'form_element__civic_filter_chip';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civic_theme_suggestions_radios_alter(array &$suggestions, array $variables) {
+  _civic_theme_suggestions_civic_filter($suggestions, $variables);
+}
+
+/**
+ * Sets theme suggestions of civic filter elements.
+ */
+function _civic_theme_suggestions_civic_filter(array &$suggestions, array $variables, $type = NULL) {
+  if (empty($variables['element']['#type'])) {
+    return;
+  }
+  $type = $type ?? $variables['element']['#type'];
+  if (!empty($variables['element']['#civic-large-filter'])) {
+    $suggestions[] = $type . '__civic_dropdown_filter';
+  }
+  elseif (!empty($variables['element']['#civic-basic-filter'])) {
+    $suggestions[] = $type . '__civic_basic_filter';
+  }
+}
+
+/**
+ * Implements template_preprocess_pager().
+ */
+function civic_theme_preprocess_pager(&$variables) {
+  if (isset($variables['items']['first']['text'])) {
+    $variables['items']['first']['text'] = t('First');
+  }
+  if (isset($variables['items']['last']['text'])) {
+    $variables['items']['last']['text'] = t('Last');
+  }
+  if (isset($variables['items']['previous']['text'])) {
+    $variables['items']['previous']['text'] = t('Previous');
+  }
+  if (isset($variables['items']['next']['text'])) {
+    $variables['items']['next']['text'] = t('Next');
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function civic_theme() {
+  return [
+    'civic_breadcrumb' => [
+      'base hook' => 'breadcrumb',
+      'variables' => [
+        'display_theme' => NULL,
+        'active_is_link' => NULL,
+        'links' => [],
+      ],
+      'template' => 'navigation/breadcrumb',
+    ],
+    'civic_icon_link' => [
+      'variables' => [
+        'symbol' => '',
+        'text' => '',
+        'size' => 'small',
+        'modifier_class' => '',
+        'new_window' => FALSE,
+        'url' => NULL,
+      ],
+      'template' => 'misc/icon-link',
+    ],
+    'civic_description_list' => [
+      'variables' => [
+        'items' => [],
+        'is_inline' => '',
+        'modifier_class' => '',
+      ],
+      'template' => 'misc/description-list',
+    ],
+    'civic_slider_slide_links' => [
+      'variables' => [
+        'component_theme' => 'light',
+        'links' => [],
+      ],
+      'template' => 'misc/slider-slide-links',
+    ],
+    'civic_slider_slide_tags' => [
+      'variables' => [
+        'tags' => [],
+      ],
+      'template' => 'misc/slider-slide-tags',
+    ],
+  ];
+}
+
+/**
+ * Implements template_preprocess_civic_breadcrumb().
+ */
+function civic_preprocess_civic_breadcrumb(&$variables) {
+  if (!empty($variables['display_theme'])) {
+    $variables['theme'] = $variables['display_theme'];
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
+function civic_preprocess_civic_icon_link(&$variables) {
+  if ($variables['url'] instanceof Url) {
+    $variables['url'] = $variables['url']->toString();
+  }
+  $variables['#theme_wrappers'] = [];
+}
+
+/**
+ * Preprocess for footer menu block.
+ */
+function _civic_preprocess_menu_block_civic_footer_menu(&$variables) {
+  if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'menu_block') {
+    return;
+  }
+
+  $menu_name = strtr($variables['elements']['#derivative_plugin_id'], '-', '_');
+  if ($menu_name == 'civic-footer') {
+    // Set menu theme as per footer theme.
+    $variables['theme'] = theme_get_setting('civic_footer_theme') ?? 'dark';
+
+    // Make all items collapsible.
+    $variables['attributes']['data-collapsible'] = '';
+    $variables['attributes']['data-collapsible-collapsed'] = '';
+    $variables['attributes']['data-responsive'] = '<m';
+  }
+}
+
+/**
+ * Preprocess for block_content block.
+ */
+function _civic_preprocess_block_content(&$variables) {
+  if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'block_content') {
+    return;
+  }
+
+  switch ($variables['elements']['#configuration']['label']) {
+    case 'Copyright':
+      $variables['attributes']['class'][] = 'copyright';
+      $variables['attributes']['class'][] = 'civic-text-regular';
+      break;
+  }
+}
+
+/**
+ * Implements template_preprocess_image().
+ */
+function civic_preprocess_image(&$variables) {
+  if (isset($variables['attributes']['src'])) {
+    $variables['src'] = $variables['attributes']['src'];
+  }
+  elseif (!empty($variables['uri'])) {
+    $variables['attributes']['src'] = file_url_transform_relative(file_create_url($variables['uri']));
+  }
+}
+
+/**
+ * Implement template_preprocess_menu_local_tasks().
+ */
+function civic_preprocess_menu_local_tasks(&$variables) {
+  $local_task_types = ['primary', 'secondary'];
+  $theme = theme_get_setting('civic_header_theme') ?? 'light';
+  foreach ($local_task_types as $local_task_type) {
+    $variables['links'][$local_task_type] = [];
+    foreach ($variables[$local_task_type] as $link) {
+      if (!empty($link['#access']) && $link['#access']->isAllowed()) {
+        $variables['links'][$local_task_type][] = [
+          'theme' => $theme,
+          'title' => $link['#link']['title'],
+          'url' => $link['#link']['url']->toString(),
+          'new_window' => FALSE,
+          'is_external' => $link['#link']['url']->isExternal(),
+        ];
+      }
+    }
+    unset($variables[$local_task_type]);
+  }
+}

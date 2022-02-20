@@ -19,6 +19,8 @@ Feature: Tests the Attachment
     And I should see the text "field_c_p_attachments" in the "Attachments" row
     And I should see the text "field_c_p_icon" in the "Icon" row
     And I should see the text "field_c_p_image" in the "Image" row
+    And I should see the text "field_c_p_space" in the "With space" row
+    And I should see the text "field_c_p_background" in the "Background" row
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
@@ -32,10 +34,12 @@ Feature: Tests the Attachment
     And I wait for AJAX to finish
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
+    And should see an "select[name='field_c_n_components[0][subform][field_c_p_space]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]'].required" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]']" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]'].required" element
+    And I should see an "input[name='field_c_n_components[0][subform][field_c_p_background][value]']" element
     And should see an "#field_c_p_image-media-library-wrapper-field_c_n_components-0-subform" element
     And should see an "#field_c_p_attachments-media-library-wrapper-field_c_n_components-0-subform" element
     And should see an "#field_c_p_attachments-media-library-wrapper-field_c_n_components-0-subform.required" element
@@ -56,6 +60,7 @@ Feature: Tests the Attachment
     And should see an "input[name='field_c_b_components[0][subform][field_c_p_title][0][value]'].required" element
     And should see an "textarea[name='field_c_b_components[0][subform][field_c_p_summary][0][value]']" element
     And should see an "textarea[name='field_c_b_components[0][subform][field_c_p_summary][0][value]'].required" element
+    And should see an "input[name='field_c_b_components[0][subform][field_c_p_background][value]']" element
     And should see an "#field_c_p_image-media-library-wrapper-field_c_b_components-0-subform" element
     And should see an "#field_c_p_attachments-media-library-wrapper-field_c_b_components-0-subform" element
     And should see an "#field_c_p_attachments-media-library-wrapper-field_c_b_components-0-subform.required" element

@@ -1,5 +1,0 @@
-name: 'Civic Companion'
-type: module
-description: 'Companion module for Civic theme. Used for local development only.'
-core_version_requirement: ^9
-package: Civic

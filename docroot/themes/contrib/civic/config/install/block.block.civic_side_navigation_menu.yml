@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.civic-primary-navigation
+  module:
+    - menu_block
+    - system
+  theme:
+    - civic
+id: civic_side_navigation_menu
+theme: civic
+region: sidebar
+weight: 0
+provider: null
+plugin: 'menu_block:civic-primary-navigation'
+settings:
+  id: 'menu_block:civic-primary-navigation'
+  label: 'Side Navigation'
+  provider: menu_block
+  label_display: '0'
+  follow: true
+  follow_parent: active
+  level: 1
+  depth: 2
+  expand_all_items: true
+  parent: 'civic-primary-navigation:'
+  suggestion: civic_primary_navigation
+  label_type: block
+  label_link: false
+visibility:
+  request_path:
+    id: request_path
+    pages: "<front>\r\n/civic/listing*"
+    negate: true

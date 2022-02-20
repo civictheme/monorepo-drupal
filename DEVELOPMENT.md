@@ -61,12 +61,12 @@ To compile all assets in all themes: `ahoy fe`
 For development:
 1. `civic-library`
 
-       cd docroot/themes/custom/civic/civic-library
+       cd docroot/themes/contrib/civic/civic-library
        npm run build
 
 2. `civic`
 
-       cd docroot/themes/custom/civic
+       cd docroot/themes/contrib/civic
        npm run build
 
 2. `civic_demo`
@@ -93,7 +93,7 @@ installation of `civic_demo`. We do not capture configuration for `civic_demo`.
 
 ## Demo content export
 
-    drush dcer --folder=modules/custom/cd_core/content <entity_type> <entity_id>
+    drush dcer --folder=modules/custom/civic_default_content/content <entity_type> <entity_id>
 
     # Example
-    drush dcer --folder=modules/custom/cd_core/content node 50
+    drush dcer --folder=modules/custom/civic_default_content/content node 50

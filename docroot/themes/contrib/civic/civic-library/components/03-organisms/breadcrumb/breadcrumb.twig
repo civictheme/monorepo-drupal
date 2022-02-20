@@ -1,0 +1,66 @@
+{#
+/**
+ * @file
+ * Breadcrumb component.
+ *
+ * Display of Breadcrumb component.
+ *
+ * Variables:
+ * - theme: [string] Theme for Callout.
+ * - links: [array] Array of Link objects containing type, url, text
+ * - active_is_link: [boolean] Breadcrumb active element as link.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set component_class = 'civic-breadcrumb' %}
+{% set links_count = links|length %}
+{% set parent = false %}
+
+{% if links %}
+  <nav class="{{ '%s %s'|format(component_class, theme_class) }}" aria-label="breadcrumb">
+    <ul class="civic-breadcrumb__links">
+      {% for linkObj in links %}
+        {% if linkObj.text %}
+          <li class="civic-breadcrumb__links--link">
+
+            {% if loop.index == links_count - 1 %}
+              {% set parent = linkObj %}
+            {% endif %}
+
+            {% if not active_is_link and (loop.index == links_count) %}
+              <span aria-current="location">{{ linkObj.text }}</span>
+            {% else %}
+              {% include '@atoms/link/link.twig' with {
+                theme: theme,
+                text: linkObj.text,
+                url: linkObj.url,
+                attributes: loop.index == links_count ? 'aria-current="location"' : '',
+              } only %}
+              {% if (loop.index < links_count) %}
+                {% include '@atoms/icon/icon.twig' with {
+                  symbol: 'arrows_rightarrow',
+                } only %}
+              {% endif %}
+            {% endif %}
+
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if parent is not empty %}
+        <li class="civic-breadcrumb__links--link mobile-only">
+          {% include '@atoms/icon/icon.twig' with {
+            symbol: 'arrows_leftarrow_2',
+          } only %}
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: 'Parent',
+            url: parent.url,
+          } only %}
+        </li>
+      {% endif %}
+
+    </ul>
+  </nav>
+{% endif %}

@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Description list component.
+ *
+ * Variables:
+ * - theme: [string] theme: light, dark.
+ * - is_inline: [boolean] Flag to render items inline.
+ * - items: [array] Array of items. Each item has a term, description and modifier_class.
+ * - modifier_class: [string] Additional classes to modify component styling.
+ */
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set display_class = is_inline  ? 'civic-description-list--inline' :'' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, display_class, modifier_class|default('')) %}
+
+{% if items %}
+  <dl class="civic-description-list {{ modifier_class }}">
+    {% for item in items %}
+      <div class="civic-description-list__item {% if item.modifier_class %}{{ item.modifier_class }}{% endif %}">
+        <dt class="civic-description-list__item__term">{{ item.term }}</dt>
+        <dd class="civic-description-list__item__description">{{ item.description }}</dd>
+      </div>
+    {% endfor %}
+  </dl>
+{% endif %}

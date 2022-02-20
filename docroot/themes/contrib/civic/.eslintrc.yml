@@ -1,0 +1,26 @@
+root: true
+extends:
+  - airbnb
+env:
+  es6: false
+  browser: true
+globals:
+  BACKGROUNDS: true
+  Drupal: true
+  ICONS: true
+  LOGOS: true
+  SCSS_VARIABLES: true
+  Set: true
+rules:
+  strict: 0
+  import/no-extraneous-dependencies: 0
+  import/prefer-default-export: 0
+  no-restricted-syntax: 0
+  guard-for-in: 0
+  quotes: [ 2, "single", { "avoidEscape": true, "allowTemplateLiterals": true } ]
+  no-continue: 0
+  no-plusplus: 0
+  no-param-reassign: 0
+  no-new: 0
+  no-nested-ternary: 0
+  func-names: 0

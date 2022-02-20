@@ -1,0 +1,85 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civic_attachment.field_c_p_attachments
+    - field.field.paragraph.civic_attachment.field_c_p_background
+    - field.field.paragraph.civic_attachment.field_c_p_icon
+    - field.field.paragraph.civic_attachment.field_c_p_image
+    - field.field.paragraph.civic_attachment.field_c_p_space
+    - field.field.paragraph.civic_attachment.field_c_p_summary
+    - field.field.paragraph.civic_attachment.field_c_p_theme
+    - field.field.paragraph.civic_attachment.field_c_p_title
+    - paragraphs.paragraphs_type.civic_attachment
+  module:
+    - options
+id: paragraph.civic_attachment.default
+targetEntityType: paragraph
+bundle: civic_attachment
+mode: default
+content:
+  field_c_p_attachments:
+    type: entity_reference_entity_view
+    weight: 6
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_c_p_background:
+    weight: 8
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_c_p_icon:
+    weight: 5
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_c_p_image:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_c_p_space:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_c_p_summary:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_c_p_theme:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_c_p_title:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

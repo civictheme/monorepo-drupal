@@ -1,0 +1,97 @@
+//
+// Civic Promo.
+//
+
+.civic-promo {
+  $root: &;
+
+  &.civic-promo--with-space-top {
+    padding-top: $civic-promo-padding-vertical;
+  }
+
+  &.civic-promo--with-space-bottom {
+    padding-bottom: $civic-promo-padding-vertical;
+  }
+
+  &.civic-promo--with-space-both {
+    padding: $civic-promo-padding-vertical 0;
+  }
+
+  &__inner {
+    border-radius: $civic-border-radius;
+    padding: civic-space(3);
+
+    @include civic-breakpoint(m) {
+      border-radius: $civic-border-radius * 2;
+      padding: civic-space(7) civic-space(8);
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__title {
+    @include civic-typography('heading-4');
+
+    margin-bottom: civic-space(1);
+  }
+
+  &__content {
+    @include civic-typography('text-regular');
+
+    box-sizing: border-box;
+    margin-left: auto;
+  }
+
+  &__button {
+    width: 100%;
+    box-sizing: border-box;
+
+    @include civic-breakpoint(m) {
+      width: auto;
+      white-space: nowrap;
+    }
+  }
+
+  &__first-container {
+    @include civic-breakpoint(m) {
+      flex-grow: 1;
+      padding-right: civic-space(5);
+    }
+  }
+
+  &__second-container {
+    margin-top: civic-space(3);
+
+    @include civic-breakpoint(m) {
+      margin-top: 0;
+    }
+  }
+
+  &.civic-theme-light {
+    #{$root}__inner {
+      background-color: $civic-promo-light-background-color;
+    }
+
+    #{$root}__title {
+      color: $civic-promo-light-heading-color;
+    }
+
+    #{$root}__content {
+      color: $civic-promo-light-body-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__inner {
+      background-color: $civic-promo-dark-background-color;
+    }
+
+    #{$root}__title {
+      color: $civic-promo-dark-heading-color;
+    }
+
+    #{$root}__content {
+      color: $civic-promo-dark-body-color;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{#
+/**
+* @file
+* Bais filter component.
+*
+* Variables:
+* - theme: [string] theme: light, dark.
+* - items: [array] Filter links
+*    - url: [string] URL for the filter.
+*    - text: [string] Link text.
+*/
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+
+<div class="civic-basic-filter {{ theme_class }}" data-component-name="civic-basic-filter">
+  <div class="civic-basic-filter__list">
+    {% block filters %}
+      {% for item in items %}
+        <div class="civic-basic-filter__list--row">
+            {% include '@atoms/filter-chip/filter-chip.twig' with {
+              theme: theme,
+              text: item.text,
+              is_multiple: is_multiple,
+              name: is_multiple ? 'basic-filter-' ~ loop.index : 'basic-filter',
+              id: 'chip-' ~ loop.index,
+            } only %}
+        </div>
+      {% endfor %}
+    {% endblock %}
+  </div>
+</div>

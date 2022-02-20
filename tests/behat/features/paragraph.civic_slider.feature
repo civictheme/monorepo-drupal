@@ -17,6 +17,8 @@ Feature: Tests the Slider paragraph
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_link" in the "Link" row
     And I should see the text "field_c_p_slides" in the "Slides" row
+    And I should see the text "field_c_p_space" in the "With space" row
+    And I should see the text "field_c_p_background" in the "Background" row
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
@@ -30,8 +32,10 @@ Feature: Tests the Slider paragraph
     And I wait for AJAX to finish
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-theme" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-theme select.required" element
+    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-space" element
     And the option "Light" from select "Theme" is selected
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element
+    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-background-value" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-link-0-uri" element
     And I should see an "div.field--name-field-c-p-slides" element
     And I should see an "div.field--name-field-c-p-slides .form-required" element

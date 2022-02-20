@@ -1,0 +1,108 @@
+//
+// Civic Map.
+//
+.civic-map {
+  &.civic-map--with-space-top {
+    padding-top: $civic-map-padding-vertical;
+  }
+
+  &.civic-map--with-space-bottom {
+    padding-bottom: $civic-map-padding-vertical;
+  }
+
+  &.civic-map--with-space-both {
+    padding: $civic-map-padding-vertical 0;
+  }
+
+  &__canvas {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    padding: 0 civic-space() $civic-map-padding-bottom civic-space();
+
+    .civic-map_iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: calc(100% - #{civic-space(2)});
+      height: 100%;
+      padding-left: inherit;
+      padding-right: inherit;
+    }
+  }
+
+  &__links {
+    display: flex;
+    margin-top: civic-space(4);
+    padding: 0 civic-space();
+
+    @include civic-breakpoint-upto(s) {
+      display: block;
+    }
+
+    .civic-link {
+      @include civic-typography('text-regular');
+
+      @include breakpoint(xss) {
+        font-family: civic-font('secondary');
+      }
+
+      @include breakpoint(m) {
+        font-family: civic-font('secondary');
+      }
+    }
+  }
+
+  &__view_link {
+    padding-right: civic-space(2);
+
+    @include civic-breakpoint(m) {
+      padding-right: civic-space(3);
+    }
+  }
+
+  &.civic-theme-light {
+    background-color: $civic-map-light-background-color;
+
+    &.civic-map--with-background {
+      background-color: $civic-map-light-wrapper-background-color;
+      padding-left: $civic-map-padding-horizontal;
+      padding-right: $civic-map-padding-horizontal;
+    }
+
+    #{&root}__links {
+      .civic-link {
+        &.civic-theme-light {
+          color: $civic-map-light-link-color;
+
+          &:hover {
+            color: $civic-map-light-link-hover-color;
+          }
+        }
+      }
+    }
+  }
+
+  &.civic-theme-dark {
+    background-color: $civic-map-dark-background-color;
+
+    &.civic-map--with-background {
+      background-color: $civic-map-dark-wrapper-background-color;
+      padding-left: $civic-map-padding-horizontal;
+      padding-right: $civic-map-padding-horizontal;
+    }
+
+    #{&root}__links {
+      .civic-link {
+        &.civic-theme-dark {
+          color: $civic-map-dark-link-color;
+
+          &:hover {
+            color: $civic-map-dark-link-hover-color;
+          }
+        }
+      }
+    }
+  }
+}
