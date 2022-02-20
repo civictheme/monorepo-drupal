@@ -9,17 +9,26 @@ the child theme.
 
 Civic Component Library stores icons in the `civic-library/assets/icons` directory split into subdirectory libraries.
 
-Available icons can be viewed
+Copy and paste the icon svg file you wish to include in the starter kit from their `civic-library/assets/icons/<icon-pack>` icon
+pack directory into their respective `<child-theme>/assets/icons/<icon-pack>` directory. 
 
-In your generated child theme, you wi
+** Important note icons in child themes must be in the corresponding <icon-pack> directory of civic library otherwise
+civic templates won't be able to reference the required icon **
 
+We recommend not deleting any of the default icons found in the starter theme as these are used by civic theme
+in the default templates.
 
-# Re-generating icons library
+## Re-generating icons library
 
 Icons library is generated from provided files and stored in `icon_library.twig`
 file to avoid constant re-compilation.
 
-When icon set is update, run the script below to update the contents
-of `icon_library.twig`:
+After you have finished including the icons you wish to use in your child theme, run the script below to update 
+the contents of `icon_library.twig`:
 
     npm run generate-icon-library
+
+## Troubleshooting icons
+
+If you are experiencing a missing icon in your drupal webpage and the SVG tag is not being rendered ie `div.civic-icon`
+does not have any inner SVG element - this is caused by the icon svg missing from your child theme.
