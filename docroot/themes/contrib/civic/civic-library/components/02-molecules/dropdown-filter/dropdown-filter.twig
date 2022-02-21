@@ -27,8 +27,10 @@
     data-collapsible data-collapsible-collapsed
     {% if filter_group %}
       data-collapsible-group="{{ filter_group }}"
+      data-responsive-collapsible-group=">=m"
     {% endif %}
     data-collapsible-duration="0"
+    data-responsive
     data-component-name="civic-dropdown-filter"
     {% if searchable_threshold %}
       data-dropdown-filter-search-item-threshold="{{ searchable_threshold }}"

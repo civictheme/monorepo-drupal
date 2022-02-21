@@ -4,8 +4,15 @@ function CivicLargeFilter(el) {
   this.filterElement = this.el.querySelector('[data-large-filter-filters]');
   this.clearAllButton = this.el.querySelector('[data-large-filter-clear]');
   this.selectedFiltersElement = this.el.querySelector('[data-large-filter-selected-filters]');
+  this.mobileSelectedFiltersElement = this.el.querySelector('[data-large-filter-mobile-selected-filters]');
+  this.mobileToggleButton = this.el.querySelector('[data-large-filter-mobile-toggle]');
+  this.mobileCancelButton = this.el.querySelector('[data-large-filter-mobile-cancel]');
+  this.mobileOverlay = this.el.querySelector('[data-large-filter-mobile-overlay]');
+  this.mobileToggleDisplay = this.el.querySelector('[data-large-filter-mobile-toggle-display]');
+  this.mobileToggleSuffix = this.mobileToggleDisplay.getAttribute('data-large-filter-mobile-toggle-display-suffix');
   this.state = {};
   this.initialisedState = false;
+  this.isMobile = null;
   this.fieldTypes = {
     input_checkbox: {
       emptyValue: false,
@@ -68,6 +75,8 @@ CivicLargeFilter.prototype.init = function () {
   this.filterElement.addEventListener('change', this.filterElementChangeEvent.bind(this));
   this.tagElement.addEventListener('click', this.tagElementChangeEvent.bind(this));
   this.clearAllButton.addEventListener('click', this.clearElementClickEvent.bind(this));
+  this.mobileToggleButton.addEventListener('click', this.toggleOverlayElementClickEvent.bind(this));
+  this.mobileCancelButton.addEventListener('click', this.mobileCancelElementClickEvent.bind(this));
 
   // Set state values based on current filter fields.
   this.filterElement.querySelectorAll('input, select').forEach((element) => {
@@ -85,7 +94,50 @@ CivicLargeFilter.prototype.init = function () {
       this.updateState(key, id, value, type);
     }
   });
+
+  // Mobile support.
+  const CivicResponsive = window.CivicResponsive;
+  const activeMQ = CivicResponsive.prototype.getActiveMediaQuery();
+  this.isMobile = CivicResponsive.prototype.matchExpr('<m', activeMQ.breakpoint);
+  this.isOverlayOpen = false;
+  this.updateTagContainerPosition();
+  window.addEventListener('civic-responsive', (evt) => {
+    const { breakpoint } = evt.detail;
+    const thisBreakpoint = CivicResponsive.prototype.matchExpr('<m', breakpoint);
+    if (thisBreakpoint !== this.isMobile) {
+      this.isMobile = thisBreakpoint;
+      this.updateTagContainerPosition();
+    }
+  }, false);
+
   this.initialisedState = true;
+};
+
+/**
+ * Position tags.
+ * Mobile will show tags above the filters, desktop will show below.
+ */
+CivicLargeFilter.prototype.updateTagContainerPosition = function () {
+  const tagsContainerSelector = this.isMobile ? '[data-large-filter-mobile-tags-container]' : '[data-large-filter-tags-container]';
+  const btnContainerSelector = this.isMobile ? '[data-large-filter-mobile-clear-container]' : '[data-large-filter-clear-container]';
+  this.el.querySelector(tagsContainerSelector).appendChild(this.tagElement);
+  this.el.querySelector(btnContainerSelector).appendChild(this.clearAllButton);
+};
+
+/**
+ * TODO - Add.
+ */
+CivicLargeFilter.prototype.toggleOverlayElementClickEvent = function () {
+  this.isOverlayOpen = !this.isOverlayOpen;
+  this.mobileOverlay.classList.toggle('civic-large-filter__mobile-overlay--open', this.isOverlayOpen);
+};
+
+/**
+ * TODO - Add.
+ */
+CivicLargeFilter.prototype.mobileCancelElementClickEvent = function () {
+  this.isOverlayOpen = !this.isOverlayOpen;
+  this.mobileOverlay.classList.toggle('civic-large-filter__mobile-overlay--open', this.isOverlayOpen);
 };
 
 /**
@@ -203,15 +255,19 @@ CivicLargeFilter.prototype.renderHTMLFilterItem = function (key, label, type, th
  */
 CivicLargeFilter.prototype.redrawSelected = function () {
   let html = '';
+  let count = 0;
   Object.keys(this.state).forEach((key) => {
     const entry = this.state[key];
     if (entry.value) {
+      count++;
       const el = document.getElementById(entry.id);
       const label = this.fieldTypes[entry.type].getLabel(el);
       const theme = this.el.dataset.largeFilterTheme;
       html += this.renderHTMLFilterItem(key, label, entry.type, theme);
     }
   });
+  this.mobileToggleDisplay.classList.toggle('civic-large-filter__mobile-toggle-display--hidden', (count === 0));
+  this.mobileToggleDisplay.innerHTML = `${count} ${this.mobileToggleSuffix}`;
   this.tagElement.innerHTML = `<ul class="civic-large-filter__tags-list">${html}</ul>`;
 };
 
@@ -227,6 +283,7 @@ CivicLargeFilter.prototype.redrawClearButton = function () {
     }
   });
   this.selectedFiltersElement.classList.toggle('civic-large-filter__selected-filters--hidden', !showTagPanel);
+  this.mobileSelectedFiltersElement.classList.toggle('civic-large-filter__selected-filters--hidden', !showTagPanel);
 };
 
 /**

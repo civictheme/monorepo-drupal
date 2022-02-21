@@ -70,7 +70,17 @@ function CivicCollapsible(el) {
 
   // Attach global keydown event listener to allow closing all collapsibles.
   document.addEventListener('keydown', CivicCollapsible.prototype.keydownEvent);
-  document.addEventListener('click', CivicCollapsible.prototype.collapseAllGroups);
+  document.addEventListener('click', CivicCollapsible.prototype.collapseAllGroups.bind(this));
+
+  // Responsive Collapsible Group
+  this.isGroupsEnabled = true;
+  this.responsiveGroupBp = this.el.hasAttribute('data-responsive-collapsible-group') ? this.el.getAttribute('data-responsive-collapsible-group') : null;
+  if (this.responsiveGroupBp) {
+    window.addEventListener('civic-responsive', (evt) => {
+      const { breakpoint, CivicResponsive } = evt.detail;
+      this.isGroupsEnabled = CivicResponsive.prototype.matchExpr(this.responsiveGroupBp, breakpoint);
+    }, false);
+  }
 
   // Mark as initialized.
   this.el.setAttribute('data-collapsible', 'true');
@@ -155,6 +165,7 @@ CivicCollapsible.prototype.focusoutEvent = function (e) {
     && !this.panel.contains(e.relatedTarget)
     && !this.trigger.contains(e.relatedTarget)
     && this.group
+    && this.isGroupsEnabled
   ) {
     e.target.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
   }
@@ -198,22 +209,26 @@ CivicCollapsible.prototype.keydownEvent = function (e) {
  * Close "other" instances in the group.
  */
 CivicCollapsible.prototype.closeGroup = function (group) {
-  const currentEl = this.el;
-  // eslint-disable-next-line prefer-template
-  document.querySelectorAll('[data-collapsible-group=' + group + ']:not([data-collapsible-collapsed])').forEach((el) => {
-    if (el !== currentEl) {
-      el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
-    }
-  });
+  if (this.isGroupsEnabled) {
+    const currentEl = this.el;
+    // eslint-disable-next-line prefer-template
+    document.querySelectorAll('[data-collapsible-group=' + group + ']:not([data-collapsible-collapsed])').forEach((el) => {
+      if (el !== currentEl) {
+        el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
+      }
+    });
+  }
 };
 
 /**
  * Close all grouped instances on the page.
  */
 CivicCollapsible.prototype.collapseAllGroups = function () {
-  document.querySelectorAll('[data-collapsible-group]').forEach((el) => {
-    el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
-  });
+  if (this.isGroupsEnabled) {
+    document.querySelectorAll('[data-collapsible-group]').forEach((el) => {
+      el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
+    });
+  }
 };
 
 /**
