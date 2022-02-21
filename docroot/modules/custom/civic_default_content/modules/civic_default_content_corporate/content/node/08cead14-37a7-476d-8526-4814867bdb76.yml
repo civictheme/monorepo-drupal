@@ -1,0 +1,290 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 08cead14-37a7-476d-8526-4814867bdb76
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    1273590e-5a80-45ee-9172-0e1b9343ddb3: media
+    4729baf2-63ab-48e2-9c47-ce82acc1f0d1: media
+    78eb0cf4-882f-47e4-8607-1f254809e9e8: media
+    8810505e-9c28-43b9-b019-a0a034701b3a: media
+    6eb923f5-2fa8-49b1-ac4c-46d587ec25eb: media
+default:
+  revision_uid:
+    -
+      target_id: 0
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Marine habitats'
+  created:
+    -
+      value: 1642671518
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_background:
+    -
+      entity: 1273590e-5a80-45ee-9172-0e1b9343ddb3
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: eda5e835-14b3-4752-9a91-4b5c611ff8d5
+          bundle: civic_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642671530
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Marine habitats make up an important part of the DE’s work.</p>\r\n"
+              format: civic_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 60111b20-de17-482a-911a-374218a74c09
+          bundle: civic_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642671540
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 89b541d0-6f46-432b-bb0b-c4052829f374
+                  bundle: civic_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642671551
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 4729baf2-63ab-48e2-9c47-ce82acc1f0d1
+                  field_c_p_link:
+                    -
+                      uri: 'https://parksaustralia.gov.au/marine/'
+                      title: 'Marine parks'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Marine parks'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: f0729c19-b1fc-4f7b-bb38-8af5e1b34d6d
+                  bundle: civic_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642671570
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 78eb0cf4-882f-47e4-8607-1f254809e9e8
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'The Great Barrier Reef'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'The Great Barrier Reef'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 744cde3b-7114-424d-8cf1-74a6128d580f
+                  bundle: civic_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642671582
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 8810505e-9c28-43b9-b019-a0a034701b3a
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Marine pollution'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Marine pollution'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 12f78c58-5698-4e42-a0db-f8f55cba87b1
+                  bundle: civic_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642671596
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image:
+                    -
+                      entity: 6eb923f5-2fa8-49b1-ac4c-46d587ec25eb
+                  field_c_p_link:
+                    -
+                      uri: 'route:<nolink>'
+                      title: 'Protecting marine species'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Protecting marine species'
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c959c97c-2598-4d5b-a398-ab1b990cba49
+          bundle: civic_next_step
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1645166561
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_summary:
+            -
+              value: 'Learn more about what lies below the surface waters, what''s in the deep sea and on the sea floor'
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'The open ocean'
+  field_c_n_show_toc:
+    -
+      value: false

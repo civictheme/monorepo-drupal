@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 6e01307b-f7f6-4c3d-b251-b61f38e00ef2
+  default_langcode: en
+  depends:
+    20c5e78c-33ab-4f85-ba06-28626a53f77d: user
+default:
+  uid:
+    -
+      entity: 20c5e78c-33ab-4f85-ba06-28626a53f77d
+  filename:
+    -
+      value: demo_image_andrea-piacquadio.jpg
+  uri:
+    -
+      value: 'public://demo_image_andrea-piacquadio.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 487530
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1637032917

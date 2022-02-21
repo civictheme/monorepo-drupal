@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 1273590e-5a80-45ee-9172-0e1b9343ddb3
+  bundle: civic_image
+  default_langcode: en
+  depends:
+    2bc80ea6-0298-425d-b208-fbdfb28c8f4f: file
+default:
+  revision_user:
+    -
+      target_id: 18
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 18
+  name:
+    -
+      value: Starfish
+  created:
+    -
+      value: 1645067271
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 2bc80ea6-0298-425d-b208-fbdfb28c8f4f
+      alt: 'Photo of starfish on ocean floor'
+      title: ''
+      width: 1024
+      height: 768

@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Civic Default Corporate Content module.
+ */
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function civic_default_content_corporate_module_implements_alter(&$implementations, $hook) {
+  _civic_default_content_module_implements_alter('civic_default_content_corporate', $implementations, $hook);
+}
+
+/**
+ * Implements hook_modules_installed().
+ */
+function civic_default_content_corporate_modules_installed($modules, $is_syncing) {
+  _civic_default_content_modules_installed('civic_default_content_corporate', $modules);
+}

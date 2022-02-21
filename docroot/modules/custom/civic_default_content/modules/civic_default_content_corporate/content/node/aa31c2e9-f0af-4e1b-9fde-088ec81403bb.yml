@@ -1,0 +1,178 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: aa31c2e9-f0af-4e1b-9fde-088ec81403bb
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    ba705a5b-91ca-4f48-9d82-feeabb645cff: media
+default:
+  revision_uid:
+    -
+      target_id: 0
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Climate change'
+  created:
+    -
+      value: 1642671471
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_background:
+    -
+      entity: ba705a5b-91ca-4f48-9d82-feeabb645cff
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 2f5e20e0-4f5b-4331-aaf3-a4491af87c0b
+          bundle: civic_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642671485
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Climate change is a leading cause of a range of environmental issues for our planet and Australia. Climate change isn’t just about the Earth getting hotter – it also impacts many other areas.&nbsp;</p>\r\n\r\n<p>Some of the major effects of climate change are:</p>\r\n\r\n<ul>\r\n\t<li>Increased temperatures</li>\r\n\t<li>More storms and severe weather (e.g. flooding, cyclones/hurricanes and landslides)</li>\r\n\t<li>More drought</li>\r\n\t<li>Warmer oceans, which are causing glaciers and our polar caps to melt&nbsp;</li>\r\n\t<li>More carbon dioxide in the oceans, which is killing marine life and coral</li>\r\n\t<li>More endangered and extinct species (due to changes in ecosystems, forest fires, etc.)</li>\r\n\t<li>Less food available due to extreme weather (e.g. crops lost due to drought, floods, fire, etc.)</li>\r\n</ul>\r\n\r\n<p>The DE is committed to monitoring and proactively fighting climate change.</p>\r\n\r\n<h2>Heading 2</h2>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus tellus nisl. Praesent varius lorem non augue laoreet, ut condimentum velit blandit.&nbsp;</p>\r\n"
+              format: civic_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 890af5f3-9dda-435d-bb83-6d7b125a412e
+          bundle: civic_accordion
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1644888232
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_expand:
+            -
+              value: false
+          field_c_p_panels:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 808fef9a-f2bb-47e5-8edb-26f452a1509e
+                  bundle: civic_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1644888232
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus tellus nisl. Praesent varius lorem non augue laoreet, ut condimentum velit blandit. Nam maximus ligula vitae dolor suscipit, eget posuere dui rhoncus. Aliquam erat volutpat. Nullam justo erat, ultrices nec orci sit amet, ultrices aliquam dui. Proin porttitor urna in risus scelerisque ultricies. Quisque a velit aliquet, bibendum nibh sit amet, fringilla dolor. Vivamus sodales nisi iaculis, condimentum tellus in, aliquet nisl. Integer ultrices auctor libero non viverra. Nulla eget luctus nunc, eu hendrerit risus. Proin fringilla pharetra sapien nec finibus. Cras ut sapien sit amet elit sollicitudin volutpat ac gravida est. Praesent vel convallis augue, pharetra pulvinar sem. Vestibulum pulvinar dui ut consectetur suscipit.</p>\r\n"
+                      format: civic_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Accordion title 1'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 5464cb07-6268-4e6b-9903-d96a63c5897d
+                  bundle: civic_accordion_panel
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1644888255
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus tellus nisl. Praesent varius lorem non augue laoreet, ut condimentum velit blandit. Nam maximus ligula vitae dolor suscipit, eget posuere dui rhoncus. Aliquam erat volutpat. Nullam justo erat, ultrices nec orci sit amet, ultrices aliquam dui. Proin porttitor urna in risus scelerisque ultricies. Quisque a velit aliquet, bibendum nibh sit amet, fringilla dolor. Vivamus sodales nisi iaculis, condimentum tellus in, aliquet nisl. Integer ultrices auctor libero non viverra. Nulla eget luctus nunc, eu hendrerit risus. Proin fringilla pharetra sapien nec finibus. Cras ut sapien sit amet elit sollicitudin volutpat ac gravida est. Praesent vel convallis augue, pharetra pulvinar sem. Vestibulum pulvinar dui ut consectetur suscipit.</p>\r\n"
+                      format: civic_rich_text
+                  field_c_p_expand:
+                    -
+                      value: false
+                  field_c_p_title:
+                    -
+                      value: 'Accordion title 2'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Example accordion '
+  field_c_n_show_toc:
+    -
+      value: false

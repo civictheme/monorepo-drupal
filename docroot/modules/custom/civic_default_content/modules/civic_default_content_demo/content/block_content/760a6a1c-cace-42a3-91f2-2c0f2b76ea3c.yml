@@ -1,0 +1,60 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: 760a6a1c-cace-42a3-91f2-2c0f2b76ea3c
+  bundle: civic_component_block
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: 'Demo Block - Map'
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  field_c_b_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 5a4c18d0-51eb-49a8-af15-5820c81f6c3d
+          bundle: civic_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631789995
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.'
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_share_link:
+            -
+              uri: 'internal:/'
+              title: Homepage
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_view_link:
+            -
+              uri: 'http://www.google.com'
+              title: Google
+              options: {  }

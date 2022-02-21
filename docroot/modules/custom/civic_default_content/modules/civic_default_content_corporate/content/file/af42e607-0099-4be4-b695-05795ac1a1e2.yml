@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: af42e607-0099-4be4-b695-05795ac1a1e2
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_iceberg.jpg
+  uri:
+    -
+      value: 'public://corporate_iceberg.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 179769
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007282

@@ -1,0 +1,10 @@
+uuid: 6c521fed-d59e-4a7f-8522-5415562df409
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.component
+label: Component
+targetEntityType: media
+cache: true

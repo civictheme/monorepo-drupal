@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 12e3b76e-5e63-43d2-bd99-6827a8c9ab2a
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_solar-panels.jpg
+  uri:
+    -
+      value: 'public://corporate_solar-panels.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 158647
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645006466

@@ -42,7 +42,7 @@ function civic_preprocess_views_view(&$variables) {
 function civic_preprocess_views_view_grid(&$variables) {
   // On Grid view title should be added to card container.
   if ($variables['view']->getStyle()->getBaseId() === 'grid' && isset($variables['view']->header['result'])) {
-    $variables['modifier_class'] = 'civic-card-container--listing';
+    $variables['modifier_class'] = 'civic-card-container--listing civic-card-container--with-background';
     $variables['title'] = $variables['view']->header['result']->render();
   }
 }

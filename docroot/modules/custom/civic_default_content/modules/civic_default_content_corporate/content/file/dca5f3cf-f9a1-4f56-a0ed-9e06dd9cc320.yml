@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: dca5f3cf-f9a1-4f56-a0ed-9e06dd9cc320
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_clown-fish_2.jpg
+  uri:
+    -
+      value: 'public://corporate_clown-fish_2.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 2523242
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645012678

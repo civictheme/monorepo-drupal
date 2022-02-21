@@ -1,0 +1,41 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 058a0544-81c7-4312-baa0-fae4025ec5bf
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    f45bf798-cdf1-46fc-b27a-3fd6472fba25: menu_link_content
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Instagram
+  menu_name:
+    -
+      value: civic-footer
+  link:
+    -
+      uri: 'route:<nolink>'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 2
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:f45bf798-cdf1-46fc-b27a-3fd6472fba25'
+  revision_translation_affected:
+    -
+      value: true
