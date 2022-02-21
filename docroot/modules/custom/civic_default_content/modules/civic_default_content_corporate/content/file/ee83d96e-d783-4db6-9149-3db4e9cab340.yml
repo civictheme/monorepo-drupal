@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ee83d96e-d783-4db6-9149-3db4e9cab340
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_tree.jpg
+  uri:
+    -
+      value: 'public://corporate_tree.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 210039
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007827

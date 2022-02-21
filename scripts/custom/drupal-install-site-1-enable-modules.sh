@@ -18,6 +18,9 @@ DRUSH_ALIAS="${DRUSH_ALIAS:-}"
 # Use local or global Drush, giving priority to a local drush.
 drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush"; else command -v drush; fi)"
 
+echo "==> Removing all files."
+rm -Rf "${APP}"/docroot/sites/default/files/* > /dev/null
+
 # Use cd_core.info.yml to declare all dependencies that must be installed in all environments.
 # Use cd_core.install to add other post-install operations.
 # Use cd_core.post_update.php to content-related post-install operations.

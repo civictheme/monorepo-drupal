@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 360f9b1c-e7b9-4760-a308-a94d04bad54a
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_microscope.jpg
+  uri:
+    -
+      value: 'public://corporate_microscope.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 140562
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007041

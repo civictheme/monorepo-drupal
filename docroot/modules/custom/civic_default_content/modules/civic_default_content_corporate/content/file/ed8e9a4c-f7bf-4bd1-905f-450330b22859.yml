@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ed8e9a4c-f7bf-4bd1-905f-450330b22859
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_koala.jpg
+  uri:
+    -
+      value: 'public://corporate_koala.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 177525
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007707

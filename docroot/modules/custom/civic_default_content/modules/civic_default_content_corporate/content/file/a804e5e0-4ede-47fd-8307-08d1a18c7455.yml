@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: a804e5e0-4ede-47fd-8307-08d1a18c7455
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_fire-silhouettes.jpg
+  uri:
+    -
+      value: 'public://corporate_fire-silhouettes.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 152835
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007346
