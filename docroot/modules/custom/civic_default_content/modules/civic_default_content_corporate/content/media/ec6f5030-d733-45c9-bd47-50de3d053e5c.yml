@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: ec6f5030-d733-45c9-bd47-50de3d053e5c
+  bundle: civic_image
+  default_langcode: en
+  depends:
+    360f9b1c-e7b9-4760-a308-a94d04bad54a: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 18
+  name:
+    -
+      value: Microscope-crop.jpg
+  created:
+    -
+      value: 1645007041
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 360f9b1c-e7b9-4760-a308-a94d04bad54a
+      alt: 'Photo of microscope'
+      title: ''
+      width: 1024
+      height: 768

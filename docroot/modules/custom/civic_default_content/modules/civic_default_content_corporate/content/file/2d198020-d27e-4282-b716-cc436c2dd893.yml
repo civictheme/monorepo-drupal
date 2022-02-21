@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 2d198020-d27e-4282-b716-cc436c2dd893
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_rainforest.jpg
+  uri:
+    -
+      value: 'public://corporate_rainforest.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 188613
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645065696

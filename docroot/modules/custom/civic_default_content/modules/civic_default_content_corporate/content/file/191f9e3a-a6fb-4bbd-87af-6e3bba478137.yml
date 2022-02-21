@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 191f9e3a-a6fb-4bbd-87af-6e3bba478137
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_bottles.jpg
+  uri:
+    -
+      value: 'public://corporate_bottles.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 160743
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007861

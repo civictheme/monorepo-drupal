@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 853e999d-a302-4cc0-baeb-f419c91bcf3f
+  bundle: civic_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Policies & legislation'
+  created:
+    -
+      value: 1642671629
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0cfd7134-6f1a-4dd8-9751-eb3625dffba2
+          bundle: civic_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642671647
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>There are a variety of policies and legislation that the DE contributes to and enforces across Australia.&nbsp;</p>\r\n\r\n<p>The&nbsp; main legislation that protects Australia’s environment is the <em>Environmental Protection Act 2015</em> (the EP Act).&nbsp; The EP Act aims to protect the environment, conserve Australian biodiversity, control the movement of Australia’s native flora and fauna, and work with Indigienous Australians to benefit from their knowledge of the land. Go to the EP Act</p>\r\n\r\n<p>We also work closely with the states and territories, who manage local and state environmental protection.&nbsp;&nbsp;</p>\r\n\r\n<p>Major environmental policies we’re involved with at the national level include:</p>\r\n\r\n<ul>\r\n\t<li>Environmental sustainability</li>\r\n\t<li>Waste and recycling</li>\r\n\t<li>Wetlands policy</li>\r\n\t<li>Bushfire management&nbsp;</li>\r\n\t<li>Reducing Australia’s greenhouse gas emissions</li>\r\n</ul>\r\n"
+              format: civic_rich_text
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_show_toc:
+    -
+      value: false

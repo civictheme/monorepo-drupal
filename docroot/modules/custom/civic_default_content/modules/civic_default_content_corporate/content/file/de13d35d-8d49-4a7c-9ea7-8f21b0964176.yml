@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: de13d35d-8d49-4a7c-9ea7-8f21b0964176
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_seals.jpg
+  uri:
+    -
+      value: 'public://corporate_seals.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 196158
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007605

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: b44c9271-2aab-432e-bac7-f228b60e9c72
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_woman.jpg
+  uri:
+    -
+      value: 'public://corporate_woman.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 172639
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645005272

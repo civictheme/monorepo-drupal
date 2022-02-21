@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 3bea3131-85bd-4eac-aeaf-702733630f62
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 7
+  filename:
+    -
+      value: corporate_document.pdf
+  uri:
+    -
+      value: 'public://corporate_document.pdf'
+  filemime:
+    -
+      value: application/pdf
+  filesize:
+    -
+      value: 117325
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645168591

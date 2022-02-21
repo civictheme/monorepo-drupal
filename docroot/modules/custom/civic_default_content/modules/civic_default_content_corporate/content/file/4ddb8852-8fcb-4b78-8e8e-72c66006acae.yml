@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 4ddb8852-8fcb-4b78-8e8e-72c66006acae
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_fish-plastic.jpg
+  uri:
+    -
+      value: 'public://corporate_fish-plastic.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 191380
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007565
