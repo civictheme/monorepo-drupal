@@ -25,41 +25,49 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="civic-callout--wrapper">
-          {% if content_top %}
-            <div class="civic-callout__content-top">
-              {{ content_top }}
-            </div>
-          {% endif %}
-          <div class="civic-callout__text">
-            <div class="civic-callout__title">
-              {{ title }}
-            </div>
+          {% block content_top %}
+            {% if content_top %}
+              <div class="civic-callout__content-top">
+                {{ content_top }}
+              </div>
+            {% endif %}
+          {% endblock %}
+          {% block content %}
+            <div class="civic-callout__text">
+              <div class="civic-callout__title">
+                {{ title }}
+              </div>
 
-            <div class="civic-callout__summary">
-              {{ summary }}
+              <div class="civic-callout__summary">
+                {{ summary }}
+              </div>
             </div>
-          </div>
+          {% endblock %}
 
-          <div class="civic-callout__links">
-            {% for linkObj in links %}
-              {% if linkObj.url is not empty %}
-                {% include '@atoms/button/button.twig' with {
-                  theme: theme,
-                  kind: 'link',
-                  type: linkObj.type,
-                  size: linkObj.size,
-                  text: linkObj.text,
-                  url: linkObj.url,
-                } only %}
-              {% endif %}
-            {% endfor %}
-          </div>
-
-          {% if content_bottom %}
-            <div class="civic-callout__content-bottom">
-              {{ content_bottom }}
+          {% block links %}
+            <div class="civic-callout__links">
+              {% for linkObj in links %}
+                {% if linkObj.url is not empty %}
+                  {% include '@atoms/button/button.twig' with {
+                    theme: theme,
+                    kind: 'link',
+                    type: linkObj.type,
+                    size: linkObj.size,
+                    text: linkObj.text,
+                    url: linkObj.url,
+                  } only %}
+                {% endif %}
+              {% endfor %}
             </div>
-          {% endif %}
+          {% endblock %}
+
+          {% block content_bottom %}
+            {% if content_bottom %}
+              <div class="civic-callout__content-bottom">
+                {{ content_bottom }}
+              </div>
+            {% endif %}
+          {% endblock %}
         </div>
       </div>
     </div>

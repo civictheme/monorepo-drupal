@@ -94,11 +94,13 @@
         </div>
       </div>
 
-      {% if featured_image is not empty %}
-        <div class="civic-banner__featured-image">
-          <img src="{{ featured_image.src }}" alt="{{ featured_image.alt }}"/>
-        </div>
-      {% endif %}
+      {% block featured_image %}
+        {% if featured_image is not empty %}
+          <div class="civic-banner__featured-image">
+            <img src="{{ featured_image.src }}" alt="{{ featured_image.alt }}"/>
+          </div>
+        {% endif %}
+      {% endblock %}
     </div>
 
     {% if content_below %}
