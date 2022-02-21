@@ -30,68 +30,77 @@
     <div class="container">
       <div class="row">
         <div class="col-m-12">
+          {% block title %}
+            {% if (title is not empty) or (header_link_url is not empty and header_link_text is not empty) %}
+              <div class="civic-card-container__header">
+                {% if title is not empty %}
+                  <div class="civic-card-container__header-title">
+                    {{ title }}
+                  </div>
+                {% endif %}
 
-          {% if (title is not empty) or (header_link_url is not empty and header_link_text is not empty) %}
-            <div class="civic-card-container__header">
-              {% if title is not empty %}
-                <div class="civic-card-container__header-title">
-                  {{ title }}
+                {% if header_link_url is not empty and header_link_text is not empty %}
+                  <div class="civic-card-container__header-link">
+                    {% include '@atoms/link/link.twig' with {
+                      theme: theme,
+                      text: header_link_text,
+                      url: header_link_url
+                    } only %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block description %}
+            {% if description %}
+              <div class="civic-card-container__description">
+                {{ description }}
+              </div>
+            {% endif %}
+          {% endblock %}
+          {% block content_top %}
+            {% if content_top %}
+              <div class="civic-card-container__content-top">
+                {{ content_top }}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block card_container %}
+            {% if cards is not empty %}
+              <div class="civic-card-container__cards">
+                <div class="row">
+                  {% for card in cards %}
+                    <div class="civic-card-container__card {{ column_class }}">
+                      {{ card }}
+                    </div>
+                  {% endfor %}
                 </div>
-              {% endif %}
+              </div>
+            {% endif %}
+          {% endblock %}
 
-              {% if header_link_url is not empty and header_link_text is not empty %}
-                <div class="civic-card-container__header-link">
+          {% block footer_link %}
+            {% if footer_link_url is not empty and footer_link_text is not empty %}
+              <div class="civic-card-container__footer">
+                <div class="civic-card-container__footer-link">
                   {% include '@atoms/link/link.twig' with {
                     theme: theme,
-                    text: header_link_text,
-                    url: header_link_url
+                    text: footer_link_text,
+                    url: footer_link_url
                   } only %}
                 </div>
-              {% endif %}
-            </div>
-          {% endif %}
-
-          {% if description %}
-            <div class="civic-card-container__description">
-              {{ description }}
-            </div>
-          {% endif %}
-
-          {% if content_top %}
-            <div class="civic-card-container__content-top">
-              {{ content_top }}
-            </div>
-          {% endif %}
-
-          {% if cards is not empty %}
-            <div class="civic-card-container__cards">
-              <div class="row">
-                {% for card in cards %}
-                  <div class="civic-card-container__card {{ column_class }}">
-                    {{ card }}
-                  </div>
-                {% endfor %}
               </div>
-            </div>
-          {% endif %}
-
-          {% if footer_link_url is not empty and footer_link_text is not empty %}
-            <div class="civic-card-container__footer">
-              <div class="civic-card-container__footer-link">
-                {% include '@atoms/link/link.twig' with {
-                  theme: theme,
-                  text: footer_link_text,
-                  url: footer_link_url
-                } only %}
+            {% endif %}
+          {% endblock %}
+          {% block content_bottom %}
+            {% if content_bottom %}
+              <div class="civic-card-container__content-bottom">
+                {{ content_bottom }}
               </div>
-            </div>
-          {% endif %}
-
-          {% if content_bottom %}
-            <div class="civic-card-container__content-bottom">
-              {{ content_bottom }}
-            </div>
-          {% endif %}
+            {% endif %}
+          {% endblock %}
         </div>
       </div>
     </div>

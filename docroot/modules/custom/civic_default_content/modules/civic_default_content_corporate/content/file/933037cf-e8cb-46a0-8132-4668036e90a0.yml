@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 933037cf-e8cb-46a0-8132-4668036e90a0
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_turtle.jpg
+  uri:
+    -
+      value: 'public://corporate_turtle.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 5990312
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645006697

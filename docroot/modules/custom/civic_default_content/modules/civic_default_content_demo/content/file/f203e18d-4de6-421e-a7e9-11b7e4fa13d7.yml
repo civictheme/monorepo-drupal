@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: f203e18d-4de6-421e-a7e9-11b7e4fa13d7
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: demo_icon_user-secret.svg
+  uri:
+    -
+      value: 'public://demo_icon_user-secret.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 1745
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1631869401

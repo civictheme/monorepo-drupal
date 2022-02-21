@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 93b3fe72-f6fe-4608-b904-cdf6d8037397
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_fish-in-water.jpg
+  uri:
+    -
+      value: 'public://corporate_fish-in-water.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 191341
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007523

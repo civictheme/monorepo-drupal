@@ -80,6 +80,7 @@ function _civic_preprocess_node__civic_card_promo(&$variables) {
   $variables['date'] = \Drupal::service('date.formatter')->format($node->getCreatedTime(), 'civic_short_date');
   _civic_preprocess_node__card($variables);
   _civic_preprocess_node__thumbnail($variables);
+  _civic_preprocess_node__topics($variables);
 }
 
 /**

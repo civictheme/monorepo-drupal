@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 429966d5-50c7-433a-bdcf-5d58e1e6e21c
+  bundle: civic_image
+  default_langcode: en
+  depends:
+    191f9e3a-a6fb-4bbd-87af-6e3bba478137: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 18
+  name:
+    -
+      value: Bottles.jpg
+  created:
+    -
+      value: 1645007861
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 191f9e3a-a6fb-4bbd-87af-6e3bba478137
+      alt: 'Photo of plastic bottles'
+      title: ''
+      width: 1024
+      height: 768

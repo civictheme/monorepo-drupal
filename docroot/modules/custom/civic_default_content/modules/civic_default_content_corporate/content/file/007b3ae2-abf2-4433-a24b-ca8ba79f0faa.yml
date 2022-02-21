@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 007b3ae2-abf2-4433-a24b-ca8ba79f0faa
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_windfarm.jpg
+  uri:
+    -
+      value: 'public://corporate_windfarm.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 201212
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007315

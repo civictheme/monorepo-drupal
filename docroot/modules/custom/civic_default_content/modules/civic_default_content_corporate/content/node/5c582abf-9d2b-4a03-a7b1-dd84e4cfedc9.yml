@@ -1,0 +1,47 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 5c582abf-9d2b-4a03-a7b1-dd84e4cfedc9
+  bundle: civic_alert
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 0
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Thunderstorm asthma alert'
+  created:
+    -
+      value: 1645010046
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_alert_type:
+    -
+      value: warning
+  field_c_n_body:
+    -
+      value: "<p>There's a thunderstorm asthma alert for central Victoria.&nbsp;</p>\r\n"
+      format: civic_rich_text
+  field_c_n_date_range:
+    -
+      value: '2022-02-16T11:14:06'
+      end_value: '2022-04-17T12:14:06'

@@ -1,0 +1,114 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 2da124a0-129a-4b03-9f02-dd33a90793b4
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    e1db1abb-7e92-482d-8acf-157b173885c2: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'New Minister for the Environment'
+  created:
+    -
+      value: 1642671775
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8862fd29-da07-4a6f-a67f-fa6d186216a7
+          bundle: civic_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642671793
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Media release</p>\r\n\r\n<p>10 October 2022</p>\r\n"
+              format: civic_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 98790234-7609-4274-8c4d-1757b8abdf28
+          bundle: civic_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642671811
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Today the Honourable Jane Smith was sworn in as the new Minister for the Environment.&nbsp;&nbsp;</p>\r\n\r\n<blockquote>\r\n<p>“I’m very excited about this new role, and I’m looking forward to making a difference and helping to protect Australia’s environment,” said Minister Smith.&nbsp;</p>\r\n</blockquote>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus tellus nisl. Praesent varius lorem non augue laoreet, ut condimentum velit blandit. Nam maximus ligula vitae dolor suscipit, eget posuere dui rhoncus. Aliquam erat volutpat. Nullam justo erat, ultrices nec orci sit amet, ultrices aliquam dui. Proin porttitor urna in risus scelerisque ultricies. Quisque a velit aliquet, bibendum nibh sit amet, fringilla dolor. Vivamus sodales nisi iaculis, condimentum tellus in, aliquet nisl. Integer ultrices auctor libero non viverra. Nulla eget luctus nunc, eu hendrerit risus. Proin fringilla pharetra sapien nec finibus. Cras ut sapien sit amet elit sollicitudin volutpat ac gravida est. Praesent vel convallis augue, pharetra pulvinar sem. Vestibulum pulvinar dui ut consectetur suscipit.</p>\r\n\r\n<p>Suspendisse id nibh sapien. Fusce massa sapien, viverra sit amet leo et, luctus porttitor purus. Aenean molestie venenatis nisi non convallis. Phasellus eget nibh purus. Nullam convallis sapien sed lorem finibus gravida. Nullam eget neque vitae lorem convallis aliquet ut et felis. Nulla vel risus mi. Nulla sed luctus ex. Nam pharetra sagittis lacus, ac laoreet magna faucibus id.</p>\r\n"
+              format: civic_rich_text
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_topics:
+    -
+      entity: e1db1abb-7e92-482d-8acf-157b173885c2
