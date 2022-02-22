@@ -8,7 +8,6 @@
   position: fixed;
   right: civic-space(1);
   bottom: civic-space(8);
-  border-radius: rem(100px);
 
   &[data-scrollspy='true'] {
     display: none;
@@ -18,31 +17,37 @@
     }
   }
 
-  &.civic-theme-light {
-    background-color: $civic-back-to-top-light-background-color;
+  .civic-icon-link {
+    &.civic-icon-link--with-border {
+      border-radius: rem(100px);
+    }
+  }
 
-    .civic-icon {
-      fill: $civic-back-to-top-light-color;
+  &.civic-theme-light {
+    .civic-icon-link {
+      background-color: $civic-back-to-top-light-background-color;
+
+      .civic-icon {
+        fill: $civic-back-to-top-light-color;
+      }
     }
 
     .civic-icon-link--with-border {
-      .civic-icon {
-        border-color: $civic-back-to-top-light-background-color;
-      }
+      border-color: $civic-back-to-top-light-background-color;
     }
   }
 
   &.civic-theme-dark {
-    background-color: $civic-back-to-top-dark-background-color;
+    .civic-icon-link {
+      background-color: $civic-back-to-top-dark-background-color;
 
-    .civic-icon {
-      fill: $civic-back-to-top-dark-color;
+      .civic-icon {
+        fill: $civic-back-to-top-dark-color;
+      }
     }
 
     .civic-icon-link--with-border {
-      .civic-icon {
-        border-color: $civic-back-to-top-dark-background-color;
-      }
+      border-color: $civic-back-to-top-dark-background-color;
     }
   }
 }

@@ -13,7 +13,11 @@
   }
 
   &__logo {
-    padding: civic-space(3) 0;
+    padding: civic-space() 0;
+
+    @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+      padding: civic-space(3) 0;
+    }
   }
 
   &__middle {
@@ -24,14 +28,27 @@
 
   &__content-middle3 {
     height: 100%;
+    position: relative;
+
+    @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+      position: static;
+    }
   }
 
   .civic-logo {
-    max-width: rem($civic-header-logo-mobile-width);
+    width: rem($civic-header-logo-mobile-width);
 
-    @include civic-breakpoint('m') {
+    @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+      width: auto;
       max-width: rem($civic-header-logo-desktop-width);
     }
+  }
+
+  .civic-mobile-navigation__trigger {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
   }
 
   &.civic-theme-light {

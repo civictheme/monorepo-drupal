@@ -934,7 +934,7 @@ $civic-content-dark-background-color: inherit !default;
 // Header.
 //
 $civic-header-logo-desktop-width: 230px !default;
-$civic-header-logo-mobile-width: 200px !default;
+$civic-header-logo-mobile-width: 125px !default;
 $civic-header-desktop-menu-breakpoint: 'm' !default;
 $civic-header-light-top-color: civic-color-shade-dark(80) !default;
 $civic-header-light-top-background-color: civic-color-neutral(10) !default;
@@ -1005,6 +1005,8 @@ $civic-message-success-dark-border-color: civic-color('success') !default;
 //
 // Navigation/Primary navigation.
 //
+$civic-primary-navigation-breakpoint: $civic-header-desktop-menu-breakpoint !default;
+
 // Maximum number of columns a dropdown may have.
 $civic-primary-navigation-dropdown-cols: 4;
 
@@ -1065,6 +1067,7 @@ $civic-primary-navigation-dark-menu-item-active-trail-background-color: civic-co
 // Navigation/Secondary navigation.
 //
 // Top offset for the dropdown from the bottom of the trigger.
+$civic-secondary-navigation-breakpoint: $civic-header-desktop-menu-breakpoint !default;
 $civic-secondary-navigation-dropdown-top-offset: civic-space();
 $civic-secondary-navigation-dropdown-zindex: 11;
 $civic-secondary-navigation-dropdown-border-radius: $civic-border-radius !default;
@@ -1134,6 +1137,35 @@ $civic-side-navigation-dark-link-hover-border-color: $civic-side-navigation-dark
 $civic-side-navigation-dark-link-strip-background-color: civic-color-shade-dark(45) !default;
 $civic-side-navigation-dark-link-strip-hover-background-color: civic-color('accent') !default;
 $civic-side-navigation-dark-active-border-color: $civic-side-navigation-dark-link-border-color !default;
+
+//
+// Mobile navigation.
+//
+$civic-mobile-navigation-breakpoint: $civic-header-desktop-menu-breakpoint !default;
+$civic-mobile-navigation-light-panel-background-color: civic-color('neutral') !default;
+$civic-mobile-navigation-light-top-menu-background-color: $civic-mobile-navigation-light-panel-background-color !default;
+$civic-mobile-navigation-light-bottom-menu-background-color: civic-color-neutral(5) !default;
+$civic-mobile-navigation-light-menu-item-color: civic-color('primary') !default;
+$civic-mobile-navigation-light-menu-item-hover-color: $civic-mobile-navigation-light-menu-item-color !default;
+$civic-mobile-navigation-light-menu-divider-border-color: civic-color-neutral(10) !default;
+$civic-mobile-navigation-light-subsection-heading-color: civic-color('secondary') !default;
+$civic-mobile-navigation-light-subsection-heading-icon-color: $civic-mobile-navigation-light-subsection-heading-color !default;
+$civic-mobile-navigation-light-subsection-trigger-color: civic-color('primary') !default;
+$civic-mobile-navigation-light-close-all-trigger-background-color: civic-color-neutral(5) !default;
+$civic-mobile-navigation-light-close-all-trigger-color: civic-color('secondary') !default;
+$civic-mobile-navigation-dark-panel-background-color: civic-color-shade-dark(30) !default;
+$civic-mobile-navigation-dark-top-menu-background-color: $civic-mobile-navigation-dark-panel-background-color !default;
+$civic-mobile-navigation-dark-bottom-menu-background-color: civic-color-shade-dark(45) !default;
+$civic-mobile-navigation-dark-menu-item-color: civic-color('neutral') !default;
+$civic-mobile-navigation-dark-menu-item-hover-color: $civic-mobile-navigation-dark-menu-item-color !default;
+$civic-mobile-navigation-dark-menu-divider-border-color: civic-color-shade-dark(60) !default;
+$civic-mobile-navigation-dark-subsection-heading-color: civic-color('neutral') !default;
+$civic-mobile-navigation-dark-subsection-heading-icon-color: civic-color('accent') !default;
+$civic-mobile-navigation-dark-subsection-trigger-color: civic-color('accent') !default;
+$civic-mobile-navigation-dark-close-all-trigger-background-color: civic-color-shade-dark(45) !default;
+$civic-mobile-navigation-dark-close-all-trigger-color: civic-color('neutral') !default;
+$civic-mobile-navigation-trigger-light-color: civic-color-shade-dark(80) !default;
+$civic-mobile-navigation-trigger-dark-color: civic-color('neutral') !default;
 
 //
 // Navigation/Table Of Contents.

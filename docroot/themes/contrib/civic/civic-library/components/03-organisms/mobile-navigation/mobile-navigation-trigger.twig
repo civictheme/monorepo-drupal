@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Mobile navigation menu trigger.
+ *
+ * Available variables:
+ * - text: [string] Button text.
+ * - icon: [string] Icon symbol.
+ * - theme: [string] Theme: light, dark.
+ * - modifier_class: [string] Additional classes to modify component styling.
+ */
+#}
+
+{% set icon = icon|default('content_justifyalignment') %}
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<button class="civic-mobile-navigation__trigger {{ modifier_class }}" data-flyout-open-trigger data-flyout-target=".civic-mobile-navigation">
+  {% if text %}
+    {{ text }}
+  {% endif %}
+  {% if icon %}
+    {% include '@atoms/icon/icon.twig' with {
+      symbol: icon,
+      size: 'regular',
+    } %}
+  {% endif %}
+</button>

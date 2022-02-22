@@ -39,6 +39,9 @@ default:
           revision_translation_affected:
             -
               value: true
+          field_c_p_background:
+            -
+              value: false
           field_c_p_content:
             -
               value: "<p>We acknowledge the traditional owners of the country throughout Australia and their continuing connection to land, sea and community. We pay our respect to them and their cultures and to the elders past and present.</p>\r\n"

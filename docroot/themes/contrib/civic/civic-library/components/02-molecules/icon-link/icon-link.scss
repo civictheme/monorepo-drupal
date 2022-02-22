@@ -5,20 +5,19 @@
 
   display: block;
   background: none;
-  border-bottom: none;
-  border-radius: $civic-icon-link-border-radius;
+  border: none;
   text-decoration: none;
   padding: civic-space();
 
   &#{$root}--with-border {
+    border-radius: $civic-icon-link-border-radius;
     border: 1px solid currentColor;
-    border-radius: rem(100px);
   }
 
   // Generate size classes for all pre-set sizes.
   @each $size, $values in _civic-icon-sizes-all() {
-    &--size-#{$size},
-    &--size-#{$size} img {
+    .civic-icon--size-#{$size},
+    .civic-icon--size-#{$size} img {
       @include civic-icon-size($size);
     }
   }

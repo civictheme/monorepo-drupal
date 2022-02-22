@@ -9,7 +9,7 @@
   height: 100%;
   display: none;
 
-  @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+  @include civic-breakpoint($civic-primary-navigation-breakpoint) {
     display: flex;
   }
 

@@ -35,5 +35,16 @@
       'dropdown_columns_fill': primary_navigation_dropdown_columns_fill,
       'modifier_class': 'civic-justify-content-end',
     } only %}
+
+    {% include '@organisms/mobile-navigation/mobile-navigation-trigger.twig' with {
+      theme: theme,
+      text: 'Menu',
+    } %}
+
+    {% include '@organisms/mobile-navigation/mobile-navigation.twig' with {
+      theme: theme,
+      top_menu: primary_navigation_items,
+      bottom_menu: secondary_navigation_items,
+    } %}
   {% endset %}
 {% endif %}

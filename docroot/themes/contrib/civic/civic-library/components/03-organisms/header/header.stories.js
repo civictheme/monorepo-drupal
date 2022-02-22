@@ -45,11 +45,11 @@ export const Header = (knobTab) => {
   } : null;
 
   if (generalKnobs.show_content_top3) {
-    generalKnobs.secondary_navigation_items = getMenuLinks(secondaryNavigationKnobTab);
+    generalKnobs.secondary_navigation_items = getMenuLinks(secondaryNavigationKnobTab, 'Secondary ');
   }
 
   if (generalKnobs.show_content_middle3) {
-    generalKnobs.primary_navigation_items = getMenuLinks(primaryNavigationKnobTab);
+    generalKnobs.primary_navigation_items = getMenuLinks(primaryNavigationKnobTab, 'Primary ');
     generalKnobs.primary_navigation_dropdown_columns = number(
       'Dropdown columns',
       4,

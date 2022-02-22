@@ -39,18 +39,21 @@ default:
           revision_translation_affected:
             -
               value: true
+          field_c_p_background:
+            -
+              value: false
           field_c_p_column_count:
             -
               value: 2
           field_c_p_fill_width:
             -
               value: false
+          field_c_p_theme:
+            -
+              value: light
           field_c_p_title:
             -
               value: 'Capitalize on low hanging fruit to identify a ballpark value added activity to beta test.'
-          field_c_p_with_spacing:
-            -
-              value: true
     -
       entity:
         _meta:
@@ -72,6 +75,9 @@ default:
           revision_translation_affected:
             -
               value: true
+          field_c_p_background:
+            -
+              value: false
           field_c_p_cards:
             -
               entity:
@@ -106,9 +112,9 @@ default:
           field_c_p_fill_width:
             -
               value: false
+          field_c_p_theme:
+            -
+              value: light
           field_c_p_title:
             -
               value: 'Override the digital divide with additional clickthroughs from DevOps.'
-          field_c_p_with_spacing:
-            -
-              value: true

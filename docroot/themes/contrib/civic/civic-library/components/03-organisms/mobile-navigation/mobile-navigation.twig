@@ -1,0 +1,61 @@
+{#
+/**
+  * @file
+  * Mobile Navigation component.
+  *
+  * Available variables:
+  * - theme: [string] theme: light, dark.
+  * - modifier_class: [string] Additional classes for the component.
+  * - primary_navigation_items: [array] array of list items.
+  * - secondary_navigation_items: [array] array of list items.
+#}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<div class="civic-mobile-navigation {{ modifier_class }}" data-flyout data-flyout-direction="right">
+  <div data-flyout-panel class="civic-mobile-navigation__panel">
+    <div class="civic-mobile-navigation__close-all-trigger">
+      {% include '@atoms/button/button.twig' with {
+        type: 'button',
+        size: 'small',
+        text: 'Close',
+        icon: 'userinterface_close',
+        icon_placement: 'after',
+        attributes: 'data-flyout-close-all-trigger',
+      } only %}
+    </div>
+
+    {% if content_top %}
+      <div class="civic-mobile-navigation__content_top">
+        {{ content_top }}
+      </div>
+    {% endif %}
+
+    {% if top_menu %}
+      <div class="civic-mobile-navigation__top-menu-wrapper">
+        {% include '@organisms/mobile-navigation/mobile-navigation-menu.twig' with {
+          theme: theme,
+          items: top_menu,
+          modifier_class: 'civic-mobile-navigation__top-menu',
+        } only %}
+      </div>
+    {% endif %}
+
+    {% if bottom_menu %}
+      <div class="civic-mobile-navigation__bottom-menu-wrapper">
+        {% include '@organisms/mobile-navigation/mobile-navigation-menu.twig' with {
+          theme: theme,
+          items: bottom_menu,
+          modifier_class: 'civic-mobile-navigation__bottom-menu',
+        } only %}
+      </div>
+    {% endif %}
+
+    {% if content_bottom %}
+      <div class="civic-mobile-navigation__content_bottom">
+        {{ content_bottom }}
+      </div>
+    {% endif %}
+  </div>
+</div>

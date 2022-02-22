@@ -3,7 +3,7 @@
 
   display: none;
 
-  @include civic-breakpoint($civic-header-desktop-menu-breakpoint) {
+  @include civic-breakpoint($civic-secondary-navigation-breakpoint) {
     display: flex;
   }
 

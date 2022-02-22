@@ -1,7 +1,7 @@
 .example-container__page-content {
-  height: 2000px;
-
   &.example-scrollspy {
+    height: 2000px;
+
     &::before {
       box-shadow: 0 0 1px 1px #f00 inset;
       height: 400px;

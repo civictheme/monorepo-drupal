@@ -1,0 +1,17 @@
+.example-container__page-content {
+  &.example-civic-mobile-navigation {
+    // Override hiding of mobile trigger and a menu for this component
+    // storybook. It will still be hidden in other components (i.e. header).
+    .civic-mobile-navigation {
+      @include civic-breakpoint($civic-mobile-navigation-breakpoint) {
+        display: block;
+      }
+    }
+
+    .civic-mobile-navigation__trigger {
+      @include civic-breakpoint($civic-mobile-navigation-breakpoint) {
+        display: inline;
+      }
+    }
+  }
+}
