@@ -10,7 +10,9 @@ function CivicLargeFilter(el) {
   this.mobileOverlay = this.el.querySelector('[data-large-filter-mobile-overlay]');
   this.mobileToggleDisplay = this.el.querySelector('[data-large-filter-mobile-toggle-display]');
   this.mobileToggleSuffix = this.mobileToggleDisplay.getAttribute('data-large-filter-mobile-toggle-display-suffix');
+  this.mobileApplyButton = this.el.querySelector('[data-large-filter-mobile-apply]');
   this.state = {};
+  this.revertState = {};
   this.initialisedState = false;
   this.isMobile = null;
   this.fieldTypes = {
@@ -77,6 +79,7 @@ CivicLargeFilter.prototype.init = function () {
   this.clearAllButton.addEventListener('click', this.clearElementClickEvent.bind(this));
   this.mobileToggleButton.addEventListener('click', this.toggleOverlayElementClickEvent.bind(this));
   this.mobileCancelButton.addEventListener('click', this.mobileCancelElementClickEvent.bind(this));
+  this.mobileApplyButton.addEventListener('click', this.mobileApplyElementClickEvent.bind(this));
 
   // Set state values based on current filter fields.
   this.filterElement.querySelectorAll('input, select').forEach((element) => {
@@ -122,12 +125,19 @@ CivicLargeFilter.prototype.updateTagContainerPosition = function () {
   const btnContainerSelector = this.isMobile ? '[data-large-filter-mobile-clear-container]' : '[data-large-filter-clear-container]';
   this.el.querySelector(tagsContainerSelector).appendChild(this.tagElement);
   this.el.querySelector(btnContainerSelector).appendChild(this.clearAllButton);
+
+  // Enable / Disable auto-submit on mobile.
+  this.el.setAttribute('data-large-filter-auto-submit', !this.isMobile)
 };
 
 /**
  * TODO - Add.
  */
-CivicLargeFilter.prototype.toggleOverlayElementClickEvent = function () {
+CivicLargeFilter.prototype.toggleOverlayElementClickEvent = function (e) {
+  e.stopPropagation();
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  this.revertState = JSON.stringify(this.state);
   this.isOverlayOpen = !this.isOverlayOpen;
   this.mobileOverlay.classList.toggle('civic-large-filter__mobile-overlay--open', this.isOverlayOpen);
 };
@@ -135,10 +145,23 @@ CivicLargeFilter.prototype.toggleOverlayElementClickEvent = function () {
 /**
  * TODO - Add.
  */
-CivicLargeFilter.prototype.mobileCancelElementClickEvent = function () {
-  this.isOverlayOpen = !this.isOverlayOpen;
+CivicLargeFilter.prototype.mobileCancelElementClickEvent = function (e) {
+  e.stopPropagation();
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  this.state = JSON.parse(this.revertState);
+  this.redraw();
+  this.isOverlayOpen = false;
   this.mobileOverlay.classList.toggle('civic-large-filter__mobile-overlay--open', this.isOverlayOpen);
 };
+
+/**
+ * TODO - Add.
+ */
+CivicLargeFilter.prototype.mobileApplyElementClickEvent = function (e) {
+  this.isOverlayOpen = false;
+  this.mobileOverlay.classList.toggle('civic-large-filter__mobile-overlay--open', this.isOverlayOpen);
+}
 
 /**
  * Form filter change event listener.
