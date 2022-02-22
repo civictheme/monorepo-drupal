@@ -101,7 +101,7 @@ class Helper {
 
       $leaf += $leaf_defaults;
 
-      $children = isset($leaf['children']) ? $leaf['children'] : [];
+      $children = $leaf['children'] ?? [];
       unset($leaf['children']);
       if ($children) {
         $leaf += ['expanded' => TRUE];
