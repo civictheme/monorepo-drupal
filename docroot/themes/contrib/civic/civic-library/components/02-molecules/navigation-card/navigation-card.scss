@@ -10,6 +10,7 @@
 
   // Prevent image from "spilling" over the border radius.
   overflow: hidden;
+  width: 100%;
 
   @include civic-elevation(3);
 
@@ -60,7 +61,7 @@
     #{$root}__image-wrapper {
       @include civic-breakpoint(m) {
         max-width: 12.5rem;
-        flex-shrink: 0;
+        flex-shrink: 1;
       }
     }
 
