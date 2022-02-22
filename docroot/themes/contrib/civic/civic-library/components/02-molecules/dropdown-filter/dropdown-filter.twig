@@ -23,7 +23,16 @@
 {% set type_class = type is empty ? 'civic-dropdown-filter--%s'|format(type) : '' %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civic-dropdown-filter {{ modifier_class }}" data-collapsible data-collapsible-collapsed {% if filter_group %}data-collapsible-group="{{ filter_group }}"{% endif %} data-collapsible-duration="0" {% if filter_item_selector %}data-dropdown-filter-item-selector="{{ filter_item_selector }}"{% endif %} {% if filter_item_threshold %}data-dropdown-filter-item-threshold="{{ filter_item_threshold }}"{% endif %} {% if filter_placeholder_text %}data-dropdown-filter-placeholder-text="{{ filter_placeholder_text }}"{% endif %}>
+<div
+    class="civic-dropdown-filter {{ modifier_class }}"
+    data-collapsible data-collapsible-collapsed {% if filter_group %}
+    data-collapsible-group="{{ filter_group }}"{% endif %}
+    data-collapsible-duration="0"
+    data-component-name="civic-dropdown-filter"
+    {% if filter_item_selector %}data-dropdown-filter-item-selector="{{ filter_item_selector }}"{% endif %}
+    {% if filter_item_threshold %}data-dropdown-filter-item-threshold="{{ filter_item_threshold }}"{% endif %}
+    {% if filter_placeholder_text %}data-dropdown-filter-placeholder-text="{{ filter_placeholder_text }}"{% endif %}
+>
   <button class="civic-dropdown-filter__filter-text" data-collapsible-trigger>{{ filter_text }}</button>
   <div class="civic-dropdown-filter__filter-options" data-collapsible-panel>
     <div class="civic-dropdown-filter__filter-options-wrapper">
@@ -33,6 +42,7 @@
           children: options,
           modifier_class: 'civic-dropdown-filter__fieldset',
           type: type,
+          attributes: 'data-dropdown-filter-fieldset',
         } %}
       {% endblock %}
     </div>

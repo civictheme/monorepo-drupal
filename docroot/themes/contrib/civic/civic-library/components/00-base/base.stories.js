@@ -106,6 +106,7 @@ export const formElement = (inputType, options, theme, rand, itr) => {
       content: options.description ? `Input description ${itr + 1}${rand ? ` ${randomText(getRandomInt(4, 10))}` : ''}` : '',
     },
     children: [],
+    attributes: options.form_element_attributes,
   };
   let attributes = `id="form-element-${itr}"`;
   if (typeof options.attributes !== 'undefined') {
