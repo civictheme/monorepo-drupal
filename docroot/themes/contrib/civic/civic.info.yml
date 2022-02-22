@@ -11,7 +11,10 @@ dependencies:
   - components:components
   - field_group:field_group
   - menu_block:menu_block
+  - layout_builder_restrictions:layout_builder_restrictions
   - paragraphs:paragraphs
+  - drupal:layout_builder
+  - drupal:layout_discovery
   - drupal:rest
 
 regions:
@@ -71,6 +74,7 @@ config_devel:
   install:
     - block.block.civic_acknowledgmentofcountry
     - block.block.civic_banner
+    - block.block.civic_mobile_navigation
     - block.block.civic_content
     - block.block.civic_copyright
     - block.block.civic_footer_menu_1
@@ -89,6 +93,7 @@ config_devel:
     - block.block.sitebranding_2
     - block_content.type.civic_banner
     - block_content.type.civic_component_block
+    - block_content.type.civic_mobile_navigation
     - block_content.type.civic_social_icons
     - civic.settings
     - core.base_field_override.node.civic_alert.promote
@@ -98,6 +103,7 @@ config_devel:
     - core.date_format.civic_short_date
     - core.entity_form_display.block_content.civic_banner.default
     - core.entity_form_display.block_content.civic_component_block.default
+    - core.entity_form_display.block_content.civic_mobile_navigation.default
     - core.entity_form_display.block_content.civic_social_icons.default
     - core.entity_form_display.media.civic_audio.default
     - core.entity_form_display.media.civic_audio.media_library
@@ -143,6 +149,7 @@ config_devel:
     - core.entity_form_display.paragraph.civic_webform.default
     - core.entity_view_display.block_content.civic_banner.default
     - core.entity_view_display.block_content.civic_component_block.default
+    - core.entity_view_display.block_content.civic_mobile_navigation.default
     - core.entity_view_display.block_content.civic_social_icons.default
     - core.entity_view_display.media.civic_audio.default
     - core.entity_view_display.media.civic_audio.media_library
@@ -152,6 +159,7 @@ config_devel:
     - core.entity_view_display.media.civic_icon.media_library
     - core.entity_view_display.media.civic_image.default
     - core.entity_view_display.media.civic_image.embedded
+    - core.entity_view_display.media.civic_image.component
     - core.entity_view_display.media.civic_image.media_library
     - core.entity_view_display.media.civic_remote_video.default
     - core.entity_view_display.media.civic_remote_video.full
@@ -201,6 +209,7 @@ config_devel:
     - core.entity_view_display.paragraph.civic_social_icon.default
     - core.entity_view_display.paragraph.civic_webform.default
     - core.entity_view_mode.media.embedded
+    - core.entity_view_display.media.civic_image.component
     - core.entity_view_mode.node.civic_card_event
     - core.entity_view_mode.node.civic_card_navigation
     - core.entity_view_mode.node.civic_card_promo
@@ -210,6 +219,11 @@ config_devel:
     - field.field.block_content.civic_banner.field_c_b_background_image
     - field.field.block_content.civic_banner.field_c_b_theme
     - field.field.block_content.civic_component_block.field_c_b_components
+    - field.field.block_content.civic_mobile_navigation.field_c_b_top_menu
+    - field.field.block_content.civic_mobile_navigation.field_c_b_bottom_menu
+    - field.field.block_content.civic_mobile_navigation.field_c_b_theme
+    - field.field.block_content.civic_mobile_navigation.field_c_b_trigger_theme
+    - field.field.block_content.civic_mobile_navigation.field_c_b_trigger_text
     - field.field.block_content.civic_social_icons.field_c_b_social_icons
     - field.field.media.civic_audio.field_c_m_audio_file
     - field.field.media.civic_document.field_c_m_document
@@ -372,6 +386,10 @@ config_devel:
     - field.storage.block_content.field_c_b_components
     - field.storage.block_content.field_c_b_social_icons
     - field.storage.block_content.field_c_b_theme
+    - field.storage.block_content.field_c_b_bottom_menu
+    - field.storage.block_content.field_c_b_top_menu
+    - field.storage.block_content.field_c_b_trigger_theme
+    - field.storage.block_content.field_c_b_trigger_text
     - field.storage.media.field_c_m_audio_file
     - field.storage.media.field_c_m_caption
     - field.storage.media.field_c_m_document

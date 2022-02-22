@@ -1,0 +1,41 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 36e960e5-0a31-4809-a04c-647084058466
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    f1f66752-e425-42a2-a966-09adc983b29c: menu_link_content
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Contact us'
+  menu_name:
+    -
+      value: civic-footer
+  link:
+    -
+      uri: 'route:<nolink>'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -47
+  expanded:
+    -
+      value: true
+  parent:
+    -
+      value: 'menu_link_content:f1f66752-e425-42a2-a966-09adc983b29c'
+  revision_translation_affected:
+    -
+      value: true

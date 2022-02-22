@@ -5,15 +5,39 @@ namespace Drupal\civic_default_content;
 use Drupal\Core\Url;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\node\Entity\Node;
+use Drush\Drush;
+use Drush\Log\LogLevel;
 
 /**
  * Class Helper.
  *
  * Helper class for manipulating content.
  *
- * @package Drupal\osp_core
+ * @package Drupal\civic_default_content
  */
 class Helper {
+
+  /**
+   * Helper to print a log message to stdout.
+   *
+   * It is important to note that using \Drupal::messenger() when running Drush
+   * commands have side effects where messages are displayed only after the
+   * command has finished rather than during the command run.
+   *
+   * @param string $message
+   *   String containing message.
+   */
+  public static function log($message) {
+    if (class_exists('\Drush\Drush')) {
+      Drush::getContainer()->get('logger')->log(LogLevel::OK, strip_tags(html_entity_decode($message)));
+    }
+    elseif (PHP_SAPI === 'cli') {
+      print strip_tags(html_entity_decode($message)) . PHP_EOL;
+    }
+    else {
+      \Drupal::messenger()->addMessage($message);
+    }
+  }
 
   /**
    * Import links from the provided tree.
@@ -164,6 +188,23 @@ class Helper {
     $id = array_shift($ids);
 
     return Node::load($id);
+  }
+
+  /**
+   * Set the site homepage from node.
+   *
+   * @param string $title
+   *   Node title to set as a homepage.
+   */
+  public static function setHomepageFromNode($title) {
+    $node = static::loadNodeByTitle($title, 'civic_page');
+
+    if (!$node) {
+      throw new \Exception('Unable to find homepage node.');
+    }
+
+    $config = \Drupal::service('config.factory')->getEditable('system.site');
+    $config->set('page.front', '/node/' . $node->id())->save();
   }
 
 }

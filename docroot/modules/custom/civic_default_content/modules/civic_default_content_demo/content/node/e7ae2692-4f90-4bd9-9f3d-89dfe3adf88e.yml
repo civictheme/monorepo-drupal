@@ -1,0 +1,194 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e
+  bundle: civic_page
+  default_langcode: en
+  depends:
+    4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Demo Page - Cards 2'
+  created:
+    -
+      value: 1631673170
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 87da64b8-e32e-4286-827f-219dcbd8b858
+          bundle: civic_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631673181
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4228659d-13c7-43a6-9c21-75cab19af6a5
+                  bundle: civic_card_task
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631673205
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_c_p_title:
+                    -
+                      value: 'Card task 1'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: ce08d9cf-6499-4503-a18d-e9f5a495148a
+                  bundle: civic_card_task
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631673231
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_summary:
+                    -
+                      value: 'Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada.'
+                  field_c_p_title:
+                    -
+                      value: 'Card task 2'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: bbb68f12-2057-49e0-ab3f-87bf25b1dfa0
+                  bundle: civic_card_event
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631778963
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_date:
+                    -
+                      value: '2021-09-24'
+                  field_c_p_image:
+                    -
+                      entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+                  field_c_p_link:
+                    -
+                      uri: 'https://google.com'
+                      title: ''
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.\r\n\r\n"
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Taking seamless key performance indicators'
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_footer_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_header_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Card 1'
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

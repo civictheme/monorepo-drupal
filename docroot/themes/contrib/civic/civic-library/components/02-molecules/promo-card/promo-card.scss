@@ -10,6 +10,7 @@
 
   // Promo image from "spilling" over the border radius.
   overflow: hidden;
+  width: 100%;
 
   @include civic-elevation(3);
 

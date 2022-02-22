@@ -5,15 +5,15 @@
 .civic-card-container {
   $root: &;
 
-  &.civic_card_container--with-space-top {
+  &.civic-card-container--with-space-top {
     padding-top: $civic-card-container-padding-vertical;
   }
 
-  &.civic_card_container--with-space-bottom {
+  &.civic-card-container--with-space-bottom {
     padding-bottom: $civic-card-container-padding-vertical;
   }
 
-  &.civic_card_container--with-space-both {
+  &.civic-card-container--with-space-both {
     padding: $civic-card-container-padding-vertical 0;
   }
 
@@ -30,6 +30,7 @@
   }
 
   &__card {
+    display: flex;
     margin-bottom: civic-space(3);
   }
 
@@ -101,7 +102,7 @@
   &.civic-theme-light {
     color: $civic-card-container-light-color;
 
-    &.civic_card_container--with-background {
+    &.civic-card-container--with-background {
       background-color: $civic-accordion-light-wrapper-background-color;
       padding-left: $civic-card-container-padding-horizontal;
       padding-right: $civic-card-container-padding-horizontal;
@@ -139,7 +140,7 @@
   &.civic-theme-dark {
     color: $civic-card-container-dark-color;
 
-    &.civic_card_container--with-background {
+    &.civic-card-container--with-background {
       background-color: $civic-accordion-dark-wrapper-background-color;
       padding-left: $civic-card-container-padding-horizontal;
       padding-right: $civic-card-container-padding-horizontal;

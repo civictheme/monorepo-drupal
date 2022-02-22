@@ -28,78 +28,93 @@
 {% set modifier_class = '%s %s %s %s'|format(theme_class, size_class, image_as_icon, modifier_class|default('')) %}
 
 <div class="civic-navigation-card {{ modifier_class }}">
-  {% if image.src is not empty and image_as_icon == false %}
-    <div class="civic-navigation-card__image-wrapper">
-      <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
-      {% if image_over %}
-        <div class="civic-navigation-card__image-over">
-          {{ image_over }}
-        </div>
-      {% endif %}
-    </div>
-  {% endif %}
+  {% block image %}
+    {% if image.src is not empty %}
+      <div class="civic-navigation-card__image-wrapper">
+        <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
+        {% block image_over %}
+          {% if image_over %}
+            <div class="civic-navigation-card__image-over">
+              {{ image_over }}
+            </div>
+          {% endif %}
+        {% endblock %}
+      </div>
+    {% endif %}
+  {% endblock %}
 
   <div class="civic-navigation-card__content">
-    {% if content_top %}
-      <div class="civic-navigation-card__content-top">
-        {{ content_top }}
-      </div>
-    {% endif %}
+    {% block content_top %}
+      {% if content_top %}
+        <div class="civic-navigation-card__content-top">
+          {{ content_top }}
+        </div>
+      {% endif %}
+    {% endblock %}
+    {% block icon %}
+      {% if icon %}
+        <div class="civic-navigation-card__icon">
+          {% include '@atoms/icon/icon.twig' with {
+            symbol: icon,
+            size: 'large',
+            color: 'primary',
+            modifier_class: 'civic-navigation-card__icon',
+          } only %}
+        </div>
+      {% endif %}
+    {% endblock %}
 
-    {% if icon %}
-      <div class="civic-navigation-card__icon">
-        {% include '@atoms/icon/icon.twig' with {
-          symbol: icon,
-          size: 'large',
-          color: 'primary',
-          modifier_class: 'civic-navigation-card__icon',
-        } only %}
-      </div>
-    {% endif %}
-
-    {% if title %}
-      <div class="civic-navigation-card__title">
-        {% if url %}
-        <a class="civic-navigation-card__title-link" href="{{ url }}" {% if is_external %} title="Opens in new tab" target="_blank" {% endif %}>
-          {% endif %}
-          {{ title }}
+    {% block title %}
+      {% if title %}
+        <div class="civic-navigation-card__title">
           {% if url %}
-          <span>
-            {% if is_external %}
-              {% include '@atoms/icon/icon.twig' with {
-                symbol: 'arrows_upperrightarrow',
-                color: 'primary',
-                modifier_class: 'civic-navigation-card__icon--external'
-              } only %}
-            {% else %}
-              {% include '@atoms/icon/icon.twig' with {
-                symbol: 'arrows_rightarrow_3',
-                color: 'primary',
-                modifier_class: 'civic-navigation-card__icon--arrow',
-              } only %}
+          <a class="civic-navigation-card__title-link" href="{{ url }}" {% if is_external %} title="Opens in new tab" target="_blank" {% endif %}>
             {% endif %}
-          </span>
-        </a>
-        {% endif %}
-      </div>
-    {% endif %}
+            {{ title }}
+            {% if url %}
+            <span>
+              {% if is_external %}
+                {% include '@atoms/icon/icon.twig' with {
+                  symbol: 'arrows_upperrightarrow',
+                  color: 'primary',
+                  modifier_class: 'civic-navigation-card__icon--external'
+                } only %}
+              {% else %}
+                {% include '@atoms/icon/icon.twig' with {
+                  symbol: 'arrows_rightarrow_3',
+                  color: 'primary',
+                  modifier_class: 'civic-navigation-card__icon--arrow',
+                } only %}
+              {% endif %}
+            </span>
+          </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endblock %}
 
-    {% if content_middle %}
-      <div class="civic-navigation-card__content-middle">
-        {{ content_middle }}
-      </div>
-    {% endif %}
+    {% block content_middle %}
+      {% if content_middle %}
+        <div class="civic-navigation-card__content-middle">
+          {{ content_middle }}
+        </div>
+      {% endif %}
+    {% endblock %}
 
-    {% if summary %}
-      <div class="civic-navigation-card__summary">
-        {{ summary }}
-      </div>
-    {% endif %}
+    {% block summary %}
+      {% if summary %}
+        <div class="civic-navigation-card__summary">
+          {{ summary }}
+        </div>
+      {% endif %}
+    {% endblock %}
 
-    {% if content_bottom %}
-      <div class="civic-navigation-card__content-bottom">
-        {{ content_bottom }}
-      </div>
-    {% endif %}
+    {% block content_bottom %}
+      {% if content_bottom %}
+        <div class="civic-navigation-card__content-bottom">
+          {{ content_bottom }}
+        </div>
+      {% endif %}
+    {% endblock %}
   </div>
 </div>

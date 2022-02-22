@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Civic theme implementation to display a one-column contained layout.
+ *
+ * Available variables:
+ * - content: The content for this layout.
+ * - contained: Whether the content should be contained
+ * - modifier_class: CSS modifying class
+ * - region_attributes: HTML attributes for the layout <div>.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% if content %}
+  <div class="layout">
+    <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content') }}>
+        {% include '@organisms/content/content-layout--single-column-contained.twig' with {
+          content: content.content,
+          modifier_class: modifier_class,
+          contained: contained,
+        } %}
+    </div>
+  </div>
+{% endif %}

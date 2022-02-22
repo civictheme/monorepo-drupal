@@ -17,8 +17,11 @@
 {% set with_border_class = with_border ? 'civic-icon-link--with-border':'' %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, size_class, with_border_class, modifier_class|default('')) %}
 
-{% if url or content %}
-  <a class="civic-icon-link {{ modifier_class }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }} {% if text %} title="{{ text }}" {% endif %}>
+{% if url %}
+  <a class="civic-icon-link {{ modifier_class }}" href="{{ url }}" {{ new_window ? 'target="_blank"' }} {% if text %} title="{{ text }}" {% endif %} {% if attributes %}{{ attributes }}{% endif %}>
+{% else %}
+  <button class="civic-icon-link {{ modifier_class }}" {% if text %} title="{{ text }}" {% endif %} {% if attributes %}{{ attributes }}{% endif %}>
+{% endif %}
     <span class="visually-hidden">{{ text }}</span>
     {% if symbol is defined %}
       {% include '@atoms/icon/icon.twig' with {
@@ -29,5 +32,8 @@
     {% if content %}
       {{ content }}
     {% endif %}
+{% if url %}
   </a>
+{% else %}
+  </button>
 {% endif %}

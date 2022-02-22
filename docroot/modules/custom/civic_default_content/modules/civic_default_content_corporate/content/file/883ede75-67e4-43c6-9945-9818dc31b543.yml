@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 883ede75-67e4-43c6-9945-9818dc31b543
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_science-beakers.jpg
+  uri:
+    -
+      value: 'public://corporate_science-beakers.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 187922
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645067319

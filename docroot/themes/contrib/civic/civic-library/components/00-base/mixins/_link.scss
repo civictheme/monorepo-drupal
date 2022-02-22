@@ -34,6 +34,37 @@
 }
 
 //
+// Set link background colors.
+//
+@mixin civic-link-backgrounds($normal, $hover: $normal, $visited: $normal, $active: $normal, $focus: false) {
+  background-color: $normal;
+
+  @if $hover != false {
+    &:hover {
+      background-color: $hover;
+    }
+  }
+
+  @if $visited != false {
+    &:visited {
+      background-color: $visited;
+    }
+  }
+
+  @if $active != false {
+    &:active {
+      background-color: $active;
+    }
+  }
+
+  @if $focus != false {
+    &:focus {
+      background-color: $focus;
+    }
+  }
+}
+
+//
 // Add text decoration to a link.
 //
 @mixin civic-link-decoration($underline: false, $underline-hover: true, $underline-active: true) {

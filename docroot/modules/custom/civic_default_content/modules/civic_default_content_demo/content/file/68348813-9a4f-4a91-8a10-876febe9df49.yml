@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 68348813-9a4f-4a91-8a10-876febe9df49
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: demo_oembed_thumbnail.jpg
+  uri:
+    -
+      value: 'public://demo_oembed_thumbnail.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 8256
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1634966036

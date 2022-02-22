@@ -51,15 +51,15 @@
   flex-grow: 1;
   margin: 0;
 
-  &.civic_attachment--with-space-top {
+  &.civic-attachment--with-space-top {
     padding-top: $civic-attachment-padding-vertical;
   }
 
-  &.civic_attachment--with-space-bottom {
+  &.civic-attachment--with-space-bottom {
     padding-bottom: $civic-attachment-padding-vertical;
   }
 
-  &.civic_attachment--with-space-both {
+  &.civic-attachment--with-space-both {
     padding: $civic-attachment-padding-vertical 0;
   }
 
@@ -160,7 +160,7 @@
   }
 
   &.civic-theme-light {
-    &.civic_attachment--with-background {
+    &.civic-attachment--with-background {
       background-color: $civic-attachment-light-wrapper-background-color;
       padding-left: $civic-attachment-padding-horizontal;
       padding-right: $civic-attachment-padding-horizontal;
@@ -194,7 +194,7 @@
   &.civic-theme-dark {
     background-color: $civic-attachment-dark-background-color;
 
-    &.civic_attachment--with-background {
+    &.civic-attachment--with-background {
       background-color: $civic-attachment-dark-wrapper-background-color;
       padding-left: $civic-attachment-padding-horizontal;
       padding-right: $civic-attachment-padding-horizontal;

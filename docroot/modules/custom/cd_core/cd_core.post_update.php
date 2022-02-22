@@ -25,6 +25,7 @@ function cd_core_post_update_provision_users() {
     'satyajit.das@salsadigital.com.au',
     'arpita.jain@salsadigital.com.au',
     'john.cloys@salsadigital.com.au',
+    'nicola.hardy@salsadigital.com.au',
   ];
 
   foreach ($emails as $email) {

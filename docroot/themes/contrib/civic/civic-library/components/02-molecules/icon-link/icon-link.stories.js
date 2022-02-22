@@ -37,9 +37,11 @@ export const IconLink = (knobTab) => {
     size: radios('Size', sizes, sizes[0], generalKnobTab),
     text: text('Text', 'Go to service', generalKnobTab),
     url: text('URL', randomUrl(), generalKnobTab),
+    content: text('Content', '', generalKnobTab),
     with_border: boolean('Add border', true, generalKnobTab),
     new_window: boolean('Open in a new window', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicIconLink({
