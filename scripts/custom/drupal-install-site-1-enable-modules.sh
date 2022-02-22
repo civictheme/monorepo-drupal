@@ -19,7 +19,7 @@ DRUSH_ALIAS="${DRUSH_ALIAS:-}"
 drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush"; else command -v drush; fi)"
 
 echo "==> Removing all files."
-rm -Rf "${APP}"/docroot/sites/default/files/* > /dev/null
+rm -Rf "${APP}"/docroot/sites/default/files/* > /dev/null || true
 
 # Use cd_core.info.yml to declare all dependencies that must be installed in all environments.
 # Use cd_core.install to add other post-install operations.
