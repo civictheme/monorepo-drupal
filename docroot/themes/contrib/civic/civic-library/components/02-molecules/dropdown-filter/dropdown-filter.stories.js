@@ -82,5 +82,6 @@ export const DropDownFilter = (knobTab) => {
 
   return DropdownFilter({
     ...generalKnobs,
+    attributes: 'id="dropdown-filter" data-dropdown-filter-fieldset',
   });
 };

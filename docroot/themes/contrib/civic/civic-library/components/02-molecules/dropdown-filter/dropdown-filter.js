@@ -16,11 +16,12 @@ function CivicDropdownFilter(el) {
   this.placeholderText = this.el.getAttribute('data-dropdown-filter-placeholder-text') ? this.el.getAttribute('data-dropdown-filter-placeholder-text') : 'Filter by keyword';
 
   this.filterFieldset = this.el.querySelector('[data-dropdown-filter-fieldset]');
-  this.dropdownFilterItems = this.filterFieldset.querySelectorAll('[data-dropdown-filter-item]');
-
-  // Add a search box to the dropdown filter if there are more options than the threshold.
-  if (this.dropdownFilterItems.length >= this.itemThreshold) {
-    this.init();
+  if (this.filterFieldset !== null) {
+    this.dropdownFilterItems = this.filterFieldset.querySelectorAll('[data-dropdown-filter-item]');
+    // Add a search box to the dropdown filter if there are more options than the threshold.
+    if (this.dropdownFilterItems.length >= this.itemThreshold) {
+      this.init();
+    }
   }
 }
 
@@ -41,12 +42,20 @@ CivicDropdownFilter.prototype.createSearchElement = function () {
   const search = document.createElement('div');
   search.classList.add('civic-dropdown-filter__search', 'civic-input', 'civic-theme-light');
 
+  const searchFieldName = `${this.filterFieldset.getAttribute('id')}--search`;
   // Create the search box element and add it to the container.
+  const searchLabel = document.createElement('label');
+  searchLabel.setAttribute('for', searchFieldName);
+  searchLabel.classList.add('civic-label', 'civic-theme-light');
+  searchLabel.innerHTML = this.placeholderText;
   const searchInput = document.createElement('input');
   searchInput.classList.add('civic-dropdown-filter__search__input', 'civic-input__element', 'civic-input--default', 'civic-input--text');
-  searchInput.setAttribute('placeholder', this.placeholderText);
   searchInput.setAttribute('value', '');
   searchInput.setAttribute('type', 'text');
+  searchInput.setAttribute('data-large-filter-ignore', '');
+  searchInput.setAttribute('id', searchFieldName);
+  searchInput.setAttribute('name', searchFieldName);
+  search.append(searchLabel);
   search.append(searchInput);
 
   // Add the search box container to the dropdown filter.
