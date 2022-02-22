@@ -66,6 +66,7 @@ Feature: Tests the Civic filtering system within blocks and view pages.
     And I should see an "div.civic-listing__body .views-exposed-form" element
     # Test JS filtering and the loaded view results.
     And I press the "Content type" button
+    And I wait 1 second
     And I select the radio button "Page"
     And I press the "Content type" button
     And I press the "Apply" button
@@ -119,6 +120,7 @@ Feature: Tests the Civic filtering system within blocks and view pages.
     And I should see an ".views-exposed-form" element
     # Test JS filtering and the loaded view results.
     And I press the "Content type" button
+    And I wait 1 second
     And I select the radio button "Page"
     And I press the "Content type" button
     And I wait 1 second

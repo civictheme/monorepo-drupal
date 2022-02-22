@@ -42,6 +42,9 @@ default:
           field_c_p_address:
             -
               value: 'Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.'
+          field_c_p_background:
+            -
+              value: false
           field_c_p_share_link:
             -
               uri: 'internal:/'
@@ -55,6 +58,3 @@ default:
               uri: 'http://www.google.com'
               title: Google
               options: {  }
-          field_c_p_zoom:
-            -
-              value: 0
