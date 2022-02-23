@@ -15,14 +15,15 @@ dependencies:
   - stage_file_proxy:stage_file_proxy
   - styleguide:styleguide
   - simple_sitemap:simple_sitemap
-  # Required for Civic theme.
+  # Required for Civic theme - copy from civic.info.yml.
   - components:components
   - drupal:block_content
+  - drupal:inline_form_errors
+  - drupal:layout_builder
+  - drupal:layout_discovery
+  - drupal:rest
   - field_group:field_group
   - layout_builder_restrictions:layout_builder_restrictions
   - menu_block:menu_block
   - paragraphs:paragraphs
-  - drupal:inline_form_errors
   - webform:webform
-  - drupal:rest
-  - menu_ui
