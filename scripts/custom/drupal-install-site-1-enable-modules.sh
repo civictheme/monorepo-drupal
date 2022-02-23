@@ -21,7 +21,7 @@ drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush
 echo "==> Removing all files."
 rm -Rf "${APP}"/docroot/sites/default/files/* > /dev/null || true
 
-$drush ${DRUSH_ALIAS} -y pm-enable components, field_group, menu_block, layout_builder_restrictions, paragraphs, rest, block_content, webform
+$drush ${DRUSH_ALIAS} -y pm-enable components, field_group, menu_block, inline_form_errors, layout_builder_restrictions, paragraphs, rest, block_content, webform
 
 $drush ${DRUSH_ALIAS} -y then adminimal_theme
 $drush ${DRUSH_ALIAS} -y config-set system.theme admin adminimal_theme
