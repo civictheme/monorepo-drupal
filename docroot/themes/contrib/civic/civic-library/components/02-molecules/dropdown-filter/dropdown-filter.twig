@@ -10,8 +10,10 @@
  * - type: [string] Large filter type.
  * - filter_text: [string] Card title.
  * - filter_group: [string] Filter group name.
- * - options_title: [string] Options title
- * - options: [array] Array of form elements:
+ * - options_title: [string] Options title.
+ * - options: [array] Array of form elements.
+ * - searchable_threshold: [string] Number of checkbox/radio items allowed before a search box appears.
+ * - search_label_text: [string] Label text for the search box.
  * - settings: [object] Filter settings
  */
 #}
@@ -20,7 +22,21 @@
 {% set type_class = type is empty ? 'civic-dropdown-filter--%s'|format(type) : '' %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civic-dropdown-filter {{ modifier_class }}" data-collapsible data-collapsible-collapsed {% if filter_group %}data-collapsible-group="{{ filter_group }}"{% endif %} data-collapsible-duration="0">
+<div
+    class="civic-dropdown-filter {{ modifier_class }}"
+    data-collapsible data-collapsible-collapsed
+    {% if filter_group %}
+      data-collapsible-group="{{ filter_group }}"
+    {% endif %}
+    data-collapsible-duration="0"
+    data-component-name="civic-dropdown-filter"
+    {% if searchable_threshold %}
+      data-dropdown-filter-search-item-threshold="{{ searchable_threshold }}"
+    {% endif %}
+    {% if search_label_text %}
+      data-dropdown-filter-search-label="{{ search_label_text }}"
+    {% endif %}
+>
   <button class="civic-dropdown-filter__filter-text" data-collapsible-trigger>{{ filter_text }}</button>
   <div class="civic-dropdown-filter__filter-options" data-collapsible-panel>
     <div class="civic-dropdown-filter__filter-options-wrapper">
@@ -30,6 +46,7 @@
           children: options,
           modifier_class: 'civic-dropdown-filter__fieldset',
           type: type,
+          attributes: attributes,
         } %}
       {% endblock %}
     </div>

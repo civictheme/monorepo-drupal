@@ -167,6 +167,15 @@ function _civic_preprocess_civic_filter_form_element_alter(&$variables) {
       unset($variables['description']);
     }
   }
+  elseif (isset($element['#attributes']['#civic-large-filter'])) {
+    if (isset($element['#type']) && in_array($element['#type'], [
+      'radio',
+      'checkbox',
+    ])) {
+      $variables['#attributes']['data-dropdown-filter-item'] = '';
+      $variables['attributes'] = new Attribute($variables['#attributes']);
+    }
+  }
   elseif (isset($element['#attributes']['#civic-basic-filter'])) {
     $variables['text'] = $element['#title'] ?? '';
     $variables['is_multiple'] = $element['#type'] === 'checkbox';
@@ -209,6 +218,7 @@ function civic_preprocess_fieldset(&$variables) {
   $children = Element::children($variables['element']);
   // Fieldset's for radio checkbox form groups are have different typography
   // compared to field section fieldsets.
+  $is_radio_or_checkbox = FALSE;
   foreach ($children as $child) {
     if (!isset($variables['element'][$child]['#type'])) {
       continue;
@@ -273,6 +283,13 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     $variables['filter_text'] = $element['#title'];
     $variables['options_title'] = $element['#description'] ?? '';
     $variables['filter_group'] = $element['#civic-large-filter'];
+    $variables['#attributes']['data-dropdown-filter-fieldset'] = '';
+    if (!empty($variables['attributes'])) {
+      $variables['#attributes'] += $variables['attributes'];
+      $variables['attributes'] = new Attribute($variables['#attributes']);
+    }
+    $variables['searchable_threshold'] = 8;
+    $variables['search_label_text'] = t('Filter by Keyword');
   }
   else {
     // Standard theme wrapper for checkboxes was removed to allow for

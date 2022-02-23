@@ -9,6 +9,8 @@ import { formElement } from '../../00-base/base.stories';
 
 import DropdownFilter from './dropdown-filter.twig';
 
+import './dropdown-filter';
+
 export default {
   title: 'Molecules/Filter',
   parameters: {
@@ -45,7 +47,7 @@ export const DropDownFilter = (knobTab) => {
     {
       range: true,
       min: 0,
-      max: 7,
+      max: 30,
       step: 1,
     },
     generalKnobTab,
@@ -57,6 +59,7 @@ export const DropDownFilter = (knobTab) => {
       required: false,
       description: false,
       attributes: (type === 'radio') ? 'name="test"' : '',
+      form_element_attributes: 'data-dropdown-filter-item',
     };
     children.push(formElement(type, options, theme, false, i));
   }
@@ -68,9 +71,17 @@ export const DropDownFilter = (knobTab) => {
     type,
     options_title: boolean('With options title', true, generalKnobTab) ? text('Options title', 'Options title (optional)', generalKnobTab) : '',
     options: children.join(''),
+    searchable_threshold: number('Add search after this number of items', 10, {
+      min: 0,
+      max: 35,
+      step: 5,
+    },
+    generalKnobTab),
+    search_label_text: text('Search label text', 'Filter by keyword', generalKnobTab),
   };
 
   return DropdownFilter({
     ...generalKnobs,
+    attributes: 'id="dropdown-filter" data-dropdown-filter-fieldset',
   });
 };
