@@ -24,8 +24,10 @@
 
 <div
     class="civic-dropdown-filter {{ modifier_class }}"
-    data-collapsible data-collapsible-collapsed {% if filter_group %}
-    data-collapsible-group="{{ filter_group }}"{% endif %}
+    data-collapsible data-collapsible-collapsed
+    {% if filter_group %}
+      data-collapsible-group="{{ filter_group }}"
+    {% endif %}
     data-collapsible-duration="0"
     data-component-name="civic-dropdown-filter"
     {% if searchable_threshold %}
