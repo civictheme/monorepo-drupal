@@ -44,6 +44,7 @@ function _civic_preprocess_civic_mobile_navigation(&$variables) {
     if (
       $entity->hasField($menu_field)
       && !$entity->get($menu_field)->isEmpty()
+      && !empty($entity->get($menu_field)->referencedEntities()[0])
       && strpos($entity->get($menu_field)->referencedEntities()[0]->getPluginId(), 'menu_block') === 0
     ) {
       $menu_block = $entity->get($menu_field)->referencedEntities()[0];
