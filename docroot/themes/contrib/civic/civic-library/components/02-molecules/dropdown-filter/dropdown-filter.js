@@ -1,8 +1,7 @@
 /**
  * Civic dropdown filter.
  *
- * Provides a filtering system to show hide searched for radio / checkbox
- * options.
+ * Provides a search input to assist in finding radio / checkbox options.
  */
 function CivicDropdownFilter(el) {
   if (!el || el.hasAttribute('data-dropdown-filter-searchable')) {
@@ -40,16 +39,17 @@ CivicDropdownFilter.prototype.init = function () {
 CivicDropdownFilter.prototype.createSearchElement = function () {
   // Create the search box container.
   const search = document.createElement('div');
-  search.classList.add('civic-dropdown-filter__search', 'civic-input', 'civic-theme-light');
+  const themeClass = this.el.getAttribute('class').includes('civic-theme-light') ? 'civic-theme-light' : 'civic-theme-dark';
+  search.classList.add('civic-dropdown-filter__search', 'civic-input', themeClass);
 
   const searchFieldName = `${this.filterFieldset.getAttribute('id')}--search`;
   // Create the search box element and add it to the container.
   const searchLabel = document.createElement('label');
   searchLabel.setAttribute('for', searchFieldName);
-  searchLabel.classList.add('civic-label', 'civic-theme-light');
+  searchLabel.classList.add('civic-label', themeClass);
   searchLabel.innerHTML = this.placeholderText;
   const searchInput = document.createElement('input');
-  searchInput.classList.add('civic-dropdown-filter__search__input', 'civic-input__element', 'civic-input--default', 'civic-input--text');
+  searchInput.classList.add('civic-dropdown-filter__search__input', 'civic-input__element', 'civic-input--default', 'civic-input--text', themeClass);
   searchInput.setAttribute('value', '');
   searchInput.setAttribute('type', 'text');
   searchInput.setAttribute('data-large-filter-ignore', '');
