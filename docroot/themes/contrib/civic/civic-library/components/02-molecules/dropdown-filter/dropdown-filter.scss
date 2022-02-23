@@ -62,35 +62,37 @@
     }
   }
 
-  [data-dropdown-filter-item-hidden] {
-    display: none;
-  }
-
-  [data-dropdown-filter-item-visible] {
-    display: flex;
-  }
-
-  #{$root}__search.civic-input {
-    position: relative;
-    margin-bottom: civic-space(2);
-
-    input {
-      padding-left: civic-space(5);
+  [data-dropdown-filter-searchable] {
+    [data-dropdown-filter-search-item--hidden] {
+      display: none;
     }
 
-    &::after {
-      content: ' ';
-      background-size: 24px 24px;
-      height: 24px;
-      width: 24px;
-      display: block;
-      position: absolute;
-      bottom: rem(12px);
-      left: civic-space();
+    [data-dropdown-filter-search-item--visible] {
+      display: flex;
     }
 
-    label {
-      padding-left: 0;
+    #{$root}__search.civic-input {
+      position: relative;
+      margin-bottom: civic-space(2);
+
+      input {
+        padding-left: civic-space(5);
+      }
+
+      &::after {
+        content: ' ';
+        background-size: 24px 24px;
+        height: 24px;
+        width: 24px;
+        display: block;
+        position: absolute;
+        bottom: rem(12px);
+        left: civic-space();
+      }
+
+      label {
+        padding-left: 0;
+      }
     }
   }
 
@@ -108,9 +110,11 @@
       border-color: $civic-dropdown-filter-light-filter-options-border-color;
     }
 
-    #{$root}__search.civic-input {
-      &::after {
-        background-image: $civic-dropdown-filter-light-search-icon;
+    [data-dropdown-filter-searchable] {
+      #{$root}__search.civic-input {
+        &::after {
+          background-image: $civic-dropdown-filter-light-search-icon;
+        }
       }
     }
   }
@@ -129,9 +133,12 @@
       border-color: $civic-dropdown-filter-dark-filter-options-border-color;
     }
 
-    #{$root}__search.civic-input {
-      &::after {
-        background-image: $civic-dropdown-filter-dark-search-icon;
+    [data-dropdown-filter-searchable] {
+
+      #{$root}__search.civic-input {
+        &::after {
+          background-image: $civic-dropdown-filter-dark-search-icon;
+        }
       }
     }
   }

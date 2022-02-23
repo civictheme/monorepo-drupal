@@ -288,8 +288,8 @@ function _civic_preprocess_composite_form_elements(&$variables) {
       $variables['#attributes'] += $variables['attributes'];
       $variables['attributes'] = new Attribute($variables['#attributes']);
     }
-    $variables['filter_item_threshold'] = 8;
-    $variables['filter_placeholder_text'] = t('Filter by Keyword');
+    $variables['searchable_threshold'] = 8;
+    $variables['search_label_text'] = t('Filter by Keyword');
   }
   else {
     // Standard theme wrapper for checkboxes was removed to allow for

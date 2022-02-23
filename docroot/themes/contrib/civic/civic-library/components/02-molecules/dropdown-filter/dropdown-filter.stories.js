@@ -71,13 +71,13 @@ export const DropDownFilter = (knobTab) => {
     type,
     options_title: boolean('With options title', true, generalKnobTab) ? text('Options title', 'Options title (optional)', generalKnobTab) : '',
     options: children.join(''),
-    filter_item_threshold: number('Filter search threshold', 10, {
+    searchable_threshold: number('Add search after this number of items', 10, {
       min: 0,
       max: 35,
       step: 5,
     },
     generalKnobTab),
-    filter_placeholder_text: text('Placeholder value for filter input', 'Start typing your search', generalKnobTab),
+    search_label_text: text('Search label text', 'Filter by keyword', generalKnobTab),
   };
 
   return DropdownFilter({

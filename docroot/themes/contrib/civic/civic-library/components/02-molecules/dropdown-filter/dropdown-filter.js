@@ -3,22 +3,22 @@
  *
  * Provides a search input to assist in finding radio / checkbox options.
  */
-function CivicDropdownFilter(el) {
+function CivicDropdownFilterSearchable(el) {
   if (!el || el.hasAttribute('data-dropdown-filter-searchable')) {
     return;
   }
 
   this.el = el;
 
-  // Threshold determines when the search input is generated.
-  this.itemThreshold = this.el.getAttribute('data-dropdown-filter-item-threshold') ? parseInt(this.el.getAttribute('data-dropdown-filter-item-threshold'), 10) : 10;
-  this.placeholderText = this.el.getAttribute('data-dropdown-filter-placeholder-text') ? this.el.getAttribute('data-dropdown-filter-placeholder-text') : 'Filter by keyword';
+  // Threshold determines when the search input is added to dropdown filter.
+  this.searchBoxThreshold = this.el.getAttribute('data-dropdown-filter-search-item-threshold') ? parseInt(this.el.getAttribute('data-dropdown-filter-search-item-threshold'), 10) : 10;
+  this.labelText = this.el.getAttribute('data-dropdown-filter-search-label') ? this.el.getAttribute('data-dropdown-filter-search-label') : '';
 
   this.filterFieldset = this.el.querySelector('[data-dropdown-filter-fieldset]');
-  if (this.filterFieldset !== null) {
-    this.dropdownFilterItems = this.filterFieldset.querySelectorAll('[data-dropdown-filter-item]');
+  if (this.fieldset !== null) {
+    this.dropdownFilterItems = this.fieldset.querySelectorAll('[data-dropdown-filter-item]');
     // Add a search box to the dropdown filter if there are more options than the threshold.
-    if (this.dropdownFilterItems.length >= this.itemThreshold) {
+    if (this.items.length >= this.searchBoxThreshold) {
       this.init();
     }
   }
@@ -27,27 +27,31 @@ function CivicDropdownFilter(el) {
 /**
  * Initialised the dropdown filter search component.
  */
-CivicDropdownFilter.prototype.init = function () {
-  this.searchInput = this.createSearchElement();
-  this.searchInput.addEventListener('keyup', this.filterKeyUpListener.bind(this), false);
+CivicDropdownFilterSearchable.prototype.init = function () {
+  this.searchEl = this.createSearchElement();
+  this.searchEl.addEventListener('keyup', this.filterKeyUpListener.bind(this), false);
   this.el.setAttribute('data-dropdown-filter-searchable', '');
 };
 
 /**
  * Create and search input to dropdown filter.
  */
-CivicDropdownFilter.prototype.createSearchElement = function () {
+CivicDropdownFilterSearchable.prototype.createSearchElement = function () {
   // Create the search box container.
   const search = document.createElement('div');
   const themeClass = this.el.getAttribute('class').includes('civic-theme-light') ? 'civic-theme-light' : 'civic-theme-dark';
   search.classList.add('civic-dropdown-filter__search', 'civic-input', themeClass);
 
-  const searchFieldName = `${this.filterFieldset.getAttribute('id')}--search`;
-  // Create the search box element and add it to the container.
-  const searchLabel = document.createElement('label');
-  searchLabel.setAttribute('for', searchFieldName);
-  searchLabel.classList.add('civic-label', themeClass);
-  searchLabel.innerHTML = this.placeholderText;
+  const searchFieldName = this.generateSearchFieldName();
+  // Create the filter search input and add it to the dropdown filter.
+  let searchLabel = false;
+  if (this.labelText) {
+    searchLabel = document.createElement('label');
+    searchLabel.setAttribute('for', searchFieldName);
+    searchLabel.classList.add('civic-label', themeClass);
+    searchLabel.innerHTML = this.labelText;
+  }
+
   const searchInput = document.createElement('input');
   searchInput.classList.add('civic-dropdown-filter__search__input', 'civic-input__element', 'civic-input--default', 'civic-input--text', themeClass);
   searchInput.setAttribute('value', '');
@@ -57,23 +61,42 @@ CivicDropdownFilter.prototype.createSearchElement = function () {
   searchInput.setAttribute('data-large-filter-ignore', '');
   searchInput.setAttribute('id', searchFieldName);
   searchInput.setAttribute('name', searchFieldName);
-  search.append(searchLabel);
+
+  if (searchLabel) {
+    search.append(searchLabel);
+  }
   search.append(searchInput);
 
   // Add the search box container to the dropdown filter.
-  this.filterFieldset.prepend(search);
+  this.fieldset.prepend(search);
 
   return searchInput;
 };
 
 /**
- * Provides the filter callback to filter options based on search.
+ * Helper to generate a unique id for search element.
  */
-CivicDropdownFilter.prototype.filterKeyUpListener = function () {
-  const query = this.searchInput.value.toLowerCase();
+CivicDropdownFilterSearchable.prototype.generateSearchFieldName = function () {
+  // Generate first based on fieldset ID then otherwise generate a unique id.
+  if (this.fieldset.hasAttribute('id')) {
+    return `${this.fieldset.getAttribute('id')}__search`;
+  }
+  let searchFieldName = `dropdown_filter__search__${Math.floor((Math.random() * 1000) + 1)}`;
+  while (document.querySelector(`#${searchFieldName}`) !== null) {
+    searchFieldName = `dropdown_filter__search__${Math.floor((Math.random() * 1000) + 1)}`;
+  }
+
+  return searchFieldName;
+};
+
+/**
+ * KeyUp event listener to filter options based on search.
+ */
+CivicDropdownFilterSearchable.prototype.filterKeyUpListener = function () {
+  const query = this.searchEl.value.toLowerCase();
   const dropdownFilter = this;
 
-  this.dropdownFilterItems.forEach((item) => {
+  this.items.forEach((item) => {
     if (item.querySelector('label').innerHTML.toLowerCase().includes(query)) {
       dropdownFilter.showItem(item);
     } else {
@@ -85,19 +108,19 @@ CivicDropdownFilter.prototype.filterKeyUpListener = function () {
 /**
  * Show filter option.
  */
-CivicDropdownFilter.prototype.showItem = function (item) {
-  item.setAttribute('data-dropdown-filter-item-visible', '');
-  item.removeAttribute('data-dropdown-filter-item-hidden');
+CivicDropdownFilterSearchable.prototype.showItem = function (item) {
+  item.setAttribute('data-dropdown-filter-search-item--visible', '');
+  item.removeAttribute('data-dropdown-filter-search-item--hidden');
 };
 
 /**
  * Hide filter option
  */
-CivicDropdownFilter.prototype.hideItem = function (item) {
-  item.setAttribute('data-dropdown-filter-item-hidden', '');
-  item.removeAttribute('data-dropdown-filter-item-visible');
+CivicDropdownFilterSearchable.prototype.hideItem = function (item) {
+  item.setAttribute('data-dropdown-filter-search-item--hidden', '');
+  item.removeAttribute('data-dropdown-filter-search-item--visible');
 };
 
 document.querySelectorAll('[data-component-name="civic-dropdown-filter"]').forEach((dropdownFilter) => {
-  new CivicDropdownFilter(dropdownFilter);
+  new CivicDropdownFilterSearchable(dropdownFilter);
 });
