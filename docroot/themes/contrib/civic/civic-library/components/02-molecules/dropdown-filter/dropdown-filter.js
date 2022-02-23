@@ -52,6 +52,8 @@ CivicDropdownFilter.prototype.createSearchElement = function () {
   searchInput.classList.add('civic-dropdown-filter__search__input', 'civic-input__element', 'civic-input--default', 'civic-input--text', themeClass);
   searchInput.setAttribute('value', '');
   searchInput.setAttribute('type', 'text');
+  // Attribute - data-large-filter-ignore - is used by large filter to ignore
+  // form element when drawing the filters in a large filter.
   searchInput.setAttribute('data-large-filter-ignore', '');
   searchInput.setAttribute('id', searchFieldName);
   searchInput.setAttribute('name', searchFieldName);

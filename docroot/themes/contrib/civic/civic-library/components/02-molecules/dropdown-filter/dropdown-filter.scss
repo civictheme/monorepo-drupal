@@ -62,7 +62,6 @@
     }
   }
 
-
   [data-dropdown-filter-item-hidden] {
     display: none;
   }
@@ -78,6 +77,7 @@
     input {
       padding-left: civic-space(5);
     }
+
     &::after {
       content: ' ';
       background-size: 24px 24px;
@@ -135,5 +135,4 @@
       }
     }
   }
-
 }
