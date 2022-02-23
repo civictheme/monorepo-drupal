@@ -14,7 +14,7 @@ function CivicDropdownFilterSearchable(el) {
   this.searchBoxThreshold = this.el.getAttribute('data-dropdown-filter-search-item-threshold') ? parseInt(this.el.getAttribute('data-dropdown-filter-search-item-threshold'), 10) : 10;
   this.labelText = this.el.getAttribute('data-dropdown-filter-search-label') ? this.el.getAttribute('data-dropdown-filter-search-label') : '';
 
-  this.filterFieldset = this.el.querySelector('[data-dropdown-filter-fieldset]');
+  this.fieldset = this.el.querySelector('[data-dropdown-filter-fieldset]');
   if (this.fieldset !== null) {
     this.dropdownFilterItems = this.fieldset.querySelectorAll('[data-dropdown-filter-item]');
     // Add a search box to the dropdown filter if there are more options than the threshold.
