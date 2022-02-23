@@ -53,16 +53,14 @@
 
         margin-bottom: civic-space(4);
       }
-
-      &[data-dropdown-filter-searchable] {
-        legend {
-          margin-bottom: civic-space(2);
-        }
-      }
     }
   }
 
-  [data-dropdown-filter-searchable] {
+  &[data-dropdown-filter-searchable] {
+    legend {
+      margin-bottom: civic-space(2);
+    }
+
     [data-dropdown-filter-search-item--hidden] {
       display: none;
     }
@@ -110,7 +108,7 @@
       border-color: $civic-dropdown-filter-light-filter-options-border-color;
     }
 
-    [data-dropdown-filter-searchable] {
+    &[data-dropdown-filter-searchable] {
       #{$root}__search.civic-input {
         &::after {
           background-image: $civic-dropdown-filter-light-search-icon;
@@ -133,8 +131,7 @@
       border-color: $civic-dropdown-filter-dark-filter-options-border-color;
     }
 
-    [data-dropdown-filter-searchable] {
-
+    &[data-dropdown-filter-searchable] {
       #{$root}__search.civic-input {
         &::after {
           background-image: $civic-dropdown-filter-dark-search-icon;
