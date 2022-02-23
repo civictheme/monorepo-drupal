@@ -3,8 +3,8 @@
  * @file
  * Content component.
  *
- * Renders the configured content layout component and sidebar if the
- * sidebar is configured for the page.
+ * Renders as edge-to-edge if sidebar is not provided, or contained if the
+ * sidebar is configured for the page or if layout is not handled at content level.
  *
  * Page allows for multiple layouts to handle the layout of the content area of the page.
  *
@@ -17,6 +17,7 @@
  * - content_top: [string] Content top elements.
  * - content: [string] Content elements.
  * - content_bottom: [string] Content bottom elements.
+ * - contained: [bool] Whether the page is to be contained for non-layout managed pages.
  * - sidebar: [string] Sidebar elements.
  * - theme: [string] Theme: light, dark.
  * - modifier_class: [string] Classes to modify the default component styling.
@@ -24,9 +25,9 @@
  * - content_attributes: [string] Content attributes.
  */
 #}
-
+{% set container_class = has_sidebar or contained ? 'civic-content--contained container' : '' %}
 {% set has_sidebar = sidebar is not empty %}
-{% set container_class = has_sidebar ? 'civic-content--contained container' : '' %}
+{% set container_class = has_sidebar or contained ? 'civic-content--contained container' : '' %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, container_class, modifier_class|default('')) %}
 
@@ -34,7 +35,7 @@
   <main class="civic-content {{ modifier_class }}" role="main">
     <a id="main-content" tabindex="-1"></a>
 
-    {% if has_sidebar %}
+    {% if has_sidebar or contained %}
     <div class="row">
     {% endif %}
 
@@ -47,7 +48,7 @@
       {% endif %}
 
       {% block content %}
-        <section class="civic-content__main {% if has_sidebar %}col-m-8 col-m-offset-1" {% endif %}{% if content_attributes %}{{ content_attributes }}{% endif %}>
+        <section class="civic-content__main {% if has_sidebar %}col-m-8 col-m-offset-1{% elseif contained %} col-m-12{% endif %}" {% if content_attributes %}{{ content_attributes }}{% endif %}>
           {% if content_top %}
             {{ content_top }}
           {% endif %}
@@ -60,7 +61,7 @@
         </section>
       {% endblock %}
 
-    {% if has_sidebar %}
+    {% if has_sidebar or contained %}
     </div>
     {% endif %}
 
