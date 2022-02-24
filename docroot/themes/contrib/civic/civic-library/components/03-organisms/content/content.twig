@@ -25,7 +25,6 @@
  * - content_attributes: [string] Content attributes.
  */
 #}
-{% set container_class = has_sidebar or contained ? 'civic-content--contained container' : '' %}
 {% set has_sidebar = sidebar is not empty %}
 {% set container_class = has_sidebar or contained ? 'civic-content--contained container' : '' %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
