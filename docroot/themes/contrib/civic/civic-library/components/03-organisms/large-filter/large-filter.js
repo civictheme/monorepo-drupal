@@ -2,6 +2,7 @@ function CivicLargeFilter(el) {
   this.el = el;
   this.tagElement = this.el.querySelector('[data-large-filter-tags]');
   this.filterElement = this.el.querySelector('[data-large-filter-filters]');
+  this.filterComponent = this.el.querySelector('[data-large-filter-element]');
   this.clearAllButton = this.el.querySelector('[data-large-filter-clear]');
   this.selectedFiltersElement = this.el.querySelector('[data-large-filter-selected-filters]');
   this.mobileSelectedFiltersElement = this.el.querySelector('[data-large-filter-mobile-selected-filters]');
@@ -12,7 +13,7 @@ function CivicLargeFilter(el) {
   this.mobileToggleSuffix = this.mobileToggleDisplay.getAttribute('data-large-filter-mobile-toggle-display-suffix');
   this.mobileApplyButton = this.el.querySelector('[data-large-filter-mobile-apply]');
   this.state = {};
-  this.revertState = {};
+  this.revertState = null;
   this.initialisedState = false;
   this.isMobile = null;
   this.fieldTypes = {
@@ -122,12 +123,16 @@ CivicLargeFilter.prototype.init = function () {
  */
 CivicLargeFilter.prototype.updateTagContainerPosition = function () {
   const tagsContainerSelector = this.isMobile ? '[data-large-filter-mobile-tags-container]' : '[data-large-filter-tags-container]';
-  const btnContainerSelector = this.isMobile ? '[data-large-filter-mobile-clear-container]' : '[data-large-filter-clear-container]';
   this.el.querySelector(tagsContainerSelector).appendChild(this.tagElement);
+
+  const btnContainerSelector = this.isMobile ? '[data-large-filter-mobile-clear-container]' : '[data-large-filter-clear-container]';
   this.el.querySelector(btnContainerSelector).appendChild(this.clearAllButton);
 
+  const elementContainer = this.isMobile ? '[data-large-filter-mobile-container]' : '[data-large-filter-desktop-container]';
+  this.el.querySelector(elementContainer).appendChild(this.filterComponent);
+
   // Enable / Disable auto-submit on mobile.
-  this.el.setAttribute('data-large-filter-auto-submit', !this.isMobile)
+  this.el.setAttribute('data-large-filter-auto-submit', !this.isMobile);
 };
 
 /**
@@ -139,7 +144,6 @@ CivicLargeFilter.prototype.toggleOverlayElementClickEvent = function (e) {
   e.stopImmediatePropagation();
   this.revertState = JSON.stringify(this.state);
   this.isOverlayOpen = !this.isOverlayOpen;
-  this.mobileOverlay.classList.toggle('civic-large-filter__mobile-overlay--open', this.isOverlayOpen);
 };
 
 /**
@@ -149,10 +153,11 @@ CivicLargeFilter.prototype.mobileCancelElementClickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
   e.stopImmediatePropagation();
-  this.state = JSON.parse(this.revertState);
+  if (this.revertState) {
+    this.state = JSON.parse(this.revertState);
+  }
   this.redraw();
   this.isOverlayOpen = false;
-  this.mobileOverlay.classList.toggle('civic-large-filter__mobile-overlay--open', this.isOverlayOpen);
 };
 
 /**
@@ -160,7 +165,7 @@ CivicLargeFilter.prototype.mobileCancelElementClickEvent = function (e) {
  */
 CivicLargeFilter.prototype.mobileApplyElementClickEvent = function (e) {
   this.isOverlayOpen = false;
-  this.mobileOverlay.classList.toggle('civic-large-filter__mobile-overlay--open', this.isOverlayOpen);
+  CivicFlyout.prototype.closeAllTriggerClickEvent(e);
 }
 
 /**

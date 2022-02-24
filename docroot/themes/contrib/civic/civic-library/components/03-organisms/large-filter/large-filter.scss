@@ -9,6 +9,15 @@
     border-radius: 0;
   }
 
+  &__mobile-overlay {
+    background-color: civic-color('neutral');
+    padding-bottom: civic-space(5);
+  }
+
+  &__mobile-container {
+    padding-bottom: civic-space();
+  }
+
   &__mobile-toggle-display {
     @include civic-typography('text-small');
 
@@ -32,38 +41,6 @@
     display: inline;
   }
 
-  &__mobile-container {
-    width: 100%;
-
-    @include civic-breakpoint(m) {
-      display: block;
-      width: auto;
-    }
-  }
-
-  &__mobile-overlay {
-    display: none;
-
-    @include civic-breakpoint(m) {
-      display: block;
-    }
-
-    &--open {
-      background-color: civic-color('neutral');
-      display: block;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-
-      @include civic-breakpoint(m) {
-        background-color: transparent;
-        position: static;
-      }
-    }
-  }
-
   &__mobile-cancel {
     border-radius: 32px;
     padding: 6px 12px;
@@ -84,6 +61,11 @@
 
   &__mobile-selected-filters {
     position: relative;
+  }
+
+  &__mobile-apply-container {
+    position: sticky;
+    bottom: 0;
   }
 
   &__mobile-apply {

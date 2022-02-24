@@ -13,6 +13,8 @@ function CivicFlyout(el) {
     return;
   }
 
+  window.CivicFlyout = CivicFlyout;
+
   // Find all open triggers.
   const openTriggers = document.querySelectorAll('[data-flyout-open-trigger]');
   if (!openTriggers.length) {
@@ -86,9 +88,11 @@ CivicFlyout.prototype.findOpenTrigger = function (triggers, el) {
  * Click event handler to toggle flyout state.
  */
 CivicFlyout.prototype.clickEvent = function (e) {
-  e.stopPropagation();
-  e.preventDefault();
-  e.stopImmediatePropagation();
+  if (e.target.hasAttribute('data-allow-event-bubble') !== true) {
+    e.stopPropagation();
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
 
   return e.currentTarget.expand ? this.expand() : this.collapse();
 };
@@ -97,9 +101,11 @@ CivicFlyout.prototype.clickEvent = function (e) {
  * Event handler to close all flyout components.
  */
 CivicFlyout.prototype.closeAllTriggerClickEvent = function (e) {
-  e.stopPropagation();
-  e.preventDefault();
-  e.stopImmediatePropagation();
+  if (e.target.hasAttribute('data-allow-event-bubble') !== true) {
+    e.stopPropagation();
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
 
   // Collapse all panels.
   document.querySelectorAll('[data-flyout-expanded]').forEach((flyout) => {

@@ -22,71 +22,74 @@
 
 {% if filters is not empty %}
   <div class="civic-large-filter {{ modifier_class }}" data-component-name="civic-large-filter" data-large-filter-theme="{{ theme }}">
-    {# ---------------------------------------------------------------- #}
     {% include "@atoms/button/button.twig" with {
       type: 'none',
       text: 'Filter',
       kind: 'button',
       icon: 'userinterface_filteron',
       modifier_class: 'civic-large-filter__mobile-toggle hide-m',
-      attributes: 'data-large-filter-mobile-toggle'
+      attributes: 'data-large-filter-mobile-toggle data-flyout-open-trigger data-flyout-target=".civic-large-filter-flyout" data-allow-event-bubble'
     } only %}
     <div class="civic-large-filter__mobile-toggle-display civic-large-filter__mobile-toggle-display--hidden hide-m" data-large-filter-mobile-toggle-display data-large-filter-mobile-toggle-display-suffix="filters applied"></div>
-    {# ---------------------------------------------------------------- #}
-    <div class="civic-large-filter__mobile-overlay" data-large-filter-mobile-overlay>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            {# ---------------------------------------------------------------- #}
-            {% include "@atoms/button/button.twig" with {
-              type: 'none',
-              text: 'Cancel',
-              kind: 'button',
-              size: 'small',
-              icon: 'userinterface_close',
-              modifier_class: 'civic-large-filter__mobile-cancel hide-m',
-              attributes: 'data-large-filter-mobile-cancel'
-            } only %}
-            {# ---------------------------------------------------------------- #}
-            <div class="civic-large-filter__mobile-container">
-              {# ---------------------------------------------------------------- #}
-              <div class="civic-large-filter__mobile-selected-filters hide-m">
+    <div class="civic-large-filter-flyout hide-m" data-large-filter-mobile-overlay data-flyout data-flyout-direction="right">
+      <div class="civic-large-filter__mobile-overlay" data-flyout-panel>
+        <div class="container">
+          <div class="row">
+            <div class="col-xxs-12">
+              {% include '@atoms/button/button.twig' with {
+                type: 'button',
+                size: 'small',
+                text: 'Close',
+                icon: 'userinterface_close',
+                icon_placement: 'after',
+                attributes: 'data-large-filter-mobile-cancel data-flyout-close-all-trigger data-allow-event-bubble',
+                modifier_class: 'civic-large-filter__mobile-cancel',
+              } only %}
+              <div class="civic-large-filter__mobile-selected-filters">
                 <h2 class="civic-large-filter__mobile-filter-title">{{ filter_title }}</h2>
                 <div class="civic-large-filter__selected-filters--hidden" data-large-filter-mobile-selected-filters>
                   <div class="civic-large-filter__mobile-clear-container" data-large-filter-mobile-clear-container></div>
                   <div class="civic-large-filter__mobile-tags" data-large-filter-mobile-tags-container></div>
                 </div>
               </div>
-              {# ---------------------------------------------------------------- #}
-              <fieldset class="civic-large-filter__filters" data-large-filter-filters>
-                <legend class="hide-xs show-m">{{ filter_title }}</legend>
-                {{ filters }}
-              </fieldset>
-              <div class="civic-large-filter__selected-filters civic-large-filter__selected-filters--hidden" data-large-filter-selected-filters>
-                <span id="civic-large-filter-tags-title" class="civic-large-filter__selected-filters-title">{{ tags_title }}</span>
-                <div data-large-filter-tags-container>
-                  <div class="civic-large-filter__tags" aria-labelledby="civic-large-filter-tags-title" data-large-filter-tags></div>
-                </div>
-                <div class="civic-large-filter__clear-container" data-large-filter-clear-container>
-                  <button class="civic-large-filter__clear-all" data-large-filter-clear>
-                    <span class="civic-large-filter__clear-all-label">{{ clear_text }}</span>
-                    {% include '@atoms/icon/icon.twig' with {
-                      symbol: 'userinterface_close_2',
-                      color: 'error',
-                    } only %}
-                  </button>
-                </div>
+            </div>
+          </div>
+        </div>
+        <div class="civic-large-filter__mobile-container" data-large-filter-mobile-container></div>
+        <div class="container civic-large-filter__mobile-apply-container">
+          {% include "@atoms/button/button.twig" with {
+            type: 'primary',
+            text: 'Apply',
+            kind: 'button',
+            modifier_class: 'civic-large-filter__mobile-apply',
+            attributes: 'data-large-filter-mobile-apply'
+          } only %}
+        </div>
+      </div>
+    </div>
+    <div class="civic-large-filter__desktop-container" data-large-filter-desktop-container>
+      <div class="container" data-large-filter-element>
+        <div class="row">
+          <div class="col-xxs-12">
+            <fieldset class="civic-large-filter__filters" data-large-filter-filters>
+              <legend class="hide-xxs show-m">{{ filter_title }}</legend>
+              {{ filters }}
+            </fieldset>
+            <div class="civic-large-filter__selected-filters civic-large-filter__selected-filters--hidden" data-large-filter-selected-filters>
+              <span id="civic-large-filter-tags-title" class="civic-large-filter__selected-filters-title">{{ tags_title }}</span>
+              <div data-large-filter-tags-container>
+                <div class="civic-large-filter__tags" aria-labelledby="civic-large-filter-tags-title" data-large-filter-tags></div>
+              </div>
+              <div class="civic-large-filter__clear-container" data-large-filter-clear-container>
+                <button class="civic-large-filter__clear-all" data-large-filter-clear>
+                  <span class="civic-large-filter__clear-all-label">{{ clear_text }}</span>
+                  {% include '@atoms/icon/icon.twig' with {
+                    symbol: 'userinterface_close_2',
+                    color: 'error',
+                  } only %}
+                </button>
               </div>
             </div>
-            {# ---------------------------------------------------------------- #}
-            {% include "@atoms/button/button.twig" with {
-              type: 'primary',
-              text: 'Apply',
-              kind: 'button',
-              modifier_class: 'civic-large-filter__mobile-apply hide-m',
-              attributes: 'data-large-filter-mobile-apply'
-            } only %}
-            {# ---------------------------------------------------------------- #}
           </div>
         </div>
       </div>
