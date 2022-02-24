@@ -41,24 +41,6 @@
     display: inline;
   }
 
-  &__mobile-cancel {
-    border-radius: 32px;
-    padding: 6px 12px;
-    line-height: 1em;
-    background-color: civic-color-neutral(5);
-    margin-top: civic-space(3);
-    margin-bottom: civic-space(3);
-    margin-left: auto;
-    margin-right: 0;
-    position: relative;
-    display: block;
-
-    .civic-icon {
-      width: 12px;
-      height: 12px;
-    }
-  }
-
   &__mobile-selected-filters {
     position: relative;
   }
