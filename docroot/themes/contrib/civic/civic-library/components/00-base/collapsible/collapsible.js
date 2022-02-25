@@ -52,8 +52,11 @@ function CivicCollapsible(el) {
 
   this.el.addEventListener('civic.collapsible.collapse', (evt) => {
     // For some cases (like group collapse) - the animation should be disabled.
-    const animate = evt.detail || false;
-    this.collapse(animate);
+    const animate = (evt.detail && event.detail.animate);
+    const isCloseAllEvent = (evt.detail && evt.detail.closeAll);
+    if ((isCloseAllEvent && this.isGroupsEnabled) || !isCloseAllEvent) {
+      this.collapse(animate);
+    }
   });
 
   this.el.addEventListener('civic.collapsible.expand', () => {
@@ -70,7 +73,7 @@ function CivicCollapsible(el) {
 
   // Attach global keydown event listener to allow closing all collapsibles.
   document.addEventListener('keydown', CivicCollapsible.prototype.keydownEvent);
-  document.addEventListener('click', CivicCollapsible.prototype.collapseAllGroups.bind(this));
+  document.addEventListener('click', CivicCollapsible.prototype.collapseAllGroups);
 
   // Responsive Collapsible Group
   this.isGroupsEnabled = true;
@@ -141,7 +144,7 @@ CivicCollapsible.prototype.clickEvent = function (e) {
   if (this.collapsed) {
     this.el.dispatchEvent(new CustomEvent('civic.collapsible.expand', { bubbles: true }));
   } else {
-    this.el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
+    this.el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: { animate: true } }));
   }
 };
 
@@ -189,7 +192,7 @@ CivicCollapsible.prototype.keydownEvent = function (e) {
   if (this !== document) {
     // Up.
     if (e.which === 38 && !e.shiftKey) {
-      this.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
+      this.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: { animate: true } }));
       return;
     }
 
@@ -224,11 +227,9 @@ CivicCollapsible.prototype.closeGroup = function (group) {
  * Close all grouped instances on the page.
  */
 CivicCollapsible.prototype.collapseAllGroups = function () {
-  if (this.isGroupsEnabled) {
-    document.querySelectorAll('[data-collapsible-group]').forEach((el) => {
-      el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
-    });
-  }
+  document.querySelectorAll('[data-collapsible-group]').forEach((el) => {
+    el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: { closeAll: true } }));
+  });
 };
 
 /**
