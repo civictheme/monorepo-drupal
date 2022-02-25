@@ -87,7 +87,6 @@ CivicResponsive.prototype.mediaQueryChange = function (breakpoint, evt) {
     detail: {
       breakpoint,
       evaluate: CivicResponsive.prototype.evaluate,
-      CivicResponsive: CivicResponsive,
     },
   }));
 };
@@ -96,14 +95,25 @@ CivicResponsive.prototype.mediaQueryChange = function (breakpoint, evt) {
  * Return the current mediaQuery and breakpoint name.
  */
 CivicResponsive.prototype.getActiveMediaQuery = function () {
-  const activeQuery = Object.keys(window.civicResponsive).map(key => window.civicResponsive[key]).filter(item => item.matches).pop();
+  const activeQuery = Object
+    .keys(window.civicResponsive)
+    .map((key) => window.civicResponsive[key])
+    .filter((item) => item.matches)
+    .pop();
   const queries = CivicResponsive.prototype.getMediaQueries();
-  const activeBp = Object.keys(queries).map(key => ({ bp: key, media: queries[key] })).filter(item => item.media === activeQuery.media).pop();
+  const activeBp = Object
+    .keys(queries)
+    .map((key) => ({
+      bp: key,
+      media: queries[key],
+    }))
+    .filter((item) => item.media === activeQuery.media)
+    .pop();
   return {
     media: activeQuery,
     breakpoint: activeBp.bp,
   };
-}
+};
 
 /**
  * Evaluate breakpoint expression and attach or detach component.

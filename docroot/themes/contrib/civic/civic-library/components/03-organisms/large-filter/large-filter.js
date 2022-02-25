@@ -100,7 +100,7 @@ CivicLargeFilter.prototype.init = function () {
   });
 
   // Mobile support.
-  const CivicResponsive = window.CivicResponsive;
+  const { CivicResponsive } = window;
   const activeMQ = CivicResponsive.prototype.getActiveMediaQuery();
   this.isMobile = CivicResponsive.prototype.matchExpr('<m', activeMQ.breakpoint);
   this.isOverlayOpen = false;
@@ -165,8 +165,8 @@ CivicLargeFilter.prototype.mobileCancelElementClickEvent = function (e) {
  */
 CivicLargeFilter.prototype.mobileApplyElementClickEvent = function (e) {
   this.isOverlayOpen = false;
-  CivicFlyout.prototype.closeAllTriggerClickEvent(e);
-}
+  window.CivicFlyout.prototype.closeAllTriggerClickEvent(e);
+};
 
 /**
  * Form filter change event listener.

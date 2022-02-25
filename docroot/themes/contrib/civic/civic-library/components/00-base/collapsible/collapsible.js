@@ -52,7 +52,7 @@ function CivicCollapsible(el) {
 
   this.el.addEventListener('civic.collapsible.collapse', (evt) => {
     // For some cases (like group collapse) - the animation should be disabled.
-    const animate = (evt.detail && event.detail.animate);
+    const animate = (evt.detail && evt.detail.animate);
     const isCloseAllEvent = (evt.detail && evt.detail.closeAll);
     if ((isCloseAllEvent && this.isGroupsEnabled) || !isCloseAllEvent) {
       this.collapse(animate);
@@ -77,11 +77,12 @@ function CivicCollapsible(el) {
 
   // Responsive Collapsible Group
   this.isGroupsEnabled = true;
-  this.responsiveGroupBp = this.el.hasAttribute('data-responsive-collapsible-group') ? this.el.getAttribute('data-responsive-collapsible-group') : null;
-  if (this.responsiveGroupBp) {
+  this.disableGroupBp = this.el.hasAttribute('data-responsive-collapsible-group') ? this.el.getAttribute('data-responsive-collapsible-group') : null;
+  if (this.disableGroupBp) {
     window.addEventListener('civic-responsive', (evt) => {
-      const { breakpoint, CivicResponsive } = evt.detail;
-      this.isGroupsEnabled = CivicResponsive.prototype.matchExpr(this.responsiveGroupBp, breakpoint);
+      const { breakpoint: bp } = evt.detail;
+      const disableAtBp = this.disableGroupBp;
+      this.isGroupsEnabled = window.CivicResponsive.prototype.matchExpr(disableAtBp, bp);
     }, false);
   }
 
