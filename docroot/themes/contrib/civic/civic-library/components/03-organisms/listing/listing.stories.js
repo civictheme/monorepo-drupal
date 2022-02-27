@@ -239,5 +239,6 @@ export const Listing = (knobTab) => {
   return CivicListing({
     theme,
     ...generalKnobs,
+    modifier_class: 'civic-listing--with-background',
   });
 };
