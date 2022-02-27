@@ -37,8 +37,16 @@ function civic_preprocess_page(&$variables) {
   $variables['page']['header_theme'] = theme_get_setting('civic_header_theme') ?? 'light';
   $variables['page']['footer_theme'] = theme_get_setting('civic_footer_theme') ?? 'dark';
 
+  // Always contain non-node page content.
+  // For nodes this is set to false via _civic_preprocess_page_node as layout is
+  // controlled via layout templates.
+  $variables['page']['content_contained'] = TRUE;
+
   // Generic node pages pre-processing.
   _civic_preprocess_page_node($variables);
+
+  // Handle preprocess for view pages.
+  _civic_preprocess_page_view($variables);
 
   // Pre-process page to support alerts.
   _civic_preprocess_page_alerts($variables);
@@ -64,6 +72,8 @@ function _civic_preprocess_page_node(&$variables) {
   if (!$node) {
     return;
   }
+  // Layout determines whether a node is contained and what it's layout is.
+  $variables['page']['content_contained'] = FALSE;
 
   // Add Table of Contents if the value is set on node.
   if ($node->hasField('field_c_n_show_toc') && $node->field_c_n_show_toc->getString()) {
@@ -81,6 +91,17 @@ function _civic_preprocess_page_node(&$variables) {
     $variables['page']['content_top']['toc'] = [
       '#markup' => '<div class="container"><div class="row"><div class="table-of-contents-container col-m-12" ' . $toc_attributes . '></div></div></div>',
     ];
+  }
+}
+
+/**
+ * Page preprocess for views.
+ */
+function _civic_preprocess_page_view(&$variables) {
+  $route_defaults = \Drupal::routeMatch()->getRouteObject()->getDefaults();
+  if (isset($route_defaults['view_id'])) {
+    // View pages should not be contained.
+    $variables['page']['content_contained'] = FALSE;
   }
 }
 

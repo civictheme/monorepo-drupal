@@ -31,24 +31,9 @@ function cd_core_install() {
 }
 
 /**
- * Enables 'civic' theme.
- */
-function cd_core_update_9000() {
-  \Drupal::service('theme_installer')->install(['adminimal_theme']);
-  \Drupal::service('config.factory')->getEditable('system.theme')->set('admin', 'adminimal_theme')->save();
-
-  \Drupal::service('theme_installer')->install(['civic']);
-  \Drupal::service('config.factory')->getEditable('system.theme')->set('default', 'civic')->save();
-
-  \Drupal::service('theme_installer')->uninstall(['claro']);
-  \Drupal::service('theme_installer')->uninstall(['govcms_bartik']);
-  \Drupal::service('theme_installer')->uninstall(['bartik']);
-}
-
-/**
  * Adds sitemap configuration.
  */
-function cd_core_update_9001() {
+function cd_core_update_9000() {
   /** @var \Drupal\simple_sitemap\Simplesitemap $generator */
   $generator = \Drupal::service('simple_sitemap.generator');
 
@@ -66,14 +51,4 @@ function cd_core_update_9001() {
       $generator->setBundleSettings('node', $bundle, $settings);
     }
   }
-}
-
-/**
- * Add Media settings configuration.
- */
-function cd_core_update_9002() {
-  $config_factory = \Drupal::configFactory();
-  $config = $config_factory->getEditable('media.settings');
-  $config->set('standalone_url', TRUE);
-  $config->save(TRUE);
 }
