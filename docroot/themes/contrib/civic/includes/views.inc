@@ -31,6 +31,8 @@ function civic_preprocess_views_exposed_form(&$variables) {
  */
 function civic_preprocess_views_view(&$variables) {
   $view = $variables['view'];
+  $route_parameters = \Drupal::routeMatch()->getParameters();
+  $is_view_page = $route_parameters->get('view_id') !== NULL;
   // Header is displayed within card container.
   if ($view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     unset($variables['header']);
@@ -47,6 +49,7 @@ function civic_preprocess_views_view(&$variables) {
   }
   $variables['modifier_class'] = array_merge($variables['modifier_class'], [
     !empty($variables['dom_id']) ? ' js-view-dom-id-' . $variables['dom_id'] : '',
+    $is_view_page ? 'civic-listing--with-background' : '',
   ]);
   $variables['modifier_class'] = implode(' ', $variables['modifier_class']);
 

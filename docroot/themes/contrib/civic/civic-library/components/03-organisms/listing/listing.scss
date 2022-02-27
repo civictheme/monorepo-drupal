@@ -18,18 +18,23 @@
   }
 
   &__results-below {
-    padding: civic-space(3) 0;
+    padding: civic-space(3) 0 civic-space(10);
   }
 
   &.civic-theme-light {
-    #{$root}__results-below {
-      background-color: $civic-listing-light-background-color;
+    &#{$root}--with-background {
+      #{$root}__results-below {
+        background-color: $civic-listing-light-background-color;
+      }
     }
   }
 
   &.civic-theme-dark {
-    #{$root}__results-below {
-      background-color: $civic-listing-dark-background-color;
+    &#{$root}--with-background {
+
+      #{$root}__results-below {
+        background-color: $civic-listing-dark-background-color;
+      }
     }
   }
 }
