@@ -95,7 +95,7 @@ export const formElement = (inputType, options, theme, rand, itr) => {
     type: inputType,
     label: Label({
       theme,
-      title: `Input title ${itr + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
+      title: options.title ? options.title : `Input title ${itr + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
       attributes: `for="form-element-${itr}"`,
       title_position: isCheckboxOrRadio ? 'after' : 'before',
       required: options.required,

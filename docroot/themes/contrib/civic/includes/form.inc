@@ -287,6 +287,9 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     if (!empty($variables['attributes'])) {
       $variables['#attributes'] += $variables['attributes'];
       $variables['attributes'] = new Attribute($variables['#attributes']);
+      foreach ($variables['element']['#attributes'] as $attribute_name => $attribute_value) {
+        $variables['attributes']->setAttribute($attribute_name, $attribute_value);
+      }
     }
     $variables['searchable_threshold'] = 8;
     $variables['search_label_text'] = t('Filter by Keyword');

@@ -1,0 +1,35 @@
+.civic-listing {
+  $root: &;
+
+  &__items_per_page {
+    display: flex;
+    margin-right: auto;
+    padding-left: civic-space();
+  }
+
+  &__pager {
+    display: flex;
+    margin-left: auto;
+    padding-right: civic-space();
+  }
+
+  &__emptyresults {
+    padding: civic-space(6) 0;
+  }
+
+  &__results-below {
+    padding: civic-space(3) 0;
+  }
+
+  &.civic-theme-light {
+    #{$root}__results-below {
+      background-color: $civic-listing-light-background-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__results-below {
+      background-color: $civic-listing-dark-background-color;
+    }
+  }
+}
