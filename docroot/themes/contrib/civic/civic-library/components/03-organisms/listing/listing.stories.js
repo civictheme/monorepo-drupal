@@ -5,9 +5,9 @@ import {
 import {
   demoImage,
   dropDownFilter,
-  formElement, randomString, randomText,
+  formElement,
   randomUrl,
-} from '../../00-base/base.stories'
+} from '../../00-base/base.stories';
 
 import DropdownFilter from '../../02-molecules/dropdown-filter/dropdown-filter.twig';
 import CivicLargeFilter from '../large-filter/large-filter.twig';
@@ -107,7 +107,7 @@ export const Listing = (knobTab) => {
     );
     let count = 0;
     const filters = [];
-    const basic_filter_titles = [
+    const basicFilterTitles = [
       'News',
       'Events',
       'Highlights',
@@ -119,7 +119,7 @@ export const Listing = (knobTab) => {
           filters.push(dropDownFilter(inputType, 4, theme, true, count++));
         } else {
           filters.push({
-            text: basic_filter_titles[i % 3],
+            text: basicFilterTitles[i % 3],
           });
         }
       }
@@ -139,7 +139,6 @@ export const Listing = (knobTab) => {
         items: filters,
       });
     }
-
   }
 
   const children = [];
