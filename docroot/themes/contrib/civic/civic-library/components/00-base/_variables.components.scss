@@ -549,6 +549,7 @@ $civic-basic-content-dark-ol-li-marker-color: civic-color('accent') !default;
 //
 // Directional link
 //
+$civic-directional-icon-padding: rem(2px) 0;
 $civic-directional-link-light-color: civic-color-neutral(90) !default;
 $civic-directional-link-light-hover-color: civic-color-shade-dark(30) !default;
 $civic-directional-link-light-disabled-color: civic-color-neutral(40) !default;
@@ -1270,3 +1271,9 @@ $civic-back-to-top-light-background-color: civic-color('secondary') !default;
 $civic-back-to-top-light-color: civic-color('neutral') !default;
 $civic-back-to-top-dark-background-color: civic-color('accent') !default;
 $civic-back-to-top-dark-color: civic-color('secondary') !default;
+
+//
+// Listing.
+//
+$civic-listing-light-background-color: civic-color-neutral(5) !default;
+$civic-listing-dark-background-color: civic-color-shade-dark(45) !default;
