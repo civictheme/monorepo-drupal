@@ -74,30 +74,6 @@ function civic_preprocess_views_view(&$variables) {
 }
 
 /**
- * Removes all form inputs not in elements to keep array.
- */
-function _civic_view_exposed_form_alter_form(array $form, $elements_to_keep = []) {
-  $element_types_to_preserve = [
-    'hidden',
-    'actions',
-  ];
-
-  foreach ($form as $key => $element) {
-    if (
-      substr($key, 0, 1) === '#'
-      || empty($element['#type'])
-      || in_array($element['#type'], $element_types_to_preserve)
-      || in_array($key, $elements_to_keep)
-    ) {
-      continue;
-    }
-    unset($form[$key]);
-  }
-
-  return $form;
-}
-
-/**
  * Implements hook_preprocess_HOOK().
  */
 function civic_preprocess_views_view_grid(&$variables) {
