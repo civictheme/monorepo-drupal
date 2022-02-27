@@ -1,16 +1,9 @@
 .civic-listing {
   $root: &;
 
-  &__items_per_page {
-    display: flex;
-    margin-right: auto;
-    padding-left: civic-space();
-  }
-
   &__pager {
     display: flex;
-    margin-left: auto;
-    padding-right: civic-space();
+    margin: 0 auto;
   }
 
   &__emptyresults {

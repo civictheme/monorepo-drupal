@@ -58,25 +58,5 @@ Drupal.behaviors.civic_ajax_views = {
         .find('[data-component-name="filter-chip"] input')
         .on('change', buttonSubmitHandler);
     }
-
-    // Exposed Filter UX elements - exposed elements outside the form
-    // that change the value of hidden form elements.
-    document.querySelectorAll('[data-exposed-filter]').forEach((exposedFilter) => {
-      const matchedHiddenFilterId = exposedFilter.getAttribute('data-exposed-filter-target');
-      const matchedHiddenFilter = document.querySelector(`#${matchedHiddenFilterId}`);
-      const exposedFilterChangeCallback = (e) => {
-        matchedHiddenFilter.value = e.target.value;
-        buttonSubmitHandler();
-      };
-      // Handling case if the exposed filter is a select rather than a dropdown
-      // filter.
-      if (exposedFilter.nodeName === 'SELECT') {
-        exposedFilter.addEventListener('change', exposedFilterChangeCallback);
-      } else {
-        exposedFilter.querySelectorAll('input[type="radio"]').forEach((filterInput) => {
-          filterInput.addEventListener('change', exposedFilterChangeCallback);
-        });
-      }
-    });
   },
 };

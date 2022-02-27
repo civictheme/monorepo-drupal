@@ -52,28 +52,6 @@ function civic_preprocess_views_view(&$variables) {
     $is_view_page ? 'civic-listing--with-background' : '',
   ]);
   $variables['modifier_class'] = implode(' ', $variables['modifier_class']);
-
-  // Setup items per page filter outside of exposed filter form.
-  // Connected to form via JS - see civic.ajax-views.js.
-  if (!empty($variables['exposed']) && !empty($variables['exposed']['items_per_page'])) {
-    $items_per_page = $view->getItemsPerPage();
-    $variables['exposed']['items_per_page']['#default_value'] = $items_per_page;
-    $variables['items_per_page'] = $variables['exposed']['items_per_page'];
-    $variables['items_per_page']['#id'] = $variables['items_per_page']['#id'] . '--exposed-filter';
-    $variables['items_per_page']['#attributes']['data-exposed-filter'] = '';
-    $variables['items_per_page']['#attributes']['data-exposed-filter-target'] = $variables['exposed']['items_per_page']['#id'];
-    $variables['exposed']['items_per_page'] = [
-      '#type' => 'hidden',
-      '#id' => $variables['exposed']['items_per_page']['#id'],
-      '#value' => $variables['exposed']['items_per_page']['#default_value'],
-      '#attributes' => [
-        'id' => $variables['exposed']['items_per_page']['#id'],
-        'name' => 'items_per_page',
-        'data-drupal-selector' => $variables['exposed']['items_per_page']['#attributes']['data-drupal-selector'],
-      ],
-      '#input' => TRUE,
-    ];
-  }
 }
 
 /**

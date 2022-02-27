@@ -9,7 +9,6 @@ import {
   randomUrl,
 } from '../../00-base/base.stories';
 
-import DropdownFilter from '../../02-molecules/dropdown-filter/dropdown-filter.twig';
 import CivicLargeFilter from '../large-filter/large-filter.twig';
 import CivicBasicFilter from '../../02-molecules/basic-filter/basic-filter.twig';
 
@@ -61,7 +60,6 @@ export const Listing = (knobTab) => {
     'promo',
     generalKnobTab,
   );
-  const showItemsPerPage = boolean('Show items per page dropdown', true, generalKnobTab);
   const itemsPerPage = number(
     'Items per page',
     6,
@@ -151,16 +149,6 @@ export const Listing = (knobTab) => {
       form_element_attributes: 'data-dropdown-filter-item',
     };
     children.push(formElement('radio', options, theme, false, i));
-  }
-
-  // Build items per page dropdown.
-  if (showItemsPerPage) {
-    generalKnobs.items_per_page = DropdownFilter({
-      theme,
-      filter_text: 'Items per page',
-      options_title: 'Show number of items per page',
-      options: children.join(' '),
-    });
   }
 
   // Build pagination.

@@ -56,24 +56,17 @@
   {% endblock %}
 
   {% block rows_below %}
-    {% if (items_per_page is defined and items_per_page is not empty) or (pager is defined and pager is not empty)  %}
+    {% if pager is defined and pager is not empty  %}
       <div class="civic-listing__results-below">
-          <div class="container">
-              <div class="row">
-                  {% block items_per_page %}
-                      <div class="civic-listing__items_per_page">
-                          {% if items_per_page is defined  and items_per_page is not empty %}
-                              {{ items_per_page }}
-                          {% endif %}
-                      </div>
-                  {% endblock %}
-                  {% block pager %}
-                      <div class="civic-listing__pager">
-                          {{ pager }}
-                      </div>
-                  {% endblock %}
-              </div>
+        <div class="container">
+          <div class="row">
+            {% block pager %}
+                <div class="civic-listing__pager">
+                    {{ pager }}
+                </div>
+            {% endblock %}
           </div>
+        </div>
       </div>
     {% endif %}
   {% endblock %}
