@@ -5,12 +5,13 @@ import {
 import {
   demoImage,
   dropDownFilter,
-  formElement,
+  formElement, randomString, randomText,
   randomUrl,
-} from '../../00-base/base.stories';
+} from '../../00-base/base.stories'
 
 import DropdownFilter from '../../02-molecules/dropdown-filter/dropdown-filter.twig';
 import CivicLargeFilter from '../large-filter/large-filter.twig';
+import CivicBasicFilter from '../../02-molecules/basic-filter/basic-filter.twig';
 
 import CivicCardContainer from '../card-container/card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
@@ -41,6 +42,25 @@ export const Listing = (knobTab) => {
     theme,
   };
   const showExposed = boolean('Show filters', true, generalKnobTab);
+  const filterType = radios(
+    'Filter type',
+    {
+      Large: 'large',
+      Basic: 'basic',
+    },
+    'large',
+    generalKnobTab,
+  );
+  // Show cards as promo card or navigation card.
+  const viewMode = radios(
+    'Card type',
+    {
+      'Promo card': 'promo',
+      'Navigation card': 'navigation',
+    },
+    'promo',
+    generalKnobTab,
+  );
   const showItemsPerPage = boolean('Show items per page dropdown', true, generalKnobTab);
   const itemsPerPage = number(
     'Items per page',
@@ -67,17 +87,6 @@ export const Listing = (knobTab) => {
 
   const showPager = boolean('Show pager', true, generalKnobTab);
 
-  // Show cards as promo card or navigation card.
-  const viewMode = radios(
-    'Card type',
-    {
-      'Promo card': 'promo',
-      'Navigation card': 'navigation',
-    },
-    'promo',
-    generalKnobTab,
-  );
-
   // Create empty markup.
   if (resultNumber === 0) {
     generalKnobs.empty = '<p>No results found</p>';
@@ -98,20 +107,39 @@ export const Listing = (knobTab) => {
     );
     let count = 0;
     const filters = [];
+    const basic_filter_titles = [
+      'News',
+      'Events',
+      'Highlights',
+    ];
     if (filterNumber > 0) {
       for (let i = 0; i < filterNumber; i++) {
-        const inputType = ['radio', 'checkbox'][Math.round(Math.random() * 2)];
-        filters.push(dropDownFilter(inputType, 4, theme, true, count++));
+        if (filterType === 'large') {
+          const inputType = ['radio', 'checkbox'][Math.round(Math.random() * 2)];
+          filters.push(dropDownFilter(inputType, 4, theme, true, count++));
+        } else {
+          filters.push({
+            text: basic_filter_titles[i % 3],
+          });
+        }
       }
     }
+    if (filterType === 'large') {
+      generalKnobs.exposed = CivicLargeFilter({
+        theme,
+        filter_title: 'Filter search results by:',
+        tags_title: 'Selected filters:',
+        clear_text: 'Clear all',
+        filters: filters.join(''),
+      });
+    } else {
+      generalKnobs.exposed = CivicBasicFilter({
+        theme,
+        is_multiple: false,
+        items: filters,
+      });
+    }
 
-    generalKnobs.exposed = CivicLargeFilter({
-      theme,
-      filter_title: 'Filter search results by:',
-      tags_title: 'Selected filters:',
-      clear_text: 'Clear all',
-      filters: filters.join(''),
-    });
   }
 
   const children = [];
