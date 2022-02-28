@@ -186,16 +186,6 @@
       border-color: $civic-large-filter-light-mobile-toggle-display-border-color;
     }
 
-    #{$root}__filters {
-      .civic-dropdown-filter {
-        border-bottom-color: $civic-large-filter-light-dropdown-filter-border-color;
-
-        &:first-of-type {
-          border-top-color: $civic-large-filter-light-dropdown-filter-border-color;
-        }
-      }
-    }
-
     #{$root}__mobile-overlay {
       background-color: $civic-large-filter-light-mobile-overlay-background-color;
     }
@@ -207,6 +197,14 @@
     #{$root}__filters {
       & > legend {
         color: $civic-large-filter-light-filters-legend-color;
+      }
+
+      .civic-dropdown-filter {
+        border-bottom-color: $civic-large-filter-light-dropdown-filter-border-color;
+
+        &:first-of-type {
+          border-top-color: $civic-large-filter-light-dropdown-filter-border-color;
+        }
       }
     }
 
@@ -259,16 +257,6 @@
       border-color: $civic-large-filter-dark-mobile-toggle-display-border-color;
     }
 
-    #{$root}__filters {
-      .civic-dropdown-filter {
-        border-bottom-color: $civic-large-filter-dark-dropdown-filter-border-color;
-
-        &:first-of-type {
-          border-top-color: $civic-large-filter-dark-dropdown-filter-border-color;
-        }
-      }
-    }
-
     #{$root}__mobile-overlay {
       background-color: $civic-large-filter-dark-mobile-overlay-background-color;
     }
@@ -280,6 +268,14 @@
     #{$root}__filters {
       & > legend {
         color: $civic-large-filter-dark-filters-legend-color;
+      }
+
+      .civic-dropdown-filter {
+        border-bottom-color: $civic-large-filter-dark-dropdown-filter-border-color;
+
+        &:first-of-type {
+          border-top-color: $civic-large-filter-dark-dropdown-filter-border-color;
+        }
       }
     }
 

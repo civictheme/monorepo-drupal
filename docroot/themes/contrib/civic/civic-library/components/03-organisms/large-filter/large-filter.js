@@ -318,7 +318,7 @@ CivicLargeFilter.prototype.pluralize = function (pluralJSON, count) {
     puralStr = obj.default;
   }
   return puralStr;
-}
+};
 
 /**
  * Redraw clear button.
