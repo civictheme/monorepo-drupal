@@ -1252,6 +1252,8 @@ $civic-large-filter-light-mobile-toggle-display-border-color: civic-color-neutra
 $civic-large-filter-light-dropdown-filter-border-color: civic-color-neutral(20) !default;
 $civic-large-filter-light-mobile-overlay-background-color: $civic-mobile-navigation-light-panel-background-color !default;
 $civic-large-filter-light-mobile-filter-title-color: civic-color-shade-dark(80) !default;
+$civic-large-filter-light-mobile-clear-all-label-color: civic-color('secondary') !default;
+$civic-large-filter-light-mobile-clear-all-label-icon: civic-color('secondary') !default;
 $civic-large-filter-dark-background-color: civic-color-shade-dark(45) !default;
 $civic-large-filter-dark-border-color: civic-color-shade-dark(30) !default;
 $civic-large-filter-dark-filters-legend-color: civic-color('neutral') !default;
@@ -1268,6 +1270,8 @@ $civic-large-filter-dark-mobile-toggle-display-border-color: civic-color-shade-d
 $civic-large-filter-dark-dropdown-filter-border-color: civic-color-shade-dark(15) !default;
 $civic-large-filter-dark-mobile-overlay-background-color: $civic-mobile-navigation-dark-panel-background-color !default;
 $civic-large-filter-dark-mobile-filter-title-color: civic-color('neutral') !default;
+$civic-large-filter-dark-mobile-clear-all-label-color: civic-color('neutral') !default;
+$civic-large-filter-dark-mobile-clear-all-label-icon: civic-color('neutral') !default;
 
 //
 // Promo.

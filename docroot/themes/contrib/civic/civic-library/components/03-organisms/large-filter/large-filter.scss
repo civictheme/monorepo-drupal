@@ -225,11 +225,11 @@
 
     #{$root}__mobile-clear-container {
       #{$root}__clear-all-label {
-        color: civic-color('secondary');
+        color: $civic-large-filter-light-mobile-clear-all-label-color;
       }
 
       svg {
-        fill: civic-color('secondary');
+        fill: $civic-large-filter-light-mobile-clear-all-label-icon;
       }
     }
 
@@ -294,13 +294,13 @@
       }
     }
 
-    #{$root}__mobile-clear-container & {
+    #{$root}__mobile-clear-container {
       #{$root}__clear-all-label {
-        // color: civic-color('secondary');
+        color: $civic-large-filter-dark-mobile-clear-all-label-color;
       }
 
       svg {
-        // fill: civic-color('secondary');
+        fill: $civic-large-filter-dark-mobile-clear-all-label-icon;
       }
     }
 
