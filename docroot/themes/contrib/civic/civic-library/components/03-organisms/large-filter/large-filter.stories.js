@@ -31,6 +31,10 @@ export const LargeFilter = () => {
     filter_title: text('Filter title', 'Filter search results by:', generalKnobTab),
     tags_title: text('Tag title', 'Selected filters:', generalKnobTab),
     clear_text: text('Clear all button text', 'Clear all', generalKnobTab),
+    filter_text: text('Filter button text', 'Filter', generalKnobTab),
+    cancel_text: text('Cancel button text', 'Cancel', generalKnobTab),
+    apply_text: text('Apply button text', 'Apply', generalKnobTab),
+    filter_count_suffix: text('Filter suffixes', '{"1": "filter applied", "default": "filters applied"}', generalKnobTab),
   };
 
   let count = 0;

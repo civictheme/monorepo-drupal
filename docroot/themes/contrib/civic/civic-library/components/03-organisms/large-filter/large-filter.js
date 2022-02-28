@@ -6,7 +6,7 @@ function CivicLargeFilter(el) {
   this.clearAllButton = this.el.querySelector('[data-large-filter-clear]');
   this.selectedFiltersElement = this.el.querySelector('[data-large-filter-selected-filters]');
   this.mobileSelectedFiltersElement = this.el.querySelector('[data-large-filter-mobile-selected-filters]');
-  this.mobileToggleButton = this.el.querySelector('[data-large-filter-mobile-toggle]');
+  this.mobileOpenButton = this.el.querySelector('[data-large-filter-mobile-toggle]');
   this.mobileCancelButton = this.el.querySelector('[data-large-filter-mobile-cancel]');
   this.mobileOverlay = this.el.querySelector('[data-large-filter-mobile-overlay]');
   this.mobileToggleDisplay = this.el.querySelector('[data-large-filter-mobile-toggle-display]');
@@ -78,7 +78,7 @@ CivicLargeFilter.prototype.init = function () {
   this.filterElement.addEventListener('change', this.filterElementChangeEvent.bind(this));
   this.tagElement.addEventListener('click', this.tagElementChangeEvent.bind(this));
   this.clearAllButton.addEventListener('click', this.clearElementClickEvent.bind(this));
-  this.mobileToggleButton.addEventListener('click', this.toggleOverlayElementClickEvent.bind(this));
+  this.mobileOpenButton.addEventListener('click', this.mobileOpenElementClickEvent.bind(this));
   this.mobileCancelButton.addEventListener('click', this.mobileCancelElementClickEvent.bind(this));
   this.mobileApplyButton.addEventListener('click', this.mobileApplyElementClickEvent.bind(this));
 
@@ -103,7 +103,6 @@ CivicLargeFilter.prototype.init = function () {
   const { CivicResponsive } = window;
   const activeMQ = CivicResponsive.prototype.getActiveMediaQuery();
   this.isMobile = CivicResponsive.prototype.matchExpr('<m', activeMQ.breakpoint);
-  this.isOverlayOpen = false;
   this.updateTagContainerPosition();
   window.addEventListener('civic-responsive', (evt) => {
     const { breakpoint } = evt.detail;
@@ -136,18 +135,21 @@ CivicLargeFilter.prototype.updateTagContainerPosition = function () {
 };
 
 /**
- * TODO - Add.
+ * Mobile open handler.
+ * Remember current form state.
+ * 'data-flyout-open-trigger' on button will handle opening flyout.
  */
-CivicLargeFilter.prototype.toggleOverlayElementClickEvent = function (e) {
+CivicLargeFilter.prototype.mobileOpenElementClickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
   e.stopImmediatePropagation();
   this.revertState = JSON.stringify(this.state);
-  this.isOverlayOpen = !this.isOverlayOpen;
 };
 
 /**
- * TODO - Add.
+ * Mobile cancel handler.
+ * Revert form state to remembered state.
+ * 'data-large-filter-mobile-cancel' on button will handle closing flyout.
  */
 CivicLargeFilter.prototype.mobileCancelElementClickEvent = function (e) {
   e.stopPropagation();
@@ -157,14 +159,14 @@ CivicLargeFilter.prototype.mobileCancelElementClickEvent = function (e) {
     this.state = JSON.parse(this.revertState);
   }
   this.redraw();
-  this.isOverlayOpen = false;
 };
 
 /**
- * TODO - Add.
+ * Mobile apply handler.
+ * Trigger flyout to close.
+ * This won't stop propagation to allow a wrapping form element to submit.
  */
 CivicLargeFilter.prototype.mobileApplyElementClickEvent = function (e) {
-  this.isOverlayOpen = false;
   window.CivicFlyout.prototype.closeAllTriggerClickEvent(e);
 };
 
@@ -295,9 +297,24 @@ CivicLargeFilter.prototype.redrawSelected = function () {
     }
   });
   this.mobileToggleDisplay.classList.toggle('civic-large-filter__mobile-toggle-display--hidden', (count === 0));
-  this.mobileToggleDisplay.innerHTML = `${count} ${this.mobileToggleSuffix}`;
+  this.mobileToggleDisplay.innerHTML = `${count} ${this.pluralize(this.mobileToggleSuffix, count)}`;
   this.tagElement.innerHTML = `<ul class="civic-large-filter__tags-list">${html}</ul>`;
 };
+
+/**
+ * Pluralize.
+ * Return the plural version based on count.
+ */
+CivicLargeFilter.prototype.pluralize = function (pluralJSON, count) {
+  const obj = JSON.parse(decodeURIComponent(pluralJSON));
+  let puralStr = '';
+  if (obj[count]) {
+    puralStr = obj[count];
+  } else if (obj.default) {
+    puralStr = obj.default;
+  }
+  return puralStr;
+}
 
 /**
  * Redraw clear button.
