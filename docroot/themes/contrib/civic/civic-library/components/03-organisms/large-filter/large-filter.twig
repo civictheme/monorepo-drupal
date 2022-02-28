@@ -31,6 +31,7 @@
 {% if filters is not empty %}
   <div class="civic-large-filter {{ modifier_class }}" data-component-name="civic-large-filter" data-large-filter-theme="{{ theme }}">
     {% include "@atoms/button/button.twig" with {
+      theme: theme,
       type: 'none',
       text: filter_text,
       kind: 'button',
@@ -46,10 +47,11 @@
     <div class="civic-large-filter-flyout hide-m" data-large-filter-mobile-overlay data-flyout data-flyout-direction="right">
       <div class="civic-large-filter__mobile-overlay" data-flyout-panel>
         {% include '@organisms/mobile-navigation/mobile-navigation-close.twig' with {
+          theme: theme,
           text: cancel_text,
           attributes: 'data-large-filter-mobile-cancel data-allow-event-bubble',
           modifier_class: 'civic-large-filter__mobile-cancel',
-        } %}
+        } only %}
         <div class="container">
           <div class="row">
             <div class="col-xxs-12">
@@ -66,6 +68,7 @@
         <div class="civic-large-filter__mobile-container" data-large-filter-mobile-container></div>
         <div class="container civic-large-filter__mobile-apply-container">
           {% include "@atoms/button/button.twig" with {
+            theme: theme,
             text: apply_text,
             type: 'primary',
             kind: 'button',

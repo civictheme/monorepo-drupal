@@ -304,6 +304,10 @@ CivicLargeFilter.prototype.redrawSelected = function () {
 /**
  * Pluralize.
  * Return the plural version based on count.
+ * @param {string} pluralJSON
+ *   A URL encoded JSON string in the format { "1": "Item", "default": "Items" }.
+ * @param {number} count
+ *   The counter used retrieve the plural.
  */
 CivicLargeFilter.prototype.pluralize = function (pluralJSON, count) {
   const obj = JSON.parse(decodeURIComponent(pluralJSON));
