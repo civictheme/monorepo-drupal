@@ -14,7 +14,10 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
 <div class="civic-basic-filter {{ theme_class }}" data-component-name="civic-basic-filter">
-  <div class="civic-basic-filter__list">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="civic-basic-filter__list">
     {% block filters %}
       {% for item in items %}
         <div class="civic-basic-filter__list--row">
@@ -28,5 +31,8 @@
         </div>
       {% endfor %}
     {% endblock %}
+  </div>
+      </div>
+    </div>
   </div>
 </div>

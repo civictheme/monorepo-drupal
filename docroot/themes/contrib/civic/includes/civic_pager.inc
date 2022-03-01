@@ -17,25 +17,20 @@ function civic_preprocess_pager(&$variables) {
   // Add required class for ajax pagination.
   $variables['pager_items_modifier_class'] = 'js-pager__items';
 
-  if (isset($variables['pager']['#tags'])) {
-    // Drupal seems to want to post link to first and last page
-    // and the same link in the items - we only want to print the link once.
-    $named_pages = [
-      'first',
-      'last',
+  $variables['total_pages'] = $pager->getTotalPages();
+  $variables['current'] = $variables['current'] ?? $pager->getCurrentPage() + 1;
+  if ($variables['total_pages'] > 1) {
+    // Add in previous and next view defined text with defined tag keys.
+    // @see \Drupal\views\Plugin\views\pager\Full::render().
+    $controls = [
+      1 => 'previous',
+      3 => 'next',
     ];
-    foreach ($named_pages as $named_page) {
-      if (!empty($variables['items'][$named_page])) {
-        $page_exists = (bool) array_filter($variables['items']['pages'], function ($page) use ($variables, $named_page) {
-          return ($page['href'] === $variables['items'][$named_page]['href']);
-        });
-        // We remove duplicated pagination link.
-        if ($page_exists) {
-          unset($variables['items'][$named_page]);
-        }
-        else {
-          $variables['items'][$named_page]['text'] = $named_page === 'last' ? $pager->getTotalPages() : 1;
-        }
+    foreach ($controls as $tag_key => $control) {
+      if (!isset($variables['items'][$control])) {
+        $variables['items'][$control] = [
+          'text' => $variables['pager']['#tags'][$tag_key],
+        ];
       }
     }
   }

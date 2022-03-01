@@ -4,6 +4,7 @@ description: 'Core feature for site settings.'
 core_version_requirement: ^9
 package: Civic
 dependencies:
+  # Only provide a list of modules that Civic is not dependent on.
   - admin_toolbar:admin_toolbar
   - admin_toolbar:admin_toolbar_tools
   - adminimal_admin_toolbar:adminimal_admin_toolbar
@@ -15,13 +16,3 @@ dependencies:
   - stage_file_proxy:stage_file_proxy
   - styleguide:styleguide
   - simple_sitemap:simple_sitemap
-  # Required for Civic theme.
-  - components:components
-  - drupal:block_content
-  - field_group:field_group
-  - menu_block:menu_block
-  - paragraphs:paragraphs
-  - drupal:inline_form_errors
-  - webform:webform
-  - drupal:rest
-  - menu_ui

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 82f5b00f-1b04-4dfe-9e50-c466bd3fedd2
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_dsd.jpg
+  uri:
+    -
+      value: 'public://corporate_dsd.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 757084
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1644890574

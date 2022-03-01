@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: b1778031-4905-4f37-a8bd-5652f0382822
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_glacier.jpg
+  uri:
+    -
+      value: 'public://corporate_glacier.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 1178864
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007004

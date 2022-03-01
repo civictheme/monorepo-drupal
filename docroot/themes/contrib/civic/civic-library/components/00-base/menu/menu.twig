@@ -45,21 +45,17 @@
       ] %}
       <li class="{{ item_classes|join(' ') }}" {{ item.attributes|default('') }}>
 
-        {% block menu_item_link %}
-          {% include '@atoms/link/link.twig' with {
-            theme: theme,
-            text: item.title,
-            title: item.title,
-            url: item.url,
-            modifier_class: 'civic-menu__item__link',
-            attributes: item.link_attributes|default(''),
-          } only %}
-        {% endblock %}
+        {% include '@atoms/link/link.twig' with {
+          theme: theme,
+          text: item.title,
+          title: item.title,
+          url: item.url,
+          modifier_class: 'civic-menu__item__link',
+          attributes: item.link_attributes|default(''),
+        } only %}
 
         {% if item.below %}
-          {% block menu_item_below %}
-            {{ menus.menu_links(item.below, menu_level + 1, classes) }}
-          {% endblock %}
+          {{ menus.menu_links_below(item.below, menu_level + 1, classes, item) }}
         {% endif %}
 
       </li>
@@ -72,6 +68,18 @@
       </div>
     {% endif %}
   {% endif %}
+{% endmacro %}
+
+{#
+  Separate macro to allow "cleaner" overrides of parts of the menu.
+
+  Twig does not support overridable blocks in macro, so the only option is to
+  clone this whole file and override it as required.
+  The main macro is split into multiple macros to allow to override only the
+  required parts while preserving (cloned) main generation macro.
+#}
+{% macro menu_links_below(items, menu_level, modifier_class, parent_item) %}
+  {{ menus.menu_links(items, menu_level, modifier_class) }}
 {% endmacro %}
 
 {{ menus.menu_links(items, 0, modifier_class) }}

@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 04ee0921-1bea-4795-b670-3b0f75b17645
+  bundle: civic_image
+  default_langcode: en
+  depends:
+    9f9718c6-9f12-4e44-be68-cf82e94ab271: file
+default:
+  revision_user:
+    -
+      target_id: 18
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 18
+  name:
+    -
+      value: Clownfish3
+  created:
+    -
+      value: 1645067348
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 9f9718c6-9f12-4e44-be68-cf82e94ab271
+      alt: 'Image of clownfish swimming'
+      title: ''
+      width: 1024
+      height: 768

@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ae7d79af-9aa4-455d-a415-26191e3ba7c4
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_twelve-apostles.jpg
+  uri:
+    -
+      value: 'public://corporate_twelve-apostles.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 191177
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007398

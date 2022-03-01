@@ -316,6 +316,18 @@ $civic-elevations: (
 ) !default;
 
 //
+// Flyout.
+//
+$civic-flyout-duration: 0.5s !default;
+$civic-flyout-direction-transforms: (
+  'right': translateX(100%),
+  'left': translateX(-100%),
+  'top': translateY(-100%),
+  'bottom': translateY(100%),
+) !default;
+$civic-flyout-zindex: 1000 !default;
+
+//
 // Misc Variables.
 //
 

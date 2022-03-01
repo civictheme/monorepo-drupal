@@ -93,7 +93,17 @@ installation of `civic_demo`. We do not capture configuration for `civic_demo`.
 
 ## Demo content export
 
-    drush dcer --folder=modules/custom/civic_default_content/content <entity_type> <entity_id>
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content <entity_type> <entity_id>
 
-    # Example
-    drush dcer --folder=modules/custom/civic_default_content/content node 50
+    # Example 1: export a single node with all dependencies
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content node 50
+
+    # Example 2: export all nodes, blocks and menu links.
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content node
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content block_content
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content menu_link_content
+
+    # Example 3: export all nodes, blocks and menu links.
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content node
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content block_content
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content menu_link_content

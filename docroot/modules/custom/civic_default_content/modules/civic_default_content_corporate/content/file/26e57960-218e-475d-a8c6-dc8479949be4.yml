@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 26e57960-218e-475d-a8c6-dc8479949be4
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_great-barrier-reef.jpg
+  uri:
+    -
+      value: 'public://corporate_great-barrier-reef.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 517407
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645005124

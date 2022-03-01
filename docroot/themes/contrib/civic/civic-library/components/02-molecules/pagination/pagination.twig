@@ -23,6 +23,20 @@
     <h4 id="{{ heading_id }}" class="visually-hidden">{{ 'Pagination' }}</h4>
 
     <ul class="civic-pager__items {{ pager_items_modifier_class }}">
+      {# Print first item if we are not on the first page. #}
+      {% if items.first %}
+        <li class="civic-pager__item civic-pager__item--first hide-xxs show-l">
+          {% include '@molecules/directional-link/directional-link.twig' with {
+            theme: theme,
+            text: items.first.text|default('First1'),
+            title: 'Go to first page',
+            context: 'First page',
+            url: items.first.href,
+            direction: 'left',
+          } only %}
+        </li>
+      {% endif %}
+
       {# Print previous item. #}
       <li class="civic-pager__item civic-pager__item--previous">
         {% if current - 1 %}
@@ -47,23 +61,11 @@
           &hellip;
         </li>
       {% endif %}
-      {# Print first item if we are not on the first page. #}
-      {% if items.first %}
-        <li class="civic-pager__item civic-pager__item--first">
-          {% include '@molecules/directional-link/directional-link.twig' with {
-            theme: theme,
-            text: items.first.text|default('First'),
-            title: 'Go to first page',
-            context: 'First page',
-            url: items.first.href,
-            direction: 'left',
-          } only %}
-        </li>
-      {% endif %}
+
 
       {# Now generate the actual pager piece. #}
       {% for key, item in items.pages %}
-        <li class="civic-pager__item {{ current == key ? ' civic-pager__item--active' : '' }}">
+        <li class="civic-pager__item hide-xxs show-l {{ current == key ? ' civic-pager__item--active' : '' }}">
           {% if current == key %}
             {% set title = 'Current page' %}
           {% else %}
@@ -82,14 +84,14 @@
 
       {# Add an ellipsis if there are further next pages. #}
       {% if ellipses.next %}
-        <li class="civic-pager__item civic-pager__item--ellipsis" role="presentation">
+        <li class="civic-pager__item civic-pager__item--ellipsis  hide-xxs show-l" role="presentation">
           &hellip;
         </li>
       {% endif %}
 
       {# Print next item if we are not on the last page. #}
       <li class="civic-pager__item civic-pager__item--next">
-        {% if current != items.pages|length %}
+        {% if current < total_pages %}
           {% set title = 'Go to next page - page %s'|format(current + 1) %}
         {% else %}
           {% set title = 'Go to next page' %}
@@ -99,15 +101,15 @@
           text: items.next.text|default('Next'),
           title: title,
           context: 'Next page',
-          url: items.previous.href,
-          disabled: (current != items.pages|length) ? 0 : 1,
+          url: items.next.href,
+          disabled: (current < total_pages) ? 0 : 1,
           direction: 'right',
         } only %}
       </li>
 
       {# Print last item if we are not on the last page. #}
       {% if items.last %}
-        <li class="civic-pager__item civic-pager__item--last">
+        <li class="civic-pager__item civic-pager__item--last hide-xxs show-l">
           {% include '@molecules/directional-link/directional-link.twig' with {
             theme: theme,
             text: items.last.text|default('Last'),

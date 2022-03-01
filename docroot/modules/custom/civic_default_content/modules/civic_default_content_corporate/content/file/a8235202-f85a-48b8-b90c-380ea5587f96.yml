@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: a8235202-f85a-48b8-b90c-380ea5587f96
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: corporate_icon_facebook.svg
+  uri:
+    -
+      value: 'public://corporate_icon_facebook.svg'
+  filemime:
+    -
+      value: image/svg+xml
+  filesize:
+    -
+      value: 456
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1642742807

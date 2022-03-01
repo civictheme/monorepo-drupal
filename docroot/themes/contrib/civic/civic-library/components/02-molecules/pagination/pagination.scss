@@ -32,6 +32,10 @@
     }
   }
 
+  .civic-directional-link {
+    padding: 0 civic-space();
+  }
+
   &.civic-theme-light {
     color: $civic-pagination-light-link-color;
 

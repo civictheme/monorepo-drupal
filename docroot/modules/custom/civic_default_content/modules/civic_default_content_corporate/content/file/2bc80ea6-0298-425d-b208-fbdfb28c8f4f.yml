@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 2bc80ea6-0298-425d-b208-fbdfb28c8f4f
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_starfish.jpg
+  uri:
+    -
+      value: 'public://corporate_starfish.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 200815
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645067281

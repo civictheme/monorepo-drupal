@@ -60,15 +60,6 @@ function _civic_preprocess_node__default(&$variables) {
 }
 
 /**
- * Preprocess Civic Page nodes.
- *
- * @SuppressWarnings(PHPMD)
- */
-function _civic_preprocess_node__civic_page__full(&$variables) {
-  $variables['components'] = $variables['content']['field_c_n_components'];
-}
-
-/**
  * Preprocess Civic alert nodes.
  *
  * @SuppressWarnings(PHPMD)

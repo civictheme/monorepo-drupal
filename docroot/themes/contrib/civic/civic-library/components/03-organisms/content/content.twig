@@ -4,7 +4,9 @@
  * Content component.
  *
  * Renders as edge-to-edge if sidebar is not provided, or contained if the
- * sidebar is provided.
+ * sidebar is configured for the page or if layout is not handled at content level.
+ *
+ * Page allows for multiple layouts to handle the layout of the content area of the page.
  *
  * All inner components must manage their own layout whether they are rendered
  * with or without a sidebar. Current Civic grid .container implementation
@@ -15,6 +17,7 @@
  * - content_top: [string] Content top elements.
  * - content: [string] Content elements.
  * - content_bottom: [string] Content bottom elements.
+ * - contained: [bool] Whether the page is to be contained for non-layout managed pages.
  * - sidebar: [string] Sidebar elements.
  * - theme: [string] Theme: light, dark.
  * - modifier_class: [string] Classes to modify the default component styling.
@@ -22,7 +25,6 @@
  * - content_attributes: [string] Content attributes.
  */
 #}
-
 {% set has_sidebar = sidebar is not empty %}
 {% set container_class = has_sidebar or contained ? 'civic-content--contained container' : '' %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}

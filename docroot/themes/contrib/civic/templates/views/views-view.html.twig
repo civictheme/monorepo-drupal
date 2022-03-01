@@ -32,18 +32,18 @@
  * @ingroup themeable
  */
 #}
-{%
-  set classes = [
-    dom_id ? 'js-view-dom-id-' ~ dom_id,
-  ]
-%}
-<div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-  {{ title }}
-  {{ title_suffix }}
 
-  {{ exposed }}
+{% extends '@organisms/listing/listing.twig' %}
 
+{% block title %}
+  <div class="civic-listing__title">
+    {{ title_prefix }}
+    {{ title }}
+    {{ title_suffix }}
+  </div>
+{% endblock %}
+
+{% block header %}
   {% if header %}
     <header class="civic-listing__header" tabindex="0">
       <div class="container">
@@ -55,24 +55,16 @@
       </div>
     </header>
   {% endif %}
-
   {{ attachment_before }}
+{% endblock %}
 
-  {% if rows -%}
-    {{ rows }}
-  {% elseif empty -%}
-    {{ empty }}
-  {% endif %}
-  {{ pager }}
-
+{% block footer %}
   {{ attachment_after }}
   {{ more }}
-
   {% if footer %}
-    <footer>
+    <footer class="civic-listing__footer">
       {{ footer }}
     </footer>
   {% endif %}
-
   {{ feed_icons }}
-</div>
+{% endblock %}

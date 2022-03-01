@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 053b2b9a-5749-46ce-bb22-9099a6834a06
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_power-plant.jpg
+  uri:
+    -
+      value: 'public://corporate_power-plant.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 181409
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645007799

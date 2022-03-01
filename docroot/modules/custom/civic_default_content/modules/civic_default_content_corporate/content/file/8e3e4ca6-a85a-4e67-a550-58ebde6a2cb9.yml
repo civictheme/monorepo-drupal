@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 8e3e4ca6-a85a-4e67-a550-58ebde6a2cb9
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_fire.jpg
+  uri:
+    -
+      value: 'public://corporate_fire.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 186731
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645006800

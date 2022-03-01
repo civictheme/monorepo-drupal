@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: f9278a83-d921-4890-ad30-e0d3050ef74a
+  bundle: civic_image
+  default_langcode: en
+  depends:
+    2d198020-d27e-4282-b716-cc436c2dd893: file
+default:
+  revision_user:
+    -
+      target_id: 18
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 18
+  name:
+    -
+      value: Rainforest.jpg
+  created:
+    -
+      value: 1645009237
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 2d198020-d27e-4282-b716-cc436c2dd893
+      alt: 'Photo of rainforest'
+      title: ''
+      width: 1024
+      height: 768

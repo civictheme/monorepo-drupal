@@ -10,6 +10,12 @@ Feature: Tests the Civic filtering system within blocks and view pages.
       | [TEST] Topic 1 |
       | [TEST] Topic 2 |
       | [TEST] Topic 3 |
+      | [TEST] Topic 4 |
+      | [TEST] Topic 5 |
+      | [TEST] Topic 6 |
+      | [TEST] Topic 7 |
+      | [TEST] Topic 8 |
+      | [TEST] Topic 9 |
     Given "civic_page" content:
       | title                           | status | field_c_n_topics                               |
       | [TEST] Page Listing component   | 1      |                                                |
@@ -66,6 +72,7 @@ Feature: Tests the Civic filtering system within blocks and view pages.
     And I should see an "div.civic-listing__body .views-exposed-form" element
     # Test JS filtering and the loaded view results.
     And I press the "Content type" button
+    And I wait 1 second
     And I select the radio button "Page"
     And I press the "Content type" button
     And I press the "Apply" button
@@ -77,7 +84,14 @@ Feature: Tests the Civic filtering system within blocks and view pages.
     And I should see "[TEST] Topic 3 Page" in the ".civic-card-container" element
     And I should see "[TEST] No Topics Page" in the ".civic-card-container" element
     And I should not see "[TEST] Unpublished page" in the ".civic-card-container" element
+    # Test search dropdown filtering.
     And I press the "Topics" button
+    And I wait 1 second
+    And I fill in "Filter by Keyword" with "Topic 1"
+    And I wait 1 second
+    And I should see "[TEST] Topic 1" in the "#edit-topic" element
+    And I should not see "[TEST] Topic 2" in the "#edit-topic" element
+    And I should not see "[TEST] Topic 3" in the "#edit-topic" element
     And I check the box "[TEST] Topic 1"
     And I press the "Topics" button
     And I should see "Page" in the ".civic-large-filter__selected-filters" element
@@ -119,6 +133,7 @@ Feature: Tests the Civic filtering system within blocks and view pages.
     And I should see an ".views-exposed-form" element
     # Test JS filtering and the loaded view results.
     And I press the "Content type" button
+    And I wait 1 second
     And I select the radio button "Page"
     And I press the "Content type" button
     And I wait 1 second

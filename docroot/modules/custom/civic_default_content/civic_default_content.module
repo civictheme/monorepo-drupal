@@ -6,27 +6,27 @@
  */
 
 /**
- * Implements hook_module_implements_alter().
+ * Helper for implementations of hook_module_implements_alter().
  */
-function civic_default_content_module_implements_alter(&$implementations, $hook) {
+function _civic_default_content_module_implements_alter($module, &$implementations, $hook) {
   if ($hook == 'modules_installed') {
-    $group = $implementations['civic_default_content'];
-    unset($implementations['civic_default_content']);
-    $implementations['civic_default_content'] = $group;
+    $group = $implementations[$module];
+    unset($implementations[$module]);
+    $implementations[$module] = $group;
   }
 }
 
 /**
- * Implements hook_modules_installed().
+ * Helper for implementations of hook_modules_installed().
  */
-function civic_default_content_modules_installed($modules, $is_syncing) {
-  if (in_array('civic_default_content', $modules)) {
-    module_load_include('php', 'civic_default_content', 'civic_default_content.post_update');
+function _civic_default_content_modules_installed($module, $modules) {
+  if (in_array($module, $modules)) {
+    module_load_include('php', $module, $module . '.post_update');
     // Run all post-update functions when installing this module.
     $key_value = \Drupal::keyValue('post_update');
     $executed_updates = $key_value->get('existing_updates', []);
     foreach ($executed_updates as $function) {
-      if (strpos($function, 'civic_default_content_post_update_') === 0) {
+      if (strpos($function, $module . '_post_update_') === 0) {
         $sandbox = [];
         call_user_func($function, $sandbox);
       }

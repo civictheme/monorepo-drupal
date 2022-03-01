@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 4729baf2-63ab-48e2-9c47-ce82acc1f0d1
+  bundle: civic_image
+  default_langcode: en
+  depends:
+    93b3fe72-f6fe-4608-b904-cdf6d8037397: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 18
+  name:
+    -
+      value: FishInWater.jpg
+  created:
+    -
+      value: 1645007523
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 93b3fe72-f6fe-4608-b904-cdf6d8037397
+      alt: 'Fish swimming in water'
+      title: ''
+      width: 1024
+      height: 768

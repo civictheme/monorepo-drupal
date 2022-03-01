@@ -82,12 +82,12 @@ function _civic_listing_element(Paragraph $paragraph) {
     if ($show_filters) {
       /** @var \Drupal\views\Plugin\views\exposed_form\ExposedFormPluginInterface $exposed_form */
       $exposed_form = $view->display_handler->getPlugin('exposed_form');
-      $element['exposed_form'] = $exposed_form->renderExposedForm(TRUE);
+      $view->exposed_widgets = $exposed_form->renderExposedForm();
       // Fixes drupal views bug where if there is a page display within a view
       // even if you are wanting to render the block view form the action path
       // of the exposed form points to the page display view.
       // @see https://www.drupal.org/project/drupal/issues/2844823
-      $element['exposed_form']['#action'] = Url::fromRoute('<current>')->toString();
+      $view->exposed_widgets['#action'] = Url::fromRoute('<current>')->toString();
       $view->display_handler->displaysExposed();
     }
     $element['view'] = $view->render();

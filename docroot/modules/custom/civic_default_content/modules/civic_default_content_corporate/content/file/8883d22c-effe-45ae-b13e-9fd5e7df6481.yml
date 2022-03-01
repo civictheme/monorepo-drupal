@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 8883d22c-effe-45ae-b13e-9fd5e7df6481
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 18
+  filename:
+    -
+      value: corporate_underwater.jpg
+  uri:
+    -
+      value: 'public://corporate_underwater.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 209019
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1645065765
