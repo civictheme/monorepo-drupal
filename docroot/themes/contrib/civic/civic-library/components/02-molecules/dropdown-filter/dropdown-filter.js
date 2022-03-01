@@ -22,6 +22,27 @@ function CivicDropdownFilterSearchable(el) {
       this.init();
     }
   }
+
+  if (this.el.hasAttribute('data-responsive')) {
+    this.isGroupEnabled = null;
+    const groupBreakpoint = this.el.getAttribute('data-collapsible-group-enabled-breakpoint')
+    window.addEventListener('civic-responsive', (evt) => {
+      let isBreakpoint = false;
+      const evaluationResult = evt.detail.evaluate(groupBreakpoint, () => {
+        // Is within breakpoint.
+        isBreakpoint = true;
+      });
+      if (evaluationResult === false) {
+        // Not within breakpoint.
+        isBreakpoint = false;
+      }
+      if (isBreakpoint !== this.isGroupEnabled) {
+        this.isGroupEnabled = isBreakpoint;
+        this.el.classList.toggle('civic-dropdown-filter--overlay', this.isGroupEnabled);
+        this.el.classList.toggle('civic-dropdown-filter--inline', !this.isGroupEnabled);
+      }
+    }, false);
+  }
 }
 
 /**

@@ -15,6 +15,7 @@
  * - cancel_text: [string] Text for cancel button.
  * - apply_text: [string] Text for apply button.
  * - filter_count_suffix: [string] JSON formatted suffixes { "1": "Item", "default": "Items" }
+ * - desktop_breakpoint: [string] breakpoint to display desktop (large) view.
  */
 #}
 
@@ -29,7 +30,15 @@
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if filters is not empty %}
-  <div class="civic-large-filter {{ modifier_class }}" data-component-name="civic-large-filter" data-large-filter-theme="{{ theme }}">
+  <div
+    class="civic-large-filter {{ modifier_class }}"
+    data-component-name="civic-large-filter"
+    data-large-filter-theme="{{ theme }}"
+    {% if desktop_breakpoint %}
+      data-responsive
+      data-large-filter-desktop-breakpoint="{{ desktop_breakpoint }}"
+    {% endif %}
+  >
     {% include "@atoms/button/button.twig" with {
       theme: theme,
       type: 'none',

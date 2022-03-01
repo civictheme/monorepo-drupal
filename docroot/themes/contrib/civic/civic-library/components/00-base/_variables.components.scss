@@ -1236,6 +1236,7 @@ $civic-dropdown-filter-dark-search-icon: url("data:image/svg+xml,%3Csvg xmlns='h
 //
 // Large filter.
 //
+$civic-large-filter-breakpoint: 'm' !default;
 $civic-large-filter-light-background-color: civic-color('neutral') !default;
 $civic-large-filter-light-border-color: civic-color-neutral(20) !default;
 $civic-large-filter-light-filters-legend-color: civic-color('secondary') !default;

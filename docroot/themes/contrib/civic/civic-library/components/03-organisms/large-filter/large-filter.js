@@ -15,7 +15,7 @@ function CivicLargeFilter(el) {
   this.state = {};
   this.revertState = null;
   this.initialisedState = false;
-  this.isMobile = null;
+  this.isDesktop = true;
   this.fieldTypes = {
     input_checkbox: {
       emptyValue: false,
@@ -100,21 +100,24 @@ CivicLargeFilter.prototype.init = function () {
   });
 
   // Mobile support.
-  window.addEventListener('civic-responsive', (evt) => {
-    let isBreakpoint = false;
-    const evaluationResult = evt.detail.evaluate('<m', () => {
-      // Is within breakpoint.
-      isBreakpoint = true;
-    });
-    if (evaluationResult === false) {
-      // Not within breakpoint.
-      isBreakpoint = false;
-    }
-    if (isBreakpoint !== this.isMobile) {
-      this.isMobile = isBreakpoint;
-      this.updateTagContainerPosition();
-    }
-  }, false);
+  const desktopBreakpoint = this.el.getAttribute('data-large-filter-desktop-breakpoint');
+  if (desktopBreakpoint) {
+    window.addEventListener('civic-responsive', (evt) => {
+      let isBreakpoint = false;
+      const evaluationResult = evt.detail.evaluate(desktopBreakpoint, () => {
+        // Is within breakpoint.
+        isBreakpoint = true;
+      });
+      if (evaluationResult === false) {
+        // Not within breakpoint.
+        isBreakpoint = false;
+      }
+      if (isBreakpoint !== this.isDesktop) {
+        this.isDesktop = isBreakpoint;
+        this.updateTagContainerPosition();
+      }
+    }, false);
+  }
 
   this.initialisedState = true;
 };
@@ -124,17 +127,17 @@ CivicLargeFilter.prototype.init = function () {
  * Mobile will show tags above the filters, desktop will show below.
  */
 CivicLargeFilter.prototype.updateTagContainerPosition = function () {
-  const tagsContainerSelector = this.isMobile ? '[data-large-filter-mobile-tags-container]' : '[data-large-filter-tags-container]';
+  const tagsContainerSelector = this.isDesktop ? '[data-large-filter-tags-container]': '[data-large-filter-mobile-tags-container]';
   this.el.querySelector(tagsContainerSelector).appendChild(this.tagElement);
 
-  const btnContainerSelector = this.isMobile ? '[data-large-filter-mobile-clear-container]' : '[data-large-filter-clear-container]';
+  const btnContainerSelector = this.isDesktop ?  '[data-large-filter-clear-container]' : '[data-large-filter-mobile-clear-container]';
   this.el.querySelector(btnContainerSelector).appendChild(this.clearAllButton);
 
-  const elementContainer = this.isMobile ? '[data-large-filter-mobile-container]' : '[data-large-filter-desktop-container]';
+  const elementContainer = this.isDesktop ? '[data-large-filter-desktop-container]' : '[data-large-filter-mobile-container]';
   this.el.querySelector(elementContainer).appendChild(this.filterComponent);
 
   // Enable / Disable auto-submit on mobile.
-  this.el.setAttribute('data-large-filter-auto-submit', !this.isMobile);
+  this.el.setAttribute('data-large-filter-auto-submit', this.isDesktop);
 };
 
 /**

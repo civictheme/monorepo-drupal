@@ -56,7 +56,7 @@
     width: 100%;
     padding: civic-space(2) 0;
 
-    @include civic-breakpoint(m) {
+    @include civic-breakpoint($civic-large-filter-breakpoint) {
       display: inline-flex;
       padding: civic-space(3) 0;
     }
@@ -64,7 +64,7 @@
     & > legend {
       @include civic-typography('text-regular');
 
-      @include civic-breakpoint(m) {
+      @include civic-breakpoint($civic-large-filter-breakpoint) {
         display: block;
         float: left;
         margin-right: civic-space(5);
@@ -74,7 +74,7 @@
     .civic-dropdown-filter {
       border-bottom: 1px solid transparent;
 
-      @include civic-breakpoint(m) {
+      @include civic-breakpoint($civic-large-filter-breakpoint) {
         margin-right: civic-space(3);
         border-bottom: 0;
       }
@@ -82,7 +82,7 @@
       &:first-of-type {
         border-top: 1px solid transparent;
 
-        @include civic-breakpoint(m) {
+        @include civic-breakpoint($civic-large-filter-breakpoint) {
           border-top: 0;
         }
       }
@@ -92,7 +92,7 @@
   &__selected-filters {
     display: none;
 
-    @include civic-breakpoint(m) {
+    @include civic-breakpoint($civic-large-filter-breakpoint) {
       display: flex;
       align-items: flex-start;
       flex-wrap: nowrap;
@@ -170,7 +170,7 @@
   &.civic-theme-light {
     background-color: $civic-large-filter-light-background-color;
 
-    @include civic-breakpoint(m) {
+    @include civic-breakpoint($civic-large-filter-breakpoint) {
       border-top: 1px solid $civic-large-filter-light-border-color;
       border-bottom: 1px solid $civic-large-filter-light-border-color;
     }
@@ -209,7 +209,7 @@
     }
 
     #{$root}__selected-filters {
-      @include civic-breakpoint(m) {
+      @include civic-breakpoint($civic-large-filter-breakpoint) {
         border-top: 1px solid $civic-large-filter-light-selected-filters-border-color;
       }
     }
@@ -241,7 +241,7 @@
   &.civic-theme-dark {
     background-color: $civic-large-filter-dark-background-color;
 
-    @include civic-breakpoint(m) {
+    @include civic-breakpoint($civic-large-filter-breakpoint) {
       border-top: 1px solid $civic-large-filter-dark-border-color;
       border-bottom: 1px solid $civic-large-filter-dark-border-color;
     }
@@ -280,7 +280,7 @@
     }
 
     #{$root}__selected-filters {
-      @include civic-breakpoint(m) {
+      @include civic-breakpoint($civic-large-filter-breakpoint) {
         border-top: 1px solid $civic-large-filter-dark-selected-filters-border-color;
       }
     }

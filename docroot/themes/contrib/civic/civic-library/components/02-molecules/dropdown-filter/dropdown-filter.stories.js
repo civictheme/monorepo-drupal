@@ -41,6 +41,16 @@ export const DropDownFilter = (knobTab) => {
     generalKnobTab,
   );
 
+  const displayMode = radios(
+    'Display Mode',
+    {
+      Overlay: 'overlay',
+      Inline: 'inline',
+    },
+    'overlay',
+    generalKnobTab,
+  );
+
   const optionNumber = number(
     'Number of options',
     4,
@@ -68,6 +78,8 @@ export const DropDownFilter = (knobTab) => {
     theme,
     filter_text: text('Filter text', 'Filter text', generalKnobTab),
     filter_group: text('Filter group name', 'civic_filter_group', generalKnobTab),
+    filter_group_enabled_breakpoint: boolean('Swap display modes on breakpoint', false, generalKnobTab) ? '>=m' : '',
+    display_mode: displayMode,
     type,
     options_title: boolean('With options title', true, generalKnobTab) ? text('Options title', 'Options title (optional)', generalKnobTab) : '',
     options: children.join(''),

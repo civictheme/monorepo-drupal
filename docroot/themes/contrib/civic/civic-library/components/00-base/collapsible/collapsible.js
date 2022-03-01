@@ -9,6 +9,8 @@
  *   then the second descendant will be used.
  * - data-collapsible-collapsed - indicate that a starting state is collapsed.
  * - data-collapsible-duration - duration in milliseconds. Defaults to 500.
+ * - data-collapsible-group-enabled-breakpoint - enable grouping at breakpoint.
+ *   Needs 'data-responsive' attribute.
  */
 function CivicCollapsible(el) {
   // Use "data-collapsible"'s attribute value to identify if this component was
@@ -77,10 +79,10 @@ function CivicCollapsible(el) {
 
   // Responsive Collapsible Group.
   this.isGroupsEnabled = true;
-  this.disableGroupBp = this.el.hasAttribute('data-responsive-collapsible-group') ? this.el.getAttribute('data-responsive-collapsible-group') : null;
-  if (this.disableGroupBp) {
+  this.groupEnabledBreakpoint = this.el.getAttribute('data-collapsible-group-enabled-breakpoint');
+  if (this.groupEnabledBreakpoint) {
     window.addEventListener('civic-responsive', (evt) => {
-      const evaluationResult = evt.detail.evaluate(this.disableGroupBp, () => {
+      const evaluationResult = evt.detail.evaluate(this.groupEnabledBreakpoint, () => {
         // Is within breakpoint.
         this.isGroupsEnabled = true;
       });
