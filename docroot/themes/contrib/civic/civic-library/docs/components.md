@@ -31,7 +31,7 @@ theme.
 
 Look at `components/01-atoms/demo-button` for the example.
 
-It is made up of four files:
+It is made up of four annotated files:
 - `demo-button.js` - JS library for the component
 - `demo-button.scss` - SCSS styles for the component
 - `demo-button.stories.js` - storybook story for the component (so it appears in storybook)

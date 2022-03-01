@@ -108,4 +108,5 @@ including offset, row-reverse, flex-column among others.
 
 ## Advanced
 For more advanced modification and overriding, the grid system internals are defined within `_variables.base.scss` 
-which provides plenty of options to change the grid system
+which provides plenty of options to change the grid system however this is not recommended as it can have significant
+changes to the design system which may not be at first apparent.
