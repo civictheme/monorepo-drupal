@@ -160,9 +160,15 @@ CivicResponsive.prototype.matchExpr = function (breakpointExpr, breakpoint) {
 };
 
 if (document.querySelectorAll('[data-responsive]').length) {
-  document.addEventListener('DOMContentLoaded', () => {
+  // CivicResponsive needs to run after all civic-responisve
+  // event listeners have been added.
+  // Delay the execution until after other components have been initialized.
+  // Using setTimeout as an interim solution because:
+  // - DOMContentLoad won't work on prod-site due to being double wrapped in a DOMLoad event.
+  // - window 'load' event won't work on storybook as it's not called per component page change.
+  setTimeout(() => {
     // Init if there is at least a single component with data-responsive
     // attribute on the page.
     new CivicResponsive();
-  });
+  }, 10);
 }

@@ -25,7 +25,7 @@ function CivicDropdownFilterSearchable(el) {
 
   if (this.el.hasAttribute('data-responsive')) {
     this.isDesktop = null;
-    const swapBreakpoint = this.el.getAttribute('data-dropdown-filter-auto-change-breakpoint');
+    const swapBreakpoint = this.el.getAttribute('data-dropdown-filter-inline-change-breakpoint');
     window.addEventListener('civic-responsive', (evt) => {
       let isBreakpoint = false;
       const evaluationResult = evt.detail.evaluate(swapBreakpoint, () => {
@@ -38,7 +38,6 @@ function CivicDropdownFilterSearchable(el) {
       }
       if (isBreakpoint !== this.isDesktop) {
         this.isDesktop = isBreakpoint;
-        this.el.classList.toggle('civic-dropdown-filter--overlay', this.isDesktop);
         this.el.classList.toggle('civic-dropdown-filter--inline', !this.isDesktop);
       }
     }, false);

@@ -10,8 +10,8 @@
  * - type: [string] Large filter type.
  * - filter_text: [string] Card title.
  * - filter_group: [string] Filter group name.
- * - display_mode: [string] 'overlay', 'inline' or 'auto'. Display mode to present dropdown filter.
- * - display_change_breakpoint: [string] Breakpoint at which the display mode auto will swap.
+ * - is_inline: [boolean] Display filter as inline (similar to an "accordion").
+ * - inline_change_breakpoint: [string] Breakpoint at which to swap from inline to overlay view.
  * - options_title: [string] Options title.
  * - options: [array] Array of form elements.
  * - searchable_threshold: [string] Number of checkbox/radio items allowed before a search box appears.
@@ -22,19 +22,18 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type_class = type is empty ? 'civic-dropdown-filter--%s'|format(type) : '' %}
-{% set display_mode = display_mode|default('overlay') %}
-{% set modifier_class = '%s %s %s'|format(theme_class, 'civic-dropdown-filter--' ~ display_mode, modifier_class|default('')) %}
-{% set display_change_breakpoint = display_change_breakpoint|default('>=m') %}
+{% set is_inline_class = is_inline ? 'civic-dropdown-filter--inline' : '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_inline_class, modifier_class|default('')) %}
 
 <div
   class="civic-dropdown-filter {{ modifier_class }}"
   data-collapsible data-collapsible-collapsed
-  {% if display_mode == 'auto' %}
+  {% if is_inline and inline_change_breakpoint %}
     data-responsive
-    data-dropdown-filter-auto-change-breakpoint="{{ display_change_breakpoint }}"
-    data-collapsible-group-enabled-breakpoint="{{ display_change_breakpoint }}"
+    data-dropdown-filter-inline-change-breakpoint="{{ inline_change_breakpoint }}"
+    data-collapsible-group-enabled-breakpoint="{{ inline_change_breakpoint }}"
   {% endif %}
-  {% if filter_group and display_mode != 'inline' %}
+  {% if filter_group and ( not is_inline or (is_inline and inline_change_breakpoint)) %}
     data-collapsible-group="{{ filter_group }}"
   {% endif %}
   data-collapsible-duration="0"

@@ -4,7 +4,7 @@
   position: relative;
   padding: rem(4px) 0;
 
-  &--overlay {
+  &:not(#{$root}--inline) {
     &#{$root}--right {
       #{$root}__filter-options {
         left: auto;
@@ -121,7 +121,7 @@
   }
 
   &.civic-theme-light {
-    &#{$root}--overlay {
+    &:not(#{$root}--inline) {
       #{$root}__filter-text {
         color: $civic-dropdown-filter-light-filter-text-color;
       }
@@ -150,12 +150,13 @@
   }
 
   &.civic-theme-dark {
-    &#{$root}--overlay {
+    &:not(#{$root}--inline) {
       #{$root}__filter-options-wrapper {
         background-color: $civic-dropdown-filter-dark-filter-options-background-color;
         border-color: $civic-dropdown-filter-dark-filter-options-border-color;
       }
     }
+
     #{$root}__filter-text {
       color: $civic-dropdown-filter-dark-filter-text-color;
 
