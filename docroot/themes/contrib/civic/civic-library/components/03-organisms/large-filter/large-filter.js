@@ -100,15 +100,18 @@ CivicLargeFilter.prototype.init = function () {
   });
 
   // Mobile support.
-  const { CivicResponsive } = window;
-  const activeMQ = CivicResponsive.prototype.getActiveMediaQuery();
-  this.isMobile = CivicResponsive.prototype.matchExpr('<m', activeMQ.breakpoint);
-  this.updateTagContainerPosition();
   window.addEventListener('civic-responsive', (evt) => {
-    const { breakpoint } = evt.detail;
-    const thisBreakpoint = CivicResponsive.prototype.matchExpr('<m', breakpoint);
-    if (thisBreakpoint !== this.isMobile) {
-      this.isMobile = thisBreakpoint;
+    let isBreakpoint = false;
+    const evaluationResult = evt.detail.evaluate('<m', () => {
+      // Is within breakpoint.
+      isBreakpoint = true;
+    });
+    if (evaluationResult === false) {
+      // Not within breakpoint.
+      isBreakpoint = false;
+    }
+    if (isBreakpoint !== this.isMobile) {
+      this.isMobile = isBreakpoint;
       this.updateTagContainerPosition();
     }
   }, false);

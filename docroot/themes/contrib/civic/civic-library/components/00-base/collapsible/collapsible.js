@@ -75,14 +75,19 @@ function CivicCollapsible(el) {
   document.addEventListener('keydown', CivicCollapsible.prototype.keydownEvent);
   document.addEventListener('click', CivicCollapsible.prototype.collapseAllGroups);
 
-  // Responsive Collapsible Group
+  // Responsive Collapsible Group.
   this.isGroupsEnabled = true;
   this.disableGroupBp = this.el.hasAttribute('data-responsive-collapsible-group') ? this.el.getAttribute('data-responsive-collapsible-group') : null;
   if (this.disableGroupBp) {
     window.addEventListener('civic-responsive', (evt) => {
-      const { breakpoint: bp } = evt.detail;
-      const disableAtBp = this.disableGroupBp;
-      this.isGroupsEnabled = window.CivicResponsive.prototype.matchExpr(disableAtBp, bp);
+      const evaluationResult = evt.detail.evaluate(this.disableGroupBp, () => {
+        // Is within breakpoint.
+        this.isGroupsEnabled = true;
+      });
+      if (evaluationResult === false) {
+        // Not within breakpoint.
+        this.isGroupsEnabled = false;
+      }
     }, false);
   }
 

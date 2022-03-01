@@ -11,7 +11,6 @@
  */
 function CivicResponsive() {
   const queries = this.getMediaQueries();
-  window.CivicResponsive = CivicResponsive;
   for (const breakpoint in queries) {
     const query = queries[breakpoint];
     // Store matched media queries in global scope as this component is a
@@ -92,30 +91,6 @@ CivicResponsive.prototype.mediaQueryChange = function (breakpoint, evt) {
 };
 
 /**
- * Return the current mediaQuery and breakpoint name.
- */
-CivicResponsive.prototype.getActiveMediaQuery = function () {
-  const activeQuery = Object
-    .keys(window.civicResponsive)
-    .map((key) => window.civicResponsive[key])
-    .filter((item) => item.matches)
-    .pop();
-  const queries = CivicResponsive.prototype.getMediaQueries();
-  const activeBp = Object
-    .keys(queries)
-    .map((key) => ({
-      bp: key,
-      media: queries[key],
-    }))
-    .filter((item) => item.media === activeQuery.media)
-    .pop();
-  return {
-    media: activeQuery,
-    breakpoint: activeBp.bp,
-  };
-};
-
-/**
  * Evaluate breakpoint expression and attach or detach component.
  *
  * @param {string} breakpointExpr
@@ -185,7 +160,9 @@ CivicResponsive.prototype.matchExpr = function (breakpointExpr, breakpoint) {
 };
 
 if (document.querySelectorAll('[data-responsive]').length) {
-  // Init if there is at least a single component with data-responsive
-  // attribute on the page.
-  new CivicResponsive();
+  document.addEventListener('DOMContentLoaded', () => {
+    // Init if there is at least a single component with data-responsive
+    // attribute on the page.
+    new CivicResponsive();
+  });
 }
