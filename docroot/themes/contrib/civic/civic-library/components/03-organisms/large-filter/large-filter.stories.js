@@ -49,7 +49,8 @@ export const LargeFilter = () => {
       theme,
       filter_text: 'Checkboxes',
       filter_group: filterGroup,
-      filter_group_enabled_breakpoint: breakpoint,
+      display_mode: 'auto',
+      display_change_breakpoint: breakpoint,
       options_title: 'Type of items',
       type: 'checkbox',
       options: [
@@ -71,7 +72,8 @@ export const LargeFilter = () => {
       theme,
       filter_text: 'Dates',
       filter_group: filterGroup,
-      filter_group_enabled_breakpoint: breakpoint,
+      display_mode: 'auto',
+      display_change_breakpoint: breakpoint,
       type: 'date',
       options: [
         formElement('date', { value: '' }, theme, false, count++),
@@ -106,7 +108,8 @@ export const LargeFilter = () => {
       theme,
       filter_text: 'Sort by',
       filter_group: filterGroup,
-      filter_group_enabled_breakpoint: breakpoint,
+      display_mode: 'auto',
+      display_change_breakpoint: breakpoint,
       type: 'select',
       modifier_class: 'civic-dropdown-filter--right',
       options: [

@@ -10,8 +10,8 @@
  * - type: [string] Large filter type.
  * - filter_text: [string] Card title.
  * - filter_group: [string] Filter group name.
- * - filter_group_enabled_breakpoint: [string] Breakpoint at which the filter group will be enabled.
- * - display_mode: [string] 'overlay' or 'inline'. Display mode to present dropdown filter.
+ * - display_mode: [string] 'overlay', 'inline' or 'auto'. Display mode to present dropdown filter.
+ * - display_change_breakpoint: [string] Breakpoint at which the display mode auto will swap.
  * - options_title: [string] Options title.
  * - options: [array] Array of form elements.
  * - searchable_threshold: [string] Number of checkbox/radio items allowed before a search box appears.
@@ -24,25 +24,27 @@
 {% set type_class = type is empty ? 'civic-dropdown-filter--%s'|format(type) : '' %}
 {% set display_mode = display_mode|default('overlay') %}
 {% set modifier_class = '%s %s %s'|format(theme_class, 'civic-dropdown-filter--' ~ display_mode, modifier_class|default('')) %}
+{% set display_change_breakpoint = display_change_breakpoint|default('>=m') %}
 
 <div
-    class="civic-dropdown-filter {{ modifier_class }}"
-    data-collapsible data-collapsible-collapsed
-    {% if filter_group %}
-      data-collapsible-group="{{ filter_group }}"
-      {% if filter_group_enabled_breakpoint %}
-        data-responsive
-        data-collapsible-group-enabled-breakpoint="{{ filter_group_enabled_breakpoint }}"
-      {% endif %}
-    {% endif %}
-    data-collapsible-duration="0"
-    data-component-name="civic-dropdown-filter"
-    {% if searchable_threshold %}
-      data-dropdown-filter-search-item-threshold="{{ searchable_threshold }}"
-    {% endif %}
-    {% if search_label_text %}
-      data-dropdown-filter-search-label="{{ search_label_text }}"
-    {% endif %}
+  class="civic-dropdown-filter {{ modifier_class }}"
+  data-collapsible data-collapsible-collapsed
+  {% if display_mode == 'auto' %}
+    data-responsive
+    data-dropdown-filter-auto-change-breakpoint="{{ display_change_breakpoint }}"
+    data-collapsible-group-enabled-breakpoint="{{ display_change_breakpoint }}"
+  {% endif %}
+  {% if filter_group and display_mode != 'inline' %}
+    data-collapsible-group="{{ filter_group }}"
+  {% endif %}
+  data-collapsible-duration="0"
+  data-component-name="civic-dropdown-filter"
+  {% if searchable_threshold %}
+    data-dropdown-filter-search-item-threshold="{{ searchable_threshold }}"
+  {% endif %}
+  {% if search_label_text %}
+    data-dropdown-filter-search-label="{{ search_label_text }}"
+  {% endif %}
 >
   <button class="civic-dropdown-filter__filter-text" data-collapsible-trigger>{{ filter_text }}</button>
   <div class="civic-dropdown-filter__filter-options" data-collapsible-panel>

@@ -127,10 +127,10 @@ CivicLargeFilter.prototype.init = function () {
  * Mobile will show tags above the filters, desktop will show below.
  */
 CivicLargeFilter.prototype.updateTagContainerPosition = function () {
-  const tagsContainerSelector = this.isDesktop ? '[data-large-filter-tags-container]': '[data-large-filter-mobile-tags-container]';
+  const tagsContainerSelector = this.isDesktop ? '[data-large-filter-tags-container]' : '[data-large-filter-mobile-tags-container]';
   this.el.querySelector(tagsContainerSelector).appendChild(this.tagElement);
 
-  const btnContainerSelector = this.isDesktop ?  '[data-large-filter-clear-container]' : '[data-large-filter-mobile-clear-container]';
+  const btnContainerSelector = this.isDesktop ? '[data-large-filter-clear-container]' : '[data-large-filter-mobile-clear-container]';
   this.el.querySelector(btnContainerSelector).appendChild(this.clearAllButton);
 
   const elementContainer = this.isDesktop ? '[data-large-filter-desktop-container]' : '[data-large-filter-mobile-container]';

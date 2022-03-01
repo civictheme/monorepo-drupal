@@ -24,11 +24,11 @@ function CivicDropdownFilterSearchable(el) {
   }
 
   if (this.el.hasAttribute('data-responsive')) {
-    this.isGroupEnabled = null;
-    const groupBreakpoint = this.el.getAttribute('data-collapsible-group-enabled-breakpoint')
+    this.isDesktop = null;
+    const swapBreakpoint = this.el.getAttribute('data-dropdown-filter-auto-change-breakpoint');
     window.addEventListener('civic-responsive', (evt) => {
       let isBreakpoint = false;
-      const evaluationResult = evt.detail.evaluate(groupBreakpoint, () => {
+      const evaluationResult = evt.detail.evaluate(swapBreakpoint, () => {
         // Is within breakpoint.
         isBreakpoint = true;
       });
@@ -36,10 +36,10 @@ function CivicDropdownFilterSearchable(el) {
         // Not within breakpoint.
         isBreakpoint = false;
       }
-      if (isBreakpoint !== this.isGroupEnabled) {
-        this.isGroupEnabled = isBreakpoint;
-        this.el.classList.toggle('civic-dropdown-filter--overlay', this.isGroupEnabled);
-        this.el.classList.toggle('civic-dropdown-filter--inline', !this.isGroupEnabled);
+      if (isBreakpoint !== this.isDesktop) {
+        this.isDesktop = isBreakpoint;
+        this.el.classList.toggle('civic-dropdown-filter--overlay', this.isDesktop);
+        this.el.classList.toggle('civic-dropdown-filter--inline', !this.isDesktop);
       }
     }, false);
   }
