@@ -1,6 +1,6 @@
 # Variables.
 
-Civic Component library contains a vast number of variables that modify all areas of the theme.
+Civic Component library contains a large number of variables that modify all areas of the theme.
 
 Variables allow for modification of:
 - Theme and component specific colours
