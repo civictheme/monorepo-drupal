@@ -13,8 +13,6 @@ function CivicFlyout(el) {
     return;
   }
 
-  window.CivicFlyout = CivicFlyout;
-
   // Find all open triggers.
   const openTriggers = document.querySelectorAll('[data-flyout-open-trigger]');
   if (!openTriggers.length) {
@@ -31,12 +29,15 @@ function CivicFlyout(el) {
 
   // Find "close trigger", but only search among triggers that are not a part
   // of descendant flyouts.
-  this.closeTrigger = this.el.querySelector('[data-flyout-close-trigger]');
-  if (this.closeTrigger && this.closeTrigger.closest('[data-flyout]') !== this.el) {
-    this.closeTrigger = null;
-  }
+  this.closeTriggers = Array.from(this.el.querySelectorAll('[data-flyout-close-trigger]'));
+  this.closeTriggers = this.closeTriggers.filter((item) => {
+    return (item.closest('[data-flyout]') === this.el);
+  });
 
-  this.closeAllTrigger = this.el.querySelector('[data-flyout-close-all-trigger]');
+  this.closeAllTriggers = Array.from(this.el.querySelectorAll('[data-flyout-close-all-trigger]'));
+  this.closeAllTriggers = this.closeAllTriggers.filter((item) => {
+    return (item.closest('[data-flyout]') === this.el);
+  });
   this.panel = this.el.querySelector('[data-flyout-panel]');
   this.el.expanded = this.el.hasAttribute('data-flyout-expanded');
   this.duration = this.el.hasAttribute('data-flyout-duration') ? parseInt(this.el.getAttribute('data-flyout-duration'), 10) : 500;
@@ -47,13 +48,17 @@ function CivicFlyout(el) {
     this.openTrigger.expand = true;
   }
 
-  if (this.closeTrigger) {
-    this.closeTrigger.addEventListener('click', this.clickEvent.bind(this));
-    this.closeTrigger.expand = false;
+  if (this.closeTriggers) {
+    this.closeTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', this.clickEvent.bind(this));
+      trigger.expand = false;
+    });
   }
 
-  if (this.closeAllTrigger) {
-    this.closeAllTrigger.addEventListener('click', this.closeAllTriggerClickEvent.bind(this));
+  if (this.closeAllTriggers) {
+    this.closeAllTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', this.closeAllTriggerClickEvent.bind(this));
+    });
   }
 
   // Mark as initialized.
@@ -88,10 +93,9 @@ CivicFlyout.prototype.findOpenTrigger = function (triggers, el) {
  * Click event handler to toggle flyout state.
  */
 CivicFlyout.prototype.clickEvent = function (e) {
-  if (e.target.hasAttribute('data-allow-event-bubble') !== true) {
-    e.stopPropagation();
+  e.stopPropagation();
+  if (e.target.hasAttribute('data-flyout-trigger-allow-default') !== true) {
     e.preventDefault();
-    e.stopImmediatePropagation();
   }
 
   return e.currentTarget.expand ? this.expand() : this.collapse();
@@ -101,10 +105,9 @@ CivicFlyout.prototype.clickEvent = function (e) {
  * Event handler to close all flyout components.
  */
 CivicFlyout.prototype.closeAllTriggerClickEvent = function (e) {
-  if (e.target.hasAttribute('data-allow-event-bubble') !== true) {
-    e.stopPropagation();
+  e.stopPropagation();
+  if (e.target.hasAttribute('data-flyout-trigger-allow-default') !== true) {
     e.preventDefault();
-    e.stopImmediatePropagation();
   }
 
   // Collapse all panels.

@@ -10,19 +10,19 @@
   * - attributes: [string] Button tag attributes.
 #}
 
-{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 {% set button_text = text|default('Close') %}
+{% set modifier_class = '%s %s'|format('civic-mobile-navigation-close__button', modifier_class|default('')) %}
 {% set attribute_values = '%s %s'|format('data-flyout-close-all-trigger', attributes|default('')) %}
 
 <div class="civic-mobile-navigation-close {{ modifier_class }}">
   {% include '@atoms/button/button.twig' with {
+    theme: theme,
     type: 'button',
     size: 'small',
     text: button_text,
     icon: 'userinterface_close',
     icon_placement: 'after',
     attributes: attribute_values,
-    modifier_class: 'civic-mobile-navigation-close__button',
+    modifier_class: modifier_class,
   } only %}
 </div>

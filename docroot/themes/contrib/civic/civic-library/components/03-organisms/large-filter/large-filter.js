@@ -11,7 +11,6 @@ function CivicLargeFilter(el) {
   this.mobileOverlay = this.el.querySelector('[data-large-filter-mobile-overlay]');
   this.mobileToggleDisplay = this.el.querySelector('[data-large-filter-mobile-toggle-display]');
   this.mobileToggleSuffix = this.mobileToggleDisplay.getAttribute('data-large-filter-mobile-toggle-display-suffix');
-  this.mobileApplyButton = this.el.querySelector('[data-large-filter-mobile-apply]');
   this.state = {};
   this.revertState = null;
   this.initialisedState = false;
@@ -80,7 +79,6 @@ CivicLargeFilter.prototype.init = function () {
   this.clearAllButton.addEventListener('click', this.clearElementClickEvent.bind(this));
   this.mobileOpenButton.addEventListener('click', this.mobileOpenElementClickEvent.bind(this));
   this.mobileCancelButton.addEventListener('click', this.mobileCancelElementClickEvent.bind(this));
-  this.mobileApplyButton.addEventListener('click', this.mobileApplyElementClickEvent.bind(this));
 
   // Set state values based on current filter fields.
   this.filterElement.querySelectorAll('input, select').forEach((element) => {
@@ -148,7 +146,6 @@ CivicLargeFilter.prototype.updateTagContainerPosition = function () {
 CivicLargeFilter.prototype.mobileOpenElementClickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
-  e.stopImmediatePropagation();
   this.revertState = JSON.stringify(this.state);
 };
 
@@ -160,20 +157,10 @@ CivicLargeFilter.prototype.mobileOpenElementClickEvent = function (e) {
 CivicLargeFilter.prototype.mobileCancelElementClickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
-  e.stopImmediatePropagation();
   if (this.revertState) {
     this.state = JSON.parse(this.revertState);
   }
   this.redraw();
-};
-
-/**
- * Mobile apply handler.
- * Trigger flyout to close.
- * This won't stop propagation to allow a wrapping form element to submit.
- */
-CivicLargeFilter.prototype.mobileApplyElementClickEvent = function (e) {
-  window.CivicFlyout.prototype.closeAllTriggerClickEvent(e);
 };
 
 /**

@@ -263,15 +263,13 @@ $civic-mobile-navigation-spacing: civic-space(2);
     }
   }
 
-  &.civic-theme-light {
-    [data-flyout-close-all-trigger] {
+  [data-flyout-close-all-trigger] {
+    &.civic-theme-light {
       background-color: $civic-mobile-navigation-light-close-all-trigger-background-color;
       color: $civic-mobile-navigation-light-close-all-trigger-color;
     }
-  }
 
-  &.civic-theme-dark {
-    [data-flyout-close-all-trigger] {
+    &.civic-theme-dark {
       background-color: $civic-mobile-navigation-dark-close-all-trigger-background-color;
       color: $civic-mobile-navigation-dark-close-all-trigger-color;
     }

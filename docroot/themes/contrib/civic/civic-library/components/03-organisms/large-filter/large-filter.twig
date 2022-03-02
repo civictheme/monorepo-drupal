@@ -55,12 +55,18 @@
     ></div>
     <div class="civic-large-filter-flyout hide-m" data-large-filter-mobile-overlay data-flyout data-flyout-direction="right">
       <div class="civic-large-filter__mobile-overlay" data-flyout-panel>
-        {% include '@organisms/mobile-navigation/mobile-navigation-close.twig' with {
-          theme: theme,
-          text: cancel_text,
-          attributes: 'data-large-filter-mobile-cancel data-allow-event-bubble',
-          modifier_class: 'civic-large-filter__mobile-cancel',
-        } only %}
+        <div class="civic-mobile-navigation-close">
+          {% include '@atoms/button/button.twig' with {
+            theme: theme,
+            type: 'button',
+            size: 'small',
+            text: cancel_text,
+            icon: 'userinterface_close',
+            icon_placement: 'after',
+            attributes: 'data-flyout-close-all-trigger data-large-filter-mobile-cancel',
+            modifier_class: 'civic-mobile-navigation-close__button civic-large-filter__mobile-cancel',
+          } only %}
+        </div>
         <div class="container">
           <div class="row">
             <div class="col-xxs-12">
@@ -82,7 +88,7 @@
             type: 'primary',
             kind: 'button',
             modifier_class: 'civic-large-filter__mobile-apply',
-            attributes: 'data-large-filter-mobile-apply data-allow-event-bubble'
+            attributes: 'data-flyout-close-all-trigger data-flyout-trigger-allow-default'
           } only %}
         </div>
       </div>
