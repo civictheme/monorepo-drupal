@@ -261,9 +261,7 @@ $civic-mobile-navigation-spacing: civic-space(2);
       width: civic-icon-size-dimension('small', 'xxs', 'width');
       height: civic-icon-size-dimension('small', 'xxs', 'height');
     }
-  }
 
-  [data-flyout-close-all-trigger] {
     &.civic-theme-light {
       background-color: $civic-mobile-navigation-light-close-all-trigger-background-color;
       color: $civic-mobile-navigation-light-close-all-trigger-color;

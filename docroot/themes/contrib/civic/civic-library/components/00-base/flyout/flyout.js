@@ -30,14 +30,10 @@ function CivicFlyout(el) {
   // Find "close trigger", but only search among triggers that are not a part
   // of descendant flyouts.
   this.closeTriggers = Array.from(this.el.querySelectorAll('[data-flyout-close-trigger]'));
-  this.closeTriggers = this.closeTriggers.filter((item) => {
-    return (item.closest('[data-flyout]') === this.el);
-  });
+  this.closeTriggers = this.closeTriggers.filter((item) => (item.closest('[data-flyout]') === this.el));
 
   this.closeAllTriggers = Array.from(this.el.querySelectorAll('[data-flyout-close-all-trigger]'));
-  this.closeAllTriggers = this.closeAllTriggers.filter((item) => {
-    return (item.closest('[data-flyout]') === this.el);
-  });
+  this.closeAllTriggers = this.closeAllTriggers.filter((item) => (item.closest('[data-flyout]') === this.el));
   this.panel = this.el.querySelector('[data-flyout-panel]');
   this.el.expanded = this.el.hasAttribute('data-flyout-expanded');
   this.duration = this.el.hasAttribute('data-flyout-duration') ? parseInt(this.el.getAttribute('data-flyout-duration'), 10) : 500;
