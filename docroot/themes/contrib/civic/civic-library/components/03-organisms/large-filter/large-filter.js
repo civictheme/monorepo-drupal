@@ -14,7 +14,7 @@ function CivicLargeFilter(el) {
   this.state = {};
   this.revertState = null;
   this.initialisedState = false;
-  this.isDesktop = true;
+  this.isDesktop = null;
   this.fieldTypes = {
     input_checkbox: {
       emptyValue: false,

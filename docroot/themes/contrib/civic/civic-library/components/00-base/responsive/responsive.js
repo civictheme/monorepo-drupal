@@ -20,9 +20,9 @@ function CivicResponsive() {
     if (!(query in window.civicResponsive)) {
       window.civicResponsive[query] = window.matchMedia(query);
       window.civicResponsive[query].addEventListener('change', this.mediaQueryChange.bind(this, breakpoint));
-      // Call event handler on init.
-      this.mediaQueryChange(breakpoint, { matches: window.civicResponsive[query].matches });
     }
+    // Call event handler on init.
+    this.mediaQueryChange(breakpoint, { matches: window.civicResponsive[query].matches });
   }
 }
 
