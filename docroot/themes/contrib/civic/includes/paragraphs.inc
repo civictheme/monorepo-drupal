@@ -18,6 +18,7 @@ require_once 'paragraph--civic_content.inc';
 require_once 'paragraph--civic_listing.inc';
 require_once 'paragraph--civic_map.inc';
 require_once 'paragraph--civic_promo.inc';
+require_once 'paragraph--civic_publication_card.inc';
 require_once 'paragraph--civic_quick_links.inc';
 require_once 'paragraph--civic_search.inc';
 require_once 'paragraph--civic_service_card.inc';
@@ -205,6 +206,7 @@ function _civic_get_card_types() {
     'civic_card_subject_reference',
     'civic_card_subject',
     'civic_service_card',
+    'civic_publication_card',
   ];
 }
 
