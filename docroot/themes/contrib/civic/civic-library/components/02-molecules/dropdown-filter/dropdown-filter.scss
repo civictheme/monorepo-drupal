@@ -133,7 +133,7 @@
     }
 
     #{$root}__filter-text {
-      color: civic-color('primary');
+      color: $civic-dropdown-filter-light-inline-filter-text-color;
 
       &::after {
         content: civic-color-svg-fill($civic-collapsible-icon, $civic-dropdown-filter-light-filter-text-icon-color) !important;
@@ -151,6 +151,10 @@
 
   &.civic-theme-dark {
     &:not(#{$root}--inline) {
+      #{$root}__filter-text {
+        color: $civic-dropdown-filter-dark-filter-text-color;
+      }
+
       #{$root}__filter-options-wrapper {
         background-color: $civic-dropdown-filter-dark-filter-options-background-color;
         border-color: $civic-dropdown-filter-dark-filter-options-border-color;
@@ -158,7 +162,7 @@
     }
 
     #{$root}__filter-text {
-      color: $civic-dropdown-filter-dark-filter-text-color;
+      color: $civic-dropdown-filter-dark-inline-filter-text-color;
 
       &::after {
         content: civic-color-svg-fill($civic-collapsible-icon, $civic-dropdown-filter-dark-filter-text-icon-color) !important;

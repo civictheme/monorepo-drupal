@@ -69,7 +69,7 @@ function CivicCollapsible(el) {
     if (this.isCollapsed(this.el)) {
       this.el.dispatchEvent(new CustomEvent('civic.collapsible.expand', { bubbles: true }));
     } else {
-      this.el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
+      this.el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: { animate: true } }));
     }
   });
 
