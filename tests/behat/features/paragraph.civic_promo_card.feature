@@ -69,6 +69,7 @@ Feature: Tests the Promo card
     And should see an "div.field--name-field-c-p-image #field_c_p_image-media-library-wrapper-field_c_n_components-0-subform-field_c_p_cards-0-subform" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_summary][0][value]']" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_summary][0][value]'].required" element
+    And should see "The summary field may contain up to 100 characters. Any characters past the 100 character limit will not show for users." in the ".form-item-field-c-n-components-0-subform-field-c-p-cards-0-subform-field-c-p-summary-0-value" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_date][0][value][date]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_link][0][uri]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_link][0][uri]'].required" element
