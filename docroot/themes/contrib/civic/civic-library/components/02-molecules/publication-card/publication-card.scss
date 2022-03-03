@@ -41,8 +41,9 @@
     justify-content: space-between;
   }
 
-  #{$root}__icon {
+  #{$root}__icon--download {
     margin-bottom: civic-space(2);
+    margin-left: civic-space(2);
   }
 
   #{$root}__summary {
@@ -79,7 +80,7 @@
       @include civic-outline(false);
     }
 
-    #{$root}__icon {
+    #{$root}__icon--download {
       @include civic-icon-fill-color($civic-publication-card-light-icon-color);
     }
 
@@ -110,7 +111,7 @@
       @include civic-outline(true);
     }
 
-    #{$root}__icon {
+    #{$root}__icon--download {
       @include civic-icon-fill-color($civic-publication-card-dark-icon-color);
     }
 
