@@ -7,6 +7,7 @@
 @import '~normalize.css';
 @import '00-base/variables';
 
+// stylelint-disable no-invalid-position-at-import-rule
 .cke_editable {
   // Load all non-stories mixins.
   @import '00-base/**/!(*.stories|variables|_variables.*).scss';
@@ -16,4 +17,4 @@
   @import '04-templates/**/!(*.stories).scss';
   @import '05-pages/**/!(*.stories).scss';
 }
-
+// stylelint-enable no-invalid-position-at-import-rule

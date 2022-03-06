@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: (function (pattern) {
-
     // Splitting entries into two chunks:
     // main: all styles used in components and drupal theme -> output: civic.css
     // ckeditor: nested styles used in ckeditor -> output: ckeditor.css
