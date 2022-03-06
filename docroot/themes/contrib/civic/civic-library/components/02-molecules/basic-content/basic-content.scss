@@ -3,7 +3,6 @@
 //
 
 .civic-basic-content {
-
   @include civic-content();
 
   &.civic-content--with-space-top {
@@ -19,7 +18,6 @@
   }
 
   &.civic-theme-light {
-
     @include civic-content-light();
 
     &.civic-content--with-background {
@@ -30,7 +28,6 @@
   }
 
   &.civic-theme-dark {
-
     @include civic-content-dark();
 
     &.civic-content--with-background {
