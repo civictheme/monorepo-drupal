@@ -28,6 +28,8 @@ export default {
 
 export const Listing = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+  const filterKnobTab = 'Filters';
+  const CTA = 'CTA';
   const theme = radios(
     'Theme',
     {
@@ -41,15 +43,7 @@ export const Listing = (knobTab) => {
     theme,
   };
   const showExposed = boolean('Show filters', true, generalKnobTab);
-  const filterType = radios(
-    'Filter type',
-    {
-      Large: 'large',
-      Basic: 'basic',
-    },
-    'large',
-    generalKnobTab,
-  );
+  const showMessage = boolean('Show message', true, generalKnobTab);
   // Show cards as promo card or navigation card.
   const viewMode = radios(
     'Card type',
@@ -60,6 +54,7 @@ export const Listing = (knobTab) => {
     'promo',
     generalKnobTab,
   );
+
   const itemsPerPage = number(
     'Items per page',
     6,
@@ -92,8 +87,17 @@ export const Listing = (knobTab) => {
 
   // Build exposed filters.
   if (showExposed) {
+    const filterType = radios(
+      'Filter type',
+      {
+        Large: 'large',
+        Basic: 'basic',
+      },
+      'large',
+      filterKnobTab,
+    );
     const filterNumber = number(
-      'Number of extra filters',
+      'Number of filters',
       3,
       {
         range: true,
@@ -101,7 +105,7 @@ export const Listing = (knobTab) => {
         max: 5,
         step: 1,
       },
-      generalKnobTab,
+      filterKnobTab,
     );
     let count = 0;
     const filters = [];
@@ -113,7 +117,7 @@ export const Listing = (knobTab) => {
     if (filterNumber > 0) {
       for (let i = 0; i < filterNumber; i++) {
         if (filterType === 'large') {
-          const inputType = ['radio', 'checkbox'][Math.round(Math.random() * 2)];
+          const inputType = ['radio', 'checkbox'][Math.round(Math.random())];
           filters.push(dropDownFilter(inputType, 4, theme, true, count++));
         } else {
           filters.push({
@@ -137,18 +141,6 @@ export const Listing = (knobTab) => {
         items: filters,
       });
     }
-  }
-
-  const children = [];
-  for (let i = 6; i <= 48; i += 6) {
-    const options = {
-      title: i,
-      required: false,
-      description: false,
-      attributes: 'name="test"',
-      form_element_attributes: 'data-dropdown-filter-item',
-    };
-    children.push(formElement('radio', options, theme, false, i));
   }
 
   // Build pagination.
@@ -222,6 +214,18 @@ export const Listing = (knobTab) => {
       fill_width: false,
       with_spacing: 'both',
     });
+  }
+
+  if (showMessage) {
+    generalKnobs.message = {
+      title: text('Message title', 'Upcoming event', generalKnobTab),
+      content: text('Message Content', 'We have an upcoming event that might be of interest to you.', generalKnobTab),
+      cta: {
+        title: text('Message CTA Text', 'Register now', generalKnobTab),
+        url: text('Message CTA Url', 'https://www.example.com', generalKnobTab),
+        new_window: false,
+      },
+    };
   }
 
   return CivicListing({

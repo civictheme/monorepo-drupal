@@ -13,6 +13,8 @@ Please see sections on `colors.md` and `variables` for instructions on how to mo
 Many civic components of the components come with extendable regions either through injecting html / templates through a
 variable or by opening up the component to extension via block regions.
 
+
+
 ## Overriding components
 
 Civic also allows overriding of existing templates to use a new custom component by overriding you are allowing all of

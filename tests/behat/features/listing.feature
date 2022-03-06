@@ -1,4 +1,4 @@
-@civic @paragraph @civic_listing
+@civic @paragraph @civic_listing @wip
 Feature: Tests the Civic filtering system within blocks and view pages.
 
   Ensure that Listing paragraph exists and has the expected fields and the listing component can be viewed
