@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civic_iframe.field_c_p_attributes
+    - field.field.paragraph.civic_iframe.field_c_p_background
     - field.field.paragraph.civic_iframe.field_c_p_height
     - field.field.paragraph.civic_iframe.field_c_p_space
     - field.field.paragraph.civic_iframe.field_c_p_theme
@@ -23,6 +24,16 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_c_p_background:
+    weight: 7
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_c_p_height:
     weight: 3

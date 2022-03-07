@@ -1,13 +1,5 @@
 .civic-iframe {
-  border: 0;
-
-  &:not([width]) {
-    width: 100%;
-  }
-
-  &:not([height]) {
-    height: 100%;
-  }
+  $root: &;
 
   &.civic-iframe--with-space-top {
     padding-top: $civic-iframe-padding-vertical;
@@ -19,5 +11,33 @@
 
   &.civic-iframe--with-space-both {
     padding: $civic-iframe-padding-vertical 0;
+  }
+
+  iframe {
+    border: 0;
+
+    &:not([width]) {
+      width: 100%;
+    }
+
+    &:not([height]) {
+      height: 100%;
+    }
+  }
+
+  &.civic-theme-light {
+    &.civic-iframe--with-background {
+      background-color: $civic-iframe-light-background-color;
+      padding-left: $civic-iframe-padding-horizontal;
+      padding-right: $civic-iframe-padding-horizontal;
+    }
+  }
+
+  &.civic-theme-dark {
+    &.civic-iframe--with-background {
+      background-color: $civic-iframe-dark-background-color;
+      padding-left: $civic-iframe-padding-horizontal;
+      padding-right: $civic-iframe-padding-horizontal;
+    }
   }
 }
