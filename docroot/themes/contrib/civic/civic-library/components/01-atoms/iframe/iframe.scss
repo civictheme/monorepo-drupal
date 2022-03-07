@@ -1,0 +1,23 @@
+.civic-iframe {
+  border: 0;
+
+  &:not([width]) {
+    width: 100%;
+  }
+
+  &:not([height]) {
+    height: 100%;
+  }
+
+  &.civic-iframe--with-space-top {
+    padding-top: $civic-iframe-padding-vertical;
+  }
+
+  &.civic-iframe--with-space-bottom {
+    padding-bottom: $civic-iframe-padding-vertical;
+  }
+
+  &.civic-iframe--with-space-both {
+    padding: $civic-iframe-padding-vertical 0;
+  }
+}

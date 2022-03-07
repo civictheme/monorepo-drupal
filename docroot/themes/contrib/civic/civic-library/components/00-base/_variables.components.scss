@@ -1277,3 +1277,9 @@ $civic-back-to-top-dark-color: civic-color('secondary') !default;
 //
 $civic-listing-light-background-color: civic-color-neutral(5) !default;
 $civic-listing-dark-background-color: civic-color-shade-dark(45) !default;
+
+//
+// Iframe.
+//
+$civic-iframe-padding-vertical: civic-space(7);
+$civic-iframe-padding-horizontal: civic-space(7);

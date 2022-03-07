@@ -376,3 +376,23 @@ function civic_preprocess_menu_local_tasks(&$variables) {
     unset($variables[$local_task_type]);
   }
 }
+
+/**
+ * Parse a sting of attributes into an array.
+ */
+function _civic_parse_attributes($string) {
+  $attributes = [];
+
+  if (preg_match_all('/\s*(?:([a-z0-9-]+)\s*=\s*"([^"]*)")|(?:\s+([a-z0-9-]+)(?=\s*|>|\s+[a..z0-9]+))/i', $string, $matches)) {
+    for ($i = 0; $i < count($matches[0]); $i++) {
+      if ($matches[3][$i]) {
+        $attributes[$matches[3][$i]] = NULL;
+      }
+      else {
+        $attributes[$matches[1][$i]] = $matches[2][$i];
+      }
+    }
+  }
+
+  return $attributes;
+}
