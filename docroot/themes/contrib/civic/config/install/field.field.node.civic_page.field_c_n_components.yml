@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.civic_callout
     - paragraphs.paragraphs_type.civic_card_container
     - paragraphs.paragraphs_type.civic_content
+    - paragraphs.paragraphs_type.civic_iframe
     - paragraphs.paragraphs_type.civic_listing
     - paragraphs.paragraphs_type.civic_map
     - paragraphs.paragraphs_type.civic_next_step
@@ -42,6 +43,7 @@ settings:
       civic_attachment: civic_attachment
       civic_map: civic_map
       civic_listing: civic_listing
+      civic_iframe: civic_iframe
       civic_webform: civic_webform
     target_bundles_drag_drop:
       civic_accordion:
@@ -89,6 +91,9 @@ settings:
       civic_content:
         enabled: true
         weight: 2
+      civic_iframe:
+        enabled: true
+        weight: 45
       civic_listing:
         enabled: true
         weight: 42
@@ -101,6 +106,9 @@ settings:
       civic_promo:
         enabled: true
         weight: 7
+      civic_publication_card:
+        weight: 50
+        enabled: false
       civic_quick_links:
         weight: 46
         enabled: false
