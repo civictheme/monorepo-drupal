@@ -9,7 +9,7 @@ field_name: field_c_p_summary
 entity_type: paragraph
 bundle: civic_card_promo
 label: Summary
-description: ''
+description: 'The summary field may contain up to 100 characters. Any characters past the 100 character limit will not show for users.'
 required: true
 translatable: true
 default_value: {  }
