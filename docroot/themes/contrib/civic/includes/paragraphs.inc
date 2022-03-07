@@ -16,6 +16,7 @@ require_once 'paragraph--civic_card_subject.inc';
 require_once 'paragraph--civic_card_task.inc';
 require_once 'paragraph--civic_content.inc';
 require_once 'paragraph--civic_iframe.inc';
+require_once 'paragraph--civic_listing.inc';
 require_once 'paragraph--civic_map.inc';
 require_once 'paragraph--civic_promo.inc';
 require_once 'paragraph--civic_publication_card.inc';
