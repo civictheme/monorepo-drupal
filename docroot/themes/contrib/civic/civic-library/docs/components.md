@@ -20,6 +20,10 @@ variable or by opening up the component to extension via block regions.
 Civic also allows overriding of existing templates to use a new custom component by overriding you are allowing all of
 places this component in civic to use the new overridden template.
 
+See in `civic_starter_theme` in `02-molecules/navigation-card` we have extended the civic navigation card.
+
+
+
 ** Important note to remember: if you change the variable names or add new variables then you need to map these in
 the preprocess functions of your child theme **
 
