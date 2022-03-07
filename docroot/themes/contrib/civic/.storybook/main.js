@@ -33,7 +33,7 @@ module.exports = {
     // Replace normal CSS import with stories CSS import, which already includes
     // normal CSS import. This is to allow to resolve variables and mixins in
     // stories CSS.
-    custom.entry = custom.entry.map((value) => (value.indexOf('components_css.js') > -1 ? path.resolve(__dirname, 'components_css.stories.js') : value));
+    custom.entry = custom.entry.main.map((value) => (value.indexOf('components_css.js') > -1 ? path.resolve(__dirname, 'components_css.stories.js') : value));
 
     // Remove theme-related entries as components should not have them.
     custom.entry = custom.entry.filter((p) => !/theme_/g.test(p));

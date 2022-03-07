@@ -6,23 +6,51 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: (function (pattern) {
+    // Splitting entries into two chunks:
+    // main: all styles used in components and drupal theme -> output: civic.css
+    // ckeditor: nested styles used in ckeditor -> output: ckeditor.css
+    const entries = {
+      main: [],
+      ckeditor: [],
+    };
+
     // Scan for all JS.
-    const entries = glob.sync(pattern);
+    entries.main = glob.sync(pattern);
     // Add explicitly imported entries from components.
-    entries.push(path.resolve(__dirname, 'components_css.js'));
+    entries.main.push(path.resolve(__dirname, 'components_css.js'));
     // Add explicitly imported entries from the current theme.
-    entries.push(path.resolve(__dirname, 'theme_js.js'));
-    entries.push(path.resolve(__dirname, 'theme_css.js'));
-    entries.push(path.resolve(__dirname, 'assets.js'));
+    entries.main.push(path.resolve(__dirname, 'theme_js.js'));
+    entries.main.push(path.resolve(__dirname, 'theme_css.js'));
+    entries.main.push(path.resolve(__dirname, 'assets.js'));
+
+    // Add explicitly ckeditor.scss
+    entries.ckeditor.push(path.resolve(__dirname, 'ckeditor_css.js'));
+
     return entries;
   }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          test: 'css/mini-extract',
+          name: 'civic',
+          chunks: (chunk) => (chunk.name === 'main'),
+        },
+        ckeditor: {
+          test: 'css/mini-extract',
+          name: 'ckeditor',
+          chunks: (chunk) => (chunk.name === 'ckeditor'),
+        },
+      },
+    },
+  },
   output: {
-    filename: 'civic.js',
+    filename: (pathData) => (pathData.chunk.name === 'main' ? 'civic.js' : 'civic-[name].js'),
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '../dist/civic.css',
+      filename: ({ chunk }) => (chunk.name === 'main' ? 'civic.css' : `${chunk.name}.css`),
     }),
     new CleanWebpackPlugin(),
   ],

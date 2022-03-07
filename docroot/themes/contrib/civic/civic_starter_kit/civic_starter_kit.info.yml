@@ -34,7 +34,7 @@ libraries-override:
       dist/civic.js: dist/scripts.js
 
 ckeditor_stylesheets:
-  - dist/styles.css
+  - dist/ckeditor.css
 
 # Child theme components. Any components not provided in this theme will be auto-discovered from the
 # parent theme (Civic).

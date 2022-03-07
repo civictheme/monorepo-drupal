@@ -1,6 +1,3 @@
-import { boolean, radios, text } from '@storybook/addon-knobs';
-
-import CivicBasicContent from './basic-content.twig';
 import CivicLink from '../../01-atoms/link/link.twig';
 import CivicTable from '../../01-atoms/table/table.twig';
 import CivicImage from '../../01-atoms/image/image.twig';
@@ -17,18 +14,7 @@ export default {
   },
 };
 
-export const BasicContent = (knobTab) => {
-  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-
-  const theme = radios(
-    'Theme', {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-    generalKnobTab,
-  );
-
+export const CKEditorContent = () => {
   let html = '';
 
   // Headings.
@@ -48,7 +34,7 @@ export const BasicContent = (knobTab) => {
     <p class="civic-text-regular">Regular text veniam reprehenderit velit ea veniam occaecat magna est sed duis quis elit occaecat dolore ut enim est do in dolor non elit aliquip commodo aliquip sint veniam ullamco adipisicing tempor ad.</p>
     <p class="civic-text-small">Small text <span>duis sunt velit.</span><span>Ea eu non.</span></p>
     <p>In mollit in minim ut non ${CivicLink({
-    theme,
+    theme: 'light',
     text: 'commodo dolore',
     url: 'https://example.com',
   })} nisi anim.</p>
@@ -76,7 +62,7 @@ export const BasicContent = (knobTab) => {
 
   // Image.
   html += CivicImage({
-    theme,
+    theme: 'light',
     src: demoImage(),
     alt: 'Occaecat laborum voluptate cupidatat.',
     caption: 'Commodo anim sint minim.',
@@ -84,13 +70,13 @@ export const BasicContent = (knobTab) => {
 
   // Video.
   html += CivicVideo({
-    theme,
+    theme: 'light',
     src: 'https://www.youtube.com/embed/C0DPdy98e4c',
   });
 
   // Table.
   html += CivicTable({
-    theme,
+    theme: 'light',
     header: [
       'Column A',
       'Column B',
@@ -115,14 +101,5 @@ export const BasicContent = (knobTab) => {
     ],
   });
 
-  const generalKnobs = {
-    theme,
-    content: boolean('Content', true, generalKnobTab) ? html : null,
-    modifier_class: text('Additional class', '', generalKnobTab),
-    contained: boolean('Contained', true, generalKnobTab),
-  };
-
-  return CivicBasicContent({
-    ...generalKnobs,
-  });
+  return `<div class="container"><div class="row"><div class="col-xxs-12"><div class="cke_editable">${html}</div></div></div></div></div>`;
 };
