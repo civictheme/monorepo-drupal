@@ -301,9 +301,11 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     // level.
     $variables['required'] = $element['#required'] ?? FALSE;
     $variables['type'] = 'fieldset-radio';
-    $variables['fieldset_legend'] = $element['#title'];
+    $variables['fieldset_legend'] = $element['#title'] ?? '';
     $variables['errors'] = $element['#errors'] ?? NULL;
-    $variables['attributes'] += $element['#attributes'];
+    if (!empty($element['#attributes'])) {
+      $variables['attributes'] += $element['#attributes'];
+    }
     $attributes = new Attribute($variables['attributes']);
     $attributes = $attributes->getClass() !== NULL ? implode(' ', $attributes->getClass()->value()) : '';
     $variables['modifier_class'] = !empty($element['#attributes']['class']) ? implode(' ', $variables['element']['#attributes']['class']) : '';
