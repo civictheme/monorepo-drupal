@@ -24,7 +24,6 @@ Feature: Tests the Slider slide - reference paragraph
     Then the option "Default" from select "Reference method" is selected
     And the "Event" checkbox should be checked
     And the "Page" checkbox should be checked
-    And the "Project" checkbox should be checked
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected

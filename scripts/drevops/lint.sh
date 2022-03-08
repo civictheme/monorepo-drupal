@@ -56,3 +56,6 @@ if [ -z "${LINT_TYPE##*fe*}" ] && [ -n "${DRUPAL_THEME}" ] && grep -q lint "docr
   # Flag to allow lint to fail.
   [ "${ALLOW_FE_LINT_FAIL}" -eq 1 ]
 fi
+
+# Lint theme configuration.
+./scripts/lint-theme-config.sh

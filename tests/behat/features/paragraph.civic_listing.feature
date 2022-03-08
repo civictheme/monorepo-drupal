@@ -53,7 +53,6 @@ Feature: Tests the Listing paragraph
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_content_type]']" element
     Then select "field_c_n_components[0][subform][field_c_p_content_type]" should have an option "civic_page"
     Then select "field_c_n_components[0][subform][field_c_p_content_type]" should have an option "civic_event"
-    Then select "field_c_n_components[0][subform][field_c_p_content_type]" should have an option "civic_project"
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_topics][0][target_id]']" element
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_view_as]']" element
     Then select "field_c_n_components[0][subform][field_c_p_view_as]" should have an option "civic_card_promo"
