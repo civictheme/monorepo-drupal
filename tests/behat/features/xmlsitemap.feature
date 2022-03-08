@@ -14,10 +14,6 @@ Feature: XML Sitemap
       | title                  | status | path                  |
       | [TEST] Published event | 1      | /test-published-event |
       | [TEST] Draft event     | 0      | /test-draft-event     |
-    And civic_project content:
-      | title                    | status | path                    |
-      | [TEST] Published project | 1      | /test-published-project |
-      | [TEST] Draft project     | 0      | /test-draft-project     |
     And civic_alert content:
       | title                  | status | path                  |
       | [TEST] Published alert | 1      | /test-published-alert |
@@ -35,8 +31,5 @@ Feature: XML Sitemap
     And the response should contain "http://civictheme.docker.amazee.io/test-published-event"
     And the response should not contain "http://civictheme.docker.amazee.io/test-draft-event"
 
-    And the response should contain "http://civictheme.docker.amazee.io/test-published-project"
-    And the response should not contain "http://civictheme.docker.amazee.io/test-draft-project"
-
     And the response should not contain "http://civictheme.docker.amazee.io/test-published-alert"
-    And the response should not contain "http://civictheme.docker.amazee.io/test-draft-project"
+    And the response should not contain "http://civictheme.docker.amazee.io/test-draft-alert"
