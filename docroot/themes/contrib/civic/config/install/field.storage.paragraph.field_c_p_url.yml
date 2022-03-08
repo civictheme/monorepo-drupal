@@ -6,10 +6,8 @@ dependencies:
 id: paragraph.field_c_p_url
 field_name: field_c_p_url
 entity_type: paragraph
-type: string
+type: string_long
 settings:
-  max_length: 255
-  is_ascii: false
   case_sensitive: false
 module: core
 locked: false
