@@ -5,15 +5,7 @@
 .civic-table {
   $root: &;
 
-  caption-side: bottom;
-
-  &__header {
-    margin: civic-space(3) 0;
-  }
-
-  table {
-    @include civic-table();
-  }
+  @include civic-table();
 
   &.civic-theme-light {
     @include civic-table-light();
