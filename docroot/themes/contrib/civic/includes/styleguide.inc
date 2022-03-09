@@ -97,8 +97,6 @@ function civic_styleguide_alter(&$items) {
 
 /**
  * Render a paragraph.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_styleguide_paragraph_render($options, $do_render = FALSE) {
   // Create fake paragraph to show.
@@ -111,8 +109,6 @@ function _civic_styleguide_paragraph_render($options, $do_render = FALSE) {
 
 /**
  * Render a block placement.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_styleguide_block_placement_render(BlockContent $block) {
   $view_builder = \Drupal::entityTypeManager()
@@ -137,8 +133,6 @@ function _civic_styleguide_block_placement_render(BlockContent $block) {
 
 /**
  * Render a HTML.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_styleguide_html_render($html) {
   return [
@@ -344,8 +338,6 @@ function _civic_styleguide_random_array_item($haystack) {
 
 /**
  * Create an entity from variation.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_styleguide_create_entity_from_variation($variation) {
   if (empty($variation['entity'])) {

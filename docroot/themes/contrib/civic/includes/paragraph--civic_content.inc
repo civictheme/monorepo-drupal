@@ -7,8 +7,6 @@
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD)
  */
 function civic_preprocess_paragraph__civic_content(&$variables) {
   _civic_preprocess_paragraph($variables);
