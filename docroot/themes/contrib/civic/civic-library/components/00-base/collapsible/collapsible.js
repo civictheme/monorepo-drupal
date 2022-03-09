@@ -9,6 +9,8 @@
  *   then the second descendant will be used.
  * - data-collapsible-collapsed - indicate that a starting state is collapsed.
  * - data-collapsible-duration - duration in milliseconds. Defaults to 500.
+ * - data-collapsible-group-enabled-breakpoint - enable grouping at breakpoint.
+ *   Needs 'data-responsive' attribute.
  */
 function CivicCollapsible(el) {
   // Use "data-collapsible"'s attribute value to identify if this component was
@@ -52,8 +54,11 @@ function CivicCollapsible(el) {
 
   this.el.addEventListener('civic.collapsible.collapse', (evt) => {
     // For some cases (like group collapse) - the animation should be disabled.
-    const animate = evt.detail || false;
-    this.collapse(animate);
+    const animate = (evt.detail && evt.detail.animate);
+    const isCloseAllEvent = (evt.detail && evt.detail.closeAll);
+    if ((isCloseAllEvent && this.isGroupsEnabled) || !isCloseAllEvent) {
+      this.collapse(animate);
+    }
   });
 
   this.el.addEventListener('civic.collapsible.expand', () => {
@@ -64,13 +69,29 @@ function CivicCollapsible(el) {
     if (this.isCollapsed(this.el)) {
       this.el.dispatchEvent(new CustomEvent('civic.collapsible.expand', { bubbles: true }));
     } else {
-      this.el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
+      this.el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: { animate: true } }));
     }
   });
 
   // Attach global keydown event listener to allow closing all collapsibles.
   document.addEventListener('keydown', CivicCollapsible.prototype.keydownEvent);
   document.addEventListener('click', CivicCollapsible.prototype.collapseAllGroups);
+
+  // Responsive Collapsible Group.
+  this.isGroupsEnabled = true;
+  this.groupEnabledBreakpoint = this.el.getAttribute('data-collapsible-group-enabled-breakpoint');
+  if (this.groupEnabledBreakpoint) {
+    window.addEventListener('civic-responsive', (evt) => {
+      const evaluationResult = evt.detail.evaluate(this.groupEnabledBreakpoint, () => {
+        // Is within breakpoint.
+        this.isGroupsEnabled = true;
+      });
+      if (evaluationResult === false) {
+        // Not within breakpoint.
+        this.isGroupsEnabled = false;
+      }
+    }, false);
+  }
 
   // Mark as initialized.
   this.el.setAttribute('data-collapsible', 'true');
@@ -131,7 +152,7 @@ CivicCollapsible.prototype.clickEvent = function (e) {
   if (this.collapsed) {
     this.el.dispatchEvent(new CustomEvent('civic.collapsible.expand', { bubbles: true }));
   } else {
-    this.el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
+    this.el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: { animate: true } }));
   }
 };
 
@@ -155,6 +176,7 @@ CivicCollapsible.prototype.focusoutEvent = function (e) {
     && !this.panel.contains(e.relatedTarget)
     && !this.trigger.contains(e.relatedTarget)
     && this.group
+    && this.isGroupsEnabled
   ) {
     e.target.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
   }
@@ -178,7 +200,7 @@ CivicCollapsible.prototype.keydownEvent = function (e) {
   if (this !== document) {
     // Up.
     if (e.which === 38 && !e.shiftKey) {
-      this.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: true }));
+      this.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: { animate: true } }));
       return;
     }
 
@@ -198,13 +220,15 @@ CivicCollapsible.prototype.keydownEvent = function (e) {
  * Close "other" instances in the group.
  */
 CivicCollapsible.prototype.closeGroup = function (group) {
-  const currentEl = this.el;
-  // eslint-disable-next-line prefer-template
-  document.querySelectorAll('[data-collapsible-group=' + group + ']:not([data-collapsible-collapsed])').forEach((el) => {
-    if (el !== currentEl) {
-      el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
-    }
-  });
+  if (this.isGroupsEnabled) {
+    const currentEl = this.el;
+    // eslint-disable-next-line prefer-template
+    document.querySelectorAll('[data-collapsible-group=' + group + ']:not([data-collapsible-collapsed])').forEach((el) => {
+      if (el !== currentEl) {
+        el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
+      }
+    });
+  }
 };
 
 /**
@@ -212,7 +236,7 @@ CivicCollapsible.prototype.closeGroup = function (group) {
  */
 CivicCollapsible.prototype.collapseAllGroups = function () {
   document.querySelectorAll('[data-collapsible-group]').forEach((el) => {
-    el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true }));
+    el.dispatchEvent(new CustomEvent('civic.collapsible.collapse', { bubbles: true, detail: { closeAll: true } }));
   });
 };
 

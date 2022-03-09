@@ -4,13 +4,44 @@
   position: relative;
   padding: rem(4px) 0;
 
-  &--right {
-    margin-left: auto;
+  &:not(#{$root}--inline) {
+    &#{$root}--right {
+      #{$root}__filter-options {
+        left: auto;
+        right: -(civic-space(3));
+      }
+    }
+
+    #{$root}__filter-text {
+      display: inline-block;
+      text-align: center;
+      width: auto;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
 
     #{$root}__filter-options {
-      left: auto;
-      right: -(civic-space(3));
+      margin-top: civic-space(2);
+      min-width: civic-space() * 35;
+      position: absolute;
+      left: -(civic-space(3));
+      z-index: $civic-dropdown-filter-zindex;
     }
+
+    #{$root}__filter-options-wrapper {
+      @include civic-elevation(2);
+
+      padding: civic-space(2);
+      border-radius: $civic-border-radius;
+      border-style: solid;
+      border-width: 1px;
+      max-height: civic-space() * 35;
+      overflow: auto;
+    }
+  }
+
+  &--right {
+    margin-left: auto;
   }
 
   &__filter-text {
@@ -19,6 +50,11 @@
     background-color: transparent;
     border: 0;
     appearance: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding-top: civic-space(2);
+    padding-bottom: civic-space(2);
 
     &:focus {
       @include civic-outline();
@@ -26,22 +62,12 @@
   }
 
   &__filter-options {
-    position: absolute;
-    min-width: civic-space() * 35;
-    margin-top: civic-space(2);
-    left: -(civic-space(3));
-    z-index: $civic-dropdown-filter-zindex;
+    position: relative;
   }
 
   &__filter-options-wrapper {
-    @include civic-elevation(2);
-
-    padding: civic-space(2);
-    border-radius: $civic-border-radius;
-    border-style: solid;
-    border-width: 1px;
-    max-height: civic-space() * 35;
-    overflow: auto;
+    padding-top: civic-space(3);
+    padding-bottom: civic-space(3);
   }
 
   &__fieldset {
@@ -95,17 +121,23 @@
   }
 
   &.civic-theme-light {
+    &:not(#{$root}--inline) {
+      #{$root}__filter-text {
+        color: $civic-dropdown-filter-light-filter-text-color;
+      }
+
+      #{$root}__filter-options-wrapper {
+        background-color: $civic-dropdown-filter-light-filter-options-background-color;
+        border-color: $civic-dropdown-filter-light-filter-options-border-color;
+      }
+    }
+
     #{$root}__filter-text {
-      color: $civic-dropdown-filter-light-filter-text-color;
+      color: $civic-dropdown-filter-light-inline-filter-text-color;
 
       &::after {
         content: civic-color-svg-fill($civic-collapsible-icon, $civic-dropdown-filter-light-filter-text-icon-color) !important;
       }
-    }
-
-    #{$root}__filter-options-wrapper {
-      background-color: $civic-dropdown-filter-light-filter-options-background-color;
-      border-color: $civic-dropdown-filter-light-filter-options-border-color;
     }
 
     &[data-dropdown-filter-searchable] {
@@ -118,17 +150,23 @@
   }
 
   &.civic-theme-dark {
+    &:not(#{$root}--inline) {
+      #{$root}__filter-text {
+        color: $civic-dropdown-filter-dark-filter-text-color;
+      }
+
+      #{$root}__filter-options-wrapper {
+        background-color: $civic-dropdown-filter-dark-filter-options-background-color;
+        border-color: $civic-dropdown-filter-dark-filter-options-border-color;
+      }
+    }
+
     #{$root}__filter-text {
-      color: $civic-dropdown-filter-dark-filter-text-color;
+      color: $civic-dropdown-filter-dark-inline-filter-text-color;
 
       &::after {
         content: civic-color-svg-fill($civic-collapsible-icon, $civic-dropdown-filter-dark-filter-text-icon-color) !important;
       }
-    }
-
-    #{$root}__filter-options-wrapper {
-      background-color: $civic-dropdown-filter-dark-filter-options-background-color;
-      border-color: $civic-dropdown-filter-dark-filter-options-border-color;
     }
 
     &[data-dropdown-filter-searchable] {

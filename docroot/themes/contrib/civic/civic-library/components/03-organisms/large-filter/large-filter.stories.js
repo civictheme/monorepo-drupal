@@ -16,6 +16,7 @@ export default {
 
 export const LargeFilter = () => {
   const generalKnobTab = 'General';
+  const breakpoint = '>=m';
   const theme = radios(
     'Theme',
     {
@@ -28,9 +29,14 @@ export const LargeFilter = () => {
 
   const generalKnobs = {
     theme,
+    desktop_breakpoint: breakpoint,
     filter_title: text('Filter title', 'Filter search results by:', generalKnobTab),
     tags_title: text('Tag title', 'Selected filters:', generalKnobTab),
     clear_text: text('Clear all button text', 'Clear all', generalKnobTab),
+    filter_text: text('Filter button text', 'Filter', generalKnobTab),
+    cancel_text: text('Cancel button text', 'Cancel', generalKnobTab),
+    apply_text: text('Apply button text', 'Apply', generalKnobTab),
+    filter_count_suffix: text('Filter suffixes', '{"1": "filter applied", "default": "filters applied"}', generalKnobTab),
   };
 
   let count = 0;
@@ -43,6 +49,8 @@ export const LargeFilter = () => {
       theme,
       filter_text: 'Checkboxes',
       filter_group: filterGroup,
+      is_inline: true,
+      inline_change_breakpoint: breakpoint,
       options_title: 'Type of items',
       type: 'checkbox',
       options: [
@@ -64,6 +72,8 @@ export const LargeFilter = () => {
       theme,
       filter_text: 'Dates',
       filter_group: filterGroup,
+      is_inline: true,
+      inline_change_breakpoint: breakpoint,
       type: 'date',
       options: [
         formElement('date', { value: '' }, theme, false, count++),
@@ -98,6 +108,8 @@ export const LargeFilter = () => {
       theme,
       filter_text: 'Sort by',
       filter_group: filterGroup,
+      is_inline: true,
+      inline_change_breakpoint: breakpoint,
       type: 'select',
       modifier_class: 'civic-dropdown-filter--right',
       options: [

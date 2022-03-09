@@ -10,6 +10,8 @@
  * - type: [string] Large filter type.
  * - filter_text: [string] Card title.
  * - filter_group: [string] Filter group name.
+ * - is_inline: [boolean] Display filter as inline (similar to an "accordion").
+ * - inline_change_breakpoint: [string] Breakpoint at which to swap from inline to overlay view.
  * - options_title: [string] Options title.
  * - options: [array] Array of form elements.
  * - searchable_threshold: [string] Number of checkbox/radio items allowed before a search box appears.
@@ -20,22 +22,28 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type_class = type is empty ? 'civic-dropdown-filter--%s'|format(type) : '' %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set is_inline_class = is_inline ? 'civic-dropdown-filter--inline' : '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_inline_class, modifier_class|default('')) %}
 
 <div
-    class="civic-dropdown-filter {{ modifier_class }}"
-    data-collapsible data-collapsible-collapsed
-    {% if filter_group %}
-      data-collapsible-group="{{ filter_group }}"
-    {% endif %}
-    data-collapsible-duration="0"
-    data-component-name="civic-dropdown-filter"
-    {% if searchable_threshold %}
-      data-dropdown-filter-search-item-threshold="{{ searchable_threshold }}"
-    {% endif %}
-    {% if search_label_text %}
-      data-dropdown-filter-search-label="{{ search_label_text }}"
-    {% endif %}
+  class="civic-dropdown-filter {{ modifier_class }}"
+  data-collapsible data-collapsible-collapsed
+  {% if is_inline and inline_change_breakpoint %}
+    data-responsive
+    data-dropdown-filter-inline-change-breakpoint="{{ inline_change_breakpoint }}"
+    data-collapsible-group-enabled-breakpoint="{{ inline_change_breakpoint }}"
+  {% endif %}
+  {% if filter_group and ( not is_inline or (is_inline and inline_change_breakpoint)) %}
+    data-collapsible-group="{{ filter_group }}"
+  {% endif %}
+  data-collapsible-duration="0"
+  data-component-name="civic-dropdown-filter"
+  {% if searchable_threshold %}
+    data-dropdown-filter-search-item-threshold="{{ searchable_threshold }}"
+  {% endif %}
+  {% if search_label_text %}
+    data-dropdown-filter-search-label="{{ search_label_text }}"
+  {% endif %}
 >
   <button class="civic-dropdown-filter__filter-text" data-collapsible-trigger>{{ filter_text }}</button>
   <div class="civic-dropdown-filter__filter-options" data-collapsible-panel>
