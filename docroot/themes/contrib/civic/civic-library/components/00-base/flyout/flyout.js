@@ -30,12 +30,11 @@ function CivicFlyout(el) {
 
   // Find "close trigger", but only search among triggers that are not a part
   // of descendant flyouts.
-  this.closeTrigger = this.el.querySelector('[data-flyout-close-trigger]');
-  if (this.closeTrigger && this.closeTrigger.closest('[data-flyout]') !== this.el) {
-    this.closeTrigger = null;
-  }
+  this.closeTriggers = Array.from(this.el.querySelectorAll('[data-flyout-close-trigger]'));
+  this.closeTriggers = this.closeTriggers.filter((item) => (item.closest('[data-flyout]') === this.el));
 
-  this.closeAllTrigger = this.el.querySelector('[data-flyout-close-all-trigger]');
+  this.closeAllTriggers = Array.from(this.el.querySelectorAll('[data-flyout-close-all-trigger]'));
+  this.closeAllTriggers = this.closeAllTriggers.filter((item) => (item.closest('[data-flyout]') === this.el));
   this.panel = this.el.querySelector('[data-flyout-panel]');
   this.el.expanded = this.el.hasAttribute('data-flyout-expanded');
   this.duration = this.el.hasAttribute('data-flyout-duration') ? parseInt(this.el.getAttribute('data-flyout-duration'), 10) : 500;
@@ -46,13 +45,17 @@ function CivicFlyout(el) {
     this.openTrigger.expand = true;
   }
 
-  if (this.closeTrigger) {
-    this.closeTrigger.addEventListener('click', this.clickEvent.bind(this));
-    this.closeTrigger.expand = false;
+  if (this.closeTriggers) {
+    this.closeTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', this.clickEvent.bind(this));
+      trigger.expand = false;
+    });
   }
 
-  if (this.closeAllTrigger) {
-    this.closeAllTrigger.addEventListener('click', this.closeAllTriggerClickEvent.bind(this));
+  if (this.closeAllTriggers) {
+    this.closeAllTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', this.closeAllTriggerClickEvent.bind(this));
+    });
   }
 
   // Mark as initialized.
@@ -88,8 +91,9 @@ CivicFlyout.prototype.findOpenTrigger = function (triggers, el) {
  */
 CivicFlyout.prototype.clickEvent = function (e) {
   e.stopPropagation();
-  e.preventDefault();
-  e.stopImmediatePropagation();
+  if (e.target.hasAttribute('data-flyout-trigger-allow-default') !== true) {
+    e.preventDefault();
+  }
 
   return e.currentTarget.expand ? this.expand() : this.collapse();
 };
@@ -99,8 +103,9 @@ CivicFlyout.prototype.clickEvent = function (e) {
  */
 CivicFlyout.prototype.closeAllTriggerClickEvent = function (e) {
   e.stopPropagation();
-  e.preventDefault();
-  e.stopImmediatePropagation();
+  if (e.target.hasAttribute('data-flyout-trigger-allow-default') !== true) {
+    e.preventDefault();
+  }
 
   // Collapse all panels.
   document.querySelectorAll('[data-flyout-expanded]').forEach((flyout) => {

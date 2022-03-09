@@ -90,16 +90,7 @@ Overrides for generation of child links.
 
   <div data-flyout data-flyout-direction="right">
     <div data-flyout-panel>
-      <div class="civic-mobile-navigation__close-all-trigger">
-        {% include '@atoms/button/button.twig' with {
-          type: 'button',
-          size: 'small',
-          text: 'Close',
-          icon: 'userinterface_close',
-          icon_placement: 'after',
-          attributes: 'data-flyout-close-all-trigger',
-        } only %}
-      </div>
+      {% include '@organisms/mobile-navigation/mobile-navigation-close.twig' %}
 
       <div class="civic-mobile-navigation__close-trigger">
         {% include '@molecules/icon-link/icon-link.twig' with {
