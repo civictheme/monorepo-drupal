@@ -1,6 +1,7 @@
-//
-// Generate icon library file from icon files.
-//
+/**
+ * @file
+ * Generate icon library file from icon files.
+ */
 
 const fs = require('fs');
 const iconUtils = require('./icon.utils');

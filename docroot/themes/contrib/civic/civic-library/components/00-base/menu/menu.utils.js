@@ -1,4 +1,10 @@
+/**
+ * @file
+ * Menu component utilities.
+ */
+
 /* eslint-disable camelcase */
+
 import { boolean, number } from '@storybook/addon-knobs';
 import { getRandomBool } from '../base.stories';
 
