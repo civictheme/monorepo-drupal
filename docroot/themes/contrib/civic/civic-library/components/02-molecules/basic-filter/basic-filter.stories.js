@@ -34,6 +34,7 @@ export const BasicFilter = (knobTab) => {
         text: text('Text', 'Basic filter 3', generalKnobTab),
       },
     ] : null,
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   return CivicBasicFilter({
