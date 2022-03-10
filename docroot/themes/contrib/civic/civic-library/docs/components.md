@@ -22,6 +22,21 @@ Look at the navigation card component in `civic_starter_theme/components/02-mole
 unmodified civic  - if you get an error in storybook while developing the component of "too much recursion then
 you have not correctly utilised this special namespace **
 
+We chose to override navigation-card while extending it but we could have equally extended it into a new custom component
+by choosing a different name. We have done this as an example of this with:
+
+1. `demo-navigation-card/demo-navigation-card.twig`
+2. `demo-navigation-card/demo-navigation-card.stories.js`
+
+It implements the same component as navigation card but it is now it's own component.
+
+For a more advanced case of extending a component please look to the listing component and views template.
+
+`civic/civic-library/components/03-organisms/listing/listing.twig` is a clean implementation of a listing component
+providing space for filtering and dynamic controls.
+The views component `civic/template/views/views-view.html.twig` extends this component adding back the 
+drupalisms that views requires.
+
 ## Overriding components
 
 Civic also allows overriding of existing templates to use a new custom component by overriding you are allowing all of
@@ -58,14 +73,12 @@ It is made up of four annotated files:
 
 These files have been heavily annotated and can be read for an understanding of how to setup a new component.
 
-### Connecting with Drupal
 
-After setting up a component and structuring the twig file, you can include this new component in a drupal
-template with an include statement.
+### Key architecture concept
 
-For example, if you were wanting to utilise the new demo button in your theme as a submit button you may
-utilise the already existing civic template  `civic/templates/input--submit.html.twig` and add thie file in your theme
-and change the `@atoms/button/button.twig` include to `@atoms/demo-button/demo-button.twig`.
+Twig components created with the civic design system are designed to be CMS-agnostic. That is
+they can be used by any application that can use twig templates. We do not include drupalisms
+in our component library and we recommend keeping this practice with child themes to increase
+the resusability of components.
 
-If you need to provide custom variables to your component, these can be derived through the preprocess hook system
-Drupal provides.
+

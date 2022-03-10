@@ -33,45 +33,13 @@ For using civic without colour changes or customisations - enable civic and crea
 
 ### Create your Civic Consumer (child) Theme
 
-Create your child theme - recommend using `drush generate theme` for an interactive wizerd for generating boilerplate.
+Civic provides a starter theme to generate a child theme for you to get started with.
 
-Ensure the base theme is set as follows: `base theme: civic`
+Run the following command from within `civic` theme directory:
 
-And add the following [components](https://www.drupal.org/project/components/) namespaces to
-your `<child_theme>.info.yml` file.
+`php civic-create-subtheme.php <theme_machine_name> "Human theme name" "Human theme description"`
 
-```yaml
-
-libraries-override:
-  civic/global:
-    css:
-      theme:
-        dist/civic.css: dist/styles.css
-    js:
-      dist/civic.js: dist/scripts.js
-
-ckeditor_stylesheets:
-  - dist/styles.css
-
-# Child theme components. Any components not provided in this theme will be auto-discovered from the
-# parent theme (Civic).
-# Components may include parent theme's components using `@civic-` prefix in the namespace, e.g..  `@civic-atoms`.
-components:
-  namespaces:
-    base:
-      - components/00-base
-    atoms:
-      - components/01-atoms
-    molecules:
-      - components/02-molecules
-    organisms:
-      - components/03-organisms
-    templates:
-      - components/04-templates
-    pages:
-      - components/05-pages
-
-```
+This will generate a child theme in your `custom` theme directory with everything ready to be installed and compiled.
 
 ### How to compile CivicTheme
 
@@ -88,19 +56,38 @@ Building the front-end
 Learn how to customise Civic theme with an expansive colour system and extensive range of options
 to customise grid, spacing, fonts, and typography systems.
 
-### Colours
-### [Grid](docroot/themes/custom/civic/civic-library/docs/grid.md)
+Civic provides two systems:
 
+- Component library - the twig and front-end templates
+- Civic Drupal theme - the drupal theme implementing the component library
 
-### How to add your theme colours
+## Technical documentation
 
-### How to change the colours in the components
+We strongly recommend reading the documentation which attempts to provide an overview of concepts and architecture.
 
-### How to add a new component to your theme
+There are two parts to this documentation - the component library and the drupal theme.
 
-#### Where to add components in the file system
+### Civic Component Library docs
 
-#### How to link up templates within Drupal
+The documentation for civic component library provides an introduction and technical information for modifying
+the look and feel of components, instructions for extending and modifying components and adding colours and style 
+changes.
 
-### How to extend components
+The following areas are covered within this section:
 
+[Colors](./civic-library/docs/colors.md)
+[Variables](./civic-library/docs/variables.md)
+[Grid](./civic-library/docs/grid.md)
+[Components](./civic-library/docs/components.md)
+[Icons](./civic-library/docs/icons.md)
+
+### Civic Theme docs
+
+The Civic theme technical documentation provide information on how to connect the component library to drupal,
+how to preprocess for new components and extend and modify templates within drupal and explain different
+components of the drupal theme.
+
+[Namespaces](./docs/namespaces.md)
+[Templates](./docs/templates.md)
+[Assets](./docs/assets.md)
+[Drupal features](./docs/features.md)
