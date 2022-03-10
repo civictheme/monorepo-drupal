@@ -25,7 +25,6 @@ Feature: Tests the Reference promo card paragraph
     Then the "Create referenced entities if they don't already exist" checkbox should not be checked
     And the "Event" checkbox should be checked
     And the "Page" checkbox should be checked
-    And the "Project" checkbox should be checked
 
   @api
   Scenario: Card container paragraph field_c_p_cards fields settings.

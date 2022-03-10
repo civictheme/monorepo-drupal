@@ -75,7 +75,7 @@ Feature: Tests the Civic filtering system within blocks and view pages.
     And I wait 1 second
     And I select the radio button "Page"
     And I press the "Content type" button
-    And I press the "Apply" button
+    And I press the "edit-submit-civic-listing" button
     And I should see "Page" in the ".civic-large-filter__selected-filters" element
     And I should see "[TEST] All Topics" in the ".civic-card-container" element
     And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
@@ -96,7 +96,7 @@ Feature: Tests the Civic filtering system within blocks and view pages.
     And I press the "Topics" button
     And I should see "Page" in the ".civic-large-filter__selected-filters" element
     And I should see "[TEST] Topic 1" in the ".civic-large-filter__selected-filters" element
-    And I press the "Apply" button
+    And I press the "edit-submit-civic-listing" button
     And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
     And I should see "[TEST] All Topics" in the ".civic-card-container" element
     And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
@@ -106,7 +106,7 @@ Feature: Tests the Civic filtering system within blocks and view pages.
     And I press the "Topics" button
     And I check the box "[TEST] Topic 2"
     And I press the "Topics" button
-    And I press the "Apply" button
+    And I press the "edit-submit-civic-listing" button
     And I should see "Page" in the ".civic-large-filter__selected-filters" element
     And I should see "[TEST] Topic 1" in the ".civic-large-filter__selected-filters" element
     And I should see "[TEST] Topic 2" in the ".civic-large-filter__selected-filters" element
@@ -115,7 +115,7 @@ Feature: Tests the Civic filtering system within blocks and view pages.
     And I should see "[TEST] Topic 1 Page" in the ".civic-card-container" element
     And I should see "[TEST] Topic 2 Page" in the ".civic-card-container" element
     And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
-    And I press the "Apply" button
+    And I press the "edit-submit-civic-listing" button
     # Test clear all filter button
     And I press the "Clear all" button
     And I should not see "Page" in the ".civic-large-filter__selected-filters" element
@@ -125,140 +125,140 @@ Feature: Tests the Civic filtering system within blocks and view pages.
     And I should not see "[TEST] Unpublished page" in the ".civic-card-container" element
     And I should see "[TEST] No Topics Page" in the ".civic-card-container" element
 
-  @api @javascript
-  Scenario: Civic listing page with large filter should filter pages, update selected filters correctly.
-    Given I am an anonymous user
-    When I visit "/civic/listing"
-    And I should see an ".civic-card-container__cards" element
-    And I should see an ".views-exposed-form" element
-    # Test JS filtering and the loaded view results.
-    And I press the "Content type" button
-    And I wait 1 second
-    And I select the radio button "Page"
-    And I press the "Content type" button
-    And I wait 1 second
-    And I wait for AJAX to finish
-    And I should see "Page" in the ".civic-large-filter__selected-filters" element
-    And I should see "[TEST] All Topics" in the ".civic-card-container" element
-    And I should not see "[TEST] Unpublished page" in the ".civic-card-container" element
-    And I press the "Topics" button
-    And I check the box "[TEST] Topic 1"
-    And I press the "Topics" button
-    And I should see "Page" in the ".civic-large-filter__selected-filters" element
-    And I should see "[TEST] Topic 1" in the ".civic-large-filter__selected-filters" element
-    And I wait 1 seconds
-    And I wait for AJAX to finish
-    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
-    And I should see "[TEST] All Topics" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 2 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
-    And I press the "Topics" button
-    And I check the box "[TEST] Topic 2"
-    And I press the "Topics" button
-    And I wait 1 second
-    And I wait for AJAX to finish
-    And I should see "Page" in the ".civic-large-filter__selected-filters" element
-    And I should see "[TEST] Topic 1" in the ".civic-large-filter__selected-filters" element
-    And I should see "[TEST] Topic 2" in the ".civic-large-filter__selected-filters" element
-    And I should see "[TEST] All Topics" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 Page" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 2 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
-    And I wait for AJAX to finish
-    # Test clear all filter button
-    And I press the "Clear all" button
-    And I wait 1 second
-    And I wait for AJAX to finish
-    And I should not see "Page" in the ".civic-large-filter__selected-filters" element
-    And I should not see "[TEST] Topic 1" in the ".civic-large-filter__selected-filters" element
-    And I should not see "[TEST] Topic 2" in the ".civic-large-filter__selected-filters" element
-    And I should see "Any" in the ".civic-large-filter__selected-filters" element
-    And I should not see "[TEST] Unpublished page" in the ".civic-card-container" element
-    And I should see "[TEST] No Topics Page" in the ".civic-card-container" element
-
-  @api @javascript
-  Scenario: Civic listing page with basic filter should filter pages, update selected filters correctly.
-    Given I am an anonymous user
-    When I visit "/civic/listing-basic"
-    And I should see an ".civic-card-container__cards" element
-    And I should see an ".views-exposed-form" element
-    And I should see "[TEST] All Topics" in the ".civic-card-container" element
-    And I should see "[TEST] No Topics Page" in the ".civic-card-container" element
-    # Filtering by [TEST] Topic 1
-    And I select the filter chip "[TEST] Topic 1"
-    And I wait 1 second
-    And I wait for AJAX to finish
-    And I should see "[TEST] All Topics" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 2 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
-    # Filtering by [TEST] Topic 3
-    And I select the filter chip "[TEST] Topic 3"
-    And I wait 1 second
-    And I wait for AJAX to finish
-    And I should see "[TEST] All Topics" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 2 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 3 Page" in the ".civic-card-container" element
-    # Filtering by [TEST] Topic 2
-    And I select the filter chip "[TEST] Topic 2"
-    And I wait 1 second
-    And I wait for AJAX to finish
-    And I should see "[TEST] All Topics" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 2 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
-
-  @api @javascript
-  Scenario: Civic listing page with basic multiple value filter should filter pages, update selected filters correctly.
-    Given I am an anonymous user
-    When I visit "/civic/listing-basic-multi"
-    And I should see an ".civic-card-container__cards" element
-    And I should see an ".views-exposed-form" element
-    # Filtering by [TEST] Topic 1.
-    And I check the filter chip "[TEST] Topic 1"
-    And I wait 1 second
-    And I wait for AJAX to finish
-    And I should see "[TEST] All Topics" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 2 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
-    # Filtering by [TEST] Topic 1 or [TEST] Topic 3.
-    And I check the filter chip "[TEST] Topic 3"
-    And I wait 1 second
-    And I wait for AJAX to finish
-    And I should see "[TEST] All Topics" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 2 Page" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 3 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
-    # Filtering by [TEST] Topic 1, [TEST] Topic 2 or [TEST] Topic 3.
-    And I check the filter chip "[TEST] Topic 2"
-    And I wait 1 second
-    And I wait for AJAX to finish
-    And I should see "[TEST] All Topics" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 Page" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 2 Page" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 3 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
-    # Filtering by [TEST] Topic 2.
-    And I uncheck the filter chip "[TEST] Topic 1"
-    And I uncheck the filter chip "[TEST] Topic 3"
-    And I wait 1 second
-    And I wait for AJAX to finish
-    And I should see "[TEST] All Topics" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 1 Page" in the ".civic-card-container" element
-    And I should see "[TEST] Topic 2 Page" in the ".civic-card-container" element
-    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
+#  @api @javascript
+#  Scenario: Civic listing page with large filter should filter pages, update selected filters correctly.
+#    Given I am an anonymous user
+#    When I visit "/civic/listing"
+#    And I should see an ".civic-card-container__cards" element
+#    And I should see an ".views-exposed-form" element
+#    # Test JS filtering and the loaded view results.
+#    And I press the "Content type" button
+#    And I wait 1 second
+#    And I select the radio button "Page"
+#    And I press the "Content type" button
+#    And I wait 1 second
+#    And I wait for AJAX to finish
+#    And I should see "Page" in the ".civic-large-filter__selected-filters" element
+#    And I should see "[TEST] All Topics" in the ".civic-card-container" element
+#    And I should not see "[TEST] Unpublished page" in the ".civic-card-container" element
+#    And I press the "Topics" button
+#    And I check the box "[TEST] Topic 1"
+#    And I press the "Topics" button
+#    And I should see "Page" in the ".civic-large-filter__selected-filters" element
+#    And I should see "[TEST] Topic 1" in the ".civic-large-filter__selected-filters" element
+#    And I wait 1 seconds
+#    And I wait for AJAX to finish
+#    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
+#    And I should see "[TEST] All Topics" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 2 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
+#    And I press the "Topics" button
+#    And I check the box "[TEST] Topic 2"
+#    And I press the "Topics" button
+#    And I wait 1 second
+#    And I wait for AJAX to finish
+#    And I should see "Page" in the ".civic-large-filter__selected-filters" element
+#    And I should see "[TEST] Topic 1" in the ".civic-large-filter__selected-filters" element
+#    And I should see "[TEST] Topic 2" in the ".civic-large-filter__selected-filters" element
+#    And I should see "[TEST] All Topics" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 Page" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 2 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
+#    And I wait for AJAX to finish
+#    # Test clear all filter button
+#    And I press the "Clear all" button
+#    And I wait 1 second
+#    And I wait for AJAX to finish
+#    And I should not see "Page" in the ".civic-large-filter__selected-filters" element
+#    And I should not see "[TEST] Topic 1" in the ".civic-large-filter__selected-filters" element
+#    And I should not see "[TEST] Topic 2" in the ".civic-large-filter__selected-filters" element
+#    And I should see "Any" in the ".civic-large-filter__selected-filters" element
+#    And I should not see "[TEST] Unpublished page" in the ".civic-card-container" element
+#    And I should see "[TEST] No Topics Page" in the ".civic-card-container" element
+#
+#  @api @javascript
+#  Scenario: Civic listing page with basic filter should filter pages, update selected filters correctly.
+#    Given I am an anonymous user
+#    When I visit "/civic/listing-basic"
+#    And I should see an ".civic-card-container__cards" element
+#    And I should see an ".views-exposed-form" element
+#    And I should see "[TEST] All Topics" in the ".civic-card-container" element
+#    And I should see "[TEST] No Topics Page" in the ".civic-card-container" element
+#    # Filtering by [TEST] Topic 1
+#    And I select the filter chip "[TEST] Topic 1"
+#    And I wait 1 second
+#    And I wait for AJAX to finish
+#    And I should see "[TEST] All Topics" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 2 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
+#    # Filtering by [TEST] Topic 3
+#    And I select the filter chip "[TEST] Topic 3"
+#    And I wait 1 second
+#    And I wait for AJAX to finish
+#    And I should see "[TEST] All Topics" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 2 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 3 Page" in the ".civic-card-container" element
+#    # Filtering by [TEST] Topic 2
+#    And I select the filter chip "[TEST] Topic 2"
+#    And I wait 1 second
+#    And I wait for AJAX to finish
+#    And I should see "[TEST] All Topics" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 2 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
+#
+#  @api @javascript
+#  Scenario: Civic listing page with basic multiple value filter should filter pages, update selected filters correctly.
+#    Given I am an anonymous user
+#    When I visit "/civic/listing-basic-multi"
+#    And I should see an ".civic-card-container__cards" element
+#    And I should see an ".views-exposed-form" element
+#    # Filtering by [TEST] Topic 1.
+#    And I check the filter chip "[TEST] Topic 1"
+#    And I wait 1 second
+#    And I wait for AJAX to finish
+#    And I should see "[TEST] All Topics" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 2 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element
+#    # Filtering by [TEST] Topic 1 or [TEST] Topic 3.
+#    And I check the filter chip "[TEST] Topic 3"
+#    And I wait 1 second
+#    And I wait for AJAX to finish
+#    And I should see "[TEST] All Topics" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 2 Page" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 3 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
+#    # Filtering by [TEST] Topic 1, [TEST] Topic 2 or [TEST] Topic 3.
+#    And I check the filter chip "[TEST] Topic 2"
+#    And I wait 1 second
+#    And I wait for AJAX to finish
+#    And I should see "[TEST] All Topics" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 Page" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 2 Page" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 3 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] No Topics Page" in the ".civic-card-container" element
+#    # Filtering by [TEST] Topic 2.
+#    And I uncheck the filter chip "[TEST] Topic 1"
+#    And I uncheck the filter chip "[TEST] Topic 3"
+#    And I wait 1 second
+#    And I wait for AJAX to finish
+#    And I should see "[TEST] All Topics" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 1 and Topic 2 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 1 Page" in the ".civic-card-container" element
+#    And I should see "[TEST] Topic 2 Page" in the ".civic-card-container" element
+#    And I should not see "[TEST] Topic 3 Page" in the ".civic-card-container" element

@@ -162,6 +162,8 @@ function _civic_preprocess_civic_filter_form_element_alter(&$variables) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
     $variables['options_title'] = $element['#description'] ?? '';
+    $variables['is_inline'] = TRUE;
+    $variables['inline_change_breakpoint'] = '>=m';
     $variables['filter_group'] = $element['#civic-large-filter'];
     if (isset($variables['description'])) {
       unset($variables['description']);
@@ -282,6 +284,8 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
     $variables['options_title'] = $element['#description'] ?? '';
+    $variables['is_inline'] = TRUE;
+    $variables['inline_change_breakpoint'] = '>=m';
     $variables['filter_group'] = $element['#civic-large-filter'];
     $variables['#attributes']['data-dropdown-filter-fieldset'] = '';
     if (!empty($variables['attributes'])) {
@@ -301,9 +305,11 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     // level.
     $variables['required'] = $element['#required'] ?? FALSE;
     $variables['type'] = 'fieldset-radio';
-    $variables['fieldset_legend'] = $element['#title'];
+    $variables['fieldset_legend'] = $element['#title'] ?? '';
     $variables['errors'] = $element['#errors'] ?? NULL;
-    $variables['attributes'] += $element['#attributes'];
+    if (!empty($element['#attributes'])) {
+      $variables['attributes'] += $element['#attributes'];
+    }
     $attributes = new Attribute($variables['attributes']);
     $attributes = $attributes->getClass() !== NULL ? implode(' ', $attributes->getClass()->value()) : '';
     $variables['modifier_class'] = !empty($element['#attributes']['class']) ? implode(' ', $variables['element']['#attributes']['class']) : '';

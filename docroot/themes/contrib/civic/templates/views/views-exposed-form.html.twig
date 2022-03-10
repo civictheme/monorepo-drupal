@@ -20,6 +20,7 @@
 {% if large_filter %}
   {% include '@organisms/large-filter/large-filter.twig' with {
     filter_title: filter_title,
+    desktop_breakpoint: '>=m',
     filters: form,
     theme: 'light'
   }%}

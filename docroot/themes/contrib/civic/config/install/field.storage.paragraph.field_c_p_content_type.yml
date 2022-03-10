@@ -16,9 +16,6 @@ settings:
     -
       value: civic_event
       label: Event
-    -
-      value: civic_project
-      label: Project
   allowed_values_function: ''
 module: options
 locked: false
