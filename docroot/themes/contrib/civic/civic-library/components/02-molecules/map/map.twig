@@ -1,68 +1,74 @@
 {#
 /**
- * @file heading!
+ * @file
+ * Map component.
  *
  * Variables:
+ * - theme: [string] Theme: light, dark.
  * - embed_url: [string] Embed URL for the google map iframe.
- * - address: [string] Alternate text of the image.
- * - share_link: [string] Share Link.
- * - share_link: [string] Share Link.
- * - share_link_is_external: [boolean] Share link is external.
+ * - address: [string] Optional address.
  * - view_link: [string] View link.
- * - view_link_is_external: [boolean] View link is external.
- * - theme: [string] component theme.
+ * - share_link: [string] Share Link.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civic-map {{ modifier_class }}">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="civic-map__canvas">
-          <iframe class="civic-map_iframe"  src="{{ embed_url }}" frameborder="0" scrolling="no" allowfullscreen {% if address is not empty %} title="{{ address }}" {% endif %}></iframe>
-        </div>
-        <div class="civic-map__links">
-          {% if view_link is not empty %}
-            <div class="civic-map__view_link">
-              {% set view_text %}
-                {% include '@atoms/icon/icon.twig' with {
-                  symbol: 'locationandmaps_map',
-                  modifier_class: 'civic-link__link-icon',
-                } %}
-              {% endset %}
-              {% set view_text = view_text|trim ~ 'View in Google Maps' %}
-              {% include '@atoms/link/link.twig' with {
-                theme: theme,
-                text: view_text,
-                url: view_link,
-                new_window: true,
-                is_external: view_link_is_external,
-              } %}
+{% if embed_url is not empty %}
+  <div class="civic-map {{ modifier_class }}">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          {% block map %}
+            <div class="civic-map__canvas">
+              <iframe class="civic-map_iframe" src="{{ embed_url }}" allowfullscreen {% if address is not empty %}title="{{ address }}"{% endif %}></iframe>
             </div>
-          {% endif %}
+          {% endblock %}
 
-          {% if share_link is not empty %}
-            <div class="civic-map__share_link">
-              {% set share_text %}
-                {% include '@atoms/icon/icon.twig' with {
-                  symbol: 'userinterface_share',
-                  modifier_class: 'civic-link__link-icon',
+          {% block links %}
+            <div class="civic-map__links">
+            {% if view_link is not empty %}
+              <div class="civic-map__view_link">
+                {% set view_text %}
+                  {% include '@atoms/icon/icon.twig' with {
+                    symbol: 'locationandmaps_map',
+                    modifier_class: 'civic-link__link-icon',
+                  } %}
+                {% endset %}
+                {% set view_text = view_text|trim ~ 'View in Google Maps' %}
+                {% include '@atoms/link/link.twig' with {
+                  theme: theme,
+                  text: view_text,
+                  url: view_link,
+                  new_window: true,
+                  is_external: true,
                 } %}
-              {% endset %}
-              {% set share_text = share_text|trim ~ 'Share this Location' %}
-              {% include '@atoms/link/link.twig' with {
-                theme: theme,
-                text: share_text,
-                url: share_link,
-                new_window: true,
-                is_external: share_link_is_external,
-              } %}
-            </div>
-          {% endif %}
+              </div>
+            {% endif %}
+
+            {% if share_link is not empty %}
+              <div class="civic-map__share_link">
+                {% set share_text %}
+                  {% include '@atoms/icon/icon.twig' with {
+                    symbol: 'userinterface_share',
+                    modifier_class: 'civic-link__link-icon',
+                  } %}
+                {% endset %}
+                {% set share_text = share_text|trim ~ 'Share this Location' %}
+                {% include '@atoms/link/link.twig' with {
+                  theme: theme,
+                  text: share_text,
+                  url: share_link,
+                  new_window: true,
+                  is_external: true,
+                } %}
+              </div>
+            {% endif %}
+          </div>
+          {% endblock %}
         </div>
       </div>
     </div>
   </div>
-</div>
+{% endif %}

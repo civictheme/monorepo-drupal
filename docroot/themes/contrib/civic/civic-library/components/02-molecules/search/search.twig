@@ -4,12 +4,13 @@
  * Search component.
  *
  * Variables:
+ * - theme: [string] Theme: light, dark.
  * - button_type: [string] Button type: primary, Secondary, Tertiary.
  * - button_text: [string] Text for the button.
  * - placeholder: [string] Input field placeholder text.
  * - search_url: [string] Search page URL.
  * - help_text: [string] Help text for search element.
- * - keys: [satring] Add query string if available.
+ * - keys: [satring] Optional query string.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -46,7 +47,8 @@
         modifier_class: 'civic-search__button',
       } only %}
     </div>
-    {% if help_text %}
+
+    {% if help_text is not empty %}
       <p class="civic-search__help_text">{{ help_text }}</p>
     {% endif %}
   </form>

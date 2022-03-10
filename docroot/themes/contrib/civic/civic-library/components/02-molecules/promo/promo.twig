@@ -3,49 +3,53 @@
  * @file
  * Promo component.
  *
- * Display of promo component.
- *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - title: [string] The title of the promo card
- * - content: [string] The text to display below the title
- * - call_to_action: [object] A navigation link. Has properties: title, url, new_window.
+ * - title: [string] Title text.
+ * - content: [string] Content.
+ * - call_to_action: [object] Link:
+ *   - title [string] Link title.
+ *   - url [string] Link URL.
+ *   - new_window [boolean] Open link in the new window.
+ * - modifier_class:[string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class) %}
 
-<div class="civic-promo {{ modifier_class }}">
-  <div class="civic-promo__inner">
-    {% block content %}
-      {% block column_one %}
-        <div class="civic-promo__first-container">
-          {% if title %}
-            <div class="civic-promo__title">{{ title }}</div>
-          {% endif %}
-          {% if content %}
-            <div class="civic-promo__content">{{ content }}</div>
-          {% endif %}
-        </div>
+{% if title is not empty or content is not empty %}
+  <div class="civic-promo {{ modifier_class }}">
+    <div class="civic-promo__inner">
+      {% block content %}
+        {% block column_one %}
+          <div class="civic-promo__first-container">
+            {% if title %}
+              <div class="civic-promo__title">{{ title }}</div>
+            {% endif %}
+            {% if content %}
+              <div class="civic-promo__content">{{ content }}</div>
+            {% endif %}
+          </div>
+        {% endblock %}
+        {% block column_two %}
+          <div class="civic-promo__second-container">
+            {% if call_to_action %}
+              {% include '@atoms/button/button.twig' with {
+                text: call_to_action.title,
+                url: call_to_action.url,
+                new_window: call_to_action.new_window,
+                type: 'secondary',
+                theme: theme,
+                kind: 'link',
+                modifier_class: 'civic-promo__button',
+                size: 'large',
+                icon: 'arrows_rightarrow_3',
+              } only %}
+            {% endif %}
+          </div>
+        {% endblock %}
       {% endblock %}
-      {% block column_two %}
-        <div class="civic-promo__second-container">
-        {% if call_to_action %}
-          {% include '@atoms/button/button.twig' with {
-            text: call_to_action.title,
-            url: call_to_action.url,
-            new_window: call_to_action.new_window,
-            type: 'secondary',
-            theme: theme,
-            kind: 'link',
-            modifier_class: 'civic-promo__button',
-            size: 'large',
-            icon: 'arrows_rightarrow_3',
-          } only %}
-        {% endif %}
-      </div>
-      {% endblock %}
-    {% endblock %}
+    </div>
   </div>
-</div>
+{% endif %}

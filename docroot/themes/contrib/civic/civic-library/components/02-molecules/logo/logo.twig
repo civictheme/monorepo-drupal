@@ -5,29 +5,31 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - logos: [object] Desktop and mobile Image object
- *    - link: [string] URL for the logo.
+ * - logos: [object] Object with 'mobile' and 'desktop' keys:
+ *    - src: [string] URL for the logo.
  *    - alt: [string] Image alt text.
- * - url: [string] URL that wraps the logo.
- * - modifier_class: [string] Additional classes for the component.
+ * - url: [string] Optional URL that wraps the logo.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
-{% set title = logo.alt ? logo.alt : 'CivicTheme logo' %}
+{% set title = logo.alt ? logo.alt : 'Logo' %}
 
-{% for type, logo in logos %}
-  {% set visibility_class = type == 'mobile' ? 'show-xxs hide-m' : 'hide-xxs show-m' %}
-  {% if logo.src is not empty %}
-    <div class="civic-logo {{ visibility_class }} {{ modifier_class }}">
-      {% if url %}
-      <a class="civic-logo__url" href="{{ url }}" title="Click to go to the homepage">
-      {% endif %}
-        <img src="{{ logo.src }}" {% if logo.alt is not empty %}alt="{{ logo.alt }}" {% endif %} title="{{ title }}"/>
-      {% if url %}
-      </a>
-      {% endif %}
-    </div>
-  {% endif %}
-{% endfor %}
+{% if logos is not empty %}
+  {% for type, logo in logos %}
+    {% set visibility_class = type == 'mobile' ? 'show-xxs hide-m' : 'hide-xxs show-m' %}
+    {% if logo.src is not empty %}
+      <div class="civic-logo {{ visibility_class }} {{ modifier_class }}">
+        {% if url is not empty %}
+        <a class="civic-logo__url" href="{{ url }}" title="Click to go to the homepage">
+        {% endif %}
+          <img src="{{ logo.src }}" {% if logo.alt is not empty %}alt="{{ logo.alt }}" {% endif %} title="{{ title }}"/>
+        {% if url is not empty %}
+        </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
