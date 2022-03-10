@@ -1,3 +1,6 @@
+/**
+ * Slider component.
+ */
 function CivicSlider(el) {
   this.el = el;
 

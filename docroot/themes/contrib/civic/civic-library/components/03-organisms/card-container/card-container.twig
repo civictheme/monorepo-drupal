@@ -1,20 +1,20 @@
 {#
 /**
- * @file Card container component.
+ * @file
+ * Card Container component.
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - column_count: [number] Number of columns in the container.
- * - fill_width: [boolean] Flag to stretch "hanging" cards to the full width of container.
- * - title: [string] The text of card title.
- * - header_link_url: [string] Heading link URL.
- * - header_link_text: [string] Heading link test.
- * - content_top: [string] Content slot for above cards.
- * - url: [string] Card link.
+ * - content_top: [string] Content slot.
+ * - content_bottom: [string] Content slot.
+ * - title: [string] Title text.
  * - cards: [array] Cards array.
+ * - column_count: [number] Number of columns in the container.
+ * - fill_width: [boolean] Stretch "hanging" cards to the full width of container or not.
+ * - header_link_text: [string] Heading link text.
+ * - header_link_url: [string] Heading link URL.
+ * - footer_link_text: [string] Footer link text.
  * - footer_link_url: [string] Footer link URL.
- * - footer_link_text: [string] Footer link test.
- * - content_bottom: [string] Content slot for below cards.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -25,13 +25,13 @@
 {% set spacing_class = with_spacing ? 'civic-card-container--with-spacing civic-component--with-spacing' : '' %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, fill_width_class, spacing_class, modifier_class|default('')) %}
 
-{% if (title is not empty) or (cards is not empty) or (content_top is not empty) or (content_bottom is not empty) %}
+{% if title is not empty or cards is not empty or content_top is not empty or content_bottom is not empty %}
   <div class="civic-card-container {{ modifier_class }}" aria-live="polite">
     <div class="container">
       <div class="row">
         <div class="col-m-12">
           {% block title %}
-            {% if (title is not empty) or (header_link_url is not empty and header_link_text is not empty) %}
+            {% if title is not empty or (header_link_url is not empty and header_link_text is not empty) %}
               <div class="civic-card-container__header">
                 {% if title is not empty %}
                   <div class="civic-card-container__header-title">
@@ -53,14 +53,15 @@
           {% endblock %}
 
           {% block description %}
-            {% if description %}
+            {% if description is not empty %}
               <div class="civic-card-container__description">
                 {{ description }}
               </div>
             {% endif %}
           {% endblock %}
+
           {% block content_top %}
-            {% if content_top %}
+            {% if content_top is not empty %}
               <div class="civic-card-container__content-top">
                 {{ content_top }}
               </div>
@@ -72,9 +73,11 @@
               <div class="civic-card-container__cards">
                 <div class="row">
                   {% for card in cards %}
-                    <div class="civic-card-container__card {{ column_class }}">
-                      {{ card }}
-                    </div>
+                    {% if card is not empty %}
+                      <div class="civic-card-container__card {{ column_class }}">
+                        {{ card }}
+                      </div>
+                    {% endif %}
                   {% endfor %}
                 </div>
               </div>
@@ -94,8 +97,9 @@
               </div>
             {% endif %}
           {% endblock %}
+
           {% block content_bottom %}
-            {% if content_bottom %}
+            {% if content_bottom is not empty %}
               <div class="civic-card-container__content-bottom">
                 {{ content_bottom }}
               </div>

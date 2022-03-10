@@ -1,5 +1,5 @@
 /**
- * Table of contents component.
+ * Table of Contents component.
  *
  * Attaches to markup with 'data-table-of-contents-position' attribute.
  *
