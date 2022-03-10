@@ -37,19 +37,20 @@
 
             {% block content %}
               {% if title is not empty or summary is not empty %}
-              <div class="civic-attachment__text">
-                {% if title is not empty %}
-                  <div class="civic-attachment__title">
-                    {{ title }}
-                  </div>
-                {% endif %}
+                <div class="civic-attachment__text">
+                  {% if title is not empty %}
+                    <div class="civic-attachment__title">
+                      {{ title }}
+                    </div>
+                  {% endif %}
 
-                {% if summary is not empty %}
-                  <div class="civic-attachment__summary">
-                    {{ summary }}
-                  </div>
-                {% endif %}
-              </div>
+                  {% if summary is not empty %}
+                    <div class="civic-attachment__summary">
+                      {{ summary }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
             {% endblock %}
 
             {% block links %}
