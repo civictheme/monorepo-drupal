@@ -41,6 +41,9 @@ Run the following command from within `civic` theme directory:
 
 This will generate a child theme in your `custom` theme directory with everything ready to be installed and compiled.
 
+**Important - Civic starter theme also creates demo / example components - you may wish to delete these components
+before beginning development. **
+
 ### How to compile CivicTheme
 
 Building the front-end
