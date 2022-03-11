@@ -1,5 +1,6 @@
 /**
- * Collapsible utility component.
+ * @file
+ * Collapsible component.
  *
  * Attaches to markup with 'data-collapsible' attribute.
  * Available attributes:

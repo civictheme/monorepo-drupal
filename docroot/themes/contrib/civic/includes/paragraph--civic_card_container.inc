@@ -7,8 +7,6 @@
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD)
  */
 function civic_preprocess_paragraph__civic_card_container(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */

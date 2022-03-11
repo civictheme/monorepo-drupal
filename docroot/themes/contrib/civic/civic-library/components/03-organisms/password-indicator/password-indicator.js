@@ -1,3 +1,6 @@
+/**
+ * Password Indicator component.
+ */
 function CivicPasswordIndicator(el) {
   // Ensure element hasn't already been processed.
   if (this.el.getAttribute('data-password-indicator' === 'true' || this.el)) {

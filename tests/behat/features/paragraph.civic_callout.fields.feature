@@ -40,20 +40,3 @@ Feature: Tests the Callout
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_links][0][uri]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_links][0][uri]'].required" element
     And the option "Light" from select "Theme" is selected
-
-  @api @javascript
-  Scenario: Civic Component paragraph reference exists and works
-    Given I am logged in as a user with the "Site Administrator" role
-    When I go to "block/add/civic_component_block"
-    And I click on "div.field--name-field-c-b-components .paragraphs-add-wrapper .dropbutton-toggle button" element
-    And I wait for AJAX to finish
-    And I press the "field_c_b_components_civic_callout_add_more" button
-    And I wait for AJAX to finish
-    And should see an "select[name='field_c_b_components[0][subform][field_c_p_theme]']" element
-    And should see an "select[name='field_c_b_components[0][subform][field_c_p_theme]'].required" element
-    And should see an "input[name='field_c_b_components[0][subform][field_c_p_title][0][value]']" element
-    And should see an "input[name='field_c_b_components[0][subform][field_c_p_title][0][value]'].required" element
-    And should see an "textarea[name='field_c_b_components[0][subform][field_c_p_summary][0][value]']" element
-    And should see an "textarea[name='field_c_b_components[0][subform][field_c_p_summary][0][value]'].required" element
-    And should see an "input[name='field_c_b_components[0][subform][field_c_p_links][0][uri]']" element
-    And should see an "input[name='field_c_b_components[0][subform][field_c_p_links][0][uri]'].required" element

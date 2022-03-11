@@ -21,7 +21,6 @@ Feature: Tests the Promo card
     And I should see the text "field_c_p_date" in the "Date" row
     And I should see the text "field_c_p_topics" in the "Topics" row
 
-
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' and 'field Banner components' selected
     Given I am logged in as a user with the "Site Administrator" role

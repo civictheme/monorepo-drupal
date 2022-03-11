@@ -9,8 +9,6 @@ use Drupal\Core\Url;
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD)
  */
 function civic_preprocess_paragraph__civic_slider(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -41,8 +39,6 @@ function civic_preprocess_paragraph__civic_slider(&$variables) {
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD)
  */
 function civic_preprocess_paragraph__civic_slider_slide(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */

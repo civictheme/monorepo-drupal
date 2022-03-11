@@ -258,6 +258,9 @@ CivicAlert.prototype.urlPath = function () {
   return this.container.getAttribute('data-test-path') || window.location.pathname;
 };
 
+/**
+ * Initialise component.
+ */
 document.querySelectorAll('[data-component-name="civic-alerts"]').forEach((el) => {
   new CivicAlert(el);
 });

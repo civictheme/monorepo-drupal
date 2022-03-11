@@ -46,24 +46,3 @@ Feature: Tests the Attachment
     And should see an "#field_c_p_attachments-media-library-wrapper-field_c_n_components-0-subform.required" element
     And should see an "#field_c_p_icon-media-library-wrapper-field_c_n_components-0-subform" element
     And the option "Light" from select "Theme" is selected
-
-  @api @javascript
-  Scenario: Civic Component paragraph reference exists on Component block
-    Given I am logged in as a user with the "Site Administrator" role
-    When I go to "block/add/civic_component_block"
-    And I click on "div.field--name-field-c-b-components .paragraphs-add-wrapper .dropbutton-toggle button" element
-    And I wait for AJAX to finish
-    And I press the "field_c_b_components_civic_attachment_add_more" button
-    And I wait for AJAX to finish
-    And should see an "select[name='field_c_b_components[0][subform][field_c_p_theme]']" element
-    And should see an "select[name='field_c_b_components[0][subform][field_c_p_theme]'].required" element
-    And should see an "input[name='field_c_b_components[0][subform][field_c_p_title][0][value]']" element
-    And should see an "input[name='field_c_b_components[0][subform][field_c_p_title][0][value]'].required" element
-    And should see an "textarea[name='field_c_b_components[0][subform][field_c_p_summary][0][value]']" element
-    And should see an "textarea[name='field_c_b_components[0][subform][field_c_p_summary][0][value]'].required" element
-    And should see an "input[name='field_c_b_components[0][subform][field_c_p_background][value]']" element
-    And should see an "#field_c_p_image-media-library-wrapper-field_c_b_components-0-subform" element
-    And should see an "#field_c_p_attachments-media-library-wrapper-field_c_b_components-0-subform" element
-    And should see an "#field_c_p_attachments-media-library-wrapper-field_c_b_components-0-subform.required" element
-    And should see an "#field_c_p_icon-media-library-wrapper-field_c_b_components-0-subform" element
-

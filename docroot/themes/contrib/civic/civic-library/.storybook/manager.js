@@ -3,4 +3,9 @@ import theme from './theme';
 
 addons.setConfig({
   theme,
+  toolbar: {
+    zoom: {
+      hidden: true,
+    },
+  },
 });

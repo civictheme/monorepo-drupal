@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Logo component utilities.
+ */
+
 const fs = require('fs');
 const pathUtil = require('path');
 

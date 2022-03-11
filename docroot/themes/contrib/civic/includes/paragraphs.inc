@@ -43,8 +43,6 @@ function civic_theme_suggestions_paragraph_alter(array &$suggestions, array $var
 
 /**
  * Generic setter of global variables for paragraphs as card renders.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_paragraph_card(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -68,8 +66,6 @@ function _civic_preprocess_paragraph_card(&$variables) {
 
 /**
  * Global paragraph preprocessor calls.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_paragraph(&$variables) {
   // Global paragraph fields.
@@ -91,8 +87,6 @@ function _civic_preprocess_paragraph(&$variables) {
 
 /**
  * Preprocess summary for Civic paragraphs.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_paragraph_summary(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -104,8 +98,6 @@ function _civic_preprocess_paragraph_summary(&$variables) {
 
 /**
  * Preprocess title for Civic paragraphs.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_paragraph_title(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -147,8 +139,6 @@ function _civic_preprocess_paragraph_background(&$variables) {
 
 /**
  * Preprocess Theme fields for Civic paragraphs.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_paragraph_theme(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -160,8 +150,6 @@ function _civic_preprocess_paragraph_theme(&$variables) {
 
 /**
  * Preprocess icon for Civic cards.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_paragraph_card__icon(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -176,8 +164,6 @@ function _civic_preprocess_paragraph_card__icon(&$variables) {
 
 /**
  * Preprocess Icon for Civic Paragraphs.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_paragraph_card__image(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -190,8 +176,6 @@ function _civic_preprocess_paragraph_card__image(&$variables) {
 
 /**
  * Gets Civic card types.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_get_card_types() {
   // @todo extend to allow for child theme - implement as theme setting.
@@ -213,8 +197,6 @@ function _civic_get_card_types() {
 
 /**
  * Preprocessing reference cards paragraphs.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_paragraph_reference_card(&$variables) {
   // Card reference paragraph types are handled on a generic template.

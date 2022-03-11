@@ -1,17 +1,17 @@
 {#
 /**
  * @file
- * Tags component.
+ * Tag component.
  *
  * Variables:
- * - theme: [string] tag theme: light, dark.
- * - text: [string] tag text.
- * - icon: [boolean] Icon visibility: true, false.
+ * - theme: [string] Theme: light, dark.
+ * - text: [string] Text.
+ * - is_alt: [boolean] Flag to render as "alternative" color scheme.
+ * - icon: [string] Icon name.
  * - icon_placement: [string] Icon position: before, after.
- * - hidden_label: [string] Can be set to provide additional context to screen readers.
- * - url: [string] URL for the tag link.
- * - new_window: [boolean] Open in a new window.
- * - modifier_class: [string] Additional classes to modify component styling.
+ * - url: [string] Optional URL to convert to a link.
+ * - new_window: [boolean] Open in a new window. Only if url is provided.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
@@ -46,11 +46,11 @@
 
 {% if tag_text %}
   <div class="civic-tag {{ modifier_class }}" aria-label="{{ text }}">
-    {% if url %}
-      <a class="civic-tag__link" href="{{ url }}" title="{{ text }}" aria-label="{{ text }}" {{ new_window ? 'target="_blank"' }}>
+    {% if url is not empty %}
+      <a class="civic-tag__link" href="{{ url }}" {% if text is not empty %}title="{{ text }}" aria-label="{{ text }}"{% endif%} {{ new_window ? 'target="_blank"' }}>
     {% endif %}
         {{ tag_text }}
-    {% if url %}
+    {% if url is not empty %}
       </a>
     {% endif %}
   </div>

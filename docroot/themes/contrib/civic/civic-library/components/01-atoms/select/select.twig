@@ -1,15 +1,26 @@
 {#
 /**
  * @file
- * Civic Select element theme implementation.
+ * Select component.
  *
- * Available variables:
- * - attributes: HTML attributes for the <select> tag.
- * - options: The <option> element children.
- * - modifier_class: [string] Additional classes to modify component styling.
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - options: [array] Options:
+ *   - type: [string] Option type: option group (optgroup) or option (option).
+ *   - label: [string] Option label.
+ *   - value: [string] Option value.
+ *   - selected: [string] Flag whether option is selected.
+ *   - options: [array] Array of options (applies to optgroup type):
+ *     - label: [string] Option label.
+ *     - value: [string] Option value.
+ *     - selected: [string] Flag whether option is selected.
+ * - state: [string] Input field state: error, success.
+ * - required: [boolean] Required state.
+ * - disabled: [boolean] Disabled state.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
  */
 #}
-
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set state = state is empty or state == 'none' ? 'default' : state %}
@@ -18,16 +29,22 @@
 {% set required_class = required ? 'civic-input--required required' : '' %}
 {% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, modifier_class|default('')) %}
 
-<select class="civic-select civic-input__element {{ modifier_class }}" {{ attributes }} {{ disabled ? 'disabled' }} {{ required ? 'required' }}>
-  {% for option in options %}
-    {% if option.type == 'optgroup' %}
-      <optgroup label="{{ option.label }}">
-        {% for sub_option in option.options %}
-          <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
-        {% endfor %}
-      </optgroup>
-    {% elseif option.type == 'option' %}
-      <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
-    {% endif %}
-  {% endfor %}
-</select>
+{% if options is not empty %}
+  <select class="civic-select civic-input__element {{ modifier_class }}" {% if attributes is not empty %}{{ attributes }}{% endif%} {{ disabled ? 'disabled' }} {{ required ? 'required' }}>
+    {% for option in options %}
+      {% if option.type == 'optgroup' %}
+        <optgroup label="{{ option.label }}">
+          {% for sub_option in option.options %}
+            {% if sub_option.label is not empty %}
+              <option value="{{ sub_option.value|default('') }}" {{ sub_option.selected ? 'selected="selected"' }}>{{ sub_option.label }}</option>
+            {% endif %}
+          {% endfor %}
+        </optgroup>
+      {% elseif option.type == 'option' %}
+        {% if option.label is not empty%}
+          <option value="{{ option.value|default('') }}" {{ option.selected ? 'selected="selected"' }}>{{ option.label }}</option>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </select>
+{% endif %}

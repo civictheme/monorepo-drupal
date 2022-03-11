@@ -4,10 +4,11 @@
  * Filter Chip Button component.
  *
  * Variables:
- * - theme: [string] theme: light, dark.
+ * - theme: [string] Theme: light, dark.
+ * - text: [string] Text.
  * - is_selected: [string] Additional attributes.
  * - attributes: [string] Additional attributes.
- * - modifier_class: [string] Additional classes to modify component styling.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
@@ -16,7 +17,7 @@
 {% set modifier_class = '%s %s %s'|format(theme_class, selected_class, modifier_class|default('')) %}
 
 {% if text %}
-  <button class="civic-filter-chip-button {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
+  <button class="civic-filter-chip-button {{ modifier_class }}" {% if attributes is not empty %}{{ attributes }}{% endif %}>
     <span class="civic-filter-chip-button__text">{{ text }}</span>
     <span class="civic-filter-chip-button__selected-icon"></span>
   </button>

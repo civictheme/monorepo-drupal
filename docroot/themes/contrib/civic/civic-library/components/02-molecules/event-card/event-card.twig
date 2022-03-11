@@ -1,28 +1,28 @@
 {#
 /**
- * @file Event card component.
+ * @file
+ * Event Card component.
  *
- * Available variables:
- * - content_top: [boolean] show/hide content top section.
- * - content_top_label: [string] content top label.
- * - date: [string] formatted date.
- * - with_image: show card with or without image.
+ * Variables:
+ * - theme: [string] Theme for large filter.
  * - image: [object] Consist details of the card image like src, alt text.
- * - modifier_class: [string] Classes to modify the default component styling.
- * - summary: [string] Summary of the card.
- * - place_n_time: [string] Place and time details fo the event.
- * - tag: [string] Event topic/industry tag.
- * - title: [string] The text of card title.
- * - theme: [string] card theme: light, dark.
- * - type: [string] Card type: large, small, icon.
- * - url: [string] Card link.
- * - is_external: [boolean] Link is external.
+ * - content_top: [string] Content slot.
+ * - content_middle: [string] Content slot.
+ * - content_bottom: [string] Content slot.
+ * - date: [string] Formatted date.
+ * - title: [string] Title.
+ * - summary: [string] Summary.
+ * - tag: [string] Tag.
+ * - tags: [array] Array of tags.
+ * - url: [string] Optional linl.
+ * - is_external: [boolean] Link is external or not.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set type_class = image is empty ? 'civic-event-card--no-image' : '' %}
-{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
+{% set no_image_class = image is empty ? 'civic-event-card--no-image' : '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, no_image_class, modifier_class|default('')) %}
 
 <div class="civic-event-card {{ modifier_class }}">
   {% block image %}
@@ -37,6 +37,7 @@
       </div>
     {% endif %}
   {% endblock %}
+
   <div class="civic-event-card__content">
     {% block content_top %}
       {% if content_top %}
@@ -57,17 +58,18 @@
         } only %}
       {% endif %}
     {% endblock %}
+
     {% block title %}
-       {% if title %}
-          <div class="civic-event-card__title">
-            {% if url %}
-            <a class="civic-event-card__title-link" href="{{ url }}" {% if is_external %} title="Opens in new tab" target="_blank" {% endif %}>
-              {% endif %}
-              {{ title }}
-              {% if url %}
-            </a>
+      {% if title %}
+        <div class="civic-event-card__title">
+          {% if url %}
+          <a class="civic-event-card__title-link" href="{{ url }}" {% if is_external %} title="Opens in new tab" target="_blank" {% endif %}>
             {% endif %}
-          </div>
+            {{ title }}
+            {% if url %}
+          </a>
+          {% endif %}
+        </div>
       {% endif %}
     {% endblock %}
 
@@ -96,9 +98,9 @@
     {% endblock %}
 
     {% block tags %}
-     {% if tags or url %}
+      {% if tags or url %}
         <div class="civic-event-card__bottom-wrapper">
-          {% if tags %}
+          {% if tags is not empty %}
             <div class="civic-event-card__tags">
               {% for tag in tags %}
                 {% include '@atoms/tag/tag.twig' with {
@@ -124,8 +126,8 @@
               } only %}
             {% endif %}
           {% endif %}
-        </div>`
-    {% endif %}
+        </div>
+      {% endif %}
     {% endblock %}
 
     {% block content_bottom %}

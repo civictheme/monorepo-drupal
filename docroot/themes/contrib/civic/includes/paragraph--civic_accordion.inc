@@ -9,8 +9,6 @@ use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD)
  */
 function civic_preprocess_paragraph__civic_accordion(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */

@@ -10,8 +10,6 @@ use Drupal\Core\Url;
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD)
  */
 function civic_preprocess_paragraph__civic_promo(&$variables) {
   _civic_preprocess_paragraph_theme($variables);
