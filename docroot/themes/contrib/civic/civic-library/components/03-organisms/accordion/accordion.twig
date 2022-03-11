@@ -2,17 +2,16 @@
 /**
  * @file
  * Accordion component.
- * Creates an accordion.
  *
  * Variables:
- * - theme: [string] theme: light, dark.
- * - title: [string] Accordion title.
- * - modifier_class: [string] Additional classes to modify component styling.
- * - expand_all: [boolean] All panels exanded.
- * - panels: [array] Accordion panels comprised of:
- *   - title: [string] Accordion panel title
- *   - expanded: [boolean] Accordion panel expanded|closed state.
- *   - content: [string] Accordion panel accordion
+ * - theme: [string] Theme: light, dark.
+ * - title: [string] Title.
+ * - expand_all: [boolean] Expand all panels or not.
+ * - panels: [array] Array of panels:
+ *   - title: [string] Panel title
+ *   - expanded: [boolean] Panel is expanded or not.
+ *   - content: [string] Panel content.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
@@ -20,44 +19,46 @@
 {% set default_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, default_class, modifier_class|default('')) %}
 
-{% if panels %}
+{% if panels is not empty %}
   <div class="civic-accordion {{ modifier_class }}">
     <div class="container">
       <div class="row">
-        <div class="civic-accordion__content-top col-xs-12">
-          {% if title %}
+        {% if title is not empty %}
+          <div class="civic-accordion__content-top col-xs-12">
             <div class="civic-accordion__title-top">
               {{ title }}
             </div>
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
 
         <div class="civic-accordion__inner col-xs-12">
           <ul class="civic-accordion__list" data-multiselectable="true">
             {% for fold in panels %}
-              {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
-              <li class="civic-accordion__list-item">
-                <div class="civic-accordion__header">
-                  {% set is_open = is_expanded ? 'is-selected' : '' %}
-                  <button class="civic-accordion__header__button {{ is_open }}">
-                    {% if fold.title %}
-                      <span>{{ fold.title }}</span>
-                    {% endif %}
-                    {% include '@atoms/icon/icon.twig' with {
-                      symbol: 'arrows_downarrow_1'
-                    } only %}
-                  </button>
-                </div>
-
-                {% if fold.content %}
-                  {% set is_open = is_expanded ? 'civic-accordion__content--expanded' : '' %}
-                  <div class="civic-accordion__content {{ is_open }}">
-                    <div class="civic-accordion__content--inner">
-                      {{ fold.content|raw }}
-                    </div>
+              {% if fold.title is not empty or fold.content is not empty %}
+                {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
+                <li class="civic-accordion__list-item">
+                  <div class="civic-accordion__header">
+                    {% set is_open = is_expanded ? 'is-selected' : '' %}
+                    <button class="civic-accordion__header__button {{ is_open }}">
+                      {% if fold.title is not empty %}
+                        <span>{{ fold.title }}</span>
+                      {% endif %}
+                      {% include '@atoms/icon/icon.twig' with {
+                        symbol: 'arrows_downarrow_1'
+                      } only %}
+                    </button>
                   </div>
-                {% endif %}
-              </li>
+
+                  {% if fold.content is not empty %}
+                    {% set is_open = is_expanded ? 'civic-accordion__content--expanded' : '' %}
+                    <div class="civic-accordion__content {{ is_open }}">
+                      <div class="civic-accordion__content--inner">
+                        {{ fold.content|raw }}
+                      </div>
+                    </div>
+                  {% endif %}
+                </li>
+              {% endif %}
             {% endfor %}
           </ul>
         </div>

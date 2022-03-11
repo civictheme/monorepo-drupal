@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Slider component utilities.
+ */
+
 import {
   randomString, getRandomInt, demoImage, randomText, randomUrl, getRandomBool,
 } from '../../00-base/base.stories';

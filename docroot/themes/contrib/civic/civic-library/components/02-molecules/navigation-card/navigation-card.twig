@@ -1,37 +1,39 @@
 {#
 /**
- * @file Navigation card component.
+ * @file
+ * Navigation Card component.
  *
- * Available variables:
- * - theme: [string] card theme: light, dark.
- * - size: [string] Card type: large, small.
- * - image: [object] Consist details of the card image like src, width, height, alt text.
- * - image_as_icon: boolean
- * - image_over: [string] Component slot for image_over of Card.
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content_top: [string] Content slot.
+ * - image_over: [string] Content slot for image over.
+ * - content_middle: [string] Content slot.
+ * - content_bottom: [string] Content slot.
+ * - size: [string] Size: large, small.
+ * - image: [object] Image object:
+ *   - src: [string] Image source.
+ *   - alt: [string] Image alt text.
+ * - image_as_icon: [boolean] Show image as an icon.
  * - icon: [string] Icon name.
- * - content_top: [string] Component slot for top  of Card.
  * - title: [string] The text of card title.
- * - content_middle: [string] Component slot for middle of Card.
  * - summary: [string] Summary of the card.
- * - image: [string] Card type: large, small.
- * - url: [string] Card link.
- * - is_external: [boolean] Link is external.
- * - content_bottom: [string] Component slot for bottom of Card.
- * - modifier_class: [string] Classes to modify the default component styling.
+ * - url: [string] Link.
+ * - is_external: [boolean] Link is external or not.
+ * - modifier_class: [string] Additional classes.
  */
 #}
-{% set image_as_icon = image_as_icon is empty ? false : image_as_icon %}
+
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set size = size|default('large') %}
 {% set size_class = size == 'large'?'civic-navigation-card--large' : 'civic-navigation-card--small' %}
-{% set image_as_icon = image_as_icon ? 'civic-navigation-card--image-as-icon' : '' %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, size_class, image_as_icon, modifier_class|default('')) %}
+{% set image_as_icon_class = image_as_icon ? 'civic-navigation-card--image-as-icon' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, size_class, image_as_icon_class, modifier_class|default('')) %}
 
 <div class="civic-navigation-card {{ modifier_class }}">
   {% block image %}
     {% if image.src is not empty %}
       <div class="civic-navigation-card__image-wrapper">
-        <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
+        <img src="{{ image.src }}" {% if image.alt is not empty %}alt="{{ image.alt }}{% endif %}">
         {% block image_over %}
           {% if image_over %}
             <div class="civic-navigation-card__image-over">
@@ -65,28 +67,30 @@
     {% endblock %}
 
     {% block title %}
-      {% if title %}
+      {% if title is not empty %}
         <div class="civic-navigation-card__title">
-          {% if url %}
-          <a class="civic-navigation-card__title-link" href="{{ url }}" {% if is_external %} title="Opens in new tab" target="_blank" {% endif %}>
-            {% endif %}
+          {% if url is not empty %}
+          <a class="civic-navigation-card__title-link" href="{{ url }}" {% if is_external %}title="Open in a new tab" target="_blank"{% endif %}>
+          {% endif %}
             {{ title }}
-            {% if url %}
-            <span>
-              {% if is_external %}
-                {% include '@atoms/icon/icon.twig' with {
-                  symbol: 'arrows_upperrightarrow',
-                  color: 'primary',
-                  modifier_class: 'civic-navigation-card__icon--external'
-                } only %}
-              {% else %}
-                {% include '@atoms/icon/icon.twig' with {
-                  symbol: 'arrows_rightarrow_3',
-                  color: 'primary',
-                  modifier_class: 'civic-navigation-card__icon--arrow',
-                } only %}
-              {% endif %}
-            </span>
+            {% if url is not empty %}
+              <span>
+                {% if is_external %}
+                  {% include '@atoms/icon/icon.twig' with {
+                    symbol: 'arrows_upperrightarrow',
+                    color: 'primary',
+                    modifier_class: 'civic-navigation-card__icon--external'
+                  } only %}
+                {% else %}
+                  {% include '@atoms/icon/icon.twig' with {
+                    symbol: 'arrows_rightarrow_3',
+                    color: 'primary',
+                    modifier_class: 'civic-navigation-card__icon--arrow',
+                  } only %}
+                {% endif %}
+              </span>
+            {% endif %}
+          {% if url is not empty %}
           </a>
           {% endif %}
         </div>
@@ -94,7 +98,7 @@
     {% endblock %}
 
     {% block content_middle %}
-      {% if content_middle %}
+      {% if content_middle is not empty %}
         <div class="civic-navigation-card__content-middle">
           {{ content_middle }}
         </div>
@@ -102,7 +106,7 @@
     {% endblock %}
 
     {% block summary %}
-      {% if summary %}
+      {% if summary is not empty %}
         <div class="civic-navigation-card__summary">
           {{ summary }}
         </div>
@@ -110,7 +114,7 @@
     {% endblock %}
 
     {% block content_bottom %}
-      {% if content_bottom %}
+      {% if content_bottom is not empty %}
         <div class="civic-navigation-card__content-bottom">
           {{ content_bottom }}
         </div>

@@ -32,7 +32,7 @@ DRUPAL_THEME="${DRUPAL_THEME:-}"
 
 # Provide argument as 'be' or 'fe' to lint only back-end or front-end code.
 # If no argument is provided, all code will be linted.
-LINT_TYPE="${1:-be-fe}"
+LINT_TYPE="${1:-be-fe-config}"
 
 if [ -z "${LINT_TYPE##*be*}" ]; then
   # Lint code for syntax errors.
@@ -57,5 +57,7 @@ if [ -z "${LINT_TYPE##*fe*}" ] && [ -n "${DRUPAL_THEME}" ] && grep -q lint "docr
   [ "${ALLOW_FE_LINT_FAIL}" -eq 1 ]
 fi
 
-# Lint theme configuration.
-./scripts/lint-theme-config.sh
+if [ -z "${LINT_TYPE##*config*}" ]; then
+  # Lint theme configuration.
+  ./scripts/lint-theme-config.sh
+fi

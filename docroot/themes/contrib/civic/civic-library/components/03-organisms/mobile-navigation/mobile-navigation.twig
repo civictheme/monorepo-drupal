@@ -3,11 +3,14 @@
   * @file
   * Mobile Navigation component.
   *
-  * Available variables:
-  * - theme: [string] theme: light, dark.
-  * - modifier_class: [string] Additional classes for the component.
-  * - primary_navigation_items: [array] array of list items.
-  * - secondary_navigation_items: [array] array of list items.
+  * Variables:
+  * - theme: [string] Theme: light, dark.
+  * - content_top: [string] Content slot.
+  * - content_bottom: [string] Content slot.
+  * - primary_navigation_items: [array] Array of menu items.
+  * - secondary_navigation_items: [array] Array of menu items.
+  * - modifier_class: [string] Additional classes.
+  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
@@ -17,36 +20,44 @@
   <div data-flyout-panel class="civic-mobile-navigation__panel">
     {% include '@organisms/mobile-navigation/mobile-navigation-close.twig' %}
 
-    {% if content_top %}
-      <div class="civic-mobile-navigation__content_top">
-        {{ content_top }}
-      </div>
-    {% endif %}
+    {% block content_top %}
+      {% if content_top is not empty %}
+        <div class="civic-mobile-navigation__content_top">
+          {{ content_top }}
+        </div>
+      {% endif %}
+    {% endblock %}
 
-    {% if top_menu %}
-      <div class="civic-mobile-navigation__top-menu-wrapper">
-        {% include '@organisms/mobile-navigation/mobile-navigation-menu.twig' with {
-          theme: theme,
-          items: top_menu,
-          modifier_class: 'civic-mobile-navigation__top-menu',
-        } only %}
-      </div>
-    {% endif %}
+    {% block top_menu %}
+      {% if top_menu is not empty %}
+        <div class="civic-mobile-navigation__top-menu-wrapper">
+          {% include '@organisms/mobile-navigation/mobile-navigation-menu.twig' with {
+            theme: theme,
+            items: top_menu,
+            modifier_class: 'civic-mobile-navigation__top-menu',
+          } only %}
+        </div>
+      {% endif %}
+    {% endblock %}
 
-    {% if bottom_menu %}
-      <div class="civic-mobile-navigation__bottom-menu-wrapper">
-        {% include '@organisms/mobile-navigation/mobile-navigation-menu.twig' with {
-          theme: theme,
-          items: bottom_menu,
-          modifier_class: 'civic-mobile-navigation__bottom-menu',
-        } only %}
-      </div>
-    {% endif %}
+    {% block bottom_menu %}
+      {% if bottom_menu is not empty %}
+        <div class="civic-mobile-navigation__bottom-menu-wrapper">
+          {% include '@organisms/mobile-navigation/mobile-navigation-menu.twig' with {
+            theme: theme,
+            items: bottom_menu,
+            modifier_class: 'civic-mobile-navigation__bottom-menu',
+          } only %}
+        </div>
+      {% endif %}
+    {% endblock %}
 
-    {% if content_bottom %}
-      <div class="civic-mobile-navigation__content_bottom">
-        {{ content_bottom }}
-      </div>
-    {% endif %}
+    {% block content_bottom %}
+      {% if content_bottom is not empty %}
+        <div class="civic-mobile-navigation__content_bottom">
+          {{ content_bottom }}
+        </div>
+      {% endif %}
+    {% endblock %}
   </div>
 </div>

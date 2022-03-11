@@ -1,5 +1,15 @@
+/**
+ * Large filter component.
+ */
 function CivicLargeFilter(el) {
+  // Use "data-civic-alerts"'s attribute value to identify if this component was
+  // already initialised.
+  if (el.getAttribute('data-civic-large-filter') === 'true') {
+    return;
+  }
+
   this.el = el;
+
   this.tagElement = this.el.querySelector('[data-large-filter-tags]');
   this.filterElement = this.el.querySelector('[data-large-filter-filters]');
   this.filterComponent = this.el.querySelector('[data-large-filter-element]');
@@ -118,6 +128,8 @@ CivicLargeFilter.prototype.init = function () {
   }
 
   this.initialisedState = true;
+
+  this.el.setAttribute('data-civic-large-filter', 'true');
 };
 
 /**
@@ -339,8 +351,5 @@ CivicLargeFilter.prototype.dispatchRedrawEvent = function () {
 };
 
 document.querySelectorAll('[data-component-name="civic-large-filter"]').forEach((el) => {
-  if (el.getAttribute('data-civic-large-filter-initialised') !== 'true') {
-    new CivicLargeFilter(el);
-    el.setAttribute('data-civic-large-filter-initialised', 'true');
-  }
+  new CivicLargeFilter(el);
 });

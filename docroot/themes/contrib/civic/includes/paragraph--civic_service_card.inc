@@ -10,8 +10,6 @@ use Drupal\Core\Url;
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD)
  */
 function civic_preprocess_paragraph__civic_service_card(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */

@@ -1,5 +1,6 @@
 /**
- * Scrollspy utility component.
+ * @file
+ * Scrollspy component.
  *
  * Adds '.civic-scrollspy-scrolled' class to an element whose
  * data-scrollspy-offset attribute's value is more than a vertical window scroll.

@@ -3,10 +3,8 @@
  * @file
  * Large Filter component.
  *
- * Display of Large Filter component.
- *
  * Variables:
- * - theme: [string] Theme for large filter.
+ * - theme: [string] Theme: light, dark.
  * - filter_title: [string] Title for filters.
  * - filters: [string] Filter HTML.
  * - tags_title: [string] Selected tags title.
@@ -15,9 +13,13 @@
  * - cancel_text: [string] Text for cancel button.
  * - apply_text: [string] Text for apply button.
  * - filter_count_suffix: [string] JSON formatted suffixes { "1": "Item", "default": "Items" }
- * - desktop_breakpoint: [string] breakpoint to display desktop (large) view.
+ * - desktop_breakpoint: [string] Breakpoint to display desktop (large) view.
+ * - modifier_class: [string] Additional classes.
  */
 #}
+
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% set filter_title = filter_title|default('Filter search results by:') %}
 {% set tags_title = tags_title|default('Selected filters:') %}
@@ -26,8 +28,6 @@
 {% set cancel_text = cancel_text|default('Cancel') %}
 {% set apply_text = apply_text|default('Apply') %}
 {% set filter_count_suffix = filter_count_suffx|default('{"1": "filter applied", "default": "filters applied"}') %}
-{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if filters is not empty %}
   <div

@@ -3,38 +3,40 @@
  * @file
  * Breadcrumb component.
  *
- * Display of Breadcrumb component.
- *
  * Variables:
- * - theme: [string] Theme for Callout.
- * - links: [array] Array of Link objects containing type, url, text
- * - active_is_link: [boolean] Breadcrumb active element as link.
+ * - theme: [string] Theme: light, dark.
+ * - links: [array] Array of link objects containing:
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ * - active_is_link: [boolean] Show active element as a link.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set component_class = 'civic-breadcrumb' %}
-{% set links_count = links|length %}
-{% set parent = false %}
+{% set modifier_class = '%s %s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if links %}
-  <nav class="{{ '%s %s'|format(component_class, theme_class) }}" aria-label="breadcrumb">
+  {% set links_count = links|length %}
+  {% set parent = false %}
+
+  <nav class="civic-breadcrumb {{ modifier_class }}" aria-label="breadcrumb">
     <ul class="civic-breadcrumb__links">
-      {% for linkObj in links %}
-        {% if linkObj.text %}
+      {% for link in links %}
+        {% if link.text is not empty %}
           <li class="civic-breadcrumb__links--link">
 
             {% if loop.index == links_count - 1 %}
-              {% set parent = linkObj %}
+              {% set parent = link %}
             {% endif %}
 
             {% if not active_is_link and (loop.index == links_count) %}
-              <span aria-current="location">{{ linkObj.text }}</span>
+              <span aria-current="location">{{ link.text }}</span>
             {% else %}
               {% include '@atoms/link/link.twig' with {
                 theme: theme,
-                text: linkObj.text,
-                url: linkObj.url,
+                text: link.text,
+                url: link.url,
                 attributes: loop.index == links_count ? 'aria-current="location"' : '',
               } only %}
               {% if (loop.index < links_count) %}
@@ -60,7 +62,6 @@
           } only %}
         </li>
       {% endif %}
-
     </ul>
   </nav>
 {% endif %}

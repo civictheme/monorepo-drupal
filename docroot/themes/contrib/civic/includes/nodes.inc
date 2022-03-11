@@ -25,10 +25,6 @@ function _civic_preprocess_node(&$variables) {
 
 /**
  * Preprocess Full view mode of nodes.
- *
- * @see civic_preprocess_node()
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__full(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -43,10 +39,6 @@ function _civic_preprocess_node__full(&$variables) {
 
 /**
  * Default view mode fallback preprocessor for nodes.
- *
- * @see civic_preprocess_node()
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__default(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -61,8 +53,6 @@ function _civic_preprocess_node__default(&$variables) {
 
 /**
  * Preprocess Civic alert nodes.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__civic_alert__full(&$variables) {
   $node = $variables['node'];

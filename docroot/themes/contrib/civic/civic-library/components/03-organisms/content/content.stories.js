@@ -1,9 +1,8 @@
-import {
-  boolean, radios, text, select,
-} from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicContent from './content.twig';
 import CivicLayoutSingleColumn from './content-layout--single-column.twig';
-import CivicLayoutSingleColumnContained from './content-layout--single-column-contained.twig';
+import CivicLayoutSingleColumnContained
+  from './content-layout--single-column-contained.twig';
 import { getSlots, randomText } from '../../00-base/base.stories';
 
 export default {
@@ -30,7 +29,7 @@ export const Content = (knobTab) => {
   };
   let content = boolean('Show content', true, generalKnobTab) ? `<strong>Content text</strong> ${randomText(30)}` : '';
 
-  const layout = select('Layout', [
+  const layout = radios('Layout', [
     'Single Column',
     'Single Column Contained',
   ], 'Single Column', generalKnobTab);

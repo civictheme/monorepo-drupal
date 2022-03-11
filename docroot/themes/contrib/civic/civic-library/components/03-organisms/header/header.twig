@@ -1,3 +1,21 @@
+{#
+/**
+ * @file
+ * Header component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content_top1: [string] Content slot.
+ * - content_top2: [string] Content slot.
+ * - content_top3: [string] Content slot.
+ * - content_middle1: [string] Content slot.
+ * - content_middle2: [string] Content slot.
+ * - content_middle3: [string] Content slot.
+ * - content_bottom1: [string] Content slot.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
@@ -91,7 +109,8 @@
         {% endif %}
       </div>
     {% endif %}
-    {% if content_bottom1 %}
+
+    {% if content_bottom1 is not empty %}
       {% block content_bottom1 %}
         <div class="container">
           <div class="row">
