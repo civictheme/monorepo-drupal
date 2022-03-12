@@ -4,16 +4,16 @@
  * Basic Content component.
  *
  * Variables:
- * - theme: [string] theme: light, dark.
- * - content: [string] Raw content.
- * - modifier_class: [string] Additional classes to modify component styling.
- * - grid: [boolean]
+ * - theme: [string] Theme: light, dark.
+ * - content: [string] Content.
+ * - contained: [boolean] Contained or not.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set contained = contained is not defined or contained != false ? true : false %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set contained = contained is not defined or contained != false ? true : false %}
 
 {% if content is not empty %}
   <div class="civic-basic-content {{ modifier_class }}">
@@ -21,12 +21,12 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
-            {{ content|raw }}
+            {% endif %}
+              {{ content|raw }}
+            {% if contained %}
           </div>
         </div>
       </div>
-    {% else %}
-      {{ content|raw }}
     {% endif %}
   </div>
 {% endif %}

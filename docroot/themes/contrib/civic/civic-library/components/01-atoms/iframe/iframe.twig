@@ -4,13 +4,14 @@
  * Iframe component.
  *
  * Variables:
- * - url: [string] URL for the src.
- * - width: [integer] Optional width of the iFrame.
- * - height: [integer] Optional height of the iFrame.
- * - modifier_class: [string] Classes to modify the default component styling.
+ * - url: [string] URL for the iframe src.
+ * - width: [integer] Optional width of the iframe.
+ * - height: [integer] Optional height of the iframe.
+ * - modifier_class: [string] Additional classes.
  * - attributes: [string] Additional attributes.
  */
 #}
+
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 

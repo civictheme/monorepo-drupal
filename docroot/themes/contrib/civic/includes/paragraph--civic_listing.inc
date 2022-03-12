@@ -29,8 +29,6 @@ define('CIVIC_LISTINGS_FULL_FALLBACK_LIMIT', 100);
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD)
  */
 function civic_preprocess_paragraph__civic_listing(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -56,8 +54,6 @@ function civic_preprocess_paragraph__civic_listing(&$variables) {
  *
  * @return array
  *   The render array for view and exposed form.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_listing_element(Paragraph $paragraph) {
   $view_name = 'civic_listing';

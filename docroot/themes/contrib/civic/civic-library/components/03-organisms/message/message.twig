@@ -3,19 +3,16 @@
  * @file
  * Message component.
  *
- * This is strictly an exmaple file to demonstrate markup in Storybook.
- * It is not intended to be included in any other component.
- *
  * Variables:
- * - type: [string] Message type: Info, Error, Warning, Success.
- * - theme: [string] Light, Dark.
- * - title: [string] Message title.
- * - description: [string] Message summary.
+ * - theme: [string] Theme: light, dark.
+ * - type: [string] Message type: info, error, warning, success.
+ * - description: [string] Description text.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set type = type|default('info') %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type = type|default('info') %}
 {% set type_class = 'civic-message--%s messages--%s'|format(type, type) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
 
@@ -26,7 +23,7 @@
   success: 'userinterface_approve',
 } %}
 
-<div role="{% if type == 'error' %}error{% else %}contentinfo{% endif %}" class="civic-message messages {{ modifier_class }}" aria-label="{{ type }}" {% if type == 'error' %}aria-live="polite"{% endif %}>
+<div class="civic-message messages {{ modifier_class }}" role="{% if type == 'error' %}error{% else %}contentinfo{% endif %}" aria-label="{{ type }}" {% if type == 'error' %}aria-live="polite"{% endif %}>
   {% if icons[type] is defined %}
     <div class="civic-message__icon">
       {% include "@atoms/icon/icon.twig" with {
@@ -35,10 +32,12 @@
       } only %}
     </div>
   {% endif %}
+
   <div class="civic-message__content">
     {% if title %}
       <div class="civic-message__title">{{ title }}</div>
     {% endif %}
+
     {% if description %}
       <div class="civic-message__summary">{{ description|striptags('<strong>,<a>,<pre>,<ul>,<ol>,<li>')|raw }}</div>
     {% endif %}

@@ -1,7 +1,7 @@
 @civic @media @civic_remote_video
 Feature: Tests the media types civic remote video
 
-  Ensure that civic remote video are rendered correctly.
+  Ensure that remote video is rendered correctly when embedded into WYSIWYG.
 
   Background:
     Given "civic_remote_video" media:
@@ -15,10 +15,10 @@ Feature: Tests the media types civic remote video
       | field_c_p_content:format | civic_rich_text                                                                                                                                                                        |
 
   @api @javascript @civic_remote_video
-  Scenario: Ensure that civic remote video renders correctly and link correctly to transcript.
+  Scenario: Ensure that a remote video renders correctly and links correctly to transcript when added to WYSIWYG.
     Given I am an anonymous user
     When I visit "civic_page" "[TEST] Civic Video and Remote Video"
-    And I should see the text "View transcript"
+    Then I should see the text "View transcript"
     And I see the ".civic-video iframe" element with the "title" attribute set to "[TEST] Civic Remote Video"
     And I click on ".civic-video__transcript .civic-link" element
     And I should see the text "[TEST] Civic Remote Video"

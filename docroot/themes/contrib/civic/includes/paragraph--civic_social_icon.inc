@@ -7,8 +7,6 @@
 
 /**
  * Implements template_preprocess_paragraph().
- *
- * @SuppressWarnings(PHPMD)
  */
 function civic_preprocess_paragraph__civic_social_icon(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */

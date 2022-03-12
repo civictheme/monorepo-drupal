@@ -1,3 +1,18 @@
+{#
+/**
+ * @file
+ * Textarea component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - state: [string] State: default or other.
+ * - disabled: [boolean] Disabled or not.
+ * - required: [boolean] Required or not.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set state = state is empty or state == 'none' ? 'default' : state %}
 {% set state_class = 'civic-input--%s'|format(state) %}

@@ -2,16 +2,17 @@
 /**
  * @file
  * Icon component.
- * Creates an inline SVG.
  *
  * Variables:
- * - symbol: [string] Icon name.
+ * - symbol: [string] Icon name as per map.
  * - color: [string] Icon color.
  * - size: [string] Icon size.
- * - modifier_class: [string] Additional classes to modify component styling.
+ * - modifier_class: [string] Additional classes.
  */
 #}
+
 {% extends '@atoms/icon/icon_library.twig' %}
+
 {% block content %}
   {% set icon = icons[symbol] %}
   {% set title = symbol | split('_', 2)[1] %}

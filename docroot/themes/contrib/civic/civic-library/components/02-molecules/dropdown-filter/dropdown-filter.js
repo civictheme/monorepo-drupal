@@ -1,7 +1,8 @@
 /**
- * Civic dropdown filter.
+ * @file
+ * Dropdown Filter component.
  *
- * Provides a search input to assist in finding radio / checkbox options.
+ * Provides a search input to assist in finding radio/checkbox options.
  */
 function CivicDropdownFilterSearchable(el) {
   if (!el || el.hasAttribute('data-dropdown-filter-searchable')) {

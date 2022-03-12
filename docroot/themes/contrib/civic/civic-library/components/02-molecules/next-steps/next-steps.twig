@@ -1,62 +1,72 @@
 {#
 /**
  * @file
- * Next steps component.
- *
- * Display of Next steps component.
+ * Next Steps component.
  *
  * Variables:
- * - theme: [string] Theme for  Next steps.
- * - content_top: [string] Component slot for top of Callout.
- * - title: [string] Next steps title.
- * - summary: [string]  Next steps summary.
- * - url: [string]  Next steps card link.
- * - content_bottom: [string] Component slot for bottom of Callout.
- * - modifier_class: [string] Classes to modify the default component styling.
+ * - theme: [string] Theme: light, dark.
+ * - content_top: [string] Content slot.
+ * - content_bottom: [string] Content slot.
+ * - title: [string] Title.
+ * - summary: [string]  Summary.
+ * - url: [string] Link.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<a class="civic-next-steps {{ modifier_class }}" href={{ url }}>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="civic-next-steps__content">
-          {% block content_top %}
-            <div class="civic-next-steps__content-top">
-              {{ content_top }}
-            </div>
-          {% endblock %}
+{% if url is not empty %}
+  <a class="civic-next-steps {{ modifier_class }}" href={{ url }}>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="civic-next-steps__content">
+            {% block content_top %}
+              {% if content_top is not empty %}
+                <div class="civic-next-steps__content-top">
+                  {{ content_top }}
+                </div>
+              {% endif %}
+            {% endblock %}
 
-          {% block content %}
-            <div class="civic-next-steps__text">
-              <div class="civic-next-steps__title">
-                {{ title }}
+            {% block content %}
+              {% if title is not empty or summary is not empty %}
+                <div class="civic-next-steps__text">
+                  {% if title is not empty %}
+                    <div class="civic-next-steps__title">
+                      {{ title }}
+                    </div>
+                  {% endif %}
+                  {% if summary is not empty %}
+                    <div class="civic-next-steps__summary">
+                      {{ summary }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            {% block icon %}
+              <div class="civic-next-steps__icon civic-next-steps__read-more">
+                {% include '@atoms/icon/icon.twig' with {
+                  symbol: 'arrows_rightarrow_3',
+                  color: 'primary'
+                } only %}
               </div>
+            {% endblock %}
 
-              <div class="civic-next-steps__summary">
-                {{ summary }}
-              </div>
-            </div>
-          {% endblock %}
-
-          {% block icon %}
-            <div class="civic-next-steps__icon civic-next-steps__read-more">
-              {% include '@atoms/icon/icon.twig' with {
-                symbol: 'arrows_rightarrow_3',
-                color: 'primary'
-              } only %}
-            </div>
-          {% endblock %}
-          {% block content_bottom %}
-            <div class="civic-next-steps__content-bottom">
-              {{ content_bottom }}
-            </div>
-          {% endblock %}
+            {% block content_bottom %}
+              {% if content_bottom is not empty %}
+                <div class="civic-next-steps__content-bottom">
+                  {{ content_bottom }}
+                </div>
+              {% endif %}
+            {% endblock %}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</a>
+  </a>
+{% endif %}

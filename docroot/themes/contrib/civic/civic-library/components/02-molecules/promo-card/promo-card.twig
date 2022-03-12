@@ -3,20 +3,19 @@
  * @file
  * Promo Card component.
  *
- * Display of Promo Card component.
- *
  * Variables:
- * - theme: [string] Theme for Card.
- * - image: [object] Image data for top of Card
- * - content_top: [string] Component slot for above main content on Card.
+ * - theme: [string] Theme: light, dark.
+ * - content_top: [string] Content slot.
+ * - image_over: [string] Content slot for image over.
+ * - content_middle: [string] Content slot.
+ * - content_bottom: [string] Content slot for bottom of Card.
+ * - image: [object] Image data.
  * - title: [string] Card title.
  * - summary: [string] Card summary.
- * - content_middle: [string] Component slot for below main content on Card
- * - date: [string] Date text
- * - url: [string] Url for link out from Card
+ * - date: [string] Date text.
+ * - url: [string] URL for link out from Card
  * - is_external: [boolean] Link is external.
- * - content_bottom: [string] Component slot for bottom of Card.
- * - modifier_class: [string] Additional classes for Card.
+ * - modifier_class:[string] Additional classes.
  */
 #}
 
@@ -27,13 +26,13 @@
 
 <div class="civic-promo-card {{ modifier_class }}">
   {% block image %}
-    {% if image or image_over %}
+    {% if image is not empty or image_over is not empty %}
       <div class="civic-promo-card__image-wrapper">
         {% if image.src is not empty %}
           <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
         {% endif %}
         {% block image_over %}
-          {% if image_over %}
+          {% if image_over is not empty %}
             <div class="civic-promo-card__image-over">
               {{ image_over }}
             </div>
@@ -46,7 +45,7 @@
   {% block content %}
     <div class="civic-promo-card__content">
       {% block content_top %}
-        {% if content_top %}
+        {% if content_top is not empty %}
           <div class="civic-promo-card__content_top">
             {{ content_top }}
           </div>
@@ -54,7 +53,7 @@
       {% endblock %}
 
       {% block date %}
-        {% if date %}
+        {% if date is not empty %}
           <div class="civic-promo-card__date">
             {{ date }}
           </div>
@@ -62,13 +61,13 @@
       {% endblock %}
 
       {% block title %}
-        {% if title %}
+        {% if title is not empty %}
           <div class="civic-promo-card__title">
-            {% if url %}
-            <a class="civic-promo-card__title-link" href="{{ url }}" {% if is_external %} title="Opens in new tab" target="_blank" {% endif %}>
-              {% endif %}
+            {% if url is not empty %}
+            <a class="civic-promo-card__title-link" href="{{ url }}" {% if is_external %}title="Opens in new tab" target="_blank"{% endif %}>
+            {% endif %}
               {{ title }}
-              {% if url %}
+            {% if url is not empty %}
             </a>
             {% endif %}
           </div>
@@ -76,7 +75,7 @@
       {% endblock %}
 
       {% block content_middle %}
-        {% if content_middle %}
+        {% if content_middle is not empty %}
           <div class="civic-promo-card__content_middle">
             {{ content_middle }}
           </div>
@@ -84,7 +83,7 @@
       {% endblock %}
 
       {% block summary %}
-        {% if summary %}
+        {% if summary is not empty %}
           <div class="civic-promo-card__summary">
             {{ summary }}
           </div>
@@ -125,7 +124,7 @@
       {% endblock %}
 
       {% block content_bottom_2 %}
-        {% if content_bottom %}
+        {% if content_bottom is not empty %}
           <div class="civic-promo-card__content-bottom">
             {{ content_bottom }}
           </div>

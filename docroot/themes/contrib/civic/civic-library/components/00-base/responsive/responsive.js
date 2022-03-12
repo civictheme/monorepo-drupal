@@ -1,12 +1,13 @@
 /**
- * Responsive utility component.
+ * @file
+ * Responsive component.
  *
  * Emits a 'civic-responsive' event on breakpoint change allowing components
  * to delay initialisation by providing 'data-responsive' attribute with an
  * operator and breakpoint name.
  *
  * For example: a component with `data-responsive=">=m"` attribute will
- * delay it's initialization to happen only when current screen size is equal
+ * delay its initialisation to happen only when current screen size is equal
  * or more than medium ('m') breakpoint.
  */
 function CivicResponsive() {

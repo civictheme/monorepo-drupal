@@ -19,7 +19,7 @@ These layouts can be built upon and are defined in the `civic.info.yml` and the 
 ## Views
 
 Civic provides a listing component as a paragraph type. This component provides the ability to create a configurable
-view component within your civic page.
+view component within your Civic page.
 
 #### Civic listing paragraph
 
@@ -31,10 +31,10 @@ altering the number of items and filter configuration options and has been built
 This component utilised the `civic_listing` view for the block but this can be altered via `hook_civic_listing_view_name_alter`.
 See [civic.api.php](../civic.api.php) for details.
 
-In addition, your child theme can update the civic listing component and add your own filter options in or implement
+In addition, your sub-theme can update the Civic listing component and add your own filter options in or implement
 ajax filtering for example.
 
-On top of this civic provides large and basic filters out of the box to implement a stylised exposed view form inputs.
+On top of this Civic provides large and basic filters out of the box to implement a stylised exposed view form inputs.
 
 #### Views exposed form
 
@@ -44,6 +44,6 @@ exposed filter the large filter system (with dropdown filters) is enabled.
 
 ## Webform integration
 
-Out of the box, civic integrates base webform form elements but it does not implement (or rather it is untested) the
+Out of the box, Civic integrates base webform form elements but it does not implement (or rather it is untested) the
 more advanced composite components that the webform module can provide.
 We welcome contributions extending this support.

@@ -20,7 +20,6 @@ Feature: Tests the Accordion
     And I should see the text "field_c_p_space" in the "With space" row
     And I should see the text "field_c_p_background" in the "Background" row
 
-
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
     Given I am logged in as a user with the "Site Administrator" role
@@ -42,3 +41,17 @@ Feature: Tests the Accordion
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_panels][0][subform][field_c_p_content][0][value]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_panels][0][subform][field_c_p_expand][value]']" element
     And the option "Light" from select "Theme" is selected
+
+  @api
+  Scenario: Paragraph type appears in the paragraph types page
+    Given I am logged in as a user with the "Administrator" role
+    When I go to "admin/structure/paragraphs_type"
+    Then I should see the text "Accordion panel" in the "civic_accordion_panel" row
+
+  @api
+  Scenario: Accordion panel paragraph exists with fields.
+    Given I am logged in as a user with the "Administrator" role
+    When I go to "admin/structure/paragraphs_type/civic_accordion_panel/fields"
+    And I should see the text "field_c_p_title" in the "Title" row
+    And I should see the text "field_c_p_content" in the "Content" row
+    And I should see the text "field_c_p_expand" in the "Expand" row

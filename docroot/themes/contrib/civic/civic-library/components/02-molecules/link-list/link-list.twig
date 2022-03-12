@@ -1,18 +1,23 @@
 {#
 /**
  * @file
- * Link list component.
+ * Link List component.
  *
  * Variables:
- * - type: [string] List type: default, inline.
- * - theme: [string] Light, Dark.
- * - links: [array] Links array.
+ * - theme: [string] Theme for large filter.
+ * - links: [array] Links array:
+ *   - title [string] Title.
+ *   - url [string] URL.
+ *   - new_window [boolean] Open link in a new window.
+ *   - is_external [boolean] Link is external or not.
+ * - is_inline: [boolean] Is inline or not.
+ * - attributes: [string] Additional classes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set is_inline_class = is_inline ? 'civic-link-list--inline' : '' %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set is_inline_class = is_inline ? 'civic-link-list--inline' : '' %}
 {% set modifier_class = '%s %s %s'|format(theme_class, is_inline_class, modifier_class|default('')) %}
 
 {% if links %}
@@ -24,20 +29,22 @@
         </div>
       {% endif %}
     {% endblock %}
-    {% block list %}
+    {% block links %}
       <ul class="civic-link-list__list">
-      {% for link in links %}
-        <li class="civic-link-list__list__item">
-          {% include '@atoms/link/link.twig' with {
-            theme: theme,
-            text: link.title,
-            url: link.url,
-            new_window: link.new_window ? link.new_window : false,
-            is_external: link.is_external ? link.is_external : false,
-          } only %}
-        </li>
-      {% endfor %}
-    </ul>
+        {% for link in links %}
+          {% if link.title is not empty %}
+            <li class="civic-link-list__list__item">
+              {% include '@atoms/link/link.twig' with {
+                theme: theme,
+                text: link.title,
+                url: link.url,
+                new_window: link.new_window ? link.new_window : false,
+                is_external: link.is_external ? link.is_external : false,
+              } only %}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
     {% endblock %}
   </div>
 {% endif %}

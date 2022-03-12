@@ -4,17 +4,11 @@ _[Civic Documentation](../README.md) &#8594; [Civic Drupal Theme documentation](
 
 ## Introduction
 
-Component namespaces mirror the namespaces in civic library as defined in `civic.info.yml`.
+Component namespaces mirror the namespaces in Civic library as defined in
+`civic.info.yml`.
 
-Civic defines two sets of namespaces, it defines atomic component namespaces
-and civic atomic namespaces.
-
-### Important namespace information
-
-The civic namespaces (`civic-base`, `civic-atoms`, `civic-molecules` etc) are used to provide access to the
-unaltered civic namespaces so the original civic component can be extended and then overridden
-by a child theme.
-
+Civic defines two sets of namespaces: atomic component namespaces and civic
+atomic namespaces.
 
 ## Civic namespace definitions
 
@@ -49,11 +43,11 @@ components:
 
 ```
 
-## Child theme namespaces
+## Sub-theme namespaces
 
-Any child theme of civic must implement the following component namespaces
-(note how they are also contained in civic.info.yml). These namespaces
-allow the overriding of civic components.
+Any sub-theme of Civic must implement the following component namespaces
+(note how they are also contained in `civic.info.yml`). These namespaces
+allow the overriding of Civic components.
 
 ```yaml
 
@@ -73,3 +67,7 @@ components:
       - components/05-pages
 
 ```
+
+The Civic namespaces (`civic-base`, `civic-atoms`, `civic-molecules` etc.) are
+used to provide access to the unaltered Civic namespaces so the original civic
+component can be extended and then overridden by a sub-theme.

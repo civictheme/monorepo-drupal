@@ -1,4 +1,5 @@
 /**
+ * @file
  * Flyout component.
  *
  * Allows introducing "fly out" behaviour to a block-level HTML element on the
@@ -6,7 +7,7 @@
  * any styles, except for z-index configuration and direction transformations.
  *
  * Also, provides a trigger to close a single (currently opened) panel and
- * another trigger close all open panels.
+ * another trigger to close all open panels.
  */
 function CivicFlyout(el) {
   if (el.getAttribute('data-flyout') === 'true' || this.el) {

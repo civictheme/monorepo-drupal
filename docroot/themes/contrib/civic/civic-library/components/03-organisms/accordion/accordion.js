@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Accordion component.
+ */
 function CivicAccordion(el, selectedIndex) {
   if (!el) {
     return;

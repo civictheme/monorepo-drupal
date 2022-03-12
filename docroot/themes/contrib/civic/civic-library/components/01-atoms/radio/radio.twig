@@ -1,3 +1,19 @@
+{#
+/**
+ * @file
+ * Radio component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - value: [string] Input field value.
+ * - state: [string] Input field state: error, success.
+ * - required: [boolean] Required state.
+ * - disabled: [boolean] Disabled state.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set state = state is empty or state == 'none' ? 'default' : state %}
 {% set state_class = 'civic-input--%s'|format(state) %}
@@ -6,6 +22,6 @@
 {% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, modifier_class|default('')) %}
 
 <div class="civic-radio">
-  <input class="civic-radio__element civic-input__element {{ modifier_class }}" type="radio" value="{{ value }}" {% if attributes %}{{ attributes }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
+  <input class="civic-radio__element civic-input__element {{ modifier_class }}" type="radio" value="{{ value }}" {% if attributes is not empty %}{{ attributes }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
   <span class="civic-radio__state"></span>
 </div>

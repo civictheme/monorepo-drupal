@@ -1,9 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicProgressIndicator from './progress-indicator.twig';
 
-/**
- * Storybook Definition.
- */
 export default {
   title: 'Molecules/Progress Indicator',
   component: CivicProgressIndicator,

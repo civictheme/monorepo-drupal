@@ -15,36 +15,21 @@
     key "config.platform.php".-->
     <config name="testVersion" value="7.4"/>
 
-    <!-- Exclude theme assets. -->
-    <exclude-pattern>docroot\/themes\/custom\/.*\/build\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/custom\/.*\/fonts\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/custom\/.*\/images\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/custom\/.*\/node_modules\/.*</exclude-pattern>
-    <exclude-pattern>*\.min\.*</exclude-pattern>
-
-    <exclude-pattern>docroot\/themes\/custom\/.*\/.storybook\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/custom\/.*\/components\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/custom\/.*\/civic-library\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/custom\/.*\/storybook-static\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/custom\/.*\/.components-civic\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/custom\/.*\/components-combined\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/custom\/.*\/dist\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/custom\/.*\/webpack\/.*</exclude-pattern>
     <!-- Exclude civic theme assets. -->
-    <exclude-pattern>docroot\/themes\/contrib\/.*\/build\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/.*\/fonts\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/.*\/images\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/.*\/node_modules\/.*</exclude-pattern>
-    <exclude-pattern>*\.min\.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civic\/.storybook\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civic\/assets\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civic\/civic-library\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civic\/components\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civic\/dist\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civic\/docs\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civic\/node_modules\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civic\/storybook-static\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civic\/webpack\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civic\/.*\/.storybook\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civic\/.*\/webpack\/.*</exclude-pattern>
 
-    <exclude-pattern>docroot\/themes\/contrib\/.*\/.storybook\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/.*\/components\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/.*\/civic-library\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/.*\/storybook-static\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/.*\/.components-civic\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/.*\/components-combined\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/.*\/dist\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/.*\/webpack\/.*</exclude-pattern>
+    <!-- Exclude demo theme assets. -->
+    <exclude-pattern>docroot\/themes\/custom\/.*</exclude-pattern>
 
     <!-- Exclude CircleCI config files. -->
     <exclude-pattern>circle\.yml</exclude-pattern>
@@ -133,22 +118,22 @@
 
     <!--Force no empty lines after function opening brace.-->
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace">
-      <type>warning</type>
+        <type>warning</type>
     </rule>
 
     <!--Force no empty lines before function closing brace.-->
     <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen">
-      <type>warning</type>
+        <type>warning</type>
     </rule>
 
     <!--Force no empty lines before control structure closing.-->
     <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose">
-      <type>warning</type>
+        <type>warning</type>
     </rule>
 
     <!--Force no empty lines after control structure closing.-->
     <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.LineAfterClose">
-      <type>warning</type>
+        <type>warning</type>
     </rule>
 
 </ruleset>

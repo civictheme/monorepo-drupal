@@ -1,18 +1,22 @@
 {#
 /**
- * @file heading!
+ * @file
+ * Image component.
  *
- * Available variables:
+ * Variables:
+ * - theme: [string] Theme: light, dark.
  * - src: [string] Path of the image.
  * - alt: [string] Alternate text of the image.
  * - caption: [string] Caption below the image.
- * - theme: [string] component theme.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
  */
 #}
+
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-{% if src %}
+{% if src is not empty %}
   <figure class="civic-image {{ modifier_class }}">
     <img src="{{ src }}" alt="{{ alt }}" {{ attributes }}>
 

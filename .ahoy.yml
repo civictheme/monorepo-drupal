@@ -150,6 +150,10 @@ commands:
     usage: Lint front-end code.
     cmd: ahoy cli ./scripts/drevops/lint.sh fe
 
+  lint-config:
+    usage: Lint config
+    cmd: ahoy cli ./scripts/drevops/lint.sh config
+
   test:
     usage: Run all tests.
     cmd: ahoy test-unit && ahoy test-kernel && ahoy test-functional && ahoy test-bdd
