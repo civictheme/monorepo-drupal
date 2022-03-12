@@ -1,3 +1,4 @@
+_[Civic Documentation](../../README.md) &#8594; [Civic Component library](introduction.md) &#8594; Icons_
 # Icons
 
 Civic Component Library provides an expansive range of icons that are open source and can be re-used within

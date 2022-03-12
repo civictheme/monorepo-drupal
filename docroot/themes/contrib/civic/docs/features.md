@@ -1,3 +1,5 @@
+_[Civic Documentation](../README.md) &#8594; [Civic Drupal Theme documentation](introduction.md)  &#8594; Drupal Features_
+
 # Drupal Features
 
 ## Layout Builder

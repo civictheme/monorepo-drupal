@@ -1,3 +1,4 @@
+_[Civic Documentation](../../README.md) &#8594; [Civic Component library](introduction.md) &#8594; Colors_
 # Colors
 
 Civic Component Library provides an expansive colour design system out of the box providing for extensive

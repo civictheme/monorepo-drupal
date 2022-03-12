@@ -1,4 +1,6 @@
-# Drupal templates and using civic library components
+_[Civic Documentation](../README.md) &#8594; [Civic Drupal Theme documentation](introduction.md)  &#8594; Drupal templates_
+
+# Drupal templates
 
 Civic theme utilises the components that are defined within civic component library.
 

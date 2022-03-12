@@ -1,10 +1,10 @@
+_[Civic Documentation](../README.md) &#8594; [Civic Drupal Theme documentation](introduction.md)  &#8594; Assets_
 # Assets
 
 Drupal specific JS / CSS libraries can be provided for within the `civic/assets` directory. Look to `civic/assets` for
 examples.
 
 For a quick getting started guide to building JS, CSS and icon assets refer to the below commands.
-
 
 ## Install the required JS libraries
 

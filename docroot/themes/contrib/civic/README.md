@@ -6,8 +6,13 @@ Get Started with Civic theme, the Drupal theme built on a decoupled component li
 a complete customisable design system with ready to use components, content types and editorial experience
 compatible with GOV CMS.
 
+### Table of Contents
 
-## Quick start
+1. [Quick start](#quick-start)
+2. [Extending, modifying and customising Civic](#customising-civic)
+
+
+## <span id="quick-start">Quick start</span>
 
 ### Installing Civic theme - Composer installation
 
@@ -54,7 +59,10 @@ Building the front-end
       cd docroot/themes/custom/<child_theme> && npm run build
 ```
 
-## Customise Civic Theme
+This now will provide the boilerplate for a fully functioning consumer theme of Civic. Please read the customising
+Civic documentation to learn how to extend, modify and customise Civic.
+
+## <span id="customising-civic">Extending, modifying and customising Civic</span>
 
 Learn how to customise Civic theme with an expansive colour system and extensive range of options
 to customise grid, spacing, fonts, and typography systems.
@@ -64,33 +72,12 @@ Civic provides two systems:
 - Component library - the twig and front-end templates
 - Civic Drupal theme - the drupal theme implementing the component library
 
-## Technical documentation
+### Technical documentation
 
 We strongly recommend reading the documentation which attempts to provide an overview of concepts and architecture.
 
 There are two parts to this documentation - the component library and the drupal theme.
 
-### Civic Component Library docs
+#### [Civic Component Library Documentation](./civic-library/docs/introduction.md)
 
-The documentation for civic component library provides an introduction and technical information for modifying
-the look and feel of components, instructions for extending and modifying components and adding colours and style 
-changes.
-
-The following areas are covered within this section:
-
-[Colors](./civic-library/docs/colors.md)
-[Variables](./civic-library/docs/variables.md)
-[Grid](./civic-library/docs/grid.md)
-[Components](./civic-library/docs/components.md)
-[Icons](./civic-library/docs/icons.md)
-
-### Civic Theme docs
-
-The Civic theme technical documentation provide information on how to connect the component library to drupal,
-how to preprocess for new components and extend and modify templates within drupal and explain different
-components of the drupal theme.
-
-[Namespaces](./docs/namespaces.md)
-[Templates](./docs/templates.md)
-[Assets](./docs/assets.md)
-[Drupal features](./docs/features.md)
+#### [Civic Drupal Theme Documentation](./docs/introduction.md)

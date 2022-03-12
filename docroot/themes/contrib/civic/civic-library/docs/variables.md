@@ -1,3 +1,4 @@
+_[Civic Documentation](../../README.md) &#8594; [Civic Component library](introduction.md) &#8594; Variables_
 # Variables.
 
 Civic Component library contains a large number of variables that modify all areas of the theme.
