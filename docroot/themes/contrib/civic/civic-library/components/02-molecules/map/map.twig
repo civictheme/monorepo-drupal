@@ -5,7 +5,7 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - embed_url: [string] Embed URL for the google map iframe.
+ * - url: [string] URL for the google map iframe.
  * - address: [string] Optional address.
  * - view_link: [string] View link.
  * - share_link: [string] Share Link.
@@ -15,14 +15,22 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-{% if embed_url is not empty %}
+{% if url is not empty %}
   <div class="civic-map {{ modifier_class }}">
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
           {% block map %}
             <div class="civic-map__canvas">
-              <iframe class="civic-map_iframe" src="{{ embed_url }}" allowfullscreen {% if address is not empty %}title="{{ address }}"{% endif %}></iframe>
+              {% set attributes = 'allowfullscreen data-chromatic="ignore"' %}
+              {% if address is not empty %}
+                {% set attributes = atributes ~ 'title="' ~ address ~ '"' %}
+              {% endif %}
+              {% include '@atoms/iframe/iframe.twig' with {
+                url: url,
+                attributes: attributes,
+                modifier_class: 'civic-video__action-icon',
+              } only %}
             </div>
           {% endblock %}
 

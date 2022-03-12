@@ -22,7 +22,7 @@ export const Map = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    embed_url: text('Embed URL', 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed', generalKnobTab),
+    url: text('URL', 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed', generalKnobTab),
     address: text('Address', 'Australia', generalKnobTab),
     share_link: text('Share Link', randomUrl(), generalKnobTab),
     view_link: text('View Link', randomUrl(), generalKnobTab),

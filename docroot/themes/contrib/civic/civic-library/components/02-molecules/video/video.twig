@@ -20,6 +20,7 @@
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
 {% set transcript_link_title = transcript_link.title|default('Opens in a new tab') %}
 {% set transcript_link_external = transcript_link.external|default(false) %}
 {% set share_link_title = share_link.title|default('Opens in a new tab') %}
@@ -28,26 +29,21 @@
 {% if src is not empty or oembed is not empty %}
   <div class="civic-video {{ modifier_class }}">
     {% block video %}
-      <div class="civic-video__iframe-container">
+      <div class="civic-video__wrapper">
         {% if oembed is not empty %}
           {{ oembed|raw }}
         {% else %}
-          <iframe
-            class="civic-video-frame"
-            {% if width is not empty %}
-            width="{{ width }}"
-            {% endif %}
-            {% if height is not empty %}
-            height="{{ height }}"
-            {% endif %}
-            src="{{ src }}"
-            allowfullscreen
-            data-chromatic="ignore"
-            {% if title is not empty %}
-            title="{{ title }}"
-            {% endif %}
-          >
-          </iframe>
+          {% set attributes = 'allowfullscreen data-chromatic="ignore"' %}
+          {% if title is not empty %}
+            {% set attributes = atributes ~ 'title="' ~ title ~ '"' %}
+          {% endif %}
+          {% include '@atoms/iframe/iframe.twig' with {
+            height: height,
+            width: width,
+            url: src,
+            attributes: attributes,
+            modifier_class: 'civic-video__action-icon',
+          } only %}
         {% endif %}
       </div>
     {% endblock %}
@@ -55,7 +51,7 @@
     {% block links %}
       <div class="civic-video__links">
         {% if transcript_link.url is defined and transcript_link.url is not empty %}
-          <div class="civic-video__transcript">
+          <div class="civic-video__links__transcript">
             {% include '@atoms/icon/icon.twig' with {
               symbol: 'designtools_eye',
               color: 'shade_dark_15',
@@ -74,7 +70,7 @@
         {% endif %}
 
         {% if share_link.url is defined and share_link.url is not empty %}
-          <div class="civic-video__share">
+          <div class="civic-video__links__share">
             {% include '@atoms/icon/icon.twig' with {
               symbol: 'userinterface_share',
               modifier_class: 'civic-video__action-icon',
