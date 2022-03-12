@@ -34,7 +34,7 @@ export const Alert = (knobTab) => {
       generalKnobTab,
     ),
     title: text('Title', 'Site information', generalKnobTab),
-    description: text('Summary', 'Filium morte multavit si sine causa, nollem me tamen laudandis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vel elit laoreet, dignissim arcu sit amet, vulputate risus.', generalKnobTab),
+    description: text('Description', 'Alert description filium morte multavit si sine causa, nollem me tamen laudandis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vel elit laoreet, dignissim arcu sit amet, vulputate risus.', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
