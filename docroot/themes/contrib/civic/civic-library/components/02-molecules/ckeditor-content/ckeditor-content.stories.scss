@@ -1,4 +1,6 @@
 //
-// CKeditor Content component.
+// CKEditor Content component.
 //
-@import '../../ckeditor-style';
+// stylelint-disable scss/at-import-partial-extension
+
+@import '../../style.ckeditor';
