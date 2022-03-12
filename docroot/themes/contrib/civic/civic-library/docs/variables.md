@@ -4,7 +4,7 @@ _[Civic Documentation](../../README.md) &#8594; [Civic Component library](introd
 Civic Component library contains a large number of variables that modify all areas of the theme.
 
 Variables allow for modification of:
-- Theme and component specific colours
+- Theme and component specific colors
 - Typography including line-height, font-size, font-weight and what fonts used
 - Spacing
 - Grid system

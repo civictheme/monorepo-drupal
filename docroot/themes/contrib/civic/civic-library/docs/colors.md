@@ -4,12 +4,12 @@ _[Civic Documentation](../../README.md) &#8594; [Civic Component library](introd
 Civic Component Library provides an expansive colour design system out of the box providing for extensive
 customisation of a child theme.
 
-## Theme colours
+## Theme colors
 
 We use a subset of all colors to create a core color palette for generating color schemes.
-The colour system is generated programmatically based on **core** colours provided.
+The colour system is generated programmatically based on **core** colors provided.
 
-Core civic colours are set `$civic-default-colors` located [_variables.base.scss](../components/00-base/_variables.base.scss)
+Core civic colors are set `$civic-default-colors` located [_variables.base.scss](../components/00-base/_variables.base.scss)
 
 ```scss
 $civic-default-colors: (
@@ -20,7 +20,7 @@ $civic-default-colors: (
 );
 ```
 
-Child themes can override or extend these core colours `$civic-colors` within their own sass file system.
+Child themes can override or extend these core colors `$civic-colors` within their own sass file system.
 
 ```scss
 $civic-colors: (
@@ -33,9 +33,9 @@ $civic-colors: (
 
 The modifiable colour system can be found in [_variables.base.scss](docroot/themes/custom/civic/civic-library/components/00-base/_variables.base.scss).
 
-## Available Colours
+## Available colors
 
-See storybook `Base/Colours` for a visual guide to what available colours, shades and neutrals are ready to use
+See storybook `Base/colors` for a visual guide to what available colors, shades and neutrals are ready to use
 
 Color values are accessed with SASS maps:
 
