@@ -1,4 +1,4 @@
-_[Civic Documentation]() &#8594; Civic Drupal theme documentation_
+_[Civic Documentation](../README.md) &#8594; Civic Drupal theme documentation_
 # Civic Drupal Theme documentation
 
 The Civic theme technical documentation provide information on how to:
@@ -7,6 +7,8 @@ The Civic theme technical documentation provide information on how to:
 - extend and modify templates within Drupal
 - organise components in the Drupal theme.
 
-- [Namespaces](namespaces.md)
-- [Templates](templates.md)
-- [Assets](assets.md)
+## Table of Contents
+
+1. [Namespaces](namespaces.md)
+2. [Templates](templates.md)
+3. [Assets](assets.md)
