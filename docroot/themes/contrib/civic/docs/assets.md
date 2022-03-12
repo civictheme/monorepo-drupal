@@ -1,24 +1,19 @@
-_[Civic Documentation](../README.md) &#8594; [Civic Drupal Theme documentation](introduction.md)  &#8594; Assets_
 # Assets
 
-Drupal specific JS / CSS libraries can be provided for within the `civic/assets` directory. Look to `civic/assets` for
-examples.
+Drupal-specific JS/CSS libraries can be provided for within the `civic/assets`
+directory. Look at `civic/assets` for examples.
 
-For a quick getting started guide to building JS, CSS and icon assets refer to the below commands.
-
-## Install the required JS libraries
+## Installing the required JS libraries
 
     npm install
 
-## Build the theme's assets
+## Building the theme assets
 
     npm run build
 
-## Lint the JS and CSS
+## Linting the JS and CSS
 
     npm run lint
-
-    npm run lint:fix
 
 ## Running Storybook
 
@@ -26,4 +21,5 @@ For a quick getting started guide to building JS, CSS and icon assets refer to t
 
 ## Icons
 
-See [Icons](../civic-library/docs/icons.md) for an introduction to creating your theme's icon library.
+See [Icons](../civic-library/docs/icons.md) for an introduction to creating your
+theme's icon library.

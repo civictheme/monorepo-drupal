@@ -11,14 +11,6 @@ on Atomic Design principles.
 
 The Drupal theme provides full integration with a library.
 
-### Table of Contents
-
-1. [Quick start](#quick-start)
-2. [Development documetnation](#development-documentation)
-
-
-## <span id="quick-start">Quick start</span>
-
 ## Installation
 
 Add the following entries to your `composer.json` in your Drupal site root
@@ -58,7 +50,7 @@ Run the following command from within your sub-theme directory:
 
     npm run build
 
-## <span id="development-documentation">Development documentation</span>
+## Development documentation
 
 - [Civic Component Library Documentation](./civic-library/docs/introduction.md)
 - [Civic Drupal Theme Documentation](./docs/introduction.md)

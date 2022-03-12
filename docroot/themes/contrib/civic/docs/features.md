@@ -1,49 +1,51 @@
-_[Civic Documentation](../README.md) &#8594; [Civic Drupal Theme documentation](introduction.md)  &#8594; Drupal Features_
-
 # Drupal Features
 
 ## Layout Builder
 
 Civic provides two base layouts:
-- Edge to edge layout
+- Edge-to-edge layout
 - Contained layout
 
-Edge to edge provides landing page style layouts where the backgrounds of the component extends the full width of the
-browser unless there is a sidebar whereupon the content becomes constrained.
+`Edge-to-edge` layout provides landing page style where the backgrounds of the
+component extends the full width of the browser window. If there is a sidebar
+- the content becomes constrained automatically.
 
-Contained layout provides a constraint on width and is used in more news / event traditional style pages.
+`Contained` layout provides a constraint on container width and is used in more
+traditional style pages.
 
-These layouts can be built upon and are defined in the `civic.info.yml` and the twig templates are stored in:
-`civic-library/components/03-organisms/content` directory.
+These layouts can be built upon and are defined in the `civic.info.yml` and the
+twig templates are located in `../civic-library/components/03-organisms/content`
+directory.
 
 ## Views
 
-Civic provides a listing component as a paragraph type. This component provides the ability to create a configurable
-view component within your Civic page.
+Civic provides Views integration.
 
-#### Civic listing paragraph
+### Civic Listing component
 
-We have a special views component - Civic listing,
+Listing component allows editors to build lists of contents and place them
+anywhere on the page as a component.
 
-It provides configurations via paragraph to a view allowing content type restrictions, show / hide pagination,
-altering the number of items and filter configuration options and has been built with being extended in mind.
+This is achieved by providing a `civic_listing` paragraph with field values
+passed to a preprocessing function that is mapped to a pre-configured
+`civic_listing` view.
 
-This component utilised the `civic_listing` view for the block but this can be altered via `hook_civic_listing_view_name_alter`.
-See [civic.api.php](../civic.api.php) for details.
+The view provides configurations via paragraph to a view allowing content type
+restrictions, show / hide pagination, altering the number of items and filter
+configuration options.
 
-In addition, your sub-theme can update the Civic listing component and add your own filter options in or implement
-ajax filtering for example.
+It is possible to replace the default `civic_listing` view with a more custom
+one required for a specific site via `hook_civic_listing_view_name_alter()` (see
+[civic.api.php](../civic.api.php) for details).
 
-On top of this Civic provides large and basic filters out of the box to implement a stylised exposed view form inputs.
-
-#### Views exposed form
-
-For views with only 1 exposed filter, basic filtering (tag based) is enabled but as soon as there is more than one
-exposed filter the large filter system (with dropdown filters) is enabled.
-
+Civic also provides support for filters in an exposed form. For views with only
+1 exposed filter, `Basic Filter` component (tag based) is enabled,
+but as soon as there is more than one exposed filter - the Large Filter
+component (with dropdown filters) is enabled automatically.
 
 ## Webform integration
 
-Out of the box, Civic integrates base webform form elements but it does not implement (or rather it is untested) the
-more advanced composite components that the webform module can provide.
-We welcome contributions extending this support.
+Civic provides integration with basic webform form elements.
+
+More advanced composite components are not supported yet and we welcome
+contributions extending this support.
