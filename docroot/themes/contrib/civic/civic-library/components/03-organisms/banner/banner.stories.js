@@ -32,7 +32,7 @@ export const Banner = (knobTab) => {
       src: demoImage(),
       alt: 'Featured image alt',
     } : null,
-    decorative: boolean('Decorative', true, generalKnobTab),
+    is_decorative: boolean('Decorative', true, generalKnobTab),
     show_breadcrumb: boolean('Show breadcrumb', true, generalKnobTab),
     show_content_text: boolean('Show content text', true, generalKnobTab),
     show_content_search: boolean('Show content search', false, generalKnobTab),
