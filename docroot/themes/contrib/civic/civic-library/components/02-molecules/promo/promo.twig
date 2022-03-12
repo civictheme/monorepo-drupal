@@ -7,7 +7,7 @@
  * - theme: [string] Theme: light, dark.
  * - title: [string] Title text.
  * - content: [string] Content.
- * - call_to_action: [object] Link:
+ * - link: [object] Link:
  *   - title [string] Link title.
  *   - url [string] Link URL.
  *   - new_window [boolean] Open link in the new window.
@@ -34,16 +34,16 @@
         {% endblock %}
         {% block column_two %}
           <div class="civic-promo__second-container">
-            {% if call_to_action %}
+            {% if link %}
               {% include '@atoms/button/button.twig' with {
-                text: call_to_action.title,
-                url: call_to_action.url,
-                new_window: call_to_action.new_window,
-                type: 'secondary',
                 theme: theme,
+                type: 'secondary',
                 kind: 'link',
-                modifier_class: 'civic-promo__button',
                 size: 'large',
+                text: link.title,
+                url: link.url,
+                new_window: link.new_window,
+                modifier_class: 'civic-promo__button',
                 icon: 'arrows_rightarrow_3',
               } only %}
             {% endif %}

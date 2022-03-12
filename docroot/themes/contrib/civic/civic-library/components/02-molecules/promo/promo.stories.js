@@ -1,6 +1,4 @@
-import {
-  text, radios, object,
-} from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicPromo from './promo.twig';
 
 export default {
@@ -22,7 +20,12 @@ export const Promo = () => {
     ),
     title: text('Title', 'Sign up for industry news and updates from CivicTheme', generalKnobTab),
     content: text('Content', '', generalKnobTab),
-    call_to_action: object('Quick links', { title: 'Sign up', url: 'https://salsadigital.com.au/', new_window: true }, generalKnobTab),
+    link: {
+      text: text('Link text', 'Sign up', generalKnobTab),
+      url: text('Link URL', 'https://example.com', generalKnobTab),
+      new_window: boolean('Link opens in new window', true, generalKnobTab),
+      is_external: boolean('Link is external', true, generalKnobTab),
+    },
   };
 
   return CivicPromo({
