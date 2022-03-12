@@ -30,7 +30,7 @@
 
   <div class="civic-input {{ civic_input_modifier_class }}">
     {% if type == 'textarea' %}
-      {% include '@atoms/input/textarea.twig' %}
+      {% include '@atoms/textarea/textarea.twig' %}
     {% elseif type == 'radio' %}
       {% include '@atoms/radio/radio.twig' %}
     {% elseif type == 'checkbox' %}
@@ -42,7 +42,7 @@
         modifier_class: civic_input_modifier_class,
       } only %}
     {% else %}
-      {% include '@atoms/input/textfield.twig' %}
+      {% include '@atoms/textfield/textfield.twig' %}
     {% endif %}
   </div>
 {% endif %}
