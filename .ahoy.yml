@@ -154,6 +154,10 @@ commands:
     usage: Lint config
     cmd: ahoy cli ./scripts/drevops/lint.sh config
 
+  lint-spelling:
+    usage: Lint config
+    cmd: ./scripts/lint-spelling.sh
+
   test:
     usage: Run all tests.
     cmd: ahoy test-unit && ahoy test-kernel && ahoy test-functional && ahoy test-bdd

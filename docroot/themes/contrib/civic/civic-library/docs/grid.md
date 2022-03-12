@@ -1,12 +1,13 @@
-_[Civic Documentation](../../README.md) &#8594; [Civic Component library](introduction.md) &#8594; Grid_
 # Grid
 
-Civic theme provides a customisable grid utilising a flex-based system.
+Civic provides a customisable grid utilising a flex-based system.
 
 ## Grid System
 
-Civic Component Library's grid system uses a series of containers, rows, and columns to layout and align content.
-It’s built with flexbox and is fully responsive. 
+Civic Component Library's grid system uses a series of containers, rows, and
+columns to layout and align content.
+
+It’s built with flexbox and is fully responsive.
 
 The system is adapted from the [SASS flexbox grid](http://sassflexboxgrid.com/).
 
@@ -81,33 +82,42 @@ has been omitted to avoid over-complicating breakpoint logic and readability.
 
 ## Containers and rows
 
-Containers are used to contain and center content to a max-width per breakpoint. These are set via the `$civic-breakpoints` map.
-If no container is set then columns spread full-width - this is utlised in Civic Page without sidebar where we have full-width
-components and constraining of content is done on the component level.
+Containers are used to contain and center content to a max-width per breakpoint.
+These are set via the `$civic-breakpoints` map.
 
-Rows are wrappers for columns. Each column has horizontal padding (called a gutter) for controlling
-the space between them. This padding is then counteracted on the rows with negative margins to ensure the content
-in your columns is visually aligned down the left side.
+If no container is set then columns spread full-width - this is utilised in
+Civic Page without sidebar where we have full-width components and constraining
+of content is done on the component level.
+
+Rows are wrappers for columns. Each column has horizontal padding (called a
+gutter) for controlling the space between them. This padding is then
+counteracted on the rows with negative margins to ensure the content in your
+columns is visually aligned down the left side.
 
 ## Columns
 
-There are 12 columns available per row, allowing you to create different combinations of elements that span
-any number of columns. 
+There are 12 columns available per row, allowing you to create different
+combinations of elements that span any number of columns.
 
-Column classes indicate the number of template columns to span (e.g., col-4 spans four).
-Widths are set in percentages so you always have the same relative sizing.
+Column classes indicate the number of template columns to span (e.g., col-4
+spans four). Widths are set in percentages so you always have the same relative
+sizing.
 
 ## Nested Grids
 
-The grid system allows for nested grids. If a parent is 50% width (`col-xs-12`) and a container, row and column is placed inside of this
-column then the max-width of the child column (with `col-xs-12` class) is 50% of the parent.
+The grid system allows for nested grids. If a parent is 50% width (`col-xs-12`)
+and a container, row and column is placed inside of this column then the
+max-width of the child column (with `col-xs-12` class) is 50% of the parent.
 
 ## Utilities
 
-Civic component library come with a variety of [Grid utility mixins](../civic-library/components/00-base/mixins/_grid.scss)
-including offset, row-reverse, flex-column among others.
+Civic component library come with a variety of
+[Grid utility mixins](../components/00-base/mixins/_grid.scss) including
+`offset`, `row-reverse`, `flex-column` among others.
 
 ## Advanced
-For more advanced modification and overriding, the grid system internals are defined within `_variables.base.scss` 
-which provides plenty of options to change the grid system however this is not recommended as it can have significant
-changes to the design system which may not be at first apparent.
+
+For more advanced modification and overriding, the grid system internals are
+defined within `_variables.base.scss`, which provides plenty of options to
+change the grid system however this is not recommended as it can have
+significant changes to the design system which may not be at first apparent.

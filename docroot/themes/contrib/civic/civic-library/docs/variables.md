@@ -1,7 +1,7 @@
-_[Civic Documentation](../../README.md) &#8594; [Civic Component library](introduction.md) &#8594; Variables_
 # Variables.
 
-Civic Component library contains a large number of variables that modify all areas of the theme.
+Civic Component library contains a large number of variables that modify all
+areas of the theme.
 
 Variables allow for modification of:
 - Theme and component specific colors
@@ -9,11 +9,15 @@ Variables allow for modification of:
 - Spacing
 - Grid system
 
-Variables set within the Civic Component Library has a corresponding variable with the `!default` flag.
-This allows consumer themes to override any the variable's color without needing to change Civic Component Library SASS.
+Variables set within the Civic Component Library has a corresponding variable
+with the `!default` flag.
+This allows consumer themes to override any the variable's color without needing
+to change Civic Component Library SASS.
 
-Copy and paste variables as needed into your child theme, modify their values, and remove the !default flag.
-If a variable has already been assigned in your child theme, then it won’t be re-assigned by the default values in Civic Component Library.
+Copy and paste variables as needed into your child theme, modify their values,
+and remove the !default flag.
+If a variable has already been assigned in your child theme, then it won’t be
+re-assigned by the default values in Civic Component Library.
 
 ## Where are the variables located
 

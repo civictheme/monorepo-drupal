@@ -10,7 +10,7 @@ We access these components via [component namespaces](namespaces.md).
 The idea being separating the Civic library component library and Drupal templates is to create
 a reusable set of components that can be used in multiple CMS systems.
 
-The components stored within Civic library have had all their Drupalism's
+The components stored within Civic library have had all their Drupalisms
 removed so that they can be cleanly used by other CMSs.
 
 ** Read more about [Components](../civic-library/docs/components.md) to
@@ -34,7 +34,7 @@ variables through the preprocess hook system Drupal provides. Look at the files
 in `civic/includes` directory for how the Civic components are preprocesed in
 Drupal.
 
-Because we are not using Drupalism's within our templates we equally
+Because we are not using Drupalisms within our templates we equally
 should be aware that we have to be careful not to rely on Twig features that
 only exist within Drupal. Link URLs and text need to be provided as data to
 the component system, image URLs need to be constructed (remembering to get
@@ -43,11 +43,11 @@ to be aware of when integrating with the component library.
 
 ### But, what about default field templates
 
-There is a drawback (or advantage as it aligns more closely with mordern UX
+There is a drawback (or advantage as it aligns more closely with modern UX
 development workflows) to Civic in that the architecture is based at the
 component level rather than then field level.
 
-Outputting individual fields on the page will result in barebones output as
+Outputting individual fields on the page will result in bare bones output as
 Civic theme is relying upon the developer to provide these field values to
 components rather than utilising a field formatter.
 

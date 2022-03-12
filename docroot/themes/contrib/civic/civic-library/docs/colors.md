@@ -1,15 +1,17 @@
-_[Civic Documentation](../../README.md) &#8594; [Civic Component library](introduction.md) &#8594; Colors_
 # Colors
 
-Civic Component Library provides an expansive colour design system out of the box providing for extensive
-customisation of a child theme.
+Civic Component Library provides an expansive colour design system out of the
+box providing for extensive customisation of a child theme.
 
 ## Theme colors
 
-We use a subset of all colors to create a core color palette for generating color schemes.
-The colour system is generated programmatically based on **core** colors provided.
+We use a subset of all colors to create a core color palette for generating
+color schemes.
+The colour system is generated programmatically based on **core** colors
+provided.
 
-Core Civic colors are set `$civic-default-colors` located [_variables.base.scss](../components/00-base/_variables.base.scss)
+Core Civic colors are set `$civic-default-colors` located
+[_variables.base.scss](../components/00-base/_variables.base.scss)
 
 ```scss
 $civic-default-colors: (
@@ -20,7 +22,8 @@ $civic-default-colors: (
 );
 ```
 
-Child themes can override or extend these core colors `$civic-colors` within their own sass file system.
+Child themes can override or extend these core colors `$civic-colors` within
+their own sass file system.
 
 ```scss
 $civic-colors: (
@@ -31,7 +34,8 @@ $civic-colors: (
 );
 ```
 
-The modifiable colour system can be found in [_variables.base.scss](docroot/themes/custom/civic/civic-library/components/00-base/_variables.base.scss).
+The modifiable colour system can be found in
+[_variables.base.scss](../components/00-base/_variables.base.scss).
 
 ## Available colors
 
@@ -88,20 +92,24 @@ civic-color-neutral(90)
 
 ## Colour variables
 
-Every color used within the Civic Component Library has a corresponding variable with the `!default` flag.
-This allows consumer themes to override any the variable's color without needing to change Civic Component Library SASS.
+Every color used within the Civic Component Library has a corresponding variable
+with the `!default` flag.
+This allows consumer themes to override any the variable's color without needing
+to change Civic Component Library SASS.
 
-Copy and paste variables as needed into your child theme, modify their values, and remove the !default flag.
-If a variable has already been assigned in your child theme, then it won’t be re-assigned by the default values in Civic Component Library.
+Copy and paste variables as needed into your child theme, modify their values,
+and remove the !default flag.
+If a variable has already been assigned in your child theme, then it won’t be
+re-assigned by the default values in Civic Component Library.
 
 You will find the complete list of Civic Component Library’s color variables
-in [_variables.components.scss](docroot/themes/custom/civic/civic-library/components/00-base/_variables.components.scss).
+in [_variables.components.scss](../components/00-base/_variables.components.scss).
 
 ### An example of overriding variables
 
 #### Civic theme default implementation
 ```scss
-// Civic theme implementation
+// Civic theme implementation.
 
 $civic-card-heading: civic-color('primary') !default;
 
@@ -112,7 +120,7 @@ $civic-card-heading: civic-color('primary') !default;
 #### Child theme override
 
 ```sass
-// Child theme override
+// Child theme override.
 $civic-card-heading: civic-color-shade-dark(90);
 ```
 
