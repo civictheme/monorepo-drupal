@@ -15,7 +15,8 @@
 {{ title_prefix }}
 {% if title %}
   {% include '@atoms/heading/heading.twig' with {
+    content: title,
     level: 1,
-  } %}
+  } only %}
 {% endif %}
 {{ title_suffix }}
