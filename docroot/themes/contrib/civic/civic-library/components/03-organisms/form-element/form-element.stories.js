@@ -139,7 +139,7 @@ export const FormElement = () => {
   const labelKnobTab = 'Label';
   const labelKnobs = {
     theme,
-    title: text('Label', 'Label for input', labelKnobTab),
+    content: text('Label', 'Label for input', labelKnobTab),
     title_display: radios(
       'Label position',
       {
