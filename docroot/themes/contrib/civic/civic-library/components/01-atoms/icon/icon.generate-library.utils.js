@@ -7,7 +7,7 @@ const fs = require('fs');
 const iconUtils = require('./icon.utils');
 
 // Path to the output icon library file.
-const iconLibraryPath = './components/01-atoms/icon/icon_library.twig';
+const iconLibraryPath = './components/01-atoms/icon/icon_library.generated.twig';
 
 function getMatches(reg, text, matchIndex) {
   const matches = [];
