@@ -75,7 +75,7 @@ function _civic_preprocess_civic_banner(&$variables) {
   _civic_preprocess_civic_banner_node($variables);
 
   if ($variables['type'] == CIVIC_BANNER_TYPE_LARGE) {
-    $variables['decorative'] = TRUE;
+    $variables['is_decorative'] = TRUE;
   }
 
   // Explicitly defined variable to allow additional preprocessing.

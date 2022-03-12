@@ -14,7 +14,7 @@
  * - content_bottom: [string] Content slot.
  * - content_below: [string] Content slot.
  * - title: [string] Title.
- * - decorative: [boolean] Show as decorative.
+ * - is_decorative: [boolean] Show as decorative.
  * - featured_image: [object] Featured image object:
  *   - src: [string] Source.
  *   - alt: [string] Alt text.
@@ -23,8 +23,8 @@
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set decorative_class = decorative ? 'civic-banner--decorative': '' %}
-{% set modifier_class = '%s %s %s'|format(theme_class,decorative_class, modifier_class|default('')) %}
+{% set is_decorative_class = is_decorative ? 'civic-banner--decorative': '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_decorative_class, modifier_class|default('')) %}
 
 {% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty or title is not empty or content_middle is not empty or content is not empty or content_below is not empty or content_bottom is not empty %}
   <div class="civic-banner {{ modifier_class }}">
