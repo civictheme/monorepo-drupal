@@ -12,7 +12,7 @@ module.exports = {
     entries.push(path.resolve(__dirname, 'css.js'));
     entries.push(path.resolve(__dirname, 'assets.js'));
     return entries;
-  }('../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js')),
+  }('../components/**/!(*.stories|*.component|*.min|*.test|*.utils).js')),
   output: {
     filename: 'civic.js',
     path: path.resolve(__dirname, '../dist'),

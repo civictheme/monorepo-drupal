@@ -25,11 +25,11 @@ these are used by Civic theme in the default templates.
 
 ## Re-generating icons library
 
-Icons library is generated from provided files and stored in `icon_library.twig`
+Icons library is generated from provided files and stored in `icon_library.generated.twig`
 file to avoid constant re-compilation.
 
 After you have finished including the icons you wish to use in your child theme,
-run the script below to update the contents of `icon_library.twig`:
+run the script below to update the contents of `icon_library.generated.twig`:
 
     npm run generate-icon-library
 
