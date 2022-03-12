@@ -11,8 +11,8 @@ Civic theme development
 
 
 ## Requirements and constraints
-- Can be used out of the box without any customizations
-- MUST not be changed for customizations. If customizations are required - a
+- Can be used out of the box without any customisations
+- MUST NOT be changed for customisations. If customisations are required - a
   consumer theme MUST be created and used as a sub-theme of the Civic theme.
 - Fully compatible with GovCMS 9:
   - MUST NOT have any modules
@@ -39,7 +39,7 @@ Currently, this repository contains (for ease of development):
 
 Once active development phase is finished, this repository will be "forklifted"
 to only contain theme code.
-The forklifted repository will have the following costraints:
+The forklifted repository will have the following constraints:
 1. Installable for PHP 7.4 and PHP 8 + tests
 2. Passing all code quality checks
 3. Having all configuration captured

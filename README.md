@@ -28,10 +28,10 @@ Drupal 9 implementation of Civic Demo site
 
 ### Apple M1 adjustments
 
-The AIO supported version of Pygmy does not appear to receive updates any longer,
-appears pygmy-go is the de-facto standard going forward. There is not a stable
-release with Apple Silicon support yet, however the following dev branch is
-entirely functional, so we need to build from sources.
+The AmazeeIO supported version of Pygmy does not appear to receive updates any
+longer, appears `pygmy-go` is the de facto standard going forward. There is not
+a stable release with Apple Silicon support yet, however the following dev
+branch is entirely functional, so we need to build from sources.
 
 ```
 pygmy down && pygmy-go down

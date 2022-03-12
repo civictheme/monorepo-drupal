@@ -168,6 +168,9 @@ jobs:
             - v5-db9-{{ checksum "/tmp/DB_CACHE_BRANCH" }}-{{ checksum "/tmp/DB_CACHE_FALLBACK_YES" }}-{{ checksum "/tmp/DB_CACHE_TIMESTAMP" }}
             - v5-db9-{{ checksum "/tmp/DB_CACHE_BRANCH" }}-{{ checksum "/tmp/DB_CACHE_FALLBACK_YES" }}-
       - run:
+          name: Lint docs spelling
+          command: ./scripts/lint-spelling.sh
+      - run:
           name: Build site
           command: ahoy build
           no_output_timeout: 30m

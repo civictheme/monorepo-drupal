@@ -1,4 +1,15 @@
 //
 // Demo Button example styles.
+// Since we are extending the button component we can modify the look and feel of the coponent here.
 //
-// stylelint-disable no-empty-source
+
+.civic-button {
+  $root: &;
+
+  &--demo {
+    #{$root}--large {
+      // For illustration purposes, same style as civic-button
+      padding: civic-space(2) civic-space(5);
+    }
+  }
+}
