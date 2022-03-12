@@ -13,6 +13,6 @@ changes.
 
 1. [Variables](variables.md)
 2. [Colors](colors.md)
-4. [Grid](grid.md)
-5. [Icons](icons.md)
-6. [Utilities](utilities.md)
+3. [Grid](grid.md)
+4. [Icons](icons.md)
+5. [Components](components.md)
