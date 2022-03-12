@@ -43,7 +43,7 @@ import './demo-button';
  * @endcode
  */
 export default {
-  title: 'Atoms/Demos',
+  title: 'Atoms/Demo Button',
   parameters: {
     layout: 'centered',
   },

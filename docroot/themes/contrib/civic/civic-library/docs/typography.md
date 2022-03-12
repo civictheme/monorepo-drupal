@@ -1,6 +1,7 @@
-# Fonts
+# Typography
 
-Civic Component Library provides a system for easily consuming and extending typography mixins and variables.
+Civic Component Library provides a system for easily consuming and extending
+typography mixins and variables.
 
 ### How to use the typography mixin
 
@@ -72,11 +73,12 @@ h1 {
 
 ### Including custom fonts
 
-Civic component library allows consumer themes to modify and extend the list of fonts that are used.
+Civic component library allows consumer themes to modify and extend the list of
+fonts that are used.
 
 Add custom fonts to $civic-fonts with the same key as above to override
 fonts or with a new key to add a new font kind.
-'uri' can be a URL to the external font or a list of local files with 
+'uri' can be a URL to the external font or a list of local files with
 extensions to be imported. The font type will be taken from the file extensions.
 Use $civic-assets-directory to provide a relative path.
 

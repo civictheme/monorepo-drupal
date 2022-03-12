@@ -6,7 +6,7 @@
 .civic-button {
   $root: &;
 
-  .&--demo {
+  &--demo {
     #{$root}--large {
       // For illustration purposes, same style as civic-button
       padding: civic-space(2) civic-space(5);
