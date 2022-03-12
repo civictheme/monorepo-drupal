@@ -13,7 +13,7 @@ use Drupal\Component\Utility\UrlHelper;
 function civic_preprocess_paragraph__civic_map(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $variables['embed_url'] = $paragraph->get('field_c_p_embed_url')->getString();
+  $variables['url'] = $paragraph->get('field_c_p_embed_url')->getString();
   $variables['address'] = $paragraph->get('field_c_p_address')->getString();
   if (!$paragraph->get('field_c_p_share_link')->isEmpty()) {
     $link = $paragraph->get('field_c_p_share_link');
