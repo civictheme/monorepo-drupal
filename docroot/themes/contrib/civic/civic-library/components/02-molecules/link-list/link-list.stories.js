@@ -1,8 +1,9 @@
 import {
-  boolean, radios, text,
+  boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 
 import CivicLinkList from './link-list.twig';
+import { randomLinks } from '../../00-base/base.stories';
 
 export default {
   title: 'Molecules/Link List',
@@ -28,13 +29,17 @@ export const LinkList = (knobTab) => {
     is_inline: boolean('Inline', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
-    links: boolean('With links', true, generalKnobTab) ? [
-      { title: 'Link title 1', url: '#' },
-      { title: 'Link title 2', url: '#' },
-      { title: 'Link title 3 long title goes over multiple lines', url: '#' },
-      { title: 'Link title 4', url: '#', new_window: true },
-      { title: 'Link title 5', url: 'http://google.com', is_external: true },
-    ] : null,
+    links: randomLinks(number(
+      'Number of links',
+      5,
+      {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      generalKnobTab,
+    )),
   };
 
   return CivicLinkList({
