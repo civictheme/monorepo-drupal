@@ -7,7 +7,7 @@
  * - theme: [string] Theme: light, dark.
  * - is_inline: [boolean] Flag to render items inline.
  * - items: [array] Array of items. Each item contains:
- *   - term: [string] Name of the term.
+ *   - title: [string] Title.
  *   - description: [description] Description.
  *   - modifier_class: [string] Addtional term classes.
  * - modifier_class: [string] Additional classes.
@@ -22,7 +22,7 @@
   <dl class="civic-description-list {{ modifier_class }}">
     {% for item in items %}
       <div class="civic-description-list__item {% if item.modifier_class is not empty %}{{ item.modifier_class }}{% endif %}">
-        <dt class="civic-description-list__item__term">{{ item.term }}</dt>
+        <dt class="civic-description-list__item__term">{{ item.title }}</dt>
         <dd class="civic-description-list__item__description">{{ item.description }}</dd>
       </div>
     {% endfor %}
