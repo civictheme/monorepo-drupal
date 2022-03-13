@@ -118,7 +118,7 @@ export const BasicContent = (knobTab) => {
   const generalKnobs = {
     theme,
     content: boolean('Content', true, generalKnobTab) ? html : null,
-    contained: boolean('Contained', true, generalKnobTab),
+    is_contained: boolean('Contained', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
