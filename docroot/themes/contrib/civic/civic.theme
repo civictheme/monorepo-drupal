@@ -221,24 +221,6 @@ function _civic_theme_suggestions_civic_filter(array &$suggestions, array $varia
 }
 
 /**
- * Implements template_preprocess_pager().
- */
-function civic_theme_preprocess_pager(&$variables) {
-  if (isset($variables['items']['first']['text'])) {
-    $variables['items']['first']['text'] = t('First');
-  }
-  if (isset($variables['items']['last']['text'])) {
-    $variables['items']['last']['text'] = t('Last');
-  }
-  if (isset($variables['items']['previous']['text'])) {
-    $variables['items']['previous']['text'] = t('Previous');
-  }
-  if (isset($variables['items']['next']['text'])) {
-    $variables['items']['next']['text'] = t('Next');
-  }
-}
-
-/**
  * Implements hook_theme().
  */
 function civic_theme() {
