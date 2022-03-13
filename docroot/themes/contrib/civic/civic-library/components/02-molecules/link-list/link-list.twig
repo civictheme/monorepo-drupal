@@ -6,7 +6,7 @@
  * Variables:
  * - theme: [string] Theme for large filter.
  * - links: [array] Links array:
- *   - title [string] Title.
+ *   - text [string] Text.
  *   - url [string] URL.
  *   - new_window [boolean] Open link in a new window.
  *   - is_external [boolean] Link is external or not.
@@ -22,21 +22,21 @@
 
 {% if links %}
   <div class="civic-link-list {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
-    {% block title %}
-      {% if title %}
-        <div class="civic-link-list__title">
-          {{ title }}
+    {% block text %}
+      {% if text %}
+        <div class="civic-link-list__text">
+          {{ text }}
         </div>
       {% endif %}
     {% endblock %}
     {% block links %}
       <ul class="civic-link-list__list">
         {% for link in links %}
-          {% if link.title is not empty %}
+          {% if link.text is not empty %}
             <li class="civic-link-list__list__item">
               {% include '@atoms/link/link.twig' with {
                 theme: theme,
-                text: link.title,
+                text: link.text,
                 url: link.url,
                 new_window: link.new_window ? link.new_window : false,
                 is_external: link.is_external ? link.is_external : false,
