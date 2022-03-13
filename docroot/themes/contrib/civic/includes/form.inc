@@ -194,11 +194,14 @@ function _civic_preprocess_civic_filter_form_element_alter(&$variables) {
  * Implements template_preprocess_form_element_label().
  */
 function civic_preprocess_form_element_label(&$variables) {
+  $variables['content'] = $variables['title'] ?? '';
+
   // Adding in core template classes.
   if (!empty($variables['required'])) {
     $variables['attributes']['class'][] = 'js-form-required';
     $variables['attributes']['class'][] = 'form-required';
   }
+
   if (isset($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
     unset($variables['attributes']['class']);
