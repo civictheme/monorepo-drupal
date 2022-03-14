@@ -25,8 +25,6 @@ define('CIVIC_BANNER_DEFAULT_THEME', 'light');
 
 /**
  * Civic banner block theme suggestion.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_theme_suggestions_civic_banner(array &$suggestions, array $variables) {
   if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'block_content') {
@@ -39,8 +37,6 @@ function _civic_theme_suggestions_civic_banner(array &$suggestions, array $varia
 
 /**
  * Preprocess for Programmatic Block - Banner block.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_civic_banner(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {
@@ -79,7 +75,7 @@ function _civic_preprocess_civic_banner(&$variables) {
   _civic_preprocess_civic_banner_node($variables);
 
   if ($variables['type'] == CIVIC_BANNER_TYPE_LARGE) {
-    $variables['decorative'] = TRUE;
+    $variables['is_decorative'] = TRUE;
   }
 
   // Explicitly defined variable to allow additional preprocessing.

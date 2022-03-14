@@ -4,15 +4,18 @@
  * Alert component.
  *
  * Variables:
- * - type: [string] Alert type: Info, Error, Warning, Success.
- * - theme: [string] Light, Dark.
- * - id: [string] Alert id.
- * - title: [string] Alert title.
- * - description: [string] Alert summary.
+ * - theme: [string] Theme: light, dark.
+ * - type: [string] Alert type: info, error, warning, success.
+ * - theme: [string] Theme: light, dark.
+ * - id: [string] ID.
+ * - title: [string] Title.
+ * - description: [string] Description.
+ * - modifier_class: [string] Additional classes.
  */
 #}
-{% set type = type|default('info') %}
+
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set type = type|default('info') %}
 {% set type_class = 'civic-alert--%s'|format(type|default('status')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
 
@@ -23,31 +26,33 @@
   success: 'userinterface_approve',
 } %}
 
-<div class="civic-alert {{ modifier_class }}" data-alert-id="{{ id }}" data-alert-type="{{ type }}" data-component-name="civic-alert" role="alert">
-  <div class="container">
-    <div class="row">
-      <div class="civic-alert__title col-xs-12 col-m-3">
-        {% if icons[type] is defined %}
-          <span class="civic-alert__icon">
-            {% include "@atoms/icon/icon.twig" with {
-              symbol: icons[type],
-              modifier_class: "%s civic-icon--%s"|format(theme_class, type)
-            } only %}
-          </span>
-        {% endif %}
-        {{ title }}
-      </div>
-      <div class="civic-alert__summary col-xs-12 col-m-9">
-        {{ description|raw }}
-        {% include "@atoms/button/button.twig" with {
-          kind: 'button',
-          theme: theme,
-          modifier_class: 'civic-alert__dismiss-button',
-          text: '',
-          icon: 'userinterface_cancel',
-          attributes: 'id=dismiss-alert-' ~ id ~ ' data-alert-dismiss-trigger title="close ' ~ type ~ ' alert"'
-        } %}
+{% if description is not empty %}
+  <div class="civic-alert {{ modifier_class }}" data-alert-id="{{ id }}" data-alert-type="{{ type }}" data-component-name="civic-alert" role="alert">
+    <div class="container">
+      <div class="row">
+        <div class="civic-alert__title col-xs-12 col-m-3">
+          {% if icons[type] is defined %}
+            <span class="civic-alert__icon">
+              {% include "@atoms/icon/icon.twig" with {
+                symbol: icons[type],
+                modifier_class: "%s civic-icon--%s"|format(theme_class, type)
+              } only %}
+            </span>
+          {% endif %}
+          {{ title }}
+        </div>
+        <div class="civic-alert__summary col-xs-12 col-m-9">
+          {{ description|raw }}
+          {% include "@atoms/button/button.twig" with {
+            kind: 'button',
+            theme: theme,
+            modifier_class: 'civic-alert__dismiss-button',
+            text: '',
+            icon: 'userinterface_cancel',
+            attributes: 'id=dismiss-alert-' ~ id ~ ' data-alert-dismiss-trigger title="close ' ~ type ~ ' alert"'
+          } %}
+        </div>
       </div>
     </div>
   </div>
-</div>
+{% endif %}

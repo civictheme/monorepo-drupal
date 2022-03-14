@@ -68,6 +68,8 @@ export const DropDownFilter = (knobTab) => {
     theme,
     filter_text: text('Filter text', 'Filter text', generalKnobTab),
     filter_group: text('Filter group name', 'civic_filter_group', generalKnobTab),
+    is_inline: boolean('Is inline', false, generalKnobTab),
+    inline_change_breakpoint: boolean('Change inline on breakpoint', false, generalKnobTab) ? '>=m' : '',
     type,
     options_title: boolean('With options title', true, generalKnobTab) ? text('Options title', 'Options title (optional)', generalKnobTab) : '',
     options: children.join(''),

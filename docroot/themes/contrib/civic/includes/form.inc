@@ -71,6 +71,7 @@ function _civic_form_alter__convert_exposed_form_elements(&$element, $form, $is_
     else {
       $element['#type'] = 'radios';
     }
+    _civic_form_alter__modify_element_callbacks($element);
   }
   // Only radio buttons and checkboxes work with filter chips.
   $filter_key = !$is_large_filter && in_array($element['#type'], [
@@ -154,6 +155,42 @@ function civic_preprocess_form_element(&$variables) {
 }
 
 /**
+ * Helper to clear pre_render and process callbacks.
+ *
+ * Since we are converting select to checkboxes or radios we need to modify the
+ * pre_render and process callbacks that do not relate to new inputs.
+ */
+function _civic_form_alter__modify_element_callbacks(&$element) {
+  $element_class = $element['#type'] === 'radios' ? '\Drupal\Core\Render\Element\Radios' : '\Drupal\Core\Render\Element\Checkboxes';
+
+  // Unsetting pre-render as we do not need these.
+  if (!empty($element['#pre_render'])) {
+    foreach ($element['#pre_render'] as $index => $callback) {
+      if (is_array($callback) && $callback[0] === 'Drupal\Core\Render\Element\Select') {
+        unset($element['#pre_render'][$index]);
+      }
+    }
+  }
+
+  // Modifying the ajax callbacks.
+  if (!empty($element['#pre_render'])) {
+    foreach ($element['#process'] as $index => $callback) {
+      if (is_array($callback) && $callback[0] === 'Drupal\Core\Render\Element\Select') {
+        if (method_exists($element_class, $callback[1])) {
+          $element['#process'][$index] = [
+            $element_class,
+            $callback[1],
+          ];
+        }
+        else {
+          unset($element['#process'][$index]);
+        }
+      }
+    }
+  }
+}
+
+/**
  * Preprocess form elements used in civic large and basic filters.
  */
 function _civic_preprocess_civic_filter_form_element_alter(&$variables) {
@@ -162,6 +199,8 @@ function _civic_preprocess_civic_filter_form_element_alter(&$variables) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
     $variables['options_title'] = $element['#description'] ?? '';
+    $variables['is_inline'] = TRUE;
+    $variables['inline_change_breakpoint'] = '>=m';
     $variables['filter_group'] = $element['#civic-large-filter'];
     if (isset($variables['description'])) {
       unset($variables['description']);
@@ -192,11 +231,14 @@ function _civic_preprocess_civic_filter_form_element_alter(&$variables) {
  * Implements template_preprocess_form_element_label().
  */
 function civic_preprocess_form_element_label(&$variables) {
+  $variables['content'] = $variables['title'] ?? '';
+
   // Adding in core template classes.
   if (!empty($variables['required'])) {
     $variables['attributes']['class'][] = 'js-form-required';
     $variables['attributes']['class'][] = 'form-required';
   }
+
   if (isset($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
     unset($variables['attributes']['class']);
@@ -282,6 +324,8 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
     $variables['options_title'] = $element['#description'] ?? '';
+    $variables['is_inline'] = TRUE;
+    $variables['inline_change_breakpoint'] = '>=m';
     $variables['filter_group'] = $element['#civic-large-filter'];
     $variables['#attributes']['data-dropdown-filter-fieldset'] = '';
     if (!empty($variables['attributes'])) {

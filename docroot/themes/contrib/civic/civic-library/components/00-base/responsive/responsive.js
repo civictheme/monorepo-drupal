@@ -1,12 +1,13 @@
 /**
- * Responsive utility component.
+ * @file
+ * Responsive component.
  *
  * Emits a 'civic-responsive' event on breakpoint change allowing components
  * to delay initialisation by providing 'data-responsive' attribute with an
  * operator and breakpoint name.
  *
  * For example: a component with `data-responsive=">=m"` attribute will
- * delay it's initialization to happen only when current screen size is equal
+ * delay its initialisation to happen only when current screen size is equal
  * or more than medium ('m') breakpoint.
  */
 function CivicResponsive() {
@@ -20,9 +21,9 @@ function CivicResponsive() {
     if (!(query in window.civicResponsive)) {
       window.civicResponsive[query] = window.matchMedia(query);
       window.civicResponsive[query].addEventListener('change', this.mediaQueryChange.bind(this, breakpoint));
-      // Call event handler on init.
-      this.mediaQueryChange(breakpoint, { matches: window.civicResponsive[query].matches });
     }
+    // Call event handler on init.
+    this.mediaQueryChange(breakpoint, { matches: window.civicResponsive[query].matches });
   }
 }
 
@@ -160,7 +161,15 @@ CivicResponsive.prototype.matchExpr = function (breakpointExpr, breakpoint) {
 };
 
 if (document.querySelectorAll('[data-responsive]').length) {
-  // Init if there is at least a single component with data-responsive
-  // attribute on the page.
-  new CivicResponsive();
+  // CivicResponsive needs to run after all civic-responisve
+  // event listeners have been added.
+  // Delay the execution until after other components have been initialized.
+  // Using setTimeout as an interim solution because:
+  // - DOMContentLoad won't work on prod-site due to being double wrapped in a DOMLoad event.
+  // - window 'load' event won't work on storybook as it's not called per component page change.
+  setTimeout(() => {
+    // Init if there is at least a single component with data-responsive
+    // attribute on the page.
+    new CivicResponsive();
+  }, 10);
 }

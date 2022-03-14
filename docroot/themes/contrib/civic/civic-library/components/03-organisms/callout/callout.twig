@@ -3,22 +3,23 @@
  * @file
  * Callout component.
  *
- * Display of Callout component.
- *
  * Variables:
- * - theme: [string] Theme for Callout.
- * - content_top: [string] Component slot for top of Callout.
- * - title: [string] Callout title.
- * - modifier_class: [string] Additional classes to modify component styling.
- * - summary: [string] Callout summary.
- * - links: [array] Array of Link objects containing type, url, text
- * - content_bottom: [string] Component slot for bottom of Callout.
+ * - theme: [string] Theme: light, dark.
+ * - content_top: [string] Content slot.
+ * - content_bottom: [string] Content slot.
+ * - title: [string] Title text.
+ * - summary: [string] Summary text.
+ * - links: [array] Array of link objects containing:
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ *   - type: [string] Link type.
+ *   - size: [string] Link size.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set default_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, default_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 <div class="civic-callout {{ modifier_class }}">
   <div class="container">
@@ -26,35 +27,42 @@
       <div class="col-xs-12">
         <div class="civic-callout--wrapper">
           {% block content_top %}
-            {% if content_top %}
+            {% if content_top is not empty %}
               <div class="civic-callout__content-top">
                 {{ content_top }}
               </div>
             {% endif %}
           {% endblock %}
-          {% block content %}
-            <div class="civic-callout__text">
-              <div class="civic-callout__title">
-                {{ title }}
-              </div>
 
-              <div class="civic-callout__summary">
-                {{ summary }}
+          {% block content %}
+            {% if title is not empty or summary is not empty %}
+              <div class="civic-callout__text">
+                {% if title is not empty %}
+                  <div class="civic-callout__title">
+                    {{ title }}
+                  </div>
+                {% endif %}
+
+                {% if summary is not empty %}
+                  <div class="civic-callout__summary">
+                    {{ summary }}
+                  </div>
+                {% endif %}
               </div>
-            </div>
+            {% endif %}
           {% endblock %}
 
           {% block links %}
             <div class="civic-callout__links">
-              {% for linkObj in links %}
-                {% if linkObj.url is not empty %}
+              {% for link in links %}
+                {% if link.url is not empty %}
                   {% include '@atoms/button/button.twig' with {
                     theme: theme,
                     kind: 'link',
-                    type: linkObj.type,
-                    size: linkObj.size,
-                    text: linkObj.text,
-                    url: linkObj.url,
+                    type: link.type,
+                    size: link.size,
+                    text: link.text,
+                    url: link.url,
                   } only %}
                 {% endif %}
               {% endfor %}
@@ -62,7 +70,7 @@
           {% endblock %}
 
           {% block content_bottom %}
-            {% if content_bottom %}
+            {% if content_bottom is not empty %}
               <div class="civic-callout__content-bottom">
                 {{ content_bottom }}
               </div>

@@ -1,9 +1,14 @@
 import {
-  boolean, radios, select, text,
+  boolean, number, radios, select, text,
 } from '@storybook/addon-knobs';
 
 import CivicNavigationCard from './navigation-card.twig';
-import { demoImage, getSlots, randomUrl } from '../../00-base/base.stories';
+import {
+  demoImage,
+  getSlots,
+  randomTags,
+  randomUrl,
+} from '../../00-base/base.stories';
 
 export default {
   title: 'Molecules/Card/Navigation Card',
@@ -42,6 +47,17 @@ export const NavigationCard = (knobTab) => {
       src: demoImage(),
       alt: 'Image alt text',
     } : false,
+    tags: randomTags(number(
+      'Number of tags',
+      2,
+      {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      generalKnobTab,
+    ), true),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 

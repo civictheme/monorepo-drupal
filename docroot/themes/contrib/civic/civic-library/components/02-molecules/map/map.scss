@@ -1,6 +1,7 @@
 //
-// Civic Map.
+// Map component.
 //
+
 .civic-map {
   &.civic-map--with-space-top {
     padding-top: $civic-map-padding-vertical;
@@ -20,15 +21,8 @@
     overflow: hidden;
     padding: 0 civic-space() $civic-map-padding-bottom civic-space();
 
-    .civic-map_iframe {
+    iframe {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      width: calc(100% - #{civic-space(2)});
-      height: 100%;
-      padding-left: inherit;
-      padding-right: inherit;
     }
   }
 

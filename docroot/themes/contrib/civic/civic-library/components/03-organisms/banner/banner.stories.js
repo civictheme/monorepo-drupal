@@ -30,9 +30,9 @@ export const Banner = (knobTab) => {
     background_image: BACKGROUNDS[theme][select('Background', Object.keys(BACKGROUNDS[theme]), Object.keys(BACKGROUNDS[theme])[0], generalKnobTab)],
     featured_image: boolean('With featured image', true, generalKnobTab) ? {
       src: demoImage(),
-      alt: 'Featured image alt',
+      alt: 'Featured image alt text',
     } : null,
-    decorative: boolean('Decorative', true, generalKnobTab),
+    is_decorative: boolean('Decorative', true, generalKnobTab),
     show_breadcrumb: boolean('Show breadcrumb', true, generalKnobTab),
     show_content_text: boolean('Show content text', true, generalKnobTab),
     show_content_search: boolean('Show content search', false, generalKnobTab),

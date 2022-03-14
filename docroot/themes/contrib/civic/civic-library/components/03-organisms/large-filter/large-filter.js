@@ -1,11 +1,30 @@
+/**
+ * Large filter component.
+ */
 function CivicLargeFilter(el) {
+  // Use "data-civic-alerts"'s attribute value to identify if this component was
+  // already initialised.
+  if (el.getAttribute('data-civic-large-filter') === 'true') {
+    return;
+  }
+
   this.el = el;
+
   this.tagElement = this.el.querySelector('[data-large-filter-tags]');
   this.filterElement = this.el.querySelector('[data-large-filter-filters]');
+  this.filterComponent = this.el.querySelector('[data-large-filter-element]');
   this.clearAllButton = this.el.querySelector('[data-large-filter-clear]');
   this.selectedFiltersElement = this.el.querySelector('[data-large-filter-selected-filters]');
+  this.mobileSelectedFiltersElement = this.el.querySelector('[data-large-filter-mobile-selected-filters]');
+  this.mobileOpenButton = this.el.querySelector('[data-large-filter-mobile-toggle]');
+  this.mobileCancelButton = this.el.querySelector('[data-large-filter-mobile-cancel]');
+  this.mobileOverlay = this.el.querySelector('[data-large-filter-mobile-overlay]');
+  this.mobileToggleDisplay = this.el.querySelector('[data-large-filter-mobile-toggle-display]');
+  this.mobileToggleSuffix = this.mobileToggleDisplay.getAttribute('data-large-filter-mobile-toggle-display-suffix');
   this.state = {};
+  this.revertState = null;
   this.initialisedState = false;
+  this.isDesktop = null;
   this.fieldTypes = {
     input_checkbox: {
       emptyValue: false,
@@ -68,6 +87,8 @@ CivicLargeFilter.prototype.init = function () {
   this.filterElement.addEventListener('change', this.filterElementChangeEvent.bind(this));
   this.tagElement.addEventListener('click', this.tagElementChangeEvent.bind(this));
   this.clearAllButton.addEventListener('click', this.clearElementClickEvent.bind(this));
+  this.mobileOpenButton.addEventListener('click', this.mobileOpenElementClickEvent.bind(this));
+  this.mobileCancelButton.addEventListener('click', this.mobileCancelElementClickEvent.bind(this));
 
   // Set state values based on current filter fields.
   this.filterElement.querySelectorAll('input, select').forEach((element) => {
@@ -85,7 +106,73 @@ CivicLargeFilter.prototype.init = function () {
       this.updateState(key, id, value, type);
     }
   });
+
+  // Mobile support.
+  const desktopBreakpoint = this.el.getAttribute('data-large-filter-desktop-breakpoint');
+  if (desktopBreakpoint) {
+    window.addEventListener('civic-responsive', (evt) => {
+      let isBreakpoint = false;
+      const evaluationResult = evt.detail.evaluate(desktopBreakpoint, () => {
+        // Is within breakpoint.
+        isBreakpoint = true;
+      });
+      if (evaluationResult === false) {
+        // Not within breakpoint.
+        isBreakpoint = false;
+      }
+      if (isBreakpoint !== this.isDesktop) {
+        this.isDesktop = isBreakpoint;
+        this.updateTagContainerPosition();
+      }
+    }, false);
+  }
+
   this.initialisedState = true;
+
+  this.el.setAttribute('data-civic-large-filter', 'true');
+};
+
+/**
+ * Position tags.
+ * Mobile will show tags above the filters, desktop will show below.
+ */
+CivicLargeFilter.prototype.updateTagContainerPosition = function () {
+  const tagsContainerSelector = this.isDesktop ? '[data-large-filter-tags-container]' : '[data-large-filter-mobile-tags-container]';
+  this.el.querySelector(tagsContainerSelector).appendChild(this.tagElement);
+
+  const btnContainerSelector = this.isDesktop ? '[data-large-filter-clear-container]' : '[data-large-filter-mobile-clear-container]';
+  this.el.querySelector(btnContainerSelector).appendChild(this.clearAllButton);
+
+  const elementContainer = this.isDesktop ? '[data-large-filter-desktop-container]' : '[data-large-filter-mobile-container]';
+  this.el.querySelector(elementContainer).appendChild(this.filterComponent);
+
+  // Enable / Disable auto-submit on mobile.
+  this.el.setAttribute('data-large-filter-auto-submit', this.isDesktop);
+};
+
+/**
+ * Mobile open handler.
+ * Remember current form state.
+ * 'data-flyout-open-trigger' on button will handle opening flyout.
+ */
+CivicLargeFilter.prototype.mobileOpenElementClickEvent = function (e) {
+  e.stopPropagation();
+  e.preventDefault();
+  this.revertState = JSON.stringify(this.state);
+};
+
+/**
+ * Mobile cancel handler.
+ * Revert form state to remembered state.
+ * 'data-large-filter-mobile-cancel' on button will handle closing flyout.
+ */
+CivicLargeFilter.prototype.mobileCancelElementClickEvent = function (e) {
+  e.stopPropagation();
+  e.preventDefault();
+  if (this.revertState) {
+    this.state = JSON.parse(this.revertState);
+  }
+  this.redraw();
 };
 
 /**
@@ -203,16 +290,39 @@ CivicLargeFilter.prototype.renderHTMLFilterItem = function (key, label, type, th
  */
 CivicLargeFilter.prototype.redrawSelected = function () {
   let html = '';
+  let count = 0;
   Object.keys(this.state).forEach((key) => {
     const entry = this.state[key];
     if (entry.value) {
+      count++;
       const el = document.getElementById(entry.id);
       const label = this.fieldTypes[entry.type].getLabel(el);
       const theme = this.el.dataset.largeFilterTheme;
       html += this.renderHTMLFilterItem(key, label, entry.type, theme);
     }
   });
+  this.mobileToggleDisplay.classList.toggle('civic-large-filter__mobile-toggle-display--hidden', (count === 0));
+  this.mobileToggleDisplay.innerHTML = `${count} ${this.pluralize(this.mobileToggleSuffix, count)}`;
   this.tagElement.innerHTML = `<ul class="civic-large-filter__tags-list">${html}</ul>`;
+};
+
+/**
+ * Pluralize.
+ * Return the plural version based on count.
+ * @param {string} pluralJSON
+ *   A URL encoded JSON string in the format { "1": "Item", "default": "Items" }.
+ * @param {number} count
+ *   The counter used retrieve the plural.
+ */
+CivicLargeFilter.prototype.pluralize = function (pluralJSON, count) {
+  const obj = JSON.parse(decodeURIComponent(pluralJSON));
+  let puralStr = '';
+  if (obj[count]) {
+    puralStr = obj[count];
+  } else if (obj.default) {
+    puralStr = obj.default;
+  }
+  return puralStr;
 };
 
 /**
@@ -227,6 +337,7 @@ CivicLargeFilter.prototype.redrawClearButton = function () {
     }
   });
   this.selectedFiltersElement.classList.toggle('civic-large-filter__selected-filters--hidden', !showTagPanel);
+  this.mobileSelectedFiltersElement.classList.toggle('civic-large-filter__selected-filters--hidden', !showTagPanel);
 };
 
 /**
@@ -240,8 +351,5 @@ CivicLargeFilter.prototype.dispatchRedrawEvent = function () {
 };
 
 document.querySelectorAll('[data-component-name="civic-large-filter"]').forEach((el) => {
-  if (el.getAttribute('data-civic-large-filter-initialised') !== 'true') {
-    new CivicLargeFilter(el);
-    el.setAttribute('data-civic-large-filter-initialised', 'true');
-  }
+  new CivicLargeFilter(el);
 });

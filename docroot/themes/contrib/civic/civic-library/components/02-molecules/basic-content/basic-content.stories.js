@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicBasicContent from './basic-content.twig';
 import CivicLink from '../../01-atoms/link/link.twig';
 import CivicTable from '../../01-atoms/table/table.twig';
-import CivicImage from '../../01-atoms/image/image.twig';
+import CivicFigure from '../figure/figure.twig';
 import CivicVideo from '../video/video.twig';
 import { demoImage } from '../../00-base/base.stories';
 
@@ -75,7 +75,7 @@ export const BasicContent = (knobTab) => {
   `;
 
   // Image.
-  html += CivicImage({
+  html += CivicFigure({
     theme,
     src: demoImage(),
     alt: 'Occaecat laborum voluptate cupidatat.',
@@ -118,8 +118,8 @@ export const BasicContent = (knobTab) => {
   const generalKnobs = {
     theme,
     content: boolean('Content', true, generalKnobTab) ? html : null,
+    is_contained: boolean('Contained', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
-    contained: boolean('Contained', true, generalKnobTab),
   };
 
   return CivicBasicContent({

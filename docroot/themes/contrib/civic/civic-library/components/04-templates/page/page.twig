@@ -1,5 +1,20 @@
+{#
+/**
+ * @file
+ * Page tempalte.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - links: [array] Array of links.
+ * - items: [array] Array of alternative links.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
 <div class="layout-container {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
   <a id="top"></a>
 
@@ -40,7 +55,7 @@
       content_top: content_top,
       content_bottom: content_bottom,
       sidebar: sidebar,
-      contained: content_contained,
+      is_contained: content_contained,
       sidebar_attributes: sidebar_attributes,
       content_attributes: content_attributes,
     } only %}

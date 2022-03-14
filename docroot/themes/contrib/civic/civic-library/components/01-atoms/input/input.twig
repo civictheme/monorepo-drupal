@@ -4,20 +4,21 @@
  * Input component.
  *
  * Variables:
+ * - theme: [string] Theme: light, dark.
  * - type: [string] Input type: Text, Textarea, Email, Password, Tel.
- * - modifier_class: [string] Additional classes to modify component styling.
  * - value: [string] Input field value.
  * - placeholder: [string] Input field placeholder text.
  * - id: [string] Input field html ID attribute.
  * - name: [string] Input field html name attribute.
- * - State: [string] Input field state: Error, Success.
+ * - state: [string] Input field state: error, success.
  * - required: [boolean] Required state.
  * - disabled: [boolean] Disabled state.
  * - autocomplete: [boolean] Autocomplete state.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% if type %}
+{% if type is not empty %}
 
   {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
   {% set state = state is empty or state == 'none' ? 'default' : state %}
@@ -29,7 +30,7 @@
 
   <div class="civic-input {{ civic_input_modifier_class }}">
     {% if type == 'textarea' %}
-      {% include '@atoms/input/textarea.twig' %}
+      {% include '@atoms/textarea/textarea.twig' %}
     {% elseif type == 'radio' %}
       {% include '@atoms/radio/radio.twig' %}
     {% elseif type == 'checkbox' %}
@@ -39,9 +40,9 @@
         kind: type,
         text: value,
         modifier_class: civic_input_modifier_class,
-      } %}
+      } only %}
     {% else %}
-      {% include '@atoms/input/textfield.twig' %}
+      {% include '@atoms/textfield/textfield.twig' %}
     {% endif %}
   </div>
 {% endif %}

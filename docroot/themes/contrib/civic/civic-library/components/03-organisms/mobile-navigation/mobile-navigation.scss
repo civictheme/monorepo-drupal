@@ -1,14 +1,15 @@
 //
-// Mobile Navigation.
+// Mobile Navigation component.
 //
 // Note: typography and icon sizes are specified explicitly as these elements
 // have custom appearance unique to mobile menu (i.e., no responsive sizing).
 
 @use 'sass:math';
 
+$civic-mobile-navigation-spacing: civic-space(2);
+
 .civic-mobile-navigation {
   $root: &;
-  $_spacing: civic-space(2);
 
   display: block;
 
@@ -26,11 +27,11 @@
 
     // Padding on the first and other panels looks the same, but specified
     // separately as first panel contains other elements (not only menu items).
-    padding: 0 $_spacing;
+    padding: 0 $civic-mobile-navigation-spacing;
   }
 
   #{$root}__bottom-menu-wrapper {
-    padding: 0 $_spacing;
+    padding: 0 $civic-mobile-navigation-spacing;
   }
 
   .civic-menu {
@@ -42,7 +43,7 @@
 
     .civic-menu__sub-menu__wrapper {
       // Same padding as in the menu wrapper above.
-      padding: 0 $_spacing;
+      padding: 0 $civic-mobile-navigation-spacing;
     }
 
     .civic-menu__item {
@@ -66,7 +67,7 @@
     #{$root}__open-subsection-trigger {
       border-left-width: 1px;
       border-left-style: solid;
-      padding: $_spacing;
+      padding: $civic-mobile-navigation-spacing;
 
       .civic-icon {
         width: civic-icon-size-dimension('regular', 'm', 'width');
@@ -78,7 +79,7 @@
   #{$root}__bottom-menu {
     .civic-menu__sub-menu__wrapper {
       // Same padding as in the menu wrapper above.
-      padding: 0 $_spacing;
+      padding: 0 $civic-mobile-navigation-spacing;
     }
 
     .civic-menu__item {
@@ -104,7 +105,7 @@
     #{$root}__open-subsection-trigger {
       border-left-width: 1px;
       border-left-style: solid;
-      padding: math.div($_spacing, 2);
+      padding: math.div($civic-mobile-navigation-spacing, 2);
 
       .civic-icon {
         width: civic-icon-size-dimension('small', 'm', 'width');
@@ -113,28 +114,9 @@
     }
   }
 
-  // "Close all" trigger.
-  #{$root}__close-all-trigger {
-    text-align: right;
-    padding: $_spacing;
-
-    [data-flyout-close-all-trigger] {
-      float: none;
-      border-radius: rem(100px);
-      padding: civic-space(0.5) civic-space();
-
-      @include civic-typography-ruleset(($civic-font-base-size * 0.875, civic-icon-size-dimension('small', 'xxs', 'height'), 400, 'primary', 0));
-
-      .civic-icon {
-        width: civic-icon-size-dimension('small', 'xxs', 'width');
-        height: civic-icon-size-dimension('small', 'xxs', 'height');
-      }
-    }
-  }
-
   // "Close a single panel" trigger.
   #{$root}__close-trigger {
-    padding: $_spacing;
+    padding: $civic-mobile-navigation-spacing;
     padding-top: 0;
 
     [data-flyout-close-trigger] {
@@ -181,13 +163,6 @@
       }
     }
 
-    #{$root}__close-all-trigger {
-      [data-flyout-close-all-trigger] {
-        background-color: $civic-mobile-navigation-light-close-all-trigger-background-color;
-        color: $civic-mobile-navigation-light-close-all-trigger-color;
-      }
-    }
-
     #{$root}__close-trigger {
       [data-flyout-close-trigger] {
         color: $civic-mobile-navigation-light-subsection-heading-color;
@@ -229,13 +204,6 @@
       }
     }
 
-    #{$root}__close-all-trigger {
-      [data-flyout-close-all-trigger] {
-        background-color: $civic-mobile-navigation-dark-close-all-trigger-background-color;
-        color: $civic-mobile-navigation-dark-close-all-trigger-color;
-      }
-    }
-
     #{$root}__close-trigger {
       [data-flyout-close-trigger] {
         color: $civic-mobile-navigation-dark-subsection-heading-color;
@@ -274,5 +242,34 @@
 
   &.civic-theme-dark {
     color: $civic-mobile-navigation-trigger-dark-color;
+  }
+}
+
+// Mobile navigation close button.
+.civic-mobile-navigation-close {
+  text-align: right;
+  padding: $civic-mobile-navigation-spacing;
+
+  [data-flyout-close-all-trigger] {
+    float: none;
+    border-radius: rem(100px);
+    padding: civic-space(0.5) civic-space();
+
+    @include civic-typography-ruleset(($civic-font-base-size * 0.875, civic-icon-size-dimension('small', 'xxs', 'height'), 400, 'primary', 0));
+
+    .civic-icon {
+      width: civic-icon-size-dimension('small', 'xxs', 'width');
+      height: civic-icon-size-dimension('small', 'xxs', 'height');
+    }
+
+    &.civic-theme-light {
+      background-color: $civic-mobile-navigation-light-close-all-trigger-background-color;
+      color: $civic-mobile-navigation-light-close-all-trigger-color;
+    }
+
+    &.civic-theme-dark {
+      background-color: $civic-mobile-navigation-dark-close-all-trigger-background-color;
+      color: $civic-mobile-navigation-dark-close-all-trigger-color;
+    }
   }
 }

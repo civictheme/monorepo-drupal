@@ -1,15 +1,15 @@
 {#
 /**
  * @file
- * Civic form element label component.
+ * Label component.
  *
- * Available variables:
- * - title: [string] The label's text.
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content: [string] The label's content.
  * - title_display: [string] Elements title_display setting.
- * - required: [string] An indicator for whether the associated form element is required.
- * - theme: [string] theme: light, dark.
- * - attributes: [string] HTML attributes for the containing element.
- * - modifier_class: [string] Additional classes to modify component styling.
+ * - required: [boolean] Required or not.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
@@ -19,6 +19,6 @@
 {% set required_class =  required ? 'civic-label--required' : '' %}
 {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, title_position, visibility_class, required_class, required_class, modifier_class|default('')) %}
 
-{% if title is not empty or required -%}
-  <label class="civic-label {{ modifier_class }}" {{ attributes }}>{{ title }}</label>
+{% if content is not empty or required -%}
+  <label class="civic-label {{ modifier_class }}" {% if attributes is not empty %}{{ attributes }}{% endif %}>{% if content is not empty %}{{ content }}{% endif %}</label>
 {%- endif %}

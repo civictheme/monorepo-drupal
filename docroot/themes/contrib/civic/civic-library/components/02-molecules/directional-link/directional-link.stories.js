@@ -31,8 +31,9 @@ export const DirectionalLink = (knobTab) => {
       generalKnobTab,
     ),
     text: text('Text', 'Top', generalKnobTab),
+    title: text('Title text', 'Top link title', generalKnobTab),
+    aria_text: text('ARIA text', 'Top link title', generalKnobTab),
     url: text('URL', '#top', generalKnobTab),
-    title: text('Text', 'Top link title', generalKnobTab),
     disabled: boolean('Disabled', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };

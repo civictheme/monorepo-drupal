@@ -1,22 +1,23 @@
 {#
 /**
-  * @file publication card component.
+  * @file
+  * Publication Card component.
   *
-  * Available variables:
-  * - theme: [string] card theme: light, dark.
+  * Variables:
+  * - theme: [string] Theme: light, dark.
+  * - content_top: [string] Content slot.
+  * - image_over: [string] Content slot.
+  * - content_middle: [string] Content slot.
+  * - content_bottom: [string] Content slot.
   * - size: [string] Card type: large, small.
   * - image: [object] Consist details of the card image like src, width, height, alt text.
-  * - image_over: [string] Component slot for image_over of Card.
   * - icon: [string] Icon name.
-  * - content_top: [string] Component slot for top  of Card.
   * - title: [string] The text of card title.
-  * - content_middle: [string] Component slot for middle of Card.
   * - summary: [string] Summary of the card.
-  * - image: [string] Card type: large, small.
+  * - image: [object] Image data.
   * - url: [string] Card link.
   * - link: Link object containing url, text of the file.
-  * - content_bottom: [string] Component slot for bottom of Card.
-  * - modifier_class: [string] Classes to modify the default component styling.
+  * - modifier_class: [string] Additional classes.
   */
 #}
 
@@ -29,9 +30,14 @@
   {% block image %}
     {% if image.src is not empty %}
       <div class="civic-publication-card__image-wrapper">
-        <img src="{{ image.src }}" {% if image.alt is not empty %} alt="{{ image.alt }} {% endif %}">
+        {% include '@atoms/image/image.twig' with {
+          theme: theme,
+          src: image.src,
+          alt:  image.alt,
+        } only %}
+
         {% block image_over %}
-          {% if image_over %}
+          {% if image_over is not empty %}
             <div class="civic-publication-card__image-over">
               {{ image_over }}
             </div>
@@ -40,16 +46,17 @@
       </div>
     {% endif %}
   {% endblock %}
+
   <div class="civic-publication-card__content">
     {% block content_top %}
-      {% if content_top %}
+      {% if content_top is not empty %}
         <div class="civic-publication-card__content-top">
           {{ content_top }}
         </div>
       {% endif %}
     {% endblock %}
 
-    {% if icon %}
+    {% if icon is not empty %}
       <div class="civic-publication-card__icon">
         {% include '@atoms/icon/icon.twig' with {
           symbol: icon,
@@ -60,20 +67,22 @@
     {% endif %}
 
     {% block title %}
-      {% if title %}
+      {% if title is not empty %}
         <div class="civic-publication-card__title">
-          {% if url %}
+          {% if url is not empty %}
           <a class="civic-publication-card__title-link" href="{{ url }}">
-            {% endif %}
+          {% endif %}
             {{ title }}
-            {% if link %}
-            <span>
-              {% include '@atoms/icon/icon.twig' with {
-                symbol: 'arrows_download',
-                color: 'primary',
-                modifier_class: 'civic-publication-card__icon--download',
-              } only %}
-            </span>
+            {% if link is not empty %}
+              <span>
+                {% include '@atoms/icon/icon.twig' with {
+                  symbol: 'arrows_download',
+                  color: 'primary',
+                  modifier_class: 'civic-publication-card__icon--download',
+                } only %}
+              </span>
+            {% endif %}
+          {% if url is not empty %}
           </a>
           {% endif %}
         </div>
@@ -81,7 +90,7 @@
     {% endblock %}
 
     {% block content_middle %}
-      {% if content_middle %}
+      {% if content_middle is not empty %}
         <div class="civic-publication-card__content-middle">
           {{ content_middle }}
         </div>
@@ -89,7 +98,7 @@
     {% endblock %}
 
     {% block summary %}
-      {% if summary %}
+      {% if summary is not empty %}
         <div class="civic-publication-card__summary">
           {{ summary }}
         </div>
@@ -97,7 +106,7 @@
     {% endblock %}
 
     {% block link %}
-      {% if link %}
+      {% if link is not empty %}
         <div class="civic-publication-card__attachment-link">
           {% include '@atoms/link/link.twig' with {
             theme: theme,
@@ -111,7 +120,7 @@
     {% endblock %}
 
     {% block content_bottom %}
-      {% if content_bottom %}
+      {% if content_bottom is not empty %}
         <div class="civic-publication-card__content-bottom">
           {{ content_bottom }}
         </div>

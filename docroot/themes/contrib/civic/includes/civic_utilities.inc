@@ -51,8 +51,6 @@ function _civic_media_image(MediaInterface $media, $image_style = NULL) {
 
 /**
  * Parse attribute classes into a string for modifier_class property.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_attributes(&$variables) {
   if (isset($variables['attributes'])) {

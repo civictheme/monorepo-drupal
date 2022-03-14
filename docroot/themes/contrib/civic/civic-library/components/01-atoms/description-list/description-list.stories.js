@@ -17,7 +17,7 @@ export const DescriptionList = (knobTab) => {
     const items = [];
     for (let i = 0; i < count; i++) {
       items.push({
-        term: `Term ${i + 1}`,
+        title: `Term ${i + 1}`,
         description: `Description for term ${i + 1}`,
       });
     }

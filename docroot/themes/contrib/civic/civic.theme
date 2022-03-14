@@ -221,24 +221,6 @@ function _civic_theme_suggestions_civic_filter(array &$suggestions, array $varia
 }
 
 /**
- * Implements template_preprocess_pager().
- */
-function civic_theme_preprocess_pager(&$variables) {
-  if (isset($variables['items']['first']['text'])) {
-    $variables['items']['first']['text'] = t('First');
-  }
-  if (isset($variables['items']['last']['text'])) {
-    $variables['items']['last']['text'] = t('Last');
-  }
-  if (isset($variables['items']['previous']['text'])) {
-    $variables['items']['previous']['text'] = t('Previous');
-  }
-  if (isset($variables['items']['next']['text'])) {
-    $variables['items']['next']['text'] = t('Next');
-  }
-}
-
-/**
  * Implements hook_theme().
  */
 function civic_theme() {
@@ -360,16 +342,18 @@ function civic_preprocess_image(&$variables) {
 function civic_preprocess_menu_local_tasks(&$variables) {
   $local_task_types = ['primary', 'secondary'];
   $theme = theme_get_setting('civic_header_theme') ?? 'light';
+
   foreach ($local_task_types as $local_task_type) {
     $variables['links'][$local_task_type] = [];
     foreach ($variables[$local_task_type] as $link) {
       if (!empty($link['#access']) && $link['#access']->isAllowed()) {
         $variables['links'][$local_task_type][] = [
           'theme' => $theme,
-          'title' => $link['#link']['title'],
+          'text' => $link['#link']['title'],
           'url' => $link['#link']['url']->toString(),
           'new_window' => FALSE,
           'is_external' => $link['#link']['url']->isExternal(),
+          'modifier_class' => $link['#active'] ? 'selected' : '',
         ];
       }
     }

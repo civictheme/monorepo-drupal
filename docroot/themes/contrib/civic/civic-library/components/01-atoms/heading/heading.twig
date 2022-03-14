@@ -1,18 +1,24 @@
 {#
 /**
- * @file heading!
+ * @file
+ * Heading component.
  *
- * Available variables:
- * - title: [string] The text of title.
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content: [string] Content.
  * - level: [string] 1 | 2 | 3 | 4 | 5 | 6 The default is 2.
- * - modifier_class: [string] Classes to modify the default component styling.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
+{% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
 {% set level = level|default('2') %}
 
-{% if title %}
-  <h{{ level }} class="civic-heading {{ modifier_class|default('') }}">
-    {{- title|raw -}}
+{% if content %}
+  <h{{ level }} class="civic-heading {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
+    {{- content|raw -}}
   </h{{ level }}>
 {% endif %}

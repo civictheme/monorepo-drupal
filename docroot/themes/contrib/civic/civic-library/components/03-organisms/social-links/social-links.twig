@@ -1,20 +1,22 @@
 {#
 /**
- * @file Social links component.
+ * @file
+ * Social links Component.
  *
- * Available variables:
+ * Variables:
  * - theme: [string] Theme: light, dark.
- * - links: [array] Array of link data.
- * - items: [array] Alternative array of links.
+ * - links: [array] Array of links.
+ * - items: [array] Array of alternative links.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-{% if links or items %}
+{% if links is not empty or items is not empty %}
   <div class="civic-social-links {{ modifier_class }}">
-    {% if links %}
+    {% if links is not empty %}
       {% for link in links %}
         <div class="civic-social-links__item">
           {% include '@molecules/icon-link/icon-link.twig' with {
@@ -29,11 +31,13 @@
       {% endfor %}
     {% endif %}
 
-    {% if items %}
+    {% if items is not empty %}
       {% for item in items %}
-        <div class="civic-social-links__item">
-          {{ item.content }}
-        </div>
+        {% if item.content is not empty %}
+          <div class="civic-social-links__item">
+            {{ item.content }}
+          </div>
+        {% endif %}
       {% endfor %}
     {% endif %}
   </div>

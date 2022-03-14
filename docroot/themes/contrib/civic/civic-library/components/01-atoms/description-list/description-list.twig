@@ -1,13 +1,16 @@
 {#
 /**
  * @file
- * Description list component.
+ * Description List component.
  *
  * Variables:
- * - theme: [string] theme: light, dark.
+ * - theme: [string] Theme: light, dark.
  * - is_inline: [boolean] Flag to render items inline.
- * - items: [array] Array of items. Each item has a term, description and modifier_class.
- * - modifier_class: [string] Additional classes to modify component styling.
+ * - items: [array] Array of items. Each item contains:
+ *   - title: [string] Title.
+ *   - description: [description] Description.
+ *   - modifier_class: [string] Addtional term classes.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
@@ -18,8 +21,8 @@
 {% if items %}
   <dl class="civic-description-list {{ modifier_class }}">
     {% for item in items %}
-      <div class="civic-description-list__item {% if item.modifier_class %}{{ item.modifier_class }}{% endif %}">
-        <dt class="civic-description-list__item__term">{{ item.term }}</dt>
+      <div class="civic-description-list__item {% if item.modifier_class is not empty %}{{ item.modifier_class }}{% endif %}">
+        <dt class="civic-description-list__item__term">{{ item.title }}</dt>
         <dd class="civic-description-list__item__description">{{ item.description }}</dd>
       </div>
     {% endfor %}

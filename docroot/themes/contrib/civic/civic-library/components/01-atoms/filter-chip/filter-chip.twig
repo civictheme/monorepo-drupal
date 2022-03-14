@@ -1,13 +1,14 @@
 {#
 /**
  * @file
- * Skip link component.
+ * Filter Chip component.
  *
  * Variables:
- * - theme: [string] theme: light, dark.
- * - is_multiple: [boolean] Control radio or checkbox.
+ * - theme: [string] Theme: light, dark.
+ * - text: [string] Text.
+ * - is_multiple: [boolean] Render as radio or checkbox.
  * - attributes: [string] Additional attributes.
- * - modifier_class: [string] Additional classes to modify component styling.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
@@ -16,8 +17,8 @@
 {% set type = is_multiple ? 'checkbox' : 'radio' %}
 
 {% if id is not empty or name is not empty %}
-  <label class="civic-filter-chip {{ modifier_class }}" for="{{ id }}" data-component-name="filter-chip">
-    <input class="civic-filter-chip__field" type="{{ type }}" id="{{ id }}" name="{{ name }}" {% if attributes %}{{ attributes }}{% endif %} />
+  <label class="civic-filter-chip {{ modifier_class }}" data-component-name="filter-chip" {% if id is not empty %}for="{{ id }}"{% endif%}>
+    <input class="civic-filter-chip__field" type="{{ type }}" {% if id is not empty %}id="{{ id }}"{% endif%} {% if name is not empty %}name="{{ name }}"{% endif%} {% if attributes is not empty %}{{ attributes }}{% endif %} />
     <span class="civic-filter-chip__text">{{ text }}</span>
   </label>
 {% endif %}

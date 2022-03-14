@@ -5,7 +5,7 @@
  *
  * Available variables:
  * - content: The content for this layout.
- * - contained: Whether the content should be contained
+ * - is_contained: Whether the content should be contained
  * - modifier_class: CSS modifying class
  * - region_attributes: HTML attributes for the layout <div>.
  *
@@ -19,7 +19,7 @@
         {% include '@organisms/content/content-layout--single-column-contained.twig' with {
           content: content.content,
           modifier_class: modifier_class,
-          contained: contained,
+          is_contained: is_contained,
         } %}
     </div>
   </div>

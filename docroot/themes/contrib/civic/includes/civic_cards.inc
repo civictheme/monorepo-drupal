@@ -7,8 +7,6 @@
 
 /**
  * Generic setter of global variables for nodes as card renders.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__card(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -26,10 +24,6 @@ function _civic_preprocess_node__card(&$variables) {
 
 /**
  * Preprocess.
- *
- * @see civic_preprocess_node()
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__civic_card_event(&$variables) {
   _civic_preprocess_node__card($variables);
@@ -40,8 +34,6 @@ function _civic_preprocess_node__civic_card_event(&$variables) {
 
 /**
  * Preprocess reference Theme fields for Civic Nodes.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__theme(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -57,10 +49,6 @@ function _civic_preprocess_node__theme(&$variables) {
 
 /**
  * Preprocess a Node for navigation_card view mode.
- *
- * @see civic_preprocess_node()
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__civic_card_navigation(&$variables) {
   _civic_preprocess_node__card($variables);
@@ -69,10 +57,6 @@ function _civic_preprocess_node__civic_card_navigation(&$variables) {
 
 /**
  * Preprocess a Node for civic_subject view mode.
- *
- * @see civic_preprocess_node()
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__civic_card_promo(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -85,10 +69,6 @@ function _civic_preprocess_node__civic_card_promo(&$variables) {
 
 /**
  * Preprocess a Node for civic_card_subject view mode.
- *
- * @see civic_preprocess_node()
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__civic_card_subject(&$variables) {
   _civic_preprocess_node__card($variables);
@@ -97,8 +77,6 @@ function _civic_preprocess_node__civic_card_subject(&$variables) {
 
 /**
  * Preprocess date field.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__date(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -112,8 +90,6 @@ function _civic_preprocess_node__date(&$variables) {
 
 /**
  * Topic field preprocessor.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__topics(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -139,8 +115,6 @@ function _civic_format_short_date($date) {
 
 /**
  * Preprocess image thumbnail for nodes.
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__thumbnail(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -153,10 +127,6 @@ function _civic_preprocess_node__thumbnail(&$variables) {
 
 /**
  * Preprocess Summary for civic_page nodes.
- *
- * @see _civic_preprocess_node__card()
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__civic_page__summary(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -168,10 +138,6 @@ function _civic_preprocess_node__civic_page__summary(&$variables) {
 
 /**
  * Preprocess Summary for civic_event.
- *
- * @see _civic_preprocess_node__card()
- *
- * @SuppressWarnings(PHPMD)
  */
 function _civic_preprocess_node__civic_event__summary(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */

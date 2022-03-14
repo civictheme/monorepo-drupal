@@ -1,7 +1,14 @@
 {#
 /**
  * @file
- * Generic navigation component.
+ * Navigation component.
+  *
+  * Variables:
+  * - theme: [string] Theme: light, dark.
+  * - items: [array] Array of menu items.
+  * - title: [string] Navigation title.
+  * - attributes: [string] Additional attributes.
+  * - modifier_class: [string] Additional classes.
  */
 #}
 
@@ -10,7 +17,7 @@
 
 {% if items is not empty %}
   <div class="civic-navigation {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
-    {% if title %}
+    {% if title is not empty %}
       {% block title %}
         <div class="civic-navigation__title">
           {{ title }}

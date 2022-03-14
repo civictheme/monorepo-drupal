@@ -12,14 +12,24 @@ Drupal.behaviors.civic_ajax_views = {
     let debounce;
     // Button submit handler for both large and basic filter types.
     const buttonSubmitHandler = () => {
-      // We do not want to submit on every click, we want user to be able
-      // to select several checkboxes or radio buttons without submitting.
-      if (typeof debounce !== 'undefined') {
-        clearTimeout(debounce);
+      let $filter = $form.find('[data-component-name="civic-large-filter"]');
+      let isAutosubmit;
+      if ($filter.length > 0) {
+        isAutosubmit = typeof $filter.attr('data-large-filter-auto-submit') !== 'undefined';
+      } else {
+        $filter = $form.find('[data-component-name="civic-basic-filter"]');
+        isAutosubmit = $filter.length > 0;
       }
-      debounce = setTimeout(() => {
-        $form.find('[type="submit"]').trigger('click');
-      }, 500);
+      if (isAutosubmit === true) {
+        // We do not want to submit on every click, we want user to be able
+        // to select several checkboxes or radio buttons without submitting.
+        if (typeof debounce !== 'undefined') {
+          clearTimeout(debounce);
+        }
+        debounce = setTimeout(() => {
+          $form.find('[type="submit"]').trigger('click');
+        }, 500);
+      }
     };
     const filterType = $form.attr('data-civic-filter-type');
     const ajaxForm = $form.attr('data-civic-filter-ajax') === 'true';
