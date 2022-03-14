@@ -71,6 +71,7 @@ function _civic_form_alter__convert_exposed_form_elements(&$element, $form, $is_
     else {
       $element['#type'] = 'radios';
     }
+    _civic_form_alter__modify_element_callbacks($element);
   }
   // Only radio buttons and checkboxes work with filter chips.
   $filter_key = !$is_large_filter && in_array($element['#type'], [
@@ -151,6 +152,38 @@ function civic_preprocess_form_element(&$variables) {
   }
 
   _civic_preprocess_civic_filter_form_element_alter($variables);
+}
+
+/**
+ * Helper to clear pre_render and process callbacks.
+ *
+ * Since we are converting select to checkboxes or radios we need to modify the
+ * pre_render and process callbacks that do not relate to new inputs.
+ */
+function _civic_form_alter__modify_element_callbacks(&$element) {
+  $element_class = $element['#type'] === 'radios' ? '\Drupal\Core\Render\Element\Radios' : '\Drupal\Core\Render\Element\Checkboxes';
+
+  // Unsetting pre-render as we do not need these.
+  foreach ($element['#pre_render'] as $index => $callback) {
+    if (is_array($callback) && $callback[0] === 'Drupal\Core\Render\Element\Select') {
+      unset($element['#pre_render'][$index]);
+    }
+  }
+
+  // Modifying the ajax callbacks.
+  foreach ($element['#process'] as $index => $callback) {
+    if (is_array($callback) && $callback[0] === 'Drupal\Core\Render\Element\Select') {
+      if (method_exists($element_class, $callback[1])) {
+        $element['#process'][$index] = [
+          $element_class,
+          $callback[1],
+        ];
+      }
+      else {
+        unset($element['#process'][$index]);
+      }
+    }
+  }
 }
 
 /**
