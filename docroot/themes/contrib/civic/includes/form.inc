@@ -172,7 +172,6 @@ function _civic_form_alter__modify_element_callbacks(&$element) {
     }
   }
 
-
   // Modifying the ajax callbacks.
   if (!empty($element['#pre_render'])) {
     foreach ($element['#process'] as $index => $callback) {
