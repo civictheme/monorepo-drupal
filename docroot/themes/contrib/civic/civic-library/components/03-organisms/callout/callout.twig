@@ -19,8 +19,7 @@
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set default_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, default_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 <div class="civic-callout {{ modifier_class }}">
   <div class="container">

@@ -7,22 +7,20 @@
  * links: [object] consisting of:
  * - primary: [array] primary task links.
  * - secondary: [array] secondary task links.
- *
  */
 #}
 {% if links.primary %}
   <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
-  {% include '@molecules/link-list/link-list.twig' with {
+  {% include '@organisms/tabs/tabs.twig' with {
     links: links.primary,
-    is_inline: true,
-    modifier_class: 'civic-link-list--local-tasks',
+    modifier_class: 'civic-tabs--local-tasks civic-tabs--local-tasks--primary',
   } %}
 {% endif %}
+
 {% if links.secondary %}
   <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
-  {% include '@molecules/link-list/link-list.twig' with {
+  {% include '@organisms/tabs/tabs.twig' with {
     links: links.secondary,
-    is_inline: true,
-    modifier_class: 'civic-link-list--local-tasks',
+    modifier_class: 'civic-tabs--local-tasks civic-tabs--local-tasks--secondary',
   } %}
 {% endif %}
