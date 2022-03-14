@@ -164,23 +164,28 @@ function _civic_form_alter__modify_element_callbacks(&$element) {
   $element_class = $element['#type'] === 'radios' ? '\Drupal\Core\Render\Element\Radios' : '\Drupal\Core\Render\Element\Checkboxes';
 
   // Unsetting pre-render as we do not need these.
-  foreach ($element['#pre_render'] as $index => $callback) {
-    if (is_array($callback) && $callback[0] === 'Drupal\Core\Render\Element\Select') {
-      unset($element['#pre_render'][$index]);
+  if (!empty($element['#pre_render'])) {
+    foreach ($element['#pre_render'] as $index => $callback) {
+      if (is_array($callback) && $callback[0] === 'Drupal\Core\Render\Element\Select') {
+        unset($element['#pre_render'][$index]);
+      }
     }
   }
 
+
   // Modifying the ajax callbacks.
-  foreach ($element['#process'] as $index => $callback) {
-    if (is_array($callback) && $callback[0] === 'Drupal\Core\Render\Element\Select') {
-      if (method_exists($element_class, $callback[1])) {
-        $element['#process'][$index] = [
-          $element_class,
-          $callback[1],
-        ];
-      }
-      else {
-        unset($element['#process'][$index]);
+  if (!empty($element['#pre_render'])) {
+    foreach ($element['#process'] as $index => $callback) {
+      if (is_array($callback) && $callback[0] === 'Drupal\Core\Render\Element\Select') {
+        if (method_exists($element_class, $callback[1])) {
+          $element['#process'][$index] = [
+            $element_class,
+            $callback[1],
+          ];
+        }
+        else {
+          unset($element['#process'][$index]);
+        }
       }
     }
   }
