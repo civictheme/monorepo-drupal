@@ -16,9 +16,9 @@ function civic_preprocess_media__civic_image(&$variables) {
   }
   $media = $variables['media'];
   $image = $media->get('field_c_m_image')->referencedEntities()[0];
-  $variables['caption'] = $media->get('field_c_m_caption')->getString();
   $variables['src'] = $image->createFileUrl();
   $variables['alt'] = $media->get('field_c_m_image')->first()->get('alt')->getString();
+  $variables['caption'] = $media->get('field_c_m_caption')->getString();
 }
 
 /**

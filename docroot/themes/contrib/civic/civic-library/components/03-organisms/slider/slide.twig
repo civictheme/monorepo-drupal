@@ -26,7 +26,11 @@
   {% block image %}
     {% if image is not empty %}
       <div class="civic-slide__image">
-        <img src="{{ image.src }}" alt="{{ image.alt }}"/>
+        {% include '@atoms/image/image.twig' with {
+          theme: theme,
+          src: image.src,
+          alt:  image.alt,
+        } only %}
       </div>
     {% endif %}
   {% endblock %}

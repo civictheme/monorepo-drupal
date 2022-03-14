@@ -1,6 +1,6 @@
 import CivicLink from '../../01-atoms/link/link.twig';
 import CivicTable from '../../01-atoms/table/table.twig';
-import CivicImage from '../../01-atoms/image/image.twig';
+import CivicFigure from '../figure/figure.twig';
 import CivicVideo from '../video/video.twig';
 import { demoImage } from '../../00-base/base.stories';
 
@@ -61,7 +61,7 @@ export const CKEditorContent = () => {
   `;
 
   // Image.
-  html += CivicImage({
+  html += CivicFigure({
     theme: 'light',
     src: demoImage(),
     alt: 'Occaecat laborum voluptate cupidatat.',

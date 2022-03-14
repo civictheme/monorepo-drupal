@@ -418,13 +418,13 @@ $civic-filter-chip-button-dark-selected-icon-hover-color: civic-color('neutral')
 $civic-filter-chip-button-dark-selected-icon-color: civic-color-shade-dark(45) !default;
 
 //
-// Image.
+// Figure.
 //
-$civic-image-border-radius: $civic-border-radius !default;
-$civic-image-caption-light-color: civic-color-neutral(60) !default;
-$civic-image-caption-icon-light-color: $civic-image-caption-light-color !default;
-$civic-image-caption-dark-color: civic-color-shade-dark(90) !default;
-$civic-image-caption-icon-dark-color: $civic-image-caption-dark-color !default;
+$civic-figure-border-radius: $civic-border-radius !default;
+$civic-figure-caption-light-color: civic-color-neutral(60) !default;
+$civic-figure-caption-icon-light-color: $civic-figure-caption-light-color !default;
+$civic-figure-caption-dark-color: civic-color-shade-dark(90) !default;
+$civic-figure-caption-icon-dark-color: $civic-figure-caption-dark-color !default;
 
 //
 // Table.

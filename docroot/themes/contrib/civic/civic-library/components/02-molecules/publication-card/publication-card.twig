@@ -30,7 +30,12 @@
   {% block image %}
     {% if image.src is not empty %}
       <div class="civic-publication-card__image-wrapper">
-        <img src="{{ image.src }}" {% if image.alt is not empty %}alt="{{ image.alt }}{% endif %}">
+        {% include '@atoms/image/image.twig' with {
+          theme: theme,
+          src: image.src,
+          alt:  image.alt,
+        } only %}
+
         {% block image_over %}
           {% if image_over is not empty %}
             <div class="civic-publication-card__image-over">
