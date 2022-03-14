@@ -10,8 +10,9 @@
  *   - url [string] URL.
  *   - new_window [boolean] Open link in a new window.
  *   - is_external [boolean] Link is external or not.
+ *   - attributes [string] Additional attributes.
  * - is_inline: [boolean] Is inline or not.
- * - attributes: [string] Additional classes.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -40,6 +41,8 @@
                 url: link.url,
                 new_window: link.new_window ? link.new_window : false,
                 is_external: link.is_external ? link.is_external : false,
+                modifier_class: link.modifier_class ? link.modifier_class : false,
+                attributes: link.attributes ? link.attributes : false,
               } only %}
             </li>
           {% endif %}

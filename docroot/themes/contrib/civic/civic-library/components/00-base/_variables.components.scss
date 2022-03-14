@@ -1227,6 +1227,26 @@ $civic-slide-dark-title-color: civic-color-neutral(80) !default;
 $civic-slide-dark-summary-color: civic-color-neutral(60) !default;
 
 //
+// Tabs.
+//
+$civic-tabs-link-border-radius: $civic-border-radius !default;
+$civic-tabs-panel-border-radius: $civic-border-radius !default;
+$civic-tabs-light-links-color: civic-color-neutral(60) !default;
+$civic-tabs-light-links-border-color: civic-color-neutral(20) !default;
+$civic-tabs-light-links-selected-color: $civic-tabs-light-links-color;
+$civic-tabs-light-links-selected-border-color: $civic-tabs-light-links-border-color !default;
+$civic-tabs-light-panel-color: $civic-tabs-light-links-color !default;
+$civic-tabs-light-panel-background-color: civic-color('neutral') !default;
+$civic-tabs-light-panel-border-color: civic-color('neutral') !default;
+$civic-tabs-dark-links-color: civic-color('neutral') !default;
+$civic-tabs-dark-links-border-color: civic-color-neutral(20) !default;
+$civic-tabs-dark-links-selected-color: $civic-tabs-dark-links-color;
+$civic-tabs-dark-links-selected-border-color: $civic-tabs-dark-links-border-color !default;
+$civic-tabs-dark-panel-color: $civic-tabs-dark-links-color !default;
+$civic-tabs-dark-panel-background-color: civic-color-shade-dark(40) !default;
+$civic-tabs-dark-panel-border-color: civic-color('neutral') !default;
+
+//
 // Dropdown filter.
 //
 $civic-dropdown-filter-zindex: 9 !default;

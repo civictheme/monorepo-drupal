@@ -1,0 +1,88 @@
+//
+// Tabs component.
+//
+
+.civic-tabs {
+  $root: &;
+
+  margin-top: civic-space(2);
+
+  @include civic-typography('label-regular');
+
+  #{$root}__links {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+
+    .civic-link-list__list__item {
+      margin-right: 0;
+    }
+
+    .civic-link {
+      margin-bottom: -1px;
+      display: block;
+
+      @include civic-link-decoration(false, false, false);
+
+      padding: civic-space(1) civic-space(2);
+      border-radius: $civic-tabs-link-border-radius $civic-tabs-link-border-radius 0 0;
+
+      &.selected {
+        border: solid 1px;
+      }
+    }
+  }
+
+  .civic-tabs__panels {
+    margin-top: civic-space(3);
+  }
+
+  .civic-tabs__panels__panel {
+    display: none;
+
+    &.selected {
+      display: block;
+    }
+  }
+
+  &.civic-theme-light {
+    #{$root}__links {
+      border-bottom-color: $civic-tabs-light-links-border-color;
+
+      .civic-link {
+        &.selected {
+          color: $civic-tabs-light-links-selected-color;
+          border-color: $civic-tabs-light-links-selected-border-color $civic-tabs-light-links-selected-border-color $civic-tabs-light-panel-background-color;
+
+          @include civic-link-backgrounds(transparent);
+        }
+      }
+    }
+
+    #{$root}__panels {
+      color: $civic-tabs-light-panel-color;
+      background-color: $civic-tabs-light-panel-background-color;
+      border-color: $civic-tabs-light-panel-border-color;
+    }
+  }
+
+  &.civic-theme-dark {
+    #{$root}__links {
+      border-bottom-color: $civic-tabs-dark-links-border-color;
+
+      .civic-link {
+        &.selected {
+          color: $civic-tabs-dark-links-selected-color;
+          border-color: $civic-tabs-dark-links-selected-border-color $civic-tabs-dark-links-selected-border-color $civic-tabs-dark-panel-background-color;
+
+          @include civic-link-backgrounds(transparent);
+        }
+      }
+    }
+
+    #{$root}__panels {
+      color: $civic-tabs-dark-panel-color;
+      background-color: $civic-tabs-dark-panel-background-color;
+      border-color: $civic-tabs-dark-panel-border-color;
+    }
+  }
+}
