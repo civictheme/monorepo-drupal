@@ -5,9 +5,10 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - src: [string] Path of the image.
+ * - src: [string] URL of the image.
  * - alt: [string] Alternate text of the image.
- * - caption: [string] Caption below the image.
+ * - width: [string] Width.
+ * - height: [string] Height.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
@@ -17,17 +18,11 @@
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if src is not empty %}
-  <figure class="civic-image {{ modifier_class }}">
-    <img src="{{ src }}" alt="{{ alt }}" {{ attributes }}>
-
-    {% if caption is not empty %}
-      <figcaption class="civic-image__caption">
-        {% include '@atoms/icon/icon.twig' with {
-          symbol: 'multimedia_image_3',
-          color: 'neutral_60',
-        } %}
-        {{ caption }}
-      </figcaption>
-    {% endif %}
-  </figure>
+  <img
+    class="civic-image {{ modifier_class }}"
+    src="{{ src }}"
+    {% if alt is not empty %}alt="{{ alt }}"{% endif %}
+    {% if width is not empty %}width="{{ width }}"{% endif %}
+    {% if height is not empty %}height="{{ height }}"{% endif %}
+    {% if attributes is not empty %}{{ attributes }}{% endif %}/>
 {% endif %}
