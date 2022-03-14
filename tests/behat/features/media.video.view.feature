@@ -20,6 +20,6 @@ Feature: Tests the media types civic remote video
     When I visit "civic_page" "[TEST] Civic Video and Remote Video"
     Then I should see the text "View transcript"
     And I see the ".civic-video iframe" element with the "title" attribute set to "[TEST] Civic Remote Video"
-    And I click on ".civic-video__transcript .civic-link" element
+    And I click on ".civic-video__links__transcript .civic-link" element
     And I should see the text "[TEST] Civic Remote Video"
     And I should not see the text "[TEST] Civic Remote Video Transcript"
