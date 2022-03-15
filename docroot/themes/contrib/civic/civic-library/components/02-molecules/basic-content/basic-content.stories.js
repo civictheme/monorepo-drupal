@@ -8,7 +8,7 @@ import CivicVideo from '../video/video.twig';
 import { demoImage } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecules/Content',
+  title: 'Molecules/Content/Basic Content',
   parameters: {
     layout: 'fullscreen',
     knobs: {
