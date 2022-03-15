@@ -40,6 +40,44 @@ function civic_form_views_exposed_form_alter(&$form, FormStateInterface $form_st
     }
     _civic_form_alter__convert_exposed_form_elements($element, $form, $is_civic_large_filter);
   }
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view = $form_state->get('view');
+  $view_id = $view->id();
+  $display_id = $view->current_display;
+  $preprocessor_function = '_civic_views_exposed_form__' . $view_id . '__' . $display_id .'_alter';
+  if (function_exists($preprocessor_function)) {
+    $preprocessor_function($form, $form_state);
+  }
+}
+
+/**
+ * Implements a preprocessing function for civic listing exposed form.
+ */
+function _civic_views_exposed_form__civic_listing__civic_listing_page_alter(&$form, FormStateInterface $form_state) {
+  if (isset($form['created_wrapper']) && $form['created_wrapper']['#type'] === 'fieldset') {
+    _civic_convert_date_ranget_to_html5($form, 'created_wrapper', [
+      'title' => t('Date range'),
+      'min' => t('Date from'),
+      'max' => t('Date to'),
+    ]);
+  }
+}
+
+/**
+ * Helper to convert date_range composite field element to html5 elements.
+ */
+function _civic_convert_date_ranget_to_html5(&$form, $form_key, $options) {
+  if (isset($options['title'])) {
+    $form[$form_key]['#title'] =  $options['title'];
+  }
+  if (isset($options['min'])) {
+    $form[$form_key]['created']['min']['#title'] = $options['min'];
+  }
+  if (isset($options['max'])) {
+    $form[$form_key]['created']['max']['#title'] = $options['max'];
+  }
+  $form[$form_key]['created']['min']['#type'] = 'date';
+  $form[$form_key]['created']['max']['#type'] = 'date';
 }
 
 /**
@@ -249,6 +287,7 @@ function civic_preprocess_form_element_label(&$variables) {
  * Implements template_preprocess_fieldset().
  */
 function civic_preprocess_fieldset(&$variables) {
+  $element = $variables['element'];
   // Add core drupal form classes.
   $variables['attributes']['class'] = $variables['attributes']['class'] ?? [];
   $variables['attributes']['class'] = array_merge($variables['attributes']['class'], [
