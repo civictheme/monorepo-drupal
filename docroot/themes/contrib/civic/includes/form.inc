@@ -44,7 +44,7 @@ function civic_form_views_exposed_form_alter(&$form, FormStateInterface $form_st
   $view = $form_state->get('view');
   $view_id = $view->id();
   $display_id = $view->current_display;
-  $preprocessor_function = '_civic_views_exposed_form__' . $view_id . '__' . $display_id .'_alter';
+  $preprocessor_function = '_civic_views_exposed_form__' . $view_id . '__' . $display_id . '_alter';
   if (function_exists($preprocessor_function)) {
     $preprocessor_function($form, $form_state);
   }
@@ -68,7 +68,7 @@ function _civic_views_exposed_form__civic_listing__civic_listing_page_alter(&$fo
  */
 function _civic_convert_date_ranget_to_html5(&$form, $form_key, $options) {
   if (isset($options['title'])) {
-    $form[$form_key]['#title'] =  $options['title'];
+    $form[$form_key]['#title'] = $options['title'];
   }
   if (isset($options['min'])) {
     $form[$form_key]['created']['min']['#title'] = $options['min'];
@@ -322,9 +322,9 @@ function civic_preprocess_fieldset(&$variables) {
         continue;
       }
       $is_radio_or_checkbox = in_array($variables['element'][$child]['#type'], [
-          'radio',
-          'checkbox',
-        ]);
+        'radio',
+        'checkbox',
+      ]);
       if ($is_radio_or_checkbox) {
         break;
       }
