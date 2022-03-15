@@ -261,16 +261,34 @@ function civic_preprocess_fieldset(&$variables) {
   // Fieldset's for radio checkbox form groups are have different typography
   // compared to field section fieldsets.
   $is_radio_or_checkbox = FALSE;
-  foreach ($children as $child) {
-    if (!isset($variables['element'][$child]['#type'])) {
-      continue;
+  // Handle fieldsets embedded inside dropdown filters.
+  if (isset($element['#civic-large-filter'])) {
+    $is_radio_or_checkbox = TRUE;
+    $variables['type'] = $element['#type'];
+    $variables['filter_text'] = $element['#title'];
+    $variables['options_title'] = $element['#description'] ?? '';
+    $variables['filter_group'] = $element['#civic-large-filter'];
+    $variables['#attributes']['data-dropdown-filter-fieldset'] = '';
+    if (!empty($variables['attributes'])) {
+      $variables['#attributes'] += $variables['attributes'];
+      $variables['attributes'] = new Attribute($variables['#attributes']);
+      $element_attributes = new Attribute($variables['element']['#attributes']);
+      $variables['attributes']->merge($element_attributes);
+      $variables['attributes'] = $variables['attributes']->toArray();
     }
-    $is_radio_or_checkbox = in_array(
-      $variables['element'][$child]['#type'],
-      ['radio', 'checkbox']
-    );
-    if ($is_radio_or_checkbox) {
-      break;
+  }
+  else {
+    foreach ($children as $child) {
+      if (!isset($variables['element'][$child]['#type'])) {
+        continue;
+      }
+      $is_radio_or_checkbox = in_array($variables['element'][$child]['#type'], [
+          'radio',
+          'checkbox',
+        ]);
+      if ($is_radio_or_checkbox) {
+        break;
+      }
     }
   }
   $type = $is_radio_or_checkbox ? 'fieldset-radio' : 'fieldset';
@@ -331,9 +349,8 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     if (!empty($variables['attributes'])) {
       $variables['#attributes'] += $variables['attributes'];
       $variables['attributes'] = new Attribute($variables['#attributes']);
-      foreach ($variables['element']['#attributes'] as $attribute_name => $attribute_value) {
-        $variables['attributes']->setAttribute($attribute_name, $attribute_value);
-      }
+      $element_attributes = new Attribute($variables['element']['#attributes']);
+      $variables['attributes']->merge($element_attributes);
     }
     $variables['searchable_threshold'] = 8;
     $variables['search_label_text'] = t('Filter by Keyword');

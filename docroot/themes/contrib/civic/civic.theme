@@ -205,6 +205,13 @@ function civic_theme_suggestions_radios_alter(array &$suggestions, array $variab
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civic_theme_suggestions_fieldset_alter(array &$suggestions, array $variables) {
+  _civic_theme_suggestions_civic_filter($suggestions, $variables);
+}
+
+/**
  * Sets theme suggestions of civic filter elements.
  */
 function _civic_theme_suggestions_civic_filter(array &$suggestions, array $variables, $type = NULL) {
