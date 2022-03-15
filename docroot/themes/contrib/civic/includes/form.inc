@@ -43,7 +43,6 @@ function civic_form_views_exposed_form_alter(&$form, FormStateInterface $form_st
   /** @var \Drupal\views\ViewExecutable $view */
   $view = $form_state->get('view');
   $view_id = $view->id();
-  $display_id = $view->current_display;
   $preprocessor_function = '_civic_views_exposed_form__' . $view_id . '_alter';
   if (function_exists($preprocessor_function)) {
     $preprocessor_function($form, $form_state);
@@ -78,8 +77,10 @@ function _civic_convert_date_range_to_civic_date_range(&$form, $form_key, $optio
   }
   $form[$form_key]['created']['min']['#type'] = 'date';
   $form[$form_key]['created']['max']['#type'] = 'date';
-  $form[$form_key]['max']['#attributes']['data-civic-date-range'] = 'max';
-  $form[$form_key]['min']['#attributes']['data-civic-date-range'] = 'min';
+  $form[$form_key]['created']['max']['#attributes']['data-civic-date-range'] = 'max';
+  $form[$form_key]['created']['max']['#attributes']['type'] = 'date';
+  $form[$form_key]['created']['min']['#attributes']['data-civic-date-range'] = 'min';
+  $form[$form_key]['created']['min']['#attributes']['type'] = 'date';
 }
 
 /**

@@ -10,6 +10,30 @@ Drupal.behaviors.civic_ajax_views = {
       return;
     }
     let debounce;
+    // Helper to validate form for expected values.
+    const validateForm = () => {
+      // Validates date range inputs.
+      const $dateRange = $form.find('[data-civic-date-range]');
+      const dateRangeInputs = {};
+      $dateRange.each((ind, element) => {
+        const dateRangeType = element.getAttribute('data-civic-date-range');
+        const inputRootName = element.name.replace(`[${dateRangeType}]`, '');
+        if (typeof dateRangeInputs[inputRootName] === 'undefined') {
+          dateRangeInputs[inputRootName] = {};
+        }
+        dateRangeInputs[inputRootName][dateRangeType] = element.value;
+      });
+      const dateRangeKeys = Object.keys(dateRangeInputs);
+      let len = dateRangeKeys.length;
+      while (len--) {
+        const dateRangeElements = dateRangeInputs[dateRangeKeys[len]];
+        // Do not submit form if only one date range element has a value.
+        if (dateRangeElements.min !== dateRangeElements.max && (dateRangeElements.min === '' || dateRangeElements.max === '')) {
+          return false;
+        }
+      }
+      return true;
+    };
     // Button submit handler for both large and basic filter types.
     const buttonSubmitHandler = () => {
       let $filter = $form.find('[data-component-name="civic-large-filter"]');
@@ -31,6 +55,13 @@ Drupal.behaviors.civic_ajax_views = {
         }, 500);
       }
     };
+    // Additional handling of specific large filter inputs.
+    const largeFilterSubmitHandler = () => {
+      if (validateForm() === true) {
+        buttonSubmitHandler();
+      }
+    };
+
     const filterType = $form.attr('data-civic-filter-type');
     const ajaxForm = $form.attr('data-civic-filter-ajax') === 'true';
     if (filterType === 'large') {
@@ -40,7 +71,7 @@ Drupal.behaviors.civic_ajax_views = {
         $form
           .find('[data-component-name="civic-large-filter"]')
           // Custom event from civic large filter.
-          .on('civicLargeFilterChange', buttonSubmitHandler);
+          .on('civicLargeFilterChange', largeFilterSubmitHandler);
         // Stop clear filter function from submitting form.
         $form
           .find('[data-large-filter-clear]')
