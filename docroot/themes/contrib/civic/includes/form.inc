@@ -55,7 +55,7 @@ function civic_form_views_exposed_form_alter(&$form, FormStateInterface $form_st
  */
 function _civic_views_exposed_form__civic_listing_alter(&$form, FormStateInterface $form_state) {
   if (isset($form['created_wrapper']) && $form['created_wrapper']['#type'] === 'fieldset') {
-    _civic_convert_date_ranget_to_html5($form, 'created_wrapper', [
+    _civic_convert_date_range_to_civic_date_range($form, 'created_wrapper', [
       'title' => t('Date range'),
       'min' => t('Date from'),
       'max' => t('Date to'),
@@ -66,7 +66,7 @@ function _civic_views_exposed_form__civic_listing_alter(&$form, FormStateInterfa
 /**
  * Helper to convert date_range composite field element to html5 elements.
  */
-function _civic_convert_date_ranget_to_html5(&$form, $form_key, $options) {
+function _civic_convert_date_range_to_civic_date_range(&$form, $form_key, $options) {
   if (isset($options['title'])) {
     $form[$form_key]['#title'] = $options['title'];
   }
@@ -78,6 +78,8 @@ function _civic_convert_date_ranget_to_html5(&$form, $form_key, $options) {
   }
   $form[$form_key]['created']['min']['#type'] = 'date';
   $form[$form_key]['created']['max']['#type'] = 'date';
+  $form[$form_key]['max']['#attributes']['data-civic-date-range'] = 'max';
+  $form[$form_key]['min']['#attributes']['data-civic-date-range'] = 'min';
 }
 
 /**
