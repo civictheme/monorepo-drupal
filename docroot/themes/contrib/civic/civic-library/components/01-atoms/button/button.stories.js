@@ -22,7 +22,35 @@ export const Button = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    kind: radios(
+    type: radios(
+      'Type', {
+        Primary: 'primary',
+        Secondary: 'secondary',
+        Tertiary: 'tertiary',
+        Chip: 'chip',
+        None: '',
+      },
+      'primary',
+      generalKnobTab,
+    ),
+    size: radios(
+      'Size', {
+        'Extra Large': 'extra-large',
+        Large: 'large',
+        Regular: 'regular',
+        Small: 'small',
+        'Extra Small': 'extra-small',
+        None: '',
+      },
+      'regular',
+      generalKnobTab,
+    ),
+  };
+
+  if (generalKnobs.type === 'chip') {
+    generalKnobs.is_multiple = boolean('Is multiple', false, generalKnobTab);
+  } else {
+    generalKnobs.kind = radios(
       'Kind', {
         Button: 'button',
         Link: 'link',
@@ -32,34 +60,19 @@ export const Button = (knobTab) => {
       },
       'button',
       generalKnobTab,
-    ),
-    type: radios(
-      'Type', {
-        Primary: 'primary',
-        Secondary: 'secondary',
-        Tertiary: 'tertiary',
-        None: '',
-      },
-      'primary',
-      generalKnobTab,
-    ),
-    size: radios(
-      'Size', {
-        Large: 'large',
-        Regular: 'regular',
-        Small: 'small',
-        None: '',
-      },
-      'regular',
-      generalKnobTab,
-    ),
-    text: text('Text', 'Button Text', generalKnobTab),
-    url: text('URL (applies to button kind "link")', 'http://example.com', generalKnobTab),
-    new_window: boolean('Open in a new window (applies to button kind "link")', false, generalKnobTab),
-    disabled: boolean('Disabled', false, generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
-  };
+    );
+  }
+
+  if (generalKnobs.kind === 'link') {
+    generalKnobs.url = text('URL', 'http://example.com', generalKnobTab);
+    generalKnobs.is_new_window = boolean('Open in a new window', false, generalKnobTab);
+  }
+
+  generalKnobs.text = text('Text', 'Button text', generalKnobTab);
+  generalKnobs.title = text('Title', 'Button Title', generalKnobTab);
+  generalKnobs.is_disabled = boolean('Disabled', false, generalKnobTab);
+  generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
+  generalKnobs.attributes = text('Additional attributes', '', generalKnobTab);
 
   const iconKnobTab = 'Icon';
   const { icons } = ICONS;
