@@ -334,9 +334,14 @@
 
 @mixin civic-button-size($size) {
   // stylelint-disable-next-line scss/dollar-variable-pattern
-  $sizes: ('large', 'regular', 'small');
+  $sizes: ('extra-large', 'large', 'regular', 'small', 'extra-small');
 
-  @if $size == 'large' {
+  @if $size == 'extra-large' {
+    @include civic-typography('label-#{$size}');
+
+    padding: civic-space(3) civic-space(6);
+  }
+  @else if $size == 'large' {
     @include civic-typography('label-#{$size}');
 
     padding: civic-space(2) civic-space(5);
@@ -350,6 +355,11 @@
     @include civic-typography('label-#{$size}');
 
     padding: civic-space() civic-space(3);
+  }
+  @else if $size == 'extra-small' {
+    @include civic-typography('label-#{$size}');
+
+    padding: civic-space(0.5) civic-space(1.5);
   }
   @else {
     @error '"#{$size}" is not one of allowed #{$sizes}.';
@@ -379,6 +389,14 @@
     @include civic-button-type('tertiary');
   }
 
+  &--chip {
+    @include civic-button-type('chip');
+  }
+
+  &--extra-large {
+    @include civic-button-size('extra-large');
+  }
+
   &--large {
     @include civic-button-size('large');
   }
@@ -389,5 +407,9 @@
 
   &--small {
     @include civic-button-size('small');
+  }
+
+  &--extra-small {
+    @include civic-button-size('extra-small');
   }
 }
