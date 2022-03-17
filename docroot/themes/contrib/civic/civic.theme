@@ -8,6 +8,7 @@
 use Drupal\Core\Template\Attribute;
 use Drupal\node\NodeInterface;
 
+require_once 'includes/utilities.inc';
 require_once 'includes/block--civic-component-block.inc';
 require_once 'includes/block--civic-mobile-navigation.inc';
 require_once 'includes/block--system_branding.inc';
@@ -17,7 +18,6 @@ require_once 'includes/block--civic-social-links.inc';
 require_once 'includes/civic_banner.inc';
 require_once 'includes/civic_cards.inc';
 require_once 'includes/civic_pager.inc';
-require_once 'includes/civic_utilities.inc';
 require_once 'includes/civic_media.inc';
 require_once 'includes/form.inc';
 require_once 'includes/nodes.inc';
@@ -43,13 +43,13 @@ function civic_preprocess_page(&$variables) {
   $variables['page']['content_contained'] = TRUE;
 
   // Generic node pages pre-processing.
-  _civic_preprocess_page_node($variables);
+  _civic_preprocess_page__node($variables);
 
   // Handle preprocess for view pages.
-  _civic_preprocess_page_view($variables);
+  _civic_preprocess_page__views($variables);
 
   // Pre-process page to support alerts.
-  _civic_preprocess_page_alerts($variables);
+  _civic_preprocess_page__civic_alert($variables);
 
   // Please do not add anything below this line or components will not be able
   // to discover variables.
@@ -65,7 +65,7 @@ function civic_preprocess_page(&$variables) {
 /**
  * Generic page preprocess for all view mode of nodes.
  */
-function _civic_preprocess_page_node(&$variables) {
+function _civic_preprocess_page__node(&$variables) {
   /** @var \Drupal\node\Entity\Node $node */
   $node = _civic_load_node_or_revision($variables);
 
@@ -97,7 +97,7 @@ function _civic_preprocess_page_node(&$variables) {
 /**
  * Page preprocess for views.
  */
-function _civic_preprocess_page_view(&$variables) {
+function _civic_preprocess_page__views(&$variables) {
   $route_defaults = \Drupal::routeMatch()->getRouteObject()->getDefaults();
   if (isset($route_defaults['view_id'])) {
     // View pages should not be contained.
@@ -130,7 +130,7 @@ function _civic_load_node_or_revision($variables) {
 /**
  * Page preprocess to support showing of alerts.
  */
-function _civic_preprocess_page_alerts(&$variables) {
+function _civic_preprocess_page__civic_alert(&$variables) {
   $variables['attributes']['data-component-name'] = 'civic-alerts';
   $variables['attributes']['data-alert-endpoint'] = '/api/civic-alerts?_format=json';
 }
@@ -162,21 +162,21 @@ function civic_preprocess_paragraph(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function civic_preprocess_block(&$variables) {
-  _civic_preprocess_civic_banner($variables);
-  _civic_preprocess_menu_block_civic_footer_menu($variables);
-  _civic_preprocess_block_content($variables);
-  _civic_preprocess_civic_mobile_navigation($variables);
-  _civic_preprocess_block_civic_social_links($variables);
+  _civic_preprocess_block__civic_banner($variables);
+  _civic_preprocess_block__civic_footer_menu($variables);
+  _civic_preprocess_block__content($variables);
+  _civic_preprocess_block__civic_mobile_navigation($variables);
+  _civic_preprocess_block__civic_social_links($variables);
 }
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function civic_theme_suggestions_block_alter(array &$suggestions, array $variables) {
-  _civic_theme_suggestions_civic_banner($suggestions, $variables);
-  _civic_theme_suggestions_civic_component_block($suggestions, $variables);
-  _civic_theme_suggestions_civic_mobile_navigation($suggestions, $variables);
-  _civic_theme_suggestions_civic_social_links($suggestions, $variables);
+  _civic_theme_suggestions_block_alter__civic_banner($suggestions, $variables);
+  _civic_theme_suggestions_block_alter__civic_component_block($suggestions, $variables);
+  _civic_theme_suggestions_block_alter__civic_mobile_navigation($suggestions, $variables);
+  _civic_theme_suggestions_block_alter__civic_social_links($suggestions, $variables);
 }
 
 /**
@@ -272,7 +272,7 @@ function civic_preprocess_civic_breadcrumb(&$variables) {
 /**
  * Preprocess for footer menu block.
  */
-function _civic_preprocess_menu_block_civic_footer_menu(&$variables) {
+function _civic_preprocess_block__civic_footer_menu(&$variables) {
   if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'menu_block') {
     return;
   }
@@ -292,7 +292,7 @@ function _civic_preprocess_menu_block_civic_footer_menu(&$variables) {
 /**
  * Preprocess for block_content block.
  */
-function _civic_preprocess_block_content(&$variables) {
+function _civic_preprocess_block__content(&$variables) {
   if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'block_content') {
     return;
   }
@@ -360,30 +360,4 @@ function _civic_parse_attributes($string) {
   }
 
   return $attributes;
-}
-
-/**
- * Embed SVG from provided URL.
- *
- * @param string $url
- *   Local URL or local path to retrieve SVG from.
- * @param array $classes
- *   Array of CSS classes to add.
- *
- * @return string
- *   Loaded SVG or FALSE if unable to load SVG.
- */
-function civic_embed_svg($url, array $classes = []) {
-  $svg_path = DRUPAL_ROOT . (strpos($url, 'http') === 0 ? parse_url(str_replace('.png', '.svg', $url), PHP_URL_PATH) : str_replace('.png', '.svg', $url));
-  if (!file_exists($svg_path)) {
-    return FALSE;
-  }
-
-  $content = file_get_contents($svg_path);
-
-  if (!empty($classes)) {
-    $content = str_replace('<svg ', '<svg class="' . implode(' ', $classes) . '" ', $content);
-  }
-
-  return $content;
 }
