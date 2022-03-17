@@ -24,11 +24,6 @@ require_once 'includes/nodes.inc';
 require_once 'includes/paragraphs.inc';
 require_once 'includes/views.inc';
 
-// @todo Remove before release 1.
-if (file_exists('includes/styleguide.inc')) {
-  include 'includes/styleguide.inc';
-}
-
 /**
  * Implements hook_preprocess_HOOK() for page.html.twig.
  */

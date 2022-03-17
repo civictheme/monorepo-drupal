@@ -3,4 +3,3 @@
 # are going into release.
 node_modules
 civic-library/.gitignore.release
-include/styleguide.inc
