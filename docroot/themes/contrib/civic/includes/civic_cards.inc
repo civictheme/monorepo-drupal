@@ -18,7 +18,7 @@ function _civic_preprocess_node__card(&$variables) {
     $type_callback($variables);
   }
   $variables['title'] = $node->getTitle();
-  _civic_attributes($variables);
+  civic_attributes_to_modifier_class($variables);
   _civic_preprocess_node__theme($variables);
 }
 
@@ -83,7 +83,7 @@ function _civic_preprocess_node__date(&$variables) {
   $node = $variables['node'];
   if ($node->hasField('field_c_n_date')) {
     if ($date_range = $node->get('field_c_n_date')->getValue()) {
-      $variables['date'] = _civic_format_short_date($date_range[0]['value']);
+      $variables['date'] = civic_format_short_date($date_range[0]['value']);
     }
   }
 }
@@ -104,16 +104,6 @@ function _civic_preprocess_node__topics(&$variables) {
 }
 
 /**
- * Format dates for cards.
- *
- * @return mixed
- *   Formatted date.
- */
-function _civic_format_short_date($date) {
-  return \Drupal::service('date.formatter')->format(strtotime($date), 'civic_short_date');
-}
-
-/**
  * Preprocess image thumbnail for nodes.
  */
 function _civic_preprocess_node__thumbnail(&$variables) {
@@ -121,7 +111,7 @@ function _civic_preprocess_node__thumbnail(&$variables) {
   $node = $variables['node'];
   if ($node->hasField('field_c_n_thumbnail') && !$node->get('field_c_n_thumbnail')->isEmpty()) {
     $media = $node->get('field_c_n_thumbnail')->first()->get('entity')->getTarget()->getValue();
-    $variables['image'] = _civic_media_image($media);
+    $variables['image'] = civic_media_image_variables($media);
   }
 }
 

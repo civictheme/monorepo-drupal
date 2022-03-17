@@ -11,7 +11,7 @@ use Drupal\Core\Menu\MenuTreeParameters;
 /**
  * Alter theme suggestions for civic mobile menu block.
  */
-function _civic_theme_suggestions_civic_mobile_navigation(array &$suggestions, array $variables) {
+function _civic_theme_suggestions_block_alter__civic_mobile_navigation(array &$suggestions, array $variables) {
   if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'block_content') {
     $entity = $variables['elements']['content']['#block_content'];
     if ($entity->bundle() == 'civic_mobile_navigation') {
@@ -23,7 +23,7 @@ function _civic_theme_suggestions_civic_mobile_navigation(array &$suggestions, a
 /**
  * Preprocess for Mobile Navigation block.
  */
-function _civic_preprocess_civic_mobile_navigation(&$variables) {
+function _civic_preprocess_block__civic_mobile_navigation(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {
     return;
   }

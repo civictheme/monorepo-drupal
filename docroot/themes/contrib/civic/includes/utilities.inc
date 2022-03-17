@@ -8,10 +8,9 @@
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
-use Drupal\image\Entity\ImageStyle;
-use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Process media to generate image array for twig.
@@ -24,7 +23,7 @@ use Drupal\paragraphs\Entity\Paragraph;
  * @return array
  *   Image array or false if not available.
  */
-function _civic_media_image(MediaInterface $media, $image_style = NULL) {
+function civic_media_image_variables(MediaInterface $media, $image_style = NULL) {
   if ($media instanceof Media) {
     $fid = $media->getSource()->getSourceFieldValue($media);
     $config = $media->getSource()->getConfiguration();
@@ -52,10 +51,10 @@ function _civic_media_image(MediaInterface $media, $image_style = NULL) {
 /**
  * Parse attribute classes into a string for modifier_class property.
  */
-function _civic_attributes(&$variables) {
+function civic_attributes_to_modifier_class(&$variables) {
   if (isset($variables['attributes'])) {
     $attributes = new Attribute($variables['attributes']);
-    if ($classes = _civic_get_class_attributes($attributes)) {
+    if ($classes = civic_get_class_attributes($attributes)) {
       $variables['modifier_class'] = $classes;
     }
   }
@@ -70,22 +69,9 @@ function _civic_attributes(&$variables) {
  * @return string
  *   Classes as a string.
  */
-function _civic_get_class_attributes(Attribute $attributes) {
+function civic_get_class_attributes(Attribute $attributes) {
   if ($attributes->hasAttribute('class')) {
     return implode(' ', $attributes->getClass()->value());
-  }
-  return FALSE;
-}
-
-/**
- * Get theme name from Paragraph Entity.
- *
- * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   Paragraph Entity.
- */
-function _civic_paragraph_get_theme(Paragraph $paragraph) {
-  if ($paragraph->hasField('field_c_p_theme') && !$paragraph->get('field_c_p_theme')->isEmpty()) {
-    return $paragraph->get('field_c_p_theme')->getString();
   }
   return FALSE;
 }
@@ -115,4 +101,40 @@ function civic_media_get_url_from_field(EntityInterface $entity, string $field_n
   }
 
   return FALSE;
+}
+
+/**
+ * Embed SVG from provided URL.
+ *
+ * @param string $url
+ *   Local URL or local path to retrieve SVG from.
+ * @param array $classes
+ *   Array of CSS classes to add.
+ *
+ * @return string
+ *   Loaded SVG or FALSE if unable to load SVG.
+ */
+function civic_embed_svg($url, array $classes = []) {
+  $svg_path = DRUPAL_ROOT . (strpos($url, 'http') === 0 ? parse_url(str_replace('.png', '.svg', $url), PHP_URL_PATH) : str_replace('.png', '.svg', $url));
+  if (!file_exists($svg_path)) {
+    return FALSE;
+  }
+
+  $content = file_get_contents($svg_path);
+
+  if (!empty($classes)) {
+    $content = str_replace('<svg ', '<svg class="' . implode(' ', $classes) . '" ', $content);
+  }
+
+  return $content;
+}
+
+/**
+ * Format dates for cards.
+ *
+ * @return mixed
+ *   Formatted date.
+ */
+function civic_format_short_date($date) {
+  return \Drupal::service('date.formatter')->format(strtotime($date), 'civic_short_date');
 }

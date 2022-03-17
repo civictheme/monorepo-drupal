@@ -8,7 +8,7 @@
 /**
  * Alter theme suggestions for civic component block.
  */
-function _civic_theme_suggestions_civic_component_block(array &$suggestions, array $variables) {
+function _civic_theme_suggestions_block_alter__civic_component_block(array &$suggestions, array $variables) {
   if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'block_content') {
     $entity = $variables['elements']['content']['#block_content'];
     if ($entity->bundle() == 'civic_component_block') {

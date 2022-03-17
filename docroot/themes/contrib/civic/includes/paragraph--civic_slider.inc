@@ -14,8 +14,8 @@ function civic_preprocess_paragraph__civic_slider(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  _civic_preprocess_paragraph_theme($variables);
-  _civic_preprocess_paragraph_title($variables);
+  _civic_preprocess_paragraph__field__theme($variables);
+  _civic_preprocess_paragraph__field__title($variables);
 
   $variables['previous_label'] = t('Previous');
   $variables['next_label'] = t('Next');
@@ -44,9 +44,9 @@ function civic_preprocess_paragraph__civic_slider_slide(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  _civic_preprocess_paragraph_theme($variables);
-  _civic_preprocess_paragraph_title($variables);
-  _civic_preprocess_paragraph_card__image($variables);
+  _civic_preprocess_paragraph__field__theme($variables);
+  _civic_preprocess_paragraph__field__title($variables);
+  _civic_preprocess_paragraph__card__image($variables);
 
   $variables['attributes']['data-component-civic-slider-slide'] = '';
 

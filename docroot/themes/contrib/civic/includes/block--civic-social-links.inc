@@ -13,7 +13,7 @@ define('CIVIC_SOCIAL_LINKS_DEFAULT_THEME', 'dark');
 /**
  * Alter block theme suggestions.
  */
-function _civic_theme_suggestions_civic_social_links(array &$suggestions, array $variables) {
+function _civic_theme_suggestions_block_alter__civic_social_links(array &$suggestions, array $variables) {
   if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'block_content') {
     $entity = $variables['elements']['content']['#block_content'];
     if ($entity->bundle() == 'civic_social_links') {
@@ -25,7 +25,7 @@ function _civic_theme_suggestions_civic_social_links(array &$suggestions, array 
 /**
  * Preprocess for Social Links block.
  */
-function _civic_preprocess_block_civic_social_links(&$variables) {
+function _civic_preprocess_block__civic_social_links(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {
     return;
   }
@@ -49,7 +49,7 @@ function _civic_preprocess_block_civic_social_links(&$variables) {
 
       if (!isset($items['image'])) {
         $vars['paragraph'] = $paragraph;
-        _civic_preprocess_paragraph_card__icon($vars);
+        _civic_preprocess_paragraph__card__icon($vars);
         unset($vars['paragraph']);
       }
 
