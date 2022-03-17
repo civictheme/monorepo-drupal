@@ -14,5 +14,4 @@ dependencies:
   - permissions_filter:permissions_filter
   - shield:shield
   - stage_file_proxy:stage_file_proxy
-  - styleguide:styleguide
   - simple_sitemap:simple_sitemap
