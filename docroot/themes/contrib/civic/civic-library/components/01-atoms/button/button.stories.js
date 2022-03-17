@@ -3,6 +3,7 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicButton from './button.twig';
+import './button';
 
 export default {
   title: 'Atoms/Button',
@@ -45,23 +46,20 @@ export const Button = (knobTab) => {
       'regular',
       generalKnobTab,
     ),
-  };
-
-  if (generalKnobs.type === 'chip') {
-    generalKnobs.is_multiple = boolean('Is multiple', false, generalKnobTab);
-  } else {
-    generalKnobs.kind = radios(
+    kind: radios(
       'Kind', {
         Button: 'button',
         Link: 'link',
         Reset: 'reset',
         Submit: 'submit',
+        Checkbox: 'checkbox',
+        Radio: 'radio',
         None: '',
       },
       'button',
       generalKnobTab,
-    );
-  }
+    ),
+  };
 
   if (generalKnobs.kind === 'link') {
     generalKnobs.url = text('URL', 'http://example.com', generalKnobTab);
@@ -70,7 +68,11 @@ export const Button = (knobTab) => {
 
   generalKnobs.text = text('Text', 'Button text', generalKnobTab);
   generalKnobs.title = text('Title', 'Button Title', generalKnobTab);
+  generalKnobs.id = text('ID attribute', 'id123', generalKnobTab);
+  generalKnobs.name = text('Name attribute', 'mybutton', generalKnobTab);
+  generalKnobs.is_raw_text = boolean('Allow HTML in text', false, generalKnobTab);
   generalKnobs.is_disabled = boolean('Disabled', false, generalKnobTab);
+  generalKnobs.is_dismissible = boolean('Dismissible', false, generalKnobTab);
   generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
   generalKnobs.attributes = text('Additional attributes', '', generalKnobTab);
 

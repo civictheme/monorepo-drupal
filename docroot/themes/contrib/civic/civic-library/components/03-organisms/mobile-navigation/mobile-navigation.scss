@@ -59,7 +59,7 @@ $civic-mobile-navigation-spacing: civic-space(2);
         padding: civic-space(2);
 
         @include civic-typography('label-large');
-        @include civic-link-decoration(false, false, false);
+        @include civic-link-decoration(false, false, false, false);
       }
     }
 
@@ -92,7 +92,7 @@ $civic-mobile-navigation-spacing: civic-space(2);
         width: 100%;
         padding: civic-space(2);
 
-        @include civic-link-decoration(false, false, false);
+        @include civic-link-decoration(false, false, false, false);
         @include civic-typography('label-regular');
 
         @include civic-breakpoint('xxs') {

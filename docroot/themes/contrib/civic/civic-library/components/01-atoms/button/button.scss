@@ -3,15 +3,11 @@
 //
 
 @use 'sass:map';
+@use 'sass:math';
 
 //
 // Mixins.
 //
-
-@mixin civic-button($type: 'primary', $size: 'regular', $icon: false, $icon_placement: 'right', $is_disabled: false) {
-  @include civic-button-type($type);
-  @include civic-button-size($size);
-}
 
 @mixin civic-button-type($type) {
   // SASS does not allow variables interpolation, so we are creating a local
@@ -55,6 +51,9 @@
           'border-color': $civic-button-light-primary-disabled-border-color,
           'outline-color': $civic-button-light-primary-disabled-outline-color,
         ),
+        'dismiss': (
+          'fill': $civic-button-light-primary-dismiss-color,
+        ),
       ),
       'dark': (
         'normal': (
@@ -92,6 +91,9 @@
           'background-color': $civic-button-dark-primary-disabled-background-color,
           'border-color': $civic-button-dark-primary-disabled-border-color,
           'outline-color': $civic-button-dark-primary-disabled-outline-color,
+        ),
+        'dismiss': (
+          'fill': $civic-button-dark-primary-dismiss-color,
         ),
       )
     ),
@@ -133,6 +135,9 @@
           'border-color': $civic-button-light-secondary-disabled-border-color,
           'outline-color': $civic-button-light-secondary-disabled-outline-color,
         ),
+        'dismiss': (
+          'fill': $civic-button-light-secondary-dismiss-color,
+        ),
       ),
       'dark': (
         'normal': (
@@ -170,6 +175,9 @@
           'background-color': $civic-button-dark-secondary-disabled-background-color,
           'border-color': $civic-button-dark-secondary-disabled-border-color,
           'outline-color': $civic-button-dark-secondary-disabled-outline-color,
+        ),
+        'dismiss': (
+          'fill': $civic-button-dark-secondary-dismiss-color,
         ),
       )
     ),
@@ -211,6 +219,9 @@
           'border-color': $civic-button-light-tertiary-disabled-border-color,
           'outline-color': $civic-button-light-tertiary-disabled-outline-color,
         ),
+        'dismiss': (
+          'fill': $civic-button-light-tertiary-dismiss-color,
+        ),
       ),
       'dark': (
         'normal': (
@@ -248,6 +259,93 @@
           'background-color': $civic-button-dark-tertiary-disabled-background-color,
           'border-color': $civic-button-dark-tertiary-disabled-border-color,
           'outline-color': $civic-button-dark-tertiary-disabled-outline-color,
+        ),
+        'dismiss': (
+          'fill': $civic-button-dark-tertiary-dismiss-color,
+        ),
+      )
+    ),
+    'chip': (
+      'light': (
+        'normal': (
+          'color': $civic-button-light-chip-color,
+          'background-color': $civic-button-light-chip-background-color,
+          'border-color': $civic-button-light-chip-border-color,
+          'outline-color': $civic-button-light-chip-outline-color,
+        ),
+        'hover': (
+          'color': $civic-button-light-chip-hover-color,
+          'background-color': $civic-button-light-chip-hover-background-color,
+          'border-color': $civic-button-light-chip-hover-border-color,
+          'outline-color': $civic-button-light-chip-hover-outline-color,
+        ),
+        'visited': (
+          'color': $civic-button-light-chip-visited-color,
+          'background-color': $civic-button-light-chip-visited-background-color,
+          'border-color': $civic-button-light-chip-visited-border-color,
+          'outline-color': $civic-button-light-chip-visited-outline-color,
+        ),
+        'active': (
+          'color': $civic-button-light-chip-active-color,
+          'background-color': $civic-button-light-chip-active-background-color,
+          'border-color': $civic-button-light-chip-active-border-color,
+          'outline-color': $civic-button-light-chip-active-outline-color,
+        ),
+        'focus': (
+          'color': $civic-button-light-chip-focus-color,
+          'background-color': $civic-button-light-chip-focus-background-color,
+          'border-color': $civic-button-light-chip-focus-border-color,
+          'outline-color': $civic-button-light-chip-focus-outline-color,
+        ),
+        'disabled': (
+          'color': $civic-button-light-chip-disabled-color,
+          'background-color': $civic-button-light-chip-disabled-background-color,
+          'border-color': $civic-button-light-chip-disabled-border-color,
+          'outline-color': $civic-button-light-chip-disabled-outline-color,
+        ),
+        'dismiss': (
+          'fill': $civic-button-light-chip-dismiss-color,
+        ),
+      ),
+      'dark': (
+        'normal': (
+          'color': $civic-button-dark-chip-color,
+          'background-color': $civic-button-dark-chip-background-color,
+          'border-color': $civic-button-dark-chip-border-color,
+          'outline-color': $civic-button-dark-chip-outline-color,
+        ),
+        'hover': (
+          'color': $civic-button-dark-chip-hover-color,
+          'background-color': $civic-button-dark-chip-hover-background-color,
+          'border-color': $civic-button-dark-chip-hover-border-color,
+          'outline-color': $civic-button-dark-chip-hover-outline-color,
+        ),
+        'visited': (
+          'color': $civic-button-dark-chip-visited-color,
+          'background-color': $civic-button-dark-chip-visited-background-color,
+          'border-color': $civic-button-dark-chip-visited-border-color,
+          'outline-color': $civic-button-dark-chip-visited-outline-color,
+        ),
+        'active': (
+          'color': $civic-button-dark-chip-active-color,
+          'background-color': $civic-button-dark-chip-active-background-color,
+          'border-color': $civic-button-dark-chip-active-border-color,
+          'outline-color': $civic-button-dark-chip-active-outline-color,
+        ),
+        'focus': (
+          'color': $civic-button-dark-chip-focus-color,
+          'background-color': $civic-button-dark-chip-focus-background-color,
+          'border-color': $civic-button-dark-chip-focus-border-color,
+          'outline-color': $civic-button-dark-chip-focus-outline-color,
+        ),
+        'disabled': (
+          'color': $civic-button-dark-chip-disabled-color,
+          'background-color': $civic-button-dark-chip-disabled-background-color,
+          'border-color': $civic-button-dark-chip-disabled-border-color,
+          'outline-color': $civic-button-dark-chip-disabled-outline-color,
+        ),
+        'dismiss': (
+          'fill': $civic-button-dark-chip-dismiss-color,
         ),
       )
     ),
@@ -292,15 +390,20 @@
           }
         }
         @else if $type-kind == 'active' {
-          &:active {
+          &:active,
+          &.active {
             @include _civic-button-print-rules($type-kind-values);
           }
         }
         @else if $type-kind == 'focus' {
           &:focus,
+          &.focus,
           &:focus:hover,
+          &.focus:hover,
           &:focus:active,
-          &:focus:hover:active {
+          &.focus:active,
+          &:focus:hover:active,
+          &.focus:hover:active {
             @include _civic-button-print-rules($type-kind-values);
           }
         }
@@ -314,13 +417,36 @@
           &:disabled:focus:hover:active,
           &[disabled]:active,
           &[disabled]:focus,
+          &[disabled].focus,
           &[disabled]:focus:hover,
+          &[disabled].focus:hover,
           &[disabled]:focus:active,
-          &[disabled]:focus:hover:active {
+          &[disabled].focus:active,
+          &[disabled]:focus:hover:active,
+          &[disabled].focus:hover:active {
             @include _civic-button-print-rules($type-kind-values);
+
+            cursor: inherit;
+          }
+        }
+        @else if $type-kind == 'dismiss' {
+          .civic-button__dismiss {
+            &:hover {
+              @include civic-icon-fill-color(map.get($type-kind-values, 'fill'));
+            }
           }
         }
       }
+    }
+  }
+
+  @if $type == 'chip' {
+    border-radius: civic-space(6);
+
+    @include civic-link-decoration(false, false, false, false);
+
+    input {
+      @include civic-visually-hidden();
     }
   }
 }
@@ -355,11 +481,13 @@
     @include civic-typography('label-#{$size}');
 
     padding: civic-space() civic-space(3);
+    border-width: math.div($civic-button-border-width, 2);
   }
   @else if $size == 'extra-small' {
     @include civic-typography('label-#{$size}');
 
     padding: civic-space(0.5) civic-space(1.5);
+    border-width: math.div($civic-button-border-width, 2);
   }
   @else {
     @error '"#{$size}" is not one of allowed #{$sizes}.';
@@ -371,12 +499,15 @@
 //
 
 .civic-button {
+  $root: &;
+
   cursor: pointer;
   border: $civic-button-border-width solid transparent;
   border-radius: $civic-button-border-radius;
 
   @include civic-button-size('regular');
 
+  // Type.
   &--primary {
     @include civic-button-type('primary');
   }
@@ -393,23 +524,44 @@
     @include civic-button-type('chip');
   }
 
+  // Size.
   &--extra-large {
     @include civic-button-size('extra-large');
+
+    #{$root}__dismiss {
+      margin-left: civic-space(4);
+    }
   }
 
   &--large {
     @include civic-button-size('large');
+
+    #{$root}__dismiss {
+      margin-left: civic-space(3);
+    }
   }
 
   &--regular {
     @include civic-button-size('regular');
+
+    #{$root}__dismiss {
+      margin-left: civic-space(3);
+    }
   }
 
   &--small {
     @include civic-button-size('small');
+
+    #{$root}__dismiss {
+      margin-left: civic-space(2);
+    }
   }
 
   &--extra-small {
     @include civic-button-size('extra-small');
+
+    #{$root}__dismiss {
+      margin-left: civic-space();
+    }
   }
 }

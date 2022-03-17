@@ -87,6 +87,8 @@ export const randomTags = (count, rand) => {
 
 export const demoImage = () => './assets/images/demo.png';
 
+export const demoIcon = () => './assets/icons/Brands/Dropbox.svg';
+
 export const formElement = (inputType, options, theme, rand, itr) => {
   const isCheckboxOrRadio = inputType === 'checkbox' || inputType === 'radio';
 

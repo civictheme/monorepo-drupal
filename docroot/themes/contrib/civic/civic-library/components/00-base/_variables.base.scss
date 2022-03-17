@@ -265,7 +265,7 @@ $civic-typography-default: (
   // Labels.
   'label-extra-large': (
     'xxs': ($civic-font-base-size * 1.25, $civic-font-base-line-height * 1.5, 600, 'primary', -0.1px),
-    'm': ($civic-font-base-size * 1.25, $civic-font-base-line-height * 1.5, 600, 'primary', 0)
+    'm': ($civic-font-base-size * 1.5, $civic-font-base-line-height * 1.5, 600, 'primary', 0)
   ),
   'label-large': (
     'xxs': ($civic-font-base-size * 1.125, $civic-font-base-line-height * 1.5, 600, 'primary', -0.1px),

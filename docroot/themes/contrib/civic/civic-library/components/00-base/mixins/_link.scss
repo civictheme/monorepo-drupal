@@ -9,7 +9,8 @@
   color: $normal;
 
   @if $hover != false {
-    &:hover {
+    &:hover,
+    &:visited:hover {
       color: $hover;
     }
   }
@@ -67,7 +68,7 @@
 //
 // Add text decoration to a link.
 //
-@mixin civic-link-decoration($underline: false, $underline-hover: true, $underline-active: true) {
+@mixin civic-link-decoration($underline: false, $underline-hover: true, $underline-active: true, $underline-focus: true) {
   @if $underline {
     text-decoration: underline;
   }
@@ -86,6 +87,15 @@
 
   &:active {
     @if $underline-active {
+      text-decoration: underline;
+    }
+    @else {
+      text-decoration: none;
+    }
+  }
+
+  &:focus {
+    @if $underline-focus {
       text-decoration: underline;
     }
     @else {
