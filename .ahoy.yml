@@ -182,6 +182,10 @@ commands:
     usage: Run Bats tests (host only).
     cmd: bats --tap tests/bats/
 
+  export-config:
+    usage: Export theme config
+    cmd: ahoy cli "./scripts/update-theme-config.sh"
+
   debug:
     usage: Enable debug configuration.
     # Check if the debug configuration is already enabled and, if not -
