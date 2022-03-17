@@ -1,0 +1,43 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.civic_social_links
+    - field.field.block_content.civic_social_links.field_c_b_social_icons
+    - field.field.block_content.civic_social_links.field_c_b_theme
+    - field.field.block_content.civic_social_links.field_c_b_with_border
+  module:
+    - entity_reference_revisions
+    - options
+id: block_content.civic_social_links.default
+targetEntityType: block_content
+bundle: civic_social_links
+mode: default
+content:
+  field_c_b_social_icons:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_c_b_theme:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_c_b_with_border:
+    weight: 2
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+hidden: {  }

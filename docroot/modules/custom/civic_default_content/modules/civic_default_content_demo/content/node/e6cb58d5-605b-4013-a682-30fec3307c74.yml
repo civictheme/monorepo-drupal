@@ -9,7 +9,6 @@ _meta:
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
     0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c: taxonomy_term
     75c3061b-50d7-42c4-8db5-7d06859c6725: taxonomy_term
-    86c9cd2b-225e-485b-9c6a-2963cd993b7b: media
     fcd683b6-ea34-4310-aedd-7731ff476cbc: media
 default:
   revision_uid:
@@ -383,9 +382,6 @@ default:
                   field_c_p_date:
                     -
                       value: '2021-10-26'
-                  field_c_p_image:
-                    -
-                      entity: 86c9cd2b-225e-485b-9c6a-2963cd993b7b
                   field_c_p_link:
                     -
                       uri: 'http://google.com'
@@ -427,9 +423,6 @@ default:
                   field_c_p_date:
                     -
                       value: '2021-10-19'
-                  field_c_p_image:
-                    -
-                      entity: 86c9cd2b-225e-485b-9c6a-2963cd993b7b
                   field_c_p_link:
                     -
                       uri: 'http://google.com'
@@ -505,9 +498,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_image:
-                    -
-                      entity: 86c9cd2b-225e-485b-9c6a-2963cd993b7b
                   field_c_p_summary:
                     -
                       value: 'Nulla porttitor accumsan tincidunt. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.'

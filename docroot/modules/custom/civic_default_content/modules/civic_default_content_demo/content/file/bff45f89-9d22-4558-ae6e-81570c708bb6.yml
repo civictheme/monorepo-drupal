@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: file
-  uuid: f95d7cf7-e5d6-4a45-96e7-8482db647ba2
+  uuid: bff45f89-9d22-4558-ae6e-81570c708bb6
   default_langcode: en
 default:
   uid:
@@ -9,19 +9,19 @@ default:
       target_id: 1
   filename:
     -
-      value: generic.png
+      value: Twitter.svg
   uri:
     -
-      value: 'public://generic.png'
+      value: 'public://icons/Twitter.svg'
   filemime:
     -
-      value: image/png
+      value: image/svg+xml
   filesize:
     -
-      value: 3900
+      value: 1319
   status:
     -
       value: true
   created:
     -
-      value: 1634009976
+      value: 1647509776

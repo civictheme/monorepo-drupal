@@ -1,11 +1,11 @@
 _meta:
   version: '1.0'
   entity_type: media
-  uuid: 2cf05e2f-5d05-4e88-ae27-7248a11978c4
-  bundle: civic_document
+  uuid: 128cf256-533b-4a10-bedb-e878deada4a5
+  bundle: civic_icon
   default_langcode: en
   depends:
-    7dea2844-77b7-4f1a-bb77-5d61c9d0be28: file
+    4c54f9b2-ae04-442f-b830-4cbeed050d75: file
 default:
   revision_user:
     -
@@ -18,10 +18,10 @@ default:
       target_id: 1
   name:
     -
-      value: 'Demo Lorem Ipsum'
+      value: 'Facebook Icon'
   created:
     -
-      value: 1631856401
+      value: 1647509740
   revision_translation_affected:
     -
       value: true
@@ -30,8 +30,8 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_c_m_document:
+  field_c_m_icon:
     -
-      entity: 7dea2844-77b7-4f1a-bb77-5d61c9d0be28
+      entity: 4c54f9b2-ae04-442f-b830-4cbeed050d75
       display: true
       description: ''

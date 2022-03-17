@@ -1,11 +1,11 @@
 _meta:
   version: '1.0'
   entity_type: media
-  uuid: 2cf05e2f-5d05-4e88-ae27-7248a11978c4
-  bundle: civic_document
+  uuid: f7f391de-797d-4345-90c4-46d1f01c468e
+  bundle: civic_icon
   default_langcode: en
   depends:
-    7dea2844-77b7-4f1a-bb77-5d61c9d0be28: file
+    063ae3b8-fc10-4473-8b9d-675b50861e83: file
 default:
   revision_user:
     -
@@ -18,10 +18,10 @@ default:
       target_id: 1
   name:
     -
-      value: 'Demo Lorem Ipsum'
+      value: 'LinkedIn Icon'
   created:
     -
-      value: 1631856401
+      value: 1647509761
   revision_translation_affected:
     -
       value: true
@@ -30,8 +30,8 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_c_m_document:
+  field_c_m_icon:
     -
-      entity: 7dea2844-77b7-4f1a-bb77-5d61c9d0be28
+      entity: 063ae3b8-fc10-4473-8b9d-675b50861e83
       display: true
       description: ''

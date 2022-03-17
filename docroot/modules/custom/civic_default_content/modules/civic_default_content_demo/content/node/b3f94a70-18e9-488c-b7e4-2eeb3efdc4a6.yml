@@ -6,7 +6,6 @@ _meta:
   default_langcode: en
   depends:
     4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
-    86c9cd2b-225e-485b-9c6a-2963cd993b7b: media
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
@@ -94,9 +93,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_image:
-                    -
-                      entity: 86c9cd2b-225e-485b-9c6a-2963cd993b7b
                   field_c_p_link:
                     -
                       uri: 'http://google.com'
@@ -129,9 +125,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_image:
-                    -
-                      entity: 86c9cd2b-225e-485b-9c6a-2963cd993b7b
                   field_c_p_link:
                     -
                       uri: 'http://google.com'

@@ -1,7 +1,7 @@
 @civic @block_type @block_civic_banner
-Feature: Tests the Civic banner block Type
+Feature: Tests the Civic Banner block Type
 
-  Ensure that Civic banner block fields have been setup correctly.
+  Ensure that Civic Banner block fields have been setup correctly.
 
   @api
   Scenario: Custom Block type appears in Block Type listing

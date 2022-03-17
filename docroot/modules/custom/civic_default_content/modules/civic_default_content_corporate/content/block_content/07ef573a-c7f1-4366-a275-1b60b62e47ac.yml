@@ -2,7 +2,7 @@ _meta:
   version: '1.0'
   entity_type: block_content
   uuid: 07ef573a-c7f1-4366-a275-1b60b62e47ac
-  bundle: civic_social_icons
+  bundle: civic_social_links
   default_langcode: en
   depends:
     9dd16162-6e1b-43f7-821e-003f0711b0a9: media
