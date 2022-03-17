@@ -108,6 +108,7 @@ $civic-button-light-primary-disabled-color: civic-color-neutral(60) !default;
 $civic-button-light-primary-disabled-background-color: civic-color-neutral(20) !default;
 $civic-button-light-primary-disabled-border-color: none !default;
 $civic-button-light-primary-disabled-outline-color: none !default;
+$civic-button-light-primary-dismiss-color: civic-color('primary') !default;
 $civic-button-dark-primary-color: civic-color-shade-dark(45) !default;
 $civic-button-dark-primary-background-color: civic-color('accent') !default;
 $civic-button-dark-primary-border-color: civic-color('translucent') !default;
@@ -132,6 +133,7 @@ $civic-button-dark-primary-disabled-color: civic-color-neutral(60) !default;
 $civic-button-dark-primary-disabled-background-color: civic-color-neutral(20) !default;
 $civic-button-dark-primary-disabled-border-color: none !default;
 $civic-button-dark-primary-disabled-outline-color: none !default;
+$civic-button-dark-primary-dismiss-color: civic-color('accent') !default;
 
 // Secondary button.
 $civic-button-light-secondary-color: civic-color('primary') !default;
@@ -158,6 +160,7 @@ $civic-button-light-secondary-disabled-color: civic-color-neutral(60) !default;
 $civic-button-light-secondary-disabled-background-color: civic-color-neutral(20) !default;
 $civic-button-light-secondary-disabled-border-color: none !default;
 $civic-button-light-secondary-disabled-outline-color: none !default;
+$civic-button-light-secondary-dismiss-color: civic-color('accent') !default;
 $civic-button-dark-secondary-color: civic-color('accent') !default;
 $civic-button-dark-secondary-background-color: civic-color('translucent') !default;
 $civic-button-dark-secondary-border-color: civic-color('accent') !default;
@@ -182,6 +185,7 @@ $civic-button-dark-secondary-disabled-color: civic-color-neutral(60) !default;
 $civic-button-dark-secondary-disabled-background-color: civic-color-neutral(20) !default;
 $civic-button-dark-secondary-disabled-border-color: civic-color('translucent') !default;
 $civic-button-dark-secondary-disabled-outline-color: none !default;
+$civic-button-dark-secondary-dismiss-color: civic-color('accent') !default;
 
 // Tertiary button.
 $civic-button-light-tertiary-color: civic-color('primary') !default;
@@ -208,6 +212,7 @@ $civic-button-light-tertiary-disabled-color: civic-color-neutral(60) !default;
 $civic-button-light-tertiary-disabled-background-color: civic-color-neutral(20) !default;
 $civic-button-light-tertiary-disabled-border-color: none !default;
 $civic-button-light-tertiary-disabled-outline-color: none !default;
+$civic-button-light-tertiary-dismiss-color: civic-color('accent') !default;
 $civic-button-dark-tertiary-color: civic-color('primary') !default;
 $civic-button-dark-tertiary-background-color: civic-color('neutral') !default;
 $civic-button-dark-tertiary-border-color: civic-color('translucent') !default;
@@ -232,61 +237,59 @@ $civic-button-dark-tertiary-disabled-color: civic-color-neutral(60) !default;
 $civic-button-dark-tertiary-disabled-background-color: civic-color-neutral(20) !default;
 $civic-button-dark-tertiary-disabled-border-color: civic-color('translucent') !default;
 $civic-button-dark-tertiary-disabled-outline-color: none !default;
+$civic-button-dark-tertiary-dismiss-color: civic-color('accent') !default;
 
-//
-// Filter chip.
-//
-$civic-filter-chip-light-color: civic-color-neutral(80) !default;
-$civic-filter-chip-light-border-color: civic-color-neutral(20) !default;
-$civic-filter-chip-light-background-color: civic-color('neutral') !default;
-$civic-filter-chip-light-hover-color: civic-color-neutral(80) !default;
-$civic-filter-chip-light-hover-border-color: civic-color-neutral(80) !default;
-$civic-filter-chip-light-hover-background-color: civic-color-neutral(5) !default;
-$civic-filter-chip-light-active-color: civic-color('neutral') !default;
-$civic-filter-chip-light-active-border-color: civic-color('primary') !default;
-$civic-filter-chip-light-active-background-color: civic-color('primary') !default;
-$civic-filter-chip-dark-color: civic-color-neutral(5) !default;
-$civic-filter-chip-dark-border-color: civic-color-neutral(40) !default;
-$civic-filter-chip-dark-background-color: civic-color-shade-dark(40) !default;
-$civic-filter-chip-dark-hover-color: civic-color-neutral(5) !default;
-$civic-filter-chip-dark-hover-border-color: civic-color-neutral(40) !default;
-$civic-filter-chip-dark-hover-background-color: civic-color-shade-dark(40) !default;
-$civic-filter-chip-dark-active-color: civic-color('accent') !default;
-$civic-filter-chip-dark-active-background-color: civic-color-shade-dark(60) !default;
-$civic-filter-chip-dark-active-border-color: civic-color('accent') !default;
-
-//
-// Filter chip button.
-//
-$civic-filter-chip-button-selected-icon: url("data:image/svg+xml;utf8,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.4099 11.9999L17.7099 7.70994C17.8982 7.52164 18.004 7.26624 18.004 6.99994C18.004 6.73364 17.8982 6.47825 17.7099 6.28994C17.5216 6.10164 17.2662 5.99585 16.9999 5.99585C16.7336 5.99585 16.4782 6.10164 16.2899 6.28994L11.9999 10.5899L7.70994 6.28994C7.52164 6.10164 7.26624 5.99585 6.99994 5.99585C6.73364 5.99585 6.47824 6.10164 6.28994 6.28994C6.10164 6.47825 5.99585 6.73364 5.99585 6.99994C5.99585 7.26624 6.10164 7.52164 6.28994 7.70994L10.5899 11.9999L6.28994 16.2899C6.19621 16.3829 6.12182 16.4935 6.07105 16.6154C6.02028 16.7372 5.99414 16.8679 5.99414 16.9999C5.99414 17.132 6.02028 17.2627 6.07105 17.3845C6.12182 17.5064 6.19621 17.617 6.28994 17.7099C6.3829 17.8037 6.4935 17.8781 6.61536 17.9288C6.73722 17.9796 6.86793 18.0057 6.99994 18.0057C7.13195 18.0057 7.26266 17.9796 7.38452 17.9288C7.50638 17.8781 7.61698 17.8037 7.70994 17.7099L11.9999 13.4099L16.2899 17.7099C16.3829 17.8037 16.4935 17.8781 16.6154 17.9288C16.7372 17.9796 16.8679 18.0057 16.9999 18.0057C17.132 18.0057 17.2627 17.9796 17.3845 17.9288C17.5064 17.8781 17.617 17.8037 17.7099 17.7099C17.8037 17.617 17.8781 17.5064 17.9288 17.3845C17.9796 17.2627 18.0057 17.132 18.0057 16.9999C18.0057 16.8679 17.9796 16.7372 17.9288 16.6154C17.8781 16.4935 17.8037 16.3829 17.7099 16.2899L13.4099 11.9999Z' /%3E%3C/svg%3E") !default;
-$civic-filter-chip-button-light-color: $civic-filter-chip-light-color !default;
-$civic-filter-chip-button-light-border-color: $civic-filter-chip-light-border-color !default;
-$civic-filter-chip-button-light-background-color: $civic-filter-chip-light-background-color !default;
-$civic-filter-chip-button-light-hover-color: $civic-filter-chip-light-hover-color !default;
-$civic-filter-chip-button-light-hover-border-color: $civic-filter-chip-light-hover-border-color !default;
-$civic-filter-chip-button-light-hover-background-color: $civic-filter-chip-light-hover-background-color !default;
-$civic-filter-chip-button-light-selected-color: $civic-filter-chip-light-color !default;
-$civic-filter-chip-button-light-selected-border-color: $civic-filter-chip-light-border-color !default;
-$civic-filter-chip-button-light-selected-background-color: $civic-filter-chip-light-background-color !default;
-$civic-filter-chip-button-light-hover-selected-color: $civic-filter-chip-light-hover-color !default;
-$civic-filter-chip-button-light-hover-selected-border-color: $civic-filter-chip-light-hover-border-color !default;
-$civic-filter-chip-button-light-hover-selected-background-color: $civic-filter-chip-light-hover-background-color !default;
-$civic-filter-chip-button-light-selected-icon-hover-color: civic-color('primary') !default;
-$civic-filter-chip-button-light-selected-icon-color: civic-color('primary') !default;
-$civic-filter-chip-button-dark-color: $civic-filter-chip-dark-color !default;
-$civic-filter-chip-button-dark-border-color: $civic-filter-chip-dark-border-color !default;
-$civic-filter-chip-button-dark-background-color: $civic-filter-chip-dark-background-color !default;
-$civic-filter-chip-button-dark-hover-color: $civic-filter-chip-dark-hover-color !default;
-$civic-filter-chip-button-dark-hover-border-color: $civic-filter-chip-dark-hover-border-color !default;
-$civic-filter-chip-button-dark-hover-background-color: $civic-filter-chip-dark-hover-background-color !default;
-$civic-filter-chip-button-dark-selected-color: civic-color-shade-dark(45) !default;
-$civic-filter-chip-button-dark-selected-border-color: civic-color('primary') !default;
-$civic-filter-chip-button-dark-selected-background-color: civic-color('accent') !default;
-$civic-filter-chip-button-dark-hover-selected-color: $civic-filter-chip-dark-hover-color !default;
-$civic-filter-chip-button-dark-hover-selected-border-color: $civic-filter-chip-dark-hover-border-color !default;
-$civic-filter-chip-button-dark-hover-selected-background-color: $civic-filter-chip-dark-hover-background-color !default;
-$civic-filter-chip-button-dark-selected-icon-hover-color: civic-color('neutral') !default;
-$civic-filter-chip-button-dark-selected-icon-color: civic-color-shade-dark(45) !default;
+// Chip button.
+$civic-button-light-chip-color: civic-color-neutral(80) !default;
+$civic-button-light-chip-background-color: civic-color('neutral') !default;
+$civic-button-light-chip-border-color: civic-color-neutral(20) !default;
+$civic-button-light-chip-outline-color: civic-color('translucent') !default;
+$civic-button-light-chip-hover-color: civic-color-neutral(80) !default;
+$civic-button-light-chip-hover-background-color: civic-color-neutral(5) !default;
+$civic-button-light-chip-hover-border-color: civic-color-neutral(80) !default;
+$civic-button-light-chip-hover-outline-color: $civic-button-light-chip-outline-color !default;
+$civic-button-light-chip-visited-color: $civic-button-light-chip-color !default;
+$civic-button-light-chip-visited-background-color: $civic-button-light-chip-background-color !default;
+$civic-button-light-chip-visited-border-color: $civic-button-light-chip-border-color !default;
+$civic-button-light-chip-visited-outline-color: $civic-button-light-chip-outline-color !default;
+$civic-button-light-chip-active-color: $civic-button-light-chip-hover-color !default;
+$civic-button-light-chip-active-background-color: $civic-button-light-chip-hover-background-color !default;
+$civic-button-light-chip-active-border-color: $civic-button-light-chip-hover-border-color !default;
+$civic-button-light-chip-active-outline-color: civic-color('translucent') !default;
+$civic-button-light-chip-focus-color: $civic-button-light-chip-active-color !default;
+$civic-button-light-chip-focus-background-color: $civic-button-light-chip-active-background-color !default;
+$civic-button-light-chip-focus-border-color: $civic-button-light-chip-active-border-color !default;
+$civic-button-light-chip-focus-outline-color: civic-color('outline') !default;
+$civic-button-light-chip-disabled-color: civic-color-neutral(60) !default;
+$civic-button-light-chip-disabled-background-color: civic-color-neutral(20) !default;
+$civic-button-light-chip-disabled-border-color: $civic-button-light-chip-disabled-background-color !default;
+$civic-button-light-chip-disabled-outline-color: none !default;
+$civic-button-light-chip-dismiss-color: civic-color('primary') !default;
+$civic-button-dark-chip-color: civic-color-neutral(5) !default;
+$civic-button-dark-chip-background-color: civic-color-shade-dark(40) !default;
+$civic-button-dark-chip-border-color: civic-color-neutral(40) !default;
+$civic-button-dark-chip-outline-color: civic-color('translucent') !default;
+$civic-button-dark-chip-hover-color: $civic-button-dark-chip-color !default;
+$civic-button-dark-chip-hover-background-color: $civic-button-dark-chip-background-color !default;
+$civic-button-dark-chip-hover-border-color: $civic-button-dark-chip-border-color !default;
+$civic-button-dark-chip-hover-outline-color: $civic-button-dark-chip-outline-color !default;
+$civic-button-dark-chip-visited-color: $civic-button-dark-chip-color !default;
+$civic-button-dark-chip-visited-background-color: $civic-button-dark-chip-background-color !default;
+$civic-button-dark-chip-visited-border-color: $civic-button-dark-chip-border-color !default;
+$civic-button-dark-chip-visited-outline-color: $civic-button-dark-chip-outline-color !default;
+$civic-button-dark-chip-active-color: civic-color('accent') !default;
+$civic-button-dark-chip-active-background-color: civic-color-shade-dark(60) !default;
+$civic-button-dark-chip-active-border-color: civic-color('accent') !default;
+$civic-button-dark-chip-active-outline-color: civic-color('outline') !default;
+$civic-button-dark-chip-focus-color: none !default;
+$civic-button-dark-chip-focus-background-color: none !default;
+$civic-button-dark-chip-focus-border-color: none !default;
+$civic-button-dark-chip-focus-outline-color: civic-color('outline') !default;
+$civic-button-dark-chip-disabled-color: civic-color-neutral(60) !default;
+$civic-button-dark-chip-disabled-background-color: civic-color-neutral(20) !default;
+$civic-button-dark-chip-disabled-border-color: civic-color('translucent') !default;
+$civic-button-dark-chip-disabled-outline-color: none !default;
+$civic-button-dark-chip-dismiss-color: civic-color('accent') !default;
 
 //
 // Iframe.
@@ -319,11 +322,11 @@ $civic-table-light-border-color: civic-color-neutral(20) !default;
 $civic-table-light-background-color: civic-color('neutral') !default;
 $civic-table-light-row-odd-color: civic-color-neutral(70) !default;
 $civic-table-light-row-odd-link-color: civic-color('primary') !default;
-$civic-table-light-row-odd-link-hover-color:  civic-color('neutral') !default;
+$civic-table-light-row-odd-link-hover-color: civic-color('neutral') !default;
 $civic-table-light-row-odd-background-color: civic-color('neutral') !default;
 $civic-table-light-row-even-color: civic-color-neutral(70) !default;
 $civic-table-light-row-even-link-color: civic-color('primary') !default;
-$civic-table-light-row-even-link-hover-color:  civic-color('neutral') !default;
+$civic-table-light-row-even-link-hover-color: civic-color('neutral') !default;
 $civic-table-light-row-even-background-color: civic-color-neutral(5) !default;
 $civic-table-light-caption-color: civic-color-neutral(60) !default;
 $civic-table-dark-color: civic-color('neutral') !default;
@@ -480,6 +483,8 @@ $civic-attachment-dark-wrapper-background-color: civic-color-shade-dark(45) !def
 //
 // Back to top.
 //
+$civic-back-to-top-space-bottom: civic-space(8) !default;
+$civic-back-to-top-space-right: civic-space(1) !default;
 $civic-back-to-top-light-background-color: civic-color('secondary') !default;
 $civic-back-to-top-light-color: civic-color('neutral') !default;
 $civic-back-to-top-dark-background-color: civic-color('accent') !default;
@@ -679,23 +684,6 @@ $civic-figure-caption-light-color: civic-color-neutral(60) !default;
 $civic-figure-caption-icon-light-color: $civic-figure-caption-light-color !default;
 $civic-figure-caption-dark-color: civic-color-shade-dark(90) !default;
 $civic-figure-caption-icon-dark-color: $civic-figure-caption-dark-color !default;
-
-//
-// Icon link.
-//
-$civic-icon-link-border-radius: $civic-border-radius !default;
-$civic-icon-link-light-color: civic-color('primary') !default;
-$civic-icon-link-light-hover-color: civic-color('secondary') !default;
-$civic-icon-link-light-focus-color: civic-color('primary') !default;
-$civic-icon-link-light-active-color: civic-color-shade-dark(30) !default;
-$civic-icon-link-light-visited-color: civic-color('primary') !default;
-$civic-icon-link-light-disabled-color: civic-color-neutral(40) !default;
-$civic-icon-link-dark-color: civic-color('neutral') !default;
-$civic-icon-link-dark-hover-color: civic-color('accent') !default;
-$civic-icon-link-dark-focus-color: civic-color('neutral') !default;
-$civic-icon-link-dark-active-color: civic-color-shade-dark(90) !default;
-$civic-icon-link-dark-visited-color: civic-color('neutral') !default;
-$civic-icon-link-dark-disabled-color: civic-color-neutral(40) !default;
 
 //
 // Link list.
@@ -1314,6 +1302,21 @@ $civic-slide-light-summary-color: civic-color-neutral(5) !default;
 $civic-slide-dark-background-color: civic-color('neutral') !default;
 $civic-slide-dark-title-color: civic-color-neutral(80) !default;
 $civic-slide-dark-summary-color: civic-color-neutral(60) !default;
+
+//
+// Social links.
+//
+
+$civic-social-links-light-color: civic-color('primary') !default;
+$civic-social-links-light-hover-color: civic-color-shade-dark(60) !default;
+$civic-social-links-light-visited-color: $civic-social-links-light-color;
+$civic-social-links-light-active-color: $civic-social-links-light-hover-color;
+$civic-social-links-light-focus-color: $civic-social-links-light-hover-color;
+$civic-social-links-dark-color: civic-color('neutral') !default;
+$civic-social-links-dark-hover-color: civic-color('accent') !default;
+$civic-social-links-dark-visited-color: $civic-social-links-dark-color;
+$civic-social-links-dark-active-color: $civic-social-links-dark-hover-color;
+$civic-social-links-dark-focus-color: $civic-social-links-dark-hover-color;
 
 //
 // Tabs.

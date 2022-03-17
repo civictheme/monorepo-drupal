@@ -25,10 +25,12 @@
             {% for item in items %}
               {% if item.text is not empty %}
                 <div class="civic-basic-filter__list--row">
-                  {% include '@atoms/filter-chip/filter-chip.twig' with {
+                  {% include '@atoms/button/button.twig' with {
                     theme: theme,
+                    type: 'chip',
+                    kind: is_multiple ? 'checkbox': 'radio',
+                    size: 'small',
                     text: item.text,
-                    is_multiple: is_multiple,
                     name: is_multiple ? 'basic-filter-' ~ loop.index : 'basic-filter',
                     id: 'chip-' ~ loop.index,
                   } only %}
