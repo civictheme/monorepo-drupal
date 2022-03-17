@@ -49,6 +49,7 @@
 
   #{$root}__summary {
     display: flex;
+    align-items: center;
 
     @include civic-breakpoint(m) {
       position: relative;
