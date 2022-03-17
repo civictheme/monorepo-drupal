@@ -12,6 +12,7 @@ THEME_DIR="docroot/themes/contrib/civic"
 # Config file patterns whose config may change.
 DIFF_EXCLUDE_PATTERNS=(
   block.block.civic_footer_menu_*
+  block.block.civic_footer_social_links*
   block.block.civic_mobile_navigation*
 )
 

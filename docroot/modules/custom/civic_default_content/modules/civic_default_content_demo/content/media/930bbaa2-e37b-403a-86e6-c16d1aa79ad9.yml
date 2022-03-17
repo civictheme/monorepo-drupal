@@ -1,11 +1,11 @@
 _meta:
   version: '1.0'
   entity_type: media
-  uuid: 2cf05e2f-5d05-4e88-ae27-7248a11978c4
-  bundle: civic_document
+  uuid: 930bbaa2-e37b-403a-86e6-c16d1aa79ad9
+  bundle: civic_icon
   default_langcode: en
   depends:
-    7dea2844-77b7-4f1a-bb77-5d61c9d0be28: file
+    bff45f89-9d22-4558-ae6e-81570c708bb6: file
 default:
   revision_user:
     -
@@ -18,10 +18,10 @@ default:
       target_id: 1
   name:
     -
-      value: 'Demo Lorem Ipsum'
+      value: 'Twitter Icon'
   created:
     -
-      value: 1631856401
+      value: 1647509771
   revision_translation_affected:
     -
       value: true
@@ -30,8 +30,8 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
-  field_c_m_document:
+  field_c_m_icon:
     -
-      entity: 7dea2844-77b7-4f1a-bb77-5d61c9d0be28
+      entity: bff45f89-9d22-4558-ae6e-81570c708bb6
       display: true
       description: ''

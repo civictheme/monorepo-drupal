@@ -4,9 +4,6 @@ _meta:
   uuid: c0e41832-051b-4570-ab91-8b47c1c8d75d
   bundle: civic_page
   default_langcode: en
-  depends:
-    7f39379f-7435-4a1a-905c-88a62d2dd174: media
-    9851aa8e-767b-406d-993f-c4c47b369285: media
 default:
   revision_uid:
     -
@@ -90,9 +87,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 7f39379f-7435-4a1a-905c-88a62d2dd174
                   field_c_p_summary:
                     -
                       value: 'Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur aliquet quam id dui posuere blandit.'
@@ -120,9 +114,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 9851aa8e-767b-406d-993f-c4c47b369285
                   field_c_p_summary:
                     -
                       value: 'Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur aliquet quam id dui posuere blandit.'

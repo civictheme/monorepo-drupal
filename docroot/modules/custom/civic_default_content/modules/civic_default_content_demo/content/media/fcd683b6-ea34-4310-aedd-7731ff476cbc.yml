@@ -7,6 +7,9 @@ _meta:
   depends:
     587355c9-c76b-459d-adf8-8829c2fe4181: file
 default:
+  revision_user:
+    -
+      target_id: 1
   status:
     -
       value: true
@@ -15,7 +18,7 @@ default:
       target_id: 1
   name:
     -
-      value: Download-Icon.svg
+      value: 'Download Icon'
   created:
     -
       value: 1631673403
@@ -30,5 +33,5 @@ default:
   field_c_m_icon:
     -
       entity: 587355c9-c76b-459d-adf8-8829c2fe4181
-      display: false
+      display: true
       description: ''

@@ -24,7 +24,6 @@ require_once 'paragraph--civic_quick_links.inc';
 require_once 'paragraph--civic_search.inc';
 require_once 'paragraph--civic_service_card.inc';
 require_once 'paragraph--civic_slider.inc';
-require_once 'paragraph--civic_social_icon.inc';
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
@@ -155,9 +154,12 @@ function _civic_preprocess_paragraph_card__icon(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   if ($paragraph->hasField('field_c_p_icon') && !$paragraph->get('field_c_p_icon')->isEmpty()) {
-    $media = $paragraph->get('field_c_p_icon')->first()->get('entity')->getTarget()->getValue();
-    if ($image = _civic_media_image($media)) {
-      $variables['image'] = $image;
+    $target = $paragraph->get('field_c_p_icon')->first()->get('entity')->getTarget();
+    if ($target) {
+      $media = $target->getValue();
+      if ($image = _civic_media_image($media)) {
+        $variables['image'] = $image;
+      }
     }
   }
 }
@@ -169,8 +171,11 @@ function _civic_preprocess_paragraph_card__image(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   if ($paragraph->hasField('field_c_p_image') && !$paragraph->get('field_c_p_image')->isEmpty()) {
-    $media = $paragraph->get('field_c_p_image')->first()->get('entity')->getTarget()->getValue();
-    $variables['image'] = _civic_media_image($media);
+    $target = $paragraph->get('field_c_p_image')->first()->get('entity')->getTarget();
+    if ($target) {
+      $media = $target->getValue();
+      $variables['image'] = _civic_media_image($media);
+    }
   }
 }
 

@@ -1,7 +1,7 @@
-import {
-  boolean, radios, text,
-} from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicSocialLinks from './social-links.twig';
+import { demoIcon } from '../../00-base/base.stories';
+import CivicIcon from '../../01-atoms/icon/icon.twig';
 
 export default {
   title: 'Organisms/Social Links',
@@ -13,24 +13,31 @@ export default {
 export const SocialLinks = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
-  const links = [
+  const items = [
     {
       symbol: 'brands_facebook',
-      size: 'regular',
-      url: 'www.facebook.com',
-      text: 'Facebook',
+      url: 'https://www.facebook.com',
+      title: 'Facebook',
     },
     {
       symbol: 'brands_twitter',
-      size: 'regular',
-      url: 'www.facebook.com',
-      text: 'Twitter',
+      url: 'https://www.facebook.com',
+      title: 'Twitter',
     },
     {
       symbol: 'brands_linkedin',
-      size: 'regular',
-      url: 'www.facebook.com',
-      text: 'LinkedIn',
+      url: 'https://www.facebook.com',
+      title: 'LinkedIn',
+    },
+    {
+      url: 'https://www.dropbox.com',
+      text: `<img class="civic-button__icon" width=24 height=24 src="${demoIcon()}"/>`,
+      title: 'Icon with inline image',
+    },
+    {
+      url: 'https://www.youtube.com',
+      text: CivicIcon({ symbol: 'brands_youtube', size: 'regular' }),
+      title: 'Icon with inline SVG',
     },
   ];
 
@@ -44,7 +51,7 @@ export const SocialLinks = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    links: boolean('With links', true, generalKnobTab) ? links : null,
+    items: boolean('With items', true, generalKnobTab) ? items : null,
     with_border: boolean('With border', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
