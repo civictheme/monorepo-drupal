@@ -1,0 +1,37 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 930bbaa2-e37b-403a-86e6-c16d1aa79ad9
+  bundle: civic_icon
+  default_langcode: en
+  depends:
+    bff45f89-9d22-4558-ae6e-81570c708bb6: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Twitter Icon'
+  created:
+    -
+      value: 1647509771
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_icon:
+    -
+      entity: bff45f89-9d22-4558-ae6e-81570c708bb6
+      display: true
+      description: ''

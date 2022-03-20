@@ -5,7 +5,6 @@ _meta:
   bundle: civic_page
   default_langcode: en
   depends:
-    86c9cd2b-225e-485b-9c6a-2963cd993b7b: media
     4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
@@ -91,9 +90,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_image:
-                    -
-                      entity: 86c9cd2b-225e-485b-9c6a-2963cd993b7b
                   field_c_p_summary:
                     -
                       value: 'Nulla porttitor accumsan tincidunt. Cras ultricies ligula sed magna dictum porta. Nulla quis lorem ut libero malesuada feugiat. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.'

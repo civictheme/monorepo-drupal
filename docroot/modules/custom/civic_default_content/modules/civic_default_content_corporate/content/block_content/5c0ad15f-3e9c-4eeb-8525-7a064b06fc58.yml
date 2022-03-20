@@ -2,7 +2,7 @@ _meta:
   version: '1.0'
   entity_type: block_content
   uuid: 5c0ad15f-3e9c-4eeb-8525-7a064b06fc58
-  bundle: civic_social_icons
+  bundle: civic_social_links
   default_langcode: en
   depends:
     9dd16162-6e1b-43f7-821e-003f0711b0a9: media
@@ -14,7 +14,7 @@ default:
       value: true
   info:
     -
-      value: 'Social icons'
+      value: 'Social links'
   reusable:
     -
       value: true

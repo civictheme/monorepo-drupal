@@ -7,6 +7,9 @@ _meta:
   depends:
     7dea2844-77b7-4f1a-bb77-5d61c9d0be28: file
 default:
+  revision_user:
+    -
+      target_id: 1
   status:
     -
       value: true
@@ -15,7 +18,7 @@ default:
       target_id: 1
   name:
     -
-      value: lorem-ipsum.pdf
+      value: 'Demo Lorem Ipsum'
   created:
     -
       value: 1631856401

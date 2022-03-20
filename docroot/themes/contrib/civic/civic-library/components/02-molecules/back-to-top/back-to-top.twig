@@ -11,11 +11,12 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 
 <div class="civic-back-to-top {{ theme_class }}" data-component-name="back-to-top" data-scrollspy data-scrollspy-offset="400">
-   {% include '@molecules/icon-link/icon-link.twig' with {
+  {% include '@atoms/button/button.twig' with {
     theme: theme,
-    symbol: 'arrows_uparrow_1',
+    kind: 'link',
+    type: 'primary',
+    icon: 'arrows_uparrow_1',
     url: '#top',
-    with_border: true,
-    text:'Return focus to top of page',
+    title:'Return focus to top of page',
   } only %}
 </div>

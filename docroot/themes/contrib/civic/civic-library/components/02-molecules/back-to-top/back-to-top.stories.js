@@ -2,7 +2,7 @@ import { radios } from '@storybook/addon-knobs';
 import CivicBackToTop from './back-to-top.twig';
 
 export default {
-  title: 'Molecules',
+  title: 'Molecules/Back To Top',
   parameters: {
     layout: 'centered',
   },

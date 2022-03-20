@@ -80,12 +80,13 @@ Overrides for generation of child links.
 #}
 {% macro menu_links_below(items, menu_level, modifier_class, parent_item) %}
 
-  {% include '@molecules/icon-link/icon-link.twig' with {
-    symbol: 'arrows_rightarrow_3',
+  {% include '@atoms/button/button.twig' with {
+    theme: theme,
+    kind: 'link',
+    icon: 'arrows_rightarrow_3',
     size: 'regular',
     modifier_class: 'civic-mobile-navigation__open-subsection-trigger',
-    attributes: 'data-flyout-open-trigger role="button"',
-    with_border: false,
+    attributes: 'data-flyout-open-trigger',
   } only %}
 
   <div data-flyout data-flyout-direction="right">
@@ -93,11 +94,14 @@ Overrides for generation of child links.
       {% include '@organisms/mobile-navigation/mobile-navigation-close.twig' %}
 
       <div class="civic-mobile-navigation__close-trigger">
-        {% include '@molecules/icon-link/icon-link.twig' with {
-          symbol: 'arrows_leftarrow_1',
-          attributes: 'data-flyout-close-trigger role="button"',
-          with_border: false,
-          content: parent_item.title,
+        {% include '@atoms/button/button.twig' with {
+          theme: theme,
+          kind: 'link',
+          icon: 'arrows_leftarrow_1',
+          icon_placement: 'before',
+          size: 'regular',
+          text: parent_item.title,
+          attributes: 'data-flyout-close-trigger',
         } only %}
       </div>
 

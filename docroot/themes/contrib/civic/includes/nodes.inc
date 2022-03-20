@@ -34,7 +34,7 @@ function _civic_preprocess_node__full(&$variables) {
   if (function_exists($type_callback)) {
     $type_callback($variables);
   }
-  _civic_attributes($variables);
+  civic_attributes_to_modifier_class($variables);
 }
 
 /**
@@ -48,7 +48,7 @@ function _civic_preprocess_node__default(&$variables) {
   if (function_exists($type_callback)) {
     $type_callback($variables);
   }
-  _civic_attributes($variables);
+  civic_attributes_to_modifier_class($variables);
 }
 
 /**

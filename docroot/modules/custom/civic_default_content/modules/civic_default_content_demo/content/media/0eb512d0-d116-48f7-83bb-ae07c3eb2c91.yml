@@ -7,6 +7,9 @@ _meta:
   depends:
     e9b4a5d5-ef8d-4cdb-bb87-834f46c7ca0f: file
 default:
+  revision_user:
+    -
+      target_id: 1
   status:
     -
       value: true
@@ -15,7 +18,7 @@ default:
       target_id: 1
   name:
     -
-      value: banner-background.png
+      value: 'Dark banner background image'
   created:
     -
       value: 1633976389
@@ -30,7 +33,7 @@ default:
   field_c_m_image:
     -
       entity: e9b4a5d5-ef8d-4cdb-bb87-834f46c7ca0f
-      alt: 'Civic banner'
+      alt: 'Dark banner background image'
       title: ''
       width: 1440
       height: 816

@@ -6,8 +6,8 @@
   $root: &;
 
   position: fixed;
-  right: civic-space(1);
-  bottom: civic-space(8);
+  right: $civic-back-to-top-space-right;
+  bottom: $civic-back-to-top-space-bottom;
 
   &[data-scrollspy='true'] {
     display: none;
@@ -17,37 +17,30 @@
     }
   }
 
-  .civic-icon-link {
-    &.civic-icon-link--with-border {
-      border-radius: rem(100px);
-    }
+  .civic-button {
+    border-radius: rem(100px);
+    padding: civic-space();
   }
 
   &.civic-theme-light {
-    .civic-icon-link {
+    .civic-button {
       background-color: $civic-back-to-top-light-background-color;
+      border-color: $civic-back-to-top-light-background-color;
 
       .civic-icon {
         fill: $civic-back-to-top-light-color;
       }
     }
-
-    .civic-icon-link--with-border {
-      border-color: $civic-back-to-top-light-background-color;
-    }
   }
 
   &.civic-theme-dark {
-    .civic-icon-link {
+    .civic-button {
       background-color: $civic-back-to-top-dark-background-color;
+      border-color: $civic-back-to-top-dark-background-color;
 
       .civic-icon {
         fill: $civic-back-to-top-dark-color;
       }
-    }
-
-    .civic-icon-link--with-border {
-      border-color: $civic-back-to-top-dark-background-color;
     }
   }
 }

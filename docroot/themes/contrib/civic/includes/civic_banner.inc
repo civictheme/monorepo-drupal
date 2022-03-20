@@ -26,7 +26,7 @@ define('CIVIC_BANNER_DEFAULT_THEME', 'light');
 /**
  * Civic banner block theme suggestion.
  */
-function _civic_theme_suggestions_civic_banner(array &$suggestions, array $variables) {
+function _civic_theme_suggestions_block_alter__civic_banner(array &$suggestions, array $variables) {
   if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'block_content') {
     $entity = $variables['elements']['content']['#block_content'];
     if ($entity->bundle() == 'civic_banner') {
@@ -38,7 +38,7 @@ function _civic_theme_suggestions_civic_banner(array &$suggestions, array $varia
 /**
  * Preprocess for Programmatic Block - Banner block.
  */
-function _civic_preprocess_civic_banner(&$variables) {
+function _civic_preprocess_block__civic_banner(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {
     return;
   }

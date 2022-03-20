@@ -7,8 +7,6 @@ _meta:
   depends:
     2cf05e2f-5d05-4e88-ae27-7248a11978c4: media
     fcd683b6-ea34-4310-aedd-7731ff476cbc: media
-    7f39379f-7435-4a1a-905c-88a62d2dd174: media
-    9851aa8e-767b-406d-993f-c4c47b369285: media
     e07cdb41-1bd4-463f-9e7c-126302b24740: media
 default:
   revision_uid:
@@ -1061,9 +1059,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 7f39379f-7435-4a1a-905c-88a62d2dd174
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -1093,9 +1088,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 9851aa8e-767b-406d-993f-c4c47b369285
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -1165,9 +1157,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 7f39379f-7435-4a1a-905c-88a62d2dd174
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -1197,9 +1186,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 9851aa8e-767b-406d-993f-c4c47b369285
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -1266,9 +1252,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 7f39379f-7435-4a1a-905c-88a62d2dd174
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -1298,9 +1281,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 9851aa8e-767b-406d-993f-c4c47b369285
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -1367,9 +1347,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 7f39379f-7435-4a1a-905c-88a62d2dd174
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -1399,9 +1376,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 9851aa8e-767b-406d-993f-c4c47b369285
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -1471,9 +1445,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 7f39379f-7435-4a1a-905c-88a62d2dd174
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -1503,9 +1474,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 9851aa8e-767b-406d-993f-c4c47b369285
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -1572,9 +1540,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 7f39379f-7435-4a1a-905c-88a62d2dd174
                   field_c_p_link:
                     -
                       uri: 'http://example.com'
@@ -1604,9 +1569,6 @@ default:
                   revision_translation_affected:
                     -
                       value: true
-                  field_c_p_icon:
-                    -
-                      entity: 9851aa8e-767b-406d-993f-c4c47b369285
                   field_c_p_link:
                     -
                       uri: 'http://example.com'

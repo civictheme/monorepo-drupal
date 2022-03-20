@@ -18,7 +18,7 @@ default:
       target_id: 1
   name:
     -
-      value: Civic
+      value: Nature
   created:
     -
       value: 1633245335
@@ -36,7 +36,7 @@ default:
   field_c_m_image:
     -
       entity: 41c354ef-d5f3-4e68-9bdf-4085b47cdadf
-      alt: 'Civic demo is a demonstration site of Civic component library and theme.'
+      alt: Nature
       title: ''
       width: 752
       height: 480

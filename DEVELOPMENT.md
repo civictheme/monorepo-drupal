@@ -76,6 +76,10 @@ For development:
 
 ## Theme configuration export
 
+Use shortcut command
+
+    ahoy config-export
+
 Configuration is captured into Civic Drupal theme's `config/install` and
 `config/optional` with
 
@@ -98,12 +102,13 @@ installation of `civic_demo`. We do not capture configuration for `civic_demo`.
     # Example 1: export a single node with all dependencies
     drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content node 50
 
-    # Example 2: export all nodes, blocks and menu links.
+    # Example 2: export all terms, nodes and blocks for Demo content.
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content taxonomy_term
     drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content node
     drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content block_content
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content menu_link_content
 
-    # Example 3: export all nodes, blocks and menu links.
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content node
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content block_content
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content menu_link_content
+    # Example 3: export all terms, nodes, blocks and menu links for Corporate content.
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_corporate/content taxonomy_term
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_corporate/content node
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_corporate/content block_content
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_corporate/content menu_link_content

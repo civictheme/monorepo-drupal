@@ -3,6 +3,7 @@ import {
 } from '@storybook/addon-knobs';
 
 import CivicButton from './button.twig';
+import './button';
 
 export default {
   title: 'Atoms/Button',
@@ -22,22 +23,12 @@ export const Button = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    kind: radios(
-      'Kind', {
-        Button: 'button',
-        Link: 'link',
-        Reset: 'reset',
-        Submit: 'submit',
-        None: '',
-      },
-      'button',
-      generalKnobTab,
-    ),
     type: radios(
       'Type', {
         Primary: 'primary',
         Secondary: 'secondary',
         Tertiary: 'tertiary',
+        Chip: 'chip',
         None: '',
       },
       'primary',
@@ -45,21 +36,45 @@ export const Button = (knobTab) => {
     ),
     size: radios(
       'Size', {
+        'Extra Large': 'extra-large',
         Large: 'large',
         Regular: 'regular',
         Small: 'small',
+        'Extra Small': 'extra-small',
         None: '',
       },
       'regular',
       generalKnobTab,
     ),
-    text: text('Text', 'Button Text', generalKnobTab),
-    url: text('URL (applies to button kind "link")', 'http://example.com', generalKnobTab),
-    new_window: boolean('Open in a new window (applies to button kind "link")', false, generalKnobTab),
-    disabled: boolean('Disabled', false, generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
+    kind: radios(
+      'Kind', {
+        Button: 'button',
+        Link: 'link',
+        Reset: 'reset',
+        Submit: 'submit',
+        Checkbox: 'checkbox',
+        Radio: 'radio',
+        None: '',
+      },
+      'button',
+      generalKnobTab,
+    ),
   };
+
+  if (generalKnobs.kind === 'link') {
+    generalKnobs.url = text('URL', 'http://example.com', generalKnobTab);
+    generalKnobs.is_new_window = boolean('Open in a new window', false, generalKnobTab);
+  }
+
+  generalKnobs.text = text('Text', 'Button text', generalKnobTab);
+  generalKnobs.title = text('Title', 'Button Title', generalKnobTab);
+  generalKnobs.id = text('ID attribute', 'id123', generalKnobTab);
+  generalKnobs.name = text('Name attribute', 'mybutton', generalKnobTab);
+  generalKnobs.is_raw_text = boolean('Allow HTML in text', false, generalKnobTab);
+  generalKnobs.is_disabled = boolean('Disabled', false, generalKnobTab);
+  generalKnobs.is_dismissible = boolean('Dismissible', false, generalKnobTab);
+  generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
+  generalKnobs.attributes = text('Additional attributes', '', generalKnobTab);
 
   const iconKnobTab = 'Icon';
   const { icons } = ICONS;

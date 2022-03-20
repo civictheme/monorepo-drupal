@@ -7,6 +7,9 @@ _meta:
   depends:
     33ec0e62-3317-435d-b1cb-1e42e42e3260: file
 default:
+  revision_user:
+    -
+      target_id: 1
   status:
     -
       value: true
@@ -15,7 +18,7 @@ default:
       target_id: 1
   name:
     -
-      value: pexels-ricardo-esquivel-3041347_crop.jpg
+      value: 'Landscape with road going into distance with mountains'
   created:
     -
       value: 1637031388
@@ -30,7 +33,7 @@ default:
   field_c_m_image:
     -
       entity: 33ec0e62-3317-435d-b1cb-1e42e42e3260
-      alt: 'Landscape with road going into distance with mountains '
+      alt: 'Landscape with road going into distance with mountains'
       title: ''
       width: 4000
       height: 2250

@@ -12,8 +12,8 @@ use Drupal\Core\Url;
  * Implements template_preprocess_paragraph().
  */
 function civic_preprocess_paragraph__civic_promo(&$variables) {
-  _civic_preprocess_paragraph_theme($variables);
-  _civic_preprocess_paragraph_title($variables);
+  _civic_preprocess_paragraph__field__theme($variables);
+  _civic_preprocess_paragraph__field__title($variables);
 
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];

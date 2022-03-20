@@ -84,6 +84,7 @@ config_devel:
     - block.block.civic_footer_menu_3
     - block.block.civic_footer_menu_4
     - block.block.civic_footer_sitebranding
+    - block.block.civic_footer_social_links
     - block.block.civic_help
     - block.block.civic_messages
     - block.block.civic_mobile_navigation
@@ -97,7 +98,7 @@ config_devel:
     - block_content.type.civic_banner
     - block_content.type.civic_component_block
     - block_content.type.civic_mobile_navigation
-    - block_content.type.civic_social_icons
+    - block_content.type.civic_social_links
     - civic.settings
     - core.base_field_override.node.civic_alert.promote
     - core.base_field_override.node.civic_event.promote
@@ -106,7 +107,7 @@ config_devel:
     - core.entity_form_display.block_content.civic_banner.default
     - core.entity_form_display.block_content.civic_component_block.default
     - core.entity_form_display.block_content.civic_mobile_navigation.default
-    - core.entity_form_display.block_content.civic_social_icons.default
+    - core.entity_form_display.block_content.civic_social_links.default
     - core.entity_form_display.media.civic_audio.default
     - core.entity_form_display.media.civic_audio.media_library
     - core.entity_form_display.media.civic_document.default
@@ -154,7 +155,7 @@ config_devel:
     - core.entity_view_display.block_content.civic_banner.default
     - core.entity_view_display.block_content.civic_component_block.default
     - core.entity_view_display.block_content.civic_mobile_navigation.default
-    - core.entity_view_display.block_content.civic_social_icons.default
+    - core.entity_view_display.block_content.civic_social_links.default
     - core.entity_view_display.media.civic_audio.default
     - core.entity_view_display.media.civic_audio.media_library
     - core.entity_view_display.media.civic_document.default
@@ -230,7 +231,9 @@ config_devel:
     - field.field.block_content.civic_mobile_navigation.field_c_b_top_menu
     - field.field.block_content.civic_mobile_navigation.field_c_b_trigger_text
     - field.field.block_content.civic_mobile_navigation.field_c_b_trigger_theme
-    - field.field.block_content.civic_social_icons.field_c_b_social_icons
+    - field.field.block_content.civic_social_links.field_c_b_social_icons
+    - field.field.block_content.civic_social_links.field_c_b_theme
+    - field.field.block_content.civic_social_links.field_c_b_with_border
     - field.field.media.civic_audio.field_c_m_audio_file
     - field.field.media.civic_document.field_c_m_document
     - field.field.media.civic_icon.field_c_m_icon
@@ -426,6 +429,7 @@ config_devel:
     - field.storage.block_content.field_c_b_top_menu
     - field.storage.block_content.field_c_b_trigger_text
     - field.storage.block_content.field_c_b_trigger_theme
+    - field.storage.block_content.field_c_b_with_border
     - field.storage.media.field_c_m_audio_file
     - field.storage.media.field_c_m_caption
     - field.storage.media.field_c_m_document

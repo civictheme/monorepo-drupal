@@ -13,10 +13,12 @@
  */
 #}
 <div class="civic-basic-filter__list--row">
-  {% include '@atoms/filter-chip/filter-chip.twig' with {
+  {% include '@atoms/button/button.twig' with {
     theme: theme,
+    type: 'chip',
+    kind: is_multiple ? 'checkbox': 'radio',
     text: text,
-    is_multiple: is_multiple,
+    size: 'small',
     name: name,
     id: id,
     attributes: attributes

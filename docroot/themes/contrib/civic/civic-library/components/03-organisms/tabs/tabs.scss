@@ -21,7 +21,7 @@
       margin-bottom: -1px;
       display: block;
 
-      @include civic-link-decoration(false, false, false);
+      @include civic-link-decoration(false, false, false, false);
 
       padding: civic-space(1) civic-space(2);
       border-radius: $civic-tabs-link-border-radius $civic-tabs-link-border-radius 0 0;
