@@ -101,7 +101,7 @@ function civic_preprocess_media__civic_remote_video(&$variables) {
 }
 
 /**
- * Preprocess civic_video media links.
+ * Pre-process civic_video media links.
  */
 function _civic_preprocess_media__civic_video_links(&$variables) {
   if (empty($variables['media'])) {
@@ -150,7 +150,7 @@ function _civic_preprocess_media__civic_video_links(&$variables) {
 }
 
 /**
- * Preprocess civic_video media transcript.
+ * Pre-process civic_video media transcript.
  */
 function _civic_preprocess_media__civic_video_transcript(&$variables) {
   // Show transcript on the media landing page.

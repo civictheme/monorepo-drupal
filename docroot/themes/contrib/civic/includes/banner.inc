@@ -24,19 +24,7 @@ define('CIVIC_BANNER_TYPE_LARGE', 'large');
 define('CIVIC_BANNER_DEFAULT_THEME', 'light');
 
 /**
- * Civic banner block theme suggestion.
- */
-function _civic_theme_suggestions_block_alter__civic_banner(array &$suggestions, array $variables) {
-  if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'block_content') {
-    $entity = $variables['elements']['content']['#block_content'];
-    if ($entity->bundle() == 'civic_banner') {
-      $suggestions[] = 'block__' . $entity->bundle() . '__default';
-    }
-  }
-}
-
-/**
- * Preprocess for Programmatic Block - Banner block.
+ * Pre-process for Programmatic Block - Banner block.
  */
 function _civic_preprocess_block__civic_banner(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {
@@ -86,7 +74,7 @@ function _civic_preprocess_block__civic_banner(&$variables) {
 }
 
 /**
- * Preprocess banner title.
+ * Pre-process banner title.
  */
 function _civic_preprocess_civic_banner_title(&$variables) {
   // Banner title.
@@ -97,7 +85,7 @@ function _civic_preprocess_civic_banner_title(&$variables) {
 }
 
 /**
- * Preprocess banner breadcrumb.
+ * Pre-process banner breadcrumb.
  */
 function _civic_preprocess_civic_banner_breadcrumb(&$variables) {
   $is_front = \Drupal::service('path.matcher')->isFrontPage();
@@ -121,7 +109,7 @@ function _civic_preprocess_civic_banner_breadcrumb(&$variables) {
 }
 
 /**
- * Preprocess banner for all nodes.
+ * Pre-process banner for all nodes.
  */
 function _civic_preprocess_civic_banner_node(&$variables) {
   /** @var \Drupal\node\Entity\Node $node */

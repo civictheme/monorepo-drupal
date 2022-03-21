@@ -11,19 +11,7 @@
 define('CIVIC_SOCIAL_LINKS_DEFAULT_THEME', 'dark');
 
 /**
- * Alter block theme suggestions.
- */
-function _civic_theme_suggestions_block_alter__civic_social_links(array &$suggestions, array $variables) {
-  if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'block_content') {
-    $entity = $variables['elements']['content']['#block_content'];
-    if ($entity->bundle() == 'civic_social_links') {
-      $suggestions[] = 'block__' . $entity->bundle() . '__default';
-    }
-  }
-}
-
-/**
- * Preprocess for Social Links block.
+ * Pre-process for Social Links block.
  */
 function _civic_preprocess_block__civic_social_links(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {

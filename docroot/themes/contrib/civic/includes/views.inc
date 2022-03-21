@@ -6,6 +6,17 @@
  */
 
 /**
+ * Page pre-process for views.
+ */
+function _civic_preprocess_page__views(&$variables) {
+  $route_defaults = \Drupal::routeMatch()->getRouteObject()->getDefaults();
+  if (isset($route_defaults['view_id'])) {
+    // View pages should not be contained.
+    $variables['page']['content_contained'] = FALSE;
+  }
+}
+
+/**
  * Implements template_preprocess_views_mini_pager().
  */
 function civic_preprocess_views_mini_pager(&$variables) {
