@@ -132,7 +132,7 @@ function _civic_preprocess_paragraph__card__icon(&$variables) {
     $target = $paragraph->get('field_c_p_icon')->first()->get('entity')->getTarget();
     if ($target) {
       $media = $target->getValue();
-      if ($image = civic_media_image_variables($media)) {
+      if ($image = civic_media_image_process_variables($media)) {
         $variables['image'] = $image;
       }
     }
@@ -149,7 +149,7 @@ function _civic_preprocess_paragraph__card__image(&$variables) {
     $target = $paragraph->get('field_c_p_image')->first()->get('entity')->getTarget();
     if ($target) {
       $media = $target->getValue();
-      $variables['image'] = civic_media_image_variables($media);
+      $variables['image'] = civic_media_image_process_variables($media);
     }
   }
 }

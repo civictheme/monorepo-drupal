@@ -15,7 +15,7 @@ class CivicParseAttributesUnitTest extends CivicUnitTestBase {
    * @dataProvider dataProviderParseAttributes
    */
   public function testParse($string, $expected) {
-    $actual = _civic_parse_attributes($string);
+    $actual = civic_parse_attributes($string);
 
     $this->assertEquals($expected, $actual);
   }

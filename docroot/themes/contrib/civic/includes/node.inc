@@ -79,11 +79,12 @@ function _civic_preprocess_node__civic_alert__full(&$variables) {
  */
 function _civic_preprocess_page__node(&$variables) {
   /** @var \Drupal\node\Entity\Node $node */
-  $node = _civic_load_node_or_revision($variables);
+  $node = civic_load_node_or_revision($variables);
 
   if (!$node) {
     return;
   }
+
   // Layout determines whether a node is contained and what it's layout is.
   $variables['page']['content_contained'] = FALSE;
 

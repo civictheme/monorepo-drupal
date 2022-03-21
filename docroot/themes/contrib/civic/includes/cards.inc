@@ -111,7 +111,7 @@ function _civic_preprocess_node__thumbnail(&$variables) {
   $node = $variables['node'];
   if ($node->hasField('field_c_n_thumbnail') && !$node->get('field_c_n_thumbnail')->isEmpty()) {
     $media = $node->get('field_c_n_thumbnail')->first()->get('entity')->getTarget()->getValue();
-    $variables['image'] = civic_media_image_variables($media);
+    $variables['image'] = civic_media_image_process_variables($media);
   }
 }
 
