@@ -60,7 +60,7 @@ module.exports = {
       },
       // Load all assets files to be available for distributions and Storybook.
       {
-        test: /\.(jpe?g|png|svg|ico|woff|woff2|ttf|eot)$/,
+        test: /\.(jpe?g|png|svg|ico|woff|woff2|ttf|eot|webm|avi|mp4)$/,
         use: {
           loader: 'file-loader',
           options: {

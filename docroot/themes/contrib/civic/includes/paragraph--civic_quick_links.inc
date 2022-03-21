@@ -22,7 +22,7 @@ function civic_preprocess_paragraph__civic_quick_links(&$variables) {
         'url' => Url::fromUri($link['uri'])->toString(),
         'text' => $link['title'],
         'is_external' => $is_external,
-        'new_window' => $is_external,
+        'is_new_window' => $is_external,
       ];
     }
   }

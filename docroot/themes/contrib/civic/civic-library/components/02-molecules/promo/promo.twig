@@ -10,13 +10,13 @@
  * - link: [object] Link:
  *   - title [string] Link title.
  *   - url [string] Link URL.
- *   - new_window [boolean] Open link in the new window.
+ *   - is_new_window [boolean] Open link in the new window.
  * - modifier_class:[string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if title is not empty or content is not empty %}
   <div class="civic-promo {{ modifier_class }}">
@@ -42,7 +42,7 @@
                 size: 'large',
                 text: link.title,
                 url: link.url,
-                new_window: link.new_window,
+                is_new_window: link.is_new_window is defined ? link.is_new_window : false,
                 modifier_class: 'civic-promo__button',
                 icon: 'arrows_rightarrow_3',
               } only %}

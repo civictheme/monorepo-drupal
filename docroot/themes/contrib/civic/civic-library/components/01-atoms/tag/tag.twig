@@ -10,7 +10,7 @@
  * - icon: [string] Icon name.
  * - icon_placement: [string] Icon position: before, after.
  * - url: [string] Optional URL to convert to a link.
- * - new_window: [boolean] Open in a new window. Only if url is provided.
+ * - is_new_window: [boolean] Open in a new window. Only if url is provided.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -47,7 +47,7 @@
 {% if tag_text %}
   <div class="civic-tag {{ modifier_class }}" aria-label="{{ text }}">
     {% if url is not empty %}
-      <a class="civic-tag__link" href="{{ url }}" {% if text is not empty %}title="{{ text }}" aria-label="{{ text }}"{% endif%} {{ new_window ? 'target="_blank"' }}>
+      <a class="civic-tag__link" href="{{ url }}" {% if text is not empty %}title="{{ text }}" aria-label="{{ text }}"{% endif%} {{ is_new_window ? 'target="_blank"' }}>
     {% endif %}
         {{ tag_text }}
     {% if url is not empty %}

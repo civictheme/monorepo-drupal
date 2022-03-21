@@ -8,7 +8,7 @@
  * - links: [array] Links array:
  *   - text [string] Text.
  *   - url [string] URL.
- *   - new_window [boolean] Open link in a new window.
+ *   - is_new_window [boolean] Open link in a new window.
  *   - is_external [boolean] Link is external or not.
  *   - attributes [string] Additional attributes.
  * - is_inline: [boolean] Is inline or not.
@@ -39,8 +39,8 @@
                 theme: theme,
                 text: link.text,
                 url: link.url,
-                new_window: link.new_window ? link.new_window : false,
-                is_external: link.is_external ? link.is_external : false,
+                is_new_window: link.is_new_window is defined ? link.is_new_window : false,
+                is_external: link.is_external is defined ? link.is_external : false,
                 modifier_class: link.modifier_class ? link.modifier_class : false,
                 attributes: link.attributes ? link.attributes : false,
               } only %}

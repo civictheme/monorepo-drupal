@@ -327,7 +327,7 @@ function civic_preprocess_menu_local_tasks(&$variables) {
           'theme' => $theme,
           'text' => $link['#link']['title'],
           'url' => $link['#link']['url']->toString(),
-          'new_window' => FALSE,
+          'is_new_window' => FALSE,
           'is_external' => $link['#link']['url']->isExternal(),
           'modifier_class' => $link['#active'] ? 'selected' : '',
         ];

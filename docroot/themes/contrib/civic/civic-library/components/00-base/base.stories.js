@@ -66,7 +66,7 @@ export const randomLinks = (count, length, domain) => {
     links.push({
       text: `Link ${i + 1}${length ? ` ${randomString(getRandomInt(1, length))}` : ''}`,
       url: randomUrl(domain),
-      new_window: getRandomBool(),
+      is_new_window: getRandomBool(),
       is_external: getRandomBool(0.8),
     });
   }
@@ -86,6 +86,23 @@ export const randomTags = (count, rand) => {
 };
 
 export const demoImage = () => './assets/images/demo.png';
+
+export const demoVideos = () => [
+  {
+    url: './assets/videos/demo.webm',
+    type: 'video/webm',
+  },
+  {
+    url: './assets/videos/demo.mp4',
+    type: 'video/mp4',
+  },
+  {
+    url: './assets/videos/demo.avi',
+    type: 'video/avi',
+  },
+];
+
+export const demoVideoPoster = () => './assets/videos/demo_poster.png';
 
 export const demoIcon = () => './assets/icons/Brands/Dropbox.svg';
 
