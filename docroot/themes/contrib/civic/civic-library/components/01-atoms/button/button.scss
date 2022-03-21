@@ -376,6 +376,10 @@
     vertical-align: middle;
   }
 
+  input {
+    @include civic-visually-hidden();
+  }
+
   $map-per-type: map.get($map, $type);
 
   @each $theme, $type-kinds in $map-per-type {
@@ -444,10 +448,6 @@
     border-radius: civic-space(6);
 
     @include civic-link-decoration(false, false, false, false);
-
-    input {
-      @include civic-visually-hidden();
-    }
   }
 }
 

@@ -241,7 +241,6 @@ config_devel:
     - field.field.media.civic_image.field_c_m_image
     - field.field.media.civic_remote_video.field_c_m_oembed_video
     - field.field.media.civic_remote_video.field_c_m_share_link
-    - field.field.media.civic_remote_video.field_c_m_title
     - field.field.media.civic_remote_video.field_c_m_transcript
     - field.field.media.civic_remote_video.field_c_m_transcript_link
     - field.field.media.civic_video.field_c_m_share_link
@@ -437,7 +436,6 @@ config_devel:
     - field.storage.media.field_c_m_image
     - field.storage.media.field_c_m_oembed_video
     - field.storage.media.field_c_m_share_link
-    - field.storage.media.field_c_m_title
     - field.storage.media.field_c_m_transcript
     - field.storage.media.field_c_m_transcript_link
     - field.storage.media.field_c_m_video_file

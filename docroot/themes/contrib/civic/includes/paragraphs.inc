@@ -7,26 +7,6 @@
 
 use Drupal\paragraphs\Entity\Paragraph;
 
-require_once 'paragraph--civic_accordion.inc';
-require_once 'paragraph--civic_attachment.inc';
-require_once 'paragraph--civic_callout.inc';
-require_once 'paragraph--civic_card_container.inc';
-require_once 'paragraph--civic_card_event.inc';
-require_once 'paragraph--civic_card_navigation.inc';
-require_once 'paragraph--civic_card_promo.inc';
-require_once 'paragraph--civic_card_subject.inc';
-require_once 'paragraph--civic_card_task.inc';
-require_once 'paragraph--civic_content.inc';
-require_once 'paragraph--civic_iframe.inc';
-require_once 'paragraph--civic_listing.inc';
-require_once 'paragraph--civic_map.inc';
-require_once 'paragraph--civic_promo.inc';
-require_once 'paragraph--civic_publication_card.inc';
-require_once 'paragraph--civic_quick_links.inc';
-require_once 'paragraph--civic_search.inc';
-require_once 'paragraph--civic_service_card.inc';
-require_once 'paragraph--civic_slider.inc';
-
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
@@ -77,17 +57,10 @@ function _civic_preprocess_paragraph(&$variables) {
   _civic_preprocess_paragraph__field__background($variables);
   _civic_preprocess_paragraph__civic_card($variables);
 
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $type = $paragraph->getType();
-  $preprocessor_function = '_civic_preprocess_paragraph__' . $type;
-  if (function_exists($preprocessor_function)) {
-    $preprocessor_function($variables);
-  }
 }
 
 /**
- * Preprocess summary for Civic paragraphs.
+ * Pre-process summary for Civic paragraphs.
  */
 function _civic_preprocess_paragraph__field__summary(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -98,7 +71,7 @@ function _civic_preprocess_paragraph__field__summary(&$variables) {
 }
 
 /**
- * Preprocess title for Civic paragraphs.
+ * Pre-process title for Civic paragraphs.
  */
 function _civic_preprocess_paragraph__field__title(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -109,7 +82,7 @@ function _civic_preprocess_paragraph__field__title(&$variables) {
 }
 
 /**
- * Preprocess "with space" for Civic paragraphs.
+ * Pre-process "with space" for Civic paragraphs.
  */
 function _civic_preprocess_paragraph__field__space(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -121,7 +94,7 @@ function _civic_preprocess_paragraph__field__space(&$variables) {
 }
 
 /**
- * Preprocess "with background" for Civic paragraphs.
+ * Pre-process "with background" for Civic paragraphs.
  */
 function _civic_preprocess_paragraph__field__background(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -139,7 +112,7 @@ function _civic_preprocess_paragraph__field__background(&$variables) {
 }
 
 /**
- * Preprocess Theme fields for Civic paragraphs.
+ * Pre-process Theme fields for Civic paragraphs.
  */
 function _civic_preprocess_paragraph__field__theme(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -150,7 +123,7 @@ function _civic_preprocess_paragraph__field__theme(&$variables) {
 }
 
 /**
- * Preprocess icon for Civic cards.
+ * Pre-process icon for Civic cards.
  */
 function _civic_preprocess_paragraph__card__icon(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -159,7 +132,7 @@ function _civic_preprocess_paragraph__card__icon(&$variables) {
     $target = $paragraph->get('field_c_p_icon')->first()->get('entity')->getTarget();
     if ($target) {
       $media = $target->getValue();
-      if ($image = civic_media_image_variables($media)) {
+      if ($image = civic_media_image_process_variables($media)) {
         $variables['image'] = $image;
       }
     }
@@ -167,7 +140,7 @@ function _civic_preprocess_paragraph__card__icon(&$variables) {
 }
 
 /**
- * Preprocess Icon for Civic Paragraphs.
+ * Pre-process Icon for Civic Paragraphs.
  */
 function _civic_preprocess_paragraph__card__image(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -176,7 +149,7 @@ function _civic_preprocess_paragraph__card__image(&$variables) {
     $target = $paragraph->get('field_c_p_image')->first()->get('entity')->getTarget();
     if ($target) {
       $media = $target->getValue();
-      $variables['image'] = civic_media_image_variables($media);
+      $variables['image'] = civic_media_image_process_variables($media);
     }
   }
 }

@@ -2,6 +2,7 @@
 Feature: Tests the Listing paragraph
 
   Ensure that Listing paragraph exists and has the expected fields.
+
   @api
   Scenario: Paragraph type appears in the paragraph types page
     Given I am logged in as a user with the "Administrator" role

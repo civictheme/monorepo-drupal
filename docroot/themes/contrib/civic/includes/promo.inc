@@ -22,7 +22,7 @@ function civic_preprocess_paragraph__civic_promo(&$variables) {
     $variables['link'] = [
       'title' => $link['title'] ?? '',
       'url' => Url::fromUri($link['uri'])->toString(),
-      'new_window' => UrlHelper::isExternal($link['uri']),
+      'is_new_window' => UrlHelper::isExternal($link['uri']),
     ];
   }
   if ($paragraph->hasField('field_c_p_summary') && !$paragraph->get('field_c_p_title')->isEmpty()) {

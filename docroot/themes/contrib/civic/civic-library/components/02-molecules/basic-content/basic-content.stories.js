@@ -4,8 +4,12 @@ import CivicBasicContent from './basic-content.twig';
 import CivicLink from '../../01-atoms/link/link.twig';
 import CivicTable from '../../01-atoms/table/table.twig';
 import CivicFigure from '../figure/figure.twig';
-import CivicVideo from '../video/video.twig';
-import { demoImage } from '../../00-base/base.stories';
+import CivicVideoPlayer from '../video-player/video-player.twig';
+import {
+  demoImage,
+  demoVideoPoster,
+  demoVideos,
+} from '../../00-base/base.stories';
 
 export default {
   title: 'Molecules/Content/Basic Content',
@@ -82,10 +86,11 @@ export const BasicContent = (knobTab) => {
     caption: 'Commodo anim sint minim.',
   });
 
-  // Video.
-  html += CivicVideo({
+  // Video Player.
+  html += CivicVideoPlayer({
     theme,
-    src: 'https://www.youtube.com/embed/C0DPdy98e4c',
+    sources: demoVideos(),
+    poster: demoVideoPoster(),
   });
 
   // Table.

@@ -23,7 +23,7 @@ export const Promo = () => {
     link: {
       text: text('Link text', 'Sign up', generalKnobTab),
       url: text('Link URL', 'https://example.com', generalKnobTab),
-      new_window: boolean('Link opens in new window', true, generalKnobTab),
+      is_new_window: boolean('Link opens in new window', true, generalKnobTab),
       is_external: boolean('Link is external', true, generalKnobTab),
     },
   };

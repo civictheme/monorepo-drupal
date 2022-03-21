@@ -8,7 +8,7 @@
  * - links: [array] Links array:
  *   - title [string] Title.
  *   - url [string] URL.
- *   - new_window [boolean] Open link in a new window.
+ *   - is_new_window [boolean] Open link in a new window.
  *   - is_external [boolean] Link is external or not.
  * - title: [string] The text of card title.
  * - modifier_class: [string] Additional classes.
@@ -46,8 +46,8 @@
                   theme: theme,
                   text: link.text,
                   url: link.url,
-                  new_window: link.new_window,
-                  is_external: link.is_external
+                  is_new_window: link.is_new_window is defined ? link.is_new_window : false,
+                  is_external: link.is_external is defined ? link.is_external : false,
                 } only %}
               </li>
             {% endif %}

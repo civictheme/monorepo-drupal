@@ -29,7 +29,7 @@ export const Link = (knobTab) => {
     context: text('Link context', 'Link context', generalKnobTab),
     url: text('URL', randomUrl(), generalKnobTab),
     is_external: boolean('Is external', false, generalKnobTab),
-    new_window: boolean('Open in a new window', false, generalKnobTab),
+    is_new_window: boolean('Open in a new window', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };

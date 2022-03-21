@@ -191,7 +191,7 @@ function _civic_form_alter__modify_element_callbacks(&$element) {
 }
 
 /**
- * Preprocess form elements used in civic large and basic filters.
+ * Pre-process form elements used in civic large and basic filters.
  */
 function _civic_preprocess_civic_filter_form_element_alter(&$variables) {
   $element = $variables['element'];
@@ -316,7 +316,7 @@ function civic_preprocess_radios(&$variables) {
 }
 
 /**
- * Helper function to preprocess radios and checkboxes composite form elements.
+ * Helper function to pre-process radios and checkboxes composite form elements.
  */
 function _civic_preprocess_composite_form_elements(&$variables) {
   $element = &$variables['element'];
@@ -341,7 +341,7 @@ function _civic_preprocess_composite_form_elements(&$variables) {
   else {
     // Standard theme wrapper for checkboxes was removed to allow for
     // civic large filter checkboxes and so we need to add it back as a
-    // preprocess function as we cannot add a pre_render function at theme
+    // pre-process function as we cannot add a pre_render function at theme
     // level.
     $variables['required'] = $element['#required'] ?? FALSE;
     $variables['type'] = 'fieldset-radio';
