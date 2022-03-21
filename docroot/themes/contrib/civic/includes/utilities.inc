@@ -11,6 +11,7 @@ use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Process media to generate image array for twig.
@@ -137,4 +138,52 @@ function civic_embed_svg($url, array $classes = []) {
  */
 function civic_format_short_date($date) {
   return \Drupal::service('date.formatter')->format(strtotime($date), 'civic_short_date');
+}
+
+/**
+ * Gets node or if the route is a node revision the node revision.
+ */
+function _civic_load_node_or_revision($variables) {
+  $node = $variables['node'] ?? NULL;
+  if (is_numeric($node)) {
+    // Check to see if it's a node revision route.
+    /** @var \Drupal\Core\Routing\RouteMatchInterface $route_match */
+    $route_match = \Drupal::service('current_route_match');
+    $node_revision = $route_match->getParameter('node_revision');
+    // Handling API change in Drupal 9.30.
+    if (is_numeric($node_revision)) {
+      $node = node_revision_load($node_revision);
+    }
+    elseif ($node_revision instanceof NodeInterface) {
+      $node = $node_revision;
+    }
+  }
+
+  return $node;
+}
+
+/**
+ * Parse a string of attributes into an array.
+ *
+ * @param string $string
+ *   String to parse.
+ *
+ * @return array
+ *   Array of attributes.
+ */
+function _civic_parse_attributes($string) {
+  $attributes = [];
+
+  if (preg_match_all('/\s*(?:([a-z0-9-]+)\s*=\s*"([^"]*)")|(?:\s+([a-z0-9-]+)(?=\s*|>|\s+[a-z0-9]+))/i', $string, $matches)) {
+    for ($i = 0; $i < count($matches[0]); $i++) {
+      if ($matches[3][$i]) {
+        $attributes[$matches[3][$i]] = NULL;
+      }
+      else {
+        $attributes[$matches[1][$i]] = $matches[2][$i];
+      }
+    }
+  }
+
+  return $attributes;
 }
