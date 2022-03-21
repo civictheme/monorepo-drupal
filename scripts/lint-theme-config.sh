@@ -60,7 +60,7 @@ rm -Rf "${THEME_CONFIG_DIR:?}"/* > /dev/null
 cp -R "${TMP_DIR_CURRENT}"/* "${THEME_CONFIG_DIR}" > /dev/null
 
 # Create options array for diff with exclusion patterns.
-diff_opts=(-aqr)
+diff_opts=(-ar)
 for exclude_pattern in "${DIFF_EXCLUDE_PATTERNS[@]}"; do
   diff_opts+=( -x "${exclude_pattern}")
 done;
