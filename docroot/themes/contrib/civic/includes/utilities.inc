@@ -14,6 +14,29 @@ use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 
 /**
+ * Load node or the node revision if the route is a node revision.
+ */
+function civic_load_node_or_revision($variables) {
+  $node = $variables['node'] ?? NULL;
+
+  if (is_numeric($node)) {
+    // Check to see if it's a node revision route.
+    /** @var \Drupal\Core\Routing\RouteMatchInterface $route_match */
+    $route_match = \Drupal::service('current_route_match');
+    $node_revision = $route_match->getParameter('node_revision');
+    // Handling API change in Drupal 9.3.0.
+    if (is_numeric($node_revision)) {
+      $node = node_revision_load($node_revision);
+    }
+    elseif ($node_revision instanceof NodeInterface) {
+      $node = $node_revision;
+    }
+  }
+
+  return $node;
+}
+
+/**
  * Process media to generate image array for twig.
  *
  * @param \Drupal\media\MediaInterface $media
@@ -24,7 +47,7 @@ use Drupal\node\NodeInterface;
  * @return array
  *   Image array or false if not available.
  */
-function civic_media_image_variables(MediaInterface $media, $image_style = NULL) {
+function civic_media_image_process_variables(MediaInterface $media, $image_style = NULL) {
   if ($media instanceof Media) {
     $fid = $media->getSource()->getSourceFieldValue($media);
     $config = $media->getSource()->getConfiguration();
@@ -47,34 +70,6 @@ function civic_media_image_variables(MediaInterface $media, $image_style = NULL)
       return $image;
     }
   }
-}
-
-/**
- * Parse attribute classes into a string for modifier_class property.
- */
-function civic_attributes_to_modifier_class(&$variables) {
-  if (isset($variables['attributes'])) {
-    $attributes = new Attribute($variables['attributes']);
-    if ($classes = civic_get_class_attributes($attributes)) {
-      $variables['modifier_class'] = $classes;
-    }
-  }
-}
-
-/**
- * Get class attributes from Attribute object.
- *
- * @param \Drupal\Core\Template\Attribute $attributes
- *   Attributes object.
- *
- * @return string
- *   Classes as a string.
- */
-function civic_get_class_attributes(Attribute $attributes) {
-  if ($attributes->hasAttribute('class')) {
-    return implode(' ', $attributes->getClass()->value());
-  }
-  return FALSE;
 }
 
 /**
@@ -109,13 +104,13 @@ function civic_media_get_url_from_field(EntityInterface $entity, string $field_n
  *
  * @param string $url
  *   Local URL or local path to retrieve SVG from.
- * @param array $classes
+ * @param array $css_classes
  *   Array of CSS classes to add.
  *
  * @return string
  *   Loaded SVG or FALSE if unable to load SVG.
  */
-function civic_embed_svg($url, array $classes = []) {
+function civic_embed_svg($url, array $css_classes = []) {
   $svg_path = DRUPAL_ROOT . (strpos($url, 'http') === 0 ? parse_url(str_replace('.png', '.svg', $url), PHP_URL_PATH) : str_replace('.png', '.svg', $url));
   if (!file_exists($svg_path)) {
     return FALSE;
@@ -123,43 +118,11 @@ function civic_embed_svg($url, array $classes = []) {
 
   $content = file_get_contents($svg_path);
 
-  if (!empty($classes)) {
-    $content = str_replace('<svg ', '<svg class="' . implode(' ', $classes) . '" ', $content);
+  if (!empty($css_classes)) {
+    $content = str_replace('<svg ', '<svg class="' . implode(' ', $css_classes) . '" ', $content);
   }
 
   return $content;
-}
-
-/**
- * Format dates for cards.
- *
- * @return mixed
- *   Formatted date.
- */
-function civic_format_short_date($date) {
-  return \Drupal::service('date.formatter')->format(strtotime($date), 'civic_short_date');
-}
-
-/**
- * Gets node or if the route is a node revision the node revision.
- */
-function _civic_load_node_or_revision($variables) {
-  $node = $variables['node'] ?? NULL;
-  if (is_numeric($node)) {
-    // Check to see if it's a node revision route.
-    /** @var \Drupal\Core\Routing\RouteMatchInterface $route_match */
-    $route_match = \Drupal::service('current_route_match');
-    $node_revision = $route_match->getParameter('node_revision');
-    // Handling API change in Drupal 9.30.
-    if (is_numeric($node_revision)) {
-      $node = node_revision_load($node_revision);
-    }
-    elseif ($node_revision instanceof NodeInterface) {
-      $node = $node_revision;
-    }
-  }
-
-  return $node;
 }
 
 /**
@@ -171,7 +134,7 @@ function _civic_load_node_or_revision($variables) {
  * @return array
  *   Array of attributes.
  */
-function _civic_parse_attributes($string) {
+function civic_parse_attributes($string) {
   $attributes = [];
 
   if (preg_match_all('/\s*(?:([a-z0-9-]+)\s*=\s*"([^"]*)")|(?:\s+([a-z0-9-]+)(?=\s*|>|\s+[a-z0-9]+))/i', $string, $matches)) {
@@ -186,4 +149,42 @@ function _civic_parse_attributes($string) {
   }
 
   return $attributes;
+}
+
+/**
+ * Parse attribute classes into a string for modifier_class property.
+ */
+function civic_attributes_to_modifier_class(&$variables) {
+  if (isset($variables['attributes'])) {
+    $attributes = new Attribute($variables['attributes']);
+    if ($classes = civic_get_css_class_attributes($attributes)) {
+      $variables['modifier_class'] = $classes;
+    }
+  }
+}
+
+/**
+ * Get CSS class attributes from Attribute object.
+ *
+ * @param \Drupal\Core\Template\Attribute $attributes
+ *   Attributes object.
+ *
+ * @return string
+ *   Classes as a string.
+ */
+function civic_get_css_class_attributes(Attribute $attributes) {
+  if ($attributes->hasAttribute('class')) {
+    return implode(' ', $attributes->getClass()->value());
+  }
+  return FALSE;
+}
+
+/**
+ * Format dates for cards.
+ *
+ * @return mixed
+ *   Formatted date.
+ */
+function civic_format_short_date($date) {
+  return \Drupal::service('date.formatter')->format(strtotime($date), 'civic_short_date');
 }
