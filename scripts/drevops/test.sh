@@ -67,6 +67,7 @@ if [ -z "${TEST_TYPE##*unit*}" ]; then
   [ -n "${TEST_LOG_DIR}" ] && phpunit_opts+=(--log-junit "${TEST_LOG_DIR}"/unit.xml)
 
   vendor/bin/phpunit "${phpunit_opts[@]}" docroot/modules/custom/ --filter '/.*Unit.*/' "$@" \
+  && vendor/bin/phpunit "${phpunit_opts[@]}" docroot/themes/contrib/civic/ --filter '/.*Unit.*/' "$@" \
   || [ "${ALLOW_UNIT_TESTS_FAIL}" -eq 1 ]
 fi
 
@@ -77,6 +78,7 @@ if [ -z "${TEST_TYPE##*kernel*}" ]; then
   [ -n "${TEST_LOG_DIR}" ] && phpunit_opts+=(--log-junit "${TEST_LOG_DIR}"/kernel.xml)
 
   vendor/bin/phpunit "${phpunit_opts[@]}" docroot/modules/custom/ --filter '/.*Kernel.*/' "$@" \
+  && vendor/bin/phpunit "${phpunit_opts[@]}" docroot/themes/contrib/civic/ --filter '/.*Kernel.*/' "$@" \
   || [ "${ALLOW_KERNEL_TESTS_FAIL:-0}" -eq 1 ]
 fi
 
@@ -87,6 +89,7 @@ if [ -z "${TEST_TYPE##*functional*}" ]; then
   [ -n "${TEST_LOG_DIR}" ] && phpunit_opts+=(--log-junit "${TEST_LOG_DIR}"/functional.xml)
 
   vendor/bin/phpunit "${phpunit_opts[@]}" docroot/modules/custom/ --filter '/.*Functional.*/' "$@" \
+  && vendor/bin/phpunit "${phpunit_opts[@]}" docroot/themes/contrib/civic/ --filter '/.*Functional.*/' "$@" \
   || [ "${ALLOW_FUNCTIONAL_TESTS_FAIL:-0}" -eq 1 ]
 fi
 
