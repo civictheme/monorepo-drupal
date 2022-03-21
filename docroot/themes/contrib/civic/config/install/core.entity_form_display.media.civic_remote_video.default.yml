@@ -4,7 +4,6 @@ dependencies:
   config:
     - field.field.media.civic_remote_video.field_c_m_oembed_video
     - field.field.media.civic_remote_video.field_c_m_share_link
-    - field.field.media.civic_remote_video.field_c_m_title
     - field.field.media.civic_remote_video.field_c_m_transcript
     - field.field.media.civic_remote_video.field_c_m_transcript_link
     - media.type.civic_remote_video
@@ -39,14 +38,6 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
-  field_c_m_title:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
   field_c_m_transcript:
     weight: 4

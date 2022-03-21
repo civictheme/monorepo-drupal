@@ -5,8 +5,8 @@ Feature: Tests the media types civic remote video
 
   Background:
     Given "civic_remote_video" media:
-      | name                      | field_c_m_title           | field_c_m_oembed_video                      | field_c_m_transcript                 | uuid                                 |
-      | [TEST] Civic Remote Video | [TEST] Civic Remote Video | https://www.youtube.com/watch?v=C0DPdy98e4c | [TEST] Civic Remote Video Transcript | 5bca9d25-2f72-4c41-9e89-a5d48dc1cd23 |
+      | name                      | field_c_m_oembed_video                      | field_c_m_transcript                 | uuid                                 |
+      | [TEST] Civic Remote Video | https://www.youtube.com/watch?v=C0DPdy98e4c | [TEST] Civic Remote Video Transcript | 5bca9d25-2f72-4c41-9e89-a5d48dc1cd23 |
     And "civic_page" content:
       | title                               | status |
       | [TEST] Civic Video and Remote Video | 1      |

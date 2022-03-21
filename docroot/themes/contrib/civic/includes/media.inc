@@ -40,10 +40,20 @@ function civic_preprocess_media__civic_video(&$variables) {
     return;
   }
 
-  _civic_preprocess_media_civic_video($variables);
+  /** @var \Drupal\media\MediaInterface $media */
+  $media = $variables['media'];
 
-  if (!empty($variables['content']['field_c_m_video_file'])) {
-    $variables['oembed'] = $variables['content']['field_c_m_video_file'];
+  /** @var \Drupal\file\Entity\File $video_file */
+  foreach ($media->get('field_c_m_video_file')->referencedEntities() as $video_file) {
+    $variables['sources'][] = [
+      'url' => $video_file->createFileUrl(),
+      'type' => $video_file->getMimeType(),
+    ];
+  }
+
+  if (!empty($variables['sources'])) {
+    _civic_preprocess_media__civic_video_links($variables);
+    _civic_preprocess_media__civic_video_transcript($variables);
   }
 }
 
@@ -58,15 +68,6 @@ function civic_preprocess_media__civic_remote_video(&$variables) {
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
 
-//  $variables['width'] = 854;
-//  $variables['height'] = 400;
-
-  $title = $media->get('field_c_m_title')->first() !== NULL ? $media->get('field_c_m_title')->first()->getValue()['value'] : '';
-
-  _civic_preprocess_media_civic_video($variables);
-
-  $variables['title'] = $title;
-
   /** @var \Drupal\media\OEmbed\UrlResolverInterface $url_resolver */
   $url_resolver = \Drupal::service('media.oembed.url_resolver');
   /** @var \Drupal\media\OEmbed\ResourceFetcherInterface $resource_fetcher */
@@ -79,17 +80,20 @@ function civic_preprocess_media__civic_remote_video(&$variables) {
 
     // Set 'title' attribute (if provided) on the oEmbed iframe element.
     $doc = new DOMDocument();
-    if (!empty($title) && $doc->loadHTML($html)) {
+    if ($doc->loadHTML($html)) {
       $iframe_elements = $doc->getElementsByTagName('iframe');
       // oEmbed can use an HTML tag other than <iframe> - skip setting an
       // attribute if this is a case.
       if (!empty($iframe_elements[0])) {
-        $iframe_elements[0]->setAttribute('title', $title);
+        $iframe_elements[0]->setAttribute('title', $media->getName());
         $html = $doc->saveHTML($iframe_elements[0]);
       }
     }
 
-    $variables['oembed'] = $html;
+    $variables['raw_source'] = $html;
+
+    _civic_preprocess_media__civic_video_links($variables);
+    _civic_preprocess_media__civic_video_transcript($variables);
   }
   catch (Exception $e) {
     // Handling any oEmbed exceptions in rendering remote video.
@@ -97,9 +101,9 @@ function civic_preprocess_media__civic_remote_video(&$variables) {
 }
 
 /**
- * Implements hook_preprocess__HOOK().
+ * Preprocess civic_video media links.
  */
-function _civic_preprocess_media_civic_video(&$variables) {
+function _civic_preprocess_media__civic_video_links(&$variables) {
   if (empty($variables['media'])) {
     return;
   }
@@ -143,7 +147,12 @@ function _civic_preprocess_media_civic_video(&$variables) {
       'attributes' => $transcript_attributes,
     ];
   }
+}
 
+/**
+ * Preprocess civic_video media transcript.
+ */
+function _civic_preprocess_media__civic_video_transcript(&$variables) {
   // Show transcript on the media landing page.
   if ($variables['view_mode'] == 'full') {
     if (!empty($variables['content']['field_c_m_transcript'])) {

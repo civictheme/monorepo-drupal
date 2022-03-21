@@ -17,6 +17,11 @@ load _helper
   assert_dir_exists "$dir/assets/logos"
   assert_dir_exists "$dir/assets/images"
   assert_file_exists "$dir/assets/images/demo.png"
+  assert_dir_exists "$dir/assets/videos"
+  assert_file_exists "$dir/assets/videos/demo.avi"
+  assert_file_exists "$dir/assets/videos/demo.mp4"
+  assert_file_exists "$dir/assets/videos/demo.webm"
+  assert_file_exists "$dir/assets/videos/demo_poster.png"
   assert_file_exists "$dir/assets/favicon.ico"
 
   # Files managed by distribution build.
@@ -29,6 +34,7 @@ load _helper
   assert_dir_exists "$dir/dist/assets/icons"
   assert_dir_exists "$dir/dist/assets/images"
   assert_dir_exists "$dir/dist/assets/logos"
+  assert_dir_exists "$dir/dist/assets/videos"
   assert_dir_not_exists "$dir/dist/assets/api"
 
   # Files managed by static Storybook build.
@@ -41,11 +47,13 @@ load _helper
   assert_dir_exists "$dir/storybook-static/assets/icons"
   assert_dir_exists "$dir/storybook-static/assets/images"
   assert_dir_exists "$dir/storybook-static/assets/logos"
+  assert_dir_exists "$dir/storybook-static/assets/videos"
   assert_dir_not_exists "$dir/storybook-static/backgrounds"
   assert_dir_not_exists "$dir/storybook-static/fonts"
   assert_dir_not_exists "$dir/storybook-static/icons"
   assert_dir_not_exists "$dir/storybook-static/images"
   assert_dir_not_exists "$dir/storybook-static/logos"
+  assert_dir_not_exists "$dir/storybook-static/videos"
   assert_dir_exists "$dir/storybook-static/api"
 }
 
@@ -60,6 +68,11 @@ load _helper
   assert_dir_exists "$dir/assets/logos"
   assert_dir_exists "$dir/assets/images"
   assert_file_exists "$dir/assets/images/demo.png"
+  assert_dir_exists "$dir/assets/videos"
+  assert_file_exists "$dir/assets/videos/demo.avi"
+  assert_file_exists "$dir/assets/videos/demo.mp4"
+  assert_file_exists "$dir/assets/videos/demo.webm"
+  assert_file_exists "$dir/assets/videos/demo_poster.png"
   assert_file_exists "$dir/assets/favicon.ico"
 
   # Files managed by distribution build.
@@ -72,6 +85,7 @@ load _helper
   assert_dir_not_exists "$dir/dist/assets/icons"
   assert_dir_exists "$dir/dist/assets/images"
   assert_dir_exists "$dir/dist/assets/logos"
+  assert_dir_exists "$dir/dist/assets/videos"
   assert_dir_not_exists "$dir/dist/assets/api"
 
   # Files managed by static Storybook build.
@@ -89,6 +103,7 @@ load _helper
   assert_dir_not_exists "$dir/storybook-static/icons"
   assert_dir_not_exists "$dir/storybook-static/images"
   assert_dir_not_exists "$dir/storybook-static/logos"
+  assert_dir_not_exists "$dir/storybook-static/videos"
   assert_dir_exists "$dir/storybook-static/api"
 }
 
@@ -103,6 +118,11 @@ load _helper
   assert_dir_exists "$dir/assets/logos"
   assert_dir_exists "$dir/assets/images"
   assert_file_exists "$dir/assets/images/demo.png"
+  assert_dir_exists "$dir/assets/videos"
+  assert_file_exists "$dir/assets/videos/demo.avi"
+  assert_file_exists "$dir/assets/videos/demo.mp4"
+  assert_file_exists "$dir/assets/videos/demo.webm"
+  assert_file_exists "$dir/assets/videos/demo_poster.png"
   assert_file_exists "$dir/assets/favicon.ico"
 
   # Files managed by distribution build.
@@ -115,6 +135,7 @@ load _helper
   assert_dir_exists "$dir/dist/assets/icons"
   assert_dir_exists "$dir/dist/assets/images"
   assert_dir_exists "$dir/dist/assets/logos"
+  assert_dir_exists "$dir/dist/assets/videos"
   assert_dir_not_exists "$dir/dist/assets/api"
 
   # Files managed by static Storybook build.
@@ -127,10 +148,12 @@ load _helper
   assert_dir_exists "$dir/storybook-static/assets/icons"
   assert_dir_exists "$dir/storybook-static/assets/images"
   assert_dir_exists "$dir/storybook-static/assets/logos"
+  assert_dir_exists "$dir/storybook-static/assets/videos"
   assert_dir_not_exists "$dir/storybook-static/backgrounds"
   assert_dir_not_exists "$dir/storybook-static/fonts"
   assert_dir_not_exists "$dir/storybook-static/icons"
   assert_dir_not_exists "$dir/storybook-static/images"
   assert_dir_not_exists "$dir/storybook-static/logos"
+  assert_dir_not_exists "$dir/storybook-static/videos"
   assert_dir_exists "$dir/storybook-static/api"
 }

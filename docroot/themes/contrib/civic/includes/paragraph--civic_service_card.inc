@@ -25,7 +25,7 @@ function civic_preprocess_paragraph__civic_service_card(&$variables) {
         'url' => $link['uri'],
         'text' => $link['title'],
         'is_external' => $is_external,
-        'new_window' => $is_external,
+        'is_new_window' => $is_external,
       ];
     }
   }
