@@ -112,7 +112,6 @@ $settings['trusted_host_patterns'] = [
 // Default Shield credentials.
 // Set 'Enable Shield' to unchecked in Shield config form and control the value
 // per environment below.
-$config['shield.settings']['shield_enable'] = FALSE;
 $config['shield.settings']['credentials']['shield']['user'] = getenv('SHIELD_USER');
 $config['shield.settings']['credentials']['shield']['pass'] = getenv('SHIELD_PASS');
 
