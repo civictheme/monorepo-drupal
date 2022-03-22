@@ -110,9 +110,12 @@ $settings['trusted_host_patterns'] = [
 ];
 
 // Default Shield credentials.
-// Note that they are overridden for local and CI environments below.
-$config['shield.settings']['credentials']['shield']['user'] = 'civic';
-$config['shield.settings']['credentials']['shield']['pass'] = 'civic2021';
+// Set 'Enable Shield' to unchecked in Shield config form and control the value
+// per environment below.
+$config['shield.settings']['shield_enable'] = FALSE;
+$config['shield.settings']['credentials']['shield']['user'] = getenv('SHIELD_USER');
+$config['shield.settings']['credentials']['shield']['pass'] = getenv('SHIELD_PASS');
+
 // Title of the shield pop-up.
 $config['shield.settings']['print'] = 'Civic Demo';
 
@@ -172,16 +175,13 @@ $config['environment_indicator.settings']['toolbar_integration'] = [TRUE];
 $config['environment_indicator.settings']['favicon'] = TRUE;
 
 if ($settings['environment'] == ENVIRONMENT_PROD) {
-  // Bypass Shield.
-  // @code
-  // $config['shield.settings']['credentials']['shield']['user'] = '';
-  // $config['shield.settings']['credentials']['shield']['pass'] = '';
-  // @endcode
+  // Shield credentials are managed in the database.
 }
-
-if ($settings['environment'] !== ENVIRONMENT_PROD) {
+else {
   $config['stage_file_proxy.settings']['origin'] = 'http://civictheme.salsadigital.com.au/';
   $config['stage_file_proxy.settings']['hotlink'] = FALSE;
+
+  $config['shield.settings']['shield_enable'] = TRUE;
 }
 
 if ($settings['environment'] == ENVIRONMENT_TEST) {
@@ -202,9 +202,8 @@ if ($settings['environment'] == ENVIRONMENT_CI) {
   // Never harden permissions on sites/default/files.
   $settings['skip_permissions_hardening'] = TRUE;
 
-  // Allow to bypass Shield.
-  $config['shield.settings']['credentials']['shield']['user'] = '';
-  $config['shield.settings']['credentials']['shield']['pass'] = '';
+  // Allow bypassing Shield.
+  $config['shield.settings']['shield_enable'] = FALSE;
 
   // Disable mail send out.
   $settings['suspend_mail_send'] = TRUE;
@@ -220,9 +219,8 @@ if ($settings['environment'] == ENVIRONMENT_LOCAL) {
   // Never harden permissions on sites/default/files during local development.
   $settings['skip_permissions_hardening'] = TRUE;
 
-  // Bypass Shield.
-  $config['shield.settings']['credentials']['shield']['user'] = '';
-  $config['shield.settings']['credentials']['shield']['pass'] = '';
+  // Allow bypassing Shield.
+  $config['shield.settings']['shield_enable'] = FALSE;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
