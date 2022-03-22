@@ -75,6 +75,10 @@ x-environment:
   #
   # Allow to override Lagoon environment type, defaulting it to 'local'.
   LAGOON_ENVIRONMENT_TYPE: ${LAGOON_ENVIRONMENT_TYPE:-local}
+  #
+  # Set Shield credentials from the environment variables.
+  SHIELD_USER: ${SHIELD_USER:-}
+  SHIELD_PASS: ${SHIELD_PASS:-}
 
 # ------------------------------------------------------------------------------
 # Services.
