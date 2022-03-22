@@ -1,5 +1,5 @@
-# Civic Demo
-Drupal 9 implementation of Civic Demo site
+# Civic - Development mono-repo
+Mono-repo to maintain Civic theme and accompanying modules that are automatically published to another repositories on release.
 
 [![CircleCI](https://circleci.com/gh/salsadigitalauorg/civic/tree/develop.svg?style=svg&circle-token=abf9bde8507c968b4de120552682aa925d979256)](https://circleci.com/gh/salsadigitalauorg/civic/tree/develop)
 ![Drupal 9](https://img.shields.io/badge/Drupal-9-blue.svg)
@@ -11,8 +11,8 @@ Drupal 9 implementation of Civic Demo site
 
 ## Environments
 
-- PROD: [https://civic:civic2021@nginx-php.master.civic.au2.amazee.io](https://civic:civic2021@nginx-php.master.civic.au2.amazee.io)
-- DEV: [https://civic:civic2021@nginx-php.develop.civic.au2.amazee.io](https://civic:civic2021@nginx-php.develop.civic.au2.amazee.io)
+- PROD: [https://nginx-php.master.civic.au2.amazee.io](https://nginx-php.master.civic.au2.amazee.io)
+- DEV: [https://nginx-php.develop.civic.au2.amazee.io](https://nginx-php.develop.civic.au2.amazee.io)
 - LOCAL: [http://civictheme.docker.amazee.io/](http://civictheme.docker.amazee.io/)
 
 ## Local environment setup
