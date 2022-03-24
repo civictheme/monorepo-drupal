@@ -30,7 +30,7 @@
   <div class="civic-alert {{ modifier_class }}" data-alert-id="{{ id }}" data-alert-type="{{ type }}" data-component-name="civic-alert" role="alert">
     <div class="container">
       <div class="row">
-        <div class="civic-alert__title col-12 col-m-3">
+        <div class="civic-alert__title col-xxs-12 col-m-3">
           {% if icons[type] is defined %}
             <span class="civic-alert__icon">
               {% include "@atoms/icon/icon.twig" with {
@@ -41,7 +41,7 @@
           {% endif %}
           {{ title }}
         </div>
-        <div class="civic-alert__summary col-12 col-m-9">
+        <div class="civic-alert__summary col-xxs-12 col-m-9">
           {{ description|raw }}
           {% include "@atoms/button/button.twig" with {
             kind: 'button',

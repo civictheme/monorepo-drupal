@@ -189,5 +189,5 @@ export const FormElement = () => {
     children,
   });
 
-  return `<div class="container"><div class="row"><div class="col-12">${html}</div></div></div>`;
+  return `<div class="container"><div class="row"><div class="col-xxs-12">${html}</div></div></div>`;
 };
