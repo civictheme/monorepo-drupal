@@ -20,7 +20,7 @@
 #}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set column_class = 'col-xs-12 col-m-%s'|format(12 / column_count|default(1)) %}
+{% set column_class = 'col-12 col-m-%s'|format(12 / column_count|default(1)) %}
 {% set fill_width_class = fill_width ? 'civic-card-container--fill-width' : '' %}
 {% set spacing_class = with_spacing ? 'civic-card-container--with-spacing civic-component--with-spacing' : '' %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, fill_width_class, spacing_class, modifier_class|default('')) %}
