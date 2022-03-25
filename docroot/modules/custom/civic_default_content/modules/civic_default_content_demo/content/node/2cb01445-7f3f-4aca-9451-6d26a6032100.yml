@@ -5,7 +5,8 @@ _meta:
   bundle: civic_page
   default_langcode: en
   depends:
-    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+    4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
+    dcbc66a3-946d-435b-8ce8-54a680bf3b18: taxonomy_term
 default:
   revision_uid:
     -
@@ -35,7 +36,7 @@ default:
     -
       alias: ''
       langcode: en
-      pathauto: 1
+      pathauto: 0
   field_c_n_banner_components:
     -
       entity:
@@ -55,9 +56,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -117,9 +115,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -172,9 +167,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -227,9 +219,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -269,4 +258,7 @@ default:
       value: false
   field_c_n_thumbnail:
     -
-      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+      entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+  field_c_n_topics:
+    -
+      entity: dcbc66a3-946d-435b-8ce8-54a680bf3b18

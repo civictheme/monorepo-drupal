@@ -5,7 +5,6 @@ _meta:
   bundle: civic_image
   default_langcode: en
   depends:
-    20c5e78c-33ab-4f85-ba06-28626a53f77d: user
     570c6899-92bc-4317-aa07-274a431d618f: file
 default:
   status:
@@ -13,7 +12,7 @@ default:
       value: true
   uid:
     -
-      entity: 20c5e78c-33ab-4f85-ba06-28626a53f77d
+      target_id: 1
   name:
     -
       value: 2016-04-20-govCMS_VisualWhitePaper_crop.jpg

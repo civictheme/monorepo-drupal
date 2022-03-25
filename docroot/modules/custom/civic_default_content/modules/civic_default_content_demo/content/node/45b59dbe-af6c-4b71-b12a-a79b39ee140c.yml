@@ -5,8 +5,11 @@ _meta:
   bundle: civic_page
   default_langcode: en
   depends:
-    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
+    dcbc66a3-946d-435b-8ce8-54a680bf3b18: taxonomy_term
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+    e07cdb41-1bd4-463f-9e7c-126302b24740: media
+    4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
+    68d50fea-aae4-4dde-832c-b385ff9731e1: media
 default:
   revision_uid:
     -
@@ -56,9 +59,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -88,9 +88,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -113,9 +110,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Book a demo online to see LaunchPad.'
@@ -140,9 +134,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Book an online GovCMS training session.'
@@ -167,9 +158,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Learn how to use CivicTheme'
@@ -194,9 +182,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Find out about GovCMS subscriptions'
@@ -237,9 +222,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_content_type:
             -
               value: civic_page
@@ -263,7 +245,7 @@ default:
               value: false
           field_c_p_topics:
             -
-              entity: d95f5188-650c-4dea-abcb-df8ea008919b
+              entity: dcbc66a3-946d-435b-8ce8-54a680bf3b18
           field_c_p_view_as:
             -
               value: civic_card_promo
@@ -285,9 +267,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -310,12 +289,105 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Topic name'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Topic name'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: fa9a20b3-8737-42bd-a3a6-724d3f453ff9
+                  bundle: civic_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1648198514
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: e07cdb41-1bd4-463f-9e7c-126302b24740
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Topic name'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Topic name'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c0bff4a0-1eb1-4577-a1bd-b134e2179a52
+                  bundle: civic_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1648198553
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Topic name'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Topic name'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 92ef0bfc-69aa-4f1f-999f-82a1d73369fd
+                  bundle: civic_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1648198565
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 68d50fea-aae4-4dde-832c-b385ff9731e1
                   field_c_p_link:
                     -
                       uri: 'internal:/'
@@ -333,6 +405,9 @@ default:
           field_c_p_fill_width:
             -
               value: false
+          field_c_p_space:
+            -
+              value: bottom
           field_c_p_theme:
             -
               value: dark
@@ -365,6 +440,9 @@ default:
               uri: 'https://www.govcms.gov.au/news-events/news/govcms-week-online'
               title: 'About GovCMS Week online event'
               options: {  }
+          field_c_p_space:
+            -
+              value: bottom
           field_c_p_summary:
             -
               value: 'We’ve taken on board the lessons we’ve learnt over the last year of hybrid working and videoconferencing to plan a series of online events.'

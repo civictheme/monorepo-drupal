@@ -7,8 +7,6 @@ _meta:
   depends:
     4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
-    0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c: taxonomy_term
-    75c3061b-50d7-42c4-8db5-7d06859c6725: taxonomy_term
     fcd683b6-ea34-4310-aedd-7731ff476cbc: media
 default:
   revision_uid:
@@ -316,7 +314,7 @@ default:
                       value: 'Event '
                   field_c_p_topic:
                     -
-                      entity: 0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c
+                      target_id: 1
             -
               entity:
                 _meta:
@@ -357,7 +355,7 @@ default:
                       value: 'Event card 2'
                   field_c_p_topic:
                     -
-                      entity: 75c3061b-50d7-42c4-8db5-7d06859c6725
+                      target_id: 2
             -
               entity:
                 _meta:
@@ -398,7 +396,7 @@ default:
                       value: 'Event card 3'
                   field_c_p_topic:
                     -
-                      entity: 75c3061b-50d7-42c4-8db5-7d06859c6725
+                      target_id: 2
             -
               entity:
                 _meta:
@@ -439,7 +437,7 @@ default:
                       value: 'Event card 4'
                   field_c_p_topic:
                     -
-                      entity: 0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c
+                      target_id: 1
           field_c_p_column_count:
             -
               value: 4
