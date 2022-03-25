@@ -35,7 +35,7 @@ export const Content = (knobTab) => {
         'Single Column Contained': 'single_column_contained',
       },
       'single_column',
-      generalKnobTab
+      generalKnobTab,
     ),
     vertical_space: radios(
       'Vertical space',
