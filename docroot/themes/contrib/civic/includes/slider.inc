@@ -72,7 +72,7 @@ function civic_preprocess_paragraph__civic_slider_slide(&$variables) {
 
   // Summary.
   if ($paragraph->hasField('field_c_p_content') && !$paragraph->get('field_c_p_content')->isEmpty()) {
-    $variables['summary'] = text_summary($paragraph->get('field_c_p_content')->getValue()[0]['value'], NULL, 100);
+    $variables['summary'] = $paragraph->get('field_c_p_content')->getValue()[0]['value'];
   }
 
   // Links.

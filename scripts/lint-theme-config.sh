@@ -11,9 +11,7 @@ THEME_DIR="docroot/themes/contrib/civic"
 
 # Config file patterns whose config may change.
 DIFF_EXCLUDE_PATTERNS=(
-  block.block.civic_footer_menu_*
-  block.block.civic_footer_social_links*
-  block.block.civic_mobile_navigation*
+  block.block.civic_*
 )
 
 # Theme config dir.
@@ -29,6 +27,11 @@ TMP_DIR_CURRENT="${TMP_DIR}/current"
 TMP_DIR_EXPORTED="${TMP_DIR}/exported"
 
 #-------------------------------------------------------------------------------
+site_is_installed="$(drush status --fields=bootstrap | grep -q "Successful" && echo "1" || echo "0")"
+
+if [ "${site_is_installed}" != "1" ]; then
+  echo "==> Site is not installed. Skipping config lint." && exit 0
+fi
 
 echo "==> Comparing configuration files"
 

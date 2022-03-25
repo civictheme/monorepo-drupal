@@ -29,43 +29,50 @@
 #}
 
 {% set has_sidebar = sidebar is not empty %}
-{% set container_class = has_sidebar or is_contained ? 'civic-content--contained container' : '' %}
+{% set container_class = has_sidebar or is_contained ? 'civic-content--contained' : '' %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, container_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if content or sidebar %}
   <main class="civic-content {{ modifier_class }}" role="main">
     <a id="main-content" tabindex="-1"></a>
 
-    {% if has_sidebar or is_contained %}
-    <div class="row">
-    {% endif %}
+    {% block content_top %}
+      {% if content_top is not empty %}
+        {{ content_top }}
+      {% endif %}
+    {% endblock %}
 
-      {% if sidebar is not empty %}
-        {% block sidebar %}
-          <aside class="civic-content__sidebar {% if has_sidebar %}col-m-3{% endif %}" role="complementary" {% if sidebar_attributes %}{{ sidebar_attributes }}{% endif %}>
-            {{ sidebar }}
-          </aside>
-        {% endblock %}
+    <div class="civic-content__inner {{ has_sidebar or is_contained ? 'container' : '' }}">
+
+      {% if has_sidebar or is_contained %}
+      <div class="row">
       {% endif %}
 
-      {% block content %}
-        <section class="civic-content__main {% if has_sidebar %}col-m-8 col-m-offset-1{% elseif is_contained %} col-m-12{% endif %}" {% if content_attributes %}{{ content_attributes }}{% endif %}>
-          {% if content_top is not empty %}
-            {{ content_top }}
-          {% endif %}
+        {% if sidebar is not empty %}
+          {% block sidebar %}
+            <aside class="civic-content__sidebar {% if has_sidebar %}col-m-3{% endif %}" role="complementary" {% if sidebar_attributes %}{{ sidebar_attributes }}{% endif %}>
+              {{ sidebar }}
+            </aside>
+          {% endblock %}
+        {% endif %}
 
-          {{ content }}
+        {% block content %}
+          <section class="civic-content__main {% if has_sidebar %}col-m-8 col-m-offset-1{% elseif is_contained %} col-m-12{% endif %}" {% if content_attributes %}{{ content_attributes }}{% endif %}>
+            {{ content }}
+          </section>
+        {% endblock %}
 
-          {% if content_bottom is not empty %}
-            {{ content_bottom }}
-          {% endif %}
-        </section>
-      {% endblock %}
-
-    {% if has_sidebar or is_contained %}
+      {% if has_sidebar or is_contained %}
+      </div>
+      {% endif %}
     </div>
-    {% endif %}
+
+    {% block content_bottom %}
+      {% if content_bottom is not empty %}
+        {{ content_bottom }}
+      {% endif %}
+    {% endblock %}
 
   </main>
 {% endif %}

@@ -21,11 +21,6 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-{% set transcript_link_title = transcript_link.title|default('Opens in a new tab') %}
-{% set transcript_link_external = transcript_link.external|default(false) %}
-{% set share_link_title = share_link.title|default('Opens in a new tab') %}
-{% set share_link_external = share_link.external|default(false) %}
-
 {% if sources is not empty or embedded_source is not empty or raw_source is not empty %}
   <div class="civic-video-player {{ modifier_class }}">
     {% block video %}

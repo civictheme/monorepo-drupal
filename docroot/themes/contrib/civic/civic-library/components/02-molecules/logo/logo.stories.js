@@ -19,7 +19,9 @@ export const Logo = (knobTab) => {
     }, 'light', generalKnobTab),
     logos: {},
     url: text('Link', randomUrl(), generalKnobTab),
+    title: text('Title', 'Logo title', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   generalKnobs.logos = {

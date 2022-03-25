@@ -3,6 +3,9 @@ import CivicPromo from './promo.twig';
 
 export default {
   title: 'Molecules/Promo',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const Promo = () => {
