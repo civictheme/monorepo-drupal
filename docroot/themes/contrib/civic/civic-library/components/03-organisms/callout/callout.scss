@@ -5,16 +5,16 @@
 .civic-callout {
   $root: &;
 
-  &.civic-callout--with-space-top {
-    padding-top: $civic-callout-padding-vertical;
+  &.civic-callout--vertical-space-top {
+    @include civic-component-with-vertical-space(top, $civic-callout-space-vertical);
   }
 
-  &.civic-callout--with-space-bottom {
-    padding-bottom: $civic-callout-padding-vertical;
+  &.civic-callout--vertical-space-bottom {
+    @include civic-component-with-vertical-space(bottom, $civic-callout-space-vertical);
   }
 
-  &.civic-callout--with-space-both {
-    padding: $civic-callout-padding-vertical 0;
+  &.civic-callout--vertical-space-both {
+    @include civic-component-with-vertical-space(both, $civic-callout-space-vertical);
   }
 
   &--wrapper {

@@ -25,6 +25,17 @@ export const Callout = (knobTab) => {
     ),
     title: text('Title', 'Callout title from knob', generalKnobTab),
     summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', generalKnobTab),
+    vertical_space: radios(
+      'Vertical space',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
     links: [
       {
         text: text('Text', 'CTA 1', cta1KnobTab),

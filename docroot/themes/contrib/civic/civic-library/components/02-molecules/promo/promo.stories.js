@@ -29,6 +29,17 @@ export const Promo = () => {
       is_new_window: boolean('Link opens in new window', true, generalKnobTab),
       is_external: boolean('Link is external', true, generalKnobTab),
     },
+    vertical_space: radios(
+      'Vertical space',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
   };
 
   return CivicPromo({

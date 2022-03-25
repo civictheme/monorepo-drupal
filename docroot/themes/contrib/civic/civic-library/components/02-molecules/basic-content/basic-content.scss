@@ -5,16 +5,16 @@
 .civic-basic-content {
   @include civic-content();
 
-  &.civic-content--with-space-top {
-    padding-top: $civic-basic-content-padding-vertical;
+  &.civic-content--vertical-space-top {
+    @include civic-component-with-vertical-space(top, $civic-basic-content-space-vertical);
   }
 
-  &.civic-content--with-space-bottom {
-    padding-bottom: $civic-basic-content-padding-vertical;
+  &.civic-content--vertical-space-bottom {
+    @include civic-component-with-vertical-space(bottom, $civic-basic-content-space-vertical);
   }
 
-  &.civic-content--with-space-both {
-    padding: $civic-basic-content-padding-vertical 0;
+  &.civic-content--vertical-space-both {
+    @include civic-component-with-vertical-space(both, $civic-basic-content-space-vertical);
   }
 
   &.civic-theme-light {
@@ -22,8 +22,8 @@
 
     &.civic-content--with-background {
       background-color: $civic-basic-content-light-wrapper-background-color;
-      padding-left: $civic-basic-content-padding-horizontal;
-      padding-right: $civic-basic-content-padding-horizontal;
+      padding-left: $civic-basic-content-space-horizontal;
+      padding-right: $civic-basic-content-space-horizontal;
     }
   }
 
@@ -32,8 +32,8 @@
 
     &.civic-content--with-background {
       background-color: $civic-basic-content-dark-wrapper-background-color;
-      padding-left: $civic-basic-content-padding-horizontal;
-      padding-right: $civic-basic-content-padding-horizontal;
+      padding-left: $civic-basic-content-space-horizontal;
+      padding-right: $civic-basic-content-space-horizontal;
     }
   }
 }

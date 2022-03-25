@@ -3,16 +3,16 @@
 //
 
 .civic-map {
-  &.civic-map--with-space-top {
-    padding-top: $civic-map-padding-vertical;
+  &.civic-map--vertical-space-top {
+    @include civic-component-with-vertical-space(top, $civic-map-space-vertical);
   }
 
-  &.civic-map--with-space-bottom {
-    padding-bottom: $civic-map-padding-vertical;
+  &.civic-map--vertical-space-bottom {
+    @include civic-component-with-vertical-space(bottom, $civic-map-space-vertical);
   }
 
-  &.civic-map--with-space-both {
-    padding: $civic-map-padding-vertical 0;
+  &.civic-map--vertical-space-both {
+    @include civic-component-with-vertical-space(both, $civic-map-space-vertical);
   }
 
   &__canvas {
@@ -61,8 +61,8 @@
 
     &.civic-map--with-background {
       background-color: $civic-map-light-wrapper-background-color;
-      padding-left: $civic-map-padding-horizontal;
-      padding-right: $civic-map-padding-horizontal;
+      padding-left: $civic-map-space-horizontal;
+      padding-right: $civic-map-space-horizontal;
     }
 
     #{&root}__links {
@@ -83,8 +83,8 @@
 
     &.civic-map--with-background {
       background-color: $civic-map-dark-wrapper-background-color;
-      padding-left: $civic-map-padding-horizontal;
-      padding-right: $civic-map-padding-horizontal;
+      padding-left: $civic-map-space-horizontal;
+      padding-right: $civic-map-space-horizontal;
     }
 
     #{&root}__links {

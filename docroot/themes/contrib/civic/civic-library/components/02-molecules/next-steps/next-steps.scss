@@ -9,16 +9,16 @@
   position: relative;
   text-decoration: none;
 
-  &.civic-next-step--with-space-top {
-    padding-top: $civic-next-steps-padding-vertical;
+  &.civic-next-steps--vertical-space-top {
+    @include civic-component-with-vertical-space(top, $civic-next-steps-space-vertical);
   }
 
-  &.civic-next-step--with-space-bottom {
-    padding-bottom: $civic-next-steps-padding-vertical;
+  &.civic-next-steps--vertical-space-bottom {
+    @include civic-component-with-vertical-space(bottom, $civic-next-steps-space-vertical);
   }
 
-  &.civic-next-step--with-space-both {
-    padding: $civic-next-steps-padding-vertical 0;
+  &.civic-next-steps--vertical-space-both {
+    @include civic-component-with-vertical-space(both, $civic-next-steps-space-vertical);
   }
 
   &__content {

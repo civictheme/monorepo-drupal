@@ -10,12 +10,14 @@
  * - title: [string] Title.
  * - summary: [string]  Summary.
  * - url: [string] Link.
+ * - vertical_space: [string] With top, bottom or both vertical spaces.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civic-next-steps--vertical-space-%s'|format(vertical_space) : '' %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if url is not empty %}
   <a class="civic-next-steps {{ modifier_class }}" href={{ url }}>

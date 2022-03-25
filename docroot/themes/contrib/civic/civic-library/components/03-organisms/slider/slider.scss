@@ -5,16 +5,16 @@
 .civic-slider {
   $root: &;
 
-  &.civic-slider--with-space-top {
-    padding-top: $civic-slider-padding-vertical;
+  &.civic-slider--vertical-space-top {
+    @include civic-component-with-vertical-space(top, $civic-slider-space-vertical);
   }
 
-  &.civic-slider--with-space-bottom {
-    padding-bottom: $civic-slider-padding-vertical;
+  &.civic-slider--vertical-space-bottom {
+    @include civic-component-with-vertical-space(bottom, $civic-slider-space-vertical);
   }
 
-  &.civic-slider--with-space-both {
-    padding: $civic-slider-padding-vertical 0;
+  &.civic-slider--vertical-space-both {
+    @include civic-component-with-vertical-space(both, $civic-slider-space-vertical);
   }
 
   &__upper-control-panel {
@@ -118,8 +118,8 @@
 
     &.civic-slider--with-background {
       background-color: $civic-slider-light-wrapper-background-color;
-      padding-left: $civic-slider-padding-horizontal;
-      padding-right: $civic-slider-padding-horizontal;
+      padding-left: $civic-slider-space-horizontal;
+      padding-right: $civic-slider-space-horizontal;
     }
 
     #{$root}__title {
@@ -137,8 +137,8 @@
 
     &.civic-slider--with-background {
       background-color: $civic-slider-dark-wrapper-background-color;
-      padding-left: $civic-slider-padding-horizontal;
-      padding-right: $civic-slider-padding-horizontal;
+      padding-left: $civic-slider-space-horizontal;
+      padding-right: $civic-slider-space-horizontal;
     }
 
     #{$root}__title {

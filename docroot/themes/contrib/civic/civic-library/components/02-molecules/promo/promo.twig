@@ -11,12 +11,14 @@
  *   - title [string] Link title.
  *   - url [string] Link URL.
  *   - is_new_window [boolean] Open link in the new window.
+ * - vertical_space: [string] With top, bottom or both vertical spaces.
  * - modifier_class:[string] Additional classes.
  */
 #}
 
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civic-promo--vertical-space-%s'|format(vertical_space) : '' %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if title is not empty or content is not empty %}
   <div class="civic-promo {{ modifier_class }}">
