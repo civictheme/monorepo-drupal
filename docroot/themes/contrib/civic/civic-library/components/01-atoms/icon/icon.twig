@@ -15,7 +15,6 @@
 
 {% block content %}
   {% set icon = icons[symbol] %}
-  {% set title = symbol | split('_', 2)[1] %}
   {% set width = icon.width | default(16) %}
   {% set height = icon.height | default(16) %}
   {% set modifier_class = '%s %s %s'|format((color ? 'civic-icon--color-' ~ color : ''), (size ? 'civic-icon--size-' ~ size : ''), modifier_class|default('')) %}
@@ -24,7 +23,6 @@
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="civic-icon {{ modifier_class }}"
-      title="{{ title }}"
       width="{{ width }}"
       height="{{ height }}"
       viewBox="0 0 {{ width }} {{ height }}"
