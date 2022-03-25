@@ -29,6 +29,11 @@ TMP_DIR_CURRENT="${TMP_DIR}/current"
 TMP_DIR_EXPORTED="${TMP_DIR}/exported"
 
 #-------------------------------------------------------------------------------
+site_is_installed="$(drush status --fields=bootstrap | grep -q "Successful" && echo "1" || echo "0")"
+
+if [ "${site_is_installed}" != "1" ]; then
+  echo "==> Site is not installed. Skipping config lint." && exit 0
+fi
 
 echo "==> Comparing configuration files"
 
