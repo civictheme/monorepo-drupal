@@ -94,6 +94,7 @@ config_devel:
     - block.block.civic_primarynavigation_menu
     - block.block.civic_secondarynavigation_menu
     - block.block.civic_side_navigation_menu
+    - block.block.civic_signup
     - block.block.civic_sitebranding
     - block.block.civic_tabs
     - block.block.sitebranding_2

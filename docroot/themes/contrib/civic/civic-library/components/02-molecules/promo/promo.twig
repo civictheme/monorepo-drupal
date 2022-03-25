@@ -20,36 +20,42 @@
 
 {% if title is not empty or content is not empty %}
   <div class="civic-promo {{ modifier_class }}">
-    <div class="civic-promo__inner">
-      {% block content %}
-        {% block column_one %}
-          <div class="civic-promo__first-container">
-            {% if title %}
-              <div class="civic-promo__title">{{ title }}</div>
-            {% endif %}
-            {% if content %}
-              <div class="civic-promo__content">{{ content }}</div>
-            {% endif %}
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="civic-promo__inner">
+            {% block content %}
+              {% block column_one %}
+                <div class="civic-promo__first-container">
+                  {% if title %}
+                    <div class="civic-promo__title">{{ title }}</div>
+                  {% endif %}
+                  {% if content %}
+                    <div class="civic-promo__content">{{ content }}</div>
+                  {% endif %}
+                </div>
+              {% endblock %}
+              {% block column_two %}
+                <div class="civic-promo__second-container">
+                  {% if link %}
+                    {% include '@atoms/button/button.twig' with {
+                      theme: theme,
+                      type: 'secondary',
+                      kind: 'link',
+                      size: 'large',
+                      text: link.text,
+                      url: link.url,
+                      is_new_window: link.is_new_window is defined ? link.is_new_window : false,
+                      modifier_class: 'civic-promo__button',
+                      icon: 'arrows_rightarrow_3',
+                    } only %}
+                  {% endif %}
+                </div>
+              {% endblock %}
+            {% endblock %}
           </div>
-        {% endblock %}
-        {% block column_two %}
-          <div class="civic-promo__second-container">
-            {% if link %}
-              {% include '@atoms/button/button.twig' with {
-                theme: theme,
-                type: 'secondary',
-                kind: 'link',
-                size: 'large',
-                text: link.title,
-                url: link.url,
-                is_new_window: link.is_new_window is defined ? link.is_new_window : false,
-                modifier_class: 'civic-promo__button',
-                icon: 'arrows_rightarrow_3',
-              } only %}
-            {% endif %}
-          </div>
-        {% endblock %}
-      {% endblock %}
+        </div>
+      </div>
     </div>
   </div>
 {% endif %}

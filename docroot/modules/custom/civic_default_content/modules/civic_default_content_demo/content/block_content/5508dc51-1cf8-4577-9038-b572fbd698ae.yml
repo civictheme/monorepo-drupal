@@ -1,0 +1,58 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: 5508dc51-1cf8-4577-9038-b572fbd698ae
+  bundle: civic_component_block
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: Signup
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  field_c_b_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: dcb598f5-d525-4106-8d59-fd9ac6d543de
+          bundle: civic_promo
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1648197343
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_link:
+            -
+              uri: 'internal:/'
+              title: 'Sign up'
+              options: {  }
+          field_c_p_space:
+            -
+              value: top
+          field_c_p_summary:
+            -
+              value: 'Sign up for industry news and updates from CivicTheme'
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_title:
+            -
+              value: 'Sign up'

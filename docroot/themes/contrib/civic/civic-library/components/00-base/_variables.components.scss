@@ -761,7 +761,7 @@ $civic-promo-light-body-color: civic-color-neutral(60) !default;
 $civic-promo-light-background-color: civic-color('neutral') !default;
 $civic-promo-dark-heading-color: civic-color('neutral') !default;
 $civic-promo-dark-body-color: civic-color('neutral') !default;
-$civic-promo-dark-background-color: civic-color('primary') !default;
+$civic-promo-dark-background-color: civic-color-shade-dark(45) !default;
 
 //
 // Search.

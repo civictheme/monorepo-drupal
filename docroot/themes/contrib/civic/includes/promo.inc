@@ -20,7 +20,7 @@ function civic_preprocess_paragraph__civic_promo(&$variables) {
   $link = ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
   if (!empty($link['uri'])) {
     $variables['link'] = [
-      'title' => $link['title'] ?? '',
+      'text' => $link['title'] ?? '',
       'url' => Url::fromUri($link['uri'])->toString(),
       'is_new_window' => UrlHelper::isExternal($link['uri']),
     ];
