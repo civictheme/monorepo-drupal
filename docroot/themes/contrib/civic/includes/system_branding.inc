@@ -6,6 +6,7 @@
  */
 
 use Drupal\block\Entity\Block;
+use Drupal\Component\Utility\Xss;
 use Drupal\Core\Url;
 
 /**
@@ -47,5 +48,7 @@ function civic_preprocess_block__system_branding_block(&$variables) {
         'alt' => $alt_attribute,
       ];
     }
+
+    $variables['title'] = Xss::filterAdmin($variables['elements']['content']['site_slogan']['#markup'] ?? '');
   }
 }
