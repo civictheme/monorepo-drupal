@@ -22,6 +22,21 @@ function _civic_preprocess_node(&$variables) {
   if ($view_mode === 'full') {
     unset($variables['label']);
   }
+
+  // Add Table of Contents if the value is set on node.
+  if ($node->hasField('field_c_n_show_toc') && $node->field_c_n_show_toc->getString()) {
+    $toc_attributes = [];
+    $toc_attributes['data-table-of-contents-position'] = 'prepend';
+    $toc_attributes['data-table-of-contents-theme'] = 'light';
+    $toc_attributes['data-table-of-contents-anchor-selector'] = 'h2';
+    $toc_attributes['data-table-of-contents-title'] = t('On this page');
+    $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.civic-content__main';
+    $toc_attributes = new Attribute($toc_attributes);
+
+    array_unshift($variables['content'], [
+      '#markup' => '<div class="container"><div class="row"><div class="table-of-contents-container col-m-12" ' . $toc_attributes . '></div></div></div>',
+    ]);
+  }
 }
 
 /**
@@ -80,23 +95,5 @@ function _civic_preprocess_page__node(&$variables) {
   // Add vertical space.
   if ($node->hasField('field_c_n_space') && !$node->get('field_c_n_space')->isEmpty()) {
     $variables['vertical_space'] = $node->get('field_c_n_space')->getString();
-  }
-
-  // Add Table of Contents if the value is set on node.
-  if ($node->hasField('field_c_n_show_toc') && $node->field_c_n_show_toc->getString()) {
-    $toc_attributes = [];
-    $toc_attributes['data-table-of-contents-position'] = 'prepend';
-    $toc_attributes['data-table-of-contents-theme'] = 'light';
-    $toc_attributes['data-table-of-contents-anchor-selector'] = 'h2';
-    $toc_attributes['data-table-of-contents-title'] = t('On this page');
-    $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.civic-content__main';
-    $toc_attributes = new Attribute($toc_attributes);
-
-    // Inject TOC wrapper into 'content_top' slot of the Content component.
-    // We need to do this because content area may not be contained, but TOC
-    // always has to be.
-    $variables['page']['content_top']['toc'] = [
-      '#markup' => '<div class="container"><div class="row"><div class="table-of-contents-container col-m-12" ' . $toc_attributes . '></div></div></div>',
-    ];
   }
 }
