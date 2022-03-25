@@ -22,7 +22,6 @@ function _civic_preprocess_node(&$variables) {
   if ($view_mode === 'full') {
     unset($variables['label']);
   }
-
   // Add Table of Contents if the value is set on node.
   if ($node->hasField('field_c_n_show_toc') && $node->field_c_n_show_toc->getString()) {
     $variables['content_attributes']['data-table-of-contents-position'] = 'prepend';
@@ -87,6 +86,11 @@ function _civic_preprocess_page__node(&$variables) {
 
   // Layout determines whether a node is contained and what it's layout is.
   $variables['page']['content_contained'] = FALSE;
+
+  // Add vertical space.
+  if ($node->hasField('field_c_n_space') && !$node->get('field_c_n_space')->isEmpty()) {
+    $variables['vertical_space'] = $node->get('field_c_n_space')->getString();
+  }
 
   // Add Table of Contents if the value is set on node.
   if ($node->hasField('field_c_n_show_toc') && $node->field_c_n_show_toc->getString()) {

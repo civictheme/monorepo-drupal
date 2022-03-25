@@ -23,6 +23,7 @@ Feature: Fields on Page content type
     Then I should see the text "Summary" in the "field_c_n_summary" row
     Then I should see the text "Thumbnail" in the "field_c_n_thumbnail" row
     Then I should see the text "Topics" in the "field_c_n_topics" row
+    Then I should see the text "With space" in the "field_c_n_space" row
 
   @api
   Scenario: Page content type page has the relevant fields
@@ -49,6 +50,9 @@ Feature: Fields on Page content type
     And I should see text matching "Components"
     And should see an "input[name='field_c_n_components_civic_content_add_more']" element
     And should see an "input[name='field_c_n_components_civic_card_container_add_more']" element
+
+    And I should see text matching "With space"
+    And should see an "select[name='field_c_n_space']" element
 
     And I should see text matching "Show Table of Contents"
     And should see an "input[name='field_c_n_show_toc[value]']" element

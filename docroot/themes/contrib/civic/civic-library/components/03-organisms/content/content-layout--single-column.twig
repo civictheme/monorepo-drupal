@@ -9,10 +9,12 @@
  */
 #}
 
-<div class="civic-layout--single-column">
-  {% block content %}
-    <div class="civic-layout__content {{ modifier_class }}">
-      {{ content }}
-    </div>
-  {% endblock %}
-</div>
+{% if content %}
+  <div class="civic-layout--single-column">
+    {% block content %}
+      <div class="civic-layout__content {{ modifier_class }}">
+        {{ content }}
+      </div>
+    {% endblock %}
+  </div>
+{% endif %}

@@ -7,6 +7,9 @@ import { getSlots, randomText } from '../../00-base/base.stories';
 
 export default {
   title: 'Organisms/Content',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const Content = (knobTab) => {
@@ -22,32 +25,48 @@ export const Content = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    sidebar: boolean('Show sidebar', false, generalKnobTab) ? `<strong>Sidebar text</strong> ${randomText(20)}` : false,
+    content: boolean('Show content', true, generalKnobTab) ? `<strong>Content text</strong> ${randomText(30)}` : '',
+    sidebar: boolean('Show sidebar', false, generalKnobTab) ? `<strong>Sidebar text</strong> ${randomText(20)}` : '',
+    is_contained: boolean('Is contained', false, generalKnobTab),
+    layout: radios(
+      'Layout',
+      {
+        'Single Column': 'single_column',
+        'Single Column Contained': 'single_column_contained',
+      },
+      'single_column',
+      generalKnobTab
+    ),
+    vertical_space: radios(
+      'Vertical space',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
     content_attributes: text('Content attributes', '', generalKnobTab),
     sidebar_attributes: text('Sidebar attributes', '', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
-  let content = boolean('Show content', true, generalKnobTab) ? `<strong>Content text</strong> ${randomText(30)}` : '';
 
-  const layout = radios('Layout', [
-    'Single Column',
-    'Single Column Contained',
-  ], 'Single Column', generalKnobTab);
-
-  if (content) {
-    switch (layout) {
-      case 'Single Column':
-        content = CivicLayoutSingleColumn({
-          content,
+  if (generalKnobs.content) {
+    switch (generalKnobs.layout) {
+      case 'single_column':
+        generalKnobs.content = CivicLayoutSingleColumn({
+          content: generalKnobs.content,
         });
         break;
-      case 'Single Column Contained':
-        content = CivicLayoutSingleColumnContained({
-          content,
+      case 'single_column_contained':
+        generalKnobs.content = CivicLayoutSingleColumnContained({
+          content: generalKnobs.content,
         });
         break;
       default:
-        content = '';
+        generalKnobs.content = '';
     }
   }
 
@@ -57,6 +76,5 @@ export const Content = (knobTab) => {
       'content_top',
       'content_bottom',
     ]),
-    content,
   });
 };

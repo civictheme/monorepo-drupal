@@ -273,6 +273,7 @@ config_devel:
     - field.field.node.civic_page.field_c_n_banner_type
     - field.field.node.civic_page.field_c_n_components
     - field.field.node.civic_page.field_c_n_show_toc
+    - field.field.node.civic_page.field_c_n_space
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_thumbnail
     - field.field.node.civic_page.field_c_n_topics
@@ -459,6 +460,7 @@ config_devel:
     - field.storage.node.field_c_n_location
     - field.storage.node.field_c_n_more_information
     - field.storage.node.field_c_n_show_toc
+    - field.storage.node.field_c_n_space
     - field.storage.node.field_c_n_summary
     - field.storage.node.field_c_n_tagline
     - field.storage.node.field_c_n_thumbnail

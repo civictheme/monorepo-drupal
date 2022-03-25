@@ -5,10 +5,21 @@
 .civic-content {
   $root: &;
 
-  &--contained {
+  &.civic-content--vertical-space-top {
     #{$root}__inner {
-      margin-top: civic-space(4);
-      margin-bottom: civic-space(4);
+      @include civic-component-with-vertical-space(top, $civic-content-space-vertical, $is_padding: false);
+    }
+  }
+
+  &.civic-content--vertical-space-bottom {
+    #{$root}__inner {
+      @include civic-component-with-vertical-space(bottom, $civic-content-space-vertical, $is_padding: false);
+    }
+  }
+
+  &.civic-content--vertical-space-both {
+    #{$root}__inner {
+      @include civic-component-with-vertical-space(both, $civic-content-space-vertical, $is_padding: false);
     }
   }
 
