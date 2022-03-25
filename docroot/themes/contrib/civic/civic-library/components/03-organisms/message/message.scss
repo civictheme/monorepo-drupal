@@ -14,6 +14,7 @@
   border-left: solid rem(6px) transparent;
   box-sizing: border-box;
   padding: civic-space(3) civic-space(3) civic-space(3) civic-space(2);
+  margin: civic-space(3) 0;
   width: 100%;
 
   @include civic-typography('text-regular');
