@@ -15,31 +15,31 @@
     height: 100%;
   }
 
-  &.civic-iframe--with-space-top {
-    padding-top: $civic-iframe-padding-vertical;
+  &.civic-iframe--vertical-space-top {
+    @include civic-component-with-vertical-space(top, $civic-iframe-space-vertical);
   }
 
-  &.civic-iframe--with-space-bottom {
-    padding-bottom: $civic-iframe-padding-vertical;
+  &.civic-iframe--vertical-space-bottom {
+    @include civic-component-with-vertical-space(bottom, $civic-iframe-space-vertical);
   }
 
-  &.civic-iframe--with-space-both {
-    padding: $civic-iframe-padding-vertical 0;
+  &.civic-iframe--vertical-space-both {
+    @include civic-component-with-vertical-space(both, $civic-iframe-space-vertical);
   }
 
   &.civic-theme-light {
     &.civic-iframe--with-background {
       background-color: $civic-iframe-light-background-color;
-      padding-left: $civic-iframe-padding-horizontal;
-      padding-right: $civic-iframe-padding-horizontal;
+      padding-left: $civic-iframe-space-horizontal;
+      padding-right: $civic-iframe-space-horizontal;
     }
   }
 
   &.civic-theme-dark {
     &.civic-iframe--with-background {
       background-color: $civic-iframe-dark-background-color;
-      padding-left: $civic-iframe-padding-horizontal;
-      padding-right: $civic-iframe-padding-horizontal;
+      padding-left: $civic-iframe-space-horizontal;
+      padding-right: $civic-iframe-space-horizontal;
     }
   }
 }

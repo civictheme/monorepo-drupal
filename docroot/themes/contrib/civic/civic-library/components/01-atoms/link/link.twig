@@ -21,7 +21,7 @@
 {% set is_external = is_external|default(false) %}
 
 {% if text is not empty %}
-  <a class="civic-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {% if title is not empty %}title="{{ title }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes }}{% endif %}>
+  <a class="civic-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {% if title is not empty %}title="{{ title }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% if context is not empty %}
       <span class="visually-hidden">
         {{ context }}

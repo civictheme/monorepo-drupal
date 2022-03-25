@@ -5,16 +5,16 @@
 .civic-card-container {
   $root: &;
 
-  &.civic-card-container--with-space-top {
-    padding-top: $civic-card-container-padding-vertical;
+  &.civic-card-container--vertical-space-top {
+    @include civic-component-with-vertical-space(top, $civic-card-container-space-vertical);
   }
 
-  &.civic-card-container--with-space-bottom {
-    padding-bottom: $civic-card-container-padding-vertical;
+  &.civic-card-container--vertical-space-bottom {
+    @include civic-component-with-vertical-space(bottom, $civic-card-container-space-vertical);
   }
 
-  &.civic-card-container--with-space-both {
-    padding: $civic-card-container-padding-vertical 0;
+  &.civic-card-container--vertical-space-both {
+    @include civic-component-with-vertical-space(both, $civic-card-container-space-vertical);
   }
 
   &--fill-width {
@@ -22,11 +22,6 @@
       max-width: 100%;
       flex-grow: 1;
     }
-  }
-
-  &--with-spacing {
-    padding-top: civic-space(6);
-    padding-bottom: civic-space(6);
   }
 
   &__card {
@@ -102,10 +97,10 @@
   &.civic-theme-light {
     color: $civic-card-container-light-color;
 
-    &.civic-card-container--with-background {
-      background-color: $civic-accordion-light-wrapper-background-color;
-      padding-left: $civic-card-container-padding-horizontal;
-      padding-right: $civic-card-container-padding-horizontal;
+    &#{$root}--with-background {
+      background-color: $civic-card-container-light-wrapper-background-color;
+      padding-left: $civic-card-container-space-horizontal;
+      padding-right: $civic-card-container-space-horizontal;
     }
 
     &#{$root}--with-spacing {
@@ -140,10 +135,10 @@
   &.civic-theme-dark {
     color: $civic-card-container-dark-color;
 
-    &.civic-card-container--with-background {
-      background-color: $civic-accordion-dark-wrapper-background-color;
-      padding-left: $civic-card-container-padding-horizontal;
-      padding-right: $civic-card-container-padding-horizontal;
+    &#{$root}--with-background {
+      background-color: $civic-card-container-dark-wrapper-background-color;
+      padding-left: $civic-card-container-space-horizontal;
+      padding-right: $civic-card-container-space-horizontal;
     }
 
     &#{$root}--with-spacing {

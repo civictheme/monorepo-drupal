@@ -294,8 +294,8 @@ $civic-button-dark-chip-dismiss-color: civic-color('accent') !default;
 //
 // Iframe.
 //
-$civic-iframe-padding-vertical: civic-space(7) !default;
-$civic-iframe-padding-horizontal: civic-space(7) !default;
+$civic-iframe-space-vertical: civic-space(7) !default;
+$civic-iframe-space-horizontal: civic-space(7) !default;
 $civic-iframe-light-background-color: civic-color-neutral(5) !default;
 $civic-iframe-dark-background-color: civic-color-shade-dark(60) !default;
 
@@ -456,8 +456,8 @@ $civic-select-dark-disabled-background-color: civic-color-neutral(80) !default;
 //
 // Attachment.
 //
-$civic-attachment-padding-vertical: civic-space(10) !default;
-$civic-attachment-padding-horizontal: civic-space(7) !default;
+$civic-attachment-space-vertical: civic-space(10) !default;
+$civic-attachment-space-horizontal: civic-space(7) !default;
 $civic-attachment-border-radius: $civic-border-radius !default;
 $civic-attachment-light-color: civic-color-neutral(60) !default;
 $civic-attachment-light-icon-color: civic-color('primary') !default;
@@ -493,8 +493,8 @@ $civic-back-to-top-dark-color: civic-color('secondary') !default;
 //
 // Basic content.
 //
-$civic-basic-content-padding-vertical: civic-space(8) !default;
-$civic-basic-content-padding-horizontal: civic-space(7) !default;
+$civic-basic-content-space-vertical: civic-space(8) !default;
+$civic-basic-content-space-horizontal: civic-space(7) !default;
 $civic-basic-content-vertical-spacing: 1.5rem !default;
 $civic-basic-content-list-marker-width: 1.75rem !default;
 $civic-basic-content-list-marker-margin: 1rem !default;
@@ -694,8 +694,8 @@ $civic-link-list-dark-color: civic-color('neutral') !default;
 //
 // Map.
 //
-$civic-map-padding-vertical: civic-space(6) !default;
-$civic-map-padding-horizontal: civic-space(7) !default;
+$civic-map-space-vertical: civic-space(6) !default;
+$civic-map-space-horizontal: civic-space(7) !default;
 $civic-map-padding-bottom: 56.25% !default;
 $civic-map-light-link-color: civic-color-shade-dark(15) !default;
 $civic-map-light-link-hover-color: civic-color('neutral') !default;
@@ -709,7 +709,7 @@ $civic-map-dark-wrapper-background-color: civic-color-shade-dark(45) !default;
 //
 // Next steps.
 //
-$civic-next-steps-padding-vertical: civic-space(6) !default;
+$civic-next-steps-space-vertical: civic-space(6) !default;
 $civic-next-steps-border-radius: $civic-border-radius !default;
 $civic-next-steps-light-color: civic-color-neutral(60) !default;
 $civic-next-steps-light-hover-color: civic-color('secondary') !default;
@@ -755,7 +755,7 @@ $civic-progress-indicator-dark-background-color: transparent !default;
 //
 // Promo.
 //
-$civic-promo-padding-vertical: civic-space(6) !default;
+$civic-promo-space-vertical: civic-space(6) !default;
 $civic-promo-light-heading-color: civic-color-shade-dark(80) !default;
 $civic-promo-light-body-color: civic-color-neutral(60) !default;
 $civic-promo-light-background-color: civic-color('neutral') !default;
@@ -824,8 +824,8 @@ $civic-video-dark-icon-hover-color: civic-color('accent') !default;
 //
 // Accordion.
 //
-$civic-accordion-padding-vertical: civic-space(8) !default;
-$civic-accordion-padding-horizontal: civic-space(7) !default;
+$civic-accordion-space-vertical: civic-space(8) !default;
+$civic-accordion-space-horizontal: civic-space(7) !default;
 $civic-accordion-header-border-radius: $civic-border-radius !default;
 $civic-accordion-button-border-radius: $civic-border-radius !default;
 $civic-accordion-item-border-radius: $civic-border-radius !default;
@@ -900,7 +900,7 @@ $civic-breadcrumb-dark-icon-color: civic-color-neutral(40) !default;
 //
 // Callout.
 //
-$civic-callout-padding-vertical: civic-space(6) !default;
+$civic-callout-space-vertical: civic-space(6) !default;
 $civic-callout-border-radius: $civic-border-radius !default;
 $civic-callout-light-color: civic-color-neutral(60) !default;
 $civic-callout-light-background-color: civic-color-neutral(5) !default;
@@ -916,8 +916,8 @@ $civic-callout-dark-summary-color: civic-color-shade-light(90) !default;
 //
 // Card container.
 //
-$civic-card-container-padding-vertical: civic-space(10) !default;
-$civic-card-container-padding-horizontal: civic-space(7) !default;
+$civic-card-container-space-vertical: civic-space(10) !default;
+$civic-card-container-space-horizontal: civic-space(7) !default;
 $civic-card-container-light-color: civic-color-neutral(80) !default;
 $civic-card-container-light-background-color: civic-color-neutral(5) !default;
 $civic-card-container-light-wrapper-background-color: civic-color-neutral(5) !default;
@@ -938,6 +938,7 @@ $civic-card-container-dark-footer-link-hover-color: civic-color-shade-dark(60) !
 //
 // Content.
 //
+$civic-content-space-vertical: civic-space(8) !default;
 $civic-content-light-background-color: inherit !default;
 $civic-content-dark-background-color: inherit !default;
 
@@ -1280,8 +1281,8 @@ $civic-table-of-contents-dark-active-background-color: civic-color-shade-dark(30
 //
 // Slider.
 //
-$civic-slider-padding-vertical: civic-space(10) !default;
-$civic-slider-padding-horizontal: civic-space(7) !default;
+$civic-slider-space-vertical: civic-space(10) !default;
+$civic-slider-space-horizontal: civic-space(7) !default;
 $civic-slider-border-radius: $civic-border-radius !default;
 $civic-slider-progress-indicator-border-radius: $civic-border-radius !default;
 $civic-slider-light-background-color: civic-color('neutral') !default;

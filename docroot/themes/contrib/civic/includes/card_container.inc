@@ -15,7 +15,6 @@ function civic_preprocess_paragraph__civic_card_container(&$variables) {
   $variables['column_count'] = $paragraph->hasField('field_c_p_column_count') ? $paragraph->get('field_c_p_column_count')->getString() : '';
 
   $variables['fill_width'] = $paragraph->hasField('field_c_p_fill_width') ? (bool) $paragraph->get('field_c_p_fill_width')->getString() : FALSE;
-  $variables['with_spacing'] = $paragraph->hasField('field_c_p_with_spacing') ? (bool) $paragraph->get('field_c_p_with_spacing')->getString() : FALSE;
 
   $header_link = ($paragraph->hasField('field_c_p_header_link') && !$paragraph->get('field_c_p_header_link')->isEmpty()) ? $paragraph->get('field_c_p_header_link')->first()->getValue() : [];
   $variables['header_link_text'] = $header_link['title'] ?? NULL;

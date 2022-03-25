@@ -56,6 +56,17 @@ export const Slider = () => {
       text: 'Slider link',
       url: randomUrl(),
     } : null,
+    vertical_space: radios(
+      'Vertical space',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
     slides,
     previous_label: text('Previous Label', 'Previous', generalKnobTab),
     next_label: text('Next Label', 'Next', generalKnobTab),

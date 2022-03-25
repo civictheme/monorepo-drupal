@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.civic_page.field_c_n_banner_type
     - field.field.node.civic_page.field_c_n_components
     - field.field.node.civic_page.field_c_n_show_toc
+    - field.field.node.civic_page.field_c_n_space
     - field.field.node.civic_page.field_c_n_summary
     - field.field.node.civic_page.field_c_n_thumbnail
     - field.field.node.civic_page.field_c_n_topics
@@ -45,6 +46,7 @@ hidden:
   field_c_n_banner_type: true
   field_c_n_components: true
   field_c_n_show_toc: true
+  field_c_n_space: true
   field_c_n_summary: true
   field_c_n_topics: true
   links: true

@@ -51,16 +51,16 @@
   flex-grow: 1;
   margin: 0;
 
-  &.civic-attachment--with-space-top {
-    padding-top: $civic-attachment-padding-vertical;
+  &.civic-attachment--vertical-space-top {
+    @include civic-component-with-vertical-space(top, $civic-attachment-space-vertical);
   }
 
-  &.civic-attachment--with-space-bottom {
-    padding-bottom: $civic-attachment-padding-vertical;
+  &.civic-attachment--vertical-space-bottom {
+    @include civic-component-with-vertical-space(bottom, $civic-attachment-space-vertical);
   }
 
-  &.civic-attachment--with-space-both {
-    padding: $civic-attachment-padding-vertical 0;
+  &.civic-attachment--vertical-space-both {
+    @include civic-component-with-vertical-space(both, $civic-attachment-space-vertical);
   }
 
   @include civic-breakpoint(m) {
@@ -162,8 +162,8 @@
   &.civic-theme-light {
     &.civic-attachment--with-background {
       background-color: $civic-attachment-light-wrapper-background-color;
-      padding-left: $civic-attachment-padding-horizontal;
-      padding-right: $civic-attachment-padding-horizontal;
+      padding-left: $civic-attachment-space-horizontal;
+      padding-right: $civic-attachment-space-horizontal;
     }
 
     .civic-attachment {
@@ -196,8 +196,8 @@
 
     &.civic-attachment--with-background {
       background-color: $civic-attachment-dark-wrapper-background-color;
-      padding-left: $civic-attachment-padding-horizontal;
-      padding-right: $civic-attachment-padding-horizontal;
+      padding-left: $civic-attachment-space-horizontal;
+      padding-right: $civic-attachment-space-horizontal;
     }
 
     .civic-attachment {

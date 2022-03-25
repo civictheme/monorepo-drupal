@@ -7,6 +7,9 @@ import { demoVideoPoster, demoVideos } from '../../00-base/base.stories';
 
 export default {
   title: 'Atoms/Video',
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export const Video = (knobTab) => {

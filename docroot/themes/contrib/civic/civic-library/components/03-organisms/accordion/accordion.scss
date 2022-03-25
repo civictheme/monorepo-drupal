@@ -5,16 +5,16 @@
 .civic-accordion {
   $root: &;
 
-  &.civic-accordion--with-space-top {
-    padding-top: $civic-accordion-padding-vertical;
+  &.civic-accordion--vertical-space-top {
+    @include civic-component-with-vertical-space(top, $civic-accordion-space-vertical);
   }
 
-  &.civic-accordion--with-space-bottom {
-    padding-bottom: $civic-accordion-padding-vertical;
+  &.civic-accordion--vertical-space-bottom {
+    @include civic-component-with-vertical-space(bottom, $civic-accordion-space-vertical);
   }
 
-  &.civic-accordion--with-space-both {
-    padding: $civic-accordion-padding-vertical 0;
+  &.civic-accordion--vertical-space-both {
+    @include civic-component-with-vertical-space(both, $civic-accordion-space-vertical);
   }
 
   &__inner {
@@ -122,8 +122,8 @@
 
     &.civic-accordion--with-background {
       background-color: $civic-accordion-light-wrapper-background-color;
-      padding-left: $civic-accordion-padding-horizontal;
-      padding-right: $civic-accordion-padding-horizontal;
+      padding-left: $civic-accordion-space-horizontal;
+      padding-right: $civic-accordion-space-horizontal;
     }
 
     #{$root}__header__button {
@@ -152,8 +152,8 @@
 
     &.civic-accordion--with-background {
       background-color: $civic-accordion-dark-wrapper-background-color;
-      padding-left: $civic-accordion-padding-horizontal;
-      padding-right: $civic-accordion-padding-horizontal;
+      padding-left: $civic-accordion-space-horizontal;
+      padding-right: $civic-accordion-space-horizontal;
     }
 
     #{$root}__header {

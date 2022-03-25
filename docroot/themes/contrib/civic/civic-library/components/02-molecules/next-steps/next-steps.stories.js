@@ -22,6 +22,17 @@ export const NextSteps = (knobTab) => {
     title: text('Title', 'Next step title from knob', generalKnobTab),
     summary: text('Summary', 'Short summary explaining why this link is relevant.', generalKnobTab),
     url: text('Link', randomUrl(), generalKnobTab),
+    vertical_space: radios(
+      'Vertical space',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 

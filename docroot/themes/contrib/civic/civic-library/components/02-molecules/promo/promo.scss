@@ -5,16 +5,16 @@
 .civic-promo {
   $root: &;
 
-  &.civic-promo--with-space-top {
-    margin-top: $civic-promo-padding-vertical;
+  &.civic-promo--vertical-space-top {
+    @include civic-component-with-vertical-space(top, $civic-promo-space-vertical, $is_padding: false);
   }
 
-  &.civic-promo--with-space-bottom {
-    margin-bottom: $civic-promo-padding-vertical;
+  &.civic-promo--vertical-space-bottom {
+    @include civic-component-with-vertical-space(bottom, $civic-promo-space-vertical, $is_padding: false);
   }
 
-  &.civic-promo--with-space-both {
-    margin: $civic-promo-padding-vertical 0;
+  &.civic-promo--vertical-space-both {
+    @include civic-component-with-vertical-space(both, $civic-promo-space-vertical, $is_padding: false);
   }
 
   &__inner {

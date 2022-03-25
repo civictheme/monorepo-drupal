@@ -14,12 +14,14 @@
  *   - icon: [string] Icon name.
  *   - last_updated: [string] Last updated date.
  * - content_bottom: [string] Content slot.
+ * - vertical_space: [string] With top, bottom or both vertical spaces.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civic-attachment--vertical-space-%s'|format(vertical_space) : '' %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if links is not empty %}
   <div class="civic-attachment {{ modifier_class }}">

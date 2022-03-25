@@ -82,14 +82,13 @@ function _civic_preprocess_paragraph__field__title(&$variables) {
 }
 
 /**
- * Pre-process "with space" for Civic paragraphs.
+ * Pre-process "With space" for Civic paragraphs.
  */
 function _civic_preprocess_paragraph__field__space(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   if ($paragraph->hasField('field_c_p_space') && !$paragraph->get('field_c_p_space')->isEmpty()) {
-    $component_name = str_replace('_', '-', $paragraph->getType());
-    $variables['modifier_class'] = $component_name . '--with-space-' . $paragraph->get('field_c_p_space')->getString();
+    $variables['vertical_space'] = $paragraph->get('field_c_p_space')->getString();
   }
 }
 

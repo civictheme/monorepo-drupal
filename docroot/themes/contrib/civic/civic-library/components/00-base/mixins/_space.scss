@@ -2,6 +2,9 @@
 // Spaces mixins.
 //
 
+@use 'sass:list';
+@use 'sass:math';
+
 //
 // Get a spacing value from the pre-defined list of spacings.
 //
@@ -11,4 +14,51 @@
   }
 
   @return $civic-space * $multiplier;
+}
+
+//
+// Set vertical space as padding or margin for a component.
+//
+@mixin civic-component-with-vertical-space($type, $top, $bottom: $top, $is_padding: true) {
+  $types: top, bottom, both;
+
+  @if not list.index($type, $type) {
+    @error '#{$type} is not a valid space type. Expected one of #{$types}.';
+  }
+
+  @if $type == 'top' or $type == 'both' {
+    @if $is_padding {
+      padding-top: math.div($top, 2);
+    }
+    @else {
+      margin-top: math.div($top, 2);
+    }
+
+    @include civic-breakpoint(m) {
+      @if $is_padding {
+        padding-top: $top;
+      }
+      @else {
+        margin-top: $top;
+      }
+    }
+  }
+
+  @if $type == 'bottom' or $type == 'both' {
+    @if $is_padding {
+      padding-bottom: math.div($bottom, 2);
+    }
+    @else {
+      margin-bottom: math.div($bottom, 2);
+    }
+
+    @include civic-breakpoint(m) {
+      @if $is_padding {
+        padding-bottom: $bottom;
+      }
+      @else {
+        margin-bottom: $bottom;
+      }
+    }
+  }
 }

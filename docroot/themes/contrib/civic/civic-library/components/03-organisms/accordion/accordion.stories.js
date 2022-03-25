@@ -25,6 +25,17 @@ export const Accordion = (knobTab) => {
       generalKnobTab,
     ),
     expand_all: boolean('Expand all', false, generalKnobTab),
+    vertical_space: radios(
+      'Vertical space',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 

@@ -25,13 +25,17 @@ function _civic_preprocess_node(&$variables) {
 
   // Add Table of Contents if the value is set on node.
   if ($node->hasField('field_c_n_show_toc') && $node->field_c_n_show_toc->getString()) {
-    $variables['content_attributes']['data-table-of-contents-position'] = 'prepend';
-    $variables['content_attributes']['data-table-of-contents-theme'] = 'light';
-    $variables['content_attributes']['data-table-of-contents-anchor-selector'] = 'h2';
-    $variables['content_attributes']['data-table-of-contents-title'] = t('On this page');
-    // @todo Update selector to '.civic-content--main .civic-content' once
-    // container layout is fixed.
-    $variables['content_attributes']['data-table-of-contents-anchor-scope-selector'] = '[data-table-of-contents-initialised]';
+    $toc_attributes = [];
+    $toc_attributes['data-table-of-contents-position'] = 'prepend';
+    $toc_attributes['data-table-of-contents-theme'] = 'light';
+    $toc_attributes['data-table-of-contents-anchor-selector'] = 'h2';
+    $toc_attributes['data-table-of-contents-title'] = t('On this page');
+    $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.civic-content__main';
+    $toc_attributes = new Attribute($toc_attributes);
+
+    array_unshift($variables['content'], [
+      '#markup' => '<div class="container"><div class="row"><div class="table-of-contents-container col-m-12" ' . $toc_attributes . '></div></div></div>',
+    ]);
   }
 }
 
@@ -88,21 +92,8 @@ function _civic_preprocess_page__node(&$variables) {
   // Layout determines whether a node is contained and what it's layout is.
   $variables['page']['content_contained'] = FALSE;
 
-  // Add Table of Contents if the value is set on node.
-  if ($node->hasField('field_c_n_show_toc') && $node->field_c_n_show_toc->getString()) {
-    $toc_attributes = [];
-    $toc_attributes['data-table-of-contents-position'] = 'prepend';
-    $toc_attributes['data-table-of-contents-theme'] = 'light';
-    $toc_attributes['data-table-of-contents-anchor-selector'] = 'h2';
-    $toc_attributes['data-table-of-contents-title'] = t('On this page');
-    $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.civic-content__main';
-    $toc_attributes = new Attribute($toc_attributes);
-
-    // Inject TOC wrapper into 'content_top' slot of the Content component.
-    // We need to do this because content area may not be contained, but TOC
-    // always has to be.
-    $variables['page']['content_top']['toc'] = [
-      '#markup' => '<div class="container"><div class="row"><div class="table-of-contents-container col-m-12" ' . $toc_attributes . '></div></div></div>',
-    ];
+  // Add vertical space.
+  if ($node->hasField('field_c_n_space') && !$node->get('field_c_n_space')->isEmpty()) {
+    $variables['vertical_space'] = $node->get('field_c_n_space')->getString();
   }
 }

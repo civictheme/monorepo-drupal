@@ -7,12 +7,14 @@
  * - url: [string] URL for the iframe src.
  * - width: [integer] Optional width of the iframe.
  * - height: [integer] Optional height of the iframe.
+ * - vertical_space: [string] With top, bottom or both vertical spaces.
  * - modifier_class: [string] Additional classes.
  * - attributes: [string] Additional attributes.
  */
 #}
 
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civic-iframe--vertical-space-%s'|format(vertical_space) : '' %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
-<iframe class="civic-iframe {{ modifier_class }}" {% if url %}src="{{ url }}"{% endif %} {% if width %}width="{{ width }}"{% endif %} {% if height %}height="{{ height }}"{% endif %} {% if attributes %}{{ attributes }}{% endif %}></iframe>
+<iframe class="civic-iframe {{ modifier_class }}" {% if url %}src="{{ url }}"{% endif %} {% if width %}width="{{ width }}"{% endif %} {% if height %}height="{{ height }}"{% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}></iframe>

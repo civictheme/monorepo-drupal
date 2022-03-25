@@ -26,6 +26,17 @@ export const Map = (knobTab) => {
     address: text('Address', 'Australia', generalKnobTab),
     share_link: text('Share Link', randomUrl(), generalKnobTab),
     view_link: text('View Link', randomUrl(), generalKnobTab),
+    vertical_space: radios(
+      'Vertical space',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
   };
 
   return CivicMap({
