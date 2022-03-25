@@ -30,7 +30,7 @@
 {% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, modifier_class|default('')) %}
 
 {% if options is not empty %}
-  <select class="civic-select civic-input__element {{ modifier_class }}" {% if attributes is not empty %}{{ attributes }}{% endif%} {{ disabled ? 'disabled' }} {{ required ? 'required' }}>
+  <select class="civic-select civic-input__element {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif%} {{ disabled ? 'disabled' }} {{ required ? 'required' }}>
     {% for option in options %}
       {% if option.type == 'optgroup' %}
         <optgroup label="{{ option.label }}">

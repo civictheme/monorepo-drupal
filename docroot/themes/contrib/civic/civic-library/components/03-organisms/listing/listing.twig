@@ -20,7 +20,7 @@
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civic-listing {{ modifier_class }}" {% if attributes is not empty %}{{ attributes }}{% endif %}>
+<div class="civic-listing {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
 
   {% block title %}
     {% if title -%}

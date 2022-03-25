@@ -20,5 +20,5 @@
 {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, title_position, visibility_class, required_class, required_class, modifier_class|default('')) %}
 
 {% if content is not empty or required -%}
-  <label class="civic-label {{ modifier_class }}" {% if attributes is not empty %}{{ attributes }}{% endif %}>{% if content is not empty %}{{ content }}{% endif %}</label>
+  <label class="civic-label {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>{% if content is not empty %}{{ content }}{% endif %}</label>
 {%- endif %}

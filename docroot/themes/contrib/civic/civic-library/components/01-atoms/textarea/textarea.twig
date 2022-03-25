@@ -23,4 +23,4 @@
 
 {% set rows = rows|default(5) %}
 
-<textarea class="civic-input__element {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} rows="{{ rows }}">{{ value }}</textarea>
+<textarea class="civic-input__element {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} rows="{{ rows }}">{{ value }}</textarea>

@@ -22,7 +22,7 @@
 {% set image_position_class = 'civic-slide--image-position-%s'|format(image_position|default('right')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, image_position_class, modifier_class|default('')) %}
 
-<div class="civic-slide {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
+<div class="civic-slide {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
   {% block image %}
     {% if image is not empty %}
       <div class="civic-slide__image">

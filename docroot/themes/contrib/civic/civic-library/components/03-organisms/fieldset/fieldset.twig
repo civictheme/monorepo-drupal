@@ -23,7 +23,7 @@
 {% set error_class = errors ? 'civic-form-element--error' : '' %}
 {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, form_element_type_class, form_element_name_class, required_class, error_class, modifier_class|default('')) %}
 
-<fieldset class="civic-fieldset civic-form-element {{ modifier_class }}" {% if attributes is not empty %}{{ attributes }}{% endif %}>
+<fieldset class="civic-fieldset civic-form-element {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   {% if legend is not empty %}
     <legend class="civic-label {{ legend_modifier_class }} {{ label_required_class }}" {{ legend.attributes }}>
       <span{{ legend_span_attributes }}>{{ legend }}</span>

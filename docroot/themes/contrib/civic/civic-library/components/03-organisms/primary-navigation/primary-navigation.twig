@@ -41,7 +41,7 @@
     {% endif %}
   {% endfor %}
 
-  <div class="civic-primary-navigation {{ modifier_class }}" {% if attributes %}{{ attributes }}{% endif %}>
+  <div class="civic-primary-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
     {% include '@base/menu/menu.twig' with {
       theme: theme,
       items: items,
