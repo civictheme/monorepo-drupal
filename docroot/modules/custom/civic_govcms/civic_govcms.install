@@ -201,3 +201,23 @@ function civic_govcms_update_9006() {
     }
   }
 }
+
+/**
+ * Removes GovCMS Pathauto patterns.
+ */
+function civic_govcms_update_9007() {
+  $names = [
+    'blog_article',
+    'event',
+    'foi',
+    'news_and_media',
+    'standard_page',
+  ];
+
+  foreach ($names as $name) {
+    $entity = Drupal::entityTypeManager()->getStorage('pathauto_pattern')->load($name);
+    if ($entity) {
+      $entity->delete();
+    }
+  }
+}
