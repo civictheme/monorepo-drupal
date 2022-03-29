@@ -13,7 +13,7 @@ _meta:
 default:
   revision_uid:
     -
-      target_id: 0
+      target_id: 1
   status:
     -
       value: true
@@ -37,9 +37,9 @@ default:
       value: true
   path:
     -
-      alias: ''
+      alias: /marine-habitats
       langcode: en
-      pathauto: 0
+      pathauto: 1
   field_c_n_banner_background:
     -
       entity: 1273590e-5a80-45ee-9172-0e1b9343ddb3
@@ -288,3 +288,6 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both

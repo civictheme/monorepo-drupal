@@ -71,7 +71,7 @@ settings:
   ajax_effect: ''
   ajax_speed: null
   page: true
-  page_submit_path: ''
+  page_submit_path: /enquiry
   page_confirm_path: ''
   page_theme_name: ''
   form_title: both
@@ -193,6 +193,9 @@ settings:
   token_update: false
   token_delete: false
   serial_disabled: false
+  form_method: ''
+  form_action: ''
+  form_attributes: {  }
 access:
   create:
     roles:

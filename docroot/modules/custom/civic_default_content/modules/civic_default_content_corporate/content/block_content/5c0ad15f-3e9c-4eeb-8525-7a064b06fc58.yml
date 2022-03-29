@@ -109,3 +109,9 @@ default:
               uri: 'https://linkedin.com/'
               title: LinkedIn
               options: {  }
+  field_c_b_theme:
+    -
+      value: dark
+  field_c_b_with_border:
+    -
+      value: true

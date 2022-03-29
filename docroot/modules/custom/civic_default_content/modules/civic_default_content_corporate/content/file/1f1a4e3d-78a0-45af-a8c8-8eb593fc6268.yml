@@ -18,7 +18,7 @@ default:
       value: image/svg+xml
   filesize:
     -
-      value: 2082
+      value: 1901
   status:
     -
       value: true

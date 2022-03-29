@@ -70,7 +70,7 @@ media_library.settings
 menu_ui.settings
 node.settings
 *password_policy*
-pathauto*
+pathauto.settings
 paragraphs.settings
 rdf.mapping.user.user
 seckit.settings
