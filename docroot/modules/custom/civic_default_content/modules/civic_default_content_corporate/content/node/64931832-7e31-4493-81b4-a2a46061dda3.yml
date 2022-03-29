@@ -28,7 +28,7 @@ _meta:
 default:
   revision_uid:
     -
-      target_id: 0
+      target_id: 1
   status:
     -
       value: true
@@ -52,9 +52,9 @@ default:
       value: true
   path:
     -
-      alias: ''
+      alias: /about-us
       langcode: en
-      pathauto: 0
+      pathauto: 1
   field_c_n_banner_background:
     -
       entity: f9278a83-d921-4890-ad30-e0d3050ef74a
@@ -985,3 +985,6 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both

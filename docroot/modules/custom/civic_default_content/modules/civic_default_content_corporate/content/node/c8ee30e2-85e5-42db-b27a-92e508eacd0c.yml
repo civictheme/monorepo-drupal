@@ -6,10 +6,12 @@ _meta:
   default_langcode: en
   depends:
     86c71cbb-5ab3-41f9-bf7c-f30cd426dbf0: media
+    e0a78fef-3e3a-4b96-b303-974ac8fec445: media
+    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
 default:
   revision_uid:
     -
-      target_id: 0
+      target_id: 1
   status:
     -
       value: true
@@ -33,9 +35,9 @@ default:
       value: true
   path:
     -
-      alias: ''
+      alias: /what-glacial-movement-means-climate-change
       langcode: en
-      pathauto: 0
+      pathauto: 1
   field_c_n_banner_components:
     -
       entity:
@@ -112,3 +114,15 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
+  field_c_n_summary:
+    -
+      value: "As temperatures rise, the ice melts, which results in rising sea levels. In addition, because the ice on Earth helps to keep Earth cooler, less ice means hotter temperatures.\_"
+  field_c_n_thumbnail:
+    -
+      entity: e0a78fef-3e3a-4b96-b303-974ac8fec445
+  field_c_n_topics:
+    -
+      entity: d95f5188-650c-4dea-abcb-df8ea008919b

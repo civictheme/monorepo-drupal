@@ -5,11 +5,12 @@ _meta:
   bundle: civic_page
   default_langcode: en
   depends:
-    e1db1abb-7e92-482d-8acf-157b173885c2: taxonomy_term
+    ba705a5b-91ca-4f48-9d82-feeabb645cff: media
+    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
 default:
   revision_uid:
     -
-      target_id: 0
+      target_id: 1
   status:
     -
       value: true
@@ -33,9 +34,9 @@ default:
       value: true
   path:
     -
-      alias: ''
+      alias: /new-minister-environment
       langcode: en
-      pathauto: 0
+      pathauto: 1
   field_c_n_banner_components:
     -
       entity:
@@ -109,6 +110,15 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
+  field_c_n_summary:
+    -
+      value: 'Today the Honourable Jane Smith was sworn in as the new Minister for the Environment. '
+  field_c_n_thumbnail:
+    -
+      entity: ba705a5b-91ca-4f48-9d82-feeabb645cff
   field_c_n_topics:
     -
-      entity: e1db1abb-7e92-482d-8acf-157b173885c2
+      entity: d95f5188-650c-4dea-abcb-df8ea008919b

@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: civic_alert
+label: Alert
+type: 'canonical_entities:node'
+pattern: 'alerts/[node:title]'
+selection_criteria:
+  548c1440-3ea1-4b0e-a3c7-f8ac61a1a96a:
+    id: node_type
+    bundles:
+      civic_alert: civic_alert
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 548c1440-3ea1-4b0e-a3c7-f8ac61a1a96a
+selection_logic: and
+weight: -5
+relationships: {  }

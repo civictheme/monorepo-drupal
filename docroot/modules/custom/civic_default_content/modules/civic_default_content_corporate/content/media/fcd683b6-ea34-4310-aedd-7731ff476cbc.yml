@@ -15,7 +15,7 @@ default:
       target_id: 1
   name:
     -
-      value: Icon Download.svg
+      value: 'Icon Download.svg'
   created:
     -
       value: 1631673403

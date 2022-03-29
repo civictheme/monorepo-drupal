@@ -4,10 +4,13 @@ _meta:
   uuid: 0a840065-4343-4868-9004-61442d313eac
   bundle: civic_page
   default_langcode: en
+  depends:
+    1273590e-5a80-45ee-9172-0e1b9343ddb3: media
+    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
 default:
   revision_uid:
     -
-      target_id: 0
+      target_id: 1
   status:
     -
       value: true
@@ -31,9 +34,9 @@ default:
       value: true
   path:
     -
-      alias: ''
+      alias: /updated-barrier-reef-strategy
       langcode: en
-      pathauto: 0
+      pathauto: 1
   field_c_n_banner_theme:
     -
       value: dark
@@ -75,3 +78,15 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
+  field_c_n_summary:
+    -
+      value: 'We recently released our updated Great Barrier Reef Strategy. The strategy outlines all the steps we’re taking to protect The Great Barrier Reef for future generations.'
+  field_c_n_thumbnail:
+    -
+      entity: 1273590e-5a80-45ee-9172-0e1b9343ddb3
+  field_c_n_topics:
+    -
+      entity: d95f5188-650c-4dea-abcb-df8ea008919b

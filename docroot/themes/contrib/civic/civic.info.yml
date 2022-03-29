@@ -564,6 +564,9 @@ config_devel:
     - paragraphs.paragraphs_type.civic_slider_slide_reference
     - paragraphs.paragraphs_type.civic_social_icon
     - paragraphs.paragraphs_type.civic_webform
+    - pathauto.pattern.civic_alert
+    - pathauto.pattern.civic_event
+    - pathauto.pattern.civic_page
     - system.menu.civic-footer
     - system.menu.civic-primary-navigation
     - system.menu.civic-secondary-navigation
