@@ -4,7 +4,7 @@ Feature: Tests the Civic form integration with webform
   @api
   Scenario: Form inputs are correctly validated
     Given I am an anonymous user
-    When I visit "/form/civic-enquiry"
+    When I visit "/enquiry"
     Then I press the "Send" button
     And I should see "First name field is required."
     And I should see "Last name field is required."
@@ -22,7 +22,7 @@ Feature: Tests the Civic form integration with webform
   @api
   Scenario: Contact webform can be filled in and submitted correctly and form label, selectors, id are present
     Given I am an anonymous user
-    When I visit "/form/civic-enquiry"
+    When I visit "/enquiry"
     Then I fill in "First name" with "[TEST] Name"
     Then I fill in "Last name" with "[TEST] Name"
     And I fill in "email" with "test@email.com"
