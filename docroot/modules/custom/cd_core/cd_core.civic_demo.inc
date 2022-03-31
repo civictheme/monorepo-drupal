@@ -17,13 +17,13 @@ function cd_core_civic_demo_update_theme_settings() {
   $logo_footer_desktop = '/themes/custom/civic_demo/dist/assets/logos/civic_demo_logo_desktop_dark.png';
   $logo_footer_mobile = '/themes/custom/civic_demo/dist/assets/logos/civic_demo_logo_mobile_dark.png';
 
-  $favicon = '/themes/custom/civic_demo/dist/favicon.ico';
+  $favicon = '/themes/custom/civic_demo/dist/assets/favicon.ico';
 
   $config = \Drupal::service('config.factory')->getEditable('civic_demo.settings');
 
   $config->set('logo', [
     'use_default' => FALSE,
-    'path' => $logo_header_desktop,
+    'path' => substr($logo_header_desktop, 1),
     'url' => $logo_header_desktop,
   ]);
 
@@ -34,14 +34,14 @@ function cd_core_civic_demo_update_theme_settings() {
 
   $config->set('civic_site_logo_alt', 'Civic demo logo');
 
-  $config->set('favicon_path', substr($favicon, 1));
+  $config->set('favicon', [
+    'use_default' => FALSE,
+    'path' => substr($favicon, 1),
+    'mimetype' => 'image/vnd.microsoft.icon',
+  ]);
 
   $config->set('civic_header_theme', 'light');
   $config->set('civic_footer_theme', 'dark');
 
-  $config->save();
-
-  $config = \Drupal::configFactory()->getEditable('system.site');
-  $config->set('slogan', 'Visually engaging digital experiences');
   $config->save();
 }
