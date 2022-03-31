@@ -29,6 +29,8 @@
     &.civic-menu--level-0 {
       // First-level items to be displayed inline.
       display: flex;
+      padding-top: $civic-primary-navigation-dropdown-top-offset;
+      padding-bottom: $civic-primary-navigation-dropdown-top-offset;
     }
 
     .civic-menu__item {
