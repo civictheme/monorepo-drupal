@@ -6,11 +6,10 @@ _meta:
   default_langcode: en
   depends:
     e07cdb41-1bd4-463f-9e7c-126302b24740: media
-    dcbc66a3-946d-435b-8ce8-54a680bf3b18: taxonomy_term
 default:
   revision_uid:
     -
-      target_id: 1
+      target_id: 16
   status:
     -
       value: true
@@ -19,7 +18,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'Demo Page - Listing: Eligo Elit Ille'
+      value: 'Demo page - listing 2'
   created:
     -
       value: 1631543823
@@ -204,9 +203,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
   field_c_n_thumbnail:
     -
       entity: e07cdb41-1bd4-463f-9e7c-126302b24740
-  field_c_n_topics:
-    -
-      entity: dcbc66a3-946d-435b-8ce8-54a680bf3b18

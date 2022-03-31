@@ -106,6 +106,7 @@ installation of `civic_demo`. We do not capture configuration for `civic_demo`.
     drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content taxonomy_term
     drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content node
     drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content block_content
+    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content menu_link_content
 
     # Example 3: export all terms, nodes, blocks and menu links for Corporate content.
     drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_corporate/content taxonomy_term

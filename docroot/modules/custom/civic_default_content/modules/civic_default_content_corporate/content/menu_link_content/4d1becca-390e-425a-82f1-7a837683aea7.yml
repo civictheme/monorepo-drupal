@@ -18,7 +18,7 @@ default:
       value: civic-footer
   link:
     -
-      uri: 'route:<nolink>'
+      uri: 'internal:/civicthemeio'
       title: ''
       options: {  }
   external:
@@ -26,7 +26,7 @@ default:
       value: false
   rediscover:
     -
-      value: false
+      value: true
   weight:
     -
       value: -49

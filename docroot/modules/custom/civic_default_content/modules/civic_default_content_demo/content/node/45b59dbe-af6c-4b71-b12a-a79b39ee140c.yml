@@ -7,13 +7,16 @@ _meta:
   depends:
     dcbc66a3-946d-435b-8ce8-54a680bf3b18: taxonomy_term
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+    100e4cfc-33b8-4980-9196-05d519a13dea: node
     e07cdb41-1bd4-463f-9e7c-126302b24740: media
+    9c4229fe-7dd7-4a10-a389-3868d27ae469: node
     4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
+    6d2fbfa0-5402-461e-9357-9eb7efb850f5: node
     68d50fea-aae4-4dde-832c-b385ff9731e1: media
 default:
   revision_uid:
     -
-      target_id: 1
+      target_id: 16
   status:
     -
       value: true
@@ -22,7 +25,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'Providing visually engaging digital experiences'
+      value: 'Your department/agency tagline'
   created:
     -
       value: 1637029497
@@ -64,7 +67,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<p>An open source, government-grade high quality design theme that is accessible, flexible, and provides a consistent digital experience for citizens.&nbsp;</p>\r\n\r\n<p><a class=\"civic-button civic-button--primary civic-button--regular civic-theme-light\" href=\"/node/6\">Learn about our mission</a></p>\r\n"
+              value: "<p>A short, one-sentence vision or mission statement works well here.&nbsp;&nbsp;</p>\r\n\r\n<p><a class=\"civic-button civic-button--primary civic-button--regular civic-theme-light\" href=\"/about-us\">Learn about our mission</a></p>\r\n"
               format: civic_rich_text
           field_c_p_theme:
             -
@@ -112,10 +115,10 @@ default:
                       value: {  }
                   field_c_p_summary:
                     -
-                      value: 'Book a demo online to see LaunchPad.'
+                      value: 'Short summary of a quick link goes here'
                   field_c_p_title:
                     -
-                      value: 'Register for LaunchPad demo'
+                      value: 'Call to action 1'
             -
               entity:
                 _meta:
@@ -136,10 +139,10 @@ default:
                       value: {  }
                   field_c_p_summary:
                     -
-                      value: 'Book an online GovCMS training session.'
+                      value: 'Short summary of a quick link goes here'
                   field_c_p_title:
                     -
-                      value: 'Book GovCMS virtual training'
+                      value: 'Call to action 2'
             -
               entity:
                 _meta:
@@ -160,10 +163,10 @@ default:
                       value: {  }
                   field_c_p_summary:
                     -
-                      value: 'Learn how to use CivicTheme'
+                      value: 'Short summary of a quick link goes here'
                   field_c_p_title:
                     -
-                      value: 'Learn how to use CivicTheme'
+                      value: 'Call to action 3'
             -
               entity:
                 _meta:
@@ -184,10 +187,10 @@ default:
                       value: {  }
                   field_c_p_summary:
                     -
-                      value: 'Find out about GovCMS subscriptions'
+                      value: 'Short summary of a quick link goes here'
                   field_c_p_title:
                     -
-                      value: 'Get information about GovCMS'
+                      value: 'Call to action 4'
           field_c_p_column_count:
             -
               value: 4
@@ -267,6 +270,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -294,15 +300,15 @@ default:
                       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
                   field_c_p_link:
                     -
-                      uri: 'internal:/'
-                      title: 'Topic name'
+                      target_uuid: 100e4cfc-33b8-4980-9196-05d519a13dea
+                      title: 'For Individuals'
                       options: {  }
                   field_c_p_theme:
                     -
                       value: light
                   field_c_p_title:
                     -
-                      value: 'Topic name'
+                      value: 'Subject nav card 1'
             -
               entity:
                 _meta:
@@ -326,15 +332,15 @@ default:
                       entity: e07cdb41-1bd4-463f-9e7c-126302b24740
                   field_c_p_link:
                     -
-                      uri: 'internal:/'
-                      title: 'Topic name'
+                      target_uuid: 9c4229fe-7dd7-4a10-a389-3868d27ae469
+                      title: 'For Businesses'
                       options: {  }
                   field_c_p_theme:
                     -
                       value: light
                   field_c_p_title:
                     -
-                      value: 'Topic name'
+                      value: 'Subject nav card 2'
             -
               entity:
                 _meta:
@@ -358,15 +364,15 @@ default:
                       entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
                   field_c_p_link:
                     -
-                      uri: 'internal:/'
-                      title: 'Topic name'
+                      target_uuid: 6d2fbfa0-5402-461e-9357-9eb7efb850f5
+                      title: 'For government'
                       options: {  }
                   field_c_p_theme:
                     -
                       value: light
                   field_c_p_title:
                     -
-                      value: 'Topic name'
+                      value: 'Subject nav card 3'
             -
               entity:
                 _meta:
@@ -385,20 +391,23 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 68d50fea-aae4-4dde-832c-b385ff9731e1
                   field_c_p_link:
                     -
                       uri: 'internal:/'
-                      title: 'Topic name'
+                      title: 'Link text'
                       options: {  }
                   field_c_p_theme:
                     -
                       value: light
                   field_c_p_title:
                     -
-                      value: 'Topic name'
+                      value: 'Subject nav card 4'
           field_c_p_column_count:
             -
               value: 4
@@ -413,7 +422,7 @@ default:
               value: dark
           field_c_p_title:
             -
-              value: 'Design Systems'
+              value: 'Design systems'
     -
       entity:
         _meta:
@@ -432,26 +441,26 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_links:
             -
-              uri: 'https://www.govcms.gov.au/news-events/news/govcms-week-online'
-              title: 'About GovCMS Week online event'
+              uri: 'internal:/'
+              title: 'Callout text link '
               options: {  }
           field_c_p_space:
             -
               value: bottom
           field_c_p_summary:
             -
-              value: 'We’ve taken on board the lessons we’ve learnt over the last year of hybrid working and videoconferencing to plan a series of online events.'
+              value: 'Short summary area for the callout to promote any content.'
           field_c_p_theme:
             -
               value: light
           field_c_p_title:
             -
-              value: 'GovCMS Week Online'
+              value: 'Callout component - title'
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both

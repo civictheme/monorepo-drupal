@@ -117,6 +117,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

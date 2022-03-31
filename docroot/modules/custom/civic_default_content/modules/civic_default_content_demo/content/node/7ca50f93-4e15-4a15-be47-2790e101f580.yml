@@ -10,7 +10,7 @@ _meta:
 default:
   revision_uid:
     -
-      target_id: 1
+      target_id: 16
   status:
     -
       value: true
@@ -19,7 +19,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'Demo Page - Banner: Dark, Default, No featured image'
+      value: 'Demo page - banner: dark, default, no featured image'
   created:
     -
       value: 1634051185
@@ -59,9 +59,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -81,6 +78,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

@@ -6,7 +6,9 @@ _meta:
   default_langcode: en
   depends:
     5c23a0bd-3ee8-4608-bdec-b396f0be3c7d: node
+    75c3061b-50d7-42c4-8db5-7d06859c6725: taxonomy_term
     e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e: node
+    0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c: taxonomy_term
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
   revision_uid:
@@ -131,7 +133,7 @@ default:
                       value: dark
                   field_c_p_topic:
                     -
-                      target_id: 2
+                      entity: 75c3061b-50d7-42c4-8db5-7d06859c6725
             -
               entity:
                 _meta:
@@ -161,7 +163,7 @@ default:
                       value: dark
                   field_c_p_topic:
                     -
-                      target_id: 1
+                      entity: 0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c
             -
               entity:
                 _meta:
@@ -191,7 +193,7 @@ default:
                       value: light
                   field_c_p_topic:
                     -
-                      target_id: 2
+                      entity: 75c3061b-50d7-42c4-8db5-7d06859c6725
           field_c_p_column_count:
             -
               value: 2
@@ -217,6 +219,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
   field_c_n_summary:
     -
       value: 'Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.'

@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 8cced355-c841-4e0f-a6b6-f59d801f6d0c
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    84a103bd-a203-42a2-aa47-8087596b4159: menu_link_content
+    c8ee30e2-85e5-42db-b27a-92e508eacd0c: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Glacial movements'
+  menu_name:
+    -
+      value: civic-primary-navigation
+  link:
+    -
+      target_uuid: c8ee30e2-85e5-42db-b27a-92e508eacd0c
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -50
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:84a103bd-a203-42a2-aa47-8087596b4159'
+  revision_translation_affected:
+    -
+      value: true

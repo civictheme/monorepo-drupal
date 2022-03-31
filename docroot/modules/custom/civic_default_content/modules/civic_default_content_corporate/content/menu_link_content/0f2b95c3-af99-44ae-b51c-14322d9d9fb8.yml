@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 0f2b95c3-af99-44ae-b51c-14322d9d9fb8
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    2541114b-22fd-4fda-aa02-2999c9895777: menu_link_content
+    853e999d-a302-4cc0-baeb-f419c91bcf3f: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Policies & legislation'
+  menu_name:
+    -
+      value: civic-primary-navigation
+  link:
+    -
+      target_uuid: 853e999d-a302-4cc0-baeb-f419c91bcf3f
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:2541114b-22fd-4fda-aa02-2999c9895777'
+  revision_translation_affected:
+    -
+      value: true

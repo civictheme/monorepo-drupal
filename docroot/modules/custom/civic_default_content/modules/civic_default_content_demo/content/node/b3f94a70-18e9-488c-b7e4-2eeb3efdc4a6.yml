@@ -196,6 +196,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
   field_c_n_summary:
     -
       value: 'Nulla quis lorem ut libero malesuada feugiat. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada.'

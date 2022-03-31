@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: d55b5b63-3364-44fe-bab9-5135a43118b8
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    b718cfb0-071b-44e6-9d38-039e5e10152e: menu_link_content
+    ce6b14c7-f782-40c6-884d-47724566ec60: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Register for a solar rebate'
+  menu_name:
+    -
+      value: civic-primary-navigation
+  link:
+    -
+      target_uuid: ce6b14c7-f782-40c6-884d-47724566ec60
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -49
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:b718cfb0-071b-44e6-9d38-039e5e10152e'
+  revision_translation_affected:
+    -
+      value: true

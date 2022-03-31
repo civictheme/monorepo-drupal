@@ -9,7 +9,7 @@ _meta:
 default:
   revision_uid:
     -
-      target_id: 1
+      target_id: 16
   status:
     -
       value: true
@@ -18,7 +18,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'Demo Page - Listing: Commoveo Huic Magna'
+      value: 'Demo page - listing 4'
   created:
     -
       value: 1631309482
@@ -33,7 +33,7 @@ default:
       value: true
   path:
     -
-      alias: ''
+      alias: /demo-page-listing-4
       langcode: en
       pathauto: 1
   field_c_n_banner_components:
@@ -55,9 +55,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -117,9 +114,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -172,9 +166,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -212,6 +203,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

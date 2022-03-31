@@ -136,6 +136,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
   field_c_n_summary:
     -
       value: 'Provides examples of light and dark themed embedded map.'
