@@ -5,6 +5,8 @@ global:
   js:
     dist/civic.js: {}
   dependencies:
+    - core/jquery
+    - core/jquery.once
     - core/drupal
     - core/drupalSettings
 civic.ajax_views:
