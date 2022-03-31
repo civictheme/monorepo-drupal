@@ -31,7 +31,7 @@ _meta:
 default:
   revision_uid:
     -
-      target_id: 1
+      target_id: 2
   status:
     -
       value: true
@@ -88,7 +88,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<p>Helping to protect Australia’s environment through policy, services, legislation and environmental research.</p>\r\n\r\n<p><a class=\"civic-button civic-button--primary civic-button--regular civic-theme-light\" href=\"/node/58\">Learn about our mission</a></p>\r\n"
+              value: "<p>Helping to protect Australia’s environment through policy, services, legislation and environmental research.</p>\r\n\r\n<p><a class=\"civic-button civic-button--primary civic-button--regular civic-theme-light\" href=\"/about-us\">Learn about our mission</a></p>\r\n"
               format: civic_rich_text
           field_c_p_theme:
             -
@@ -112,9 +112,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -137,9 +134,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
@@ -166,9 +160,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: ce6b14c7-f782-40c6-884d-47724566ec60
@@ -195,9 +186,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: ef661701-2c8e-4ea4-b927-2d2ecad7617e
@@ -224,9 +212,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_link:
                     -
                       target_uuid: 7a35464b-da5b-4edb-a490-6bcd54339f29
@@ -269,9 +254,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_content_type:
             -
               value: civic_page
@@ -320,9 +302,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -345,9 +324,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
@@ -380,9 +356,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 6ce72705-bab7-4dce-9ca5-4a3ae097faa3
@@ -415,9 +388,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 78eb0cf4-882f-47e4-8607-1f254809e9e8
@@ -450,9 +420,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: f06a9e48-e4bc-4e1d-9646-047d984c36ca
@@ -500,9 +467,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -525,9 +489,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: "<p>This year, 15 Australian scientists have been honoured in the 2022 Bright Ideas in Science Awards. Find out about the 5 environmental scientists honoured.&nbsp;</p>\r\n"
@@ -567,9 +528,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_content:
                     -
                       value: "<p>New modelling shows that Antarctica's Pine Island Glacier is melting faster, with a 12% increase from 2016 to 2020.</p>\r\n"
@@ -615,9 +573,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -640,9 +595,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_date:
                     -
                       value: '2022-04-20'
@@ -684,9 +636,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_date:
                     -
                       value: '0022-05-05'
@@ -725,9 +674,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_date:
                     -
                       value: '2022-06-20'

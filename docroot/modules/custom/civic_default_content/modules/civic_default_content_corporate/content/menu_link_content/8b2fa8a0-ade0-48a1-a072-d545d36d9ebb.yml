@@ -6,6 +6,7 @@ _meta:
   default_langcode: en
   depends:
     de247e03-0ea1-4d32-bbb0-06aa34123279: menu_link_content
+    853e999d-a302-4cc0-baeb-f419c91bcf3f: node
 default:
   enabled:
     -
@@ -18,7 +19,7 @@ default:
       value: civic-footer
   link:
     -
-      uri: 'route:<nolink>'
+      target_uuid: 853e999d-a302-4cc0-baeb-f419c91bcf3f
       title: ''
       options: {  }
   external:

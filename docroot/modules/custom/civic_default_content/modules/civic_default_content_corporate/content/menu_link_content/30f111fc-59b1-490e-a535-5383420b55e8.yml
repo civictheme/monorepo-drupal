@@ -1,24 +1,25 @@
 _meta:
   version: '1.0'
   entity_type: menu_link_content
-  uuid: f1f66752-e425-42a2-a966-09adc983b29c
+  uuid: 30f111fc-59b1-490e-a535-5383420b55e8
   bundle: menu_link_content
   default_langcode: en
   depends:
-    51efffb7-e00c-48ee-a5a4-8eabb7c9e903: node
+    871e1957-f44a-4adc-a6ae-d7bef561ad12: menu_link_content
+    0a840065-4343-4868-9004-61442d313eac: node
 default:
   enabled:
     -
       value: true
   title:
     -
-      value: 'News & Events'
+      value: 'Updated Barrier Reef Strategy'
   menu_name:
     -
-      value: civic-footer
+      value: civic-primary-navigation
   link:
     -
-      target_uuid: 51efffb7-e00c-48ee-a5a4-8eabb7c9e903
+      target_uuid: 0a840065-4343-4868-9004-61442d313eac
       title: ''
       options: {  }
   external:
@@ -29,10 +30,13 @@ default:
       value: false
   weight:
     -
-      value: -49
+      value: -50
   expanded:
     -
       value: false
+  parent:
+    -
+      value: 'menu_link_content:871e1957-f44a-4adc-a6ae-d7bef561ad12'
   revision_translation_affected:
     -
       value: true

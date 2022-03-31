@@ -1,24 +1,25 @@
 _meta:
   version: '1.0'
   entity_type: menu_link_content
-  uuid: f1f66752-e425-42a2-a966-09adc983b29c
+  uuid: 8cced355-c841-4e0f-a6b6-f59d801f6d0c
   bundle: menu_link_content
   default_langcode: en
   depends:
-    51efffb7-e00c-48ee-a5a4-8eabb7c9e903: node
+    84a103bd-a203-42a2-aa47-8087596b4159: menu_link_content
+    c8ee30e2-85e5-42db-b27a-92e508eacd0c: node
 default:
   enabled:
     -
       value: true
   title:
     -
-      value: 'News & Events'
+      value: 'Glacial movements'
   menu_name:
     -
-      value: civic-footer
+      value: civic-primary-navigation
   link:
     -
-      target_uuid: 51efffb7-e00c-48ee-a5a4-8eabb7c9e903
+      target_uuid: c8ee30e2-85e5-42db-b27a-92e508eacd0c
       title: ''
       options: {  }
   external:
@@ -29,10 +30,13 @@ default:
       value: false
   weight:
     -
-      value: -49
+      value: -50
   expanded:
     -
       value: false
+  parent:
+    -
+      value: 'menu_link_content:84a103bd-a203-42a2-aa47-8087596b4159'
   revision_translation_affected:
     -
       value: true

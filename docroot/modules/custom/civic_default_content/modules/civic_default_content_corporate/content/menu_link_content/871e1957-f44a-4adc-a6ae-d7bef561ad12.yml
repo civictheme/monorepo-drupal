@@ -1,24 +1,25 @@
 _meta:
   version: '1.0'
   entity_type: menu_link_content
-  uuid: f1f66752-e425-42a2-a966-09adc983b29c
+  uuid: 871e1957-f44a-4adc-a6ae-d7bef561ad12
   bundle: menu_link_content
   default_langcode: en
   depends:
-    51efffb7-e00c-48ee-a5a4-8eabb7c9e903: node
+    0457b4f7-1a43-4719-8493-c1aa9d92464e: menu_link_content
+    454edaba-477b-45fa-934d-1b2b2b7899fb: node
 default:
   enabled:
     -
       value: true
   title:
     -
-      value: 'News & Events'
+      value: 'The Great Barrier Reef'
   menu_name:
     -
-      value: civic-footer
+      value: civic-primary-navigation
   link:
     -
-      target_uuid: 51efffb7-e00c-48ee-a5a4-8eabb7c9e903
+      target_uuid: 454edaba-477b-45fa-934d-1b2b2b7899fb
       title: ''
       options: {  }
   external:
@@ -33,6 +34,9 @@ default:
   expanded:
     -
       value: false
+  parent:
+    -
+      value: 'menu_link_content:0457b4f7-1a43-4719-8493-c1aa9d92464e'
   revision_translation_affected:
     -
       value: true

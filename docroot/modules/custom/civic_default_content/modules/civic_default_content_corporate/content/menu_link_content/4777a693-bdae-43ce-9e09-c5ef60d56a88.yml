@@ -6,19 +6,20 @@ _meta:
   default_langcode: en
   depends:
     f1f66752-e425-42a2-a966-09adc983b29c: menu_link_content
+    51efffb7-e00c-48ee-a5a4-8eabb7c9e903: node
 default:
   enabled:
     -
       value: true
   title:
     -
-      value: 'News and Events'
+      value: 'News & events'
   menu_name:
     -
       value: civic-footer
   link:
     -
-      uri: 'internal:/'
+      target_uuid: 51efffb7-e00c-48ee-a5a4-8eabb7c9e903
       title: ''
       options: {  }
   external:
@@ -26,7 +27,7 @@ default:
       value: false
   rediscover:
     -
-      value: true
+      value: false
   weight:
     -
       value: -50

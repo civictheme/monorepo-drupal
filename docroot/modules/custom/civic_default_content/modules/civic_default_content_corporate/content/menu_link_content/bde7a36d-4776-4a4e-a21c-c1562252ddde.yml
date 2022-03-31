@@ -18,7 +18,7 @@ default:
       value: civic-footer
   link:
     -
-      uri: 'route:<nolink>'
+      uri: 'https://twitter.com/'
       title: ''
       options: {  }
   external:

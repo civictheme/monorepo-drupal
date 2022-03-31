@@ -4,6 +4,8 @@ _meta:
   uuid: de247e03-0ea1-4d32-bbb0-06aa34123279
   bundle: menu_link_content
   default_langcode: en
+  depends:
+    c99ffbb4-3782-498c-9d69-23419e9643e1: node
 default:
   enabled:
     -
@@ -16,7 +18,7 @@ default:
       value: civic-footer
   link:
     -
-      uri: 'internal:/'
+      target_uuid: c99ffbb4-3782-498c-9d69-23419e9643e1
       title: ''
       options: {  }
   external:
@@ -24,7 +26,7 @@ default:
       value: false
   rediscover:
     -
-      value: true
+      value: false
   weight:
     -
       value: -50
