@@ -41,7 +41,7 @@ default:
               value: true
           field_c_p_link:
             -
-              uri: 'internal:/'
+              uri: 'internal:/subscribe'
               title: 'Sign up'
               options: {  }
           field_c_p_space:
@@ -49,7 +49,7 @@ default:
               value: top
           field_c_p_summary:
             -
-              value: 'Sign up for industry news and updates from CivicTheme'
+              value: 'Sign up for news and updates from our agency.'
           field_c_p_theme:
             -
               value: dark

@@ -6,11 +6,10 @@ _meta:
   default_langcode: en
   depends:
     4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
-    dcbc66a3-946d-435b-8ce8-54a680bf3b18: taxonomy_term
 default:
   revision_uid:
     -
-      target_id: 1
+      target_id: 16
   status:
     -
       value: true
@@ -19,7 +18,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'Demo Page - Listing: Consectetuer Probo'
+      value: 'Demo page - listing 3'
   created:
     -
       value: 1631588732
@@ -256,9 +255,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
   field_c_n_thumbnail:
     -
       entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
-  field_c_n_topics:
-    -
-      entity: dcbc66a3-946d-435b-8ce8-54a680bf3b18

@@ -6,6 +6,7 @@ _meta:
   default_langcode: en
   depends:
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+    0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c: taxonomy_term
 default:
   revision_uid:
     -
@@ -101,4 +102,4 @@ default:
       value: 'Its Happening!'
   field_c_n_topics:
     -
-      target_id: 1
+      entity: 0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c

@@ -9,7 +9,7 @@ _meta:
 default:
   revision_uid:
     -
-      target_id: 1
+      target_id: 16
   status:
     -
       value: true
@@ -18,7 +18,7 @@ default:
       target_id: 1
   title:
     -
-      value: 'Demo Page - Service cards 2'
+      value: 'Demo page - service cards 2'
   created:
     -
       value: 1631685575
@@ -61,9 +61,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -86,9 +83,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_links:
                     -
                       uri: 'http://example.com'
@@ -137,6 +131,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

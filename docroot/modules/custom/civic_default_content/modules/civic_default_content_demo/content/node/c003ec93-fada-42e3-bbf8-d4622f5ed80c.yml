@@ -142,6 +142,9 @@ default:
   field_c_n_show_toc:
     -
       value: false
+  field_c_n_space:
+    -
+      value: both
   field_c_n_summary:
     -
       value: 'Demo Page is used to demonstrate typography and wysiwyg components.'
