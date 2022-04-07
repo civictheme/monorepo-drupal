@@ -5,10 +5,9 @@
 .civic-skip-link {
   $root: &;
 
-  padding: civic-space(2) civic-space(3);
-
   &__link {
     display: inline-block;
+    margin: civic-space(2) civic-space(3);
     padding: civic-space();
 
     @include civic-typography('label-regular');

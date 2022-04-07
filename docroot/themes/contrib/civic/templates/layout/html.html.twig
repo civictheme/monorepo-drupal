@@ -40,13 +40,9 @@
     <js-placeholder token="{{ placeholder_token }}">
 </head>
 <body{{ attributes.addClass(body_classes) }}>
-{#
-Keyboard navigation/accessibility link to main content section in
-page.html.twig.
-#}
-<a href="#banner" class="visually-hidden focusable skip-link">
-    {{ 'Skip to main content'|t }}
-</a>
+
+{% include '@molecules/skip-link/skip-link.twig'%}
+
 {{ page_top }}
 {{ page }}
 {{ page_bottom }}

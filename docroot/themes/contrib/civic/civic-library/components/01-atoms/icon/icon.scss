@@ -6,7 +6,7 @@
 
 .civic-icon {
   vertical-align: bottom;
-  fill: currentColor;
+  fill: currentcolor;
 
   // Generate color classes for all pre-set colors.
   $all-colors: map.merge($civic-colors-default, $civic-colors);
