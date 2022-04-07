@@ -26,7 +26,11 @@ export const SkipLink = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicSkipLink({
+  let html = CivicSkipLink({
     ...generalKnobs,
   });
+
+  html += '<div class="docs-container">Press TAB on the keyboard for the Skip Link to appear</div>';
+
+  return html;
 };

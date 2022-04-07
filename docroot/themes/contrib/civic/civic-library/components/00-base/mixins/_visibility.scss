@@ -12,4 +12,15 @@
   height: 1px;
   width: 1px;
   word-wrap: normal;
+
+  &.focusable {
+    &:active,
+    &:focus {
+      position: static !important;
+      overflow: visible;
+      clip: auto;
+      width: auto;
+      height: auto;
+    }
+  }
 }
