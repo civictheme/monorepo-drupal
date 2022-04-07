@@ -32,7 +32,7 @@ RUN apk update \
     && rm -rf /var/cache/apk/*
 
 # Install updated version of NPM.
-RUN npm install -g npm@^8 && fix-permissions /home/.npm
+RUN npm install -g npm@^8.6 && fix-permissions /home/.npm
 
 # Adding patches and scripts.
 ADD patches /app/patches
