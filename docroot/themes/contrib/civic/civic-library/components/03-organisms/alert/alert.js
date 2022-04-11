@@ -164,7 +164,7 @@ CivicAlert.prototype.getCookie = function () {
  * Set a cookie.
  */
 CivicAlert.prototype.setCookie = function (value) {
-  document.cookie = `${this.getCookieName()}=${JSON.stringify(value)}; SameSite=Strict`;
+  document.cookie = `${this.getCookieName()}=${JSON.stringify(value)}; SameSite=Strict; Path=/`;
 };
 
 /**
