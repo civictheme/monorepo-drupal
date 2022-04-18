@@ -17,6 +17,11 @@ function _civic_preprocess_node(&$variables) {
     return;
   }
 
+  $variables['attributes']['class'][] = 'node';
+  if (!$node->isPublished()) {
+    $variables['attributes']['class'][] = 'node--unpublished';
+  }
+
   $view_mode = $variables['elements']['#view_mode'];
   // Do not display node title on revision pages.
   if ($view_mode === 'full') {
