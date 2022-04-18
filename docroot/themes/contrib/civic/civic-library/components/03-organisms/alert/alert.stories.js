@@ -61,14 +61,29 @@ export const Alert = (knobTab) => {
 };
 
 export const AlertApi = () => {
-  const endpoint = radios(
+  const endpointType = radios(
     'Payload',
     {
       Default: 'default',
       Updated: 'updated',
+      Invalid: 'invalid',
     },
     'default',
-  ) === 'default' ? 'api/alerts1.json' : 'api/alerts2.json';
+  );
+
+  let endpoint;
+  switch (endpointType) {
+    case 'updated':
+      endpoint = 'api/alerts2.json';
+      break;
+
+    case 'invalid':
+      endpoint = 'api/alerts3.json';
+      break;
+
+    default:
+      endpoint = 'api/alerts1.json';
+  }
 
   button('Clear cookie', () => {
     document.cookie = 'civic-alert-hide=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
