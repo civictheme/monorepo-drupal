@@ -1,9 +1,12 @@
 /**
+ * @file
  * Password Indicator component.
+ *
+ * Provides a password indicator component to help users comply with a site's password policy.
  */
 function CivicPasswordIndicator(el) {
   // Ensure element hasn't already been processed.
-  if (this.el.getAttribute('data-password-indicator' === 'true' || this.el)) {
+  if (!el || el.getAttribute('data-password-indicator') === 'true') {
     return;
   }
 
