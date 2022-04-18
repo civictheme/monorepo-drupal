@@ -27,15 +27,23 @@ function CivicAlert(el) {
  * Gets alerts from endpoint.
  */
 CivicAlert.prototype.getAll = function () {
+  const endpoint = this.endpoint;
   const request = new XMLHttpRequest();
-  request.open('get', this.endpoint);
+  request.open('get', endpoint);
   request.onreadystatechange = () => {
     if (request.readyState === 4 && request.status === 200) {
+      if ('responseURL' in request) {
+        if (new URL(request.responseURL).pathname !== new URL(endpoint, location).pathname) {
+          return;
+        }
+      }
+
       const response = JSON.parse(request.responseText);
       const html = this.filter(response);
       this.insert(html);
     }
   };
+  request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   request.send();
 };
 
