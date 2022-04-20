@@ -98,7 +98,7 @@ export const Button = (knobTab) => {
         Regular: 'regular',
         Small: 'small',
         'Extra Small': 'extra-small',
-        Default: '',
+        None: '',
       },
       'regular',
       iconKnobTab,
