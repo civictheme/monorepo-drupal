@@ -9,7 +9,7 @@
  * - size: [string] Button size: large, regular, small.
  * - icon: [boolean] Button icon visibility: true, false.
  * - icon_placement: [string] Icon position: left, right
- * - icon_size: [string] Icon size: small, medium, large
+ * - icon_size: [string] Icon size: large, regular, small.
  * - text: [string] Button text.
  * - title: [string] Button title.
  * - url: [string] URL for the link button.
@@ -29,6 +29,7 @@
 {% set type = type in ['primary', 'secondary', 'tertiary', 'chip'] ? type : null %}
 {% set size = size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? size : 'regular' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
+{% set icon_size = icon_size in ['large', 'regular', 'small'] ? icon_size : size %}
 
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type_class = type ? 'civic-button--%s'|format(type) : '' %}
@@ -41,7 +42,7 @@
     <span class="civic-button__icon">
 		  {% include '@atoms/icon/icon.twig' with {
         symbol: icon,
-        size: size,
+        size: icon_size,
       } only %}
 		</span>
   {% endif %}
