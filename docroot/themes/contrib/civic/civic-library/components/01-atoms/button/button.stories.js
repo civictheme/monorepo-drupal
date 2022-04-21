@@ -91,6 +91,18 @@ export const Button = (knobTab) => {
       'after',
       iconKnobTab,
     ) : null,
+    icon_size: withIcon ? radios(
+      'Icon Size', {
+        'Extra Large': 'extra-large',
+        Large: 'large',
+        Regular: 'regular',
+        Small: 'small',
+        'Extra Small': 'extra-small',
+        None: '',
+      },
+      'regular',
+      iconKnobTab,
+    ) : null,
   };
 
   return CivicButton({ ...generalKnobs, ...iconKnobs });
