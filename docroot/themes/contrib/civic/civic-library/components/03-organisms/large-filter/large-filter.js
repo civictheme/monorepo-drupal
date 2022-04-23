@@ -280,7 +280,7 @@ CivicLargeFilter.prototype.renderHTMLFilterItem = function (key, label, type, th
   // Radio filters are rendered as non-dismissible elements.
   return `
     <li class="civic-large-filter__tag">
-      <button class="civic-button civic-theme-${theme} civic-button--chip civic-button--button civic-button--rextra-small" data-component-name="button" data-id="${key}">
+      <button class="civic-button civic-theme-${theme} civic-button--chip civic-button--button civic-button--extra-small" data-component-name="button" data-id="${key}">
         ${label}
       </button>
     </li>

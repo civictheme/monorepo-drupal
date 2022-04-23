@@ -305,6 +305,11 @@
         ),
         'dismiss': (
           'fill': $civic-button-light-chip-dismiss-color,
+          'fill-selected': $civic-button-light-chip-selected-color,
+        ),
+        'selected': (
+          'color': $civic-button-light-chip-selected-color,
+          'background-color': $civic-button-light-chip-selected-background-color
         ),
       ),
       'dark': (
@@ -346,6 +351,11 @@
         ),
         'dismiss': (
           'fill': $civic-button-dark-chip-dismiss-color,
+          'fill-selected': $civic-button-dark-chip-selected-color
+        ),
+        'selected': (
+          'color': $civic-button-dark-chip-selected-color,
+          'background-color': $civic-button-dark-chip-selected-background-color
         ),
       )
     ),
@@ -411,6 +421,14 @@
             @include _civic-button-print-rules($type-kind-values);
           }
         }
+        @else if $type-kind == 'selected' {
+          &.selected,
+          &.selected:hover,
+          &.selected:active,
+          &.selected:hover:active {
+            @include _civic-button-print-rules($type-kind-values);
+          }
+        }
         @else if $type-kind == 'disabled' {
           &:disabled,
           &[disabled],
@@ -438,6 +456,11 @@
             &:hover {
               @include civic-icon-fill-color(map.get($type-kind-values, 'fill'));
             }
+          }
+        }
+        &.selected {
+          .civic-button__dismiss {
+            @include civic-icon-fill-color(map.get($type-kind-values, 'fill-selected'))
           }
         }
       }

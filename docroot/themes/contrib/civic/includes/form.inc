@@ -223,6 +223,9 @@ function _civic_preprocess_civic_filter_form_element_alter(&$variables) {
     unset($element['#attributes']['name']);
     unset($element['#attributes']['id']);
     unset($element['#attributes']['#civic-basic-filter']);
+    if (!empty($element['#attributes']['checked'])) {
+      $variables['is_selected'] = TRUE;
+    }
     $variables['attributes'] = new Attribute($element['#attributes']);
   }
 }

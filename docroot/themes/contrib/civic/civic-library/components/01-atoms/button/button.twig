@@ -20,6 +20,7 @@
  * - is_external: [boolean] If link is external or not.
  * - is_disabled: [boolean] Disabled or not.
  * - is_dismissible: [boolean] Can be dismissed or not.
+ * - is_selected: [boolean] Is the button selected (for filter chips).
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
@@ -35,7 +36,8 @@
 {% set type_class = type ? 'civic-button--%s'|format(type) : '' %}
 {% set kind_class = kind ? 'civic-button--%s'|format(kind) : '' %}
 {% set size_class = 'civic-button--%s'|format(size) %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, type_class, kind_class, size_class, modifier_class|default('')) %}
+{% set selected_class = is_selected ? 'selected' : '' %}
+{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, type_class, kind_class, size_class, selected_class, modifier_class|default('')) %}
 
 {% set button_icon %}
   {% if icon %}
