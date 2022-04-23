@@ -31,7 +31,7 @@
 {% set size = size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? size : 'regular' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
 {% set icon_size = icon_size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? icon_size : size %}
-
+{% set component_name = type == 'chip' ? 'filter-chip' : 'button' %}
 {% set theme_class = 'civic-theme-%s'|format(theme|default('light')) %}
 {% set type_class = type ? 'civic-button--%s'|format(type) : '' %}
 {% set kind_class = kind ? 'civic-button--%s'|format(kind) : '' %}
@@ -89,11 +89,11 @@
 {% endset %}
 
 {% if kind == 'button' %}
-  <button class="civic-button {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="button" {% if id is not empty %}id="{{ id }}"{% endif %} {% if name is not empty %}name="{{ name }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}>{{ button_text }}</button>
+  <button class="civic-button {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="{{ component_name }}" {% if id is not empty %}id="{{ id }}"{% endif %} {% if name is not empty %}name="{{ name }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}>{{ button_text }}</button>
 {% elseif kind == 'link' %}
-  <a class="civic-button {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} role="button" data-component-name="button" {% if url %}href="{{ url }}"{% endif %} title="{{ title }}" {{ is_new_window ? 'target="_blank"' }} {% if id is not empty %}id="{{ id }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}>{{ button_text }}</a>
+  <a class="civic-button {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} role="button" data-component-name="{{ component_name }}" {% if url %}href="{{ url }}"{% endif %} title="{{ title }}" {{ is_new_window ? 'target="_blank"' }} {% if id is not empty %}id="{{ id }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}>{{ button_text }}</a>
 {% elseif kind in ['reset', 'submit'] %}
-  <input class="civic-button {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} type="{{ kind }}" data-component-name="button" {% if id is not empty %}id="{{ id }}"{% endif %} {% if name is not empty %}name="{{ name }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %} value="{{ (is_raw_text ? text|raw : text) |trim }}"/>
+  <input class="civic-button {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} type="{{ kind }}" data-component-name="{{ component_name }}" {% if id is not empty %}id="{{ id }}"{% endif %} {% if name is not empty %}name="{{ name }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %} value="{{ (is_raw_text ? text|raw : text) |trim }}"/>
 {% elseif kind in ['checkbox', 'radio'] %}
-  <label class="civic-button {{ modifier_class }}" data-component-name="button" {% if is_disabled %}disabled="disabled"{% endif %} {% if id is not empty %}for="{{ id }}"{% endif %}><input type="{{ kind }}" {% if id is not empty %}id="{{ id }}"{% endif %} {% if name is not empty %}name="{{ name }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ button_text|trim }}</label>
+  <label class="civic-button {{ modifier_class }}" data-component-name="filter-chip" {% if is_disabled %}disabled="disabled"{% endif %} {% if id is not empty %}for="{{ id }}"{% endif %}><input type="{{ kind }}" {% if id is not empty %}id="{{ id }}"{% endif %} {% if name is not empty %}name="{{ name }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ button_text|trim }}</label>
 {% endif %}
