@@ -37,7 +37,8 @@
 {% set kind_class = kind ? 'civic-button--%s'|format(kind) : '' %}
 {% set size_class = 'civic-button--%s'|format(size) %}
 {% set selected_class = is_selected ? 'selected' : '' %}
-{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, type_class, kind_class, size_class, selected_class, modifier_class|default('')) %}
+{% set dismiss_class =  is_dismissable ? 'civic-button--dismiss' : '' %}
+{% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, type_class, kind_class, size_class, selected_class, dismiss_class, modifier_class|default('')) %}
 
 {% set button_icon %}
   {% if icon %}
