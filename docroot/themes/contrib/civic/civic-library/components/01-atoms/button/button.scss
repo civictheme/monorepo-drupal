@@ -455,14 +455,16 @@
           &.civic-button--dismiss {
             padding-right: civic-space(2);
           }
+
           .civic-button__dismiss {
             &:hover {
               @include civic-icon-fill-color(map.get($type-kind-values, 'fill'));
             }
           }
+
           &.selected {
             .civic-button__dismiss {
-              @include civic-icon-fill-color(map.get($type-kind-values, 'fill-selected'))
+              @include civic-icon-fill-color(map.get($type-kind-values, 'fill-selected'));
             }
           }
         }
