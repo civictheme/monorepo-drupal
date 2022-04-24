@@ -327,7 +327,7 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
     $variables['options_title'] = $element['#description'] ?? '';
-    $variables['is_inline'] = TRUE;
+    $variables['is_inline'] = FALSE;
     $variables['inline_change_breakpoint'] = '>=m';
     $variables['filter_group'] = $element['#civic-large-filter'];
     $variables['#attributes']['data-dropdown-filter-fieldset'] = '';

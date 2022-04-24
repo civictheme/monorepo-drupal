@@ -64,7 +64,7 @@ function civic_theme() {
     'civic_description_list' => [
       'variables' => [
         'items' => [],
-        'is_inline' => '',
+        'is_inline' => FALSE,
         'modifier_class' => '',
       ],
       'template' => 'misc/description-list',
