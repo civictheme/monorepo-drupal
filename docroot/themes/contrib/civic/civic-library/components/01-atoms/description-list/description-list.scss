@@ -52,4 +52,12 @@
       margin: 0;
     }
   }
+
+  &.civic-theme-light {
+    color: $civic-description-list-light-color;
+  }
+
+  &.civic-theme-dark {
+    color: $civic-description-list-dark-color;
+  }
 }

@@ -1338,3 +1338,9 @@ $civic-tabs-dark-links-selected-border-color: $civic-tabs-dark-links-border-colo
 $civic-tabs-dark-panel-color: $civic-tabs-dark-links-color !default;
 $civic-tabs-dark-panel-background-color: civic-color-shade-dark(40) !default;
 $civic-tabs-dark-panel-border-color: civic-color('neutral') !default;
+
+//
+// Description list.
+//
+$civic-description-list-light-color: civic-color-neutral(80) !default;
+$civic-description-list-dark-color: civic-color('neutral') !default;
