@@ -15,7 +15,7 @@ Drupal.behaviors.civic_ajax_views = {
       let $filter = $form.find('[data-component-name="civic-large-filter"]');
       let isAutosubmit;
       if ($filter.length > 0) {
-        isAutosubmit = typeof $filter.attr('data-large-filter-auto-submit') !== 'undefined';
+        isAutosubmit = typeof $filter.attr('data-large-filter-auto-submit') !== 'undefined' && $filter.attr('data-large-filter-auto-submit') === 'true';
       } else {
         $filter = $form.find('[data-component-name="civic-basic-filter"]');
         isAutosubmit = $filter.length > 0;

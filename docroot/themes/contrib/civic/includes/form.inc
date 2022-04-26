@@ -199,7 +199,7 @@ function _civic_preprocess_civic_filter_form_element_alter(&$variables) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
     $variables['options_title'] = $element['#description'] ?? '';
-    $variables['is_inline'] = TRUE;
+    $variables['is_inline'] = FALSE;
     $variables['inline_change_breakpoint'] = '>=m';
     $variables['filter_group'] = $element['#civic-large-filter'];
     if (isset($variables['description'])) {

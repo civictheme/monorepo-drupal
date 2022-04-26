@@ -28,12 +28,12 @@
   <div
     class="civic-dropdown-filter {{ modifier_class }}"
     data-collapsible data-collapsible-collapsed
-    {% if is_inline and inline_change_breakpoint %}
+    {% if inline_change_breakpoint %}
       data-responsive
       data-dropdown-filter-inline-change-breakpoint="{{ inline_change_breakpoint }}"
       data-collapsible-group-enabled-breakpoint="{{ inline_change_breakpoint }}"
     {% endif %}
-    {% if filter_group and ( not is_inline or (is_inline and inline_change_breakpoint)) %}
+    {% if filter_group and ( not is_inline or (inline_change_breakpoint)) %}
       data-collapsible-group="{{ filter_group }}"
     {% endif %}
     data-collapsible-duration="0"
