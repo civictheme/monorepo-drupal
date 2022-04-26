@@ -256,7 +256,12 @@ CivicLargeFilter.prototype.redrawFilters = function () {
   Object.keys(this.state).forEach((key) => {
     const entry = this.state[key];
     const el = document.getElementById(entry.id);
-    this.fieldTypes[entry.type].setValue(el, entry.value);
+    const currentValue = this.fieldTypes[entry.type].getValue(el, entry.value);
+    if (currentValue !== entry.value) {
+      const event = new Event('change');
+      this.fieldTypes[entry.type].setValue(el, entry.value);
+      el.dispatchEvent(event);
+    }
   });
 };
 

@@ -23,12 +23,18 @@ Drupal.behaviors.civic_ajax_views = {
       if (isAutosubmit === true) {
         // We do not want to submit on every click, we want user to be able
         // to select several checkboxes or radio buttons without submitting.
-        if (typeof debounce !== 'undefined') {
-          clearTimeout(debounce);
+        const timeout = $form.attr('data-civic-filter-ajax-submit-timeout') !== null ? Number($form.attr('data-civic-filter-ajax-submit-timeout')) : 500;
+        if (timeout > 0) {
+          if (typeof debounce !== 'undefined') {
+            clearTimeout(debounce);
+          }
+          debounce = setTimeout(() => {
+            $form.find('[type="submit"]').trigger('click');
+          }, timeout);
         }
-        debounce = setTimeout(() => {
+        else {
           $form.find('[type="submit"]').trigger('click');
-        }, 500);
+        }
       }
     };
     const filterType = $form.attr('data-civic-filter-type');

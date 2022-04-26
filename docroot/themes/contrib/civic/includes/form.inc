@@ -20,6 +20,7 @@ function civic_form_views_exposed_form_alter(&$form, FormStateInterface $form_st
   // filter.
   $is_civic_large_filter = _civic_get_number_of_exposed_form_elements($form) > 1;
   $form['#attributes']['data-civic-filter-type'] = $is_civic_large_filter ? 'large' : 'basic';
+  $form['#attributes']['data-civic-filter-ajax-submit-timeout'] = $is_civic_large_filter ? 500 : 0;
   $form['#attributes']['data-civic-filter'] = '';
   $form['#large_filter'] = $is_civic_large_filter;
   $ajax_filter = $form_state->get('view')->ajaxEnabled();
