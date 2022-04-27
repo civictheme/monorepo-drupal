@@ -265,6 +265,8 @@ $civic-button-light-chip-disabled-background-color: civic-color-neutral(20) !def
 $civic-button-light-chip-disabled-border-color: $civic-button-light-chip-disabled-background-color !default;
 $civic-button-light-chip-disabled-outline-color: none !default;
 $civic-button-light-chip-dismiss-color: civic-color('primary') !default;
+$civic-button-light-chip-selected-color: civic-color('neutral') !default;
+$civic-button-light-chip-selected-background-color: civic-color('primary') !default;
 $civic-button-dark-chip-color: civic-color-neutral(5) !default;
 $civic-button-dark-chip-background-color: civic-color-shade-dark(40) !default;
 $civic-button-dark-chip-border-color: civic-color-neutral(40) !default;
@@ -290,6 +292,8 @@ $civic-button-dark-chip-disabled-background-color: civic-color-neutral(20) !defa
 $civic-button-dark-chip-disabled-border-color: civic-color('translucent') !default;
 $civic-button-dark-chip-disabled-outline-color: none !default;
 $civic-button-dark-chip-dismiss-color: civic-color('accent') !default;
+$civic-button-dark-chip-selected-color: civic-color-shade-dark(45) !default;
+$civic-button-dark-chip-selected-background-color: civic-color('accent') !default;
 
 //
 // Iframe.
