@@ -198,7 +198,6 @@ CivicLargeFilter.prototype.filterElementChangeEvent = function (e) {
  * Filter chips click event listener.
  */
 CivicLargeFilter.prototype.tagElementChangeEvent = function (e) {
-  console.log('Tag event change');
   if (e.target.nodeName === 'BUTTON') {
     const key = e.target.dataset.id;
     const { type } = this.state[key];

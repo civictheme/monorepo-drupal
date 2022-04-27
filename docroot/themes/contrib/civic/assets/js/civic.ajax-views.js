@@ -53,10 +53,7 @@ Drupal.behaviors.civic_ajax_views = {
           .on('click', (e) => e.preventDefault());
         $form
           .find('[data-component-name="chip"]')
-          .on('click', (e) => {
-            e.preventDefault()
-            console.log('click')
-          });
+          .on('click', (e) => e.preventDefault());
       } else {
         // For non-ajax forms add click listener to dismissable filter chips
         // so page is reloaded with correct view results when clicked.
