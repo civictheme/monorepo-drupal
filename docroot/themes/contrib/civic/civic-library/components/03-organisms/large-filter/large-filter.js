@@ -126,7 +126,7 @@ CivicLargeFilter.prototype.init = function () {
       }
     }, false);
   }
-  this.redraw(false)
+  this.redraw(false);
   this.initialisedState = true;
 
   this.el.setAttribute('data-civic-large-filter', 'true');
