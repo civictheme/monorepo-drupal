@@ -48,6 +48,10 @@
     }
   }
 
+  &--hidden {
+    display: none;
+  }
+
   &.civic-theme-light {
     #{$root}__element {
       border-color: $civic-input-light-border-color;

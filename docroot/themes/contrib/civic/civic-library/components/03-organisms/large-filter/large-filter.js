@@ -145,7 +145,12 @@ CivicLargeFilter.prototype.updateTagContainerPosition = function () {
 
   const elementContainer = this.isDesktop ? '[data-large-filter-desktop-container]' : '[data-large-filter-mobile-container]';
   this.el.querySelector(elementContainer).appendChild(this.filterComponent);
-
+  const event = new CustomEvent('civicLargeFilterMobileLayoutUpdated', {
+    detail: {
+      isDesktop: this.isDesktop
+    },
+  });
+  this.el.dispatchEvent(event)
   // Enable / Disable auto-submit on mobile.
   this.el.setAttribute('data-large-filter-auto-submit', this.isDesktop);
 };
