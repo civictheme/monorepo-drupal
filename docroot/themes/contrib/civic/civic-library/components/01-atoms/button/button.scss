@@ -457,6 +457,8 @@
           }
 
           .civic-button__dismiss {
+            user-select: none;
+            pointer-events: none;
             &:hover {
               @include civic-icon-fill-color(map.get($type-kind-values, 'fill'));
             }

@@ -51,6 +51,12 @@ Drupal.behaviors.civic_ajax_views = {
         $form
           .find('[data-large-filter-clear]')
           .on('click', (e) => e.preventDefault());
+        $form
+          .find('[data-component-name="chip"]')
+          .on('click', (e) => {
+            e.preventDefault()
+            console.log('click')
+          });
       } else {
         // For non-ajax forms add click listener to dismissable filter chips
         // so page is reloaded with correct view results when clicked.
@@ -65,14 +71,17 @@ Drupal.behaviors.civic_ajax_views = {
             // submit handler to them so dismissing a filter chip reloads the
             // page.
             $form
-              .find('[data-civic-filter-chip]')
+              .find('[data-component-name="chip"]')
               .on('click', buttonSubmitHandler);
           });
       }
     } else {
       $form
-        .find('[data-component-name="filter-chip"] input')
+        .find('[data-component-name="chip"] input')
         .on('change', buttonSubmitHandler);
+      $form
+        .find('button[data-component-name="chip"]')
+        .on('click', buttonSubmitHandler);
     }
   },
 };
