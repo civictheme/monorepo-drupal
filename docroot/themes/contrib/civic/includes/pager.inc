@@ -13,7 +13,7 @@ function civic_preprocess_pager(&$variables) {
   $pager_manager = \Drupal::service('pager.manager');
 
   $element = $variables['pager']['#element'] ?? NULL;
-  if (!$element) {
+  if ($element === NULL) {
     return;
   }
 
