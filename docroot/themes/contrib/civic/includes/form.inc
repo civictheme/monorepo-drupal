@@ -20,13 +20,15 @@ function civic_form_views_exposed_form_alter(&$form, FormStateInterface $form_st
   // filter.
   $is_civic_large_filter = _civic_get_number_of_exposed_form_elements($form) > 1;
   $form['#attributes']['data-civic-filter-type'] = $is_civic_large_filter ? 'large' : 'basic';
+  $form['#attributes']['data-civic-filter-ajax-submit-timeout'] = $is_civic_large_filter ? 500 : 0;
   $form['#attributes']['data-civic-filter'] = '';
   $form['#large_filter'] = $is_civic_large_filter;
   $ajax_filter = $form_state->get('view')->ajaxEnabled();
   $form['#attributes']['data-civic-filter-ajax'] = $ajax_filter ? 'true' : 'false';
   // Ajax exposed view forms hides submit button to have auto-load.
   if ($ajax_filter) {
-    $form['actions']['submit']['#attributes']['class'][] = 'hide-xs';
+    $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
+    $form['actions']['#attributes']['class'][] = 'hide-xxs';
   }
   else {
     $form['actions']['submit']['#attributes']['class'] = [
@@ -199,7 +201,7 @@ function _civic_preprocess_civic_filter_form_element_alter(&$variables) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
     $variables['options_title'] = $element['#description'] ?? '';
-    $variables['is_inline'] = TRUE;
+    $variables['is_inline'] = FALSE;
     $variables['inline_change_breakpoint'] = '>=m';
     $variables['filter_group'] = $element['#civic-large-filter'];
     if (isset($variables['description'])) {
@@ -223,6 +225,9 @@ function _civic_preprocess_civic_filter_form_element_alter(&$variables) {
     unset($element['#attributes']['name']);
     unset($element['#attributes']['id']);
     unset($element['#attributes']['#civic-basic-filter']);
+    if (!empty($element['#attributes']['checked'])) {
+      $variables['is_selected'] = TRUE;
+    }
     $variables['attributes'] = new Attribute($element['#attributes']);
   }
 }
@@ -324,7 +329,7 @@ function _civic_preprocess_composite_form_elements(&$variables) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
     $variables['options_title'] = $element['#description'] ?? '';
-    $variables['is_inline'] = TRUE;
+    $variables['is_inline'] = FALSE;
     $variables['inline_change_breakpoint'] = '>=m';
     $variables['filter_group'] = $element['#civic-large-filter'];
     $variables['#attributes']['data-dropdown-filter-fieldset'] = '';

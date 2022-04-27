@@ -15,7 +15,7 @@ Drupal.behaviors.civic_ajax_views = {
       let $filter = $form.find('[data-component-name="civic-large-filter"]');
       let isAutosubmit;
       if ($filter.length > 0) {
-        isAutosubmit = typeof $filter.attr('data-large-filter-auto-submit') !== 'undefined';
+        isAutosubmit = typeof $filter.attr('data-large-filter-auto-submit') !== 'undefined' && $filter.attr('data-large-filter-auto-submit') === 'true';
       } else {
         $filter = $form.find('[data-component-name="civic-basic-filter"]');
         isAutosubmit = $filter.length > 0;
@@ -23,12 +23,18 @@ Drupal.behaviors.civic_ajax_views = {
       if (isAutosubmit === true) {
         // We do not want to submit on every click, we want user to be able
         // to select several checkboxes or radio buttons without submitting.
-        if (typeof debounce !== 'undefined') {
-          clearTimeout(debounce);
+        const timeout = $form.attr('data-civic-filter-ajax-submit-timeout') !== null ? Number($form.attr('data-civic-filter-ajax-submit-timeout')) : 500;
+        if (timeout > 0) {
+          if (typeof debounce !== 'undefined') {
+            clearTimeout(debounce);
+          }
+          debounce = setTimeout(() => {
+            $form.find('[type="submit"]').trigger('click');
+          }, timeout);
         }
-        debounce = setTimeout(() => {
+        else {
           $form.find('[type="submit"]').trigger('click');
-        }, 500);
+        }
       }
     };
     const filterType = $form.attr('data-civic-filter-type');
@@ -45,6 +51,9 @@ Drupal.behaviors.civic_ajax_views = {
         $form
           .find('[data-large-filter-clear]')
           .on('click', (e) => e.preventDefault());
+        $form
+          .find('[data-component-name="chip"]')
+          .on('click', (e) => e.preventDefault());
       } else {
         // For non-ajax forms add click listener to dismissable filter chips
         // so page is reloaded with correct view results when clicked.
@@ -59,14 +68,17 @@ Drupal.behaviors.civic_ajax_views = {
             // submit handler to them so dismissing a filter chip reloads the
             // page.
             $form
-              .find('[data-civic-filter-chip]')
+              .find('[data-component-name="chip"]')
               .on('click', buttonSubmitHandler);
           });
       }
     } else {
       $form
-        .find('[data-component-name="filter-chip"] input')
+        .find('[data-component-name="chip"] input')
         .on('change', buttonSubmitHandler);
+      $form
+        .find('button[data-component-name="chip"]')
+        .on('click', buttonSubmitHandler);
     }
   },
 };

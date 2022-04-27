@@ -74,6 +74,7 @@ export const Button = (knobTab) => {
   generalKnobs.is_external = boolean('Is external', false, generalKnobTab);
   generalKnobs.is_disabled = boolean('Disabled', false, generalKnobTab);
   generalKnobs.is_dismissible = boolean('Dismissible', false, generalKnobTab);
+  generalKnobs.is_selected = boolean('Selected', false, generalKnobTab);
   generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
   generalKnobs.attributes = text('Additional attributes', '', generalKnobTab);
 
