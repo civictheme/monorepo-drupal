@@ -1,7 +1,7 @@
 # CivicTheme - Development source site
 Mono-repo to maintain CivicTheme and accompanying modules that are automatically published to another repositories on release.
 
-[![CircleCI](https://circleci.com/gh/salsadigitalauorg/civictheme/tree/develop.svg?style=svg&circle-token=abf9bde8507c968b4de120552682aa925d979256)](https://circleci.com/gh/salsadigitalauorg/civictheme/tree/develop)
+[![CircleCI](https://circleci.com/gh/salsadigitalauorg/civictheme-source/tree/develop.svg?style=shield)](https://circleci.com/gh/salsadigitalauorg/civictheme-source/tree/develop)
 ![Drupal 9](https://img.shields.io/badge/Drupal-9-blue.svg)
 
 
