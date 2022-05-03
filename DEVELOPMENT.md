@@ -97,16 +97,16 @@ installation of `civictheme_demo`. We do not capture configuration for `civicthe
 
 ## Demo content export
 
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_demo/content <entity_type> <entity_id>
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content <entity_type> <entity_id>
 
     # Example 1: export a single node with all dependencies
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_demo/content node 50
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content node 50
 
     # Example 2: export all terms, nodes and blocks for Demo content.
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_demo/content taxonomy_term
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_demo/content node
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_demo/content block_content
-    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_demo/content menu_link_content
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content taxonomy_term
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content node
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content block_content
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content menu_link_content
 
     # Example 3: export all terms, nodes, blocks and menu links for Corporate content.
     drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content taxonomy_term

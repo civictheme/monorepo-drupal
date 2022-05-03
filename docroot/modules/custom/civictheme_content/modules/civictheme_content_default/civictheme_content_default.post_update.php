@@ -13,7 +13,7 @@ use Drupal\Core\Utility\UpdateException;
 /**
  * Sets homepage.
  */
-function civictheme_content_demo_post_update_set_homepage() {
+function civictheme_content_default_post_update_set_homepage() {
   try {
     Helper::setHomepageFromNode('Your department/agency tagline');
   }
@@ -25,7 +25,7 @@ function civictheme_content_demo_post_update_set_homepage() {
 /**
  * Provisions links in footer and updates menu block configurations.
  */
-function civictheme_content_demo_post_update_provision_footer_links() {
+function civictheme_content_default_post_update_provision_footer_links() {
   $theme = \Drupal::theme()->getActiveTheme()->getName();
 
   $map = [

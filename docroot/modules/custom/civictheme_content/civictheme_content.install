@@ -5,7 +5,7 @@
  * Install file for civictheme_content.
  *
  * When enabled and CIVICTHEME_CONTENT_TYPES environment variable is not
- * available, civictheme_content_demo module will be installed and content
+ * available, civictheme_content_default module will be installed and content
  * provided with the module will be provisioned.
  *
  * When enabled and CIVICTHEME_CONTENT_TYPES environment variable is
@@ -28,7 +28,7 @@ function civictheme_content_install() {
     $types = array_map('strtolower', array_map('trim', explode(',', trim(getenv('CIVICTHEME_CONTENT_TYPES')))));
   }
   else {
-    $types = ['demo'];
+    $types = ['default'];
   }
 
   if (in_array('none', $types)) {
