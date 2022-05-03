@@ -1,0 +1,117 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: 5c0ad15f-3e9c-4eeb-8525-7a064b06fc58
+  bundle: civictheme_social_links
+  default_langcode: en
+  depends:
+    128cf256-533b-4a10-bedb-e878deada4a5: media
+    f7f391de-797d-4345-90c4-46d1f01c468e: media
+    930bbaa2-e37b-403a-86e6-c16d1aa79ad9: media
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: 'Social links'
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  field_c_b_social_icons:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 1b79d942-5437-45b2-b6da-d320d5ada850
+          bundle: civictheme_social_icon
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635056707
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_icon:
+            -
+              entity: 128cf256-533b-4a10-bedb-e878deada4a5
+          field_c_p_link:
+            -
+              uri: 'https://www.facebook.com/'
+              title: Facebook
+              options: {  }
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8e16aba6-d2da-41a1-9bf7-1d02bea7c1a9
+          bundle: civictheme_social_icon
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635056922
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_icon:
+            -
+              entity: f7f391de-797d-4345-90c4-46d1f01c468e
+          field_c_p_link:
+            -
+              uri: 'https://www.linkedin.com/'
+              title: LinkedIn
+              options: {  }
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 4cb05b4c-1ee2-4c22-b876-c14a73557817
+          bundle: civictheme_social_icon
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1635056944
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_icon:
+            -
+              entity: 930bbaa2-e37b-403a-86e6-c16d1aa79ad9
+          field_c_p_link:
+            -
+              uri: 'https://twitter.com/'
+              title: Twitter
+              options: {  }
+  field_c_b_theme:
+    -
+      value: dark
+  field_c_b_with_border:
+    -
+      value: true

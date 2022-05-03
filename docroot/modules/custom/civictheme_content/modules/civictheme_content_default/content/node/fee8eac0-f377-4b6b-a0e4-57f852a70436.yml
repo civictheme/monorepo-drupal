@@ -1,0 +1,172 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: fee8eac0-f377-4b6b-a0e4-57f852a70436
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
+    e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e: node
+    0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c: taxonomy_term
+    32e84de2-85db-425c-88e9-b311ba69e352: node
+    75c3061b-50d7-42c4-8db5-7d06859c6725: taxonomy_term
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Demo Page - Subject card references test 1'
+  created:
+    -
+      value: 1632116697
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_background:
+    -
+      entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 1b0304f7-0e32-4b33-987d-f21952bce1f2
+          bundle: civictheme_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1632116714
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: e75b798a-fd28-4085-b52b-bc9f9a83839f
+                  bundle: civictheme_card_subject_ref
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1632116720
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_reference:
+                    -
+                      entity: e7ae2692-4f90-4bd9-9f3d-89dfe3adf88e
+                  field_c_p_theme:
+                    -
+                      value: dark
+                  field_c_p_topic:
+                    -
+                      entity: 0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 0d2078ac-8d61-4aca-bd41-fd679333d64e
+                  bundle: civictheme_card_subject_ref
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1632116770
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_reference:
+                    -
+                      entity: 32e84de2-85db-425c-88e9-b311ba69e352
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_topic:
+                    -
+                      entity: 75c3061b-50d7-42c4-8db5-7d06859c6725
+          field_c_p_column_count:
+            -
+              value: 3
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_footer_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_header_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Card container'
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_space:
+    -
+      value: both
+  field_c_n_summary:
+    -
+      value: 'Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.'
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

@@ -1,0 +1,139 @@
+//
+// Grid component.
+//
+
+@use 'sass:map';
+
+.row {
+  @include civictheme-row($civictheme-grid-gutters);
+
+  &.reverse {
+    @include civictheme-row-reverse();
+  }
+
+  &.natural-height {
+    @include civictheme-row-natural-height();
+  }
+
+  &.flex-column {
+    @include civictheme-row-flex-column();
+  }
+}
+
+.col {
+  // Make columns at the lowest breakpoint to act as a single column per row.
+  @include _civictheme-grid-col($civictheme-grid-lowest-breakpoint, $civictheme-grid-columns);
+
+  $next-bp: civictheme-map-get-next($civictheme-breakpoints, $civictheme-grid-lowest-breakpoint, map.get($civictheme-breakpoints, 'xxs'), key);
+
+  // Spawn columns to fit into as single row for larger breakpoints.
+  @include civictheme-breakpoint($next-bp) {
+    @include _civictheme-grid-col();
+  }
+
+  &.reverse {
+    @include civictheme-col-reverse();
+  }
+}
+
+.first {
+  order: -1;
+}
+
+.last {
+  order: 1;
+}
+
+.align-start {
+  align-self: flex-start;
+}
+
+.align-end {
+  align-self: flex-end;
+}
+
+.align-center {
+  align-self: center;
+}
+
+.align-baseline {
+  align-self: baseline;
+}
+
+.align-stretch {
+  align-self: stretch;
+}
+
+// Generate column classes.
+@each $breakpoint, $value in $civictheme-breakpoints {
+  @if $breakpoint == $civictheme-grid-lowest-breakpoint {
+    @include _civictheme-col-factory($breakpoint);
+  }
+  @else {
+    @include civictheme-breakpoint($breakpoint) {
+      @include _civictheme-col-factory($breakpoint);
+    }
+  }
+}
+
+// Container class should wrap every row.
+.container {
+  @include civictheme-container();
+}
+
+//
+// Max width container class to limit the width of the fluid containers at max width.
+//
+.container-max-width {
+  @include civictheme-breakpoint(xxl) {
+    width: $civictheme-grid-max-width;
+    margin: 0 auto;
+  }
+}
+
+//
+// Offset container class to add offset on small screens.
+//
+.container-offset-xs {
+  @include civictheme-breakpoint-upto(m) {
+    padding-left: map.get($civictheme-grid-offsets, 'xxs');
+    padding-right: map.get($civictheme-grid-offsets, 'xxs');
+    width: auto;
+  }
+}
+
+.row-no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.col-no-gutter {
+  padding: 0;
+}
+
+.civictheme-justify-content-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.civictheme-justify-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+.civictheme-justify-content-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.civictheme-text-align-left {
+  text-align: left;
+}
+
+.civictheme-text-align-center {
+  text-align: center;
+}
+
+.civictheme-text-align-right {
+  text-align: right;
+}

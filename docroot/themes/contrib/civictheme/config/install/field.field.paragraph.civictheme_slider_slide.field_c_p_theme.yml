@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_theme
+    - paragraphs.paragraphs_type.civictheme_slider_slide
+  module:
+    - options
+id: paragraph.civictheme_slider_slide.field_c_p_theme
+field_name: field_c_p_theme
+entity_type: paragraph
+bundle: civictheme_slider_slide
+label: Theme
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: light
+default_value_callback: ''
+settings: {  }
+field_type: list_string

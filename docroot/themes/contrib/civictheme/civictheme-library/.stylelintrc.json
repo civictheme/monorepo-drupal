@@ -1,0 +1,51 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss"
+  ],
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "content",
+          "each",
+          "else",
+          "error",
+          "extend",
+          "function",
+          "for",
+          "if",
+          "import",
+          "include",
+          "mixin",
+          "return",
+          "use",
+          "warn",
+          "while"
+        ]
+      }
+    ],
+    "at-rule-name-space-after": "always",
+    "block-opening-brace-space-before": "always",
+    "block-closing-brace-newline-after": "always",
+    "color-function-notation": "legacy",
+    "comment-no-empty": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "max-line-length": null,
+    "no-descending-specificity": null,
+    "scss/at-mixin-argumentless-call-parentheses": "always",
+    "scss/at-mixin-pattern": "^_?civictheme-[a-z0-9\\-]+$",
+    "scss/at-else-closing-brace-newline-after": null,
+    "scss/at-else-closing-brace-space-after": null,
+    "scss/at-else-empty-line-before": "never",
+    "scss/at-if-closing-brace-newline-after": null,
+    "scss/at-if-closing-brace-space-after": null,
+    "scss/at-if-no-null": null,
+    "scss/comment-no-empty": null,
+    "scss/comment-no-loud": true,
+    "scss/dollar-variable-pattern": ["^(root|_?civictheme-.+)", {"ignore": "local"}],
+    "scss/at-function-parentheses-space-before": "never",
+    "selector-class-pattern": null,
+    "string-quotes": "single"
+  }
+}

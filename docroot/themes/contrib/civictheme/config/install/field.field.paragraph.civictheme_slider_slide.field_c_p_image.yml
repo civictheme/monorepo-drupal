@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_image
+    - media.type.civictheme_image
+    - paragraphs.paragraphs_type.civictheme_slider_slide
+id: paragraph.civictheme_slider_slide.field_c_p_image
+field_name: field_c_p_image
+entity_type: paragraph
+bundle: civictheme_slider_slide
+label: Image
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      civictheme_image: civictheme_image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

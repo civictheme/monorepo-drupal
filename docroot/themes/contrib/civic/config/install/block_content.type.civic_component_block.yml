@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: civic_component_block
-label: Component
-revision: 0
-description: ''

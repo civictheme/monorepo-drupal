@@ -1,0 +1,6 @@
+@import 'components-combined/00-base/variables';
+@import 'components-combined/02-molecules/basic-content/basic-content';
+
+.cke_editable {
+  @extend .civictheme-basic-content;
+}

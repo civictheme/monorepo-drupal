@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * CivicTheme theme implementation for a filter chip form element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The rendered checkboxes.
+ *
+ * @see template_preprocess_checkboxes()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="civictheme-basic-filter__list--row">
+  {% include '@atoms/button/button.twig' with {
+    theme: theme,
+    type: 'chip',
+    kind: is_multiple ? 'checkbox': 'radio',
+    text: text,
+    size: 'small',
+    name: name,
+    id: id,
+    attributes: attributes,
+    is_selected: is_selected,
+    modifier_class: modifier_class
+  } only %}
+</div>

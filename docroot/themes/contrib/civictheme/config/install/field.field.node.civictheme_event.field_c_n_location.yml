@@ -1,0 +1,66 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_c_n_location
+    - node.type.civictheme_event
+    - paragraphs.paragraphs_type.civictheme_map
+  module:
+    - entity_reference_revisions
+id: node.civictheme_event.field_c_n_location
+field_name: field_c_n_location
+entity_type: node
+bundle: civictheme_event
+label: Location
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      civictheme_map: civictheme_map
+    target_bundles_drag_drop:
+      civictheme_accordion:
+        weight: 15
+        enabled: false
+      civictheme_accordion_panel:
+        weight: 16
+        enabled: false
+      civictheme_card_container:
+        weight: 17
+        enabled: false
+      civictheme_card_event_ref:
+        weight: 18
+        enabled: false
+      civictheme_card_navigation:
+        weight: 19
+        enabled: false
+      civictheme_card_navigation_ref:
+        weight: 20
+        enabled: false
+      civictheme_card_promo_ref:
+        weight: 21
+        enabled: false
+      civictheme_card_task:
+        weight: 22
+        enabled: false
+      civictheme_content:
+        weight: 23
+        enabled: false
+      civictheme_map:
+        enabled: true
+        weight: 14
+      civictheme_service_card:
+        weight: 24
+        enabled: false
+      civictheme_slider:
+        weight: 25
+        enabled: false
+      civictheme_slider_slide:
+        weight: 26
+        enabled: false
+field_type: entity_reference_revisions

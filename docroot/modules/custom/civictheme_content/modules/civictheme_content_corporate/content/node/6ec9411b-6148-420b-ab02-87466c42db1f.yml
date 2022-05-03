@@ -1,0 +1,117 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 6ec9411b-6148-420b-ab02-87466c42db1f
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    ba705a5b-91ca-4f48-9d82-feeabb645cff: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Climate change presentation '
+  created:
+    -
+      value: 1642672149
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /climate-change-presentation
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 28b501bb-b142-4665-a399-c11ff3a7f3d1
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642672156
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Date:&nbsp; 20 January 2022</p>\r\n\r\n<p>Time: 4pm</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+  field_c_n_banner_featured_image:
+    -
+      entity: ba705a5b-91ca-4f48-9d82-feeabb645cff
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 078c0682-123e-479d-9b7e-d41c35bdab52
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642672166
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Join this online event to find out what Australia’s doing about climate change. The Honourable Minister Jane Smith will introduce the Head of the Office of Climate Change, Reg Plantar. During the one-hour session we’ll cover:</p>\r\n\r\n<ul>\r\n\t<li>Current conditions</li>\r\n\t<li>What we’re doing to prevent climate change</li>\r\n\t<li>How we’re adapting to climate change</li>\r\n\t<li>The latest climate change research</li>\r\n</ul>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_space:
+    -
+      value: both

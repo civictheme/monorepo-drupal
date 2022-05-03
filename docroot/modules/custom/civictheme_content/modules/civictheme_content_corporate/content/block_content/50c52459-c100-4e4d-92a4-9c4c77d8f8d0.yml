@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: 50c52459-c100-4e4d-92a4-9c4c77d8f8d0
+  bundle: civictheme_banner
+  default_langcode: en
+  depends:
+    0eb512d0-d116-48f7-83bb-ae07c3eb2c91: media
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: Banner
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  field_c_b_background_image:
+    -
+      entity: 0eb512d0-d116-48f7-83bb-ae07c3eb2c91
+  field_c_b_theme:
+    -
+      value: dark

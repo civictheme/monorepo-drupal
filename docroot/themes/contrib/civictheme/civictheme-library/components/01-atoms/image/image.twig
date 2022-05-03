@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Image component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - src: [string] URL of the image.
+ * - alt: [string] Alternate text of the image.
+ * - width: [string] Width.
+ * - height: [string] Height.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if src is not empty %}
+  <img
+    class="civictheme-image {{ modifier_class }}"
+    src="{{ src }}"
+    {% if alt is not empty %}alt="{{ alt }}"{% endif %}
+    {% if width is not empty %}width="{{ width }}"{% endif %}
+    {% if height is not empty %}height="{{ height }}"{% endif %}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}/>
+{% endif %}

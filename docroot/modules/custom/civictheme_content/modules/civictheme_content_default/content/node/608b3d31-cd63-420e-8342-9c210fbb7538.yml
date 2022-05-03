@@ -1,0 +1,105 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 608b3d31-cd63-420e-8342-9c210fbb7538
+  bundle: civictheme_event
+  default_langcode: en
+  depends:
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+    0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Demo Event - The Test Event'
+  created:
+    -
+      value: 1633688845
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_body:
+    -
+      value: "<h3>Event</h3>\r\n\r\n<p>Nulla tincidunt facilisis risus vel volutpat. Vestibulum consectetur nulla quis nibh dapibus elementum. Maecenas mattis accumsan est quis pellentesque. Curabitur aliquet sit amet tellus et aliquam. Duis varius felis ligula, et laoreet ex dictum et. Sed tristique nisi eu diam aliquam facilisis. Aenean porta, tortor quis vestibulum pulvinar, dolor quam maximus enim, id sodales ligula sem ac eros. Donec vel mi nec est vestibulum egestas. Duis nunc magna, dignissim ac lobortis in, volutpat in massa. Aenean tellus diam, pellentesque ac metus ornare, luctus gravida metus. Quisque bibendum arcu sed lacus consequat, sit amet consectetur neque lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque eu nisl rhoncus, mattis orci et, tincidunt massa. Integer ligula erat, molestie commodo leo eu, iaculis posuere lacus. Mauris imperdiet dictum odio, at commodo justo mollis ac.</p>\r\n\r\n<h4>Time and date</h4>\r\n\r\n<p class=\"civictheme-text-large\">23 March 2022</p>\r\n\r\n<h4>Location</h4>\r\n\r\n<p>Nulla tincidunt facilisis risus vel volutpat. Vestibulum consectetur nulla quis nibh dapibus elementum. Maecenas mattis accumsan est quis pellentesque. Curabitur aliquet sit amet tellus et aliquam. Duis varius felis ligula, et laoreet ex dictum et. Sed tristique nisi eu diam aliquam facilisis. Aenean porta, tortor quis vestibulum pulvinar, dolor quam maximus enim, id sodales ligula sem ac eros. Donec vel mi nec est vestibulum egestas. Duis nunc magna, dignissim ac lobortis in, volutpat in massa. Aenean tellus diam, pellentesque ac metus ornare, luctus gravida metus. Quisque bibendum arcu sed lacus consequat, sit amet consectetur neque lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque eu nisl rhoncus, mattis orci et, tincidunt massa. Integer ligula erat, molestie commodo leo eu, iaculis posuere lacus. Mauris imperdiet dictum odio, at commodo justo mollis ac.</p>\r\n"
+      format: civictheme_rich_text
+  field_c_n_date:
+    -
+      value: '2021-10-15T02:27:55'
+      end_value: '2021-10-27T00:29:57'
+  field_c_n_image:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  field_c_n_location:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 02377830-4193-467c-b888-e74c904c555d
+          bundle: civictheme_map
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1644358427
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_address:
+            -
+              value: 'The Balconies, Grampians National Park'
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_embed_url:
+            -
+              uri: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3180.133312047585!2d142.45657321627007!3d-37.14952950410098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ace0ebd1eeef337%3A0x4daac7dbcd11e07c!2sThe%20Balconies!5e0!3m2!1sen!2sau!4v1644358453836!5m2!1sen!2sau'
+              title: ''
+              options: {  }
+          field_c_p_share_link:
+            -
+              uri: 'https://goo.gl/maps/hDrtKEt6rRFqj3jbA'
+              title: ''
+              options: {  }
+          field_c_p_theme:
+            -
+              value: dark
+          field_c_p_view_link:
+            -
+              uri: 'https://maps.google.com/maps?ll=-37.149534,142.458762&z=16&t=m&hl=en&gl=AU&mapclient=embed&cid=5596505233813528700'
+              title: ''
+              options: {  }
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_tagline:
+    -
+      value: 'Its Happening!'
+  field_c_n_topics:
+    -
+      entity: 0a3a8fe4-4af3-4c18-9222-0cb3c76ee37c

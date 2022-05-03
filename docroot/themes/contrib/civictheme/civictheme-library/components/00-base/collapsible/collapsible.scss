@@ -1,0 +1,90 @@
+//
+// Collapsible component.
+//
+
+@use 'sass:list';
+@use 'sass:map';
+
+[data-collapsible] {
+  [data-collapsible-trigger] {
+    cursor: pointer;
+  }
+
+  &:not([data-collapsible-trigger-no-icon]) {
+    [data-collapsible-trigger] {
+      padding-right: civictheme-icon-size-dimension('regular', $civictheme-collapsible-icon-size, 'width');
+      position: relative;
+
+      &::after {
+        @include civictheme-icon-size('regular');
+
+        content: $civictheme-collapsible-icon;
+        position: absolute;
+        right: 0;
+        transform: rotate(-180deg);
+        line-height: 0;
+      }
+    }
+  }
+
+  &:not([data-collapsible-duration='0']) {
+    [data-collapsible-trigger] {
+      &::after {
+        transition: transform 0.5s;
+      }
+    }
+  }
+
+  &[data-collapsible-collapsing] {
+    [data-collapsible-trigger] {
+      &::after {
+        transform: rotate(0deg);
+      }
+    }
+
+    &[data-collapsible-collapsed] {
+      [data-collapsible-trigger] {
+        &::after {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+  }
+
+  &[data-collapsible-collapsed] {
+    [data-collapsible-trigger] {
+      &::after {
+        transform: rotate(0deg);
+      }
+    }
+
+    [data-collapsible-panel] {
+      height: 0;
+      overflow: hidden;
+    }
+  }
+
+  &.civictheme-theme-light {
+    color: $civictheme-collapsible-light-color;
+
+    &:not([data-collapsible-trigger-no-icon]) {
+      [data-collapsible-trigger] {
+        &::after {
+          content: civictheme-color-svg-fill($civictheme-collapsible-icon, $civictheme-collapsible-light-icon-color);
+        }
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-collapsible-dark-color;
+
+    &:not([data-collapsible-trigger-no-icon]) {
+      [data-collapsible-trigger] {
+        &::after {
+          content: civictheme-color-svg-fill($civictheme-collapsible-icon, $civictheme-collapsible-dark-icon-color);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.civictheme_mobile_navigation
+    - field.storage.block_content.field_c_b_theme
+  module:
+    - options
+id: block_content.civictheme_mobile_navigation.field_c_b_theme
+field_name: field_c_b_theme
+entity_type: block_content
+bundle: civictheme_mobile_navigation
+label: Theme
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: light
+default_value_callback: ''
+settings: {  }
+field_type: list_string

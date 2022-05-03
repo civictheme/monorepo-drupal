@@ -1,0 +1,128 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: c8ee30e2-85e5-42db-b27a-92e508eacd0c
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    86c71cbb-5ab3-41f9-bf7c-f30cd426dbf0: media
+    e0a78fef-3e3a-4b96-b303-974ac8fec445: media
+    d95f5188-650c-4dea-abcb-df8ea008919b: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'What glacial movement means for climate change'
+  created:
+    -
+      value: 1642671675
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /what-glacial-movement-means-climate-change
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: da3f48e7-9ab6-4c70-8efb-e32bd391ca12
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642671686
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>New modelling shows that Antarctica's Pine Island Glacier is melting faster, with a 12% increase from 2016 to 2020.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: dark
+  field_c_n_banner_featured_image:
+    -
+      entity: 86c71cbb-5ab3-41f9-bf7c-f30cd426dbf0
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0ee94a5f-56dc-4377-8d47-64636a44951d
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642671702
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>The main cause of the rapid melting of the Pine Island Glacier and other ice sheets is global warming. As temperatures rise, the ice melts, which results in rising sea levels. In addition, because the ice on Earth helps to keep Earth cooler, less ice means hotter temperatures.&nbsp;</p>\r\n\r\n<h2>About the Pine Island Glacier changes</h2>\r\n\r\n<p>Two forces are causing the Pine Island Glacier to shrink and melt:</p>\r\n\r\n<ol>\r\n\t<li>Thinning of the ice shelves due to global warming</li>\r\n\t<li>Ice-shelf calving, when sections of ice break off from the main glacier, forming icebergs</li>\r\n</ol>\r\n\r\n<p>The ice-shelf calving from 2017-2020 accounts for one-fifth of the ice shelf, or 19km, whereas the loss from 2015-2017 was only 7.5km.&nbsp;</p>\r\n\r\n<h2>Pine Island Glacier and sea levels</h2>\r\n\r\n<p>Models show that when the Pine Island Glacier melts, global sea levels will increase by 50cm. While 50cm may not sound like a lot, this rise will cause many coastal cities around the world to flood.&nbsp;</p>\r\n\r\n<p>In addition, scientists have identified a much bigger risk: if the Pine Island Glacier melts, it could cause the West Antarctic ice sheet to collapse. This would cause sea levels to rise by 3m globally.&nbsp;</p>\r\n\r\n<blockquote>\r\n<p>“Our recent models have shown that it’s highly likely the melting of Pine Island Glacier will serve as a tipping point for the collapse of the West Antarctic ice sheet. This would have catastrophic effects on many countries and displace a large percentage of Earth’s population.”</p>\r\n\r\n<p>Professor Ian Smith, Glaciologist, Antarctic University</p>\r\n</blockquote>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_space:
+    -
+      value: both
+  field_c_n_summary:
+    -
+      value: "As temperatures rise, the ice melts, which results in rising sea levels. In addition, because the ice on Earth helps to keep Earth cooler, less ice means hotter temperatures.\_"
+  field_c_n_thumbnail:
+    -
+      entity: e0a78fef-3e3a-4b96-b303-974ac8fec445
+  field_c_n_topics:
+    -
+      entity: d95f5188-650c-4dea-abcb-df8ea008919b

@@ -1,0 +1,99 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 5b61896d-e76a-494f-ae85-b35034dc9526
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    2cf05e2f-5d05-4e88-ae27-7248a11978c4: media
+    fcd683b6-ea34-4310-aedd-7731ff476cbc: media
+    4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Demo Page - Attachment'
+  created:
+    -
+      value: 1631853738
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 3f0e0dba-a3a1-4b2c-9aa6-5627e2f1b178
+          bundle: civictheme_attachment
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631853743
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_attachments:
+            -
+              entity: 2cf05e2f-5d05-4e88-ae27-7248a11978c4
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_icon:
+            -
+              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
+          field_c_p_image:
+            -
+              entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
+          field_c_p_summary:
+            -
+              value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.\r\n\r\nBring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring."
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. '
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_space:
+    -
+      value: both
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

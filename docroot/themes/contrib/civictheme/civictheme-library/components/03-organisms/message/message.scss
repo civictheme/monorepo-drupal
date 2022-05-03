@@ -1,0 +1,118 @@
+//
+// Message component.
+//
+
+@use 'sass:map';
+
+.civictheme-message {
+  $root: &;
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  border-radius: $civictheme-message-border-radius;
+  border-left: solid rem(6px) transparent;
+  box-sizing: border-box;
+  padding: civictheme-space(3) civictheme-space(3) civictheme-space(3) civictheme-space(2);
+  margin: civictheme-space(3) 0;
+  width: 100%;
+
+  @include civictheme-typography('text-regular');
+
+  #{$root}__icon {
+    width: rem(26px);
+    margin-right: civictheme-space(2);
+  }
+
+  .civictheme-icon {
+    width: rem(26px);
+    height: rem(26px);
+  }
+
+  #{$root}__title {
+    font-weight: 600;
+  }
+
+  #{$root}__summary {
+    margin-top: civictheme-space();
+  }
+
+  // SASS does not allow variables interpolation, so we are creating a local
+  // map to easily generate rules.
+  $map: (
+    'status': (
+      'light': (
+        'color': $civictheme-message-status-light-color,
+        'background-color': $civictheme-message-status-light-background-color,
+        'border-color': $civictheme-message-status-light-border-color,
+        'icon-color': $civictheme-message-status-light-icon-color,
+      ),
+      'dark': (
+        'color': $civictheme-message-status-dark-color,
+        'background-color': $civictheme-message-status-dark-background-color,
+        'border-color': $civictheme-message-status-dark-border-color,
+        'icon-color': $civictheme-message-status-dark-icon-color,
+      )
+    ),
+    'warning': (
+      'light': (
+        'color': $civictheme-message-warning-light-color,
+        'background-color': $civictheme-message-warning-light-background-color,
+        'border-color': $civictheme-message-warning-light-border-color,
+        'icon-color': $civictheme-message-warning-light-icon-color,
+      ),
+      'dark': (
+        'color': $civictheme-message-warning-dark-color,
+        'background-color': $civictheme-message-warning-dark-background-color,
+        'border-color': $civictheme-message-warning-dark-border-color,
+        'icon-color': $civictheme-message-warning-dark-icon-color,
+      )
+    ),
+    'error': (
+      'light': (
+        'color': $civictheme-message-error-light-color,
+        'background-color': $civictheme-message-error-light-background-color,
+        'border-color': $civictheme-message-error-light-border-color,
+        'icon-color': $civictheme-message-error-light-icon-color,
+      ),
+      'dark': (
+        'color': $civictheme-message-error-dark-color,
+        'background-color': $civictheme-message-error-dark-background-color,
+        'border-color': $civictheme-message-error-dark-border-color,
+        'icon-color': $civictheme-message-error-dark-icon-color,
+      )
+    ),
+    'success': (
+      'light': (
+        'color': $civictheme-message-success-light-color,
+        'background-color': $civictheme-message-success-light-background-color,
+        'border-color': $civictheme-message-success-light-border-color,
+        'icon-color': $civictheme-message-success-light-icon-color,
+      ),
+      'dark': (
+        'color': $civictheme-message-success-dark-color,
+        'background-color': $civictheme-message-success-dark-background-color,
+        'border-color': $civictheme-message-success-dark-border-color,
+        'icon-color': $civictheme-message-success-dark-icon-color,
+      )
+    ),
+  );
+
+  @each $type, $type-map in $map {
+    &#{$root}--#{$type} {
+      @each $theme, $values in $type-map {
+        &.civictheme-theme-#{$theme} {
+          background-color: map.get($values, 'background-color');
+          color: map.get($values, 'color');
+          border-color: map.get($values, 'border-color');
+
+          #{$root}__icon {
+            .civictheme-icon {
+              fill: map.get($values, 'icon-color');
+            }
+          }
+        }
+      }
+    }
+  }
+}

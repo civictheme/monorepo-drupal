@@ -1,0 +1,42 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.component
+    - field.field.media.civictheme_image.field_c_m_caption
+    - field.field.media.civictheme_image.field_c_m_image
+    - media.type.civictheme_image
+  module:
+    - image
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: media.civictheme_image.component
+targetEntityType: media
+bundle: civictheme_image
+mode: component
+content:
+  field_c_m_caption:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_c_m_image:
+    label: visually_hidden
+    weight: 0
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

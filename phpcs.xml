@@ -15,20 +15,20 @@
     key "config.platform.php".-->
     <config name="testVersion" value="7.4"/>
 
-    <!-- Exclude civic theme assets. -->
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/.storybook\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/assets\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/civic-library\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/components\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/dist\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/docs\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/node_modules\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/storybook-static\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/webpack\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/.*\/.storybook\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/.*\/assets\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/.*\/components\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civic\/.*\/webpack\/.*</exclude-pattern>
+    <!-- Exclude civictheme theme assets. -->
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.storybook\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/assets\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme-library\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/components\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/dist\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/docs\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/node_modules\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/storybook-static\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/webpack\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.*\/.storybook\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.*\/assets\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.*\/components\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.*\/webpack\/.*</exclude-pattern>
 
     <!-- Exclude demo theme assets. -->
     <exclude-pattern>docroot\/themes\/custom\/.*</exclude-pattern>

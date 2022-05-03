@@ -13,10 +13,10 @@ set -e
 EXCLUDED_CONFIGS_FILE="scripts/theme_excluded_configs.txt"
 
 # Theme info file.
-THEME_INFO="docroot/themes/contrib/civic/civic.info.yml"
+THEME_INFO="docroot/themes/contrib/civictheme/civictheme.info.yml"
 
 # Temp dir.
-TMP_DIR="/tmp/civic"
+TMP_DIR="/tmp/civictheme"
 
 # Temp dir for exported config.
 TMP_DIR_EXPORTED="${TMP_DIR}/config_exported"
@@ -64,7 +64,7 @@ echo "  > Writing config to theme info ${THEME_INFO}"
 sed -i -e '/install:/,/optional:/!b' -e "/optional:/!d;r ${TMP_FILE}" -e 'd' "${THEME_INFO}"
 
 echo "  > Exporting theme configs"
-drush -q cde civic
+drush -q cde civictheme
 
 echo "==> Finished."
 

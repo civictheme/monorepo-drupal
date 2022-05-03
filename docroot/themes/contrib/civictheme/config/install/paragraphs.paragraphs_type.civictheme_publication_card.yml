@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civictheme_publication_card
+label: 'Publication card'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

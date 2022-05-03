@@ -7,18 +7,18 @@ set -e
 [ -n "${DREVOPS_DEBUG}" ] && set -x
 
 # Theme dir.
-THEME_DIR="docroot/themes/contrib/civic"
+THEME_DIR="docroot/themes/contrib/civictheme"
 
 # Config file patterns whose config may change.
 DIFF_EXCLUDE_PATTERNS=(
-  block.block.civic_*
+  block.block.civictheme_*
 )
 
 # Theme config dir.
 THEME_CONFIG_DIR="${THEME_DIR}/config/install"
 
 # Temp dir.
-TMP_DIR="/tmp/civic"
+TMP_DIR="/tmp/civictheme"
 
 # Temp dir for current config.
 TMP_DIR_CURRENT="${TMP_DIR}/current"
@@ -53,7 +53,7 @@ cp -R "${THEME_CONFIG_DIR}"/* "${TMP_DIR_CURRENT}" > /dev/null
 rm -Rf "${THEME_CONFIG_DIR:?}"/* > /dev/null
 
 # Export config.
-drush cde civic > /dev/null
+drush cde civictheme > /dev/null
 
 # Copy exported config into a temp dir for comparison.
 cp -R "${THEME_CONFIG_DIR}"/* "${TMP_DIR_EXPORTED}" > /dev/null
@@ -69,7 +69,7 @@ for exclude_pattern in "${DIFF_EXCLUDE_PATTERNS[@]}"; do
 done;
 
 # Compare directories.
-diff "${diff_opts[@]}" "${TMP_DIR_CURRENT}/" "${TMP_DIR_EXPORTED}/" || ( echo "ERROR: Configuration is not consistent. Are all configuration entries present in civic.info.yml?" && exit 1 )
+diff "${diff_opts[@]}" "${TMP_DIR_CURRENT}/" "${TMP_DIR_EXPORTED}/" || ( echo "ERROR: Configuration is not consistent. Are all configuration entries present in civictheme.info.yml?" && exit 1 )
 
 echo "  > OK: Configuration is consistent."
 

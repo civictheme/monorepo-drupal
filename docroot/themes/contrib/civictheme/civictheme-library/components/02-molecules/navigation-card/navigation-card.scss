@@ -1,0 +1,144 @@
+//
+// Navigation Card component.
+//
+
+.civictheme-navigation-card {
+  $root: &;
+
+  position: relative;
+  border-radius: $civictheme-navigation-card-border-radius;
+
+  // Prevent image from "spilling" over the border radius.
+  overflow: hidden;
+  width: 100%;
+
+  @include civictheme-elevation(3);
+
+  &:focus-within {
+    @include civictheme-outline();
+  }
+
+  #{$root}__image-wrapper {
+    position: relative;
+
+    @include civictheme-image-fit();
+  }
+
+  #{$root}__content {
+    padding: civictheme-space(3);
+  }
+
+  #{$root}__title {
+    @include civictheme-typography('heading-5');
+
+    margin-bottom: civictheme-space(2);
+  }
+
+  #{$root}__title-link {
+    @include civictheme-link-decoration ();
+    @include civictheme-link-no-outline ();
+    @include civictheme-link-cover-parent ();
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #{$root}__icon {
+    margin-bottom: civictheme-space(2);
+  }
+
+  #{$root}__summary {
+    @include civictheme-typography('text-regular');
+
+    padding-right: civictheme-space(3);
+  }
+
+  &#{$root}--large {
+    @include civictheme-breakpoint(m) {
+      display: flex;
+    }
+
+    #{$root}__image-wrapper {
+      @include civictheme-breakpoint(m) {
+        max-width: 12.5rem;
+        flex-shrink: 1;
+      }
+    }
+
+    #{$root}__title {
+      @include civictheme-typography('heading-4');
+    }
+  }
+
+  &#{$root}--small {
+    #{$root}__title {
+      @include civictheme-typography('heading-5');
+    }
+  }
+
+  &#{$root}--image-as-icon {
+    #{$root}__image-wrapper {
+      max-width: rem(48px);
+      padding: civictheme-space(3);
+      padding-bottom: 0;
+    }
+  }
+
+  &.civictheme-theme-light {
+    background-color: $civictheme-navigation-card-light-background-color;
+
+    &:focus {
+      @include civictheme-outline(false);
+    }
+
+    #{$root}__title {
+      color: $civictheme-navigation-card-light-heading-color;
+    }
+
+    #{$root}__title-link {
+      @include civictheme-link-colors($civictheme-navigation-card-light-heading-color, $civictheme-navigation-card-light-heading-hover-color, $active: $civictheme-navigation-card-light-heading-active-color);
+    }
+
+    #{$root}__summary {
+      color: $civictheme-navigation-card-light-color;
+    }
+
+    #{$root}__icon {
+      @include civictheme-icon-fill-color($civictheme-navigation-card-light-icon-color, true);
+    }
+
+    #{$root}__icon--arrow,
+    #{$root}__icon--external {
+      @include civictheme-icon-fill-color($civictheme-navigation-card-light-icon-arrow-color, true);
+    }
+  }
+
+  &.civictheme-theme-dark {
+    background-color: $civictheme-navigation-card-dark-background-color;
+
+    &:focus {
+      @include civictheme-outline(true);
+    }
+
+    #{$root}__title {
+      color: $civictheme-navigation-card-dark-heading-color;
+    }
+
+    #{$root}__title-link {
+      @include civictheme-link-colors($civictheme-navigation-card-dark-heading-color, $civictheme-navigation-card-dark-heading-hover-color, $active: $civictheme-navigation-card-dark-heading-active-color);
+    }
+
+    #{$root}__summary {
+      color: $civictheme-navigation-card-dark-color;
+    }
+
+    #{$root}__icon {
+      @include civictheme-icon-fill-color($civictheme-navigation-card-dark-icon-color, true);
+    }
+
+    #{$root}__icon--arrow,
+    #{$root}__icon--external {
+      @include civictheme-icon-fill-color($civictheme-navigation-card-dark-icon-arrow-color, true);
+    }
+  }
+}

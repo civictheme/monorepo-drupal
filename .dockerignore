@@ -17,7 +17,7 @@
 docroot/core
 docroot/modules/contrib
 docroot/themes/contrib
-!docroot/themes/contrib/civic
+!docroot/themes/contrib/civictheme
 docroot/profiles/contrib
 docroot/libraries
 !drush

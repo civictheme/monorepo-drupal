@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_c_m_transcript_link
+    - media.type.civictheme_video
+  module:
+    - link
+id: media.civictheme_video.field_c_m_transcript_link
+field_name: field_c_m_transcript_link
+entity_type: media
+bundle: civictheme_video
+label: 'Transcript link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

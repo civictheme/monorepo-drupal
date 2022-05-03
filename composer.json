@@ -1,6 +1,6 @@
 {
-    "name": "salsadigital/civictheme",
-    "description": "Drupal 9 implementation of CivicTheme for Salsa digital.",
+    "name": "salsadigital/civictheme-source",
+    "description": "Drupal 9 source development site for CivicTheme for Salsa Digital.",
     "license": "proprietary",
     "require": {
         "php": ">=7.4",
@@ -142,7 +142,7 @@
         "preserve-paths": [
             "docroot/modules/custom",
             "docroot/themes/custom",
-            "docroot/themes/contrib/civic",
+            "docroot/themes/contrib/civictheme",
             "docroot/drush",
             "docroot/sites/default/settings.php",
             "docroot/sites/default/services.yml",

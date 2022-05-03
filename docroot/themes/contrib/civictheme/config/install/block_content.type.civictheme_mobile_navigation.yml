@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civictheme_mobile_navigation
+label: 'Mobile Navigation'
+revision: 0
+description: ''

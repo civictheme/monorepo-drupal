@@ -1,0 +1,325 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 1accbc91-68c8-4a86-a973-b7120ce05c9c
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Demo Page - Listing: Ea Eum Tation'
+  created:
+    -
+      value: 1631445459
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: e6e82230-5f3b-439b-9241-ba4d6f072d1f
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631592868
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |+
+                Commodo huic meus ymo. Dignissim lobortis lucidus nibh saluto tamen tation torqueo. Abbas appellatio caecus diam luptatum nulla. Accumsan bene duis gemino gravis nibh pneum quis ratis uxor. Euismod fere similis veniam. Abbas aptent damnum mos usitas. Consectetuer ea gravis luctus luptatum populus sed uxor validus vindico.
+
+                Aliquam genitus ibidem iusto. Imputo iriure quia saepius sino turpis. Abbas enim obruo quidem. Abico humo ille inhibeo neo praesent saepius sino vulpes. Probo quidne quis. Ad esca ideo nostrud persto tamen tego validus vel zelus.
+
+                Brevitas ea huic imputo natu tation torqueo vereor vicis. Commoveo jumentum laoreet nunc persto suscipere. Dolore esca obruo populus quia tum. Cogo enim luctus os probo secundum. Abico interdico jumentum patria pecus tego velit. Ad amet autem luptatum minim praemitto praesent ullamcorper utinam. Accumsan aptent eum ideo torqueo velit volutpat. Duis nostrud plaga quis. Dolor te turpis.
+
+                Adipiscing camur pagus singularis usitas vulpes. Dignissim eros esca imputo meus qui velit. Comis conventio imputo plaga sed ullamcorper usitas vero. Exerci facilisis gravis haero hendrerit natu nostrud proprius tincidunt. Bene defui nostrud nutus utrum ymo. Tum ullamcorper zelus.
+
+                Blandit cogo eu gravis letalis obruo plaga scisco. Aliquam commodo neo nisl ut. Comis incassum iustum patria tation. Comis exputo jugis saluto zelus. Amet commodo ideo luctus tego. Acsi hos probo sagaciter si ullamcorper venio. Immitto premo vulpes.
+
+                Aliquip capto comis defui lenis paulatim pecus saluto tation. Exerci plaga populus. Cui eu in magna pertineo te ullamcorper. Damnum dolor macto olim paulatim pneum praesent. Abdo abluo elit esse exerci haero minim sed. Aliquam consectetuer defui ex humo loquor nulla pertineo sudo. Illum mos praesent. Facilisis ludus modo nobis vicis.
+
+                Esse gilvus patria ratis rusticus saepius si vicis. Bene eros esca fere neo nisl utrum. Commodo hendrerit imputo interdico jumentum laoreet quidne roto. Abdo antehabeo defui dolore enim eros tum vulputate.
+
+                Abbas appellatio dolus eros magna neque obruo pecus valde. Duis jus pecus sagaciter usitas. Abbas enim minim nobis paulatim quidne singularis uxor. Ex jus neo olim saepius sagaciter.
+
+                Persto praemitto refoveo rusticus ulciscor. Et nisl persto volutpat. Ad genitus odio refero. Ex facilisis jus nibh paulatim persto quibus scisco suscipit veniam. Aptent augue camur cogo eu exerci haero melior pertineo ymo. Qui sagaciter sudo tamen. Cui facilisis iaceo imputo jumentum pneum praemitto rusticus similis vulputate.
+
+                Adipiscing dolore ea luctus obruo persto ratis saluto virtus. Capto lenis nulla pagus patria secundum utinam zelus. Aliquam pagus pneum. Humo ideo iusto. Ad antehabeo exputo. Facilisi gemino haero iriure melior premo. Bene enim jus mos praemitto ratis suscipit.
+
+                Euismod facilisi verto. Ea euismod inhibeo nostrud paratus premo tego vereor. Nobis nulla quibus saluto tincidunt valetudo volutpat. Brevitas interdico iusto melior si valetudo vel voco. Enim lucidus quibus utinam. Capto importunus molior natu paratus plaga.
+
+                Bene erat oppeto quis utinam velit venio. At nibh refoveo vereor. Diam pecus saluto. Accumsan bene consectetuer enim gravis illum ratis refero turpis. Diam immitto incassum magna patria sit. Autem caecus facilisis pala refero turpis vicis voco vulpes.
+
+              format: plain_text
+          field_c_p_theme:
+            -
+              value: dark
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 40c0b012-ce53-4484-aaa3-1a2b61d5facf
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631592868
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |+
+                Autem jugis magna meus nostrud pertineo quia quidem suscipere usitas. Dolor populus premo suscipere suscipit utrum velit. Cui metuo mos nimis turpis. Consectetuer dolore fere te vero vindico virtus. Esca ex te veniam. Abbas cui dolus esse immitto inhibeo lobortis olim typicus ullamcorper.
+
+                Amet conventio dolor exputo qui tation. Hos ille incassum jus magna. Abluo caecus esca et eu nunc suscipit verto voco. At erat in luctus minim natu praesent roto ulciscor wisi.
+
+                Acsi commodo genitus interdico jus luctus obruo occuro. Causa dolor mauris molior utinam wisi. Caecus commodo consectetuer eu eum in nimis si tum. Causa haero immitto interdico mos saepius voco. Abigo aliquip decet facilisis metuo pagus patria quadrum ulciscor vel. Esse iriure iustum jumentum nibh occuro quia ut ymo. Aliquip amet augue hendrerit hos mauris tum vindico virtus.
+
+                Appellatio esca loquor uxor valetudo velit. Damnum incassum natu ullamcorper. Hos huic iustum lobortis minim persto tincidunt virtus. Aptent dolor ea enim quae quidem typicus vereor. Incassum jumentum lucidus nisl singularis. Euismod huic jumentum scisco. Gemino luctus occuro pecus qui turpis. Gemino iusto nunc probo qui te vicis ymo. Imputo in laoreet melior paulatim pecus suscipere vulputate zelus.
+
+                Ideo ille immitto inhibeo nulla quae suscipere velit wisi. Acsi cogo quidne quis roto. Ad causa damnum ratis. Abbas gemino importunus laoreet mauris melior saepius vulputate.
+
+                Augue camur facilisis fere imputo lucidus olim saluto valetudo. Damnum importunus occuro tamen. Dolus erat molior olim pecus sed singularis sino torqueo valde. Dolore typicus usitas. Abluo conventio hos laoreet nutus persto.
+
+                Abluo bene eros interdico luctus refoveo suscipit. Commoveo consequat luctus magna occuro odio paulatim quis sed voco. Ad adipiscing eros inhibeo lucidus metuo saluto sit veniam vindico. Cogo molior pecus proprius refero torqueo veniam. Eum gilvus gravis jus premo turpis venio vulputate. Augue autem enim patria sino te tum vulputate. Incassum mos olim persto praemitto premo sino vel.
+
+                Huic ibidem iustum luctus mauris saluto tego. Adipiscing immitto nimis patria quadrum quia si sit valetudo vindico. Acsi aliquip interdico sagaciter utinam. Commoveo pertineo praesent tamen. Conventio enim et ludus minim quidem. Autem commodo dolore haero ludus pala pertineo roto ymo.
+
+                Letalis nimis pecus ratis rusticus sit tamen vero. Accumsan caecus pagus sino torqueo usitas valetudo. Aliquam eum interdico sed sit tamen velit.
+
+                Aptent duis et iriure jus nibh saepius. Acsi ad amet eum jugis mos nostrud rusticus voco. Acsi adipiscing aliquip enim lucidus sino vicis volutpat. Abluo accumsan blandit neque suscipit tation vero.
+
+                Gilvus immitto lobortis verto. Antehabeo commoveo genitus incassum pecus veniam verto. Augue erat importunus lobortis. Hendrerit lobortis loquor lucidus nutus tego turpis typicus. Acsi aliquam cui elit nutus quadrum typicus usitas ut vicis. Abigo camur consectetuer decet incassum secundum utrum. Antehabeo inhibeo interdico loquor luctus luptatum metuo natu suscipere torqueo. Commodo conventio fere ille illum odio persto sino suscipit verto.
+
+                Defui eros iriure iustum. Adipiscing at capto diam letalis natu suscipere utrum venio. Abbas abico ad at minim quia quibus. Amet bene brevitas caecus gilvus sagaciter utinam. Consectetuer ea iusto vulputate. Facilisi nibh ratis wisi. Gilvus plaga singularis te turpis. Abdo causa ideo jumentum modo usitas vero vulpes. Abluo aliquam at commodo esca humo probo tincidunt.
+
+              format: plain_text
+          field_c_p_theme:
+            -
+              value: dark
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: dd2b5e13-cfc4-42e9-b538-ccf0ed64d764
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631592868
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: |+
+                Ea genitus mos patria quidem saepius typicus vereor. Conventio molior ullamcorper. Appellatio augue damnum interdico macto pneum populus vel. Abdo accumsan consequat dolor magna metuo nibh pecus valetudo verto. Blandit jumentum modo.
+
+                Jus quae similis typicus. Inhibeo nostrud nunc olim oppeto praesent tincidunt. Interdico mos pneum quibus saepius vindico vulpes. Augue erat esse huic natu nutus paulatim quidne usitas ymo. Abico brevitas commoveo imputo paratus pecus persto populus sino. Adipiscing causa dignissim dolor esca exputo ibidem vereor voco. Aliquam amet eligo gravis ludus macto meus neque populus volutpat. Causa dolus torqueo. Jugis occuro paratus paulatim populus.
+
+                Blandit capto commoveo elit eum hos lenis mauris singularis ulciscor. Conventio defui enim ibidem ideo iriure populus premo tation typicus. Ludus roto venio. Acsi at immitto importunus neo obruo vero. Appellatio vel wisi. Aliquip haero refoveo venio. Abluo amet commodo eros hendrerit huic inhibeo ludus uxor vicis.
+
+                Camur luctus neo populus. Abluo haero neque patria sit tincidunt valde vulpes. Cui iriure lobortis. Augue luptatum modo neo nostrud utrum venio vindico. Cui exputo lenis loquor nisl tum ulciscor vicis. Abico antehabeo refoveo. At exerci haero humo loquor pecus populus. Ea ex premo sed sino tego. Antehabeo dolore genitus ibidem melior natu pneum. Abbas brevitas erat oppeto saluto sit tamen te.
+
+                Consectetuer decet eu illum importunus sit vero wisi. Gravis pala vel. Esse ex nunc sed tum turpis. Augue facilisis magna oppeto.
+
+                Abdo aptent dignissim genitus jumentum nimis qui vindico voco wisi. Aliquip ibidem veniam. Defui persto sudo vulputate. Decet elit letalis quis turpis. Abico aptent commodo consequat erat et exerci immitto luctus quia. Hos in proprius valetudo vel. Genitus lucidus nunc roto utinam. Caecus consectetuer consequat duis ea odio os paratus turpis. Brevitas conventio decet eu immitto premo tum typicus.
+
+                Defui feugiat nisl nobis nulla nunc pecus wisi. Aliquip decet exputo persto tamen vicis vulpes. Ad caecus comis decet genitus nulla vindico. Abigo caecus dolus magna pala sed velit. Caecus ille incassum quibus quis usitas. Blandit consectetuer quae suscipit utinam. Consequat decet dolus fere hendrerit luptatum mauris persto praesent uxor. Aptent diam neo nulla obruo praemitto utrum wisi.
+
+                Abico euismod ex feugiat gilvus mauris. Abbas eu humo lucidus nimis oppeto probo ymo. Euismod luptatum macto nunc quidne rusticus. Paratus similis torqueo utrum. Commodo huic imputo jugis laoreet molior pagus quadrum sagaciter. Letalis neque pertineo qui vicis wisi zelus.
+
+                Aptent imputo natu refoveo ullamcorper. Erat jugis pertineo tamen ut valetudo. Aptent erat et illum interdico nunc quae suscipere te vulpes.
+
+                Aliquam dolore facilisis iusto meus minim pneum. Acsi cui nibh usitas. Decet eros lobortis occuro odio saepius tamen. Abbas damnum iustum nobis odio paulatim quidne tego. Accumsan ad causa jugis laoreet nobis pneum qui. Abluo luctus ludus quidem sed usitas. Exerci iriure jugis minim quae quibus refero scisco sed sit. Aliquam exputo velit. Duis importunus nimis nisl odio quidne sed similis.
+
+                Eu mauris plaga tego verto. Comis gemino gilvus haero huic interdico jumentum nibh nimis. Bene camur hos lobortis ut wisi. Imputo nunc pala. Letalis tamen veniam vulpes. Autem distineo ea exerci ibidem lucidus typicus virtus. Caecus esca eu lenis pertineo refoveo saluto ulciscor virtus. Abluo acsi euismod nostrud saluto wisi.
+
+                Acsi exerci iaceo illum jus quibus typicus utrum valde. Acsi commoveo facilisi ideo inhibeo natu sit uxor venio. Damnum iaceo incassum loquor natu refero si tincidunt turpis valetudo. Antehabeo commoveo consequat imputo jugis obruo pagus proprius refero voco.
+
+              format: plain_text
+          field_c_p_theme:
+            -
+              value: dark
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 9d7a94ab-5e23-4571-bca3-00cc0c7fbad7
+          bundle: civictheme_slider
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631631970
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_link:
+            -
+              uri: 'internal:/'
+              title: 'Bring to the table win-win survival strategies'
+              options: {  }
+          field_c_p_slides:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c98dddd4-4e77-4ea5-80e1-7cb6d7dcc4fd
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631631970
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_content:
+                    -
+                      value: "<p><strong>Leverage agile frameworks</strong> to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\r\n\r\n<p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>\r\n\r\n<p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>\r\n"
+                      format: civictheme_rich_text
+                  field_c_p_image_position:
+                    -
+                      value: left
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Capitalize on low hanging fruit'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: f595103f-10ac-4831-8825-75d62cd72d0d
+                  bundle: civictheme_slider_slide
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631632038
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_image_position:
+                    -
+                      value: right
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Override the digital divide'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'a new normal that has evolved'
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Leverage agile frameworks'
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_space:
+    -
+      value: both
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

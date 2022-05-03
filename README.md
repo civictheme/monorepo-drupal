@@ -1,7 +1,7 @@
-# Civic - Development mono-repo
-Mono-repo to maintain Civic theme and accompanying modules that are automatically published to another repositories on release.
+# CivicTheme - Development source site
+Mono-repo to maintain CivicTheme and accompanying modules that are automatically published to another repositories on release.
 
-[![CircleCI](https://circleci.com/gh/salsadigitalauorg/civic/tree/develop.svg?style=svg&circle-token=abf9bde8507c968b4de120552682aa925d979256)](https://circleci.com/gh/salsadigitalauorg/civic/tree/develop)
+[![CircleCI](https://circleci.com/gh/salsadigitalauorg/civictheme/tree/develop.svg?style=svg&circle-token=abf9bde8507c968b4de120552682aa925d979256)](https://circleci.com/gh/salsadigitalauorg/civictheme/tree/develop)
 ![Drupal 9](https://img.shields.io/badge/Drupal-9-blue.svg)
 
 
@@ -11,8 +11,8 @@ Mono-repo to maintain Civic theme and accompanying modules that are automaticall
 
 ## Environments
 
-- PROD: [https://nginx-php.master.civic.au2.amazee.io](https://nginx-php.master.civic.au2.amazee.io)
-- DEV: [https://nginx-php.develop.civic.au2.amazee.io](https://nginx-php.develop.civic.au2.amazee.io)
+- PROD: [https://nginx-php.master.civictheme.au2.amazee.io](https://nginx-php.master.civictheme.au2.amazee.io)
+- DEV: [https://nginx-php.develop.civictheme.au2.amazee.io](https://nginx-php.develop.civictheme.au2.amazee.io)
 - LOCAL: [http://civictheme.docker.amazee.io/](http://civictheme.docker.amazee.io/)
 
 ## Local environment setup
@@ -49,12 +49,12 @@ Copy `default.docker-compose.override.yml` to `docker-compose.override.yml`.
 ## Build process
 
 1. Builds fresh site from GovCMS Drupal profile. Use `ahoy install-site` to rebuild.
-2. Enables additional modules required for development by installing `cd_core` module.
-3. Enables Civic theme and imports its configuration.
-4. Creates Civic Demo sub-theme using provided scaffolding script and sets it as a default theme.
+2. Enables additional modules required for development by installing `cs_core` module.
+3. Enables CivicTheme theme and imports its configuration.
+4. Creates CivicTheme Demo sub-theme using provided scaffolding script and sets it as a default theme.
 5. Provisions content using Default Content module.
-6. Enables `civic_govcms` module to remove out-of-the-box GovCMS content types.
-7. Enables `civic_default_content` module to add default content to installation.
+6. Enables `civictheme_govcms` module to remove out-of-the-box GovCMS content types.
+7. Enables `civictheme_content` module to add default content to installation.
 
 See sections below on using development tools.
 
@@ -92,8 +92,8 @@ Please refer to [releasing documentation](RELEASING.md).
 ## FAQs
 Please refer to [FAQs](FAQs.md).
 
-## Civic Drupal theme
-Please refer to [Civic Drupal theme documentation](docroot/themes/contrib/civic/docs/introduction.md).
+## CivicTheme Drupal theme
+Please refer to [CivicTheme Drupal theme documentation](docroot/themes/contrib/civictheme/docs/introduction.md).
 
-## Civic components library
-Please refer to [Civic components Library documentation](docroot/themes/contrib/civic/civic-library/docs/introduction.md).
+## CivicTheme components library
+Please refer to [CivicTheme components Library documentation](docroot/themes/contrib/civictheme/civictheme-library/docs/introduction.md).

@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: civic_banner
-label: Banner
-revision: 0
-description: ''

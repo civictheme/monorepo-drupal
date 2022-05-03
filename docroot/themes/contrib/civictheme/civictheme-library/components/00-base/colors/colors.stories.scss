@@ -1,0 +1,56 @@
+//
+// Color stories.
+//
+
+@use 'sass:string';
+@use 'sass:map';
+
+.story-colors-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+
+  $all-colors: _civictheme-colors-all();
+  $dark-shades: ();
+  $light-shades: ();
+  $neutrals: ();
+
+  @for $i from 0 through 100 {
+    $dark-shades: map.merge($dark-shades, ('dark-shade-#{$i}': civictheme-color-shade-dark($i)));
+    $light-shades: map.merge($light-shades, ('light-shade-#{$i}': civictheme-color-shade-light($i)));
+    $neutrals: map.merge($neutrals, ('neutral-#{$i}': civictheme-color-neutral($i)));
+  }
+
+  $all-colors: map.merge($all-colors, $dark-shades);
+  $all-colors: map.merge($all-colors, $light-shades);
+  $all-colors: map.merge($all-colors, $neutrals);
+
+  @include civictheme-generate-class-variations-from-map($all-colors, 'story-color') using($key, $value, $index) {
+    $border-color: transparent;
+
+    @if $value == #fff or $value == #0000 {
+      $border-color: #ccd4d8;
+    }
+
+    width: 100px;
+    height: 100px;
+    margin: 0 8px 100px;
+    border: 1px solid $border-color;
+    border-radius: 12px;
+    position: relative;
+    background-color: $value;
+
+    $content: civictheme-str-replace(string.to-upper-case(string.slice($key, 1, 1)) + string.slice($key, 2), '-', ' ') + '\A' + string.to-upper-case(#{$value});
+
+    &::after {
+      content: '#{$content}';
+      text-align: center;
+      display: block;
+      padding: 1em 0;
+      position: absolute;
+      top: 100%;
+      font-family: 'Courier New', monospace, sans-serif;
+      font-size: 80%;
+      line-height: 150%;
+    }
+  }
+}

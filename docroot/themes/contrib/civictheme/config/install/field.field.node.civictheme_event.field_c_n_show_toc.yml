@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_c_n_show_toc
+    - node.type.civictheme_event
+id: node.civictheme_event.field_c_n_show_toc
+field_name: field_c_n_show_toc
+entity_type: node
+bundle: civictheme_event
+label: 'Show Table of Contents'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

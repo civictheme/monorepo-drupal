@@ -59,14 +59,14 @@ RUN composer self-update --2 && composer global remove -n -q hirak/prestissimo &
 # the repository.
 # File Gruntfile.sj is copied into image as it is required to generate
 # front-end assets.
-COPY docroot/themes/contrib/civic/civic-library/package.json docroot/themes/contrib/civic/civic-library/package* /app/docroot/themes/contrib/civic/civic-library/
-COPY docroot/themes/contrib/civic/ docroot/themes/contrib/civic/package* /app/docroot/themes/contrib/civic/
+COPY docroot/themes/contrib/civictheme/civictheme-library/package.json docroot/themes/contrib/civictheme/civictheme-library/package* /app/docroot/themes/contrib/civictheme/civictheme-library/
+COPY docroot/themes/contrib/civictheme/ docroot/themes/contrib/civictheme/package* /app/docroot/themes/contrib/civictheme/
 
 # Install NodeJS dependencies.
 # Since Drupal does not use NodeJS for production, it does not matter if we
 # install development dependencies here - they are not exposed in any way.
-RUN npm --prefix docroot/themes/contrib/civic/civic-library ci --no-audit --no-progress --unsafe-perm
-RUN npm --prefix docroot/themes/contrib/civic ci --no-audit --no-progress --unsafe-perm
+RUN npm --prefix docroot/themes/contrib/civictheme/civictheme-library ci --no-audit --no-progress --unsafe-perm
+RUN npm --prefix docroot/themes/contrib/civictheme ci --no-audit --no-progress --unsafe-perm
 
 # Copy all files into appllication source directory. Existing files are always
 # overridden.
@@ -74,13 +74,13 @@ COPY . /app
 
 # Compile front-end assets. Running this after copying all files as we need
 # sources to compile assets.
-RUN cd /app/docroot/themes/contrib/civic/civic-library && npm run build
-RUN cd /app/docroot/themes/contrib/civic && npm run build
+RUN cd /app/docroot/themes/contrib/civictheme/civictheme-library && npm run build
+RUN cd /app/docroot/themes/contrib/civictheme && npm run build
 
 # Create subtheme.
-RUN cd /app/docroot/themes/contrib/civic \
-  && php civic-create-subtheme.php civic_demo "Civic Demo" "Demo sub-theme for a Civic theme."
+RUN cd /app/docroot/themes/contrib/civictheme \
+  && php civictheme-create-subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
 
 # Compile subtheme assets.
-RUN npm --prefix docroot/themes/custom/civic_demo ci --no-audit --no-progress --unsafe-perm \
-  && cd /app/docroot/themes/custom/civic_demo && npm run build
+RUN npm --prefix docroot/themes/custom/civictheme_demo ci --no-audit --no-progress --unsafe-perm \
+  && cd /app/docroot/themes/custom/civictheme_demo && npm run build

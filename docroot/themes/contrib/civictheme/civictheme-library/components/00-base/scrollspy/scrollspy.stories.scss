@@ -1,0 +1,51 @@
+//
+// Scrollspy component stories.
+//
+
+.example-container__page-content {
+  &.example-scrollspy {
+    height: 2000px;
+
+    &::before {
+      box-shadow: 0 0 1px 1px #f00 inset;
+      height: 400px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      content: '';
+    }
+
+    &::after {
+      box-shadow: 0 0 1px 1px #00f inset;
+      height: 600px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      content: '';
+    }
+  }
+}
+
+.example-scrollspy-target1 {
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+}
+
+.example-scrollspy-target2 {
+  position: fixed;
+  bottom: 50px;
+  right: 100px;
+}
+
+.example-scrollspy-target1.civictheme-scrollspy-scrolled {
+  border: solid 1px red;
+}
+
+.example-scrollspy-target2.civictheme-scrollspy-scrolled {
+  border: solid 1px blue;
+}

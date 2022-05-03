@@ -37,13 +37,13 @@ aliases:
   # command and add private key under "SSH Permissions" in CircleCI UI.
   - &deploy_ssh_fingerprint "4e:82:39:4a:52:0e:ae:a9:ef:c1:19:56:46:21:fd:7f"
 
-  # SSH key fingerprint to deploy code to civic-library.
+  # SSH key fingerprint to deploy code to civictheme-library.
   - &deploy_ssh_fingerprint2 "aa:01:7b:73:2c:a8:cb:e6:d2:1a:12:c0:e1:53:39:f2"
 
-  # SSH key fingerprint to deploy code to civic_govcms.
+  # SSH key fingerprint to deploy code to civictheme_govcms.
   - &deploy_ssh_fingerprint3 "ee:42:65:bf:d7:2d:10:f4:53:17:ab:ed:d7:6a:99:84"
 
-  # SSH key fingerprint to deploy code to civic_default_content.
+  # SSH key fingerprint to deploy code to civictheme_content.
   - &deploy_ssh_fingerprint4 "ef:1c:ad:2a:dd:ec:0c:cd:1a:63:4c:bb:8a:d7:c1:b7"
 
   #-----------------------------------------------------------------------------
@@ -243,38 +243,38 @@ jobs:
       - checkout
       - *step_process_codebase
       - run:
-          name: Deploy release to Civic Theme repository.
+          name: Deploy release to CivicTheme Theme repository.
           command: |
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civic-theme.git \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme-drupal.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/themes/contrib/civic" \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/themes/contrib/civictheme" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
-          name: Deploy release to Civic Library repository.
+          name: Deploy release to CivicTheme Library repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civic-library.git \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme-library.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/themes/contrib/civic/civic-library" \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/themes/contrib/civictheme/civictheme-library" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
-          name: Deploy release to Civic GovCMS repository.
+          name: Deploy release to CivicTheme GovCMS repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT3 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civic_govcms.git \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme-govcms.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/modules/custom/civic_govcms" \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/modules/custom/civictheme-govcms" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
-          name: Deploy release to Civic Default Content repository.
+          name: Deploy release to CivicTheme Default Content repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT4 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civic_default_content.git \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme-drupal-content.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/modules/custom/civic_default_content" \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/modules/custom/civictheme-drupal-content" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - store_artifacts:

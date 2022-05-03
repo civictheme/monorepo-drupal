@@ -1,0 +1,245 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: e2401264-b563-4b62-9d77-b5c107909bf4
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Solar energy'
+  created:
+    -
+      value: 1642671856
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /solar-energy
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 05947b3a-db77-4378-9df3-4985b9970559
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642671868
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>As we move away from burning fossil fuels, we need to find new energy sources. Here in Australia, we’re active in a number of alternative energy sources, from solar energy to wind energy. Solar energy shows great potential for Australia. We’re also actively engaged in exploring alternative energy sources yet to be tested, or perhaps even discovered.&nbsp;</p>\r\n\r\n<h2>How solar energy works</h2>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus tellus nisl. Praesent varius lorem non augue laoreet, ut condimentum velit blandit. Nam maximus ligula vitae dolor suscipit, eget posuere dui rhoncus. Aliquam erat volutpat. Nullam justo erat, ultrices nec orci sit amet, ultrices aliquam dui. Proin porttitor urna in risus scelerisque ultricies. Quisque a velit aliquet, bibendum nibh sit amet, fringilla dolor. Vivamus sodales nisi iaculis, condimentum tellus in, aliquet nisl.</p>\r\n\r\n<h2>How to use solar energy at your home</h2>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus tellus nisl. Praesent varius lorem non augue laoreet, ut condimentum velit blandit. Nam maximus ligula vitae dolor suscipit, eget posuere dui rhoncus. Aliquam erat volutpat. Nullam justo erat, ultrices nec orci sit amet, ultrices aliquam dui. Proin porttitor urna in risus scelerisque ultricies.&nbsp;</p>\r\n\r\n<h2>Solar energy rebates</h2>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus tellus nisl. Praesent varius lorem non augue laoreet, ut condimentum velit blandit. Nam maximus ligula vitae dolor suscipit, eget posuere dui rhoncus. Aliquam erat volutpat. Nullam justo erat, ultrices nec orci sit amet, ultrices aliquam dui. Proin porttitor urna in risus scelerisque ultricies. Quisque a velit aliquet, bibendum nibh sit amet, fringilla dolor. Vivamus sodales nisi iaculis, condimentum tellus in, aliquet nisl. Integer ultrices auctor libero non viverra.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8bca0e82-4ea5-495e-8904-8d41041d3c42
+          bundle: civictheme_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642671876
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 768a0953-159d-4ef0-abd5-82cea02ac7d3
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642671891
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Wind energy'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Wind energy'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: fcf45888-21ec-4809-ae1d-c31ab04f0bd9
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642671906
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'route:<nolink>'
+                      title: 'Hydro energy'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Hydro energy'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: ec331240-a314-4b4b-85b6-5b2d85f13f79
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642671921
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Tidal energy'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Tidal energy'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 8db04150-4255-487e-91f1-68ff5b8b77e2
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642671939
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'New potential energy sources'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'New potential energy sources'
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Alternative energy sources'
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_space:
+    -
+      value: both

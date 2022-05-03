@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Progress Indicator component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - steps: [array] Steps.
+ *    - title: [string] Title of the step.
+ *    - status: [string] Title of the step.
+ * - modifier_class:[string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% set statuses = {
+  todo: {
+    text: 'Todo',
+    icon:   'userinterface_todo',
+  },
+  doing: {
+    text: 'Doing',
+    icon: 'userinterface_progress',
+  },
+  done: {
+    text: 'Done',
+    icon: 'userinterface_approve',
+  }
+} %}
+
+{% if steps %}
+  <div class="civictheme-progress-indicator {{ modifier_class }}" aria-live="polite">
+    {% for step in steps %}
+      {% if step.title is not empty %}
+        <div class="civictheme-progress-indicator__step {{ 'civictheme-progress-indicator__step--%s'|format(step.status) }}">
+          {% if step.status is defined %}
+            {% include '@atoms/icon/icon.twig' with {
+              symbol: statuses[step.status].icon,
+            } only %}
+          {% endif %}
+
+          <div class="civictheme-progress-indicator__step--inner">
+            {% if step.status is defined %}
+              <div class="civictheme-progress-indicator__step--status">
+                {{ statuses[step.status].text }}
+              </div>
+            {% endif %}
+
+            <div class="civictheme-progress-indicator__step--title">
+              {{ step.title }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

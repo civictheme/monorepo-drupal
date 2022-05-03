@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: civictheme_promo_banner
+label: 'Promo banner'
+effects:
+  a85d68b7-a682-4599-87c7-88befc578ee1:
+    uuid: a85d68b7-a682-4599-87c7-88befc578ee1
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 476
+      height: 520
+      anchor: center-center

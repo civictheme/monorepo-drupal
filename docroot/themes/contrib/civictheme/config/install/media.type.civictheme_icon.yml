@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civictheme_icon
+label: Icon
+description: 'SVG icon'
+source: file
+queue_thumbnail_downloads: false
+new_revision: true
+source_configuration:
+  source_field: field_c_m_icon
+field_map:
+  name: name

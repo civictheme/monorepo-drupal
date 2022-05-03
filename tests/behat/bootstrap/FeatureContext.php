@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Civic Demo Drupal context for Behat testing.
+ * CivicTheme Drupal context for Behat testing.
  */
 
 use Behat\Mink\Driver\Selenium2Driver;

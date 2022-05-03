@@ -1,0 +1,41 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: bde7a36d-4776-4a4e-a21c-c1562252ddde
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    f45bf798-cdf1-46fc-b27a-3fd6472fba25: menu_link_content
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: LinkedIn
+  menu_name:
+    -
+      value: civictheme-footer
+  link:
+    -
+      uri: 'https://twitter.com/'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 1
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:f45bf798-cdf1-46fc-b27a-3fd6472fba25'
+  revision_translation_affected:
+    -
+      value: true

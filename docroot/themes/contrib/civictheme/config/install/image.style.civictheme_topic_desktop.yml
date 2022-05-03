@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: civictheme_topic_desktop
+label: 'Topic desktop'
+effects:
+  b871b9ed-7922-4361-9034-9b29e4cd2239:
+    uuid: b871b9ed-7922-4361-9034-9b29e4cd2239
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 276
+      height: 224
+      anchor: center-center

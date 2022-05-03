@@ -116,7 +116,7 @@ $config['shield.settings']['credentials']['shield']['user'] = getenv('SHIELD_USE
 $config['shield.settings']['credentials']['shield']['pass'] = getenv('SHIELD_PASS');
 
 // Title of the shield pop-up.
-$config['shield.settings']['print'] = 'Civic Demo';
+$config['shield.settings']['print'] = 'CivicTheme Demo';
 
 // Exclude modules from export.
 $settings['config_exclude_modules'] = [];

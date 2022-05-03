@@ -26,18 +26,18 @@ $drush ${DRUSH_ALIAS} -y pm-enable components, field_group, menu_block, inline_f
 $drush ${DRUSH_ALIAS} -y then adminimal_theme
 $drush ${DRUSH_ALIAS} -y config-set system.theme admin adminimal_theme
 
-$drush ${DRUSH_ALIAS} -y then civic
-$drush ${DRUSH_ALIAS} -y config-set system.theme default civic
+$drush ${DRUSH_ALIAS} -y then civictheme
+$drush ${DRUSH_ALIAS} -y config-set system.theme default civictheme
 $drush ${DRUSH_ALIAS} -y config-set media.settings standalone_url true
 
 $drush ${DRUSH_ALIAS} -y thun claro
 $drush ${DRUSH_ALIAS} -y thun govcms_bartik
 $drush ${DRUSH_ALIAS} -y thun bartik
 
-$drush ${DRUSH_ALIAS} -y pm-enable civic_govcms
-$drush ${DRUSH_ALIAS} -y pm-enable civic_default_content
+$drush ${DRUSH_ALIAS} -y pm-enable civictheme_govcms
+$drush ${DRUSH_ALIAS} -y pm-enable civictheme_content
 
-$drush ${DRUSH_ALIAS} -y pm-enable cd_core
+$drush ${DRUSH_ALIAS} -y pm-enable cs_core
 
 # Perform operations based on the current environment.
 if $drush ${DRUSH_ALIAS} ev "print \Drupal\core\Site\Settings::get('environment');" | grep -q -e dev -e test -e ci -e local; then

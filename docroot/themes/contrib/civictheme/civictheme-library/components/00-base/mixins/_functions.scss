@@ -1,0 +1,122 @@
+//
+// Helper functions to extend SASS functionality.
+//
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+
+//
+// Get the next element from the map.
+//
+// @see https://gist.github.com/agorilla/9df052eb1e15d8aea446
+//
+@function civictheme-map-get-next($map, $key, $fallback: false, $return: value) {
+  // Check if map is valid.
+  @if type-of($map) == map {
+    // Check if key exists in map.
+    @if map.has-key($map, $key) {
+      // Init index counter variable.
+      $i: 0;
+
+      // Init key index.
+      $key-index: false;
+
+      // Traverse map for key.
+      @each $map-key,
+        $map-value in $map {
+        // Update index
+        $i: $i + 1;
+
+        // If map key found, set key index.
+        @if $map-key == $key {
+          $key-index: $i;
+        }
+
+        // If next index return next value or key based on $return.
+        @if $i == $key-index + 1 {
+          @if $return == key {
+            @return $map-key;
+          }
+          @else {
+            @return $map-value;
+          }
+        }
+
+        // If last entry return false.
+        @if $i == length($map) {
+          @return $fallback;
+        }
+      }
+
+      @warn 'No next map item for key #{$key}';
+      @return $fallback;
+    }
+
+    @warn 'No valid key #{$key} in map';
+    @return $fallback;
+  }
+
+  @warn 'No valid map';
+  @return $fallback;
+}
+
+//
+// Replace $search with $replace in $string.
+//
+@function civictheme-str-replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace + civictheme-str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@function civictheme-string-last-index($string, $needle) {
+  $index: string.index($string, $needle);
+  $result: $index;
+
+  @if $index {
+    @for $i from $index + string.length($needle) through string.length($string) {
+      @if string.slice($string, $i, $i + string.length($needle) - 1) == $needle {
+        $result: $i;
+      }
+    }
+  }
+
+  @return $result;
+}
+
+@function civictheme-string-is-quoted($string) {
+  @if type-of($string) != string {
+    @return false;
+  }
+
+  @return "#{$string#{''}}" != $string;
+}
+
+@function civictheme-unquote($value) {
+  @if type-of($value) != string {
+    @return $value;
+  }
+
+  @return string.unquote($value);
+}
+
+@function civictheme-string-split($string, $separator) {
+  $result: ();
+  $index: string.index($string, $separator);
+
+  @while $index != null {
+    $substring: string.slice($string, 1, $index - 1);
+    $result: list.append($result, $substring);
+    $string: string.slice($string, $index + string.length($separator));
+    $index: string.index($string, $separator);
+  }
+
+  $split-arr: list.append($result, $string);
+
+  @return $split-arr;
+}

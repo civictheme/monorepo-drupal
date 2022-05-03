@@ -1,0 +1,71 @@
+{
+  "name": "civictheme",
+  "version": "0.19.0",
+  "private": true,
+  "description": "CivicTheme components with Storybook integration.",
+  "keywords": [
+    "component library",
+    "design system",
+    "pattern library",
+    "storybook",
+    "styleguide"
+  ],
+  "homepage": "https://github.com/salsadigitalauorg/civictheme-library",
+  "bugs": {
+    "url": "https://github.com/salsadigitalauorg/civictheme-source/issues"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet",
+    "build-storybook": "build-storybook -s .storybook/static",
+    "storybook": "start-storybook -s .storybook/static",
+    "storybook-full": "STORYBOOK_FULL=1 start-storybook -s .storybook/static",
+    "lint": "eslint ./components ./.storybook ./webpack && stylelint 'components/**/*.scss'",
+    "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
+    "dist": "webpack --config ./webpack/webpack.prod.js",
+    "dist:dev": "webpack --config ./webpack/webpack.dev.js",
+    "generate-icon-library": "node ./components/01-atoms/icon/icon.generate-library.utils.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.4",
+    "@babel/core": "^7.15.5",
+    "@storybook/addon-a11y": "^6.1.18",
+    "@storybook/addon-essentials": "^6.3.8",
+    "@storybook/addon-knobs": "^6.3.1",
+    "@storybook/addon-links": "^6.3.8",
+    "@storybook/addons": "^6.1.18",
+    "@storybook/html": "^6.3.8",
+    "@whitespace/storybook-addon-html": "^5.0.0",
+    "addon-screen-reader": "^1.8.6",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-strict-mode": "^6.24.1",
+    "babel-template": "^6.26.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^5.2.7",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.2",
+    "lorem-ipsum": "^2.0.4",
+    "mini-css-extract-plugin": "^1.6.2",
+    "node-sass-magic-importer": "^5.3.2",
+    "sass": "^1.41.0",
+    "sass-loader": "^10.2.0",
+    "storybook-addon-pseudo-states": "^1.0.0",
+    "style-loader": "^2.0.0",
+    "stylelint": "^14.0.0",
+    "stylelint-config-standard": "^23.0.0",
+    "stylelint-config-standard-scss": "^2.0.0",
+    "svg-sprite-loader": "^6.0.9",
+    "twig": "^1.15.4",
+    "twigjs-loader": "^1.0.2",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "breakpoint-sass": "^2.7.1",
+    "normalize.css": "^8.0.1"
+  }
+}

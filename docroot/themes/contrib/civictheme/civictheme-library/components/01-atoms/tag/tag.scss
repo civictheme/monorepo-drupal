@@ -1,0 +1,75 @@
+//
+// Tag component.
+//
+
+.civictheme-tag {
+  $root: &;
+
+  border-radius: $civictheme-tag-border-radius;
+  border-style: solid;
+  border-width: $civictheme-tag-border-width;
+  padding: civictheme-space(0.5) civictheme-space();
+  display: inline-block;
+
+  @include civictheme-typography('label-small');
+
+  &--icon-after {
+    padding-right: rem(4px);
+    padding-left: civictheme-space();
+  }
+
+  .civictheme-icon {
+    padding-right: rem(2px);
+    vertical-align: middle;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+
+  &.civictheme-theme-light {
+    background-color: $civictheme-tag-light-background-color;
+    border-color: $civictheme-tag-light-border-color;
+    color: $civictheme-tag-light-color;
+
+    @include civictheme-icon-fill-color($civictheme-tag-light-color);
+
+    &#{$root}--is-alt {
+      background-color: $civictheme-tag-light-alt-background-color;
+      color: $civictheme-tag-light-alt-color;
+
+      #{$root}__link {
+        color: $civictheme-tag-light-alt-color;
+      }
+
+      @include civictheme-icon-fill-color($civictheme-tag-light-alt-color);
+    }
+
+    #{$root}__link {
+      color: $civictheme-tag-light-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    background-color: $civictheme-tag-dark-background-color;
+    border-color: $civictheme-tag-dark-border-color;
+    color: $civictheme-tag-dark-color;
+
+    @include civictheme-icon-fill-color($civictheme-tag-dark-color);
+
+    &#{$root}--is-alt {
+      background-color: $civictheme-tag-dark-alt-background-color;
+      color: $civictheme-tag-dark-alt-color;
+
+      #{$root}__link {
+        color: $civictheme-tag-dark-alt-color;
+      }
+
+      @include civictheme-icon-fill-color($civictheme-tag-dark-alt-color);
+    }
+
+    #{$root}__link {
+      color: $civictheme-tag-dark-color;
+    }
+  }
+}

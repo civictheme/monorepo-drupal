@@ -1,0 +1,77 @@
+//
+// Banner component.
+//
+
+.civictheme-banner {
+  $root: &;
+
+  position: relative;
+
+  #{$root}__wrapper {
+    position: relative;
+  }
+
+  #{$root}__wrapper__inner {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: civictheme-space(12);
+    padding-bottom: civictheme-space(15);
+  }
+
+  &#{$root}--decorative {
+    #{$root}__wrapper__inner {
+      clip-path: $civictheme-banner-decorative-mobile-clip-path;
+
+      @include civictheme-breakpoint(m) {
+        clip-path: $civictheme-banner-decorative-desktop-clip-path;
+      }
+    }
+
+    #{$root}__content-below {
+      margin-top: -(civictheme-space(2));
+    }
+  }
+
+  #{$root}__content-below {
+    margin-top: civictheme-space(2);
+  }
+
+  #{$root}__featured-image {
+    clip-path: $civictheme-banner-featured-image-clip-path;
+    display: none;
+    max-width: 50%;
+
+    img {
+      max-width: 100%;
+      object-fit: cover;
+      height: 100%;
+    }
+
+    @include civictheme-breakpoint('m') {
+      display: block;
+      position: absolute;
+      bottom: civictheme-space(4);
+      top: civictheme-space(12);
+      right: 0;
+
+      & * {
+        height: 100%;
+      }
+    }
+  }
+
+  &.civictheme-theme-light {
+    #{$root}__wrapper__inner {
+      background-color: $civictheme-banner-light-background-color;
+      color: $civictheme-banner-light-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    #{$root}__wrapper__inner {
+      background-color: $civictheme-banner-dark-background-color;
+      color: $civictheme-banner-dark-color;
+    }
+  }
+}

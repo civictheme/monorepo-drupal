@@ -1,0 +1,89 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 51f6bf65-c513-4976-a332-ff5e60857e20
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    67b42d97-926d-425b-b9db-488627bcbd1f: media
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Demo Page - Banner: Light, Default, No featured image'
+  created:
+    -
+      value: 1634051250
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_background:
+    -
+      entity: 67b42d97-926d-425b-b9db-488627bcbd1f
+  field_c_n_banner_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: a0b0a7b8-9ccd-4303-aa5b-24238f86c05c
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631787718
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Pellentesque in ipsum id orci porta dapibus.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_banner_theme:
+    -
+      value: light
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_space:
+    -
+      value: both
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

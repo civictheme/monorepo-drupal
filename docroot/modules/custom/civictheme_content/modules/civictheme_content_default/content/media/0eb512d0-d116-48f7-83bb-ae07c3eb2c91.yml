@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 0eb512d0-d116-48f7-83bb-ae07c3eb2c91
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    e9b4a5d5-ef8d-4cdb-bb87-834f46c7ca0f: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Dark banner background image'
+  created:
+    -
+      value: 1633976389
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: e9b4a5d5-ef8d-4cdb-bb87-834f46c7ca0f
+      alt: 'Dark banner background image'
+      title: ''
+      width: 1440
+      height: 816

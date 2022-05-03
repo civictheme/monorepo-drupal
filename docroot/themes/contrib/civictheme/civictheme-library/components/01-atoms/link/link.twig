@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Link component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - text: [string] Button text.
+ * - url: [string] URL.
+ * - title: [string] Defines the title of a link.
+ * - is_new_window: [boolean] Open in a new window.
+ * - is_external [boolean] Link is external.
+ * - context: [string] Additional context for link (visually hidden).
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set is_external = is_external|default(false) %}
+
+{% if text is not empty %}
+  <a class="civictheme-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {% if title is not empty %}title="{{ title }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% if context is not empty %}
+      <span class="visually-hidden">
+        {{ context }}
+      </span>
+    {% endif %}
+
+    {{ text|raw }}
+
+    {% if is_external %}
+      {% include '@atoms/icon/icon.twig' with {
+        symbol: 'arrows_upperrightarrow',
+        modifier_class: 'civictheme-link__external-icon'
+      } %}
+    {% endif %}
+  </a>
+{% endif %}

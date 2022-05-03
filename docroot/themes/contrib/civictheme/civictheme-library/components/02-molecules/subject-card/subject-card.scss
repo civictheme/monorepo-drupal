@@ -1,0 +1,105 @@
+//
+// Subject Card component.
+//
+
+.civictheme-subject-card {
+  $root: &;
+
+  width: 100%;
+
+  &__image-wrapper {
+    position: relative;
+    border-radius: $civictheme-subject-card-border-radius;
+    box-sizing: border-box;
+    padding: civictheme-space(3) civictheme-space(2);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
+    min-height: rem(200px);
+    width: 100%;
+
+    @include civictheme-elevation(3);
+
+    &:focus-within {
+      @include civictheme-outline();
+    }
+
+    @include civictheme-breakpoint('m') {
+      padding: civictheme-space(4) civictheme-space(3);
+    }
+
+    @include civictheme-image-fit();
+  }
+
+  &__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 50%;
+  }
+
+  &__title {
+    @include civictheme-typography('heading-5');
+
+    margin-bottom: civictheme-space(2);
+    z-index: 1;
+  }
+
+  &__title-link {
+    @include civictheme-link-decoration();
+    @include civictheme-link-no-outline();
+    @include civictheme-link-cover-parent();
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &.civictheme-theme-light {
+    &:focus {
+      @include civictheme-outline(false);
+    }
+
+    #{$root}__image-wrapper {
+      background-color: $civictheme-subject-card-light-image-background-color;
+    }
+
+    #{$root}__title {
+      color: $civictheme-subject-card-light-color;
+    }
+
+    #{$root}__title-link {
+      @include civictheme-link-colors($civictheme-subject-card-light-color, $civictheme-subject-card-light-hover-color, $active: $civictheme-subject-card-light-active-color);
+    }
+
+    #{$root}__icon--arrow,
+    #{$root}__icon--external {
+      @include civictheme-icon-fill-color($civictheme-subject-card-light-icon-color, true);
+    }
+  }
+
+  &.civictheme-theme-dark {
+    &:focus {
+      @include civictheme-outline(true);
+    }
+
+    #{$root}__image-wrapper {
+      background-color: $civictheme-subject-card-dark-image-background-color;
+    }
+
+    #{$root}__title {
+      color: $civictheme-subject-card-dark-color;
+    }
+
+    #{$root}__title-link {
+      @include civictheme-link-colors($civictheme-subject-card-dark-color, $civictheme-subject-card-dark-hover-color, $active: $civictheme-subject-card-dark-active-color);
+    }
+
+    #{$root}__icon--arrow,
+    #{$root}__icon--external {
+      @include civictheme-icon-fill-color($civictheme-subject-card-dark-icon-color, true);
+    }
+  }
+}

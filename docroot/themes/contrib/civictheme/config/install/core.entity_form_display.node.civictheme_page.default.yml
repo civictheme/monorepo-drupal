@@ -1,0 +1,275 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.civictheme_page.field_c_n_banner_background
+    - field.field.node.civictheme_page.field_c_n_banner_components
+    - field.field.node.civictheme_page.field_c_n_banner_components_bott
+    - field.field.node.civictheme_page.field_c_n_banner_featured_image
+    - field.field.node.civictheme_page.field_c_n_banner_theme
+    - field.field.node.civictheme_page.field_c_n_banner_type
+    - field.field.node.civictheme_page.field_c_n_components
+    - field.field.node.civictheme_page.field_c_n_show_toc
+    - field.field.node.civictheme_page.field_c_n_space
+    - field.field.node.civictheme_page.field_c_n_summary
+    - field.field.node.civictheme_page.field_c_n_thumbnail
+    - field.field.node.civictheme_page.field_c_n_topics
+    - node.type.civictheme_page
+  module:
+    - content_moderation
+    - field_group
+    - media_library
+    - paragraphs
+    - path
+third_party_settings:
+  field_group:
+    group_civictheme_tabs:
+      children:
+        - group_civictheme_general
+        - group_civictheme_banner
+        - group_civictheme_content
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        direction: horizontal
+      label: Tabs
+    group_civictheme_banner:
+      children:
+        - field_c_n_banner_type
+        - field_c_n_banner_theme
+        - field_c_n_banner_background
+        - field_c_n_banner_featured_image
+        - field_c_n_banner_components
+        - field_c_n_banner_components_bott
+      parent_name: group_civictheme_tabs
+      weight: 10
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Banner
+    group_civictheme_content:
+      children:
+        - field_c_n_components
+        - field_c_n_show_toc
+      parent_name: group_civictheme_tabs
+      weight: 12
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: Content
+    group_civictheme_general:
+      children:
+        - title
+        - field_c_n_summary
+        - field_c_n_topics
+        - field_c_n_thumbnail
+        - field_c_n_space
+      parent_name: group_civictheme_tabs
+      weight: 9
+      format_type: tab
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        formatter: closed
+        required_fields: true
+      label: General
+id: node.civictheme_page.default
+targetEntityType: node
+bundle: civictheme_page
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_c_n_banner_background:
+    type: media_library_widget
+    weight: 9
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+  field_c_n_banner_components:
+    type: paragraphs
+    weight: 11
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+    region: content
+  field_c_n_banner_components_bott:
+    type: paragraphs
+    weight: 12
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+    region: content
+  field_c_n_banner_featured_image:
+    type: media_library_widget
+    weight: 10
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+  field_c_n_banner_theme:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_c_n_banner_type:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_c_n_components:
+    type: paragraphs
+    weight: 9
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+    region: content
+  field_c_n_show_toc:
+    weight: 10
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_c_n_space:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_c_n_summary:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_c_n_thumbnail:
+    weight: 5
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    type: media_library_widget
+    region: content
+  field_c_n_topics:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 7
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 8
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 5
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+hidden: {  }

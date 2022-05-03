@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ * Service Card component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - links: [array] Links array:
+ *   - title [string] Title.
+ *   - url [string] URL.
+ *   - is_new_window [boolean] Open link in a new window.
+ *   - is_external [boolean] Link is external or not.
+ * - title: [string] The text of card title.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<div class="civictheme-service-card {{ modifier_class }}">
+  <div class="civictheme-service-card__content">
+    {% block content_top %}
+      {% if content_top is not empty %}
+        <div class="civictheme-service-card__content-top">
+          {{ content_top }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block title %}
+      {% if title is not empty %}
+        <div class="civictheme-service-card__title">
+          {{ title }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block links %}
+      {% if links is not empty %}
+        <ul class="civictheme-service-card__links">
+          {% for link in links %}
+            {% if link.text is not empty %}
+              <li class="civictheme-service-card__link__item">
+                {% include '@atoms/link/link.twig' with {
+                  theme: theme,
+                  text: link.text,
+                  url: link.url,
+                  is_new_window: link.is_new_window is defined ? link.is_new_window : false,
+                  is_external: link.is_external is defined ? link.is_external : false,
+                } only %}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endblock %}
+
+    {% block content_bottom %}
+      {% if content_bottom is not empty %}
+        <div class="civictheme-service-card__content-bottom">
+          {{ content_bottom }}
+        </div>
+      {% endif %}
+    {% endblock %}
+  </div>
+</div>

@@ -1,0 +1,216 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the CivicTheme theme.
+ */
+
+require_once 'includes/utilities.inc';
+require_once 'includes/accordion.inc';
+require_once 'includes/alert.inc';
+require_once 'includes/attachment.inc';
+require_once 'includes/banner.inc';
+require_once 'includes/block_content.inc';
+require_once 'includes/breadcrumb.inc';
+require_once 'includes/callout.inc';
+require_once 'includes/card_container.inc';
+require_once 'includes/card_event.inc';
+require_once 'includes/card_navigation.inc';
+require_once 'includes/card_promo.inc';
+require_once 'includes/card_subject.inc';
+require_once 'includes/card_task.inc';
+require_once 'includes/cards.inc';
+require_once 'includes/content.inc';
+require_once 'includes/filter.inc';
+require_once 'includes/form.inc';
+require_once 'includes/iframe.inc';
+require_once 'includes/image.inc';
+require_once 'includes/listing.inc';
+require_once 'includes/local_tasks.inc';
+require_once 'includes/map.inc';
+require_once 'includes/media.inc';
+require_once 'includes/menu.inc';
+require_once 'includes/mobile_navigation.inc';
+require_once 'includes/node.inc';
+require_once 'includes/page.inc';
+require_once 'includes/pager.inc';
+require_once 'includes/paragraphs.inc';
+require_once 'includes/primary_navigation.inc';
+require_once 'includes/promo.inc';
+require_once 'includes/publication_card.inc';
+require_once 'includes/quick_links.inc';
+require_once 'includes/search.inc';
+require_once 'includes/secondary_navigation.inc';
+require_once 'includes/service_card.inc';
+require_once 'includes/slider.inc';
+require_once 'includes/social_links.inc';
+require_once 'includes/system_branding.inc';
+require_once 'includes/views.inc';
+
+/**
+ * Implements hook_theme().
+ */
+function civictheme_theme() {
+  return [
+    'civictheme_breadcrumb' => [
+      'base hook' => 'breadcrumb',
+      'variables' => [
+        'display_theme' => NULL,
+        'active_is_link' => NULL,
+        'links' => [],
+      ],
+      'template' => 'navigation/breadcrumb',
+    ],
+    'civictheme_description_list' => [
+      'variables' => [
+        'items' => [],
+        'is_inline' => '',
+        'modifier_class' => '',
+      ],
+      'template' => 'misc/description-list',
+    ],
+    'civictheme_slider_slide_links' => [
+      'variables' => [
+        'component_theme' => 'light',
+        'links' => [],
+      ],
+      'template' => 'misc/slider-slide-links',
+    ],
+    'civictheme_slider_slide_tags' => [
+      'variables' => [
+        'tags' => [],
+      ],
+      'template' => 'misc/slider-slide-tags',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civictheme_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  // Add theme suggestions to all blocks whose bundle starts with 'civictheme_'.
+  if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'block_content') {
+    $entity = $variables['elements']['content']['#block_content'];
+    if (strpos($entity->bundle(), 'civictheme_') === 0) {
+      $suggestions[] = 'block__' . $entity->bundle() . '__default';
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civictheme_theme_suggestions_checkboxes_alter(array &$suggestions, array $variables) {
+  _civictheme_theme_suggestions__civictheme_filter($suggestions, $variables);
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civictheme_theme_suggestions_radios_alter(array &$suggestions, array $variables) {
+  _civictheme_theme_suggestions__civictheme_filter($suggestions, $variables);
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function civictheme_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $type = NULL) {
+  _civictheme_theme_suggestions__civictheme_filter($suggestions, $variables, 'form_element');
+  _civictheme_theme_suggestions__civictheme_basic_filter($suggestions, $variables, 'form_element');
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function civictheme_preprocess_page(&$variables) {
+  // Generic pages pre-processing.
+  _civictheme_preprocess_page($variables);
+
+  // Generic node pages pre-processing.
+  _civictheme_preprocess_page__node($variables);
+
+  // Handle preprocess for view pages.
+  _civictheme_preprocess_page__views($variables);
+
+  // Pre-process page to support alerts.
+  _civictheme_preprocess_page__civictheme_alert($variables);
+
+  // Do not add anything below this line or components will not be able
+  // to discover variables.
+  // Add all page variables to the root variables. This is required so that
+  // child themes could add page-level variables without have to extend page
+  // template (the variables there are not scoped as an exception).
+  $page_variables = array_filter($variables['page'], function ($key) {
+    return strpos($key, '#') !== 0;
+  }, ARRAY_FILTER_USE_KEY);
+  $variables += $page_variables;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function civictheme_preprocess_node(&$variables) {
+  // Generic node pre-processing.
+  _civictheme_preprocess_node($variables);
+
+  // Per-view mode node pre-processing.
+  $view_mode = $variables['elements']['#view_mode'] ?? NULL;
+  if ($view_mode) {
+    $preprocessor_function = '_civictheme_preprocess_node__' . $view_mode;
+    if (function_exists($preprocessor_function)) {
+      $preprocessor_function($variables);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function civictheme_preprocess_paragraph(&$variables) {
+  // Generic paragraphs pre-processing.
+  _civictheme_preprocess_paragraph($variables);
+
+  // Per-paragraph type pre-processing.
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'] ?? NULL;
+  if ($paragraph) {
+    $type = $paragraph->getType();
+    $preprocessor_function = '_civictheme_preprocess_paragraph__' . $type;
+    if (function_exists($preprocessor_function)) {
+      $preprocessor_function($variables);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function civictheme_preprocess_block(&$variables) {
+  _civictheme_preprocess_block__civictheme_banner($variables);
+  _civictheme_preprocess_block__civictheme_footer_menu($variables);
+  _civictheme_preprocess_block__content($variables);
+  _civictheme_preprocess_block__civictheme_mobile_navigation($variables);
+  _civictheme_preprocess_block__civictheme_social_links($variables);
+}
+
+/**
+ * Implements template_preprocess_civictheme_breadcrumb().
+ */
+function civictheme_preprocess_civictheme_breadcrumb(&$variables) {
+  _civictheme_preprocess_civictheme_breadcrumb($variables);
+}
+
+/**
+ * Implements template_preprocess_image().
+ */
+function civictheme_preprocess_image(&$variables) {
+  _civictheme_preprocess_image($variables);
+}
+
+/**
+ * Implement template_preprocess_menu_local_tasks().
+ */
+function civictheme_preprocess_menu_local_tasks(&$variables) {
+  _civictheme_preprocess_menu_local_tasks($variables);
+}

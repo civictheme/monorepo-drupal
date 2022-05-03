@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: civic_mobile_navigation
-label: 'Mobile Navigation'
-revision: 0
-description: ''

@@ -1,0 +1,17 @@
+//
+// Table component.
+//
+
+.civictheme-table {
+  $root: &;
+
+  @include civictheme-table();
+
+  &.civictheme-theme-light {
+    @include civictheme-table-light();
+  }
+
+  &.civictheme-theme-dark {
+    @include civictheme-table-dark();
+  }
+}

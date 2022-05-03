@@ -1,41 +1,41 @@
-Civic theme development
+CivicTheme theme development
 -----------------------
 
 ## Terminology
-- Civic theme - Civic Drupal theme
-- Civic Library - Civic front-end library, hosted in NPM.
-- Demo theme, consumer theme, reference theme - a theme that uses Civic theme as
+- CivicTheme theme - CivicTheme Drupal theme
+- CivicTheme Library - CivicTheme front-end library, hosted in NPM.
+- Demo theme, consumer theme, reference theme - a theme that uses CivicTheme theme as
   a base theme
-- Reference site, demo site - an example site (this repository) that uses Civic
+- Reference site, demo site - an example site (this repository) that uses CivicTheme
   theme.
 
 
 ## Requirements and constraints
 - Can be used out of the box without any customisations
 - MUST NOT be changed for customisations. If customisations are required - a
-  consumer theme MUST be created and used as a sub-theme of the Civic theme.
+  consumer theme MUST be created and used as a sub-theme of the CivicTheme theme.
 - Fully compatible with GovCMS 9:
   - MUST NOT have any modules
   - MUST NOT have any libraries
   - MUST NOT rely on GovCMS content structures
   - MUST assume that FE compilation happens on local machine and then committed
     to repository
-- MUST provide a static version of compiled Storybook for the Civic site
+- MUST provide a static version of compiled Storybook for the CivicTheme site
 - MUST provide a static version of compiled Storybook for the Consumer site
 
 
 ## Agreements
-- Config is in the `civic` theme's `install` directory.
-- Content types to be prefixed with `civic_`.
+- Config is in the `civictheme` theme's `install` directory.
+- Content types to be prefixed with `civictheme_`.
 
 
 ## Forklift
 
 Currently, this repository contains (for ease of development):
-1. Civic Drupal theme
-2. Civic Demo Drupal theme
-3. Civic Demo Drupal site installation based on GovCMS
-4. Civic Library FE library
+1. CivicTheme Drupal theme
+2. CivicTheme Demo Drupal theme
+3. CivicTheme Demo Drupal site installation based on GovCMS
+4. CivicTheme Library FE library
 
 Once active development phase is finished, this repository will be "forklifted"
 to only contain theme code.
@@ -50,7 +50,7 @@ The forklifted repository will have the following constraints:
 8. Able to preview compiled storybook components
 
 ## Roadmap
-1. Allow adjusting Civic theme styling from the Drupal theme settings (V1.2).
+1. Allow adjusting CivicTheme theme styling from the Drupal theme settings (V1.2).
 2. Drupal sub-theme starter kit.
 3. Integration with a quick install wizard.
 
@@ -59,19 +59,19 @@ The forklifted repository will have the following constraints:
 To compile all assets in all themes: `ahoy fe`
 
 For development:
-1. `civic-library`
+1. `civictheme-library`
 
-       cd docroot/themes/contrib/civic/civic-library
+       cd docroot/themes/contrib/civictheme/civictheme-library
        npm run build
 
-2. `civic`
+2. `civictheme`
 
-       cd docroot/themes/contrib/civic
+       cd docroot/themes/contrib/civictheme
        npm run build
 
-2. `civic_demo`
+2. `civictheme_demo`
 
-       cd docroot/themes/custom/civic_demo
+       cd docroot/themes/custom/civictheme_demo
        npm run build
 
 ## Theme configuration export
@@ -80,36 +80,36 @@ Use shortcut command
 
     ahoy export-config
 
-Configuration is captured into Civic Drupal theme's `config/install` and
+Configuration is captured into CivicTheme Drupal theme's `config/install` and
 `config/optional` with
 
-    drush cde civic
+    drush cde civictheme
 
-To add new configuration to the export, add configuration name to `civic.info.yml`.
+To add new configuration to the export, add configuration name to `civictheme.info.yml`.
 
 Tip: You can get the configuration name by exporting configuration with `drush cex -y`
 to `config/default` and using file names without `.yml` extension. Do not forget
 to remove all exported configuration files from `config/default` or the next site
 install will fail.
 
-Note that configuration for blocks in `civic` will be copied to `civic_demo` on
-installation of `civic_demo`. We do not capture configuration for `civic_demo`.
+Note that configuration for blocks in `civictheme` will be copied to `civictheme_demo` on
+installation of `civictheme_demo`. We do not capture configuration for `civictheme_demo`.
 
 ## Demo content export
 
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content <entity_type> <entity_id>
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content <entity_type> <entity_id>
 
     # Example 1: export a single node with all dependencies
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content node 50
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content node 50
 
     # Example 2: export all terms, nodes and blocks for Demo content.
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content taxonomy_term
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content node
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content block_content
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_demo/content menu_link_content
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content taxonomy_term
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content node
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content block_content
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content menu_link_content
 
     # Example 3: export all terms, nodes, blocks and menu links for Corporate content.
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_corporate/content taxonomy_term
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_corporate/content node
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_corporate/content block_content
-    drush dcer --folder=modules/custom/civic_default_content/modules/civic_default_content_corporate/content menu_link_content
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content taxonomy_term
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content node
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content block_content
+    drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_corporate/content menu_link_content

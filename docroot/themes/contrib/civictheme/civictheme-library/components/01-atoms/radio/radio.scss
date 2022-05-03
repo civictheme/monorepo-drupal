@@ -1,0 +1,17 @@
+//
+// Radio component.
+//
+
+@import '../../00-base/mixins/form';
+
+.civictheme-radio {
+  position: absolute;
+
+  .civictheme-radio__element {
+    @include civictheme-checkbox-radio('radio');
+  }
+}
+
+.radios--wrapper {
+  @include civictheme-typography('text-regular');
+}

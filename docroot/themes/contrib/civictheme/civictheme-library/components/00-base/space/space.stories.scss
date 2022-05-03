@@ -1,0 +1,38 @@
+//
+// Space component stories.
+//
+
+@use 'sass:color';
+@use 'sass:list';
+
+.story-space-wrapper {
+  max-width: 960px;
+
+  div {
+    position: relative;
+    width: 100%;
+    min-height: civictheme-space();
+    box-sizing: border-box;
+  }
+
+  $spaces: ();
+
+  @for $index from 1 through 11 {
+    $spaces: list.append($spaces, civictheme-space($index));
+  }
+
+  @include civictheme-generate-class-variations-from-map($spaces, 'story-space') using($name, $value, $index) {
+    padding: $value 0 0 $value;
+
+    $transparency: if($index % 2 == 0, 25%, 50%);
+
+    background-color: color.mix(#61daff, white, $transparency);
+
+    &::before {
+      content: 'Space #{$name}';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+    }
+  }
+}

@@ -1,0 +1,69 @@
+//
+// Progress Indicator component.
+//
+
+.civictheme-progress-indicator {
+  $root: &;
+
+  &__step {
+    border-left: solid rem(4px);
+    padding: civictheme-space(2);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: stretch;
+
+    .civictheme-icon {
+      padding: civictheme-space();
+
+      @include civictheme-icon-size('small');
+
+      align-self: center;
+    }
+
+    &--inner {
+      margin-left: civictheme-space();
+    }
+
+    &--title {
+      @include civictheme-typography('text-regular');
+    }
+
+    &--status {
+      @include civictheme-typography('text-small');
+    }
+  }
+
+  &.civictheme-theme-light {
+    #{$root}__step {
+      color: $civictheme-progress-indicator-light-color;
+      border-color: $civictheme-progress-indicator-light-border-color;
+      background-color: $civictheme-progress-indicator-light-background-color;
+
+      &--doing {
+        border-color: $civictheme-progress-indicator-light-active-border-color;
+        background-color: $civictheme-progress-indicator-light-active-background-color;
+      }
+
+      svg {
+        fill: $civictheme-progress-indicator-light-icon-color;
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    #{$root}__step {
+      color: $civictheme-progress-indicator-dark-color;
+      border-color: $civictheme-progress-indicator-dark-border-color;
+      background-color: $civictheme-progress-indicator-dark-background-color;
+
+      &--doing {
+        border-color: $civictheme-progress-indicator-dark-active-border-color;
+        background-color: $civictheme-progress-indicator-dark-active-background-color;
+      }
+
+      svg {
+        fill: $civictheme-progress-indicator-dark-icon-color;
+      }
+    }
+  }
+}

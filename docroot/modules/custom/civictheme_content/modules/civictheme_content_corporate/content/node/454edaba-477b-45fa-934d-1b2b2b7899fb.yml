@@ -1,0 +1,242 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 454edaba-477b-45fa-934d-1b2b2b7899fb
+  bundle: civictheme_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'The Great Barrier Reef'
+  created:
+    -
+      value: 1642671967
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /great-barrier-reef
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 2c84c6f9-9e8b-49eb-8d29-a8d9155f630f
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642671970
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<p>The Great Barrier Reef is one of the world’s natural wonders. It’s home to significant marine life and is the largest coral reef in the world. The DE is committed to protecting this important Australian icon.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: d1483450-b87a-4e21-a967-607c61ec897c
+          bundle: civictheme_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642671979
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: e17b7895-cf62-4685-87d8-f63dbdfa61c6
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642671988
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'About the Reef'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'About the Reef'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 4d4e2692-c3b9-49a0-b5e3-3d9fa56917a7
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642672000
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'The Reef and climate change'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'The Reef and climate change'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 8a399c6c-4156-4491-b264-e3b7a08c4e0c
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642672016
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Great Barrier Reef Strategy'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Great Barrier Reef Strategy'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 289360ce-bcb7-40d5-9a13-bb3a064f8737
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642672031
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'The Reef Trust'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'The Reef Trust'
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_space:
+    -
+      value: both

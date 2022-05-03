@@ -1,0 +1,42 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 44e54046-2e1b-4602-8e64-178d92ce8553
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    0ebd1fd8-5205-4a30-8809-a3ddf517a8a4: menu_link_content
+    db8e6781-f356-497d-9aba-ef0994b6268c: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'News & events'
+  menu_name:
+    -
+      value: civictheme-primary-navigation
+  link:
+    -
+      target_uuid: db8e6781-f356-497d-9aba-ef0994b6268c
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 3
+  expanded:
+    -
+      value: true
+  parent:
+    -
+      value: 'menu_link_content:0ebd1fd8-5205-4a30-8809-a3ddf517a8a4'
+  revision_translation_affected:
+    -
+      value: true

@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civictheme-footer
+label: Footer
+description: 'Footer menu provided by CivicTheme.'
+locked: false

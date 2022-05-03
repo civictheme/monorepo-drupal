@@ -1,0 +1,23 @@
+//
+// Debug mixins.
+//
+
+//
+// Add outline to a block without introducing changes to element dimensions.
+//
+@mixin civictheme-block-debug($color: #f00, $text: false) {
+  // Outline without changing element's dimensions.
+  box-shadow: 0 0 1px 1px $color inset;
+
+  @if $text {
+    &::before {
+      border: 1px solid $color;
+      color: $color;
+      content: $text;
+      left: 0;
+      padding: 10px;
+      position: absolute;
+      z-index: 10000;
+    }
+  }
+}

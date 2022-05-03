@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_document
+    - media.type.civictheme_document
+    - paragraphs.paragraphs_type.civictheme_publication_card
+id: paragraph.civictheme_publication_card.field_c_p_document
+field_name: field_c_p_document
+entity_type: paragraph
+bundle: civictheme_publication_card
+label: Document
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      civictheme_document: civictheme_document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 8f8df77d-5b85-48d9-a1f7-b85782d47a78
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    dca5f3cf-f9a1-4f56-a0ed-9e06dd9cc320: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 18
+  name:
+    -
+      value: ClownFish2.jpg
+  created:
+    -
+      value: 1645012678
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: dca5f3cf-f9a1-4f56-a0ed-9e06dd9cc320
+      alt: ClownFish
+      title: ''
+      width: 4608
+      height: 3456

@@ -1,0 +1,227 @@
+//
+// Attachment component.
+//
+
+@mixin civictheme-card-heading-state() {
+  & {
+    border-bottom: 0;
+    padding: 0;
+    text-decoration: underline;
+
+    &:hover {
+      background-color: unset;
+      padding: 0;
+    }
+
+    &:active {
+      text-underline: none;
+    }
+  }
+
+  &.civictheme-theme-light {
+    color: $civictheme-attachment-light-heading-color;
+
+    &:hover {
+      color: $civictheme-attachment-light-heading-hover-color;
+    }
+
+    &:active {
+      color: $civictheme-attachment-light-heading-active-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-attachment-dark-heading-color;
+
+    &:hover {
+      color: $civictheme-attachment-dark-heading-hover-color;
+    }
+
+    &:active {
+      color: $civictheme-attachment-dark-heading-active-color;
+    }
+  }
+}
+
+.civictheme-attachment {
+  display: flex;
+  flex-wrap: wrap;
+  flex: none;
+  order: 1;
+  flex-grow: 1;
+  margin: 0;
+
+  &.civictheme-attachment--vertical-space-top {
+    @include civictheme-component-with-vertical-space(top, $civictheme-attachment-space-vertical);
+  }
+
+  &.civictheme-attachment--vertical-space-bottom {
+    @include civictheme-component-with-vertical-space(bottom, $civictheme-attachment-space-vertical);
+  }
+
+  &.civictheme-attachment--vertical-space-both {
+    @include civictheme-component-with-vertical-space(both, $civictheme-attachment-space-vertical);
+  }
+
+  @include civictheme-breakpoint(m) {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  &__image {
+    width: 100%;
+    max-height: 250px;
+    flex-basis: 100%;
+
+    @include civictheme-breakpoint(m) {
+      max-height: 100%;
+      width: 25%;
+      flex-basis: unset;
+    }
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__content {
+    @include civictheme-typography('text-regular');
+
+    padding: civictheme-space(3);
+    flex: 1;
+    color: $civictheme-attachment-light-color;
+    border-radius: $civictheme-attachment-border-radius;
+    border: solid 1px $civictheme-attachment-light-border-color;
+
+    @include civictheme-breakpoint('m') {
+      padding: civictheme-space(4);
+    }
+  }
+
+  &__summary {
+    margin-top: 16px;
+  }
+
+  &__title {
+    @include civictheme-typography('heading-4');
+  }
+
+  &__links {
+    list-style: none;
+    margin: civictheme-space(2) 0 0 0;
+    padding: 0;
+
+    &--link {
+      display: flex;
+      margin-bottom: rem(4px);
+
+      @include civictheme-breakpoint('m') {
+        margin-bottom: civictheme-space();
+      }
+
+      svg {
+        margin-right: civictheme-space();
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &--last-updated {
+      @include civictheme-typography('text-small');
+    }
+  }
+
+  &__icon {
+    padding: civictheme-space(3) civictheme-space(3) civictheme-space(3) 0;
+    width: civictheme-space(3);
+
+    @include civictheme-breakpoint('m') {
+      padding-top: civictheme-space(4);
+    }
+  }
+
+  .civictheme-link--attachment {
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: civictheme-space() 0;
+
+    @include civictheme-breakpoint(m) {
+      margin: civictheme-space() civictheme-space() 0 0;
+    }
+
+    font-weight: 600;
+
+    @include civictheme-card-heading-state();
+  }
+
+  &.civictheme-theme-light {
+    &.civictheme-attachment--with-background {
+      background-color: $civictheme-attachment-light-wrapper-background-color;
+      padding-left: $civictheme-attachment-space-horizontal;
+      padding-right: $civictheme-attachment-space-horizontal;
+    }
+
+    .civictheme-attachment {
+      &__content {
+        background-color: $civictheme-attachment-light-background-color;
+      }
+
+      &__title {
+        color: $civictheme-attachment-light-title-color;
+      }
+
+      &__links {
+        &--link {
+          color: $civictheme-attachment-light-heading-color;
+
+          svg {
+            fill: $civictheme-attachment-light-icon-color;
+          }
+        }
+
+        &--last-updated {
+          color: $civictheme-attachment-light-date-color;
+        }
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    background-color: $civictheme-attachment-dark-background-color;
+
+    &.civictheme-attachment--with-background {
+      background-color: $civictheme-attachment-dark-wrapper-background-color;
+      padding-left: $civictheme-attachment-space-horizontal;
+      padding-right: $civictheme-attachment-space-horizontal;
+    }
+
+    .civictheme-attachment {
+      &__content {
+        color: $civictheme-attachment-dark-color;
+      }
+
+      &__title {
+        color: $civictheme-attachment-dark-title-color;
+      }
+
+      &__links {
+        &--last-updated {
+          color: $civictheme-attachment-dark-date-color;
+        }
+
+        &--link {
+          color: $civictheme-attachment-dark-heading-color;
+
+          svg {
+            fill: $civictheme-attachment-dark-icon-color;
+          }
+        }
+      }
+    }
+  }
+}

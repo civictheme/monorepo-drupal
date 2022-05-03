@@ -1,0 +1,189 @@
+//
+// Footer component.
+//
+
+.civictheme-footer {
+  $root: &;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__top {
+    padding-top: civictheme-space(4);
+    padding-bottom: civictheme-space(2);
+
+    @include civictheme-breakpoint(m) {
+      padding-top: civictheme-space(5);
+      padding-bottom: civictheme-space(5);
+      border-bottom: solid rem(1px) transparent;
+    }
+  }
+
+  &__top__content-top1 {
+    // stylelint-disable-line block-no-empty
+  }
+
+  &__top__content-top2 {
+    @include civictheme-breakpoint-upto(m) {
+      margin-top: civictheme-space(3);
+    }
+  }
+
+  &__middle {
+    padding-top: civictheme-space(2);
+    padding-bottom: civictheme-space(2);
+
+    @include civictheme-breakpoint(m) {
+      padding-top: civictheme-space(5);
+      padding-bottom: civictheme-space(5);
+      border-bottom: solid rem(1px) transparent;
+    }
+  }
+
+  &__middle__content-middle1 {
+    // stylelint-disable-line block-no-empty
+  }
+
+  &__middle__content-middle2 {
+    // stylelint-disable-line block-no-empty
+  }
+
+  &__middle__content-middle3 {
+    // stylelint-disable-line block-no-empty
+  }
+
+  &__middle__content-middle4 {
+    // stylelint-disable-line block-no-empty
+  }
+
+  &__bottom {
+    padding-top: civictheme-space(2);
+    padding-bottom: civictheme-space(4);
+
+    @include civictheme-breakpoint(m) {
+      padding-top: civictheme-space(5);
+      padding-bottom: civictheme-space(5);
+    }
+  }
+
+  &__bottom__content-bottom1 {
+    // stylelint-disable-line block-no-empty
+  }
+
+  &__bottom__content-bottom2 {
+    @include civictheme-breakpoint-upto(m) {
+      margin-top: civictheme-space(3);
+    }
+  }
+
+  .civictheme-logo {
+    max-width: rem($civictheme-footer-logo-mobile-width);
+
+    @include civictheme-breakpoint('m') {
+      max-width: rem($civictheme-footer-logo-desktop-width);
+    }
+  }
+
+  .copyright {
+    @include civictheme-breakpoint('m') {
+      text-align: right;
+    }
+  }
+
+  .civictheme-social-links {
+    @include civictheme-breakpoint('m') {
+      justify-content: flex-end;
+    }
+  }
+
+  .civictheme-navigation {
+    @include civictheme-breakpoint-upto(m) {
+      margin-bottom: civictheme-space(3);
+    }
+  }
+
+  [data-collapsible='true'] {
+    margin-bottom: 0;
+
+    [data-collapsible-trigger] {
+      padding: civictheme-space(2) civictheme-space();
+      margin-bottom: 0;
+    }
+
+    [data-collapsible-panel] {
+      padding-left: civictheme-space();
+      padding-right: civictheme-space();
+    }
+  }
+
+  &.civictheme-theme-light {
+    background-color: $civictheme-footer-light-background-color;
+    color: $civictheme-footer-light-color;
+
+    #{$root}__top {
+      @include civictheme-breakpoint('m') {
+        border-color: $civictheme-footer-light-border-color;
+      }
+    }
+
+    #{$root}__middle {
+      @include civictheme-breakpoint('m') {
+        border-color: $civictheme-footer-light-border-color;
+      }
+    }
+
+    .civictheme-link,
+    .civictheme-button--link {
+      background-color: transparent;
+      color: $civictheme-footer-light-link-color;
+
+      &:hover {
+        color: $civictheme-footer-light-link-hover-color;
+      }
+
+      &:focus {
+        outline-color: $civictheme-footer-light-outline-color;
+      }
+    }
+
+    [data-collapsible='true'] {
+      border-top: solid rem(1px) $civictheme-footer-light-collapsible-border-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    background-color: $civictheme-footer-dark-background-color;
+    color: $civictheme-footer-dark-color;
+
+    #{$root}__top {
+      @include civictheme-breakpoint('m') {
+        border-color: $civictheme-footer-dark-border-color;
+      }
+    }
+
+    #{$root}__middle {
+      @include civictheme-breakpoint('m') {
+        border-color: $civictheme-footer-dark-border-color;
+      }
+    }
+
+    .civictheme-link,
+    .civictheme-button--link {
+      background-color: transparent;
+      color: $civictheme-footer-dark-link-color;
+
+      &:hover {
+        color: $civictheme-footer-dark-link-hover-color;
+      }
+
+      &:focus {
+        outline-color: $civictheme-footer-dark-outline-color;
+      }
+    }
+
+    [data-collapsible='true'] {
+      border-top: solid rem(1px) $civictheme-footer-dark-collapsible-border-color;
+    }
+  }
+}

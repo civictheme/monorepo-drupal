@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Logo component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - logos: [object] Object with 'mobile' and 'desktop' keys:
+ *    - src: [string] URL for the logo.
+ *    - alt: [string] Image alt text.
+ * - url: [string] Optional URL that wraps the logo.
+ * - title: [string] Optional logo title attribute.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if logos is not empty %}
+  {% for type, logo in logos %}
+    {% set visibility_class = type == 'mobile' ? 'show-xxs hide-m' : 'hide-xxs show-m' %}
+    {% if logo.src is not empty %}
+      <div class="civictheme-logo {{ visibility_class }} {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+        {% if url is not empty %}
+        <a class="civictheme-logo__url" href="{{ url }}" title="{{ title|default('Click to go to the homepage') }}">
+        {% endif %}
+          {% include '@atoms/image/image.twig' with {
+            theme: theme,
+            src: logo.src,
+            alt:  logo.alt,
+          } only %}
+        {% if url is not empty %}
+        </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}

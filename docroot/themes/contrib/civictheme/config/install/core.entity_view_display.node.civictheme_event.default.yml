@@ -1,0 +1,122 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.civictheme_event.field_c_n_attachments
+    - field.field.node.civictheme_event.field_c_n_body
+    - field.field.node.civictheme_event.field_c_n_date
+    - field.field.node.civictheme_event.field_c_n_image
+    - field.field.node.civictheme_event.field_c_n_location
+    - field.field.node.civictheme_event.field_c_n_more_information
+    - field.field.node.civictheme_event.field_c_n_show_toc
+    - field.field.node.civictheme_event.field_c_n_tagline
+    - field.field.node.civictheme_event.field_c_n_thumbnail
+    - field.field.node.civictheme_event.field_c_n_topics
+    - node.type.civictheme_event
+  module:
+    - layout_builder
+    - layout_builder_restrictions
+    - text
+    - user
+  theme:
+    - civictheme
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: civictheme_one_column
+        layout_settings:
+          label: Uncontained
+          context_mapping: {  }
+        components:
+          06ab573f-6011-4404-a6f5-e3ddbf700d38:
+            uuid: 06ab573f-6011-4404-a6f5-e3ddbf700d38
+            region: content
+            configuration:
+              id: 'field_block:node:civictheme_event:field_c_n_image'
+              label: 'Featured image'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: component
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 0
+          1710fe96-7126-4ac7-9b59-284f7c693ca9:
+            uuid: 1710fe96-7126-4ac7-9b59-284f7c693ca9
+            region: content
+            configuration:
+              id: 'field_block:node:civictheme_event:field_c_n_body'
+              label: Body
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
+          448b41d5-2738-47e2-a892-145443a96200:
+            uuid: 448b41d5-2738-47e2-a892-145443a96200
+            region: content
+            configuration:
+              id: 'field_block:node:civictheme_event:field_c_n_location'
+              label: Location
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 2
+        third_party_settings: {  }
+  layout_builder_restrictions:
+    allowed_block_categories: {  }
+    entity_view_mode_restriction:
+      whitelisted_blocks: {  }
+      blacklisted_blocks: {  }
+      restricted_categories: {  }
+      allowed_layouts:
+        - civictheme_one_column
+        - civictheme_one_column_contained
+id: node.civictheme_event.default
+targetEntityType: node
+bundle: civictheme_event
+mode: default
+content:
+  field_c_n_body:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  field_c_n_attachments: true
+  field_c_n_date: true
+  field_c_n_image: true
+  field_c_n_location: true
+  field_c_n_more_information: true
+  field_c_n_show_toc: true
+  field_c_n_tagline: true
+  field_c_n_thumbnail: true
+  field_c_n_topics: true
+  links: true

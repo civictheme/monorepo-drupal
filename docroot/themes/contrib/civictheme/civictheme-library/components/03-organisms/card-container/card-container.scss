@@ -1,0 +1,172 @@
+//
+// Card Container component.
+//
+
+.civictheme-card-container {
+  $root: &;
+
+  &.civictheme-card-container--vertical-space-top {
+    @include civictheme-component-with-vertical-space(top, $civictheme-card-container-space-vertical);
+  }
+
+  &.civictheme-card-container--vertical-space-bottom {
+    @include civictheme-component-with-vertical-space(bottom, $civictheme-card-container-space-vertical);
+  }
+
+  &.civictheme-card-container--vertical-space-both {
+    @include civictheme-component-with-vertical-space(both, $civictheme-card-container-space-vertical);
+  }
+
+  &--fill-width {
+    [class*='col-'] {
+      max-width: 100%;
+      flex-grow: 1;
+    }
+  }
+
+  &__card {
+    display: flex;
+    margin-bottom: civictheme-space(3);
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: civictheme-space(3);
+
+    @include civictheme-breakpoint('m') {
+      flex-direction: row;
+    }
+  }
+
+  &__header-title {
+    @include civictheme-typography('heading-3');
+
+    @include civictheme-breakpoint('m') {
+      margin-right: auto;
+    }
+  }
+
+  &__header-link {
+    @include civictheme-typography('label-regular');
+
+    @include civictheme-breakpoint('m') {
+      align-self: center;
+      margin-left: auto;
+    }
+  }
+
+  &__cards {
+    // stylelint-disable-line block-no-empty
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+
+    @include civictheme-breakpoint('m') {
+      flex-direction: row;
+    }
+  }
+
+  &__footer-link {
+    @include civictheme-typography('label-regular');
+
+    margin-top: civictheme-space(4);
+
+    @include civictheme-breakpoint('m') {
+      align-self: center;
+      margin-left: auto;
+    }
+  }
+
+  &__description {
+    @include civictheme-typography('text-regular');
+
+    margin-bottom: civictheme-space(3);
+  }
+
+  &--listing {
+    #{$root}__header-title {
+      @include civictheme-typography('heading-5');
+
+      padding: civictheme-space(3) 0 civictheme-space();
+    }
+  }
+
+  &.civictheme-theme-light {
+    color: $civictheme-card-container-light-color;
+
+    &#{$root}--with-background {
+      background-color: $civictheme-card-container-light-wrapper-background-color;
+      padding-left: $civictheme-card-container-space-horizontal;
+      padding-right: $civictheme-card-container-space-horizontal;
+    }
+
+    &#{$root}--with-spacing {
+      background-color: $civictheme-card-container-light-background-color;
+    }
+
+    #{$root}__header-title {
+      color: $civictheme-card-container-light-heading-title-color;
+    }
+
+    #{$root}__header-link {
+      .civictheme-link {
+        color: $civictheme-card-container-light-heading-color;
+
+        &:hover {
+          color: $civictheme-card-container-light-heading-hover-color;
+        }
+      }
+    }
+
+    #{$root}__footer-link {
+      .civictheme-link {
+        color: $civictheme-card-container-light-footer-link-color;
+
+        &:hover {
+          color: $civictheme-card-container-light-footer-link-hover-color;
+        }
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-card-container-dark-color;
+
+    &#{$root}--with-background {
+      background-color: $civictheme-card-container-dark-wrapper-background-color;
+      padding-left: $civictheme-card-container-space-horizontal;
+      padding-right: $civictheme-card-container-space-horizontal;
+    }
+
+    &#{$root}--with-spacing {
+      background-color: $civictheme-card-container-dark-background-color;
+    }
+
+    #{$root}__header-title {
+      color: $civictheme-card-container-dark-heading-title-color;
+    }
+
+    #{$root}__header-link {
+      .civictheme-link {
+        color: $civictheme-card-container-dark-heading-color;
+
+        &:hover {
+          color: $civictheme-card-container-dark-heading-hover-color;
+        }
+      }
+    }
+
+    #{$root}__footer-link {
+      .civictheme-link {
+        color: $civictheme-card-container-dark-footer-link-color;
+
+        &:hover {
+          color: $civictheme-card-container-dark-footer-link-hover-color;
+        }
+      }
+    }
+  }
+}

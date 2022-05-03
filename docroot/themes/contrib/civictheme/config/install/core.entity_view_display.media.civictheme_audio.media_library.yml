@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.media_library
+    - field.field.media.civictheme_audio.field_c_m_audio_file
+    - image.style.civictheme_medium
+    - media.type.civictheme_audio
+  module:
+    - image
+id: media.civictheme_audio.media_library
+targetEntityType: media
+bundle: civictheme_audio
+mode: media_library
+content:
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_style: civictheme_medium
+      image_link: ''
+    weight: 0
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_c_m_audio_file: true
+  name: true
+  uid: true

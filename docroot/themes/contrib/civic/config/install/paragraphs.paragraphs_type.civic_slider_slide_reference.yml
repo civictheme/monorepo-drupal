@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: civic_slider_slide_reference
-label: 'Slider slide - reference'
-icon_uuid: null
-icon_default: null
-description: ''
-behavior_plugins: {  }

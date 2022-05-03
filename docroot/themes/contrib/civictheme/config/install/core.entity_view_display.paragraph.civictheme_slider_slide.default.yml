@@ -1,0 +1,80 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_content
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_image
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_image_position
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_link
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_theme
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_title
+    - field.field.paragraph.civictheme_slider_slide.field_c_p_topic
+    - paragraphs.paragraphs_type.civictheme_slider_slide
+  module:
+    - link
+    - options
+    - text
+id: paragraph.civictheme_slider_slide.default
+targetEntityType: paragraph
+bundle: civictheme_slider_slide
+mode: default
+content:
+  field_c_p_content:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_c_p_image:
+    type: entity_reference_entity_view
+    weight: 6
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_c_p_image_position:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_c_p_link:
+    weight: 4
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_c_p_theme:
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_c_p_title:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_c_p_topic:
+    weight: 5
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden: {  }

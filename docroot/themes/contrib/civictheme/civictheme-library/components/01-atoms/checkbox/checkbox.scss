@@ -1,0 +1,49 @@
+//
+// Checkbox component.
+//
+
+@import '../../00-base/mixins/form';
+
+.civictheme-checkbox {
+  position: absolute;
+
+  &__element {
+    @include civictheme-checkbox-radio('checkbox');
+
+    &.civictheme-input__element + .civictheme-checkbox__state {
+      &::after {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        display: inline-block;
+        width: rem(22px);
+        height: rem(22px);
+        content: '';
+      }
+    }
+
+    &.civictheme-theme-light {
+      &:checked {
+        & + .civictheme-checkbox__state {
+          &::after {
+            content: civictheme-color-svg-fill($civictheme-radio-check, $civictheme-radio-light-check-color);
+          }
+        }
+      }
+    }
+
+    &.civictheme-theme-dark {
+      &:checked {
+        & + .civictheme-checkbox__state {
+          &::after {
+            content: civictheme-color-svg-fill($civictheme-radio-check, $civictheme-radio-dark-check-color);
+          }
+        }
+      }
+    }
+  }
+}
+
+.checkboxes--wrapper {
+  @include civictheme-typography('text-regular');
+}

@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 86c71cbb-5ab3-41f9-bf7c-f30cd426dbf0
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    82f5b00f-1b04-4dfe-9e50-c466bd3fedd2: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 18
+  name:
+    -
+      value: pexels-dsd-694218.jpg
+  created:
+    -
+      value: 1644890574
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: 82f5b00f-1b04-4dfe-9e50-c466bd3fedd2
+      alt: 'Image of icebergs'
+      title: ''
+      width: 3264
+      height: 2448

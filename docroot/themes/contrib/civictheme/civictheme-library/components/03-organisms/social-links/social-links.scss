@@ -1,0 +1,43 @@
+//
+// Social Links component.
+//
+
+.civictheme-social-links {
+  display: flex;
+
+  &__item {
+    margin-right: civictheme-space(2);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .civictheme-button--link {
+    border-radius: rem(100px);
+    padding: civictheme-space();
+    display: block;
+
+    .civictheme-button__icon {
+      display: block;
+    }
+  }
+
+  &--with-border {
+    .civictheme-button--link {
+      border: 1px solid currentcolor;
+    }
+  }
+
+  &.civictheme-theme-light {
+    .civictheme-button--link {
+      @include civictheme-link-colors($civictheme-social-links-light-color, $civictheme-social-links-light-hover-color, $civictheme-social-links-light-visited-color, $civictheme-social-links-light-active-color, $civictheme-social-links-light-focus-color);
+    }
+  }
+
+  &.civictheme-theme-dark {
+    .civictheme-button--link {
+      @include civictheme-link-colors($civictheme-social-links-dark-color, $civictheme-social-links-dark-hover-color, $civictheme-social-links-dark-visited-color, $civictheme-social-links-dark-active-color, $civictheme-social-links-dark-focus-color);
+    }
+  }
+}

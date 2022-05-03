@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_fill_width
+    - paragraphs.paragraphs_type.civictheme_card_container
+id: paragraph.civictheme_card_container.field_c_p_fill_width
+field_name: field_c_p_fill_width
+entity_type: paragraph
+bundle: civictheme_card_container
+label: 'Fill width'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,57 @@
+name: CivicTheme Starter Kit
+type: theme
+base theme: civictheme
+description: 'CivicTheme Starter Kit description.'
+core_version_requirement: ^8 || ^9
+
+regions:
+  header_top_1: 'Header top 1'
+  header_top_2: 'Header top 2'
+  header_top_3: 'Header top 3'
+  header_middle_1: 'Header middle 1'
+  header_middle_2: 'Header middle 2'
+  header_middle_3: 'Header middle 3'
+  header_bottom_1: 'Header bottom 1'
+  banner: 'Banner'
+  highlighted: 'Highlighted'
+  content_top: 'Content Top'
+  content: 'Content'
+  content_bottom: 'Content Bottom'
+  sidebar: 'Sidebar'
+  footer_top_1: 'Footer top 1'
+  footer_top_2: 'Footer top 2'
+  footer_middle_1: 'Footer middle 1'
+  footer_middle_2: 'Footer middle 2'
+  footer_middle_3: 'Footer middle 3'
+  footer_middle_4: 'Footer middle 4'
+  footer_bottom_1: 'Footer bottom 1'
+  footer_bottom_2: 'Footer bottom 2'
+
+libraries-override:
+  civictheme/global:
+    css:
+      theme:
+        dist/civictheme.css: dist/styles.css
+    js:
+      dist/civictheme.js: dist/scripts.js
+
+ckeditor_stylesheets:
+  - dist/ckeditor.css
+
+# Child theme components. Any components not provided in this theme will be auto-discovered from the
+# parent theme (CivicTheme).
+# Components may include parent theme's components using `@civictheme-` prefix in the namespace, e.g..  `@civictheme-atoms`.
+components:
+  namespaces:
+    base:
+      - components/00-base
+    atoms:
+      - components/01-atoms
+    molecules:
+      - components/02-molecules
+    organisms:
+      - components/03-organisms
+    templates:
+      - components/04-templates
+    pages:
+      - components/05-pages

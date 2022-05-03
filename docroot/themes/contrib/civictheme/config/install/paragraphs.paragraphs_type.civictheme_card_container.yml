@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civictheme_card_container
+label: 'Card container'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

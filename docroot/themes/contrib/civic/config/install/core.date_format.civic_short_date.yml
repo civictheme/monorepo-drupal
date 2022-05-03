@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: civic_short_date
-label: 'Short Date'
-locked: false
-pattern: 'j M Y'
