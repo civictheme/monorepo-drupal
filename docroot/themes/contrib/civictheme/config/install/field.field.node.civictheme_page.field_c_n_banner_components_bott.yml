@@ -60,7 +60,7 @@ settings:
       civictheme_card_promo:
         weight: -33
         enabled: false
-      civictheme_card_reference_promo:
+      civictheme_card_promo_ref:
         weight: -32
         enabled: false
       civictheme_card_subject:

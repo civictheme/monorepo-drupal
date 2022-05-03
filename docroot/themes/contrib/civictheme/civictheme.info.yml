@@ -136,7 +136,7 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_card_navigation.default
     - core.entity_form_display.paragraph.civictheme_card_navigation_ref.default
     - core.entity_form_display.paragraph.civictheme_card_promo.default
-    - core.entity_form_display.paragraph.civictheme_card_reference_promo.default
+    - core.entity_form_display.paragraph.civictheme_card_promo_ref.default
     - core.entity_form_display.paragraph.civictheme_card_subject.default
     - core.entity_form_display.paragraph.civictheme_card_subject_ref.default
     - core.entity_form_display.paragraph.civictheme_card_task.default
@@ -199,7 +199,7 @@ config_devel:
     - core.entity_view_display.paragraph.civictheme_card_navigation.default
     - core.entity_view_display.paragraph.civictheme_card_navigation_ref.default
     - core.entity_view_display.paragraph.civictheme_card_promo.default
-    - core.entity_view_display.paragraph.civictheme_card_reference_promo.default
+    - core.entity_view_display.paragraph.civictheme_card_promo_ref.default
     - core.entity_view_display.paragraph.civictheme_card_subject.default
     - core.entity_view_display.paragraph.civictheme_card_subject_ref.default
     - core.entity_view_display.paragraph.civictheme_card_task.default
@@ -333,8 +333,8 @@ config_devel:
     - field.field.paragraph.civictheme_card_promo.field_c_p_theme
     - field.field.paragraph.civictheme_card_promo.field_c_p_title
     - field.field.paragraph.civictheme_card_promo.field_c_p_topics
-    - field.field.paragraph.civictheme_card_reference_promo.field_c_p_reference
-    - field.field.paragraph.civictheme_card_reference_promo.field_c_p_theme
+    - field.field.paragraph.civictheme_card_promo_ref.field_c_p_reference
+    - field.field.paragraph.civictheme_card_promo_ref.field_c_p_theme
     - field.field.paragraph.civictheme_card_subject.field_c_p_image
     - field.field.paragraph.civictheme_card_subject.field_c_p_link
     - field.field.paragraph.civictheme_card_subject.field_c_p_theme
@@ -545,7 +545,7 @@ config_devel:
     - paragraphs.paragraphs_type.civictheme_card_navigation
     - paragraphs.paragraphs_type.civictheme_card_navigation_ref
     - paragraphs.paragraphs_type.civictheme_card_promo
-    - paragraphs.paragraphs_type.civictheme_card_reference_promo
+    - paragraphs.paragraphs_type.civictheme_card_promo_ref
     - paragraphs.paragraphs_type.civictheme_card_subject
     - paragraphs.paragraphs_type.civictheme_card_subject_ref
     - paragraphs.paragraphs_type.civictheme_card_task

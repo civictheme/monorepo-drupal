@@ -42,7 +42,7 @@ settings:
       civictheme_card_navigation_ref:
         weight: 20
         enabled: false
-      civictheme_card_reference_promo:
+      civictheme_card_promo_ref:
         weight: 21
         enabled: false
       civictheme_card_task:

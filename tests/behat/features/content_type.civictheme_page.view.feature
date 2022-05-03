@@ -239,7 +239,7 @@ Feature: View of Page content type
     And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_card_navigation_ref" paragraph:
       | field_c_p_reference | [TEST] Page Promo cards test |
       | field_c_p_theme     | dark                         |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_card_reference_promo" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_card_promo_ref" paragraph:
       | field_c_p_reference | [TEST] Page Promo cards test |
       | field_c_p_theme     | light                        |
 

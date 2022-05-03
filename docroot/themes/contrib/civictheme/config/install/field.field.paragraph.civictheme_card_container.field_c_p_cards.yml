@@ -9,7 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_card_navigation
     - paragraphs.paragraphs_type.civictheme_card_navigation_ref
     - paragraphs.paragraphs_type.civictheme_card_promo
-    - paragraphs.paragraphs_type.civictheme_card_reference_promo
+    - paragraphs.paragraphs_type.civictheme_card_promo_ref
     - paragraphs.paragraphs_type.civictheme_card_subject
     - paragraphs.paragraphs_type.civictheme_card_subject_ref
     - paragraphs.paragraphs_type.civictheme_card_task
@@ -35,7 +35,7 @@ settings:
       civictheme_card_task: civictheme_card_task
       civictheme_card_navigation: civictheme_card_navigation
       civictheme_service_card: civictheme_service_card
-      civictheme_card_reference_promo: civictheme_card_reference_promo
+      civictheme_card_promo_ref: civictheme_card_promo_ref
       civictheme_card_event_ref: civictheme_card_event_ref
       civictheme_card_navigation_ref: civictheme_card_navigation_ref
       civictheme_card_event: civictheme_card_event
@@ -74,7 +74,7 @@ settings:
       civictheme_card_promo:
         enabled: true
         weight: 15
-      civictheme_card_reference_promo:
+      civictheme_card_promo_ref:
         enabled: true
         weight: 12
       civictheme_card_subject:

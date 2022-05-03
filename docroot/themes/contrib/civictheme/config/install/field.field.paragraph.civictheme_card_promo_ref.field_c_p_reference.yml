@@ -5,11 +5,11 @@ dependencies:
     - field.storage.paragraph.field_c_p_reference
     - node.type.civictheme_event
     - node.type.civictheme_page
-    - paragraphs.paragraphs_type.civictheme_card_reference_promo
-id: paragraph.civictheme_card_reference_promo.field_c_p_reference
+    - paragraphs.paragraphs_type.civictheme_card_promo_ref
+id: paragraph.civictheme_card_promo_ref.field_c_p_reference
 field_name: field_c_p_reference
 entity_type: paragraph
-bundle: civictheme_card_reference_promo
+bundle: civictheme_card_promo_ref
 label: Reference
 description: ''
 required: true

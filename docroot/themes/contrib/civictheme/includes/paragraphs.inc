@@ -166,7 +166,7 @@ function _civictheme_get_card_types() {
     'civictheme_card_navigation_ref',
     'civictheme_card_navigation',
     'civictheme_card_promo',
-    'civictheme_card_reference_promo',
+    'civictheme_card_promo_ref',
     'civictheme_card_subject_ref',
     'civictheme_card_subject',
     'civictheme_service_card',
