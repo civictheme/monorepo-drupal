@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Message component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - type: [string] Message type: info, error, warning, success.
+ * - description: [string] Description text.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set type = type|default('info') %}
+{% set type_class = 'civictheme-message--%s messages--%s'|format(type, type) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
+
+{% set icons = {
+  status: 'userinterface_informationmark',
+  warning: 'userinterface_exclamationmark_1',
+  error: 'userinterface_close_2',
+  success: 'userinterface_approve',
+} %}
+
+<div class="civictheme-message messages {{ modifier_class }}" role="{% if type == 'error' %}error{% else %}contentinfo{% endif %}" aria-label="{{ type }}" {% if type == 'error' %}aria-live="polite"{% endif %}>
+  {% if icons[type] is defined %}
+    <div class="civictheme-message__icon">
+      {% include "@atoms/icon/icon.twig" with {
+        symbol: icons[type],
+        modifier_class: "%s civictheme-icon--%s"|format(theme_class, type)
+      } only %}
+    </div>
+  {% endif %}
+
+  <div class="civictheme-message__content">
+    {% if title %}
+      <div class="civictheme-message__title">{{ title }}</div>
+    {% endif %}
+
+    {% if description %}
+      <div class="civictheme-message__summary">{{ description|striptags('<strong>,<a>,<pre>,<ul>,<ol>,<li>')|raw }}</div>
+    {% endif %}
+  </div>
+</div>

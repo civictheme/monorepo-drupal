@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Install file for civictheme_content.
+ *
+ * When enabled and CIVICTHEME_CONTENT_TYPES environment variable is not
+ * available, civictheme_content_demo module will be installed and content
+ * provided with the module will be provisioned.
+ *
+ * When enabled and CIVICTHEME_CONTENT_TYPES environment variable is
+ * available as a comma-separated list of types, then a corresponding
+ * civictheme_content_<type> module will be installed and content provided
+ * with each of the modules will be provisioned.
+ *
+ * To enable this module without provisioning any content, set the value
+ * of CIVICTHEME_CONTENT_TYPES to 'none'.
+ */
+
+use Drupal\civictheme_content\Helper;
+use Drupal\Core\Installer\Exception\InstallerException;
+
+/**
+ * Implements hook_install().
+ */
+function civictheme_content_install() {
+  if (!empty(trim(getenv('CIVICTHEME_CONTENT_TYPES')))) {
+    $types = array_map('strtolower', array_map('trim', explode(',', trim(getenv('CIVICTHEME_CONTENT_TYPES')))));
+  }
+  else {
+    $types = ['demo'];
+  }
+
+  if (in_array('none', $types)) {
+    Helper::log(t('Skipping enabling of content modules.'));
+    return;
+  }
+
+  $existing = array_map(function ($value) {
+    return substr($value, strlen('civictheme_content_'));
+  }, array_diff(scandir(__DIR__ . DIRECTORY_SEPARATOR . 'modules'), ['..', '.']));
+
+  $unsupported = array_diff($types, $existing);
+  if (!empty($unsupported)) {
+    // Show as a warning message, but do not fail the installation.
+    Helper::log(t('Unsupported type(s) provided: %list.', [
+      '%list' => implode(', ', $unsupported),
+    ]));
+  }
+
+  $supported = array_intersect($types, $existing);
+
+  if (empty($supported)) {
+    // Show as a warning message, but do not fail the installation.
+    Helper::log(t('No supported types were provided. Supported types: %list.', [
+      '%list' => implode(', ', $supported),
+    ]));
+    return;
+  }
+
+  $modules = array_map(function ($value) {
+    return 'civictheme_content_' . $value;
+  }, $supported);
+
+  foreach ($modules as $module) {
+    if (\Drupal::service('module_installer')->install([$module])) {
+      Helper::log(t('Successfully enabled: %name.', [
+        '%name' => $module,
+      ]));
+    }
+    else {
+      // Fail installation as a module with a correct name should have been
+      // enabled.
+      throw new InstallerException('Unable to enable: ' . $module);
+    }
+  }
+}

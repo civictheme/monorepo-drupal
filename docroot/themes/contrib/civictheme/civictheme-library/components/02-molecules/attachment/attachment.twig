@@ -1,0 +1,101 @@
+{#
+/**
+ * @file
+ * Attachment component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content_top: [string] Content slot.
+ * - title: [string] attachment title.
+ * - summary: [string] attachment summary.
+ * - links: [array] Array of links containing:
+ *   - text: [string] Text.
+ *   - url: [string] Link URL.
+ *   - icon: [string] Icon name.
+ *   - last_updated: [string] Last updated date.
+ * - content_bottom: [string] Content slot.
+ * - vertical_space: [string] With top, bottom or both vertical spaces.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-attachment--vertical-space-%s'|format(vertical_space) : '' %}
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
+
+{% if links is not empty %}
+  <div class="civictheme-attachment {{ modifier_class }}">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="civictheme-attachment__content">
+            {% block content_top %}
+              {% if content_top is not empty %}
+                <div class="civictheme-attachment__content-top">
+                  {{ content_top }}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            {% block content %}
+              {% if title is not empty or summary is not empty %}
+                <div class="civictheme-attachment__text">
+                  {% if title is not empty %}
+                    <div class="civictheme-attachment__title">
+                      {{ title }}
+                    </div>
+                  {% endif %}
+
+                  {% if summary is not empty %}
+                    <div class="civictheme-attachment__summary">
+                      {{ summary }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            {% block links %}
+              <ul class="civictheme-attachment__links">
+                {% for link in links %}
+                  {% if link.text is not empty %}
+                    <li class="civictheme-attachment__links--link">
+                      <span>
+                        {% include '@atoms/icon/icon.twig' with {
+                          symbol: link.icon ? link.icon : 'fileandfolders_document',
+                        } only %}
+                      </span>
+                      <div>
+                        {% include '@atoms/link/link.twig' with {
+                          theme: theme,
+                          text: link.text,
+                          title: 'Download %s'|format(link.url|split('.')|last),
+                          url: link.url,
+                          modifier_class: 'civictheme-link--attachment'
+                        } only %}
+
+                        {% if link.last_updated is not empty %}
+                          <div class="civictheme-attachment__links--last-updated">
+                            LAST UPDATED: {{ link.last_updated }}
+                          </div>
+                        {% endif %}
+                      </div>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% endblock %}
+
+            {% block content_bottom %}
+              {% if content_bottom is not empty %}
+                <div class="civictheme-attachment__content-bottom">
+                  {{ content_bottom }}
+                </div>
+              {% endif %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

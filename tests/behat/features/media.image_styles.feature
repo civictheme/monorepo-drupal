@@ -1,7 +1,7 @@
-@civic @media @image_styles
-Feature: Tests the civic image styles
+@civictheme @media @image_styles
+Feature: Tests the civictheme image styles
 
-  Ensure that civic image styles exist and have the expected fields.
+  Ensure that civictheme image styles exist and have the expected fields.
 
   @api
   Scenario Outline: Image styles exist with fields.
@@ -11,12 +11,12 @@ Feature: Tests the civic image styles
     And I should see "<effect>"
 
     Examples:
-      | style           | machine_name          | effect                 |
-      | Medium          | civic_medium          | Scale 220×220          |
-      | Thumbnail       | civic_thumbnail       | Scale 100×100          |
-      | Navigation card | civic_navigation_card | Scale and crop 200×200 |
-      | Promo card      | civic_promo_card      | Scale and crop 376×240 |
-      | Promo banner    | civic_promo_banner    | Scale and crop 476×520 |
-      | Navigation card | civic_navigation_card | Scale and crop 200×200 |
-      | Topic mobile    | civic_topic_mobile    | Scale and crop 213×200 |
-      | Topic desktop   | civic_topic_desktop   | Scale and crop 276×224 |
+      | style           | machine_name               | effect                 |
+      | Medium          | civictheme_medium          | Scale 220×220          |
+      | Thumbnail       | civictheme_thumbnail       | Scale 100×100          |
+      | Navigation card | civictheme_navigation_card | Scale and crop 200×200 |
+      | Promo card      | civictheme_promo_card      | Scale and crop 376×240 |
+      | Promo banner    | civictheme_promo_banner    | Scale and crop 476×520 |
+      | Navigation card | civictheme_navigation_card | Scale and crop 200×200 |
+      | Topic mobile    | civictheme_topic_mobile    | Scale and crop 213×200 |
+      | Topic desktop   | civictheme_topic_desktop   | Scale and crop 276×224 |

@@ -1,5 +1,0 @@
-# This file is used by the release publishing script to replace current
-# .gitignore in order to selectively include and exclude directories that
-# are going into release.
-node_modules
-civic-library/.gitignore.release

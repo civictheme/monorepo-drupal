@@ -1,0 +1,145 @@
+//
+// Event Card component.
+//
+
+.civictheme-event-card {
+  $root: &;
+
+  position: relative;
+  border-radius: $civictheme-event-card-border-radius;
+
+  // Prevent image from "spilling" over the border radius.
+  overflow: hidden;
+  width: 100%;
+
+  @include civictheme-elevation(3);
+
+  &:focus-within {
+    @include civictheme-outline();
+  }
+
+  &#{$root}--no-image {
+    border-top-width: civictheme-space(0.75);
+    border-top-style: solid;
+  }
+
+  #{$root}__image-wrapper {
+    position: relative;
+
+    @include civictheme-image-fit ();
+  }
+
+  #{$root}__content {
+    padding: civictheme-space(3);
+  }
+
+  #{$root}__date {
+    margin-bottom: civictheme-space(2);
+  }
+
+  #{$root}__title {
+    @include civictheme-typography('heading-4');
+
+    margin-bottom: civictheme-space(2);
+  }
+
+  #{$root}__title-link {
+    @include civictheme-link-decoration ();
+    @include civictheme-link-no-outline ();
+    @include civictheme-link-cover-parent ();
+  }
+
+  #{$root}__location {
+    @include civictheme-typography('text-regular');
+
+    font-weight: 600;
+    margin-bottom: civictheme-space(2);
+  }
+
+  #{$root}__summary {
+    @include civictheme-typography('text-regular');
+  }
+
+  #{$root}__bottom-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: civictheme-space(3);
+  }
+
+  #{$root}__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-right: auto;
+    margin-top: -1 * civictheme-space(0.5);
+
+    .civictheme-tag {
+      margin-top: civictheme-space(0.5);
+      margin-right: civictheme-space(0.5);
+    }
+  }
+
+  &.civictheme-theme-light {
+    background-color: $civictheme-event-card-light-background-color;
+
+    &:focus {
+      @include civictheme-outline(false);
+    }
+
+    &#{$root}--no-image {
+      border-top-color: $civictheme-event-card-light-border-top-color;
+    }
+
+    #{$root}__title {
+      color: $civictheme-event-card-light-heading-color;
+    }
+
+    #{$root}__title-link {
+      @include civictheme-link-colors($civictheme-event-card-light-heading-color, $civictheme-event-card-light-heading-hover-color, $active: $civictheme-event-card-light-heading-active-color);
+    }
+
+    #{$root}__location {
+      color: $civictheme-event-card-light-location-color;
+    }
+
+    #{$root}__summary {
+      color: $civictheme-event-card-light-summary-color;
+    }
+
+    #{$root}__icon--arrow {
+      @include civictheme-icon-fill-color($civictheme-event-card-light-icon-arrow-color);
+    }
+  }
+
+  &.civictheme-theme-dark {
+    background-color: $civictheme-event-card-dark-background-color;
+
+    &:focus {
+      @include civictheme-outline(true);
+    }
+
+    &#{$root}--no-image {
+      border-top-color: $civictheme-event-card-dark-border-top-color;
+    }
+
+    #{$root}__title {
+      color: $civictheme-event-card-dark-heading-color;
+    }
+
+    #{$root}__title-link {
+      @include civictheme-link-colors($civictheme-event-card-dark-heading-color, $civictheme-event-card-dark-heading-hover-color, $active: $civictheme-event-card-dark-heading-active-color);
+    }
+
+    #{$root}__location {
+      color: $civictheme-event-card-dark-location-color;
+    }
+
+    #{$root}__summary {
+      color: $civictheme-event-card-dark-summary-color;
+    }
+
+    #{$root}__icon--arrow {
+      @include civictheme-icon-fill-color($civictheme-event-card-dark-icon-arrow-color, true);
+    }
+  }
+}

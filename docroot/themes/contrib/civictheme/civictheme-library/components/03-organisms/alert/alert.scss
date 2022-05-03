@@ -1,0 +1,153 @@
+//
+// Alert component.
+//
+
+@use 'sass:map';
+
+.civictheme-alert {
+  $root: &;
+
+  position: relative;
+  padding: civictheme-space(2);
+
+  @include civictheme-breakpoint('m') {
+    padding: civictheme-space(3);
+  }
+
+  @include civictheme-typography('label-small');
+
+  border-bottom: 1px solid;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  #{$root}__title {
+    @include civictheme-typography('heading-6');
+
+    display: flex;
+    align-items: center;
+
+    @include civictheme-breakpoint-upto('m') {
+      margin-bottom: civictheme-space();
+    }
+  }
+
+  #{$root}__icon {
+    width: rem(24px);
+    margin-right: civictheme-space();
+
+    @include civictheme-breakpoint('m') {
+      margin-right: civictheme-space(2);
+    }
+  }
+
+  .civictheme-icon {
+    width: rem(24px);
+    height: rem(24px);
+  }
+
+  #{$root}__summary {
+    display: flex;
+    align-items: center;
+
+    @include civictheme-breakpoint(m) {
+      position: relative;
+    }
+  }
+
+  #{$root}__dismiss-button {
+    cursor: pointer;
+    margin-left: civictheme-space(3);
+    position: absolute;
+    top: civictheme-space(2);
+    right: civictheme-space(2);
+    background-color: transparent;
+    padding: 0;
+
+    @include civictheme-breakpoint(m) {
+      position: static;
+      align-self: center;
+      margin-left: auto;
+    }
+  }
+
+  // SASS does not allow variables interpolation, so we are creating a local
+  // map to easily generate rules.
+  &.civictheme-theme-light {
+    border-color: $civictheme-alert-light-divider-color;
+  }
+
+  &.civictheme-theme-dark {
+    border-color: $civictheme-alert-dark-divider-color;
+  }
+
+  $map: (
+    'status': (
+      'light': (
+        'color': $civictheme-alert-status-light-color,
+        'background-color': $civictheme-alert-status-light-background-color,
+        'icon-color': $civictheme-alert-status-light-icon-color,
+      ),
+      'dark': (
+        'color': $civictheme-alert-status-dark-color,
+        'background-color': $civictheme-alert-status-dark-background-color,
+        'icon-color': $civictheme-alert-status-dark-icon-color,
+      )
+    ),
+    'warning': (
+      'light': (
+        'color': $civictheme-alert-warning-light-color,
+        'background-color': $civictheme-alert-warning-light-background-color,
+        'icon-color': $civictheme-alert-warning-light-icon-color,
+      ),
+      'dark': (
+        'color': $civictheme-alert-warning-dark-color,
+        'background-color': $civictheme-alert-warning-dark-background-color,
+        'icon-color': $civictheme-alert-warning-dark-icon-color,
+      )
+    ),
+    'error': (
+      'light': (
+        'color': $civictheme-alert-error-light-color,
+        'background-color': $civictheme-alert-error-light-background-color,
+        'icon-color': $civictheme-alert-error-light-icon-color,
+      ),
+      'dark': (
+        'color': $civictheme-alert-error-dark-color,
+        'background-color': $civictheme-alert-error-dark-background-color,
+        'icon-color': $civictheme-alert-error-dark-icon-color,
+      )
+    ),
+    'success': (
+      'light': (
+        'color': $civictheme-alert-success-light-color,
+        'background-color': $civictheme-alert-success-light-background-color,
+        'icon-color': $civictheme-alert-success-light-icon-color,
+      ),
+      'dark': (
+        'color': $civictheme-alert-success-dark-color,
+        'background-color': $civictheme-alert-success-dark-background-color,
+        'icon-color': $civictheme-alert-success-dark-icon-color,
+      )
+    ),
+  );
+
+  @each $type, $type-map in $map {
+    &#{$root}--#{$type} {
+      @each $theme, $values in $type-map {
+        &.civictheme-theme-#{$theme} {
+          background-color: map.get($values, 'background-color');
+          color: map.get($values, 'color');
+
+          #{$root}__dismiss-button,
+          #{$root}__icon {
+            .civictheme-icon {
+              fill: map.get($values, 'icon-color');
+            }
+          }
+        }
+      }
+    }
+  }
+}

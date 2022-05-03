@@ -1,0 +1,924 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 64931832-7e31-4493-81b4-a2a46061dda3
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    f9278a83-d921-4890-ad30-e0d3050ef74a: media
+    cde35fb7-b01d-4074-ba94-bb62303e27d9: media
+    fcd683b6-ea34-4310-aedd-7731ff476cbc: media
+    2283dfc9-d10f-40d6-8cf5-4a3a2d2ef158: media
+    e7ab9bae-edec-4639-b196-9dece305235d: media
+    f06a9e48-e4bc-4e1d-9646-047d984c36ca: media
+    ba705a5b-91ca-4f48-9d82-feeabb645cff: media
+    485fc9fd-b6ce-4ff1-a0ac-88ea2fe7fdb9: media
+    889585ce-c08e-4957-9c33-75025e910242: media
+    7238591b-bca0-46bf-b6df-534a1fdb2ddf: media
+    429966d5-50c7-433a-bdcf-5d58e1e6e21c: media
+    6d127a84-70f5-43d3-a0dc-ee2872d97c8b: media
+    c66b84d0-bd69-4330-96d2-71e1ecddebf0: media
+    ab44a2e7-acd4-4276-bf83-3c6fd3e71271: media
+    78eb0cf4-882f-47e4-8607-1f254809e9e8: media
+    971cc0f7-9e06-4f64-b58b-32d68848d5b3: media
+    48a4995f-75fc-4bb4-b43b-8dcd81f3f68b: media
+    d073b4ba-18b3-49a2-97b6-b02cb22f1a40: node
+    ec6f5030-d733-45c9-bd47-50de3d053e5c: media
+    87adbef4-9cbd-4c1a-b0d7-bca60377d755: media
+default:
+  revision_uid:
+    -
+      target_id: 2
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'About us'
+  created:
+    -
+      value: 1642579342
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /about-us
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_background:
+    -
+      entity: f9278a83-d921-4890-ad30-e0d3050ef74a
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 26e003d9-c5cc-4b58-901a-763619f7d10b
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642638560
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2>Our vision</h2>\r\n\r\n<p>The Department of Environment (DE) is Australia’s environmental protection agency. Our vision is to:</p>\r\n\r\n<ul>\r\n\t<li>Protect Australia’s environment</li>\r\n\t<li>Enforce environmental legislation</li>\r\n\t<li>Lead environmental research&nbsp;</li>\r\n\t<li>Provide environmental services</li>\r\n</ul>\r\n\r\n<h2>What we do</h2>\r\n\r\n<p>The DE protects the Australian environment, covering both land (vegetation and animals) and water (rivers, waterways and our marine environment). We also enforce Australia’s <em>Environmental Protection Act 2001</em> (the EP Act).</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 7004407c-55bf-4a58-9bd3-d69896b4747f
+          bundle: civictheme_attachment
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1644891985
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_attachments:
+            -
+              entity: cde35fb7-b01d-4074-ba94-bb62303e27d9
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_icon:
+            -
+              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
+          field_c_p_space:
+            -
+              value: bottom
+          field_c_p_summary:
+            -
+              value: 'Our 10-year strategy focuses on how we''re going to achieve our vision. '
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Our 10-year strategy'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 74088443-c455-4af0-81de-1ad4915d95ef
+          bundle: civictheme_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642638612
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 48680207-40dd-42aa-80ca-82c02eb6c1ef
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642638622
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 2283dfc9-d10f-40d6-8cf5-4a3a2d2ef158
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Protecting our wildlife'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Protecting our wildlife'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: a7c5edc5-c611-4a13-9026-ca19b1d582b8
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642638635
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: e7ab9bae-edec-4639-b196-9dece305235d
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Protecting the Great Barrier Reef'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Protecting the Great Barrier Reef'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: efbfc7cc-a684-4995-b370-2b9cbce7fad8
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642638678
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: f06a9e48-e4bc-4e1d-9646-047d984c36ca
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Bushfire recovery'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Bushfire recovery'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: b620c155-904b-4d9a-9859-407d6303eb16
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642638690
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: ba705a5b-91ca-4f48-9d82-feeabb645cff
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Fighting climate change'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Fighting climate change'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 01ca36de-f639-46d8-af28-c1d4b355c36e
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642638726
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 485fc9fd-b6ce-4ff1-a0ac-88ea2fe7fdb9
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Monitoring air quality'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Monitoring air quality'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 367147a2-83b9-4c73-b9c7-655c168556ef
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642638796
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 889585ce-c08e-4957-9c33-75025e910242
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Monitoring emissions'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Monitoring emissions'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: f04b834c-eb15-4189-a7a4-697d0f5cc89c
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642638827
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 7238591b-bca0-46bf-b6df-534a1fdb2ddf
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Encouraging biodiversity'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Encouraging biodiversity'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: c24d7bb0-d55f-4f4f-993d-2cfadcfe3f10
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642638857
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 429966d5-50c7-433a-bdcf-5d58e1e6e21c
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Waste and recycling'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Waste and recycling'
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: bff797e6-e07f-4def-a8ee-74c530fb2eb4
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642638888
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h3>Our research</h3>\r\n\r\n<p>The DE is also very active in scientific and environmental research. You can see some of our key research areas below.</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c97f606a-49fd-4485-a365-939dd342fafa
+          bundle: civictheme_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1642638927
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 047bbc68-831b-4437-a1fb-34acf746e540
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642638932
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 6d127a84-70f5-43d3-a0dc-ee2872d97c8b
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Climate change'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Climate change'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 85b30c53-9d8c-4e1a-99dd-5a54a4233e64
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642638948
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: c66b84d0-bd69-4330-96d2-71e1ecddebf0
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Alternative energy sources'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Alternative energy sources'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 70e57409-4ae1-472f-84d0-cce57cd85a5a
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642638990
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: ab44a2e7-acd4-4276-bf83-3c6fd3e71271
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Bushfire management'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Bushfire management'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: e500d71d-ee19-48db-9c81-e593bd6dc085
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642639000
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 78eb0cf4-882f-47e4-8607-1f254809e9e8
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'The Great Barrier Reef'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'The Great Barrier Reef'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d815fc70-7699-4c95-a745-d0c4febce480
+                  bundle: civictheme_card_subject
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1642639034
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 971cc0f7-9e06-4f64-b58b-32d68848d5b3
+                  field_c_p_link:
+                    -
+                      uri: 'internal:/'
+                      title: 'Coastal erosion'
+                      options: {  }
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Coastal erosion'
+          field_c_p_column_count:
+            -
+              value: 4
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 095f7d52-8646-4658-b89f-003aad2bf4f8
+          bundle: civictheme_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1645008158
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 449e39b7-ceb0-4060-b25d-a4bf2984acbd
+                  bundle: civictheme_card_navigation
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1645008194
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_link:
+                    -
+                      uri: 'https://google.com.au/'
+                      title: 'View open positions'
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: "The DE often has positions available in both our main offices in Canberra and at key outposts around Australia. \r\n"
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Work for us'
+          field_c_p_column_count:
+            -
+              value: 1
+          field_c_p_fill_width:
+            -
+              value: true
+          field_c_p_space:
+            -
+              value: both
+          field_c_p_theme:
+            -
+              value: dark
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 3094a727-e6e8-49da-a0a1-d0ddda468736
+          bundle: civictheme_callout
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1645161816
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_links:
+            -
+              uri: 'https://www.google.com.au/'
+              title: 'View open positions'
+              options: {  }
+          field_c_p_summary:
+            -
+              value: "The DE often has positions available in both our main offices in Canberra and at key outposts around Australia. \r\n"
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Work for us'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 598df69e-95ad-4a8f-9e7c-af5d185ed87d
+          bundle: civictheme_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1645162815
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 7e506487-ec3c-4d8a-ba74-bfeafebc8c3a
+                  bundle: civictheme_card_navigation
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1645162830
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 48a4995f-75fc-4bb4-b43b-8dcd81f3f68b
+                  field_c_p_link:
+                    -
+                      target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
+                      title: 'View open position'
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'The DE has positions available in our main Canberra office and at key outposts around Australia. '
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Work for us'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: d5001cfa-0dff-47fd-9438-b115616445ce
+                  bundle: civictheme_card_navigation
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1645162932
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 485fc9fd-b6ce-4ff1-a0ac-88ea2fe7fdb9
+                  field_c_p_link:
+                    -
+                      target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
+                      title: 'Register as a volunteer'
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'Volunteers are important to help protect the Australian environment. Find out about projects in your area and join us as a volunteer. '
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Volunteer with us'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 273d3dbd-5093-4a61-a0ab-b4cef82b910b
+                  bundle: civictheme_card_navigation
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1645163360
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: ec6f5030-d733-45c9-bd47-50de3d053e5c
+                  field_c_p_link:
+                    -
+                      target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
+                      title: 'View all news'
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'Read our latest news, including media releases.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'View our news'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 1af2cf7f-c682-4066-b5aa-606e393b33fe
+                  bundle: civictheme_card_navigation
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1645163426
+                  behavior_settings:
+                    -
+                      value: {  }
+                  field_c_p_image:
+                    -
+                      entity: 87adbef4-9cbd-4c1a-b0d7-bca60377d755
+                  field_c_p_link:
+                    -
+                      target_uuid: d073b4ba-18b3-49a2-97b6-b02cb22f1a40
+                      title: 'View contact us page'
+                      options: {  }
+                  field_c_p_summary:
+                    -
+                      value: 'There are many reasons you may like to contact us.'
+                  field_c_p_theme:
+                    -
+                      value: light
+                  field_c_p_title:
+                    -
+                      value: 'Contact us '
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: false
+          field_c_p_space:
+            -
+              value: top
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'More about us'
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_space:
+    -
+      value: both

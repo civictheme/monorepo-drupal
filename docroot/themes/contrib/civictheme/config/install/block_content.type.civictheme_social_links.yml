@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civictheme_social_links
+label: 'Social Links'
+revision: 0
+description: 'List social link icons'

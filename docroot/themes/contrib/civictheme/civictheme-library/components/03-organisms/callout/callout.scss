@@ -1,0 +1,113 @@
+//
+// Callout component.
+//
+
+.civictheme-callout {
+  $root: &;
+
+  &.civictheme-callout--vertical-space-top {
+    @include civictheme-component-with-vertical-space(top, $civictheme-callout-space-vertical);
+  }
+
+  &.civictheme-callout--vertical-space-bottom {
+    @include civictheme-component-with-vertical-space(bottom, $civictheme-callout-space-vertical);
+  }
+
+  &.civictheme-callout--vertical-space-both {
+    @include civictheme-component-with-vertical-space(both, $civictheme-callout-space-vertical);
+  }
+
+  &--wrapper {
+    border-radius: $civictheme-callout-border-radius;
+    border-left: rem(6px) solid transparent;
+    display: flex;
+    flex-direction: column;
+    padding: civictheme-space(3) civictheme-space(3);
+    align-items: flex-start;
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+    margin: 0;
+
+    @include civictheme-breakpoint(m) {
+      padding: civictheme-space(3) civictheme-space(5) civictheme-space(4) civictheme-space(3);
+    }
+  }
+
+  &__summary {
+    @include civictheme-typography('text-regular');
+
+    margin-top: civictheme-space(2);
+  }
+
+  &__title {
+    @include civictheme-typography('heading-4');
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    flex-wrap: wrap;
+
+    @include civictheme-breakpoint(m) {
+      flex-direction: row;
+    }
+
+    a {
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+      margin: civictheme-space() 0;
+
+      @include civictheme-breakpoint(m) {
+        margin: civictheme-space() civictheme-space() 0 0;
+      }
+    }
+
+    &:last-child {
+      @include civictheme-breakpoint(m) {
+        margin: civictheme-space() 0 0 0;
+      }
+    }
+  }
+
+  &.civictheme-theme-light {
+
+    #{$root}--wrapper {
+      border-left-color: $civictheme-callout-light-border-color;
+      background-color: $civictheme-callout-light-background-color;
+      color: $civictheme-callout-light-color;
+    }
+
+    .civictheme-callout {
+      &__title {
+        color: $civictheme-callout-light-heading-color;
+      }
+
+      &__summary {
+        color: $civictheme-callout-light-summary-color;
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+
+    #{$root}--wrapper {
+      border-left-color: $civictheme-callout-dark-border-color;
+      background-color: $civictheme-callout-dark-background-color;
+      color: $civictheme-callout-dark-color;
+    }
+
+    .civictheme-callout {
+      &__title {
+        color: $civictheme-callout-dark-heading-color;
+      }
+
+      &__summary {
+        color: $civictheme-callout-dark-summary-color;
+      }
+    }
+  }
+}

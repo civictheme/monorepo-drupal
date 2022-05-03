@@ -1,0 +1,45 @@
+//
+// Iframe component.
+//
+
+.civictheme-iframe {
+  $root: &;
+
+  border: 0;
+
+  &:not([width]) {
+    width: 100%;
+  }
+
+  &:not([height]) {
+    height: 100%;
+  }
+
+  &.civictheme-iframe--vertical-space-top {
+    @include civictheme-component-with-vertical-space(top, $civictheme-iframe-space-vertical);
+  }
+
+  &.civictheme-iframe--vertical-space-bottom {
+    @include civictheme-component-with-vertical-space(bottom, $civictheme-iframe-space-vertical);
+  }
+
+  &.civictheme-iframe--vertical-space-both {
+    @include civictheme-component-with-vertical-space(both, $civictheme-iframe-space-vertical);
+  }
+
+  &.civictheme-theme-light {
+    &.civictheme-iframe--with-background {
+      background-color: $civictheme-iframe-light-background-color;
+      padding-left: $civictheme-iframe-space-horizontal;
+      padding-right: $civictheme-iframe-space-horizontal;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    &.civictheme-iframe--with-background {
+      background-color: $civictheme-iframe-dark-background-color;
+      padding-left: $civictheme-iframe-space-horizontal;
+      padding-right: $civictheme-iframe-space-horizontal;
+    }
+  }
+}

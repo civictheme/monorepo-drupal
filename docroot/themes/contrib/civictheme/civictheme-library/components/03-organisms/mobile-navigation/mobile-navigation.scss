@@ -1,0 +1,275 @@
+//
+// Mobile Navigation component.
+//
+// Note: typography and icon sizes are specified explicitly as these elements
+// have custom appearance unique to mobile menu (i.e., no responsive sizing).
+
+@use 'sass:math';
+
+$civictheme-mobile-navigation-spacing: civictheme-space(2);
+
+.civictheme-mobile-navigation {
+  $root: &;
+
+  display: block;
+
+  @include civictheme-breakpoint($civictheme-mobile-navigation-breakpoint) {
+    display: none;
+  }
+
+  #{$root}__panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #{$root}__top-menu-wrapper {
+    flex-grow: 1;
+
+    // Padding on the first and other panels looks the same, but specified
+    // separately as first panel contains other elements (not only menu items).
+    padding: 0 $civictheme-mobile-navigation-spacing;
+  }
+
+  #{$root}__bottom-menu-wrapper {
+    padding: 0 $civictheme-mobile-navigation-spacing;
+  }
+
+  .civictheme-menu {
+    padding: 0;
+  }
+
+  #{$root}__top-menu {
+    margin: 0;
+
+    .civictheme-menu__sub-menu__wrapper {
+      // Same padding as in the menu wrapper above.
+      padding: 0 $civictheme-mobile-navigation-spacing;
+    }
+
+    .civictheme-menu__item {
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
+
+      .civictheme-link {
+        width: 100%;
+        padding: civictheme-space(2);
+
+        @include civictheme-typography('label-large');
+        @include civictheme-link-decoration(false, false, false, false);
+      }
+    }
+
+    // Subsection arrow.
+    #{$root}__open-subsection-trigger {
+      border-left-width: 1px;
+      border-left-style: solid;
+      padding: $civictheme-mobile-navigation-spacing;
+
+      .civictheme-icon {
+        width: civictheme-icon-size-dimension('regular', 'm', 'width');
+        height: civictheme-icon-size-dimension('regular', 'm', 'height');
+      }
+    }
+  }
+
+  #{$root}__bottom-menu {
+    .civictheme-menu__sub-menu__wrapper {
+      // Same padding as in the menu wrapper above.
+      padding: 0 $civictheme-mobile-navigation-spacing;
+    }
+
+    .civictheme-menu__item {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
+
+      .civictheme-link {
+        width: 100%;
+        padding: civictheme-space(2);
+
+        @include civictheme-link-decoration(false, false, false, false);
+        @include civictheme-typography('label-regular');
+
+        @include civictheme-breakpoint('xxs') {
+          font-weight: normal;
+        }
+      }
+    }
+
+    // Subsection arrow.
+    #{$root}__open-subsection-trigger {
+      border-left-width: 1px;
+      border-left-style: solid;
+      padding: math.div($civictheme-mobile-navigation-spacing, 2);
+
+      .civictheme-icon {
+        width: civictheme-icon-size-dimension('small', 'm', 'width');
+        height: civictheme-icon-size-dimension('small', 'm', 'height');
+      }
+    }
+  }
+
+  // "Close a single panel" trigger.
+  #{$root}__close-trigger {
+    padding: $civictheme-mobile-navigation-spacing;
+    padding-top: 0;
+
+    [data-flyout-close-trigger] {
+      padding: 0;
+      float: none;
+      font-weight: bold;
+
+      @include civictheme-typography('label-large');
+
+      .civictheme-icon {
+        display: block;
+        margin-bottom: civictheme-space();
+      }
+    }
+  }
+
+  &.civictheme-theme-light {
+    [data-flyout-panel] {
+      background-color: $civictheme-mobile-navigation-light-panel-background-color;
+    }
+
+    .civictheme-mobile-navigation__top-menu-wrapper {
+      background-color: $civictheme-mobile-navigation-light-top-menu-background-color;
+    }
+
+    .civictheme-mobile-navigation__bottom-menu-wrapper {
+      background-color: $civictheme-mobile-navigation-light-bottom-menu-background-color;
+    }
+
+    .civictheme-menu__item {
+      border-bottom-color: $civictheme-mobile-navigation-light-menu-divider-border-color;
+
+      .civictheme-link {
+        @include civictheme-link-colors($civictheme-mobile-navigation-light-menu-item-color, $civictheme-mobile-navigation-light-menu-item-hover-color);
+        @include civictheme-link-backgrounds(transparent, transparent, transparent, transparent, transparent);
+      }
+    }
+
+    #{$root}__open-subsection-trigger {
+      border-left-color: $civictheme-mobile-navigation-light-menu-divider-border-color;
+
+      .civictheme-icon {
+        fill: $civictheme-mobile-navigation-light-subsection-trigger-color;
+      }
+    }
+
+    #{$root}__close-trigger {
+      [data-flyout-close-trigger] {
+        color: $civictheme-mobile-navigation-light-subsection-heading-color;
+
+        .civictheme-icon {
+          fill: $civictheme-mobile-navigation-light-subsection-heading-icon-color;
+        }
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    [data-flyout-panel] {
+      background-color: $civictheme-mobile-navigation-dark-panel-background-color;
+    }
+
+    .civictheme-mobile-navigation__top-menu-wrapper {
+      background-color: $civictheme-mobile-navigation-dark-top-menu-background-color;
+    }
+
+    .civictheme-mobile-navigation__bottom-menu-wrapper {
+      background-color: $civictheme-mobile-navigation-dark-bottom-menu-background-color;
+    }
+
+    .civictheme-menu__item {
+      border-bottom-color: $civictheme-mobile-navigation-dark-menu-divider-border-color;
+
+      .civictheme-link {
+        @include civictheme-link-colors($civictheme-mobile-navigation-dark-menu-item-color, $civictheme-mobile-navigation-dark-menu-item-hover-color);
+        @include civictheme-link-backgrounds(transparent, transparent, transparent, transparent, transparent);
+      }
+    }
+
+    #{$root}__open-subsection-trigger {
+      border-left-color: $civictheme-mobile-navigation-dark-menu-divider-border-color;
+
+      .civictheme-icon {
+        fill: $civictheme-mobile-navigation-dark-subsection-trigger-color;
+      }
+    }
+
+    #{$root}__close-trigger {
+      [data-flyout-close-trigger] {
+        color: $civictheme-mobile-navigation-dark-subsection-heading-color;
+
+        .civictheme-icon {
+          fill: $civictheme-mobile-navigation-dark-subsection-heading-icon-color;
+        }
+      }
+    }
+  }
+}
+
+// Mobile navigation open trigger.
+.civictheme-mobile-navigation__trigger {
+  background-color: transparent;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+
+  @include civictheme-typography-ruleset(($civictheme-font-base-size * 0.875, civictheme-icon-size-dimension('regular', 'xxs', 'height'), 400, 'primary', 0));
+
+  display: inline;
+
+  @include civictheme-breakpoint($civictheme-mobile-navigation-breakpoint) {
+    display: none;
+  }
+
+  .civictheme-icon {
+    width: civictheme-icon-size-dimension('regular', 'xxs', 'width');
+    height: civictheme-icon-size-dimension('regular', 'xxs', 'height');
+  }
+
+  &.civictheme-theme-light {
+    color: $civictheme-mobile-navigation-trigger-light-color;
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-mobile-navigation-trigger-dark-color;
+  }
+}
+
+// Mobile navigation close button.
+.civictheme-mobile-navigation-close {
+  text-align: right;
+  padding: $civictheme-mobile-navigation-spacing;
+
+  [data-flyout-close-all-trigger] {
+    float: none;
+    border-radius: rem(100px);
+    padding: civictheme-space(0.5) civictheme-space();
+
+    @include civictheme-typography-ruleset(($civictheme-font-base-size * 0.875, civictheme-icon-size-dimension('small', 'xxs', 'height'), 400, 'primary', 0));
+
+    .civictheme-icon {
+      width: civictheme-icon-size-dimension('small', 'xxs', 'width');
+      height: civictheme-icon-size-dimension('small', 'xxs', 'height');
+    }
+
+    &.civictheme-theme-light {
+      background-color: $civictheme-mobile-navigation-light-close-all-trigger-background-color;
+      color: $civictheme-mobile-navigation-light-close-all-trigger-color;
+    }
+
+    &.civictheme-theme-dark {
+      background-color: $civictheme-mobile-navigation-dark-close-all-trigger-background-color;
+      color: $civictheme-mobile-navigation-dark-close-all-trigger-color;
+    }
+  }
+}

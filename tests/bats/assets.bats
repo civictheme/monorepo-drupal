@@ -6,8 +6,8 @@
 
 load _helper
 
-@test "Civic Library assets" {
-  dir="docroot/themes/contrib/civic/civic-library"
+@test "CivicTheme Library assets" {
+  dir="docroot/themes/contrib/civictheme/civictheme-library"
 
   # Files managed by the developer.
   assert_dir_exists "$dir/assets"
@@ -26,8 +26,8 @@ load _helper
 
   # Files managed by distribution build.
   assert_dir_exists "$dir/dist"
-  assert_file_exists "$dir/dist/civic.css"
-  assert_file_exists "$dir/dist/civic.js"
+  assert_file_exists "$dir/dist/civictheme.css"
+  assert_file_exists "$dir/dist/civictheme.js"
   assert_dir_exists "$dir/dist/assets"
   assert_dir_exists "$dir/dist/assets/backgrounds"
   assert_dir_not_exists "$dir/dist/assets/fonts"
@@ -57,8 +57,8 @@ load _helper
   assert_dir_exists "$dir/storybook-static/api"
 }
 
-@test "Civic Theme assets" {
-  dir="docroot/themes/contrib/civic"
+@test "CivicTheme Theme assets" {
+  dir="docroot/themes/contrib/civictheme"
 
   # Files managed by the developer.
   assert_dir_exists "$dir/assets"
@@ -77,8 +77,8 @@ load _helper
 
   # Files managed by distribution build.
   assert_dir_exists "$dir/dist"
-  assert_file_exists "$dir/dist/civic.css"
-  assert_file_exists "$dir/dist/civic.js"
+  assert_file_exists "$dir/dist/civictheme.css"
+  assert_file_exists "$dir/dist/civictheme.js"
   assert_dir_exists "$dir/dist/assets"
   assert_dir_exists "$dir/dist/assets/backgrounds"
   assert_dir_not_exists "$dir/dist/assets/fonts"
@@ -107,8 +107,8 @@ load _helper
   assert_dir_exists "$dir/storybook-static/api"
 }
 
-@test "Civic Demo Theme assets" {
-  dir="docroot/themes/custom/civic_demo"
+@test "CivicTheme Demo Theme assets" {
+  dir="docroot/themes/custom/civictheme_demo"
 
   # Files managed by the developer.
   assert_dir_exists "$dir/assets"

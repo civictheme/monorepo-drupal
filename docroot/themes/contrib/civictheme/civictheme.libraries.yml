@@ -1,0 +1,20 @@
+global:
+  css:
+    theme:
+      dist/civictheme.css: {}
+  js:
+    dist/civictheme.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupalSettings
+civictheme.ajax_views:
+  version: VERSION
+  js:
+    assets/js/civictheme.ajax-views.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once

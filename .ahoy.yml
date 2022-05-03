@@ -129,13 +129,13 @@ commands:
   fei:
     usage: Install front-end assets.
     cmd: |
-      ahoy cli "npm --prefix docroot/themes/contrib/${DRUPAL_THEME}/civic-library install"
+      ahoy cli "npm --prefix docroot/themes/contrib/${DRUPAL_THEME}/civictheme-library install"
       ahoy cli "npm --prefix docroot/themes/contrib/${DRUPAL_THEME} install"
 
   fe:
     usage: Build front-end assets.
     cmd: |
-      ahoy cli "cd docroot/themes/contrib/${DRUPAL_THEME}/civic-library && npm run build"
+      ahoy cli "cd docroot/themes/contrib/${DRUPAL_THEME}/civictheme-library && npm run build"
       ahoy cli "cd docroot/themes/contrib/${DRUPAL_THEME} && npm run build"
 
   lint:

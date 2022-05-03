@@ -1,0 +1,44 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_service_card.field_c_p_links
+    - field.field.paragraph.civictheme_service_card.field_c_p_theme
+    - field.field.paragraph.civictheme_service_card.field_c_p_title
+    - paragraphs.paragraphs_type.civictheme_service_card
+  module:
+    - link
+    - options
+id: paragraph.civictheme_service_card.default
+targetEntityType: paragraph
+bundle: civictheme_service_card
+mode: default
+content:
+  field_c_p_links:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_c_p_theme:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_c_p_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

@@ -1,0 +1,292 @@
+//
+// Content mixins.
+//
+
+@mixin civictheme-content {
+  @include civictheme-typography('text-regular');
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+
+  h1 {
+    @include civictheme-typography('heading-1');
+
+    margin-bottom: civictheme-space(3);
+
+    @include civictheme-breakpoint('m') {
+      margin-bottom: civictheme-space(4);
+    }
+  }
+
+  h2 {
+    @include civictheme-typography('heading-2');
+
+    margin-bottom: civictheme-space(3);
+
+    @include civictheme-breakpoint('m') {
+      margin-bottom: civictheme-space(4);
+    }
+  }
+
+  h3 {
+    @include civictheme-typography('heading-3');
+
+    margin-bottom: civictheme-space(2);
+
+    @include civictheme-breakpoint('m') {
+      margin-bottom: civictheme-space(3);
+    }
+  }
+
+  h4 {
+    @include civictheme-typography('heading-4');
+
+    margin-bottom: civictheme-space(2);
+
+    @include civictheme-breakpoint('m') {
+      margin-bottom: civictheme-space(3);
+    }
+  }
+
+  h5 {
+    @include civictheme-typography('heading-5');
+
+    margin-bottom: civictheme-space();
+
+    @include civictheme-breakpoint('m') {
+      margin-bottom: civictheme-space(2);
+    }
+  }
+
+  h6 {
+    @include civictheme-typography('heading-6');
+
+    margin-bottom: civictheme-space();
+
+    @include civictheme-breakpoint('m') {
+      margin-bottom: civictheme-space(2);
+    }
+  }
+
+  p {
+    margin-top: $civictheme-basic-content-vertical-spacing;
+    margin-bottom: $civictheme-basic-content-vertical-spacing;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  blockquote {
+    @include civictheme-typography('quote');
+
+    position: relative;
+    margin: 0;
+    margin-top: $civictheme-basic-content-vertical-spacing;
+    margin-bottom: $civictheme-basic-content-vertical-spacing;
+    padding: civictheme-space(2) civictheme-space(3);
+
+    &::before {
+      content: '';
+      width: rem(6px);
+      height: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: $civictheme-basic-content-blockquote-border-radius;
+    }
+  }
+
+  ul {
+    margin-top: $civictheme-basic-content-vertical-spacing;
+    margin-bottom: $civictheme-basic-content-vertical-spacing;
+    padding: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+      padding-left: $civictheme-basic-content-list-marker-width + $civictheme-basic-content-list-marker-margin;
+
+      &::before {
+        content: '';
+        position: absolute;
+        text-align: center;
+        width: rem(7px);
+        height: rem(7px);
+        border-radius: 100%;
+        top: rem(11px);
+        left: rem(11px);
+      }
+    }
+  }
+
+  ol {
+    margin-top: $civictheme-basic-content-vertical-spacing;
+    margin-bottom: $civictheme-basic-content-vertical-spacing;
+    counter-reset: ordered_counter;
+    padding: 0;
+    list-style: none;
+
+    li {
+      counter-increment: ordered_counter;
+      padding-left: $civictheme-basic-content-list-marker-width + $civictheme-basic-content-list-marker-margin;
+
+      &::before {
+        content: counter(ordered_counter);
+        display: inline-block;
+        text-align: center;
+        width: $civictheme-basic-content-list-marker-width;
+        margin-left: -$civictheme-basic-content-list-marker-width - $civictheme-basic-content-list-marker-margin;
+        margin-right: $civictheme-basic-content-list-marker-margin;
+      }
+    }
+  }
+
+  img {
+    height: auto;
+    max-width: 100%;
+    margin-top: $civictheme-basic-content-vertical-spacing * 2;
+    margin-bottom: $civictheme-basic-content-vertical-spacing * 2;
+  }
+
+  figure {
+    margin-top: $civictheme-basic-content-vertical-spacing * 2;
+    margin-bottom: $civictheme-basic-content-vertical-spacing * 2;
+
+    img {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  table {
+    @include civictheme-table();
+  }
+}
+
+@mixin civictheme-content-light {
+  color: $civictheme-basic-content-light-base-color;
+
+  h1 {
+    color: $civictheme-basic-content-light-heading-1-color;
+  }
+
+  h2 {
+    color: $civictheme-basic-content-light-heading-2-color;
+  }
+
+  h3 {
+    color: $civictheme-basic-content-light-heading-3-color;
+  }
+
+  h4 {
+    color: $civictheme-basic-content-light-heading-4-color;
+  }
+
+  h5 {
+    color: $civictheme-basic-content-light-heading-5-color;
+  }
+
+  h6 {
+    color: $civictheme-basic-content-light-heading-6-color;
+  }
+
+  blockquote {
+    color: $civictheme-basic-content-light-blockquote-color;
+
+    &::before {
+      background-color: $civictheme-basic-content-light-blockquote-block;
+    }
+  }
+
+  ul {
+    li {
+      color: $civictheme-basic-content-light-ul-li-color;
+
+      &::before {
+        background-color: $civictheme-basic-content-light-ul-li-marker-color;
+      }
+    }
+  }
+
+  ol {
+    li {
+      color: $civictheme-basic-content-light-ol-li-color;
+
+      &::before {
+        color: $civictheme-basic-content-light-ol-li-marker-color;
+      }
+    }
+  }
+
+  table {
+    @include civictheme-table-light();
+  }
+}
+
+@mixin civictheme-content-dark {
+  color: $civictheme-basic-content-dark-base-color;
+
+  h1 {
+    color: $civictheme-basic-content-dark-heading-1-color;
+  }
+
+  h2 {
+    color: $civictheme-basic-content-dark-heading-2-color;
+  }
+
+  h3 {
+    color: $civictheme-basic-content-dark-heading-3-color;
+  }
+
+  h4 {
+    color: $civictheme-basic-content-dark-heading-4-color;
+  }
+
+  h5 {
+    color: $civictheme-basic-content-dark-heading-5-color;
+  }
+
+  h6 {
+    color: $civictheme-basic-content-dark-heading-6-color;
+  }
+
+  blockquote {
+    color: $civictheme-basic-content-dark-blockquote-color;
+
+    &::before {
+      background-color: $civictheme-basic-content-dark-blockquote-block;
+    }
+  }
+
+  ul {
+    li {
+      color: $civictheme-basic-content-dark-ul-li-color;
+
+      &::before {
+        background-color: $civictheme-basic-content-dark-ul-li-marker-color;
+      }
+    }
+  }
+
+  ol {
+    li {
+      color: $civictheme-basic-content-dark-ol-li-color;
+
+      &::before {
+        color: $civictheme-basic-content-dark-ol-li-marker-color;
+      }
+    }
+  }
+
+  table {
+    @include civictheme-table-dark();
+  }
+}

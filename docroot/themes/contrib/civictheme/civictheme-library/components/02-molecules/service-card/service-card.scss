@@ -1,0 +1,64 @@
+//
+// Service Card component.
+//
+
+.civictheme-service-card {
+  $root: &;
+
+  border-top-width: civictheme-space(0.75);
+  border-top-style: solid;
+  border-radius: $civictheme-service-card-border-radius;
+  text-align: center;
+  width: 100%;
+
+  @include civictheme-elevation(3);
+
+  #{$root}__content {
+    padding: civictheme-space(3) 0 civictheme-space(3) 0;
+
+    @include civictheme-breakpoint(m) {
+      padding: civictheme-space(4) 0 civictheme-space(4) 0;
+    }
+  }
+
+  #{$root}__title {
+    @include civictheme-typography('heading-4');
+
+    margin: 0;
+    padding: 0 civictheme-space(4);
+  }
+
+  #{$root}__links {
+    list-style: none;
+    margin-bottom: 0;
+    padding: 0 civictheme-space(3);
+  }
+
+  #{$root}__link__item {
+    margin-bottom: civictheme-space(2);
+
+    @include civictheme-typography('text-large');
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &.civictheme-theme-light {
+    background-color: $civictheme-service-card-light-background-color;
+    border-top-color: $civictheme-service-card-light-border-top-color;
+
+    #{$root}__title {
+      color: $civictheme-service-card-light-heading-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    background-color: $civictheme-service-card-dark-background-color;
+    border-top-color: $civictheme-service-card-dark-border-top-color;
+
+    #{$root}__title {
+      color: $civictheme-service-card-dark-heading-color;
+    }
+  }
+}

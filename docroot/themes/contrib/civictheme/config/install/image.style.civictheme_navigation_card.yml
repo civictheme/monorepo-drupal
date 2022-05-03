@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: civictheme_navigation_card
+label: 'Navigation card'
+effects:
+  b8e5a34c-7858-461d-9db3-c71f97aeca04:
+    uuid: b8e5a34c-7858-461d-9db3-c71f97aeca04
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 200
+      height: 200
+      anchor: center-center

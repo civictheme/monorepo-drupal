@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.civictheme_document.field_c_m_document
+    - media.type.civictheme_document
+  module:
+    - file
+id: media.civictheme_document.default
+targetEntityType: media
+bundle: civictheme_document
+mode: default
+content:
+  field_c_m_document:
+    label: visually_hidden
+    weight: 0
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

@@ -1,0 +1,68 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.civictheme_rich_text
+  module:
+    - ckeditor
+format: civictheme_rich_text
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+            - Underline
+            - Strike
+            - Styles
+            - Format
+            - RemoveFormat
+        -
+          name: Lists
+          items:
+            - '-'
+            - BulletedList
+            - NumberedList
+            - '-'
+            - Indent
+            - Outdent
+        -
+          name: Alignment
+          items:
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
+        -
+          name: Links
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Insert
+          items:
+            - DrupalMediaLibrary
+            - Blockquote
+            - Table
+        -
+          name: Tools
+          items:
+            - PasteFromWord
+            - Source
+            - Maximize
+  plugins:
+    stylescombo:
+      styles: "a.civictheme-button.civictheme-theme-light.civictheme-button--primary.civictheme-button--regular|Button - primary regular\r\na.civictheme-button.civictheme-theme-light.civictheme-button--secondary.civictheme-button--regular|Button - secondary regular\r\na.civictheme-button.civictheme-theme-light.civictheme-button--secondary.civictheme-button--large|Button - primary large\r\na.civictheme-button.civictheme-theme-light.civictheme-button--secondary.civictheme-button--large|Button - secondary large\r\np.civictheme-text-large|Lead paragraph\r\np.civictheme-text-small|Small\r\ntable.civictheme-theme-light.civictheme-table|Table\r\ntable.civictheme-theme-light.civictheme-table.civictheme-table--striped|Table striped rows"
+    language:
+      language_list: un
+image_upload:
+  status: false
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null

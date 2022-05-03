@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_reference
+    - node.type.civictheme_event
+    - node.type.civictheme_page
+    - paragraphs.paragraphs_type.civictheme_slider_slide_ref
+id: paragraph.civictheme_slider_slide_ref.field_c_p_reference
+field_name: field_c_p_reference
+entity_type: paragraph
+bundle: civictheme_slider_slide_ref
+label: Reference
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      civictheme_event: civictheme_event
+      civictheme_page: civictheme_page
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: civictheme_event
+field_type: entity_reference

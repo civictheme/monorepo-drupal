@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: b07f9704-b2cf-458a-82ab-db0e55a276e9
+  bundle: menu_link_content
+  default_langcode: en
+default:
+  enabled:
+    -
+      value: false
+  title:
+    -
+      value: Policies
+  menu_name:
+    -
+      value: civictheme-secondary-navigation
+  link:
+    -
+      uri: 'internal:/'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: true
+  weight:
+    -
+      value: 3
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

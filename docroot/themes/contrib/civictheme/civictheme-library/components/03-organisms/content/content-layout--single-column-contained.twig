@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * * Content component: Single column contained.
+ *
+ * Variables:
+ * - content: [string] The content for this layout.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% if content %}
+  <div class="civictheme-layout--single-column">
+     <div class="container">
+       <div class="row">
+        {% block content %}
+          <div class="civictheme-layout__content col-m-12 {{ modifier_class }}">
+            {{ content }}
+          </div>
+        {% endblock %}
+       </div>
+     </div>
+  </div>
+{% endif %}

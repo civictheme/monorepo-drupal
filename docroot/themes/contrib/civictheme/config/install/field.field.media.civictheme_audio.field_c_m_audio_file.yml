@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_c_m_audio_file
+    - media.type.civictheme_audio
+  module:
+    - file
+id: media.civictheme_audio.field_c_m_audio_file
+field_name: field_c_m_audio_file
+entity_type: media
+bundle: civictheme_audio
+label: File
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'audios/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'mp3 wav aac'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

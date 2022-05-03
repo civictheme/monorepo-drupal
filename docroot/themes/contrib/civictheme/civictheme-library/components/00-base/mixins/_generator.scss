@@ -1,0 +1,30 @@
+//
+// Generator mixins.
+//
+
+//
+// Generate classes variations from provided map with optional prefix.
+//
+@mixin civictheme-generate-class-variations-from-map($map, $prefix: false) {
+  $index: 0;
+
+  @each $key, $value in $map {
+    // Handle lists.
+    @if type-of($map) == 'list' or $value == null {
+      $value: $key;
+      $key: $index + 1;
+    }
+
+    $classname: $key;
+
+    @if $prefix != false {
+      $classname: #{$prefix}--#{$key};
+    }
+
+    .#{$classname} {
+      @content($key, $value, $index);
+    }
+
+    $index: $index + 1;
+  }
+}

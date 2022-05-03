@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_c_m_video_file
+    - media.type.civictheme_video
+  module:
+    - file
+id: media.civictheme_video.field_c_m_video_file
+field_name: field_c_m_video_file
+entity_type: media
+bundle: civictheme_video
+label: 'Video file'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'videos/[date:custom:Y]-[date:custom:m]'
+  file_extensions: mp4
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

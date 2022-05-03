@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_accordion_panel.field_c_p_content
+    - field.field.paragraph.civictheme_accordion_panel.field_c_p_expand
+    - field.field.paragraph.civictheme_accordion_panel.field_c_p_title
+    - paragraphs.paragraphs_type.civictheme_accordion_panel
+  module:
+    - text
+id: paragraph.civictheme_accordion_panel.default
+targetEntityType: paragraph
+bundle: civictheme_accordion_panel
+mode: default
+content:
+  field_c_p_content:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_c_p_expand:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_c_p_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

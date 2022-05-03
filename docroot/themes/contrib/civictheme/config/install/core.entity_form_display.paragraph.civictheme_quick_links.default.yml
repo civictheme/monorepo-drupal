@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_quick_links.field_c_p_links
+    - field.field.paragraph.civictheme_quick_links.field_c_p_theme
+    - field.field.paragraph.civictheme_quick_links.field_c_p_title
+    - paragraphs.paragraphs_type.civictheme_quick_links
+  module:
+    - link
+id: paragraph.civictheme_quick_links.default
+targetEntityType: paragraph
+bundle: civictheme_quick_links
+mode: default
+content:
+  field_c_p_links:
+    weight: 1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_c_p_theme:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_c_p_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

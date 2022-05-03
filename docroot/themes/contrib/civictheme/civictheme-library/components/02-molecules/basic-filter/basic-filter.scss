@@ -1,0 +1,20 @@
+//
+// Basic Filter component.
+//
+
+.civictheme-basic-filter {
+  $root: &;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+
+    &--row {
+      margin: civictheme-space(2) civictheme-space();
+
+      @include civictheme-breakpoint('m') {
+        margin: civictheme-space(5) civictheme-space();
+      }
+    }
+  }
+}

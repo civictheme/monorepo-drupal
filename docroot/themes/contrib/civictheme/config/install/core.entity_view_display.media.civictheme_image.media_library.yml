@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.media_library
+    - field.field.media.civictheme_image.field_c_m_caption
+    - field.field.media.civictheme_image.field_c_m_image
+    - image.style.civictheme_medium
+    - media.type.civictheme_image
+  module:
+    - image
+id: media.civictheme_image.media_library
+targetEntityType: media
+bundle: civictheme_image
+mode: media_library
+content:
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_style: civictheme_medium
+      image_link: ''
+    weight: 0
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_c_m_caption: true
+  field_c_m_image: true
+  name: true
+  uid: true

@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 971cc0f7-9e06-4f64-b58b-32d68848d5b3
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    ae7d79af-9aa4-455d-a415-26191e3ba7c4: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 18
+  name:
+    -
+      value: TwelveApostles.jpg
+  created:
+    -
+      value: 1645007398
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: ae7d79af-9aa4-455d-a415-26191e3ba7c4
+      alt: 'Photo of twelve apostles'
+      title: ''
+      width: 1024
+      height: 768

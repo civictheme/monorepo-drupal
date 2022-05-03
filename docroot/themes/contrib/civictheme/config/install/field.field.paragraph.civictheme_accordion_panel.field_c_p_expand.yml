@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_expand
+    - paragraphs.paragraphs_type.civictheme_accordion_panel
+id: paragraph.civictheme_accordion_panel.field_c_p_expand
+field_name: field_c_p_expand
+entity_type: paragraph
+bundle: civictheme_accordion_panel
+label: Expanded
+description: 'Accordion panel is expanded.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

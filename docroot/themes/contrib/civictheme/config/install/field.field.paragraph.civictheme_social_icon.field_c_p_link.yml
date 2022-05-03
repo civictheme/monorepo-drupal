@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_link
+    - paragraphs.paragraphs_type.civictheme_social_icon
+  module:
+    - link
+id: paragraph.civictheme_social_icon.field_c_p_link
+field_name: field_c_p_link
+entity_type: paragraph
+bundle: civictheme_social_icon
+label: Link
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 2
+field_type: link

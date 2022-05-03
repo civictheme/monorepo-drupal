@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.media_library
+    - field.field.media.civictheme_video.field_c_m_share_link
+    - field.field.media.civictheme_video.field_c_m_transcript
+    - field.field.media.civictheme_video.field_c_m_transcript_link
+    - field.field.media.civictheme_video.field_c_m_video_file
+    - image.style.civictheme_medium
+    - media.type.civictheme_video
+  module:
+    - image
+id: media.civictheme_video.media_library
+targetEntityType: media
+bundle: civictheme_video
+mode: media_library
+content:
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_style: civictheme_medium
+      image_link: ''
+    weight: 0
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_c_m_share_link: true
+  field_c_m_transcript: true
+  field_c_m_transcript_link: true
+  field_c_m_video_file: true
+  name: true
+  uid: true

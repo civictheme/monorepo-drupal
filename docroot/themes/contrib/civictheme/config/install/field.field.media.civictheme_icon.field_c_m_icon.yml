@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_c_m_icon
+    - media.type.civictheme_icon
+  module:
+    - file
+id: media.civictheme_icon.field_c_m_icon
+field_name: field_c_m_icon
+entity_type: media
+bundle: civictheme_icon
+label: File
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: icons
+  file_extensions: svg
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

@@ -1,0 +1,10 @@
+{
+    "name": "salsadigitalauorg/civictheme-content",
+    "description": "Default content for CivicTheme theme.",
+    "type": "drupal-module",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.4",
+        "drupal/default_content": "^2.0@alpha"
+    }
+}

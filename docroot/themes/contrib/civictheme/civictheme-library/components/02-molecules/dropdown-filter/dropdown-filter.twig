@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Dropdown Filter component.
+ *
+ * Variables:
+ * - theme: [string] Theme for large filter.
+ * - type: [string] Filter type.
+ * - options_title: [string] Options title.
+ * - options: [array] Array of form elements.
+ * - filter_text: [string] Filter text.
+ * - filter_group: [string] Filter group name.
+ * - is_inline: [boolean] Display filter as inline (similar to an "accordion").
+ * - inline_change_breakpoint: [string] Breakpoint at which to swap from inline to overlay view.
+ * - searchable_threshold: [string] Number of options allowed before a search box appears.
+ * - search_label_text: [string] Label text for the search box.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set type_class = type is empty ? 'civictheme-dropdown-filter--%s'|format(type) : '' %}
+{% set is_inline_class = is_inline ? 'civictheme-dropdown-filter--inline' : '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_inline_class, modifier_class|default('')) %}
+
+{% if options is not empty %}
+  <div
+    class="civictheme-dropdown-filter {{ modifier_class }}"
+    data-collapsible data-collapsible-collapsed
+    {% if inline_change_breakpoint %}
+      data-responsive
+      data-dropdown-filter-inline-change-breakpoint="{{ inline_change_breakpoint }}"
+      data-collapsible-group-enabled-breakpoint="{{ inline_change_breakpoint }}"
+    {% endif %}
+    {% if filter_group and ( not is_inline or (inline_change_breakpoint)) %}
+      data-collapsible-group="{{ filter_group }}"
+    {% endif %}
+    data-collapsible-duration="0"
+    data-component-name="civictheme-dropdown-filter"
+    {% if searchable_threshold %}
+      data-dropdown-filter-search-item-threshold="{{ searchable_threshold }}"
+    {% endif %}
+    {% if search_label_text %}
+      data-dropdown-filter-search-label="{{ search_label_text }}"
+    {% endif %}
+  >
+    <button class="civictheme-dropdown-filter__filter-text" data-collapsible-trigger>{{ filter_text }}</button>
+    <div class="civictheme-dropdown-filter__filter-options" data-collapsible-panel>
+      <div class="civictheme-dropdown-filter__filter-options-wrapper">
+        {% block filter_options %}
+          {% include '@organisms/fieldset/fieldset.twig' with {
+            legend: options_title is not empty ? options_title : null,
+            children: options,
+            modifier_class: 'civictheme-dropdown-filter__fieldset',
+            type: type,
+            attributes: attributes,
+          } %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+{% endif %}

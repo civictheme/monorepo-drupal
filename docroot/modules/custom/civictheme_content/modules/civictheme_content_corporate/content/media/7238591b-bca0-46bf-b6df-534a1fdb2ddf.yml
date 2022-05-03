@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 7238591b-bca0-46bf-b6df-534a1fdb2ddf
+  bundle: civictheme_image
+  default_langcode: en
+  depends:
+    ee83d96e-d783-4db6-9149-3db4e9cab340: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 18
+  name:
+    -
+      value: Tree.jpg
+  created:
+    -
+      value: 1645007827
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_m_image:
+    -
+      entity: ee83d96e-d783-4db6-9149-3db4e9cab340
+      alt: 'Photo of tree trunk and different plants around it'
+      title: ''
+      width: 1024
+      height: 768

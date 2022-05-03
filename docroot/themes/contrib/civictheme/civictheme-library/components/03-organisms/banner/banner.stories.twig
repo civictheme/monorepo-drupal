@@ -1,0 +1,75 @@
+{#
+/**
+ * @file
+ * Banner component stories.
+ */
+#}
+
+{% extends './banner.twig' %}
+
+{% if show_breadcrumb %}
+  {% set breadcrumb %}
+    {% include '@organisms/breadcrumb/breadcrumb.twig' with {
+      theme: theme,
+      links: [
+        { 'text': 'Home', 'url': 'http://example.com'},
+        { 'text': 'Sub Page', 'url': 'http://example.com'},
+        { 'text': 'Active Page', 'url': 'http://example.com'}
+      ]
+    } only %}
+  {% endset %}
+{% endif %}
+
+{% if show_content_text %}
+  {% set content %}
+    <div class="civictheme-banner__content__example">
+      <div class="civictheme-banner__content__example-last-updated">
+        <p>Last updated: 26 Oct 2020</p>
+      </div>
+      <div class="civictheme-banner__content__example-summary">
+        <p>Government grade set of high quality design themes that are
+          accessible,
+          inclusive and provide a consistent digital experience for your
+          citizen. </p>
+      </div>
+      {% include '@atoms/button/button.twig' with {
+        text: 'Learn about our mission',
+        type: 'primary',
+        theme: theme,
+      } only %}
+    </div>
+  {% endset %}
+{% endif %}
+
+{% if show_content_search %}
+  {% set content %}
+    <div class="civictheme-banner__content__example">
+      {% include '@molecules/search/search.twig' with {
+        theme: theme,
+        placeholder: 'Enter keywords or phrase',
+        button_text: 'Search',
+        help_text: 'Search by keyword',
+      } only %}
+    </div>
+  {% endset %}
+{% endif %}
+
+{% if show_content_below %}
+  {% set card %}
+    {% include '@molecules/navigation-card/navigation-card.twig' with {
+      theme: 'dark',
+      title: 'Register for a workshop',
+      summary: 'Optional summary in the breakdown of tasks.',
+      icon: 'education_mortarboard',
+    } only %}
+  {% endset %}
+
+  {% set content_below %}
+    <div class="civictheme-banner__content__example">
+      {% include '@organisms/card-container/card-container.twig' with {
+        column_count: 4,
+        cards: [card, card, card, card],
+      } only %}
+    </div>
+  {% endset %}
+{% endif %}

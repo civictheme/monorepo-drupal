@@ -1,0 +1,107 @@
+//
+// Search component.
+//
+
+.civictheme-search {
+  $root: &;
+
+  &__field-wrapper {
+    @include civictheme-breakpoint(m) {
+      display: flex;
+    }
+  }
+
+  &__field {
+    border-radius: $civictheme-border-radius;
+    position: relative;
+    margin-bottom: civictheme-space(2);
+
+    @include civictheme-breakpoint(m) {
+      flex-grow: 1;
+      margin-right: civictheme-space();
+      margin-bottom: 0;
+    }
+
+    svg {
+      fill: currentcolor;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: civictheme-space(2);
+    margin: auto;
+  }
+
+  &__button {
+    width: 100%;
+
+    @include civictheme-breakpoint(m) {
+      width: auto;
+    }
+
+    &:focus {
+      @include civictheme-outline(true);
+    }
+  }
+
+  &__input {
+    height: 100%;
+
+    .civictheme-input__element {
+      @include civictheme-typography('heading-5');
+
+      border-radius: $civictheme-border-radius;
+      border-width: 1px;
+      border-style: solid;
+      padding: civictheme-space(2) civictheme-space(3) civictheme-space(2) civictheme-space(8);
+      width: 100%;
+      height: 100%;
+
+      &:focus {
+        @include civictheme-outline(true);
+      }
+    }
+  }
+
+  &__help_text {
+    @include civictheme-typography('text-regular');
+  }
+
+  &.civictheme-theme-light {
+    #{$root}__field {
+      color: $civictheme-search-light-color;
+    }
+
+    #{$root}__input {
+      .civictheme-input__element {
+        background-color: $civictheme-search-light-background-color;
+        border-color: $civictheme-search-light-border-color;
+      }
+    }
+
+    #{$root}__help_text {
+      color: $civictheme-search-light-help-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    #{$root}__field {
+      color: $civictheme-search-dark-color;
+    }
+
+    #{$root}__input {
+      .civictheme-input__element {
+        background-color: $civictheme-search-dark-background-color;
+        border-color: $civictheme-search-dark-border-color;
+        color: $civictheme-search-dark-color;
+      }
+    }
+
+    #{$root}__help_text {
+      color: $civictheme-search-dark-help-color;
+    }
+  }
+}

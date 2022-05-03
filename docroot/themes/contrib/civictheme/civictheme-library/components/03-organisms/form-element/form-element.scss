@@ -1,0 +1,88 @@
+//
+// Form Element component.
+//
+
+.civictheme-form-element {
+  @include civictheme-typography('text-regular');
+
+  margin-bottom: civictheme-space(2);
+  width: 100%;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &--radio,
+  &--checkbox {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+
+    .civictheme-input {
+      margin: 0;
+    }
+
+    .civictheme-form-element__description,
+    label {
+      padding-left: civictheme-space(5);
+    }
+
+    .civictheme-form-element__description {
+      width: 100%;
+    }
+
+    label {
+      margin: civictheme-space(0.5) 0;
+    }
+  }
+
+  &--button,
+  &--submit {
+    display: inline-block;
+    width: auto;
+    margin-left: civictheme-space(2);
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .civictheme-message {
+    padding: civictheme-space();
+    margin-bottom: civictheme-space();
+    display: inline-flex;
+    align-items: center;
+    border: none;
+
+    @include civictheme-typography('label-small');
+
+    &__title {
+      font-weight: 400;
+    }
+
+    .civictheme-icon {
+      width: rem(18px);
+      height: rem(18px);
+      vertical-align: middle;
+    }
+
+    .civictheme-message__icon {
+      width: rem(18px);
+      margin-right: civictheme-space();
+    }
+  }
+
+  &__description {
+    margin-bottom: civictheme-space(1);
+
+    @include civictheme-typography('text-small');
+  }
+
+  &.civictheme-theme-light {
+    color: $civictheme-form-element-light-color;
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-form-element-dark-color;
+  }
+}

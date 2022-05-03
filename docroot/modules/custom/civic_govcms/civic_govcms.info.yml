@@ -1,7 +1,0 @@
-name: 'Civic GovCMS'
-type: module
-description: 'GovCMS adjustments for Civic theme.'
-core_version_requirement: ^9
-package: Civic
-dependencies:
-  - govcms:govcms

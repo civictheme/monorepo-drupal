@@ -1,0 +1,185 @@
+//
+// Accordion component.
+//
+
+.civictheme-accordion {
+  $root: &;
+
+  &.civictheme-accordion--vertical-space-top {
+    @include civictheme-component-with-vertical-space(top, $civictheme-accordion-space-vertical);
+  }
+
+  &.civictheme-accordion--vertical-space-bottom {
+    @include civictheme-component-with-vertical-space(bottom, $civictheme-accordion-space-vertical);
+  }
+
+  &.civictheme-accordion--vertical-space-both {
+    @include civictheme-component-with-vertical-space(both, $civictheme-accordion-space-vertical);
+  }
+
+  &__inner {
+    display: block;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__header {
+    $header: &;
+
+    display: block;
+    margin: 0;
+    border-top-left-radius: $civictheme-accordion-header-border-radius;
+    border-top-right-radius: $civictheme-accordion-header-border-radius;
+
+    &__button--expanded {
+      border-bottom: none;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+
+      svg {
+        transform: rotate(-180deg);
+      }
+    }
+
+    &__button {
+      @include civictheme-typography('heading-6');
+
+      width: 100%;
+      padding: civictheme-space(3);
+      border-radius: $civictheme-accordion-button-border-radius;
+      margin: 0;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      justify-content: stretch;
+
+      svg {
+        margin-left: auto;
+        transition: transform 0.5s;
+      }
+    }
+  }
+
+  &__content {
+    $content: &;
+
+    overflow: auto;
+    visibility: hidden;
+    height: 0;
+    transition: height 0.5s, visibility 0.5s;
+
+    @include civictheme-typography('text-regular');
+
+    &--expanded {
+      height: auto;
+      border-top: none;
+
+      #{$content}--inner {
+        opacity: 100%;
+      }
+    }
+
+    &--inner {
+      opacity: 0%;
+      transition: opacity 0.5s;
+      padding: 0 civictheme-space(3) civictheme-space(3);
+    }
+  }
+
+  &__list-item {
+    position: relative;
+    border: 1px solid;
+    border-radius: $civictheme-accordion-item-border-radius;
+    margin-bottom: civictheme-space(2);
+
+    &::before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      border-top-left-radius: $civictheme-accordion-item-border-radius;
+      border-bottom-left-radius: $civictheme-accordion-item-border-radius;
+      transition: width 0.25s;
+    }
+
+    &--expanded {
+      &::before {
+        width: 0.5rem;
+      }
+    }
+  }
+
+  &.civictheme-theme-light {
+    color: $civictheme-accordion-light-color;
+
+    &.civictheme-accordion--with-background {
+      background-color: $civictheme-accordion-light-wrapper-background-color;
+      padding-left: $civictheme-accordion-space-horizontal;
+      padding-right: $civictheme-accordion-space-horizontal;
+    }
+
+    #{$root}__header__button {
+      background-color: $civictheme-accordion-light-button-background-color;
+
+      svg {
+        fill: $civictheme-accordion-light-icon-color;
+      }
+    }
+
+    #{$root}__content {
+      background-color: $civictheme-accordion-light-background-color;
+    }
+
+    #{$root}__list-item {
+      border-color: $civictheme-accordion-light-border-color;
+
+      &::before {
+        background-color: $civictheme-accordion-light-expanded-border-color;
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-accordion-dark-color;
+
+    &.civictheme-accordion--with-background {
+      background-color: $civictheme-accordion-dark-wrapper-background-color;
+      padding-left: $civictheme-accordion-space-horizontal;
+      padding-right: $civictheme-accordion-space-horizontal;
+    }
+
+    #{$root}__header {
+      background-color: $civictheme-accordion-dark-background-color;
+    }
+
+    #{$root}__header__button {
+      border-top: 1px solid $civictheme-accordion-dark-border-color;
+      background-color: $civictheme-accordion-dark-button-background-color;
+      color: $civictheme-accordion-dark-button-color;
+
+      svg {
+        fill: $civictheme-accordion-dark-icon-color;
+      }
+    }
+
+    #{$root}__content {
+      background-color: $civictheme-accordion-dark-background-color;
+    }
+
+    #{$root}__list-item {
+      border-color: $civictheme-accordion-dark-border-color;
+
+      &::before {
+        background-color: $civictheme-accordion-dark-expanded-border-color;
+      }
+    }
+  }
+}

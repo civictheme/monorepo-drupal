@@ -1,0 +1,73 @@
+//
+// Select component.
+//
+
+.civictheme-select {
+  $root: &;
+
+  @include civictheme-typography('text-regular');
+
+  display: block;
+  font-weight: 600;
+  margin: 0 auto 0.5rem;
+  padding: civictheme-space(1.5) civictheme-space(3) civictheme-space(1.5) civictheme-space(2);
+
+  &.civictheme-theme-light {
+    color: $civictheme-select-light-color;
+    background-color: $civictheme-select-light-background-color;
+
+    &:hover {
+      box-shadow: 0 0 0 1px $civictheme-select-light-hover-border-color;
+    }
+
+    &.error,
+    &.civictheme-input--error {
+      border-color: $civictheme-input-light-error-border-color;
+      box-shadow: 0 0 0 1px $civictheme-input-light-error-border-color;
+    }
+
+    &.civictheme-input--success {
+      border-color: $civictheme-select-light-border-success-color;
+      box-shadow: 0 0 0 1px $civictheme-select-light-border-success-color;
+    }
+
+    &.disabled {
+      color: $civictheme-select-light-disabled-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-select-dark-color;
+    background-color: $civictheme-select-dark-background-color;
+    border-color: $civictheme-input-dark-error-border-color;
+
+    &:hover {
+      border-color: $civictheme-select-dark-hover-border-color;
+      box-shadow: 0 0 0 1px $civictheme-select-dark-hover-border-color;
+    }
+
+    &:focus {
+      border-color: $civictheme-select-dark-focus-border-color;
+      box-shadow: 0 0 0 1px $civictheme-select-dark-focus-border-color;
+    }
+
+    &:invalid,
+    &.error,
+    &.civictheme-input--error {
+      border-color: $civictheme-select-dark-border-error-color;
+      box-shadow: 0 0 0 1px $civictheme-select-dark-border-error-color;
+    }
+
+    &:valid,
+    &.civictheme-input--success {
+      border-color: $civictheme-select-dark-border-success-color;
+      box-shadow: 0 0 0 1px $civictheme-select-dark-border-success-color;
+    }
+
+    &.disabled {
+      border-color: $civictheme-select-dark-disabled-color;
+      color: $civictheme-select-dark-disabled-color;
+      background-color: $civictheme-select-dark-disabled-background-color;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: fff6ce32-3f1b-495a-8263-c08302c80a32
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    c9a1fe64-f6d1-4492-ac7f-6444698cfb12: node
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Contact us'
+  menu_name:
+    -
+      value: civictheme-secondary-navigation
+  link:
+    -
+      target_uuid: c9a1fe64-f6d1-4492-ac7f-6444698cfb12
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 2
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

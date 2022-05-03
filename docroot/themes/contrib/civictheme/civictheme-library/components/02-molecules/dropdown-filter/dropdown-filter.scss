@@ -1,0 +1,184 @@
+//
+// Dropdown Filter component.
+//
+
+.civictheme-dropdown-filter {
+  $root: &;
+
+  position: relative;
+  padding: rem(4px) 0;
+
+  &:not(#{$root}--inline) {
+    &#{$root}--right {
+      #{$root}__filter-options {
+        left: auto;
+        right: -(civictheme-space(3));
+      }
+    }
+
+    #{$root}__filter-text {
+      display: inline-block;
+      text-align: center;
+      width: auto;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    #{$root}__filter-options {
+      margin-top: civictheme-space(2);
+      min-width: civictheme-space() * 35;
+      position: absolute;
+      left: -(civictheme-space(3));
+      z-index: $civictheme-dropdown-filter-zindex;
+    }
+
+    #{$root}__filter-options-wrapper {
+      @include civictheme-elevation(2);
+
+      padding: civictheme-space(2);
+      border-radius: $civictheme-border-radius;
+      border-style: solid;
+      border-width: 1px;
+      max-height: civictheme-space() * 35;
+      overflow: auto;
+    }
+  }
+
+  &--right {
+    margin-left: auto;
+  }
+
+  &__filter-text {
+    @include civictheme-typography('label-regular');
+
+    background-color: transparent;
+    border: 0;
+    appearance: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding-top: civictheme-space(2);
+    padding-bottom: civictheme-space(2);
+
+    &:focus {
+      @include civictheme-outline();
+    }
+  }
+
+  &__filter-options {
+    position: relative;
+  }
+
+  &__filter-options-wrapper {
+    padding-top: civictheme-space(3);
+    padding-bottom: civictheme-space(3);
+  }
+
+  &__fieldset {
+    &.civictheme-fieldset {
+      padding: 0;
+
+      legend {
+        @include civictheme-typography('label-regular');
+
+        margin-bottom: civictheme-space(4);
+      }
+    }
+  }
+
+  &[data-dropdown-filter-searchable] {
+    legend {
+      margin-bottom: civictheme-space(2);
+    }
+
+    [data-dropdown-filter-search-item--hidden] {
+      display: none;
+    }
+
+    [data-dropdown-filter-search-item--visible] {
+      display: flex;
+    }
+
+    #{$root}__search.civictheme-input {
+      position: relative;
+      margin-bottom: civictheme-space(2);
+
+      input {
+        padding-left: civictheme-space(5);
+      }
+
+      &::after {
+        content: ' ';
+        background-size: 24px 24px;
+        height: 24px;
+        width: 24px;
+        display: block;
+        position: absolute;
+        bottom: rem(12px);
+        left: civictheme-space();
+      }
+
+      label {
+        padding-left: 0;
+      }
+    }
+  }
+
+  &.civictheme-theme-light {
+    &:not(#{$root}--inline) {
+      #{$root}__filter-text {
+        color: $civictheme-dropdown-filter-light-filter-text-color;
+      }
+
+      #{$root}__filter-options-wrapper {
+        background-color: $civictheme-dropdown-filter-light-filter-options-background-color;
+        border-color: $civictheme-dropdown-filter-light-filter-options-border-color;
+      }
+    }
+
+    #{$root}__filter-text {
+      color: $civictheme-dropdown-filter-light-inline-filter-text-color;
+
+      &::after {
+        content: civictheme-color-svg-fill($civictheme-collapsible-icon, $civictheme-dropdown-filter-light-filter-text-icon-color) !important;
+      }
+    }
+
+    &[data-dropdown-filter-searchable] {
+      #{$root}__search.civictheme-input {
+        &::after {
+          background-image: $civictheme-dropdown-filter-light-search-icon;
+        }
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    &:not(#{$root}--inline) {
+      #{$root}__filter-text {
+        color: $civictheme-dropdown-filter-dark-filter-text-color;
+      }
+
+      #{$root}__filter-options-wrapper {
+        background-color: $civictheme-dropdown-filter-dark-filter-options-background-color;
+        border-color: $civictheme-dropdown-filter-dark-filter-options-border-color;
+      }
+    }
+
+    #{$root}__filter-text {
+      color: $civictheme-dropdown-filter-dark-inline-filter-text-color;
+
+      &::after {
+        content: civictheme-color-svg-fill($civictheme-collapsible-icon, $civictheme-dropdown-filter-dark-filter-text-icon-color) !important;
+      }
+    }
+
+    &[data-dropdown-filter-searchable] {
+      #{$root}__search.civictheme-input {
+        &::after {
+          background-image: $civictheme-dropdown-filter-dark-search-icon;
+        }
+      }
+    }
+  }
+}

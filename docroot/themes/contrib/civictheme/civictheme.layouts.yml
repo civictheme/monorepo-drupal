@@ -1,0 +1,22 @@
+civictheme_one_column:
+  label: 'Single column - edge to edge content'
+  category: 'CivicTheme Layouts'
+  path: templates/layout/
+  template: layout--single-column
+  default_region: content
+  icon_map:
+    - [ content ]
+  regions:
+    content:
+      label: Main content
+civictheme_one_column_contained:
+  label: 'Single column - contained content'
+  category: 'CivicTheme Layouts'
+  path: templates/layout/
+  template: layout--single-column-contained
+  default_region: content
+  icon_map:
+    - [first, second, second, third]
+  regions:
+    content:
+      label: Main content

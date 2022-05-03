@@ -1,0 +1,46 @@
+//
+// Back to Top component.
+//
+
+.civictheme-back-to-top {
+  $root: &;
+
+  position: fixed;
+  right: $civictheme-back-to-top-space-right;
+  bottom: $civictheme-back-to-top-space-bottom;
+
+  &[data-scrollspy='true'] {
+    display: none;
+
+    &.civictheme-scrollspy-scrolled {
+      display: block;
+    }
+  }
+
+  .civictheme-button {
+    border-radius: rem(100px);
+    padding: civictheme-space();
+  }
+
+  &.civictheme-theme-light {
+    .civictheme-button {
+      background-color: $civictheme-back-to-top-light-background-color;
+      border-color: $civictheme-back-to-top-light-background-color;
+
+      .civictheme-icon {
+        fill: $civictheme-back-to-top-light-color;
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    .civictheme-button {
+      background-color: $civictheme-back-to-top-dark-background-color;
+      border-color: $civictheme-back-to-top-dark-background-color;
+
+      .civictheme-icon {
+        fill: $civictheme-back-to-top-dark-color;
+      }
+    }
+  }
+}

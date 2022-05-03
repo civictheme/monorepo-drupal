@@ -1,0 +1,129 @@
+{#
+/**
+ * @file
+ * Navigation Card component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content_top: [string] Content slot.
+ * - image_over: [string] Content slot for image over.
+ * - content_middle: [string] Content slot.
+ * - content_bottom: [string] Content slot.
+ * - size: [string] Size: large, small.
+ * - image: [object] Image object:
+ *   - src: [string] Image source.
+ *   - alt: [string] Image alt text.
+ * - image_as_icon: [boolean] Show image as an icon.
+ * - icon: [string] Icon name.
+ * - title: [string] The text of card title.
+ * - summary: [string] Summary of the card.
+ * - url: [string] Link.
+ * - is_external: [boolean] Link is external or not.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set size = size|default('large') %}
+{% set size_class = size == 'large'?'civictheme-navigation-card--large' : 'civictheme-navigation-card--small' %}
+{% set image_as_icon_class = image_as_icon ? 'civictheme-navigation-card--image-as-icon' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, size_class, image_as_icon_class, modifier_class|default('')) %}
+
+<div class="civictheme-navigation-card {{ modifier_class }}">
+  {% block image %}
+    {% if image.src is not empty %}
+      <div class="civictheme-navigation-card__image-wrapper">
+        {% include '@atoms/image/image.twig' with {
+          theme: theme,
+          src: image.src,
+          alt:  image.alt,
+        } only %}
+
+        {% block image_over %}
+          {% if image_over %}
+            <div class="civictheme-navigation-card__image-over">
+              {{ image_over }}
+            </div>
+          {% endif %}
+        {% endblock %}
+      </div>
+    {% endif %}
+  {% endblock %}
+
+  <div class="civictheme-navigation-card__content">
+    {% block content_top %}
+      {% if content_top %}
+        <div class="civictheme-navigation-card__content-top">
+          {{ content_top }}
+        </div>
+      {% endif %}
+    {% endblock %}
+    {% block icon %}
+      {% if icon %}
+        <div class="civictheme-navigation-card__icon">
+          {% include '@atoms/icon/icon.twig' with {
+            symbol: icon,
+            size: 'large',
+            color: 'primary',
+            modifier_class: 'civictheme-navigation-card__icon',
+          } only %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block title %}
+      {% if title is not empty %}
+        <div class="civictheme-navigation-card__title">
+          {% if url is not empty %}
+          <a class="civictheme-navigation-card__title-link" href="{{ url }}" {% if is_external %}title="Open in a new tab" target="_blank"{% endif %}>
+          {% endif %}
+            {{ title }}
+            {% if url is not empty %}
+              <span>
+                {% if is_external %}
+                  {% include '@atoms/icon/icon.twig' with {
+                    symbol: 'arrows_upperrightarrow',
+                    color: 'primary',
+                    modifier_class: 'civictheme-navigation-card__icon--external'
+                  } only %}
+                {% else %}
+                  {% include '@atoms/icon/icon.twig' with {
+                    symbol: 'arrows_rightarrow_3',
+                    color: 'primary',
+                    modifier_class: 'civictheme-navigation-card__icon--arrow',
+                  } only %}
+                {% endif %}
+              </span>
+            {% endif %}
+          {% if url is not empty %}
+          </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block content_middle %}
+      {% if content_middle is not empty %}
+        <div class="civictheme-navigation-card__content-middle">
+          {{ content_middle }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block summary %}
+      {% if summary is not empty %}
+        <div class="civictheme-navigation-card__summary">
+          {{ summary }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block content_bottom %}
+      {% if content_bottom is not empty %}
+        <div class="civictheme-navigation-card__content-bottom">
+          {{ content_bottom }}
+        </div>
+      {% endif %}
+    {% endblock %}
+  </div>
+</div>

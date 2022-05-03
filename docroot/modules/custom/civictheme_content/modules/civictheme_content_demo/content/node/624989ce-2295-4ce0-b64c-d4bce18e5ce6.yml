@@ -1,0 +1,156 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 624989ce-2295-4ce0-b64c-d4bce18e5ce6
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    608b3d31-cd63-420e-8342-9c210fbb7538: node
+    d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Demo Page - Event reference card: 1 - 2 columns'
+  created:
+    -
+      value: 1631759373
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 37e79283-c562-4f18-b699-fe5e737069d2
+          bundle: civictheme_card_container
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1631759384
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_cards:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 5b54806a-e254-4873-b7e8-9733a62fc224
+                  bundle: civictheme_card_event_ref
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631759396
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_reference:
+                    -
+                      entity: 608b3d31-cd63-420e-8342-9c210fbb7538
+                  field_c_p_theme:
+                    -
+                      value: dark
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: ca39068f-0d60-4c63-a137-4abb3050e428
+                  bundle: civictheme_card_event_ref
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1631759407
+                  behavior_settings:
+                    -
+                      value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
+                  field_c_p_reference:
+                    -
+                      entity: 608b3d31-cd63-420e-8342-9c210fbb7538
+                  field_c_p_theme:
+                    -
+                      value: dark
+          field_c_p_column_count:
+            -
+              value: 2
+          field_c_p_fill_width:
+            -
+              value: true
+          field_c_p_footer_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_header_link:
+            -
+              uri: 'http://example.com'
+              title: 'View all'
+              options: {  }
+          field_c_p_theme:
+            -
+              value: light
+          field_c_p_title:
+            -
+              value: 'Card container'
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_space:
+    -
+      value: both
+  field_c_n_thumbnail:
+    -
+      entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80

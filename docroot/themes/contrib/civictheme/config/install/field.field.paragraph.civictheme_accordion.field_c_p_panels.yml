@@ -1,0 +1,42 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_panels
+    - paragraphs.paragraphs_type.civictheme_accordion
+    - paragraphs.paragraphs_type.civictheme_accordion_panel
+  module:
+    - entity_reference_revisions
+id: paragraph.civictheme_accordion.field_c_p_panels
+field_name: field_c_p_panels
+entity_type: paragraph
+bundle: civictheme_accordion
+label: Panels
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      civictheme_accordion_panel: civictheme_accordion_panel
+    target_bundles_drag_drop:
+      civictheme_accordion:
+        weight: 6
+        enabled: false
+      civictheme_accordion_panel:
+        enabled: true
+        weight: 7
+      civictheme_card_container:
+        weight: 8
+        enabled: false
+      civictheme_card_task:
+        weight: 9
+        enabled: false
+      civictheme_content:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

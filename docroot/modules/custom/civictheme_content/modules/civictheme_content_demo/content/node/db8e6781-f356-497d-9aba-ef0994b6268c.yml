@@ -1,0 +1,127 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: db8e6781-f356-497d-9aba-ef0994b6268c
+  bundle: civictheme_page
+  default_langcode: en
+  depends:
+    dcbc66a3-946d-435b-8ce8-54a680bf3b18: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 0
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'News and events'
+  created:
+    -
+      value: 1648614464
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /news-and-events
+      langcode: en
+      pathauto: 1
+  field_c_n_banner_theme:
+    -
+      value: dark
+  field_c_n_banner_type:
+    -
+      value: default
+  field_c_n_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ca66728f-27ec-4168-a908-fa76e23a666f
+          bundle: civictheme_content
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1648686374
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_content:
+            -
+              value: "<h2>List any content (Heading 2)</h2>\r\n\r\n<p>Content listing component for pages with News topic tagged displayed as navigation cards..</p>\r\n"
+              format: civictheme_rich_text
+          field_c_p_theme:
+            -
+              value: light
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 80ebb324-7c2e-4129-bf9d-38c1add856e5
+          bundle: civictheme_listing
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1648614490
+          behavior_settings:
+            -
+              value: {  }
+          field_c_p_content_type:
+            -
+              value: civictheme_page
+          field_c_p_hide_count:
+            -
+              value: false
+          field_c_p_limit_type:
+            -
+              value: limited
+          field_c_p_listing_limit:
+            -
+              value: 15
+          field_c_p_listing_multi_select:
+            -
+              value: false
+          field_c_p_show_filters:
+            -
+              value: true
+          field_c_p_show_pager:
+            -
+              value: true
+          field_c_p_topics:
+            -
+              entity: dcbc66a3-946d-435b-8ce8-54a680bf3b18
+          field_c_p_view_as:
+            -
+              value: civictheme_card_promo
+  field_c_n_show_toc:
+    -
+      value: false
+  field_c_n_space:
+    -
+      value: both

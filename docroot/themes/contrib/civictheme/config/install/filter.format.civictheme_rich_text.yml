@@ -1,0 +1,83 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.embedded
+  module:
+    - editor
+    - media
+name: 'Rich text'
+format: civictheme_rich_text
+weight: 0
+filters:
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: false
+    weight: -48
+    settings: {  }
+  filter_align:
+    id: filter_align
+    provider: filter
+    status: true
+    weight: -47
+    settings: {  }
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: true
+    weight: -45
+    settings: {  }
+  filter_caption:
+    id: filter_caption
+    provider: filter
+    status: true
+    weight: -46
+    settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -50
+    settings:
+      allowed_html: '<br> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id class=""> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid> <u> <s> <sup> <sub> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <p class="civictheme-text-large civictheme-text-small text-align-left text-align-center text-align-right"> <drupal-entity alt title data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <table class="civictheme-table civictheme-table--striped civictheme-theme-light"> <a href hreflang data-entity-substitution data-entity-type data-entity-uuid class="civictheme-button civictheme-theme-light civictheme-theme-dark civictheme-button--primary civictheme-button--large civictheme-button--regular civictheme-button--secondary civictheme-button--secondary">'
+      filter_html_help: true
+      filter_html_nofollow: false
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: false
+    weight: -42
+    settings: {  }
+  filter_html_escape:
+    id: filter_html_escape
+    provider: filter
+    status: false
+    weight: -49
+    settings: {  }
+  filter_html_image_secure:
+    id: filter_html_image_secure
+    provider: filter
+    status: false
+    weight: -43
+    settings: {  }
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: true
+    weight: -44
+    settings:
+      filter_url_length: 72
+  media_embed:
+    id: media_embed
+    provider: media
+    status: true
+    weight: -41
+    settings:
+      default_view_mode: default
+      allowed_view_modes:
+        embedded: embedded
+      allowed_media_types:
+        civictheme_image: civictheme_image
+        civictheme_remote_video: civictheme_remote_video
+        civictheme_video: civictheme_video

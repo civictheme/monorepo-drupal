@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_c_m_caption
+    - media.type.civictheme_image
+id: media.civictheme_image.field_c_m_caption
+field_name: field_c_m_caption
+entity_type: media
+bundle: civictheme_image
+label: Caption
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

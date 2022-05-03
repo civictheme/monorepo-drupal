@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Tooltip component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - symbol: [string] Symbol to use in the button. Defaults to 'userinterface_informationmark'.
+ * - text: [string] Text to display within the popup.
+ * - title: [string] Text used within the button title and for screen readers.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if text %}
+  <div class="civictheme-tooltip {{ modifier_class }}" data-collapsible data-collapsible-collapsed data-collapsible-duration="0" data-collapsible-trigger-no-icon>
+    <button class="civictheme-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %}  aria-expanded="false">
+      {%- include '@atoms/icon/icon.twig' with {
+        symbol: symbol|default('userinterface_informationmark'),
+        size: size|default('regular'),
+      } only -%}
+    </button>
+
+    <div class="civictheme-tooltip__description">
+      <div class="civictheme-tooltip__description__inner">
+        {{ text }}
+      </div>
+    </div>
+  </div>
+{% endif %}

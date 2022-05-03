@@ -1,0 +1,67 @@
+//
+// Color mixins.
+//
+
+@use 'sass:color';
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:string';
+
+//
+// Get a color from the pre-defined list of colors.
+//
+@function civictheme-color($name) {
+  $all-colors: _civictheme-colors-all();
+
+  @if map.get($all-colors, $name) == null {
+    @error '"#{$name}" is not an available color.';
+  }
+
+  @return map.get($all-colors, $name);
+}
+
+@function civictheme-color-shade-dark($number) {
+  @return color.mix(black, $civictheme-colors-default-shades-dark-base, math.percentage(math.div($number, 100)));
+}
+
+@function civictheme-color-shade-light($number) {
+  @return color.mix(white, $civictheme-colors-default-shades-light-base, math.percentage(math.div($number, 100)));
+}
+
+@function civictheme-color-neutral($number) {
+  $neutral: color.adjust(color.adjust($civictheme-colors-default-neutral-base, $saturation: -20%), $lightness: -1 * math.max(color.lightness($civictheme-colors-default-neutral-base) - 5%, 0%));
+
+  @return color.mix($neutral, white, math.percentage(math.div($number, 100)));
+}
+
+//
+// Compile all colors into a single map.
+//
+// Do not use directly.
+// Use @include civictheme-color() mixin instead.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _civictheme-colors-all() {
+  @return map.merge($civictheme-colors-default, $civictheme-colors);
+}
+
+//
+// Encode color to be suitable for embedding.
+//
+@function civictheme-color-encode($string) {
+  @if type-of($string) == 'color' and string.index(#{$string}, '#') == 1 {
+    $hex: string.slice(color.ie-hex-str($string), 4);
+    $string: string.unquote('#{$hex}');
+
+    @return '%23' + $string;
+  }
+
+  @return $string;
+}
+
+//
+// String to fill SVG with color.
+//
+@function civictheme-color-svg-fill($svg, $color) {
+  @return civictheme-str-replace($svg, "fill=''", "fill='#{civictheme-color-encode($color)}'");
+}

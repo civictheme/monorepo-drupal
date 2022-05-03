@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civictheme-primary-navigation
+label: 'Primary Navigation'
+description: 'Primary Navigation menu provided by CivicTheme.'
+locked: false

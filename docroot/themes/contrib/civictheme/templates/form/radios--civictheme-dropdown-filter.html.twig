@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * CivicTheme theme implementation for a 'radios' dropdown form filter.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The rendered checkboxes.
+ *
+ * @see template_preprocess_checkboxes()
+ *
+ * @ingroup themeable
+ */
+#}
+{% include '@molecules/dropdown-filter/dropdown-filter.twig' with {
+  options: children,
+} %}

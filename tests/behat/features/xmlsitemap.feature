@@ -1,4 +1,4 @@
-@civic
+@civictheme
 Feature: XML Sitemap
 
   Ensure that the XML Sitemap exists.
@@ -6,16 +6,16 @@ Feature: XML Sitemap
   @api @wip5
   Scenario: XML Sitemap is accessible
 
-    Given civic_page content:
+    Given civictheme_page content:
       | title                 | status | path                 |
       | [TEST] Published page | 1      | /test-published-page |
       | [TEST] Draft page     | 0      | /test-draft-page     |
-    And civic_event content:
-      | title                  | status | path                  |
+    And civictheme_event content:
+      | title                  | status | path                         |
       | [TEST] Published event | 1      | /events/test-published-event |
       | [TEST] Draft event     | 0      | /events/test-draft-event     |
-    And civic_alert content:
-      | title                  | status | path                  |
+    And civictheme_alert content:
+      | title                  | status | path                         |
       | [TEST] Published alert | 1      | /alerts/test-published-alert |
       | [TEST] Draft alert     | 0      | /alerts/test-draft-alert     |
 

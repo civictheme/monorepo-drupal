@@ -1,0 +1,35 @@
+//
+// Navigation component.
+//
+
+.civictheme-navigation {
+  @include civictheme-typography('text-regular');
+
+  &__title {
+    @include civictheme-typography('heading-5');
+
+    margin-bottom: civictheme-space(2);
+  }
+
+  &__menu {
+    &.civictheme-menu,
+    .civictheme-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .civictheme-menu__sub-menu {
+      margin-top: civictheme-space(2);
+    }
+
+    .civictheme-menu__item {
+      margin-bottom: civictheme-space(2);
+      margin-left: civictheme-space(2);
+    }
+
+    &.civictheme-menu > .civictheme-menu__item {
+      margin-left: 0;
+    }
+  }
+}

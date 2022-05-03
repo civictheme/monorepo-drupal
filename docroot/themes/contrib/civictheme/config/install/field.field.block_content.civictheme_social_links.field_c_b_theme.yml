@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.civictheme_social_links
+    - field.storage.block_content.field_c_b_theme
+  module:
+    - options
+id: block_content.civictheme_social_links.field_c_b_theme
+field_name: field_c_b_theme
+entity_type: block_content
+bundle: civictheme_social_links
+label: Theme
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: dark
+default_value_callback: ''
+settings: {  }
+field_type: list_string

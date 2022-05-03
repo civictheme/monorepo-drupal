@@ -1,0 +1,128 @@
+//
+// Table of Contents component.
+//
+
+.civictheme-table-of-contents {
+  $root: &;
+
+  width: $civictheme-table-of-contents-width;
+
+  &--position-before,
+  &--position-prepend {
+    margin-bottom: civictheme-space(4);
+  }
+
+  &--position-after,
+  &--position-append {
+    margin-top: civictheme-space(4);
+  }
+
+  &__title {
+    @include civictheme-typography('heading-5');
+
+    margin-top: 0;
+    margin-bottom: civictheme-space(3);
+  }
+
+  &__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__link {
+    @include civictheme-typography('text-small');
+
+    display: block;
+    position: relative;
+    padding: civictheme-space() civictheme-space(2) civictheme-space() civictheme-space(2.5);
+    border-width: 1px;
+    border-style: solid;
+    text-decoration: none;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      width: rem(4px);
+    }
+
+    &:active {
+      outline: 0 !important;
+      border-radius: 0 $civictheme-table-of-contents-link-active-border-radius $civictheme-table-of-contents-link-active-border-radius 0;
+    }
+
+    &:focus {
+      z-index: 1;
+    }
+  }
+
+  &.civictheme-theme-light {
+    #{$root}__title {
+      color: $civictheme-table-of-contents-light-title-color;
+    }
+
+    #{$root}__link {
+      color: $civictheme-table-of-contents-light-link-color;
+      border-color: $civictheme-table-of-contents-light-link-border-color;
+
+      &::before {
+        background-color: $civictheme-table-of-contents-light-link-strip-background-color;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: $civictheme-table-of-contents-light-link-hover-background-color;
+        border-color: $civictheme-table-of-contents-light-link-hover-border-color;
+
+        &::before {
+          background-color: $civictheme-table-of-contents-light-link-strip-hover-background-color;
+        }
+      }
+
+      &:active {
+        border-color: $civictheme-table-of-contents-light-active-border-color;
+      }
+
+      &:focus {
+        @include civictheme-outline();
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    #{$root}__title {
+      color: $civictheme-table-of-contents-dark-title-color;
+    }
+
+    #{$root}__link {
+      color: $civictheme-table-of-contents-dark-link-color;
+      border-color: $civictheme-table-of-contents-dark-link-border-color;
+
+      &::before {
+        background-color: $civictheme-table-of-contents-dark-link-strip-background-color;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: $civictheme-table-of-contents-dark-link-hover-background-color;
+        border-color: $civictheme-table-of-contents-dark-link-hover-border-color;
+
+        &::before {
+          background-color: $civictheme-table-of-contents-dark-link-strip-hover-background-color;
+        }
+      }
+
+      &:active {
+        background-color: $civictheme-table-of-contents-dark-active-background-color;
+      }
+
+      &:focus {
+        @include civictheme-outline(true);
+      }
+    }
+  }
+}

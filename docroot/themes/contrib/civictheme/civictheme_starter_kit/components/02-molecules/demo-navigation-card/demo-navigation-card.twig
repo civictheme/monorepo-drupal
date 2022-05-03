@@ -1,0 +1,33 @@
+{#
+  Importantly, note the use of the @civictheme-<COMPONENT_TYPE> namespace.
+  There are civictheme namespaces for:
+    - base
+    - atoms
+    - molecules
+    - organisms
+    - templates
+    - pages
+  This gives access to unmodified civictheme components enabling us to override secions of a component with modifications but
+  keeping it's connection to the civictheme design system.
+  @see
+#}
+{% extends '@civictheme-molecules/navigation-card/navigation-card.twig' %}
+
+{#
+  Block tag enables us to extend a component without overriding and breaking the connection with the existing  component
+
+  If you look throughout the twig components you will see most components have extendable sections.
+#}
+{% block content_bottom %}
+  {% if tags %}
+    <div class="civictheme-promo-card__tags">
+      {% for tag in tags %}
+        {% include '@atoms/tag/tag.twig' with {
+          theme: theme,
+          text: tag,
+          is_alt: true,
+        } only %}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}

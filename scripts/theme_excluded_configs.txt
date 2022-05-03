@@ -1,6 +1,6 @@
 *admin_toolbar*
 *adminimal*
-*civic_demo*
+*civictheme_demo*
 *seven*
 coffee.configuration
 config_devel.settings

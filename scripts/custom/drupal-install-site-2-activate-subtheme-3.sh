@@ -18,27 +18,27 @@ DRUSH_ALIAS="${DRUSH_ALIAS:-}"
 # Use local or global Drush, giving priority to a local drush.
 drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush"; else command -v drush; fi)"
 
-if [ ! -d $APP/docroot/themes/custom/civic_demo ]; then
-  echo "  > Creating civic_demo subtheme."
-  pushd $APP/docroot/themes/contrib/civic >/dev/null || exit 1
-  php civic-create-subtheme.php civic_demo "Civic Demo" "Demo sub-theme for a Civic theme."
-  [ ! -d $APP/docroot/themes/custom/civic_demo ] && echo "ERROR: Failed to create civic_demo sub-theme." && exit 1
+if [ ! -d $APP/docroot/themes/custom/civictheme_demo ]; then
+  echo "  > Creating civictheme_demo subtheme."
+  pushd $APP/docroot/themes/contrib/civictheme >/dev/null || exit 1
+  php civictheme-create-subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
+  [ ! -d $APP/docroot/themes/custom/civictheme_demo ] && echo "ERROR: Failed to create civictheme_demo sub-theme." && exit 1
 fi
 
-echo "  > Installing civic_demo theme."
-$drush ${DRUSH_ALIAS} theme:enable civic_demo -y
+echo "  > Installing civictheme_demo theme."
+$drush ${DRUSH_ALIAS} theme:enable civictheme_demo -y
 
-echo "  > Setting civic_demo as a default theme."
-$drush ${DRUSH_ALIAS} config-set system.theme default civic_demo -y
+echo "  > Setting civictheme_demo as a default theme."
+$drush ${DRUSH_ALIAS} config-set system.theme default civictheme_demo -y
 
-echo "  > Updating civic_demo theme settings."
-$drush ${DRUSH_ALIAS} ev "module_load_include('inc', 'cd_core', 'cd_core.civic_demo'); cd_core_civic_demo_update_theme_settings();"
+echo "  > Updating civictheme_demo theme settings."
+$drush ${DRUSH_ALIAS} ev "module_load_include('inc', 'cs_core', 'cs_core.civictheme_demo'); cs_core_civictheme_demo_update_theme_settings();"
 
 if [ "$SKIP_SUBTHEME_FE" != "1" ] && command -v npm &> /dev/null; then
-  pushd $APP/docroot/themes/custom/civic_demo >/dev/null || exit 1
+  pushd $APP/docroot/themes/custom/civictheme_demo >/dev/null || exit 1
 
-  if [ ! -d $APP/docroot/themes/custom/civic_demo/dist ]; then
-    if [ ! -d $APP/docroot/themes/custom/civic_demo/node_modules ]; then
+  if [ ! -d $APP/docroot/themes/custom/civictheme_demo/dist ]; then
+    if [ ! -d $APP/docroot/themes/custom/civictheme_demo/node_modules ]; then
       echo "  > Installing FE dependencies."
       npm ci
     fi

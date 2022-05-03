@@ -1,0 +1,24 @@
+//
+// Debug helpers.
+//
+
+.civictheme-block-debug {
+  @include civictheme-block-debug();
+}
+
+.civictheme-breakpoint-debug {
+  @each $bp, $value in $civictheme-breakpoints {
+    &::before {
+      @include civictheme-breakpoint($bp) {
+        content: '#{$bp}: >=#{$value}';
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background: rgba(purple, 0.75);
+        display: block;
+        padding: 0.25em 0.5em;
+        z-index: 1000;
+      }
+    }
+  }
+}

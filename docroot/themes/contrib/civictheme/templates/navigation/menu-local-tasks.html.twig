@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * CivicTheme theme implementation to display primary and secondary local tasks.
+ *
+ * Available variables:
+ * links: [object] consisting of:
+ * - primary: [array] primary task links.
+ * - secondary: [array] secondary task links.
+ */
+#}
+{% if links.primary %}
+  <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
+  {% include '@organisms/tabs/tabs.twig' with {
+    links: links.primary,
+    modifier_class: 'civictheme-tabs--local-tasks civictheme-tabs--local-tasks--primary',
+  } %}
+{% endif %}
+
+{% if links.secondary %}
+  <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
+  {% include '@organisms/tabs/tabs.twig' with {
+    links: links.secondary,
+    modifier_class: 'civictheme-tabs--local-tasks civictheme-tabs--local-tasks--secondary',
+  } %}
+{% endif %}

@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.civictheme_document.field_c_m_document
+    - media.type.civictheme_document
+id: media.civictheme_document.media_library
+targetEntityType: media
+bundle: civictheme_document
+mode: media_library
+content:
+  name:
+    type: string_textfield
+    settings:
+      size: 60
+      placeholder: ''
+    weight: 0
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_c_m_document: true
+  path: true
+  status: true
+  uid: true

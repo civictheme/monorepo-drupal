@@ -1,0 +1,86 @@
+//
+// Custom base variables overrides.
+//
+// CivicTheme variables can be found in components/00-base/_variables.base.scss
+//
+// Variables values in this file cannot be based on any variables
+// in _variables.base.scss
+//
+// stylelint-disable scss/dollar-variable-pattern
+
+// Define custom font.
+$civictheme-fonts: (
+  'tertiary': (
+    'family': 'Roboto, sans-serif',
+    'types': (
+      (
+        'uri': (
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Regular.ttf',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Regular.woff',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Regular.eot',
+        ),
+      ),
+      (
+        'italic': true,
+        'uri': (
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Italic.ttf',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Italic.woff',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Italic.eot',
+        ),
+      ),
+      (
+        'weight': 'bold',
+        'uri': (
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Bold.ttf',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Bold.woff',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Bold.eot',
+        ),
+      ),
+      (
+        'italic': true,
+        'weight': 'bold',
+        'uri': (
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-BoldItalic.ttf',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-BoldItalic.woff',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-BoldItalic.eot',
+        ),
+      ),
+      (
+        'weight': 300,
+        'uri': (
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Thin.ttf',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Thin.woff',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Thin.eot',
+        ),
+      ),
+      (
+        'weight': 700,
+        'uri': (
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Black.ttf',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Black.woff',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Black.eot',
+        ),
+      ),
+    ),
+  ),
+  'quartary': (
+    'family': '"Dancing Script", serif',
+    'types': (
+      (
+        'uri': (
+          '#{$civictheme-assets-directory}fonts/DancingScript/DancingScript-Regular.ttf',
+          '#{$civictheme-assets-directory}fonts/DancingScript/DancingScript-Regular.woff',
+          '#{$civictheme-assets-directory}fonts/DancingScript/DancingScript-Regular.woff2',
+        ),
+      ),
+    ),
+  ),
+);
+$civictheme-colors: (
+  // Override palette color.
+  'success': green,
+  // Define custom colors.
+  'custom1': red,
+  'custom2': orange,
+  'custom3': blue,
+);

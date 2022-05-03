@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_reference
+    - paragraphs.paragraphs_type.civictheme_slider_slide_ref
+id: paragraph.civictheme_slider_slide_ref.default
+targetEntityType: paragraph
+bundle: civictheme_slider_slide_ref
+mode: default
+content:
+  field_c_p_reference:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: civictheme_slider_slide
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden: {  }

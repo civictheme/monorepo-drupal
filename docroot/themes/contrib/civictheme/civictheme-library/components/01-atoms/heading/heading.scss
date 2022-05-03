@@ -1,0 +1,11 @@
+//
+// Heading component.
+//
+
+@for $level from 1 through 6 {
+  h#{$level} {
+    &.civictheme-heading {
+      @include civictheme-typography('heading-#{$level}');
+    }
+  }
+}

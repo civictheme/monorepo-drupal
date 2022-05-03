@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: civictheme_page
+label: Page
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  536cf8c6-d312-4974-8d67-75789c6e8097:
+    id: node_type
+    bundles:
+      civictheme_page: civictheme_page
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 536cf8c6-d312-4974-8d67-75789c6e8097
+selection_logic: and
+weight: -5
+relationships: {  }

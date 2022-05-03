@@ -70,7 +70,7 @@ tasks:
         command: |
           [[ -n "$LAGOON_PR_NUMBER" ]] && GIT_REF=$LAGOON_PR_NUMBER || GIT_REF=$LAGOON_GIT_BRANCH
           php ./scripts/drevops/notify-deployment.php \
-            "Civic Demo" \
+            "CivicTheme Demo" \
             "lagoon-deploy+civictheme@salsadigital.com.au" \
             "alex.skrypnyk@salsadigital.com.au|Alex Skrypnyk, richard.gaunt@salsadigital.com.au|Richard Gaunt" \
             "$GIT_REF" \

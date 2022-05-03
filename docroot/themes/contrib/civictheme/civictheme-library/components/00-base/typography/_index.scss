@@ -1,0 +1,11 @@
+//
+// Typography component.
+//
+
+@use 'sass:map';
+
+@each $name in map.keys(_civictheme-typography-all()) {
+  .civictheme-#{$name} {
+    @include civictheme-typography($name);
+  }
+}

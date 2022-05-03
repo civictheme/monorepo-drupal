@@ -1,0 +1,65 @@
+//
+// Breakpoint mixins.
+//
+
+@use 'sass:map';
+@import '~breakpoint-sass/stylesheets/breakpoint';
+
+//
+// Mobile-and-up breakpoints.
+//
+// Always use this mixin for responsive style overrides.
+// Do not define breakpoint values anywhere else.
+// When defining breakpoints, include them lowest to highest (xs, s, m, l, xl, xxl)
+// to improve code readability.
+//
+// @code
+//
+// @include civictheme-breakpoint(s) {
+//   color: red;
+// }
+// @include civictheme-breakpoint(m) {
+//   color: green;
+// }
+// @include civictheme-breakpoint(l) {
+//   color: blue;
+// }
+//
+// @endcode
+//
+@mixin civictheme-breakpoint($class) {
+  @if map.get($civictheme-breakpoints, $class) == null {
+    @error '"#{$class}" is not an available breakpoint. (#{map-keys($civictheme-breakpoints)})';
+  }
+
+  @include breakpoint(map.get($civictheme-breakpoints, $class)) {
+    @content;
+  }
+}
+
+//
+// Max-width breakpoint.
+//
+// @code
+//
+// @include civictheme-breakpoint-upto(s) {
+//   color: red;
+// }
+// @include civictheme-breakpoint-upto(m) {
+//   color: green;
+// }
+// @include civictheme-breakpoint-upto(l) {
+//   color: blue;
+// }
+//
+// @endcode
+//
+@mixin civictheme-breakpoint-upto($class) {
+  @if map.get($civictheme-breakpoints, $class) == null {
+    @error '"#{$class}" is not an available breakpoint. (#{map-keys($civictheme-breakpoints)})';
+  }
+
+  @include breakpoint('max-width'  map.get($civictheme-breakpoints, $class) - 1) {
+    @content;
+  }
+}

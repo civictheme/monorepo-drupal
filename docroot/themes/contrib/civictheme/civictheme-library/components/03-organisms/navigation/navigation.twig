@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Navigation component.
+  *
+  * Variables:
+  * - theme: [string] Theme: light, dark.
+  * - items: [array] Array of menu items.
+  * - title: [string] Navigation title.
+  * - attributes: [string] Additional attributes.
+  * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if items is not empty %}
+  <div class="civictheme-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+    {% if title is not empty %}
+      {% block title %}
+        <div class="civictheme-navigation__title">
+          {{ title }}
+        </div>
+      {% endblock %}
+    {% endif %}
+
+    {% include '@base/menu/menu.twig' with {
+      theme: theme,
+      items: items,
+      modifier_class: 'civictheme-navigation__menu',
+    } only %}
+
+  </div>
+{% endif %}
