@@ -97,3 +97,11 @@ Please refer to [CivicTheme Drupal theme documentation](docroot/themes/contrib/c
 
 ## CivicTheme components library
 Please refer to [CivicTheme components Library documentation](docroot/themes/contrib/civictheme/civictheme-library/docs/introduction.md).
+
+## Other resources
+
+- [CivicTheme CMS-agnostic library](https://github.com/salsadigitalauorg/civictheme-library)
+- [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme-drupal)
+- [Default content for CivicTheme](https://github.com/salsadigitalauorg/civictheme-drupal-content)
+- [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme-govcms)
+
