@@ -34,6 +34,8 @@
   }
 
   #{$root}__date {
+    @include civictheme-typography('date');
+
     margin-bottom: civictheme-space(2);
   }
 

@@ -288,6 +288,7 @@ $civictheme-typography-default: (
     'xxs': ($civictheme-font-base-size * 1.25, $civictheme-font-base-line-height * 1.185, 400, 'primary', -0.15px),
     'm': ($civictheme-font-base-size * 1.5, $civictheme-font-base-size * 2.5, 400, 'primary', -0.35px)
   ),
+  'date': ($civictheme-font-base-size * 0.875, $civictheme-font-base-line-height * 1.25, 600, 'primary', -0.1px),
 );
 
 //
