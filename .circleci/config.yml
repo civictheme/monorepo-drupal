@@ -263,7 +263,7 @@ jobs:
           name: Deploy release to CivicTheme GovCMS repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT3 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme-govcms.git \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_govcms.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/modules/custom/civictheme_govcms" \
             ./scripts/deploy-code-release.sh
@@ -272,7 +272,7 @@ jobs:
           name: Deploy release to CivicTheme Content repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT4 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme-drupal-content.git \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_drupal_content.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/modules/custom/civictheme_content" \
             ./scripts/deploy-code-release.sh
