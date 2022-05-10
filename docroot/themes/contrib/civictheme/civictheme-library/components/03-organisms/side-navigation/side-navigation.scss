@@ -7,6 +7,18 @@
 
   @include civictheme-component-with-vertical-space(bottom, $civictheme-side-navigation-space-vertical);
 
+  &.civictheme-side-navigation--vertical-space-top {
+    @include civictheme-component-with-vertical-space(top, $civictheme-side-navigation-space-vertical);
+  }
+
+  &.civictheme-side-navigation--vertical-space-bottom {
+    @include civictheme-component-with-vertical-space(bottom, $civictheme-side-navigation-space-vertical);
+  }
+
+  &.civictheme-side-navigation--vertical-space-both {
+    @include civictheme-component-with-vertical-space(both, $civictheme-side-navigation-space-vertical);
+  }
+
   &__title {
     @include civictheme-typography('heading-5');
 

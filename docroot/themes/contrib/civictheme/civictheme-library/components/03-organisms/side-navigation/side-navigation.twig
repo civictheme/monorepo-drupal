@@ -13,7 +13,6 @@
  */
 #}
 
-{% set vertical_space = vertical_space ? vertical_space : 'bottom' %}
 {% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-map--vertical-space-%s'|format(vertical_space) : '' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
