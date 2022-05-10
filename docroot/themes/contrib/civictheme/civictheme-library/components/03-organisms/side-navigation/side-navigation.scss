@@ -5,6 +5,8 @@
 .civictheme-side-navigation {
   $root: &;
 
+  @include civictheme-component-with-vertical-space(bottom, $civictheme-side-navigation-space-vertical);
+
   &__title {
     @include civictheme-typography('heading-5');
 
