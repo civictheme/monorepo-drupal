@@ -2,7 +2,7 @@
 
 /**
  * @file
- * CivicTheme card task paragraph component.
+ * CivicTheme Task card paragraph component.
  */
 
 use Drupal\Component\Utility\UrlHelper;
