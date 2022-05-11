@@ -53,14 +53,14 @@
 
         {% if sidebar is not empty %}
           {% block sidebar %}
-            <aside class="civictheme-content__sidebar {% if has_sidebar %}col-m-3{% endif %}" role="complementary" {% if sidebar_attributes %}{{ sidebar_attributes }}{% endif %}>
+            <aside class="civictheme-content__sidebar {% if has_sidebar %}col-m-3 col-xxs-12{% endif %}" role="complementary" {% if sidebar_attributes %}{{ sidebar_attributes }}{% endif %}>
               {{ sidebar }}
             </aside>
           {% endblock %}
         {% endif %}
 
         {% block content %}
-          <section class="civictheme-content__main {% if has_sidebar %}col-m-8 col-m-offset-1{% elseif is_contained %} col-m-12{% endif %}" {% if content_attributes %}{{ content_attributes }}{% endif %}>
+          <section class="civictheme-content__main {% if has_sidebar %}col-m-8 col-m-offset-1 col-xxs-12{% elseif is_contained %} col-m-12 col-xxs-12{% endif %}" {% if content_attributes %}{{ content_attributes }}{% endif %}>
             {{ content }}
           </section>
         {% endblock %}
