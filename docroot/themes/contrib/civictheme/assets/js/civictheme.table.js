@@ -1,5 +1,5 @@
 /**
- * Adds data-table attributes to CivicTheme table columns.
+ * Adds data-title attributes to CivicTheme table cells for display on mobile.
  */
 Drupal.behaviors.civictheme_table = {
   // eslint-disable-next-line no-unused-vars
@@ -31,16 +31,15 @@ Drupal.behaviors.civictheme_table = {
       });
     };
 
-    // Add titles to cells in rows with row-scoped th cells.
+    // todo: Add titles to cells in rows with row-scoped th cells.
     const addRowScopedTitles = ($table) => {};
 
-    // Add titles to cells in rows with col-scoped th cells.
+    // todo: Add titles to cells in rows with col-scoped th cells.
     const addColScopedTitles = ($table) => {};
 
+    // Add data-title
     const addTitles = ($table) => {
       addTheadColumnTitles($table);
-      // todo: addRowScopedTitles();
-      // todo: addColScopedTitles();
     };
 
     $table.each(function (index) {
