@@ -34,7 +34,7 @@ Drupal.behaviors.civictheme_table = {
     // todo: Add titles to cells in rows with row-scoped th cells.
     const addRowScopedTitles = ($table) => {};
 
-    // todo: Add titles to cells in rows with col-scoped th cells.
+    // todo: Add titles to cells in columns with col-scoped th cells.
     const addColScopedTitles = ($table) => {};
 
     // Add data-title
