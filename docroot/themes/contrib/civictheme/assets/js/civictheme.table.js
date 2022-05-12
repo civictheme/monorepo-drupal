@@ -37,7 +37,6 @@ Drupal.behaviors.civictheme_table = {
     // TODO: Add titles to cells in columns with col-scoped th cells.
     // const addColScopedTitles = ($table) => {};
     const addTitles = ($table) => {
-      // Adds titles to cells based on thead.
       addTheadColumnTitles($table);
     };
 
