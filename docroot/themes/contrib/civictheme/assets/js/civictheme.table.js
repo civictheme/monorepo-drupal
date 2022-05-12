@@ -31,14 +31,13 @@ Drupal.behaviors.civictheme_table = {
       });
     };
 
-    // todo: Add titles to cells in rows with row-scoped th cells.
-    const addRowScopedTitles = ($table) => {};
-
-    // todo: Add titles to cells in columns with col-scoped th cells.
-    const addColScopedTitles = ($table) => {};
-
-    // Add data-title
+    // Add data-title attributes to cells for display on mobile.
+    // TODO: Add titles to cells in rows with row-scoped th cells.
+    // const addRowScopedTitles = ($table) => {};
+    // TODO: Add titles to cells in columns with col-scoped th cells.
+    // const addColScopedTitles = ($table) => {};
     const addTitles = ($table) => {
+      // Adds titles to cells based on thead.
       addTheadColumnTitles($table);
     };
 
