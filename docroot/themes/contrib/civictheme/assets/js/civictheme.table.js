@@ -4,44 +4,45 @@
 Drupal.behaviors.civictheme_table = {
   // eslint-disable-next-line no-unused-vars
   attach: function attach(context, settings) {
-    // eslint-disable-next-line no-undef
-    const $table = jQuery('.civictheme-basic-content table', context).once('civicthemeTable');
-    if ($table.length === 0) {
-      return;
-    }
-
-    // Add titles to cells via thead.
-    const addTheadColumnTitles = ($table) => {
-      // Determine whether column titles can be added via thead.
-      const $theadRows = $table.find('thead tr');
-      const $tbodyRows = $table.find('tbody tr');
-      if (!($theadRows.length && $tbodyRows.length)) {
+    const tables = document.querySelectorAll('.civictheme-basic-content table');
+    tables.forEach((table) => {
+      if (table.getAttribute('data-table') === 'true') {
         return;
       }
-      const $theadRow = $theadRows.first();
-      const $theadCells = $theadRow.find('th, td');
-      $tbodyRows.each(function (rowIndex) {
-        const $row = jQuery(this);
-        $tbodyRowCells = $row.find('th, td').each(function (cellIndex) {
-          // Only add titles to cells that do not have titles.
-          if (jQuery(this).attr('data-title') === undefined) {
-            jQuery(this).attr('data-title', jQuery($theadCells[cellIndex]).text());
-          }
+
+      table.setAttribute('data-table', 'true');
+
+      // Add titles to cells via thead.
+      const addTheadColumnTitles = (table) => {
+        // Determine whether column titles can be added via thead.
+        const theadRows = table.querySelectorAll('thead tr');
+        const tbodyRows = table.querySelectorAll('tbody tr');
+        if (!(theadRows.length && tbodyRows.length)) {
+          return;
+        }
+        const theadRow = theadRows[0];
+        const theadCells = theadRow.querySelectorAll('th, td');
+
+        tbodyRows.forEach((tbodyRow) => {
+          const tbodyRowCells = tbodyRow.querySelectorAll('th, td');
+          tbodyRowCells.forEach((tbodyRowCell, index) => {
+            if (!tbodyRowCell.hasAttribute('data-title')) {
+              tbodyRowCell.setAttribute('data-title', theadCells[index].textContent)
+            }
+          });
         });
-      });
-    };
+      };
 
-    // Add data-title attributes to cells for display on mobile.
-    // TODO: Add titles to cells in rows with row-scoped th cells.
-    // const addRowScopedTitles = ($table) => {};
-    // TODO: Add titles to cells in columns with col-scoped th cells.
-    // const addColScopedTitles = ($table) => {};
-    const addTitles = ($table) => {
-      addTheadColumnTitles($table);
-    };
+      // Add data-title attributes to cells for display on mobile.
+      // TODO: Add titles to cells in rows with row-scoped th cells.
+      // const addRowScopedTitles = ($table) => {};
+      // TODO: Add titles to cells in columns with col-scoped th cells.
+      // const addColScopedTitles = ($table) => {};
+      const addTitles = (table) => {
+        addTheadColumnTitles(table);
+      };
 
-    $table.each(function (index) {
-      addTitles(jQuery(this));
+      addTitles(table);
     });
   },
 };

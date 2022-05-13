@@ -23,7 +23,5 @@ civictheme.table:
   js:
     assets/js/civictheme.table.js: {}
   dependencies:
-    - core/jquery
     - core/drupal
     - core/drupalSettings
-    - core/jquery.once
