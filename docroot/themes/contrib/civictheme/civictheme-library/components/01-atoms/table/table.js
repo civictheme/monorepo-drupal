@@ -14,13 +14,13 @@ function CivicTable(el) {
 
 // eslint-disable-next-line func-names
 CivicTable.prototype.init = function () {
-  if (table.getAttribute('data-table') === 'true') {
+  if (this.el.getAttribute('data-table') === 'true') {
     return;
   }
 
   this.addTitles();
 
-  table.setAttribute('data-table', 'true');
+  this.el.setAttribute('data-table', 'true');
 }
 
 // Add data-title attributes to cells for display on mobile.
