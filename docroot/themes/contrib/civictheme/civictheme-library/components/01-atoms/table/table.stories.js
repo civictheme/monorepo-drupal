@@ -1,5 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicTable from './table.twig';
+import './table';
 
 export default {
   title: 'Atoms/Table',
