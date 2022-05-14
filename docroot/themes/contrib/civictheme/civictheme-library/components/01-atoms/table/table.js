@@ -21,7 +21,7 @@ CivicTable.prototype.init = function () {
   this.addTitles();
 
   this.el.setAttribute('data-table', 'true');
-}
+};
 
 // Add data-title attributes to cells for display on mobile.
 // TODO: Add titles to cells in rows with row-scoped th cells.
@@ -30,7 +30,7 @@ CivicTable.prototype.init = function () {
 // CivicTable.prototype.addColScopedTitles.
 CivicTable.prototype.addTitles = function () {
   this.addTheadColumnTitles();
-}
+};
 
 // eslint-disable-next-line func-names
 CivicTable.prototype.addTheadColumnTitles = function () {
@@ -47,11 +47,11 @@ CivicTable.prototype.addTheadColumnTitles = function () {
     const tbodyRowCells = tbodyRow.querySelectorAll('th, td');
     tbodyRowCells.forEach((tbodyRowCell, index) => {
       if (!tbodyRowCell.hasAttribute('data-title')) {
-        tbodyRowCell.setAttribute('data-title', theadCells[index].textContent)
+        tbodyRowCell.setAttribute('data-title', theadCells[index].textContent);
       }
     });
   });
-}
+};
 
 document.querySelectorAll('.civictheme-basic-content table, .civictheme-table').forEach((table) => {
   // eslint-disable-next-line no-new
