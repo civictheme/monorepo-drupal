@@ -1,0 +1,5 @@
+cs_demo.cs_demo_form:
+  title: 'OSP Demo'
+  description: 'Administer OSP Demo content'
+  route_name: cs_demo.cs_demo_form
+  parent: system.admin_config_development

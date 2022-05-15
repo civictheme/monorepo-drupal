@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * @file
+ * Install file for core.
+ */
+
+use Drupal\cs_demo\CsDemoRepository;
+
+/**
+ * Implements hook_schema().
+ */
+function cs_demo_schema() {
+  $schema['cs_demo'] = [
+    'description' => 'Stores demo content.',
+    'fields' => [
+      'entity_type' => [
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'description' => 'Entity type.',
+      ],
+      'bundle' => [
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'description' => 'Entity bundle.',
+      ],
+      'entity_id' => [
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'description' => 'Entity ID.',
+      ],
+    ],
+    'primary key' => ['entity_type', 'bundle', 'entity_id'],
+    'indexes' => [
+      'entity_type' => ['entity_type'],
+      'bundle' => ['bundle'],
+      'entity_id' => ['entity_id'],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function cs_demo_install() {
+  if (getenv('OSP_DEMO_CREATE')) {
+    $repository = CsDemoRepository::getInstance();
+    // Create demo content only if the repository is empty. This allows to avoid
+    // duplication of demo content on every run of the persistent operations.
+    if ($repository->isEmpty()) {
+      print 'Started creation of demo content' . PHP_EOL;
+      $items = [];
+      if (getenv('OSP_DEMO_ITEMS')) {
+        $items = _cs_demo_parse_cli_items(getenv('OSP_DEMO_ITEMS'));
+      }
+      $repository->create($items);
+      print 'Finished creation of demo content' . PHP_EOL;
+    }
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function cs_demo_uninstall() {
+  $repository = CsDemoRepository::getInstance();
+  $repository->removeBatch();
+}
+
+/**
+ * Parse items provided through CLI.
+ *
+ * @param string $items_string
+ *   Items as a string to parse.
+ *
+ * @return array
+ *   Multi-dimensional array of items to process. The first level key is an
+ *   entity type and the second is a bundle. Value is a boolean TRUE.
+ */
+function _cs_demo_parse_cli_items($items_string) {
+  $items = [];
+
+  $parsed = explode(',', $items_string);
+  foreach ($parsed as $item) {
+    $parts = array_values(array_filter(explode('-', trim($item))));
+    if (count($parts) == 2) {
+      $items[$parts[0]][$parts[1]] = TRUE;
+    }
+  }
+
+  return $items;
+}

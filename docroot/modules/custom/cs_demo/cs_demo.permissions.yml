@@ -1,0 +1,4 @@
+administer demo content:
+  title: 'Administer demo content'
+  description: 'Allows to provision and remove demo content'
+  restrict access: TRUE
