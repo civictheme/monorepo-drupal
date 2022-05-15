@@ -137,12 +137,29 @@ function _cs_demo_create_node_from_variation_process_civic_page($node, $variatio
     }
   }
 
-  // Content.
-  if (!empty($variation['content']) && $node->hasField('field_c_n_components')) {
-    for ($i = 0; $i < $variation['content']; $i++) {
-      CsDemoHelper::civicParagraphContentAttach($node, 'field_c_n_components', [
-        'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
-      ]);
+  $themes = CsDemoHelper::civicThemes();
+
+  foreach ($themes as $theme) {
+    // Content.
+    if (!empty($variation['content']) && $node->hasField('field_c_n_components')) {
+      for ($i = 0; $i < $variation['content']; $i++) {
+        CsDemoHelper::civicParagraphContentAttach($node, 'field_c_n_components', [
+          'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
+          'theme' => $theme,
+        ]);
+      }
+    }
+
+    // Accordions.
+    if (!empty($variation['accordion']) && $node->hasField('field_c_n_components')) {
+      for ($i = 0; $i < $variation['accordion']; $i++) {
+        CsDemoHelper::civicParagraphAccordionAttach($node, 'field_c_n_components', [
+          'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
+          'panels' => rand(3, 5),
+          'expand_all' => rand(0, 1),
+          'theme' => $theme,
+        ]);
+      }
     }
   }
 

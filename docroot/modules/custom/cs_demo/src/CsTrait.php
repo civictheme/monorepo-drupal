@@ -54,11 +54,13 @@ trait CivicDemoTrait {
     return ['default', 'large'];
   }
 
+
+
   /**
-   * Attach Content paragraph to a node.
+   * Attach paragraph to entity.
    */
-  public static function civicParagraphContentAttach($node, $field_name, $options, $save = FALSE) {
-    if (!$node->hasField($field_name)) {
+  public static function civicParagraphAttach($type, $enity, $field_name, $options, $save = FALSE) {
+    if (!$enity->hasField($field_name)) {
       return;
     }
 
@@ -76,7 +78,7 @@ trait CivicDemoTrait {
     }
 
     $paragraph = Paragraph::create([
-      'type' => 'civic_content',
+      'type' => $type,
     ]);
 
     if (!empty($options['content'])) {
@@ -106,6 +108,90 @@ trait CivicDemoTrait {
 
     if ($save) {
       $paragraph->save();
+    }
+
+    return $paragraph;
+  }
+
+  /**
+   * Attach Content paragraph to a node.
+   */
+  public static function civicParagraphContentAttach($node, $field_name, $options, $save = FALSE) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $paragraph = self::civicParagraphAttach('civictheme_content', $node, $field_name, $options, $save);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
+   * Attach Accordion paragraph to a node.
+   */
+  public static function civicParagraphAccordionAttach($node, $field_name, $options, $save = FALSE) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $paragraph = self::civicParagraphAttach('civictheme_accordion', $node, $field_name, $options, $save);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    // Expand all.
+    if (!empty($options['expand_all'])) {
+      $paragraph->field_c_p_expand = [
+        'value' => (bool) $options['expand_all'],
+      ];
+    }
+
+    // Accordion panels.
+    if (!empty($options['panels'])) {
+      for ($i = 0; $i < $options['panels']; $i++) {
+        $panel = self::civicParagraphAttach('civictheme_accordion_panel', $paragraph, 'field_c_p_panels', [
+          'title' => self::string(),
+          'content' => self::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
+        ]);
+        $panel->field_c_p_expand = [
+          'value' => (bool) rand(0, 1),
+        ];
+        $paragraph->field_c_p_panels->appendItem($panel);
+      }
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
+   * Attach Accordion paragraph to a node.
+   */
+  public static function civicParagraphCalloutAttach($node, $field_name, $options, $save = FALSE) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $paragraph = self::civicParagraphAttach('civictheme_accordion', $node, $field_name, $options, $save);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    // Summary.
+    if (!empty($options['summary'])) {
+      $paragraph->field_c_p_summary = [
+        'value' => self::plainParagraph(),
+      ];
+    }
+
+    // Links.
+    if (!empty($options['links'])) {
+      $paragraph->field_c_p_links = $options['links'];
     }
 
     $node->{$field_name}->appendItem($paragraph);
