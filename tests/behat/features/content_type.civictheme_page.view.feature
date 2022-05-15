@@ -198,15 +198,15 @@ Feature: View of Page content type
       | field_c_p_fill_width   | 0                            |
     And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Tasks cards container" has "civictheme_card_task" paragraph:
       | field_c_p_link    | 0: Test link 1 - 1: https://example.com/card1 |
-      | field_c_p_title   | Card task title 1                             |
+      | field_c_p_title   | Task card title 1                             |
       | field_c_p_summary | Summary text 1                                |
     And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Tasks cards container" has "civictheme_card_task" paragraph:
       | field_c_p_link    | 0: Test link 2 - 1: https://example.com/card2                                                     |
-      | field_c_p_title   | Card task title 2                                                                                 |
+      | field_c_p_title   | Task card title 2                                                                                 |
       | field_c_p_summary | Quisque velit nisi, pretium ut lacinia in, elementum id enim. Nulla porttitor accumsan tincidunt. |
     And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Tasks cards container" has "civictheme_card_task" paragraph:
       | field_c_p_link    | 0: Test link 3 - 1: https://example.com/card3 |
-      | field_c_p_title   | Card task title 3                             |
+      | field_c_p_title   | Task card title 3                             |
       | field_c_p_summary | Summary text 3                                |
 
     When I visit "civictheme_page" "[TEST] Page Tasks cards test"
@@ -218,9 +218,9 @@ Feature: View of Page content type
     And I should see 3 "div.civictheme-navigation-card__title" elements
     And I should see 3 "div.civictheme-navigation-card__summary" elements
     And I should not see an "div.civictheme-subject-card" element
-    Then I should see the link "Card task title 1" with "https://example.com/card1" in 'div.civictheme-navigation-card__title'
-    Then I should see the link "Card task title 1" with "https://example.com/card1" in 'div.civictheme-navigation-card__title'
-    Then I should see the link "Card task title 1" with "https://example.com/card1" in 'div.civictheme-navigation-card__title'
+    Then I should see the link "Task card title 1" with "https://example.com/card1" in 'div.civictheme-navigation-card__title'
+    Then I should see the link "Task card title 1" with "https://example.com/card1" in 'div.civictheme-navigation-card__title'
+    Then I should see the link "Task card title 1" with "https://example.com/card1" in 'div.civictheme-navigation-card__title'
     And save screenshot
 
   @api

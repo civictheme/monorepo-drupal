@@ -8,12 +8,14 @@
  * - items: [array] Array of menu items.
  * - title: [string] Navigation title.
  * - attributes: [string] Additional attributes.
+ * - vertical_space: [string] With top, bottom or both vertical spaces.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-map--vertical-space-%s'|format(vertical_space) : '' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if items is not empty %}
   <div class="civictheme-side-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>

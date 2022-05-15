@@ -30,7 +30,7 @@ Feature: Tests the Card container paragraph
     And the "Label" field should contain "Cards"
     Then the option "Default" from select "Reference method" is selected
     Then the "Include the selected below" checkbox should be checked
-    And the "Card task" checkbox should be checked
+    And the "Task card" checkbox should be checked
     And the "Card container" checkbox should not be checked
 
   @api @javascript

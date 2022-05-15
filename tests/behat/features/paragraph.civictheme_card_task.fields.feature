@@ -1,13 +1,13 @@
 @civictheme @paragraph @civictheme_card_task
-Feature: Tests the Card task paragraph
+Feature: Tests the Task card paragraph
 
-  Ensure that Card task paragraph exists and has the expected fields.
+  Ensure that Task card paragraph exists and has the expected fields.
 
   @api
   Scenario: Paragraph type appears in the paragraph types page
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
-    Then I should see the text "Card task" in the "civictheme_card_task" row
+    Then I should see the text "Task card" in the "civictheme_card_task" row
 
   @api
   Scenario: Content paragraph exists with fields.
