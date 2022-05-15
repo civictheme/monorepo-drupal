@@ -1,7 +1,7 @@
-@civictheme @civictheme_page @civictheme_attachement
+@civictheme @civictheme_page @civictheme_attachment
 Feature: View of Page content
 
-  Ensure that Page content can be viewed correctly with contnet component.
+  Ensure that Page content can be viewed correctly with attachment component.
 
   Background:
     Given managed file:
@@ -14,14 +14,6 @@ Feature: View of Page content
       | name                    | field_c_m_image |
       | [TEST] CivicTheme Image | test_image.jpg  |
 
-    And "civictheme_icon" media:
-      | name                    | field_c_m_icon |
-      | [TEST] CivicTheme SVG   | test_svg.svg   |
-
-    And "civictheme_document" media:
-      | name                    | field_c_m_document |
-      | [TEST] CivicTheme PDF   | test_pdf.pdf       |
-
     And "civictheme_page" content:
       | title                             | status |
       | [TEST] Page attachment test       | 1      |
@@ -29,14 +21,12 @@ Feature: View of Page content
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with attachment light without background
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page attachment test" has "civictheme_attachement" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page attachment test" has "civictheme_attachment" paragraph:
       | field_c_p_title          | [TEST] attachment                  |
       | field_c_p_summary        | Summary text                       |
       | field_c_p_theme          | light                              |
       | field_c_p_background     | 0                                  |
       | field_c_p_image          | [TEST] CivicTheme Image            |
-      | field_c_p_icon           | [TEST] CivicTheme SVG              |
-      | field_c_p_attachments    | [TEST] CivicTheme PDF              |
 
     When I visit "civictheme_page" "[TEST] Page attachment test"
     And I should see an "div.civictheme-attachment" element
@@ -54,14 +44,12 @@ Feature: View of Page content
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with attachment dark with background
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page attachment test" has "civictheme_attachement" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page attachment test" has "civictheme_attachment" paragraph:
       | field_c_p_title          | [TEST] attachment                  |
       | field_c_p_summary        | Summary text                       |
       | field_c_p_theme          | light                              |
       | field_c_p_background     | 1                                  |
       | field_c_p_image          | [TEST] CivicTheme Image            |
-      | field_c_p_icon           | [TEST] CivicTheme SVG              |
-      | field_c_p_attachments    | [TEST] CivicTheme PDF              |
 
     When I visit "civictheme_page" "[TEST] Page attachment test"
     And I should see an "div.civictheme-attachment" element
