@@ -20,7 +20,13 @@ function CivicResponsive() {
     // Only proceed if this query was not processed previously.
     if (!(query in window.civicthemeResponsive)) {
       window.civicthemeResponsive[query] = window.matchMedia(query);
-      window.civicthemeResponsive[query].addEventListener('change', this.mediaQueryChange.bind(this, breakpoint));
+      // Add fallback support for Safari 13.
+      const hasEventListener = (window.civicthemeResponsive[query].addEventListener !== undefined);
+      if (hasEventListener) {
+        window.civicthemeResponsive[query].addEventListener('change', this.mediaQueryChange.bind(this, breakpoint));
+      } else {
+        window.civicthemeResponsive[query].addListener(this.mediaQueryChange.bind(this, breakpoint));
+      }
     }
     // Call event handler on init.
     this.mediaQueryChange(breakpoint, { matches: window.civicthemeResponsive[query].matches });
