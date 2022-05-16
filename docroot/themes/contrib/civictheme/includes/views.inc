@@ -5,6 +5,9 @@
  * Views component alterations.
  */
 
+use Drupal\node\Entity\Node;
+use Drupal\paragraphs\Entity\Paragraph;
+
 /**
  * Page pre-process for views.
  */
@@ -69,9 +72,68 @@ function civictheme_preprocess_views_view(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function civictheme_preprocess_views_view_grid(&$variables) {
+  $view = $variables['view'] ?? NULL;
   // On Grid view title should be added to card container.
   if ($variables['view']->getStyle()->getBaseId() === 'grid' && isset($variables['view']->header['result'])) {
     $variables['modifier_class'] = 'civictheme-card-container--listing civictheme-card-container--with-background';
     $variables['title'] = $variables['view']->header['result']->render();
+    _civictheme_preprocess_views_view_grid__listing_component($variables);
   }
+}
+
+/**
+ * Add `civictheme_listing` paragraph options to view.
+ */
+function _civictheme_preprocess_views_view_grid__listing_component (&$variables) {
+  $listing_paragraph = _civictheme_get_listing_paragraph_from_route();
+  if ($listing_paragraph !== NULL) {
+      $variables['theme'] = $listing_paragraph->get('civic_');
+      $variables['space'] = $listing_paragraph->get('civic_');
+  }
+}
+
+/**
+ * Gets the Listing paragraph from route.
+ *
+ * @return \Drupal\paragraphs\Entity\Paragraph|null
+ *   First Listing paragraph from the node in route or NULL if no listing
+ *   paragraphs are present.
+ */
+function _civictheme_get_listing_paragraph_from_route() {
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  // Handling an ajax request: try and get from query parameters.
+  if (!$node) {
+    $nid = \Drupal::request()->get('nid');
+    if (is_numeric($nid)) {
+      $node = Node::load($nid);
+    }
+  }
+
+  if ($node && $node->bundle() == 'civictheme_page') {
+    if (!$node->get('field_c_n_components')->isEmpty()) {
+      foreach ($node->get('field_c_n_components')->referencedEntities() as $paragraph) {
+        if ($paragraph->getType() == 'civictheme_listing') {
+          return $paragraph;
+        }
+      }
+    }
+  }
+
+  return NULL;
+}
+
+/**
+ * Check if paragraph has a non-empty field.
+ *
+ * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+ *   The paragraph to check.
+ * @param string $field_name
+ *   Field name to check.
+ *
+ * @return bool
+ *   TRUE if the paragraph is not empty and has a non-empty specified field.
+ */
+function _civictheme_paragraph_field_has_value(Paragraph $paragraph, $field_name) {
+  return $paragraph && $paragraph->hasField($field_name) && !$paragraph->get($field_name)->isEmpty();
 }
