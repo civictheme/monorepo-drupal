@@ -33,19 +33,19 @@ settings:
       civictheme_card_container:
         weight: 17
         enabled: false
-      civictheme_card_event_ref:
+      civictheme_event_card_ref:
         weight: 18
         enabled: false
-      civictheme_card_navigation:
+      civictheme_navigation_card:
         weight: 19
         enabled: false
-      civictheme_card_navigation_ref:
+      civictheme_navigation_card_ref:
         weight: 20
         enabled: false
-      civictheme_card_promo_ref:
+      civictheme_promo_card_ref:
         weight: 21
         enabled: false
-      civictheme_card_task:
+      civictheme_task_card:
         weight: 22
         enabled: false
       civictheme_content:

@@ -56,8 +56,8 @@ Feature: Tests the Listing paragraph
     Then select "field_c_n_components[0][subform][field_c_p_content_type]" should have an option "civictheme_event"
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_topics][0][target_id]']" element
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_view_as]']" element
-    Then select "field_c_n_components[0][subform][field_c_p_view_as]" should have an option "civictheme_card_promo"
-    Then select "field_c_n_components[0][subform][field_c_p_view_as]" should have an option "civictheme_card_navigation"
+    Then select "field_c_n_components[0][subform][field_c_p_view_as]" should have an option "civictheme_promo_card"
+    Then select "field_c_n_components[0][subform][field_c_p_view_as]" should have an option "civictheme_navigation_card"
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_read_more][0][uri]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_read_more][0][title]']" element
     And I click on "div.paragraphs-subform .horizontal-tab-button-1 a" element

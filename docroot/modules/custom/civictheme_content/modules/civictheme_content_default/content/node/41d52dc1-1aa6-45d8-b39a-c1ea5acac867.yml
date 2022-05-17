@@ -75,7 +75,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 5f2faf83-4d08-4720-b75d-c3274b7409b6
-                  bundle: civictheme_card_navigation
+                  bundle: civictheme_navigation_card
                   default_langcode: en
                 default:
                   status:
@@ -108,7 +108,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 250b5721-1085-4812-b329-98eb76e8ab02
-                  bundle: civictheme_card_navigation
+                  bundle: civictheme_navigation_card
                   default_langcode: en
                 default:
                   status:
@@ -138,7 +138,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: bca8bb9f-2667-4f6d-a16e-2822a0357d35
-                  bundle: civictheme_card_navigation
+                  bundle: civictheme_navigation_card
                   default_langcode: en
                 default:
                   status:

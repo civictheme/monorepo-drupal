@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  module:
-    - node
-id: node.civictheme_card_navigation
-label: 'Navigation card'
-targetEntityType: node
-cache: true

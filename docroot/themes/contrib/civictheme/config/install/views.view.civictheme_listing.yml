@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.civictheme_card_promo
+    - core.entity_view_mode.node.civictheme_promo_card
     - node.type.civictheme_page
     - taxonomy.vocabulary.civictheme_topics
   module:
@@ -84,7 +84,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: civictheme_card_promo
+          view_mode: civictheme_promo_card
       fields:
         title:
           id: title
