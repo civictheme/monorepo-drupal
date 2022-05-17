@@ -102,7 +102,7 @@ installation of `civictheme_demo`. We do not capture configuration for `civicthe
     # Example 1: export a single node with all dependencies
     drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content node 50
 
-    # Example 2: export all terms, nodes and blocks for Demo content.
+    # Example 2: export all terms, nodes and blocks for Default content.
     drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content taxonomy_term
     drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content node
     drush dcer --folder=modules/custom/civictheme_content/modules/civictheme_content_default/content block_content

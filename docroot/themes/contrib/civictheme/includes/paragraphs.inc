@@ -160,17 +160,17 @@ function _civictheme_get_card_types() {
   // @todo extend to allow for child theme - implement as theme setting.
   return [
     'civictheme_card_container',
-    'civictheme_card_task',
-    'civictheme_card_event_ref',
-    'civictheme_card_event',
-    'civictheme_card_navigation_ref',
-    'civictheme_card_navigation',
-    'civictheme_card_promo',
-    'civictheme_card_promo_ref',
-    'civictheme_card_subject_ref',
-    'civictheme_card_subject',
-    'civictheme_service_card',
+    'civictheme_event_card_ref',
+    'civictheme_event_card',
+    'civictheme_navigation_card_ref',
+    'civictheme_navigation_card',
+    'civictheme_promo_card',
+    'civictheme_promo_card_ref',
     'civictheme_publication_card',
+    'civictheme_subject_card_ref',
+    'civictheme_subject_card',
+    'civictheme_service_card',
+    'civictheme_task_card',
   ];
 }
 

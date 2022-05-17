@@ -33,7 +33,7 @@ settings:
       civictheme_card_container:
         weight: 8
         enabled: false
-      civictheme_card_task:
+      civictheme_task_card:
         weight: 9
         enabled: false
       civictheme_content:
