@@ -31,6 +31,7 @@ require_once 'includes/map.inc';
 require_once 'includes/media.inc';
 require_once 'includes/menu.inc';
 require_once 'includes/mobile_navigation.inc';
+require_once 'includes/next_step.inc';
 require_once 'includes/node.inc';
 require_once 'includes/page.inc';
 require_once 'includes/pager.inc';

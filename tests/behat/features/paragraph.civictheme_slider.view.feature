@@ -1,19 +1,13 @@
-@civictheme @paragraph @civictheme_slider1
+@civictheme @paragraph @civictheme_slider
 Feature: View of Page content with slider component
 
   Ensure that Page content can be viewed correctly with slider component.
 
   Background:
-    Given managed file:
-      | filename       | uri                                     | path             |
-      | test_image1.jpg | public://civictheme_test/test_image1.jpg | test_image.jpg   |
-      | test_image2.jpg   | public://civictheme_test/test_image2.jpg   | test_image.jpg   |
-      | test_image3.jpg   | public://civictheme_test/test_image3.jpg   | test_image.jpg   |
-
-    And "civictheme_image" media:
-      | name                      | field_c_m_image         |
-      | [TEST] CivicTheme Slide 1 | test_image1.jpg         |
-      | [TEST] CivicTheme Slide 2 | test_image2.jpg         |
+    Given "civictheme_image" media:
+      | name                      | field_c_m_image        |
+      | [TEST] CivicTheme Slide 1 | test_image.jpg         |
+      | [TEST] CivicTheme Slide 2 | test_image.jpg         |
 
     And "civictheme_page" content:
       | title                           | status |
@@ -60,13 +54,15 @@ Feature: View of Page content with slider component
     And I should see an "div.civictheme-slider__container" element
     Then I should see the link "[TEST] slider link" with "https://example.com/sliderlink1" in 'div.civictheme-slider__link'
     And I should see an "div.civictheme-slider__slides" element
-    Then I should see the link "[TEST] link 1" with "https://example.com/link1" in 'div.civictheme-slide__links'
+    Then I should see the text "[TEST] slide 1"
+    And I should see the link "[TEST] link 1" with "https://example.com/link1" in 'div.civictheme-slide__links'
     And I should see an "div.civictheme-slider__controls" element
     And I should see the button "Previous"
     And I should see the button "Next"
     And I should see the text "Slide 1 of 2"
     Then I press "Next"
-    And wait 1 second
-    Then I should see the link "[TEST] link 2" with "https://example.com/link2" in 'div.civictheme-slide__links'
+    And wait 2 second
+    Then I should see the text "[TEST] slide 2"
+    And I should see the link "[TEST] link 2" with "https://example.com/link2"
     And I should see the text "Slide 2 of 2"
     And I should see an "div.civictheme-slider__steps" element

@@ -1,31 +1,53 @@
-@civictheme @paragraph @civictheme_callout
-Feature: View of Page content with Callout component
+@civictheme @paragraph @civictheme_next_step @wip1
+Feature: View of Page content with Next steps component
 
-  Ensure that Page content can be viewed correctly with callout component.
+  Ensure that Page content can be viewed correctly with Next steps component.
 
   Background:
     Given "civictheme_page" content:
       | title                           | status |
-      | [TEST] Page callout test        | 1      |
+      | [TEST] Page Next steps test      | 1      |
 
   @api
-  Scenario: CivicTheme page content type page can be viewed by anonymous with callout light without background
+  Scenario: CivicTheme page content type page can be viewed by anonymous with Next steps light with space
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page callout test" has "civictheme_callout" paragraph:
-      | field_c_p_title          | [TEST] callout title               |
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Next steps test" has "civictheme_next_step" paragraph:
+      | field_c_p_title          | [TEST] Next steps title            |
       | field_c_p_theme          | light                              |
       | field_c_p_summary        | Summary text                       |
-      | field_c_p_links          | 0: [TEST] link 1 - 1: https://example.com/link1, 0: [TEST] link 11 - 1: https://example.com/link11 |
+      | field_c_p_space          | both                               |
+      | field_c_p_link           | 0: [TEST] link 1 - 1: https://example.com/link1 |
 
-    When I visit "civictheme_page" "[TEST] Page callout test"
-    And I should see an "div.civictheme-callout" element
-    And I should see an "div.civictheme-callout.civictheme-theme-light" element
-    And I should not see an "div.civictheme-callout.civictheme-theme-dark" element
-    And I should see an "div.civictheme-callout--wrapper" element
-    And I should see an "div.civictheme-callout__text" element
-    And I should see an "div.civictheme-callout__title" element
-    And I should see an "div.civictheme-callout__summary" element
-    And I should see an "div.civictheme-callout__links" element
-    And I should see the text "[TEST] callout title"
-    Then I should see the link "[TEST] link 1" with "https://example.com/link1" in 'div.civictheme-callout__links'
-    Then I should see the link "[TEST] link 11" with "https://example.com/link11" in 'div.civictheme-callout__links'
+    When I visit "civictheme_page" "[TEST] Page Next steps test"
+    And I should see an "a.civictheme-next-steps" element
+    And I should see an "a.civictheme-next-steps.civictheme-theme-light" element
+    And I should not see an "a.civictheme-next-steps.civictheme-theme-dark" element
+    And I should see an "a.civictheme-next-steps.civictheme-next-steps--vertical-space-both" element
+    And I should see an "div.civictheme-next-steps__content" element
+    And I should see an "div.civictheme-next-steps__text" element
+    And I should see the text "[TEST] Next steps title"
+    And I should see an "div.civictheme-next-steps__title" element
+    And I should see an "div.civictheme-next-steps__summary" element
+    And I should see an "div.civictheme-next-steps__icon.civictheme-next-steps__read-more" element
+
+  @api
+  Scenario: CivicTheme page content type page can be viewed by anonymous with next_step dark without space
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Next steps test" has "civictheme_next_step" paragraph:
+      | field_c_p_title          | [TEST] Next steps title            |
+      | field_c_p_theme          | dark                               |
+      | field_c_p_summary        | Summary text                       |
+      | field_c_p_space          | 0                                  |
+      | field_c_p_link           | 0: [TEST] link 1 - 1: https://example.com/link1 |
+
+    When I visit "civictheme_page" "[TEST] Page Next steps test"
+    And I should see an "a.civictheme-next-steps" element
+    And I should not see an "a.civictheme-next-steps.civictheme-theme-light" element
+    And I should see an "a.civictheme-next-steps.civictheme-theme-dark" element
+    And I should not see an "a.civictheme-next-steps.civictheme-next-steps--vertical-space-both" element
+    And I should see an "div.civictheme-next-steps__content" element
+    And I should see an "div.civictheme-next-steps__text" element
+    And I should see the text "[TEST] Next steps title"
+    And I should see an "div.civictheme-next-steps__title" element
+    And I should see an "div.civictheme-next-steps__summary" element
+    And I should see an "div.civictheme-next-steps__icon.civictheme-next-steps__read-more" element
