@@ -103,7 +103,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 768a0953-159d-4ef0-abd5-82cea02ac7d3
-                  bundle: civictheme_card_subject
+                  bundle: civictheme_subject_card
                   default_langcode: en
                 default:
                   status:
@@ -135,7 +135,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: fcf45888-21ec-4809-ae1d-c31ab04f0bd9
-                  bundle: civictheme_card_subject
+                  bundle: civictheme_subject_card
                   default_langcode: en
                 default:
                   status:
@@ -167,7 +167,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: ec331240-a314-4b4b-85b6-5b2d85f13f79
-                  bundle: civictheme_card_subject
+                  bundle: civictheme_subject_card
                   default_langcode: en
                 default:
                   status:
@@ -199,7 +199,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 8db04150-4255-487e-91f1-68ff5b8b77e2
-                  bundle: civictheme_card_subject
+                  bundle: civictheme_subject_card
                   default_langcode: en
                 default:
                   status:

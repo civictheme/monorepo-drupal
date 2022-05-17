@@ -1044,7 +1044,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 3dc33851-57b7-4c25-8188-d8932f4f86cc
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -1073,7 +1073,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 519f0107-3675-420a-b67a-654cc89b7dcc
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -1142,7 +1142,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 368a03a2-a1ae-4cdd-b154-0b908198d86e
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -1171,7 +1171,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 8e9e00f1-72f7-40bb-875a-b1f9fc705691
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -1237,7 +1237,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: ba10843d-f110-4f59-ab96-9ec22d156be0
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -1266,7 +1266,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 3603785c-869f-4723-bbe7-e140d15a0c34
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -1332,7 +1332,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 0e9a2d57-7994-465b-a92e-3297d7e0dec8
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -1361,7 +1361,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 120c52e6-8006-4f7a-9a40-98b615386c58
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -1430,7 +1430,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: eda7a0a6-ac40-404f-a380-3f4dabbf7c68
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -1459,7 +1459,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 7aa938fb-a33c-4fce-87d2-1c669ff94908
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -1525,7 +1525,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 9bc73fc4-0421-4df2-866f-445559a9dab2
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -1554,7 +1554,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 411835a4-6244-420e-91ea-4bf21eeafc01
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:

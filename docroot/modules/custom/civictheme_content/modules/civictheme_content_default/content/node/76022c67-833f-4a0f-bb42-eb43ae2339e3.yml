@@ -9,7 +9,7 @@ _meta:
 default:
   revision_uid:
     -
-      target_id: 16
+      target_id: 1
   status:
     -
       value: true
@@ -61,6 +61,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -83,6 +86,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_links:
                     -
                       uri: 'http://example.com'

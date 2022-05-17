@@ -88,7 +88,7 @@ default:
               value: 'listing title'
           field_c_p_view_as:
             -
-              value: civictheme_card_promo
+              value: civictheme_promo_card
   field_c_n_show_toc:
     -
       value: false

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_location
+    - paragraphs.paragraphs_type.civictheme_event_card
+id: paragraph.civictheme_event_card.field_c_p_location
+field_name: field_c_p_location
+entity_type: paragraph
+bundle: civictheme_event_card
+label: Location
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
