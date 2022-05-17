@@ -5,6 +5,7 @@ namespace Drupal\cs_demo;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
+use Drupal\Core\Url;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\node\NodeInterface;
@@ -289,6 +290,55 @@ class CsDemoHelper implements ContainerInjectionInterface {
   }
 
   /**
+   * Get random allowed target bundles from the field.
+   *
+   * @param string $entity_type
+   *   The entity type.
+   * @param string $bundle
+   *   The bundle.
+   * @param string $field_name
+   *   The field name.
+   * @param int|null $count
+   *   Optional values count to return. If NULL - all values will be returned.
+   *   If specified - this count of already randomised values will be returned.
+   *
+   * @return array
+   *   Array of allowed values.
+   */
+  public static function randomFieldAllowedBundles($entity_type, $bundle, $field_name, $count = NULL) {
+    $allowed_values = [];
+
+    $field_info = FieldConfig::loadByName($entity_type, $bundle, $field_name);
+    if ($field_info) {
+      if ($field_info->getType() == 'entity_reference') {
+        $allowed_values = $field_info->getSetting('handler_settings')['target_bundles'];
+      }
+    }
+
+    $allowed_values = array_keys($allowed_values);
+
+    return $count ? CsDemoRandom::arrayItems($allowed_values, $count) : $allowed_values;
+  }
+
+  /**
+   * Get random allowed target bundle from the field.
+   *
+   * @param string $entity_type
+   *   The entity type.
+   * @param string $bundle
+   *   The bundle.
+   * @param string $field_name
+   *   The field name.
+   *
+   * @return array
+   *   A single allowed value.
+   */
+  public static function randomFieldAllowedBundle($entity_type, $bundle, $field_name) {
+    $allowed_values = self::randomFieldAllowedBundles($entity_type, $bundle, $field_name, 1);
+    return !empty($allowed_values) ? reset($allowed_values) : NULL;
+  }
+
+  /**
    * Helper to filter only demo entities.
    */
   protected static function filterDemoEntities($entities, $entity_type, $bundle) {
@@ -565,5 +615,101 @@ class CsDemoHelper implements ContainerInjectionInterface {
   /**
    * @} End of "defgroup generic".
    */
+
+  /**
+   * Select random media images.
+   *
+   * @param bool|int $count
+   *   Optional count of images. If FALSE, all available images will be
+   *   returned.
+   *
+   * @return \Drupal\media\Entity\Media[]
+   *   Array of media entities.
+   */
+  public static function randomImages($count = FALSE) {
+    $media = self::$repository->getEntities('media', 'civic_image');
+    return $count ? CsDemoRandom::arrayItems($media, $count) : $media;
+  }
+
+  /**
+   * Select a random media image.
+   *
+   * @return \Drupal\media\Entity\Media
+   *   The media entity.
+   */
+  public static function randomImage() {
+    $media = self::randomImages(1);
+    return !empty($media) ? reset($media) : NULL;
+  }
+
+  /**
+   * Select random media documents.
+   *
+   * @param bool|int $count
+   *   Optional count of documents. If FALSE, all available documents will be
+   *   returned.
+   *
+   * @return \Drupal\media\Entity\Media[]
+   *   Array of media entities.
+   */
+  public static function randomDocuments($count = FALSE) {
+    $media = self::$repository->getEntities('media', 'civic_document');
+    return $count ? CsDemoRandom::arrayItems($media, $count) : $media;
+  }
+
+  /**
+   * Select a random media document.
+   *
+   * @return \Drupal\media\Entity\Media
+   *   The media entity.
+   */
+  public static function randomDocument() {
+    $media = self::randomDocuments(1);
+    return !empty($media) ? reset($media) : NULL;
+  }
+
+  /**
+   * Select a random Page.
+   *
+   * @return \Drupal\node\Entity\Node
+   *   Node entity.
+   */
+  public static function randomPage() {
+    return static::randomNode('civic_page');
+  }
+
+  /**
+   * Generate a random link field from a random page.
+   *
+   * @return array
+   *   Link field.
+   */
+  public static function randomLinkFieldValue() {
+    $page = self::randomPage();
+    if ($page) {
+      return [
+        'uri' => 'entity:node/' . $page->id(),
+        'title' => $page->getTitle(),
+      ];
+    }
+
+    return [];
+  }
+
+  /**
+   * Select random Topics.
+   *
+   * @param bool|int $count
+   *   Optional count of topics. If FALSE, all available topics will be
+   *   returned.
+   *
+   * @return \Drupal\taxonomy\Entity\Term[]
+   *   Array of terms.
+   */
+  public static function randomTopics($count = FALSE) {
+    $terms = self::$repository->getEntities('taxonomy_term', 'civictheme_topics');
+
+    return $count ? CsDemoRandom::arrayItems($terms, $count) : $terms;
+  }
 
 }

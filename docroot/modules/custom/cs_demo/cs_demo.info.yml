@@ -1,11 +1,12 @@
-name: OSP Demo Content
+name: CivicTheme Demo Content
 type: module
 description: Demo content.
 core_version_requirement: ^8 || ^9
 version: 8.x-1.0
-package: osp
+package: civictheme
 dependencies:
   - config_update:config_filter
   - config_update:config_ignore
   - config_update:config_update
   - default_content:default_content
+  - drupal:dblog

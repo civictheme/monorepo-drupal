@@ -38,13 +38,15 @@ function cs_demo_create_node_civic_page() {
   /** @var Drupal\cs_demo\CsDemoHelper $helper */
   $helper = CsDemoHelper::getInstance();
 
+  $types = CsDemoHelper::randomFieldAllowedBundles('node', 'civictheme_page', 'field_c_n_banner_components', 2);
+  $types = array_combine($types, [rand(1, 2), rand(1, 3), rand(1, 3)]);
+
   for ($i = 0; $i < $total_nodes; $i++) {
     $variation = CsDemoHelper::variationRandom([
       'status' => NULL,
       'summary' => NULL,
       'thumbnail' => NULL,
       'space' => 'both',
-      'content' => rand(0, 5),
       'toc' => NULL,
       'topics' => rand(0, 5),
       'banner_type' => CsDemoRandom::arrayItem(CsDemoHelper::civicBannerTypes()),
@@ -53,7 +55,7 @@ function cs_demo_create_node_civic_page() {
       'banner_featured_image' => NULL,
       'banner_components' => rand(0, 2),
       'banner_components_bottom' => rand(0, 2),
-    ]);
+    ] + $types);
 
     $variation_info = CsDemoHelper::variationFormatInfo($variation);
     $title = sprintf('Demo Page %s %s (%s)', count($nodes) + 1, CsDemoRandom::sentence(1, 1), $variation_info);
@@ -138,10 +140,13 @@ function _cs_demo_create_node_from_variation_process_civic_page($node, $variatio
   }
 
   $themes = CsDemoHelper::civicThemes();
+  $theme_prefix = 'civictheme_';
 
   foreach ($themes as $theme) {
+    $types = array_filter($variation, function($key) { return(strpos($key,'civictheme_') !== false); }, ARRAY_FILTER_USE_KEY);
+
     // Content.
-    if (!empty($variation['content']) && $node->hasField('field_c_n_components')) {
+    if (!empty($types['content']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['content']; $i++) {
         CsDemoHelper::civicParagraphContentAttach($node, 'field_c_n_components', [
           'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
@@ -150,12 +155,14 @@ function _cs_demo_create_node_from_variation_process_civic_page($node, $variatio
       }
     }
 
-    // Accordions.
-    if (!empty($variation['accordion']) && $node->hasField('field_c_n_components')) {
-      for ($i = 0; $i < $variation['accordion']; $i++) {
+    if(!empty($types['content']) && $node->hasField('field_c_n_components')) {
+      for ($i = 0; $i < $variation[$theme_prefix . 'accordion']; $i++) {
         CsDemoHelper::civicParagraphAccordionAttach($node, 'field_c_n_components', [
           'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
-          'panels' => rand(3, 5),
+          'panels' => [
+            'title' => CsDemoRandom::sentence(5, 20),
+            'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
+            ],
           'expand_all' => rand(0, 1),
           'theme' => $theme,
         ]);
