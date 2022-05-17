@@ -14,6 +14,14 @@ Feature: View of Page content
       | name                    | field_c_m_image |
       | [TEST] CivicTheme Image | test_image.jpg  |
 
+    And "civictheme_icon" media:
+      | name                    | field_c_m_icon |
+      | [TEST] CivicTheme SVG   | test_svg.svg   |
+
+    And "civictheme_document" media:
+      | name                    | field_c_m_document |
+      | [TEST] CivicTheme PDF   | test_pdf.pdf       |
+
     And "civictheme_page" content:
       | title                             | status |
       | [TEST] Page attachment test       | 1      |
@@ -27,6 +35,8 @@ Feature: View of Page content
       | field_c_p_theme          | light                              |
       | field_c_p_background     | 0                                  |
       | field_c_p_image          | [TEST] CivicTheme Image            |
+      | field_c_p_icon           | [TEST] CivicTheme SVG              |
+      | field_c_p_attachments    | [TEST] CivicTheme PDF              |
 
     When I visit "civictheme_page" "[TEST] Page attachment test"
     And I should see an "div.civictheme-attachment" element
@@ -47,13 +57,15 @@ Feature: View of Page content
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page attachment test" has "civictheme_attachment" paragraph:
       | field_c_p_title          | [TEST] attachment                  |
       | field_c_p_summary        | Summary text                       |
-      | field_c_p_theme          | light                              |
+      | field_c_p_theme          | dark                               |
       | field_c_p_background     | 1                                  |
       | field_c_p_image          | [TEST] CivicTheme Image            |
+      | field_c_p_icon           | [TEST] CivicTheme SVG              |
+      | field_c_p_attachments    | [TEST] CivicTheme PDF              |
 
     When I visit "civictheme_page" "[TEST] Page attachment test"
     And I should see an "div.civictheme-attachment" element
-    And I should see an "div.civictheme-attachment.civictheme-content--with-background" element
+    And I should see an "div.civictheme-attachment.civictheme-attachment--with-background" element
     And I should see an "div.civictheme-attachment.civictheme-theme-dark" element
     And I should see an "div.civictheme-attachment__content" element
     And I should see an "div.civictheme-attachment__text" element
