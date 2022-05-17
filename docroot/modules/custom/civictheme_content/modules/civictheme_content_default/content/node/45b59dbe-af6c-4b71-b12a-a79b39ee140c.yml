@@ -16,7 +16,7 @@ _meta:
 default:
   revision_uid:
     -
-      target_id: 16
+      target_id: 1
   status:
     -
       value: true
@@ -62,6 +62,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -91,6 +94,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
@@ -113,6 +119,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -137,6 +146,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -161,6 +173,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -185,6 +200,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -225,6 +243,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_content_type:
             -
               value: civictheme_page
@@ -295,6 +316,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
@@ -327,6 +351,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: e07cdb41-1bd4-463f-9e7c-126302b24740
@@ -359,6 +386,9 @@ default:
                   behavior_settings:
                     -
                       value: {  }
+                  revision_translation_affected:
+                    -
+                      value: true
                   field_c_p_image:
                     -
                       entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
@@ -441,6 +471,9 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_links:
             -
               uri: 'internal:/'
