@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: civictheme_event_card_ref
+label: 'Event reference card'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

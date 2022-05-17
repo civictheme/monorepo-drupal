@@ -76,7 +76,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 1e08a383-52f9-4b92-9647-131379649571
-                  bundle: civictheme_card_event_ref
+                  bundle: civictheme_event_card_ref
                   default_langcode: en
                 default:
                   status:
@@ -103,7 +103,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 36718026-b078-4652-9793-a11077efbced
-                  bundle: civictheme_card_event_ref
+                  bundle: civictheme_event_card_ref
                   default_langcode: en
                 default:
                   status:
@@ -130,7 +130,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 70b33c74-6b94-461b-90e4-0e52354703d1
-                  bundle: civictheme_card_event_ref
+                  bundle: civictheme_event_card_ref
                   default_langcode: en
                 default:
                   status:
@@ -157,7 +157,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 84b3af58-4d29-4a21-a009-20463b1d6d6d
-                  bundle: civictheme_card_event_ref
+                  bundle: civictheme_event_card_ref
                   default_langcode: en
                 default:
                   status:

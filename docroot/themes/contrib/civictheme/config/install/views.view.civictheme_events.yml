@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.civictheme_card_event
+    - core.entity_view_mode.node.civictheme_event_card
     - node.type.civictheme_event
   module:
     - datetime
@@ -83,7 +83,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: civictheme_card_event
+          view_mode: civictheme_event_card
       fields:
         title:
           id: title

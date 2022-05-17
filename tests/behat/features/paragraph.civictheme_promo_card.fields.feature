@@ -1,4 +1,4 @@
-@civictheme @paragraph @civictheme_card_promo
+@civictheme @paragraph @civictheme_promo_card
 Feature: Tests the Promo card
 
   Ensure that Promo card paragraph exists and has the expected fields.
@@ -7,12 +7,12 @@ Feature: Tests the Promo card
   Scenario: Paragraph type appears in the paragraph types page
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
-    Then I should see the text "Promo card" in the "civictheme_card_promo" row
+    Then I should see the text "Promo card" in the "civictheme_promo_card" row
 
   @api
   Scenario: Content paragraph exists with fields.
     Given I am logged in as a user with the "Administrator" role
-    When I go to "admin/structure/paragraphs_type/civictheme_card_promo/fields"
+    When I go to "admin/structure/paragraphs_type/civictheme_promo_card/fields"
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_summary" in the "Summary" row
@@ -33,7 +33,7 @@ Feature: Tests the Promo card
     And I wait for AJAX to finish
     And I click on "div.field--name-field-c-n-banner-components .field--name-field-c-p-cards .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
-    And I press the "field_c_n_banner_components_0_subform_field_c_p_cards_civictheme_card_promo_add_more" button
+    And I press the "field_c_n_banner_components_0_subform_field_c_p_cards_civictheme_promo_card_add_more" button
     And I wait for AJAX to finish
     And should see an "select[name='field_c_n_banner_components[0][subform][field_c_p_cards][0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_n_banner_components[0][subform][field_c_p_cards][0][subform][field_c_p_theme]'].required" element
@@ -59,7 +59,7 @@ Feature: Tests the Promo card
     And I wait for AJAX to finish
     And I click on "div.field--name-field-c-n-components .field--name-field-c-p-cards .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
-    And I press the "field_c_n_components_0_subform_field_c_p_cards_civictheme_card_promo_add_more" button
+    And I press the "field_c_n_components_0_subform_field_c_p_cards_civictheme_promo_card_add_more" button
     And I wait for AJAX to finish
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_theme]'].required" element
