@@ -1093,7 +1093,7 @@ default:
       value: both
   field_c_n_summary:
     -
-      value: 'Demo Page to demonstrate the cards in civictheme theme.'
+      value: 'Demo Page to demonstrate the cards in CivicTheme theme.'
   field_c_n_thumbnail:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
