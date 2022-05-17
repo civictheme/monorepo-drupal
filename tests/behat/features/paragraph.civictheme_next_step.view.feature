@@ -1,4 +1,4 @@
-@civictheme @paragraph @civictheme_next_step @wip1
+@civictheme @paragraph @civictheme_next_step
 Feature: View of Page content with Next steps component
 
   Ensure that Page content can be viewed correctly with Next steps component.
