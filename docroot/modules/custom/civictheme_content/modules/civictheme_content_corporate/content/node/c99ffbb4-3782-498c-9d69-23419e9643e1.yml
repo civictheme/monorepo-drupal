@@ -146,7 +146,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: d6dc3a06-f158-424a-ae48-7ca628faad65
-                  bundle: civictheme_card_navigation
+                  bundle: civictheme_navigation_card
                   default_langcode: en
                 default:
                   status:
@@ -218,7 +218,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 53bd289f-a725-4c47-b40f-34998e5d863e
-                  bundle: civictheme_card_subject
+                  bundle: civictheme_subject_card
                   default_langcode: en
                 default:
                   status:
@@ -253,7 +253,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 3a2e58c6-91fe-42a7-91e8-da99ed398100
-                  bundle: civictheme_card_subject
+                  bundle: civictheme_subject_card
                   default_langcode: en
                 default:
                   status:
@@ -288,7 +288,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 2182295a-3915-4993-ae70-0cbd84ec4315
-                  bundle: civictheme_card_subject
+                  bundle: civictheme_subject_card
                   default_langcode: en
                 default:
                   status:
@@ -323,7 +323,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: cdbeb5c7-c9d8-4b05-a8cb-98707a712c25
-                  bundle: civictheme_card_subject
+                  bundle: civictheme_subject_card
                   default_langcode: en
                 default:
                   status:
@@ -358,7 +358,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: b325bf08-1364-497c-9c67-467a3e81703f
-                  bundle: civictheme_card_subject
+                  bundle: civictheme_subject_card
                   default_langcode: en
                 default:
                   status:

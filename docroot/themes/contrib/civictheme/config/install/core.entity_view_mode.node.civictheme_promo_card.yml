@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.civictheme_promo_card
+label: 'Promo Card'
+targetEntityType: node
+cache: true

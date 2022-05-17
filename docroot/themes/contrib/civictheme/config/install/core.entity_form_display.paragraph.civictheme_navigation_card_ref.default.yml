@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_navigation_card_ref.field_c_p_reference
+    - field.field.paragraph.civictheme_navigation_card_ref.field_c_p_theme
+    - paragraphs.paragraphs_type.civictheme_navigation_card_ref
+id: paragraph.civictheme_navigation_card_ref.default
+targetEntityType: paragraph
+bundle: civictheme_navigation_card_ref
+mode: default
+content:
+  field_c_p_reference:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_c_p_theme:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  created: true
+  status: true

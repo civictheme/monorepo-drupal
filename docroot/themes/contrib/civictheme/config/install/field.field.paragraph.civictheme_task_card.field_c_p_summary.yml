@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_summary
+    - paragraphs.paragraphs_type.civictheme_task_card
+id: paragraph.civictheme_task_card.field_c_p_summary
+field_name: field_c_p_summary
+entity_type: paragraph
+bundle: civictheme_task_card
+label: Summary
+description: 'The summary field may contain up to 100 characters. Any characters past the 100 character limit will not show for users.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

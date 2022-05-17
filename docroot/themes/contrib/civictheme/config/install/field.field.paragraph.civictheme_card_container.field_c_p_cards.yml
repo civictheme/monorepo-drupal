@@ -4,17 +4,17 @@ dependencies:
   config:
     - field.storage.paragraph.field_c_p_cards
     - paragraphs.paragraphs_type.civictheme_card_container
-    - paragraphs.paragraphs_type.civictheme_card_event
-    - paragraphs.paragraphs_type.civictheme_card_event_ref
-    - paragraphs.paragraphs_type.civictheme_card_navigation
-    - paragraphs.paragraphs_type.civictheme_card_navigation_ref
-    - paragraphs.paragraphs_type.civictheme_card_promo
-    - paragraphs.paragraphs_type.civictheme_card_promo_ref
-    - paragraphs.paragraphs_type.civictheme_card_subject
-    - paragraphs.paragraphs_type.civictheme_card_subject_ref
-    - paragraphs.paragraphs_type.civictheme_card_task
+    - paragraphs.paragraphs_type.civictheme_event_card
+    - paragraphs.paragraphs_type.civictheme_event_card_ref
+    - paragraphs.paragraphs_type.civictheme_navigation_card
+    - paragraphs.paragraphs_type.civictheme_navigation_card_ref
+    - paragraphs.paragraphs_type.civictheme_promo_card
+    - paragraphs.paragraphs_type.civictheme_promo_card_ref
     - paragraphs.paragraphs_type.civictheme_publication_card
     - paragraphs.paragraphs_type.civictheme_service_card
+    - paragraphs.paragraphs_type.civictheme_subject_card
+    - paragraphs.paragraphs_type.civictheme_subject_card_ref
+    - paragraphs.paragraphs_type.civictheme_task_card
   module:
     - entity_reference_revisions
 id: paragraph.civictheme_card_container.field_c_p_cards
@@ -32,16 +32,16 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      civictheme_card_task: civictheme_card_task
-      civictheme_card_navigation: civictheme_card_navigation
+      civictheme_task_card: civictheme_task_card
+      civictheme_navigation_card: civictheme_navigation_card
       civictheme_service_card: civictheme_service_card
-      civictheme_card_promo_ref: civictheme_card_promo_ref
-      civictheme_card_event_ref: civictheme_card_event_ref
-      civictheme_card_navigation_ref: civictheme_card_navigation_ref
-      civictheme_card_event: civictheme_card_event
-      civictheme_card_promo: civictheme_card_promo
-      civictheme_card_subject_ref: civictheme_card_subject_ref
-      civictheme_card_subject: civictheme_card_subject
+      civictheme_promo_card_ref: civictheme_promo_card_ref
+      civictheme_event_card_ref: civictheme_event_card_ref
+      civictheme_navigation_card_ref: civictheme_navigation_card_ref
+      civictheme_event_card: civictheme_event_card
+      civictheme_promo_card: civictheme_promo_card
+      civictheme_subject_card_ref: civictheme_subject_card_ref
+      civictheme_subject_card: civictheme_subject_card
       civictheme_publication_card: civictheme_publication_card
     target_bundles_drag_drop:
       civictheme_accordion:
@@ -59,31 +59,31 @@ settings:
       civictheme_card_container:
         weight: 4
         enabled: false
-      civictheme_card_event:
+      civictheme_event_card:
         enabled: true
         weight: 15
-      civictheme_card_event_ref:
+      civictheme_event_card_ref:
         enabled: true
         weight: 13
-      civictheme_card_navigation:
+      civictheme_navigation_card:
         enabled: true
         weight: 8
-      civictheme_card_navigation_ref:
+      civictheme_navigation_card_ref:
         enabled: true
         weight: 15
-      civictheme_card_promo:
+      civictheme_promo_card:
         enabled: true
         weight: 15
-      civictheme_card_promo_ref:
+      civictheme_promo_card_ref:
         enabled: true
         weight: 12
-      civictheme_card_subject:
+      civictheme_subject_card:
         enabled: true
         weight: 21
-      civictheme_card_subject_ref:
+      civictheme_subject_card_ref:
         enabled: true
         weight: 21
-      civictheme_card_task:
+      civictheme_task_card:
         enabled: true
         weight: 5
       civictheme_content:

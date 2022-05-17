@@ -36,28 +36,28 @@ Feature: View of Page content type
       | field_c_p_column_count | 4                                                |
       | field_c_p_header_link  | 0: View all promo cards - 1: https://example.com |
       | field_c_p_fill_width   | 0                                                |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Promo card container" has "civictheme_card_promo" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Promo card container" has "civictheme_promo_card" paragraph:
       | field_c_p_date    | 2021-04-30                            |
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
       | field_c_p_summary | Summary text                          |
       | field_c_p_theme   | light                                 |
       | field_c_p_title   | Promo card title                      |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Promo card container" has "civictheme_card_promo" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Promo card container" has "civictheme_promo_card" paragraph:
       | field_c_p_date    | 2021-04-30                            |
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
       | field_c_p_summary | Summary text 2                        |
       | field_c_p_theme   | dark                                  |
       | field_c_p_title   | Promo card title 1                    |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Promo card container" has "civictheme_card_promo" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Promo card container" has "civictheme_promo_card" paragraph:
       | field_c_p_date    | 2021-04-30                            |
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
       | field_c_p_summary | Summary text 3                        |
       | field_c_p_theme   | dark                                  |
       | field_c_p_title   | Promo card title 2                    |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Promo card container" has "civictheme_card_promo" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Promo card container" has "civictheme_promo_card" paragraph:
       | field_c_p_date    | 2021-04-30                            |
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
@@ -82,25 +82,25 @@ Feature: View of Page content type
       | field_c_p_column_count | 4                                                     |
       | field_c_p_header_link  | 0: View all navigation cards - 1: https://example.com |
       | field_c_p_fill_width   | 0                                                     |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Navigation card container" has "civictheme_card_navigation" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Navigation card container" has "civictheme_navigation_card" paragraph:
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
       | field_c_p_summary | Summary text                          |
       | field_c_p_theme   | light                                 |
       | field_c_p_title   | Navigation card title                 |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Navigation card container" has "civictheme_card_navigation" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Navigation card container" has "civictheme_navigation_card" paragraph:
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
       | field_c_p_summary | Summary text 2                        |
       | field_c_p_theme   | dark                                  |
       | field_c_p_title   | Navigation card title 1               |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Navigation card container" has "civictheme_card_navigation" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Navigation card container" has "civictheme_navigation_card" paragraph:
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
       | field_c_p_summary | Summary text 3                        |
       | field_c_p_theme   | dark                                  |
       | field_c_p_title   | Navigation card title 2               |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Navigation card container" has "civictheme_card_navigation" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Navigation card container" has "civictheme_navigation_card" paragraph:
       | field_c_p_image   | [TEST] CivicTheme Image               |
       | field_c_p_link    | 0: Test link - 1: https://example.com |
       | field_c_p_summary | Summary text 3                        |
@@ -126,17 +126,17 @@ Feature: View of Page content type
       | field_c_p_column_count | 3                                                  |
       | field_c_p_header_link  | 0: View all Subject cards - 1: https://example.com |
       | field_c_p_fill_width   | 0                                                  |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Subject card container" has "civictheme_card_subject" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Subject card container" has "civictheme_subject_card" paragraph:
       | field_c_p_image | [TEST] CivicTheme Image               |
       | field_c_p_link  | 0: Test link - 1: https://example.com |
       | field_c_p_theme | light                                 |
       | field_c_p_title | Subject card title                    |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Subject card container" has "civictheme_card_subject" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Subject card container" has "civictheme_subject_card" paragraph:
       | field_c_p_image | [TEST] CivicTheme Image               |
       | field_c_p_link  | 0: Test link - 1: https://example.com |
       | field_c_p_theme | dark                                  |
       | field_c_p_title | Subject card title 1                  |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Subject card container" has "civictheme_card_subject" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Subject card container" has "civictheme_subject_card" paragraph:
       | field_c_p_link  | 0: Test link - 1: https://example.com |
       | field_c_p_theme | dark                                  |
       | field_c_p_title | Subject card title 2                  |
@@ -196,15 +196,15 @@ Feature: View of Page content type
       | field_c_p_title        | [TEST] Tasks cards container |
       | field_c_p_column_count | 3                            |
       | field_c_p_fill_width   | 0                            |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Tasks cards container" has "civictheme_card_task" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Tasks cards container" has "civictheme_task_card" paragraph:
       | field_c_p_link    | 0: Test link 1 - 1: https://example.com/card1 |
       | field_c_p_title   | Task card title 1                             |
       | field_c_p_summary | Summary text 1                                |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Tasks cards container" has "civictheme_card_task" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Tasks cards container" has "civictheme_task_card" paragraph:
       | field_c_p_link    | 0: Test link 2 - 1: https://example.com/card2                                                     |
       | field_c_p_title   | Task card title 2                                                                                 |
       | field_c_p_summary | Quisque velit nisi, pretium ut lacinia in, elementum id enim. Nulla porttitor accumsan tincidunt. |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Tasks cards container" has "civictheme_card_task" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Tasks cards container" has "civictheme_task_card" paragraph:
       | field_c_p_link    | 0: Test link 3 - 1: https://example.com/card3 |
       | field_c_p_title   | Task card title 3                             |
       | field_c_p_summary | Summary text 3                                |
@@ -230,16 +230,16 @@ Feature: View of Page content type
       | field_c_p_title        | [TEST] Reference cards container |
       | field_c_p_column_count | 3                                |
       | field_c_p_fill_width   | 0                                |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_card_event_ref" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_event_card_ref" paragraph:
       | field_c_p_reference | [TEST] Reference Page Event cards test |
       | field_c_p_theme     | light                                  |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_card_subject_ref" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_subject_card_ref" paragraph:
       | field_c_p_reference | [TEST] Page Promo cards test |
       | field_c_p_theme     | light                        |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_card_navigation_ref" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_navigation_card_ref" paragraph:
       | field_c_p_reference | [TEST] Page Promo cards test |
       | field_c_p_theme     | dark                         |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_card_promo_ref" paragraph:
+    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Reference cards container" has "civictheme_promo_card_ref" paragraph:
       | field_c_p_reference | [TEST] Page Promo cards test |
       | field_c_p_theme     | light                        |
 
