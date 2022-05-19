@@ -5,11 +5,11 @@ namespace Drupal\cs_demo;
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**
- * Trait CivicDemoTrait.
+ * Trait CsDemoTrait.
  *
- * Trait for centralised Civic components handling.
+ * Trait for centralised Civic theme components handling.
  */
-trait CivicDemoTrait {
+trait CsDemoTrait {
 
   /**
    * Light theme name.

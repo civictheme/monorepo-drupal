@@ -13,21 +13,21 @@ use Drupal\cs_demo\CsDemoRandom;
 /**
  * Implements hook_cs_demo_create_ENTITY_TYPE_BUNDLE_weight().
  */
-function cs_demo_create_media_civic_document_weight() {
+function cs_demo_create_media_civictheme_document_weight() {
   return 0;
 }
 
 /**
  * Implements hook_cs_demo_create_ENTITY_TYPE_BUNDLE_tracking().
  */
-function cs_demo_create_media_civic_document_tracking() {
+function cs_demo_create_media_civictheme_document_tracking() {
   return TRUE;
 }
 
 /**
  * Implements hook_cs_demo_create_ENTITY_TYPE_BUNDLE().
  */
-function cs_demo_create_media_civic_document() {
+function cs_demo_create_media_civictheme_document() {
   $helper = CsDemoHelper::getInstance();
   /** @var \Drupal\cs_demo\OspGenerator $generator */
   $generator = Drupal::getContainer()->get('cs_demo.generator');
@@ -57,7 +57,7 @@ function cs_demo_create_media_civic_document() {
     ]);
 
     $media = Media::create([
-      'bundle' => 'civic_document',
+      'bundle' => 'civictheme_document',
       'name' => $name,
       'status' => $variation['status'],
     ]);

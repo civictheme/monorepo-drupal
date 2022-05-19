@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class CsDemoHelper implements ContainerInjectionInterface {
 
   use CsDemoVariationTrait;
-  use CivicDemoTrait;
+  use CsDemoTrait;
 
   /**
    * The helper singleton.
@@ -310,12 +310,13 @@ class CsDemoHelper implements ContainerInjectionInterface {
 
     $field_info = FieldConfig::loadByName($entity_type, $bundle, $field_name);
     if ($field_info) {
-      if ($field_info->getType() == 'entity_reference') {
+      if ($field_info->getType() == 'entity_reference_revisions') {
         $allowed_values = $field_info->getSetting('handler_settings')['target_bundles'];
       }
     }
 
     $allowed_values = array_keys($allowed_values);
+    $allowed_values = array_map(function($v) { return(str_replace('civictheme_', '', $v)); }, $allowed_values);
 
     return $count ? CsDemoRandom::arrayItems($allowed_values, $count) : $allowed_values;
   }
