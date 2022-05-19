@@ -31,25 +31,25 @@ function cs_demo_create_node_civictheme_page_tracking() {
  * Implements hook_cs_demo_create_ENTITY_TYPE_BUNDLE().
  */
 function cs_demo_create_node_civictheme_page() {
-  $total_nodes = 5;
+  $total_nodes = 20;
 
   $nodes = [];
 
   /** @var Drupal\cs_demo\CsDemoHelper $helper */
   $helper = CsDemoHelper::getInstance();
 
-  $types = CsDemoHelper::randomFieldAllowedBundles('node', 'civictheme_page', 'field_c_n_components', 3);
-
-  if (!is_array($types) && count($types) > 3){
-    $types = array_combine($types, [rand(1, 2), rand(1, 3), rand(1, 3)]);
-  }
-  else {
-    $types = [
-      'content' => rand(1,2),
-    ];
-  }
-
   for ($i = 0; $i < $total_nodes; $i++) {
+    $types = CsDemoHelper::randomFieldAllowedBundles('node', 'civictheme_page', 'field_c_n_components', 3);
+
+    if (is_array($types) && count($types) == 3){
+      $types = array_combine(array_values($types), [rand(1, 2), rand(1, 3), rand(1, 3)]);
+    }
+    else {
+      $types = [
+        'content' => rand(1,2),
+      ];
+    }
+
     $variation = CsDemoHelper::variationRandom([
       'status' => NULL,
       'summary' => NULL,
@@ -156,20 +156,186 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
         CsDemoHelper::civicParagraphContentAttach($node, 'field_c_n_components', [
           'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
           'theme' => $theme,
+          'background' => CsDemoRandom::bool(66),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
         ]);
       }
     }
 
-    if(!empty($variation['accordion']) && $node->hasField('field_c_n_components')) {
+    // Accordion.
+    if (!empty($variation['accordion']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['accordion']; $i++) {
+
+        $count_per_group = rand(4, 8);
+        $accordion_options = [];
+        for ($j = 0; $j < $count_per_group; $j++) {
+          $accordion_options[] = [
+            'title' => 'A H ' . ($j + 1) . ' ' . CsDemoRandom::sentence(1),
+            'content' => CsDemoRandom::richText(3, 8),
+            'expand' => rand(0, 1),
+          ];
+        }
+
         CsDemoHelper::civicParagraphAccordionAttach($node, 'field_c_n_components', [
-          'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
-          'panels' => [
-            'title' => CsDemoRandom::sentence(5, 20),
-            'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
-            ],
+          'title' => CsDemoRandom::bool(33) ? 'AG H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
+          'panels' => $accordion_options,
           'expand_all' => rand(0, 1),
           'theme' => $theme,
+          'background' => CsDemoRandom::bool(),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+        ]);
+      }
+    }
+
+    // Callout.
+    if (!empty($variation['callout']) && $node->hasField('field_c_n_components')) {
+      for ($i = 0; $i < $variation['callout']; $i++) {
+        CsDemoHelper::civicParagraphCalloutAttach($node, 'field_c_n_components', [
+          'title' => 'C H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1),
+          'summary' => CsDemoRandom::plainParagraph(),
+          'link' => [
+            'uri' => CsDemoRandom::url(),
+            'title' => CsDemoRandom::sentence(2, 5),
+          ],
+          'theme' => $theme,
+          'background' => CsDemoRandom::bool(),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+        ]);
+      }
+    }
+
+    // Next steps.
+    if (!empty($variation['next_step']) && $node->hasField('field_c_n_components')) {
+      for ($i = 0; $i < $variation['next_step']; $i++) {
+        CsDemoHelper::civicParagraphNextStepAttach($node, 'field_c_n_components', [
+          'title' => 'NS H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1),
+          'summary' => CsDemoRandom::plainParagraph(),
+          'links' => [
+            [
+              'uri' => CsDemoRandom::url(),
+              'title' => CsDemoRandom::sentence(2, 5),
+            ],
+            [
+              'uri' => CsDemoRandom::url(),
+              'title' => CsDemoRandom::sentence(2, 5),
+            ],
+            [
+              'uri' => CsDemoRandom::url(),
+              'title' => CsDemoRandom::sentence(2, 5),
+            ],
+          ],
+          'image' => CsDemoHelper::randomImage(),
+          'theme' => $theme,
+          'background' => CsDemoRandom::bool(),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+        ]);
+      }
+    }
+
+    // Promo.
+    if (!empty($variation['promo']) && $node->hasField('field_c_n_components')) {
+      for ($i = 0; $i < $variation['promo']; $i++) {
+        CsDemoHelper::civicParagraphPromoAttach($node, 'field_c_n_components', [
+          'title' => CsDemoRandom::bool(33) ? 'P H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
+          'summary' => CsDemoRandom::plainParagraph(),
+          'link' => [
+            'uri' => CsDemoRandom::url(),
+            'title' => CsDemoRandom::sentence(2, 5),
+          ],
+          'theme' => $theme,
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+        ]);
+      }
+    }
+
+    // Map.
+    if (!empty($variation['map']) && $node->hasField('field_c_n_components')) {
+      for ($i = 0; $i < $variation['map']; $i++) {
+        CsDemoHelper::civicParagraphMapAttach($node, 'field_c_n_components', [
+          'address' => CsDemoRandom::bool(33) ? 'P H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
+          'summary' => CsDemoRandom::plainParagraph(),
+          'embed_url' => 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed',
+          'share_link' => 'https://goo.gl/maps/XsNx2XM21y41UQ7P7',
+          'view_link' => 'https://maps.google.com/maps?ll=-25.853564,133.545713&z=3&t=m&hl=en-US&gl=US&mapclient=embed&q=Australia',
+          'theme' => $theme,
+          'background' => CsDemoRandom::bool(),
+        ]);
+      }
+    }
+
+    // Iframe.
+    if (!empty($variation['iframe']) && $node->hasField('field_c_n_components')) {
+      for ($i = 0; $i < $variation['iframe']; $i++) {
+        CsDemoHelper::civicParagraphIframeAttach($node, 'field_c_n_components', [
+          'url' => 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed',
+          'width' => CsDemoRandom::bool(33) ? 600 : NULL,
+          'height' => CsDemoRandom::bool(33) ? 400 : NULL,
+          'theme' => $theme,
+          'background' => CsDemoRandom::bool(),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+        ]);
+      }
+    }
+
+    // Listing.
+    if (!empty($variation['listing']) && $node->hasField('field_c_n_components')) {
+      for ($i = 0; $i < $variation['listing']; $i++) {
+
+        $content_type = CsDemoHelper::randomListingContentType();
+        $listing_options = [
+          'title' => 'L H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1),
+          'link' => CsDemoHelper::randomLinkFieldValue(),
+          'content_type' => $content_type,
+          'topics' => CsDemoHelper::randomTopics(rand(1, 5)),
+          'view_as' => CsDemoHelper::randomListingViewAs(),
+          'limit_type' => CsDemoHelper::randomListingLimitType(),
+          'view_mode' => CsDemoHelper::randomListingViewAs(),
+          'show_pager' => CsDemoRandom::bool(),
+          'hide_count' => CsDemoRandom::bool(),
+          'multi_select' => CsDemoRandom::bool(),
+          'show_filters' => CsDemoRandom::bool(),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'read_more' => CsDemoHelper::randomLinkFieldValue(),
+        ];
+
+        CsDemoHelper::civicParagraphlistingAttach($node, 'field_c_n_components', $listing_options);
+      }
+    }
+
+    // Accordion.
+    if (!empty($variation['slider']) && $node->hasField('field_c_n_components')) {
+      for ($i = 0; $i < $variation['slider']; $i++) {
+
+        $count_per_group = rand(3, 6);
+        $slide_options = [];
+        for ($j = 0; $j < $count_per_group; $j++) {
+          $slide_options[] = [
+            'title' => 'S H ' . ($j + 1) . ' ' . CsDemoRandom::sentence(1),
+            'content' => CsDemoRandom::richText(3, 8),
+            'image' => CsDemoHelper::randomImage(),
+            'image_position' => CsDemoHelper::randomSliderSlideImagePosition(),
+            'link' => CsDemoHelper::randomLinkFieldValue(),
+            'topic' => CsDemoHelper::randomTopics(1),
+            'theme' => $theme,
+          ];
+        }
+
+        CsDemoHelper::civicParagraphSliderAttach($node, 'field_c_n_components', [
+          'title' => CsDemoRandom::bool(33) ? 'SG H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
+          'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
+          'theme' => $theme,
+          'background' => CsDemoRandom::bool(),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'slides' => $slide_options,
+        ]);
+      }
+    }
+
+    // Webform.
+    if (!empty($variation['webform']) && $node->hasField('field_c_n_components')) {
+      for ($i = 0; $i < $variation['webform']; $i++) {
+        CsDemoHelper::civicParagraphWebformAttach($node, 'field_c_n_components', [
+          'webform' => CsDemoHelper::randomWebform(),
         ]);
       }
     }

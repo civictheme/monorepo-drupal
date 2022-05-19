@@ -628,7 +628,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
    *   Array of media entities.
    */
   public static function randomImages($count = FALSE) {
-    $media = self::$repository->getEntities('media', 'civic_image');
+    $media = self::$repository->getEntities('media', 'civictheme_image');
     return $count ? CsDemoRandom::arrayItems($media, $count) : $media;
   }
 
@@ -654,7 +654,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
    *   Array of media entities.
    */
   public static function randomDocuments($count = FALSE) {
-    $media = self::$repository->getEntities('media', 'civic_document');
+    $media = self::$repository->getEntities('media', 'civictheme_document');
     return $count ? CsDemoRandom::arrayItems($media, $count) : $media;
   }
 
@@ -711,6 +711,82 @@ class CsDemoHelper implements ContainerInjectionInterface {
     $terms = self::$repository->getEntities('taxonomy_term', 'civictheme_topics');
 
     return $count ? CsDemoRandom::arrayItems($terms, $count) : $terms;
+  }
+
+  /**
+   * Select random webform.
+   *
+   * @param bool|int $count
+   *   Optional count of documents. If FALSE, all available documents will be
+   *   returned.
+   *
+   * @return \Drupal\media\Entity\Media[]
+   *   Array of media entities.
+   */
+  public static function randomWebforms($count = FALSE) {
+    $webforms = \Drupal::entityTypeManager()->getStorage('webform')->loadMultiple(NULL);
+    return $count ? CsDemoRandom::arrayItems($webforms, $count) : $webforms;
+  }
+
+  /**
+   * Select a random media document.
+   *
+   * @return \Drupal\media\Entity\Media
+   *   The media entity.
+   */
+  public static function randomWebform() {
+    $webform = self::randomWebforms(1);
+    return !empty($webform) ? reset($webform) : NULL;
+  }
+
+  /**
+   * Get random Listing content type.
+   */
+  public static function randomListingContentType() {
+    $field_info = FieldConfig::loadByName('paragraph', 'civictheme_listing', 'field_c_p_content_type');
+    $allowed_values = $field_info->getFieldStorageDefinition()->getSetting('allowed_values');
+
+    return CsDemoRandom::arrayItem(array_keys($allowed_values));
+  }
+
+  /**
+   * Get random Listing Layout.
+   */
+  public static function randomListingViewAs() {
+    $field_info = FieldConfig::loadByName('paragraph', 'civictheme_listing', 'field_c_p_view_as');
+    $allowed_values = $field_info->getFieldStorageDefinition()->getSetting('allowed_values');
+
+    return CsDemoRandom::arrayItem(array_keys($allowed_values));
+  }
+
+  /**
+   * Get random Listing Layout.
+   */
+  public static function randomListingFilters() {
+    $field_info = FieldConfig::loadByName('paragraph', 'civictheme_listing', 'field_c_p_listing_f_exposed');
+    $allowed_values = $field_info->getFieldStorageDefinition()->getSetting('allowed_values');
+
+    return CsDemoRandom::arrayItem(array_keys($allowed_values));
+  }
+
+  /**
+   * Get random Listing Layout.
+   */
+  public static function randomListingLimitType() {
+    $field_info = FieldConfig::loadByName('paragraph', 'civictheme_listing', 'field_c_p_limit_type');
+    $allowed_values = $field_info->getFieldStorageDefinition()->getSetting('allowed_values');
+
+    return CsDemoRandom::arrayItem(array_keys($allowed_values));
+  }
+
+  /**
+   * Get random Listing Layout.
+   */
+  public static function randomSliderSlideImagePosition() {
+    $field_info = FieldConfig::loadByName('paragraph', 'civictheme_slider_slide', 'field_c_p_image_position');
+    $allowed_values = $field_info->getFieldStorageDefinition()->getSetting('allowed_values');
+
+    return CsDemoRandom::arrayItem(array_keys($allowed_values));
   }
 
 }

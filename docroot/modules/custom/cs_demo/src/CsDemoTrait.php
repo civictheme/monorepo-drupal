@@ -64,8 +64,8 @@ trait CsDemoTrait {
   /**
    * Attach paragraph to entity.
    */
-  public static function civicParagraphAttach($type, $enity, $field_name, $options, $save = FALSE) {
-    if (!$enity->hasField($field_name)) {
+  public static function civicParagraphAttach($type, $entity, $field_name, $options, $save = FALSE) {
+    if (!$entity->hasField($field_name)) {
       return;
     }
 
@@ -148,9 +148,14 @@ trait CsDemoTrait {
 
     $options += $defaults;
 
+    if (!empty($options['panels']) && count($options['panels']) > 0) {
+      $panels = $options['panels'];
+      unset($options['panels']);
+    }
+
     // Expand all.
     if (!empty($options['expand_all'])) {
-      $options['expand_all'] = (bool) $options['expand_all'];
+      $options['expand'] = (bool) $options['expand'];
     }
     $paragraph = self::civicParagraphAttach('civictheme_accordion', $node, $field_name, $options);
 
@@ -159,13 +164,12 @@ trait CsDemoTrait {
     }
 
     // Accordion panels.
-    if (!empty($options['panels'])) {
-      for ($i = 0; $i < $options['panels']; $i++) {
-        $panel_options = $options['panels'];
-        if (!empty($options['panels']['expand'])) {
-          $panel_options['expand'] = (bool) $options['panels']['expand'];
+    if (!empty($panels)) {
+      foreach ($panels as $panel_options) {
+        if (!empty($panel_options['expand'])) {
+          $panel_options['expand'] = (bool) $panel_options['expand'];
         }
-        $panel = self::civicParagraphAttach('civictheme_accordion_panel', $paragraph, 'field_c_p_panels', $panel_options);
+        $panel = self::civicParagraphAttach('civictheme_accordion_panel', $paragraph, 'field_c_p_panels', $panel_options, TRUE);
         if (!empty($panel)) {
           $paragraph->field_c_p_panels->appendItem($panel);
         }
@@ -206,44 +210,31 @@ trait CsDemoTrait {
   }
 
   /**
-   * Attach Accordion paragraph to a node.
+   * Attach Slider paragraph to a node.
    */
   public static function civicParagraphSliderAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
 
-    $defaults = [
-      slides => [],
+    if (!empty($options['slides']) && count($options['slides']) > 0) {
+      $slides = $options['slides'];
+      unset($options['slides']);
+    }
 
-    ];
-
-    $paragraph = self::civicParagraphAttach('civictheme_slider', $node, $field_name, $options, FALSE);
+    $paragraph = self::civicParagraphAttach('civictheme_slider', $node, $field_name, $options);
 
     if (empty($paragraph)) {
       return;
     }
 
-    // Links.
-    if (!empty($options['link'])) {
-      $paragraph->field_c_p_link = [
-        'uri' => $options['link']['value'],
-        'title' => $options['link']['title'],
-      ];
-    }
-
-    // Accordion panels.
-    if (!empty($options['slides'])) {
-      for ($i = 0; $i < $options['slides']; $i++) {
-        $panel_options = $options['slides'][$i];
-        $panel = self::civicParagraphAttach('civictheme_slider_slide', $paragraph, 'field_c_p_slides', [
-          'title' => $panel_options['title'],
-          'content' => $panel_options['content'],
-        ]);
-        $panel->field_c_p_expand = [
-          'value' => $panel_options['expand'],
-        ];
-        $paragraph->field_c_p_panels->appendItem($panel);
+    // Slider slide.
+    if (!empty($slides)) {
+      foreach ($slides as $slide_options) {
+        $slide = self::civicParagraphAttach('civictheme_slider_slide', $paragraph, 'field_c_p_slides', $slide_options, TRUE);
+        if (!empty($slide)) {
+          $paragraph->field_c_p_slides->appendItem($slide);
+        }
       }
     }
 
@@ -384,30 +375,9 @@ trait CsDemoTrait {
   /**
    * Attach Listing paragraph to a node.
    */
-  public static function civicParagraplistingAttach($node, $field_name, $options) {
+  public static function civicParagraphlistingAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
-    }
-
-    $defaults = [
-      'title' => 'Demo listing',
-      'filter_exposed' =>  0,
-      'hide_count' => 0,
-      'limit_type' => 'unlimited',
-      'listing_limit' => '9',
-      'content_types' => [],
-      'listing_multi_select' => 1,
-      'show_filters' => 0,
-      'show_pager' => 1,
-      'view_as' => 'teaser',
-      'read_more_title' => '',
-      'read_more_uri' => NULL,
-    ];
-
-    $options += $defaults;
-
-    if (empty(array_filter($options))) {
-      return NULL;
     }
 
     $paragraph = self::civicParagraphAttach('civictheme_listing', $node, $field_name, $options);
@@ -416,12 +386,12 @@ trait CsDemoTrait {
       return;
     }
 
-    if ($options['read_more_title']) {
-      $paragraph->field_c_p_read_more->title = $options['read_more_title'];
+    if ($options['show_filters']) {
+      $paragraph->field_c_p_listing_f_exposed = CsDemoHelper::randomListingFilters();
     }
 
-    if ($options['read_more_uri']) {
-      $paragraph->field_c_p_read_more->uri = $options['read_more_uri'];
+    if ($options['limit_type'] && $options['limit_type'] == 'limited') {
+      $paragraph->field_c_p_listing_limit = rand(0, 20);
     }
 
     $paragraph->save();
