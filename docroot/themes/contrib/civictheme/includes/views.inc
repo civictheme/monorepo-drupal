@@ -74,21 +74,21 @@ function civictheme_preprocess_views_view(&$variables) {
 function civictheme_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'] ?? NULL;
   // On Grid view title should be added to card container.
-  if ($variables['view']->getStyle()->getBaseId() === 'grid' && isset($variables['view']->header['result'])) {
+  if ($view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     $variables['modifier_class'] = 'civictheme-card-container--listing civictheme-card-container--with-background';
-    $variables['title'] = $variables['view']->header['result']->render();
-    _civictheme_preprocess_views_view_grid__listing_component($variables);
+    $variables['title'] = $view->header['result']->render();
   }
+  _civictheme_preprocess_views_view_grid__listing_component($variables);
 }
 
 /**
  * Add `civictheme_listing` paragraph options to view.
  */
-function _civictheme_preprocess_views_view_grid__listing_component (&$variables) {
+function _civictheme_preprocess_views_view_grid__listing_component(&$variables) {
   $listing_paragraph = _civictheme_get_listing_paragraph_from_route();
   if ($listing_paragraph !== NULL) {
-      $variables['theme'] = $listing_paragraph->get('civic_');
-      $variables['space'] = $listing_paragraph->get('civic_');
+    $variables['theme'] = $listing_paragraph->hasField('field_c_p_theme') && $listing_paragraph->get('field_c_p_theme')->isEmpty() ? 'light' : $listing_paragraph->get('field_c_p_theme')->getString();
+    $variables['with_background'] = $listing_paragraph->hasField('field_c_p_background') && $listing_paragraph->get('field_c_p_background')->isEmpty() ? '' : $listing_paragraph->get('field_c_p_background')->getString();
   }
 }
 

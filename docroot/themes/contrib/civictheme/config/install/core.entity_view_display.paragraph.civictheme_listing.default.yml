@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.civictheme_listing.field_c_p_background
     - field.field.paragraph.civictheme_listing.field_c_p_content_type
     - field.field.paragraph.civictheme_listing.field_c_p_hide_count
     - field.field.paragraph.civictheme_listing.field_c_p_limit_type
@@ -26,6 +27,16 @@ targetEntityType: paragraph
 bundle: civictheme_listing
 mode: default
 content:
+  field_c_p_background:
+    weight: 15
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
   field_c_p_content_type:
     weight: 2
     label: above

@@ -5,6 +5,23 @@
 .civictheme-listing {
   $root: &;
 
+  &.civictheme-listing--vertical-space-top {
+    @include civictheme-component-with-vertical-space(top, $civictheme-listing-space-vertical);
+  }
+
+  &.civictheme-listing--vertical-space-bottom {
+    @include civictheme-component-with-vertical-space(bottom, $civictheme-listing-space-vertical);
+  }
+
+  &.civictheme-listing--vertical-space-both {
+    @include civictheme-component-with-vertical-space(both, $civictheme-listing-space-vertical);
+  }
+
+  &__header {
+    @include civictheme-typography('heading-3');
+    margin-bottom: civictheme-space(3);
+  }
+
   &__pager {
     display: flex;
     margin: 0 auto;
@@ -19,7 +36,11 @@
   }
 
   &.civictheme-theme-light {
+    &#{$root}__header {
+      color: $civictheme-listing-light-color;
+    }
     &#{$root}--with-background {
+      background-color: $civictheme-listing-light-background-color;
       #{$root}__results-below {
         background-color: $civictheme-listing-light-background-color;
       }
@@ -27,8 +48,10 @@
   }
 
   &.civictheme-theme-dark {
+    color: $civictheme-listing-dark-color;
     &#{$root}--with-background {
-
+      background-color: $civictheme-listing-dark-background-color;
+      color: $civictheme-listing-with-background-dark-color;
       #{$root}__results-below {
         background-color: $civictheme-listing-dark-background-color;
       }

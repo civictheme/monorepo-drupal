@@ -357,6 +357,7 @@ config_devel:
     - field.field.paragraph.civictheme_iframe.field_c_p_theme
     - field.field.paragraph.civictheme_iframe.field_c_p_url
     - field.field.paragraph.civictheme_iframe.field_c_p_width
+    - field.field.paragraph.civictheme_listing.field_c_p_background
     - field.field.paragraph.civictheme_listing.field_c_p_content_type
     - field.field.paragraph.civictheme_listing.field_c_p_hide_count
     - field.field.paragraph.civictheme_listing.field_c_p_limit_type

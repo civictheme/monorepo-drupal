@@ -18,7 +18,8 @@
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-card-container--vertical-space-%s'|format(vertical_space) : '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, modifier_class|default(''), vertical_space_class)  %}
 
 <div class="civictheme-listing {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
 

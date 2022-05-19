@@ -39,6 +39,8 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
   $variables['uniqId'] = Html::getUniqueId('listing-' . $paragraph->id());
 
   $variables['listing'] = _civictheme_listing_element($paragraph);
+  $variables['vertical_space'] = $paragraph->hasField('field_c_p_space') && $paragraph->get('field_c_p_space')->isEmpty() ? '' : $paragraph->get('field_c_p_space')->getString();
+  $variables['theme'] = $paragraph->hasField('field_c_p_theme') && $paragraph->get('field_c_p_theme')->isEmpty() ? 'light' : $paragraph->get('field_c_p_theme')->getString();
 
   _civictheme_render_listing_paragraph_add_read_more($paragraph, $variables);
 }

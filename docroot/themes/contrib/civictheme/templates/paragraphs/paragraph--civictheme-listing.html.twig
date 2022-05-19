@@ -1,29 +1,28 @@
-{%
-  set header_classes = [
-  'civictheme-listing',
-  'paragraph',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  view_as ? view_as
-]
-%}
-{% set body_attribute = create_attribute() %}
-{%
-  set body_classes = [
-  'civictheme-listing__body',
-  limit ? 'civictheme-listing--' ~ limit : '',
-]
-%}
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set paragraph_type_class =  'paragraph--type--' ~ paragraph.bundle|clean_class %}
+{% set view_mode_class =  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class %}
+{% set view_as_class =  view_as ? 'paragraph--view-as--' ~ view_as|clean_class %}
+{% set with_background_class = with_background ? 'civictheme-listing--with-background' : '' %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-listing--vertical-space-%s'|format(vertical_space) : '' %}
+{% set modifier_class = '%s %s %s %s %s %s %s'|format(paragraph_type_class, view_mode_class, view_as_class, theme_class, with_background_class, vertical_space_class, modifier_class|default('')) %}
+{% set limit_class =  limit ? 'civictheme-listing--' ~ limit : '' %}
+{% set body_modifier_class = '%s %s'|format(limit_class, body_modifier_class|default('')) %}
 
 {% block paragraph %}
-  <div{{ attributes.setAttribute('id', uniqId).addClass(header_classes) }}>
+  <div id="{{ uniqId }}" class="civictheme-listing paragraph {{ modifier_class }}">
     <div class="civictheme-listing__container">
       {% if content.field_c_p_title|render|striptags|trim is not empty %}
-        <h2 {{ title_attributes.addClass('civictheme-listing__header') }}>
-          {{ content.field_c_p_title }}
-        </h2>
+        <div class="container">
+          <div class="row">
+            <div class="col-xxs-12">
+              <h2 class="civictheme-listing__header">
+                {{ content.field_c_p_title }}
+              </h2>
+            </div>
+          </div>
+        </div>
       {% endif %}
-      <div{{ body_attribute.addClass(body_classes) }}>
+      <div class="civictheme-listing__body {{ body_modifier_class }}">
         {{ listing }}
       </div>
       {% if read_more %}
