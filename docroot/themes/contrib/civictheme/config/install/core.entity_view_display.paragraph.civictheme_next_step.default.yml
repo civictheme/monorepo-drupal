@@ -2,29 +2,21 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.civictheme_next_step.field_c_p_icon
     - field.field.paragraph.civictheme_next_step.field_c_p_image
+    - field.field.paragraph.civictheme_next_step.field_c_p_link
     - field.field.paragraph.civictheme_next_step.field_c_p_space
     - field.field.paragraph.civictheme_next_step.field_c_p_summary
     - field.field.paragraph.civictheme_next_step.field_c_p_theme
     - field.field.paragraph.civictheme_next_step.field_c_p_title
     - paragraphs.paragraphs_type.civictheme_next_step
   module:
+    - link
     - options
 id: paragraph.civictheme_next_step.default
 targetEntityType: paragraph
 bundle: civictheme_next_step
 mode: default
 content:
-  field_c_p_icon:
-    weight: 0
-    label: hidden
-    settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
-    type: entity_reference_entity_view
-    region: content
   field_c_p_image:
     weight: 3
     label: hidden
@@ -33,6 +25,18 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
+  field_c_p_link:
+    weight: 6
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
     region: content
   field_c_p_space:
     weight: 5
