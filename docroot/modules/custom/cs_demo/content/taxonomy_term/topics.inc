@@ -2,10 +2,7 @@
 
 /**
  * @file
- * Create demo Events terms.
- *
- * @see https://www.drupal.org/project/coder/issues/2877475
- * phpcs:disable DrupalPractice.CodeAnalysis.VariableAnalysis.UndefinedVariable
+ * Create demo topic terms.
  */
 
 use Drupal\cs_demo\CsDemoHelper;

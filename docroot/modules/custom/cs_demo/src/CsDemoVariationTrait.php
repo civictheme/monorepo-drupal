@@ -11,7 +11,6 @@ namespace Drupal\cs_demo;
  * actions, like creating a row paragraph.
  *
  * @package Drupal\cs_demo
- * @SuppressWarnings(PHPMD)
  */
 trait CsDemoVariationTrait {
 

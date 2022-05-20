@@ -4,11 +4,9 @@ namespace Drupal\cs_demo;
 
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\Url;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
-use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -18,7 +16,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Helper to interact with demo items.
  *
  * @package Drupal\cs_demo
- * @SuppressWarnings(PHPMD)
  */
 class CsDemoHelper implements ContainerInjectionInterface {
 
@@ -70,7 +67,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
    */
   public static function getInstance() {
     if (!self::$instance) {
-      static::$instance = \Drupal::service('class_resolver')
+      static::$instance = Drupal::service('class_resolver')
         ->getInstanceFromDefinition(static::class);
     }
 
@@ -88,7 +85,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
       }
       else {
         // Support HTML, but still use plain strings for simplicity.
-        \Drupal::messenger()->addMessage(new FormattableMarkup(call_user_func_array('sprintf', func_get_args()), []));
+        Drupal::messenger()->addMessage(new FormattableMarkup(call_user_func_array('sprintf', func_get_args()), []));
       }
     }
   }
@@ -191,7 +188,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
    *   Array of terms.
    */
   public static function randomRealTerms($vid, $count = NULL) {
-    $terms = \Drupal::service('entity_type.manager')
+    $terms = Drupal::service('entity_type.manager')
       ->getStorage('taxonomy_term')
       ->loadByProperties(['vid' => $vid]);
     return $count ? CsDemoRandom::arrayItems($terms, $count) : $terms;
@@ -316,7 +313,9 @@ class CsDemoHelper implements ContainerInjectionInterface {
     }
 
     $allowed_values = array_keys($allowed_values);
-    $allowed_values = array_map(function($v) { return(str_replace('civictheme_', '', $v)); }, $allowed_values);
+    $allowed_values = array_map(function ($v) {
+      return (str_replace('civictheme_', '', $v));
+    }, $allowed_values);
 
     return $count ? CsDemoRandom::arrayItems($allowed_values, $count) : $allowed_values;
   }
@@ -373,7 +372,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
     // Note that we are asking for an item 1 level deeper because this is
     // how loadTree() calculates max depth.
     /** @var \Drupal\taxonomy\Entity\Term[] $tree */
-    $tree = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid, 0, $depth + 1, $load_entities);
+    $tree = Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid, 0, $depth + 1, $load_entities);
 
     foreach ($tree as $k => $leaf) {
       if ($leaf->depth != $depth) {
@@ -458,11 +457,11 @@ class CsDemoHelper implements ContainerInjectionInterface {
       $leaf = is_array($leaf) ? $leaf : ['link' => $leaf];
 
       if (!isset($leaf['link'])) {
-        throw new \InvalidArgumentException('Menu item does not contain "link" element');
+        throw new InvalidArgument \Exception('Menu item does not contain "link" element');
       }
 
       if (is_array($leaf['link']) && !isset($leaf['link']['uri'])) {
-        throw new \InvalidArgumentException('Menu item contains "link" element which does not contain "uri" value');
+        throw new InvalidArgument \Exception('Menu item contains "link" element which does not contain "uri" value');
       }
 
       if (!is_array($leaf['link'])) {
@@ -517,8 +516,6 @@ class CsDemoHelper implements ContainerInjectionInterface {
    *
    * @return array
    *   Array of intersected values.
-   *
-   * @throws \Exception
    */
   public static function arrayIntersectColumn($column) {
     $arrays = func_get_args();
@@ -578,7 +575,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
    *   For objects - value of the specified property or returned value of the
    *   method.
    *
-   * @throws \Exception
+   * @throws \ \Exception
    *   If key is not scalar.
    *   If item is not an array or an object.
    *   If item is an object, but does not have a property or a method with

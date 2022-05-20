@@ -11,7 +11,6 @@ use Drupal\Component\Utility\Unicode;
  * Generic random generators.
  *
  * @package Drupal\cs_demo
- * @SuppressWarnings(PHPMD)
  */
 class CsDemoRandom {
 

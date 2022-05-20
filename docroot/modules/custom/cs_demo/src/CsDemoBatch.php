@@ -8,7 +8,6 @@ namespace Drupal\cs_demo;
  * Batch processing for demo items.
  *
  * @package Drupal\cs_demo
- * @SuppressWarnings(PHPMD)
  */
 class CsDemoBatch {
 
