@@ -57,8 +57,8 @@ function cs_demo_create_node_civictheme_page() {
       'space' => 'both',
       'toc' => NULL,
       'topics' => rand(0, 5),
-      'banner_type' => CsDemoRandom::arrayItem(CsDemoHelper::civicBannerTypes()),
-      'banner_theme' => CsDemoRandom::arrayItem(CsDemoHelper::civicThemes()),
+      'banner_type' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeBannerTypes()),
+      'banner_theme' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeThemes()),
       'banner_background' => NULL,
       'banner_featured_image' => NULL,
       'banner_components' => rand(0, 2),
@@ -131,33 +131,33 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
 
   if (!empty($variation['banner_components']) && $node->hasField('field_c_n_banner_components')) {
     for ($i = 0; $i < $variation['banner_components']; $i++) {
-      CsDemoHelper::civicParagraphContentAttach($node, 'field_c_n_banner_components', [
+      CsDemoHelper::civicthemeParagraphContentAttach($node, 'field_c_n_banner_components', [
         'content' => CsDemoRandom::richText(rand(1, 2), rand(2, 4), sprintf('Banner component %s ', $i + 1)),
-        'theme' => $variation['banner_theme'] ?: CsDemoHelper::civicThemeLight(),
+        'theme' => $variation['banner_theme'] ?: CsDemoHelper::civicthemeThemeLight(),
       ]);
     }
   }
 
   if (!empty($variation['banner_components_bottom']) && $node->hasField('field_c_n_banner_components_bott')) {
     for ($i = 0; $i < $variation['banner_components_bottom']; $i++) {
-      CsDemoHelper::civicParagraphContentAttach($node, 'field_c_n_banner_components_bott', [
+      CsDemoHelper::civicthemeParagraphContentAttach($node, 'field_c_n_banner_components_bott', [
         'content' => CsDemoRandom::richText(rand(1, 2), rand(2, 4), sprintf('Banner bottom component %s ', $i + 1)),
-        'theme' => CsDemoHelper::civicThemeLight(),
+        'theme' => CsDemoHelper::civicthemeThemeLight(),
       ]);
     }
   }
 
-  $themes = CsDemoHelper::civicThemes();
+  $themes = CsDemoHelper::civicthemeThemes();
 
   foreach ($themes as $theme) {
     // Content.
     if (!empty($variation['content']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['content']; $i++) {
-        CsDemoHelper::civicParagraphContentAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphContentAttach($node, 'field_c_n_components', [
           'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
           'theme' => $theme,
           'background' => CsDemoRandom::bool(66),
-          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
         ]);
       }
     }
@@ -177,13 +177,13 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           ];
         }
 
-        CsDemoHelper::civicParagraphAccordionAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphAccordionAttach($node, 'field_c_n_components', [
           'title' => CsDemoRandom::bool(33) ? 'AG H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
           'panels' => $accordion_options,
           'expand_all' => rand(0, 1),
           'theme' => $theme,
           'background' => CsDemoRandom::bool(),
-          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
         ]);
       }
     }
@@ -199,7 +199,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           $attachments[] = CsDemoHelper::randomDocument();
         }
 
-        CsDemoHelper::civicParagraphAttachmentAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphAttachmentAttach($node, 'field_c_n_components', [
           'title' => 'A H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1),
           'summary' => CsDemoRandom::plainParagraph(),
           'attachments' => $attachments,
@@ -207,7 +207,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           'icon' => CsDemoHelper::randomDocument(),
           'theme' => $theme,
           'background' => CsDemoRandom::bool(),
-          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
         ]);
       }
     }
@@ -215,7 +215,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     // Callout.
     if (!empty($variation['callout']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['callout']; $i++) {
-        CsDemoHelper::civicParagraphCalloutAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphCalloutAttach($node, 'field_c_n_components', [
           'title' => 'C H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1),
           'summary' => CsDemoRandom::plainParagraph(),
           'link' => [
@@ -224,7 +224,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           ],
           'theme' => $theme,
           'background' => CsDemoRandom::bool(),
-          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
         ]);
       }
     }
@@ -249,12 +249,12 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           for ($k = 0; $k < $card_count; $k++) {
             $card_options[] = [
               'type' => 'civictheme_' . $card_type,
-              'options' => CsDemoHelper::civicCardsDefaultOptions($card_type),
+              'options' => CsDemoHelper::civicthemeCardsDefaultOptions($card_type),
             ];
           }
         }
 
-        CsDemoHelper::civicParagraphCardContainerAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphCardContainerAttach($node, 'field_c_n_components', [
           'title' => CsDemoRandom::bool(33) ? 'CC H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
           'description' => CsDemoRandom::sentence(3),
           'column_count' => CsDemoHelper::randomFieldAllowedValue('paragraph', 'civictheme_card_container', 'field_c_p_column_count'),
@@ -263,7 +263,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           'header_link' => CsDemoHelper::randomLinkFieldValue(),
           'theme' => $theme,
           'background' => CsDemoRandom::bool(),
-          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
           'cards' => $card_options,
         ]);
       }
@@ -272,7 +272,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     // Next steps.
     if (!empty($variation['next_step']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['next_step']; $i++) {
-        CsDemoHelper::civicParagraphNextStepAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphNextStepAttach($node, 'field_c_n_components', [
           'title' => 'NS H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1),
           'summary' => CsDemoRandom::plainParagraph(),
           'links' => [
@@ -292,7 +292,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           'image' => CsDemoHelper::randomImage(),
           'theme' => $theme,
           'background' => CsDemoRandom::bool(),
-          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
         ]);
       }
     }
@@ -300,7 +300,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     // Promo.
     if (!empty($variation['promo']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['promo']; $i++) {
-        CsDemoHelper::civicParagraphPromoAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphPromoAttach($node, 'field_c_n_components', [
           'title' => CsDemoRandom::bool(33) ? 'P H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
           'summary' => CsDemoRandom::plainParagraph(),
           'link' => [
@@ -308,7 +308,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
             'title' => CsDemoRandom::sentence(2, 5),
           ],
           'theme' => $theme,
-          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
         ]);
       }
     }
@@ -316,7 +316,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     // Map.
     if (!empty($variation['map']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['map']; $i++) {
-        CsDemoHelper::civicParagraphMapAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphMapAttach($node, 'field_c_n_components', [
           'address' => CsDemoRandom::bool(33) ? 'P H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
           'summary' => CsDemoRandom::plainParagraph(),
           'embed_url' => 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed',
@@ -331,13 +331,13 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     // Iframe.
     if (!empty($variation['iframe']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['iframe']; $i++) {
-        CsDemoHelper::civicParagraphIframeAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphIframeAttach($node, 'field_c_n_components', [
           'url' => 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed',
           'width' => CsDemoRandom::bool(33) ? 600 : NULL,
           'height' => CsDemoRandom::bool(33) ? 400 : NULL,
           'theme' => $theme,
           'background' => CsDemoRandom::bool(),
-          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
         ]);
       }
     }
@@ -359,11 +359,11 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           'hide_count' => CsDemoRandom::bool(),
           'multi_select' => CsDemoRandom::bool(),
           'show_filters' => CsDemoRandom::bool(),
-          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
           'read_more' => CsDemoHelper::randomLinkFieldValue(),
         ];
 
-        CsDemoHelper::civicParagraphlistingAttach($node, 'field_c_n_components', $listing_options);
+        CsDemoHelper::civicthemeParagraphListingAttach($node, 'field_c_n_components', $listing_options);
       }
     }
 
@@ -387,12 +387,12 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
         }
 
         // Slider.
-        CsDemoHelper::civicParagraphSliderAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphSliderAttach($node, 'field_c_n_components', [
           'title' => CsDemoRandom::bool(33) ? 'SG H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
           'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
           'theme' => $theme,
           'background' => CsDemoRandom::bool(),
-          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
           'slides' => $slide_options,
         ]);
       }
@@ -401,7 +401,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     // Webform.
     if (!empty($variation['webform']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['webform']; $i++) {
-        CsDemoHelper::civicParagraphWebformAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphWebformAttach($node, 'field_c_n_components', [
           'webform' => CsDemoHelper::randomWebform(),
         ]);
       }

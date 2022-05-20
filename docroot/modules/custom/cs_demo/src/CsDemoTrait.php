@@ -14,31 +14,31 @@ trait CsDemoTrait {
   /**
    * Light theme name.
    */
-  public static function civicThemeLight() {
+  public static function civicthemeThemeLight() {
     return 'light';
   }
 
   /**
    * Dark theme name.
    */
-  public static function civicThemeDark() {
+  public static function civicthemeThemeDark() {
     return 'dark';
   }
 
   /**
    * Available theme names.
    */
-  public static function civicThemes() {
+  public static function civicthemeThemes() {
     return [
-      static::civicThemeLight(),
-      static::civicThemeDark(),
+      static::civicthemeThemeLight(),
+      static::civicthemeThemeDark(),
     ];
   }
 
   /**
    * Types of spaces.
    */
-  public static function civicSpaceTypes() {
+  public static function civicthemeSpaceTypes() {
     return [
       '',
       'top',
@@ -50,21 +50,21 @@ trait CsDemoTrait {
   /**
    * Types of banner.
    */
-  public static function civicBannerTypes() {
+  public static function civicthemeBannerTypes() {
     return ['default', 'large'];
   }
 
   /**
    * Slider slide image position.
    */
-  public static function civicSliderSlideImagePositions() {
+  public static function civicthemeSliderSlideImagePositions() {
     return ['left', 'right'];
   }
 
   /**
    * Attach paragraph to entity.
    */
-  public static function civicParagraphAttach($type, $entity, $field_name, $options, $save = FALSE) {
+  public static function civicthemeParagraphAttach($type, $entity, $field_name, $options, $save = FALSE) {
     if (!$entity->hasField($field_name)) {
       return;
     }
@@ -88,12 +88,12 @@ trait CsDemoTrait {
 
     // Theme.
     if (!empty($options['theme'])) {
-      $options['theme'] = static::civicValueFromOptions(static::civicThemes(), $options['theme']);
+      $options['theme'] = static::civicthemeValueFromOptions(static::civicthemeThemes(), $options['theme']);
     }
 
     // Space.
     if (!empty($options['space'])) {
-      $options['space'] = static::civicValueFromOptions(static::civicSpaceTypes(), $options['space']);
+      $options['space'] = static::civicthemeValueFromOptions(static::civicthemeSpaceTypes(), $options['space']);
     }
 
     // Background.
@@ -119,12 +119,12 @@ trait CsDemoTrait {
   /**
    * Attach Content paragraph to a node.
    */
-  public static function civicParagraphContentAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphContentAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
 
-    $paragraph = self::civicParagraphAttach('civictheme_content', $node, $field_name, $options, TRUE);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_content', $node, $field_name, $options, TRUE);
 
     if (empty($paragraph)) {
       return;
@@ -136,7 +136,7 @@ trait CsDemoTrait {
   /**
    * Attach Attachment paragraph to a node.
    */
-  public static function civicParagraphAttachmentAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphAttachmentAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -154,7 +154,7 @@ trait CsDemoTrait {
       return NULL;
     }
 
-    $paragraph = self::civicParagraphAttach('civictheme_attachment', $node, $field_name, $options, TRUE);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_attachment', $node, $field_name, $options, TRUE);
 
     if (empty($paragraph)) {
       return;
@@ -166,7 +166,7 @@ trait CsDemoTrait {
   /**
    * Attach Accordion paragraph to a node.
    */
-  public static function civicParagraphAccordionAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphAccordionAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -187,7 +187,7 @@ trait CsDemoTrait {
     if (!empty($options['expand_all'])) {
       $options['expand'] = (bool) $options['expand'];
     }
-    $paragraph = self::civicParagraphAttach('civictheme_accordion', $node, $field_name, $options);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_accordion', $node, $field_name, $options);
 
     if (empty($paragraph)) {
       return;
@@ -199,7 +199,7 @@ trait CsDemoTrait {
         if (!empty($panel_options['expand'])) {
           $panel_options['expand'] = (bool) $panel_options['expand'];
         }
-        $panel = self::civicParagraphAttach('civictheme_accordion_panel', $paragraph, 'field_c_p_panels', $panel_options, TRUE);
+        $panel = self::civicthemeParagraphAttach('civictheme_accordion_panel', $paragraph, 'field_c_p_panels', $panel_options, TRUE);
         if (!empty($panel)) {
           $paragraph->field_c_p_panels->appendItem($panel);
         }
@@ -214,7 +214,7 @@ trait CsDemoTrait {
   /**
    * Attach Accordion paragraph to a node.
    */
-  public static function civicParagraphCalloutAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphCalloutAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -230,7 +230,7 @@ trait CsDemoTrait {
       return NULL;
     }
 
-    $paragraph = self::civicParagraphAttach('civictheme_callout', $node, $field_name, $options, TRUE);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_callout', $node, $field_name, $options, TRUE);
 
     if (empty($paragraph)) {
       return;
@@ -242,7 +242,7 @@ trait CsDemoTrait {
   /**
    * Attach Slider paragraph to a node.
    */
-  public static function civicParagraphCardContainerAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphCardContainerAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -252,7 +252,7 @@ trait CsDemoTrait {
       unset($options['cards']);
     }
 
-    $paragraph = self::civicParagraphAttach('civictheme_card_container', $node, $field_name, $options);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_card_container', $node, $field_name, $options);
 
     if (empty($paragraph)) {
       return;
@@ -262,7 +262,7 @@ trait CsDemoTrait {
     if (!empty($cards)) {
       foreach ($cards as $card_options) {
         if (!empty($card_options['type']) && !empty($card_options['options'])) {
-          $card = self::civicParagraphAttach($card_options['type'], $paragraph, 'field_c_p_cards', $card_options['options'], TRUE);
+          $card = self::civicthemeParagraphAttach($card_options['type'], $paragraph, 'field_c_p_cards', $card_options['options'], TRUE);
           if (!empty($card)) {
             $paragraph->field_c_p_cards->appendItem($card);
           }
@@ -277,7 +277,7 @@ trait CsDemoTrait {
   /**
    * Attach Slider paragraph to a node.
    */
-  public static function civicParagraphSliderAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphSliderAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -287,7 +287,7 @@ trait CsDemoTrait {
       unset($options['slides']);
     }
 
-    $paragraph = self::civicParagraphAttach('civictheme_slider', $node, $field_name, $options);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_slider', $node, $field_name, $options);
 
     if (empty($paragraph)) {
       return;
@@ -296,7 +296,7 @@ trait CsDemoTrait {
     // Slider slide.
     if (!empty($slides)) {
       foreach ($slides as $slide_options) {
-        $slide = self::civicParagraphAttach('civictheme_slider_slide', $paragraph, 'field_c_p_slides', $slide_options, TRUE);
+        $slide = self::civicthemeParagraphAttach('civictheme_slider_slide', $paragraph, 'field_c_p_slides', $slide_options, TRUE);
         if (!empty($slide)) {
           $paragraph->field_c_p_slides->appendItem($slide);
         }
@@ -310,7 +310,7 @@ trait CsDemoTrait {
   /**
    * Attach Promo paragraph to a node.
    */
-  public static function civicParagraphPromoAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphPromoAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -326,7 +326,7 @@ trait CsDemoTrait {
       return NULL;
     }
 
-    $paragraph = self::civicParagraphAttach('civictheme_promo', $node, $field_name, $options, TRUE);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_promo', $node, $field_name, $options, TRUE);
 
     if (empty($paragraph)) {
       return;
@@ -338,7 +338,7 @@ trait CsDemoTrait {
   /**
    * Attach Promo paragraph to a node.
    */
-  public static function civicParagraphNextStepAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphNextStepAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -355,7 +355,7 @@ trait CsDemoTrait {
       return NULL;
     }
 
-    $paragraph = self::civicParagraphAttach('civictheme_next_step', $node, $field_name, $options, TRUE);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_next_step', $node, $field_name, $options, TRUE);
 
     if (empty($paragraph)) {
       return;
@@ -367,7 +367,7 @@ trait CsDemoTrait {
   /**
    * Attach Map paragraph to a node.
    */
-  public static function civicParagraphMapAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphMapAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -384,7 +384,7 @@ trait CsDemoTrait {
       return NULL;
     }
 
-    $paragraph = self::civicParagraphAttach('civictheme_map', $node, $field_name, $options, TRUE);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_map', $node, $field_name, $options, TRUE);
 
     if (empty($paragraph)) {
       return;
@@ -396,7 +396,7 @@ trait CsDemoTrait {
   /**
    * Attach Iframe paragraph to a node.
    */
-  public static function civicParagraphIframeAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphIframeAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
@@ -414,7 +414,7 @@ trait CsDemoTrait {
       return NULL;
     }
 
-    $paragraph = self::civicParagraphAttach('civictheme_iframe', $node, $field_name, $options, TRUE);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_iframe', $node, $field_name, $options, TRUE);
 
     if (empty($paragraph)) {
       return;
@@ -426,12 +426,12 @@ trait CsDemoTrait {
   /**
    * Attach Iframe paragraph to a node.
    */
-  public static function civicParagraphWebformAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphWebformAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
 
-    $paragraph = self::civicParagraphAttach('civictheme_webform', $node, $field_name, $options, TRUE);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_webform', $node, $field_name, $options, TRUE);
 
     if (!empty($paragraph)) {
       $node->{$field_name}->appendItem($paragraph);
@@ -441,12 +441,12 @@ trait CsDemoTrait {
   /**
    * Attach Listing paragraph to a node.
    */
-  public static function civicParagraphlistingAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphListingAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
 
-    $paragraph = self::civicParagraphAttach('civictheme_listing', $node, $field_name, $options);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_listing', $node, $field_name, $options);
 
     if (empty($paragraph)) {
       return;
@@ -468,14 +468,14 @@ trait CsDemoTrait {
   /**
    * Check that value exists in the provided options or return the first option.
    */
-  protected static function civicValueFromOptions(array $options, $value) {
+  protected static function civicthemeValueFromOptions(array $options, $value) {
     return in_array($value, $options) ? $value : reset($options);
   }
 
   /**
    * Get Cards default options.
    */
-  public static function civicCardsDefaultOptions($type) {
+  public static function civicthemeCardsDefaultOptions($type) {
     $options = [
       'task_card' => [
         'icon' => CsDemoHelper::randomIcon(),
