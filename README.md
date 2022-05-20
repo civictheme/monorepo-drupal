@@ -16,33 +16,27 @@ Mono-repo to maintain CivicTheme and accompanying modules that are automatically
 - LOCAL: [http://civictheme.docker.amazee.io/](http://civictheme.docker.amazee.io/)
 
 ## Local environment setup
-
-- Make sure that you have the latest versions of all required software installed:
+- Make sure that you have latest versions of all required software installed:
   - [Docker](https://www.docker.com/)
-  - [Pygmy](https://pygmy.readthedocs.io/)
+  - [Pygmy](https://github.com/pygmystack/pygmy)
   - [Ahoy](https://github.com/ahoy-cli/ahoy)
 - Make sure that all local web development services are shut down (Apache/Nginx, Mysql, MAMP etc).
 - Checkout project repository (in one of the [supported Docker directories](https://docs.docker.com/docker-for-mac/osxfs/#access-control)).
+
+
+
+- Authenticate with Lagoon
+  1. Create an SSH key and add it to your account in the [Lagoon Dashboard](https://ui-lagoon-master.ch.amazee.io/).
+  2. Copy `default.env.local` to `.env.local`.
+  3. Update `$DREVOPS_DB_DOWNLOAD_SSH_KEY_FILE` environment variable in `.env.local` file
+  with the path to the SSH key.
+
+
+
 - `pygmy up`
 - `ahoy build`
 
 ### Apple M1 adjustments
-
-The AmazeeIO supported version of Pygmy does not appear to receive updates any
-longer, appears `pygmy-go` is the de facto standard going forward. There is not
-a stable release with Apple Silicon support yet, however the following dev
-branch is entirely functional, so we need to build from sources.
-
-```
-pygmy down && pygmy-go down
-git clone --branch arm_testing git@github.com:tobybellwood/pygmy-go.git ./pygmy-go-dev
-cd ./pygmy-go-dev
-make build
-cd builds
-cp pygmy-go-darwin-arm64 $(which pygmy)
-pygmy version # should output 'Pygmy version unidentifiable.'
-pygmy up
-```
 
 Copy `default.docker-compose.override.yml` to `docker-compose.override.yml`.
 
@@ -56,35 +50,16 @@ Copy `default.docker-compose.override.yml` to `docker-compose.override.yml`.
 6. Enables `civictheme_govcms` module to remove out-of-the-box GovCMS content types.
 7. Enables `civictheme_content` module to add default content to installation.
 
-See sections below on using development tools.
-
-## Available `ahoy` commands
-
-Run `ahoy help` for a full list of commands.
-
-Most used commands:
-
-    build        Build or rebuild the project.
-    install-site Install or re-install a site.
-    info         Show information about this project.
-    login        Login to a website.
-
-    cli          Start a shell or run a command inside the CLI service container.
-    debug        Enable debug configuration.
-    lint         Lint back-end and front-end code.
-    test-bdd     Run BDD tests.
-
-## Development
-Please refer to [development documentation](DEVELOPMENT.md).
-
 ## Testing
 Please refer to [testing documentation](TESTING.md).
 
 ## CI
 Please refer to [CI documentation](CI.md).
 
+
 ## Deployment
 Please refer to [deployment documentation](DEPLOYMENT.md).
+
 
 ## Releasing
 Please refer to [releasing documentation](RELEASING.md).
@@ -93,6 +68,7 @@ Please refer to [releasing documentation](RELEASING.md).
 Please refer to [FAQs](FAQs.md).
 
 ## CivicTheme Drupal theme
+
 Please refer to [CivicTheme Drupal theme documentation](docroot/themes/contrib/civictheme/docs/introduction.md).
 
 ## CivicTheme components library
@@ -104,4 +80,3 @@ Please refer to [CivicTheme components Library documentation](docroot/themes/con
 - [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme-drupal)
 - [Default content for CivicTheme](https://github.com/salsadigitalauorg/civictheme-drupal-content)
 - [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme-govcms)
-

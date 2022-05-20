@@ -3,12 +3,11 @@
     "description": "Drupal 9 source development site for CivicTheme for Salsa Digital.",
     "license": "proprietary",
     "require": {
-        "php": ">=7.4",
-        "composer/installers": "^1.9",
+        "php": ">=8.0",
+        "composer/installers": "^2",
         "cweagans/composer-patches": "^1.7",
         "drupal/coffee": "^1",
         "drupal/config_devel": "^1.8",
-        "drupal/console": "^1.9",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
@@ -17,7 +16,7 @@
         "drupal/redirect": "^1.6",
         "drupal/stage_file_proxy": "^1.1",
         "drush/drush": "^10",
-        "govcms/govcms": "^2.4",
+        "govcms/govcms": "^2",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2",
@@ -41,11 +40,9 @@
             "scripts/composer/"
         ]
     },
-    "minimum-stability": "alpha",
-    "prefer-stable": true,
     "config": {
         "platform": {
-            "php": "7.4"
+            "php": "8.0"
         },
         "process-timeout": 0,
         "sort-packages": true,
@@ -72,6 +69,18 @@
         "asset-packagist": {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        "dropzone/dropzone": {
+            "type": "package",
+            "package": {
+                "name": "dropzone/dropzone",
+                "version": "v5.7.2",
+                "type": "drupal-library",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/dropzone/dropzone/archive/refs/tags/v5.7.2.zip"
+                }
+            }
         }
     },
     "scripts": {
@@ -90,6 +99,8 @@
             "Utilities\\composer\\DrupalSettings::create"
         ]
     },
+    "minimum-stability": "alpha",
+    "prefer-stable": true,
     "extra": {
         "composer-exit-on-patch-failure": true,
         "patchLevel": {

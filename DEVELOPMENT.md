@@ -78,7 +78,7 @@ For development:
 
 Use shortcut command
 
-    ahoy export-config
+    ahoy my export-config
 
 Configuration is captured into CivicTheme Drupal theme's `config/install` and
 `config/optional` with

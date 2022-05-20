@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\cs_core\Unit;
 
-use Drupal\Tests\cs_core\Traits\CsCoreTestHelperTrait;
 use Drupal\Tests\UnitTestCase;
+use Drupal\Tests\cs_core\Traits\CsCoreTestHelperTrait;
 
 /**
  * Class CsCoreUnitTestBase.
