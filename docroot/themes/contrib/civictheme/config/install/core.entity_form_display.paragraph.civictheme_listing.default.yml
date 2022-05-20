@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civictheme_listing.field_c_p_content_type
-    - field.field.paragraph.civictheme_listing.field_c_p_hide_count
     - field.field.paragraph.civictheme_listing.field_c_p_limit_type
     - field.field.paragraph.civictheme_listing.field_c_p_link
     - field.field.paragraph.civictheme_listing.field_c_p_listing_f_exposed
@@ -11,8 +10,8 @@ dependencies:
     - field.field.paragraph.civictheme_listing.field_c_p_listing_multi_select
     - field.field.paragraph.civictheme_listing.field_c_p_read_more
     - field.field.paragraph.civictheme_listing.field_c_p_show_filters
-    - field.field.paragraph.civictheme_listing.field_c_p_show_pager
     - field.field.paragraph.civictheme_listing.field_c_p_space
+    - field.field.paragraph.civictheme_listing.field_c_p_theme
     - field.field.paragraph.civictheme_listing.field_c_p_title
     - field.field.paragraph.civictheme_listing.field_c_p_topics
     - field.field.paragraph.civictheme_listing.field_c_p_view_as
@@ -81,7 +80,7 @@ third_party_settings:
         - group_civictheme_option
         - group_civictheme_filter
       parent_name: ''
-      weight: 1
+      weight: 0
       format_type: tabs
       region: content
       format_settings:
@@ -99,13 +98,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
-  field_c_p_hide_count:
-    weight: 16
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
     region: content
   field_c_p_limit_type:
     weight: 13
@@ -142,7 +134,7 @@ content:
     type: boolean_checkbox
     region: content
   field_c_p_read_more:
-    weight: 18
+    weight: 1
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -156,15 +148,14 @@ content:
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
-  field_c_p_show_pager:
-    weight: 17
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   field_c_p_space:
-    weight: 19
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_c_p_theme:
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select

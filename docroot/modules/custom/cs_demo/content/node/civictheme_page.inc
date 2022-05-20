@@ -361,6 +361,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           'view_mode' => CsDemoHelper::randomListingViewAs(),
           'multi_select' => CsDemoRandom::bool(),
           'show_filters' => CsDemoRandom::bool(),
+          'theme' => $theme,
           'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
           'read_more' => CsDemoHelper::randomLinkFieldValue(),
         ];
