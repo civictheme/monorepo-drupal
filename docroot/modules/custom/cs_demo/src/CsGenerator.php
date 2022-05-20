@@ -7,14 +7,14 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\File\FileSystemInterface;
 
 /**
- * Class OspGenerator.
+ * Class CsGenerator.
  *
  * The utility class for generating data.
  *
  * @package Drupal\cs_demo
  * @SuppressWarnings(PHPMD)
  */
-class OspGenerator {
+class CsGenerator {
 
   /**
    * Defines assets directory.
@@ -289,6 +289,7 @@ class OspGenerator {
       'xlsx',
       'mp3',
       'mp4',
+      'svg',
     ];
 
     $module_path = drupal_get_path('module', 'cs_demo');

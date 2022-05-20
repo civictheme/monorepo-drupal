@@ -29,14 +29,14 @@ function cs_demo_create_media_civictheme_icon_tracking() {
  */
 function cs_demo_create_media_civictheme_icon() {
   $helper = CsDemoHelper::getInstance();
-  /** @var \Drupal\cs_demo\OspGenerator $generator */
+  /** @var \Drupal\cs_demo\CsGenerator $generator */
   $generator = Drupal::getContainer()->get('cs_demo.generator');
 
   $total_files_count = 20;
 
   $entities = [];
   for ($i = 0; $i < $total_files_count; $i++) {
-    $filename = sprintf('Demo image %s %s', $i + 1, CsDemoRandom::sentence(2, 2));
+    $filename = sprintf('Demo Icon %s %s', $i + 1, CsDemoRandom::sentence(2, 2));
     /** @var \Drupal\file\Entity\File $file */
     $file = $generator->createFromDummyFile([
       'filename' => $filename,

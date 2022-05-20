@@ -187,6 +187,30 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
       }
     }
 
+    // Attachments.
+    if (!empty($variation['attachment']) && $node->hasField('field_c_n_components')) {
+
+      for ($i = 0; $i < $variation['attachment']; $i++) {
+
+        $attachments = [];
+        $attachments_count = rand(3, 8);
+        for ($j = 0; $j < $attachments_count; $j++) {
+          $attachments[] = CsDemoHelper::randomDocument();
+        }
+
+        CsDemoHelper::civicParagraphAttachmentAttach($node, 'field_c_n_components', [
+          'title' => 'A H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1),
+          'summary' => CsDemoRandom::plainParagraph(),
+          'attachments' => $attachments,
+          'image' => CsDemoHelper::randomImage(),
+          'icon' => CsDemoHelper::randomDocument(),
+          'theme' => $theme,
+          'background' => CsDemoRandom::bool(),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+        ]);
+      }
+    }
+
     // Callout.
     if (!empty($variation['callout']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['callout']; $i++) {
@@ -302,7 +326,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
       }
     }
 
-    // Accordion.
+    // Slider.
     if (!empty($variation['slider']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['slider']; $i++) {
 
@@ -311,7 +335,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
         for ($j = 0; $j < $count_per_group; $j++) {
           $slide_options[] = [
             'title' => 'S H ' . ($j + 1) . ' ' . CsDemoRandom::sentence(1),
-            'content' => CsDemoRandom::richText(3, 8),
+            'content' => CsDemoRandom::richText(1, 1),
             'image' => CsDemoHelper::randomImage(),
             'image_position' => CsDemoHelper::randomSliderSlideImagePosition(),
             'link' => CsDemoHelper::randomLinkFieldValue(),
@@ -320,6 +344,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           ];
         }
 
+        // Slides.
         CsDemoHelper::civicParagraphSliderAttach($node, 'field_c_n_components', [
           'title' => CsDemoRandom::bool(33) ? 'SG H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
           'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),

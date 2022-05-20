@@ -29,7 +29,7 @@ function cs_demo_create_media_civictheme_document_tracking() {
  */
 function cs_demo_create_media_civictheme_document() {
   $helper = CsDemoHelper::getInstance();
-  /** @var \Drupal\cs_demo\OspGenerator $generator */
+  /** @var \Drupal\cs_demo\CsGenerator $generator */
   $generator = Drupal::getContainer()->get('cs_demo.generator');
 
   $total_files_count = 20;

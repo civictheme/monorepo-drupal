@@ -134,6 +134,36 @@ trait CsDemoTrait {
   }
 
   /**
+   * Attach Attachment paragraph to a node.
+   */
+  public static function civicParagraphAttachmentAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'summary' => '',
+      'attachments' => [],
+      'image' => NULL,
+      'icon' => NULL,
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicParagraphAttach('civictheme_attachment', $node, $field_name, $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
    * Attach Accordion paragraph to a node.
    */
   public static function civicParagraphAccordionAttach($node, $field_name, $options) {
