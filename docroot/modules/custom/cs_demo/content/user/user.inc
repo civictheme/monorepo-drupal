@@ -47,7 +47,7 @@ function cs_demo_create_user_user() {
 
       $existing_user = user_load_by_name($name);
       if ($existing_user) {
-        Drupal::entityTypeManager()->getStorage('user')->load($existing_user->id())->delete();
+        \Drupal::entityTypeManager()->getStorage('user')->load($existing_user->id())->delete();
       }
 
       if (Role::load($role->id())) {
@@ -66,7 +66,7 @@ function cs_demo_create_user_user() {
             $name,
           );
         }
-        catch (Exception $exception) {
+        catch (\Exception $exception) {
           watchdog_exception('cs_demo', $exception);
         }
       }

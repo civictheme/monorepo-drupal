@@ -1,4 +1,4 @@
-name: 'CivicTheme Demo Core'
+name: 'CivicTheme Core'
 type: module
 description: 'Core feature for site settings.'
 core_version_requirement: ^9

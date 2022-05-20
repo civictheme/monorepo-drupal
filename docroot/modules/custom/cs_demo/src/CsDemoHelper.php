@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * Helper to interact with demo items.
  *
- * @package Drupal\cs_demo
+ * @package \Drupal\cs_demo
  */
 class CsDemoHelper implements ContainerInjectionInterface {
 
@@ -67,7 +67,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
    */
   public static function getInstance() {
     if (!self::$instance) {
-      static::$instance = Drupal::service('class_resolver')
+      static::$instance = \Drupal::service('class_resolver')
         ->getInstanceFromDefinition(static::class);
     }
 
@@ -85,7 +85,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
       }
       else {
         // Support HTML, but still use plain strings for simplicity.
-        Drupal::messenger()->addMessage(new FormattableMarkup(call_user_func_array('sprintf', func_get_args()), []));
+        \Drupal::messenger()->addMessage(new FormattableMarkup(call_user_func_array('sprintf', func_get_args()), []));
       }
     }
   }
@@ -188,7 +188,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
    *   Array of terms.
    */
   public static function randomRealTerms($vid, $count = NULL) {
-    $terms = Drupal::service('entity_type.manager')
+    $terms = \Drupal::service('entity_type.manager')
       ->getStorage('taxonomy_term')
       ->loadByProperties(['vid' => $vid]);
     return $count ? CsDemoRandom::arrayItems($terms, $count) : $terms;
@@ -372,7 +372,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
     // Note that we are asking for an item 1 level deeper because this is
     // how loadTree() calculates max depth.
     /** @var \Drupal\taxonomy\Entity\Term[] $tree */
-    $tree = Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid, 0, $depth + 1, $load_entities);
+    $tree = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid, 0, $depth + 1, $load_entities);
 
     foreach ($tree as $k => $leaf) {
       if ($leaf->depth != $depth) {
@@ -468,7 +468,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
         $leaf['link'] = ['uri' => $leaf['link']];
       }
 
-      // Try to convert scalar link to Drupal Url object.
+      // Try to convert scalar link to \Drupal Url object.
       if (is_string($leaf['link']['uri'])) {
         $leaf['link']['uri'] = Url::fromUserInput($leaf['link']['uri'])->toUriString();
       }

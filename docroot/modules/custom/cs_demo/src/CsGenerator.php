@@ -107,7 +107,7 @@ class CsGenerator {
       }
     }
 
-    $dir = 'private://demo/';
+    $dir = 'public://demo/';
     $this->fileSystem->prepareDirectory($dir, FileSystemInterface::CREATE_DIRECTORY);
 
     $uri = $dir . $filename;
@@ -233,7 +233,7 @@ class CsGenerator {
       }
     }
 
-    $dir = 'private://demo/';
+    $dir = 'public://demo/';
     $this->fileSystem->prepareDirectory($dir, FileSystemInterface::CREATE_DIRECTORY);
 
     $uri = $dir . $filename;

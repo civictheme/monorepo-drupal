@@ -1,6 +1,6 @@
 name: CivicTheme Demo Content
 type: module
-description: Demo content.
+description: Generated demo content for CivicTheme.
 core_version_requirement: ^8 || ^9
 version: 8.x-1.0
 package: civictheme

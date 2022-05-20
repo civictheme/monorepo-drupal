@@ -257,7 +257,7 @@ class CsDemoRepository {
     ];
 
     foreach ($caches as $cache) {
-      if (Drupal::hasService('cache.' . $cache)) {
+      if (\Drupal::hasService('cache.' . $cache)) {
         \Drupal::cache($cache)->deleteAll();
       }
     }
@@ -339,7 +339,7 @@ class CsDemoRepository {
       ->select('cs_demo', 'demo')
       ->fields('demo')
       ->execute()
-      ->fetchAll(PDO::FETCH_ASSOC);
+      ->fetchAll(\PDO::FETCH_ASSOC);
 
     // Collect all entity ids.
     foreach ($data as $item) {
