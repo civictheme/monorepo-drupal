@@ -64,9 +64,9 @@ class CsDemoCommands extends DrushCommands {
    * @param int $total
    *   Number of items to create.
    *
-   * @command osp-demo:create-content
+   * @command cs-demo:create-content
    *
-   * @usage drush osp-demo:create-content entity_type bundle count
+   * @usage drush cs-demo:create-content entity_type bundle count
    */
   public function createContent($entity_type, $bundle, $total) {
     // 1. Log the start of the script.

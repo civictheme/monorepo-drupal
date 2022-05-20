@@ -7,14 +7,13 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\File\FileSystemInterface;
 
 /**
- * Class OspGenerator.
+ * Class CsGenerator.
  *
  * The utility class for generating data.
  *
  * @package Drupal\cs_demo
- * @SuppressWarnings(PHPMD)
  */
-class OspGenerator {
+class CsGenerator {
 
   /**
    * Defines assets directory.
@@ -278,17 +277,17 @@ class OspGenerator {
   protected function loadAssets() {
     // Pre-load replacement assets.
     $extensions = [
-      'jpg',
-      'jpeg',
-      'gif',
-      'png',
-      'pdf',
       'doc',
       'docx',
-      'xls',
-      'xlsx',
+      'gif',
+      'jpeg',
+      'jpg',
       'mp3',
       'mp4',
+      'pdf',
+      'png',
+      'xls',
+      'xlsx',
     ];
 
     $module_path = drupal_get_path('module', 'cs_demo');

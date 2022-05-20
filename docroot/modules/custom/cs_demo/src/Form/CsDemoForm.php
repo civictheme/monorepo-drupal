@@ -14,7 +14,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Admin form to provision demo items.
  *
  * @package Drupal\cs_demo\Form
- * @SuppressWarnings(PHPMD)
  */
 class CsDemoForm extends FormBase implements ContainerInjectionInterface {
 

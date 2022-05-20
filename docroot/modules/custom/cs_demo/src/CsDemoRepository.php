@@ -11,8 +11,7 @@ use Drupal\Core\Entity\EntityInterface;
  *
  * Repository class to manage demo items.
  *
- * @package Drupal\cs_demo
- * @SuppressWarnings(PHPMD)
+ * @package \Drupal\cs_demo
  */
 class CsDemoRepository {
 
@@ -258,7 +257,7 @@ class CsDemoRepository {
     ];
 
     foreach ($caches as $cache) {
-      if (\Drupal::hasService('cache.' . $cache)) {
+      if (Drupal::hasService('cache.' . $cache)) {
         \Drupal::cache($cache)->deleteAll();
       }
     }
@@ -340,7 +339,7 @@ class CsDemoRepository {
       ->select('cs_demo', 'demo')
       ->fields('demo')
       ->execute()
-      ->fetchAll(\PDO::FETCH_ASSOC);
+      ->fetchAll(PDO::FETCH_ASSOC);
 
     // Collect all entity ids.
     foreach ($data as $item) {
@@ -472,7 +471,7 @@ class CsDemoRepository {
         ->updateFields($data)
         ->execute();
     }
-    catch (\Exception $exception) {
+    catch (Exception $exception) {
       watchdog_exception('cs_demo', $exception);
     }
   }
@@ -503,7 +502,7 @@ class CsDemoRepository {
 
       $query = $query->execute();
 
-      $results = $query->fetchAll(\PDO::FETCH_ASSOC);
+      $results = $query->fetchAll(PDO::FETCH_ASSOC);
       foreach ($results as $result) {
         try {
           $entity = \Drupal::entityTypeManager()->getStorage($result['entity_type'])
@@ -513,12 +512,12 @@ class CsDemoRepository {
             unset($this->entities[$entity_type][$bundle][$entity_id]);
           }
         }
-        catch (\Exception $exception) {
+        catch (Exception $exception) {
           watchdog_exception('cs_demo', $exception);
         }
       }
     }
-    catch (\Exception $exception) {
+    catch (Exception $exception) {
       watchdog_exception('cs_demo', $exception);
     }
   }

@@ -10,7 +10,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
  *
  * @ConfigFilter(
  *   id = "cs_demo_config_ignore",
- *   label = "OSP Demo Config Ignore",
+ *   label = "CivicTheme Demo Config Ignore",
  *   weight = 100
  * )
  */

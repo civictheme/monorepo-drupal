@@ -48,15 +48,15 @@ function cs_demo_schema() {
  * Implements hook_install().
  */
 function cs_demo_install() {
-  if (getenv('OSP_DEMO_CREATE')) {
+  if (getenv('CS_DEMO_CREATE')) {
     $repository = CsDemoRepository::getInstance();
     // Create demo content only if the repository is empty. This allows to avoid
     // duplication of demo content on every run of the persistent operations.
     if ($repository->isEmpty()) {
       print 'Started creation of demo content' . PHP_EOL;
       $items = [];
-      if (getenv('OSP_DEMO_ITEMS')) {
-        $items = _cs_demo_parse_cli_items(getenv('OSP_DEMO_ITEMS'));
+      if (getenv('CS_DEMO_ITEMS')) {
+        $items = _cs_demo_parse_cli_items(getenv('CS_DEMO_ITEMS'));
       }
       $repository->create($items);
       print 'Finished creation of demo content' . PHP_EOL;

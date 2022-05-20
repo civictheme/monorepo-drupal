@@ -1,4 +1,4 @@
 services:
   cs_demo.generator:
-    class: Drupal\cs_demo\OspGenerator
-    arguments: ['@file_system', '@entity_type.manager']
+    class: Drupal\cs_demo\CsGenerator
+    arguments: [ '@file_system', '@entity_type.manager' ]

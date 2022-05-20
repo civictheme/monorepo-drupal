@@ -6,9 +6,9 @@
  */
 
 use Drupal\Core\Link;
-use Drupal\media\Entity\Media;
 use Drupal\cs_demo\CsDemoHelper;
 use Drupal\cs_demo\CsDemoRandom;
+use Drupal\media\Entity\Media;
 
 /**
  * Implements hook_cs_demo_create_ENTITY_TYPE_BUNDLE_weight().
@@ -29,7 +29,7 @@ function cs_demo_create_media_civictheme_icon_tracking() {
  */
 function cs_demo_create_media_civictheme_icon() {
   $helper = CsDemoHelper::getInstance();
-  /** @var \Drupal\cs_demo\OspGenerator $generator */
+  /** @var \Drupal\cs_demo\CsGenerator $generator */
   $generator = Drupal::getContainer()->get('cs_demo.generator');
 
   $total_files_count = 20;
@@ -40,9 +40,7 @@ function cs_demo_create_media_civictheme_icon() {
     /** @var \Drupal\file\Entity\File $file */
     $file = $generator->createFromDummyFile([
       'filename' => $filename,
-      'extension' => CsDemoRandom::arrayItem([
-        'svg',
-      ])
+      'extension' => 'svg',
     ]);
 
     $media = Media::create([

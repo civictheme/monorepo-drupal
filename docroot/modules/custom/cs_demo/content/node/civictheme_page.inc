@@ -3,9 +3,6 @@
 /**
  * @file
  * Create demo page nodes.
- *
- * @see https://www.drupal.org/project/coder/issues/2877475
- * phpcs:disable DrupalPractice.CodeAnalysis.VariableAnalysis.UndefinedVariable
  */
 
 use Drupal\cs_demo\CsDemoHelper;
@@ -40,12 +37,12 @@ function cs_demo_create_node_civictheme_page() {
 
   $types = CsDemoHelper::randomFieldAllowedBundles('node', 'civictheme_page', 'field_c_n_components', 3);
 
-  if (!is_array($types) && count($types) > 3){
+  if (!is_array($types) && count($types) > 3) {
     $types = array_combine($types, [rand(1, 2), rand(1, 3), rand(1, 3)]);
   }
   else {
     $types = [
-      'content' => rand(1,2),
+      'content' => rand(1, 2),
     ];
   }
 
@@ -57,8 +54,8 @@ function cs_demo_create_node_civictheme_page() {
       'space' => 'both',
       'toc' => NULL,
       'topics' => rand(0, 5),
-      'banner_type' => CsDemoRandom::arrayItem(CsDemoHelper::civicBannerTypes()),
-      'banner_theme' => CsDemoRandom::arrayItem(CsDemoHelper::civicThemes()),
+      'banner_type' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeBannerTypes()),
+      'banner_theme' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeThemes()),
       'banner_background' => NULL,
       'banner_featured_image' => NULL,
       'banner_components' => rand(0, 2),
@@ -131,43 +128,43 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
 
   if (!empty($variation['banner_components']) && $node->hasField('field_c_n_banner_components')) {
     for ($i = 0; $i < $variation['banner_components']; $i++) {
-      CsDemoHelper::civicParagraphContentAttach($node, 'field_c_n_banner_components', [
+      CsDemoHelper::civicthemeParagraphContentAttach($node, 'field_c_n_banner_components', [
         'content' => CsDemoRandom::richText(rand(1, 2), rand(2, 4), sprintf('Banner component %s ', $i + 1)),
-        'theme' => $variation['banner_theme'] ?: CsDemoHelper::civicThemeLight(),
+        'theme' => $variation['banner_theme'] ?: CsDemoHelper::civicthemeThemeLight(),
       ]);
     }
   }
 
   if (!empty($variation['banner_components_bottom']) && $node->hasField('field_c_n_banner_components_bott')) {
     for ($i = 0; $i < $variation['banner_components_bottom']; $i++) {
-      CsDemoHelper::civicParagraphContentAttach($node, 'field_c_n_banner_components_bott', [
+      CsDemoHelper::civicthemeParagraphContentAttach($node, 'field_c_n_banner_components_bott', [
         'content' => CsDemoRandom::richText(rand(1, 2), rand(2, 4), sprintf('Banner bottom component %s ', $i + 1)),
-        'theme' => CsDemoHelper::civicThemeLight(),
+        'theme' => CsDemoHelper::civicthemeThemeLight(),
       ]);
     }
   }
 
-  $themes = CsDemoHelper::civicThemes();
+  $themes = CsDemoHelper::civicthemeThemes();
 
   foreach ($themes as $theme) {
     // Content.
     if (!empty($variation['content']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['content']; $i++) {
-        CsDemoHelper::civicParagraphContentAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphContentAttach($node, 'field_c_n_components', [
           'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
           'theme' => $theme,
         ]);
       }
     }
 
-    if(!empty($variation['accordion']) && $node->hasField('field_c_n_components')) {
+    if (!empty($variation['accordion']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['accordion']; $i++) {
-        CsDemoHelper::civicParagraphAccordionAttach($node, 'field_c_n_components', [
+        CsDemoHelper::civicthemeParagraphAccordionAttach($node, 'field_c_n_components', [
           'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
           'panels' => [
             'title' => CsDemoRandom::sentence(5, 20),
             'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
-            ],
+          ],
           'expand_all' => rand(0, 1),
           'theme' => $theme,
         ]);
