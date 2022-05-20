@@ -25,7 +25,7 @@ function _civictheme_preprocess_node__card(&$variables) {
 /**
  * Preprocess.
  */
-function _civictheme_preprocess_node__civictheme_card_event(&$variables) {
+function _civictheme_preprocess_node__civictheme_event_card(&$variables) {
   _civictheme_preprocess_node__card($variables);
   _civictheme_preprocess_node__date($variables);
   _civictheme_preprocess_node__thumbnail($variables);
@@ -50,7 +50,7 @@ function _civictheme_preprocess_node__theme(&$variables) {
 /**
  * Pre-process a Node for navigation_card view mode.
  */
-function _civictheme_preprocess_node__civictheme_card_navigation(&$variables) {
+function _civictheme_preprocess_node__civictheme_navigation_card(&$variables) {
   _civictheme_preprocess_node__card($variables);
   _civictheme_preprocess_node__thumbnail($variables);
 }
@@ -58,7 +58,7 @@ function _civictheme_preprocess_node__civictheme_card_navigation(&$variables) {
 /**
  * Pre-process a Node for civictheme_subject view mode.
  */
-function _civictheme_preprocess_node__civictheme_card_promo(&$variables) {
+function _civictheme_preprocess_node__civictheme_promo_card(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   $variables['date'] = \Drupal::service('date.formatter')->format($node->getCreatedTime(), 'civictheme_short_date');
@@ -68,9 +68,9 @@ function _civictheme_preprocess_node__civictheme_card_promo(&$variables) {
 }
 
 /**
- * Pre-process a Node for civictheme_card_subject view mode.
+ * Pre-process a Node for civictheme_subject_card view mode.
  */
-function _civictheme_preprocess_node__civictheme_card_subject(&$variables) {
+function _civictheme_preprocess_node__civictheme_subject_card(&$variables) {
   _civictheme_preprocess_node__card($variables);
   _civictheme_preprocess_node__thumbnail($variables);
 }

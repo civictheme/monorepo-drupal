@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.civictheme_event_card
+label: Event
+targetEntityType: node
+cache: true

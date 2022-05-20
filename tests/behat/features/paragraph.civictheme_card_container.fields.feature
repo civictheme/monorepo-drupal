@@ -52,5 +52,5 @@ Feature: Tests the Card container paragraph
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]']" element
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_space]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_background][value]']" element
-    And I should see an "input[name='field_c_n_components_0_subform_field_c_p_cards_civictheme_card_task_add_more']" element
+    And I should see an "input[name='field_c_n_components_0_subform_field_c_p_cards_civictheme_task_card_add_more']" element
     And the option "Light" from select "Theme" is selected

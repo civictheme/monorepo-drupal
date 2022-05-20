@@ -75,7 +75,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 88267847-9115-49c2-b316-000383c6bc0f
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -102,7 +102,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 8e2ba649-0ff9-4a1d-9ee9-64b818bba28c
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -132,7 +132,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 40045185-d23c-466e-9e76-aedde86e470e
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:
@@ -159,7 +159,7 @@ default:
                   version: '1.0'
                   entity_type: paragraph
                   uuid: 5f3377d1-f374-4b7b-806e-282c73b1829d
-                  bundle: civictheme_card_task
+                  bundle: civictheme_task_card
                   default_langcode: en
                 default:
                   status:

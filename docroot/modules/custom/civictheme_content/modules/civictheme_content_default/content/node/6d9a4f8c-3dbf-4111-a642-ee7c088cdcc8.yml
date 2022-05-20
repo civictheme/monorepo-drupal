@@ -13,7 +13,7 @@ default:
       value: true
   uid:
     -
-      target_id: 0
+      target_id: 1
   title:
     -
       value: 'About us'
@@ -59,12 +59,15 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
           field_c_p_background:
             -
               value: false
           field_c_p_content:
             -
-              value: "<h2>Heading 2</h2>\r\n\r\n<p>Content component - add general page content in this area.&nbsp;</p>\r\n\r\n<p>Body text can include a variety headings and sub-headings up to six levels deep, images, embedded video, block quotes, etc.</p>\r\n\r\n<h3>Components (Heading 3)</h3>\r\n\r\n<p>You can add different components on pages like this, including a variety of navigation cards, content listing, promo content, or accordions, and webforms.</p>\r\n\r\n<p>Here are just a few examples:</p>\r\n\r\n<ol>\r\n\t<li><a href=\"/node/54\">Navigation cards</a></li>\r\n\t<li><a href=\"/node/30\">Navigation cards for 2x columns</a></li>\r\n\t<li><a href=\"/node/11\">Slider</a></li>\r\n\t<li><a href=\"/node/2\">Content listing page</a></li>\r\n\t<li><a href=\"/node/12\">Promo content</a></li>\r\n</ol>\r\n\r\n<p>Examples of all the available variations of these components are included in CivicTheme and available in the admin content area.&nbsp;</p>\r\n"
+              value: "<h2>Heading 2</h2>\r\n\r\n<p>Content component - add general page content in this area.&nbsp;</p>\r\n\r\n<p>Body text can include a variety headings and sub-headings up to six levels deep, images, embedded video, block quotes, etc.</p>\r\n\r\n<h3>Components (Heading 3)</h3>\r\n\r\n<p>You can add different components on pages like this, including a variety of navigation cards, content listing, promo content, or accordions, and webforms.</p>\r\n\r\n<p>Here are just a few examples:</p>\r\n\r\n<ol>\r\n\t<li><a href=\"/node/54\">Navigation cards</a></li>\r\n\t<li><a href=\"/node/30\">Navigation cards for 2x columns</a></li>\r\n\t<li><a href=\"/node/11\">Slider</a></li>\r\n\t<li><a href=\"/node/5\">Content listing page</a></li>\r\n\t<li><a href=\"/node/12\">Promo content</a></li>\r\n</ol>\r\n\r\n<p>Examples of all the available variations of these components are included in CivicTheme and available in the admin content area.&nbsp;</p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
