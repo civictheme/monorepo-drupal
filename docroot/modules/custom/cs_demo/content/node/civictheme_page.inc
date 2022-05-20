@@ -41,12 +41,16 @@ function cs_demo_create_node_civictheme_page() {
   for ($i = 0; $i < $total_nodes; $i++) {
     $types = CsDemoHelper::randomFieldAllowedBundles('node', 'civictheme_page', 'field_c_n_components', 3);
 
-    if (is_array($types) && count($types) == 3){
-      $types = array_combine(array_values($types), [rand(1, 2), rand(1, 3), rand(1, 3)]);
+    if (is_array($types) && count($types) == 3) {
+      $types = array_combine(array_values($types), [
+        rand(1, 2),
+        rand(1, 3),
+        rand(1, 3),
+      ]);
     }
     else {
       $types = [
-        'content' => rand(1,2),
+        'content' => rand(1, 2),
       ];
     }
 
@@ -165,7 +169,6 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     // Accordion.
     if (!empty($variation['accordion']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['accordion']; $i++) {
-
         // Panels.
         $count_per_group = rand(4, 8);
         $accordion_options = [];
@@ -190,11 +193,10 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
 
     // Attachments.
     if (!empty($variation['attachment']) && $node->hasField('field_c_n_components')) {
-
       for ($i = 0; $i < $variation['attachment']; $i++) {
-
         $attachments = [];
         $attachments_count = rand(3, 8);
+
         for ($j = 0; $j < $attachments_count; $j++) {
           $attachments[] = CsDemoHelper::randomDocument();
         }
@@ -232,11 +234,14 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     // Card container.
     if (!empty($variation['card_container']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['card_container']; $i++) {
-
         // Cards.
         $card_types = CsDemoHelper::randomFieldAllowedBundles('paragraph', 'civictheme_card_container', 'field_c_p_cards', 3);
-        if (is_array($card_types) && count($card_types) == 3){
-          $card_types = array_combine(array_values($card_types), [rand(2, 4), rand(2, 4), rand(2, 4)]);
+        if (is_array($card_types) && count($card_types) == 3) {
+          $card_types = array_combine(array_values($card_types), [
+            rand(2, 4),
+            rand(2, 4),
+            rand(2, 4),
+          ]);
         }
         else {
           $card_types = [
@@ -345,7 +350,6 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     // Listing.
     if (!empty($variation['listing']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['listing']; $i++) {
-
         $content_type = CsDemoHelper::randomListingContentType();
         $listing_options = [
           'title' => 'L H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1),
@@ -370,7 +374,6 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     // Slider.
     if (!empty($variation['slider']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['slider']; $i++) {
-
         // Slides.
         $count_per_group = rand(3, 6);
         $slide_options = [];

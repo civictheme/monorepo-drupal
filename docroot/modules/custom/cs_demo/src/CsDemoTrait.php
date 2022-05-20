@@ -498,13 +498,19 @@ trait CsDemoTrait {
         'title' => 'SC H ' . CsDemoRandom::sentence(1),
       ],
       'promo_card_ref' => [
-        'reference' => CsDemoHelper::randomNodes(1, ['civictheme_event', 'civictheme_page']),
+        'reference' => CsDemoHelper::randomNodes(1, [
+          'civictheme_event',
+          'civictheme_page',
+        ]),
       ],
       'event_card_ref' => [
         'reference' => CsDemoHelper::randomNode('civictheme_event'),
       ],
       'navigation_card_ref' => [
-        'reference' => CsDemoHelper::randomNodes(1, ['civictheme_event', 'civictheme_page']),
+        'reference' => CsDemoHelper::randomNodes(1, [
+          'civictheme_event',
+          'civictheme_page',
+        ]),
       ],
       'event_card' => [
         'date' => CsDemoRandom::date(),
@@ -524,7 +530,10 @@ trait CsDemoTrait {
         'topics' => CsDemoHelper::randomTopics(),
       ],
       'subject_card_ref' => [
-        'reference' => CsDemoHelper::randomNodes(1, ['civictheme_event', 'civictheme_page']),
+        'reference' => CsDemoHelper::randomNodes(1, [
+          'civictheme_event',
+          'civictheme_page',
+        ]),
         'topic' => CsDemoHelper::randomTopics(1),
       ],
       'subject_card' => [
@@ -535,7 +544,7 @@ trait CsDemoTrait {
       'publication_card' => [
         'document' => CsDemoHelper::randomDocument(),
         'image' => CsDemoHelper::randomImage(),
-        'size' => CsDemoHelper::randomFieldAllowedValue('paragraph','civictheme_publication_card', 'field_c_p_size'),
+        'size' => CsDemoHelper::randomFieldAllowedValue('paragraph', 'civictheme_publication_card', 'field_c_p_size'),
         'summary' => CsDemoRandom::plainParagraph(),
         'title' => 'EC H ' . CsDemoRandom::sentence(1),
       ],
