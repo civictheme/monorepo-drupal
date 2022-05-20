@@ -1,0 +1,6 @@
+services:
+  cs_demo.commands:
+    class: Drupal\cs_demo\Commands\CsDemoCommands
+    tags:
+      - { name: drush.command }
+    arguments: [ '@entity_type.manager', '@logger.factory', '@logger.dblog' ]

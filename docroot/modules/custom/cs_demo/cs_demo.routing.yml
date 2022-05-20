@@ -1,0 +1,9 @@
+cs_demo.cs_demo_form:
+  path: '/admin/config/development/cs_demo'
+  defaults:
+    _form: '\Drupal\cs_demo\Form\CsDemoForm'
+    _title: 'Administer Civictheme Demo content'
+  requirements:
+    _permission: 'administer demo content'
+  options:
+    _admin_route: TRUE
