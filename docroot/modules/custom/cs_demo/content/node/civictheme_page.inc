@@ -359,8 +359,6 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           'view_as' => CsDemoHelper::randomListingViewAs(),
           'limit_type' => CsDemoHelper::randomListingLimitType(),
           'view_mode' => CsDemoHelper::randomListingViewAs(),
-          'show_pager' => CsDemoRandom::bool(),
-          'hide_count' => CsDemoRandom::bool(),
           'multi_select' => CsDemoRandom::bool(),
           'show_filters' => CsDemoRandom::bool(),
           'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
