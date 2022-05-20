@@ -166,6 +166,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     if (!empty($variation['accordion']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['accordion']; $i++) {
 
+        // Panels.
         $count_per_group = rand(4, 8);
         $accordion_options = [];
         for ($j = 0; $j < $count_per_group; $j++) {
@@ -224,6 +225,46 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           'theme' => $theme,
           'background' => CsDemoRandom::bool(),
           'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+        ]);
+      }
+    }
+
+    // Card container.
+    if (!empty($variation['card_container']) && $node->hasField('field_c_n_components')) {
+      for ($i = 0; $i < $variation['card_container']; $i++) {
+
+        // Cards.
+        $card_types = CsDemoHelper::randomFieldAllowedBundles('paragraph', 'civictheme_card_container', 'field_c_p_cards', 3);
+        if (is_array($card_types) && count($card_types) == 3){
+          $card_types = array_combine(array_values($card_types), [rand(2, 4), rand(2, 4), rand(2, 4)]);
+        }
+        else {
+          $card_types = [
+            'task_card' => rand(1, 5),
+          ];
+        }
+
+        $card_options = [];
+        foreach ($card_types as $card_type => $card_count) {
+          for ($k = 0; $k < $card_count; $k++) {
+            $card_options[] = [
+              'type' => 'civictheme_' . $card_type,
+              'options' => CsDemoHelper::civicCardsDefaultOptions($card_type),
+            ];
+          }
+        }
+
+        CsDemoHelper::civicParagraphCardContainerAttach($node, 'field_c_n_components', [
+          'title' => CsDemoRandom::bool(33) ? 'CC H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
+          'description' => CsDemoRandom::sentence(3),
+          'column_count' => CsDemoHelper::randomFieldAllowedValue('paragraph', 'civictheme_card_container', 'field_c_p_column_count'),
+          'fill_width' => CsDemoRandom::bool(),
+          'footer_link' => CsDemoHelper::randomLinkFieldValue(),
+          'header_link' => CsDemoHelper::randomLinkFieldValue(),
+          'theme' => $theme,
+          'background' => CsDemoRandom::bool(),
+          'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicSpaceTypes()),
+          'cards' => $card_options,
         ]);
       }
     }
@@ -330,6 +371,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     if (!empty($variation['slider']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['slider']; $i++) {
 
+        // Slides.
         $count_per_group = rand(3, 6);
         $slide_options = [];
         for ($j = 0; $j < $count_per_group; $j++) {
@@ -344,7 +386,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
           ];
         }
 
-        // Slides.
+        // Slider.
         CsDemoHelper::civicParagraphSliderAttach($node, 'field_c_n_components', [
           'title' => CsDemoRandom::bool(33) ? 'SG H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
           'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),

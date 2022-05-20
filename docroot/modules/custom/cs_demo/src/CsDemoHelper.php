@@ -310,7 +310,7 @@ class CsDemoHelper implements ContainerInjectionInterface {
 
     $field_info = FieldConfig::loadByName($entity_type, $bundle, $field_name);
     if ($field_info) {
-      if ($field_info->getType() == 'entity_reference_revisions') {
+      if ($field_info->getType() == 'entity_reference_revisions' || $field_info->getType() == 'entity_reference') {
         $allowed_values = $field_info->getSetting('handler_settings')['target_bundles'];
       }
     }
@@ -666,6 +666,32 @@ class CsDemoHelper implements ContainerInjectionInterface {
    */
   public static function randomDocument() {
     $media = self::randomDocuments(1);
+    return !empty($media) ? reset($media) : NULL;
+  }
+
+  /**
+   * Select random media Icons.
+   *
+   * @param bool|int $count
+   *   Optional count of documents. If FALSE, all available documents will be
+   *   returned.
+   *
+   * @return \Drupal\media\Entity\Media[]
+   *   Array of media entities.
+   */
+  public static function randomIcons($count = FALSE) {
+    $media = self::$repository->getEntities('media', 'civictheme_icon');
+    return $count ? CsDemoRandom::arrayItems($media, $count) : $media;
+  }
+
+  /**
+   * Select a random media document.
+   *
+   * @return \Drupal\media\Entity\Media
+   *   The media entity.
+   */
+  public static function randomIcon() {
+    $media = self::randomIcons(1);
     return !empty($media) ? reset($media) : NULL;
   }
 

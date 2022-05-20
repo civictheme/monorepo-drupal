@@ -242,6 +242,41 @@ trait CsDemoTrait {
   /**
    * Attach Slider paragraph to a node.
    */
+  public static function civicParagraphCardContainerAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    if (!empty($options['cards']) && count($options['cards']) > 0) {
+      $cards = $options['cards'];
+      unset($options['cards']);
+    }
+
+    $paragraph = self::civicParagraphAttach('civictheme_card_container', $node, $field_name, $options);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    // Cards.
+    if (!empty($cards)) {
+      foreach ($cards as $card_options) {
+        if (!empty($card_options['type']) && !empty($card_options['options'])) {
+          $card = self::civicParagraphAttach($card_options['type'], $paragraph, 'field_c_p_cards', $card_options['options'], TRUE);
+          if (!empty($card)) {
+            $paragraph->field_c_p_cards->appendItem($card);
+          }
+        }
+      }
+    }
+
+    $paragraph->save();
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
+   * Attach Slider paragraph to a node.
+   */
   public static function civicParagraphSliderAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
@@ -268,6 +303,7 @@ trait CsDemoTrait {
       }
     }
 
+    $paragraph->save();
     $node->{$field_name}->appendItem($paragraph);
   }
 
@@ -421,7 +457,7 @@ trait CsDemoTrait {
     }
 
     if ($options['limit_type'] && $options['limit_type'] == 'limited') {
-      $paragraph->field_c_p_listing_limit = rand(0, 20);
+      $paragraph->field_c_p_listing_limit = rand(9, 20);
     }
 
     $paragraph->save();
@@ -434,6 +470,82 @@ trait CsDemoTrait {
    */
   protected static function civicValueFromOptions(array $options, $value) {
     return in_array($value, $options) ? $value : reset($options);
+  }
+
+  /**
+   * Get Cards default options.
+   */
+  public static function civicCardsDefaultOptions($type) {
+    $options = [
+      'task_card' => [
+        'icon' => CsDemoHelper::randomIcon(),
+        'link' => CsDemoHelper::randomLinkFieldValue(),
+        'summary' => CsDemoRandom::plainParagraph(),
+        'title' => 'TC H ' . CsDemoRandom::sentence(1),
+      ],
+      'navigation_card' => [
+        'image' => CsDemoHelper::randomImage(),
+        'link' => CsDemoHelper::randomLinkFieldValue(),
+        'summary' => CsDemoRandom::plainParagraph(),
+        'title' => 'NC H ' . CsDemoRandom::sentence(1),
+      ],
+      'service_card' => [
+        'links' => [
+          CsDemoHelper::randomLinkFieldValue(),
+          CsDemoHelper::randomLinkFieldValue(),
+          CsDemoHelper::randomLinkFieldValue(),
+        ],
+        'title' => 'SC H ' . CsDemoRandom::sentence(1),
+      ],
+      'promo_card_ref' => [
+        'reference' => CsDemoHelper::randomNodes(1, ['civictheme_event', 'civictheme_page']),
+      ],
+      'event_card_ref' => [
+        'reference' => CsDemoHelper::randomNode('civictheme_event'),
+      ],
+      'navigation_card_ref' => [
+        'reference' => CsDemoHelper::randomNodes(1, ['civictheme_event', 'civictheme_page']),
+      ],
+      'event_card' => [
+        'date' => CsDemoRandom::date(),
+        'image' => CsDemoHelper::randomImage(),
+        'link' => CsDemoHelper::randomLinkFieldValue(),
+        'location' => 'E L ' . CsDemoRandom::sentence(1),
+        'summary' => CsDemoRandom::plainParagraph(),
+        'title' => 'EC H ' . CsDemoRandom::sentence(1),
+        'topic' => CsDemoHelper::randomTopics(1),
+      ],
+      'promo_card' => [
+        'date' => CsDemoRandom::date(),
+        'image' => CsDemoHelper::randomImage(),
+        'link' => CsDemoHelper::randomLinkFieldValue(),
+        'summary' => CsDemoRandom::plainParagraph(),
+        'title' => 'PC H ' . CsDemoRandom::sentence(1),
+        'topics' => CsDemoHelper::randomTopics(),
+      ],
+      'subject_card_ref' => [
+        'reference' => CsDemoHelper::randomNodes(1, ['civictheme_event', 'civictheme_page']),
+        'topic' => CsDemoHelper::randomTopics(1),
+      ],
+      'subject_card' => [
+        'image' => CsDemoHelper::randomImage(),
+        'link' => CsDemoHelper::randomLinkFieldValue(),
+        'title' => 'TC H ' . CsDemoRandom::sentence(1),
+      ],
+      'publication_card' => [
+        'document' => CsDemoHelper::randomDocument(),
+        'image' => CsDemoHelper::randomImage(),
+        'size' => CsDemoHelper::randomFieldAllowedValue('paragraph','civictheme_publication_card', 'field_c_p_size'),
+        'summary' => CsDemoRandom::plainParagraph(),
+        'title' => 'EC H ' . CsDemoRandom::sentence(1),
+      ],
+    ];
+
+    if (!empty($type) && isset($options[$type])) {
+      return $options[$type];
+    }
+
+    return [];
   }
 
 }
