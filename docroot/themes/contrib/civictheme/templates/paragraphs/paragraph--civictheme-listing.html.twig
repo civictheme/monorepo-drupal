@@ -12,15 +12,11 @@
   <div id="{{ uniqId }}" class="civictheme-listing paragraph {{ modifier_class }}">
     <div class="civictheme-listing__container">
       {% if content.field_c_p_title|render|striptags|trim is not empty %}
-        <div class="container">
-          <div class="row">
-            <div class="col-xxs-12">
-              <h2 class="civictheme-listing__header">
-                {{ content.field_c_p_title }}
-              </h2>
-            </div>
-          </div>
-        </div>
+        {% include '@atoms/heading/heading.twig' with {
+          content: content.field_c_p_title ,
+          level: 2,
+          modifier_class: 'civictheme-listing__title',
+        } only %}
       {% endif %}
       <div class="civictheme-listing__body {{ body_modifier_class }}">
         {{ listing }}

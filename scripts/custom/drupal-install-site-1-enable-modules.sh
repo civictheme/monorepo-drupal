@@ -38,6 +38,7 @@ $drush ${DRUSH_ALIAS} -y pm-enable civictheme_govcms
 $drush ${DRUSH_ALIAS} -y pm-enable civictheme_content
 
 $drush ${DRUSH_ALIAS} -y pm-enable cs_core
+CS_DEMO_CREATE=1 $drush ${DRUSH_ALIAS} -y pm-enable cs_demo
 
 # Perform operations based on the current environment.
 if $drush ${DRUSH_ALIAS} ev "print \Drupal\core\Site\Settings::get('environment');" | grep -q -e dev -e test -e ci -e local; then
