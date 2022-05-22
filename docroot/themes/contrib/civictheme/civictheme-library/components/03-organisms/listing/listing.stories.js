@@ -38,7 +38,7 @@ export const Listing = (knobTab) => {
     generalKnobTab,
   );
   const verticalSpace = radios(
-  'Vertical space',
+    'Vertical space',
     {
       None: 'none',
       Top: 'top',
