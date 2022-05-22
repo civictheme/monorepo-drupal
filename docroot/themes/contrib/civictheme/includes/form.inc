@@ -108,6 +108,11 @@ function civictheme_preprocess_input(&$variables) {
 
     unset($variables['attributes']['class']);
   }
+
+  if (isset($variables['attributes']['#civic_theme'])) {
+    unset($variables['attributes']['#civic_theme']);
+  }
+
 }
 
 /**
@@ -415,9 +420,11 @@ function _civictheme_get_theme_from_attributes(&$variables) {
     ])) {
     $variables['theme'] = $variables['element']['#attributes']['#civic_theme'];
     unset($variables['element']['#attributes']['#civic_theme']);
+    if (isset($variables['element']['label']['#attributes'])) {
+      $variables['element']['label']['#attributes']['#civic_theme'] = $variables['theme'];
+    }
     if (isset($variables['label']['#attributes'])) {
       $variables['label']['#attributes']['#civic_theme'] = $variables['theme'];
-      unset($variables['label']['#attributes']['#civic_theme']);
     }
   }
   else {

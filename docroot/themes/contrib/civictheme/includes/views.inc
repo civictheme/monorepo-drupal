@@ -42,12 +42,23 @@ function civictheme_preprocess_views_exposed_form(&$variables) {
   if ($is_view_component) {
     $variables += $variables['attributes']['civictheme_listing'];
     unset($variables['attributes']['civictheme_listing']);
-    $form_elements = Element::children($variables['form']);
-    foreach ($form_elements as $form_element) {
-      $variables['form'][$form_element]['#attributes']['#civic_theme'] = $variables['theme'];
-    }
+    _civictheme_propagate_component_theme_settings($variables['form'], $variables['theme']);
   }
   $variables['theme'] = $variables['theme'] ?? 'light';
+}
+
+/**
+ * Propagate component theme setting to nested form elements.
+ */
+function _civictheme_propagate_component_theme_settings(&$elements, $theme) {
+  $form_elements = Element::children($elements);
+  foreach ($form_elements as $form_element) {
+    $elements[$form_element]['#attributes']['#civic_theme'] = $theme;
+    $children = Element::children($elements[$form_element]);
+    if (!empty($children)) {
+      _civictheme_propagate_component_theme_settings($elements[$form_element], $theme);
+    }
+  }
 }
 
 /**
@@ -99,7 +110,7 @@ function civictheme_preprocess_views_view(&$variables) {
 function civictheme_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'] ?? NULL;
   // On Grid view title should be added to card container.
-  if ($view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
+  if ($view && $view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     $variables['modifier_class'] = 'civictheme-card-container--listing civictheme-card-container--with-background';
     $variables['title'] = $view->header['result']->render();
   }

@@ -1,8 +1,4 @@
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set with_background_class = with_background ? 'civictheme-listing--with-background' : '' %}
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-listing--vertical-space-%s'|format(vertical_space) : '' %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, with_background_class, vertical_space_class, modifier_class|default('')) %}
-
+{% set modifier_class = modifier_class|default('') %}
 <div {{ attributes }} class="{{ modifier_class }}">
   {{ listing }}
 </div>
