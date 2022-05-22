@@ -182,28 +182,38 @@
       .civictheme-menu__item {
         // Links - level 0.
         &--level-0 {
-          border-color: $civictheme-primary-navigation-light-border-color;
+          border-bottom-color: $civictheme-primary-navigation-light-menu-item-border-color;
 
           &:hover {
             background-color: $civictheme-primary-navigation-light-menu-item-hover-background-color;
+            border-bottom-color: $civictheme-primary-navigation-light-menu-item-hover-border-color;
           }
 
           &:active {
-            background-color: $civictheme-primary-navigation-light-menu-item-active-border-color;
+            background-color: $civictheme-primary-navigation-light-menu-item-active-background-color;
+            border-bottom-color: $civictheme-primary-navigation-light-menu-item-active-border-color;
           }
 
-          &[data-collapsible-collapsed] {
-            border-bottom-color: $civictheme-primary-navigation-light-menu-item-border-color;
+          &[data-collapsible] {
+            border-bottom-color: $civictheme-primary-navigation-light-border-color;
 
             &:hover {
               background-color: $civictheme-primary-navigation-light-menu-item-hover-background-color;
               border-bottom-color: $civictheme-primary-navigation-light-menu-item-hover-border-color;
             }
-
+  
             &:active {
               background-color: $civictheme-primary-navigation-light-menu-item-active-background-color;
               border-bottom-color: $civictheme-primary-navigation-light-menu-item-active-border-color;
             }
+          }
+
+          &[data-collapsible-collapsed] {
+            border-bottom-color: $civictheme-primary-navigation-light-menu-item-border-color;
+          }
+
+          &.civictheme-menu__item--active-trail {
+            border-bottom-color: $civictheme-primary-navigation-light-border-color;
           }
 
           > .civictheme-link {
@@ -289,28 +299,38 @@
       .civictheme-menu__item {
         // Links - level 0.
         &--level-0 {
-          border-color: $civictheme-primary-navigation-dark-border-color;
+          border-bottom-color: $civictheme-primary-navigation-dark-menu-item-border-color;
 
           &:hover {
             background-color: $civictheme-primary-navigation-dark-menu-item-hover-background-color;
+            border-bottom-color: $civictheme-primary-navigation-dark-menu-item-hover-border-color;
           }
 
           &:active {
-            background-color: $civictheme-primary-navigation-dark-menu-item-active-border-color;
+            background-color: $civictheme-primary-navigation-dark-menu-item-active-background-color;
+            border-bottom-color: $civictheme-primary-navigation-dark-menu-item-active-border-color;
           }
 
-          &[data-collapsible-collapsed] {
-            border-bottom-color: $civictheme-primary-navigation-dark-menu-item-border-color;
+          &[data-collapsible] {
+            border-bottom-color: $civictheme-primary-navigation-dark-border-color;
 
             &:hover {
               background-color: $civictheme-primary-navigation-dark-menu-item-hover-background-color;
               border-bottom-color: $civictheme-primary-navigation-dark-menu-item-hover-border-color;
             }
-
+  
             &:active {
               background-color: $civictheme-primary-navigation-dark-menu-item-active-background-color;
               border-bottom-color: $civictheme-primary-navigation-dark-menu-item-active-border-color;
             }
+          }
+
+          &[data-collapsible-collapsed] {
+            border-bottom-color: $civictheme-primary-navigation-dark-menu-item-border-color;
+          }
+
+          &.civictheme-menu__item--active-trail {
+            border-bottom-color: $civictheme-primary-navigation-dark-border-color;
           }
 
           > .civictheme-link {
@@ -350,7 +370,7 @@
         .civictheme-menu__item--level-1 {
           > .civictheme-link {
             color: $civictheme-primary-navigation-dark-sub-menu-item-heading-hover-color;
-
+  
             &:hover {
               color: $civictheme-primary-navigation-dark-sub-menu-item-heading-hover-color;
             }
