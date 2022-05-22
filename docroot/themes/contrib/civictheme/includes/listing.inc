@@ -8,9 +8,11 @@
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Render\Element;
 use Drupal\Core\Url;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\views\Views;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Defines limited limit type.
@@ -36,12 +38,17 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
   // Get the parent bundle.
   $variables['view_as'] = $paragraph->get('field_c_p_view_as')->getString();
   $variables['limit'] = $paragraph->field_c_p_listing_limit->value;
-  $variables['uniqId'] = Html::getUniqueId('listing-' . $paragraph->id());
-
-  $variables['listing'] = _civictheme_listing_element($paragraph);
-  $variables['vertical_space'] = $paragraph->hasField('field_c_p_space') && $paragraph->get('field_c_p_space')->isEmpty() ? '' : $paragraph->get('field_c_p_space')->getString();
-  $variables['theme'] = $paragraph->hasField('field_c_p_theme') && $paragraph->get('field_c_p_theme')->isEmpty() ? 'light' : $paragraph->get('field_c_p_theme')->getString();
-
+  $variables['attributes']['id'] = Html::getUniqueId('listing-' . $paragraph->id());
+  if (is_array($variables['attributes'])) {
+    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
+    unset($variables['attributes']['class']);
+    $variables['attributes'] = new Attribute($variables['attributes']);
+  }
+  $variables['listing'] = _civictheme_listing_element($paragraph, $variables);
+  $form_elements = Element::children($variables['listing']['view']['#view']->exposed_widgets);
+  foreach ($form_elements as $form_element) {
+    $variables['listing']['view']['#view']->exposed_widgets[$form_element]['#civic_theme'] = $variables['theme'];
+  }
   _civictheme_render_listing_paragraph_add_read_more($paragraph, $variables);
 }
 
@@ -70,10 +77,10 @@ function _civictheme_listing_element(Paragraph $paragraph) {
   $view = Views::getView($view_name);
   if ($view) {
     $view->setDisplay($view_display);
-    _civictheme_listing_alter_view($paragraph, $view);
-  }
 
-  if ($view) {
+    _civictheme_listing_alter_view($paragraph, $view);
+    _civictheme_listing_preprocess_view($paragraph, $view);
+
     $view->initHandlers();
     $element = [];
     // Show exposed form if available for this block display.
@@ -88,10 +95,30 @@ function _civictheme_listing_element(Paragraph $paragraph) {
       $view->exposed_widgets['#action'] = Url::fromRoute('<current>')->toString();
       $view->display_handler->displaysExposed();
     }
-    $element['view'] = $view->render();
   }
+  $element['view'] = $view->render();
 
   return $element;
+}
+
+/**
+ * Adds preprocessing data to view to provide to listing child components.
+ */
+function _civictheme_listing_preprocess_view($paragraph, &$view) {
+  $link = $paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty() ? $paragraph->get('field_c_p_link')->first() : NULL;
+
+  $view->civictheme_listing = [
+    'theme' => _civictheme_paragraph_get_theme($paragraph) !== FALSE ? _civictheme_paragraph_get_theme($paragraph) : 'light',
+    'link' => [
+      'text' => $link->get('title')->getString(),
+      'is_external' => $link->isExternal(),
+      'is_new_window' => $link->isExternal(),
+      'url' => $link->getUrl()->toString(),
+    ],
+    'title' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_title') ? $paragraph->get('field_c_p_title')->getString() : '',
+    'with_background' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_background') ? $paragraph->get('field_c_p_background')->getString() : '',
+    'vertical_space' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_space') ? $paragraph->get('field_c_p_space')->getString() : '',
+  ];
 }
 
 /**

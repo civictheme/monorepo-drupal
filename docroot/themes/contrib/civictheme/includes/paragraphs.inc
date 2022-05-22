@@ -5,6 +5,7 @@
  * Paragraph theme alterations.
  */
 
+use Drupal\Component\Utility\Html;
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**
@@ -49,6 +50,9 @@ function _civictheme_preprocess_paragraph__civictheme_card(&$variables) {
  * Global paragraph preprocessor calls.
  */
 function _civictheme_preprocess_paragraph(&$variables) {
+  // Generic Drupal classes from paragraph template files.
+  _civictheme_preprocess_paragraph_classes($variables);
+
   // Global paragraph fields.
   _civictheme_preprocess_paragraph__field__theme($variables);
   _civictheme_preprocess_paragraph__field__title($variables);
@@ -57,6 +61,18 @@ function _civictheme_preprocess_paragraph(&$variables) {
   _civictheme_preprocess_paragraph__field__background($variables);
   _civictheme_preprocess_paragraph__civictheme_card($variables);
 
+}
+
+/**
+ * Pre-process drupal generic paragraph classes.
+ */
+function _civictheme_preprocess_paragraph_classes(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $variables['attributes']['class'][] = 'paragraph';
+  $variables['attributes']['class'][] = Html::cleanCssIdentifier('paragraph--type--' . $paragraph->bundle());
+  $variables['attributes']['class'][] = Html::cleanCssIdentifier('paragraph--view-mode--' . $variables['view_mode']);
+  $variables['attributes']['class'][] = !$paragraph->isPublished() ? 'paragraph--unpublished' : '';
 }
 
 /**
@@ -195,4 +211,19 @@ function _civictheme_paragraph_get_theme(Paragraph $paragraph) {
     return $paragraph->get('field_c_p_theme')->getString();
   }
   return FALSE;
+}
+
+/**
+ * Check if paragraph has a non-empty field.
+ *
+ * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+ *   The paragraph to check.
+ * @param string $field_name
+ *   Field name to check.
+ *
+ * @return bool
+ *   TRUE if the paragraph is not empty and has a non-empty specified field.
+ */
+function _civictheme_paragraph_field_has_value(Paragraph $paragraph, $field_name) {
+  return $paragraph && $paragraph->hasField($field_name) && !$paragraph->get($field_name)->isEmpty();
 }

@@ -6,7 +6,7 @@
  */
 
 use Drupal\node\Entity\Node;
-use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\Core\Render\Element;
 
 /**
  * Page pre-process for views.
@@ -38,6 +38,16 @@ function civictheme_preprocess_views_mini_pager(&$variables) {
 function civictheme_preprocess_views_exposed_form(&$variables) {
   $variables['filter_title'] = 'Filter search results by:';
   $variables['large_filter'] = $variables['form']['#large_filter'];
+  $is_view_component = isset($variables['attributes']['civictheme_listing']);
+  if ($is_view_component) {
+    $variables += $variables['attributes']['civictheme_listing'];
+    unset($variables['attributes']['civictheme_listing']);
+    $form_elements = Element::children($variables['form']);
+    foreach ($form_elements as $form_element) {
+      $variables['form'][$form_element]['#attributes']['#civic_theme'] = $variables['theme'];
+    }
+  }
+  $variables['theme'] = $variables['theme'] ?? 'light';
 }
 
 /**
@@ -47,13 +57,29 @@ function civictheme_preprocess_views_view(&$variables) {
   $view = $variables['view'];
   $route_parameters = \Drupal::routeMatch()->getParameters();
   $is_view_page = $route_parameters->get('view_id') !== NULL;
+  $is_view_component = isset($variables['view']->civictheme_listing);
+
+  // Adds component theme settings to view / listing template.
+  if ($is_view_component) {
+    $variables += $variables['view']->civictheme_listing;
+    // Override already set title.
+    $variables['title'] = $variables['view']->civictheme_listing['title'];
+    // Maybe remove?
+    if (!empty($variables['exposed'])) {
+      $variables['exposed']['#attributes']['civictheme_listing'] = $variables['view']->civictheme_listing;
+    }
+    if (!empty($variables['pager'])) {
+      $variables['pager']['#attributes']['#civic_theme'] = $variables['view']->civictheme_listing['theme'];
+    }
+  }
   // Header is displayed within card container.
   if ($view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     unset($variables['header']);
   }
   // Adding template required classes in for civictheme component.
-  // @todo allow theming for civictheme listing component via setting / component.
-  $variables['theme'] = 'light';
+  $variables['theme'] = $variables['theme'] ?? 'light';
+  $variables['with_background'] = $variables['with_background'] ?? $is_view_page;
+
   if (!empty($variables['attributes']['class'])) {
     $variables['modifier_class'] = $variables['attributes']['class'];
     unset($variables['attributes']['class']);
@@ -63,7 +89,6 @@ function civictheme_preprocess_views_view(&$variables) {
   }
   $variables['modifier_class'] = array_merge($variables['modifier_class'], [
     !empty($variables['dom_id']) ? ' js-view-dom-id-' . $variables['dom_id'] : '',
-    $is_view_page ? 'civictheme-listing--with-background' : '',
   ]);
   $variables['modifier_class'] = implode(' ', $variables['modifier_class']);
 }
@@ -78,17 +103,10 @@ function civictheme_preprocess_views_view_grid(&$variables) {
     $variables['modifier_class'] = 'civictheme-card-container--listing civictheme-card-container--with-background';
     $variables['title'] = $view->header['result']->render();
   }
-  _civictheme_preprocess_views_view_grid__listing_component($variables);
-}
-
-/**
- * Add `civictheme_listing` paragraph options to view.
- */
-function _civictheme_preprocess_views_view_grid__listing_component(&$variables) {
-  $listing_paragraph = _civictheme_get_listing_paragraph_from_route();
-  if ($listing_paragraph !== NULL) {
-    $variables['theme'] = $listing_paragraph->hasField('field_c_p_theme') && $listing_paragraph->get('field_c_p_theme')->isEmpty() ? 'light' : $listing_paragraph->get('field_c_p_theme')->getString();
-    $variables['with_background'] = $listing_paragraph->hasField('field_c_p_background') && $listing_paragraph->get('field_c_p_background')->isEmpty() ? '' : $listing_paragraph->get('field_c_p_background')->getString();
+  // Adds component theme settings to view / listing template.
+  $is_view_component = isset($variables['view']->civictheme_listing);
+  if ($is_view_component) {
+    $variables += $variables['view']->civictheme_listing;
   }
 }
 
@@ -121,19 +139,4 @@ function _civictheme_get_listing_paragraph_from_route() {
   }
 
   return NULL;
-}
-
-/**
- * Check if paragraph has a non-empty field.
- *
- * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   The paragraph to check.
- * @param string $field_name
- *   Field name to check.
- *
- * @return bool
- *   TRUE if the paragraph is not empty and has a non-empty specified field.
- */
-function _civictheme_paragraph_field_has_value(Paragraph $paragraph, $field_name) {
-  return $paragraph && $paragraph->hasField($field_name) && !$paragraph->get($field_name)->isEmpty();
 }

@@ -18,85 +18,108 @@
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-card-container--vertical-space-%s'|format(vertical_space) : '' %}
-{% set modifier_class = '%s %s %s'|format(theme_class, modifier_class|default(''), vertical_space_class)  %}
+{% set with_background_class = with_background ? 'civictheme-listing--with-background' : '' %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-listing--vertical-space-%s'|format(vertical_space) : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, modifier_class|default(''), with_background_class, vertical_space_class)  %}
 
 <div class="civictheme-listing {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-
-  {% block title %}
-    {% if title -%}
-      <div class="civictheme-listing__title">
-        {{ title }}
-      </div>
-    {% endif %}
-  {% endblock %}
-
-  {% block exposed %}
-    {% if exposed -%}
-      <div class="civictheme-listing__exposed-form">
-        {{ exposed }}
-      </div>
-    {% endif %}
-  {% endblock %}
-
+  <div class="civictheme-listing__container">
   {% block header %}
-    {% if header -%}
-      <header class="civictheme-listing__header" tabindex="0">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12">
-              {{ header }}
-            </div>
+    <div class="civictheme-listing__header">
+      {% block title %}
+        {% if title -%}
+          <div class="civictheme-listing__header-title">
+            {% include '@atoms/heading/heading.twig' with {
+              content: title,
+              level: 2,
+            } only %}
           </div>
-        </div>
-      </header>
-    {% endif %}
-  {% endblock %}
-
-  {% block rows %}
-    {% if rows -%}
-      <div class="civictheme--listing__body">
-        {{ rows }}
-      </div>
-    {% endif %}
-  {% endblock %}
-
-  {% block empty %}
-    {% if rows is not defined or rows is empty -%}
-      <div class="civictheme-listing__empty-results">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12">
-              {{ empty }}
-            </div>
+        {% endif %}
+      {% endblock %}
+      {% block link %}
+        {% if link %}
+          <div class="civictheme-listing__header-link">
+            {% include '@atoms/link/link.twig' with {
+              theme: theme,
+              text: link.text,
+              url: link.url,
+              title: link.title,
+              is_new_window: link.is_external,
+              is_external: link.is_external,
+            } %}
           </div>
-        </div>
-      </div>
-    {% endif %}
+        {% endif %}
+      {% endblock %}
+    </div>
   {% endblock %}
+  {% block listing %}
+    {% block exposed %}
+      {% if exposed -%}
+        <div class="civictheme-listing__exposed-form">
+          {{ exposed }}
+        </div>
+      {% endif %}
+    {% endblock %}
 
-  {% block rows_below %}
-    {% if pager is defined and pager is not empty %}
-      <div class="civictheme-listing__results-below">
-        <div class="container">
-          <div class="row">
-            {% block pager %}
-              <div class="civictheme-listing__pager">
-                {{ pager }}
+    {% block rows_header %}
+      {% if rows_header -%}
+        <header class="civictheme-listing__rows-header" tabindex="0">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                {{ rows_header }}
               </div>
-            {% endblock %}
+            </div>
+          </div>
+        </header>
+      {% endif %}
+    {% endblock %}
+
+    {% block rows %}
+      {% if rows -%}
+        <div class="civictheme--listing__body">
+          {{ rows }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block empty %}
+      {% if rows is not defined or rows is empty -%}
+        <div class="civictheme-listing__empty-results">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                {{ empty }}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    {% endif %}
-  {% endblock %}
+      {% endif %}
+    {% endblock %}
 
-  {% block footer %}
-    {% if footer is not empty -%}
-      <footer class="civictheme-listing__footer">
-        {{ footer }}
-      </footer>
-    {% endif %}
-  {% endblock %}
+    {% block rows_below %}
+      {% if pager is defined and pager is not empty %}
+        <div class="civictheme-listing__results-below">
+          <div class="container">
+            <div class="row">
+              {% block pager %}
+                <div class="civictheme-listing__pager">
+                  {{ pager }}
+                </div>
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
 
+    {% block footer %}
+      {% if footer is not empty -%}
+        <footer class="civictheme-listing__footer">
+          {{ footer }}
+        </footer>
+      {% endif %}
+    {% endblock %}
+  {% endblock %}
+  </div>
 </div>

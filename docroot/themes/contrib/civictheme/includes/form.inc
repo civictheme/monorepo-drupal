@@ -19,6 +19,15 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
   // If the view exposed form has more than one filter we render a large
   // filter.
   $is_civictheme_large_filter = _civictheme_get_number_of_exposed_form_elements($form) > 1;
+  $view = $form_state->get('view');
+  if ($view) {
+    $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
+    $form_elements = Element::children($form);
+    foreach ($form_elements as $form_element) {
+      $form[$form_element]['#attributes']['#civic_theme'] = $theme;
+    }
+  }
+
   $form['#attributes']['data-civictheme-filter-type'] = $is_civictheme_large_filter ? 'large' : 'basic';
   $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $is_civictheme_large_filter ? 500 : 0;
   $form['#attributes']['data-civictheme-filter'] = '';
@@ -88,6 +97,7 @@ function _civictheme_form_alter__convert_exposed_form_elements(&$element, $form,
  * Implements template_preprocess_input().
  */
 function civictheme_preprocess_input(&$variables) {
+  _civictheme_get_theme_from_attributes($variables);
   $variables['state'] = 'none';
   if (isset($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
@@ -104,6 +114,7 @@ function civictheme_preprocess_input(&$variables) {
  * Implements template_preprocess_select().
  */
 function civictheme_preprocess_select(&$variables) {
+  _civictheme_get_theme_from_attributes($variables);
   if (isset($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
     unset($variables['attributes']['class']);
@@ -114,6 +125,7 @@ function civictheme_preprocess_select(&$variables) {
  * Implements template_preprocess_form_element().
  */
 function civictheme_preprocess_form_element(&$variables) {
+  _civictheme_get_theme_from_attributes($variables);
   // Handle any malformed attribute class properties.
   $variables['attributes']['class'] = $variables['attributes']['class'] ?? [];
   $variables['attributes']['class'] = is_string($variables['attributes']['class']) ? [$variables['attributes']['class']] : $variables['attributes']['class'];
@@ -236,6 +248,7 @@ function _civictheme_preprocess_civictheme_filter_form_element_alter(&$variables
  * Implements template_preprocess_form_element_label().
  */
 function civictheme_preprocess_form_element_label(&$variables) {
+  _civictheme_get_theme_from_attributes($variables);
   $variables['content'] = $variables['title'] ?? '';
 
   // Adding in core template classes.
@@ -254,6 +267,7 @@ function civictheme_preprocess_form_element_label(&$variables) {
  * Implements template_preprocess_fieldset().
  */
 function civictheme_preprocess_fieldset(&$variables) {
+  _civictheme_get_theme_from_attributes($variables);
   // Add core drupal form classes.
   $variables['attributes']['class'] = $variables['attributes']['class'] ?? [];
   $variables['attributes']['class'] = array_merge($variables['attributes']['class'], [
@@ -325,6 +339,12 @@ function civictheme_preprocess_radios(&$variables) {
  */
 function _civictheme_preprocess_composite_form_elements(&$variables) {
   $element = &$variables['element'];
+  _civictheme_get_theme_from_attributes($variables);
+  // Add theme to radio / checkbox inputs.
+  $form_elements = Element::children($variables['element']);
+  foreach ($form_elements as $form_element) {
+    $variables['element'][$form_element]['#civic_theme'] = $variables['theme'] ?? 'light';
+  }
   if (isset($element['#civictheme-large-filter'])) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
@@ -380,5 +400,39 @@ function civictheme_element_info_alter(array &$types) {
     // The fieldset wrapper is added back manually for all other fieldsets.
     // @see civictheme_preprocess_checkboxes
     unset($types['radios']['#pre_render']);
+  }
+}
+
+/**
+ * Sets form element theme based on attributes passed from parent components.
+ */
+function _civictheme_get_theme_from_attributes(&$variables) {
+  // Setting theme for form element.
+  if (isset($variables['element']['#attributes']['#civic_theme'])
+    && in_array($variables['element']['#attributes']['#civic_theme'], [
+      'light',
+      'dark',
+    ])) {
+    $variables['theme'] = $variables['element']['#attributes']['#civic_theme'];
+    unset($variables['element']['#attributes']['#civic_theme']);
+    if (isset($variables['label']['#attributes'])) {
+      $variables['label']['#attributes']['#civic_theme'] = $variables['theme'];
+      unset($variables['label']['#attributes']['#civic_theme']);
+    }
+  }
+  else {
+    $variables['theme'] = 'light';
+  }
+}
+
+/**
+ * Implements hook_preprocess_form().
+ */
+function civictheme_preprocess_form(&$variables) {
+  if (isset($variables['element']['#attributes']['civictheme_listing'])) {
+    unset($variables['element']['#attributes']['civictheme_listing']);
+  }
+  if (isset($variables['attributes']['civictheme_listing'])) {
+    unset($variables['attributes']['civictheme_listing']);
   }
 }

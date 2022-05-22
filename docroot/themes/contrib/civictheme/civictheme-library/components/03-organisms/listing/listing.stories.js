@@ -37,8 +37,25 @@ export const Listing = (knobTab) => {
     'light',
     generalKnobTab,
   );
+  const verticalSpace = radios(
+  'Vertical space',
+    {
+      None: 'none',
+      Top: 'top',
+      Bottom: 'bottom',
+      Both: 'both',
+    },
+    'none',
+    generalKnobTab,
+  );
+
+  const withBackground = boolean('With background', false, generalKnobTab);
+
   const generalKnobs = {
     theme,
+    vertical_space: verticalSpace,
+    with_background: withBackground,
+    title: text('Title', '', generalKnobTab),
   };
   const showExposed = boolean('Show filters', true, generalKnobTab);
   const filterType = radios(
@@ -129,6 +146,7 @@ export const Listing = (knobTab) => {
         tags_title: 'Selected filters:',
         clear_text: 'Clear all',
         filters: filters.join(''),
+        with_background: withBackground,
       });
     } else {
       generalKnobs.exposed = CivicBasicFilter({
@@ -220,13 +238,22 @@ export const Listing = (knobTab) => {
       cards,
       column_count: viewMode === 'promo' ? 3 : 2,
       fill_width: false,
-      with_spacing: 'both',
+      with_background: withBackground,
     });
   }
 
+  const withLink = boolean('With link', false, generalKnobTab);
+  if (withLink) {
+    generalKnobs.link = {
+      text: 'View more events',
+      url: 'http://www.example.com',
+      title: 'View more events',
+      is_new_window: false,
+      is_external: false,
+    };
+  }
   return CivicListing({
     theme,
     ...generalKnobs,
-    modifier_class: 'civictheme-listing--with-background',
   });
 };

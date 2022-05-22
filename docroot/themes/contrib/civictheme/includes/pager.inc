@@ -19,6 +19,12 @@ function civictheme_preprocess_pager(&$variables) {
 
   $pager = $pager_manager->getPager($element);
 
+  // Set theme from civic listing component settings.
+  if (isset($variables['pager']['#attributes']['#civic_theme'])) {
+    $variables['theme'] = $variables['pager']['#attributes']['#civic_theme'];
+    unset($variables['pager']['#attributes']['#civic_theme']);
+  }
+
   if (!$pager) {
     return;
   }
