@@ -104,8 +104,7 @@ function _civictheme_listing_alter_view($paragraph, &$view) {
   $limit_type = $paragraph->field_c_p_limit_type->value;
   $limit = (int) $paragraph->field_c_p_listing_limit->value;
   $items_per_page = (int) $paragraph->field_c_p_listing_limit->value;
-  $show_pager = !empty($paragraph->field_c_p_show_pager->value);
-  $show_count = empty($paragraph->field_c_p_hide_count->value);
+  $show_filters = (int) $paragraph->field_c_p_show_filters->value;
 
   if ($view) {
     $args = [];
@@ -134,6 +133,7 @@ function _civictheme_listing_alter_view($paragraph, &$view) {
 
     // Pager.
     $pager = NULL;
+    $header = $view->display_handler->getOption('header');
     // Do not show pager, but show exact number of items.
     if ($limit_type == CIVICTHEME_LISTINGS_LIMIT_TYPE_LIMITED) {
       // Prevent endless lists by using a fallback limit if a limit is 0.
@@ -143,34 +143,26 @@ function _civictheme_listing_alter_view($paragraph, &$view) {
       $pager['type'] = 'some';
       $pager['options']['items_per_page'] = $limit;
       $view->display_handler->setOption('pager', $pager);
-    }
-    else {
-      if ($show_pager && $limit_type == CIVICTHEME_LISTINGS_LIMIT_TYPE_UNLIMITED) {
-        if ($items_per_page == 0) {
-          // Show pager and default number of items.
-          // This is default view display state, so no change is required.
-          // Do not optimise - left empty for clarity.
-        }
-        else {
-          // Show pager with specified number of items per page.
-          // Re-using existing pager.
-          $view->setItemsPerPage($items_per_page);
-        }
+
+      if ($show_filters && isset($header['result']['content'])) {
+        $header['result']['content'] = 'Showing @end of @total';
+        $view->display_handler->setOption('header', $header);
       }
       else {
-        // Prevent endless lists by using a fallback limit if a limit is 0.
-        $items_per_page = $fallback_limit;
-        // Changing pager type to 'some' and setting 'items_per_page'.
-        $pager = $view->display_handler->getOption('pager');
-        $pager['type'] = 'some';
-        $pager['options']['items_per_page'] = $items_per_page;
-        $view->display_handler->setOption('pager', $pager);
+        $view->display_handler->setOption('header', []);
       }
     }
-
-    // Hide header if should not show.
-    if (!$show_count) {
-      $view->display_handler->setOption('header', []);
+    elseif ($limit_type == CIVICTHEME_LISTINGS_LIMIT_TYPE_UNLIMITED) {
+      if ($items_per_page == 0) {
+        // Show pager and default number of items.
+        // This is default view display state, so no change is required.
+        // Do not optimise - left empty for clarity.
+      }
+      else {
+        // Show pager with specified number of items per page.
+        // Re-using existing pager.
+        $view->setItemsPerPage($items_per_page);
+      }
     }
   }
 

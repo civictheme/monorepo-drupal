@@ -314,7 +314,7 @@ display:
           group_type: group
           admin_label: ''
           empty: false
-          content: 'Displaying @start - @end of @total'
+          content: 'Showing @start - @end of @total'
           plugin_id: result
       footer: {  }
       empty:
