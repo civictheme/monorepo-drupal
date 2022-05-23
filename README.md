@@ -44,39 +44,47 @@ Copy `default.docker-compose.override.yml` to `docker-compose.override.yml`.
 
 1. Builds fresh site from GovCMS Drupal profile. Use `ahoy install-site` to rebuild.
 2. Enables additional modules required for development by installing `cs_core` module.
-3. Enables CivicTheme theme and imports its configuration.
-4. Creates CivicTheme Demo sub-theme using provided scaffolding script and sets it as a default theme.
-5. Provisions content using Default Content module.
-6. Enables `civictheme_govcms` module to remove out-of-the-box GovCMS content types.
-7. Enables `civictheme_content` module to add default content to installation.
+3. Enables `civictheme` theme and imports its configuration.
+4. Creates `civictheme_demo` sub-theme using provided scaffolding script and sets it as a default theme.
+5. Enables `civictheme_govcms` module to remove out-of-the-box GovCMS content types.
+6. Enables `civictheme_content` module to add default content to installation.
+
+## Development
+
+Please refer to [development documentation](DEVELOPMENT.md).
 
 ## Testing
+
 Please refer to [testing documentation](TESTING.md).
 
 ## CI
+
 Please refer to [CI documentation](CI.md).
 
-
 ## Deployment
+
 Please refer to [deployment documentation](DEPLOYMENT.md).
 
-
 ## Releasing
+
 Please refer to [releasing documentation](RELEASING.md).
 
 ## FAQs
+
 Please refer to [FAQs](FAQs.md).
 
-## CivicTheme Drupal theme
+## More about CivicTheme
+
+### CivicTheme Drupal theme
 
 Please refer to [CivicTheme Drupal theme documentation](docroot/themes/contrib/civictheme/docs/introduction.md).
 
-## CivicTheme components library
+### CivicTheme components library
 Please refer to [CivicTheme components Library documentation](docroot/themes/contrib/civictheme/civictheme-library/docs/introduction.md).
 
-## Other resources
+### Other resources
 
 - [CivicTheme CMS-agnostic library](https://github.com/salsadigitalauorg/civictheme-library)
 - [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme-drupal)
-- [Default content for CivicTheme](https://github.com/salsadigitalauorg/civictheme-drupal-content)
-- [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme-govcms)
+- [Default content for CivicTheme](https://github.com/salsadigitalauorg/civictheme_drupal_content)
+- [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_govcms)
