@@ -1,6 +1,6 @@
 {
-    "name": "salsadigital/civictheme-source",
-    "description": "Drupal 9 source development site for CivicTheme for Salsa Digital.",
+    "name": "salsadigitalauorg/civictheme_source",
+    "description": "Drupal 9 implementation of CivicTheme Source for Salsa Digital",
     "license": "proprietary",
     "require": {
         "php": ">=8.0",
