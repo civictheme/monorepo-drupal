@@ -564,11 +564,11 @@ config_devel:
     - pathauto.pattern.civictheme_alert
     - pathauto.pattern.civictheme_event
     - pathauto.pattern.civictheme_page
+    - simple_sitemap.bundle_settings.default.node.civictheme_event
+    - simple_sitemap.bundle_settings.default.node.civictheme_page
     - system.menu.civictheme-footer
     - system.menu.civictheme-primary-navigation
     - system.menu.civictheme-secondary-navigation
-    - simple_sitemap.bundle_settings.default.node.civictheme_event
-    - simple_sitemap.bundle_settings.default.node.civictheme_page
     - taxonomy.vocabulary.civictheme_topics
     - user.role.civictheme_content_approver
     - user.role.civictheme_content_author

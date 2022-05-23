@@ -80,7 +80,10 @@ seckit.settings
 seven.settings
 shield.settings
 shortcut.set.default
-simple_sitemap*
+simple_sitemap.custom_links.default
+simple_sitemap.settings
+simple_sitemap.sitemap.default
+simple_sitemap.type.default_hreflang
 stage_file_proxy*
 system.action*
 system.advisories
