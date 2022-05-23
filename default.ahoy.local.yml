@@ -1,0 +1,18 @@
+---
+ahoyapi: v2
+usage: Project specific ahoy commands.
+
+commands:
+  help:
+    cmd: |
+      echo "==> Custom local commands"
+      echo "You may add custom local commands to your toolchain. This local Ahoy file will not be comitted to the repository"
+      echo
+
+  test-bats:
+    usage: Run Bats tests (host only).
+    cmd: bats --tap tests/bats/
+
+  export-config:
+    usage: Export theme config
+    cmd: ahoy cli "./scripts/update-theme-config.sh"

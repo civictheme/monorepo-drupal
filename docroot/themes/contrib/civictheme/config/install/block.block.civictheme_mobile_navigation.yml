@@ -16,8 +16,8 @@ plugin: 'block_content:b7f36176-620f-4178-aadd-9b448c610986'
 settings:
   id: 'block_content:b7f36176-620f-4178-aadd-9b448c610986'
   label: 'Mobile Navigation'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full

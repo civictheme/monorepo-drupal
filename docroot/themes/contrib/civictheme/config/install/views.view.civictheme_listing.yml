@@ -18,46 +18,69 @@ base_table: node_field_data
 base_field: nid
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Default
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: perm
-        options:
-          perm: 'access content'
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          disable_sql_rewrite: false
-          distinct: true
-          replica: false
-          query_comment: ''
-          query_tags: {  }
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+      fields:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            make_link: false
+            absolute: false
+            word_boundary: false
+            ellipsis: false
+            strip_tags: false
+            trim: false
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       pager:
         type: full
         options:
-          items_per_page: 12
           offset: 0
-          id: 0
+          items_per_page: 12
           total_pages: null
+          id: 0
           tags:
-            previous: Back
             next: Next
+            previous: Back
             first: First
             last: Last
           expose:
@@ -69,84 +92,53 @@ display:
             offset: false
             offset_label: Offset
           quantity: 4
-      style:
-        type: grid
+      exposed_form:
+        type: basic
         options:
-          uses_fields: false
-          columns: 3
-          automatic_width: true
-          alignment: horizontal
-          col_class_default: true
-          col_class_custom: ''
-          row_class_default: true
-          row_class_custom: ''
-      row:
-        type: 'entity:node'
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: perm
         options:
-          relationship: none
-          view_mode: civictheme_promo_card
-      fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          entity_type: node
-          entity_field: title
-          label: ''
-          alter:
-            alter_text: false
-            make_link: false
-            absolute: false
-            trim: false
-            word_boundary: false
-            ellipsis: false
-            strip_tags: false
-            html: false
-          hide_empty: false
-          empty_zero: false
-          settings:
-            link_to_entity: true
-          plugin_id: field
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
           relationship: none
           group_type: group
           admin_label: ''
-          exclude: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-      filters:
-        status:
-          value: '1'
+          plugin_id: text_custom
+          empty: true
+          content: '<div class="civictheme-basic-content"><p>No results found.</p></div>'
+          tokenize: false
+      sorts:
+        created:
+          id: created
           table: node_field_data
-          field: status
-          plugin_id: boolean
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
           entity_type: node
-          entity_field: status
-          id: status
+          entity_field: created
+          plugin_id: date
+          order: DESC
           expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-          group: 1
+            label: 'Date range'
+            field_identifier: created
+          exposed: false
+          granularity: second
+      arguments:
         type:
           id: type
           table: node_field_data
@@ -154,6 +146,110 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: node_type
+          default_action: default
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: fixed
+          default_argument_options:
+            argument: all
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            override: false
+            items_per_page: 25
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: true
+          validate:
+            type: 'entity:node_type'
+            fail: empty
+          validate_options:
+            bundles: {  }
+            access: false
+            operation: view
+            multiple: 0
+          glossary: false
+          limit: 0
+          case: none
+          path_case: none
+          transform_dash: false
+          break_phrase: false
+        term_node_tid_depth:
+          id: term_node_tid_depth
+          table: node_field_data
+          field: term_node_tid_depth
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: taxonomy_index_tid_depth
+          default_action: default
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: fixed
+          default_argument_options:
+            argument: all
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            override: false
+            items_per_page: 25
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: true
+          validate:
+            type: 'entity:taxonomy_term'
+            fail: 'not found'
+          validate_options:
+            bundles:
+              civictheme_topics: civictheme_topics
+            access: false
+            operation: view
+            multiple: 1
+          break_phrase: true
+          depth: 0
+          use_taxonomy_term_path: false
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value: {  }
           group: 1
@@ -190,9 +286,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         tid:
           id: tid
           table: taxonomy_index
@@ -200,6 +293,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -237,12 +331,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: civictheme_topics
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
         title:
           id: title
           table: node_field_data
@@ -250,6 +343,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: string
           operator: word
           value: ''
           group: 1
@@ -286,49 +382,34 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: string
-      sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 3
+          automatic_width: true
+          alignment: horizontal
+          row_class_custom: ''
+          row_class_default: true
+          col_class_custom: ''
+          col_class_default: true
+      row:
+        type: 'entity:node'
+        options:
           relationship: none
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: 'Date range'
-          granularity: second
-          entity_type: node
-          entity_field: created
-          plugin_id: date
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          content: 'Showing @start - @end of @total'
-          plugin_id: result
-      footer: {  }
-      empty:
-        area_text_custom:
-          id: area_text_custom
-          table: views
-          field: area_text_custom
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content: '<div class="civictheme-basic-content"><p>No results found.</p></div>'
-          plugin_id: text_custom
+          view_mode: civictheme_promo_card
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: true
+          replica: false
+          query_tags: {  }
       relationships:
         field_c_n_topics:
           id: field_c_n_topics
@@ -337,102 +418,22 @@ display:
           relationship: none
           group_type: group
           admin_label: 'field_c_n_topics: Taxonomy term'
-          required: false
           plugin_id: standard
-      arguments:
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options:
-            argument: all
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            items_per_page: 25
-            override: false
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: true
-          validate:
-            type: 'entity:node_type'
-            fail: empty
-          validate_options:
-            operation: view
-            multiple: 0
-            access: false
-            bundles: {  }
-          glossary: false
-          limit: 0
-          case: none
-          path_case: none
-          transform_dash: false
-          break_phrase: false
-          entity_type: node
-          entity_field: type
-          plugin_id: node_type
-        term_node_tid_depth:
-          id: term_node_tid_depth
-          table: node_field_data
-          field: term_node_tid_depth
-          relationship: none
-          group_type: group
-          admin_label: ''
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options:
-            argument: all
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            items_per_page: 25
-            override: false
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: true
-          validate:
-            type: 'entity:taxonomy_term'
-            fail: 'not found'
-          validate_options:
-            bundles:
-              civictheme_topics: civictheme_topics
-            operation: view
-            multiple: 1
-            access: false
-          depth: 0
-          break_phrase: true
-          use_taxonomy_term_path: false
-          entity_type: node
-          plugin_id: taxonomy_index_tid_depth
-      display_extenders: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
+          required: false
       use_ajax: true
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: 'Showing @start - @end of @total'
+      footer: {  }
+      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -445,15 +446,16 @@ display:
         - user.permissions
       tags: {  }
   civictheme_listing_block:
-    display_plugin: block
     id: civictheme_listing_block
     display_title: Block
+    display_plugin: block
     position: 1
     display_options:
-      display_extenders: {  }
-      use_ajax: false
       defaults:
         use_ajax: false
+      use_ajax: false
+      exposed_block: true
+      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -466,17 +468,17 @@ display:
         - user.permissions
       tags: {  }
   civictheme_listing_page:
-    display_plugin: page
     id: civictheme_listing_page
     display_title: 'Complex filter'
+    display_plugin: page
     position: 2
     display_options:
-      display_extenders: {  }
-      path: civictheme/listing
-      display_description: 'Multiple filters'
       title: 'CivicTheme Large Filter'
       defaults:
         title: false
+      display_description: 'Multiple filters'
+      display_extenders: {  }
+      path: civictheme/listing
     cache_metadata:
       max-age: -1
       contexts:
@@ -489,27 +491,26 @@ display:
         - user.permissions
       tags: {  }
   page_1:
-    display_plugin: page
     id: page_1
     display_title: 'Basic Listing'
+    display_plugin: page
     position: 2
     display_options:
-      display_extenders: {  }
-      path: civictheme/listing-basic
+      title: 'CivicTheme Basic Filter'
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
@@ -517,6 +518,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             civictheme_page: civictheme_page
@@ -554,9 +558,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         field_c_n_topics_target_id:
           id: field_c_n_topics_target_id
           table: node__field_c_n_topics
@@ -564,6 +565,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -601,31 +603,31 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: civictheme_topics
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
-      defaults:
-        filters: false
-        filter_groups: false
-        query: false
-        title: false
       filter_groups:
         operator: AND
         groups:
           1: AND
-      display_description: 'Single exposed filter (non-textfield)'
       query:
         type: views_query
         options:
+          query_comment: ''
           disable_sql_rewrite: false
           distinct: true
           replica: false
-          query_comment: ''
           query_tags: {  }
-      title: 'CivicTheme Basic Filter'
+      defaults:
+        query: false
+        title: false
+        filters: false
+        filter_groups: false
+      display_description: 'Single exposed filter (non-textfield)'
+      display_extenders: {  }
+      path: civictheme/listing-basic
     cache_metadata:
       max-age: -1
       contexts:
@@ -638,27 +640,26 @@ display:
         - user.permissions
       tags: {  }
   page_2:
-    display_plugin: page
     id: page_2
     display_title: 'Basic Listing with multiple value'
+    display_plugin: page
     position: 2
     display_options:
-      display_extenders: {  }
-      path: civictheme/listing-basic-multi
+      title: 'CivicTheme Basic Filter with Multi-Value'
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
@@ -666,6 +667,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             civictheme_page: civictheme_page
@@ -703,9 +707,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         field_c_n_topics_target_id:
           id: field_c_n_topics_target_id
           table: node__field_c_n_topics
@@ -713,6 +714,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: taxonomy_index_tid
           operator: or
           value: {  }
           group: 1
@@ -750,31 +752,31 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          type: select
-          limit: true
           vid: civictheme_topics
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
-          plugin_id: taxonomy_index_tid
-      defaults:
-        filters: false
-        filter_groups: false
-        query: false
-        title: false
       filter_groups:
         operator: AND
         groups:
           1: AND
-      display_description: 'Single exposed filter (non-textfield)'
       query:
         type: views_query
         options:
+          query_comment: ''
           disable_sql_rewrite: false
           distinct: true
           replica: false
-          query_comment: ''
           query_tags: {  }
-      title: 'CivicTheme Basic Filter with Multi-Value'
+      defaults:
+        query: false
+        title: false
+        filters: false
+        filter_groups: false
+      display_description: 'Single exposed filter (non-textfield)'
+      display_extenders: {  }
+      path: civictheme/listing-basic-multi
     cache_metadata:
       max-age: -1
       contexts:

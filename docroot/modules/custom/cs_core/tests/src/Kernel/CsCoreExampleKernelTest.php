@@ -3,13 +3,13 @@
 namespace Drupal\Tests\cs_core\Kernel;
 
 /**
- * Class CsExampleKernelTest.
+ * Class CsCoreExampleKernelTest.
  *
  * Example test case class.
  *
  * @group CsCore
  */
-class CsExampleKernelTest extends CsCoreKernelTestBase {
+class CsCoreExampleKernelTest extends CsCoreKernelTestBase {
 
   /**
    * @dataProvider dataProviderAdd

@@ -185,7 +185,7 @@ trait CsDemoTrait {
 
     // Expand all.
     if (!empty($options['expand_all'])) {
-      $options['expand'] = (bool) $options['expand'];
+      $options['expand'] = (bool) $options['expand_all'];
     }
     $paragraph = self::civicthemeParagraphAttach('civictheme_accordion', $node, $field_name, $options);
 

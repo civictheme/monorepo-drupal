@@ -131,21 +131,18 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_attachment.default
     - core.entity_form_display.paragraph.civictheme_callout.default
     - core.entity_form_display.paragraph.civictheme_card_container.default
+    - core.entity_form_display.paragraph.civictheme_content.default
     - core.entity_form_display.paragraph.civictheme_event_card.default
     - core.entity_form_display.paragraph.civictheme_event_card_ref.default
-    - core.entity_form_display.paragraph.civictheme_navigation_card.default
-    - core.entity_form_display.paragraph.civictheme_navigation_card_ref.default
-    - core.entity_form_display.paragraph.civictheme_promo_card.default
-    - core.entity_form_display.paragraph.civictheme_promo_card_ref.default
-    - core.entity_form_display.paragraph.civictheme_subject_card.default
-    - core.entity_form_display.paragraph.civictheme_subject_card_ref.default
-    - core.entity_form_display.paragraph.civictheme_task_card.default
-    - core.entity_form_display.paragraph.civictheme_content.default
     - core.entity_form_display.paragraph.civictheme_iframe.default
     - core.entity_form_display.paragraph.civictheme_listing.default
     - core.entity_form_display.paragraph.civictheme_map.default
+    - core.entity_form_display.paragraph.civictheme_navigation_card.default
+    - core.entity_form_display.paragraph.civictheme_navigation_card_ref.default
     - core.entity_form_display.paragraph.civictheme_next_step.default
     - core.entity_form_display.paragraph.civictheme_promo.default
+    - core.entity_form_display.paragraph.civictheme_promo_card.default
+    - core.entity_form_display.paragraph.civictheme_promo_card_ref.default
     - core.entity_form_display.paragraph.civictheme_publication_card.default
     - core.entity_form_display.paragraph.civictheme_quick_links.default
     - core.entity_form_display.paragraph.civictheme_search.default
@@ -154,6 +151,9 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_slider_slide.default
     - core.entity_form_display.paragraph.civictheme_slider_slide_ref.default
     - core.entity_form_display.paragraph.civictheme_social_icon.default
+    - core.entity_form_display.paragraph.civictheme_subject_card.default
+    - core.entity_form_display.paragraph.civictheme_subject_card_ref.default
+    - core.entity_form_display.paragraph.civictheme_task_card.default
     - core.entity_form_display.paragraph.civictheme_webform.default
     - core.entity_view_display.block_content.civictheme_banner.default
     - core.entity_view_display.block_content.civictheme_component_block.default
@@ -180,35 +180,32 @@ config_devel:
     - core.entity_view_display.node.civictheme_event.civictheme_event_card
     - core.entity_view_display.node.civictheme_event.civictheme_navigation_card
     - core.entity_view_display.node.civictheme_event.civictheme_promo_card
-    - core.entity_view_display.node.civictheme_event.civictheme_subject_card
     - core.entity_view_display.node.civictheme_event.civictheme_slider_slide
+    - core.entity_view_display.node.civictheme_event.civictheme_subject_card
     - core.entity_view_display.node.civictheme_event.default
     - core.entity_view_display.node.civictheme_event.teaser
     - core.entity_view_display.node.civictheme_page.civictheme_navigation_card
     - core.entity_view_display.node.civictheme_page.civictheme_promo_card
-    - core.entity_view_display.node.civictheme_page.civictheme_subject_card
     - core.entity_view_display.node.civictheme_page.civictheme_slider_slide
+    - core.entity_view_display.node.civictheme_page.civictheme_subject_card
     - core.entity_view_display.node.civictheme_page.default
     - core.entity_view_display.paragraph.civictheme_accordion.default
     - core.entity_view_display.paragraph.civictheme_accordion_panel.default
     - core.entity_view_display.paragraph.civictheme_attachment.default
     - core.entity_view_display.paragraph.civictheme_callout.default
     - core.entity_view_display.paragraph.civictheme_card_container.default
+    - core.entity_view_display.paragraph.civictheme_content.default
     - core.entity_view_display.paragraph.civictheme_event_card.default
     - core.entity_view_display.paragraph.civictheme_event_card_ref.default
-    - core.entity_view_display.paragraph.civictheme_navigation_card.default
-    - core.entity_view_display.paragraph.civictheme_navigation_card_ref.default
-    - core.entity_view_display.paragraph.civictheme_promo_card.default
-    - core.entity_view_display.paragraph.civictheme_promo_card_ref.default
-    - core.entity_view_display.paragraph.civictheme_subject_card.default
-    - core.entity_view_display.paragraph.civictheme_subject_card_ref.default
-    - core.entity_view_display.paragraph.civictheme_task_card.default
-    - core.entity_view_display.paragraph.civictheme_content.default
     - core.entity_view_display.paragraph.civictheme_iframe.default
     - core.entity_view_display.paragraph.civictheme_listing.default
     - core.entity_view_display.paragraph.civictheme_map.default
+    - core.entity_view_display.paragraph.civictheme_navigation_card.default
+    - core.entity_view_display.paragraph.civictheme_navigation_card_ref.default
     - core.entity_view_display.paragraph.civictheme_next_step.default
     - core.entity_view_display.paragraph.civictheme_promo.default
+    - core.entity_view_display.paragraph.civictheme_promo_card.default
+    - core.entity_view_display.paragraph.civictheme_promo_card_ref.default
     - core.entity_view_display.paragraph.civictheme_publication_card.default
     - core.entity_view_display.paragraph.civictheme_quick_links.default
     - core.entity_view_display.paragraph.civictheme_search.default
@@ -217,14 +214,17 @@ config_devel:
     - core.entity_view_display.paragraph.civictheme_slider_slide.default
     - core.entity_view_display.paragraph.civictheme_slider_slide_ref.default
     - core.entity_view_display.paragraph.civictheme_social_icon.default
+    - core.entity_view_display.paragraph.civictheme_subject_card.default
+    - core.entity_view_display.paragraph.civictheme_subject_card_ref.default
+    - core.entity_view_display.paragraph.civictheme_task_card.default
     - core.entity_view_display.paragraph.civictheme_webform.default
     - core.entity_view_mode.media.component
     - core.entity_view_mode.media.embedded
     - core.entity_view_mode.node.civictheme_event_card
     - core.entity_view_mode.node.civictheme_navigation_card
     - core.entity_view_mode.node.civictheme_promo_card
-    - core.entity_view_mode.node.civictheme_subject_card
     - core.entity_view_mode.node.civictheme_slider_slide
+    - core.entity_view_mode.node.civictheme_subject_card
     - editor.editor.civictheme_rich_text
     - field.field.block_content.civictheme_banner.field_c_b_background_image
     - field.field.block_content.civictheme_banner.field_c_b_theme
@@ -309,6 +309,10 @@ config_devel:
     - field.field.paragraph.civictheme_card_container.field_c_p_space
     - field.field.paragraph.civictheme_card_container.field_c_p_theme
     - field.field.paragraph.civictheme_card_container.field_c_p_title
+    - field.field.paragraph.civictheme_content.field_c_p_background
+    - field.field.paragraph.civictheme_content.field_c_p_content
+    - field.field.paragraph.civictheme_content.field_c_p_space
+    - field.field.paragraph.civictheme_content.field_c_p_theme
     - field.field.paragraph.civictheme_event_card.field_c_p_date
     - field.field.paragraph.civictheme_event_card.field_c_p_image
     - field.field.paragraph.civictheme_event_card.field_c_p_link
@@ -319,37 +323,6 @@ config_devel:
     - field.field.paragraph.civictheme_event_card.field_c_p_topic
     - field.field.paragraph.civictheme_event_card_ref.field_c_p_reference
     - field.field.paragraph.civictheme_event_card_ref.field_c_p_theme
-    - field.field.paragraph.civictheme_navigation_card.field_c_p_image
-    - field.field.paragraph.civictheme_navigation_card.field_c_p_link
-    - field.field.paragraph.civictheme_navigation_card.field_c_p_summary
-    - field.field.paragraph.civictheme_navigation_card.field_c_p_theme
-    - field.field.paragraph.civictheme_navigation_card.field_c_p_title
-    - field.field.paragraph.civictheme_navigation_card_ref.field_c_p_reference
-    - field.field.paragraph.civictheme_navigation_card_ref.field_c_p_theme
-    - field.field.paragraph.civictheme_promo_card.field_c_p_date
-    - field.field.paragraph.civictheme_promo_card.field_c_p_image
-    - field.field.paragraph.civictheme_promo_card.field_c_p_link
-    - field.field.paragraph.civictheme_promo_card.field_c_p_summary
-    - field.field.paragraph.civictheme_promo_card.field_c_p_theme
-    - field.field.paragraph.civictheme_promo_card.field_c_p_title
-    - field.field.paragraph.civictheme_promo_card.field_c_p_topics
-    - field.field.paragraph.civictheme_promo_card_ref.field_c_p_reference
-    - field.field.paragraph.civictheme_promo_card_ref.field_c_p_theme
-    - field.field.paragraph.civictheme_subject_card.field_c_p_image
-    - field.field.paragraph.civictheme_subject_card.field_c_p_link
-    - field.field.paragraph.civictheme_subject_card.field_c_p_theme
-    - field.field.paragraph.civictheme_subject_card.field_c_p_title
-    - field.field.paragraph.civictheme_subject_card_ref.field_c_p_reference
-    - field.field.paragraph.civictheme_subject_card_ref.field_c_p_theme
-    - field.field.paragraph.civictheme_subject_card_ref.field_c_p_topic
-    - field.field.paragraph.civictheme_task_card.field_c_p_icon
-    - field.field.paragraph.civictheme_task_card.field_c_p_link
-    - field.field.paragraph.civictheme_task_card.field_c_p_summary
-    - field.field.paragraph.civictheme_task_card.field_c_p_title
-    - field.field.paragraph.civictheme_content.field_c_p_background
-    - field.field.paragraph.civictheme_content.field_c_p_content
-    - field.field.paragraph.civictheme_content.field_c_p_space
-    - field.field.paragraph.civictheme_content.field_c_p_theme
     - field.field.paragraph.civictheme_iframe.field_c_p_attributes
     - field.field.paragraph.civictheme_iframe.field_c_p_background
     - field.field.paragraph.civictheme_iframe.field_c_p_height
@@ -358,7 +331,6 @@ config_devel:
     - field.field.paragraph.civictheme_iframe.field_c_p_url
     - field.field.paragraph.civictheme_iframe.field_c_p_width
     - field.field.paragraph.civictheme_listing.field_c_p_content_type
-    - field.field.paragraph.civictheme_listing.field_c_p_hide_count
     - field.field.paragraph.civictheme_listing.field_c_p_limit_type
     - field.field.paragraph.civictheme_listing.field_c_p_link
     - field.field.paragraph.civictheme_listing.field_c_p_listing_f_exposed
@@ -366,7 +338,6 @@ config_devel:
     - field.field.paragraph.civictheme_listing.field_c_p_listing_multi_select
     - field.field.paragraph.civictheme_listing.field_c_p_read_more
     - field.field.paragraph.civictheme_listing.field_c_p_show_filters
-    - field.field.paragraph.civictheme_listing.field_c_p_show_pager
     - field.field.paragraph.civictheme_listing.field_c_p_space
     - field.field.paragraph.civictheme_listing.field_c_p_theme
     - field.field.paragraph.civictheme_listing.field_c_p_title
@@ -379,8 +350,15 @@ config_devel:
     - field.field.paragraph.civictheme_map.field_c_p_space
     - field.field.paragraph.civictheme_map.field_c_p_theme
     - field.field.paragraph.civictheme_map.field_c_p_view_link
-    - field.field.paragraph.civictheme_next_step.field_c_p_link
+    - field.field.paragraph.civictheme_navigation_card.field_c_p_image
+    - field.field.paragraph.civictheme_navigation_card.field_c_p_link
+    - field.field.paragraph.civictheme_navigation_card.field_c_p_summary
+    - field.field.paragraph.civictheme_navigation_card.field_c_p_theme
+    - field.field.paragraph.civictheme_navigation_card.field_c_p_title
+    - field.field.paragraph.civictheme_navigation_card_ref.field_c_p_reference
+    - field.field.paragraph.civictheme_navigation_card_ref.field_c_p_theme
     - field.field.paragraph.civictheme_next_step.field_c_p_image
+    - field.field.paragraph.civictheme_next_step.field_c_p_link
     - field.field.paragraph.civictheme_next_step.field_c_p_space
     - field.field.paragraph.civictheme_next_step.field_c_p_summary
     - field.field.paragraph.civictheme_next_step.field_c_p_theme
@@ -390,6 +368,15 @@ config_devel:
     - field.field.paragraph.civictheme_promo.field_c_p_summary
     - field.field.paragraph.civictheme_promo.field_c_p_theme
     - field.field.paragraph.civictheme_promo.field_c_p_title
+    - field.field.paragraph.civictheme_promo_card.field_c_p_date
+    - field.field.paragraph.civictheme_promo_card.field_c_p_image
+    - field.field.paragraph.civictheme_promo_card.field_c_p_link
+    - field.field.paragraph.civictheme_promo_card.field_c_p_summary
+    - field.field.paragraph.civictheme_promo_card.field_c_p_theme
+    - field.field.paragraph.civictheme_promo_card.field_c_p_title
+    - field.field.paragraph.civictheme_promo_card.field_c_p_topics
+    - field.field.paragraph.civictheme_promo_card_ref.field_c_p_reference
+    - field.field.paragraph.civictheme_promo_card_ref.field_c_p_theme
     - field.field.paragraph.civictheme_publication_card.field_c_p_document
     - field.field.paragraph.civictheme_publication_card.field_c_p_image
     - field.field.paragraph.civictheme_publication_card.field_c_p_size
@@ -424,6 +411,17 @@ config_devel:
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_reference
     - field.field.paragraph.civictheme_social_icon.field_c_p_icon
     - field.field.paragraph.civictheme_social_icon.field_c_p_link
+    - field.field.paragraph.civictheme_subject_card.field_c_p_image
+    - field.field.paragraph.civictheme_subject_card.field_c_p_link
+    - field.field.paragraph.civictheme_subject_card.field_c_p_theme
+    - field.field.paragraph.civictheme_subject_card.field_c_p_title
+    - field.field.paragraph.civictheme_subject_card_ref.field_c_p_reference
+    - field.field.paragraph.civictheme_subject_card_ref.field_c_p_theme
+    - field.field.paragraph.civictheme_subject_card_ref.field_c_p_topic
+    - field.field.paragraph.civictheme_task_card.field_c_p_icon
+    - field.field.paragraph.civictheme_task_card.field_c_p_link
+    - field.field.paragraph.civictheme_task_card.field_c_p_summary
+    - field.field.paragraph.civictheme_task_card.field_c_p_title
     - field.field.paragraph.civictheme_webform.field_c_p_webform
     - field.storage.block_content.field_c_b_background_image
     - field.storage.block_content.field_c_b_bottom_menu
@@ -486,7 +484,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_header_link
     - field.storage.paragraph.field_c_p_height
     - field.storage.paragraph.field_c_p_help_text
-    - field.storage.paragraph.field_c_p_hide_count
     - field.storage.paragraph.field_c_p_icon
     - field.storage.paragraph.field_c_p_image
     - field.storage.paragraph.field_c_p_image_position
@@ -504,7 +501,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_search_url
     - field.storage.paragraph.field_c_p_share_link
     - field.storage.paragraph.field_c_p_show_filters
-    - field.storage.paragraph.field_c_p_show_pager
     - field.storage.paragraph.field_c_p_size
     - field.storage.paragraph.field_c_p_slides
     - field.storage.paragraph.field_c_p_space
@@ -541,21 +537,18 @@ config_devel:
     - paragraphs.paragraphs_type.civictheme_attachment
     - paragraphs.paragraphs_type.civictheme_callout
     - paragraphs.paragraphs_type.civictheme_card_container
+    - paragraphs.paragraphs_type.civictheme_content
     - paragraphs.paragraphs_type.civictheme_event_card
     - paragraphs.paragraphs_type.civictheme_event_card_ref
-    - paragraphs.paragraphs_type.civictheme_navigation_card
-    - paragraphs.paragraphs_type.civictheme_navigation_card_ref
-    - paragraphs.paragraphs_type.civictheme_promo_card
-    - paragraphs.paragraphs_type.civictheme_promo_card_ref
-    - paragraphs.paragraphs_type.civictheme_subject_card
-    - paragraphs.paragraphs_type.civictheme_subject_card_ref
-    - paragraphs.paragraphs_type.civictheme_task_card
-    - paragraphs.paragraphs_type.civictheme_content
     - paragraphs.paragraphs_type.civictheme_iframe
     - paragraphs.paragraphs_type.civictheme_listing
     - paragraphs.paragraphs_type.civictheme_map
+    - paragraphs.paragraphs_type.civictheme_navigation_card
+    - paragraphs.paragraphs_type.civictheme_navigation_card_ref
     - paragraphs.paragraphs_type.civictheme_next_step
     - paragraphs.paragraphs_type.civictheme_promo
+    - paragraphs.paragraphs_type.civictheme_promo_card
+    - paragraphs.paragraphs_type.civictheme_promo_card_ref
     - paragraphs.paragraphs_type.civictheme_publication_card
     - paragraphs.paragraphs_type.civictheme_quick_links
     - paragraphs.paragraphs_type.civictheme_search
@@ -564,10 +557,15 @@ config_devel:
     - paragraphs.paragraphs_type.civictheme_slider_slide
     - paragraphs.paragraphs_type.civictheme_slider_slide_ref
     - paragraphs.paragraphs_type.civictheme_social_icon
+    - paragraphs.paragraphs_type.civictheme_subject_card
+    - paragraphs.paragraphs_type.civictheme_subject_card_ref
+    - paragraphs.paragraphs_type.civictheme_task_card
     - paragraphs.paragraphs_type.civictheme_webform
     - pathauto.pattern.civictheme_alert
     - pathauto.pattern.civictheme_event
     - pathauto.pattern.civictheme_page
+    - simple_sitemap.bundle_settings.default.node.civictheme_event
+    - simple_sitemap.bundle_settings.default.node.civictheme_page
     - system.menu.civictheme-footer
     - system.menu.civictheme-primary-navigation
     - system.menu.civictheme-secondary-navigation
@@ -582,3 +580,4 @@ config_devel:
     - webform.webform.civictheme_enquiry
   optional:
     - core.entity_view_mode.node.teaser
+    - simple_sitemap.custom_links.default

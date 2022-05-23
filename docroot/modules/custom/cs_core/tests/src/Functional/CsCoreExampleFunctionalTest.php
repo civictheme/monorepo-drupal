@@ -3,13 +3,13 @@
 namespace Drupal\Tests\cs_core\Functional;
 
 /**
- * Class ExampleFunctionalTest.
+ * Class CsCoreExampleFunctionalTest.
  *
  * Example test case class.
  *
  * @group CsCore
  */
-class CsExampleFunctionalTest extends CsCoreFunctionalTestBase {
+class CsCoreExampleFunctionalTest extends CsCoreFunctionalTestBase {
 
   /**
    * @dataProvider dataProviderAdd

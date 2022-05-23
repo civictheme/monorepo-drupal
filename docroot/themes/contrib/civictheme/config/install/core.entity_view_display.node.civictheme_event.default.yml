@@ -48,8 +48,8 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
             weight: 0
+            additional: {  }
           1710fe96-7126-4ac7-9b59-284f7c693ca9:
             uuid: 1710fe96-7126-4ac7-9b59-284f7c693ca9
             region: content
@@ -66,8 +66,8 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
             weight: 1
+            additional: {  }
           448b41d5-2738-47e2-a892-145443a96200:
             uuid: 448b41d5-2738-47e2-a892-145443a96200
             region: content
@@ -85,8 +85,8 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
             weight: 2
+            additional: {  }
         third_party_settings: {  }
   layout_builder_restrictions:
     allowed_block_categories: {  }

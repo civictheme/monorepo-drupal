@@ -11,6 +11,9 @@ breakpoint
 cd
 cde
 CircleCI
+CivicTheme
+civictheme
+config
 CLI
 cli
 CMS
@@ -59,6 +62,8 @@ Livereload
 Mailhog
 MAMP
 Mysql
+mixin
+mixins
 Namespace
 Namespaces
 namespace
@@ -76,6 +81,7 @@ PRs
 readme
 reusability
 roadmap
+repo
 Robo
 runtime
 sanitization
