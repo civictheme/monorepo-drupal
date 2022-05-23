@@ -11,6 +11,7 @@ dependencies:
     - field.field.paragraph.civictheme_listing.field_c_p_read_more
     - field.field.paragraph.civictheme_listing.field_c_p_show_filters
     - field.field.paragraph.civictheme_listing.field_c_p_space
+    - field.field.paragraph.civictheme_listing.field_c_p_theme
     - field.field.paragraph.civictheme_listing.field_c_p_title
     - field.field.paragraph.civictheme_listing.field_c_p_topics
     - field.field.paragraph.civictheme_listing.field_c_p_view_as
@@ -99,6 +100,13 @@ content:
     region: content
   field_c_p_space:
     weight: 13
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_c_p_theme:
+    weight: 14
     label: above
     settings: {  }
     third_party_settings: {  }
