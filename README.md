@@ -13,7 +13,7 @@ Mono-repo to maintain CivicTheme and accompanying modules that are automatically
 
 - PROD: [https://nginx-php.master.civic.au2.amazee.io](https://nginx-php.master.civic.au2.amazee.io)
 - DEV: [https://nginx-php.develop.civic.au2.amazee.io](https://nginx-php.develop.civic.au2.amazee.io)
-- LOCAL: [http://civictheme.docker.amazee.io/](http://civictheme.docker.amazee.io/)
+- LOCAL: [http://ivictheme-source.docker.amazee.io/](http://ivictheme-source.docker.amazee.io/)
 
 ## Local environment setup
 - Make sure that you have latest versions of all required software installed:
