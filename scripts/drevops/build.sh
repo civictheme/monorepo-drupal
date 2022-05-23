@@ -66,6 +66,7 @@ if [ -n "${DREVOPS_DB_DOCKER_IMAGE}" ]; then
   fi
 fi
 
+export COMPOSE_HTTP_TIMEOUT=200
 [ "${DREVOPS_DOCKER_VERBOSE}" = "1" ] && build_verbose_output="/dev/stdout" || build_verbose_output="/dev/null"
 ahoy up -- --build --force-recreate > "${build_verbose_output}"
 
