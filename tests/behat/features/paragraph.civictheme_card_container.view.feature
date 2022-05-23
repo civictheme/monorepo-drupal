@@ -196,17 +196,17 @@ Feature: View of Page content type with card container component
       | field_c_p_column_count | 3                            |
       | field_c_p_fill_width   | 0                            |
     And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Tasks cards container" has "civictheme_task_card" paragraph:
-      | field_c_p_link    | 0: Test link 1 - 1: https://example.com/card1 |
-      | field_c_p_title   | Card task title 1                             |
-      | field_c_p_summary | Summary text 1                                |
+      | field_c_p_link    | 0: '' - 1: https://example.com/card1 |
+      | field_c_p_title   | Card task title 1                    |
+      | field_c_p_summary | Summary text 1                       |
     And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Tasks cards container" has "civictheme_task_card" paragraph:
-      | field_c_p_link    | 0: Test link 2 - 1: https://example.com/card2                                                     |
+      | field_c_p_link    | 0: '' - 1: https://example.com/card2                                                              |
       | field_c_p_title   | Card task title 2                                                                                 |
       | field_c_p_summary | Quisque velit nisi, pretium ut lacinia in, elementum id enim. Nulla porttitor accumsan tincidunt. |
     And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Tasks cards container" has "civictheme_task_card" paragraph:
-      | field_c_p_link    | 0: Test link 3 - 1: https://example.com/card3 |
-      | field_c_p_title   | Card task title 3                             |
-      | field_c_p_summary | Summary text 3                                |
+      | field_c_p_link    | 0: '' - 1: https://example.com/card3 |
+      | field_c_p_title   | Card task title 3                    |
+      | field_c_p_summary | Summary text 3                       |
 
     When I visit "civictheme_page" "[TEST] Page Tasks cards test"
     And I should see the text "[TEST] Tasks cards container"
