@@ -13,6 +13,7 @@ dependencies:
     - field.field.paragraph.civictheme_listing.field_c_p_show_filters
     - field.field.paragraph.civictheme_listing.field_c_p_show_pager
     - field.field.paragraph.civictheme_listing.field_c_p_space
+    - field.field.paragraph.civictheme_listing.field_c_p_theme
     - field.field.paragraph.civictheme_listing.field_c_p_title
     - field.field.paragraph.civictheme_listing.field_c_p_topics
     - field.field.paragraph.civictheme_listing.field_c_p_view_as
@@ -81,7 +82,7 @@ third_party_settings:
         - group_civictheme_option
         - group_civictheme_filter
       parent_name: ''
-      weight: 1
+      weight: 0
       format_type: tabs
       region: content
       format_settings:
@@ -142,7 +143,7 @@ content:
     type: boolean_checkbox
     region: content
   field_c_p_read_more:
-    weight: 18
+    weight: 1
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -164,7 +165,13 @@ content:
     type: boolean_checkbox
     region: content
   field_c_p_space:
-    weight: 19
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_c_p_theme:
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select
