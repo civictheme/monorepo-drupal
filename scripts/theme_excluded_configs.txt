@@ -44,15 +44,18 @@ core.entity_view_mode.user.token
 core.extension
 core.menu.static_menu_link_overrides
 config_split.config_split*
+dblog.settings
 encrypt.settings
 environment_indicator.settings
 field.field.user.user.field_last_password_reset
 field.field.user.user.field_password_expiration
+field.field.user.user.field_pending_expire_sent
 field.settings
 field.storage.block_content.body
 field.storage.node.body
 field.storage.user.field_last_password_reset
 field.storage.user.field_password_expiration
+field.storage.user.field_pending_expire_sent
 field_ui.settings
 file.settings
 filter.settings
@@ -123,6 +126,7 @@ views.view.user_admin_people
 views.view.webform_submissions
 views.view.who_s_new
 views.view.who_s_online
+views.view.watchdog
 webform.settings
 webform.webform.contact
 webform.webform_options*

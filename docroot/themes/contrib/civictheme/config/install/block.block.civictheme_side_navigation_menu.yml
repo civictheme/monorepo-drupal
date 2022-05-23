@@ -17,8 +17,8 @@ plugin: 'menu_block:civictheme-primary-navigation'
 settings:
   id: 'menu_block:civictheme-primary-navigation'
   label: 'Side Navigation'
-  provider: menu_block
   label_display: '0'
+  provider: menu_block
   follow: true
   follow_parent: active
   level: 1
