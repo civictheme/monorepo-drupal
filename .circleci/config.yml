@@ -127,6 +127,9 @@ jobs:
       - *step_process_codebase
       - *step_setup_remote_docker
       - run:
+          name: Lint docs spelling
+          command: ./scripts/lint-spelling.sh
+      - run:
           name: Build site
           command: ahoy build
           no_output_timeout: 30m
