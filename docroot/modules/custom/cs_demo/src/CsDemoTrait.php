@@ -456,6 +456,8 @@ trait CsDemoTrait {
       $paragraph->field_c_p_listing_f_exposed = CsDemoHelper::randomListingFilters();
     }
 
+    // Default to show all.
+    $paragraph->field_c_p_listing_limit = 0;
     if ($options['limit_type'] && $options['limit_type'] == 'limited') {
       $paragraph->field_c_p_listing_limit = rand(9, 20);
     }
