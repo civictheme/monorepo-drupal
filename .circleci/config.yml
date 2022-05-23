@@ -75,8 +75,8 @@ aliases:
     docker:
       - image: drevops/ci-builder
         auth:
-          username: $DOCKER_REGISTRY_USERNAME
-          password: $DOCKER_REGISTRY_TOKEN
+          username: $DREVOPS_DOCKER_REGISTRY_USERNAME
+          password: $DREVOPS_DOCKER_REGISTRY_TOKEN
         environment:
           # Set timezone to ensure that executed operations use correct timestamps.
           TZ: *timezone
