@@ -20,22 +20,21 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
   // filter.
   $is_civictheme_large_filter = _civictheme_get_number_of_exposed_form_elements($form) > 1;
   $view = $form_state->get('view');
-  if ($view) {
-    $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
-    $form_elements = Element::children($form);
-    foreach ($form_elements as $form_element) {
-      $form[$form_element]['#attributes']['#civic_theme'] = $theme;
-    }
+  $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
+  $form_elements = Element::children($form);
+  foreach ($form_elements as $form_element) {
+    $form[$form_element]['#attributes']['#civic_theme'] = $theme;
   }
+  $ajax_filter = isset($view->display_handler) ? $view->display_handler->usesAJAX() : FALSE;
 
   $form['#attributes']['data-civictheme-filter-type'] = $is_civictheme_large_filter ? 'large' : 'basic';
   $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $is_civictheme_large_filter ? 500 : 0;
   $form['#attributes']['data-civictheme-filter'] = '';
   $form['#large_filter'] = $is_civictheme_large_filter;
-  $ajax_filter = $form_state->get('view')->ajaxEnabled();
   $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
   // Ajax exposed view forms hides submit button to have auto-load.
   if ($ajax_filter) {
+    $form_state->get('view')->setAjaxEnabled(TRUE);
     $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
     $form['actions']['#attributes']['class'][] = 'hide-xxs';
   }

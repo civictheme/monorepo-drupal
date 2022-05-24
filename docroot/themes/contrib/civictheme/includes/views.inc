@@ -7,6 +7,7 @@
 
 use Drupal\node\Entity\Node;
 use Drupal\Core\Render\Element;
+use Drupal\views\ViewExecutable;
 
 /**
  * Page pre-process for views.
@@ -65,7 +66,20 @@ function _civictheme_propagate_component_theme_settings(&$elements, $theme) {
  * Implements hook_preprocess_HOOK().
  */
 function civictheme_preprocess_views_view(&$variables) {
-  $view = $variables['view'];
+  $view = &$variables['view'];
+  $view->dom_id = !empty($view->dom_id)
+    ? $view->dom_id
+    : hash('sha256', $view->storage->id() . \Drupal::time()->getRequestTime() . mt_rand());
+  $variables['dom_id'] = $view->dom_id;
+  $is_page_load = isset($view->civictheme_listing_entity);
+  if ($is_page_load) {
+    _civictheme_listing_preprocess_view($view->civictheme_listing_entity, $view);
+  }
+  else {
+    $listing_paragraph  = _civictheme_get_listing_paragraph_from_route();
+    _civictheme_listing_preprocess_view($listing_paragraph, $view);
+  }
+
   $route_parameters = \Drupal::routeMatch()->getParameters();
   $is_view_page = $route_parameters->get('view_id') !== NULL;
   $is_view_component = isset($variables['view']->civictheme_listing);
@@ -105,6 +119,37 @@ function civictheme_preprocess_views_view(&$variables) {
   if (isset($view->civictheme_listing['show_filters']) && $view->civictheme_listing['show_filters'] === FALSE) {
     $variables['exposed'] = NULL;
   }
+}
+
+/**
+ * Adds preprocessing data to view to provide to listing child components.
+ */
+function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) {
+  $settings = [];
+  if ($paragraph !== NULL) {
+    $link = $paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty() ? $paragraph->get('field_c_p_link')->first() : NULL;
+    $link_data = $link !== NULL ? [
+      'text' => $link->get('title')->getString(),
+      'is_external' => $link->isExternal(),
+      'is_new_window' => $link->isExternal(),
+      'url' => $link->getUrl()->toString(),
+    ] : [];
+    $settings = [
+      'theme' => _civictheme_paragraph_get_theme($paragraph) !== FALSE ? _civictheme_paragraph_get_theme($paragraph) : 'light',
+      'link' => $link_data,
+      'title' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_title') ? $paragraph->get('field_c_p_title')->getString() : '',
+      'with_background' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_background') ? (bool) $paragraph->get('field_c_p_background')->getString() : '',
+      'vertical_space' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_space') ? $paragraph->get('field_c_p_space')->getString() : '',
+      'show_filters' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_show_filters') ? (bool) $paragraph->get('field_c_p_show_filters')->getString() : TRUE,
+    ];
+  }
+
+  // Call modules/theme that implement the hook, and let them change the view.
+  \Drupal::moduleHandler()->alter('civictheme_listing_preprocess_view', $settings, $view);
+  \Drupal::service('theme.manager')->alter('civictheme_listing_preprocess_view', $settings, $view);
+
+  $view->civictheme_listing = $settings;
+
 }
 
 /**
