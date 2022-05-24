@@ -44,25 +44,6 @@ tasks:
         service: cli
 
     - run:
-        name: Download database
-        command: |
-
-          # Store DB dump in temp location instead of '.data'.
-          export DREVOPS_DB_DIR=/tmp/data
-
-          # Do not load SSH file to access production environment to download
-          # the DB as Lagoon already has the keys loaded into the SSH agent.
-          export DREVOPS_DB_DOWNLOAD_SSH_KEY_FILE=false
-
-          if [ "$LAGOON_ENVIRONMENT_TYPE" = "production" ] || [ "$LAGOON_GIT_BRANCH" = "${DREVOPS_PRODUCTION_BRANCH:-main}" ]; then
-            echo "==> Skipping DB download in the production environment."
-          else
-            rm -Rf $DREVOPS_DB_DIR
-            ./scripts/drevops/download-db.sh
-          fi
-        service: cli
-
-    - run:
         name: Install site
         command: |
           # Read DB dump from the temp location instead of '.data'.
