@@ -10,7 +10,7 @@ dependencies:
     - taxonomy
     - user
 id: civictheme_listing
-label: Listing
+label: Civic Theme Listing
 module: views
 description: ''
 tag: ''

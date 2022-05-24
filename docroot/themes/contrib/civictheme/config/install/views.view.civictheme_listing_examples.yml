@@ -9,8 +9,8 @@ dependencies:
     - node
     - taxonomy
     - user
-id: civictheme_views
-label: 'Civic Theme Example views'
+id: civictheme_listing_examples
+label: 'Civic Theme Example Views'
 module: views
 description: ''
 tag: ''
