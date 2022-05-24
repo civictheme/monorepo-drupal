@@ -50,7 +50,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And I should not see an "div.civictheme-listing__body .civictheme-pager" element
     And I should not see an "div.civictheme-listing__body .views-exposed-form" element
 
-  @api @javascript @skipped
+  @api @javascript
   Scenario: CivicTheme listing component should filter pages, update selected filters correctly.
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Listing component" has "civictheme_listing" paragraph:

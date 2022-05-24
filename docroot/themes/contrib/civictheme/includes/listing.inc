@@ -75,17 +75,9 @@ function _civictheme_listing_element(Paragraph $paragraph) {
     $view->initHandlers();
     $element = [];
     // Show exposed form if available for this block display.
-    if ($show_filters) {
-      /** @var \Drupal\views\Plugin\views\exposed_form\ExposedFormPluginInterface $exposed_form */
-      $exposed_form = $view->display_handler->getPlugin('exposed_form');
-      $view->exposed_widgets = $exposed_form->renderExposedForm();
-      // Fixes drupal views bug where if there is a page display within a view
-      // even if you are wanting to render the block view form the action path
-      // of the exposed form points to the page display view.
-      // @see https://www.drupal.org/project/drupal/issues/2844823
-      $view->exposed_widgets['#action'] = Url::fromRoute('<current>')->toString();
-      $view->display_handler->displaysExposed();
-    }
+    $view->civictheme_listing = [
+      'show_filters' => (bool) $show_filters,
+    ];
     $element['view'] = $view->render();
   }
 

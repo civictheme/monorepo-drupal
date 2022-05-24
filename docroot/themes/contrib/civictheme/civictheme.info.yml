@@ -576,6 +576,7 @@ config_devel:
     - views.view.civictheme_alerts
     - views.view.civictheme_events
     - views.view.civictheme_listing
+    - views.view.civictheme_listing_examples
     - views.view.civictheme_pages
     - webform.webform.civictheme_enquiry
   optional:
