@@ -39,6 +39,7 @@ tasks:
         name: Backup DB before deployment in production
         command: |
           if [ "$LAGOON_ENVIRONMENT_TYPE" = "production" ] || [ "$LAGOON_GIT_BRANCH" = "${DREVOPS_PRODUCTION_BRANCH:-main}" ]; then
+            echo "==> Running in PRODUCTION environment."
             DREVOPS_DB_DIR=/app/docroot/sites/default/files/private/pre_deployment_backups ./scripts/drevops/export-db-file.sh
           fi
         service: cli
@@ -49,9 +50,8 @@ tasks:
           # Read DB dump from the temp location instead of '.data'.
           export DREVOPS_DB_DIR=/tmp/data
 
-          env
-
           if [ "$LAGOON_ENVIRONMENT_TYPE" = "production" ] || [ "$LAGOON_GIT_BRANCH" = "${DREVOPS_PRODUCTION_BRANCH:-main}" ]; then
+            echo "==> Running in PRODUCTION environment."
             # Never unblock admin user in production.
             export DREVOPS_DRUPAL_LOGIN_UNBLOCK_ADMIN=0
             # Never sanitize DB.
