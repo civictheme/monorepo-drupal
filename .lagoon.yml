@@ -27,7 +27,7 @@ tasks:
         command: |
           if  [ -n "${DREVOPS_NOTIFY_GITHUB_TOKEN}" ] && [ -n "$LAGOON_PR_NUMBER" ]; then
             [ -n "$LAGOON_PR_NUMBER" ] && GIT_SHA=$LAGOON_PR_HEAD_SHA || GIT_SHA=$LAGOON_GIT_SHA
-            DREVOPS_NOTIFY_DEPLOY_REPOSITORY="salsadigitalauorg/oni-osp" \
+            DREVOPS_NOTIFY_DEPLOY_REPOSITORY="salsadigitalauorg/civictheme-source" \
             DREVOPS_NOTIFY_DEPLOY_REF="$GIT_SHA" \
             DREVOPS_NOTIFY_DEPLOY_GITHUB_OPERATION="start" \
             ./scripts/drevops/notify-deployment-github.sh || true
@@ -94,7 +94,7 @@ tasks:
 
           if [ -n "${DREVOPS_NOTIFY_GITHUB_TOKEN}" ] && [ -n "$LAGOON_PR_NUMBER" ]; then
             [ -n "$LAGOON_PR_NUMBER" ] && GIT_SHA=$LAGOON_PR_HEAD_SHA || GIT_SHA=$LAGOON_GIT_SHA
-            DREVOPS_NOTIFY_DEPLOY_REPOSITORY="salsadigital/civictheme_source" \
+            DREVOPS_NOTIFY_DEPLOY_REPOSITORY="salsadigitalauorg/civictheme-source" \
             DREVOPS_NOTIFY_DEPLOY_REF="$GIT_SHA" \
             DREVOPS_NOTIFY_DEPLOY_ENVIRONMENT_URL="$LAGOON_ROUTE" \
             DREVOPS_NOTIFY_DEPLOY_GITHUB_OPERATION="finish" \
