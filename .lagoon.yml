@@ -49,9 +49,9 @@ tasks:
           # Read DB dump from the temp location instead of '.data'.
           export DREVOPS_DB_DIR=/tmp/data
 
+          env
+
           if [ "$LAGOON_ENVIRONMENT_TYPE" = "production" ] || [ "$LAGOON_GIT_BRANCH" = "${DREVOPS_PRODUCTION_BRANCH:-main}" ]; then
-            # Never overwrite existing DB when production site already exists.
-            export DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB=0
             # Never unblock admin user in production.
             export DREVOPS_DRUPAL_LOGIN_UNBLOCK_ADMIN=0
             # Never sanitize DB.
