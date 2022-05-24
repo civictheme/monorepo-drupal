@@ -257,10 +257,10 @@ jobs:
           RENOVATE_AUTODISCOVER: false
           RENOVATE_DEPENDENCY_DASHBOARD: true
           RENOVATE_DEPENDENCY_DASHBOARD_TITLE: 'RenovateBot Dependency Dashboard (self-hosted)'
-          RENOVATE_GIT_AUTHOR: 'RenovateBot Self Hosted <renovatebot@civictheme-source.com>'
+          RENOVATE_GIT_AUTHOR: 'RenovateBot Self Hosted <renovatebot@salsadigital.com.au>'
           # Make sure that correct repository is specified or bot will go
           # through all repositories that a RENOVATE_TOKEN token has access to.
-          RENOVATE_REPOSITORIES: 'salsadigitalauorg/civictheme_source'
+          RENOVATE_REPOSITORIES: 'salsadigitalauorg/civictheme-source'
           # Set to 'false' once setup is complete and at bot ran at least once without errors.
           RENOVATE_DRY_RUN: true
           LOG_LEVEL: debug

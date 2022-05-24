@@ -29,8 +29,8 @@ DREVOPS_DEPLOY_PROCEED="${DREVOPS_DEPLOY_PROCEED:-}"
 DREVOPS_DEPLOY_SKIP="${DREVOPS_DEPLOY_SKIP:-}"
 
 # Deploy action.
-# Values can be one of: create, destroy, override_existing_db.
-DREVOPS_DEPLOY_ACTION="${DREVOPS_DEPLOY_ACTION:-}"
+# Values can be one of: deploy, deploy_override_db, destroy.
+DREVOPS_DEPLOY_ACTION="${DREVOPS_DEPLOY_ACTION:-deploy}"
 
 # ------------------------------------------------------------------------------
 
