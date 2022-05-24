@@ -43,7 +43,7 @@ function cs_demo_create_user_user() {
     }
 
     for ($i = 1; $i <= $total_users_per_role; $i++) {
-      $name = sprintf('p.civictheme+test_%s_%s@salsadigital.com.au', $role->id(), $i);
+      $name = sprintf('p.civictheme+%s_%s@salsadigital.com.au', str_replace('civictheme_', '', $role->id()), $i);
 
       $existing_user = user_load_by_name($name);
       if ($existing_user) {

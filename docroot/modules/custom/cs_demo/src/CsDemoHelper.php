@@ -457,11 +457,11 @@ class CsDemoHelper implements ContainerInjectionInterface {
       $leaf = is_array($leaf) ? $leaf : ['link' => $leaf];
 
       if (!isset($leaf['link'])) {
-        throw new InvalidArgument \Exception('Menu item does not contain "link" element');
+        throw new \InvalidArgumentException('Menu item does not contain "link" element');
       }
 
       if (is_array($leaf['link']) && !isset($leaf['link']['uri'])) {
-        throw new InvalidArgument \Exception('Menu item contains "link" element which does not contain "uri" value');
+        throw new \InvalidArgumentException('Menu item contains "link" element which does not contain "uri" value');
       }
 
       if (!is_array($leaf['link'])) {

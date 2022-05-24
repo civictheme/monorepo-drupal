@@ -29,26 +29,3 @@ function cs_core_install() {
     }
   }
 }
-
-/**
- * Adds sitemap configuration.
- */
-function cs_core_update_9000() {
-  /** @var \Drupal\simple_sitemap\Simplesitemap $generator */
-  $generator = \Drupal::service('simple_sitemap.generator');
-
-  $settings = [
-    'index' => TRUE,
-    'priority' => 0.5,
-    'changefreq' => '',
-    'include_images' => FALSE,
-  ];
-  foreach ($generator->getSitemapManager()->getSitemapVariants(NULL, FALSE) as $variant => $definition) {
-    $generator->setVariants($variant);
-
-    $bundles = ['civictheme_page', 'civictheme_event', 'civictheme_project'];
-    foreach ($bundles as $bundle) {
-      $generator->setBundleSettings('node', $bundle, $settings);
-    }
-  }
-}

@@ -102,6 +102,9 @@ function civictheme_preprocess_views_view(&$variables) {
     !empty($variables['dom_id']) ? ' js-view-dom-id-' . $variables['dom_id'] : '',
   ]);
   $variables['modifier_class'] = implode(' ', $variables['modifier_class']);
+  if (isset($view->civictheme_listing['show_filters']) && $view->civictheme_listing['show_filters'] === FALSE) {
+    $variables['exposed'] = NULL;
+  }
 }
 
 /**

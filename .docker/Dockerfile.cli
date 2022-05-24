@@ -2,9 +2,16 @@
 #
 # All CLI operations performed in this container.
 #
-# @see https://hub.docker.com/r/uselagoon/php/tags?page=1&name=cli-drupal
-# @see https://github.com/uselagoon/lagoon-images/tree/main/images/php/cli-drupal
-FROM uselagoon/php-7.4-cli-drupal:21.12.1
+# @see https://hub.docker.com/r/uselagoon/php-7.4-cli-drupal/tags
+# @see https://github.com/uselagoon/lagoon-images/tree/main/images/php-cli-drupal
+FROM uselagoon/php-8.0-cli-drupal:22.4.1
+
+# Add missing variables.
+# @todo Remove once https://github.com/uselagoon/lagoon/issues/3121 is resolved.
+ARG LAGOON_PR_HEAD_BRANCH=""
+ENV LAGOON_PR_HEAD_BRANCH=$LAGOON_PR_HEAD_BRANCH
+ARG LAGOON_PR_HEAD_SHA=""
+ENV LAGOON_PR_HEAD_SHA=$LAGOON_PR_HEAD_SHA
 
 # Set default values for environment variables. Any values provided in
 # docker-compose.yml or .env file will override these values during build stage.
@@ -35,8 +42,8 @@ RUN apk update \
 RUN npm install -g npm@^8.6 && fix-permissions /home/.npm
 
 # Adding patches and scripts.
-ADD patches /app/patches
-ADD scripts /app/scripts
+COPY patches /app/patches
+COPY scripts /app/scripts
 
 # Copy files required for PHP dependencies resolution.
 # Note that composer.lock is not explicitly copied, allowing to run the stack
@@ -45,12 +52,12 @@ ADD scripts /app/scripts
 # repository.
 # File .env (and other environment files) is copied into image as it may be
 # required by composer scripts to get some additions variables.
-COPY composer.json composer.* .env* /app/
+COPY composer.json composer.* .env* auth* /app/
 
 # Install PHP dependencies, but without development dependencies. This is very
 # important, because we do not want potential security issues to be exposed to
 # production environment.
-RUN composer self-update --2 && composer global remove -n -q hirak/prestissimo && COMPOSER_MEMORY_LIMIT=-1 composer install -n --no-dev --ansi --prefer-dist --no-suggest --optimize-autoloader
+RUN COMPOSER_MEMORY_LIMIT=-1 composer install -n --no-dev --ansi --prefer-dist --optimize-autoloader
 
 # Install NodeJS dependencies.
 # Note that package-lock.json is not explicitly copied, allowing to run the

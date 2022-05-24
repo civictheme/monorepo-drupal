@@ -3,13 +3,13 @@
 namespace Drupal\Tests\cs_core\Unit;
 
 /**
- * Class CsExampleUnitTest.
+ * Class CsCoreExampleUnitTest.
  *
  * Example test case class.
  *
  * @group CsCore
  */
-class CsExampleUnitTest extends CsCoreUnitTestBase {
+class CsCoreExampleUnitTest extends CsCoreUnitTestBase {
 
   /**
    * @dataProvider dataProviderAdd

@@ -15,15 +15,14 @@ Feature: Tests the Listing paragraph
     When I go to "admin/structure/paragraphs_type/civictheme_listing/fields"
     And I should see the text "field_c_p_content_type" in the "Content type" row
     And I should see the text "field_c_p_listing_f_exposed" in the "Filters" row
-    And I should see the text "field_c_p_hide_count" in the "Hide count" row
     And I should see the text "field_c_p_listing_limit" in the "Limit" row
     And I should see the text "field_c_p_limit_type" in the "Limit type" row
     And I should see the text "field_c_p_link" in the "Link" row
     And I should see the text "field_c_p_listing_multi_select" in the "Multi select" row
     And I should see the text "field_c_p_read_more" in the "Read more" row
     And I should see the text "field_c_p_show_filters" in the "Show filters" row
-    And I should see the text "field_c_p_show_pager" in the "Show pager" row
     And I should see the text "field_c_p_title" in the "Title" row
+    And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_topics" in the "Topics" row
     And I should see the text "field_c_p_view_as" in the "View as" row
     And I should see the text "field_c_p_space" in the "With space" row
@@ -60,6 +59,9 @@ Feature: Tests the Listing paragraph
     Then select "field_c_n_components[0][subform][field_c_p_view_as]" should have an option "civictheme_navigation_card"
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_read_more][0][uri]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_read_more][0][title]']" element
+    And I should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
+    Then select "field_c_n_components[0][subform][field_c_p_theme]" should have an option "Light"
+    Then select "field_c_n_components[0][subform][field_c_p_theme]" should have an option "Dark"
     And I click on "div.paragraphs-subform .horizontal-tab-button-1 a" element
     And I wait 1 second
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_limit_type]']" element
@@ -67,8 +69,6 @@ Feature: Tests the Listing paragraph
     Then select "field_c_n_components[0][subform][field_c_p_limit_type]" should have an option "unlimited"
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_listing_limit][0][value]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_listing_multi_select][value]']" element
-    And I should see an "input[name='field_c_n_components[0][subform][field_c_p_hide_count][value]']" element
-    And I should see an "input[name='field_c_n_components[0][subform][field_c_p_show_pager][value]']" element
     And I click on "div.paragraphs-subform .horizontal-tab-button-2 a" element
     And I wait 1 second
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_show_filters][value]']" element

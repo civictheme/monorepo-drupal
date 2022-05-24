@@ -16,8 +16,8 @@ plugin: 'block_content:5508dc51-1cf8-4577-9038-b572fbd698ae'
 settings:
   id: 'block_content:5508dc51-1cf8-4577-9038-b572fbd698ae'
   label: Signup
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full

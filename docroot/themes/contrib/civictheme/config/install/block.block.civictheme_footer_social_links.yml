@@ -16,8 +16,8 @@ plugin: 'block_content:5c0ad15f-3e9c-4eeb-8525-7a064b06fc58'
 settings:
   id: 'block_content:5c0ad15f-3e9c-4eeb-8525-7a064b06fc58'
   label: 'Social links'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full

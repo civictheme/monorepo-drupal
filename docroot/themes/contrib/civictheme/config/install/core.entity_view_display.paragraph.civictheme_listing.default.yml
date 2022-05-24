@@ -4,7 +4,6 @@ dependencies:
   config:
     - field.field.paragraph.civictheme_listing.field_c_p_background
     - field.field.paragraph.civictheme_listing.field_c_p_content_type
-    - field.field.paragraph.civictheme_listing.field_c_p_hide_count
     - field.field.paragraph.civictheme_listing.field_c_p_limit_type
     - field.field.paragraph.civictheme_listing.field_c_p_link
     - field.field.paragraph.civictheme_listing.field_c_p_listing_f_exposed
@@ -12,7 +11,6 @@ dependencies:
     - field.field.paragraph.civictheme_listing.field_c_p_listing_multi_select
     - field.field.paragraph.civictheme_listing.field_c_p_read_more
     - field.field.paragraph.civictheme_listing.field_c_p_show_filters
-    - field.field.paragraph.civictheme_listing.field_c_p_show_pager
     - field.field.paragraph.civictheme_listing.field_c_p_space
     - field.field.paragraph.civictheme_listing.field_c_p_theme
     - field.field.paragraph.civictheme_listing.field_c_p_title
@@ -43,16 +41,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
-    region: content
-  field_c_p_hide_count:
-    weight: 11
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
     region: content
   field_c_p_limit_type:
     weight: 10
@@ -121,18 +109,15 @@ content:
     third_party_settings: {  }
     type: boolean
     region: content
-  field_c_p_show_pager:
-    weight: 8
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-    region: content
   field_c_p_space:
     weight: 13
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_c_p_theme:
+    weight: 14
     label: above
     settings: {  }
     third_party_settings: {  }
