@@ -76,7 +76,7 @@ function civictheme_preprocess_views_view(&$variables) {
     _civictheme_listing_preprocess_view($view->civictheme_listing_entity, $view);
   }
   else {
-    $listing_paragraph  = _civictheme_get_listing_paragraph_from_route();
+    $listing_paragraph = _civictheme_get_listing_paragraph_from_route();
     _civictheme_listing_preprocess_view($listing_paragraph, $view);
   }
 

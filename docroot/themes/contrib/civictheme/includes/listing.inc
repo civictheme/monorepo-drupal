@@ -86,8 +86,6 @@ function _civictheme_listing_element(Paragraph $paragraph) {
   return $element;
 }
 
-
-
 /**
  * Loads and alters view for civictheme listing.
  */

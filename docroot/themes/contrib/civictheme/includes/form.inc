@@ -37,6 +37,12 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
     $form_state->get('view')->setAjaxEnabled(TRUE);
     $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
     $form['actions']['#attributes']['class'][] = 'hide-xxs';
+
+    // Attach node to provide access to the paragraph settings on ajax reloads.
+    $form['nid'] = [
+      '#type' => 'hidden',
+      '#value' => _civictheme_listing_get_node($form_state),
+    ];
   }
   else {
     $form['actions']['submit']['#attributes']['class'] = [
@@ -441,4 +447,20 @@ function civictheme_preprocess_form(&$variables) {
   if (isset($variables['attributes']['civictheme_listing'])) {
     unset($variables['attributes']['civictheme_listing']);
   }
+}
+
+/**
+ * Get the nid that the listing block is embedded in.
+ */
+function _civictheme_listing_get_node($form_state) {
+  $nid = $form_state->getUserInput()['nid'] ?? NULL;
+  $nid = is_numeric($nid) ? $nid : NULL;
+  if (!$nid) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node) {
+      $nid = $node->id();
+    }
+  }
+
+  return $nid;
 }
