@@ -3,14 +3,13 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.civictheme_promo_card
-    - node.type.civictheme_page
     - taxonomy.vocabulary.civictheme_topics
   module:
     - node
     - taxonomy
     - user
 id: civictheme_listing
-label: Civic Theme Listing
+label: 'Civic Theme Listing'
 module: views
 description: ''
 tag: ''
@@ -454,7 +453,7 @@ display:
       defaults:
         use_ajax: false
       use_ajax: false
-      exposed_block: true
+      exposed_block: false
       display_extenders: {  }
     cache_metadata:
       max-age: -1
