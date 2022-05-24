@@ -81,9 +81,6 @@ function _civictheme_listing_element(Paragraph $paragraph) {
     _civictheme_listing_alter_view($paragraph, $view);
     _civictheme_listing_preprocess_view($paragraph, $view);
 
-    $view->civictheme_listing = [
-      'show_filters' => (bool) $show_filters,
-    ];
     $element['view'] = $view->render();
   }
 
@@ -95,18 +92,19 @@ function _civictheme_listing_element(Paragraph $paragraph) {
  */
 function _civictheme_listing_preprocess_view($paragraph, &$view) {
   $link = $paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty() ? $paragraph->get('field_c_p_link')->first() : NULL;
-
+  $link_data = $link !== NULL ? [
+    'text' => $link->get('title')->getString(),
+    'is_external' => $link->isExternal(),
+    'is_new_window' => $link->isExternal(),
+    'url' => $link->getUrl()->toString(),
+  ] : [];
   $view->civictheme_listing = [
     'theme' => _civictheme_paragraph_get_theme($paragraph) !== FALSE ? _civictheme_paragraph_get_theme($paragraph) : 'light',
-    'link' => [
-      'text' => $link->get('title')->getString(),
-      'is_external' => $link->isExternal(),
-      'is_new_window' => $link->isExternal(),
-      'url' => $link->getUrl()->toString(),
-    ],
+    'link' => $link_data,
     'title' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_title') ? $paragraph->get('field_c_p_title')->getString() : '',
-    'with_background' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_background') ? $paragraph->get('field_c_p_background')->getString() : '',
+    'with_background' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_background') ? (bool) $paragraph->get('field_c_p_background')->getString() : '',
     'vertical_space' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_space') ? $paragraph->get('field_c_p_space')->getString() : '',
+    'show_filters' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_show_filters') ? (bool) $paragraph->get('field_c_p_show_filters')->getString() : TRUE,
   ];
 }
 
