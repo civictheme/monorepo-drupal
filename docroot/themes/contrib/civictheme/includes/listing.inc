@@ -72,7 +72,6 @@ function _civictheme_listing_element(Paragraph $paragraph) {
   \Drupal::service('theme.manager')->alter('civictheme_listing_view_name', $view_name);
 
   $view_display = 'civictheme_listing_block';
-  $show_filters = (int) $paragraph->field_c_p_show_filters->value;
 
   $view = Views::getView($view_name);
   if ($view) {
