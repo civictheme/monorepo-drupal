@@ -3,7 +3,7 @@ Feature: XML Sitemap
 
   Ensure that the XML Sitemap exists.
 
-  @api @wip5
+  @api
   Scenario: XML Sitemap is accessible
 
     Given civictheme_page content:
@@ -19,17 +19,16 @@ Feature: XML Sitemap
       | [TEST] Published alert | 1      | /alerts/test-published-alert |
       | [TEST] Draft alert     | 0      | /alerts/test-draft-alert     |
 
-    Given I run drush "simple-sitemap:generate --uri=http://civictheme.docker.amazee.io"
+    Given I run drush "simple-sitemap:generate --uri=http://civictheme-source.docker.amazee.io"
 
     When I go to "sitemap.xml"
     Then the response status code should be 200
-    And the response should contain "http://civictheme.docker.amazee.io/"
 
-    And the response should contain "http://civictheme.docker.amazee.io/test-published-page"
-    And the response should not contain "http://civictheme.docker.amazee.io/test-draft-page"
+    And the response should contain "http://civictheme-source.docker.amazee.io/test-published-page"
+    And the response should not contain "http://civictheme-source.docker.amazee.io/test-draft-page"
 
-    And the response should contain "http://civictheme.docker.amazee.io/events/test-published-event"
-    And the response should not contain "http://civictheme.docker.amazee.io/events/test-draft-event"
+    And the response should contain "http://civictheme-source.docker.amazee.io/events/test-published-event"
+    And the response should not contain "http://civictheme-source.docker.amazee.io/events/test-draft-event"
 
-    And the response should not contain "http://civictheme.docker.amazee.io/alerts/test-published-alert"
-    And the response should not contain "http://civictheme.docker.amazee.io/alerts/test-draft-alert"
+    And the response should not contain "http://civictheme-source.docker.amazee.io/alerts/test-published-alert"
+    And the response should not contain "http://civictheme-source.docker.amazee.io/alerts/test-draft-alert"

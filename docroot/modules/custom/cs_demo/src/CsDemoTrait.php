@@ -185,7 +185,7 @@ trait CsDemoTrait {
 
     // Expand all.
     if (!empty($options['expand_all'])) {
-      $options['expand'] = (bool) $options['expand'];
+      $options['expand'] = (bool) $options['expand_all'];
     }
     $paragraph = self::civicthemeParagraphAttach('civictheme_accordion', $node, $field_name, $options);
 
@@ -456,6 +456,8 @@ trait CsDemoTrait {
       $paragraph->field_c_p_listing_f_exposed = CsDemoHelper::randomListingFilters();
     }
 
+    // Default to show all.
+    $paragraph->field_c_p_listing_limit = 0;
     if ($options['limit_type'] && $options['limit_type'] == 'limited') {
       $paragraph->field_c_p_listing_limit = rand(9, 20);
     }
