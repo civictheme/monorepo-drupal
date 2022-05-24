@@ -28,6 +28,10 @@ DREVOPS_DEPLOY_PROCEED="${DREVOPS_DEPLOY_PROCEED:-}"
 # 'DREVOPS_DEPLOY_SKIP_BRANCH_<SAFE_BRANCH>' variables.
 DREVOPS_DEPLOY_SKIP="${DREVOPS_DEPLOY_SKIP:-}"
 
+# Deploy action.
+# Values can be one of: create, destroy, override_existing_db.
+DREVOPS_DEPLOY_ACTION="${DREVOPS_DEPLOY_ACTION:-}"
+
 # ------------------------------------------------------------------------------
 
 [ -z "${DREVOPS_DEPLOY_TYPE}" ] && echo "Missing required value for DREVOPS_DEPLOY_TYPE. Must be a combination of comma-separated values (to support multiple deployments): code, docker, webhook, lagoon." && exit 1
