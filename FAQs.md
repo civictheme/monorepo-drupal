@@ -29,6 +29,12 @@ ahoy login
   - Database: `drupal`
   - Port: the port from step 1
 
+## How to run Livereload?
+1. If `settings.local.php` does not exist, copy `default.settings.local.php` to `settings.local.php`
+2. Set `$settings['livereload'] = TRUE;` in `settings.local.php` file
+3. Clear drupal cache `ahoy drush cr`
+4. Run: `ahoy few`
+
 ## How to use Xdebug?
 1. Run `ahoy debug`
 2. Enable listening for incoming debug connections in your IDE.
@@ -52,15 +58,21 @@ Use `ahoy up` to restart the stack without Xdebug enabled.
 ## What should I do to switch to a "clean" branch environment?
 Provided that your stack is already running:
 1. Switch to your branch
-2. `ahoy cli composer install`
+2. `composer install`
 3. `ahoy site-install`
 
 Note that you do not need to rebuild the full stack using `ahoy build` every time.
 However, sometimes you would want to have an absolutely clean environment - in that
 case, use `ahoy build`.
 
-## Site install fails with error about configuration.
-Make sure that you have removed all files from `config/default` directory.
+## How to just import the database?
+Provided that your stack is already running:
+`ahoy drush sql-drop -y; ahoy drush sql-cli < .data/db.sql`
+
+## How to add Drupal modules
+
+`composer require drupal/module_name`
+
 ## Adding patches for Drupal modules
 
 1. Add `title` and `url` to patch on https://drupal.org to the `patches` array in `extra` section in `composer.json`.

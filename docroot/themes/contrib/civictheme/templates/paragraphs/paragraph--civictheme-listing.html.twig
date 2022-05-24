@@ -19,9 +19,11 @@
   <div{{ attributes.setAttribute('id', uniqId).addClass(header_classes) }}>
     <div class="civictheme-listing__container">
       {% if content.field_c_p_title|render|striptags|trim is not empty %}
-        <h2 {{ title_attributes.addClass('civictheme-listing__header') }}>
-          {{ content.field_c_p_title }}
-        </h2>
+        {% include '@atoms/heading/heading.twig' with {
+          content: content.field_c_p_title ,
+          level: 2,
+          modifier_class: 'civictheme-listing__title',
+        } only %}
       {% endif %}
       <div{{ body_attribute.addClass(body_classes) }}>
         {{ listing }}

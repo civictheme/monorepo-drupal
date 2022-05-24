@@ -33,7 +33,7 @@ aliases:
 
   # SSH key fingerprint to deploy code.
   # Generate a separate SSH key for a user who has push permissions to
-  # $DEPLOY_GIT_REMOTE repo with `ssh-keygen -m PEM -t rsa -C "deployer@example.com"
+  # $DREVOPS_DEPLOY_ARTIFACT_GIT_REMOTE repo with `ssh-keygen -m PEM -t rsa -C "deployer@example.com"
   # command and add private key under "SSH Permissions" in CircleCI UI.
   - &deploy_ssh_fingerprint "4e:82:39:4a:52:0e:ae:a9:ef:c1:19:56:46:21:fd:7f"
 
@@ -50,25 +50,11 @@ aliases:
   # Optional variables.
   #-----------------------------------------------------------------------------
 
-  # How often to refresh the cache of the database. Refer to `date` command.
-  - &db_cache_timestamp +%Y_%m_%d
-
-  # Use previous database caches on this branch as a fallback if the above cache
-  # does not match (for example, the cache is available only from the previous
-  # day). Only allowed "yes" or "no" (include enclosing double quotes).
-  - &db_cache_fallback "yes"
-  # Which branch to use for a source of the DB caches. Usually, it is the default
-  # project branch or *nightly_branch (see below).
-  - &db_cache_branch "develop"
-
-  # Database cache directory.
-  - &db_cache_dir /root/project/.data
-
   # CI runner resource class.
   # @see https://circleci.com/docs/2.0/configuration-reference/#resource_class
   # Change to 'large' for faster builds. Requires lodging a support request
   # with CircleCI o enable this feature.
-  - &resource_class medium
+  - &resource_class large
 
   # Docker Layer Caching allows to significantly speed up builds by caching
   # images built during previous runs.
@@ -76,6 +62,10 @@ aliases:
   # Change to 'true' (without single quotes) to enable. Requires lodging a
   # support request with CircleCI to enable this feature.
   - &docker_layer_caching false
+
+
+  # The branch to run RenovateBot on.
+  - &nightly_renovatebot_branch develop
 
   #-----------------------------------------------------------------------------
 
@@ -85,54 +75,42 @@ aliases:
     # Location of checked-out files within "runner" container.
     working_directory: &working_directory /root/project
     environment:
-      DEPLOY_SSH_FINGERPRINT: *deploy_ssh_fingerprint
-      DEPLOY_SSH_FINGERPRINT2: *deploy_ssh_fingerprint2
-      DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
-      DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
+      DREVOPS_DEPLOY_SSH_FINGERPRINT: *deploy_ssh_fingerprint
     docker:
       - image: drevops/ci-builder
         auth:
-          username: $DOCKER_REGISTRY_USERNAME
-          password: $DOCKER_REGISTRY_TOKEN
+          username: $DREVOPS_DOCKER_REGISTRY_USERNAME
+          password: $DREVOPS_DOCKER_REGISTRY_TOKEN
         environment:
           # Set timezone to ensure that executed operations use correct timestamps.
           TZ: *timezone
-          # Volumes mounting to host is not supported in CircleCI.
-          VOLUMES_MOUNTED: 0
           # Always answer 'y' to any confirmation questions.
-          CONFIRM_RESPONSE: 'y'
-          # How often to refresh the cache of the DB dump. Refer to `date` command.
-          DB_CACHE_TIMESTAMP: *db_cache_timestamp
-          # Use cache fallback if the above timestamp does not match.
-          DB_CACHE_FALLBACK: *db_cache_fallback
-          # Which branch to use as a source of DB caches.
-          DB_CACHE_BRANCH: *db_cache_branch
+          DREVOPS_AHOY_CONFIRM_RESPONSE: 'y'
           # Directory to store code exported between jobs.
-          BUILD_EXPORT_DIR: &build_export_dir /workspace/code
-          # Do not use symlink when downloading database dump (useful only locally).
-          DB_USE_SYMLINK: false
+          DREVOPS_EXPORT_CODE_DIR: &build_export_dir /workspace/code
           # Directory to store test results.
-          TEST_LOG_DIR: &test_log_dir /tmp/tests
+          DREVOPS_TEST_REPORTS_DIR: &drevops_test_reports_dir /tmp/tests
           # Directory to store test artifacts.
-          TEST_ARTIFACT_DIR: &test_artifact_dir /tmp/artifacts
+          DREVOPS_TEST_ARTIFACT_DIR: &drevops_test_artifact_dir /tmp/artifacts
           # Use compact error reporting format.
-          BEHAT_FORMAT: progress_fail
-          # Directory to use for code deployments.
-          DEPLOY_CODE_SRC: *build_export_dir
-          # Source code location.
-          DEPLOY_CODE_ROOT: *working_directory
-          # Deployment report file location.
-          DEPLOY_REPORT: /tmp/artifacts/deployment_report.txt
+          DREVOPS_TEST_BEHAT_FORMAT: progress_fail
+          # Directory to use for artifact deployments.
+          DREVOPS_DEPLOY_ARTIFACT_SRC: *build_export_dir
+          # Source code location for artifact deployments.
+          DREVOPS_DEPLOY_ARTIFACT_ROOT: *working_directory
+          # Report file location for artifact deployments.
+          DREVOPS_DEPLOY_ARTIFACT_REPORT_FILE: /tmp/artifacts/deployment_report.txt
           # Check only minimal stack requirements.
-          DOCTOR_CHECK_MINIMAL: 1
+          DREVOPS_DOCTOR_CHECK_MINIMAL: 1
     resource_class: *resource_class
 
-  # Step to setup remote docker.
+  # Set up remote docker.
   - &step_setup_remote_docker
     setup_remote_docker:
       docker_layer_caching: *docker_layer_caching
       version: 19.03.13
-  # Step to process the codebase to be ran in CI environment.
+
+  # Process the codebase to be run in CI environment.
   - &step_process_codebase
     run:
       name: Process codebase to run in CI
@@ -154,20 +132,6 @@ jobs:
       - *step_process_codebase
       - *step_setup_remote_docker
       - run:
-          name: Set cache keys for database caching
-          command: |
-            echo "${DB_CACHE_BRANCH}" > /tmp/DB_CACHE_BRANCH && cat /tmp/DB_CACHE_BRANCH
-            echo "yes" > /tmp/DB_CACHE_FALLBACK_YES && cat /tmp/DB_CACHE_FALLBACK_YES
-            echo "$(date ${DB_CACHE_TIMESTAMP})" > /tmp/DB_CACHE_TIMESTAMP && cat /tmp/DB_CACHE_TIMESTAMP
-      - restore_cache:
-          keys:
-            #
-            # Use cached artifacts from previous builds of this branch ran at
-            # any time.
-            # https://circleci.com/docs/2.0/caching/#restoring-cache
-            - v5-db9-{{ checksum "/tmp/DB_CACHE_BRANCH" }}-{{ checksum "/tmp/DB_CACHE_FALLBACK_YES" }}-{{ checksum "/tmp/DB_CACHE_TIMESTAMP" }}
-            - v5-db9-{{ checksum "/tmp/DB_CACHE_BRANCH" }}-{{ checksum "/tmp/DB_CACHE_FALLBACK_YES" }}-
-      - run:
           name: Lint docs spelling
           command: ./scripts/lint-spelling.sh
       - run:
@@ -179,20 +143,19 @@ jobs:
           command: ahoy lint
       - run:
           name: Run tests
-          command: 'if [ $CIRCLE_NODE_TOTAL -gt 1 ]; then export BEHAT_PARALLEL_INDEX=$CIRCLE_NODE_INDEX; fi && ahoy test'
+          command: 'if [ $CIRCLE_NODE_TOTAL -gt 1 ]; then export DREVOPS_TEST_BEHAT_PARALLEL_INDEX=$CIRCLE_NODE_INDEX; fi && ahoy test'
       - run:
           name: Process test logs and artifacts
           command: |
             [ -n "$(docker-compose ps -q cli)" ] && [ -n "$(docker ps -q --no-trunc | grep "$(docker-compose ps -q cli)")" ] && (
-              ahoy cli mkdir -p "${TEST_LOG_DIR}" && docker cp "$(docker-compose ps -q cli)":"${TEST_LOG_DIR}" "${TEST_LOG_DIR}"
-              ahoy cli mkdir -p "${TEST_ARTIFACT_DIR}" && docker cp "$(docker-compose ps -q cli)":"${TEST_ARTIFACT_DIR}" "${TEST_ARTIFACT_DIR}"
+              ahoy cli mkdir -p "${DREVOPS_TEST_REPORTS_DIR}" && docker cp "$(docker-compose ps -q cli)":"${DREVOPS_TEST_REPORTS_DIR}" "${DREVOPS_TEST_REPORTS_DIR}"
+              ahoy cli mkdir -p "${DREVOPS_TEST_ARTIFACT_DIR}" && docker cp "$(docker-compose ps -q cli)":"${DREVOPS_TEST_ARTIFACT_DIR}" "${DREVOPS_TEST_ARTIFACT_DIR}"
             ) || true
           when: always
       - store_test_results:
-          path: *test_log_dir
-          when: always
+          path: *drevops_test_reports_dir
       - store_artifacts:
-          path: *test_artifact_dir
+          path: *drevops_test_artifact_dir
       #
       # Persisting previously built application code artifact (without
       # development dependencies) to use it in deployment job.
@@ -218,10 +181,14 @@ jobs:
       - checkout
       - *step_process_codebase
       - run:
-          command: DEPLOY_BRANCH="$CIRCLE_BRANCH" DEPLOY_PR="$(echo $CIRCLE_PULL_REQUEST | cut -d'/' -f 7)" DEPLOY_PR_HEAD=$CIRCLE_SHA1 ahoy deploy
+          command: |
+            DREVOPS_DEPLOY_BRANCH="$CIRCLE_BRANCH" \
+            DREVOPS_DEPLOY_PR="$(echo $CIRCLE_PULL_REQUEST | cut -d'/' -f 7)" \
+            DREVOPS_DEPLOY_PR_HEAD=$CIRCLE_SHA1 \
+            ahoy deploy
           no_output_timeout: 30m
       - store_artifacts:
-          path: *test_artifact_dir
+          path: *drevops_test_artifact_dir
 
   # Deploy tags.
   deploy_tags: &job_deploy_tags
@@ -278,7 +245,29 @@ jobs:
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - store_artifacts:
-          path: *test_artifact_dir
+          path: *drevops_test_artifact_dir
+
+  # Self-hosted RenovateBot.
+  # Add RENOVATE_TOKEN as an environment variable with GitHub access token in UI.
+  renovatebot_self_hosted:
+    docker:
+      - image: renovate/renovate:latest
+        environment:
+          RENOVATE_PLATFORM: 'github'
+          RENOVATE_AUTODISCOVER: false
+          RENOVATE_DEPENDENCY_DASHBOARD: true
+          RENOVATE_DEPENDENCY_DASHBOARD_TITLE: 'RenovateBot Dependency Dashboard (self-hosted)'
+          RENOVATE_GIT_AUTHOR: 'RenovateBot Self Hosted <renovatebot@salsadigital.com.au>'
+          # Make sure that correct repository is specified or bot will go
+          # through all repositories that a RENOVATE_TOKEN token has access to.
+          RENOVATE_REPOSITORIES: 'salsadigitalauorg/civictheme-source'
+          # Set to 'false' once setup is complete and at bot ran at least once without errors.
+          RENOVATE_DRY_RUN: false
+          LOG_LEVEL: debug
+    steps:
+      - checkout
+      - run: renovate-config-validator
+      - run: renovate
 
 
 ################################################################################
@@ -300,11 +289,11 @@ workflows:
           filters:
             branches:
               # Allowed branches:
-              # - master, develop, ci, cisomething
+              # - main, master, develop, ci, cisomething
               # - release/123, release/123.456, release/123.456.789, release/123.456.789-rc123
               # - hotfix/123, hotfix/123.456, hotfix/123.456.789
               # - feature/description, feature/123-description, but not feature/9.x-description or feature/7.x-description
-              only: /master|develop|ci.*|(release\/)?[0-9]+(\.[0-9]+)+(-rc[0-9]+)?|(hotfix\/)?[0-9]+(\.[0-9]+)+(-rc[0-9]+)?|feature\/(?!7.x-|8.x-|9.x-)[a-zA-z0-9\-\.\,]+/
+              only: /main|master|develop|ci.*|(release\/)?[0-9]+(\.[0-9]+)+(-rc[0-9]+)?|(hotfix\/)?[0-9]+(\.[0-9]+)+(-rc[0-9]+)?|feature\/(?!7.x-|8.x-|9.x-)[a-zA-z0-9\-\.\,]+/
             tags:
               ignore: /.*/
       - deploy_tags:
@@ -317,3 +306,14 @@ workflows:
               # Allowed tags: 1, 123, 123.456, 123.456.789, 123.456.789-rc123
               only: /^[0-9]+(\.[0-9]+)+(-rc[0-9]+)?$/
 
+
+  renovatebot_self_hosted:
+    triggers:
+      - schedule:
+          cron: "15 * * * *"
+          filters:
+            branches:
+              only:
+                - *nightly_renovatebot_branch
+    jobs:
+      - renovatebot_self_hosted

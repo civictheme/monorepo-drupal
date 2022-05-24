@@ -295,6 +295,7 @@ display:
           exposed: true
           expose:
             label: 'Date range'
+            field_identifier: created
           granularity: second
           entity_type: node
           entity_field: created

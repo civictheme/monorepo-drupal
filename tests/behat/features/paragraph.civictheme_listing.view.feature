@@ -43,7 +43,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
       | field_c_p_show_filters         | 0                                          |
       | field_c_p_show_pager           | 0                                          |
     When I visit "civictheme_page" "[TEST] Page Listing component"
-    And I should see the text "[TEST] Listing component "
+    And I should see the text "[TEST] Listing component"
     Then I should see the link "View all pages" with "https://example.com" in 'div.civictheme-listing__cta'
     And I should see an "div.civictheme-listing .civictheme-card-container__cards" element
     And I should see 6 "div.civictheme-card-container__card" elements
@@ -66,7 +66,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
       | field_c_p_show_filters         | 1                                          |
       | field_c_p_show_pager           | 0                                          |
     When I visit "civictheme_page" "[TEST] Page Listing component"
-    And I should see the text "[TEST] Listing component "
+    And I should see the text "[TEST] Listing component"
     Then I should see the link "View all pages" with "https://example.com" in 'div.civictheme-listing__cta'
     And I should see an "div.civictheme-listing .civictheme-card-container__cards" element
     And I should see an "div.civictheme-listing__body .views-exposed-form" element

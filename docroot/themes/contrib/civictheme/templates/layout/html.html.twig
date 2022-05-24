@@ -41,7 +41,9 @@
 </head>
 <body{{ attributes.addClass(body_classes) }}>
 
-{% include '@molecules/skip-link/skip-link.twig'%}
+{% include '@molecules/skip-link/skip-link.twig' with {
+  url: '#main-content' ,
+} only %}
 
 {{ page_top }}
 {{ page }}

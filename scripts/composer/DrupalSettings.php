@@ -44,7 +44,7 @@ class DrupalSettings {
       $content = self::getDefaultDrupalSettingsContent($options);
       $fs->dumpFile($options['settings_path'], $content);
       $fs->chmod($options['settings_path'], 0644);
-      $event->getIO()->write(sprintf('Created file %s with chmod 0644', $options['settings_path'] . PHP_EOL . $content));
+      $event->getIO()->write(sprintf('Created file %s with', $options['settings_path']));
     }
     else {
       $event->getIO()->write(sprintf('Skipping creation of Drupal settings file "%s" - file already exists', $options['settings_path']));
@@ -149,11 +149,11 @@ GENERATEDSETTINGS;
     [
       'default' =>
         [
-          'database' => getenv('MARIADB_DATABASE') ?: '${options['mysql_database']}',
-          'username' => getenv('MARIADB_USERNAME') ?: '${options['mysql_user']}',
-          'password' => getenv('MARIADB_PASSWORD') ?: '${options['mysql_password']}',
-          'host' => getenv('MARIADB_HOST') ?: '${options['mysql_host']}',
-          'port' => getenv('MARIADB_PORT') ?: '${options['mysql_port']}',
+          'database' => getenv('MARIADB_DATABASE') ?: (getenv('DREVOPS_MARIADB_DATABASE') ?: '${options['mysql_database']}'),
+          'username' => getenv('MARIADB_USERNAME') ?: (getenv('DREVOPS_MARIADB_USERNAME') ?: '${options['mysql_user']}'),
+          'password' => getenv('MARIADB_PASSWORD') ?: (getenv('DREVOPS_MARIADB_PASSWORD') ?: '${options['mysql_password']}'),
+          'host' => getenv('MARIADB_HOST') ?: (getenv('DREVOPS_MARIADB_HOST') ?: '${options['mysql_host']}'),
+          'port' => getenv('MARIADB_PORT') ?: (getenv('DREVOPS_MARIADB_PORT') ?: '${options['mysql_port']}'),
           'driver' => 'mysql',
           'prefix' => '${options['mysql_prefix']}',
         ],

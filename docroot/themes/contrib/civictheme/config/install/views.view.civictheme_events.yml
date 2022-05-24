@@ -317,6 +317,7 @@ display:
           exposed: false
           expose:
             label: ''
+            field_identifier: created
           granularity: second
         field_event_date_value:
           id: field_event_date_value
@@ -329,6 +330,7 @@ display:
           exposed: true
           expose:
             label: Date
+            field_identifier: field_event_date_value
           granularity: second
           plugin_id: datetime
       header: {  }
