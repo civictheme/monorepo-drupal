@@ -63,6 +63,10 @@ aliases:
   # support request with CircleCI to enable this feature.
   - &docker_layer_caching false
 
+
+  # The branch to run RenovateBot on.
+  - &nightly_renovatebot_branch develop
+
   #-----------------------------------------------------------------------------
 
   # Shared configuration applied to each job.
@@ -105,6 +109,7 @@ aliases:
     setup_remote_docker:
       docker_layer_caching: *docker_layer_caching
       version: 19.03.13
+
   # Process the codebase to be run in CI environment.
   - &step_process_codebase
     run:
@@ -242,6 +247,29 @@ jobs:
       - store_artifacts:
           path: *drevops_test_artifact_dir
 
+  # Self-hosted RenovateBot.
+  # Add RENOVATE_TOKEN as an environment variable with GitHub access token in UI.
+  renovatebot_self_hosted:
+    docker:
+      - image: renovate/renovate:latest
+        environment:
+          RENOVATE_PLATFORM: 'github'
+          RENOVATE_AUTODISCOVER: false
+          RENOVATE_DEPENDENCY_DASHBOARD: true
+          RENOVATE_DEPENDENCY_DASHBOARD_TITLE: 'RenovateBot Dependency Dashboard (self-hosted)'
+          RENOVATE_GIT_AUTHOR: 'RenovateBot Self Hosted <renovatebot@civictheme-source.com>'
+          # Make sure that correct repository is specified or bot will go
+          # through all repositories that a RENOVATE_TOKEN token has access to.
+          RENOVATE_REPOSITORIES: 'salsadigitalauorg/civictheme_source'
+          # Set to 'false' once setup is complete and at bot ran at least once without errors.
+          RENOVATE_DRY_RUN: true
+          LOG_LEVEL: debug
+    steps:
+      - checkout
+      - run: renovate-config-validator
+      - run: renovate
+
+
 ################################################################################
 # WORKFLOWS
 ################################################################################
@@ -277,3 +305,15 @@ workflows:
             tags:
               # Allowed tags: 1, 123, 123.456, 123.456.789, 123.456.789-rc123
               only: /^[0-9]+(\.[0-9]+)+(-rc[0-9]+)?$/
+
+
+  renovatebot_self_hosted:
+    triggers:
+      - schedule:
+          cron: "15 * * * *"
+          filters:
+            branches:
+              only:
+                - *nightly_renovatebot_branch
+    jobs:
+      - renovatebot_self_hosted
