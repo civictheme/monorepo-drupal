@@ -13,6 +13,7 @@
  *   - below: [array] Array of submenu items.
  *   - is_expanded: [boolean] Flag if the current item has visible child.
  *   - in_active_trail: [boolean] Flag if the current item is in the active trail.
+ * - is_collapsible: [boolean] Flag whether to collapse the menu.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -31,7 +32,7 @@
         <ul class="civictheme-menu civictheme-menu__sub-menu civictheme-menu--level-{{ menu_level }}">
     {% endif %}
 
-    {% for item in items %}
+    {% for key, item in items %}
       {% set item_classes = [
         'civictheme-menu__item',
         'civictheme-menu__item--level-' ~ menu_level,
@@ -40,7 +41,13 @@
         item.in_active_trail ? 'civictheme-menu__item--active-trail' : '',
         item.modifier_class|default(''),
       ] %}
-      <li class="{{ item_classes|join(' ') }}" {{ item.attributes|default('') }}>
+
+      {% set item_attributes = item.attributes|default('') %}
+      {% if is_collapsible == 'true' %}
+        {% set item_attributes = [item_attributes, 'data-collapsible data-collapsible-collapsed data-collapsible-duration="0" data-collapsible-group=' ~ menu_id|default('menu') ~ '-' ~ menu_level ~ '-' ~ key]|join %}
+      {% endif %}
+
+      <li class="{{ item_classes|join(' ') }}" {{ item_attributes }}>
 
         {% include '@atoms/link/link.twig' with {
           theme: theme,
