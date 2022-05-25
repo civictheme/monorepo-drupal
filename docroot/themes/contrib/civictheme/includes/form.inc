@@ -23,7 +23,7 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
   $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
   $form_elements = Element::children($form);
   foreach ($form_elements as $form_element) {
-    $form[$form_element]['#attributes']['#civic_theme'] = $theme;
+    $form[$form_element]['#attributes']['#civictheme_theme'] = $theme;
   }
   $ajax_filter = $form_state->get('view')->ajaxEnabled();
 
@@ -114,8 +114,8 @@ function civictheme_preprocess_input(&$variables) {
     unset($variables['attributes']['class']);
   }
 
-  if (isset($variables['attributes']['#civic_theme'])) {
-    unset($variables['attributes']['#civic_theme']);
+  if (isset($variables['attributes']['#civictheme_theme'])) {
+    unset($variables['attributes']['#civictheme_theme']);
   }
 
 }
@@ -353,7 +353,7 @@ function _civictheme_preprocess_composite_form_elements(&$variables) {
   // Add theme to radio / checkbox inputs.
   $form_elements = Element::children($variables['element']);
   foreach ($form_elements as $form_element) {
-    $variables['element'][$form_element]['#civic_theme'] = $variables['theme'] ?? 'light';
+    $variables['element'][$form_element]['#civictheme_theme'] = $variables['theme'] ?? 'light';
   }
   if (isset($element['#civictheme-large-filter'])) {
     $variables['type'] = $element['#type'];
@@ -418,18 +418,18 @@ function civictheme_element_info_alter(array &$types) {
  */
 function _civictheme_get_theme_from_attributes(&$variables) {
   // Setting theme for form element.
-  if (isset($variables['element']['#attributes']['#civic_theme'])
-    && in_array($variables['element']['#attributes']['#civic_theme'], [
+  if (isset($variables['element']['#attributes']['#civictheme_theme'])
+    && in_array($variables['element']['#attributes']['#civictheme_theme'], [
       'light',
       'dark',
     ])) {
-    $variables['theme'] = $variables['element']['#attributes']['#civic_theme'];
-    unset($variables['element']['#attributes']['#civic_theme']);
+    $variables['theme'] = $variables['element']['#attributes']['#civictheme_theme'];
+    unset($variables['element']['#attributes']['#civictheme_theme']);
     if (isset($variables['element']['label']['#attributes'])) {
-      $variables['element']['label']['#attributes']['#civic_theme'] = $variables['theme'];
+      $variables['element']['label']['#attributes']['#civictheme_theme'] = $variables['theme'];
     }
     if (isset($variables['label']['#attributes'])) {
-      $variables['label']['#attributes']['#civic_theme'] = $variables['theme'];
+      $variables['label']['#attributes']['#civictheme_theme'] = $variables['theme'];
     }
   }
   else {

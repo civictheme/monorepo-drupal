@@ -59,6 +59,11 @@
     padding: civictheme-space(3) 0 civictheme-space(10);
   }
 
+  &__cta {
+    display: flex;
+    justify-content: center;
+  }
+
   &--with-background {
     #{$root}__header,
     #{$root}__exposed-form,

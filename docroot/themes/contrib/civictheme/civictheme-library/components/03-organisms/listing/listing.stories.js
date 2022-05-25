@@ -243,11 +243,21 @@ export const Listing = (knobTab) => {
   }
 
   const withLink = boolean('With link', false, generalKnobTab);
+  const withReadMore = boolean('With read more', false, generalKnobTab);
   if (withLink) {
     generalKnobs.link = {
       text: 'View more events',
       url: 'http://www.example.com',
       title: 'View more events',
+      is_new_window: false,
+      is_external: false,
+    };
+  }
+  if (withReadMore) {
+    generalKnobs.read_more = {
+      text: 'View more results',
+      url: 'http://www.example.com',
+      title: 'View more results',
       is_new_window: false,
       is_external: false,
     };

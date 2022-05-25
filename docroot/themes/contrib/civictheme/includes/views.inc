@@ -54,7 +54,7 @@ function civictheme_preprocess_views_exposed_form(&$variables) {
 function _civictheme_propagate_component_theme_settings(&$elements, $theme) {
   $form_elements = Element::children($elements);
   foreach ($form_elements as $form_element) {
-    $elements[$form_element]['#attributes']['#civic_theme'] = $theme;
+    $elements[$form_element]['#attributes']['#civictheme_theme'] = $theme;
     $children = Element::children($elements[$form_element]);
     if (!empty($children)) {
       _civictheme_propagate_component_theme_settings($elements[$form_element], $theme);
@@ -90,7 +90,7 @@ function civictheme_preprocess_views_view(&$variables) {
       $variables['exposed']['#attributes']['civictheme_listing'] = $variables['view']->civictheme_listing;
     }
     if (!empty($variables['pager'])) {
-      $variables['pager']['#attributes']['#civic_theme'] = $variables['view']->civictheme_listing['theme'];
+      $variables['pager']['#attributes']['#civictheme_theme'] = $variables['view']->civictheme_listing['theme'];
     }
   }
   // Header is displayed within card container.
@@ -130,13 +130,24 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
       'is_new_window' => $link->isExternal(),
       'url' => $link->getUrl()->toString(),
     ] : [];
+
+    $read_more = $paragraph->hasField('field_c_p_read_more') && !$paragraph->get('field_c_p_read_more')->isEmpty() ? $paragraph->get('field_c_p_read_more')->first() : NULL;
+    $read_more_data = $read_more !== NULL ? [
+      'text' => $read_more->get('title')->getString(),
+      'is_external' => $read_more->isExternal(),
+      'is_new_window' => $read_more->isExternal(),
+      'url' => $read_more->getUrl()->toString(),
+    ] : [];
+
     $settings = [
       'theme' => _civictheme_paragraph_get_theme($paragraph) !== FALSE ? _civictheme_paragraph_get_theme($paragraph) : 'light',
+      'card_theme' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_card_theme') ? $paragraph->get('field_c_p_card_theme')->getString() : 'light',
       'link' => $link_data,
       'title' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_title') ? $paragraph->get('field_c_p_title')->getString() : '',
       'with_background' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_background') ? (bool) $paragraph->get('field_c_p_background')->getString() : '',
       'vertical_space' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_space') ? $paragraph->get('field_c_p_space')->getString() : '',
       'show_filters' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_show_filters') ? (bool) $paragraph->get('field_c_p_show_filters')->getString() : TRUE,
+      'read_more' => $read_more_data,
     ];
   }
 
@@ -162,6 +173,11 @@ function civictheme_preprocess_views_view_grid(&$variables) {
   $is_view_component = isset($variables['view']->civictheme_listing);
   if ($is_view_component) {
     $variables += $variables['view']->civictheme_listing;
+  }
+  if (isset($variables['card_theme'])) {
+    foreach ($variables['rows'] as $id => $row) {
+      $variables['rows'][$id]['#node']->civictheme_theme = $variables['card_theme'];
+    }
   }
 }
 

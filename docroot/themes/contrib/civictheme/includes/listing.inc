@@ -7,9 +7,7 @@
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Link;
 use Drupal\Core\Render\Element;
-use Drupal\Core\Url;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\views\Views;
 use Drupal\Core\Template\Attribute;
@@ -47,9 +45,8 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
   $variables['listing'] = _civictheme_listing_element($paragraph, $variables);
   $form_elements = Element::children($variables['listing']['view']['#view']->exposed_widgets);
   foreach ($form_elements as $form_element) {
-    $variables['listing']['view']['#view']->exposed_widgets[$form_element]['#civic_theme'] = $variables['theme'];
+    $variables['listing']['view']['#view']->exposed_widgets[$form_element]['#civictheme_theme'] = $variables['theme'];
   }
-  _civictheme_render_listing_paragraph_add_read_more($paragraph, $variables);
 }
 
 /**
@@ -160,25 +157,6 @@ function _civictheme_listing_alter_view($paragraph, &$view) {
     }
   }
 
-}
-
-/**
- * Add 'read more' entry to variables array if the option was added.
- *
- * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   Paragraph being rendered.
- * @param array $variables
- *   Render array variables.
- */
-function _civictheme_render_listing_paragraph_add_read_more(Paragraph $paragraph, array &$variables) {
-  // Read More link.
-  if ($read_more_uri = $paragraph->field_c_p_read_more->uri) {
-    $read_more_title = $paragraph->field_c_p_read_more->title;
-    $read_more_uri = Url::fromUri($read_more_uri);
-    if ($read_more_uri) {
-      $variables['read_more'] = Link::fromTextAndUrl($read_more_title, $read_more_uri);
-    }
-  }
 }
 
 /**

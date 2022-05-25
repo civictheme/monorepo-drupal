@@ -47,8 +47,8 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     Then I should see the link "View all pages" with "https://example.com" in 'div.civictheme-listing__cta'
     And I should see an "div.civictheme-listing .civictheme-card-container__cards" element
     And I should see 6 "div.civictheme-card-container__card" elements
-    And I should not see an "div.civictheme-listing__body .civictheme-pager" element
-    And I should not see an "div.civictheme-listing__body .views-exposed-form" element
+    And I should not see an "div.civictheme-listing__results-below .civictheme-pager" element
+    And I should not see an "div.civictheme-listing__exposed-form .views-exposed-form" element
 
   @api @javascript
   Scenario: CivicTheme listing component should filter pages, update selected filters correctly.
@@ -69,7 +69,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And I should see the text "[TEST] Listing component"
     Then I should see the link "View all pages" with "https://example.com" in 'div.civictheme-listing__cta'
     And I should see an "div.civictheme-listing .civictheme-card-container__cards" element
-    And I should see an "div.civictheme-listing__body .views-exposed-form" element
+    And I should see an "div.civictheme-listing__exposed-form .views-exposed-form" element
     # Test JS filtering and the loaded view results.
     And I press the "Content type" button
     And I wait 1 second
