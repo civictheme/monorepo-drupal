@@ -37,6 +37,9 @@ aliases:
   # command and add private key under "SSH Permissions" in CircleCI UI.
   - &deploy_ssh_fingerprint "4e:82:39:4a:52:0e:ae:a9:ef:c1:19:56:46:21:fd:7f"
 
+  # SSH key fingerprint to deploy code to civictheme-drupal.
+  - &deploy_ssh_fingerprint1 "4e:82:39:4a:52:0e:ae:a9:ef:c1:19:56:46:21:fd:7f"
+
   # SSH key fingerprint to deploy code to civictheme-library.
   - &deploy_ssh_fingerprint2 "aa:01:7b:73:2c:a8:cb:e6:d2:1a:12:c0:e1:53:39:f2"
 
@@ -76,6 +79,7 @@ aliases:
     working_directory: &working_directory /root/project
     environment:
       DREVOPS_DEPLOY_SSH_FINGERPRINT: *deploy_ssh_fingerprint
+      DEPLOY_SSH_FINGERPRINT1: *deploy_ssh_fingerprint1
       DEPLOY_SSH_FINGERPRINT2: *deploy_ssh_fingerprint2
       DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
@@ -206,7 +210,7 @@ jobs:
       # repository.
       - add_ssh_keys:
           fingerprints:
-            - *deploy_ssh_fingerprint
+            - *deploy_ssh_fingerprint1
             - *deploy_ssh_fingerprint2
             - *deploy_ssh_fingerprint3
             - *deploy_ssh_fingerprint4
@@ -215,6 +219,7 @@ jobs:
       - run:
           name: Deploy release to CivicTheme Theme repository.
           command: |
+            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT1 \
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme-drupal.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme" \
