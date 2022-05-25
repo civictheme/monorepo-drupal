@@ -25,7 +25,7 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
   foreach ($form_elements as $form_element) {
     $form[$form_element]['#attributes']['#civic_theme'] = $theme;
   }
-  $ajax_filter = isset($view->display_handler) ? $view->display_handler->usesAJAX() : FALSE;
+  $ajax_filter = $form_state->get('view')->ajaxEnabled();
 
   $form['#attributes']['data-civictheme-filter-type'] = $is_civictheme_large_filter ? 'large' : 'basic';
   $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $is_civictheme_large_filter ? 500 : 0;

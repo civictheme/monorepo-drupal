@@ -67,10 +67,6 @@ function _civictheme_propagate_component_theme_settings(&$elements, $theme) {
  */
 function civictheme_preprocess_views_view(&$variables) {
   $view = &$variables['view'];
-  $view->dom_id = !empty($view->dom_id)
-    ? $view->dom_id
-    : hash('sha256', $view->storage->id() . \Drupal::time()->getRequestTime() . mt_rand());
-  $variables['dom_id'] = $view->dom_id;
   $is_page_load = isset($view->civictheme_listing_entity);
   if ($is_page_load) {
     _civictheme_listing_preprocess_view($view->civictheme_listing_entity, $view);

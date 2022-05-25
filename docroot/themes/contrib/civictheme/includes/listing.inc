@@ -80,7 +80,7 @@ function _civictheme_listing_element(Paragraph $paragraph) {
     _civictheme_listing_alter_view($paragraph, $view);
     $view->civictheme_listing_entity = $paragraph;
 
-    $element['view'] = $view->render();
+    $element['view'] = $view->executeDisplay($view_display);
   }
 
   return $element;
