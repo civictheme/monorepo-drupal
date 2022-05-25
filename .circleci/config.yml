@@ -311,7 +311,7 @@ workflows:
   renovatebot_self_hosted:
     triggers:
       - schedule:
-          cron: "15 * * * *"
+          cron: "5 11,23 * * *"
           filters:
             branches:
               only:
