@@ -76,6 +76,9 @@ aliases:
     working_directory: &working_directory /root/project
     environment:
       DREVOPS_DEPLOY_SSH_FINGERPRINT: *deploy_ssh_fingerprint
+      DEPLOY_SSH_FINGERPRINT2: *deploy_ssh_fingerprint2
+      DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
+      DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
     docker:
       - image: drevops/ci-builder
         auth:
