@@ -217,12 +217,13 @@ jobs:
       - checkout
       - *step_process_codebase
       - run:
-          name: Deploy release to CivicTheme Theme repository.
+          name: Deploy release to CivicTheme Drupal theme repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT1 \
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme" \
+            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
@@ -232,6 +233,7 @@ jobs:
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_library.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme/civictheme_library" \
+            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
@@ -241,6 +243,7 @@ jobs:
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_govcms.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_govcms" \
+            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
@@ -250,6 +253,7 @@ jobs:
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_content.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_content" \
+            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - store_artifacts:
