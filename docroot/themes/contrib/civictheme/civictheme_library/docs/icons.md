@@ -8,11 +8,11 @@ be utilised**
 
 ## Including icons within the child theme
 
-CivicTheme Component Library stores icons in the `civictheme-library/assets/icons`
+CivicTheme Component Library stores icons in the `civictheme_library/assets/icons`
 directory split into subdirectory libraries.
 
 Copy and paste the icon svg file you wish to include in the starter kit from
-their `civictheme-library/assets/icons/<icon-pack>` icon
+their `civictheme_library/assets/icons/<icon-pack>` icon
 pack directory into their respective `<child-theme>/assets/icons/<icon-pack>`
 directory.
 

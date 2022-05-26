@@ -1,5 +1,5 @@
 {
-    "name": "salsadigitalauorg/civictheme-source",
+    "name": "salsadigitalauorg/civictheme_source",
     "description": "Drupal 9 implementation of CivicTheme Source for Salsa Digital",
     "license": "proprietary",
     "require": {

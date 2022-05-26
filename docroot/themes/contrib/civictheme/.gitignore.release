@@ -2,4 +2,4 @@
 # .gitignore in order to selectively include and exclude directories that
 # are going into release.
 node_modules
-civictheme-library/.gitignore.release
+civictheme_library/.gitignore.release

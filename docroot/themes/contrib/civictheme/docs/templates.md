@@ -13,7 +13,7 @@ a reusable set of components that can be used in multiple CMS systems.
 The components stored within CivicTheme library have had all their Drupalisms
 removed so that they can be cleanly used by other CMSs.
 
-** Read more about [Components](../civictheme-library/docs/components.md) to
+** Read more about [Components](../civictheme_library/docs/components.md) to
 understand how to create or extend components before reading how to connect
 these components with Drupal. **
 

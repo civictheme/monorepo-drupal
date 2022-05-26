@@ -81,11 +81,11 @@ Please refer to [FAQs](FAQs.md).
 Please refer to [CivicTheme Drupal theme documentation](docroot/themes/contrib/civictheme/docs/introduction.md).
 
 ### CivicTheme components library
-Please refer to [CivicTheme components Library documentation](docroot/themes/contrib/civictheme/civictheme-library/docs/introduction.md).
+Please refer to [CivicTheme components Library documentation](docroot/themes/contrib/civictheme/civictheme_library/docs/introduction.md).
 
 ### Other resources
 
 - [CivicTheme CMS-agnostic library](https://github.com/salsadigitalauorg/civictheme_library)
-- [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_drupal)
+- [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme)
 - [Default content for CivicTheme](https://github.com/salsadigitalauorg/civictheme_content)
 - [GovCMS adjustments for CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme_govcms)

@@ -37,10 +37,10 @@ aliases:
   # command and add private key under "SSH Permissions" in CircleCI UI.
   - &deploy_ssh_fingerprint "4e:82:39:4a:52:0e:ae:a9:ef:c1:19:56:46:21:fd:7f"
 
-  # SSH key fingerprint to deploy code to civictheme-drupal.
+  # SSH key fingerprint to deploy code to civictheme.
   - &deploy_ssh_fingerprint1 "4e:82:39:4a:52:0e:ae:a9:ef:c1:19:56:46:21:fd:7f"
 
-  # SSH key fingerprint to deploy code to civictheme-library.
+  # SSH key fingerprint to deploy code to civictheme_library.
   - &deploy_ssh_fingerprint2 "aa:01:7b:73:2c:a8:cb:e6:d2:1a:12:c0:e1:53:39:f2"
 
   # SSH key fingerprint to deploy code to civictheme_govcms.
@@ -220,7 +220,7 @@ jobs:
           name: Deploy release to CivicTheme Theme repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT1 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme-drupal.git \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme" \
             ./scripts/deploy-code-release.sh
@@ -229,9 +229,9 @@ jobs:
           name: Deploy release to CivicTheme Library repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme-library.git \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_library.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme/civictheme-library" \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme/civictheme_library" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
@@ -247,7 +247,7 @@ jobs:
           name: Deploy release to CivicTheme Content repository.
           command: |
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT4 \
-            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_drupal_content.git \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_content.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_content" \
             ./scripts/deploy-code-release.sh
@@ -268,9 +268,9 @@ jobs:
           RENOVATE_GIT_AUTHOR: 'RenovateBot Self Hosted <renovatebot@salsadigital.com.au>'
           # Make sure that correct repository is specified or bot will go
           # through all repositories that a RENOVATE_TOKEN token has access to.
-          RENOVATE_REPOSITORIES: 'salsadigitalauorg/civictheme-source'
+          RENOVATE_REPOSITORIES: 'salsadigitalauorg/civictheme_source'
           # Set to 'false' once setup is complete and at bot ran at least once without errors.
-          RENOVATE_DRY_RUN: false
+          RENOVATE_DRY_RUN: true
           LOG_LEVEL: debug
     steps:
       - checkout
