@@ -26,6 +26,7 @@ $drush ${DRUSH_ALIAS} -y pm-enable components, field_group, menu_block, inline_f
 $drush ${DRUSH_ALIAS} -y then adminimal_theme
 $drush ${DRUSH_ALIAS} -y config-set system.theme admin adminimal_theme
 
+$drush ${DRUSH_ALIAS} php:eval "\Drupal::service('plugin.manager.core.layout')->clearCachedDefinitions();"
 $drush ${DRUSH_ALIAS} -y then civictheme
 $drush ${DRUSH_ALIAS} -y config-set system.theme default civictheme
 $drush ${DRUSH_ALIAS} -y config-set media.settings standalone_url true
