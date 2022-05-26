@@ -43,6 +43,7 @@ function civictheme_preprocess_views_exposed_form(&$variables) {
   if ($is_view_component) {
     $variables += $variables['attributes']['civictheme_listing'];
     unset($variables['attributes']['civictheme_listing']);
+    $variables['theme'] = $variables['theme'] ?? 'light';
     _civictheme_propagate_component_theme_settings($variables['form'], $variables['theme']);
   }
   $variables['theme'] = $variables['theme'] ?? 'light';
@@ -84,13 +85,12 @@ function civictheme_preprocess_views_view(&$variables) {
   if ($is_view_component) {
     $variables += $variables['view']->civictheme_listing;
     // Override already set title.
-    $variables['title'] = $variables['view']->civictheme_listing['title'];
-    // Maybe remove?
+    $variables['title'] = $variables['view']->civictheme_listing['title'] ?? '';
     if (!empty($variables['exposed'])) {
       $variables['exposed']['#attributes']['civictheme_listing'] = $variables['view']->civictheme_listing;
     }
     if (!empty($variables['pager'])) {
-      $variables['pager']['#attributes']['#civictheme_theme'] = $variables['view']->civictheme_listing['theme'];
+      $variables['pager']['#attributes']['#civictheme_theme'] = $variables['view']->civictheme_listing['theme'] ?? 'light';
     }
   }
   // Header is displayed within card container.
