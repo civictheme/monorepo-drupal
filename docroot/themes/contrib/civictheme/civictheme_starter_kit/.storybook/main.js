@@ -9,9 +9,9 @@ const webpack = require('webpack');
 const path = require('path');
 const custom = require('../webpack/webpack.prod');
 const scssVariables = require('./importer.scss_variables');
-const iconUtils = require('../components-combined/01-atoms/icon/icon.utils');
-const backgroundUtils = require('../components-combined/01-atoms/background/background.utils');
-const logoUtils = require('../components-combined/02-molecules/logo/logo.utils');
+const iconUtils = require('../components_combined/01-atoms/icon/icon.utils');
+const backgroundUtils = require('../components_combined/01-atoms/background/background.utils');
+const logoUtils = require('../components_combined/02-molecules/logo/logo.utils');
 const addonConfig = require('./addon-config').default();
 
 const customPlugin = new webpack.DefinePlugin({
@@ -26,7 +26,7 @@ const customPlugin = new webpack.DefinePlugin({
 
 module.exports = {
   stories: [
-    '../components-combined/**/*.stories.js',
+    '../components_combined/**/*.stories.js',
   ],
   addons: addonConfig,
   webpackFinal: async (config) => {

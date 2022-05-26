@@ -6,7 +6,7 @@
  *
  * Usage:
  * @code
- * php civictheme-create-subtheme.php new_machine_name "Human name" "Human description"
+ * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description"
  * @endcode
  *
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingBefore
@@ -78,7 +78,7 @@ Options:
   --help               This help.
 
 Examples:
-  php civictheme-create-subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
+  php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
 
 EOF;
   print PHP_EOL;

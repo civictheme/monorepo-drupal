@@ -21,5 +21,5 @@ directory. Look at `civictheme/assets` for examples.
 
 ## Icons
 
-See [Icons](../civictheme-library/docs/icons.md) for an introduction to creating your
+See [Icons](../civictheme_library/docs/icons.md) for an introduction to creating your
 theme's icon library.

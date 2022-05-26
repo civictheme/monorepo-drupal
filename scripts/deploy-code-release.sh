@@ -69,7 +69,7 @@ echo "==> Started code release."
 [ -z "${DEPLOY_GIT_USER_NAME}" ] && echo "Missing required value for DEPLOY_GIT_USER_NAME." && exit 1
 [ -z "${DEPLOY_GIT_USER_EMAIL}" ] && echo "Missing required value for DEPLOY_GIT_USER_EMAIL." && exit 1
 
-[ ! -d "${DEPLOY_CODE_RELEASE_SRC_DIR}" ] && echo "ERROR: Unable to find source directory ${DEPLOY_CODE_RELEASE_SRC_DIR}." && exit
+[ ! -d "${DEPLOY_CODE_RELEASE_SRC_DIR}" ] && echo "ERROR: Unable to find source directory ${DEPLOY_CODE_RELEASE_SRC_DIR}." && exit 1
 
 ##
 ## Git and SSH key setup.
@@ -105,6 +105,24 @@ fi
 ## Code release.
 ##
 
+#
+# Remove content between #;< and #;> comments.
+#
+remove_special_comments_with_content() {
+  local token="${1}"
+  local dir="${2}"
+  local sed_opts
+
+  sed_opts=(-i) && [ "$(uname)" == "Darwin" ] && sed_opts=(-i '')
+  grep -rI \
+    --exclude-dir=".git" \
+    --exclude-dir=".idea" \
+    --exclude-dir="vendor" \
+    --exclude-dir="node_modules" \
+    -l "#;> $token" "${dir}" \
+    | LC_ALL=C.UTF-8 xargs sed "${sed_opts[@]}" -e "/#;< $token/,/#;> $token/d"
+}
+
 # Create a temp directory to copy source repository into to prevent changes to source.
 SRC_TMPDIR=$(mktemp -d)
 
@@ -119,8 +137,8 @@ pushd "${SRC_TMPDIR}" >/dev/null || exit 1
 git reset --hard
 
 # Get the latest tag from the source repository. If this script was ran without
-# any tag information provided - there was no release and thi script should not
-# have ran.
+# any tag information provided - there was no release and this script should not
+# have run.
 set +e
 latest_tag="$(git describe --tags "$(git rev-list --tags --max-count=1)" 2>&1)"
 set -e
@@ -167,6 +185,9 @@ rsync -a --keep-dirlinks "${DEPLOY_CODE_RELEASE_SRC_DIR}/." "${DEPLOY_CODE_RELEA
 rm -Rf .git
 mv ".git.bak" ".git"
 
+echo "==> Removing development code in ${DEPLOY_CODE_RELEASE_DST_DIR}."
+remove_special_comments_with_content "DEVELOPMENT" "${DEPLOY_CODE_RELEASE_DST_DIR}"
+
 # Allow to provide custom .gitignore.
 if [ -f "${DEPLOY_CODE_RELEASE_GITIGNORE}" ]; then
   echo "==> Copying release .gitignore file ${DEPLOY_CODE_RELEASE_GITIGNORE} to ${DEPLOY_CODE_RELEASE_DST_DIR}/.gitignore"
@@ -176,7 +197,7 @@ fi
 echo -n "==> Checking for changes... "
 status="$(git status)"
 if [ -z "${status##*nothing to commit*}" ]; then
-  echo "no changes were found."
+  echo "no changes were found. Nothing will be updated."
 else
   echo "==> Committing new changes."
   git add -A
