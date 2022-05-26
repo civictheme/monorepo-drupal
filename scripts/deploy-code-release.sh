@@ -120,7 +120,7 @@ remove_special_comments_with_content() {
     --exclude-dir="vendor" \
     --exclude-dir="node_modules" \
     -l "#;> $token" "${dir}" \
-    | LC_ALL=C.UTF-8 xargs sed "${sed_opts[@]}" -e "/#;< $token/,/#;> $token/d"
+    | LC_ALL=C.UTF-8 xargs sed "${sed_opts[@]}" -e "/#;< $token/,/#;> $token/d" || true
 }
 
 # Create a temp directory to copy source repository into to prevent changes to source.
