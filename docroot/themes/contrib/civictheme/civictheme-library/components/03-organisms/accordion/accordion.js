@@ -2,18 +2,19 @@
  * @file
  * Accordion component.
  */
-function CivicAccordion(el, selectedIndex) {
+ function CivicAccordion(el, selectedIndex) {
   if (!el) {
     return;
   }
 
   this.el = el;
-  this.accordionItems = this.el.getElementsByClassName('civictheme-accordion__list-item');
-  this.accordionTriggers = this.el.getElementsByClassName('civictheme-accordion__header__button');
-  this.accordionPanels = this.el.getElementsByClassName('civictheme-accordion__content');
+  this.accordionItems = this.el.hasAttribute('data-accordion-list-item') ? this.el.getAttribute('data-accordion-list-item') : null;
+  this.accordionTriggers = this.el.hasAttribute('data-accordion-header-button') ? this.el.getAttribute('data-accordion-header-button') : null;
+  this.accordionPanels = this.el.hasAttribute('data-accordion-content') ? this.el.getAttribute('data-accordion-content') : null;
 
   if (this.accordionTriggers.length === 0
-    || this.accordionTriggers.length !== this.accordionPanels.length) {
+    || this.accordionTriggers.length !== this.accordionPanels.length
+    || this.accordionItems.length === 0) {
     return;
   }
 
