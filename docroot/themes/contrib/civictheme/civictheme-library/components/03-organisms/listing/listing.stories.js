@@ -37,24 +37,10 @@ export const Listing = (knobTab) => {
     'light',
     generalKnobTab,
   );
-  const verticalSpace = radios(
-    'Vertical space',
-    {
-      None: 'none',
-      Top: 'top',
-      Bottom: 'bottom',
-      Both: 'both',
-    },
-    'none',
-    generalKnobTab,
-  );
 
-  const withBackground = boolean('With background', false, generalKnobTab);
 
   const generalKnobs = {
     theme,
-    vertical_space: verticalSpace,
-    with_background: withBackground,
     title: text('Title', '', generalKnobTab),
   };
   const showExposed = boolean('Show filters', true, generalKnobTab);
@@ -102,14 +88,35 @@ export const Listing = (knobTab) => {
 
   const showPager = boolean('Show pager', true, generalKnobTab);
 
+
   // Create empty markup.
   if (resultNumber === 0) {
     generalKnobs.empty = '<p>No results found</p>';
   }
 
-  // Build exposed filters.
+  const withLink = boolean('With link', false, generalKnobTab);
+  const withReadMore = boolean('With read more', false, generalKnobTab);
+  if (withLink) {
+    generalKnobs.link = {
+      text: 'View more events',
+      url: 'http://www.example.com',
+      title: 'View more events',
+      is_new_window: false,
+      is_external: false,
+    };
+  }
+  if (withReadMore) {
+    generalKnobs.read_more = {
+      text: 'View more results',
+      url: 'http://www.example.com',
+      title: 'View more results',
+      is_new_window: false,
+      is_external: false,
+    };
+  }
+  let filterNumber;
   if (showExposed) {
-    const filterNumber = number(
+    filterNumber = number(
       'Number of extra filters',
       3,
       {
@@ -120,6 +127,27 @@ export const Listing = (knobTab) => {
       },
       generalKnobTab,
     );
+  }
+
+  const verticalSpace = radios(
+    'Vertical space',
+    {
+      None: 'none',
+      Top: 'top',
+      Bottom: 'bottom',
+      Both: 'both',
+    },
+    'none',
+    generalKnobTab,
+  );
+
+  const withBackground = boolean('With background', false, generalKnobTab);
+
+  generalKnobs.with_background = withBackground;
+  generalKnobs.vertical_space = verticalSpace;
+  generalKnobs.modifier_class = text('Additional class', '', generalKnobTab)
+  // Build exposed filters.
+  if (showExposed) {
     let count = 0;
     const filters = [];
     const basicFilterTitles = [
@@ -242,26 +270,6 @@ export const Listing = (knobTab) => {
     });
   }
 
-  const withLink = boolean('With link', false, generalKnobTab);
-  const withReadMore = boolean('With read more', false, generalKnobTab);
-  if (withLink) {
-    generalKnobs.link = {
-      text: 'View more events',
-      url: 'http://www.example.com',
-      title: 'View more events',
-      is_new_window: false,
-      is_external: false,
-    };
-  }
-  if (withReadMore) {
-    generalKnobs.read_more = {
-      text: 'View more results',
-      url: 'http://www.example.com',
-      title: 'View more results',
-      is_new_window: false,
-      is_external: false,
-    };
-  }
   return CivicListing({
     theme,
     ...generalKnobs,
