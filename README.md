@@ -5,7 +5,6 @@ Mono-repo to maintain CivicTheme and accompanying modules that are automatically
 ![Drupal 9](https://img.shields.io/badge/Drupal-9-blue.svg)
 [![RenovateBot](https://img.shields.io/badge/RenovateBot-enabled-brightgreen.svg?logo=renovatebot)](https://renovatebot.com)
 
-
 [//]: # (DO NOT REMOVE THE BADGE BELOW. IT IS USED BY DREVOPS TO TRACK INTEGRATION)
 
 [![DrevOps](https://img.shields.io/badge/DrevOps-9.x-blue.svg)](https://github.com/drevops/drevops/tree/9.x)
