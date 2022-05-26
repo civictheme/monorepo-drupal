@@ -44,5 +44,5 @@ Please refer to dedicated [Documentation](docs/introduction.md).
 
 ## Other resources
 
-- [CivicTheme source site](https://github.com/salsadigitalauorg/civictheme-source)
-- [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme-drupal)
+- [CivicTheme Source site](https://github.com/salsadigitalauorg/civictheme_source)
+- [CivicTheme Drupal theme](https://github.com/salsadigitalauorg/civictheme)
