@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Site\Settings;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements template_preprocess_html().
