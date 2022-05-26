@@ -6,11 +6,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: (function (pattern) {
-    // Splitting entries into two chunks:
+    // Splitting entries into three chunks:
     // main: all styles used in components and drupal theme -> output: civictheme.css
-    // ckeditor: nested styles used in ckeditor -> output: ckeditor.css
+    // variables: CSS variables -> output: civictheme.variables.css
+    // ckeditor: nested styles used in ckeditor -> output: civictheme.ckeditor.css
     const entries = {
       main: [],
+      variables: [],
       ckeditor: [],
     };
 
@@ -22,6 +24,9 @@ module.exports = {
     entries.main.push(path.resolve(__dirname, 'theme_js.js'));
     entries.main.push(path.resolve(__dirname, 'theme_css.js'));
     entries.main.push(path.resolve(__dirname, 'assets.js'));
+
+    // Add explicitly css_variables.js.
+    entries.variables.push(path.resolve(__dirname, 'css_variables.js'));
 
     // Add explicitly ckeditor.scss
     entries.ckeditor.push(path.resolve(__dirname, 'ckeditor_css.js'));
@@ -35,6 +40,11 @@ module.exports = {
           test: 'css/mini-extract',
           name: 'civictheme',
           chunks: (chunk) => (chunk.name === 'main'),
+        },
+        variables: {
+          test: 'css/mini-extract',
+          name: 'variables',
+          chunks: (chunk) => (chunk.name === 'variables'),
         },
         ckeditor: {
           test: 'css/mini-extract',
@@ -50,9 +60,18 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: ({ chunk }) => (chunk.name === 'main' ? 'civictheme.css' : `${chunk.name}.css`),
+      filename: ({ chunk }) => (chunk.name === 'main' ? 'civictheme.css' : `civictheme.${chunk.name}.css`),
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      dry: false,
+      dangerouslyAllowCleanPatternsOutsideProject: true,
+      cleanAfterEveryBuildPatterns: [
+        '../dist/civictheme-variables.js',
+        '../dist/civictheme-variables.js.map',
+        '../dist/civictheme-ckeditor.js',
+        '../dist/civictheme-ckeditor.js.map',
+      ],
+    }),
   ],
   module: {
     rules: [
