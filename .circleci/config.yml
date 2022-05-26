@@ -37,6 +37,9 @@ aliases:
   # command and add private key under "SSH Permissions" in CircleCI UI.
   - &deploy_ssh_fingerprint "4e:82:39:4a:52:0e:ae:a9:ef:c1:19:56:46:21:fd:7f"
 
+  # SSH key fingerprint to deploy code to civictheme-drupal.
+  - &deploy_ssh_fingerprint1 "4e:82:39:4a:52:0e:ae:a9:ef:c1:19:56:46:21:fd:7f"
+
   # SSH key fingerprint to deploy code to civictheme-library.
   - &deploy_ssh_fingerprint2 "aa:01:7b:73:2c:a8:cb:e6:d2:1a:12:c0:e1:53:39:f2"
 
@@ -54,7 +57,7 @@ aliases:
   # @see https://circleci.com/docs/2.0/configuration-reference/#resource_class
   # Change to 'large' for faster builds. Requires lodging a support request
   # with CircleCI o enable this feature.
-  - &resource_class medium
+  - &resource_class large
 
   # Docker Layer Caching allows to significantly speed up builds by caching
   # images built during previous runs.
@@ -62,6 +65,10 @@ aliases:
   # Change to 'true' (without single quotes) to enable. Requires lodging a
   # support request with CircleCI to enable this feature.
   - &docker_layer_caching false
+
+
+  # The branch to run RenovateBot on.
+  - &nightly_renovatebot_branch develop
 
   #-----------------------------------------------------------------------------
 
@@ -72,6 +79,10 @@ aliases:
     working_directory: &working_directory /root/project
     environment:
       DREVOPS_DEPLOY_SSH_FINGERPRINT: *deploy_ssh_fingerprint
+      DEPLOY_SSH_FINGERPRINT1: *deploy_ssh_fingerprint1
+      DEPLOY_SSH_FINGERPRINT2: *deploy_ssh_fingerprint2
+      DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
+      DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
     docker:
       - image: drevops/ci-builder
         auth:
@@ -83,7 +94,7 @@ aliases:
           # Always answer 'y' to any confirmation questions.
           DREVOPS_AHOY_CONFIRM_RESPONSE: 'y'
           # Directory to store code exported between jobs.
-          DREVOPS_EXPORT_CODE_DIR: &build_export_dir /workspace/code
+          DREVOPS_EXPORT_CODE_DIR: &drevops_build_export_dir /workspace/code
           # Directory to store test results.
           DREVOPS_TEST_REPORTS_DIR: &drevops_test_reports_dir /tmp/tests
           # Directory to store test artifacts.
@@ -91,7 +102,7 @@ aliases:
           # Use compact error reporting format.
           DREVOPS_TEST_BEHAT_FORMAT: progress_fail
           # Directory to use for artifact deployments.
-          DREVOPS_DEPLOY_ARTIFACT_SRC: *build_export_dir
+          DREVOPS_DEPLOY_ARTIFACT_SRC: *drevops_build_export_dir
           # Source code location for artifact deployments.
           DREVOPS_DEPLOY_ARTIFACT_ROOT: *working_directory
           # Report file location for artifact deployments.
@@ -105,6 +116,7 @@ aliases:
     setup_remote_docker:
       docker_layer_caching: *docker_layer_caching
       version: 19.03.13
+
   # Process the codebase to be run in CI environment.
   - &step_process_codebase
     run:
@@ -198,7 +210,7 @@ jobs:
       # repository.
       - add_ssh_keys:
           fingerprints:
-            - *deploy_ssh_fingerprint
+            - *deploy_ssh_fingerprint1
             - *deploy_ssh_fingerprint2
             - *deploy_ssh_fingerprint3
             - *deploy_ssh_fingerprint4
@@ -207,9 +219,10 @@ jobs:
       - run:
           name: Deploy release to CivicTheme Theme repository.
           command: |
+            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT1 \
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme-drupal.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/themes/contrib/civictheme" \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
@@ -218,7 +231,7 @@ jobs:
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT2 \
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme-library.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/themes/contrib/civictheme/civictheme-library" \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/themes/contrib/civictheme/civictheme-library" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
@@ -227,7 +240,7 @@ jobs:
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT3 \
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_govcms.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/modules/custom/civictheme_govcms" \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_govcms" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - run:
@@ -236,11 +249,34 @@ jobs:
             DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT4 \
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_drupal_content.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
-            DEPLOY_CODE_RELEASE_SRC_DIR="${BUILD_EXPORT_DIR}/docroot/modules/custom/civictheme_content" \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_content" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
       - store_artifacts:
           path: *drevops_test_artifact_dir
+
+  # Self-hosted RenovateBot.
+  # Add RENOVATE_TOKEN as an environment variable with GitHub access token in UI.
+  renovatebot_self_hosted:
+    docker:
+      - image: renovate/renovate:latest
+        environment:
+          RENOVATE_PLATFORM: 'github'
+          RENOVATE_AUTODISCOVER: false
+          RENOVATE_DEPENDENCY_DASHBOARD: true
+          RENOVATE_DEPENDENCY_DASHBOARD_TITLE: 'RenovateBot Dependency Dashboard (self-hosted)'
+          RENOVATE_GIT_AUTHOR: 'RenovateBot Self Hosted <renovatebot@salsadigital.com.au>'
+          # Make sure that correct repository is specified or bot will go
+          # through all repositories that a RENOVATE_TOKEN token has access to.
+          RENOVATE_REPOSITORIES: 'salsadigitalauorg/civictheme-source'
+          # Set to 'false' once setup is complete and at bot ran at least once without errors.
+          RENOVATE_DRY_RUN: false
+          LOG_LEVEL: debug
+    steps:
+      - checkout
+      - run: renovate-config-validator
+      - run: renovate
+
 
 ################################################################################
 # WORKFLOWS
@@ -262,10 +298,11 @@ workflows:
             branches:
               # Allowed branches:
               # - main, master, develop, ci, cisomething
+              # - deps/*
               # - release/123, release/123.456, release/123.456.789, release/123.456.789-rc123
               # - hotfix/123, hotfix/123.456, hotfix/123.456.789
               # - feature/description, feature/123-description, but not feature/9.x-description or feature/7.x-description
-              only: /main|master|develop|ci.*|(release\/)?[0-9]+(\.[0-9]+)+(-rc[0-9]+)?|(hotfix\/)?[0-9]+(\.[0-9]+)+(-rc[0-9]+)?|feature\/(?!7.x-|8.x-|9.x-)[a-zA-z0-9\-\.\,]+/
+              only: /main|master|develop|ci.*|deps\/.*|(release\/)?[0-9]+(\.[0-9]+)+(-rc[0-9]+)?|(hotfix\/)?[0-9]+(\.[0-9]+)+(-rc[0-9]+)?|feature\/(?!7.x-|8.x-|9.x-)[a-zA-z0-9\-\.\,]+/
             tags:
               ignore: /.*/
       - deploy_tags:
@@ -277,3 +314,15 @@ workflows:
             tags:
               # Allowed tags: 1, 123, 123.456, 123.456.789, 123.456.789-rc123
               only: /^[0-9]+(\.[0-9]+)+(-rc[0-9]+)?$/
+
+
+  renovatebot_self_hosted:
+    triggers:
+      - schedule:
+          cron: "5 11,23 * * *"
+          filters:
+            branches:
+              only:
+                - *nightly_renovatebot_branch
+    jobs:
+      - renovatebot_self_hosted
