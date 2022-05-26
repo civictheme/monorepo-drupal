@@ -2,6 +2,8 @@
 
 ----
 
+Version: `{{ VERSION }}`
+
 ## Other resources
 
 - [CivicTheme Source site](https://github.com/salsadigitalauorg/civictheme_source)
