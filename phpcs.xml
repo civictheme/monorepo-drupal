@@ -18,7 +18,7 @@
     <!-- Exclude civictheme theme assets. -->
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.storybook\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/assets\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme-library\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/components\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/dist\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/docs\/.*</exclude-pattern>

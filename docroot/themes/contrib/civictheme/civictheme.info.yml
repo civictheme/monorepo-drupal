@@ -1,7 +1,7 @@
 name: CivicTheme
 type: theme
 base theme: false
-description: A flexible component based theme.
+description: CivicTheme is a Drupal 9 component-based theme.
 core_version_requirement: ^9
 
 libraries:
@@ -73,6 +73,7 @@ components:
 ckeditor_stylesheets:
   - dist/ckeditor.css
 
+#;< DEVELOPMENT
 # Configuration shipped with this theme.
 # Update the list of the configuration below and run `drush cde civictheme`.
 config_devel:
@@ -576,8 +577,10 @@ config_devel:
     - views.view.civictheme_alerts
     - views.view.civictheme_events
     - views.view.civictheme_listing
+    - views.view.civictheme_listing_examples
     - views.view.civictheme_pages
     - webform.webform.civictheme_enquiry
   optional:
     - core.entity_view_mode.node.teaser
     - simple_sitemap.custom_links.default
+#;> DEVELOPMENT

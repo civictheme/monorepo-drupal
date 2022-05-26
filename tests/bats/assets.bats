@@ -7,7 +7,7 @@
 load _helper
 
 @test "CivicTheme Library assets" {
-  dir="docroot/themes/contrib/civictheme/civictheme-library"
+  dir="docroot/themes/contrib/civictheme/civictheme_library"
 
   # Files managed by the developer.
   assert_dir_exists "$dir/assets"

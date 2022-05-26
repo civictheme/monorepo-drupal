@@ -63,6 +63,9 @@ function civictheme_preprocess_views_view(&$variables) {
     $is_view_page ? 'civictheme-listing--with-background' : '',
   ]);
   $variables['modifier_class'] = implode(' ', $variables['modifier_class']);
+  if (isset($view->civictheme_listing['show_filters']) && $view->civictheme_listing['show_filters'] === FALSE) {
+    $variables['exposed'] = NULL;
+  }
 }
 
 /**
