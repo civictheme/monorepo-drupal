@@ -149,6 +149,9 @@ jobs:
           name: Lint code
           command: ahoy lint
       - run:
+          name: Run tooling tests
+          command: scripts/test-tooling.sh
+      - run:
           name: Run tests
           command: 'if [ $CIRCLE_NODE_TOTAL -gt 1 ]; then export DREVOPS_TEST_BEHAT_PARALLEL_INDEX=$CIRCLE_NODE_INDEX; fi && ahoy test'
       - run:
