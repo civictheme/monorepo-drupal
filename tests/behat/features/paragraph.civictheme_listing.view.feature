@@ -321,7 +321,6 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And I should not see an ".civictheme-listing.civictheme-listing--vertical-space-both" element
     And I should see an ".civictheme-listing.civictheme-listing--vertical-space-top" element
     And I should not see an ".civictheme-listing.civictheme-listing--vertical-space-bottom" element
-    And I should not see an ".civictheme-listing .civictheme-promo-card.civictheme-theme-dark" element
     And I should see an ".civictheme-listing .civictheme-promo-card.civictheme-theme-light" element
 
     Given I am an anonymous user
@@ -349,4 +348,3 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And I should not see an ".civictheme-listing.civictheme-listing--vertical-space-top" element
     And I should not see an ".civictheme-listing.civictheme-listing--vertical-space-bottom" element
     And I should see an ".civictheme-listing .civictheme-promo-card.civictheme-theme-dark" element
-    And I should not see an ".civictheme-listing .civictheme-promo-card.civictheme-theme-light" element
