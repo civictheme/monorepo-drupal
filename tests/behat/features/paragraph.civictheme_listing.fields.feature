@@ -9,7 +9,7 @@ Feature: Tests the Listing paragraph
     When I go to "admin/structure/paragraphs_type"
     Then I should see the text "Listing" in the "civictheme_listing" row
 
-  @api @wip
+  @api
   Scenario: Listing paragraph exists with fields.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civictheme_listing/fields"
