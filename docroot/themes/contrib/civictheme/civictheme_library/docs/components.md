@@ -43,7 +43,7 @@ component.
 For a more advanced case of extending a component please look to the listing
 component and views template.
 
-`civictheme/civictheme-library/components/03-organisms/listing/listing.twig` is a clean
+`civictheme/civictheme_library/components/03-organisms/listing/listing.twig` is a clean
 implementation of a listing component providing space for filtering and dynamic
 controls.
 The views component `civictheme/template/views/views-view.html.twig` extends this

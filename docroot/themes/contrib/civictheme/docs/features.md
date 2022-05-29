@@ -14,7 +14,7 @@ component extends the full width of the browser window. If there is a sidebar
 traditional style pages.
 
 These layouts can be built upon and are defined in the `civictheme.info.yml` and the
-twig templates are located in `../civictheme-library/components/03-organisms/content`
+twig templates are located in `../civictheme_library/components/03-organisms/content`
 directory.
 
 ## Views

@@ -27,7 +27,7 @@ module.exports = {
     entries.ckeditor.push(path.resolve(__dirname, 'ckeditor_css.js'));
 
     return entries;
-  }(path.resolve(__dirname, '../components-combined/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
+  }(path.resolve(__dirname, '../components_combined/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
   optimization: {
     splitChunks: {
       cacheGroups: {
@@ -110,7 +110,7 @@ module.exports = {
       },
       // Wrap JS into Drupal.behaviours.
       {
-        test: /components-combined\/[^/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
+        test: /components_combined\/[^/]+\/(?!.*\.(stories|component|utils)\.js$).*\.js$/,
         exclude: /(node_modules|webpack|themejs\.js|css\.js)/,
         use: [{
           loader: 'babel-loader',
@@ -129,12 +129,12 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@base': path.resolve(__dirname, '../components-combined/00-base'),
-      '@atoms': path.resolve(__dirname, '../components-combined/01-atoms'),
-      '@molecules': path.resolve(__dirname, '../components-combined/02-molecules'),
-      '@organisms': path.resolve(__dirname, '../components-combined/03-organisms'),
-      '@templates': path.resolve(__dirname, '../components-combined/04-templates'),
-      '@pages': path.resolve(__dirname, '../components-combined/05-pages'),
+      '@base': path.resolve(__dirname, '../components_combined/00-base'),
+      '@atoms': path.resolve(__dirname, '../components_combined/01-atoms'),
+      '@molecules': path.resolve(__dirname, '../components_combined/02-molecules'),
+      '@organisms': path.resolve(__dirname, '../components_combined/03-organisms'),
+      '@templates': path.resolve(__dirname, '../components_combined/04-templates'),
+      '@pages': path.resolve(__dirname, '../components_combined/05-pages'),
       '@civictheme-base': path.resolve(__dirname, '../.components-civictheme/00-base'),
       '@civictheme-atoms': path.resolve(__dirname, '../.components-civictheme/01-atoms'),
       '@civictheme-molecules': path.resolve(__dirname, '../.components-civictheme/02-molecules'),

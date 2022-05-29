@@ -39,6 +39,9 @@ DEPLOY_CODE_RELEASE_DST_DIR="${DEPLOY_CODE_RELEASE_DST_DIR:-./}"
 # If does not exist - the current .gitignore will be left unchanged.
 DEPLOY_CODE_RELEASE_GITIGNORE="${DEPLOY_CODE_RELEASE_GITIGNORE:-${DEPLOY_CODE_RELEASE_SRC_DIR}/.gitignore.release}"
 
+# Filter commit logs using provided regex.
+DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="${DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX:-.*}"
+
 # Email address of the user who will be committing to a remote repository.
 DEPLOY_GIT_USER_NAME="${DEPLOY_GIT_USER_NAME:-"Deployer Robot"}"
 
@@ -69,7 +72,7 @@ echo "==> Started code release."
 [ -z "${DEPLOY_GIT_USER_NAME}" ] && echo "Missing required value for DEPLOY_GIT_USER_NAME." && exit 1
 [ -z "${DEPLOY_GIT_USER_EMAIL}" ] && echo "Missing required value for DEPLOY_GIT_USER_EMAIL." && exit 1
 
-[ ! -d "${DEPLOY_CODE_RELEASE_SRC_DIR}" ] && echo "ERROR: Unable to find source directory ${DEPLOY_CODE_RELEASE_SRC_DIR}." && exit
+[ ! -d "${DEPLOY_CODE_RELEASE_SRC_DIR}" ] && echo "ERROR: Unable to find source directory ${DEPLOY_CODE_RELEASE_SRC_DIR}." && exit 1
 
 ##
 ## Git and SSH key setup.
@@ -105,6 +108,43 @@ fi
 ## Code release.
 ##
 
+#
+# Remove content between #;< and #;> comments.
+#
+remove_special_comments_with_content() {
+  local token="${1}"
+  local dir="${2}"
+  local sed_opts
+
+  sed_opts=(-i) && [ "$(uname)" == "Darwin" ] && sed_opts=(-i '')
+  grep -rI \
+    --exclude-dir=".git" \
+    --exclude-dir=".idea" \
+    --exclude-dir="vendor" \
+    --exclude-dir="node_modules" \
+    -l "#;> $token" "${dir}" \
+    | LC_ALL=C.UTF-8 xargs sed "${sed_opts[@]}" -e "/#;< $token/,/#;> $token/d" || true
+}
+
+#
+# Replace string content.
+#
+replace_string_content() {
+  local needle="${1}"
+  local replacement="${2}"
+  local dir="${3}"
+  local sed_opts
+
+  sed_opts=(-i) && [ "$(uname)" == "Darwin" ] && sed_opts=(-i '')
+  grep -rI \
+    --exclude-dir=".git" \
+    --exclude-dir=".idea" \
+    --exclude-dir="vendor" \
+    --exclude-dir="node_modules" \
+    -l "${needle}" "${dir}" \
+    | xargs sed "${sed_opts[@]}" "s@$needle@$replacement@g" || true
+}
+
 # Create a temp directory to copy source repository into to prevent changes to source.
 SRC_TMPDIR=$(mktemp -d)
 
@@ -119,8 +159,8 @@ pushd "${SRC_TMPDIR}" >/dev/null || exit 1
 git reset --hard
 
 # Get the latest tag from the source repository. If this script was ran without
-# any tag information provided - there was no release and thi script should not
-# have ran.
+# any tag information provided - there was no release and this script should not
+# have run.
 set +e
 latest_tag="$(git describe --tags "$(git rev-list --tags --max-count=1)" 2>&1)"
 set -e
@@ -128,8 +168,20 @@ set -e
 echo "==> Found the latest tag ${latest_tag} in the source repository."
 
 # Retrieve log information from the source repository as a list of commits
-# between current and previous commits.
-log="$(git log --pretty=oneline "$(git tag --sort=-committerdate | head -1)"..."$(git tag --sort=-committerdate | head -2 | tail -1)" |cut -d " " -f 2- |grep -v "Merge")"
+# between current and previous tags.
+current_tag="$(git tag --sort=-version:refname | head -1)"
+echo "==> Found current tag: ${current_tag}."
+previous_tag="$(git tag --sort=-version:refname | head -2 | tail -1)"
+echo "==> Found previous tag: ${previous_tag}."
+log="$(git log --pretty=oneline "${current_tag}"..."${previous_tag}" --grep="${DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX}" | cut -d " " -f 2- |grep -v "Merge")"
+
+log_bump="Bumped to version ${current_tag}"
+log="${log_bump}
+${log}"
+
+echo "==> Change log begin."
+echo "${log}"
+echo "==> Change log end."
 
 echo "==> Checking out current tag in the source repository."
 default_branch="$(basename "$(git symbolic-ref --short refs/remotes/origin/HEAD)")"
@@ -167,6 +219,12 @@ rsync -a --keep-dirlinks "${DEPLOY_CODE_RELEASE_SRC_DIR}/." "${DEPLOY_CODE_RELEA
 rm -Rf .git
 mv ".git.bak" ".git"
 
+echo "==> Removing development code in ${DEPLOY_CODE_RELEASE_DST_DIR}."
+remove_special_comments_with_content "DEVELOPMENT" "${DEPLOY_CODE_RELEASE_DST_DIR}"
+
+echo "==> Adding version number in ${DEPLOY_CODE_RELEASE_DST_DIR}."
+replace_string_content "{{ VERSION }}" "${current_tag}" "${DEPLOY_CODE_RELEASE_DST_DIR}"
+
 # Allow to provide custom .gitignore.
 if [ -f "${DEPLOY_CODE_RELEASE_GITIGNORE}" ]; then
   echo "==> Copying release .gitignore file ${DEPLOY_CODE_RELEASE_GITIGNORE} to ${DEPLOY_CODE_RELEASE_DST_DIR}/.gitignore"
@@ -176,7 +234,7 @@ fi
 echo -n "==> Checking for changes... "
 status="$(git status)"
 if [ -z "${status##*nothing to commit*}" ]; then
-  echo "no changes were found."
+  echo "no changes were found. Nothing will be updated."
 else
   echo "==> Committing new changes."
   git add -A

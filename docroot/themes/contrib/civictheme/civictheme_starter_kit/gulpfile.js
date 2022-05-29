@@ -22,7 +22,7 @@ const baseThemeName = __dirname.replace('custom/civictheme_starter_kit', 'contri
 const childThemeName = __dirname;
 
 // Output directory of merged components.
-const outputDir = `${__dirname}/components-combined`;
+const outputDir = `${__dirname}/components_combined`;
 const civicthemeComponentsDir = `${__dirname}/.components-civictheme`;
 
 // Add files to combined storybook.

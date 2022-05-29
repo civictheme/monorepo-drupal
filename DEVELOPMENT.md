@@ -4,9 +4,9 @@ CivicTheme theme development
 ## Terminology
 
 - CivicTheme theme - CivicTheme Drupal theme, developed in this repository
-  and automatically published to [its own repository](https://github.com/salsadigitalauorg/civictheme-drupal).
+  and automatically published to [its own repository](https://github.com/salsadigitalauorg/civictheme).
 - CivicTheme Library - CivicTheme front-end library, developed in this repository
-  and automatically published to [its own repository](https://github.com/salsadigitalauorg/civictheme-library).
+  and automatically published to [its own repository](https://github.com/salsadigitalauorg/civictheme_library).
 - Demo theme, consumer theme, reference theme - a theme that uses CivicTheme
   Drupal theme as a base theme.
 - Reference site, development site - an example site (this repository) that uses
@@ -40,9 +40,9 @@ CivicTheme theme development
 To compile all assets in all themes: `ahoy fe`
 
 For development:
-1. `civictheme-library`
+1. `civictheme_library`
 
-       cd docroot/themes/contrib/civictheme/civictheme-library
+       cd docroot/themes/contrib/civictheme/civictheme_library
        npm run build
 
 2. `civictheme`
