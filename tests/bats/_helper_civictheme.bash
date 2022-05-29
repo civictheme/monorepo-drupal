@@ -12,7 +12,8 @@ load "${BASH_SOURCE[0]%/*}"/_mock.bash
 
 setup() {
   export CUR_DIR="$(pwd)"
-  export BUILD_DIR="${BUILD_DIR:-"${BATS_TEST_TMPDIR}/civictheme-$(random_string)"}"
+  BUILD_DIR="$BATS_TEST_TMPDIR/civictheme-$(random_string)"
+  export BUILD_DIR
   prepare_fixture_dir "${BUILD_DIR}"
   echo "BUILD_DIR dir: ${BUILD_DIR}" >&3
 

@@ -1,0 +1,23 @@
+_core:
+  default_config_hash: 1115KRsb7ZpmjHj0ms1d7xAG_xH54AWsOX6spDLJ59U
+dependencies:
+  module:
+    - system
+  theme:
+    - sometheme_theme
+id: sometheme_theme_breadcrumbs
+name: unchanged1
+langcode: en
+plugin: system_breadcrumb_block
+provider: null
+region: breadcrumb
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+status: true
+theme: sometheme_theme
+uuid: 111bc405-6929-416d-a2c1-997e026625cd
+visibility: {  }
+weight: 0
