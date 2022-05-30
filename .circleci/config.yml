@@ -274,7 +274,7 @@ jobs:
           # through all repositories that a RENOVATE_TOKEN token has access to.
           RENOVATE_REPOSITORIES: 'salsadigitalauorg/civictheme_source'
           # Set to 'false' once setup is complete and at bot ran at least once without errors.
-          RENOVATE_DRY_RUN: true
+          RENOVATE_DRY_RUN: false
           LOG_LEVEL: debug
     steps:
       - checkout

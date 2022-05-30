@@ -39,6 +39,8 @@ export const LargeFilter = () => {
     filter_count_suffix: text('Filter suffixes', '{"1": "filter applied", "default": "filters applied"}', generalKnobTab),
   };
 
+  const withBackground = boolean('With background', false, generalKnobTab);
+
   let count = 0;
   const filters = [];
   const filterGroup = 'filter_group';
@@ -127,6 +129,7 @@ export const LargeFilter = () => {
 
   return CivicLargeFilter({
     ...generalKnobs,
+    with_background: withBackground,
     filters: filters.join(''),
   });
 };

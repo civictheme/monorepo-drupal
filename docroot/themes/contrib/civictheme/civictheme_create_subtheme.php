@@ -27,6 +27,7 @@ function main(array $argv) {
   // Show help if not enough arguments or help was explicitly called.
   if (count($argv) != 4 || in_array($argv[1], ['--help', '-help', '-h', '-?'])) {
     print_help();
+    exit;
   }
 
   // Collect and validate values from arguments.
