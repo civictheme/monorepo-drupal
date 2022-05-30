@@ -190,7 +190,7 @@ CivicAccordion.prototype.destroy = function () {
   }
 };
 
-document.querySelectorAll('.civictheme-accordion .civictheme-accordion__list').forEach((accordion) => {
+document.querySelectorAll('[data-component-name="civictheme-accordion-list"]').forEach((accordion) => {
   // eslint-disable-next-line no-new
   new CivicAccordion(accordion);
 });

@@ -33,7 +33,7 @@
         {% endif %}
 
         <div class="civictheme-accordion__inner col-xs-12">
-          <ul class="civictheme-accordion__list" data-multiselectable="true">
+          <ul class="civictheme-accordion__list" data-multiselectable="true" data-component-name="civictheme-accordion-list">
             {% for fold in panels %}
               {% if fold.title is not empty or fold.content is not empty %}
                 {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
