@@ -8,9 +8,9 @@ function CivicAccordion(el, selectedIndex) {
   }
 
   this.el = el;
-  this.accordionItems = this.el.getElementsByClassName('civictheme-accordion__list-item');
-  this.accordionTriggers = this.el.getElementsByClassName('civictheme-accordion__header__button');
-  this.accordionPanels = this.el.getElementsByClassName('civictheme-accordion__content');
+  this.accordionItems = this.el.querySelectorAll('[data-accordion-list-item]');
+  this.accordionTriggers = this.el.querySelectorAll('[data-accordion-header-button]');
+  this.accordionPanels = this.el.querySelectorAll('[data-accordion-content]');
 
   if (this.accordionTriggers.length === 0
     || this.accordionTriggers.length !== this.accordionPanels.length) {
@@ -40,12 +40,12 @@ CivicAccordion.prototype.init = function () {
     this.accordionTriggers[i].addEventListener('keydown', this.keydownListener, false);
     this.accordionTriggers[i].addEventListener('focus', this.focusListener, false);
 
-    if (this.accordionTriggers[i].classList.contains('is-selected')) {
+    if (this.accordionTriggers[i].hasAttribute('is-selected')) {
       this.expandedAccordions[i] = true;
     }
   }
   this.setExpanded();
-  this.el.classList.add('is-initialized');
+  this.el.setAttribute('is-initialized', true);
 };
 
 // eslint-disable-next-line func-names
@@ -97,9 +97,9 @@ CivicAccordion.prototype.setSelected = function (index, userInvoked) {
   for (let i = 0; i < this.accordionTriggersLength; i += 1) {
     const currentButton = this.accordionTriggers[i];
     if (i === index) {
-      currentButton.classList.add('is-selected');
-      this.accordionItems[i].classList.add('civictheme-accordion__list-item--expanded');
-      currentButton.classList.add('civictheme-accordion__header__button--expanded');
+      currentButton.setAttribute('is-selected', true);
+      this.accordionItems[i].setAttribute('data-accordion-list-item-expanded', true);
+      currentButton.setAttribute('data-accordion-header-button-expanded', true);
 
       currentButton.setAttribute('data-selected', true);
 
@@ -107,8 +107,8 @@ CivicAccordion.prototype.setSelected = function (index, userInvoked) {
         currentButton.focus();
       }
     } else {
-      currentButton.classList.remove('civictheme-accordion__header__button--expanded');
-      this.accordionItems[i].classList.remove('civictheme-accordion__list-item--expanded');
+      currentButton.removeAttribute('data-accordion-header-button-expanded');
+      this.accordionItems[i].removeAttribute('data-accordion-list-item-expanded');
       currentButton.setAttribute('data-selected', false);
     }
   }
@@ -144,18 +144,18 @@ CivicAccordion.prototype.setExpanded = function (index, userInvoked) {
       this.accordionPanels[i].style.visibility = 'visible';
 
       // Add required classes.
-      this.accordionTriggers[i].classList.add('civictheme-accordion__header__button--expanded');
-      this.accordionItems[i].classList.add('civictheme-accordion__list-item--expanded');
-      this.accordionPanels[i].classList.add('civictheme-accordion__content--expanded');
+      this.accordionTriggers[i].setAttribute('data-accordion-header-button-expanded', true);
+      this.accordionItems[i].setAttribute('data-accordion-list-item-expanded', true);
+      this.accordionPanels[i].setAttribute('data-accordion-content-expanded', true);
 
       this.accordionPanels[i].setAttribute('aria-hidden', false);
-      this.accordionPanels[i].classList.remove('is-hidden');
+      this.accordionPanels[i].removeAttribute('is-hidden');
     } else {
       this.accordionTriggers[i].setAttribute('aria-expanded', false);
-      this.accordionTriggers[i].classList.remove('is-expanded');
-      this.accordionTriggers[i].classList.remove('civictheme-accordion__header__button--expanded');
-      this.accordionItems[i].classList.remove('civictheme-accordion__list-item--expanded');
-      this.accordionPanels[i].classList.remove('civictheme-accordion__content--expanded');
+      this.accordionTriggers[i].removeAttribute('is-expanded');
+      this.accordionTriggers[i].removeAttribute('data-accordion-header-button-expanded');
+      this.accordionItems[i].removeAttribute('data-accordion-list-item-expanded');
+      this.accordionPanels[i].removeAttribute('data-accordion-content-expanded');
       const currentPanel = this.accordionPanels[i];
       this.accordionPanels[i].style.height = `${this.accordionPanels[i].scrollHeight}px`;
       setTimeout(() => {
@@ -164,22 +164,22 @@ CivicAccordion.prototype.setExpanded = function (index, userInvoked) {
       }, 1);
 
       this.accordionPanels[i].setAttribute('aria-hidden', true);
-      this.accordionPanels[i].classList.add('is-hidden');
+      this.accordionPanels[i].setAttribute('is-hidden', true);
     }
   }
 };
 
 // eslint-disable-next-line func-names
 CivicAccordion.prototype.destroy = function () {
-  this.el.classList.remove('is-initialized');
+  this.el.removeAttribute('is-initialized');
 
   for (let i = 0; i < this.accordionTriggersLength; i += 1) {
     this.accordionTriggers[i].removeAttribute('aria-expanded');
     this.accordionTriggers[i].removeAttribute('data-selected');
-    this.accordionTriggers[i].classList.remove('is-expanded');
+    this.accordionTriggers[i].removeAttribute('is-expanded');
 
     this.accordionPanels[i].removeAttribute('aria-hidden');
-    this.accordionPanels[i].classList.remove('is-hidden');
+    this.accordionPanels[i].removeAttribute('is-hidden');
 
     this.accordionTriggers[i].removeEventListener('click', this.clickListener, false);
     this.accordionTriggers[i].removeEventListener('keydown', this.keydownListener, false);
@@ -189,7 +189,7 @@ CivicAccordion.prototype.destroy = function () {
   }
 };
 
-document.querySelectorAll('.civictheme-accordion .civictheme-accordion__list').forEach((accordion) => {
+document.querySelectorAll('[data-accordion] [data-accordion-list]').forEach((accordion) => {
   // eslint-disable-next-line no-new
   new CivicAccordion(accordion);
 });
