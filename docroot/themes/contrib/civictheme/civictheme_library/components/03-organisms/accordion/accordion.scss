@@ -2,32 +2,32 @@
 // Accordion component.
 //
 
-.civictheme-accordion {
+[data-accordion] {
   $root: &;
 
-  &.civictheme-accordion--vertical-space-top {
+  &[data-accordion-vertical-space-top] {
     @include civictheme-component-with-vertical-space(top, $civictheme-accordion-space-vertical);
   }
 
-  &.civictheme-accordion--vertical-space-bottom {
+  &[data-accordion-vertical-space-bottom] {
     @include civictheme-component-with-vertical-space(bottom, $civictheme-accordion-space-vertical);
   }
 
-  &.civictheme-accordion--vertical-space-both {
+  &[data-accordion-vertical-space-both] {
     @include civictheme-component-with-vertical-space(both, $civictheme-accordion-space-vertical);
   }
 
-  &__inner {
+  [data-accordion-inner] {
     display: block;
   }
 
-  &__list {
+  [data-accordion-list] {
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  &__header {
+  [data-accordion-header] {
     $header: &;
 
     display: block;
@@ -35,7 +35,7 @@
     border-top-left-radius: $civictheme-accordion-header-border-radius;
     border-top-right-radius: $civictheme-accordion-header-border-radius;
 
-    &__button--expanded {
+    [data-accordion-header-button-expanded] {
       border-bottom: none;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
@@ -45,7 +45,7 @@
       }
     }
 
-    &__button {
+    [data-accordion-header-button] {
       @include civictheme-typography('heading-6');
 
       width: 100%;
@@ -65,7 +65,7 @@
     }
   }
 
-  &__content {
+  [data-accordion-content] {
     $content: &;
 
     overflow: auto;
@@ -75,23 +75,23 @@
 
     @include civictheme-typography('text-regular');
 
-    &--expanded {
+    &[data-accordion-content-expanded] {
       height: auto;
       border-top: none;
 
-      #{$content}--inner {
+      [data-accordion-content-inner] {
         opacity: 100%;
       }
     }
 
-    &--inner {
+    [data-accordion-content-inner] {
       opacity: 0%;
       transition: opacity 0.5s;
       padding: 0 civictheme-space(3) civictheme-space(3);
     }
   }
 
-  &__list-item {
+  [data-accordion-list-item] {
     position: relative;
     border: 1px solid;
     border-radius: $civictheme-accordion-item-border-radius;
@@ -110,14 +110,14 @@
       transition: width 0.25s;
     }
 
-    &--expanded {
+    &[data-accordion-list-item-expanded] {
       &::before {
         width: 0.5rem;
       }
     }
   }
 
-  &.civictheme-theme-light {
+  &[data-accordion-theme-light] {
     color: $civictheme-accordion-light-color;
 
     &.civictheme-accordion--with-background {
@@ -126,7 +126,7 @@
       padding-right: $civictheme-accordion-space-horizontal;
     }
 
-    #{$root}__header__button {
+    #{$root} [data-accordion-header-button] {
       background-color: $civictheme-accordion-light-button-background-color;
 
       svg {
@@ -134,11 +134,11 @@
       }
     }
 
-    #{$root}__content {
+    #{$root} [data-accordion-content] {
       background-color: $civictheme-accordion-light-background-color;
     }
 
-    #{$root}__list-item {
+    #{$root} [data-accordion-list-item] {
       border-color: $civictheme-accordion-light-border-color;
 
       &::before {
@@ -147,7 +147,7 @@
     }
   }
 
-  &.civictheme-theme-dark {
+  &[data-accordion-theme-dark] {
     color: $civictheme-accordion-dark-color;
 
     &.civictheme-accordion--with-background {
@@ -156,11 +156,11 @@
       padding-right: $civictheme-accordion-space-horizontal;
     }
 
-    #{$root}__header {
+    #{$root} [data-accordion-header] {
       background-color: $civictheme-accordion-dark-background-color;
     }
 
-    #{$root}__header__button {
+    #{$root} [data-accordion-header-button] {
       border-top: 1px solid $civictheme-accordion-dark-border-color;
       background-color: $civictheme-accordion-dark-button-background-color;
       color: $civictheme-accordion-dark-button-color;
@@ -170,11 +170,11 @@
       }
     }
 
-    #{$root}__content {
+    #{$root} [data-accordion-content] {
       background-color: $civictheme-accordion-dark-background-color;
     }
 
-    #{$root}__list-item {
+    #{$root} [data-accordion-list-item] {
       border-color: $civictheme-accordion-dark-border-color;
 
       &::before {
