@@ -51,7 +51,7 @@ DREVOPS_TEST_BEHAT_PROFILE="${DREVOPS_TEST_BEHAT_PROFILE:-default}"
 DREVOPS_TEST_BEHAT_FORMAT="${DREVOPS_TEST_BEHAT_FORMAT:-pretty}"
 
 # Behat tags. Optional. Default runs all tests.
-DREVOPS_TEST_BEHAT_TAGS="${DREVOPS_TEST_BEHAT_TAGS:-0}"
+DREVOPS_TEST_BEHAT_TAGS="${DREVOPS_TEST_BEHAT_TAGS:-}"
 
 # Behat test runner index. If is set  - the value is used as a suffix for the
 # parallel Behat profile name (e.g., p0, p1).
