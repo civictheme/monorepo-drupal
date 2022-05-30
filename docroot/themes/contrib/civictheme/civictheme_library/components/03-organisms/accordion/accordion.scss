@@ -126,7 +126,7 @@
       padding-right: $civictheme-accordion-space-horizontal;
     }
 
-    #{$root} [data-accordion-header-button] {
+    [data-accordion-header-button] {
       background-color: $civictheme-accordion-light-button-background-color;
 
       svg {
@@ -134,11 +134,11 @@
       }
     }
 
-    #{$root} [data-accordion-content] {
+    [data-accordion-content] {
       background-color: $civictheme-accordion-light-background-color;
     }
 
-    #{$root} [data-accordion-list-item] {
+    [data-accordion-list-item] {
       border-color: $civictheme-accordion-light-border-color;
 
       &::before {
@@ -156,11 +156,11 @@
       padding-right: $civictheme-accordion-space-horizontal;
     }
 
-    #{$root} [data-accordion-header] {
+    [data-accordion-header] {
       background-color: $civictheme-accordion-dark-background-color;
     }
 
-    #{$root} [data-accordion-header-button] {
+    [data-accordion-header-button] {
       border-top: 1px solid $civictheme-accordion-dark-border-color;
       background-color: $civictheme-accordion-dark-button-background-color;
       color: $civictheme-accordion-dark-button-color;
@@ -170,11 +170,11 @@
       }
     }
 
-    #{$root} [data-accordion-content] {
+    [data-accordion-content] {
       background-color: $civictheme-accordion-dark-background-color;
     }
 
-    #{$root} [data-accordion-list-item] {
+    [data-accordion-list-item] {
       border-color: $civictheme-accordion-dark-border-color;
 
       &::before {
