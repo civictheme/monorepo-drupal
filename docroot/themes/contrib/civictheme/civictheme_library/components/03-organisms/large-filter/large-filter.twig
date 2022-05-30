@@ -18,8 +18,9 @@
  */
 #}
 
+{% set with_background_class = with_background ? 'civictheme-large-filter--with-background' : '' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, with_background_class, modifier_class|default('')) %}
 
 {% set filter_title = filter_title|default('Filter search results by:') %}
 {% set tags_title = tags_title|default('Selected filters:') %}

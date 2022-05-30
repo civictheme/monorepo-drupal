@@ -1,38 +1,4 @@
-{%
-  set header_classes = [
-  'civictheme-listing',
-  'paragraph',
-  'paragraph--type--' ~ paragraph.bundle|clean_class,
-  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  view_as ? view_as
-]
-%}
-{% set body_attribute = create_attribute() %}
-{%
-  set body_classes = [
-  'civictheme-listing__body',
-  limit ? 'civictheme-listing--' ~ limit : '',
-]
-%}
-
-{% block paragraph %}
-  <div{{ attributes.setAttribute('id', uniqId).addClass(header_classes) }}>
-    <div class="civictheme-listing__container">
-      {% if content.field_c_p_title|render|striptags|trim is not empty %}
-        {% include '@atoms/heading/heading.twig' with {
-          content: content.field_c_p_title ,
-          level: 2,
-          modifier_class: 'civictheme-listing__title',
-        } only %}
-      {% endif %}
-      <div{{ body_attribute.addClass(body_classes) }}>
-        {{ listing }}
-      </div>
-      {% if read_more %}
-        <div class="civictheme-listing__cta">
-          {{ read_more }}
-        </div>
-      {% endif %}
-    </div>
-  </div>
-{% endblock paragraph %}
+{% set modifier_class = modifier_class|default('') %}
+<div {{ attributes }} class="{{ modifier_class }}">
+  {{ listing }}
+</div>

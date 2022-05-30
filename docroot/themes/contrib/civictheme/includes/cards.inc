@@ -45,6 +45,10 @@ function _civictheme_preprocess_node__theme(&$variables) {
       $variables['theme'] = $theme;
     }
   }
+  // For when theme is set by view or other third party.
+  if (isset($node->civictheme_theme)) {
+    $variables['theme'] = $node->civictheme_theme;
+  }
 }
 
 /**
