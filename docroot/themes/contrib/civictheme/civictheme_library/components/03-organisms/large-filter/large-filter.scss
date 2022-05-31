@@ -168,7 +168,10 @@
   }
 
   &.civictheme-theme-light {
-    background-color: $civictheme-large-filter-light-background-color;
+
+    #{$root}--with-background {
+      background-color: $civictheme-large-filter-light-background-color;
+    }
 
     @include civictheme-breakpoint($civictheme-large-filter-breakpoint) {
       border-top: 1px solid $civictheme-large-filter-light-border-color;
@@ -239,7 +242,10 @@
   }
 
   &.civictheme-theme-dark {
-    background-color: $civictheme-large-filter-dark-background-color;
+
+    #{$root}--with-background {
+      background-color: $civictheme-large-filter-dark-background-color;
+    }
 
     @include civictheme-breakpoint($civictheme-large-filter-breakpoint) {
       border-top: 1px solid $civictheme-large-filter-dark-border-color;
