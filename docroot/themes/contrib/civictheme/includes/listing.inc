@@ -7,10 +7,10 @@
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Link;
-use Drupal\Core\Url;
+use Drupal\Core\Render\Element;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\views\Views;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Defines limited limit type.
@@ -36,11 +36,17 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
   // Get the parent bundle.
   $variables['view_as'] = $paragraph->get('field_c_p_view_as')->getString();
   $variables['limit'] = $paragraph->field_c_p_listing_limit->value;
-  $variables['uniqId'] = Html::getUniqueId('listing-' . $paragraph->id());
-
-  $variables['listing'] = _civictheme_listing_element($paragraph);
-
-  _civictheme_render_listing_paragraph_add_read_more($paragraph, $variables);
+  $variables['attributes']['id'] = Html::getUniqueId('listing-' . $paragraph->id());
+  if (is_array($variables['attributes'])) {
+    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
+    unset($variables['attributes']['class']);
+    $variables['attributes'] = new Attribute($variables['attributes']);
+  }
+  $variables['listing'] = _civictheme_listing_element($paragraph, $variables);
+  $form_elements = Element::children($variables['listing']['view']['#view']->exposed_widgets);
+  foreach ($form_elements as $form_element) {
+    $variables['listing']['view']['#view']->exposed_widgets[$form_element]['#civictheme_theme'] = $variables['theme'];
+  }
 }
 
 /**
@@ -63,22 +69,15 @@ function _civictheme_listing_element(Paragraph $paragraph) {
   \Drupal::service('theme.manager')->alter('civictheme_listing_view_name', $view_name);
 
   $view_display = 'civictheme_listing_block';
-  $show_filters = (int) $paragraph->field_c_p_show_filters->value;
 
   $view = Views::getView($view_name);
   if ($view) {
     $view->setDisplay($view_display);
-    _civictheme_listing_alter_view($paragraph, $view);
-  }
 
-  if ($view) {
-    $view->initHandlers();
-    $element = [];
-    // Show exposed form if available for this block display.
-    $view->civictheme_listing = [
-      'show_filters' => (bool) $show_filters,
-    ];
-    $element['view'] = $view->render();
+    _civictheme_listing_alter_view($paragraph, $view);
+    $view->civictheme_listing_entity = $paragraph;
+
+    $element['view'] = $view->executeDisplay($view_display);
   }
 
   return $element;
@@ -158,25 +157,6 @@ function _civictheme_listing_alter_view($paragraph, &$view) {
     }
   }
 
-}
-
-/**
- * Add 'read more' entry to variables array if the option was added.
- *
- * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   Paragraph being rendered.
- * @param array $variables
- *   Render array variables.
- */
-function _civictheme_render_listing_paragraph_add_read_more(Paragraph $paragraph, array &$variables) {
-  // Read More link.
-  if ($read_more_uri = $paragraph->field_c_p_read_more->uri) {
-    $read_more_title = $paragraph->field_c_p_read_more->title;
-    $read_more_uri = Url::fromUri($read_more_uri);
-    if ($read_more_uri) {
-      $variables['read_more'] = Link::fromTextAndUrl($read_more_title, $read_more_uri);
-    }
-  }
 }
 
 /**
