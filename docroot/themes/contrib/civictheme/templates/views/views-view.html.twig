@@ -35,29 +35,6 @@
 
 {% extends '@organisms/listing/listing.twig' %}
 
-{% block title %}
-  <div class="civictheme-listing__title">
-    {{ title_prefix }}
-    {{ title }}
-    {{ title_suffix }}
-  </div>
-{% endblock %}
-
-{% block header %}
-  {% if header %}
-    <header class="civictheme-listing__header" tabindex="0">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            {{ header }}
-          </div>
-        </div>
-      </div>
-    </header>
-  {% endif %}
-  {{ attachment_before }}
-{% endblock %}
-
 {% block footer %}
   {{ attachment_after }}
   {{ more }}

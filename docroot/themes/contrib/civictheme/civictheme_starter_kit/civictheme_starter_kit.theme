@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Site\Settings;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements template_preprocess_html().
@@ -26,5 +27,18 @@ function _civictheme_starter_kit_preprocess_admin_toolbar(&$variables) {
         return strpos($value, 'toolbar-') !== 0;
       });
     }
+  }
+}
+
+/**
+ * Implements hook_civictheme_listing_preprocess_view_alter().
+ */
+function civictheme_starter_kit_civictheme_listing_preprocess_view_alter(array &$settings, ViewExecutable &$view) {
+  if ($view->id() === 'civictheme_listing_examples' && $view->getDisplay()->display['id'] === 'civictheme_listing_page') {
+    $settings['title'] = '';
+    $settings['theme'] = 'light';
+    $settings['card_theme'] = 'dark';
+    $settings['with_background'] = TRUE;
+    $settings['vertical_space'] = 'bottom';
   }
 }
