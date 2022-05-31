@@ -38,7 +38,6 @@ export const Listing = (knobTab) => {
     generalKnobTab,
   );
 
-
   const generalKnobs = {
     theme,
     title: text('Title', '', generalKnobTab),
@@ -87,7 +86,6 @@ export const Listing = (knobTab) => {
   );
 
   const showPager = boolean('Show pager', true, generalKnobTab);
-
 
   // Create empty markup.
   if (resultNumber === 0) {
@@ -145,7 +143,8 @@ export const Listing = (knobTab) => {
 
   generalKnobs.with_background = withBackground;
   generalKnobs.vertical_space = verticalSpace;
-  generalKnobs.modifier_class = text('Additional class', '', generalKnobTab)
+  generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
+
   // Build exposed filters.
   if (showExposed) {
     let count = 0;
