@@ -10,7 +10,7 @@ dependencies:
     - taxonomy
     - user
 id: civictheme_listing_examples
-label: 'Civic Theme Example Views'
+label: 'CivicTheme Example Views'
 module: views
 description: ''
 tag: ''
