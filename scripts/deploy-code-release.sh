@@ -173,7 +173,7 @@ current_tag="$(git tag --sort=-version:refname | head -1)"
 echo "==> Found current tag: ${current_tag}."
 previous_tag="$(git tag --sort=-version:refname | head -2 | tail -1)"
 echo "==> Found previous tag: ${previous_tag}."
-log="$(git log --pretty=oneline "${current_tag}"..."${previous_tag}" --grep="${DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX}" | cut -d " " -f 2- |grep -v "Merge")"
+log="$(git log --pretty=oneline "${current_tag}"..."${previous_tag}" --grep="${DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX}" | cut -d " " -f 2- | grep -v "Merge" || echo "")"
 
 log_bump="Bumped to version ${current_tag}"
 log="${log_bump}

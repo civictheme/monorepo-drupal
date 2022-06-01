@@ -43,9 +43,9 @@ if [ -z "${DREVOPS_LINT_TYPE##*be*}" ]; then
   [ "${DREVOPS_LINT_BE_ALLOW_FAILURE}" -eq 1 ]
 fi
 
-if [ -z "${DREVOPS_LINT_TYPE##*fe*}" ] && [ -n "${DREVOPS_DRUPAL_THEME}" ] && grep -q lint "docroot/themes/custom/${DREVOPS_DRUPAL_THEME}/package.json"; then
+if [ -z "${DREVOPS_LINT_TYPE##*fe*}" ] && [ -n "${DREVOPS_DRUPAL_THEME}" ] && grep -q lint "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}/package.json"; then
   # Lint code using front-end linter.
-  npm run --prefix "docroot/themes/custom/${DREVOPS_DRUPAL_THEME}" lint || \
+  npm run --prefix "docroot/themes/contrib/${DREVOPS_DRUPAL_THEME}" lint || \
   # Flag to allow lint to fail.
   [ "${DREVOPS_LINT_FE_ALLOW_FAILURE}" -eq 1 ]
 fi
