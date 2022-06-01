@@ -16,29 +16,29 @@
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'data-accordion-vertical-space-%s'|format(vertical_space) : '' %}
-{% set theme_class = 'data-accordion-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s'|format(modifier_class|default('')) %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-accordion--vertical-space-%s'|format(vertical_space) : '' %}
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if panels is not empty %}
-  <div class="{{ modifier_class }}" data-accordion {{ vertical_space_class }} {{ theme_class }}>
+  <div class="{{ modifier_class }}" data-accordion>
     <div class="container">
       <div class="row">
         {% if title is not empty %}
-          <div class="col-xs-12" data-accordion-content-top>
-            <div data-accordion-title-top>
+          <div class="civictheme-accordion__content-top col-xs-12">
+            <div class="civictheme-accordion__title-top">
               {{ title }}
             </div>
           </div>
         {% endif %}
 
-        <div class="col-xs-12" data-accordion-inner>
+        <div class="col-xs-12 civictheme-accordion__inner">
           <ul data-accordion-list data-multiselectable="true">
             {% for fold in panels %}
               {% if fold.title is not empty or fold.content is not empty %}
                 {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
                 <li data-accordion-list-item>
-                  <div data-accordion-header>
+                  <div class="civictheme-accordion__header">
                     {% set is_open = is_expanded ? 'is-selected' : '' %}
                     <button data-accordion-header-button {{ is_open }}>
                       {% if fold.title is not empty %}
@@ -53,7 +53,7 @@
                   {% if fold.content is not empty %}
                     {% set is_open = is_expanded ? 'data-accordion-content-expanded' : '' %}
                     <div {{ is_open }} data-accordion-content>
-                      <div data-accordion-inner data-accordion-content-inner>
+                      <div class="civictheme-accordion__content--inner">
                         {{ fold.content|raw }}
                       </div>
                     </div>
