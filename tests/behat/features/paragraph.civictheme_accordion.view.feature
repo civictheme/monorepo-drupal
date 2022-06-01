@@ -40,10 +40,10 @@ Feature: View of Page content with Accordion component
     When I visit "civictheme_page" "[TEST] Page accordion test"
     And I should see an "div[data-accordion]" element
     And I should not see an "div[data-accordion].civictheme-accordion--with-background" element
-    And I should see an "div[data-accordion][data-accordion-theme-light]" element
+    And I should see an "div[data-accordion].civictheme-theme-light" element
     And I should see an "div[data-accordion-content]" element
-    And I should see an "div[data-accordion-content-top]" element
-    And I should see an "div[data-accordion-inner]" element
+    And I should see an "div.civictheme-accordion__content-top" element
+    And I should see an "div.civictheme-accordion__inner" element
     And I should see an "ul[data-accordion-list]" element
     And I should see the text "[TEST] Accordion title"
     And I should see the text "[TEST] Accordion panel 1"
@@ -72,11 +72,11 @@ Feature: View of Page content with Accordion component
     When I visit "civictheme_page" "[TEST] Page accordion test"
     And I should see an "div[data-accordion]" element
     And I should see an "div[data-accordion].civictheme-accordion--with-background" element
-    And I should not see an "div[data-accordion][data-accordion-theme-light]" element
-    And I should see an "div[data-accordion][data-accordion-theme-dark]" element
+    And I should not see an "div[data-accordion].civictheme-theme-light" element
+    And I should see an "div[data-accordion].civictheme-theme-dark" element
     And I should see an "div[data-accordion-content]" element
-    And I should see an "div[data-accordion-content-top]" element
-    And I should see an "div[data-accordion-inner]" element
+    And I should see an "div.civictheme-accordion__content-top" element
+    And I should see an "div.civictheme-accordion__inner" element
     And I should see an "ul[data-accordion-list]" element
     And I should see the text "[TEST] Accordion title"
     And I should see the text "[TEST] Accordion panel 1"
