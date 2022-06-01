@@ -4,14 +4,15 @@
   "private": true,
   "description": "Components for CivicTheme Drupal theme",
   "scripts": {
-    "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet",
+    "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet && npm run export-colors",
     "build-storybook": "build-storybook -s .storybook/static",
     "storybook": "start-storybook -s .storybook/static",
     "storybook-full": "STORYBOOK_FULL=1 start-storybook -s .storybook/static",
     "lint": "eslint ./components ./.storybook ./webpack && stylelint 'components/**/*.scss'",
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "webpack --config ./webpack/webpack.prod.js",
-    "dist:dev": "webpack --config ./webpack/webpack.dev.js"
+    "dist:dev": "webpack --config ./webpack/webpack.dev.js",
+    "export-colors": "php scripts/extract_css_colors_to_csv.php dist/civictheme.variables.css > dist/civictheme.variables.csv"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",

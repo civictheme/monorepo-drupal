@@ -16,6 +16,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
 
   /**
    * @dataProvider dataProviderMain
+   * @runInSeparateProcess
    */
   public function testMain($args, $expected_code, $expected_output) {
     $args = is_array($args) ? $args : [$args];
@@ -80,6 +81,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
 
   /**
    * @dataProvider dataProviderCollectConfigs
+   * @runInSeparateProcess
    */
   public function testCollectConfigs($file_structure, $expected) {
     $this->createTmpFilesFromFixtures($file_structure);
@@ -150,6 +152,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
 
   /**
    * @dataProvider dataProviderCollectExcludedConfigs
+   * @runInSeparateProcess
    */
   public function testCollectExcludedConfigs($custom_configs_content_lines, $configs, $expected) {
     $custom_configs_file = $this->tempdir() . DIRECTORY_SEPARATOR . 'site_custom_config.txt';
@@ -264,6 +267,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
 
   /**
    * @dataProvider dataProviderYamlFilesAreIdentical
+   * @runInSeparateProcess
    */
   public function testYamlFilesAreIdentical($file1, $file2, $expected) {
     $this->assertEquals($expected, yaml_files_are_identical($this->fixtureFile($file1), $this->fixtureFile($file2)));
@@ -285,6 +289,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
 
   /**
    * @dataProvider dataProviderCalcConfigDiffs
+   * @runInSeparateProcess
    */
   public function testCalcConfigDiffs(array $src, array $dst, array $excluded, array $expected) {
     $src = $this->replaceFixturePaths($src, 'src');
