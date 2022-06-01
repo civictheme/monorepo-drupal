@@ -33,7 +33,7 @@ module.exports = {
     // Replace normal CSS import with stories CSS import, which already includes
     // normal CSS import. This is to allow to resolve variables and mixins in
     // stories CSS.
-    custom.entry = custom.entry.map((value) => (value.indexOf('css.js') > -1 ? path.resolve(__dirname, 'css.stories.js') : value));
+    custom.entry = custom.entry.main.map((value) => (value.indexOf('css.js') > -1 ? path.resolve(__dirname, 'css.stories.js') : value));
 
     // Modify common configs to let Storybook take over.
     delete custom.output;

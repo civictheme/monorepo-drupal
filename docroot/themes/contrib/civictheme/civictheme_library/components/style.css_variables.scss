@@ -1,0 +1,17 @@
+@use 'sass:meta';
+@use '00-base/variables';
+
+html {
+  @each $name, $value in meta.module-variables('variables') {
+    // Only filter by CivicTheme variables.
+    @if str-index($name, 'civictheme-') {
+      // Only filter by variable names related to color.
+      @if str-index($name, 'color') {
+        // Only filter by color or string variables.
+        @if type-of($value) == 'color' or type-of($value) == 'string' {
+          --#{$name}: #{$value};
+        }
+      }
+    }
+  }
+}

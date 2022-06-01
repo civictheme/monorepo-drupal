@@ -6,22 +6,56 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: (function (pattern) {
+    // Splitting entries into two chunks:
+    // main: all styles used in components -> output: civictheme.css
+    // variables: CSS variables -> output: civictheme.variables.css
+    const entries = {
+      main: [],
+      variables: [],
+    };
     // Scan for all JS.
-    const entries = glob.sync(pattern);
+    entries.main = glob.sync(pattern);
     // Add explicitly imported (S)CSS entries from css.js.
-    entries.push(path.resolve(__dirname, 'css.js'));
-    entries.push(path.resolve(__dirname, 'assets.js'));
+    entries.main.push(path.resolve(__dirname, 'css.js'));
+    entries.main.push(path.resolve(__dirname, 'assets.js'));
+
+    // Add explicitly css_variables.js.
+    entries.variables.push(path.resolve(__dirname, 'css_variables.js'));
+
     return entries;
   }('../components/**/!(*.stories|*.component|*.min|*.test|*.utils).js')),
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          test: 'css/mini-extract',
+          name: 'civictheme',
+          chunks: (chunk) => (chunk.name === 'main'),
+        },
+        variables: {
+          test: 'css/mini-extract',
+          name: 'variables',
+          chunks: (chunk) => (chunk.name === 'variables'),
+        },
+      },
+    },
+  },
   output: {
-    filename: 'civictheme.js',
+    filename: (pathData) => (pathData.chunk.name === 'main' ? 'civictheme.js' : 'civictheme-[name].js'),
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '../dist/civictheme.css',
+      filename: ({ chunk }) => (chunk.name === 'main' ? 'civictheme.css' : `civictheme.${chunk.name}.css`),
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      dry: false,
+      dangerouslyAllowCleanPatternsOutsideProject: true,
+      cleanAfterEveryBuildPatterns: [
+        '../dist/civictheme-variables.js',
+        '../dist/civictheme-variables.js.map',
+      ],
+    }),
   ],
   module: {
     rules: [

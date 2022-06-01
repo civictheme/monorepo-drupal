@@ -46,7 +46,9 @@ abstract class ScriptUnitTestBase extends TestCase {
    */
   protected function tearDown(): void {
     parent::tearDown();
-    @unlink($this->tmpDir);
+    if (!empty($this->tmpDir)) {
+      @unlink($this->tmpDir);
+    }
   }
 
   /**

@@ -6,11 +6,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: (function (pattern) {
-    // Splitting entries into two chunks:
-    // main: all styles used in components and drupal theme -> output: civictheme.css
-    // ckeditor: nested styles used in ckeditor -> output: ckeditor.css
+    // Splitting entries into three chunks:
+    // main: all styles used in components and drupal theme -> output: styles.css
+    // variables: CSS variables -> output: styles.variables.css
+    // ckeditor: nested styles used in ckeditor -> output: styles.ckeditor.css
     const entries = {
       main: [],
+      variables: [],
       ckeditor: [],
     };
 
@@ -22,6 +24,9 @@ module.exports = {
     entries.main.push(path.resolve(__dirname, 'theme_js.js'));
     entries.main.push(path.resolve(__dirname, 'theme_css.js'));
     entries.main.push(path.resolve(__dirname, 'assets.js'));
+
+    // Add explicitly css_variables.js.
+    entries.variables.push(path.resolve(__dirname, 'css_variables.js'));
 
     // Add explicitly ckeditor.scss
     entries.ckeditor.push(path.resolve(__dirname, 'ckeditor_css.js'));
@@ -35,6 +40,11 @@ module.exports = {
           test: 'css/mini-extract',
           name: 'styles',
           chunks: (chunk) => (chunk.name === 'main'),
+        },
+        variables: {
+          test: 'css/mini-extract',
+          name: 'variables',
+          chunks: (chunk) => (chunk.name === 'variables'),
         },
         ckeditor: {
           test: 'css/mini-extract',
@@ -50,9 +60,18 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: ({ chunk }) => (chunk.name === 'main' ? 'styles.css' : `${chunk.name}.css`),
+      filename: ({ chunk }) => (chunk.name === 'main' ? 'styles.css' : `styles.${chunk.name}.css`),
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      dry: false,
+      dangerouslyAllowCleanPatternsOutsideProject: true,
+      cleanAfterEveryBuildPatterns: [
+        '../dist/scripts-variables.js',
+        '../dist/scripts-variables.js.map',
+        '../dist/scripts-ckeditor.js',
+        '../dist/scripts-ckeditor.js.map',
+      ],
+    }),
   ],
   module: {
     rules: [

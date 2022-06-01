@@ -11,3 +11,6 @@ bats tests/bats/helpers.bats --tap
 
 echo "==> Test BATS mock."
 bats tests/bats/mock.bats --tap
+
+echo "==> Test Assets mock."
+bats tests/bats/assets.bats --tap
