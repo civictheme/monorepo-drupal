@@ -2,7 +2,7 @@
  * @file
  * Accordion component.
  */
- function CivicAccordion(el, selectedIndex) {
+function CivicAccordion(el, selectedIndex) {
   if (!el) {
     return;
   }
