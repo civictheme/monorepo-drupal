@@ -12,7 +12,7 @@ class ExtractCssColorsToCsvScriptUnitTest extends ScriptUnitTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $script = 'docroot/themes/contrib/civictheme/scripts/extract_css_colors_to_csv.php';
+  protected $script = 'docroot/themes/contrib/civictheme/civictheme_library/scripts/extract_css_colors_to_csv.php';
 
   /**
    * @dataProvider dataProviderMain

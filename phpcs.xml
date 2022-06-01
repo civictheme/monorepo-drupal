@@ -18,7 +18,6 @@
     <!-- Exclude civictheme theme assets. -->
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.storybook\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/assets\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/components\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/dist\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/docs\/.*</exclude-pattern>
@@ -29,6 +28,18 @@
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.*\/assets\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.*\/components\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.*\/webpack\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/.storybook\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/assets\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/components\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/dist\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/docs\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/node_modules\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/storybook-static\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/webpack\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/.*\/.storybook\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/.*\/assets\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/.*\/components\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/.*\/webpack\/.*</exclude-pattern>
 
     <!-- Exclude demo theme assets. -->
     <exclude-pattern>docroot\/themes\/custom\/.*</exclude-pattern>

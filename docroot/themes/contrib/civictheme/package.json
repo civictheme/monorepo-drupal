@@ -12,7 +12,7 @@
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "webpack --config ./webpack/webpack.dev.js",
-    "export-colors": "php scripts/extract_css_colors_to_csv.php dist/civictheme.variables.css > dist/civictheme.variables.csv"
+    "export-colors": "php civictheme_library/scripts/extract_css_colors_to_csv.php dist/civictheme.variables.css > dist/civictheme.variables.csv"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Extract CSS4 variables into CSV.
+ * Extract CSS4 color variables and output as CSV.
  *
  * Usage:
  * @code

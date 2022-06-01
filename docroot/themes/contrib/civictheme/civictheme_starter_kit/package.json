@@ -15,7 +15,7 @@
     "dist": "npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
     "generate-icon-library": "npm run gulp:build && node ./components_combined/01-atoms/icon/icon.generate-library.utils.js",
-    "export-colors": "php ../../civictheme/scripts/extract_css_colors_to_csv.php dist/civictheme.variables.css > dist/civictheme.variables.csv"
+    "export-colors": "php ../../contrib/civictheme/civictheme_library/scripts/extract_css_colors_to_csv.php dist/styles.variables.css > dist/styles.variables.csv"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
