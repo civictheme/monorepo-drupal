@@ -226,7 +226,7 @@ assert_dir_contains_string() {
 
   assert_dir_exists "${dir}" || return 1
 
-  if grep -rI --exclude-dir=".git" --exclude-dir=".idea" --exclude-dir="vendor" --exclude-dir="node_modules" --exclude-dir=".data" --exclude-dir="drevops" -l "${string}" "${dir}"; then
+  if grep -rI --exclude-dir=".git" --exclude-dir=".idea" --exclude-dir="vendor" --exclude-dir="node_modules" --exclude-dir=".data" -l "${string}" "${dir}"; then
     return 0
   else
     format_error "Directory ${dir} does not contain a string '${string}'" | flunk
@@ -239,7 +239,7 @@ assert_dir_not_contains_string() {
 
   [ ! -d "${dir}" ] && return 0
 
-  if grep -rI --exclude-dir=".git" --exclude-dir=".idea" --exclude-dir="vendor" --exclude-dir="node_modules" --exclude-dir=".data" --exclude-dir="drevops" -l "${string}" "${dir}"; then
+  if grep -rI --exclude-dir=".git" --exclude-dir=".idea" --exclude-dir="vendor" --exclude-dir="node_modules" --exclude-dir=".data" -l "${string}" "${dir}"; then
     format_error "Directory ${dir} contains string '${string}', but should not" | flunk
   else
     return 0
@@ -417,6 +417,11 @@ assert_output_not_contains() {
   fi
   # shellcheck disable=SC2154
   assert_not_contains "${expected}" "${output}"
+}
+
+prepare_git_config() {
+  [ "$(git config --global user.name)" = "" ] && echo "==> Configuring global git user name." && git config --global user.name "Some User" || true
+  [ "$(git config --global user.email)" = "" ] && echo "==> Configuring global git user email." && git config --global user.email "some.user@example.com" || true
 }
 
 random_string() {

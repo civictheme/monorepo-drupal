@@ -1,0 +1,125 @@
+{#
+/**
+ * @file
+ * Large Filter component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - filter_title: [string] Title for filters.
+ * - filters: [string] Filter HTML.
+ * - tags_title: [string] Selected tags title.
+ * - clear_text: [string] Text for clear button.
+ * - filter_text: [string] Text for filter button.
+ * - cancel_text: [string] Text for cancel button.
+ * - apply_text: [string] Text for apply button.
+ * - filter_count_suffix: [string] JSON formatted suffixes { "1": "Item", "default": "Items" }
+ * - desktop_breakpoint: [string] Breakpoint to display desktop (large) view.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set with_background_class = with_background ? 'civictheme-large-filter--with-background' : '' %}
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, with_background_class, modifier_class|default('')) %}
+
+{% set filter_title = filter_title|default('Filter search results by:') %}
+{% set tags_title = tags_title|default('Selected filters:') %}
+{% set clear_text = clear_text|default('Clear all') %}
+{% set filter_text = filter_text|default('Filter') %}
+{% set cancel_text = cancel_text|default('Cancel') %}
+{% set apply_text = apply_text|default('Apply') %}
+{% set filter_count_suffix = filter_count_suffx|default('{"1": "filter applied", "default": "filters applied"}') %}
+
+{% if filters is not empty %}
+  <div
+    class="civictheme-large-filter {{ modifier_class }}"
+    data-component-name="civictheme-large-filter"
+    data-large-filter-theme="{{ theme }}"
+    {% if desktop_breakpoint %}
+      data-responsive
+      data-large-filter-desktop-breakpoint="{{ desktop_breakpoint }}"
+    {% endif %}
+  >
+    {% include "@atoms/button/button.twig" with {
+      theme: theme,
+      type: 'none',
+      text: filter_text,
+      kind: 'button',
+      icon: 'userinterface_filteron',
+      modifier_class: 'civictheme-large-filter__mobile-toggle hide-m',
+      attributes: 'data-large-filter-mobile-toggle data-flyout-open-trigger data-flyout-target=.civictheme-large-filter-flyout data-allow-event-bubble'
+    } only %}
+    <div
+      class="civictheme-large-filter__mobile-toggle-display civictheme-large-filter__mobile-toggle-display--hidden hide-m"
+      data-large-filter-mobile-toggle-display
+      data-large-filter-mobile-toggle-display-suffix="{{ filter_count_suffix|url_encode }}"
+    ></div>
+    <div class="civictheme-large-filter-flyout hide-m" data-large-filter-mobile-overlay data-flyout data-flyout-direction="right">
+      <div class="civictheme-large-filter__mobile-overlay" data-flyout-panel>
+        <div class="civictheme-mobile-navigation-close">
+          {% include '@atoms/button/button.twig' with {
+            theme: theme,
+            type: 'button',
+            size: 'small',
+            text: cancel_text,
+            icon: 'userinterface_close',
+            icon_placement: 'after',
+            attributes: 'data-flyout-close-all-trigger data-large-filter-mobile-cancel',
+            modifier_class: 'civictheme-mobile-navigation-close__button civictheme-large-filter__mobile-cancel',
+          } only %}
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-xxs-12">
+              <div class="civictheme-large-filter__mobile-selected-filters">
+                <h2 class="civictheme-large-filter__mobile-filter-title">{{ filter_title }}</h2>
+                <div class="civictheme-large-filter__selected-filters--hidden" data-large-filter-mobile-selected-filters>
+                  <div class="civictheme-large-filter__mobile-clear-container" data-large-filter-mobile-clear-container></div>
+                  <div class="civictheme-large-filter__mobile-tags" data-large-filter-mobile-tags-container></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="civictheme-large-filter__mobile-container" data-large-filter-mobile-container></div>
+        <div class="container civictheme-large-filter__mobile-apply-container">
+          {% include "@atoms/button/button.twig" with {
+            theme: theme,
+            text: apply_text,
+            type: 'primary',
+            kind: 'button',
+            modifier_class: 'civictheme-large-filter__mobile-apply',
+            attributes: 'data-flyout-close-all-trigger data-flyout-trigger-allow-default'
+          } only %}
+        </div>
+      </div>
+    </div>
+    <div class="civictheme-large-filter__desktop-container" data-large-filter-desktop-container>
+      <div class="container" data-large-filter-element>
+        <div class="row">
+          <div class="col-xxs-12">
+            <fieldset class="civictheme-large-filter__filters" data-large-filter-filters>
+              <legend class="hide-xxs show-m">{{ filter_title }}</legend>
+              {{ filters }}
+            </fieldset>
+            <div class="civictheme-large-filter__selected-filters civictheme-large-filter__selected-filters--hidden" data-large-filter-selected-filters>
+              <span id="civictheme-large-filter-tags-title" class="civictheme-large-filter__selected-filters-title">{{ tags_title }}</span>
+              <div data-large-filter-tags-container>
+                <div class="civictheme-large-filter__tags" aria-labelledby="civictheme-large-filter-tags-title" data-large-filter-tags></div>
+              </div>
+              <div class="civictheme-large-filter__clear-container" data-large-filter-clear-container>
+                <button class="civictheme-large-filter__clear-all" data-large-filter-clear>
+                  <span class="civictheme-large-filter__clear-all-label">{{ clear_text }}</span>
+                  {% include '@atoms/icon/icon.twig' with {
+                    symbol: 'userinterface_close_2',
+                    color: 'error',
+                  } only %}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

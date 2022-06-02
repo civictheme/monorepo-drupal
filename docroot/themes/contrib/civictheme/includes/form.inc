@@ -19,16 +19,30 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
   // If the view exposed form has more than one filter we render a large
   // filter.
   $is_civictheme_large_filter = _civictheme_get_number_of_exposed_form_elements($form) > 1;
+  $view = $form_state->get('view');
+  $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
+  $form_elements = Element::children($form);
+  foreach ($form_elements as $form_element) {
+    $form[$form_element]['#attributes']['#civictheme_theme'] = $theme;
+  }
+  $ajax_filter = $form_state->get('view')->ajaxEnabled();
+
   $form['#attributes']['data-civictheme-filter-type'] = $is_civictheme_large_filter ? 'large' : 'basic';
   $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $is_civictheme_large_filter ? 500 : 0;
   $form['#attributes']['data-civictheme-filter'] = '';
   $form['#large_filter'] = $is_civictheme_large_filter;
-  $ajax_filter = $form_state->get('view')->ajaxEnabled();
   $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
   // Ajax exposed view forms hides submit button to have auto-load.
   if ($ajax_filter) {
+    $form_state->get('view')->setAjaxEnabled(TRUE);
     $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
     $form['actions']['#attributes']['class'][] = 'hide-xxs';
+
+    // Attach node to provide access to the paragraph settings on ajax reloads.
+    $form['nid'] = [
+      '#type' => 'hidden',
+      '#value' => _civictheme_listing_get_node($form_state),
+    ];
   }
   else {
     $form['actions']['submit']['#attributes']['class'] = [
@@ -88,6 +102,7 @@ function _civictheme_form_alter__convert_exposed_form_elements(&$element, $form,
  * Implements template_preprocess_input().
  */
 function civictheme_preprocess_input(&$variables) {
+  _civictheme_get_theme_from_attributes($variables);
   $variables['state'] = 'none';
   if (isset($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
@@ -98,12 +113,18 @@ function civictheme_preprocess_input(&$variables) {
 
     unset($variables['attributes']['class']);
   }
+
+  if (isset($variables['attributes']['#civictheme_theme'])) {
+    unset($variables['attributes']['#civictheme_theme']);
+  }
+
 }
 
 /**
  * Implements template_preprocess_select().
  */
 function civictheme_preprocess_select(&$variables) {
+  _civictheme_get_theme_from_attributes($variables);
   if (isset($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
     unset($variables['attributes']['class']);
@@ -114,6 +135,7 @@ function civictheme_preprocess_select(&$variables) {
  * Implements template_preprocess_form_element().
  */
 function civictheme_preprocess_form_element(&$variables) {
+  _civictheme_get_theme_from_attributes($variables);
   // Handle any malformed attribute class properties.
   $variables['attributes']['class'] = $variables['attributes']['class'] ?? [];
   $variables['attributes']['class'] = is_string($variables['attributes']['class']) ? [$variables['attributes']['class']] : $variables['attributes']['class'];
@@ -236,6 +258,7 @@ function _civictheme_preprocess_civictheme_filter_form_element_alter(&$variables
  * Implements template_preprocess_form_element_label().
  */
 function civictheme_preprocess_form_element_label(&$variables) {
+  _civictheme_get_theme_from_attributes($variables);
   $variables['content'] = $variables['title'] ?? '';
 
   // Adding in core template classes.
@@ -254,6 +277,7 @@ function civictheme_preprocess_form_element_label(&$variables) {
  * Implements template_preprocess_fieldset().
  */
 function civictheme_preprocess_fieldset(&$variables) {
+  _civictheme_get_theme_from_attributes($variables);
   // Add core drupal form classes.
   $variables['attributes']['class'] = $variables['attributes']['class'] ?? [];
   $variables['attributes']['class'] = array_merge($variables['attributes']['class'], [
@@ -325,6 +349,12 @@ function civictheme_preprocess_radios(&$variables) {
  */
 function _civictheme_preprocess_composite_form_elements(&$variables) {
   $element = &$variables['element'];
+  _civictheme_get_theme_from_attributes($variables);
+  // Add theme to radio / checkbox inputs.
+  $form_elements = Element::children($variables['element']);
+  foreach ($form_elements as $form_element) {
+    $variables['element'][$form_element]['#civictheme_theme'] = $variables['theme'] ?? 'light';
+  }
   if (isset($element['#civictheme-large-filter'])) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
@@ -381,4 +411,56 @@ function civictheme_element_info_alter(array &$types) {
     // @see civictheme_preprocess_checkboxes
     unset($types['radios']['#pre_render']);
   }
+}
+
+/**
+ * Sets form element theme based on attributes passed from parent components.
+ */
+function _civictheme_get_theme_from_attributes(&$variables) {
+  // Setting theme for form element.
+  if (isset($variables['element']['#attributes']['#civictheme_theme'])
+    && in_array($variables['element']['#attributes']['#civictheme_theme'], [
+      'light',
+      'dark',
+    ])) {
+    $variables['theme'] = $variables['element']['#attributes']['#civictheme_theme'];
+    unset($variables['element']['#attributes']['#civictheme_theme']);
+    if (isset($variables['element']['label']['#attributes'])) {
+      $variables['element']['label']['#attributes']['#civictheme_theme'] = $variables['theme'];
+    }
+    if (isset($variables['label']['#attributes'])) {
+      $variables['label']['#attributes']['#civictheme_theme'] = $variables['theme'];
+    }
+  }
+  else {
+    $variables['theme'] = 'light';
+  }
+}
+
+/**
+ * Implements hook_preprocess_form().
+ */
+function civictheme_preprocess_form(&$variables) {
+  if (isset($variables['element']['#attributes']['civictheme_listing'])) {
+    unset($variables['element']['#attributes']['civictheme_listing']);
+  }
+  if (isset($variables['attributes']['civictheme_listing'])) {
+    unset($variables['attributes']['civictheme_listing']);
+  }
+}
+
+/**
+ * Get the nid that the listing block is embedded in.
+ */
+function _civictheme_listing_get_node($form_state) {
+  $nid = $form_state->getUserInput()['nid'] ?? NULL;
+  $nid = is_numeric($nid) ? $nid : NULL;
+  if (!$nid) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node) {
+      $nid = $node->id();
+    }
+  }
+
+  return $nid;
 }

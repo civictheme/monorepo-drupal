@@ -1,0 +1,1350 @@
+//
+// CivicTheme components default variables.
+//
+//
+// Do not copy this file for customisations.
+// Use `components/variables.components.scss` instead.
+//
+// Variables are split into 2 files:
+// - _variables.base.scss - base variables that are used to calculate other
+//   variables' values.
+// - _variables.components.scss - variables that control look of components.
+//
+// These are split into 2 files to allow changing base variables without the
+// need to provide component variables in custom themes (e.g., to apply custom
+// primary color and have it propagated to components).
+//
+// Variables organisation rules:
+// 1. Variables are grouped by their atomic type alphabetically.
+// 2. For every component, variables are ordered by:
+//    a. generic values
+//    b. light theme
+//    c. dark theme
+// 3. For every light theme variable, there is a dark theme counterpart.
+// 4. Variables named according to the pattern:
+//    $civictheme-[component]-[theme]-[?subcomponent]-[?state]-[rule]
+//    where:
+//    a. [component] is a hyphen delimited name of the component
+//    b. [theme] is a theme name (light or dark)
+//    c. [subcomponent] is an optional hyphen-delimited name of the subcomponent
+//    d. [state] is a single or multiple hyphen-delimited name of the state
+//    e. [rule] is an exact CSS rule name
+//
+//    Example 1:
+//    $civictheme-link-light-visited-hover-background
+//    [component]=link
+//    [theme]=light
+//    [state]=hover over visited
+//    [rule]=background-color
+//
+//    Example 2:
+//    $civictheme-secondary-navigation-light-menu-item-active-background-color
+//    [component]=secondary-navigation
+//    [theme]=light
+//    [subcomponent]=menu-item
+//    [state]=active
+//    [rule]=background-color
+
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:color';
+@import 'mixins';
+
+////////////////////////////////////////////////////////////////////////////////
+//                                 BASE                                       //
+////////////////////////////////////////////////////////////////////////////////
+
+//
+// Collapsible.
+//
+$civictheme-collapsible-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='' class='civictheme-icon civictheme-icon--color-primary civictheme-icon--size-small ' title='downarrow_1' width='24' height='24' viewBox='0 0 24 24' aria-hidden='true'%3E%3Cpath d='M16.9997 9.17C16.8123 8.98375 16.5589 8.87921 16.2947 8.87921C16.0305 8.87921 15.7771 8.98375 15.5897 9.17L11.9997 12.71L8.4597 9.17C8.27234 8.98375 8.01889 8.87921 7.7547 8.87921C7.49052 8.87921 7.23707 8.98375 7.0497 9.17C6.95598 9.26297 6.88158 9.37357 6.83081 9.49543C6.78004 9.61729 6.75391 9.74799 6.75391 9.88C6.75391 10.012 6.78004 10.1427 6.83081 10.2646C6.88158 10.3864 6.95598 10.497 7.0497 10.59L11.2897 14.83C11.3827 14.9237 11.4933 14.9981 11.6151 15.0489C11.737 15.0997 11.8677 15.1258 11.9997 15.1258C12.1317 15.1258 12.2624 15.0997 12.3843 15.0489C12.5061 14.9981 12.6167 14.9237 12.7097 14.83L16.9997 10.59C17.0934 10.497 17.1678 10.3864 17.2186 10.2646C17.2694 10.1427 17.2955 10.012 17.2955 9.88C17.2955 9.74799 17.2694 9.61729 17.2186 9.49543C17.1678 9.37357 17.0934 9.26297 16.9997 9.17Z'%3E%3C/path%3E%3C/svg%3E") !default;
+$civictheme-collapsible-icon-size: 'm' !default;
+$civictheme-collapsible-light-color: civictheme-color-neutral(90) !default;
+$civictheme-collapsible-light-background-color: civictheme-color-neutral(5) !default;
+$civictheme-collapsible-light-icon-color: $civictheme-collapsible-light-color !default;
+$civictheme-collapsible-dark-color: civictheme-color('neutral') !default;
+$civictheme-collapsible-dark-background-color: $civictheme-theme-dark-background-color !default;
+$civictheme-collapsible-dark-icon-color: $civictheme-collapsible-dark-color !default;
+
+// Outline.
+$civictheme-outline-offset: 0 !default;
+$civictheme-outline: 0.1875rem solid civictheme-color('outline') !default;
+$civictheme-outline-accent: 0.1875rem solid civictheme-color('accent') !default;
+
+////////////////////////////////////////////////////////////////////////////////
+//                                 ATOMS                                      //
+////////////////////////////////////////////////////////////////////////////////
+
+//
+// Button.
+//
+$civictheme-button-border-radius: $civictheme-border-radius !default;
+$civictheme-button-border-width: civictheme-space(0.25) !default;
+$civictheme-button-outline-width: civictheme-space(0.375) !default;
+$civictheme-button-outline-offset: civictheme-space(0.25) !default;
+
+// Primary button.
+$civictheme-button-light-primary-color: civictheme-color('neutral') !default;
+$civictheme-button-light-primary-background-color: civictheme-color('primary') !default;
+$civictheme-button-light-primary-border-color: civictheme-color('translucent') !default;
+$civictheme-button-light-primary-outline-color: civictheme-color('translucent') !default;
+$civictheme-button-light-primary-hover-color: $civictheme-button-light-primary-color !default;
+$civictheme-button-light-primary-hover-background-color: civictheme-color('secondary') !default;
+$civictheme-button-light-primary-hover-border-color: $civictheme-button-light-primary-border-color !default;
+$civictheme-button-light-primary-hover-outline-color: $civictheme-button-light-primary-outline-color !default;
+$civictheme-button-light-primary-visited-color: $civictheme-button-light-primary-color !default;
+$civictheme-button-light-primary-visited-background-color: $civictheme-button-light-primary-background-color !default;
+$civictheme-button-light-primary-visited-border-color: $civictheme-button-light-primary-border-color !default;
+$civictheme-button-light-primary-visited-outline-color: $civictheme-button-light-primary-outline-color !default;
+$civictheme-button-light-primary-active-color: $civictheme-button-light-primary-hover-color !default;
+$civictheme-button-light-primary-active-background-color: $civictheme-button-light-primary-hover-background-color !default;
+$civictheme-button-light-primary-active-border-color: $civictheme-button-light-primary-hover-border-color !default;
+$civictheme-button-light-primary-active-outline-color: civictheme-color('outline') !default;
+$civictheme-button-light-primary-focus-color: none !default;
+$civictheme-button-light-primary-focus-background-color: none !default;
+$civictheme-button-light-primary-focus-border-color: none !default;
+$civictheme-button-light-primary-focus-outline-color: civictheme-color('outline') !default;
+$civictheme-button-light-primary-disabled-color: civictheme-color-neutral(60) !default;
+$civictheme-button-light-primary-disabled-background-color: civictheme-color-neutral(20) !default;
+$civictheme-button-light-primary-disabled-border-color: none !default;
+$civictheme-button-light-primary-disabled-outline-color: none !default;
+$civictheme-button-light-primary-dismiss-color: civictheme-color('primary') !default;
+$civictheme-button-dark-primary-color: civictheme-color-shade-dark(45) !default;
+$civictheme-button-dark-primary-background-color: civictheme-color('accent') !default;
+$civictheme-button-dark-primary-border-color: civictheme-color('translucent') !default;
+$civictheme-button-dark-primary-outline-color: civictheme-color('translucent') !default;
+$civictheme-button-dark-primary-hover-color: civictheme-color('neutral') !default;
+$civictheme-button-dark-primary-hover-background-color: civictheme-color('primary') !default;
+$civictheme-button-dark-primary-hover-border-color: $civictheme-button-dark-primary-border-color !default;
+$civictheme-button-dark-primary-hover-outline-color: $civictheme-button-dark-primary-outline-color !default;
+$civictheme-button-dark-primary-visited-color: $civictheme-button-dark-primary-color !default;
+$civictheme-button-dark-primary-visited-background-color: $civictheme-button-dark-primary-background-color !default;
+$civictheme-button-dark-primary-visited-border-color: $civictheme-button-dark-primary-border-color !default;
+$civictheme-button-dark-primary-visited-outline-color: $civictheme-button-dark-primary-outline-color !default;
+$civictheme-button-dark-primary-active-color: $civictheme-button-dark-primary-hover-color !default;
+$civictheme-button-dark-primary-active-background-color: $civictheme-button-dark-primary-hover-background-color !default;
+$civictheme-button-dark-primary-active-border-color: $civictheme-button-dark-primary-hover-border-color !default;
+$civictheme-button-dark-primary-active-outline-color: civictheme-color('outline') !default;
+$civictheme-button-dark-primary-focus-color: none !default;
+$civictheme-button-dark-primary-focus-background-color: none !default;
+$civictheme-button-dark-primary-focus-border-color: none !default;
+$civictheme-button-dark-primary-focus-outline-color: civictheme-color('outline') !default;
+$civictheme-button-dark-primary-disabled-color: civictheme-color-neutral(60) !default;
+$civictheme-button-dark-primary-disabled-background-color: civictheme-color-neutral(20) !default;
+$civictheme-button-dark-primary-disabled-border-color: none !default;
+$civictheme-button-dark-primary-disabled-outline-color: none !default;
+$civictheme-button-dark-primary-dismiss-color: civictheme-color('accent') !default;
+
+// Secondary button.
+$civictheme-button-light-secondary-color: civictheme-color('primary') !default;
+$civictheme-button-light-secondary-background-color: civictheme-color('translucent') !default;
+$civictheme-button-light-secondary-border-color: civictheme-color('primary') !default;
+$civictheme-button-light-secondary-outline-color: civictheme-color('translucent') !default;
+$civictheme-button-light-secondary-hover-color: civictheme-color('neutral') !default;
+$civictheme-button-light-secondary-hover-background-color: civictheme-color('secondary') !default;
+$civictheme-button-light-secondary-hover-border-color: $civictheme-button-light-secondary-border-color !default;
+$civictheme-button-light-secondary-hover-outline-color: $civictheme-button-light-secondary-outline-color !default;
+$civictheme-button-light-secondary-visited-color: $civictheme-button-light-secondary-color !default;
+$civictheme-button-light-secondary-visited-background-color: $civictheme-button-light-secondary-background-color !default;
+$civictheme-button-light-secondary-visited-border-color: $civictheme-button-light-secondary-border-color !default;
+$civictheme-button-light-secondary-visited-outline-color: $civictheme-button-light-secondary-outline-color !default;
+$civictheme-button-light-secondary-active-color: $civictheme-button-light-secondary-hover-color !default;
+$civictheme-button-light-secondary-active-background-color: $civictheme-button-light-secondary-hover-background-color !default;
+$civictheme-button-light-secondary-active-border-color: $civictheme-button-light-secondary-hover-border-color !default;
+$civictheme-button-light-secondary-active-outline-color: civictheme-color('outline') !default;
+$civictheme-button-light-secondary-focus-color: civictheme-color('neutral') !default;
+$civictheme-button-light-secondary-focus-background-color: civictheme-color('primary') !default;
+$civictheme-button-light-secondary-focus-border-color: none !default;
+$civictheme-button-light-secondary-focus-outline-color: civictheme-color('outline') !default;
+$civictheme-button-light-secondary-disabled-color: civictheme-color-neutral(60) !default;
+$civictheme-button-light-secondary-disabled-background-color: civictheme-color-neutral(20) !default;
+$civictheme-button-light-secondary-disabled-border-color: none !default;
+$civictheme-button-light-secondary-disabled-outline-color: none !default;
+$civictheme-button-light-secondary-dismiss-color: civictheme-color('accent') !default;
+$civictheme-button-dark-secondary-color: civictheme-color('accent') !default;
+$civictheme-button-dark-secondary-background-color: civictheme-color('translucent') !default;
+$civictheme-button-dark-secondary-border-color: civictheme-color('accent') !default;
+$civictheme-button-dark-secondary-outline-color: civictheme-color('translucent') !default;
+$civictheme-button-dark-secondary-hover-color: civictheme-color('neutral') !default;
+$civictheme-button-dark-secondary-hover-background-color: civictheme-color('primary') !default;
+$civictheme-button-dark-secondary-hover-border-color: civictheme-color('translucent') !default;
+$civictheme-button-dark-secondary-hover-outline-color: $civictheme-button-dark-secondary-outline-color !default;
+$civictheme-button-dark-secondary-visited-color: $civictheme-button-dark-secondary-color !default;
+$civictheme-button-dark-secondary-visited-background-color: $civictheme-button-dark-secondary-background-color !default;
+$civictheme-button-dark-secondary-visited-border-color: $civictheme-button-dark-secondary-border-color !default;
+$civictheme-button-dark-secondary-visited-outline-color: $civictheme-button-dark-secondary-outline-color !default;
+$civictheme-button-dark-secondary-active-color: $civictheme-button-dark-secondary-hover-color !default;
+$civictheme-button-dark-secondary-active-background-color: $civictheme-button-dark-secondary-hover-background-color !default;
+$civictheme-button-dark-secondary-active-border-color: $civictheme-button-dark-secondary-hover-border-color !default;
+$civictheme-button-dark-secondary-active-outline-color: civictheme-color('outline') !default;
+$civictheme-button-dark-secondary-focus-color: none !default;
+$civictheme-button-dark-secondary-focus-background-color: none !default;
+$civictheme-button-dark-secondary-focus-border-color: none !default;
+$civictheme-button-dark-secondary-focus-outline-color: civictheme-color('outline') !default;
+$civictheme-button-dark-secondary-disabled-color: civictheme-color-neutral(60) !default;
+$civictheme-button-dark-secondary-disabled-background-color: civictheme-color-neutral(20) !default;
+$civictheme-button-dark-secondary-disabled-border-color: civictheme-color('translucent') !default;
+$civictheme-button-dark-secondary-disabled-outline-color: none !default;
+$civictheme-button-dark-secondary-dismiss-color: civictheme-color('accent') !default;
+
+// Tertiary button.
+$civictheme-button-light-tertiary-color: civictheme-color('primary') !default;
+$civictheme-button-light-tertiary-background-color: civictheme-color('translucent') !default;
+$civictheme-button-light-tertiary-border-color: civictheme-color('translucent') !default;
+$civictheme-button-light-tertiary-outline-color: civictheme-color('translucent') !default;
+$civictheme-button-light-tertiary-hover-color: civictheme-color('neutral') !default;
+$civictheme-button-light-tertiary-hover-background-color: civictheme-color('secondary') !default;
+$civictheme-button-light-tertiary-hover-border-color: $civictheme-button-light-tertiary-border-color !default;
+$civictheme-button-light-tertiary-hover-outline-color: $civictheme-button-light-tertiary-outline-color !default;
+$civictheme-button-light-tertiary-visited-color: $civictheme-button-light-tertiary-color !default;
+$civictheme-button-light-tertiary-visited-background-color: $civictheme-button-light-tertiary-background-color !default;
+$civictheme-button-light-tertiary-visited-border-color: $civictheme-button-light-tertiary-border-color !default;
+$civictheme-button-light-tertiary-visited-outline-color: $civictheme-button-light-tertiary-outline-color !default;
+$civictheme-button-light-tertiary-active-color: $civictheme-button-light-tertiary-hover-color !default;
+$civictheme-button-light-tertiary-active-background-color: $civictheme-button-light-tertiary-hover-background-color !default;
+$civictheme-button-light-tertiary-active-border-color: $civictheme-button-light-tertiary-hover-border-color !default;
+$civictheme-button-light-tertiary-active-outline-color: civictheme-color('outline') !default;
+$civictheme-button-light-tertiary-focus-color: civictheme-color('neutral') !default;
+$civictheme-button-light-tertiary-focus-background-color: civictheme-color('primary') !default;
+$civictheme-button-light-tertiary-focus-border-color: none !default;
+$civictheme-button-light-tertiary-focus-outline-color: civictheme-color('outline') !default;
+$civictheme-button-light-tertiary-disabled-color: civictheme-color-neutral(60) !default;
+$civictheme-button-light-tertiary-disabled-background-color: civictheme-color-neutral(20) !default;
+$civictheme-button-light-tertiary-disabled-border-color: none !default;
+$civictheme-button-light-tertiary-disabled-outline-color: none !default;
+$civictheme-button-light-tertiary-dismiss-color: civictheme-color('accent') !default;
+$civictheme-button-dark-tertiary-color: civictheme-color('primary') !default;
+$civictheme-button-dark-tertiary-background-color: civictheme-color('neutral') !default;
+$civictheme-button-dark-tertiary-border-color: civictheme-color('translucent') !default;
+$civictheme-button-dark-tertiary-outline-color: civictheme-color('translucent') !default;
+$civictheme-button-dark-tertiary-hover-color: civictheme-color('neutral') !default;
+$civictheme-button-dark-tertiary-hover-background-color: civictheme-color('primary') !default;
+$civictheme-button-dark-tertiary-hover-border-color: civictheme-color('translucent') !default;
+$civictheme-button-dark-tertiary-hover-outline-color: $civictheme-button-dark-tertiary-outline-color !default;
+$civictheme-button-dark-tertiary-visited-color: $civictheme-button-dark-tertiary-color !default;
+$civictheme-button-dark-tertiary-visited-background-color: $civictheme-button-dark-tertiary-background-color !default;
+$civictheme-button-dark-tertiary-visited-border-color: $civictheme-button-dark-tertiary-border-color !default;
+$civictheme-button-dark-tertiary-visited-outline-color: $civictheme-button-dark-tertiary-outline-color !default;
+$civictheme-button-dark-tertiary-active-color: $civictheme-button-dark-tertiary-hover-color !default;
+$civictheme-button-dark-tertiary-active-background-color: $civictheme-button-dark-tertiary-hover-background-color !default;
+$civictheme-button-dark-tertiary-active-border-color: $civictheme-button-dark-tertiary-hover-border-color !default;
+$civictheme-button-dark-tertiary-active-outline-color: civictheme-color('outline') !default;
+$civictheme-button-dark-tertiary-focus-color: none !default;
+$civictheme-button-dark-tertiary-focus-background-color: none !default;
+$civictheme-button-dark-tertiary-focus-border-color: none !default;
+$civictheme-button-dark-tertiary-focus-outline-color: civictheme-color('outline') !default;
+$civictheme-button-dark-tertiary-disabled-color: civictheme-color-neutral(60) !default;
+$civictheme-button-dark-tertiary-disabled-background-color: civictheme-color-neutral(20) !default;
+$civictheme-button-dark-tertiary-disabled-border-color: civictheme-color('translucent') !default;
+$civictheme-button-dark-tertiary-disabled-outline-color: none !default;
+$civictheme-button-dark-tertiary-dismiss-color: civictheme-color('accent') !default;
+
+// Chip button.
+$civictheme-button-light-chip-color: civictheme-color-neutral(80) !default;
+$civictheme-button-light-chip-background-color: civictheme-color('neutral') !default;
+$civictheme-button-light-chip-border-color: civictheme-color-neutral(20) !default;
+$civictheme-button-light-chip-outline-color: civictheme-color('translucent') !default;
+$civictheme-button-light-chip-hover-color: civictheme-color-neutral(80) !default;
+$civictheme-button-light-chip-hover-background-color: civictheme-color-neutral(5) !default;
+$civictheme-button-light-chip-hover-border-color: civictheme-color-neutral(80) !default;
+$civictheme-button-light-chip-hover-outline-color: $civictheme-button-light-chip-outline-color !default;
+$civictheme-button-light-chip-visited-color: $civictheme-button-light-chip-color !default;
+$civictheme-button-light-chip-visited-background-color: $civictheme-button-light-chip-background-color !default;
+$civictheme-button-light-chip-visited-border-color: $civictheme-button-light-chip-border-color !default;
+$civictheme-button-light-chip-visited-outline-color: $civictheme-button-light-chip-outline-color !default;
+$civictheme-button-light-chip-active-color: $civictheme-button-light-chip-hover-color !default;
+$civictheme-button-light-chip-active-background-color: $civictheme-button-light-chip-hover-background-color !default;
+$civictheme-button-light-chip-active-border-color: $civictheme-button-light-chip-hover-border-color !default;
+$civictheme-button-light-chip-active-outline-color: civictheme-color('translucent') !default;
+$civictheme-button-light-chip-focus-color: $civictheme-button-light-chip-active-color !default;
+$civictheme-button-light-chip-focus-background-color: $civictheme-button-light-chip-active-background-color !default;
+$civictheme-button-light-chip-focus-border-color: $civictheme-button-light-chip-active-border-color !default;
+$civictheme-button-light-chip-focus-outline-color: civictheme-color('outline') !default;
+$civictheme-button-light-chip-disabled-color: civictheme-color-neutral(60) !default;
+$civictheme-button-light-chip-disabled-background-color: civictheme-color-neutral(20) !default;
+$civictheme-button-light-chip-disabled-border-color: $civictheme-button-light-chip-disabled-background-color !default;
+$civictheme-button-light-chip-disabled-outline-color: none !default;
+$civictheme-button-light-chip-dismiss-color: civictheme-color('primary') !default;
+$civictheme-button-light-chip-selected-color: civictheme-color('neutral') !default;
+$civictheme-button-light-chip-selected-background-color: civictheme-color('primary') !default;
+$civictheme-button-dark-chip-color: civictheme-color-neutral(5) !default;
+$civictheme-button-dark-chip-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-button-dark-chip-border-color: civictheme-color-neutral(40) !default;
+$civictheme-button-dark-chip-outline-color: civictheme-color('translucent') !default;
+$civictheme-button-dark-chip-hover-color: $civictheme-button-dark-chip-color !default;
+$civictheme-button-dark-chip-hover-background-color: $civictheme-button-dark-chip-background-color !default;
+$civictheme-button-dark-chip-hover-border-color: $civictheme-button-dark-chip-border-color !default;
+$civictheme-button-dark-chip-hover-outline-color: $civictheme-button-dark-chip-outline-color !default;
+$civictheme-button-dark-chip-visited-color: $civictheme-button-dark-chip-color !default;
+$civictheme-button-dark-chip-visited-background-color: $civictheme-button-dark-chip-background-color !default;
+$civictheme-button-dark-chip-visited-border-color: $civictheme-button-dark-chip-border-color !default;
+$civictheme-button-dark-chip-visited-outline-color: $civictheme-button-dark-chip-outline-color !default;
+$civictheme-button-dark-chip-active-color: civictheme-color('accent') !default;
+$civictheme-button-dark-chip-active-background-color: civictheme-color-shade-dark(60) !default;
+$civictheme-button-dark-chip-active-border-color: civictheme-color('accent') !default;
+$civictheme-button-dark-chip-active-outline-color: civictheme-color('outline') !default;
+$civictheme-button-dark-chip-focus-color: none !default;
+$civictheme-button-dark-chip-focus-background-color: none !default;
+$civictheme-button-dark-chip-focus-border-color: none !default;
+$civictheme-button-dark-chip-focus-outline-color: civictheme-color('outline') !default;
+$civictheme-button-dark-chip-disabled-color: civictheme-color-neutral(60) !default;
+$civictheme-button-dark-chip-disabled-background-color: civictheme-color-neutral(20) !default;
+$civictheme-button-dark-chip-disabled-border-color: civictheme-color('translucent') !default;
+$civictheme-button-dark-chip-disabled-outline-color: none !default;
+$civictheme-button-dark-chip-dismiss-color: civictheme-color('accent') !default;
+$civictheme-button-dark-chip-selected-color: civictheme-color-shade-dark(45) !default;
+$civictheme-button-dark-chip-selected-background-color: civictheme-color('accent') !default;
+
+//
+// Iframe.
+//
+$civictheme-iframe-space-vertical: civictheme-space(7) !default;
+$civictheme-iframe-space-horizontal: civictheme-space(7) !default;
+$civictheme-iframe-light-background-color: civictheme-color-neutral(5) !default;
+$civictheme-iframe-dark-background-color: civictheme-color-shade-dark(60) !default;
+
+//
+// Form element label.
+//
+$civictheme-label-light-color: civictheme-color-neutral(80) !default;
+$civictheme-label-light-required-color: civictheme-color('error') !default;
+$civictheme-label-dark-color: civictheme-color('neutral') !default;
+$civictheme-label-dark-required-color: civictheme-color('error') !default;
+
+//
+// Table.
+//
+$civictheme-table-breakpoint: 'm' !default;
+$civictheme-table-light-color: civictheme-color-neutral(70) !default;
+$civictheme-table-light-link-color: civictheme-color('primary') !default;
+$civictheme-table-light-link-hover-color: civictheme-color('neutral') !default;
+$civictheme-table-light-header-color: civictheme-color-neutral(80) !default;
+$civictheme-table-light-footer-color: civictheme-color-neutral(80) !default;
+$civictheme-table-light-header-border-color: civictheme-color-neutral(60) !default;
+$civictheme-table-light-footer-border-color: civictheme-color-neutral(60) !default;
+$civictheme-table-light-border-color: civictheme-color-neutral(20) !default;
+$civictheme-table-light-background-color: civictheme-color('neutral') !default;
+$civictheme-table-light-row-odd-color: civictheme-color-neutral(70) !default;
+$civictheme-table-light-row-odd-link-color: civictheme-color('primary') !default;
+$civictheme-table-light-row-odd-link-hover-color: civictheme-color('neutral') !default;
+$civictheme-table-light-row-odd-background-color: civictheme-color('neutral') !default;
+$civictheme-table-light-row-even-color: civictheme-color-neutral(70) !default;
+$civictheme-table-light-row-even-link-color: civictheme-color('primary') !default;
+$civictheme-table-light-row-even-link-hover-color: civictheme-color('neutral') !default;
+$civictheme-table-light-row-even-background-color: civictheme-color-neutral(5) !default;
+$civictheme-table-light-caption-color: civictheme-color-neutral(60) !default;
+$civictheme-table-dark-color: civictheme-color('neutral') !default;
+$civictheme-table-dark-link-color: civictheme-color('accent') !default;
+$civictheme-table-dark-link-hover-color: $civictheme-table-dark-link-color !default;
+$civictheme-table-dark-header-color: civictheme-color('neutral') !default;
+$civictheme-table-dark-footer-color: civictheme-color('neutral') !default;
+$civictheme-table-dark-header-border-color: civictheme-color-shade-light(90) !default;
+$civictheme-table-dark-footer-border-color: civictheme-color-shade-light(90) !default;
+$civictheme-table-dark-border-color: civictheme-color('primary') !default;
+$civictheme-table-dark-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-table-dark-row-odd-color: civictheme-color-shade-light(90) !default;
+$civictheme-table-dark-row-odd-link-color: $civictheme-table-dark-link-color !default;
+$civictheme-table-dark-row-odd-link-hover-color: $civictheme-table-dark-link-hover-color !default;
+$civictheme-table-dark-row-odd-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-table-dark-row-even-color: civictheme-color-shade-light(90) !default;
+$civictheme-table-dark-row-even-link-color: $civictheme-table-dark-link-color !default;
+$civictheme-table-dark-row-even-link-hover-color: $civictheme-table-dark-link-hover-color !default;
+$civictheme-table-dark-row-even-background-color: civictheme-color-shade-dark(30) !default;
+$civictheme-table-dark-caption-color: civictheme-color-shade-light(90) !default;
+
+//
+// Link.
+//
+$civictheme-link-light-color: civictheme-color('primary') !default;
+$civictheme-link-light-hover-color: civictheme-color('neutral') !default;
+$civictheme-link-light-hover-background-color: civictheme-color('primary') !default;
+$civictheme-link-dark-color: civictheme-color('accent') !default;
+$civictheme-link-dark-hover-color: civictheme-color-shade-dark(60) !default;
+$civictheme-link-dark-hover-background-color: civictheme-color('accent') !default;
+$civictheme-link-light-visited-color: civictheme-color('outline') !default;
+$civictheme-link-light-visited-hover-color: civictheme-color('neutral') !default;
+$civictheme-link-light-visited-hover-background-color: civictheme-color('outline') !default;
+$civictheme-link-dark-visited-color: civictheme-color('outline') !default;
+$civictheme-link-dark-visited-hover-color: civictheme-color-shade-dark(60) !default;
+$civictheme-link-dark-visited-hover-background-color: $civictheme-link-dark-visited-color !default;
+
+//
+// Tag.
+//
+$civictheme-tag-border-radius: $civictheme-border-radius !default;
+$civictheme-tag-border-width: 0 !default;
+$civictheme-tag-light-color: civictheme-color('neutral') !default;
+$civictheme-tag-light-background-color: civictheme-color('primary') !default;
+$civictheme-tag-light-border-color: civictheme-color-neutral(20) !default;
+$civictheme-tag-light-alt-color: civictheme-color('neutral') !default;
+$civictheme-tag-light-alt-background-color: civictheme-color('primary') !default;
+$civictheme-tag-dark-color: civictheme-color('neutral') !default;
+$civictheme-tag-dark-background-color: civictheme-color-shade-dark(30) !default;
+$civictheme-tag-dark-border-color: civictheme-color-neutral(80) !default;
+$civictheme-tag-dark-alt-color: civictheme-color-neutral(80) !default;
+$civictheme-tag-dark-alt-background-color: civictheme-color('accent') !default;
+
+//
+// Input.
+//
+$civictheme-input-border-radius: math.div($civictheme-border-radius, 2) !default;
+$civictheme-input-light-background-color: civictheme-color-neutral(5) !default;
+$civictheme-input-light-border-color: civictheme-color-neutral(60) !default;
+$civictheme-input-light-hover-border-color: civictheme-color-neutral(60) !default;
+$civictheme-input-light-focus-background-color: civictheme-color('neutral') !default;
+$civictheme-input-light-focus-color: civictheme-color-neutral(80) !default;
+$civictheme-input-light-focus-outline-color: civictheme-color-neutral(80) !default;
+$civictheme-input-light-focus-border-color: civictheme-color-neutral(80) !default;
+$civictheme-input-light-disabled-color: civictheme-color-neutral(40) !default;
+$civictheme-input-light-disabled-background-color: civictheme-color-neutral(10) !default;
+$civictheme-input-light-error-border-color: civictheme-color('error') !default;
+$civictheme-input-light-error-icon-color: civictheme-color('error') !default;
+$civictheme-input-light-success-border-color: civictheme-color('success') !default;
+$civictheme-input-light-success-icon-color: civictheme-color('success') !default;
+$civictheme-input-dark-base-color: civictheme-color('neutral') !default;
+$civictheme-input-dark-background-color: civictheme-color-shade-dark(60) !default;
+$civictheme-input-dark-color: civictheme-color-neutral(10) !default;
+$civictheme-input-dark-border-color: civictheme-color-neutral(40) !default;
+$civictheme-input-dark-hover-border-color: civictheme-color-neutral(10) !default;
+$civictheme-input-dark-focus-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-input-dark-error-border-color: civictheme-color('error') !default;
+$civictheme-input-dark-error-icon-color: civictheme-color('error') !default;
+$civictheme-input-dark-success-border-color: civictheme-color('success') !default;
+$civictheme-input-dark-success-icon-color: civictheme-color('success') !default;
+$civictheme-input-dark-focus-color: civictheme-color('neutral') !default;
+$civictheme-input-dark-focus-outline-color: civictheme-color('neutral') !default;
+$civictheme-input-dark-focus-border-color: civictheme-color('neutral') !default;
+$civictheme-input-dark-icon-color: civictheme-color('neutral') !default;
+$civictheme-input-dark-disabled-color: civictheme-color-neutral(10) !default;
+$civictheme-input-dark-disabled-background-color: civictheme-color-neutral(60) !default;
+
+//
+// Radio, Checkbox.
+//
+$civictheme-checkbox-border-radius: math.div($civictheme-border-radius, 2) !default;
+$civictheme-radio-border-radius: 50% !default;
+$civictheme-radio-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='' title='approvetick' width='22' height='22' viewBox='0 0 24 24' aria-hidden='true'%3E%3Cpath d='M18.7104 7.20998C18.6175 7.11625 18.5069 7.04186 18.385 6.99109C18.2632 6.94032 18.1324 6.91418 18.0004 6.91418C17.8684 6.91418 17.7377 6.94032 17.6159 6.99109C17.494 7.04186 17.3834 7.11625 17.2904 7.20998L9.84044 14.67L6.71044 11.53C6.61392 11.4367 6.49998 11.3634 6.37512 11.3142C6.25026 11.265 6.11694 11.2409 5.98276 11.2432C5.84858 11.2455 5.71617 11.2743 5.59309 11.3278C5.47001 11.3812 5.35868 11.4585 5.26544 11.555C5.1722 11.6515 5.09889 11.7654 5.04968 11.8903C5.00048 12.0152 4.97635 12.1485 4.97867 12.2827C4.98099 12.4168 5.00972 12.5493 5.06321 12.6723C5.1167 12.7954 5.19392 12.9067 5.29044 13L9.13044 16.84C9.2234 16.9337 9.334 17.0081 9.45586 17.0589C9.57772 17.1096 9.70843 17.1358 9.84044 17.1358C9.97245 17.1358 10.1032 17.1096 10.225 17.0589C10.3469 17.0081 10.4575 16.9337 10.5504 16.84L18.7104 8.67998C18.8119 8.58634 18.893 8.47269 18.9484 8.34619C19.0038 8.21969 19.0324 8.08308 19.0324 7.94498C19.0324 7.80688 19.0038 7.67028 18.9484 7.54378C18.893 7.41728 18.8119 7.30363 18.7104 7.20998Z'%3E%3C/path%3E%3C/svg%3E") !default;
+$civictheme-radio-light-border-color: civictheme-color-neutral(60) !default;
+$civictheme-radio-light-background-color: civictheme-color-neutral(10) !default;
+$civictheme-radio-light-selected-background-color: civictheme-color('primary') !default;
+$civictheme-radio-light-check-color: civictheme-color('neutral') !default;
+$civictheme-radio-dark-border-color: civictheme-color-neutral(40) !default;
+$civictheme-radio-dark-background-color: civictheme-color('primary') !default;
+$civictheme-radio-dark-selected-background-color: civictheme-color('accent') !default;
+$civictheme-radio-dark-check-color: civictheme-color-shade-dark(80) !default;
+
+//
+// Select.
+//
+$civictheme-select-light-color: civictheme-color-neutral(80) !default;
+$civictheme-select-light-background-color: civictheme-color('neutral') !default;
+$civictheme-select-light-border-color: civictheme-color-neutral(20) !default;
+$civictheme-select-light-hover-border-color: civictheme-color-neutral(60) !default;
+$civictheme-select-light-border-success-color: civictheme-color('success') !default;
+$civictheme-select-light-disabled-color: civictheme-color-neutral(40) !default;
+$civictheme-select-light-disabled-background-color: civictheme-color-neutral(10) !default;
+$civictheme-select-dark-color: civictheme-color('neutral') !default;
+$civictheme-select-dark-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-select-dark-border-color: civictheme-color-neutral(40) !default;
+$civictheme-select-dark-hover-border-color: civictheme-color-neutral(10) !default;
+$civictheme-select-dark-focus-border-color: civictheme-color('accent') !default;
+$civictheme-select-dark-border-error-color: civictheme-color('error') !default;
+$civictheme-select-dark-border-success-color: civictheme-color('success') !default;
+$civictheme-select-dark-disabled-color: civictheme-color-neutral(40) !default;
+$civictheme-select-dark-disabled-background-color: civictheme-color-neutral(80) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+//                               MOLECULES                                    //
+////////////////////////////////////////////////////////////////////////////////
+
+//
+// Attachment.
+//
+$civictheme-attachment-space-vertical: civictheme-space(10) !default;
+$civictheme-attachment-space-horizontal: civictheme-space(7) !default;
+$civictheme-attachment-border-radius: $civictheme-border-radius !default;
+$civictheme-attachment-light-color: civictheme-color-neutral(60) !default;
+$civictheme-attachment-light-icon-color: civictheme-color('primary') !default;
+$civictheme-attachment-light-border-color: civictheme-color-neutral(20) !default;
+$civictheme-attachment-light-date-color: civictheme-color-neutral(60) !default;
+$civictheme-attachment-light-heading-color: civictheme-color-neutral(80) !default;
+$civictheme-attachment-light-heading-hover-color: civictheme-color('secondary') !default;
+$civictheme-attachment-light-heading-active-color: civictheme-color-shade-dark(30) !default;
+$civictheme-attachment-light-title-color: civictheme-color-neutral(80) !default;
+$civictheme-attachment-light-background-color: civictheme-color('neutral') !default;
+$civictheme-attachment-light-wrapper-background-color: civictheme-color-neutral(5) !default;
+$civictheme-attachment-dark-color: civictheme-color-neutral(10) !default;
+$civictheme-attachment-dark-icon-color: civictheme-color('accent') !default;
+$civictheme-attachment-dark-border-color: transparent !default;
+$civictheme-attachment-dark-date-color: civictheme-color-neutral(10) !default;
+$civictheme-attachment-dark-heading-color: civictheme-color('neutral') !default;
+$civictheme-attachment-dark-heading-hover-color: civictheme-color('accent') !default;
+$civictheme-attachment-dark-heading-active-color: civictheme-color('neutral') !default;
+$civictheme-attachment-dark-title-color: civictheme-color('neutral') !default;
+$civictheme-attachment-dark-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-attachment-dark-wrapper-background-color: civictheme-color-shade-dark(45) !default;
+
+//
+// Back to top.
+//
+$civictheme-back-to-top-space-bottom: civictheme-space(8) !default;
+$civictheme-back-to-top-space-right: civictheme-space(1) !default;
+$civictheme-back-to-top-light-background-color: civictheme-color('secondary') !default;
+$civictheme-back-to-top-light-color: civictheme-color('neutral') !default;
+$civictheme-back-to-top-dark-background-color: civictheme-color('accent') !default;
+$civictheme-back-to-top-dark-color: civictheme-color('secondary') !default;
+
+//
+// Basic content.
+//
+$civictheme-basic-content-space-vertical: civictheme-space(8) !default;
+$civictheme-basic-content-space-horizontal: civictheme-space(7) !default;
+$civictheme-basic-content-vertical-spacing: 1.5rem !default;
+$civictheme-basic-content-list-marker-width: 1.75rem !default;
+$civictheme-basic-content-list-marker-margin: 1rem !default;
+$civictheme-basic-content-blockquote-border-radius: $civictheme-border-radius !default;
+$civictheme-basic-content-light-background-color: civictheme-color('neutral') !default;
+$civictheme-basic-content-light-wrapper-background-color: civictheme-color-neutral(5) !default;
+$civictheme-basic-content-light-base-color: civictheme-color-neutral(60) !default;
+$civictheme-basic-content-light-heading-1-color: civictheme-color-neutral(80) !default;
+$civictheme-basic-content-light-heading-2-color: civictheme-color-neutral(80) !default;
+$civictheme-basic-content-light-heading-3-color: civictheme-color-neutral(80) !default;
+$civictheme-basic-content-light-heading-4-color: civictheme-color-neutral(80) !default;
+$civictheme-basic-content-light-heading-5-color: civictheme-color-neutral(80) !default;
+$civictheme-basic-content-light-heading-6-color: civictheme-color-neutral(80) !default;
+$civictheme-basic-content-light-blockquote-color: civictheme-color-neutral(80) !default;
+$civictheme-basic-content-light-blockquote-block: civictheme-color('secondary') !default;
+$civictheme-basic-content-light-ul-li-color: civictheme-color-neutral(80) !default;
+$civictheme-basic-content-light-ul-li-marker-color: civictheme-color('primary') !default;
+$civictheme-basic-content-light-ol-li-color: civictheme-color-neutral(80) !default;
+$civictheme-basic-content-light-ol-li-marker-color: civictheme-color('primary') !default;
+$civictheme-basic-content-dark-background-color: civictheme-color-shade-dark(60) !default;
+$civictheme-basic-content-dark-wrapper-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-basic-content-dark-base-color: civictheme-color('neutral') !default;
+$civictheme-basic-content-dark-heading-1-color: $civictheme-basic-content-dark-base-color !default;
+$civictheme-basic-content-dark-heading-2-color: $civictheme-basic-content-dark-base-color !default;
+$civictheme-basic-content-dark-heading-3-color: $civictheme-basic-content-dark-base-color !default;
+$civictheme-basic-content-dark-heading-4-color: $civictheme-basic-content-dark-base-color !default;
+$civictheme-basic-content-dark-heading-5-color: $civictheme-basic-content-dark-base-color !default;
+$civictheme-basic-content-dark-heading-6-color: $civictheme-basic-content-dark-base-color !default;
+$civictheme-basic-content-dark-blockquote-color: $civictheme-basic-content-dark-base-color !default;
+$civictheme-basic-content-dark-blockquote-block: civictheme-color('secondary') !default;
+$civictheme-basic-content-dark-ul-li-color: $civictheme-basic-content-dark-base-color !default;
+$civictheme-basic-content-dark-ul-li-marker-color: civictheme-color('accent') !default;
+$civictheme-basic-content-dark-ol-li-color: $civictheme-basic-content-dark-base-color !default;
+$civictheme-basic-content-dark-ol-li-marker-color: civictheme-color('accent') !default;
+
+//
+// Filter/Dropdown filter.
+//
+$civictheme-dropdown-filter-zindex: 9 !default;
+$civictheme-dropdown-filter-light-search-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='civictheme-icon civictheme-search__icon' title='magnifier' width='24' height='24' viewBox='0 0 24 24' aria-hidden='true'%3E%3Cpath d='M21.7104 20.2899L18.0004 16.6099C19.4405 14.8143 20.1379 12.5352 19.9492 10.2412C19.7605 7.94721 18.7001 5.81269 16.9859 4.27655C15.2718 2.74041 13.0342 1.91941 10.7333 1.98237C8.43243 2.04534 6.24311 2.98747 4.61553 4.61505C2.98795 6.24263 2.04582 8.43194 1.98286 10.7328C1.9199 13.0337 2.7409 15.2713 4.27704 16.9854C5.81318 18.6996 7.94769 19.76 10.2417 19.9487C12.5357 20.1374 14.8148 19.44 16.6104 17.9999L20.2904 21.6799C20.3834 21.7736 20.494 21.848 20.6158 21.8988C20.7377 21.9496 20.8684 21.9757 21.0004 21.9757C21.1324 21.9757 21.2631 21.9496 21.385 21.8988C21.5068 21.848 21.6174 21.7736 21.7104 21.6799C21.8906 21.4934 21.9914 21.2442 21.9914 20.9849C21.9914 20.7256 21.8906 20.4764 21.7104 20.2899ZM11.0004 17.9999C9.61592 17.9999 8.26255 17.5894 7.1114 16.8202C5.96026 16.051 5.06305 14.9578 4.53324 13.6787C4.00342 12.3996 3.8648 10.9921 4.1349 9.63427C4.40499 8.27641 5.07168 7.02912 6.05065 6.05016C7.02961 5.07119 8.27689 4.4045 9.63476 4.13441C10.9926 3.86431 12.4001 4.00293 13.6792 4.53275C14.9583 5.06256 16.0515 5.95977 16.8207 7.11091C17.5899 8.26206 18.0004 9.61544 18.0004 10.9999C18.0004 12.8564 17.2629 14.6369 15.9501 15.9497C14.6374 17.2624 12.8569 17.9999 11.0004 17.9999Z'%3E%3C/path%3E%3C/svg%3E") !default;
+$civictheme-dropdown-filter-light-filter-text-color: civictheme-color('secondary') !default;
+$civictheme-dropdown-filter-light-filter-text-icon-color: civictheme-color('primary') !default;
+$civictheme-dropdown-filter-light-filter-options-background-color: civictheme-color('neutral') !default;
+$civictheme-dropdown-filter-light-filter-options-border-color: transparent !default;
+$civictheme-dropdown-filter-light-inline-filter-text-color: civictheme-color('primary') !default;
+$civictheme-dropdown-filter-dark-filter-text-color: civictheme-color('neutral') !default;
+$civictheme-dropdown-filter-dark-filter-text-icon-color: civictheme-color('accent') !default;
+$civictheme-dropdown-filter-dark-filter-options-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-dropdown-filter-dark-filter-options-border-color: civictheme-color-neutral(40) !default;
+$civictheme-dropdown-filter-dark-inline-filter-text-color: civictheme-color('neutral') !default;
+$civictheme-dropdown-filter-dark-search-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' stroke='%23FFFFFF' fill='%23FFFFFF' class='civictheme-icon civictheme-search__icon' title='magnifier' width='24' height='24' viewBox='0 0 24 24' aria-hidden='true'%3E%3Cpath d='M21.7104 20.2899L18.0004 16.6099C19.4405 14.8143 20.1379 12.5352 19.9492 10.2412C19.7605 7.94721 18.7001 5.81269 16.9859 4.27655C15.2718 2.74041 13.0342 1.91941 10.7333 1.98237C8.43243 2.04534 6.24311 2.98747 4.61553 4.61505C2.98795 6.24263 2.04582 8.43194 1.98286 10.7328C1.9199 13.0337 2.7409 15.2713 4.27704 16.9854C5.81318 18.6996 7.94769 19.76 10.2417 19.9487C12.5357 20.1374 14.8148 19.44 16.6104 17.9999L20.2904 21.6799C20.3834 21.7736 20.494 21.848 20.6158 21.8988C20.7377 21.9496 20.8684 21.9757 21.0004 21.9757C21.1324 21.9757 21.2631 21.9496 21.385 21.8988C21.5068 21.848 21.6174 21.7736 21.7104 21.6799C21.8906 21.4934 21.9914 21.2442 21.9914 20.9849C21.9914 20.7256 21.8906 20.4764 21.7104 20.2899ZM11.0004 17.9999C9.61592 17.9999 8.26255 17.5894 7.1114 16.8202C5.96026 16.051 5.06305 14.9578 4.53324 13.6787C4.00342 12.3996 3.8648 10.9921 4.1349 9.63427C4.40499 8.27641 5.07168 7.02912 6.05065 6.05016C7.02961 5.07119 8.27689 4.4045 9.63476 4.13441C10.9926 3.86431 12.4001 4.00293 13.6792 4.53275C14.9583 5.06256 16.0515 5.95977 16.8207 7.11091C17.5899 8.26206 18.0004 9.61544 18.0004 10.9999C18.0004 12.8564 17.2629 14.6369 15.9501 15.9497C14.6374 17.2624 12.8569 17.9999 11.0004 17.9999Z'%3E%3C/path%3E%3C/svg%3E") !default;
+
+//
+// Directional link.
+//
+$civictheme-directional-icon-padding: rem(2px) 0 !default;
+$civictheme-directional-link-light-color: civictheme-color-neutral(90) !default;
+$civictheme-directional-link-light-hover-color: civictheme-color-shade-dark(30) !default;
+$civictheme-directional-link-light-disabled-color: civictheme-color-neutral(40) !default;
+$civictheme-directional-link-dark-color: civictheme-color('neutral') !default;
+$civictheme-directional-link-dark-hover-color: civictheme-color('accent') !default;
+$civictheme-directional-link-dark-disabled-color: civictheme-color-neutral(40) !default;
+
+//
+// Card/Event card.
+//
+$civictheme-event-card-border-radius: $civictheme-border-radius !default;
+$civictheme-event-card-light-background-color: civictheme-color('neutral') !default;
+$civictheme-event-card-light-border-top-color: civictheme-color('secondary') !default;
+$civictheme-event-card-light-heading-color: civictheme-color-neutral(80) !default;
+$civictheme-event-card-light-heading-hover-color: civictheme-color('primary') !default;
+$civictheme-event-card-light-heading-active-color: civictheme-color-shade-dark(40) !default;
+$civictheme-event-card-light-summary-color: civictheme-color-neutral(60) !default;
+$civictheme-event-card-light-location-color: civictheme-color-neutral(60) !default;
+$civictheme-event-card-light-date-color: civictheme-color-neutral(80) !default;
+$civictheme-event-card-light-date-background-color: civictheme-color-neutral(5) !default;
+$civictheme-event-card-light-icon-arrow-color: inherit !default;
+$civictheme-event-card-dark-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-event-card-dark-border-top-color: civictheme-color('secondary') !default;
+$civictheme-event-card-dark-heading-color: civictheme-color('neutral') !default;
+$civictheme-event-card-dark-heading-hover-color: civictheme-color('accent') !default;
+$civictheme-event-card-dark-heading-active-color: civictheme-color-neutral(20) !default;
+$civictheme-event-card-dark-summary-color: civictheme-color-neutral(5) !default;
+$civictheme-event-card-dark-location-color: civictheme-color-neutral(5) !default;
+$civictheme-event-card-dark-date-color: civictheme-color('neutral') !default;
+$civictheme-event-card-dark-date-background-color: civictheme-color-shade-dark(30) !default;
+$civictheme-event-card-dark-icon-arrow-color: civictheme-color('accent') !default;
+
+//
+// Card/Navigation card.
+//
+$civictheme-navigation-card-border-radius: $civictheme-border-radius !default;
+$civictheme-navigation-card-light-color: civictheme-color-neutral(60) !default;
+$civictheme-navigation-card-light-background-color: civictheme-color('neutral') !default;
+$civictheme-navigation-card-light-heading-color: civictheme-color-neutral(80) !default;
+$civictheme-navigation-card-light-heading-hover-color: civictheme-color('primary') !default;
+$civictheme-navigation-card-light-heading-active-color: civictheme-color-shade-dark(40) !default;
+$civictheme-navigation-card-light-icon-color: civictheme-color('primary') !default;
+$civictheme-navigation-card-light-icon-arrow-color: civictheme-color('primary') !default;
+$civictheme-navigation-card-dark-color: civictheme-color-neutral(5) !default;
+$civictheme-navigation-card-dark-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-navigation-card-dark-heading-color: civictheme-color('neutral') !default;
+$civictheme-navigation-card-dark-heading-hover-color: civictheme-color('accent') !default;
+$civictheme-navigation-card-dark-heading-active-color: civictheme-color-neutral(20) !default;
+$civictheme-navigation-card-dark-icon-color: civictheme-color('accent') !default;
+$civictheme-navigation-card-dark-icon-arrow-color: civictheme-color('accent') !default;
+
+//
+// Card/Promo card.
+//
+$civictheme-promo-card-border-radius: $civictheme-border-radius !default;
+$civictheme-promo-card-light-background-color: civictheme-color('neutral') !default;
+$civictheme-promo-card-light-border-top-color: civictheme-color('secondary') !default;
+$civictheme-promo-card-light-heading-color: civictheme-color-neutral(80) !default;
+$civictheme-promo-card-light-heading-hover-color: civictheme-color('primary') !default;
+$civictheme-promo-card-light-heading-active-color: civictheme-color-shade-dark(40) !default;
+$civictheme-promo-card-light-summary-color: civictheme-color-neutral(60) !default;
+$civictheme-promo-card-light-date-color: civictheme-color-neutral(60) !default;
+$civictheme-promo-card-light-date-background-color: civictheme-color('translucent') !default;
+$civictheme-promo-card-light-icon-arrow-color: inherit !default;
+$civictheme-promo-card-dark-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-promo-card-dark-border-top-color: civictheme-color('secondary') !default;
+$civictheme-promo-card-dark-heading-color: civictheme-color('neutral') !default;
+$civictheme-promo-card-dark-heading-hover-color: civictheme-color('accent') !default;
+$civictheme-promo-card-dark-heading-active-color: civictheme-color-neutral(20) !default;
+$civictheme-promo-card-dark-summary-color: civictheme-color-neutral(5) !default;
+$civictheme-promo-card-dark-date-color: civictheme-color('neutral') !default;
+$civictheme-promo-card-dark-date-background-color: civictheme-color('translucent') !default;
+$civictheme-promo-card-dark-icon-arrow-color: civictheme-color('accent') !default;
+
+//
+// Card/Publication card.
+//
+$civictheme-publication-card-border-radius: $civictheme-border-radius !default;
+$civictheme-publication-card-light-color: civictheme-color-neutral(60) !default;
+$civictheme-publication-card-light-background-color: civictheme-color('neutral') !default;
+$civictheme-publication-card-light-heading-color: civictheme-color-neutral(80) !default;
+$civictheme-publication-card-light-heading-hover-color: civictheme-color('primary') !default;
+$civictheme-publication-card-light-heading-active-color: civictheme-color-shade-dark(40) !default;
+$civictheme-publication-card-light-icon-color: civictheme-color('primary') !default;
+$civictheme-publication-card-light-attachment-icon-color: civictheme-color('primary') !default;
+$civictheme-publication-card-light-attachment-link-color: civictheme-color-neutral(80) !default;
+$civictheme-publication-card-dark-color: civictheme-color-neutral(5) !default;
+$civictheme-publication-card-dark-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-publication-card-dark-heading-color: civictheme-color('neutral') !default;
+$civictheme-publication-card-dark-heading-hover-color: civictheme-color('accent') !default;
+$civictheme-publication-card-dark-heading-active-color: civictheme-color-neutral(20) !default;
+$civictheme-publication-card-dark-icon-color: civictheme-color('accent') !default;
+$civictheme-publication-card-dark-attachment-icon-color: civictheme-color('accent') !default;
+$civictheme-publication-card-dark-attachment-link-color: civictheme-color('neutral') !default;
+
+//
+// Card/Service card.
+//
+$civictheme-service-card-border-radius: $civictheme-border-radius !default;
+$civictheme-service-card-light-background-color: civictheme-color('neutral') !default;
+$civictheme-service-card-light-border-top-color: civictheme-color('secondary') !default;
+$civictheme-service-card-light-heading-color: civictheme-color-neutral(80) !default;
+$civictheme-service-card-light-heading-hover-color: civictheme-color('secondary') !default;
+$civictheme-service-card-light-heading-active-color: civictheme-color-shade-dark(30) !default;
+$civictheme-service-card-dark-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-service-card-dark-border-top-color: civictheme-color('secondary') !default;
+$civictheme-service-card-dark-heading-color: civictheme-color('neutral') !default;
+$civictheme-service-card-dark-heading-hover-color: civictheme-color('accent') !default;
+$civictheme-service-card-dark-heading-active-color: civictheme-color-neutral(20) !default;
+
+//
+// Card/Subject card.
+//
+$civictheme-subject-card-border-radius: $civictheme-border-radius !default;
+$civictheme-subject-card-light-color: civictheme-color('neutral') !default;
+$civictheme-subject-card-light-hover-color: civictheme-color('neutral') !default;
+$civictheme-subject-card-light-active-color: civictheme-color-shade-dark(40) !default;
+$civictheme-subject-card-light-image-background-color: civictheme-color-neutral(80) !default;
+$civictheme-subject-card-light-icon-color: civictheme-color('neutral') !default;
+$civictheme-subject-card-dark-color: civictheme-color('neutral') !default;
+$civictheme-subject-card-dark-hover-color: civictheme-color('accent') !default;
+$civictheme-subject-card-dark-active-color: civictheme-color-neutral(20) !default;
+$civictheme-subject-card-dark-image-background-color: civictheme-color-neutral(90) !default;
+$civictheme-subject-card-dark-icon-color: civictheme-color('accent') !default;
+
+//
+// Figure.
+//
+$civictheme-figure-border-radius: $civictheme-border-radius !default;
+$civictheme-figure-caption-light-color: civictheme-color-neutral(60) !default;
+$civictheme-figure-caption-icon-light-color: $civictheme-figure-caption-light-color !default;
+$civictheme-figure-caption-dark-color: civictheme-color-shade-dark(90) !default;
+$civictheme-figure-caption-icon-dark-color: $civictheme-figure-caption-dark-color !default;
+
+//
+// Link list.
+//
+$civictheme-link-list-light-color: civictheme-color-neutral(70) !default;
+$civictheme-link-list-dark-color: civictheme-color('neutral') !default;
+
+//
+// Map.
+//
+$civictheme-map-space-vertical: civictheme-space(6) !default;
+$civictheme-map-space-horizontal: civictheme-space(7) !default;
+$civictheme-map-padding-bottom: 56.25% !default;
+$civictheme-map-light-link-color: civictheme-color-shade-dark(15) !default;
+$civictheme-map-light-link-hover-color: civictheme-color('neutral') !default;
+$civictheme-map-light-background-color: transparent !default;
+$civictheme-map-light-wrapper-background-color: civictheme-color-neutral(5) !default;
+$civictheme-map-dark-link-color: civictheme-color('neutral') !default;
+$civictheme-map-dark-link-hover-color: civictheme-color-shade-dark(60) !default;
+$civictheme-map-dark-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-map-dark-wrapper-background-color: civictheme-color-shade-dark(45) !default;
+
+//
+// Next steps.
+//
+$civictheme-next-steps-space-vertical: civictheme-space(6) !default;
+$civictheme-next-steps-border-radius: $civictheme-border-radius !default;
+$civictheme-next-steps-light-color: civictheme-color-neutral(60) !default;
+$civictheme-next-steps-light-hover-color: civictheme-color('secondary') !default;
+$civictheme-next-steps-light-active-color: civictheme-color-shade-dark(30) !default;
+$civictheme-next-steps-light-background-color: civictheme-color-neutral(5) !default;
+$civictheme-next-steps-light-heading-color: civictheme-color-neutral(80) !default;
+$civictheme-next-steps-light-icon-color: civictheme-color('primary') !default;
+$civictheme-next-steps-light-stripe-color: civictheme-color('secondary') !default;
+$civictheme-next-steps-dark-color: civictheme-color-neutral(10) !default;
+$civictheme-next-steps-dark-hover-color: civictheme-color('accent') !default;
+$civictheme-next-steps-dark-active-color: civictheme-color-neutral(20) !default;
+$civictheme-next-steps-dark-background-color: civictheme-color-shade-dark(15) !default;
+$civictheme-next-steps-dark-heading-color: civictheme-color-neutral(10) !default;
+$civictheme-next-steps-dark-icon-color: civictheme-color('accent') !default;
+$civictheme-next-steps-dark-stripe-color: civictheme-color('secondary') !default;
+
+//
+// Pagination.
+//
+$civictheme-pagination-light-link-color: civictheme-color-neutral(90) !default;
+$civictheme-pagination-light-link-hover-color: civictheme-color-shade-dark(30) !default;
+$civictheme-pagination-light-link-active-border-color: civictheme-color('primary') !default;
+$civictheme-pagination-dark-link-color: civictheme-color('neutral') !default;
+$civictheme-pagination-dark-link-hover-color: civictheme-color('accent') !default;
+$civictheme-pagination-dark-link-active-border-color: civictheme-color('accent') !default;
+
+//
+// Progress indicator.
+//
+$civictheme-progress-indicator-light-color: civictheme-color-neutral(60) !default;
+$civictheme-progress-indicator-light-active-background-color: civictheme-color-neutral(5) !default;
+$civictheme-progress-indicator-light-icon-color: civictheme-color('primary') !default;
+$civictheme-progress-indicator-light-border-color: civictheme-color-neutral(40) !default;
+$civictheme-progress-indicator-light-active-border-color: $civictheme-progress-indicator-light-icon-color !default;
+$civictheme-progress-indicator-light-background-color: transparent !default;
+$civictheme-progress-indicator-dark-color: civictheme-color('neutral') !default;
+$civictheme-progress-indicator-dark-active-background-color: civictheme-color-shade-dark(30) !default;
+$civictheme-progress-indicator-dark-icon-color: civictheme-color('accent') !default;
+$civictheme-progress-indicator-dark-border-color: transparent !default;
+$civictheme-progress-indicator-dark-active-border-color: $civictheme-progress-indicator-dark-icon-color !default;
+$civictheme-progress-indicator-dark-background-color: transparent !default;
+
+//
+// Promo.
+//
+$civictheme-promo-space-vertical: civictheme-space(6) !default;
+$civictheme-promo-light-heading-color: civictheme-color-shade-dark(80) !default;
+$civictheme-promo-light-body-color: civictheme-color-neutral(60) !default;
+$civictheme-promo-light-background-color: civictheme-color('neutral') !default;
+$civictheme-promo-dark-heading-color: civictheme-color('neutral') !default;
+$civictheme-promo-dark-body-color: civictheme-color('neutral') !default;
+$civictheme-promo-dark-background-color: civictheme-color-shade-dark(45) !default;
+
+//
+// Search.
+//
+$civictheme-search-light-color: civictheme-color-neutral(60) !default;
+$civictheme-search-light-background-color: civictheme-color('neutral') !default;
+$civictheme-search-light-border-color: civictheme-color-shade-dark(30) !default;
+$civictheme-search-light-help-color: $civictheme-search-light-color !default;
+$civictheme-search-light-input-background-color: civictheme-color('neutral') !default;
+$civictheme-search-light-input-border-color: civictheme-color-shade-dark(30) !default;
+$civictheme-search-light-input-color: civictheme-color-neutral(60) !default;
+$civictheme-search-light-input-helper-color: civictheme-color('neutral') !default;
+$civictheme-search-dark-color: civictheme-color-neutral(60) !default;
+$civictheme-search-dark-background-color: civictheme-color('neutral') !default;
+$civictheme-search-dark-border-color: civictheme-color-shade-dark(30) !default;
+$civictheme-search-dark-help-color: civictheme-color('neutral') !default;
+
+//
+// Skip link.
+//
+$civictheme-skip-link-light-color: civictheme-color-shade-dark(30) !default;
+$civictheme-skip-link-light-background-color: civictheme-color-shade-light(90) !default;
+$civictheme-skip-link-dark-color: civictheme-color-shade-light(90) !default;
+$civictheme-skip-link-dark-background-color: civictheme-color-shade-dark(60) !default;
+
+//
+// Tooltip.
+//
+$civictheme-tooltip-width: rem(230px) !default;
+$civictheme-tooltip-triangle-width: civictheme-space() !default;
+$civictheme-tooltip-triangle-height: civictheme-space() !default;
+$civictheme-tooltip-description-border-radius: $civictheme-border-radius !default;
+$civictheme-tooltip-z-index: 99 !default;
+$civictheme-tooltip-light-icon-color: civictheme-color-shade-dark(30) !default;
+$civictheme-tooltip-light-icon-hover-color: civictheme-color('secondary') !default;
+$civictheme-tooltip-light-description-color: civictheme-color('neutral') !default;
+$civictheme-tooltip-light-description-background-color: civictheme-color('primary') !default;
+$civictheme-tooltip-dark-icon-color: civictheme-color('neutral') !default;
+$civictheme-tooltip-dark-icon-hover-color: civictheme-color('accent') !default;
+$civictheme-tooltip-dark-description-color: civictheme-color('neutral') !default;
+$civictheme-tooltip-dark-description-background-color: civictheme-color-shade-dark(30) !default;
+
+//
+// Video
+//
+$civictheme-video-padding-bottom: 56.25% !default;
+$civictheme-video-light-link-color: civictheme-color-shade-dark(15) !default;
+$civictheme-video-light-link-hover-color: civictheme-color('neutral') !default;
+$civictheme-video-light-icon-color: civictheme-color-shade-dark(15) !default;
+$civictheme-video-light-icon-hover-color: civictheme-color-shade-dark(30) !default;
+$civictheme-video-dark-link-color: civictheme-color('neutral') !default;
+$civictheme-video-dark-link-hover-color: civictheme-color-shade-dark(60) !default;
+$civictheme-video-dark-icon-color: civictheme-color('accent') !default;
+$civictheme-video-dark-icon-hover-color: civictheme-color('accent') !default;
+
+////////////////////////////////////////////////////////////////////////////////
+//                               ORGANISMS                                    //
+////////////////////////////////////////////////////////////////////////////////
+
+//
+// Accordion.
+//
+$civictheme-accordion-space-vertical: civictheme-space(8) !default;
+$civictheme-accordion-space-horizontal: civictheme-space(7) !default;
+$civictheme-accordion-header-border-radius: $civictheme-border-radius !default;
+$civictheme-accordion-button-border-radius: $civictheme-border-radius !default;
+$civictheme-accordion-item-border-radius: $civictheme-border-radius !default;
+$civictheme-accordion-light-color: civictheme-color-neutral(60) !default;
+$civictheme-accordion-light-background-color: civictheme-color('neutral') !default;
+$civictheme-accordion-light-wrapper-background-color: civictheme-color-neutral(5) !default;
+$civictheme-accordion-light-border-color: civictheme-color-neutral(20) !default;
+$civictheme-accordion-light-button-background-color: civictheme-color('neutral') !default;
+$civictheme-accordion-light-button-color: civictheme-color-neutral(60) !default;
+$civictheme-accordion-light-icon-color: civictheme-color('primary') !default;
+$civictheme-accordion-light-expanded-border-color: civictheme-color('secondary') !default;
+$civictheme-accordion-dark-color: civictheme-color('neutral') !default;
+$civictheme-accordion-dark-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-accordion-dark-wrapper-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-accordion-dark-border-color: civictheme-color('primary') !default;
+$civictheme-accordion-dark-button-background-color: transparent !default;
+$civictheme-accordion-dark-button-color: civictheme-color('neutral') !default;
+$civictheme-accordion-dark-icon-color: civictheme-color('accent') !default;
+$civictheme-accordion-dark-expanded-border-color: civictheme-color('secondary') !default;
+
+//
+// Alert.
+//
+$civictheme-alert-status-light-color: civictheme-color('neutral') !default;
+$civictheme-alert-warning-light-color: civictheme-color('neutral') !default;
+$civictheme-alert-error-light-color: civictheme-color('neutral') !default;
+$civictheme-alert-success-light-color: civictheme-color('neutral') !default;
+$civictheme-alert-status-light-background-color: civictheme-color('status') !default;
+$civictheme-alert-warning-light-background-color: civictheme-color('warning') !default;
+$civictheme-alert-error-light-background-color: civictheme-color('error') !default;
+$civictheme-alert-success-light-background-color: civictheme-color('success') !default;
+$civictheme-alert-status-light-icon-color: $civictheme-alert-status-light-color !default;
+$civictheme-alert-warning-light-icon-color: $civictheme-alert-warning-light-color !default;
+$civictheme-alert-error-light-icon-color: $civictheme-alert-error-light-color !default;
+$civictheme-alert-success-light-icon-color: $civictheme-alert-success-light-color !default;
+$civictheme-alert-light-divider-color: civictheme-color('neutral') !default;
+$civictheme-alert-status-dark-color: civictheme-color('neutral') !default;
+$civictheme-alert-warning-dark-color: civictheme-color('neutral') !default;
+$civictheme-alert-error-dark-color: civictheme-color('neutral') !default;
+$civictheme-alert-success-dark-color: civictheme-color('neutral') !default;
+$civictheme-alert-status-dark-background-color: civictheme-color('status') !default;
+$civictheme-alert-warning-dark-background-color: civictheme-color('warning') !default;
+$civictheme-alert-error-dark-background-color: civictheme-color('error') !default;
+$civictheme-alert-success-dark-background-color: civictheme-color('success') !default;
+$civictheme-alert-status-dark-icon-color: $civictheme-alert-status-dark-color !default;
+$civictheme-alert-warning-dark-icon-color: $civictheme-alert-warning-dark-color !default;
+$civictheme-alert-error-dark-icon-color: $civictheme-alert-error-dark-color !default;
+$civictheme-alert-success-dark-icon-color: $civictheme-alert-success-dark-color !default;
+$civictheme-alert-dark-divider-color: civictheme-color-shade-dark(40) !default;
+
+//
+// Banner.
+//
+$civictheme-banner-decorative-mobile-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{civictheme-space(5)}), 0% 100%) !default;
+$civictheme-banner-decorative-desktop-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{civictheme-space(11)}), 0% 100%) !default;
+$civictheme-banner-featured-image-clip-path: polygon(13% 10%, 100% 0, 100% 100%, 0% 100%) !default;
+$civictheme-banner-light-color: civictheme-color-neutral(90) !default;
+$civictheme-banner-light-background-color: civictheme-color-neutral(20) !default;
+$civictheme-banner-dark-color: civictheme-color('neutral') !default;
+$civictheme-banner-dark-background-color: civictheme-color-shade-dark(60) !default;
+
+//
+// Breadcrumb.
+//
+$civictheme-breadcrumb-light-color: civictheme-color-neutral(90) !default;
+$civictheme-breadcrumb-light-hover-color: civictheme-color-neutral(5) !default;
+$civictheme-breadcrumb-light-icon-color: civictheme-color-neutral(40) !default;
+$civictheme-breadcrumb-dark-color: civictheme-color-neutral(5) !default;
+$civictheme-breadcrumb-dark-hover-color: civictheme-color-shade-dark(60) !default;
+$civictheme-breadcrumb-dark-icon-color: civictheme-color-neutral(40) !default;
+
+//
+// Callout.
+//
+$civictheme-callout-space-vertical: civictheme-space(6) !default;
+$civictheme-callout-border-radius: $civictheme-border-radius !default;
+$civictheme-callout-light-color: civictheme-color-neutral(60) !default;
+$civictheme-callout-light-background-color: civictheme-color-neutral(5) !default;
+$civictheme-callout-light-border-color: civictheme-color('secondary') !default;
+$civictheme-callout-light-heading-color: civictheme-color-neutral(80) !default;
+$civictheme-callout-light-summary-color: civictheme-color-neutral(60) !default;
+$civictheme-callout-dark-color: civictheme-color-shade-dark(90) !default;
+$civictheme-callout-dark-background-color: civictheme-color-shade-dark(15) !default;
+$civictheme-callout-dark-border-color: $civictheme-callout-light-border-color !default;
+$civictheme-callout-dark-heading-color: civictheme-color('neutral') !default;
+$civictheme-callout-dark-summary-color: civictheme-color-shade-light(90) !default;
+
+//
+// Card container.
+//
+$civictheme-card-container-space-vertical: civictheme-space(10) !default;
+$civictheme-card-container-space-horizontal: civictheme-space(7) !default;
+$civictheme-card-container-light-color: civictheme-color-neutral(80) !default;
+$civictheme-card-container-light-background-color: civictheme-color-neutral(5) !default;
+$civictheme-card-container-light-wrapper-background-color: civictheme-color-neutral(5) !default;
+$civictheme-card-container-light-heading-color: civictheme-color-neutral(80) !default;
+$civictheme-card-container-light-heading-hover-color: civictheme-color('neutral') !default;
+$civictheme-card-container-light-heading-title-color: civictheme-color-neutral(80) !default;
+$civictheme-card-container-light-footer-link-color: civictheme-color-neutral(80) !default;
+$civictheme-card-container-light-footer-link-hover-color: civictheme-color('neutral') !default;
+$civictheme-card-container-dark-color: civictheme-color('neutral') !default;
+$civictheme-card-container-dark-background-color: civictheme-color-shade-dark(60) !default;
+$civictheme-card-container-dark-wrapper-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-card-container-dark-heading-color: civictheme-color('neutral') !default;
+$civictheme-card-container-dark-heading-hover-color: civictheme-color-shade-dark(60) !default;
+$civictheme-card-container-dark-heading-title-color: civictheme-color('neutral') !default;
+$civictheme-card-container-dark-footer-link-color: civictheme-color('neutral') !default;
+$civictheme-card-container-dark-footer-link-hover-color: civictheme-color-shade-dark(60) !default;
+
+//
+// Content.
+//
+$civictheme-content-space-vertical: civictheme-space(8) !default;
+$civictheme-content-light-background-color: inherit !default;
+$civictheme-content-dark-background-color: inherit !default;
+
+//
+// Form/Large filter.
+//
+$civictheme-large-filter-breakpoint: 'm' !default;
+$civictheme-large-filter-light-background-color: civictheme-color('neutral') !default;
+$civictheme-large-filter-light-border-color: civictheme-color-neutral(20) !default;
+$civictheme-large-filter-light-filters-legend-color: civictheme-color('secondary') !default;
+$civictheme-large-filter-light-selected-filters-border-color: civictheme-color-neutral(20) !default;
+$civictheme-large-filter-light-clear-all-background-color: civictheme-color('translucent') !default;
+$civictheme-large-filter-light-clear-all-color: civictheme-color('secondary') !default;
+$civictheme-large-filter-light-clear-all-icon-color: civictheme-color('error') !default;
+$civictheme-large-filter-light-selected-filters-title-color: civictheme-color('secondary') !default;
+$civictheme-large-filter-light-mobile-toggle-color: civictheme-color('primary') !default;
+$civictheme-large-filter-light-mobile-toggle-background-color: civictheme-color('neutral') !default;
+$civictheme-large-filter-light-mobile-toggle-border-color: civictheme-color-neutral(20) !default;
+$civictheme-large-filter-light-mobile-toggle-display-color: civictheme-color-neutral(60) !default;
+$civictheme-large-filter-light-mobile-toggle-display-border-color: civictheme-color-neutral(20) !default;
+$civictheme-large-filter-light-dropdown-filter-border-color: civictheme-color-neutral(20) !default;
+$civictheme-large-filter-light-mobile-overlay-background-color: civictheme-color('neutral') !default;
+$civictheme-large-filter-light-mobile-filter-title-color: civictheme-color-shade-dark(80) !default;
+$civictheme-large-filter-light-mobile-clear-all-label-color: civictheme-color('secondary') !default;
+$civictheme-large-filter-light-mobile-clear-all-label-icon: civictheme-color('secondary') !default;
+$civictheme-large-filter-dark-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-large-filter-dark-border-color: civictheme-color-shade-dark(30) !default;
+$civictheme-large-filter-dark-filters-legend-color: civictheme-color('neutral') !default;
+$civictheme-large-filter-dark-selected-filters-border-color: civictheme-color-shade-dark(30) !default;
+$civictheme-large-filter-dark-clear-all-background-color: civictheme-color('translucent') !default;
+$civictheme-large-filter-dark-clear-all-color: civictheme-color('neutral') !default;
+$civictheme-large-filter-dark-clear-all-icon-color: civictheme-color('neutral') !default;
+$civictheme-large-filter-dark-selected-filters-title-color: civictheme-color('neutral') !default;
+$civictheme-large-filter-dark-mobile-toggle-color: civictheme-color('neutral') !default;
+$civictheme-large-filter-dark-mobile-toggle-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-large-filter-dark-mobile-toggle-border-color: civictheme-color-shade-dark(15) !default;
+$civictheme-large-filter-dark-mobile-toggle-display-color: civictheme-color('neutral') !default;
+$civictheme-large-filter-dark-mobile-toggle-display-border-color: civictheme-color-shade-dark(15) !default;
+$civictheme-large-filter-dark-dropdown-filter-border-color: civictheme-color-shade-dark(15) !default;
+$civictheme-large-filter-dark-mobile-overlay-background-color: civictheme-color-shade-dark(30) !default;
+$civictheme-large-filter-dark-mobile-filter-title-color: civictheme-color('neutral') !default;
+$civictheme-large-filter-dark-mobile-clear-all-label-color: civictheme-color('neutral') !default;
+$civictheme-large-filter-dark-mobile-clear-all-label-icon: civictheme-color('neutral') !default;
+
+//
+// Form/Fieldset.
+//
+$civictheme-fieldset-required-color: civictheme-color('error') !default;
+$civictheme-fieldset-light-color: black !default;
+$civictheme-fieldset-dark-color: civictheme-color-neutral(5) !default;
+
+//
+// Form/Form element.
+//
+$civictheme-form-element-light-color: civictheme-color-neutral(80) !default;
+$civictheme-form-element-dark-color: civictheme-color('neutral') !default;
+
+//
+// Form/Password indicator.
+//
+$civictheme-password-indicator-progress-mask: url("data:image/svg+xml;utf8,%3Csvg width='308' height='3' viewBox='0 0 308 3' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='74' height='3' rx='1.5' /%3E%3Crect x='78' width='74' height='3' rx='1.5' /%3E%3Crect x='156' width='74' height='3' rx='1.5' /%3E%3Crect x='234' width='74' height='3' rx='1.5' /%3E%3C/svg%3E") !default;
+$civictheme-password-indicator-weak-icon: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 11C11.7348 11 11.4804 11.1054 11.2929 11.2929C11.1054 11.4804 11 11.7348 11 12V16C11 16.2652 11.1054 16.5196 11.2929 16.7071C11.4804 16.8946 11.7348 17 12 17C12.2652 17 12.5196 16.8946 12.7071 16.7071C12.8946 16.5196 13 16.2652 13 16V12C13 11.7348 12.8946 11.4804 12.7071 11.2929C12.5196 11.1054 12.2652 11 12 11ZM12.38 7.08C12.1365 6.97998 11.8635 6.97998 11.62 7.08C11.4973 7.12759 11.3851 7.19896 11.29 7.29C11.2017 7.3872 11.1306 7.49882 11.08 7.62C11.024 7.73868 10.9966 7.86882 11 8C10.9992 8.13161 11.0245 8.26207 11.0742 8.38391C11.124 8.50574 11.1973 8.61656 11.29 8.71C11.3872 8.79833 11.4988 8.86936 11.62 8.92C11.7715 8.98224 11.936 9.00632 12.099 8.99011C12.2619 8.97391 12.4184 8.91792 12.5547 8.82707C12.691 8.73622 12.8029 8.61328 12.8805 8.46907C12.9582 8.32486 12.9992 8.16378 13 8C12.9963 7.73523 12.8927 7.48163 12.71 7.29C12.6149 7.19896 12.5028 7.12759 12.38 7.08ZM12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 10.6868 21.7413 9.38642 21.2388 8.17317C20.7363 6.95991 19.9997 5.85752 19.0711 4.92893C18.1425 4.00035 17.0401 3.26375 15.8268 2.7612C14.6136 2.25866 13.3132 2 12 2ZM12 20C10.4178 20 8.87104 19.5308 7.55544 18.6518C6.23985 17.7727 5.21447 16.5233 4.60897 15.0615C4.00347 13.5997 3.84504 11.9911 4.15372 10.4393C4.4624 8.88743 5.22433 7.46197 6.34315 6.34315C7.46197 5.22433 8.88743 4.4624 10.4393 4.15372C11.9911 3.84504 13.5997 4.00346 15.0615 4.60896C16.5233 5.21447 17.7727 6.23984 18.6518 7.55544C19.5308 8.87103 20 10.4177 20 12C20 14.1217 19.1572 16.1566 17.6569 17.6569C16.1566 19.1571 14.1217 20 12 20Z' /%3E%3C/svg%3E") !default;
+$civictheme-password-indicator-strong-icon: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill=''%3E%3Cpath d='M14.72 8.79L10.43 13.09L8.78 11.44C8.69036 11.3353 8.58004 11.2503 8.45597 11.1903C8.33191 11.1303 8.19678 11.0965 8.05906 11.0912C7.92134 11.0859 7.78401 11.1091 7.65568 11.1594C7.52736 11.2096 7.41081 11.2859 7.31335 11.3833C7.2159 11.4808 7.13964 11.5974 7.08937 11.7257C7.03909 11.854 7.01589 11.9913 7.02121 12.1291C7.02653 12.2668 7.06026 12.4019 7.12028 12.526C7.1803 12.65 7.26532 12.7604 7.37 12.85L9.72 15.21C9.81344 15.3027 9.92426 15.376 10.0461 15.4258C10.1679 15.4755 10.2984 15.5008 10.43 15.5C10.6923 15.4989 10.9437 15.3947 11.13 15.21L16.13 10.21C16.2237 10.117 16.2981 10.0064 16.3489 9.88458C16.3997 9.76272 16.4258 9.63201 16.4258 9.5C16.4258 9.36799 16.3997 9.23728 16.3489 9.11542C16.2981 8.99356 16.2237 8.88296 16.13 8.79C15.9426 8.60375 15.6892 8.49921 15.425 8.49921C15.1608 8.49921 14.9074 8.60375 14.72 8.79ZM12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 10.6868 21.7413 9.38642 21.2388 8.17317C20.7363 6.95991 19.9997 5.85752 19.0711 4.92893C18.1425 4.00035 17.0401 3.26375 15.8268 2.7612C14.6136 2.25866 13.3132 2 12 2ZM12 20C10.4178 20 8.87104 19.5308 7.55544 18.6518C6.23985 17.7727 5.21447 16.5233 4.60897 15.0615C4.00347 13.5997 3.84504 11.9911 4.15372 10.4393C4.4624 8.88743 5.22433 7.46197 6.34315 6.34315C7.46197 5.22433 8.88743 4.4624 10.4393 4.15372C11.9911 3.84504 13.5997 4.00346 15.0615 4.60896C16.5233 5.21447 17.7727 6.23984 18.6518 7.55544C19.5308 8.87103 20 10.4177 20 12C20 14.1217 19.1572 16.1566 17.6569 17.6569C16.1566 19.1571 14.1217 20 12 20Z' /%3E%3C/svg%3E") !default;
+$civictheme-password-indicator-light-weak-color: civictheme-color('error') !default;
+$civictheme-password-indicator-light-fair-color: civictheme-color('warning') !default;
+$civictheme-password-indicator-light-good-color: civictheme-color('status') !default;
+$civictheme-password-indicator-light-great-color: civictheme-color('success') !default;
+$civictheme-password-indicator-light-progress-background-color: civictheme-color-neutral(20) !default;
+$civictheme-password-indicator-dark-weak-color: civictheme-color('error') !default;
+$civictheme-password-indicator-dark-fair-color: civictheme-color('warning') !default;
+$civictheme-password-indicator-dark-good-color: civictheme-color('status') !default;
+$civictheme-password-indicator-dark-great-color: civictheme-color('success') !default;
+$civictheme-password-indicator-dark-progress-background-color: civictheme-color-neutral(20) !default;
+
+//
+// Footer.
+//
+$civictheme-footer-logo-desktop-width: 190px !default;
+$civictheme-footer-logo-mobile-width: 190px !default;
+$civictheme-footer-light-color: civictheme-color-neutral(90) !default;
+$civictheme-footer-light-background-color: civictheme-color-neutral(20) !default;
+$civictheme-footer-light-border-color: civictheme-color-neutral(40) !default;
+$civictheme-footer-light-outline-color: civictheme-color('secondary') !default;
+$civictheme-footer-light-link-color: civictheme-color-neutral(90) !default;
+$civictheme-footer-light-link-hover-color: civictheme-color-shade-dark(30) !default;
+$civictheme-footer-light-collapsible-border-color: civictheme-color-neutral(40) !default;
+$civictheme-footer-dark-color: civictheme-color('neutral') !default;
+$civictheme-footer-dark-background-color: civictheme-color-shade-dark(60) !default;
+$civictheme-footer-dark-border-color: civictheme-color('primary') !default;
+$civictheme-footer-dark-outline-color: civictheme-color('outline') !default;
+$civictheme-footer-dark-link-color: civictheme-color('neutral') !default;
+$civictheme-footer-dark-link-hover-color: civictheme-color('accent') !default;
+$civictheme-footer-dark-collapsible-border-color: civictheme-color-shade-dark(30) !default;
+
+//
+// Header.
+//
+$civictheme-header-logo-desktop-width: 230px !default;
+$civictheme-header-logo-mobile-width: 125px !default;
+$civictheme-header-desktop-menu-breakpoint: 'm' !default;
+$civictheme-header-light-top-color: civictheme-color-shade-dark(80) !default;
+$civictheme-header-light-top-background-color: civictheme-color-neutral(10) !default;
+$civictheme-header-light-middle-background-color: civictheme-color('neutral') !default;
+$civictheme-header-light-middle-border-color: civictheme-color-neutral(10) !default;
+$civictheme-header-dark-top-color: civictheme-color-neutral(20) !default;
+$civictheme-header-dark-top-background-color: civictheme-color-shade-dark(60) !default;
+$civictheme-header-dark-middle-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-header-dark-middle-border-color: transparent !default;
+
+//
+// Listing.
+//
+$civictheme-listing-space-vertical: civictheme-space(10) !default;
+$civictheme-listing-space-horizontal: civictheme-space(7) !default;
+$civictheme-listing-light-color: civictheme-color-neutral(80) !default;
+$civictheme-listing-light-background-color: civictheme-color-neutral(5) !default;
+$civictheme-listing-dark-color: civictheme-color-neutral(80) !default;
+$civictheme-listing-with-background-dark-color: civictheme-color('neutral') !default;
+$civictheme-listing-dark-background-color: civictheme-color-shade-dark(45) !default;
+
+//
+// Message.
+//
+$civictheme-message-border-radius: $civictheme-border-radius !default;
+$civictheme-message-status-light-color: civictheme-color-neutral(90) !default;
+$civictheme-message-warning-light-color: civictheme-color-neutral(90) !default;
+$civictheme-message-error-light-color: civictheme-color-neutral(90) !default;
+$civictheme-message-success-light-color: civictheme-color-neutral(90) !default;
+$civictheme-message-status-light-background-color: color.mix(white, civictheme-color('status'), 85%) !default;
+$civictheme-message-warning-light-background-color: color.mix(white, civictheme-color('warning'), 85%) !default;
+$civictheme-message-error-light-background-color: color.mix(white, civictheme-color('error'), 85%) !default;
+$civictheme-message-success-light-background-color: color.mix(white, civictheme-color('success'), 85%) !default;
+$civictheme-message-status-light-icon-color: civictheme-color('status') !default;
+$civictheme-message-warning-light-icon-color: civictheme-color('warning') !default;
+$civictheme-message-error-light-icon-color: civictheme-color('error') !default;
+$civictheme-message-success-light-icon-color: civictheme-color('success') !default;
+$civictheme-message-status-light-border-color: civictheme-color('status') !default;
+$civictheme-message-warning-light-border-color: civictheme-color('warning') !default;
+$civictheme-message-error-light-border-color: civictheme-color('error') !default;
+$civictheme-message-success-light-border-color: civictheme-color('success') !default;
+$civictheme-message-status-dark-color: civictheme-color-neutral(90) !default;
+$civictheme-message-warning-dark-color: civictheme-color-neutral(90) !default;
+$civictheme-message-error-dark-color: civictheme-color-neutral(90) !default;
+$civictheme-message-success-dark-color: civictheme-color-neutral(90) !default;
+$civictheme-message-status-dark-background-color: color.mix(white, civictheme-color('status'), 85%) !default;
+$civictheme-message-warning-dark-background-color: color.mix(white, civictheme-color('warning'), 85%) !default;
+$civictheme-message-error-dark-background-color: color.mix(white, civictheme-color('error'), 85%) !default;
+$civictheme-message-success-dark-background-color: color.mix(white, civictheme-color('success'), 85%) !default;
+$civictheme-message-status-dark-icon-color: civictheme-color('status') !default;
+$civictheme-message-warning-dark-icon-color: civictheme-color('warning') !default;
+$civictheme-message-error-dark-icon-color: civictheme-color('error') !default;
+$civictheme-message-success-dark-icon-color: civictheme-color('success') !default;
+$civictheme-message-status-dark-border-color: civictheme-color('status') !default;
+$civictheme-message-warning-dark-border-color: civictheme-color('warning') !default;
+$civictheme-message-error-dark-border-color: civictheme-color('error') !default;
+$civictheme-message-success-dark-border-color: civictheme-color('success') !default;
+
+//
+// Navigation/Primary navigation.
+//
+$civictheme-primary-navigation-breakpoint: $civictheme-header-desktop-menu-breakpoint !default;
+
+// Maximum number of columns a dropdown may have.
+$civictheme-primary-navigation-dropdown-cols: 4 !default;
+
+// Top offset for the dropdown from the bottom of the trigger.
+$civictheme-primary-navigation-dropdown-top-offset: civictheme-space(2) !default;
+
+// Gutter size between columns.
+$civictheme-primary-navigation-dropdown-column-gutter: civictheme-space(4) !default;
+$civictheme-primary-navigation-dropdown-zindex: 10 !default;
+$civictheme-primary-navigation-light-color: civictheme-color-shade-dark(80) !default;
+$civictheme-primary-navigation-light-hover-color: civictheme-color-shade-dark(80) !default;
+$civictheme-primary-navigation-light-active-color: civictheme-color('primary') !default;
+$civictheme-primary-navigation-light-border-color: civictheme-color('primary') !default;
+$civictheme-primary-navigation-light-menu-item-background-color: transparent !default;
+$civictheme-primary-navigation-light-menu-item-hover-background-color: transparent !default;
+$civictheme-primary-navigation-light-menu-item-active-background-color: civictheme-color-neutral(5) !default;
+$civictheme-primary-navigation-light-menu-item-border-color: transparent !default;
+$civictheme-primary-navigation-light-menu-item-hover-border-color: civictheme-color('primary') !default;
+$civictheme-primary-navigation-light-menu-item-active-border-color: civictheme-color('primary') !default;
+$civictheme-primary-navigation-light-sub-menu-background-color: civictheme-color('neutral') !default;
+$civictheme-primary-navigation-light-sub-menu-item-heading-color: civictheme-color-neutral(80) !default;
+$civictheme-primary-navigation-light-sub-menu-item-heading-hover-color: civictheme-color-neutral(80) !default;
+$civictheme-primary-navigation-light-sub-menu-item-heading-active-color: civictheme-color-neutral(80) !default;
+$civictheme-primary-navigation-light-sub-menu-item-color: civictheme-color-shade-dark(15) !default;
+$civictheme-primary-navigation-light-sub-menu-item-hover-color: civictheme-color('neutral') !default;
+$civictheme-primary-navigation-light-sub-menu-item-active-color: civictheme-color('neutral') !default;
+$civictheme-primary-navigation-light-sub-menu-background-color: transparent !default;
+$civictheme-primary-navigation-light-sub-menu-item-background-color: transparent !default;
+$civictheme-primary-navigation-light-sub-menu-item-hover-background-color: civictheme-color('primary') !default;
+$civictheme-primary-navigation-light-sub-menu-item-active-background-color: civictheme-color('primary') !default;
+$civictheme-primary-navigation-light-menu-item-active-trail-color: civictheme-color('neutral') !default;
+$civictheme-primary-navigation-light-menu-item-active-trail-background-color: civictheme-color-shade-dark(60) !default;
+$civictheme-primary-navigation-dark-color: civictheme-color('neutral') !default;
+$civictheme-primary-navigation-dark-hover-color: civictheme-color('neutral') !default;
+$civictheme-primary-navigation-dark-active-color: civictheme-color('accent') !default;
+$civictheme-primary-navigation-dark-border-color: transparent !default;
+$civictheme-primary-navigation-dark-menu-item-background-color: transparent !default;
+$civictheme-primary-navigation-dark-menu-item-hover-background-color: transparent !default;
+$civictheme-primary-navigation-dark-menu-item-active-background-color: civictheme-color-shade-dark(60) !default;
+$civictheme-primary-navigation-dark-menu-item-border-color: transparent !default;
+$civictheme-primary-navigation-dark-menu-item-hover-border-color: civictheme-color('primary') !default;
+$civictheme-primary-navigation-dark-menu-item-active-border-color: civictheme-color('accent') !default;
+$civictheme-primary-navigation-dark-sub-menu-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-primary-navigation-dark-sub-menu-item-heading-color: civictheme-color('neutral') !default;
+$civictheme-primary-navigation-dark-sub-menu-item-heading-hover-color: civictheme-color('neutral') !default;
+$civictheme-primary-navigation-dark-sub-menu-item-heading-active-color: civictheme-color('neutral') !default;
+$civictheme-primary-navigation-dark-sub-menu-item-color: civictheme-color('neutral') !default;
+$civictheme-primary-navigation-dark-sub-menu-item-hover-color: civictheme-color('primary') !default;
+$civictheme-primary-navigation-dark-sub-menu-item-active-color: civictheme-color('primary') !default;
+$civictheme-primary-navigation-dark-sub-menu-background-color: transparent !default;
+$civictheme-primary-navigation-dark-sub-menu-item-background-color: transparent !default;
+$civictheme-primary-navigation-dark-sub-menu-item-hover-background-color: civictheme-color('accent') !default;
+$civictheme-primary-navigation-dark-sub-menu-item-active-background-color: civictheme-color('accent') !default;
+$civictheme-primary-navigation-dark-menu-item-active-trail-color: civictheme-color('primary') !default;
+$civictheme-primary-navigation-dark-menu-item-active-trail-background-color: civictheme-color('accent') !default;
+
+//
+// Navigation/Secondary navigation.
+//
+// Top offset for the dropdown from the bottom of the trigger.
+$civictheme-secondary-navigation-breakpoint: $civictheme-header-desktop-menu-breakpoint !default;
+$civictheme-secondary-navigation-dropdown-top-offset: civictheme-space() !default;
+$civictheme-secondary-navigation-dropdown-zindex: 11 !default;
+$civictheme-secondary-navigation-dropdown-border-radius: $civictheme-border-radius !default;
+$civictheme-secondary-navigation-light-menu-item-color: civictheme-color-shade-dark(80) !default;
+$civictheme-secondary-navigation-light-menu-item-hover-color: civictheme-color('primary') !default;
+$civictheme-secondary-navigation-light-menu-item-active-color: civictheme-color('primary') !default;
+$civictheme-secondary-navigation-light-sub-menu-background-color: civictheme-color('neutral') !default;
+$civictheme-secondary-navigation-light-menu-item-background-color: none !default;
+$civictheme-secondary-navigation-light-menu-item-hover-background-color: none !default;
+$civictheme-secondary-navigation-light-menu-item-active-background-color: none !default;
+$civictheme-secondary-navigation-light-sub-menu-item-color: civictheme-color-shade-dark(80) !default;
+$civictheme-secondary-navigation-light-sub-menu-item-hover-color: civictheme-color('primary') !default;
+$civictheme-secondary-navigation-light-sub-menu-item-active-color: civictheme-color('primary') !default;
+$civictheme-secondary-navigation-light-sub-menu-item-background-color: none !default;
+$civictheme-secondary-navigation-light-sub-menu-item-hover-background-color: none !default;
+$civictheme-secondary-navigation-light-sub-menu-item-active-background-color: none !default;
+$civictheme-secondary-navigation-dark-menu-item-color: civictheme-color-neutral(20) !default;
+$civictheme-secondary-navigation-dark-menu-item-hover-color: civictheme-color('accent') !default;
+$civictheme-secondary-navigation-dark-menu-item-active-color: civictheme-color('accent') !default;
+$civictheme-secondary-navigation-dark-menu-item-background-color: none !default;
+$civictheme-secondary-navigation-dark-menu-item-hover-background-color: none !default;
+$civictheme-secondary-navigation-dark-menu-item-active-background-color: none !default;
+$civictheme-secondary-navigation-dark-sub-menu-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-secondary-navigation-dark-sub-menu-item-color: civictheme-color('neutral') !default;
+$civictheme-secondary-navigation-dark-sub-menu-item-hover-color: civictheme-color('accent') !default;
+$civictheme-secondary-navigation-dark-sub-menu-item-active-color: civictheme-color('accent') !default;
+$civictheme-secondary-navigation-dark-sub-menu-item-background-color: none !default;
+$civictheme-secondary-navigation-dark-sub-menu-item-hover-background-color: none !default;
+$civictheme-secondary-navigation-dark-sub-menu-item-active-background-color: none !default;
+
+//
+// Navigation/Side navigation.
+//
+$civictheme-side-navigation-space-vertical: civictheme-space(6) !default;
+$civictheme-side-navigation-link-active-border-radius: math.div($civictheme-border-radius, 2) !default;
+$civictheme-side-navigation-link-expanded-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='' class='civictheme-icon civictheme-icon--color-primary civictheme-icon--size-small ' title='downarrow_1' width='24' height='24' viewBox='0 0 24 24' aria-hidden='true'%3E%3Cpath d='M16.9997 9.17C16.8123 8.98375 16.5589 8.87921 16.2947 8.87921C16.0305 8.87921 15.7771 8.98375 15.5897 9.17L11.9997 12.71L8.4597 9.17C8.27234 8.98375 8.01889 8.87921 7.7547 8.87921C7.49052 8.87921 7.23707 8.98375 7.0497 9.17C6.95598 9.26297 6.88158 9.37357 6.83081 9.49543C6.78004 9.61729 6.75391 9.74799 6.75391 9.88C6.75391 10.012 6.78004 10.1427 6.83081 10.2646C6.88158 10.3864 6.95598 10.497 7.0497 10.59L11.2897 14.83C11.3827 14.9237 11.4933 14.9981 11.6151 15.0489C11.737 15.0997 11.8677 15.1258 11.9997 15.1258C12.1317 15.1258 12.2624 15.0997 12.3843 15.0489C12.5061 14.9981 12.6167 14.9237 12.7097 14.83L16.9997 10.59C17.0934 10.497 17.1678 10.3864 17.2186 10.2646C17.2694 10.1427 17.2955 10.012 17.2955 9.88C17.2955 9.74799 17.2694 9.61729 17.2186 9.49543C17.1678 9.37357 17.0934 9.26297 16.9997 9.17Z'%3E%3C/path%3E%3C/svg%3E") !default;
+$civictheme-side-navigation-light-title-color: civictheme-color-neutral(80) !default;
+$civictheme-side-navigation-light-link-color: civictheme-color-neutral(80) !default;
+$civictheme-side-navigation-light-link-background-color: civictheme-color('translucent') !default;
+$civictheme-side-navigation-light-link-border-color: civictheme-color-neutral(20) !default;
+$civictheme-side-navigation-light-link-expanded-icon-color: civictheme-color('primary') !default;
+$civictheme-side-navigation-light-active-trail-link-color: civictheme-color-neutral(80) !default;
+$civictheme-side-navigation-light-active-trail-link-background-color: civictheme-color-neutral(5) !default;
+$civictheme-side-navigation-light-active-trail-link-border-color: civictheme-color-neutral(20) !default;
+$civictheme-side-navigation-light-active-trail-child-link-color: civictheme-color-neutral(80) !default;
+$civictheme-side-navigation-light-active-trail-child-link-background-color: civictheme-color-neutral(10) !default;
+$civictheme-side-navigation-light-active-trail-child-link-border-color: civictheme-color-neutral(20) !default;
+$civictheme-side-navigation-light-active-trail-link-strip-border-color: civictheme-color('primary') !default;
+$civictheme-side-navigation-light-link-hover-background-color: civictheme-color-neutral(5) !default;
+$civictheme-side-navigation-light-link-hover-border-color: civictheme-color-neutral(20) !default;
+$civictheme-side-navigation-light-link-strip-background-color: civictheme-color-neutral(10) !default;
+$civictheme-side-navigation-light-link-strip-hover-background-color: civictheme-color('primary') !default;
+$civictheme-side-navigation-light-active-border-color: civictheme-color-neutral(20) !default;
+$civictheme-side-navigation-dark-title-color: civictheme-color('neutral') !default;
+$civictheme-side-navigation-dark-link-color: civictheme-color('neutral') !default;
+$civictheme-side-navigation-dark-link-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-side-navigation-dark-link-border-color: civictheme-color-shade-dark(30) !default;
+$civictheme-side-navigation-dark-link-expanded-icon-color: civictheme-color('accent') !default;
+$civictheme-side-navigation-dark-active-trail-link-color: civictheme-color('neutral') !default;
+$civictheme-side-navigation-dark-active-trail-link-background-color: civictheme-color-shade-dark(15) !default;
+$civictheme-side-navigation-dark-active-trail-link-border-color: civictheme-color-neutral(20) !default;
+$civictheme-side-navigation-dark-active-trail-child-link-color: civictheme-color('neutral') !default;
+$civictheme-side-navigation-dark-active-trail-child-link-background-color: civictheme-color-shade-dark(30) !default;
+$civictheme-side-navigation-dark-active-trail-child-link-border-color: $civictheme-side-navigation-dark-link-border-color !default;
+$civictheme-side-navigation-dark-active-trail-link-strip-border-color: civictheme-color('accent') !default;
+$civictheme-side-navigation-dark-link-hover-background-color: civictheme-color-shade-dark(15) !default;
+$civictheme-side-navigation-dark-link-hover-border-color: $civictheme-side-navigation-dark-link-border-color !default;
+$civictheme-side-navigation-dark-link-strip-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-side-navigation-dark-link-strip-hover-background-color: civictheme-color('accent') !default;
+$civictheme-side-navigation-dark-active-border-color: $civictheme-side-navigation-dark-link-border-color !default;
+
+//
+// Mobile navigation.
+//
+$civictheme-mobile-navigation-breakpoint: $civictheme-header-desktop-menu-breakpoint !default;
+$civictheme-mobile-navigation-light-panel-background-color: civictheme-color('neutral') !default;
+$civictheme-mobile-navigation-light-top-menu-background-color: $civictheme-mobile-navigation-light-panel-background-color !default;
+$civictheme-mobile-navigation-light-bottom-menu-background-color: civictheme-color-neutral(5) !default;
+$civictheme-mobile-navigation-light-menu-item-color: civictheme-color('primary') !default;
+$civictheme-mobile-navigation-light-menu-item-hover-color: $civictheme-mobile-navigation-light-menu-item-color !default;
+$civictheme-mobile-navigation-light-menu-divider-border-color: civictheme-color-neutral(10) !default;
+$civictheme-mobile-navigation-light-subsection-heading-color: civictheme-color('secondary') !default;
+$civictheme-mobile-navigation-light-subsection-heading-icon-color: $civictheme-mobile-navigation-light-subsection-heading-color !default;
+$civictheme-mobile-navigation-light-subsection-trigger-color: civictheme-color('primary') !default;
+$civictheme-mobile-navigation-light-close-all-trigger-background-color: civictheme-color-neutral(5) !default;
+$civictheme-mobile-navigation-light-close-all-trigger-color: civictheme-color('secondary') !default;
+$civictheme-mobile-navigation-dark-panel-background-color: civictheme-color-shade-dark(30) !default;
+$civictheme-mobile-navigation-dark-top-menu-background-color: $civictheme-mobile-navigation-dark-panel-background-color !default;
+$civictheme-mobile-navigation-dark-bottom-menu-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-mobile-navigation-dark-menu-item-color: civictheme-color('neutral') !default;
+$civictheme-mobile-navigation-dark-menu-item-hover-color: $civictheme-mobile-navigation-dark-menu-item-color !default;
+$civictheme-mobile-navigation-dark-menu-divider-border-color: civictheme-color-shade-dark(60) !default;
+$civictheme-mobile-navigation-dark-subsection-heading-color: civictheme-color('neutral') !default;
+$civictheme-mobile-navigation-dark-subsection-heading-icon-color: civictheme-color('accent') !default;
+$civictheme-mobile-navigation-dark-subsection-trigger-color: civictheme-color('accent') !default;
+$civictheme-mobile-navigation-dark-close-all-trigger-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-mobile-navigation-dark-close-all-trigger-color: civictheme-color('neutral') !default;
+$civictheme-mobile-navigation-trigger-light-color: civictheme-color-shade-dark(80) !default;
+$civictheme-mobile-navigation-trigger-dark-color: civictheme-color('neutral') !default;
+
+//
+// Navigation/Table Of Contents.
+//
+$civictheme-table-of-contents-width: 50% !default;
+$civictheme-table-of-contents-link-active-border-radius: math.div($civictheme-border-radius, 2) !default;
+$civictheme-table-of-contents-light-title-color: civictheme-color-neutral(80) !default;
+$civictheme-table-of-contents-light-link-color: civictheme-color-neutral(80) !default;
+$civictheme-table-of-contents-light-link-border-color: civictheme-color('translucent') !default;
+$civictheme-table-of-contents-light-link-hover-background-color: civictheme-color-neutral(5) !default;
+$civictheme-table-of-contents-light-link-hover-border-color: civictheme-color('translucent') !default;
+$civictheme-table-of-contents-light-link-strip-background-color: civictheme-color-neutral(10) !default;
+$civictheme-table-of-contents-light-link-strip-hover-background-color: civictheme-color('primary') !default;
+$civictheme-table-of-contents-light-active-border-color: civictheme-color-neutral(20) !default;
+$civictheme-table-of-contents-dark-title-color: civictheme-color('neutral') !default;
+$civictheme-table-of-contents-dark-link-color: civictheme-color('neutral') !default;
+$civictheme-table-of-contents-dark-link-border-color: civictheme-color('translucent') !default;
+$civictheme-table-of-contents-dark-link-hover-background-color: civictheme-color('translucent') !default;
+$civictheme-table-of-contents-dark-link-hover-border-color: civictheme-color('translucent') !default;
+$civictheme-table-of-contents-dark-link-strip-background-color: civictheme-color-shade-dark(30) !default;
+$civictheme-table-of-contents-dark-link-strip-hover-background-color: civictheme-color('accent') !default;
+$civictheme-table-of-contents-dark-active-background-color: civictheme-color-shade-dark(30) !default;
+
+//
+// Slider.
+//
+$civictheme-slider-space-vertical: civictheme-space(10) !default;
+$civictheme-slider-space-horizontal: civictheme-space(7) !default;
+$civictheme-slider-border-radius: $civictheme-border-radius !default;
+$civictheme-slider-progress-indicator-border-radius: $civictheme-border-radius !default;
+$civictheme-slider-light-background-color: civictheme-color('neutral') !default;
+$civictheme-slider-light-wrapper-background-color: civictheme-color-neutral(5) !default;
+$civictheme-slider-light-title-color: civictheme-color('secondary') !default;
+$civictheme-slider-light-progress-indicator-background-color: civictheme-color-neutral(5) !default;
+$civictheme-slider-light-progress-indicator-color: civictheme-color-neutral(60) !default;
+$civictheme-slider-dark-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-slider-dark-wrapper-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-slider-dark-title-color: civictheme-color('neutral') !default;
+$civictheme-slider-dark-progress-indicator-background-color: civictheme-color-shade-dark(60) !default;
+$civictheme-slider-dark-progress-indicator-color: civictheme-color-neutral(5) !default;
+
+// Slide.
+$civictheme-slide-light-background-color: civictheme-color-shade-dark(45) !default;
+$civictheme-slide-light-title-color: civictheme-color('neutral') !default;
+$civictheme-slide-light-summary-color: civictheme-color-neutral(5) !default;
+$civictheme-slide-dark-background-color: civictheme-color('neutral') !default;
+$civictheme-slide-dark-title-color: civictheme-color-neutral(80) !default;
+$civictheme-slide-dark-summary-color: civictheme-color-neutral(60) !default;
+
+//
+// Social links.
+//
+
+$civictheme-social-links-light-color: civictheme-color('primary') !default;
+$civictheme-social-links-light-hover-color: civictheme-color-shade-dark(60) !default;
+$civictheme-social-links-light-visited-color: $civictheme-social-links-light-color;
+$civictheme-social-links-light-active-color: $civictheme-social-links-light-hover-color;
+$civictheme-social-links-light-focus-color: $civictheme-social-links-light-hover-color;
+$civictheme-social-links-dark-color: civictheme-color('neutral') !default;
+$civictheme-social-links-dark-hover-color: civictheme-color('accent') !default;
+$civictheme-social-links-dark-visited-color: $civictheme-social-links-dark-color;
+$civictheme-social-links-dark-active-color: $civictheme-social-links-dark-hover-color;
+$civictheme-social-links-dark-focus-color: $civictheme-social-links-dark-hover-color;
+
+//
+// Tabs.
+//
+$civictheme-tabs-link-border-radius: $civictheme-border-radius !default;
+$civictheme-tabs-panel-border-radius: $civictheme-border-radius !default;
+$civictheme-tabs-light-links-color: civictheme-color-neutral(60) !default;
+$civictheme-tabs-light-links-border-color: civictheme-color-neutral(20) !default;
+$civictheme-tabs-light-links-selected-color: $civictheme-tabs-light-links-color;
+$civictheme-tabs-light-links-selected-border-color: $civictheme-tabs-light-links-border-color !default;
+$civictheme-tabs-light-panel-color: $civictheme-tabs-light-links-color !default;
+$civictheme-tabs-light-panel-background-color: civictheme-color('neutral') !default;
+$civictheme-tabs-light-panel-border-color: civictheme-color('neutral') !default;
+$civictheme-tabs-dark-links-color: civictheme-color('neutral') !default;
+$civictheme-tabs-dark-links-border-color: civictheme-color-neutral(20) !default;
+$civictheme-tabs-dark-links-selected-color: $civictheme-tabs-dark-links-color;
+$civictheme-tabs-dark-links-selected-border-color: $civictheme-tabs-dark-links-border-color !default;
+$civictheme-tabs-dark-panel-color: $civictheme-tabs-dark-links-color !default;
+$civictheme-tabs-dark-panel-background-color: civictheme-color-shade-dark(40) !default;
+$civictheme-tabs-dark-panel-border-color: civictheme-color('neutral') !default;

@@ -21,7 +21,7 @@ drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush
 if [ ! -d $APP/docroot/themes/custom/civictheme_demo ]; then
   echo "  > Creating civictheme_demo subtheme."
   pushd $APP/docroot/themes/contrib/civictheme >/dev/null || exit 1
-  php civictheme-create-subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
+  php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
   [ ! -d $APP/docroot/themes/custom/civictheme_demo ] && echo "ERROR: Failed to create civictheme_demo sub-theme." && exit 1
 fi
 

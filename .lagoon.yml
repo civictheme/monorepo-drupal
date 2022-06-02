@@ -27,7 +27,7 @@ tasks:
         command: |
           if  [ -n "${DREVOPS_NOTIFY_GITHUB_TOKEN}" ] && [ -n "$LAGOON_PR_NUMBER" ]; then
             [ -n "$LAGOON_PR_NUMBER" ] && GIT_SHA=${LAGOON_PR_HEAD_SHA#origin/} || GIT_SHA=$LAGOON_GIT_SHA
-            DREVOPS_NOTIFY_DEPLOY_REPOSITORY="salsadigitalauorg/civictheme-source" \
+            DREVOPS_NOTIFY_DEPLOY_REPOSITORY="salsadigitalauorg/civictheme_source" \
             DREVOPS_NOTIFY_DEPLOY_REF="$GIT_SHA" \
             DREVOPS_NOTIFY_DEPLOY_GITHUB_OPERATION="start" \
             ./scripts/drevops/notify-deployment-github.sh || true
@@ -80,8 +80,8 @@ tasks:
           [ -n "$LAGOON_PR_NUMBER" ] && GIT_REF=$LAGOON_PR_NUMBER || GIT_REF=$LAGOON_GIT_BRANCH
           php ./scripts/drevops/notify-deployment-email.php \
             "CivicTheme Source" \
-            "lagoon-deploy+civictheme-source@salsadigital.com.au" \
-            "p.civictheme+lagoon-deploy.civictheme-source@salsadigital.com.au|CivicTheme group" \
+            "lagoon-deploy+civictheme_source@salsadigital.com.au" \
+            "p.civictheme+lagoon-deploy.civictheme_source@salsadigital.com.au|CivicTheme group" \
             "$GIT_REF" \
             "$LAGOON_ROUTES"
 
@@ -94,7 +94,7 @@ tasks:
 
           if [ -n "${DREVOPS_NOTIFY_GITHUB_TOKEN}" ] && [ -n "$LAGOON_PR_NUMBER" ]; then
             [ -n "$LAGOON_PR_NUMBER" ] && GIT_SHA=${LAGOON_PR_HEAD_SHA#origin/} || GIT_SHA=$LAGOON_GIT_SHA
-            DREVOPS_NOTIFY_DEPLOY_REPOSITORY="salsadigitalauorg/civictheme-source" \
+            DREVOPS_NOTIFY_DEPLOY_REPOSITORY="salsadigitalauorg/civictheme_source" \
             DREVOPS_NOTIFY_DEPLOY_REF="$GIT_SHA" \
             DREVOPS_NOTIFY_DEPLOY_ENVIRONMENT_URL="$LAGOON_ROUTE" \
             DREVOPS_NOTIFY_DEPLOY_GITHUB_OPERATION="finish" \

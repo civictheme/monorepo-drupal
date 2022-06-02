@@ -1,7 +1,7 @@
 name: CivicTheme
 type: theme
 base theme: false
-description: A flexible component based theme.
+description: CivicTheme is a Drupal 9 component-based theme.
 core_version_requirement: ^9
 
 libraries:
@@ -71,8 +71,9 @@ components:
       - components/05-pages
 
 ckeditor_stylesheets:
-  - dist/ckeditor.css
+  - dist/civictheme.ckeditor.css
 
+#;< DEVELOPMENT
 # Configuration shipped with this theme.
 # Update the list of the configuration below and run `drush cde civictheme`.
 config_devel:
@@ -330,6 +331,7 @@ config_devel:
     - field.field.paragraph.civictheme_iframe.field_c_p_theme
     - field.field.paragraph.civictheme_iframe.field_c_p_url
     - field.field.paragraph.civictheme_iframe.field_c_p_width
+    - field.field.paragraph.civictheme_listing.field_c_p_background
     - field.field.paragraph.civictheme_listing.field_c_p_content_type
     - field.field.paragraph.civictheme_listing.field_c_p_limit_type
     - field.field.paragraph.civictheme_listing.field_c_p_link
@@ -341,6 +343,8 @@ config_devel:
     - field.field.paragraph.civictheme_listing.field_c_p_space
     - field.field.paragraph.civictheme_listing.field_c_p_theme
     - field.field.paragraph.civictheme_listing.field_c_p_title
+    - field.field.paragraph.civictheme_listing.field_c_p_theme
+    - field.field.paragraph.civictheme_listing.field_c_p_card_theme
     - field.field.paragraph.civictheme_listing.field_c_p_topics
     - field.field.paragraph.civictheme_listing.field_c_p_view_as
     - field.field.paragraph.civictheme_map.field_c_p_address
@@ -470,6 +474,7 @@ config_devel:
     - field.storage.paragraph.field_c_p_background
     - field.storage.paragraph.field_c_p_button_text
     - field.storage.paragraph.field_c_p_cards
+    - field.storage.paragraph.field_c_p_card_theme
     - field.storage.paragraph.field_c_p_column_count
     - field.storage.paragraph.field_c_p_content
     - field.storage.paragraph.field_c_p_content_type
@@ -582,3 +587,4 @@ config_devel:
   optional:
     - core.entity_view_mode.node.teaser
     - simple_sitemap.custom_links.default
+#;> DEVELOPMENT

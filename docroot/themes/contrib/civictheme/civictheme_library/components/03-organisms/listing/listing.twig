@@ -1,0 +1,139 @@
+{#
+/**
+ * @file
+ * Listing component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - title: [string] Title.
+ * - exposed: [string] Exposed filters.
+ * - header: [string] Header slot.
+ * - rows: [string] Rows content.
+ * - empty: [string] Empty results content.
+ * - pager: [string] Pager slot.
+ * - gooter: [string] Footer slot.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set with_background_class = with_background ? 'civictheme-listing--with-background' : '' %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-listing--vertical-space-%s'|format(vertical_space) : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, modifier_class|default(''), with_background_class, vertical_space_class)  %}
+
+<div class="civictheme-listing {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <div class="civictheme-listing__container">
+  {% block header %}
+    <div class="civictheme-listing__header">
+      {% block title %}
+        {% if title -%}
+          <div class="civictheme-listing__header-title">
+            {% include '@atoms/heading/heading.twig' with {
+              content: title,
+              level: 2,
+            } only %}
+          </div>
+        {% endif %}
+      {% endblock %}
+      {% block link %}
+        {% if link %}
+          <div class="civictheme-listing__header-link">
+            {% include '@atoms/link/link.twig' with {
+              theme: theme,
+              text: link.text,
+              url: link.url,
+              title: link.title,
+              is_new_window: link.is_external,
+              is_external: link.is_external,
+            } %}
+          </div>
+        {% endif %}
+      {% endblock %}
+    </div>
+  {% endblock %}
+  {% block listing %}
+    {% block exposed %}
+      {% if exposed -%}
+        <div class="civictheme-listing__exposed-form">
+          {{ exposed }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block rows_header %}
+      {% if rows_header -%}
+        <header class="civictheme-listing__rows-header" tabindex="0">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                {{ rows_header }}
+              </div>
+            </div>
+          </div>
+        </header>
+      {% endif %}
+    {% endblock %}
+
+    {% block rows %}
+      {% if rows -%}
+        <div class="civictheme--listing__body">
+          {{ rows }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block empty %}
+      {% if rows is not defined or rows is empty -%}
+        <div class="civictheme-listing__empty-results">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                {{ empty }}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block rows_below %}
+      {% if pager is defined and pager is not empty %}
+        <div class="civictheme-listing__results-below">
+          <div class="container">
+            <div class="row">
+              {% block pager %}
+                <div class="civictheme-listing__pager">
+                  {{ pager }}
+                </div>
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      {% if read_more %}
+        <div class="civictheme-listing__cta">
+          {% include '@atoms/button/button.twig' with {
+            theme: theme,
+            type: 'primary',
+            kind: 'link',
+            size: 'large',
+            text: read_more.text,
+            url: read_more.url,
+            is_new_window: read_more.is_external,
+            is_external: read_more.is_external
+          } only %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block footer %}
+      {% if footer is not empty -%}
+        <footer class="civictheme-listing__footer">
+          {{ footer }}
+        </footer>
+      {% endif %}
+    {% endblock %}
+  {% endblock %}
+  </div>
+</div>

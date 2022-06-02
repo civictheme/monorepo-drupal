@@ -19,6 +19,9 @@
 #
 # Run bdd tests:
 # DREVOPS_TEST_TYPE=bdd ./test.sh
+#
+# Run specific tags (eg: content_type) bdd tests:
+# DREVOPS_TEST_TYPE=bdd DREVOPS_TEST_BEHAT_TAGS=content_type ./test.sh
 
 set -e
 [ -n "${DREVOPS_DEBUG}" ] && set -x
@@ -47,6 +50,9 @@ DREVOPS_TEST_BEHAT_PROFILE="${DREVOPS_TEST_BEHAT_PROFILE:-default}"
 # Behat format. Optional. Defaults to "pretty".
 DREVOPS_TEST_BEHAT_FORMAT="${DREVOPS_TEST_BEHAT_FORMAT:-pretty}"
 
+# Behat tags. Optional. Default runs all tests.
+DREVOPS_TEST_BEHAT_TAGS="${DREVOPS_TEST_BEHAT_TAGS:-}"
+
 # Behat test runner index. If is set  - the value is used as a suffix for the
 # parallel Behat profile name (e.g., p0, p1).
 DREVOPS_TEST_BEHAT_PARALLEL_INDEX="${DREVOPS_TEST_BEHAT_PARALLEL_INDEX:-}"
@@ -67,6 +73,9 @@ if [ -z "${DREVOPS_TEST_TYPE##*unit*}" ]; then
   [ -n "${DREVOPS_TEST_REPORTS_DIR}" ] && phpunit_opts+=(--log-junit "${DREVOPS_TEST_REPORTS_DIR}"/phpunit/unit.xml)
 
   vendor/bin/phpunit "${phpunit_opts[@]}" docroot/modules/custom/ --filter '/.*Unit.*/' "$@" \
+  || [ "${DREVOPS_TEST_UNIT_ALLOW_FAILURE}" -eq 1 ]
+
+  vendor/bin/phpunit "${phpunit_opts[@]}" tests/phpunit/unit/ --filter '/.*Unit.*/' "$@" \
   || [ "${DREVOPS_TEST_UNIT_ALLOW_FAILURE}" -eq 1 ]
 fi
 
@@ -108,6 +117,11 @@ if [ -z "${DREVOPS_TEST_TYPE##*bdd*}" ]; then
     --format="${DREVOPS_TEST_BEHAT_FORMAT}"
     --out std
   )
+
+  # Run specific Behat tests.
+  if [ -n "${DREVOPS_TEST_BEHAT_TAGS}" ]; then
+    behat_opts+=(--tags=${DREVOPS_TEST_BEHAT_TAGS})
+  fi
 
   [ -n "${DREVOPS_TEST_REPORTS_DIR}" ] && behat_opts+=(--format "junit" --out "${DREVOPS_TEST_REPORTS_DIR}"/behat)
 
