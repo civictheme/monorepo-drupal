@@ -42,12 +42,6 @@
       margin: 0;
     }
 
-    .civictheme-menu__item {
-      .civictheme-menu {
-        display: none;
-      }
-    }
-
     .civictheme-menu__item--has-children {
       > .civictheme-menu__item__link {
         &::after {
