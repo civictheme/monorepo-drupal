@@ -120,7 +120,7 @@ export const formElement = (inputType, options, theme, rand, itr) => {
       required: options.required,
     }),
     label_display: isCheckboxOrRadio ? 'after' : 'before',
-    description_display: isCheckboxOrRadio ? 'after' : 'before',
+    description_position: isCheckboxOrRadio ? 'after' : 'before',
     description: {
       content: options.description ? `Input description ${itr + 1}${rand ? ` ${randomText(getRandomInt(4, 10))}` : ''}` : '',
     },
