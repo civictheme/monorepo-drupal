@@ -116,7 +116,15 @@ CivicSlider.prototype.updateDisplaySlide = function () {
 
 CivicSlider.prototype.updateButtonState = function () {
   this.elPrev.disabled = (this.currentSlide === 0);
+  if (this.elPrev.disabled) {
+    this.elPrev.classList.remove('focus');
+    this.elPrev.blur();
+  }
   this.elNext.disabled = (this.currentSlide === (this.totalSlides - 1));
+  if (this.elNext.disabled) {
+    this.elNext.classList.remove('focus');
+    this.elNext.blur();
+  }
 };
 
 CivicSlider.prototype.previousClick = function () {
