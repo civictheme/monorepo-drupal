@@ -56,14 +56,19 @@ abstract class ScriptUnitTestBase extends TestCase {
    *
    * @param array $args
    *   Optional array of arguments to pass to the script.
+   * @param bool $verbose
+   *   Optional flag to enable verbose output in the script.
    *
    * @return array
    *   Array with the following keys:
    *   - code: (int) Exit code.
    *   - output: (string) Output.
    */
-  protected function runScript(array $args = []) {
+  protected function runScript(array $args = [], $verbose = FALSE) {
     putenv('SCRIPT_RUN_SKIP=0');
+    if ($verbose) {
+      putenv('SCRIPT_QUIET=0');
+    }
     $command = sprintf('php %s %s', $this->script, implode(' ', $args));
     $output = [];
     $result_code = 1;

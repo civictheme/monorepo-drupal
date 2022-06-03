@@ -4,6 +4,12 @@
  * @file
  * CivicTheme sub-theme scaffolding.
  *
+ *  *
+ * Environment variables:
+ * - SCRIPT_QUIET: Set to '1' to suppress verbose messages.
+ * - SCRIPT_RUN_SKIP: Set to '1' to skip running of the script. Useful when
+ *   unit-testing or requiring this file from other files.
+ *
  * Usage:
  * @code
  * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description"
@@ -15,19 +21,31 @@
  */
 
 /**
- * Defines installer exist codes.
+ * Defines exit codes.
  */
-define('SCAFFOLD_EXIT_SUCCESS', 0);
-define('SCAFFOLD_EXIT_ERROR', 1);
+define('EXIT_SUCCESS', 0);
+define('EXIT_ERROR', 1);
 
 /**
- * Main install functionality.
+ * Defines error level to be reported as an error.
  */
-function main(array $argv) {
-  // Show help if not enough arguments or help was explicitly called.
-  if (count($argv) != 4 || in_array($argv[1], ['--help', '-help', '-h', '-?'])) {
+define('ERROR_LEVEL', E_USER_WARNING);
+
+/**
+ * Main functionality.
+ */
+function main(array $argv, $argc) {
+  if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {
     print_help();
-    exit;
+
+    return EXIT_SUCCESS;
+  }
+
+  // Show help if not enough or more than required arguments.
+  if ($argc != 4) {
+    print_help();
+
+    return EXIT_ERROR;
   }
 
   // Collect and validate values from arguments.
@@ -59,16 +77,17 @@ function main(array $argv) {
   // Print footer message.
   print_footer($new_theme_name, $new_theme_machine_name, $new_theme_path);
 
-  return SCAFFOLD_EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
 /**
  * Print help.
  */
 function print_help() {
+  $script_name = basename(__FILE__);
   print <<<EOF
 CivicTheme Starter Kit scaffolding
------------------------------
+----------------------------------
 
 Arguments:
   machine_name         Theme machine name.
@@ -79,7 +98,7 @@ Options:
   --help               This help.
 
 Examples:
-  php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
+  php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
 
 EOF;
   print PHP_EOL;
@@ -481,6 +500,15 @@ function is_regex($str) {
   return FALSE;
 }
 
+/**
+ * Show a verbose message.
+ */
+function verbose() {
+  if (getenv('SCRIPT_QUIET') != '1') {
+    print call_user_func_array('sprintf', func_get_args()) . PHP_EOL;
+  }
+}
+
 // ////////////////////////////////////////////////////////////////////////// //
 //                                ENTRYPOINT                                  //
 // ////////////////////////////////////////////////////////////////////////// //
@@ -491,14 +519,32 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
   die('This script can be only ran from the command line.');
 }
 
-try {
-  $code = main($argv, $argc);
-  if (is_null($code)) {
-    throw new \Exception('Script exited without providing an exit code.');
+// Custom error handler to catch errors based on set ERROR_LEVEL.
+set_error_handler(function ($severity, $message, $file, $line) {
+  if (!(error_reporting() & $severity)) {
+    // This error code is not included in error_reporting.
+    return;
   }
-  exit($code);
-}
-catch (\Exception $exception) {
-  print PHP_EOL . 'ERROR: ' . $exception->getMessage() . PHP_EOL;
-  exit($exception->getCode() == 0 ? SCAFFOLD_EXIT_ERROR : $exception->getCode());
+  throw new ErrorException($message, 0, $severity, $file, $line);
+});
+
+// Allow to skip the script run.
+if (getenv('SCRIPT_RUN_SKIP') != 1) {
+  try {
+    $code = main($argv, $argc);
+    if (is_null($code)) {
+      throw new \Exception('Script exited without providing an exit code.');
+    }
+    exit($code);
+  }
+  catch (\ErrorException $exception) {
+    if ($exception->getSeverity() <= ERROR_LEVEL) {
+      print PHP_EOL . 'RUNTIME ERROR: ' . $exception->getMessage() . PHP_EOL;
+      exit($exception->getCode() == 0 ? EXIT_ERROR : $exception->getCode());
+    }
+  }
+  catch (\Exception $exception) {
+    print PHP_EOL . 'ERROR: ' . $exception->getMessage() . PHP_EOL;
+    exit($exception->getCode() == 0 ? EXIT_ERROR : $exception->getCode());
+  }
 }
