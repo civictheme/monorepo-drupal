@@ -82,4 +82,5 @@ Feature: View of Page content with Accordion component
     And I should see the text "[TEST] Accordion panel 1"
     And I should see the text "[TEST] Accordion panel 2"
     And I wait 2 second
-    And I should see an "li[data-collapsible]:not[data-collapsible-collapsed]" element
+    And I should see an "[data-collapsible-trigger][aria-expanded='true']" element
+    And I should see an "[data-collapsible-panel][aria-hidden='false']" element
