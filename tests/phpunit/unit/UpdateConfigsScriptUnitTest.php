@@ -6,6 +6,9 @@
  * Unit tests for update_configs.php.
  *
  * @group scripts
+ *
+ * phpcs:disable Drupal.Commenting.DocComment.MissingShort
+ * phpcs:disable Drupal.Commenting.FunctionComment.Missing
  */
 class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
 
@@ -20,7 +23,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
    */
   public function testMain($args, $expected_code, $expected_output) {
     $args = is_array($args) ? $args : [$args];
-    $result = $this->runScript($args);
+    $result = $this->runScript($args, TRUE);
     $this->assertEquals($expected_code, $result['code']);
     $this->assertStringContainsString($expected_output, $result['output']);
   }
@@ -30,27 +33,27 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
       [
         '--help',
         0,
-        'This help.',
+        'Site configuration updater',
       ],
       [
         '-help',
         0,
-        'This help.',
+        'Site configuration updater',
       ],
       [
         '-h',
         0,
-        'This help.',
+        'Site configuration updater',
       ],
       [
         '-?',
         0,
-        'This help.',
+        'Site configuration updater',
       ],
       [
         [1, 2, 3, 4, 5],
         0,
-        'This help.',
+        'Site configuration updater',
       ],
 
       // Validation of path existence.
