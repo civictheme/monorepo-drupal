@@ -38,17 +38,17 @@ Feature: View of Page content with Accordion component
         | field_c_p_content:format | civictheme_rich_text                  |
 
     When I visit "civictheme_page" "[TEST] Page accordion test"
-    And I should see an "div[data-accordion]" element
-    And I should not see an "div[data-accordion].civictheme-accordion--with-background" element
-    And I should see an "div[data-accordion].civictheme-theme-light" element
-    And I should see an "div[data-accordion-content]" element
+    And I should see an "div.civictheme-accordion" element
+    And I should not see an "div.civictheme-accordion.civictheme-accordion--with-background" element
+    And I should see an "div.civictheme-accordion.civictheme-theme-light" element
+    And I should see an "div[data-collapsible-panel]" element
     And I should see an "div.civictheme-accordion__content-top" element
     And I should see an "div.civictheme-accordion__inner" element
-    And I should see an "ul[data-accordion-list]" element
+    And I should see an "ul.civictheme-accordion__list" element
     And I should see the text "[TEST] Accordion title"
     And I should see the text "[TEST] Accordion panel 1"
     And I should see the text "[TEST] Accordion panel 2"
-    And I should not see an "[data-accordion-header-button][is-selected]" element
+    And I should not see an "[data-collapsible-trigger][aria-expanded='true']" element
 
   @api @javascript
   Scenario: CivicTheme page content type page can be viewed by anonymous with accordion dark with background
@@ -70,16 +70,16 @@ Feature: View of Page content with Accordion component
         | field_c_p_content:format | civictheme_rich_text                  |
 
     When I visit "civictheme_page" "[TEST] Page accordion test"
-    And I should see an "div[data-accordion]" element
-    And I should see an "div[data-accordion].civictheme-accordion--with-background" element
-    And I should not see an "div[data-accordion].civictheme-theme-light" element
-    And I should see an "div[data-accordion].civictheme-theme-dark" element
-    And I should see an "div[data-accordion-content]" element
+    And I should see an "div.civictheme-accordion" element
+    And I should see an "div.civictheme-accordion.civictheme-accordion--with-background" element
+    And I should not see an "div.civictheme-accordion.civictheme-theme-light" element
+    And I should see an "div.civictheme-accordion.civictheme-theme-dark" element
+    And I should see an "div[data-collapsible-panel]" element
     And I should see an "div.civictheme-accordion__content-top" element
     And I should see an "div.civictheme-accordion__inner" element
-    And I should see an "ul[data-accordion-list]" element
+    And I should see an "ul.civictheme-accordion__list" element
     And I should see the text "[TEST] Accordion title"
     And I should see the text "[TEST] Accordion panel 1"
     And I should see the text "[TEST] Accordion panel 2"
     And I wait 2 second
-    And I should see an "li[data-accordion-list-item-expanded]" element
+    And I should see an "li[data-collapsible]:not[data-collapsible-collapsed]" element

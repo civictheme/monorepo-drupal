@@ -2,7 +2,8 @@ import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import CivicAccordion from './accordion.twig';
-import './accordion';
+
+import '../../00-base/collapsible/collapsible';
 
 export default {
   title: 'Organisms/Accordion',
