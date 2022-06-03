@@ -51,8 +51,13 @@ class ExtractCssColorsToCsvScriptUnitTest extends ScriptUnitTestBase {
         'Extract CSS4 variables into CSV.',
       ],
       [
+        [],
+        1,
+        'Extract CSS4 variables into CSV.',
+      ],
+      [
         [1, 2],
-        0,
+        1,
         'Extract CSS4 variables into CSV.',
       ],
 

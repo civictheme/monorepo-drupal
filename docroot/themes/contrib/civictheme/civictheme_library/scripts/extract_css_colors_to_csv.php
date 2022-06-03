@@ -4,6 +4,11 @@
  * @file
  * Extract CSS4 color variables and output as CSV.
  *
+ * Environment variables:
+ * - SCRIPT_QUIET: Set to '1' to suppress verbose messages.
+ * - SCRIPT_RUN_SKIP: Set to '1' to skip running of the script. Useful when
+ *   unit-testing or requiring this file from other files.
+ *
  * Usage:
  * @code
  * php extract_css_colors_to_csv.php path/to/variables.css
@@ -20,13 +25,25 @@ define('EXIT_SUCCESS', 0);
 define('EXIT_ERROR', 1);
 
 /**
+ * Defines error level to be reported as an error.
+ */
+define('ERROR_LEVEL', E_USER_WARNING);
+
+/**
  * Main functionality.
  */
-function main(array $argv) {
-  // Show help if not enough arguments or help was explicitly called.
-  if (count($argv) > 2 || in_array($argv[1], ['--help', '-help', '-h', '-?'])) {
+function main(array $argv, $argc) {
+  if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {
     print_help();
+
     return EXIT_SUCCESS;
+  }
+
+  // Show help if not enough or more than required arguments.
+  if ($argc < 2 || $argc > 2) {
+    print_help();
+
+    return EXIT_ERROR;
   }
 
   $css_file = trim($argv[1]) ?: '';
@@ -51,6 +68,7 @@ function main(array $argv) {
  * Print help.
  */
 function print_help() {
+  $script_name = basename(__FILE__);
   print <<<EOF
 Extract CSS4 variables into CSV.
 --------------------------------
@@ -62,7 +80,7 @@ Options:
   --help                    This help.
 
 Examples:
-  php extract_css_colors_to_csv.php path/to/variables.css
+  php ${script_name} path/to/variables.css
 
 EOF;
   print PHP_EOL;
@@ -321,6 +339,15 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
   die('This script can be only ran from the command line.');
 }
 
+// Custom error handler to catch errors based on set ERROR_LEVEL.
+set_error_handler(function ($severity, $message, $file, $line) {
+  if (!(error_reporting() & $severity)) {
+    // This error code is not included in error_reporting.
+    return;
+  }
+  throw new ErrorException($message, 0, $severity, $file, $line);
+});
+
 // Allow to skip the script run.
 if (getenv('SCRIPT_RUN_SKIP') != 1) {
   try {
@@ -329,6 +356,12 @@ if (getenv('SCRIPT_RUN_SKIP') != 1) {
       throw new \Exception('Script exited without providing an exit code.');
     }
     exit($code);
+  }
+  catch (\ErrorException $exception) {
+    if ($exception->getSeverity() <= ERROR_LEVEL) {
+      print PHP_EOL . 'RUNTIME ERROR: ' . $exception->getMessage() . PHP_EOL;
+      exit($exception->getCode() == 0 ? EXIT_ERROR : $exception->getCode());
+    }
   }
   catch (\Exception $exception) {
     print PHP_EOL . 'ERROR: ' . $exception->getMessage() . PHP_EOL;

@@ -51,8 +51,13 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
         'Site configuration updater',
       ],
       [
+        [],
+        1,
+        'Site configuration updater',
+      ],
+      [
         [1, 2, 3, 4, 5],
-        0,
+        1,
         'Site configuration updater',
       ],
 
@@ -60,7 +65,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
       [
         'some/non_existing/theme/config/dir',
         1,
-        'Source configuration directory some/non_existing/theme/config/dir in not readable.',
+        'Source configuration directory some/non_existing/theme/config/dir is not readable.',
       ],
       [
         [
@@ -68,7 +73,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
           'some/non_existing/site/config/dir',
         ],
         1,
-        'Destination configuration directory some/non_existing/site/config/dir in not readable.',
+        'Destination configuration directory some/non_existing/site/config/dir is not readable.',
       ],
       [
         [
@@ -77,7 +82,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
           'some/non_existing/site_config_file.txt',
         ],
         1,
-        'Configuration exclusion file some/non_existing/site_config_file.txt in not readable.',
+        'Configuration exclusion file some/non_existing/site_config_file.txt is not readable.',
       ],
     ];
   }
