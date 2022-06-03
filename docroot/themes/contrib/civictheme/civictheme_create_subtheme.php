@@ -4,6 +4,12 @@
  * @file
  * CivicTheme sub-theme scaffolding.
  *
+ *  *
+ * Environment variables:
+ * - SCRIPT_QUIET: Set to '1' to suppress verbose messages.
+ * - SCRIPT_RUN_SKIP: Set to '1' to skip running of the script. Useful when
+ *   unit-testing or requiring this file from other files.
+ *
  * Usage:
  * @code
  * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description"
@@ -15,13 +21,13 @@
  */
 
 /**
- * Defines installer exist codes.
+ * Defines exit codes.
  */
-define('SCAFFOLD_EXIT_SUCCESS', 0);
-define('SCAFFOLD_EXIT_ERROR', 1);
+define('EXIT_SUCCESS', 0);
+define('EXIT_ERROR', 1);
 
 /**
- * Main install functionality.
+ * Main functionality.
  */
 function main(array $argv) {
   // Show help if not enough arguments or help was explicitly called.
@@ -59,7 +65,7 @@ function main(array $argv) {
   // Print footer message.
   print_footer($new_theme_name, $new_theme_machine_name, $new_theme_path);
 
-  return SCAFFOLD_EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
 /**
@@ -68,7 +74,7 @@ function main(array $argv) {
 function print_help() {
   print <<<EOF
 CivicTheme Starter Kit scaffolding
------------------------------
+----------------------------------
 
 Arguments:
   machine_name         Theme machine name.
@@ -481,6 +487,15 @@ function is_regex($str) {
   return FALSE;
 }
 
+/**
+ * Show a verbose message.
+ */
+function verbose() {
+  if (getenv('SCRIPT_QUIET') != '1') {
+    print call_user_func_array('sprintf', func_get_args()) . PHP_EOL;
+  }
+}
+
 // ////////////////////////////////////////////////////////////////////////// //
 //                                ENTRYPOINT                                  //
 // ////////////////////////////////////////////////////////////////////////// //
@@ -491,14 +506,17 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
   die('This script can be only ran from the command line.');
 }
 
-try {
-  $code = main($argv, $argc);
-  if (is_null($code)) {
-    throw new \Exception('Script exited without providing an exit code.');
+// Allow to skip the script run.
+if (getenv('SCRIPT_RUN_SKIP') != 1) {
+  try {
+    $code = main($argv, $argc);
+    if (is_null($code)) {
+      throw new \Exception('Script exited without providing an exit code.');
+    }
+    exit($code);
   }
-  exit($code);
-}
-catch (\Exception $exception) {
-  print PHP_EOL . 'ERROR: ' . $exception->getMessage() . PHP_EOL;
-  exit($exception->getCode() == 0 ? SCAFFOLD_EXIT_ERROR : $exception->getCode());
+  catch (\Exception $exception) {
+    print PHP_EOL . 'ERROR: ' . $exception->getMessage() . PHP_EOL;
+    exit($exception->getCode() == 0 ? EXIT_ERROR : $exception->getCode());
+  }
 }
