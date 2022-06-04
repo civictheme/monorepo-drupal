@@ -127,7 +127,7 @@ function print_footer($name, $machine_name, $path) {
   Insure that front-end assets can be built:
 
     cd $path
-    npm install
+    npm ci
     npm run build
     npm run storybook
 
