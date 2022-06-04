@@ -1,5 +1,6 @@
-_[CivicTheme Documentation](../README.md) &#8594; CivicTheme Drupal theme documentation_
 # CivicTheme Drupal Theme documentation
+
+> This is still work-in-progress and will be updated to include more information.
 
 The CivicTheme theme technical documentation provide information on how to:
 - connect the component library to Drupal

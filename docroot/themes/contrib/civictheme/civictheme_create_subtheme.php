@@ -35,47 +35,47 @@ define('ERROR_LEVEL', E_USER_WARNING);
  * Main functionality.
  */
 function main(array $argv, $argc) {
+  $default_new_theme_directory = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'custom';
+
   if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {
-    print_help();
+    print_help($default_new_theme_directory);
 
     return EXIT_SUCCESS;
   }
 
   // Show help if not enough or more than required arguments.
   if ($argc != 4) {
-    print_help();
+    print_help($default_new_theme_directory);
 
     return EXIT_ERROR;
   }
 
   // Collect and validate values from arguments.
   $new_theme_machine_name = trim($argv[1]);
+  validate_theme_machine_name($new_theme_machine_name);
   $new_theme_name = trim($argv[2]);
   $new_theme_description = trim($argv[3]);
-  validate_theme_machine_name($new_theme_machine_name);
-
-  // Find Drupal docroot.
-  $docroot = drupal_finder_find_root(getcwd());
+  $new_theme_directory = trim($argv[4] ?? $default_new_theme_directory . DIRECTORY_SEPARATOR . $new_theme_machine_name);
 
   // Prepare theme stub.
-  $stub_path = prepare_stub($docroot);
+  $stub_path = prepare_stub();
 
   // Process stub.
   process_stub($stub_path, [
     'machine_name' => $new_theme_machine_name,
     'name' => $new_theme_name,
     'description' => $new_theme_description,
+    'path' => $new_theme_directory,
   ]);
 
   // Copy files from stub to the new theme path.
-  $new_theme_path = $docroot . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'custom' . DIRECTORY_SEPARATOR . $new_theme_machine_name;
-  file_copy_recursively($stub_path, $new_theme_path);
+  file_copy_recursively($stub_path, $new_theme_directory);
 
   // Remove stub directory.
   @unlink($stub_path);
 
   // Print footer message.
-  print_footer($new_theme_name, $new_theme_machine_name, $new_theme_path);
+  print_footer($new_theme_name, $new_theme_machine_name, $new_theme_directory);
 
   return EXIT_SUCCESS;
 }
@@ -83,19 +83,19 @@ function main(array $argv, $argc) {
 /**
  * Print help.
  */
-function print_help() {
+function print_help($default_new_theme_dir) {
   $script_name = basename(__FILE__);
   print <<<EOF
 CivicTheme Starter Kit scaffolding
 ----------------------------------
 
 Arguments:
-  machine_name         Theme machine name.
-  name                 Theme human-readable name.
-  Description          Theme description.
+  machine_name           New theme machine name.
+  name                   New theme human-readable name.
+  description            New theme description.
 
 Options:
-  --help               This help.
+  --help                 This help.
 
 Examples:
   php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
@@ -112,10 +112,20 @@ function print_footer($name, $machine_name, $path) {
 
   $name ($machine_name) sub-theme was created successfully in "$path".
 
-  Next steps:
+  NEXT STEPS
+  ----------
+
+  Insure that front-end assets can be built:
+
     cd $path
     npm install
     npm run build
+    npm run storybook
+
+  Enable theme in Drupal:
+
+    drush theme:enable civictheme -y
+    drush config-set system.theme default civictheme
     drush theme:enable $machine_name -y
     drush config-set system.theme default $machine_name
 
@@ -135,16 +145,13 @@ function validate_theme_machine_name($name) {
 /**
  * Prepare theme stub files.
  *
- * @param string $drupal_root
- *   Drupal root directory.
- *
  * @return string
  *   Path to stub directory.
  */
-function prepare_stub($drupal_root) {
+function prepare_stub() {
   $tmp_dir = file_tempdir();
-  $starter_kit_dir = find_starter_kit_dir($drupal_root);
-  file_copy_recursively($starter_kit_dir, $tmp_dir);
+  $starter_kit_dir = find_starter_kit_dir();
+  file_copy_recursively($starter_kit_dir, $tmp_dir, file_ignore_paths());
 
   return $tmp_dir;
 }
@@ -169,113 +176,22 @@ function process_stub($dir, $options) {
 }
 
 /**
- * Find starter kit.
- */
-function find_starter_kit_dir($drupal_root) {
-  $candidates = [
-    $drupal_root . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'custom' . DIRECTORY_SEPARATOR . 'civictheme' . DIRECTORY_SEPARATOR . 'civictheme_starter_kit',
-    $drupal_root . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'all' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'custom' . DIRECTORY_SEPARATOR . 'civictheme' . DIRECTORY_SEPARATOR . 'civictheme_starter_kit',
-    $drupal_root . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'all' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . 'civictheme' . DIRECTORY_SEPARATOR . 'civictheme_starter_kit',
-    $drupal_root . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'contrib' . DIRECTORY_SEPARATOR . 'civictheme' . DIRECTORY_SEPARATOR . 'civictheme_starter_kit',
-    $drupal_root . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'all' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'contrib' . DIRECTORY_SEPARATOR . 'civictheme' . DIRECTORY_SEPARATOR . 'civictheme_starter_kit',
-    $drupal_root . DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . 'all' . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . 'civictheme' . DIRECTORY_SEPARATOR . 'civictheme_starter_kit',
-  ];
-
-  foreach ($candidates as $candidate) {
-    if (file_exists($candidate)) {
-      return $candidate;
-    }
-  }
-
-  throw new \Exception('Unable to find CivicTheme starter kit location.');
-}
-
-// ////////////////////////////////////////////////////////////////////////// //
-//                        DRUPAL FINDER                                       //
-// ////////////////////////////////////////////////////////////////////////// //
-//                                                                            //
-// Taken from webflo/drupal-finder                                            //
-// https://github.com/webflo/drupal-finder/blob/master/src/DrupalFinder.php   //
-//                                                                            //
-// ////////////////////////////////////////////////////////////////////////// //
-
-/**
- * Discover Drupal document root.
+ * Find starter kit directory.
  *
- * @param string $start_path
- *   The path to start the search from.
+ * @return string
+ *   Path to the Starter Kit directory.
  *
  * @throws \Exception
- *   If not able to find Drupal root.
+ *   If directory does not exist.
  */
-function drupal_finder_find_root($start_path) {
-  foreach ([TRUE, FALSE] as $follow_symlinks) {
-    $path = $start_path;
-    if ($follow_symlinks && is_link($path)) {
-      $path = realpath($path);
-    }
+function find_starter_kit_dir() {
+  $dir = __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_starter_kit';
 
-    // Check the start path.
-    if (drupal_finder_is_root($path)) {
-      return $path;
-    }
-    else {
-      // Move up dir by dir and check each.
-      while ($path = drupal_finder_shift_path_up($path)) {
-        if ($follow_symlinks && is_link($path)) {
-          $path = realpath($path);
-        }
-        if (drupal_finder_is_root($path)) {
-          return $path;
-        }
-      }
-    }
+  if (!file_exists($dir)) {
+    throw new \Exception('Unable to find CivicTheme starter kit location.');
   }
 
-  throw new \Exception('Unable to find Drupal root.');
-}
-
-/**
- * Determine if provided path is a valid Drupal root.
- */
-function drupal_finder_is_root($path) {
-  if (
-    !empty($path) &&
-    is_dir($path) && file_exists($path . DIRECTORY_SEPARATOR . 'autoload.php') &&
-    file_exists($path . DIRECTORY_SEPARATOR . trim(getenv('COMPOSER')) ?: 'composer.json')
-  ) {
-    // Additional check for the presence of core/composer.json to
-    // grant it is not a Drupal 7 site with a base folder named "core".
-    $candidate = 'core' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'common.inc';
-    if (
-      file_exists($path . DIRECTORY_SEPARATOR . $candidate) &&
-      file_exists($path . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR . 'core.services.yml')
-    ) {
-      if (
-        file_exists($path . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR . 'misc' . DIRECTORY_SEPARATOR . 'drupal.js') ||
-        file_exists($path . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'drupal.js')
-      ) {
-        return TRUE;
-      }
-    }
-  }
-
-  return FALSE;
-}
-
-/**
- * Returns parent directory.
- *
- * @param string $path
- *   Path to start the traversal from.
- *
- * @return string|false
- *   Parent path of given path or false when $path is filesystem root
- */
-function drupal_finder_shift_path_up($path) {
-  $parent = dirname($path);
-
-  return in_array($parent, ['.', $path]) ? FALSE : $parent;
+  return $dir;
 }
 
 // ////////////////////////////////////////////////////////////////////////// //
@@ -283,9 +199,25 @@ function drupal_finder_shift_path_up($path) {
 // ////////////////////////////////////////////////////////////////////////// //
 
 /**
- * Recursively copy files.
+ * Recursively copy files and directories.
+ *
+ * The contents of $src will be copied as the contents of $dst.
+ *
+ * @param string $src
+ *   Source directory to copy from.
+ * @param string $dst
+ *   Destination directory to copy to.
+ * @param array $exclude
+ *   Optional array of entries to exclude.
+ * @param int $permissions
+ *   Permissions to set on created directories. Defaults to 0755.
+ * @param bool $copy_empty_dirs
+ *   Flag to copy empty directories. Defaults to FALSE.
+ *
+ * @return bool
+ *   TRUE if the result of copy was successful, FALSE otherwise.
  */
-function file_copy_recursively($src, $dst, $permissions = 0755, $copy_empty_dirs = FALSE) {
+function file_copy_recursively($src, $dst, array $exclude = [], $permissions = 0755, $copy_empty_dirs = FALSE) {
   $parent = dirname($dst);
 
   if (!is_dir($parent)) {
@@ -303,6 +235,7 @@ function file_copy_recursively($src, $dst, $permissions = 0755, $copy_empty_dirs
       $ret = symlink(readlink($src), basename($dst));
     }
     chdir($cur_dir);
+
     return $ret;
   }
 
@@ -311,6 +244,7 @@ function file_copy_recursively($src, $dst, $permissions = 0755, $copy_empty_dirs
     if ($ret) {
       chmod($dst, fileperms($src));
     }
+
     return $ret;
   }
 
@@ -320,13 +254,14 @@ function file_copy_recursively($src, $dst, $permissions = 0755, $copy_empty_dirs
 
   $dir = dir($src);
   while (FALSE !== $entry = $dir->read()) {
-    if ($entry == '.' || $entry == '..') {
+    if ($entry == '.' || $entry == '..' || in_array($entry, $exclude)) {
       continue;
     }
-    file_copy_recursively("$src/$entry", "$dst/$entry", $permissions);
+    file_copy_recursively($src . DIRECTORY_SEPARATOR . $entry, $dst . DIRECTORY_SEPARATOR . $entry, $exclude, $permissions, $copy_empty_dirs);
   }
 
   $dir->close();
+
   return TRUE;
 }
 
@@ -389,7 +324,7 @@ function file_scandir_recursive($dir, $ignore_paths = [], $include_dirs = FALSE)
     foreach ($paths as $path) {
       $path = $dir . '/' . $path;
       foreach ($ignore_paths as $ignore_path) {
-        // Exlude based on sub-path match.
+        // Exclude based on sub-path match.
         if (strpos($path, $ignore_path) !== FALSE) {
           continue(2);
         }
@@ -414,11 +349,15 @@ function file_scandir_recursive($dir, $ignore_paths = [], $include_dirs = FALSE)
  */
 function file_ignore_paths() {
   return array_merge([
-    '/.git/',
-    '/.idea/',
-    '/vendor/',
-    '/node_modules/',
-    '/.data/',
+    '.git',
+    '.idea',
+    '.components-civictheme',
+    '.data',
+    'components_combined',
+    'dist',
+    'node_modules',
+    'storybook-static',
+    'vendor',
   ], file_internal_paths());
 }
 
@@ -519,17 +458,17 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
   die('This script can be only ran from the command line.');
 }
 
-// Custom error handler to catch errors based on set ERROR_LEVEL.
-set_error_handler(function ($severity, $message, $file, $line) {
-  if (!(error_reporting() & $severity)) {
-    // This error code is not included in error_reporting.
-    return;
-  }
-  throw new ErrorException($message, 0, $severity, $file, $line);
-});
-
 // Allow to skip the script run.
 if (getenv('SCRIPT_RUN_SKIP') != 1) {
+  // Custom error handler to catch errors based on set ERROR_LEVEL.
+  set_error_handler(function ($severity, $message, $file, $line) {
+    if (!(error_reporting() & $severity)) {
+      // This error code is not included in error_reporting.
+      return;
+    }
+    throw new ErrorException($message, 0, $severity, $file, $line);
+  });
+
   try {
     $code = main($argv, $argc);
     if (is_null($code)) {

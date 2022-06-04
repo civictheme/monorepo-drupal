@@ -73,6 +73,7 @@ abstract class ScriptUnitTestBase extends TestCase {
     $output = [];
     $result_code = 1;
     exec($command, $output, $result_code);
+
     return [
       'code' => $result_code,
       'output' => implode(PHP_EOL, $output),
@@ -87,6 +88,7 @@ abstract class ScriptUnitTestBase extends TestCase {
     if (!is_readable($path)) {
       throw new \RuntimeException(sprintf('Unable to find fixture file %s.', $path));
     }
+
     return $path;
   }
 
@@ -253,6 +255,44 @@ abstract class ScriptUnitTestBase extends TestCase {
     }
 
     return $fixture_map;
+  }
+
+  /**
+   * Recursively copy files and directories.
+   *
+   * The contents of $src will be copied as the contents of $dst.
+   *
+   * @param string $src
+   *   Source directory to copy from.
+   * @param string $dst
+   *   Destination directory to copy to.
+   * @param array $exclude
+   *   Optional array of entries to exclude.
+   */
+  protected function copyr($src, $dst, array $exclude = []) {
+    if (is_link($src)) {
+      symlink(readlink($src), $dst);
+      return;
+    }
+
+    if (is_file($src)) {
+      copy($src, $dst);
+      return;
+    }
+
+    if (!is_dir($dst)) {
+      mkdir($dst);
+    }
+
+    $dir = dir($src);
+    while (FALSE !== $entry = $dir->read()) {
+      if ($entry == '.' || $entry == '..' || in_array($entry, $exclude)) {
+        continue;
+      }
+      $this->copyr($src . DIRECTORY_SEPARATOR . $entry, $dst . DIRECTORY_SEPARATOR . $entry);
+    }
+
+    $dir->close();
   }
 
 }
