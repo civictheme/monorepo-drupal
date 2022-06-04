@@ -68,7 +68,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
         'CivicTheme Starter Kit scaffolding',
       ],
       [
-        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 4],
         1,
         'CivicTheme Starter Kit scaffolding',
       ],
@@ -79,8 +79,8 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
    * @runInSeparateProcess
    */
   public function testDefaultLocation() {
-    $newtheme_name = 'abc';
-    $civictheme_dir = 'themes' . DIRECTORY_SEPARATOR . 'contrib' . DIRECTORY_SEPARATOR . 'civictheme';
+    $newtheme_name = 'new_theme';
+    $civictheme_dir = 'themes/contrib/civictheme';
     $newtheme_path = '/../../custom/' . $newtheme_name;
 
     $sut_dir = $this->prepareSut($civictheme_dir);
@@ -90,7 +90,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertStringContainsString('sub-theme was created successfully ', $result['output']);
     $this->assertStringContainsString('sub-theme was created successfully ', $result['output']);
 
-    $newtheme_path_full = $sut_dir . $newtheme_path . DIRECTORY_SEPARATOR;
+    $newtheme_path_full = $sut_dir . $newtheme_path . '/';
     $this->assertDirectoryExists($newtheme_path_full);
     $this->assertDirectoryExists($newtheme_path_full . '.storybook');
     $this->assertDirectoryExists($newtheme_path_full . 'assets');
@@ -122,7 +122,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
    *   Path to created SUT codebase.
    */
   protected function prepareSut($path = NULL) {
-    $sut_dir = $this->tmpDir . (!empty($path) ? DIRECTORY_SEPARATOR . $path : '');
+    $sut_dir = $this->tmpDir . (!empty($path) ? '/' . $path : '');
     mkdir($sut_dir, 0755, TRUE);
 
     $this->copyr($this->civicthemeDir, $sut_dir, [
@@ -133,7 +133,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
       'assets',
     ]);
 
-    $this->script = $sut_dir . DIRECTORY_SEPARATOR . 'civictheme_create_subtheme.php';
+    $this->script = $sut_dir . '/civictheme_create_subtheme.php';
 
     return $sut_dir;
   }

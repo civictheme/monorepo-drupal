@@ -13,8 +13,6 @@
  * Usage:
  * @code
  * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description"
- *
- * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description" path/to/theme/new_machine_name
  * @endcode
  *
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingBefore
@@ -46,7 +44,7 @@ function main(array $argv, $argc) {
   }
 
   // Show help if not enough or more than required arguments.
-  if ($argc < 4 || $argc > 5) {
+  if ($argc != 4) {
     print_help($default_new_theme_directory);
 
     return EXIT_ERROR;
