@@ -149,7 +149,12 @@ function validate_theme_machine_name($name) {
 function prepare_stub() {
   $tmp_dir = file_tempdir();
   $starter_kit_dir = find_starter_kit_dir();
-  file_copy_recursively($starter_kit_dir, $tmp_dir);
+  file_copy_recursively($starter_kit_dir, $tmp_dir, [
+    'node_modules',
+    'vendor',
+    'storybook-static',
+    'dist',
+  ]);
 
   return $tmp_dir;
 }
@@ -197,9 +202,25 @@ function find_starter_kit_dir() {
 // ////////////////////////////////////////////////////////////////////////// //
 
 /**
- * Recursively copy files.
+ * Recursively copy files and directories.
+ *
+ * The contents of $src will be copied as the contents of $dst.
+ *
+ * @param string $src
+ *   Source directory to copy from.
+ * @param string $dst
+ *   Destination directory to copy to.
+ * @param array $exclude
+ *   Optional array of entries to exclude.
+ * @param int $permissions
+ *   Permissions to set on created directories. Defaults to 0755.
+ * @param bool $copy_empty_dirs
+ *   Flag to copy empty directories. Defaults to FALSE.
+ *
+ * @return bool
+ *   TRUE if the result of copy was successful, FALSE otherwise.
  */
-function file_copy_recursively($src, $dst, $permissions = 0755, $copy_empty_dirs = FALSE) {
+function file_copy_recursively($src, $dst, array $exclude = [], $permissions = 0755, $copy_empty_dirs = FALSE) {
   $parent = dirname($dst);
 
   if (!is_dir($parent)) {
@@ -236,10 +257,10 @@ function file_copy_recursively($src, $dst, $permissions = 0755, $copy_empty_dirs
 
   $dir = dir($src);
   while (FALSE !== $entry = $dir->read()) {
-    if ($entry == '.' || $entry == '..') {
+    if ($entry == '.' || $entry == '..' || in_array($entry, $exclude)) {
       continue;
     }
-    file_copy_recursively("$src/$entry", "$dst/$entry", $permissions);
+    file_copy_recursively($src . DIRECTORY_SEPARATOR . $entry, $dst . DIRECTORY_SEPARATOR . $entry, $exclude, $permissions, $copy_empty_dirs);
   }
 
   $dir->close();
