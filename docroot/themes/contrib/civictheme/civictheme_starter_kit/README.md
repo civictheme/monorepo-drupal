@@ -2,6 +2,8 @@
 
 Based on [CivicTheme](https://github.com/salsadigitalauorg/civictheme) Drupal theme.
 
+Learn more about developing with CivicTheme in [CivicTheme documentation](../../contrib/civictheme/docs/README.md).
+
 ## Compiling front-end assets.
 
     npm install
