@@ -436,17 +436,17 @@ if (PHP_SAPI != 'cli' || !empty($_SERVER['REMOTE_ADDR'])) {
   die('This script can be only ran from the command line.');
 }
 
-// Custom error handler to catch errors based on set ERROR_LEVEL.
-set_error_handler(function ($severity, $message, $file, $line) {
-  if (!(error_reporting() & $severity)) {
-    // This error code is not included in error_reporting.
-    return;
-  }
-  throw new ErrorException($message, 0, $severity, $file, $line);
-});
-
 // Allow to skip the script run.
 if (getenv('SCRIPT_RUN_SKIP') != 1) {
+  // Custom error handler to catch errors based on set ERROR_LEVEL.
+  set_error_handler(function ($severity, $message, $file, $line) {
+    if (!(error_reporting() & $severity)) {
+      // This error code is not included in error_reporting.
+      return;
+    }
+    throw new ErrorException($message, 0, $severity, $file, $line);
+  });
+
   try {
     $code = main($argv, $argc);
     if (is_null($code)) {
