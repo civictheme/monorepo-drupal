@@ -53,7 +53,7 @@ export const FormElement = () => {
       'before',
       generalKnobTab,
     ),
-    description_display: isRadioOrCheckbox ? 'after' : radios(
+    description_position: isRadioOrCheckbox ? 'after' : radios(
       'Description position',
       {
         Before: 'before',
