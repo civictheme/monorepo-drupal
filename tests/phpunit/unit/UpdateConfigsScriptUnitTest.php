@@ -6,6 +6,9 @@
  * Unit tests for update_configs.php.
  *
  * @group scripts
+ *
+ * phpcs:disable Drupal.Commenting.DocComment.MissingShort
+ * phpcs:disable Drupal.Commenting.FunctionComment.Missing
  */
 class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
 
@@ -20,7 +23,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
    */
   public function testMain($args, $expected_code, $expected_output) {
     $args = is_array($args) ? $args : [$args];
-    $result = $this->runScript($args);
+    $result = $this->runScript($args, TRUE);
     $this->assertEquals($expected_code, $result['code']);
     $this->assertStringContainsString($expected_output, $result['output']);
   }
@@ -30,34 +33,39 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
       [
         '--help',
         0,
-        'This help.',
+        'Site configuration updater',
       ],
       [
         '-help',
         0,
-        'This help.',
+        'Site configuration updater',
       ],
       [
         '-h',
         0,
-        'This help.',
+        'Site configuration updater',
       ],
       [
         '-?',
         0,
-        'This help.',
+        'Site configuration updater',
+      ],
+      [
+        [],
+        1,
+        'Site configuration updater',
       ],
       [
         [1, 2, 3, 4, 5],
-        0,
-        'This help.',
+        1,
+        'Site configuration updater',
       ],
 
       // Validation of path existence.
       [
         'some/non_existing/theme/config/dir',
         1,
-        'Source configuration directory some/non_existing/theme/config/dir in not readable.',
+        'Source configuration directory some/non_existing/theme/config/dir is not readable.',
       ],
       [
         [
@@ -65,7 +73,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
           'some/non_existing/site/config/dir',
         ],
         1,
-        'Destination configuration directory some/non_existing/site/config/dir in not readable.',
+        'Destination configuration directory some/non_existing/site/config/dir is not readable.',
       ],
       [
         [
@@ -74,7 +82,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
           'some/non_existing/site_config_file.txt',
         ],
         1,
-        'Configuration exclusion file some/non_existing/site_config_file.txt in not readable.',
+        'Configuration exclusion file some/non_existing/site_config_file.txt is not readable.',
       ],
     ];
   }

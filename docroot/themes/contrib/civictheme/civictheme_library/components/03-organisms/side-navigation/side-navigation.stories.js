@@ -1,6 +1,6 @@
 // @todo This is a placeholder component. It is not finished!
 import { radios, text } from '@storybook/addon-knobs';
-import CivicSideNavigation from './side-navigation.twig';
+import CivicThemeSideNavigation from './side-navigation.twig';
 import getMenuLinks from '../../00-base/menu/menu.utils';
 
 export default {
@@ -29,7 +29,7 @@ export const SideNavigation = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicSideNavigation({
+  return CivicThemeSideNavigation({
     ...generalKnobs,
   });
 };

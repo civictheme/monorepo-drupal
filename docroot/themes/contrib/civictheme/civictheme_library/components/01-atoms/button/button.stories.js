@@ -2,7 +2,7 @@ import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
 
-import CivicButton from './button.twig';
+import CivicThemeButton from './button.twig';
 import './button';
 
 export default {
@@ -106,5 +106,5 @@ export const Button = (knobTab) => {
     ) : null,
   };
 
-  return CivicButton({ ...generalKnobs, ...iconKnobs });
+  return CivicThemeButton({ ...generalKnobs, ...iconKnobs });
 };

@@ -5,7 +5,7 @@ import {
 import { dropDownFilter, formElement } from '../../00-base/base.stories';
 
 import DropdownFilter from '../../02-molecules/dropdown-filter/dropdown-filter.twig';
-import CivicLargeFilter from './large-filter.twig';
+import CivicThemeLargeFilter from './large-filter.twig';
 
 export default {
   title: 'Organisms/Form',
@@ -127,7 +127,7 @@ export const LargeFilter = () => {
     }));
   }
 
-  return CivicLargeFilter({
+  return CivicThemeLargeFilter({
     ...generalKnobs,
     with_background: withBackground,
     filters: filters.join(''),

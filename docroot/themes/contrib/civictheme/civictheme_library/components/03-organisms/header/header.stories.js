@@ -2,7 +2,7 @@ import {
   boolean, number, radios,
 } from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
-import CivicHeaderExample from './header.stories.twig';
+import CivicThemeHeaderExample from './header.stories.twig';
 
 import getMenuLinks from '../../00-base/menu/menu.utils';
 
@@ -64,7 +64,7 @@ export const Header = (knobTab) => {
     generalKnobs.primary_navigation_dropdown_columns_fill = boolean('Fill width for missing columns', false, primaryNavigationKnobTab);
   }
 
-  return CivicHeaderExample({
+  return CivicThemeHeaderExample({
     ...generalKnobs,
     ...getSlots([
       'content_top1',

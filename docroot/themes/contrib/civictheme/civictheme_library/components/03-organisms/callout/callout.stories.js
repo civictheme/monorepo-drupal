@@ -1,5 +1,5 @@
 import { radios, text } from '@storybook/addon-knobs';
-import CivicCallout from './callout.twig';
+import CivicThemeCallout from './callout.twig';
 
 export default {
   title: 'Organisms/Callout',
@@ -87,7 +87,7 @@ export const Callout = (knobTab) => {
     ],
   };
 
-  const html = CivicCallout(calloutKnobs);
+  const html = CivicThemeCallout(calloutKnobs);
 
   return `<div class="story-wrapper-size--large">${html}</div>`;
 };

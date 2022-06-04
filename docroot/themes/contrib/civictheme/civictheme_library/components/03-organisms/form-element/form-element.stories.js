@@ -1,8 +1,8 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicFormElement from './form-element.twig';
+import CivicThemeFormElement from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
 import Select from '../../01-atoms/select/select.twig';
-import CivicLabel from '../../01-atoms/label/label.twig';
+import CivicThemeLabel from '../../01-atoms/label/label.twig';
 
 export default {
   title: 'Organisms/Form/Form Element',
@@ -180,9 +180,9 @@ export const FormElement = () => {
       }));
   }
 
-  const label = [CivicLabel(labelKnobs)];
+  const label = [CivicThemeLabel(labelKnobs)];
 
-  const html = CivicFormElement({
+  const html = CivicThemeFormElement({
     ...generalKnobs,
     type: inputType,
     label,

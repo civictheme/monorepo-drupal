@@ -1,6 +1,6 @@
 import { radios, text, number } from '@storybook/addon-knobs';
 import { randomFormElements } from '../../00-base/base.stories';
-import CivicFieldset from './fieldset.twig';
+import CivicThemeFieldset from './fieldset.twig';
 
 export default {
   title: 'Organisms/Form/Fieldset',
@@ -37,7 +37,7 @@ export const Fieldset = () => {
     generalKnobTab,
   );
 
-  const html = CivicFieldset({
+  const html = CivicThemeFieldset({
     ...generalKnobs,
     children: randomFormElements(numOfElements, theme, true).join(''),
   });

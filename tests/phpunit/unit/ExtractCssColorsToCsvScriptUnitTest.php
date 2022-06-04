@@ -6,6 +6,9 @@
  * Unit tests for extract_css_colors_to_csv.php.
  *
  * @group scripts
+ *
+ * phpcs:disable Drupal.Commenting.DocComment.MissingShort
+ * phpcs:disable Drupal.Commenting.FunctionComment.Missing
  */
 class ExtractCssColorsToCsvScriptUnitTest extends ScriptUnitTestBase {
 
@@ -20,7 +23,7 @@ class ExtractCssColorsToCsvScriptUnitTest extends ScriptUnitTestBase {
    */
   public function testMain($args, $expected_code, $expected_output) {
     $args = is_array($args) ? $args : [$args];
-    $result = $this->runScript($args);
+    $result = $this->runScript($args, TRUE);
     $this->assertEquals($expected_code, $result['code']);
     $this->assertStringContainsString($expected_output, $result['output']);
   }
@@ -48,8 +51,13 @@ class ExtractCssColorsToCsvScriptUnitTest extends ScriptUnitTestBase {
         'Extract CSS4 variables into CSV.',
       ],
       [
+        [],
+        1,
+        'Extract CSS4 variables into CSV.',
+      ],
+      [
         [1, 2],
-        0,
+        1,
         'Extract CSS4 variables into CSV.',
       ],
 

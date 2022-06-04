@@ -1,9 +1,9 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicProgressIndicator from './progress-indicator.twig';
+import CivicThemeProgressIndicator from './progress-indicator.twig';
 
 export default {
   title: 'Molecules/Progress Indicator',
-  component: CivicProgressIndicator,
+  component: CivicThemeProgressIndicator,
 };
 
 export const ProgressIndicator = (knobTab) => {
@@ -40,7 +40,7 @@ export const ProgressIndicator = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicProgressIndicator({
+  return CivicThemeProgressIndicator({
     ...generalKnobs,
   });
 };

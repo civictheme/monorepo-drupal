@@ -1,6 +1,6 @@
 import { radios, text } from '@storybook/addon-knobs';
 
-import CivicSkipLink from './skip-link.twig';
+import CivicThemeSkipLink from './skip-link.twig';
 
 export default {
   title: 'Molecules/Skip Link',
@@ -26,7 +26,7 @@ export const SkipLink = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  let html = CivicSkipLink({
+  let html = CivicThemeSkipLink({
     ...generalKnobs,
   });
 

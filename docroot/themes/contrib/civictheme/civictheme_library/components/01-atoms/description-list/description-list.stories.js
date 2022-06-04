@@ -1,7 +1,7 @@
 import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
-import CivicDescriptionList from './description-list.twig';
+import CivicThemeDescriptionList from './description-list.twig';
 
 export default {
   title: 'Atoms/Description List',
@@ -48,7 +48,7 @@ export const DescriptionList = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicDescriptionList({
+  return CivicThemeDescriptionList({
     ...generalKnobs,
   });
 };

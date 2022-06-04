@@ -2,7 +2,7 @@ import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
-import CivicFooter from './footer.stories.twig';
+import CivicThemeFooter from './footer.stories.twig';
 import '../../00-base/responsive/responsive';
 import '../../00-base/collapsible/collapsible';
 import { generateMenuLinks } from '../../00-base/menu/menu.utils';
@@ -59,7 +59,7 @@ export const Footer = (knobTab) => {
     generalKnobs.background_image = BACKGROUNDS[theme][select('Background', Object.keys(BACKGROUNDS[theme]), Object.keys(BACKGROUNDS[theme])[0], generalKnobTab)];
   }
 
-  return CivicFooter({
+  return CivicThemeFooter({
     ...generalKnobs,
     ...getSlots([
       'content_top1',

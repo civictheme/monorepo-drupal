@@ -1,7 +1,7 @@
 import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
-import CivicAccordion from './accordion.twig';
+import CivicThemeAccordion from './accordion.twig';
 
 import '../../00-base/collapsible/collapsible';
 
@@ -69,7 +69,7 @@ export const Accordion = (knobTab) => {
     panels,
   };
 
-  return CivicAccordion({
+  return CivicThemeAccordion({
     ...generalKnobs,
     ...panelKnobs,
   });
