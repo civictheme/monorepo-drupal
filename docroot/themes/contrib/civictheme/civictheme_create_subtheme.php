@@ -157,12 +157,7 @@ function validate_theme_machine_name($name) {
 function prepare_stub() {
   $tmp_dir = file_tempdir();
   $starter_kit_dir = find_starter_kit_dir();
-  file_copy_recursively($starter_kit_dir, $tmp_dir, [
-    'node_modules',
-    'vendor',
-    'storybook-static',
-    'dist',
-  ]);
+  file_copy_recursively($starter_kit_dir, $tmp_dir, file_ignore_paths());
 
   return $tmp_dir;
 }
@@ -335,7 +330,7 @@ function file_scandir_recursive($dir, $ignore_paths = [], $include_dirs = FALSE)
     foreach ($paths as $path) {
       $path = $dir . '/' . $path;
       foreach ($ignore_paths as $ignore_path) {
-        // Exlude based on sub-path match.
+        // Exclude based on sub-path match.
         if (strpos($path, $ignore_path) !== FALSE) {
           continue(2);
         }
@@ -360,11 +355,15 @@ function file_scandir_recursive($dir, $ignore_paths = [], $include_dirs = FALSE)
  */
 function file_ignore_paths() {
   return array_merge([
-    '/.git/',
-    '/.idea/',
-    '/vendor/',
-    '/node_modules/',
-    '/.data/',
+    '.git',
+    '.idea',
+    '.components-civictheme',
+    '.data',
+    'components_combined',
+    'dist',
+    'node_modules',
+    'storybook-static',
+    'vendor',
   ], file_internal_paths());
 }
 
