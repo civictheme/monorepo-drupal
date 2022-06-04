@@ -36,6 +36,7 @@
 
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/.storybook\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/.components-civictheme\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/gulpfile.js</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/assets\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/components\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/components_combined\/.*</exclude-pattern>

@@ -77,7 +77,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
 
   /**
    * @runInSeparateProcess
-   * @group wip
    */
   public function testDefaultLocation() {
     $newtheme_name = 'new_theme';
@@ -111,8 +110,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($newtheme_path_full . 'package-lock.json');
     $this->assertFileExists($newtheme_path_full . 'README.md');
     $this->assertFileExists($newtheme_path_full . 'screenshot.png');
-
-    // $this->assertStringContainsString('../../contrib/civictheme', file_get_contents($newtheme_path_full . 'gulpfile.js'));
   }
 
   /**
@@ -143,7 +140,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
 
   /**
    * @dataProvider dataProviderFileGetRelativeDir
-   * @group wip1
+   * @runInSeparateProcess
    */
   public function testFileGetRelativeDir($from, $to, $expected) {
     $this->assertEquals($expected, file_get_relative_dir($from, $to));
