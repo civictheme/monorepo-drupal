@@ -77,6 +77,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
 
   /**
    * @runInSeparateProcess
+   * @group wip
    */
   public function testDefaultLocation() {
     $newtheme_name = 'new_theme';
@@ -85,7 +86,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
 
     $sut_dir = $this->prepareSut($civictheme_dir);
 
-    $result = $this->runScript([$newtheme_name, $newtheme_name, $newtheme_name], TRUE);
+    $result = $this->runScript([$newtheme_name, $newtheme_name, $newtheme_name, $newtheme_path], TRUE);
     $this->assertEquals(0, $result['code']);
     $this->assertStringContainsString('sub-theme was created successfully ', $result['output']);
     $this->assertStringContainsString('sub-theme was created successfully ', $result['output']);
@@ -110,6 +111,8 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($newtheme_path_full . 'package-lock.json');
     $this->assertFileExists($newtheme_path_full . 'README.md');
     $this->assertFileExists($newtheme_path_full . 'screenshot.png');
+
+    // $this->assertStringContainsString('../../contrib/civictheme', file_get_contents($newtheme_path_full . 'gulpfile.js'));
   }
 
   /**
@@ -136,6 +139,36 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->script = $sut_dir . '/civictheme_create_subtheme.php';
 
     return $sut_dir;
+  }
+
+  /**
+   * @dataProvider dataProviderFileGetRelativeDir
+   * @group wip1
+   */
+  public function testFileGetRelativeDir($from, $to, $expected) {
+    $this->assertEquals($expected, file_get_relative_dir($from, $to));
+  }
+
+  public function dataProviderFileGetRelativeDir() {
+    return [
+      ['/a/b/c/d', "/a/b/c/d", "./"],
+      ['/a/b/c/d', "/a/b/c", "../"],
+      ['/a/b/c/d', "/a/b", "../../"],
+      ['/a/b/c/d', "/a/b/c/other", "../other/"],
+      ['/a/b/c/d', "/a/b/other2", "../../other2/"],
+
+      ['/a/b/c/d', "/a/b/c/d/", "./"],
+      ['/a/b/c/d', "/a/b/c/", "../"],
+      ['/a/b/c/d', "/a/b/", "../../"],
+      ['/a/b/c/d', "/a/b/c/other/", "../other/"],
+      ['/a/b/c/d', "/a/b/other2/", "../../other2/"],
+
+      ['/a/b/c/d/', "/a/b/c/d/", "./"],
+      ['/a/b/c/d/', "/a/b/c/", "../"],
+      ['/a/b/c/d/', "/a/b/", "../../"],
+      ['/a/b/c/d/', "/a/b/c/other/", "../other/"],
+      ['/a/b/c/d/', "/a/b/other2/", "../../other2/"],
+    ];
   }
 
 }
