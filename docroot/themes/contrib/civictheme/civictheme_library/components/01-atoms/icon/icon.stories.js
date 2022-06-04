@@ -1,6 +1,6 @@
 import { radios, select } from '@storybook/addon-knobs';
 
-import CivicIcon from './icon.twig';
+import CivicThemeIcon from './icon.twig';
 
 export default {
   title: 'Atoms/Icon',
@@ -19,7 +19,7 @@ export const Icon = (knobTab) => {
     ...SCSS_VARIABLES['civictheme-icon-sizes'],
   ])];
 
-  return CivicIcon({
+  return CivicThemeIcon({
     symbol: select('Symbol', icons, icons[0], generalKnobTab),
     color: select('Color', colors, 'primary', generalKnobTab),
     size: radios('Size', sizes, sizes[0], generalKnobTab),
@@ -40,7 +40,7 @@ export const IconLibrary = (knobTab) => {
   if (selectedPack) {
     html += `<div class="example-container__title">${selectedPack.charAt(0).toUpperCase()}${selectedPack.slice(1)}</div>`;
     packs[selectedPack].forEach((icon) => {
-      html += CivicIcon({
+      html += CivicThemeIcon({
         symbol: icon,
         color: select('Color', colors, 'primary', generalKnobTab),
         size: radios('Size', sizes, sizes[0], generalKnobTab),

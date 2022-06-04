@@ -1,7 +1,7 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicSocialLinks from './social-links.twig';
+import CivicThemeSocialLinks from './social-links.twig';
 import { demoIcon } from '../../00-base/base.stories';
-import CivicIcon from '../../01-atoms/icon/icon.twig';
+import CivicThemeIcon from '../../01-atoms/icon/icon.twig';
 
 export default {
   title: 'Organisms/Social Links',
@@ -36,7 +36,7 @@ export const SocialLinks = (knobTab) => {
     },
     {
       url: 'https://www.youtube.com',
-      text: CivicIcon({ symbol: 'brands_youtube', size: 'regular' }),
+      text: CivicThemeIcon({ symbol: 'brands_youtube', size: 'regular' }),
       title: 'Icon with inline SVG',
     },
   ];
@@ -56,7 +56,7 @@ export const SocialLinks = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicSocialLinks({
+  return CivicThemeSocialLinks({
     ...generalKnobs,
   });
 };

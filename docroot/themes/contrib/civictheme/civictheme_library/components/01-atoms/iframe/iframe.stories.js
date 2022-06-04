@@ -1,5 +1,5 @@
 import { radios, text } from '@storybook/addon-knobs';
-import CivicIframe from './iframe.twig';
+import CivicThemeIframe from './iframe.twig';
 
 export default {
   title: 'Atoms/Iframe',
@@ -39,7 +39,7 @@ export const Iframe = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicIframe({
+  return CivicThemeIframe({
     ...generalKnobs,
   });
 };

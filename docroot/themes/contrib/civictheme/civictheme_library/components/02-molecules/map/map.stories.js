@@ -1,6 +1,6 @@
 import { radios, text } from '@storybook/addon-knobs';
 import { randomUrl } from '../../00-base/base.stories';
-import CivicMap from './map.twig';
+import CivicThemeMap from './map.twig';
 
 export default {
   title: 'Molecules/Map',
@@ -39,7 +39,7 @@ export const Map = (knobTab) => {
     ),
   };
 
-  return CivicMap({
+  return CivicThemeMap({
     ...generalKnobs,
   });
 };

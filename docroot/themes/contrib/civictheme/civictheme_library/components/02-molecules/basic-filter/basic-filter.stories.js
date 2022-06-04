@@ -1,6 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
-import CivicBasicFilter from './basic-filter.twig';
+import CivicThemeBasicFilter from './basic-filter.twig';
 
 export default {
   title: 'Molecules/Filter/Basic Filter',
@@ -37,7 +37,7 @@ export const BasicFilter = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicBasicFilter({
+  return CivicThemeBasicFilter({
     ...generalKnobs,
   });
 };

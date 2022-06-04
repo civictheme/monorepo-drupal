@@ -1,5 +1,5 @@
 import { radios, text } from '@storybook/addon-knobs';
-import CivicHeading from './heading.twig';
+import CivicThemeHeading from './heading.twig';
 
 export default {
   title: 'Atoms/Heading',
@@ -22,7 +22,7 @@ export const Heading = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicHeading({
+  return CivicThemeHeading({
     ...generalKnobs,
   });
 };

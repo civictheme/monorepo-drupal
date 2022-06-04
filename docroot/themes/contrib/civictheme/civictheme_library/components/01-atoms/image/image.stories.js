@@ -1,6 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
-import CivicImage from './image.twig';
+import CivicThemeImage from './image.twig';
 import { demoImage } from '../../00-base/base.stories';
 
 export default {
@@ -31,7 +31,7 @@ export const Image = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicImage({
+  return CivicThemeImage({
     ...generalKnobs,
   });
 };

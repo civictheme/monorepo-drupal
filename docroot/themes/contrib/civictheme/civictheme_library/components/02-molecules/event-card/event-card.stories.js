@@ -8,7 +8,7 @@ import {
   randomUrl,
 } from '../../00-base/base.stories';
 
-import CivicEventCard from './event-card.twig';
+import CivicThemeEventCard from './event-card.twig';
 
 export default {
   title: 'Molecules/Card/Event Card',
@@ -60,7 +60,7 @@ export const EventCard = (knobTab) => {
     day: 'numeric',
   });
 
-  const html = CivicEventCard({
+  const html = CivicThemeEventCard({
     ...generalKnobs,
     ...getSlots([
       'image_over',

@@ -5,7 +5,7 @@ import {
   randomUrl,
 } from '../../00-base/base.stories';
 
-import CivicTag from './tag.twig';
+import CivicThemeTag from './tag.twig';
 
 export default {
   title: 'Atoms/Tag',
@@ -54,7 +54,7 @@ export const Tag = (knobTab) => {
     is_new_window: withLink ? boolean('Open in a new window', false, linkKnobTab) : null,
   };
 
-  return CivicTag({
+  return CivicThemeTag({
     ...generalKnobs,
     ...iconKnobs,
     ...linkKnobs,
