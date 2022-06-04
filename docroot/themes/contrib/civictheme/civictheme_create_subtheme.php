@@ -93,16 +93,12 @@ Arguments:
   machine_name           New theme machine name.
   name                   New theme human-readable name.
   description            New theme description.
-  new_theme_directory    Optional new theme directory, including theme machine
-                         name. Defaults to ${default_new_theme_dir}/machine_name.
 
 Options:
   --help                 This help.
 
 Examples:
   php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
-
-  php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme." ../civictheme_demo
 
 EOF;
   print PHP_EOL;
