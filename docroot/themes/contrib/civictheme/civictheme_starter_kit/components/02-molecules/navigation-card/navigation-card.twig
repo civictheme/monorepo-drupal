@@ -1,24 +1,67 @@
 {#
-  Importantly, note the use of the @civictheme-<COMPONENT_TYPE> namespace.
-  There are civictheme namespaces for:
-    - base
-    - atoms
-    - molecules
-    - organisms
-    - templates
-    - pages
-  This gives access to unmodified civictheme components enabling us to override secions of a component with modifications but
-  keeping it's connection to the civictheme design system.
-  @see
+/**
+ * @file
+ * Navigation Card component (extension of CivicTheme's component).
+ *
+ * Demonstration of adding an extension of the existin molecule-level component.
+ *
+ * This component is based on CivicTheme's Navigation Card component.
+ *
+ * It extends Navigation Card component by adding 'tags' property. This template
+ * provides support to render this new property.
+ *
+ * Note the use of the @civictheme-<COMPONENT_TYPE> namespace: it gives access
+ * to the unmodified CivicTheme component template enabling us to override
+ * secions of a component while preserving the other parts of the component to
+ * rely on the CivicTheme component implementation. This is useful when only a
+ * small portion of the component should be overridden.
+ *
+ * There are CivicTheme namespaces for:
+ *  - base
+ *  - atoms
+ *  - molecules
+ *  - organisms
+ *  - templates
+ *  - pages
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content_top: [string] Content slot.
+ * - image_over: [string] Content slot for image over.
+ * - content_middle: [string] Content slot.
+ * - content_bottom: [string] Content slot.
+ * - size: [string] Size: large, small.
+ * - image: [object] Image object:
+ *   - src: [string] Image source.
+ *   - alt: [string] Image alt text.
+ * - image_as_icon: [boolean] Show image as an icon.
+ * - icon: [string] Icon name.
+ * - title: [string] The text of card title.
+ * - summary: [string] Summary of the card.
+ * - url: [string] Link.
+ * - is_external: [boolean] Link is external or not.
+ * - tags: [array] Array of tags. THIS IS A NEW PROPERTY ADDED FOR THIS EXAMPLE.
+ * - modifier_class: [string] Additional classes.
+ */
 #}
+
 {% extends '@civictheme-molecules/navigation-card/navigation-card.twig' %}
 
 {#
-  Block tag enables us to extend a component without overriding and breaking the connection with the existing  component
+  Twig {% block %} allows to extend a component by overriding only a part of it
+  (defined as a block).
 
-  If you look throughout the twig components you will see most components have extendable sections.
+  Most of the CivicTheme components have {% block %} sections.
 #}
 {% block content_bottom %}
+  {#
+    Add rendering of a new preperty 'tags'.
+
+    Note how Tag component is used from the default '@atom' namespace: if Tag
+    component will be overridden in this theme - the override will be used; if
+    not - CivicTheme's Tag component implementation will be used (which is the
+    case in this example).
+  #}
   {% if tags %}
     <div class="civictheme-promo-card__tags">
       {% for tag in tags %}

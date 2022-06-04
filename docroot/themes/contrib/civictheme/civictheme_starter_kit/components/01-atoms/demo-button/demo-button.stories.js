@@ -62,10 +62,6 @@ export const DemoButton = (knobTab) => {
   //
   // Components should also provide 'modifier_class' property so that custom
   // additional classes could be passed to the component, if required.
-  //
-  // @note: For demonstration purposes, not all properties of the parent
-  // CivicTheme Button component are listed below, so this Demo Button knobs in
-  // Storybook will differ from the knobs in the CivicTheme Button component.
   const generalKnobs = {
     theme: radios(
       'Theme',
