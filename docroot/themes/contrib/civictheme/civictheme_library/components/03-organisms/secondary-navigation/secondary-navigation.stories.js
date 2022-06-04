@@ -1,5 +1,5 @@
 import { radios, text } from '@storybook/addon-knobs';
-import CivicSecondaryNavigation from './secondary-navigation.twig';
+import CivicThemeSecondaryNavigation from './secondary-navigation.twig';
 import getMenuLinks from '../../00-base/menu/menu.utils';
 
 export default {
@@ -24,7 +24,7 @@ export const SecondaryNavigation = () => {
     attributes: text('Additional attributes', ''),
   };
 
-  return CivicSecondaryNavigation({
+  return CivicThemeSecondaryNavigation({
     ...generalKnobs,
   });
 };

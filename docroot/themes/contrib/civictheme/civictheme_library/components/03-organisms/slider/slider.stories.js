@@ -3,7 +3,7 @@ import {
 } from '@storybook/addon-knobs';
 import { getSlots, randomUrl } from '../../00-base/base.stories';
 import { randomSlidesComponent } from './slider.utils';
-import CivicSlider from './slider.twig';
+import CivicThemeSlider from './slider.twig';
 
 export default {
   title: 'Organisms/Slider',
@@ -72,7 +72,7 @@ export const Slider = () => {
     next_label: text('Next Label', 'Next', generalKnobTab),
   };
 
-  return CivicSlider({
+  return CivicThemeSlider({
     ...generalKnobs,
   });
 };

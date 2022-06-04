@@ -2,7 +2,7 @@ import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
 
-import CivicPublicationCard from './publication-card.twig';
+import CivicThemePublicationCard from './publication-card.twig';
 import { demoImage, getSlots, randomUrl } from '../../00-base/base.stories';
 
 export default {
@@ -55,7 +55,7 @@ export const PublicationCard = (knobTab) => {
     icon: withIcon ? select('Icon', icons, 'business_calendar', iconKnobTab) : null,
   };
 
-  const html = CivicPublicationCard({
+  const html = CivicThemePublicationCard({
     ...generalKnobs,
     ...iconKnobs,
     ...getSlots([

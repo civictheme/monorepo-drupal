@@ -1,5 +1,5 @@
 import { radios, text } from '@storybook/addon-knobs';
-import CivicMessage from './message.twig';
+import CivicThemeMessage from './message.twig';
 
 export default {
   title: 'Organisms/Message',
@@ -34,7 +34,7 @@ export const Message = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicMessage({
+  return CivicThemeMessage({
     ...generalKnobs,
   });
 };

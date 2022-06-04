@@ -1,5 +1,5 @@
 import { radios, text, select } from '@storybook/addon-knobs';
-import CivicSearch from './search.twig';
+import CivicThemeSearch from './search.twig';
 
 export default {
   title: 'Molecules/Search',
@@ -33,7 +33,7 @@ export const Search = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  const html = CivicSearch({
+  const html = CivicThemeSearch({
     ...generalKnobs,
   });
 

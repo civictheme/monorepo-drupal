@@ -1,5 +1,5 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicLabel from './label.twig';
+import CivicThemeLabel from './label.twig';
 
 export default {
   title: 'Atoms/Form/Label',
@@ -37,7 +37,7 @@ export const Label = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicLabel({
+  return CivicThemeLabel({
     ...generalKnobs,
   });
 };

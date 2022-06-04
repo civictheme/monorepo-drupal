@@ -1,7 +1,7 @@
 import {
   button, number, radios, text,
 } from '@storybook/addon-knobs';
-import CivicAlert from './alert.twig';
+import CivicThemeAlert from './alert.twig';
 
 export default {
   title: 'Organisms/Alert',
@@ -51,7 +51,7 @@ export const Alert = (knobTab) => {
   );
   let html = '';
   for (let i = 0; i < numOfAlerts; i++) {
-    html += CivicAlert({
+    html += CivicThemeAlert({
       ...generalKnobs,
       id: i,
     });

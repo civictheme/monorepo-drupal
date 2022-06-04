@@ -1,7 +1,7 @@
 import {
   boolean, number, radios,
 } from '@storybook/addon-knobs';
-import CivicBreadcrumb from './breadcrumb.twig';
+import CivicThemeBreadcrumb from './breadcrumb.twig';
 import { randomLinks } from '../../00-base/base.stories';
 
 export default {
@@ -45,7 +45,7 @@ export const Breadcrumb = (knobTab) => {
     ) - 6),
   };
 
-  return CivicBreadcrumb({
+  return CivicThemeBreadcrumb({
     ...generalKnobs,
   });
 };

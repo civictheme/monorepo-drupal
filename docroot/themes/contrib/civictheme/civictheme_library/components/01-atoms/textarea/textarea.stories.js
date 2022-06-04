@@ -1,7 +1,7 @@
 import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
-import CivicTextarea from './textarea.twig';
+import CivicThemeTextarea from './textarea.twig';
 
 export default {
   title: 'Atoms/Form/Textarea',
@@ -41,7 +41,7 @@ export const Textarea = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicTextarea({
+  return CivicThemeTextarea({
     ...generalKnobs,
   });
 };

@@ -1,5 +1,5 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicDirectionalLink from './directional-link.twig';
+import CivicThemeDirectionalLink from './directional-link.twig';
 
 export default {
   title: 'Molecules/Directional Link',
@@ -38,7 +38,7 @@ export const DirectionalLink = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicDirectionalLink({
+  return CivicThemeDirectionalLink({
     ...generalKnobs,
   });
 };

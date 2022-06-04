@@ -1,5 +1,5 @@
 import { radios, select, text } from '@storybook/addon-knobs';
-import CivicMobileNavigationExample from './mobile-navigation.stories.twig';
+import CivicThemeMobileNavigationExample from './mobile-navigation.stories.twig';
 import { getSlots } from '../../00-base/base.stories';
 import getMenuLinks from '../../00-base/menu/menu.utils';
 
@@ -43,7 +43,7 @@ export const MobileNavigation = () => {
     bottom_menu: getMenuLinks(bottomMenuKnobTab, 'Bottom '),
   };
 
-  return CivicMobileNavigationExample({
+  return CivicThemeMobileNavigationExample({
     ...generalKnobs,
     ...getSlots([
       'content_top',
