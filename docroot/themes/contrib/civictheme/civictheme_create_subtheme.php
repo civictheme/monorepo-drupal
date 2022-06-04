@@ -118,10 +118,18 @@ function print_footer($name, $machine_name, $path) {
 
   $name ($machine_name) sub-theme was created successfully in "$path".
 
-  Next steps:
+  NEXT STEPS
+  ----------
+
+  Insure that front-end assets can be built:
+
     cd $path
     npm install
     npm run build
+    npm run storybook
+
+  Enable theme in Drupal:
+
     drush theme:enable civictheme -y
     drush config-set system.theme default civictheme
     drush theme:enable $machine_name -y
