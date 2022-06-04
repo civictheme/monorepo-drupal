@@ -1,24 +1,18 @@
-CivicTheme Starter Kit Drupal theme
-=======================
+# CivicTheme Starter Kit Drupal theme
 
-Based on CivicTheme Drupal theme
+Based on [CivicTheme](https://github.com/salsadigitalauorg/civictheme) Drupal theme.
 
-## Usage
-
-Install
+## Compiling front-end assets.
 
     npm install
-
-Build
-
     npm run build
 
-Lint
+## Linting code
 
     npm run lint
 
     npm run lint:fix
 
-Storybook
+## Starting a local Storybook instance
 
     npm run storybook
