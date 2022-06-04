@@ -13,6 +13,8 @@
  * Usage:
  * @code
  * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description"
+ *
+ * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description" path/to/theme/new_machine_name
  * @endcode
  *
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingBefore
@@ -44,7 +46,7 @@ function main(array $argv, $argc) {
   }
 
   // Show help if not enough or more than required arguments.
-  if ($argc != 4) {
+  if ($argc < 4 || $argc > 5) {
     print_help($default_new_theme_directory);
 
     return EXIT_ERROR;
@@ -93,12 +95,16 @@ Arguments:
   machine_name           New theme machine name.
   name                   New theme human-readable name.
   description            New theme description.
+  new_theme_directory    Optional new theme directory, including theme machine
+                         name. Defaults to ${default_new_theme_dir}/machine_name.
 
 Options:
   --help                 This help.
 
 Examples:
   php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
+
+  php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme." ../civictheme_demo
 
 EOF;
   print PHP_EOL;
