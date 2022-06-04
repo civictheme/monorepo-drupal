@@ -12,20 +12,16 @@ use Drupal\user\Entity\User;
  */
 function cs_core_post_update_provision_users() {
   $emails = [
-    'alan@salsadigital.com.au',
     'akhil.bhandari@salsadigital.com.au',
+    'alan.rako@salsadigital.com.au',
+    'alan@salsadigital.com.au',
     'alex.skrypnyk@salsadigital.com.au',
-    'chris.darke@salsadigital.com.au',
-    'danielle.sheffler@salsadigital.com.au',
     'govind@salsadigital.com.au',
-    'jack.kelly@salsadigital.com.au',
-    'kate.swayne@salsadigital.com.au',
-    'lokender.singh@salsadigital.com.au',
-    'richard.gaunt@salsadigital.com.au',
-    'satyajit.das@salsadigital.com.au',
-    'arpita.jain@salsadigital.com.au',
     'john.cloys@salsadigital.com.au',
-    'nicola.hardy@salsadigital.com.au',
+    'joshua.fernandes@salsadigital.com.au',
+    'nick.georgiou@salsadigital.com.au',
+    'richard.gaunt@salsadigital.com.au',
+    'sonam.chaturvedi@salsadigital.com.au',
   ];
 
   foreach ($emails as $email) {
