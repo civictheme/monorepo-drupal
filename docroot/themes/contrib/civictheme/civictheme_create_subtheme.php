@@ -120,12 +120,12 @@ function print_footer($name, $machine_name, $path) {
 
   Next steps:
     cd $path
+    npm install
+    npm run build
     drush theme:enable civictheme -y
     drush config-set system.theme default civictheme
     drush theme:enable $machine_name -y
     drush config-set system.theme default $machine_name
-    npm install
-    npm run build
 
 EOF;
   print PHP_EOL;
