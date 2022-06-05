@@ -1,83 +1,68 @@
-const {
-  src,
-  dest,
-  series,
-  watch,
-} = require('gulp');
-const fs = require('fs');
-const flatMap = require('gulp-flatmap');
-const rename = require('gulp-rename');
+/**
+ * @file
+ * Additional processing to merge current and CivicTheme components.
+ *
+ * Running this script produces 2 directories:
+ *  - components_combined - a directory of merged CivicTheme components with
+ *    overrides from the current theme's components used to collect the "full"
+ *    set of components for a build.
+ *  - .components-civictheme - a copy of CivicTheme components used by Webpack
+ *    to resolve inclusions of "clean" CivicTheme components when extending
+ *    CivicTheme components in this theme.
+ */
+
+const {src, dest, series, watch} = require('gulp');
 const del = require('del');
 const newer = require('gulp-newer');
 
-// Component file globs.
-// @codingStandardsIgnoreLine
-const civicthemeStorybookWatchDir = `${__dirname}/../../contrib/civictheme/components/**`;
-const civicthemeChildStorybookWatchDir = `${__dirname}/components/**`;
-
-// Theme names - `civictheme_starter_kit` needs to be updated to civictheme child theme name.
-// @todo Extract child theme name dynamically.
-const baseThemeName = __dirname.replace('custom/civictheme_starter_kit', 'contrib/civictheme');
-
-const childThemeName = __dirname;
+// Directory with current theme components.
+const srcComponentsCurrentDir = `${__dirname}/components`;
+// Directory with CivicTheme components.
+const srcComponentsCivicthemeDir = `${__dirname}/../../contrib/civictheme/components`;
 
 // Output directory of merged components.
-const outputDir = `${__dirname}/components_combined`;
-const civicthemeComponentsDir = `${__dirname}/.components-civictheme`;
+const dstComponentsCombinedDir = `${__dirname}/components_combined`;
+// Output directory of CivicTheme components.
+const dstComponentsCivicthemeDir = `${__dirname}/.components-civictheme`;
 
-// Add files to combined storybook.
+/**
+ * A task to build assets.
+ */
 function buildTask(cb) {
-  let filePath;
-  // Copy civictheme components to child theme to allow extending.
-  src(civicthemeStorybookWatchDir)
-    .pipe(dest(civicthemeComponentsDir));
+  // Copy components from CivicTheme into a dedicated directory within current
+  // theme.
+  src(`${srcComponentsCivicthemeDir}/**`)
+    .pipe(dest(dstComponentsCivicthemeDir));
 
-  src(civicthemeStorybookWatchDir)
-    .pipe(flatMap((stream, file) => {
-      filePath = file.path;
-      if (filePath !== undefined) {
-        filePath = filePath
-          .replace(__dirname, '')
-          .replace(baseThemeName, childThemeName);
-        if (fs.existsSync(filePath)) {
-          return src(filePath)
-            .pipe(rename((path) => {
-              path.dirname = filePath
-                .replace(`${__dirname}/components`, '')
-                .replace(path.basename + path.extname, '');
-
-              return path;
-            }));
-        }
-      }
-
-      return stream;
-    }))
-    .pipe(newer(outputDir))
-    .pipe(dest(outputDir));
-
-  // Sync the child theme components.
-  src(civicthemeChildStorybookWatchDir)
-    .pipe(newer(outputDir))
-    .pipe(dest(outputDir));
+  // Merge components from CivicTheme and current theme into a dedicated
+  // directory within current theme.
+  src([`${srcComponentsCivicthemeDir}/**`, `${srcComponentsCurrentDir}/**`])
+    .pipe(newer(dstComponentsCombinedDir))
+    .pipe(dest(dstComponentsCombinedDir));
 
   cb();
 }
 
-// Rebuild storybook to clear out deleted items.
+/**
+ * A task to clean output directory.
+ */
 async function cleanTask(cb) {
-  await del(`${outputDir}/**`);
+  await del(`${dstComponentsCivicthemeDir}/**`);
+  await del(`${dstComponentsCombinedDir}/**`);
   cb();
 }
 
-// Watch files for changes.
+/**
+ * A task to watch for changes.
+ */
 function watchTask(cb) {
-  watch([civicthemeStorybookWatchDir, civicthemeChildStorybookWatchDir], {
+  watch([`${srcComponentsCivicthemeDir}/**`, `${srcComponentsCurrentDir}/**`], {
     persistent: true,
     ignoreInitial: true,
   }, series(buildTask));
 
   cb();
 }
+
 exports.default = series(cleanTask, buildTask);
 exports.watch = series(watchTask);
