@@ -148,24 +148,85 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
 
   public function dataProviderFileGetRelativeDir() {
     return [
-      ['/a/b/c/d', "/a/b/c/d", "./"],
-      ['/a/b/c/d', "/a/b/c", "../"],
-      ['/a/b/c/d', "/a/b", "../../"],
-      ['/a/b/c/d', "/a/b/c/other", "../other/"],
-      ['/a/b/c/d', "/a/b/other2", "../../other2/"],
+      ['/a/b/c/d', '/a/b/c/d', './'],
+      ['/a/b/c/d', '/a/b/c', '../'],
+      ['/a/b/c/d', '/a/b', '../../'],
+      ['/a/b/c/d', '/a/b/c/other', '../other/'],
+      ['/a/b/c/d', '/a/b/other2', '../../other2/'],
 
-      ['/a/b/c/d', "/a/b/c/d/", "./"],
-      ['/a/b/c/d', "/a/b/c/", "../"],
-      ['/a/b/c/d', "/a/b/", "../../"],
-      ['/a/b/c/d', "/a/b/c/other/", "../other/"],
-      ['/a/b/c/d', "/a/b/other2/", "../../other2/"],
+      ['/a/b/c/d', '/a/b/c/d/', './'],
+      ['/a/b/c/d', '/a/b/c/', '../'],
+      ['/a/b/c/d', '/a/b/', '../../'],
+      ['/a/b/c/d', '/a/b/c/other/', '../other/'],
+      ['/a/b/c/d', '/a/b/other2/', '../../other2/'],
 
-      ['/a/b/c/d/', "/a/b/c/d/", "./"],
-      ['/a/b/c/d/', "/a/b/c/", "../"],
-      ['/a/b/c/d/', "/a/b/", "../../"],
-      ['/a/b/c/d/', "/a/b/c/other/", "../other/"],
-      ['/a/b/c/d/', "/a/b/other2/", "../../other2/"],
+      ['/a/b/c/d/', '/a/b/c/d/', './'],
+      ['/a/b/c/d/', '/a/b/c/', '../'],
+      ['/a/b/c/d/', '/a/b/', '../../'],
+      ['/a/b/c/d/', '/a/b/c/other/', '../other/'],
+      ['/a/b/c/d/', '/a/b/other2/', '../../other2/'],
     ];
   }
 
+  /**
+   * @dataProvider dataProviderFilePathCanonicalize
+   * @runInSeparateProcess
+   */
+  public function testFilePathCanonicalize($path, $expected) {
+    $this->assertEquals($expected, file_path_canonicalize($path));
+  }
+
+  public function dataProviderFilePathCanonicalize() {
+    return [
+      ['', ''],
+      ['a', 'a'],
+
+      // Absolute.
+      ['/a', '/a'],
+      ['/a/b', '/a/b'],
+
+      ['/a/b/.', '/a/b/'],
+      ['/a/b/..', '/a/'],
+      ['/a/b/c/..', '/a/b/'],
+      ['/a/b/c/../d/', '/a/b/d/'],
+      ['/a/b/c/../../d/', '/a/d/'],
+      ['/a/b/c/../.././d/', '/a/d/'],
+      ['/a/b/c/./../.././d/', '/a/d/'],
+      ['/a/b/c/././././.././././.././d/', '/a/d/'],
+      ['/a/././././b/c/././././.././././.././d/', '/a/d/'],
+
+      ['/a/././././', '/a/'],
+      ['/a/./', '/a/'],
+      ['/a/./../', '/'],
+      ['/a/./../.', '/'],
+      ['/a/./.././', '/'],
+
+      ['/a/./../../', '/'],
+      ['/a/./../../.', '/'],
+      ['/a/./../.././../', '/'],
+      ['/a/./../.././../.', '/'],
+
+      // Relative.
+      ['a', 'a'],
+      ['a/b', 'a/b'],
+
+      ['a/b/.', 'a/b/'],
+      ['a/b/..', 'a/'],
+      ['a/b/c/..', 'a/b/'],
+      ['a/b/c/../d/', 'a/b/d/'],
+      ['a/b/c/../../d/', 'a/d/'],
+      ['a/b/c/../.././d/', 'a/d/'],
+      ['a/b/c/./../.././d/', 'a/d/'],
+      ['a/b/c/././././.././././.././d/', 'a/d/'],
+      ['a/././././b/c/././././.././././.././d/', 'a/d/'],
+
+      ['a/././././', 'a/'],
+      ['a/./', 'a/'],
+      ['a/./../', '/'],
+      ['a/./../.', '/'],
+      ['a/./.././', '/'],
+
+      ['a/./../../', '/'],
+    ];
+  }
 }
