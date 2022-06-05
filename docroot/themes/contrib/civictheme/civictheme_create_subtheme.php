@@ -13,6 +13,8 @@
  * Usage:
  * @code
  * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description"
+ *
+ * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description" path/to/theme/new_machine_name
  * @endcode
  *
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingBefore
@@ -35,7 +37,7 @@ define('ERROR_LEVEL', E_USER_WARNING);
  * Main functionality.
  */
 function main(array $argv, $argc) {
-  $default_new_theme_directory = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'custom';
+  $default_new_theme_directory = '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'custom';
 
   if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {
     print_help($default_new_theme_directory);
@@ -44,7 +46,7 @@ function main(array $argv, $argc) {
   }
 
   // Show help if not enough or more than required arguments.
-  if ($argc != 4) {
+  if ($argc < 4 || $argc > 5) {
     print_help($default_new_theme_directory);
 
     return EXIT_ERROR;
@@ -56,6 +58,9 @@ function main(array $argv, $argc) {
   $new_theme_name = trim($argv[2]);
   $new_theme_description = trim($argv[3]);
   $new_theme_directory = trim($argv[4] ?? $default_new_theme_directory . DIRECTORY_SEPARATOR . $new_theme_machine_name);
+
+  // @todo Add check if path is absolute.
+  $new_theme_directory = file_path_canonicalize(__DIR__ . DIRECTORY_SEPARATOR . $new_theme_directory);
 
   // Prepare theme stub.
   $stub_path = prepare_stub();
@@ -93,12 +98,16 @@ Arguments:
   machine_name           New theme machine name.
   name                   New theme human-readable name.
   description            New theme description.
+  new_theme_directory    Optional new theme directory, including theme machine
+                         name. Defaults to ${default_new_theme_dir}/machine_name.
 
 Options:
   --help                 This help.
 
 Examples:
   php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
+
+  php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme." ../civictheme_demo
 
 EOF;
   print PHP_EOL;
@@ -118,7 +127,7 @@ function print_footer($name, $machine_name, $path) {
   Insure that front-end assets can be built:
 
     cd $path
-    npm install
+    npm ci
     npm run build
     npm run storybook
 
@@ -173,6 +182,11 @@ function process_stub($dir, $options) {
   // @formatter:on
   // phpcs:enable Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
   // phpcs:enable Drupal.WhiteSpace.Comma.TooManySpaces
+
+  // Resolve CivicTheme's location relative to the new theme.
+  $current_dir = __DIR__;
+  $relative_dir = file_get_relative_dir($options['path'], $current_dir);
+  file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'gulpfile.js');
 }
 
 /**
@@ -411,6 +425,105 @@ function file_tempdir($dir = NULL, $prefix = 'tmp_', $mode = 0700, $max_attempts
   }
 
   return $path;
+}
+
+/**
+ * Get relative directory path from 2 directory paths.
+ *
+ * This function does not rely on existence of paths.
+ *
+ * @param string $dir1
+ *   First dir path to compare.
+ * @param string $dir2
+ *   Second dir path to compare.
+ *
+ * @return string
+ *   Relative path between 2 directories.
+ */
+function file_get_relative_dir($dir1, $dir2) {
+  $dir1 = rtrim($dir1, '/') . '/';
+  $dir2 = rtrim($dir2, '/') . '/';
+
+  if ($dir1 === $dir2) {
+    return './';
+  }
+
+  $dir1 = explode('/', $dir1);
+  $dir2 = explode('/', $dir2);
+  $parts = $dir2;
+
+  foreach ($dir1 as $depth => $dir) {
+    if ($dir === $dir2[$depth]) {
+      array_shift($parts);
+    }
+    else {
+      $remaining = count($dir1) - $depth;
+      if ($remaining > 1) {
+        $parts = array_pad($parts, -1 * (count($parts) + $remaining - 1), '..');
+        break;
+      }
+      else {
+        $parts[0] = './' . $parts[0];
+      }
+    }
+  }
+
+  return implode('/', $parts);
+}
+
+/**
+ * Canonicalize the path by removing './' and '../'.
+ *
+ * @param string $path
+ *   Path that need to be canonicalized.
+ *
+ * @return string
+ *   Path with all '.', '..', './' and '../' removed.
+ *
+ * @see https://datatracker.ietf.org/doc/html/rfc3986#section-5.2.4
+ */
+function file_path_canonicalize($path) {
+  $output = '';
+
+  while ($path !== '') {
+    if (
+      ($prefix = substr($path, 0, 3)) == '../' ||
+      ($prefix = substr($path, 0, 2)) == './'
+    ) {
+      $path = substr($path, strlen($prefix));
+    }
+    elseif (
+      ($prefix = substr($path, 0, 3)) == '/./' ||
+      ($prefix = $path) == '/.'
+    ) {
+      $path = '/' . substr($path, strlen($prefix));
+    }
+    elseif (
+      ($prefix = substr($path, 0, 4)) == '/../' ||
+      ($prefix = $path) == '/..'
+    ) {
+      $path = '/' . substr($path, strlen($prefix));
+      $output = substr($output, 0, strrpos($output, '/'));
+    }
+    else {
+      if ($path == '.' || $path == '..') {
+        $path = '';
+      }
+      else {
+        $pos = strpos($path, '/');
+        if ($pos === 0) {
+          $pos = strpos($path, '/', $pos + 1);
+        }
+        if ($pos === FALSE) {
+          $pos = strlen($path);
+        }
+        $output .= substr($path, 0, $pos);
+        $path = substr($path, $pos);
+      }
+    }
+  }
+
+  return $output;
 }
 
 // ////////////////////////////////////////////////////////////////////////// //

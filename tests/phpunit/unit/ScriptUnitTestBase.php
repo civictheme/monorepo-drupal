@@ -268,20 +268,47 @@ abstract class ScriptUnitTestBase extends TestCase {
    *   Destination directory to copy to.
    * @param array $exclude
    *   Optional array of entries to exclude.
+   * @param int $permissions
+   *   Permissions to set on created directories. Defaults to 0755.
+   * @param bool $copy_empty_dirs
+   *   Flag to copy empty directories. Defaults to FALSE.
+   *
+   * @return bool
+   *   TRUE if the result of copy was successful, FALSE otherwise.
    */
-  protected function copyr($src, $dst, array $exclude = []) {
+  public function fileCopyRecursively($src, $dst, array $exclude = [], $permissions = 0755, $copy_empty_dirs = FALSE) {
+    $parent = dirname($dst);
+
+    if (!is_dir($parent)) {
+      mkdir($parent, $permissions, TRUE);
+    }
+
+    // Note that symlink target must exist.
     if (is_link($src)) {
-      symlink(readlink($src), $dst);
-      return;
+      // Changing dir symlink will be relevant to the current destination's file
+      // directory.
+      $cur_dir = getcwd();
+      chdir($parent);
+      $ret = TRUE;
+      if (!is_readable(basename($dst))) {
+        $ret = symlink(readlink($src), basename($dst));
+      }
+      chdir($cur_dir);
+
+      return $ret;
     }
 
     if (is_file($src)) {
-      copy($src, $dst);
-      return;
+      $ret = copy($src, $dst);
+      if ($ret) {
+        chmod($dst, fileperms($src));
+      }
+
+      return $ret;
     }
 
-    if (!is_dir($dst)) {
-      mkdir($dst);
+    if (!is_dir($dst) && $copy_empty_dirs) {
+      mkdir($dst, $permissions, TRUE);
     }
 
     $dir = dir($src);
@@ -289,10 +316,12 @@ abstract class ScriptUnitTestBase extends TestCase {
       if ($entry == '.' || $entry == '..' || in_array($entry, $exclude)) {
         continue;
       }
-      $this->copyr($src . DIRECTORY_SEPARATOR . $entry, $dst . DIRECTORY_SEPARATOR . $entry);
+      $this->fileCopyRecursively($src . DIRECTORY_SEPARATOR . $entry, $dst . DIRECTORY_SEPARATOR . $entry, $exclude, $permissions, $copy_empty_dirs);
     }
 
     $dir->close();
+
+    return TRUE;
   }
 
 }

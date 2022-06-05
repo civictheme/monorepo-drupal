@@ -68,7 +68,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
         'CivicTheme Starter Kit scaffolding',
       ],
       [
-        [1, 2, 3, 4],
+        [1, 2, 3, 4, 5, 6],
         1,
         'CivicTheme Starter Kit scaffolding',
       ],
@@ -76,40 +76,92 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
   }
 
   /**
+   * @dataProvider dataProviderTestLocation
    * @runInSeparateProcess
    */
-  public function testDefaultLocation() {
+  public function testLocation($civictheme_dir, $newtheme_rel_dir, $expected_newtheme_dir, $expected_rel_path) {
     $newtheme_name = 'new_theme';
-    $civictheme_dir = 'themes/contrib/civictheme';
-    $newtheme_path = '/../../custom/' . $newtheme_name;
 
-    $sut_dir = $this->prepareSut($civictheme_dir);
+    $this->prepareSut($civictheme_dir);
 
-    $result = $this->runScript([$newtheme_name, $newtheme_name, $newtheme_name], TRUE);
+    $expected_new_theme_dir_full = $this->tmpDir . '/' . $expected_newtheme_dir;
+
+    $result = $this->runScript([$newtheme_name, $newtheme_name, $newtheme_name, $newtheme_rel_dir], TRUE);
     $this->assertEquals(0, $result['code']);
     $this->assertStringContainsString('sub-theme was created successfully ', $result['output']);
-    $this->assertStringContainsString('sub-theme was created successfully ', $result['output']);
+    $this->assertStringContainsString($expected_new_theme_dir_full, $result['output']);
 
-    $newtheme_path_full = $sut_dir . $newtheme_path . '/';
-    $this->assertDirectoryExists($newtheme_path_full);
-    $this->assertDirectoryExists($newtheme_path_full . '.storybook');
-    $this->assertDirectoryExists($newtheme_path_full . 'assets');
-    $this->assertDirectoryExists($newtheme_path_full . 'components');
-    $this->assertDirectoryExists($newtheme_path_full . 'templates');
-    $this->assertDirectoryExists($newtheme_path_full . 'webpack');
-    $this->assertFileExists($newtheme_path_full . '.eslintignore');
-    $this->assertFileExists($newtheme_path_full . '.eslintrc.yml');
-    $this->assertFileExists($newtheme_path_full . '.gitignore');
-    $this->assertFileExists($newtheme_path_full . '.nvmrc');
-    $this->assertFileExists($newtheme_path_full . '.stylelintrc.json');
-    $this->assertFileExists($newtheme_path_full . $newtheme_name . '.info.yml');
-    $this->assertFileExists($newtheme_path_full . $newtheme_name . '.libraries.yml');
-    $this->assertFileExists($newtheme_path_full . $newtheme_name . '.theme');
-    $this->assertFileExists($newtheme_path_full . 'gulpfile.js');
-    $this->assertFileExists($newtheme_path_full . 'package.json');
-    $this->assertFileExists($newtheme_path_full . 'package-lock.json');
-    $this->assertFileExists($newtheme_path_full . 'README.md');
-    $this->assertFileExists($newtheme_path_full . 'screenshot.png');
+    $expected_new_theme_dir_full .= '/';
+    $this->assertDirectoryExists($expected_new_theme_dir_full);
+
+    $this->assertDirectoryExists($expected_new_theme_dir_full . '.storybook');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'assets');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'templates');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'webpack');
+    $this->assertFileExists($expected_new_theme_dir_full . '.eslintignore');
+    $this->assertFileExists($expected_new_theme_dir_full . '.eslintrc.yml');
+    $this->assertFileExists($expected_new_theme_dir_full . '.gitignore');
+    $this->assertFileExists($expected_new_theme_dir_full . '.nvmrc');
+    $this->assertFileExists($expected_new_theme_dir_full . '.stylelintrc.json');
+    $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.info.yml');
+    $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.libraries.yml');
+    $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.theme');
+    $this->assertFileExists($expected_new_theme_dir_full . 'gulpfile.js');
+    $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
+    $this->assertFileExists($expected_new_theme_dir_full . 'package-lock.json');
+    $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
+    $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
+
+    $this->assertStringContainsString($expected_rel_path, file_get_contents($expected_new_theme_dir_full . 'gulpfile.js'));
+  }
+
+  public function dataProviderTestLocation() {
+    return [
+      // CivicTheme in 'contrib', new theme in 'custom' dir.
+      // No new_theme_directory specified - use default one.
+      [
+        'docroot/themes/contrib/civictheme',
+        '',
+        'docroot/themes/custom/new_theme',
+        '../../contrib/civictheme/',
+      ],
+      // CivicTheme in 'contrib', new theme in 'custom' dir. Same as default.
+      [
+        'docroot/themes/contrib/civictheme',
+        '../../custom/new_theme',
+        'docroot/themes/custom/new_theme',
+        '../../contrib/civictheme/',
+      ],
+      // CivicTheme in 'contrib', new theme not in 'custom' dir.
+      [
+        'docroot/themes/contrib/civictheme',
+        '../../new_theme',
+        'docroot/themes/new_theme',
+        '../contrib/civictheme/',
+      ],
+      // CivicTheme not in 'contrib', new theme not in 'custom' dir.
+      [
+        'docroot/themes/civictheme',
+        '../new_theme',
+        'docroot/themes/new_theme',
+        '../civictheme/',
+      ],
+      // CivicTheme in root, new theme in root dir.
+      [
+        'civictheme',
+        '../new_theme',
+        'new_theme',
+        '../civictheme/',
+      ],
+      // CivicTheme in root, new theme in 'custom' dir.
+      [
+        'civictheme',
+        '../custom/new_theme',
+        'custom/new_theme',
+        '../../civictheme/',
+      ],
+    ];
   }
 
   /**
@@ -125,17 +177,108 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $sut_dir = $this->tmpDir . (!empty($path) ? '/' . $path : '');
     mkdir($sut_dir, 0755, TRUE);
 
-    $this->copyr($this->civicthemeDir, $sut_dir, [
+    $this->fileCopyRecursively(getcwd() . '/' . $this->civicthemeDir, $sut_dir, [
       'node_modules',
       'vendor',
       'storybook-static',
       'dist',
-      'assets',
     ]);
 
     $this->script = $sut_dir . '/civictheme_create_subtheme.php';
 
     return $sut_dir;
+  }
+
+  /**
+   * @dataProvider dataProviderFileGetRelativeDir
+   * @runInSeparateProcess
+   */
+  public function testFileGetRelativeDir($from, $to, $expected) {
+    $this->assertEquals($expected, file_get_relative_dir($from, $to));
+  }
+
+  public function dataProviderFileGetRelativeDir() {
+    return [
+      ['/a/b/c/d', '/a/b/c/d', './'],
+      ['/a/b/c/d', '/a/b/c', '../'],
+      ['/a/b/c/d', '/a/b', '../../'],
+      ['/a/b/c/d', '/a/b/c/other', '../other/'],
+      ['/a/b/c/d', '/a/b/other2', '../../other2/'],
+
+      ['/a/b/c/d', '/a/b/c/d/', './'],
+      ['/a/b/c/d', '/a/b/c/', '../'],
+      ['/a/b/c/d', '/a/b/', '../../'],
+      ['/a/b/c/d', '/a/b/c/other/', '../other/'],
+      ['/a/b/c/d', '/a/b/other2/', '../../other2/'],
+
+      ['/a/b/c/d/', '/a/b/c/d/', './'],
+      ['/a/b/c/d/', '/a/b/c/', '../'],
+      ['/a/b/c/d/', '/a/b/', '../../'],
+      ['/a/b/c/d/', '/a/b/c/other/', '../other/'],
+      ['/a/b/c/d/', '/a/b/other2/', '../../other2/'],
+    ];
+  }
+
+  /**
+   * @dataProvider dataProviderFilePathCanonicalize
+   * @runInSeparateProcess
+   */
+  public function testFilePathCanonicalize($path, $expected) {
+    $this->assertEquals($expected, file_path_canonicalize($path));
+  }
+
+  public function dataProviderFilePathCanonicalize() {
+    return [
+      ['', ''],
+      ['a', 'a'],
+
+      // Absolute.
+      ['/a', '/a'],
+      ['/a/b', '/a/b'],
+
+      ['/a/b/.', '/a/b/'],
+      ['/a/b/..', '/a/'],
+      ['/a/b/c/..', '/a/b/'],
+      ['/a/b/c/../d/', '/a/b/d/'],
+      ['/a/b/c/../../d/', '/a/d/'],
+      ['/a/b/c/../.././d/', '/a/d/'],
+      ['/a/b/c/./../.././d/', '/a/d/'],
+      ['/a/b/c/././././.././././.././d/', '/a/d/'],
+      ['/a/././././b/c/././././.././././.././d/', '/a/d/'],
+
+      ['/a/././././', '/a/'],
+      ['/a/./', '/a/'],
+      ['/a/./../', '/'],
+      ['/a/./../.', '/'],
+      ['/a/./.././', '/'],
+
+      ['/a/./../../', '/'],
+      ['/a/./../../.', '/'],
+      ['/a/./../.././../', '/'],
+      ['/a/./../.././../.', '/'],
+
+      // Relative.
+      ['a', 'a'],
+      ['a/b', 'a/b'],
+
+      ['a/b/.', 'a/b/'],
+      ['a/b/..', 'a/'],
+      ['a/b/c/..', 'a/b/'],
+      ['a/b/c/../d/', 'a/b/d/'],
+      ['a/b/c/../../d/', 'a/d/'],
+      ['a/b/c/../.././d/', 'a/d/'],
+      ['a/b/c/./../.././d/', 'a/d/'],
+      ['a/b/c/././././.././././.././d/', 'a/d/'],
+      ['a/././././b/c/././././.././././.././d/', 'a/d/'],
+
+      ['a/././././', 'a/'],
+      ['a/./', 'a/'],
+      ['a/./../', '/'],
+      ['a/./../.', '/'],
+      ['a/./.././', '/'],
+
+      ['a/./../../', '/'],
+    ];
   }
 
 }
