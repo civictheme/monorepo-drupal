@@ -98,4 +98,4 @@ RUN cd /app/docroot/themes/contrib/civictheme \
 
 # Compile subtheme assets.
 RUN npm --prefix docroot/themes/contrib/civictheme_demo_sibling ci --no-audit --no-progress --unsafe-perm \
-  && cd /app/docroot/themes/custom/civictheme_demo_sibling && npm run build
+  && cd /app/docroot/themes/contrib/civictheme_demo_sibling && npm run build
