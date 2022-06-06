@@ -22,7 +22,6 @@ Feature: View of Page content with Accordion component
   Scenario: CivicTheme page content type page can be viewed by anonymous with accordion light without background
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page accordion test" has "civictheme_accordion" paragraph:
-      | field_c_p_title          | [TEST] Accordion title             |
       | field_c_p_theme          | light                              |
       | field_c_p_background     | 0                                  |
       | field_c_p_expand         | 0                                  |
@@ -45,7 +44,6 @@ Feature: View of Page content with Accordion component
     And I should see an "div.civictheme-accordion__content-top" element
     And I should see an "div.civictheme-accordion__inner" element
     And I should see an "ul.civictheme-accordion__list" element
-    And I should see the text "[TEST] Accordion title"
     And I should see the text "[TEST] Accordion panel 1"
     And I should see the text "[TEST] Accordion panel 2"
     And I should not see an "[data-collapsible-trigger][aria-expanded='true']" element
@@ -54,7 +52,6 @@ Feature: View of Page content with Accordion component
   Scenario: CivicTheme page content type page can be viewed by anonymous with accordion dark with background
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page accordion test" has "civictheme_accordion" paragraph:
-      | field_c_p_title          | [TEST] Accordion title             |
       | field_c_p_theme          | dark                               |
       | field_c_p_background     | 1                                  |
       | field_c_p_expand         | 1                                  |
@@ -78,7 +75,6 @@ Feature: View of Page content with Accordion component
     And I should see an "div.civictheme-accordion__content-top" element
     And I should see an "div.civictheme-accordion__inner" element
     And I should see an "ul.civictheme-accordion__list" element
-    And I should see the text "[TEST] Accordion title"
     And I should see the text "[TEST] Accordion panel 1"
     And I should see the text "[TEST] Accordion panel 2"
     And I wait 2 second
