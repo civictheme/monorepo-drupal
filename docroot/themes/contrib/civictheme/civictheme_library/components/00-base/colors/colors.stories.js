@@ -55,7 +55,7 @@ export const Colors = () => {
   for (const name in types) {
     if (Object.values(vars[name]).length > 0) {
       if (name.includes('variant') && !variantDocsShown) {
-        html += '<div class="docs-container">Color variants are customizable set of colors, mapped to automatically generated color tints, shades or tones by default.<br/>These can be easily re-mapped to custom values, if required.</div>';
+        html += '<div class="docs-container">Color variants is a customizable set of colors, mapped to automatically generated color tints, shades or tones by default.<br/>These can be easily re-mapped to custom values, if required.</div>';
         variantDocsShown = true;
       }
 

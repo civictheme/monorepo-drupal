@@ -76,7 +76,7 @@
   @for $i from 0 through 100 {
     $tints: map.merge($tints, ('tint-#{$i}': civictheme-color-tint($i, civictheme-color('primary'))));
     $shades: map.merge($shades, ('shade-#{$i}': civictheme-color-shade($i, civictheme-color('primary'))));
-    $tones: map.merge($tones, ('tone-#{$i}': civictheme-color-tone($i, civictheme-color('neutral'))));
+    $tones: map.merge($tones, ('tone-#{$i}': civictheme-color-tone($i, civictheme-color('neutral', 1))));
   }
 
   $all-colors-automated: ();
