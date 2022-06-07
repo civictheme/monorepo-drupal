@@ -46,10 +46,6 @@
   // Standard colors.
   $all-colors: _civictheme-colors-all();
 
-  // Remove translucent as this is not a color.
-  // @todo Remove this once 'translucent' is moved into a separate variable.
-  $all-colors: map.remove($all-colors, 'translucent');
-
   @include civictheme-generate-class-variations-from-map($all-colors, 'story-color') using($key, $value, $index) {
     @include civictheme-stories-color-box($key, $value, 100px, 100px);
   }
