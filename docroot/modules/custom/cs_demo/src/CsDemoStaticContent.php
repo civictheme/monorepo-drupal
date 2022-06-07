@@ -20,8 +20,9 @@ class CsDemoStaticContent {
    *   The number of paragraphs to create. Defaults to 10.
    *
    * @return string
+   *   Paragraphs.
    */
-  public static function paragraphs($paragraph_count = 10) {
+  public static function paragraphs(int $paragraph_count = 10) {
     $output = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Pellentesque in ipsum id orci porta dapibus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
       "Donec rutrum congue leo eget malesuada. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec sollicitudin molestie malesuada. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.",
@@ -39,7 +40,7 @@ class CsDemoStaticContent {
       $paragraph_count = 10;
     }
 
-    $output = array_splice($output, 0 , $paragraph_count);
+    $output = array_splice($output, 0, $paragraph_count);
 
     return implode("\n\n", $output);
   }
@@ -83,7 +84,7 @@ class CsDemoStaticContent {
   /**
    * Generate random HTML paragraphs.
    *
-   * @param int $=paragraph_count
+   * @param int $paragraph_count
    *   Number of paragraphs to generate.
    * @param string $prefix
    *   Optional prefix to add to the very first heading.
@@ -102,4 +103,5 @@ class CsDemoStaticContent {
 
     return implode(PHP_EOL, $paragraphs);
   }
+
 }
