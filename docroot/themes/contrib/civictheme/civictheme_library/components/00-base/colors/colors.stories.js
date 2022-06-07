@@ -23,7 +23,7 @@ export const Colors = () => {
     }
   }
   for (const name in colorsVariantGroups) {
-    types[`civictheme-colors-variants-default-${name}`] = `${name.charAt(0).toUpperCase() + name.slice(1)} colors variants`;
+    types[`civictheme-colors-variants-default-${name}`] = `${name.charAt(0).toUpperCase() + name.slice(1)} color variants`;
     vars[`civictheme-colors-variants-default-${name}`] = colorsVariantGroups[name].sort((a, b) => a.localeCompare(b, navigator.languages[0] || navigator.language, {
       numeric: true,
       sensitivity: 'base',

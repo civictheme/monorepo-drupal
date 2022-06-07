@@ -74,9 +74,9 @@
   $neutrals: ();
 
   @for $i from 0 through 100 {
-    $dark-shades: map.merge($dark-shades, ('dark-shade-#{$i}': civictheme-color-shade-dark($i)));
-    $light-shades: map.merge($light-shades, ('light-shade-#{$i}': civictheme-color-shade-light($i)));
-    $neutrals: map.merge($neutrals, ('neutral-#{$i}': civictheme-color-neutral($i)));
+    $dark-shades: map.merge($dark-shades, ('dark-shade-#{$i}': civictheme-color-shade-dark($i, civictheme-color('primary'))));
+    $light-shades: map.merge($light-shades, ('light-shade-#{$i}': civictheme-color-shade-light($i, civictheme-color('primary'))));
+    $neutrals: map.merge($neutrals, ('neutral-#{$i}': civictheme-color-neutral($i, civictheme-color('neutral'))));
   }
 
   $all-colors-automated: ();

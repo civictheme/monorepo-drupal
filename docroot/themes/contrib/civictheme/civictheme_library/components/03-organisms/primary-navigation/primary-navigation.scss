@@ -137,7 +137,7 @@
 
         &.civictheme-menu__item--active-trail {
           > .civictheme-link {
-            background-color: civictheme-color-shade-dark(60);
+            background-color: civictheme-color('primary', 6);
             color: civictheme-color('neutral');
             padding-left: civictheme-space();
             padding-right: civictheme-space();
