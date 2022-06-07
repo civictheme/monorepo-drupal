@@ -7,7 +7,6 @@ dependencies:
     - field.field.paragraph.civictheme_accordion.field_c_p_panels
     - field.field.paragraph.civictheme_accordion.field_c_p_space
     - field.field.paragraph.civictheme_accordion.field_c_p_theme
-    - field.field.paragraph.civictheme_accordion.field_c_p_title
     - paragraphs.paragraphs_type.civictheme_accordion
   module:
     - entity_reference_revisions
@@ -18,54 +17,46 @@ bundle: civictheme_accordion
 mode: default
 content:
   field_c_p_background:
-    weight: 5
+    type: boolean
     label: above
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
+    weight: 5
     region: content
   field_c_p_expand:
-    weight: 3
+    type: boolean
     label: hidden
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
+    weight: 3
     region: content
   field_c_p_panels:
     type: entity_reference_revisions_entity_view
-    weight: 2
     label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    weight: 2
     region: content
   field_c_p_space:
-    weight: 4
+    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 4
     region: content
   field_c_p_theme:
-    weight: 1
+    type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: list_default
-    region: content
-  field_c_p_title:
-    weight: 0
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
+    weight: 1
     region: content
 hidden: {  }
