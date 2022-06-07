@@ -991,7 +991,7 @@ $civictheme-large-filter-dark-mobile-clear-all-label-icon: civictheme-color('neu
 // Form/Fieldset.
 //
 $civictheme-fieldset-required-color: civictheme-color('error') !default;
-$civictheme-fieldset-light-color: black !default;
+$civictheme-fieldset-light-color: civictheme-color('neutral', 10) !default;
 $civictheme-fieldset-dark-color: civictheme-color('neutral', 2) !default;
 
 //
