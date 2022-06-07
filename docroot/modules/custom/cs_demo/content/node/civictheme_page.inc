@@ -10,6 +10,7 @@
 
 use Drupal\cs_demo\CsDemoHelper;
 use Drupal\cs_demo\CsDemoRandom;
+use Drupal\cs_demo\CsDemoStaticContent;
 
 require_once 'helper.inc';
 
@@ -80,7 +81,18 @@ function cs_demo_create_node_civictheme_page() {
     $node->setTitle($title);
     $node->revision_log = $variation_info;
 
+    if (isset($node->path->pathauto)) {
+      $node->path->pathauto = 0;
+    }
+
     $node->save();
+    $pathTitle = substr(strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title))),0,60);
+    $pathTitle = filter_var($pathTitle, FILTER_SANITIZE_URL);
+    $path_alias = \Drupal::entityTypeManager()->getStorage('path_alias')->create([
+      'path' => "/node/" . $node->id(),
+      'alias' => "/demo/" . $node->bundle() . "/" . $pathTitle,
+    ]);
+    $path_alias->save();
 
     $helper::log(
       'Created "%s" node "%s" (id: %s)',
@@ -105,7 +117,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
   }
 
   if (!empty($variation['summary']) && $node->hasField('field_c_n_summary')) {
-    $node->field_c_n_summary = CsDemoRandom::sentence(2, 10);
+    $node->field_c_n_summary = CsDemoStaticContent::sentence(15);
   }
 
   if (empty($variation['thumbnail']) && $node->hasField('field_c_n_thumbnail')) {
@@ -136,7 +148,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
   if (!empty($variation['banner_components']) && $node->hasField('field_c_n_banner_components')) {
     for ($i = 0; $i < $variation['banner_components']; $i++) {
       CsDemoHelper::civicthemeParagraphContentAttach($node, 'field_c_n_banner_components', [
-        'content' => CsDemoRandom::richText(rand(1, 2), rand(2, 4), sprintf('Banner component %s ', $i + 1)),
+        'content' => CsDemoStaticContent::richText(2, sprintf('Banner component %s ', $i + 1)),
         'theme' => $variation['banner_theme'] ?: CsDemoHelper::civicthemeThemeLight(),
       ]);
     }
@@ -145,7 +157,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
   if (!empty($variation['banner_components_bottom']) && $node->hasField('field_c_n_banner_components_bott')) {
     for ($i = 0; $i < $variation['banner_components_bottom']; $i++) {
       CsDemoHelper::civicthemeParagraphContentAttach($node, 'field_c_n_banner_components_bott', [
-        'content' => CsDemoRandom::richText(rand(1, 2), rand(2, 4), sprintf('Banner bottom component %s ', $i + 1)),
+        'content' => CsDemoStaticContent::richText(2, sprintf('Banner bottom component %s ', $i + 1)),
         'theme' => CsDemoHelper::civicthemeThemeLight(),
       ]);
     }
@@ -158,7 +170,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     if (!empty($variation['content']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['content']; $i++) {
         CsDemoHelper::civicthemeParagraphContentAttach($node, 'field_c_n_components', [
-          'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
+          'content' => CsDemoStaticContent::richText(5, sprintf('Content %s ', $i + 1)),
           'theme' => $theme,
           'background' => CsDemoRandom::bool(66),
           'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
@@ -174,14 +186,13 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
         $accordion_options = [];
         for ($j = 0; $j < $count_per_group; $j++) {
           $accordion_options[] = [
-            'title' => 'A H ' . ($j + 1) . ' ' . CsDemoRandom::sentence(1),
-            'content' => CsDemoRandom::richText(3, 8),
+            'title' => 'A H ' . ($j + 1) . ' ' . CsDemoStaticContent::sentence(5),
+            'content' => CsDemoStaticContent::richText(5),
             'expand' => rand(0, 1),
           ];
         }
 
         CsDemoHelper::civicthemeParagraphAccordionAttach($node, 'field_c_n_components', [
-          'title' => CsDemoRandom::bool(33) ? 'AG H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
           'panels' => $accordion_options,
           'expand_all' => rand(0, 1),
           'theme' => $theme,
@@ -202,8 +213,8 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
         }
 
         CsDemoHelper::civicthemeParagraphAttachmentAttach($node, 'field_c_n_components', [
-          'title' => 'A H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1),
-          'summary' => CsDemoRandom::plainParagraph(),
+          'title' => 'A H ' . ($i + 1) . ' ' . CsDemoStaticContent::sentence(5),
+          'summary' => CsDemoStaticContent::plainParagraph(),
           'attachments' => $attachments,
           'image' => CsDemoHelper::randomImage(),
           'icon' => CsDemoHelper::randomDocument(),
@@ -218,11 +229,11 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     if (!empty($variation['callout']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['callout']; $i++) {
         CsDemoHelper::civicthemeParagraphCalloutAttach($node, 'field_c_n_components', [
-          'title' => 'C H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1),
-          'summary' => CsDemoRandom::plainParagraph(),
+          'title' => 'C H ' . ($i + 1) . ' ' . CsDemoStaticContent::sentence(5),
+          'summary' => CsDemoStaticContent::plainParagraph(),
           'link' => [
             'uri' => CsDemoRandom::url(),
-            'title' => CsDemoRandom::sentence(2, 5),
+            'title' => CsDemoStaticContent::sentence(3),
           ],
           'theme' => $theme,
           'background' => CsDemoRandom::bool(),
@@ -260,8 +271,8 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
         }
 
         CsDemoHelper::civicthemeParagraphCardContainerAttach($node, 'field_c_n_components', [
-          'title' => CsDemoRandom::bool(33) ? 'CC H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
-          'description' => CsDemoRandom::sentence(3),
+          'title' => CsDemoRandom::bool(33) ? 'CC H ' . ($i + 1) . ' ' . CsDemoStaticContent::sentence(5) : NULL,
+          'description' => CsDemoStaticContent::sentence(7),
           'column_count' => CsDemoHelper::randomFieldAllowedValue('paragraph', 'civictheme_card_container', 'field_c_p_column_count'),
           'fill_width' => CsDemoRandom::bool(),
           'footer_link' => CsDemoHelper::randomLinkFieldValue(),
@@ -278,20 +289,20 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     if (!empty($variation['next_step']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['next_step']; $i++) {
         CsDemoHelper::civicthemeParagraphNextStepAttach($node, 'field_c_n_components', [
-          'title' => 'NS H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1),
-          'summary' => CsDemoRandom::plainParagraph(),
+          'title' => 'NS H ' . ($i + 1) . ' ' . CsDemoStaticContent::sentence(5),
+          'summary' => CsDemoStaticContent::plainParagraph(),
           'links' => [
             [
               'uri' => CsDemoRandom::url(),
-              'title' => CsDemoRandom::sentence(2, 5),
+              'title' => CsDemoStaticContent::sentence(3),
             ],
             [
               'uri' => CsDemoRandom::url(),
-              'title' => CsDemoRandom::sentence(2, 5),
+              'title' => CsDemoStaticContent::sentence(2),
             ],
             [
               'uri' => CsDemoRandom::url(),
-              'title' => CsDemoRandom::sentence(2, 5),
+              'title' => CsDemoStaticContent::sentence(4),
             ],
           ],
           'image' => CsDemoHelper::randomImage(),
@@ -306,11 +317,11 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     if (!empty($variation['promo']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['promo']; $i++) {
         CsDemoHelper::civicthemeParagraphPromoAttach($node, 'field_c_n_components', [
-          'title' => CsDemoRandom::bool(33) ? 'P H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
-          'summary' => CsDemoRandom::plainParagraph(),
+          'title' => CsDemoRandom::bool(33) ? 'P H ' . ($i + 1) . ' ' . CsDemoStaticContent::sentence(5) : NULL,
+          'summary' => CsDemoStaticContent::plainParagraph(),
           'link' => [
             'uri' => CsDemoRandom::url(),
-            'title' => CsDemoRandom::sentence(2, 5),
+            'title' => CsDemoStaticContent::sentence(2),
           ],
           'theme' => $theme,
           'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
@@ -322,8 +333,8 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
     if (!empty($variation['map']) && $node->hasField('field_c_n_components')) {
       for ($i = 0; $i < $variation['map']; $i++) {
         CsDemoHelper::civicthemeParagraphMapAttach($node, 'field_c_n_components', [
-          'address' => CsDemoRandom::bool(33) ? 'P H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
-          'summary' => CsDemoRandom::plainParagraph(),
+          'address' => CsDemoRandom::bool(33) ? 'P H ' . ($i + 1) . ' ' . CsDemoStaticContent::sentence(1) : NULL,
+          'summary' => CsDemoStaticContent::plainParagraph(),
           'embed_url' => 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed',
           'share_link' => 'https://goo.gl/maps/XsNx2XM21y41UQ7P7',
           'view_link' => 'https://maps.google.com/maps?ll=-25.853564,133.545713&z=3&t=m&hl=en-US&gl=US&mapclient=embed&q=Australia',
@@ -352,7 +363,7 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
       for ($i = 0; $i < $variation['listing']; $i++) {
         $content_type = CsDemoHelper::randomListingContentType();
         $listing_options = [
-          'title' => 'L H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1),
+          'title' => 'L H ' . ($i + 1) . ' ' . CsDemoStaticContent::sentence(1),
           'link' => CsDemoHelper::randomLinkFieldValue(),
           'content_type' => $content_type,
           'topics' => CsDemoHelper::randomTopics(rand(1, 5)),
@@ -378,8 +389,8 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
         $slide_options = [];
         for ($j = 0; $j < $count_per_group; $j++) {
           $slide_options[] = [
-            'title' => 'S H ' . ($j + 1) . ' ' . CsDemoRandom::sentence(1),
-            'content' => CsDemoRandom::richText(1, 1),
+            'title' => 'S H ' . ($j + 1) . ' ' . CsDemoStaticContent::sentence(1),
+            'content' => CsDemoStaticContent::richText(1),
             'image' => CsDemoHelper::randomImage(),
             'image_position' => CsDemoHelper::randomSliderSlideImagePosition(),
             'link' => CsDemoHelper::randomLinkFieldValue(),
@@ -390,8 +401,8 @@ function _cs_demo_create_node_from_variation_process_civictheme_page($node, $var
 
         // Slider.
         CsDemoHelper::civicthemeParagraphSliderAttach($node, 'field_c_n_components', [
-          'title' => CsDemoRandom::bool(33) ? 'SG H ' . ($i + 1) . ' ' . CsDemoRandom::sentence(1) : NULL,
-          'content' => CsDemoRandom::richText(rand(1, 3), rand(5, 7), sprintf('Content %s ', $i + 1)),
+          'title' => CsDemoRandom::bool(33) ? 'SG H ' . ($i + 1) . ' ' . CsDemoStaticContent::sentence(1) : NULL,
+          'content' => CsDemoStaticContent::richText(1, sprintf('Content %s ', $i + 1)),
           'theme' => $theme,
           'background' => CsDemoRandom::bool(),
           'space' => CsDemoRandom::arrayItem(CsDemoHelper::civicthemeSpaceTypes()),
