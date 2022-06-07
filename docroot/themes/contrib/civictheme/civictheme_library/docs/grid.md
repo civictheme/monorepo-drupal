@@ -4,7 +4,7 @@ CivicTheme provides a customisable grid utilising a flex-based system.
 
 ## Grid System
 
-CivicTheme Component Library's grid system uses a series of containers, rows, and
+CivicTheme component library grid system uses a series of containers, rows, and
 columns to layout and align content.
 
 It’s built with flexbox and is fully responsive.
@@ -118,6 +118,7 @@ CivicTheme component library come with a variety of
 ## Advanced
 
 For more advanced modification and overriding, the grid system internals are
-defined within `_variables.base.scss`, which provides plenty of options to
-change the grid system however this is not recommended as it can have
-significant changes to the design system which may not be at first apparent.
+defined within [_variables.base.scss](../components/00-base/_variables.base.scss),
+which provides plenty of options to change the grid system, however, this is
+not recommended as it can have significant changes to the design system which
+may not be apparent at first.
