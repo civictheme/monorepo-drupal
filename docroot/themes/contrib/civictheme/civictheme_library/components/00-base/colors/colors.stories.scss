@@ -68,21 +68,21 @@
     @include civictheme-stories-color-box($key, $value, 80px, 80px);
   }
 
-  // Shades.
-  $dark-shades: ();
-  $light-shades: ();
-  $neutrals: ();
+  // Tints, shades, tones.
+  $tints: ();
+  $shades: ();
+  $tones: ();
 
   @for $i from 0 through 100 {
-    $dark-shades: map.merge($dark-shades, ('dark-shade-#{$i}': civictheme-color-shade-dark($i, civictheme-color('primary'))));
-    $light-shades: map.merge($light-shades, ('light-shade-#{$i}': civictheme-color-shade-light($i, civictheme-color('primary'))));
-    $neutrals: map.merge($neutrals, ('neutral-#{$i}': civictheme-color-neutral($i, civictheme-color('neutral'))));
+    $tints: map.merge($tints, ('tint-#{$i}': civictheme-color-tint($i, civictheme-color('primary'))));
+    $shades: map.merge($shades, ('shade-#{$i}': civictheme-color-shade($i, civictheme-color('primary'))));
+    $tones: map.merge($tones, ('tone-#{$i}': civictheme-color-tone($i, civictheme-color('neutral'))));
   }
 
   $all-colors-automated: ();
-  $all-colors-automated: map.merge($all-colors-automated, $dark-shades);
-  $all-colors-automated: map.merge($all-colors-automated, $light-shades);
-  $all-colors-automated: map.merge($all-colors-automated, $neutrals);
+  $all-colors-automated: map.merge($all-colors-automated, $tints);
+  $all-colors-automated: map.merge($all-colors-automated, $shades);
+  $all-colors-automated: map.merge($all-colors-automated, $tones);
 
   @include civictheme-generate-class-variations-from-map($all-colors-automated, 'story-color') using($key, $value, $index) {
     @include civictheme-stories-color-box($key, $value, 50px, 50px);

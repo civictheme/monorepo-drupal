@@ -37,59 +37,6 @@ $civictheme-colors: (
 The modifiable colour system can be found in
 [_variables.base.scss](../components/00-base/_variables.base.scss).
 
-## Available colors
-
-See storybook `Base/colors` for a visual guide to what available colors, shades and neutrals are ready to use
-
-Color values are accessed with SASS maps:
-
-### Dark shades
-```sass
-
-civictheme-color-shade-dark(0)
-civictheme-color-shade-dark(10)
-civictheme-color-shade-dark(20)
-civictheme-color-shade-dark(30)
-civictheme-color-shade-dark(40)
-civictheme-color-shade-dark(50)
-civictheme-color-shade-dark(60)
-civictheme-color-shade-dark(70)
-civictheme-color-shade-dark(80)
-civictheme-color-shade-dark(90)
-```
-
-### Light shades
-```sass
-
-civictheme-color-shade-light(0)
-civictheme-color-shade-light(10)
-civictheme-color-shade-light(20)
-civictheme-color-shade-light(30)
-civictheme-color-shade-light(40)
-civictheme-color-shade-light(50)
-civictheme-color-shade-light(60)
-civictheme-color-shade-light(70)
-civictheme-color-shade-light(80)
-civictheme-color-shade-light(90)
-```
-
-
-### Neutral shades
-
-```sass
-
-civictheme-color-neutral(0)
-civictheme-color-neutral(10)
-civictheme-color-neutral(20)
-civictheme-color-neutral(30)
-civictheme-color-neutral(40)
-civictheme-color-neutral(50)
-civictheme-color-neutral(60)
-civictheme-color-neutral(70)
-civictheme-color-neutral(80)
-civictheme-color-neutral(90)
-```
-
 ## Colour variables
 
 Every color used within the CivicTheme Component Library has a corresponding variable
@@ -120,8 +67,8 @@ $civictheme-card-heading: civictheme-color('primary') !default;
 #### Child theme override
 
 ```sass
-// Child theme override.
-$civictheme-card-heading: civictheme-color-shade-dark(90);
+// Child theme override - use 'primary-variant3' color variant.
+$civictheme-card-heading: civictheme-color('primary', 3);
 ```
 
 The resulting css uses the child theme's component colour.

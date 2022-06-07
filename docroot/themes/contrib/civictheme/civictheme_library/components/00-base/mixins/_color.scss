@@ -32,15 +32,24 @@
   @error '"#{$name}" is not an available color.';
 }
 
-@function civictheme-color-shade-dark($number, $base) {
+//
+// Color shade. Do not use on components directly - map to a color variant instead.
+//
+@function civictheme-color-shade($number, $base) {
   @return color.mix(black, $base, math.percentage(math.div($number, 100)));
 }
 
-@function civictheme-color-shade-light($number, $base) {
+//
+// Color tint. Do not use on components directly - map to a color variant instead.
+//
+@function civictheme-color-tint($number, $base) {
   @return color.mix(white, $base, math.percentage(math.div($number, 100)));
 }
 
-@function civictheme-color-neutral($number, $base) {
+//
+// Color tone. Do not use on components directly - map to a color variant instead.
+//
+@function civictheme-color-tone($number, $base) {
   $neutral: color.adjust(color.adjust($base, $saturation: -20%), $lightness: -1 * math.max(color.lightness($base) - 5%, 0%));
 
   @return color.mix($neutral, white, math.percentage(math.div($number, 100)));
