@@ -345,7 +345,7 @@ trait CsDemoTrait {
 
     $defaults = [
       'summary' => '',
-      'links' => FALSE,
+      'link' => FALSE,
       'image' => NULL,
     ];
 
