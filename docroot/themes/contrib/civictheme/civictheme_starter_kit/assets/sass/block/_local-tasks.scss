@@ -14,11 +14,11 @@
     padding: civictheme-space(4) 0 civictheme-space(4);
 
     &.civictheme-theme-light {
-      background-color: civictheme-color('accent');
+      background-color: civictheme-color('secondary');
     }
 
     &.civictheme-theme-dark {
-      background-color: civictheme-color('secondary');
+      background-color: civictheme-color('primary', 5);
     }
   }
 }
