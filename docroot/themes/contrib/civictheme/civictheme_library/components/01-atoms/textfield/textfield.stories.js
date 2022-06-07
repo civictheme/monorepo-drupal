@@ -1,5 +1,5 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicTextfield from './textfield.twig';
+import CivicThemeTextfield from './textfield.twig';
 
 export default {
   title: 'Atoms/Form/Textfield',
@@ -28,7 +28,7 @@ export const Textfield = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicTextfield({
+  return CivicThemeTextfield({
     ...generalKnobs,
   });
 };

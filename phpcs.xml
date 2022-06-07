@@ -18,17 +18,32 @@
     <!-- Exclude civictheme theme assets. -->
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.storybook\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/assets\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/components\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/dist\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/docs\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/node_modules\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/storybook-static\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/webpack\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.*\/.storybook\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.*\/assets\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.*\/components\/.*</exclude-pattern>
-    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.*\/webpack\/.*</exclude-pattern>
+
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/.storybook\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/assets\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/components\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/dist\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/docs\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/node_modules\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/storybook-static\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/webpack\/.*</exclude-pattern>
+
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/.storybook\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/.components-civictheme\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/gulpfile.js</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/assets\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/components\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/components_combined\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/dist\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/node_modules\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/storybook-static\/.*</exclude-pattern>
+    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_starter_kit\/webpack\/.*</exclude-pattern>
 
     <!-- Exclude demo theme assets. -->
     <exclude-pattern>docroot\/themes\/custom\/.*</exclude-pattern>

@@ -9,15 +9,15 @@ import {
   randomUrl,
 } from '../../00-base/base.stories';
 
-import CivicLargeFilter from '../large-filter/large-filter.twig';
-import CivicBasicFilter from '../../02-molecules/basic-filter/basic-filter.twig';
+import CivicThemeLargeFilter from '../large-filter/large-filter.twig';
+import CivicThemeBasicFilter from '../../02-molecules/basic-filter/basic-filter.twig';
 
-import CivicCardContainer from '../card-container/card-container.twig';
+import CivicThemeCardContainer from '../card-container/card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
 import NavigationCard from '../../02-molecules/navigation-card/navigation-card.twig';
 
-import CivicPagination from '../../02-molecules/pagination/pagination.twig';
-import CivicListing from './listing.twig';
+import CivicThemePagination from '../../02-molecules/pagination/pagination.twig';
+import CivicThemeListing from './listing.twig';
 
 export default {
   title: 'Organisms/Listing',
@@ -37,7 +37,6 @@ export const Listing = (knobTab) => {
     'light',
     generalKnobTab,
   );
-
 
   const generalKnobs = {
     theme,
@@ -87,7 +86,6 @@ export const Listing = (knobTab) => {
   );
 
   const showPager = boolean('Show pager', true, generalKnobTab);
-
 
   // Create empty markup.
   if (resultNumber === 0) {
@@ -145,7 +143,8 @@ export const Listing = (knobTab) => {
 
   generalKnobs.with_background = withBackground;
   generalKnobs.vertical_space = verticalSpace;
-  generalKnobs.modifier_class = text('Additional class', '', generalKnobTab)
+  generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
+
   // Build exposed filters.
   if (showExposed) {
     let count = 0;
@@ -168,7 +167,7 @@ export const Listing = (knobTab) => {
       }
     }
     if (filterType === 'large') {
-      generalKnobs.exposed = CivicLargeFilter({
+      generalKnobs.exposed = CivicThemeLargeFilter({
         theme,
         filter_title: 'Filter search results by:',
         tags_title: 'Selected filters:',
@@ -177,7 +176,7 @@ export const Listing = (knobTab) => {
         with_background: withBackground,
       });
     } else {
-      generalKnobs.exposed = CivicBasicFilter({
+      generalKnobs.exposed = CivicThemeBasicFilter({
         theme,
         is_multiple: false,
         items: filters,
@@ -206,7 +205,7 @@ export const Listing = (knobTab) => {
         href: randomUrl(),
       };
     }
-    generalKnobs.pager = CivicPagination({
+    generalKnobs.pager = CivicThemePagination({
       theme,
       heading_id: 'civictheme-listing-demo',
       items: {
@@ -261,7 +260,7 @@ export const Listing = (knobTab) => {
       cards.push(Card(cardsProps));
     }
 
-    generalKnobs.rows = CivicCardContainer({
+    generalKnobs.rows = CivicThemeCardContainer({
       theme,
       cards,
       column_count: viewMode === 'promo' ? 3 : 2,
@@ -270,7 +269,7 @@ export const Listing = (knobTab) => {
     });
   }
 
-  return CivicListing({
+  return CivicThemeListing({
     theme,
     ...generalKnobs,
   });

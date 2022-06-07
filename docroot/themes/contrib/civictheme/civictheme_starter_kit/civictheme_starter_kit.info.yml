@@ -36,11 +36,8 @@ libraries-override:
       dist/civictheme.js: dist/scripts.js
 
 ckeditor_stylesheets:
-  - dist/ckeditor.css
+  - dist/styles.ckeditor.css
 
-# Child theme components. Any components not provided in this theme will be auto-discovered from the
-# parent theme (CivicTheme).
-# Components may include parent theme's components using `@civictheme-` prefix in the namespace, e.g..  `@civictheme-atoms`.
 components:
   namespaces:
     base:

@@ -1,7 +1,7 @@
 import {
   boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';
-import CivicCardContainer from './card-container.twig';
+import CivicThemeCardContainer from './card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
 import { demoImage, getSlots } from '../../00-base/base.stories';
 
@@ -102,7 +102,7 @@ export const CardContainer = (knobTab) => {
     cards.push(PromoCard(cardsProps));
   }
 
-  return CivicCardContainer({
+  return CivicThemeCardContainer({
     ...generalKnobs,
     cards,
     ...getSlots([

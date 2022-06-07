@@ -71,7 +71,7 @@ components:
       - components/05-pages
 
 ckeditor_stylesheets:
-  - dist/ckeditor.css
+  - dist/civictheme.ckeditor.css
 
 #;< DEVELOPMENT
 # Configuration shipped with this theme.
@@ -283,7 +283,6 @@ config_devel:
     - field.field.paragraph.civictheme_accordion.field_c_p_panels
     - field.field.paragraph.civictheme_accordion.field_c_p_space
     - field.field.paragraph.civictheme_accordion.field_c_p_theme
-    - field.field.paragraph.civictheme_accordion.field_c_p_title
     - field.field.paragraph.civictheme_accordion_panel.field_c_p_content
     - field.field.paragraph.civictheme_accordion_panel.field_c_p_expand
     - field.field.paragraph.civictheme_accordion_panel.field_c_p_title

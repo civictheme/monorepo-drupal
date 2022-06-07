@@ -1,7 +1,7 @@
 import {
   boolean, radios, text,
 } from '@storybook/addon-knobs';
-import CivicLink from './link.twig';
+import CivicThemeLink from './link.twig';
 import { randomUrl } from '../../00-base/base.stories';
 
 export default {
@@ -34,7 +34,7 @@ export const Link = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicLink({
+  return CivicThemeLink({
     ...generalKnobs,
   });
 };

@@ -1,6 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
-import CivicAttachment from './attachment.twig';
+import CivicThemeAttachment from './attachment.twig';
 
 export default {
   title: 'Molecules/Attachment',
@@ -81,7 +81,7 @@ export const Attachment = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicAttachment({
+  return CivicThemeAttachment({
     ...generalKnobs,
     ...getSlots([
       'content_top',

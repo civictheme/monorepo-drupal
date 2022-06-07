@@ -5,7 +5,7 @@
     padding: civictheme-space(2) 0 civictheme-space(2);
 
     &.civictheme-theme-light {
-      background-color: civictheme-color('neutral');
+      background-color: civictheme-color('neutral', 1);
     }
 
     &.civictheme-theme-dark {

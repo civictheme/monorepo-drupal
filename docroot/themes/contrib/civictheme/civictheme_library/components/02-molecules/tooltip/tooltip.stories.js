@@ -1,5 +1,5 @@
 import { text, radios, select } from '@storybook/addon-knobs';
-import CivicTooltip from './tooltip.twig';
+import CivicThemeTooltip from './tooltip.twig';
 
 import '../../00-base/collapsible/collapsible';
 
@@ -36,7 +36,7 @@ export const Tooltip = () => {
     text: text('Tooltip', 'Lorem ipsum deserunt laborum commodo cillum pariatur elit excepteur laboris exercitation est dolore culpa aute dolor ullamco amet exercitation anim nostrud magna ut in tempor sunt pariatur minim in ex est nulla aliqua minim qui ea.', generalKnobTab),
   };
 
-  return CivicTooltip({
+  return CivicThemeTooltip({
     ...generalKnobs,
   });
 };

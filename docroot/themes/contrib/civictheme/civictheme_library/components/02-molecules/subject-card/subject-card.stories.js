@@ -1,6 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import { demoImage, getSlots, randomUrl } from '../../00-base/base.stories';
-import CivicSubjectCard from './subject-card.twig';
+import CivicThemeSubjectCard from './subject-card.twig';
 
 export default {
   title: 'Molecules/Card/Subject Card',
@@ -32,7 +32,7 @@ export const SubjectCard = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  const html = CivicSubjectCard({
+  const html = CivicThemeSubjectCard({
     ...generalKnobs,
     ...getSlots([
       'image_over',

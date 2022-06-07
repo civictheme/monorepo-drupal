@@ -1,6 +1,6 @@
 import { radios } from '@storybook/addon-knobs';
 
-import CivicPasswordIndicatorStory from './password-indicator.stories.twig';
+import CivicThemePasswordIndicatorStory from './password-indicator.stories.twig';
 
 export default {
   title: 'Organisms/Form/Password Indicator',
@@ -21,7 +21,7 @@ export const PasswordIndicator = (knobTab) => {
     ),
   };
 
-  return CivicPasswordIndicatorStory({
+  return CivicThemePasswordIndicatorStory({
     ...generalKnobs,
   });
 };

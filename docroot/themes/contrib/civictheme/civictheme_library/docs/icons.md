@@ -1,6 +1,6 @@
 # Icons
 
-CivicTheme Component Library provides an expansive range of icons that are open
+CivicTheme component library provides an expansive range of icons that are open
 source and can be re-used within the child theme.
 
 ** Important note: Icons must be manually included within the child theme to
@@ -8,7 +8,7 @@ be utilised**
 
 ## Including icons within the child theme
 
-CivicTheme Component Library stores icons in the `civictheme_library/assets/icons`
+CivicTheme component library stores icons in the `civictheme_library/assets/icons`
 directory split into subdirectory libraries.
 
 Copy and paste the icon svg file you wish to include in the starter kit from

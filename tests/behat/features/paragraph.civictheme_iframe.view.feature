@@ -1,4 +1,4 @@
-@civictheme @paragraph @civictheme_iframe
+@civictheme @paragraph @civictheme_iframe @skipped
 Feature: View of Page content with iframe component
 
   Ensure that Page content can be viewed correctly with iframe component.

@@ -1,7 +1,7 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicContent from './content.twig';
-import CivicLayoutSingleColumn from './content-layout--single-column.twig';
-import CivicLayoutSingleColumnContained
+import CivicThemeContent from './content.twig';
+import CivicThemeLayoutSingleColumn from './content-layout--single-column.twig';
+import CivicThemeLayoutSingleColumnContained
   from './content-layout--single-column-contained.twig';
 import { getSlots, randomText } from '../../00-base/base.stories';
 
@@ -56,12 +56,12 @@ export const Content = (knobTab) => {
   if (generalKnobs.content) {
     switch (generalKnobs.layout) {
       case 'single_column':
-        generalKnobs.content = CivicLayoutSingleColumn({
+        generalKnobs.content = CivicThemeLayoutSingleColumn({
           content: generalKnobs.content,
         });
         break;
       case 'single_column_contained':
-        generalKnobs.content = CivicLayoutSingleColumnContained({
+        generalKnobs.content = CivicThemeLayoutSingleColumnContained({
           content: generalKnobs.content,
         });
         break;
@@ -70,7 +70,7 @@ export const Content = (knobTab) => {
     }
   }
 
-  return CivicContent({
+  return CivicThemeContent({
     ...generalKnobs,
     ...getSlots([
       'content_top',

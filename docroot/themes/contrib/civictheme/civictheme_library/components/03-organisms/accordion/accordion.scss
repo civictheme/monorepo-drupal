@@ -35,7 +35,7 @@
     border-top-left-radius: $civictheme-accordion-header-border-radius;
     border-top-right-radius: $civictheme-accordion-header-border-radius;
 
-    &__button--expanded {
+    &__button[aria-expanded='true'] {
       border-bottom: none;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
@@ -75,12 +75,13 @@
 
     @include civictheme-typography('text-regular');
 
-    &--expanded {
+    &[aria-hidden='false'] {
       height: auto;
       border-top: none;
 
       #{$content}--inner {
         opacity: 100%;
+        visibility: visible;
       }
     }
 
@@ -110,7 +111,7 @@
       transition: width 0.25s;
     }
 
-    &--expanded {
+    &:not([data-collapsible-collapsed]) {
       &::before {
         width: 0.5rem;
       }
