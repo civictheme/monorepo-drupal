@@ -95,18 +95,14 @@ $civictheme-colors-variants-default: (
   'primary-variant4': civictheme-color-shade(40, civictheme-color('primary')),
   'primary-variant5': civictheme-color-shade(45, civictheme-color('primary')),
   'primary-variant6': civictheme-color-shade(60, civictheme-color('primary')),
-  'primary-variant7': civictheme-color-shade(80, civictheme-color('primary')),
-  'primary-variant8': civictheme-color-shade(90, civictheme-color('primary')),
   'neutral-variant1': civictheme-color-tone(0, civictheme-color('primary')),
   'neutral-variant2': civictheme-color-tone(5, civictheme-color('primary')),
   'neutral-variant3': civictheme-color-tone(10, civictheme-color('primary')),
   'neutral-variant4': civictheme-color-tone(20, civictheme-color('primary')),
   'neutral-variant5': civictheme-color-tone(40, civictheme-color('primary')),
   'neutral-variant6': civictheme-color-tone(60, civictheme-color('primary')),
-  'neutral-variant7': civictheme-color-tone(70, civictheme-color('primary')),
-  'neutral-variant8': civictheme-color-tone(80, civictheme-color('primary')),
-  'neutral-variant9': civictheme-color-tone(90, civictheme-color('primary')),
-  'neutral-variant10': civictheme-color-tone(100, civictheme-color('primary')),
+  'neutral-variant7': civictheme-color-tone(80, civictheme-color('primary')),
+  'neutral-variant8': civictheme-color-tone(90, civictheme-color('primary')),
 );
 
 // Theme-based background colors for components.
