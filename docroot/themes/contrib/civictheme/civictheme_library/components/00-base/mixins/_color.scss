@@ -20,6 +20,20 @@
   @return map.get($all-colors, $name);
 }
 
+//
+// Get a color variant from the pre-defined list of colors variants.
+//
+@function civictheme-color-variant($name, $idx) {
+  $name: '#{$name}-variant#{$idx}';
+  $all-colors-variants: _civictheme-colors-variants-all();
+
+  @if map.get($all-colors-variants, $name) == null {
+    @error '"#{$name}" is not an available color variant.';
+  }
+
+  @return map.get($all-colors-variants, $name);
+}
+
 @function civictheme-color-shade-dark($number) {
   @return color.mix(black, $civictheme-colors-default-shades-dark-base, math.percentage(math.div($number, 100)));
 }
@@ -43,6 +57,17 @@
 // stylelint-disable-next-line scss/at-function-pattern
 @function _civictheme-colors-all() {
   @return map.merge($civictheme-colors-default, $civictheme-colors);
+}
+
+//
+// Compile all color variants into a single map.
+//
+// Do not use directly.
+// Use @include civictheme-color() mixin instead.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _civictheme-colors-variants-all() {
+  @return map.merge($civictheme-colors-variants-default, $civictheme-colors-variants);
 }
 
 //

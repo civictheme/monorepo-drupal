@@ -57,6 +57,8 @@ $civictheme-assets-directory: './assets/' !default;
 //
 // Colors.
 //
+// Components are using colors and color variants.
+//
 // Use $civictheme-colors to override any color values. It is available (and empty)
 // so that any sub-themes could specify their colors in here to override
 // the defaults. This allows CivicTheme to make palette additions without breaking
@@ -67,8 +69,8 @@ $civictheme-colors: () !default;
 $civictheme-colors-default: (
   'primary': #00698f,
   'secondary': #1f2a33,
-  'accent': #61daff,
   'neutral': #fff,
+  'accent': #61daff,
   'translucent': #0000,
   'outline': #8258c4,
   'status': #007cbf,
@@ -76,6 +78,8 @@ $civictheme-colors-default: (
   'error': #ce3836,
   'success': #008583,
 );
+
+// @todo Remove the variables below once components are remapped from shades to variants.
 
 // Default CivicTheme colors for shades and neutrals.
 // Use civictheme-color-shade-dark(), civictheme-color-shade-light() and
@@ -87,6 +91,50 @@ $civictheme-colors-default-neutral-base: civictheme-color('primary') !default;
 // Theme-based background colors for components.
 $civictheme-theme-light-background-color: civictheme-color('neutral');
 $civictheme-theme-dark-background-color: civictheme-color-shade-dark(40);
+
+// Color variants are derivatives of the colors above, mapped to some sensible
+// defaults using shades.
+//
+// Use $civictheme-colors-variants to override any color variant values  values.
+// It is available (and empty) so that any sub-themes could specify their colors
+// variants in here to override the defaults. This allows CivicTheme to make
+// palette additions without breaking sub-themes.
+
+$civictheme-colors-variants: () !default;
+
+// Default CivicTheme colors palette.
+$civictheme-colors-variants-default: (
+  'primary-variant1': civictheme-color-shade-dark(10),
+  'primary-variant2': civictheme-color-shade-dark(20),
+  'primary-variant3': civictheme-color-shade-dark(30),
+  'primary-variant4': civictheme-color-shade-dark(40),
+  'primary-variant5': civictheme-color-shade-dark(50),
+  'primary-variant6': civictheme-color-shade-dark(60),
+  'primary-variant7': civictheme-color-shade-dark(70),
+  'primary-variant8': civictheme-color-shade-dark(80),
+  'primary-variant9': civictheme-color-shade-dark(90),
+  'primary-variant10': civictheme-color-shade-dark(100),
+  'secondary-variant1': civictheme-color-shade-dark(10),
+  'secondary-variant2': civictheme-color-shade-dark(20),
+  'secondary-variant3': civictheme-color-shade-dark(30),
+  'secondary-variant4': civictheme-color-shade-dark(40),
+  'secondary-variant5': civictheme-color-shade-dark(50),
+  'secondary-variant6': civictheme-color-shade-dark(60),
+  'secondary-variant7': civictheme-color-shade-dark(70),
+  'secondary-variant8': civictheme-color-shade-dark(80),
+  'secondary-variant9': civictheme-color-shade-dark(90),
+  'secondary-variant10': civictheme-color-shade-dark(100),
+  'neutral-variant1': civictheme-color-neutral(10),
+  'neutral-variant2': civictheme-color-neutral(20),
+  'neutral-variant3': civictheme-color-neutral(30),
+  'neutral-variant4': civictheme-color-neutral(40),
+  'neutral-variant5': civictheme-color-neutral(50),
+  'neutral-variant6': civictheme-color-neutral(60),
+  'neutral-variant7': civictheme-color-neutral(70),
+  'neutral-variant8': civictheme-color-neutral(80),
+  'neutral-variant9': civictheme-color-neutral(90),
+  'neutral-variant10': civictheme-color-neutral(100),
+);
 
 //
 // Spacing.
