@@ -86,11 +86,11 @@ function cs_demo_create_node_civictheme_page() {
     }
 
     $node->save();
-    $pathTitle = substr(strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title))), 0, 60);
-    $pathTitle = filter_var($pathTitle, FILTER_SANITIZE_URL);
+    $path_title = substr(strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title))), 0, 60);
+    $path_title = filter_var($path_title, FILTER_SANITIZE_URL);
     $path_alias = \Drupal::entityTypeManager()->getStorage('path_alias')->create([
-      'path' => "/node/" . $node->id(),
-      'alias' => "/demo/" . $node->bundle() . "/" . $pathTitle,
+      'path' => '/node/' . $node->id(),
+      'alias' => '/demo/' . $node->bundle() . '/' . $path_title,
     ]);
     $path_alias->save();
 
