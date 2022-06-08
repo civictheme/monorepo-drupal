@@ -74,7 +74,7 @@
             theme: theme,
             text: key,
             title: title,
-            context: current == key ? 'Current page' : 'Page',
+            hidden_text: current == key ? 'Current page' : 'Page',
             url: item.href,
             modifier_class: 'civictheme-pager__link ' ~ (current == key ? 'civictheme-pager__link--active' : ''),
           } only %}
