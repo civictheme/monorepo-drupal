@@ -140,6 +140,7 @@ EOF;
  *   - value is a file path to the file.
  */
 function collect_configs($dir, $subdirs = []) {
+  $files = [];
   if (file_exists($dir . DIRECTORY_SEPARATOR . 'install')) {
     foreach (glob($dir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . '*.yml') as $path) {
       $files['install'][basename($path)] = $path;

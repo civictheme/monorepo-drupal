@@ -17,6 +17,7 @@ Feature: Tests the Table Of Contents
       | field_c_p_content:format | civictheme_rich_text                                                                                                                  |
 
     When I visit civictheme_page "[TEST] Page - toc"
+    And wait 5 seconds
     Then I should see a ".table-of-contents-container" element
     And I should see a visible ".civictheme-table-of-contents__title" element
     And I should see the text "On this page"

@@ -6,7 +6,7 @@ Learn more about developing with CivicTheme in [CivicTheme documentation](../../
 
 ## Compiling front-end assets.
 
-    npm install
+    npm ci
     npm run build
 
 ## Linting code
@@ -18,3 +18,11 @@ Learn more about developing with CivicTheme in [CivicTheme documentation](../../
 ## Starting a local Storybook instance
 
     npm run storybook
+
+## Updating site configuration after CivicTheme update
+
+    php ./scripts/update_config.php ../../contrib/civictheme/config ../../../config/default scripts/example.site_custom_configs.txt
+
+Note that this script can be run on your host, and it does not require a running
+site to copy config files. You will need to import and export config using a
+running site though after the config files are updated.
