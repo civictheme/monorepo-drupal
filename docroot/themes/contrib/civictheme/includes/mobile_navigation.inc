@@ -44,6 +44,10 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
       $menu_parameters->excludeRoot();
       $menu_tree_service = \Drupal::service('menu.link_tree');
       $tree = $menu_tree_service->load($menu_name, $menu_parameters);
+      $manipulators = [
+        ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+      ];
+      $tree = $menu_tree_service->transform($tree, $manipulators);
       $variables[$menu_key] = $menu_tree_service->build($tree)['#items'];
       $cache_tags = Cache::mergeTags($cache_tags, $menu_block->getCacheTags());
     }
