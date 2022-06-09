@@ -78,6 +78,7 @@ third_party_settings:
         - field_c_n_topics
         - field_c_n_thumbnail
         - field_c_n_space
+        - field_c_n_hide_sidebar
       parent_name: group_civictheme_tabs
       weight: 9
       format_type: tab
@@ -183,6 +184,13 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
     region: content
+  field_c_n_hide_sidebar:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_c_n_show_toc:
     weight: 10
     settings:
