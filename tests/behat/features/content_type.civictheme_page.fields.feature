@@ -54,6 +54,9 @@ Feature: Fields on Page content type
     And I should see text matching "With space"
     And should see an "select[name='field_c_n_space']" element
 
+    And I should see text matching "Hide sidebar"
+    And should see an "input[name='field_c_n_hide_sidebar[value]']" element
+
     And I should see text matching "Show Table of Contents"
     And should see an "input[name='field_c_n_show_toc[value]']" element
 
