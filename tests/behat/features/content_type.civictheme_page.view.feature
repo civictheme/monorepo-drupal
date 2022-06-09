@@ -266,3 +266,20 @@ Feature: View of Page content type
     And I click on ".node-revision-table .even a" element
     And I should see "Revision of [TEST] Page Revision test"
     And save screenshot
+
+  @api @breadcrumb
+  Scenario: CivicTheme page content type page breadcrumb theme can be overridden
+    Given I am an anonymous user
+    And "civictheme_page" content:
+      | title                             | status | field_c_n_banner_theme |
+      | [TEST] Page breadcrumb light      | 1      | light                  |
+      | [TEST] Page breadcrumb dark       | 1      | dark                   |
+
+    When I visit "civictheme_page" "[TEST] Page breadcrumb light"
+    And I should see the text "[TEST] Page breadcrumb light"
+    And I should see an "nav.civictheme-breadcrumb.civictheme-theme-light" element
+    And I should not see an "nav.civictheme-breadcrumb.civictheme-theme-dark" element
+    When I visit "civictheme_page" "[TEST] Page breadcrumb dark"
+    And I should see the text "[TEST] Page breadcrumb dark"
+    And I should see an "nav.civictheme-breadcrumb.civictheme-theme-dark" element
+    And I should not see an "nav.civictheme-breadcrumb.civictheme-theme-light" element
