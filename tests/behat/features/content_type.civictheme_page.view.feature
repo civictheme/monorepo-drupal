@@ -266,3 +266,18 @@ Feature: View of Page content type
     And I click on ".node-revision-table .even a" element
     And I should see "Revision of [TEST] Page Revision test"
     And save screenshot
+
+  @api @sidebar
+  Scenario: CivicTheme page content type page can configure sidebar display
+    Given I am an anonymous user
+    And "civictheme_page" content:
+      | title                       | status | field_c_n_hide_sidebar |
+      | [TEST] Page with sidebar    | 1      | 0                      |
+      | [TEST] Page without sidebar | 1      | 1                      |
+
+    When I visit "civictheme_page" "[TEST] Page with sidebar"
+    And I should see the text "[TEST] Page with sidebar"
+    And I should see an "aside.civictheme-content__sidebar" element
+    When I visit "civictheme_page" "[TEST] Page without sidebar"
+    And I should see the text "[TEST] Page without sidebar"
+    And I should not see an "aside.civictheme-content__sidebar" element
