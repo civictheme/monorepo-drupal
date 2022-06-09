@@ -8,7 +8,7 @@ import {
   randomUrl,
 } from '../../00-base/base.stories';
 
-import CivicPromoCard from './promo-card.twig';
+import CivicThemePromoCard from './promo-card.twig';
 
 export default {
   title: 'Molecules/Card/Promo Card',
@@ -59,7 +59,7 @@ export const PromoCard = (knobTab) => {
     day: 'numeric',
   });
 
-  const html = CivicPromoCard({
+  const html = CivicThemePromoCard({
     ...generalKnobs,
     ...getSlots([
       'image_over',

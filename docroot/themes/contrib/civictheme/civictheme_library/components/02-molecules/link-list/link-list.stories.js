@@ -2,7 +2,7 @@ import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 
-import CivicLinkList from './link-list.twig';
+import CivicThemeLinkList from './link-list.twig';
 import { randomLinks } from '../../00-base/base.stories';
 
 export default {
@@ -42,7 +42,7 @@ export const LinkList = (knobTab) => {
     )),
   };
 
-  return CivicLinkList({
+  return CivicThemeLinkList({
     ...generalKnobs,
   });
 };

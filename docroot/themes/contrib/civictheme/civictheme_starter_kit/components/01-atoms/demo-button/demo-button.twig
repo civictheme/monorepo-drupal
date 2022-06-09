@@ -3,12 +3,15 @@
  * @file
  * Demo Button component.
  *
- * Used to show project custom atom-level component.
+ * Demonstration of adding a new atom-level component.
+ *
+ * This component is completely isolated from CivicTheme's Button component.
  *
  * Variables:
- * - modifier_class: [string] Classes to modify the default component styling.
+ * - theme: [string] Theme: light, dark.
  * - text: [string] Button text.
  * - disabled: [boolean] Disabled state.
+ * - modifier_class: [string] Classes to modify the default component styling.
  */
 #}
 <button class="civictheme-button {{ modifier_class }}" data-component-name="demo-button" {{ disabled ? 'disabled' }}>Example button: {{ text }}</button>

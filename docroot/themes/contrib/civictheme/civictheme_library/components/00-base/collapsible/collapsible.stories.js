@@ -1,6 +1,6 @@
 import { radios } from '@storybook/addon-knobs';
 
-import CivicCollapsible from './collapsible.stories.twig';
+import CivicThemeCollapsible from './collapsible.stories.twig';
 import './collapsible';
 
 export default {
@@ -9,7 +9,7 @@ export default {
 
 export const Collapsible = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-  const html = CivicCollapsible({
+  const html = CivicThemeCollapsible({
     theme: radios(
       'Theme', {
         Light: 'light',

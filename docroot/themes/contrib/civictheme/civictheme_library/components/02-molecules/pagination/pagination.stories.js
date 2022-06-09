@@ -1,7 +1,7 @@
 import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
-import CivicPagination from './pagination.twig';
+import CivicThemePagination from './pagination.twig';
 import { randomUrl } from '../../00-base/base.stories';
 
 export default {
@@ -70,7 +70,7 @@ export const Pagination = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicPagination({
+  return CivicThemePagination({
     ...generalKnobs,
   });
 };

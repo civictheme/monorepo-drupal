@@ -1,113 +1,121 @@
 # Typography
 
-CivicTheme Component Library provides a system for easily consuming and extending
+CivicTheme component library provides a system for easily consuming and extending
 typography mixins and variables.
 
-### How to use the typography mixin
+## Fonts
 
-Font and typography can be set using the `civictheme-typography()` mixin.
-
-It can be used in 3 ways:
-
-#### 1. Passing a ruleset
+The default font-families are defined in a map `$civictheme-fonts-default`:
 
 ```scss
-h1 {
-  @include civictheme-typography((24px, 1.2em, 400, 'primary'));
-}
-```
-
-Where:
-
-* Parameter 1 = font-size
-* Parameter 2 = line-height
-* Parameter 3 = font-weight
-* Parameter 4 = font-family
-
-Note:
-
-* font-weight and font-family are optional.
-* font-size in pixels will automatically be converted to rem.
-
-The font-family is defined in a map:
-
-```scss
-$civictheme-font: (
-  'primary': $civictheme-font-primary
-) !default;
-```
-
-#### 2. Passing a ruleset for multiple breakpoints
-
-Given the defined breakpoints (see breakpoints section):
-
-The breakpoint labels can be used to define the typgraphy to show at that
-breakpoint.
-
-```scss
-h1 {
-  @include typography((
-    'xs': (16px, 1.5em, 400),
-    'l': (24px, 1.2em, 600)
-  ));
-}
-```
-
-#### 3. Presets
-
-Given the typography presets e.g:
-
-```scss
-$civictheme-typography: (
-  'display-xl': (56px, 60px, 700, 'primary')
+$civictheme-fonts-default: (
+  'primary': (
+    'family': '"Lexend", sans-serif',
+    'types': (
+      (
+        'uri': 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap',
+      ),
+    ),
+  ),
+  // ...
 );
 ```
 
-A font can be used by passing a preset name:
+This map can be extended using `$civictheme-fonts` map (fonts can be stored with
+the library or linked to a remote location):
 
 ```scss
-h1 {
-  @include typography('heading-l');
-}
-```
-
-### Including custom fonts
-
-CivicTheme component library allows consumer themes to modify and extend the list of
-fonts that are used.
-
-Add custom fonts to $civictheme-fonts with the same key as above to override
-fonts or with a new key to add a new font kind.
-'uri' can be a URL to the external font or a list of local files with
-extensions to be imported. The font type will be taken from the file extensions.
-Use $civictheme-assets-directory to provide a relative path.
-
-IMPORTANT: Make sure to put commas at the end of every list or SASS will not
-be able to distinguish lists and values.
-
-#### Example custom font.
-```sass
 $civictheme-fonts: (
   'tertiary': (
-    'family': 'Roboto',
+    'family': 'Roboto, sans-serif',
     'types': (
       (
         'uri': (
-          '#{$civictheme-assets-directory}fonts/roboto/Roboto-Regular.ttf',
-          '#{$civictheme-assets-directory}fonts/roboto/Roboto-Regular.woff',
-          '#{$civictheme-assets-directory}fonts/roboto/Roboto-Regular.eot',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Regular.ttf',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Regular.woff',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Regular.eot',
+        ),
+      ),
+      (
+        'italic': true,
+        'uri': (
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Italic.ttf',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Italic.woff',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Italic.eot',
+        ),
+      ),
+      (
+        'weight': 'bold',
+        'uri': (
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Bold.ttf',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Bold.woff',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Bold.eot',
         ),
       ),
       (
         'italic': true,
         'weight': 'bold',
         'uri': (
-          '#{$civictheme-assets-directory}fonts/roboto/Roboto-BoldItalic.ttf',
-          '#{$civictheme-assets-directory}fonts/roboto/Roboto-BoldItalic.woff',
-          '#{$civictheme-assets-directory}fonts/roboto/Roboto-BoldItalic.eot',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-BoldItalic.ttf',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-BoldItalic.woff',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-BoldItalic.eot',
+        ),
+      ),
+      (
+        'weight': 300,
+        'uri': (
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Thin.ttf',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Thin.woff',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Thin.eot',
+        ),
+      ),
+      (
+        'weight': 700,
+        'uri': (
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Black.ttf',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Black.woff',
+          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Black.eot',
         ),
       ),
     ),
   ),
+  // ...
 );
+```
+
+### Defining typography
+
+The default typography is set in a map `$civictheme-typography-default`:
+
+```scss
+$civictheme-typography-default: (
+  // Headings.
+  'heading-1': (
+    'xxs': ($civictheme-font-base-size * 2, $civictheme-font-base-line-height * 2.5, 700, 'primary', -0.6px),
+    'm': ($civictheme-font-base-size * 3, $civictheme-font-base-line-height * 3.75, 700, 'primary', -1px)
+  ),
+  // ...
+);
+```
+
+This can be extended using `$civictheme-typography` map:
+
+```scss
+$civictheme-typography: (
+  'body-extra-large': (
+    'xxs': ($civictheme-font-base-size * 2, $civictheme-font-base-line-height * 2.5, 700, 'primary', -0.6px),
+    'm': ($civictheme-font-base-size * 3, $civictheme-font-base-line-height * 3.75, 700, 'primary', -1px)
+  ),
+);
+```
+
+## Using typography
+
+Typography can be set for elements using the `civictheme-typography()` mixin
+with a pre-defined mapping:
+
+```scss
+h1 {
+  @include civictheme-typography('heading-l');
+}
 ```

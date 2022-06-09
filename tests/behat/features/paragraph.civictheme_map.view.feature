@@ -1,4 +1,4 @@
-@civictheme @paragraph @civictheme_map
+@civictheme @paragraph @civictheme_map @skipped
 Feature: View of Page content with map component
 
   Ensure that Page content can be viewed correctly with map component.
@@ -21,7 +21,7 @@ Feature: View of Page content with map component
       | field_c_p_view_link          | 0: [TEST] link 1 - 1: https://maps.google.com/maps?q=Australia |
 
     When I visit "civictheme_page" "[TEST] Page map test"
-    And I wait 5 second
+    And I wait 10 seconds
     And I should see an "div.civictheme-map" element
     And I should see an "div.civictheme-map.civictheme-theme-light" element
     And I should see an "div.civictheme-map.civictheme-map--vertical-space-both" element
@@ -48,7 +48,7 @@ Feature: View of Page content with map component
       | field_c_p_view_link          | 0: [TEST] link 1 - 1: https://maps.google.com/maps?q=Australia |
 
     When I visit "civictheme_page" "[TEST] Page map test"
-    And I wait 5 second
+    And I wait 10 seconds
     And I should see an "div.civictheme-map" element
     And I should see an "div.civictheme-map.civictheme-theme-dark" element
     And I should not see an "div.civictheme-map.civictheme-theme-light" element

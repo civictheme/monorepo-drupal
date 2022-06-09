@@ -1,15 +1,24 @@
+//
+// Local tasks styles.
+//
+// Demonstration of Drupal block styles overrides where we override local tasks
+// tabs size and colors.
+//
+// Note how variables are included from the 'components_combined' directory.
+// This is because we are relying on the merged variables values from the
+// CivicTheme and current theme.
 @import 'components_combined/00-base/variables';
 
 .block-local-tasks-block {
   .civictheme-link-list--local-tasks {
-    padding: civictheme-space(2) 0 civictheme-space(2);
+    padding: civictheme-space(4) 0 civictheme-space(4);
 
     &.civictheme-theme-light {
-      background-color: civictheme-color('neutral');
+      background-color: civictheme-color('secondary');
     }
 
     &.civictheme-theme-dark {
-      background-color: civictheme-color('primary');
+      background-color: civictheme-color('primary', 5);
     }
   }
 }

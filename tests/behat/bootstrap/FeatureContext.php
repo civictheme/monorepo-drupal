@@ -5,6 +5,7 @@
  * CivicTheme Drupal context for Behat testing.
  */
 
+use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Exception\ElementNotFoundException;
 use DrevOps\BehatSteps\ContentTrait;
@@ -164,6 +165,48 @@ class FeatureContext extends DrupalContext {
     }
 
     $label_element->click();
+  }
+
+  /**
+   * Creates paragraphs of the given type with fields for existing entity.
+   *
+   * Paragraph fields are specified in the same way as for nodeCreate():
+   * | field_paragraph_title           | My paragraph title   |
+   * | field_paragraph_longtext:value  | My paragraph message |
+   * | field_paragraph_longtext:format | full_html            |
+   * | ...                             | ...                  |
+   *
+   * @When :field_name in :bundle :entity_type parent :parent_entity_field in :parent_entity_bundle :parent_entity_type with :parent_entity_field_name of :parent_entity_field_identifer delta :delta has :paragraph_type paragraph:
+   */
+  public function paragraphsAddToParentEntityWithFields($field_name, $bundle, $entity_type, $parent_entity_field, $parent_entity_bundle, $parent_entity_type, $parent_entity_field_name, $parent_entity_field_identifer, $delta, $paragraph_type, TableNode $fields) {
+    // Get paragraph field name for this entity type.
+    $paragraph_node_field_name = $this->paragraphsCheckEntityFieldName($entity_type, $bundle, $field_name);
+
+    // Find previously created entity by entity_type, bundle and identifying
+    // field value.
+    $node = $this->paragraphsFindEntity([
+      'field_value' => $parent_entity_field_identifer,
+      'field_name' => $parent_entity_field_name,
+      'bundle' => $parent_entity_bundle,
+      'entity_type' => $parent_entity_type,
+    ]);
+
+    $referenceItem = $node->get($parent_entity_field)->get($delta);
+    if (!$referenceItem) {
+      throw new \Exception(sprintf('Unable to find entity that matches delta: "%s"', print_r($delta, TRUE)));
+    }
+
+    $entity = $referenceItem->get('entity')->getTarget()->getValue();
+
+    // Get fields from scenario, parse them and expand values according to
+    // field tables.
+    $stub = (object) $fields->getRowsHash();
+    $stub->type = $paragraph_type;
+    $this->parseEntityFields('paragraph', $stub);
+    $this->paragraphsExpandEntityFields('paragraph', $stub);
+
+    // Attach paragraph from stub to node.
+    $this->paragraphsAttachFromStubToEntity($entity, $paragraph_node_field_name, $paragraph_type, $stub);
   }
 
 }

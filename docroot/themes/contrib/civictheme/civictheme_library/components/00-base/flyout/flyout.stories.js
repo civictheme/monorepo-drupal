@@ -1,7 +1,7 @@
 import { boolean, number, radios } from '@storybook/addon-knobs';
 
 import './flyout';
-import CivicFlyout from './flyout.stories.twig';
+import CivicThemeFlyout from './flyout.stories.twig';
 
 export default {
   title: 'Base/Flyout',
@@ -11,7 +11,7 @@ export default {
 };
 
 export const Flyout = () => {
-  const html = CivicFlyout({
+  const html = CivicThemeFlyout({
     direction: radios(
       'Flyout from',
       {

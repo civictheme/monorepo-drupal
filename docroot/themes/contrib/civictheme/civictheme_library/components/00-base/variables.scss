@@ -31,11 +31,11 @@ $civictheme-assets-directory: './assets/' !default;
 // Import overrides for base variables.
 @import '../variables.base';
 
-// Import CivicTheme base variables.
+// import CivicThemeTheme base variables.
 @import 'variables.base';
 
 // Import overrides for component variables.
 @import '../variables.components';
 
-// Import CivicTheme component variables.
+// import CivicThemeTheme component variables.
 @import 'variables.components';

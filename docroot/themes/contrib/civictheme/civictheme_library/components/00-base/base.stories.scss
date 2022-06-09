@@ -94,9 +94,14 @@
 .docs-container {
   border: solid 1px #ccc;
   padding: civictheme-space(4);
-  margin: civictheme-space(8) auto;
+  margin: civictheme-space(4) auto;
   max-width: 60%;
-  min-width: 600px;
+
+  &--large {
+    margin: civictheme-space(8) auto;
+    max-width: 60%;
+    min-width: 600px;
+  }
 }
 
 .docs-container__title {

@@ -1,5 +1,5 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicPromo from './promo.twig';
+import CivicThemePromo from './promo.twig';
 
 export default {
   title: 'Molecules/Promo',
@@ -42,7 +42,7 @@ export const Promo = () => {
     ),
   };
 
-  return CivicPromo({
+  return CivicThemePromo({
     ...generalKnobs,
   });
 };

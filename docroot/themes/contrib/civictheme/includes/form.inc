@@ -175,6 +175,14 @@ function civictheme_preprocess_form_element(&$variables) {
     $variables['description_modifier_class'] = implode(' ', $variables['description']['attributes']['class']->value());
   }
 
+  if (isset($variables['element']['#description'])) {
+    $variables['description']['content'] = $variables['element']['#description'];
+  }
+
+  if (isset($variables['element']['#description_display'])) {
+    $variables['description_position'] = $variables['element']['#description_display'];
+  }
+
   _civictheme_preprocess_civictheme_filter_form_element_alter($variables);
 }
 

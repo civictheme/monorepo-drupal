@@ -1,7 +1,7 @@
 import {
   button, number, radios, text,
 } from '@storybook/addon-knobs';
-import CivicAlert from './alert.twig';
+import CivicThemeAlert from './alert.twig';
 
 export default {
   title: 'Organisms/Alert',
@@ -51,7 +51,7 @@ export const Alert = (knobTab) => {
   );
   let html = '';
   for (let i = 0; i < numOfAlerts; i++) {
-    html += CivicAlert({
+    html += CivicThemeAlert({
       ...generalKnobs,
       id: i,
     });
@@ -95,5 +95,5 @@ export const AlertApi = () => {
   docs += 'Dismissed alerts will be revealed if their content was updated. Change payload to "Updated" to see dismissed alerts appear again.<br/><br/>';
   docs += 'Press "Clear cookie" button to clear alert dismissal settings.';
 
-  return `<div data-component-name="civictheme-alerts" data-alert-endpoint="${endpoint}" data-test-path="/"></div><div class="docs-container"><div class="docs-container__content">${docs}</div></div>`;
+  return `<div data-component-name="civictheme-alerts" data-alert-endpoint="${endpoint}" data-test-path="/"></div><div class="docs-container docs-container--large"><div class="docs-container__content">${docs}</div></div>`;
 };

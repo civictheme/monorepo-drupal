@@ -1,5 +1,5 @@
 import { radios, text } from '@storybook/addon-knobs';
-import CivicMenu from './menu.twig';
+import CivicThemeMenu from './menu.twig';
 import getMenuLinks from './menu.utils';
 
 export default {
@@ -26,7 +26,7 @@ export const Menu = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicMenu({
+  return CivicThemeMenu({
     ...generalKnobs,
   });
 };

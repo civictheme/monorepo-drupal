@@ -1,3 +1,11 @@
+/**
+ * @file
+ * Navigation Card stories.
+ *
+ * This is copied from the CivicTheme's Navigation Card story and updated
+ * with a new 'tags' property.
+ */
+
 import {
   boolean, number, radios, select, text,
 } from '@storybook/addon-knobs';
@@ -47,6 +55,7 @@ export const NavigationCard = (knobTab) => {
       src: demoImage(),
       alt: 'Image alt text',
     } : false,
+    // This is a new property added for this extended component.
     tags: randomTags(number(
       'Number of tags',
       2,

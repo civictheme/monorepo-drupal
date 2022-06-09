@@ -1,5 +1,5 @@
 import { radios, text } from '@storybook/addon-knobs';
-import CivicPrimaryNavigation from './primary-navigation.twig';
+import CivicThemePrimaryNavigation from './primary-navigation.twig';
 import getMenuLinks from '../../00-base/menu/menu.utils';
 
 export default {
@@ -25,7 +25,7 @@ export const PrimaryNavigation = () => {
     attributes: text('Additional attributes', ''),
   };
 
-  return CivicPrimaryNavigation({
+  return CivicThemePrimaryNavigation({
     ...generalKnobs,
   });
 };

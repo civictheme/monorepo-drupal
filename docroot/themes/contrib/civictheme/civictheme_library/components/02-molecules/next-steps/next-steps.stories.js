@@ -1,5 +1,5 @@
 import { radios, text } from '@storybook/addon-knobs';
-import CivicNextSteps from './next-steps.twig';
+import CivicThemeNextSteps from './next-steps.twig';
 import { randomUrl } from '../../00-base/base.stories';
 
 export default {
@@ -36,7 +36,7 @@ export const NextSteps = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicNextSteps({
+  return CivicThemeNextSteps({
     ...generalKnobs,
   });
 };

@@ -1,5 +1,5 @@
 import { radios } from '@storybook/addon-knobs';
-import CivicBackToTop from './back-to-top.twig';
+import CivicThemeBackToTop from './back-to-top.twig';
 
 export default {
   title: 'Molecules/Back To Top',
@@ -23,7 +23,7 @@ export const BackToTop = (knobTab) => {
     ),
   };
 
-  const html = CivicBackToTop({
+  const html = CivicThemeBackToTop({
     ...generalKnobs,
   });
 

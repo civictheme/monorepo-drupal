@@ -1,6 +1,9 @@
 //
-// Demo Button example styles.
-// Since we are extending the button component we can modify the look and feel of the coponent here.
+// SCSS styles example for 'Demo Button' component.
+//
+// Using existing Button component styles from CivicTheme, but overriding
+// the size of the large button.
+// This will apply only to 'Demo Button' component.
 //
 
 .civictheme-button {
@@ -8,7 +11,7 @@
 
   &--demo {
     #{$root}--large {
-      // For illustration purposes, same style as civictheme-button
+      // Increase
       padding: civictheme-space(2) civictheme-space(5);
     }
   }

@@ -1,7 +1,7 @@
 import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
-import CivicTabs from './tabs.twig';
+import CivicThemeTabs from './tabs.twig';
 import './tabs';
 import { randomText, randomUrl } from '../../00-base/base.stories';
 
@@ -89,7 +89,7 @@ export const Tabs = (knobTab) => {
     };
   }
 
-  return CivicTabs({
+  return CivicThemeTabs({
     ...generalKnobs,
     ...panelKnobs,
   });

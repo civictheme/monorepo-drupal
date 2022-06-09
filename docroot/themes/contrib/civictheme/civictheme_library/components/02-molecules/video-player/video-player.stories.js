@@ -1,6 +1,6 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
-import CivicVideo from './video-player.twig';
+import CivicThemeVideo from './video-player.twig';
 import { demoVideoPoster, demoVideos } from '../../00-base/base.stories';
 
 export default {
@@ -74,7 +74,7 @@ export const VideoPlayer = (knobTab) => {
     };
   }
 
-  return CivicVideo({
+  return CivicThemeVideo({
     ...generalKnobs,
     ...sourceKnobs,
     ...transcriptLinkKnobs,

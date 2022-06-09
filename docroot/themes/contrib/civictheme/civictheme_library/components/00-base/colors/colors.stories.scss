@@ -3,54 +3,83 @@
 //
 
 @use 'sass:string';
+@use 'sass:math';
 @use 'sass:map';
+
+//
+// Mixin to create a color box with specific dimensions.
+//
+@mixin civictheme-stories-color-box($key, $value, $width: 100px, $height: 100px, $font-size: 80%) {
+  $border-color: transparent;
+
+  @if $value == #fff or $value == #0000 {
+    $border-color: #ccd4d8;
+  }
+
+  width: $width;
+  height: $height;
+  margin: 0 8px 100px;
+  border: 1px solid $border-color;
+  border-radius: math.div($width, 10);
+  position: relative;
+  background-color: $value;
+
+  $content: civictheme-str-replace(string.to-upper-case(string.slice($key, 1, 1)) + string.slice($key, 2), '-', ' ') + '\A' + string.to-upper-case(#{$value});
+
+  &::after {
+    content: '#{$content}';
+    text-align: center;
+    display: block;
+    padding: 1em 0;
+    position: absolute;
+    top: 100%;
+    font-family: 'Courier New', monospace, sans-serif;
+    font-size: $font-size;
+    line-height: 150%;
+  }
+}
 
 .story-colors-wrapper {
   display: flex;
   flex-flow: row wrap;
 
+  // Standard colors.
   $all-colors: _civictheme-colors-all();
-  $dark-shades: ();
-  $light-shades: ();
-  $neutrals: ();
-
-  @for $i from 0 through 100 {
-    $dark-shades: map.merge($dark-shades, ('dark-shade-#{$i}': civictheme-color-shade-dark($i)));
-    $light-shades: map.merge($light-shades, ('light-shade-#{$i}': civictheme-color-shade-light($i)));
-    $neutrals: map.merge($neutrals, ('neutral-#{$i}': civictheme-color-neutral($i)));
-  }
-
-  $all-colors: map.merge($all-colors, $dark-shades);
-  $all-colors: map.merge($all-colors, $light-shades);
-  $all-colors: map.merge($all-colors, $neutrals);
 
   @include civictheme-generate-class-variations-from-map($all-colors, 'story-color') using($key, $value, $index) {
-    $border-color: transparent;
+    @include civictheme-stories-color-box($key, $value, 100px, 100px);
+  }
 
-    @if $value == #fff or $value == #0000 {
-      $border-color: #ccd4d8;
-    }
+  // Visually separate service colors with a spacing.
+  .story-color--outline,
+  .story-color--status {
+    margin-left: 50px;
+  }
 
-    width: 100px;
-    height: 100px;
-    margin: 0 8px 100px;
-    border: 1px solid $border-color;
-    border-radius: 12px;
-    position: relative;
-    background-color: $value;
+  // Color variants.
+  $all-colors-variants: _civictheme-colors-variants-all();
 
-    $content: civictheme-str-replace(string.to-upper-case(string.slice($key, 1, 1)) + string.slice($key, 2), '-', ' ') + '\A' + string.to-upper-case(#{$value});
+  @include civictheme-generate-class-variations-from-map($all-colors-variants, 'story-color') using($key, $value, $index) {
+    @include civictheme-stories-color-box($key, $value, 80px, 80px);
+  }
 
-    &::after {
-      content: '#{$content}';
-      text-align: center;
-      display: block;
-      padding: 1em 0;
-      position: absolute;
-      top: 100%;
-      font-family: 'Courier New', monospace, sans-serif;
-      font-size: 80%;
-      line-height: 150%;
-    }
+  // Tints, shades, tones.
+  $tints: ();
+  $shades: ();
+  $tones: ();
+
+  @for $i from 0 through 100 {
+    $tints: map.merge($tints, ('tint-#{$i}': civictheme-color-tint($i, civictheme-color('primary'))));
+    $shades: map.merge($shades, ('shade-#{$i}': civictheme-color-shade($i, civictheme-color('primary'))));
+    $tones: map.merge($tones, ('tone-#{$i}': civictheme-color-tone($i, civictheme-color('neutral', 1))));
+  }
+
+  $all-colors-automated: ();
+  $all-colors-automated: map.merge($all-colors-automated, $tints);
+  $all-colors-automated: map.merge($all-colors-automated, $shades);
+  $all-colors-automated: map.merge($all-colors-automated, $tones);
+
+  @include civictheme-generate-class-variations-from-map($all-colors-automated, 'story-color') using($key, $value, $index) {
+    @include civictheme-stories-color-box($key, $value, 50px, 50px, 70%);
   }
 }

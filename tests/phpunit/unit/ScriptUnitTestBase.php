@@ -56,18 +56,24 @@ abstract class ScriptUnitTestBase extends TestCase {
    *
    * @param array $args
    *   Optional array of arguments to pass to the script.
+   * @param bool $verbose
+   *   Optional flag to enable verbose output in the script.
    *
    * @return array
    *   Array with the following keys:
    *   - code: (int) Exit code.
    *   - output: (string) Output.
    */
-  protected function runScript(array $args = []) {
+  protected function runScript(array $args = [], $verbose = FALSE) {
     putenv('SCRIPT_RUN_SKIP=0');
+    if ($verbose) {
+      putenv('SCRIPT_QUIET=0');
+    }
     $command = sprintf('php %s %s', $this->script, implode(' ', $args));
     $output = [];
     $result_code = 1;
     exec($command, $output, $result_code);
+
     return [
       'code' => $result_code,
       'output' => implode(PHP_EOL, $output),
@@ -82,6 +88,7 @@ abstract class ScriptUnitTestBase extends TestCase {
     if (!is_readable($path)) {
       throw new \RuntimeException(sprintf('Unable to find fixture file %s.', $path));
     }
+
     return $path;
   }
 
@@ -248,6 +255,73 @@ abstract class ScriptUnitTestBase extends TestCase {
     }
 
     return $fixture_map;
+  }
+
+  /**
+   * Recursively copy files and directories.
+   *
+   * The contents of $src will be copied as the contents of $dst.
+   *
+   * @param string $src
+   *   Source directory to copy from.
+   * @param string $dst
+   *   Destination directory to copy to.
+   * @param array $exclude
+   *   Optional array of entries to exclude.
+   * @param int $permissions
+   *   Permissions to set on created directories. Defaults to 0755.
+   * @param bool $copy_empty_dirs
+   *   Flag to copy empty directories. Defaults to FALSE.
+   *
+   * @return bool
+   *   TRUE if the result of copy was successful, FALSE otherwise.
+   */
+  public function fileCopyRecursively($src, $dst, array $exclude = [], $permissions = 0755, $copy_empty_dirs = FALSE) {
+    $parent = dirname($dst);
+
+    if (!is_dir($parent)) {
+      mkdir($parent, $permissions, TRUE);
+    }
+
+    // Note that symlink target must exist.
+    if (is_link($src)) {
+      // Changing dir symlink will be relevant to the current destination's file
+      // directory.
+      $cur_dir = getcwd();
+      chdir($parent);
+      $ret = TRUE;
+      if (!is_readable(basename($dst))) {
+        $ret = symlink(readlink($src), basename($dst));
+      }
+      chdir($cur_dir);
+
+      return $ret;
+    }
+
+    if (is_file($src)) {
+      $ret = copy($src, $dst);
+      if ($ret) {
+        chmod($dst, fileperms($src));
+      }
+
+      return $ret;
+    }
+
+    if (!is_dir($dst) && $copy_empty_dirs) {
+      mkdir($dst, $permissions, TRUE);
+    }
+
+    $dir = dir($src);
+    while (FALSE !== $entry = $dir->read()) {
+      if ($entry == '.' || $entry == '..' || in_array($entry, $exclude)) {
+        continue;
+      }
+      $this->fileCopyRecursively($src . DIRECTORY_SEPARATOR . $entry, $dst . DIRECTORY_SEPARATOR . $entry, $exclude, $permissions, $copy_empty_dirs);
+    }
+
+    $dir->close();
+
+    return TRUE;
   }
 
 }
