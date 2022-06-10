@@ -1,4 +1,6 @@
-# CLI container.
+# Alternative CLI container used for testing of the subtheme installation.
+#
+# Not used in Lagoon.
 #
 # All CLI operations performed in this container.
 #
@@ -84,10 +86,10 @@ COPY . /app
 RUN cd /app/docroot/themes/contrib/civictheme/civictheme_library && npm run build
 RUN cd /app/docroot/themes/contrib/civictheme && npm run build
 
-# Create subtheme.
+# Create another subtheme in the same directory as CivicTheme.
 RUN cd /app/docroot/themes/contrib/civictheme \
-  && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
+  && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo Sibling" "Demo sub-theme for a CivicTheme theme installed in the same directory." ../civictheme_demo
 
 # Compile subtheme assets.
-RUN npm --prefix docroot/themes/custom/civictheme_demo ci --no-audit --no-progress --unsafe-perm \
-  && cd /app/docroot/themes/custom/civictheme_demo && npm run build
+RUN npm --prefix docroot/themes/contrib/civictheme_demo ci --no-audit --no-progress --unsafe-perm \
+  && cd /app/docroot/themes/contrib/civictheme_demo && npm run build
