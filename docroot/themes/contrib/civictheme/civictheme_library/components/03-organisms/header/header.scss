@@ -92,16 +92,13 @@
   .civictheme-header {
     :target {
       &::before {
-
         @include civictheme-breakpoint($civictheme-header-desktop-menu-breakpoint) {
-
-        content: '';
-        display: block;
-        height: $civictheme-header-sticky-scroll-offset;
-        margin: -$civictheme-header-sticky-scroll-offset 0 0;
+          content: '';
+          display: block;
+          height: $civictheme-header-sticky-scroll-offset;
+          margin: -$civictheme-header-sticky-scroll-offset 0 0;
         }
       }
-
     }
   }
 }
