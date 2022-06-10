@@ -1,15 +1,15 @@
 <?php
 
-namespace Drupal\cs_demo;
+namespace Drupal\cs_generated_content;
 
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**
- * Trait CsDemoTrait.
+ * Trait CsGeneratedContentTrait.
  *
- * Trait for centralised Civic theme components handling.
+ * Trait for centralised CivicTheme components handling.
  */
-trait CsDemoTrait {
+trait CsGeneratedContentCivicthemeTrait {
 
   /**
    * Light theme name.
@@ -36,29 +36,91 @@ trait CsDemoTrait {
   }
 
   /**
+   * Spacing - none.
+   */
+  public static function civicthemeSpaceTypeNone() {
+    return '';
+  }
+
+  /**
+   * Spacing - top.
+   */
+  public static function civicthemeSpaceTypeTop() {
+    return 'top';
+  }
+
+  /**
+   * Spacing - bottom.
+   */
+  public static function civicthemeSpaceTypeBottom() {
+    return 'bottom';
+  }
+
+  /**
+   * Spacing - both.
+   */
+  public static function civicthemeSpaceTypeBoth() {
+    return 'both';
+  }
+
+  /**
    * Types of spaces.
    */
   public static function civicthemeSpaceTypes() {
     return [
-      '',
-      'top',
-      'bottom',
-      'both',
+      static:: civicthemeSpaceTypeNone(),
+      static:: civicthemeSpaceTypeTop(),
+      static:: civicthemeSpaceTypeBottom(),
+      static:: civicthemeSpaceTypeBoth(),
     ];
+  }
+
+  /**
+   * Banner type - Default.
+   */
+  public static function civicthemeBannerTypeDefault() {
+    return 'default';
+  }
+
+  /**
+   * Banner type - Large.
+   */
+  public static function civicthemeBannerTypeLarge() {
+    return 'large';
   }
 
   /**
    * Types of banner.
    */
   public static function civicthemeBannerTypes() {
-    return ['default', 'large'];
+    return [
+      static::civicthemeBannerTypeDefault(),
+      static::civicthemeBannerTypeLarge(),
+    ];
+  }
+
+  /**
+   * Slider slide image position - left.
+   */
+  public static function civicthemeSliderSlideImagePositionLeft() {
+    return 'left';
+  }
+
+  /**
+   * Slider slide image position - right.
+   */
+  public static function civicthemeSliderSlideImagePositionRight() {
+    return 'right';
   }
 
   /**
    * Slider slide image position.
    */
   public static function civicthemeSliderSlideImagePositions() {
-    return ['left', 'right'];
+    return [
+      static:: civicthemeSliderSlideImagePositionLeft(),
+      static:: civicthemeSliderSlideImagePositionRight(),
+    ];
   }
 
   /**
@@ -66,7 +128,7 @@ trait CsDemoTrait {
    */
   public static function civicthemeParagraphAttach($type, $entity, $field_name, $options, $save = FALSE) {
     if (!$entity->hasField($field_name)) {
-      return;
+      return NULL;
     }
 
     $defaults = [
@@ -453,7 +515,7 @@ trait CsDemoTrait {
     }
 
     if ($options['show_filters']) {
-      $paragraph->field_c_p_listing_f_exposed = CsDemoHelper::randomListingFilters();
+      $paragraph->field_c_p_listing_f_exposed = CsGeneratedContentHelper::randomListingFilters();
     }
 
     // Default to show all.
@@ -468,87 +530,80 @@ trait CsDemoTrait {
   }
 
   /**
-   * Check that value exists in the provided options or return the first option.
-   */
-  protected static function civicthemeValueFromOptions(array $options, $value) {
-    return in_array($value, $options) ? $value : reset($options);
-  }
-
-  /**
    * Get Cards default options.
    */
   public static function civicthemeCardsDefaultOptions($type) {
     $options = [
       'task_card' => [
-        'icon' => CsDemoHelper::randomIcon(),
-        'link' => CsDemoHelper::randomLinkFieldValue(),
-        'summary' => CsDemoRandom::plainParagraph(),
-        'title' => 'TC H ' . CsDemoRandom::sentence(1),
+        'icon' => CsGeneratedContentHelper::randomIcon(),
+        'link' => CsGeneratedContentHelper::randomLinkFieldValue(),
+        'summary' => CsGeneratedContentHelper::plainParagraph(),
+        'title' => 'TC H ' . CsGeneratedContentHelper::sentence(1),
       ],
       'navigation_card' => [
-        'image' => CsDemoHelper::randomImage(),
-        'link' => CsDemoHelper::randomLinkFieldValue(),
-        'summary' => CsDemoRandom::plainParagraph(),
-        'title' => 'NC H ' . CsDemoRandom::sentence(1),
+        'image' => CsGeneratedContentHelper::randomImage(),
+        'link' => CsGeneratedContentHelper::randomLinkFieldValue(),
+        'summary' => CsGeneratedContentHelper::plainParagraph(),
+        'title' => 'NC H ' . CsGeneratedContentHelper::sentence(1),
       ],
       'service_card' => [
         'links' => [
-          CsDemoHelper::randomLinkFieldValue(),
-          CsDemoHelper::randomLinkFieldValue(),
-          CsDemoHelper::randomLinkFieldValue(),
+          CsGeneratedContentHelper::randomLinkFieldValue(),
+          CsGeneratedContentHelper::randomLinkFieldValue(),
+          CsGeneratedContentHelper::randomLinkFieldValue(),
         ],
-        'title' => 'SC H ' . CsDemoRandom::sentence(1),
+        'title' => 'SC H ' . CsGeneratedContentHelper::sentence(1),
       ],
       'promo_card_ref' => [
-        'reference' => CsDemoHelper::randomNodes(1, [
+        'reference' => CsGeneratedContentHelper::randomNodes(1, [
           'civictheme_event',
           'civictheme_page',
         ]),
       ],
       'event_card_ref' => [
-        'reference' => CsDemoHelper::randomNode('civictheme_event'),
+        'reference' => CsGeneratedContentHelper::randomNode('civictheme_event'),
       ],
       'navigation_card_ref' => [
-        'reference' => CsDemoHelper::randomNodes(1, [
+        'reference' => CsGeneratedContentHelper::randomNodes(1, [
           'civictheme_event',
           'civictheme_page',
         ]),
       ],
       'event_card' => [
-        'date' => CsDemoRandom::date(),
-        'image' => CsDemoHelper::randomImage(),
-        'link' => CsDemoHelper::randomLinkFieldValue(),
-        'location' => 'E L ' . CsDemoRandom::sentence(1),
-        'summary' => CsDemoRandom::plainParagraph(),
-        'title' => 'EC H ' . CsDemoRandom::sentence(1),
-        'topic' => CsDemoHelper::randomTopics(1),
+        'date' => CsGeneratedContentHelper::date(),
+        'image' => CsGeneratedContentHelper::randomImage(),
+        'link' => CsGeneratedContentHelper::randomLinkFieldValue(),
+        'location' => 'E L ' . CsGeneratedContentHelper::sentence(1),
+        'summary' => CsGeneratedContentHelper::plainParagraph(),
+        'title' => 'EC H ' . CsGeneratedContentHelper::sentence(1),
+        'topic' => CsGeneratedContentHelper::randomTopics(1),
       ],
       'promo_card' => [
-        'date' => CsDemoRandom::date(),
-        'image' => CsDemoHelper::randomImage(),
-        'link' => CsDemoHelper::randomLinkFieldValue(),
-        'summary' => CsDemoRandom::plainParagraph(),
-        'title' => 'PC H ' . CsDemoRandom::sentence(1),
-        'topics' => CsDemoHelper::randomTopics(),
+        'date' => CsGeneratedContentHelper::date(),
+        'image' => CsGeneratedContentHelper::randomImage(),
+        'link' => CsGeneratedContentHelper::randomLinkFieldValue(),
+        'summary' => CsGeneratedContentHelper::plainParagraph(),
+        'title' => 'PC H ' . CsGeneratedContentHelper::sentence(1),
+        'topics' => CsGeneratedContentHelper::randomTopics(),
       ],
       'subject_card_ref' => [
-        'reference' => CsDemoHelper::randomNodes(1, [
+        'reference' => CsGeneratedContentHelper::randomNodes(1, [
           'civictheme_event',
           'civictheme_page',
         ]),
-        'topic' => CsDemoHelper::randomTopics(1),
+        'topic' => CsGeneratedContentHelper::randomTopics(1),
       ],
       'subject_card' => [
-        'image' => CsDemoHelper::randomImage(),
-        'link' => CsDemoHelper::randomLinkFieldValue(),
-        'title' => 'TC H ' . CsDemoRandom::sentence(1),
+        'image' => CsGeneratedContentHelper::randomImage(),
+        'link' => CsGeneratedContentHelper::randomLinkFieldValue(),
+        'title' => 'TC H ' . CsGeneratedContentHelper::sentence(1),
       ],
       'publication_card' => [
-        'document' => CsDemoHelper::randomDocument(),
-        'image' => CsDemoHelper::randomImage(),
-        'size' => CsDemoHelper::randomFieldAllowedValue('paragraph', 'civictheme_publication_card', 'field_c_p_size'),
-        'summary' => CsDemoRandom::plainParagraph(),
-        'title' => 'EC H ' . CsDemoRandom::sentence(1),
+        'document' => CsGeneratedContentHelper::randomDocument(),
+        'image' => CsGeneratedContentHelper::randomImage(),
+        'size' => CsGeneratedContentHelper::randomFieldAllowedValue('paragraph', 'civictheme_publication_card', 'field_c_p_size'),
+        'summary' => CsGeneratedContentHelper::plainParagraph(),
+        'title' => 'EC H ' . CsGeneratedContentHelper::sentence(1),
       ],
     ];
 
@@ -557,6 +612,13 @@ trait CsDemoTrait {
     }
 
     return [];
+  }
+
+  /**
+   * Check that value exists in the provided options or return the first option.
+   */
+  protected static function civicthemeValueFromOptions(array $options, $value) {
+    return in_array($value, $options) ? $value : reset($options);
   }
 
 }

@@ -98,7 +98,7 @@ function _civictheme_preprocess_page__node(&$variables) {
   $variables['page']['content_contained'] = FALSE;
 
   // Add vertical space.
-  if ($node->hasField('field_c_n_space') && !$node->get('field_c_n_space')->isEmpty()) {
+  if ($node->hasField('field_c_n_space')) {
     $variables['vertical_space'] = $node->get('field_c_n_space')->getString();
   }
 }

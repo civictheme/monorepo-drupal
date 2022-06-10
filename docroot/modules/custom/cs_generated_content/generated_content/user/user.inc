@@ -5,32 +5,33 @@
  * Create demo users.
  */
 
-use Drupal\cs_demo\CsDemoHelper;
+use Drupal\Core\Link;
+use Drupal\cs_generated_content\CsGeneratedContentHelper;
 use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
 /**
- * Implements hook_cs_demo_create_ENTITY_TYPE_BUNDLE_weight().
+ * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
-function cs_demo_create_user_user_weight() {
+function cs_generated_content_generated_content_create_user_user_weight() {
   return 20;
 }
 
 /**
- * Implements hook_cs_demo_create_ENTITY_TYPE_BUNDLE_tracking().
+ * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE_tracking().
  */
-function cs_demo_create_user_user_tracking() {
+function cs_generated_content_generated_content_create_user_user_tracking() {
   return TRUE;
 }
 
 /**
- * Implements hook_cs_demo_create_ENTITY_TYPE_BUNDLE().
+ * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE().
  */
-function cs_demo_create_user_user() {
+function cs_generated_content_generated_content_create_user_user() {
   $total_users_per_role = 3;
 
-  /** @var \Drupal\cs_demo\CsDemoHelper $helper */
-  $helper = CsDemoHelper::getInstance();
+  /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
+  $helper = CsGeneratedContentHelper::getInstance();
 
   $users = [];
 
@@ -62,12 +63,14 @@ function cs_demo_create_user_user() {
           $users[] = $user;
 
           $helper::log(
-            'Created an account %s',
-            $name,
+            'Created an account %s [ID: %s] %s',
+            Link::createFromRoute($user->getDisplayName(), 'entity.user.canonical', ['user' => $user->id()])->toString(),
+            $user->id(),
+            Link::createFromRoute('Edit', 'entity.user.edit_form', ['user' => $user->id()])->toString()
           );
         }
         catch (\Exception $exception) {
-          watchdog_exception('cs_demo', $exception);
+          watchdog_exception('cs_generated_content', $exception);
         }
       }
     }
