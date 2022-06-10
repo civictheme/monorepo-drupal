@@ -27,13 +27,14 @@ function cs_generated_content_generated_content_create_media_civictheme_document
  * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE().
  */
 function cs_generated_content_generated_content_create_media_civictheme_document() {
+  /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  $total_files_count = 20;
+  $total_files_count = 30;
 
   $entities = [];
   for ($i = 0; $i < $total_files_count; $i++) {
-    $variation = CsGeneratedContentHelper::variationRandom([
+    $variation = $helper::variationRandom([
       'status' => NULL,
     ]);
 

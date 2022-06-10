@@ -27,6 +27,7 @@ function cs_generated_content_generated_content_create_media_civictheme_image_tr
  * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE().
  */
 function cs_generated_content_generated_content_create_media_civictheme_image() {
+  /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
   $total_files_count = 50;
