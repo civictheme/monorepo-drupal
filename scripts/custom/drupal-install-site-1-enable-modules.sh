@@ -40,8 +40,9 @@ $drush ${DRUSH_ALIAS} -y pm-enable civictheme_content
 $drush ${DRUSH_ALIAS} -y pm-enable cs_core
 GENERATED_CONTENT_CREATE=1 $drush ${DRUSH_ALIAS} -y pm-enable cs_generated_content
 
-# Perform operations based on the current environment.
-if $drush ${DRUSH_ALIAS} ev "print \Drupal\core\Site\Settings::get('environment');" | grep -q -e dev -e test -e ci -e local; then
+$drush ${DRUSH_ALIAS} simple-sitemap:generate
+
+if $drush ${DRUSH_ALIAS} ev "print \Drupal\core\Site\Settings::get('environment');" | grep -q -e local; then
   echo "==> Enable modules in non-production environment."
 
   $drush ${DRUSH_ALIAS} -y pm-enable config_devel
