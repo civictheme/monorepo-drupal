@@ -31,14 +31,32 @@ function _cs_generated_content_create_node_civictheme_page__for_listings__variat
 }
 
 /**
- * Variations of pages used for listings.
+ * Variations of pages used for components.
  */
 function _cs_generated_content_create_node_civictheme_page__components__variations() {
+  $variations = [];
+
+  $variations = array_merge($variations, _cs_generated_content_create_node_civictheme_page__components__variations__page_general());
+  $variations = array_merge($variations, _cs_generated_content_create_node_civictheme_page__components__variations__page_banner());
+  $variations = array_merge($variations, _cs_generated_content_create_node_civictheme_page__components__variations__content());
+
+  // Add common variation properties to all variations.
+  foreach ($variations as &$variation) {
+    $variation['status'] = TRUE;
+    $variation['alias'] = '/generated-content/civictheme_page/component-{title}';
+  }
+
+  return $variations;
+}
+
+/**
+ * Page, General.
+ */
+function _cs_generated_content_create_node_civictheme_page__components__variations__page_general() {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
   $variations = [
-    // Page, General.
     [
       'title' => 'Demo Page, default values',
     ],
@@ -80,7 +98,19 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
       'space' => $helper::civicthemeSpaceTypeBoth(),
       'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(5),
     ],
+  ];
 
+  return $variations;
+}
+
+/**
+ * Page, Banner.
+ */
+function _cs_generated_content_create_node_civictheme_page__components__variations__page_banner() {
+  /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
+  $helper = CsGeneratedContentHelper::getInstance();
+
+  $variations = [
     // Page, Banner.
     [
       'title' => 'Demo Page, Banner',
@@ -173,7 +203,20 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
       'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(13),
     ],
 
-    // Page, Components - Content.
+  ];
+
+  return $variations;
+}
+
+/**
+ * Page, Components - Content.
+ */
+function _cs_generated_content_create_node_civictheme_page__components__variations__content() {
+  /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
+  $helper = CsGeneratedContentHelper::getInstance();
+
+  return [
+
     [
       'title' => 'Demo Page, Content component',
       'content' => [
@@ -256,14 +299,6 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
       ],
     ],
   ];
-
-  // Add common variation properties to all variations.
-  foreach ($variations as &$variation) {
-    $variation['status'] = TRUE;
-    $variation['alias'] = '/generated-content/civictheme_page/component-{title}';
-  }
-
-  return $variations;
 }
 
 /**
