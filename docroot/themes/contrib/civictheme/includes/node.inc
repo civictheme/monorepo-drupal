@@ -101,4 +101,9 @@ function _civictheme_preprocess_page__node(&$variables) {
   if ($node->hasField('field_c_n_space')) {
     $variables['vertical_space'] = $node->get('field_c_n_space')->getString();
   }
+
+  // Hide sidebar check.
+  if ($node->hasField('field_c_n_hide_sidebar') && !$node->get('field_c_n_hide_sidebar')->isEmpty() && $node->get('field_c_n_hide_sidebar')->getString()) {
+    $variables['hide_sidebar'] = TRUE;
+  }
 }

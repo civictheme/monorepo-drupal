@@ -15,7 +15,7 @@ class UpdateConfigsScriptUnitTest extends ScriptUnitTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $script = 'docroot/themes/contrib/civictheme/scripts/update_config.php';
+  protected $script = 'docroot/themes/contrib/civictheme/civictheme_starter_kit/scripts/update_config.php';
 
   /**
    * @dataProvider dataProviderMain
