@@ -62,4 +62,22 @@ class CsGeneratedContentHelper extends GeneratedContentHelper {
     return !is_null($count) ? array_slice($terms, $offset, $count) : $terms;
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * Fixed method in the parent class incorrectly passing through $context_id
+   * to heading and paragraphs.
+   */
+  public static function staticRichText($paragraphs = 10, $prefix = '', $content_idx = 0) {
+    $content = [];
+    for ($i = 1; $i <= $paragraphs; $i++) {
+      if ($i % 2) {
+        $content[] = static::staticHtmlHeading(8, $i == 1 ? 2 : 3, $prefix, $content_idx + $i);
+      }
+      $content[] = static::staticHtmlParagraph($content_idx + $i + 1);
+    }
+
+    return implode(PHP_EOL, $content);
+  }
+
 }
