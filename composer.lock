@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "89d3b67317eaf975e7807725516f10b1",
+    "content-hash": "3857a3eb77839eead76698dd95dc1f1f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5834,17 +5834,17 @@
         },
         {
             "name": "drupal/generated_content",
-            "version": "1.0.0-alpha2",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/generated_content.git",
-                "reference": "1.0.0-alpha2"
+                "reference": "1.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/generated_content-1.0.0-alpha2.zip",
-                "reference": "1.0.0-alpha2",
-                "shasum": "d4297e13b8b594bcdce96c5bb918ac5971f8fe1c"
+                "url": "https://ftp.drupal.org/files/projects/generated_content-1.0.0.zip",
+                "reference": "1.0.0",
+                "shasum": "7115abe74f03e8423ba8b9afadcc66752728efed"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -5853,8 +5853,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.0-alpha2",
-                    "datestamp": "1654834198",
+                    "version": "1.0.0",
+                    "datestamp": "1654918820",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -5873,7 +5873,7 @@
                 }
             ],
             "description": "Drupal module to programmatically generate content.",
-            "homepage": "https://github.com/drevops/generated_content",
+            "homepage": "https://www.drupal.org/project/generated_content",
             "keywords": [
                 "drupal",
                 "generate",
@@ -5881,7 +5881,7 @@
             ],
             "support": {
                 "source": "https://github.com/drevops/generated_content",
-                "issues": "https://github.com/drevops/generated_content/issues"
+                "issues": "https://www.drupal.org/project/issues/generated_content"
             }
         },
         {
@@ -21010,8 +21010,7 @@
     "aliases": [],
     "minimum-stability": "alpha",
     "stability-flags": {
-        "drupal/default_content": 15,
-        "drupal/generated_content": 15
+        "drupal/default_content": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,
