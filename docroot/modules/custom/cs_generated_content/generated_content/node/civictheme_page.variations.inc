@@ -40,7 +40,7 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
   $variations = [
     // Page, General.
     [
-      'title' => 'Demo Page, sefault values',
+      'title' => 'Demo Page, default values',
     ],
     [
       'title' => 'Demo Page, Summary',
@@ -260,7 +260,7 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
   // Add common variation properties to all variations.
   foreach ($variations as &$variation) {
     $variation['status'] = TRUE;
-    $variation['alias'] = '/demo/civictheme_page/component-{title}';
+    $variation['alias'] = '/generated-content/civictheme_page/component-{title}';
   }
 
   return $variations;
