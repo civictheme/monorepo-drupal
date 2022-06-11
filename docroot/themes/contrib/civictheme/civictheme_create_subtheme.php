@@ -187,6 +187,8 @@ function process_stub($dir, $options) {
   $current_dir = __DIR__;
   $relative_dir = file_get_relative_dir($options['path'], $current_dir);
   file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'gulpfile.js');
+  file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/webpack/' . 'theme_js.js');
+  file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'package.json');
 }
 
 /**
