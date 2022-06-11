@@ -121,8 +121,12 @@ aliases:
   - &step_process_codebase
     run:
       name: Process codebase to run in CI
-      # Remove lines containing '###' and uncomment comments starting with '##'.
-      command: sed -i -e "/###/d" docker-compose.yml && sed -i -e "s/##//" docker-compose.yml
+
+      command: |
+        # Remove lines containing '###' and uncomment comments starting with '##'.
+        sed -i -e "/###/d" docker-compose.yml && sed -i -e "s/##//" docker-compose.yml
+        # Alter build for an alternative build setup.
+        [ "$CI_ALTERNATIVE_BUILD" = "1" ] && cp -Rf .docker/Dockerfile.cli2 .docker/Dockerfile.cli || true
 
 ################################################################################
 # JOBS
@@ -173,6 +177,19 @@ jobs:
           root: /workspace
           paths:
             - code
+
+  build-alt:
+    <<: *container_config
+    parallelism: 1
+    environment:
+      CI_ALTERNATIVE_BUILD: 1
+    steps:
+      - attach_workspace:
+          at: /workspace
+      - checkout
+      - *step_process_codebase
+      - *step_setup_remote_docker
+      - run: docker-compose build cli
 
   # Deploy primary branches.
   deploy: &job_deploy
@@ -298,9 +315,14 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - build-alt:
+          filters:
+            tags:
+              only: /.*/
       - deploy:
           requires:
             - build
+            - build-alt
           filters:
             branches:
               # Allowed branches:
@@ -315,6 +337,7 @@ workflows:
       - deploy_tags:
           requires:
             - build
+            - build-alt
           filters:
             branches:
               ignore: /.*/
