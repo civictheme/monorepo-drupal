@@ -11,8 +11,6 @@ permissions:
   - 'access files overview'
   - 'access media overview'
   - 'access toolbar'
-  - 'administer media'
-  - 'administer nodes'
   - 'bypass honeypot protection'
   - 'setup own tfa'
   - 'use editorial transition archive'
