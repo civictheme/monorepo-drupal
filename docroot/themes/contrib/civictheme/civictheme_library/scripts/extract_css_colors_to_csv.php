@@ -137,7 +137,7 @@ function parse_variables(array $vars) {
     try {
       $parsed = parse_variable_name($name, 'civictheme');
     }
-    catch (\Exception) {
+    catch (\Exception $e) {
       // Ignore all variables with incorrectly parsed names.
       continue;
     }
