@@ -1,4 +1,8 @@
-const template = require('babel-template');
+// Based on Babel Plugin drupal behaviors.
+// https://github.com/fourkitchens/babel-plugin-drupal-behaviors
+
+import template from 'babel-template';
+import inherits from 'babel-plugin-transform-strict-mode';
 
 const drupalBehavior = template(`Drupal.behaviors.NAME = {attach: function (context, settings) {BODY}};`);
 
@@ -6,10 +10,10 @@ module.exports = function (babel) {
   const t = babel.types;
 
   return {
-    inherits: require("babel-plugin-transform-strict-mode"),
+    inherits,
     visitor: {
       Program: {
-        exit (path) {
+        exit(path) {
           if (!this.drupalBehavior) {
             this.drupalBehavior = true;
 
@@ -18,16 +22,14 @@ module.exports = function (babel) {
             const identifier = `civictheme_${this.filename.split('/').reverse()[0].replace('.js', '').replace('-', '_')}`;
             const addBehavior = drupalBehavior({
               NAME: t.identifier(identifier),
-              BODY: path.node.body
+              BODY: path.node.body,
             });
 
-            path.replaceWith(
-              t.program([addBehavior])
-            );
+            path.replaceWith(t.program([addBehavior]));
           }
           path.node.directives = [];
-        }
-      }
-    }
+        },
+      },
+    },
   };
 };
