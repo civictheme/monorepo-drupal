@@ -12,8 +12,10 @@ use Drupal\block\Entity\Block;
  */
 function civictheme_preprocess_block__menu_block__civictheme_primary_navigation(&$variables) {
   $variables['theme'] = theme_get_setting('civictheme_header_theme') ?? 'light';
-  $variables['items'] = $variables['content']['#items'];
+  $variables['items'] = $variables['content']['#items'] ?? [];
   $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
+
+  _civictheme_preprocess_menu_items($variables['items']);
 
   $block = Block::load($variables['elements']['#id']);
   $region = $block->getRegion();
