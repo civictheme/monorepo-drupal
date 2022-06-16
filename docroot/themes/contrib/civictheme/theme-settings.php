@@ -169,7 +169,7 @@ function _civictheme_form_system_theme_settings_validate(array $form, FormStateI
 
   foreach ($field_to_validate as $field) {
     if (!empty($values[$field])) {
-      $path = validate_path($values[$field]);
+      $path = _civictheme_form_system_theme_settings_validate_path($values[$field]);
       if ($path) {
         $path = \Drupal::service('file_url_generator')->generateString($path);
         $form_state->setValue($field, ltrim($path, '/'));
@@ -196,7 +196,7 @@ function _civictheme_form_system_theme_settings_validate(array $form, FormStateI
  *   A valid path that can be displayed through the theme system, or FALSE if
  *   the path could not be validated.
  */
-function validate_path($path) {
+function _civictheme_form_system_theme_settings_validate_path($path) {
   // Absolute local file paths are invalid.
   if (\Drupal::service('file_system')->realpath($path) == $path) {
     return FALSE;
