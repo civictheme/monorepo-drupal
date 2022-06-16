@@ -35,7 +35,7 @@ $drush ${DRUSH_ALIAS} -y thun govcms_bartik
 $drush ${DRUSH_ALIAS} -y thun bartik
 
 $drush ${DRUSH_ALIAS} -y pm-enable civictheme_govcms
-$drush ${DRUSH_ALIAS} -y pm-enable civictheme_content
+#$drush ${DRUSH_ALIAS} -y pm-enable civictheme_content
 
 $drush ${DRUSH_ALIAS} -y pm-enable cs_core
 CS_DEMO_CREATE=1 $drush ${DRUSH_ALIAS} -y pm-enable cs_demo
