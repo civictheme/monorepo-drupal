@@ -139,7 +139,7 @@ module.exports = {
             ],
             plugins: [
               './node_modules/babel-plugin-syntax-dynamic-import',
-              './webpack/babel-plugins/civictheme_starter_kit-drupal-behavior.js',
+              './webpack/babel-plugin-drupal-behavior-wrapper.js',
             ],
           },
         }],

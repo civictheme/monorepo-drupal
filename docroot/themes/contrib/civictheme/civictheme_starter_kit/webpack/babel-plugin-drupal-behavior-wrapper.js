@@ -19,6 +19,9 @@ module.exports = function (babel) {
 
             // Relies on every component JS file having a unique name.
             // According to the naming
+            // Note: difference to civictheme version of this plugin
+            // we change out the behavior name to match child theme
+            // machine name.
             const identifier = `civictheme_starter_kit_${this.filename.split('/').reverse()[0].replace('.js', '').replace('-', '_')}`;
             const addBehavior = drupalBehavior({
               NAME: t.identifier(identifier),
