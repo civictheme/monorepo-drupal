@@ -12,7 +12,7 @@ use Drupal\block\Entity\Block;
  */
 function civictheme_preprocess_block__menu_block__civictheme_secondary_navigation(&$variables) {
   $variables['theme'] = theme_get_setting('civictheme_header_theme') ?? 'light';
-  $variables['items'] = $variables['content']['#items'];
+  $variables['items'] = $variables['content']['#items'] ?? [];
   $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
 
   $block = Block::load($variables['elements']['#id']);
