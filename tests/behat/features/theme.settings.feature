@@ -11,7 +11,7 @@ Feature: Check that custom logo settings is available in theme settings
   @api @javascript
   Scenario: The CivicTheme theme settings has custom logo configuration
     Given I am logged in as a user with the "Site Administrator" role
-    When I visit "/admin/appearance/settings/civictheme"
+    When I visit "/admin/appearance/settings/civictheme_demo"
     Then I should see an "details#edit-logo" element
     And I should see an "input[name='logo_path']" element
     And I should see an "input[name='civictheme_header_logo_mobile']" element
