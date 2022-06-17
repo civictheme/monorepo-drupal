@@ -43,15 +43,8 @@
 
       {% set item_attributes = item.attributes|default('') %}
       {% if is_collapsible %}
-        {% set collapsible_group_value = [
-          menu_id|default('menu'),
-          parent_key|default,
-          menu_level,
-          key
-        ]|join('-') %}
-        {% set collapsible_group = ['data-collapsible-group="', collapsible_group_value, '"']|join %}
         {% set collapsible_collapsed = item.is_expanded ? '' : 'data-collapsible-collapsed' %}
-        {% set item_attributes = [item_attributes, 'data-collapsible data-collapsible-duration="0"', collapsible_group, collapsible_collapsed]|join(' ') %}
+        {% set item_attributes = [item_attributes, 'data-collapsible data-collapsible-duration="0"', collapsible_collapsed]|join(' ') %}
       {% endif %}
 
       <li class="{{ item_classes|join(' ') }}" {{ item_attributes }}>
@@ -64,6 +57,10 @@
           modifier_class: 'civictheme-menu__item__link',
           attributes: item.link_attributes|default(''),
         } only %}
+
+        {% if is_collapsible and item.below %}
+          <a href="#" class="civictheme-menu__item__link-trigger" data-collapsible-trigger title="Expand {{ item.title }} menu"></a>
+        {% endif %}
 
         {% if item.below %}
           {{ menus.menu_links_below(item.below, menu_level + 1, classes, theme, is_collapsible, key) }}

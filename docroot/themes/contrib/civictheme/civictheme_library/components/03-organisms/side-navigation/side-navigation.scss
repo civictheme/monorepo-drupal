@@ -42,29 +42,23 @@
       margin: 0;
     }
 
-    .civictheme-menu__item--has-children {
-      > .civictheme-menu__item__link {
-        &::after {
-          @include civictheme-icon-size('regular');
+    // .civictheme-menu__item--has-children {
+    //   > .civictheme-menu__item__link {
+    //     &::after {
+    //       @include civictheme-icon-size('regular');
 
-          content: $civictheme-side-navigation-link-expanded-icon;
-          position: absolute;
-          right: civictheme-space(1);
-          transform: rotate(-180deg);
-          line-height: 0;
-        }
-      }
-    }
+    //       content: $civictheme-side-navigation-link-expanded-icon;
+    //       position: absolute;
+    //       right: civictheme-space(1);
+    //       transform: rotate(-180deg);
+    //       line-height: 0;
+    //     }
+    //   }
+    // }
 
     .civictheme-menu__item--expanded {
       .civictheme-menu {
         display: block;
-      }
-
-      > .civictheme-menu__item__link {
-        &::after {
-          transform: rotate(0);
-        }
       }
     }
 
@@ -106,6 +100,8 @@
 
     #{$root}__menu {
       .civictheme-menu__item {
+        position: relative;
+
         .civictheme-menu__item__link {
           color: $civictheme-side-navigation-light-link-color;
           border-color: $civictheme-side-navigation-light-link-border-color;
@@ -133,13 +129,15 @@
             @include civictheme-outline();
           }
         }
-      }
 
-      .civictheme-menu__item--has-children {
-        > .civictheme-menu__item__link {
-          &::after {
-            color: $civictheme-side-navigation-light-link-expanded-icon-color;
-          }
+        .civictheme-menu__item__link-trigger {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: civictheme-space(3);
+          height: civictheme-space(3);
+          padding: civictheme-space(1.25)civictheme-space(0.25) civictheme-space(1.25) 0;
+          z-index: 1;
         }
       }
 
@@ -203,13 +201,13 @@
         }
       }
 
-      .civictheme-menu__item--has-children {
-        > .civictheme-menu__item__link {
-          &::after {
-            color: $civictheme-side-navigation-dark-link-expanded-icon-color;
-          }
-        }
-      }
+      // .civictheme-menu__item--has-children {
+      //   > .civictheme-menu__item__link {
+      //     &::after {
+      //       color: $civictheme-side-navigation-dark-link-expanded-icon-color;
+      //     }
+      //   }
+      // }
 
       .civictheme-menu__item--active-trail {
         > .civictheme-menu__item__link {
