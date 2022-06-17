@@ -31,7 +31,7 @@
 {% set type = type in ['primary', 'secondary', 'tertiary', 'chip'] ? type : null %}
 {% set size = size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? size : 'regular' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
-{% set icon_size = icon_size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? icon_size : size %}
+{% set icon_size = icon_size in ['regular', 'small', 'extra-small'] ? icon_size : 'regular' %}
 {% set component_name = type == 'chip' ? 'chip' : 'button' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set type_class = type ? 'civictheme-button--%s'|format(type) : '' %}
