@@ -43,7 +43,7 @@
 
       {% set item_attributes = item.attributes|default('') %}
       {% if is_collapsible %}
-        {% set collapsible_collapsed = item.is_expanded ? '' : 'data-collapsible-collapsed' %}
+        {% set collapsible_collapsed = item.in_active_trail ? '' : 'data-collapsible-collapsed' %}
         {% set item_attributes = [item_attributes, 'data-collapsible data-collapsible-duration="0"', collapsible_collapsed]|join(' ') %}
       {% endif %}
 
