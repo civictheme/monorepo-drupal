@@ -23,7 +23,7 @@
 
 {% import _self as menus %}
 
-{% macro menu_links(items, menu_level, modifier_class, parent_key) %}
+{% macro menu_links(items, menu_level, modifier_class, theme, is_collapsible, parent_key) %}
   {% if items %}
     {% if menu_level == 0 %}
       <ul class="civictheme-menu civictheme-menu--level-{{ menu_level }} {{ modifier_class }} " data-component-name="civictheme-menu" {{ attributes|default('') }}>
@@ -42,7 +42,7 @@
       ] %}
 
       {% set item_attributes = item.attributes|default('') %}
-      {% if is_collapsible == 'true' %}
+      {% if is_collapsible %}
         {% set collapsible_group_value = [
           menu_id|default('menu'),
           parent_key|default,
@@ -66,7 +66,7 @@
         } only %}
 
         {% if item.below %}
-          {{ menus.menu_links_below(item.below, menu_level + 1, classes, key) }}
+          {{ menus.menu_links_below(item.below, menu_level + 1, classes, theme, is_collapsible, key) }}
         {% endif %}
 
       </li>
@@ -89,8 +89,8 @@
   The main macro is split into multiple macros to allow to override only the
   required parts while preserving (cloned) main generation macro.
 #}
-{% macro menu_links_below(items, menu_level, modifier_class, parent_key) %}
-  {{ menus.menu_links(items, menu_level, modifier_class, parent_key) }}
+{% macro menu_links_below(items, menu_level, modifier_class, theme, is_collapsible, parent_key) %}
+  {{ menus.menu_links(items, menu_level, modifier_class, theme, is_collapsible, parent_key) }}
 {% endmacro %}
 
-{{ menus.menu_links(items, 0, modifier_class) }}
+{{ menus.menu_links(items, 0, modifier_class, theme, is_collapsible) }}

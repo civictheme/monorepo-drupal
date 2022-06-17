@@ -26,12 +26,11 @@
         </div>
       {% endblock %}
     {% endif %}
-
     {% include '@base/menu/menu.twig' with {
       theme: theme,
       items: items,
       modifier_class: 'civictheme-side-navigation__menu',
-      is_collapsible: 'true',
+      is_collapsible: true,
     } only %}
   </div>
 {% endif %}
