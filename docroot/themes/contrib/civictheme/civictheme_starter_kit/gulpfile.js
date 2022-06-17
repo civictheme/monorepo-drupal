@@ -18,7 +18,7 @@ const newer = require('gulp-newer');
 // Directory with current theme components.
 const srcComponentsCurrentDir = `${__dirname}/components`;
 // Directory with CivicTheme components.
-const srcComponentsCivicthemeDir = `${__dirname}/../../contrib/civictheme/components`;
+const srcComponentsCivicthemeDir = `${__dirname}/../../contrib/civictheme/civictheme_library/components`;
 
 // Output directory of merged components.
 const dstComponentsCombinedDir = `${__dirname}/components_combined`;
