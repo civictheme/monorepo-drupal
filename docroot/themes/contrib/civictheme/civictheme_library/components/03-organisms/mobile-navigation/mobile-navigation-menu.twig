@@ -57,6 +57,8 @@ Copied as-is from '@base/menu/menu.twig'.
           url: item.url,
           modifier_class: 'civictheme-menu__item__link',
           attributes: item.link_attributes|default(''),
+          is_new_window: item.is_new_window is defined ? item.is_new_window : false,
+          is_external: item.is_external is defined ? item.is_external : false,
         } only %}
 
         {% if item.below %}
