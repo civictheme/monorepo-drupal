@@ -133,7 +133,7 @@
         }
 
         .civictheme-menu__item__link-trigger[data-collapsible-trigger] {
-          &:after {
+          &::after {
             @include civictheme-icon-fill-color($civictheme-side-navigation-light-link-expanded-icon-color);
           }
         }
@@ -199,7 +199,7 @@
         }
 
         .civictheme-menu__item__link-trigger[data-collapsible-trigger] {
-          &:after {
+          &::after {
             @include civictheme-icon-fill-color($civictheme-side-navigation-dark-link-expanded-icon-color);
           }
         }
