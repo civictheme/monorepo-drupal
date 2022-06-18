@@ -12,7 +12,7 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
  * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
 function cs_generated_content_generated_content_create_taxonomy_term_civictheme_topics_weight() {
-  return 11;
+  return 20;
 }
 
 /**

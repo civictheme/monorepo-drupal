@@ -13,7 +13,7 @@ use Drupal\media\Entity\Media;
  * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
 function cs_generated_content_generated_content_create_media_civictheme_image_weight() {
-  return 0;
+  return 12;
 }
 
 /**
