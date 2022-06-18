@@ -5,10 +5,8 @@
  * Create demo page nodes.
  */
 
+use Drupal\Core\Link;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
-
-require_once 'helper.inc';
-require_once 'civictheme_page.variations.inc';
 
 /**
  * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
@@ -28,16 +26,43 @@ function cs_generated_content_generated_content_create_node_civictheme_page_trac
  * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE().
  */
 function cs_generated_content_generated_content_create_node_civictheme_page() {
-  $variations = _cs_generated_content_create_node_civictheme_page__for_listings__variations();
-  $variations = array_merge($variations, _cs_generated_content_create_node_civictheme_page__components__variations());
+  $nodes = [];
 
-  return _cs_generated_content_create_nodes_from_variations('civictheme_page', $variations);
+  /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
+  $helper = CsGeneratedContentHelper::getInstance();
+
+  $variations = $helper::variations(
+    '_cs_generated_content_create_node_civictheme_page__variations__',
+    __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_page_variations'
+  );
+
+  foreach ($variations as $i => $variation) {
+    /** @var \Drupal\node\Entity\Node $node */
+    $node = $helper::variationCreateNode('civictheme_page', $variation, $i, '_cs_generated_content_create_node_civictheme_page__variation_to_fields');
+
+    $variation_info = $helper::variationFormatInfo($variation);
+    $node->revision_log = $variation_info;
+
+    $node->save();
+
+    $helper::log(
+      'Created "%s" node "%s" [ID: %s] %s',
+      $node->bundle(),
+      $node->toLink()->toString(),
+      $node->id(),
+      Link::createFromRoute('Edit', 'entity.node.edit_form', ['node' => $node->id()])->toString()
+    );
+
+    $nodes[] = $node;
+  }
+
+  return $nodes;
 }
 
 /**
  * Processor to convert variation values to 'civictheme_page' node fields.
  */
-function _cs_generated_content_create_node_civictheme_page__fields_from_variation($node, $variation) {
+function _cs_generated_content_create_node_civictheme_page__variation_to_fields($node, $variation) {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
