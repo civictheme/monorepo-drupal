@@ -31,27 +31,28 @@ function cs_generated_content_generated_content_create_media_civictheme_icon() {
 
   $total_files_count = 20;
 
+  $filename = sprintf('Demo icon file %s', $helper::staticString());
+  $file = $helper::createFile($helper::FILE_TYPE_BINARY, [
+    'filename' => $filename,
+    'extension' => 'svg',
+  ], FALSE);
+
   $entities = [];
   for ($i = 0; $i < $total_files_count; $i++) {
-    $filename = sprintf('Demo Icon media %s %s', $i + 1, $helper::staticSentence(2, $i + 1));
-    /** @var \Drupal\file\Entity\File $file */
-    $file = $helper::staticFile([
-      'filename' => $filename,
-      'extension' => 'svg',
-    ]);
+    $name = sprintf('Demo Icon media %s %s', $i + 1, $helper::staticSentence(2));
 
     $media = Media::create([
       'bundle' => 'civictheme_icon',
-      'name' => $filename,
+      'name' => $name,
     ]);
 
     $media->field_c_m_icon->setValue($file->id());
     $media->save();
 
     $helper::log(
-      'Created media %s for file "%s" [ID: %s] %s',
+      'Created media %s "%s" [ID: %s] %s',
       $media->bundle(),
-      Link::createFromRoute($file->getFilename(), 'entity.media.canonical', ['media' => $media->id()])->toString(),
+      Link::createFromRoute($media->getName(), 'entity.media.canonical', ['media' => $media->id()])->toString(),
       $media->id(),
       Link::createFromRoute('Edit', 'entity.media.edit_form', ['media' => $media->id()])->toString()
     );

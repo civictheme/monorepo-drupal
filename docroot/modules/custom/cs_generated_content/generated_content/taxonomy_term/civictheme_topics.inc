@@ -33,7 +33,7 @@ function cs_generated_content_generated_content_create_taxonomy_term_civictheme_
 
   $term_names = [];
   for ($i = 0; $i < $total_terms_count; $i++) {
-    $term_names[] = sprintf('Demo topic %s %s', $i + 1, $helper::staticSentence(2, $i + 1));
+    $term_names[] = sprintf('Demo topic %s %s', $i + 1, $helper::staticSentence(2));
   }
 
   $terms = $helper::saveTermTree('civictheme_topics', $term_names);

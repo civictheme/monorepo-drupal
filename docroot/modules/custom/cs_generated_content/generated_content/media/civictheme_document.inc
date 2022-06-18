@@ -32,20 +32,19 @@ function cs_generated_content_generated_content_create_media_civictheme_document
 
   $total_files_count = 30;
 
+  $filename = sprintf('Demo document file %s', $helper::staticString());
+  $file = $helper::createFile($helper::FILE_TYPE_BINARY, [
+    'filename' => $filename,
+    'extension' => 'pdf',
+  ], FALSE);
+
   $entities = [];
   for ($i = 0; $i < $total_files_count; $i++) {
     $variation = $helper::variationRandom([
       'status' => NULL,
     ]);
 
-    $name = sprintf('Demo Document media %s %s', $i + 1, $helper::staticSentence(2, $i + 1));
-    $filename = preg_replace('/[^\da-zA-Z]/i', '_', $name);
-
-    /** @var \Drupal\file\Entity\File $file */
-    $file = $helper::staticFile([
-      'filename' => $filename,
-      'extension' => 'pdf',
-    ]);
+    $name = sprintf('Demo Document media %s %s', $i + 1, $helper::staticSentence(2));
 
     $media = Media::create([
       'bundle' => 'civictheme_document',
@@ -58,9 +57,9 @@ function cs_generated_content_generated_content_create_media_civictheme_document
     $media->save();
 
     $helper::log(
-      'Created media %s for file "%s" [ID: %s] %s',
+      'Created media %s "%s" [ID: %s] %s',
       $media->bundle(),
-      Link::createFromRoute($file->getFilename(), 'entity.media.canonical', ['media' => $media->id()])->toString(),
+      Link::createFromRoute($media->getName(), 'entity.media.canonical', ['media' => $media->id()])->toString(),
       $media->id(),
       Link::createFromRoute('Edit', 'entity.media.edit_form', ['media' => $media->id()])->toString()
     );
