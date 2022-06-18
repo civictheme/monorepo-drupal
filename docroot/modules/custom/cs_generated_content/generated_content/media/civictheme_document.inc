@@ -40,7 +40,7 @@ function cs_generated_content_generated_content_create_media_civictheme_document
 
   $entities = [];
   for ($i = 0; $i < $total_files_count; $i++) {
-    $variation = $helper::variationRandom([
+    $variation = $helper::variationRandomValue([
       'status' => NULL,
     ]);
 

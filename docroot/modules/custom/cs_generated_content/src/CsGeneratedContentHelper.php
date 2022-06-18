@@ -13,7 +13,6 @@ use Drupal\generated_content\Helpers\GeneratedContentHelper;
  */
 class CsGeneratedContentHelper extends GeneratedContentHelper {
 
-  use CsGeneratedContentVariationTrait;
   use CsGeneratedContentCivicthemeTrait;
 
 }

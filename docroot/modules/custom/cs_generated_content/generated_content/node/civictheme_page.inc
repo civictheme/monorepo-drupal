@@ -31,7 +31,7 @@ function cs_generated_content_generated_content_create_node_civictheme_page() {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  $variations = $helper::variations(
+  $variations = $helper::variationFetchAll(
     '_cs_generated_content_create_node_civictheme_page__variations__',
     __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_page_variations'
   );
