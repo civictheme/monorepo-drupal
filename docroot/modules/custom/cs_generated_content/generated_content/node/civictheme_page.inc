@@ -91,44 +91,14 @@ function _cs_generated_content_create_node_civictheme_page__fields_from_variatio
     $node->field_c_n_banner_featured_image = $variation['banner_featured_image'];
   }
 
-  if (!empty($variation['banner_components']) && $node->hasField('field_c_n_banner_components')) {
-    for ($i = 0; $i < count($variation['banner_components']); $i++) {
-      $helper::civicthemeParagraphContentAttach($node, 'field_c_n_banner_components', [
-        'content' => [
-          'value' => $variation['banner_components'][$i]['content'],
-          'format' => 'civictheme_rich_text',
-        ],
-        'theme' => $variation['banner_components'][$i]['theme'] ?? $helper::civicthemeThemeLight(),
-      ]);
-    }
-  }
-
-  if (!empty($variation['banner_components_bottom']) && $node->hasField('field_c_n_banner_components_bott')) {
-    for ($i = 0; $i < count($variation['banner_components_bottom']); $i++) {
-      $helper::civicthemeParagraphContentAttach($node, 'field_c_n_banner_components_bott', [
-        'content' => [
-          'value' => $variation['banner_components_bottom'][$i]['content'],
-          'format' => 'civictheme_rich_text',
-        ],
-        'theme' => $variation['banner_components'][$i]['theme'] ?? $helper::civicthemeThemeLight(),
-      ]);
-    }
-  }
-
-  // Content.
-  if (!empty($variation['content']) && $node->hasField('field_c_n_components')) {
-    $variation['content'] = is_array($variation['content']) ? $variation['content'] : [['content' => $variation['content']]];
-
-    for ($i = 0; $i < count($variation['content']); $i++) {
-      $helper::civicthemeParagraphContentAttach($node, 'field_c_n_components', [
-        'content' => [
-          'value' => $variation['content'][$i]['content'],
-          'format' => 'civictheme_rich_text',
-        ],
-        'theme' => $variation['content'][$i]['theme'] ?? $helper::civicthemeThemeLight(),
-        'background' => $variation['content'][$i]['background'] ?? FALSE,
-        'space' => $variation['content'][$i]['space'] ?? 'both',
-      ]);
+  // Components.
+  if (!empty($variation['components']) && $node->hasField('field_c_n_components')) {
+    for ($i = 0; $i < count($variation['components']); $i++) {
+      // Extract component type.
+      $component_type = $variation['components'][$i]['type'];
+      // Remove component type and passthrough properties.
+      $component_options = array_diff_key($variation['components'][$i], ['type' => TRUE]);
+      $helper::civicthemeComponentAttach($node, 'field_c_n_components', $component_type, $component_options);
     }
   }
 }

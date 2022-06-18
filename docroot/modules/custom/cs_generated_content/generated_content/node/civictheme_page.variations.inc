@@ -18,11 +18,11 @@ function _cs_generated_content_create_node_civictheme_page__for_listings__variat
   $variations = [];
 
   for ($i = 0; $i < $total_nodes; $i++) {
+    $variation['title'] = sprintf('Demo Page for listing %s %s', $i + 1, $helper::staticSentence(1));
     // Set every 4th page to be unpublished.
-    $variation['title'] = sprintf('Demo Page for listing %s %s', $i + 1, $helper::staticSentence(1, $i));
     $variation['status'] = $i % 4 != 0;
     $variation['summary'] = $helper::staticPlainParagraph($i);
-    $variation['content'] = $helper::staticRichText(3, '', $i);
+    $variation['content'] = $helper::staticRichText(3);
     $variation['alias'] = '/demo/civictheme_page/{title}';
     $variations[] = $variation;
   }
@@ -39,6 +39,7 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
   $variations = array_merge($variations, _cs_generated_content_create_node_civictheme_page__components__variations__page_general());
   $variations = array_merge($variations, _cs_generated_content_create_node_civictheme_page__components__variations__page_banner());
   $variations = array_merge($variations, _cs_generated_content_create_node_civictheme_page__components__variations__content());
+  $variations = array_merge($variations, _cs_generated_content_create_node_civictheme_page__components__variations__accordion());
 
   // Add common variation properties to all variations.
   foreach ($variations as &$variation) {
@@ -62,41 +63,40 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
     ],
     [
       'title' => 'Demo Page, Summary',
-      'summary' => $helper::staticPlainParagraph(0),
+      'summary' => $helper::staticPlainParagraph(),
     ],
     [
       'title' => 'Demo Page, Summary, Content',
-      'summary' => $helper::staticPlainParagraph(1),
-      'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(1),
+      'summary' => $helper::staticPlainParagraph(),
+      'components' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(),
     ],
     [
       'title' => 'Demo Page, Summary, Both spaces, Content',
-      'summary' => $helper::staticPlainParagraph(2),
+      'summary' => $helper::staticPlainParagraph(),
       'space' => $helper::civicthemeSpaceTypeBoth(),
-      'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(2),
+      'components' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(),
     ],
     [
       'title' => 'Demo Page, Summary, Topics (1), Both spaces, Content',
-      'summary' => $helper::staticPlainParagraph(3),
-      'topics' => $helper::staticTerms('civictheme_topics', 1, 0),
+      'summary' => $helper::staticPlainParagraph(),
+      'topics' => $helper::staticTerms('civictheme_topics', 1),
       'space' => $helper::civicthemeSpaceTypeBoth(),
-      'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(3),
+      'components' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(),
     ],
     [
       'title' => 'Demo Page, Summary, Topics (3), Both spaces, Content',
-      'summary' => $helper::staticPlainParagraph(4),
-      'topics' => $helper::staticTerms('civictheme_topics', 3, 1),
+      'summary' => $helper::staticPlainParagraph(),
+      'topics' => $helper::staticTerms('civictheme_topics', 3),
       'space' => $helper::civicthemeSpaceTypeBoth(),
-      'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(4),
+      'components' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(),
     ],
-
     [
       'title' => 'Demo Page, Summary, Topics (1), Thumbnail, Both spaces, Content',
-      'summary' => $helper::staticPlainParagraph(5),
-      'topics' => $helper::staticTerms('civictheme_topics', 1, 2),
-      'thumbnail' => $helper->staticMedia('civictheme_image', 1, 0),
+      'summary' => $helper::staticPlainParagraph(),
+      'topics' => $helper::staticTerms('civictheme_topics', 1),
+      'thumbnail' => $helper::staticMediaItem('civictheme_image'),
       'space' => $helper::civicthemeSpaceTypeBoth(),
-      'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(5),
+      'components' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(),
     ],
   ];
 
@@ -145,28 +145,28 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
       'title' => 'Demo Page, Banner, Default, Light, Background',
       'banner_type' => $helper::civicthemeBannerTypeDefault(),
       'banner_theme' => $helper::civicthemeThemeLight(),
-      'banner_background' => $helper->staticMedia('civictheme_image', 1, 1),
+      'banner_background' => $helper->staticMediaItem('civictheme_image'),
       'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(7),
     ],
     [
       'title' => 'Demo Page, Banner, Default, Dark, Background',
       'banner_type' => $helper::civicthemeBannerTypeDefault(),
       'banner_theme' => $helper::civicthemeThemeDark(),
-      'banner_background' => $helper->staticMedia('civictheme_image', 1, 2),
+      'banner_background' => $helper->staticMediaItem('civictheme_image'),
       'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(7),
     ],
     [
       'title' => 'Demo Page, Banner, Large, Light, Background',
       'banner_type' => $helper::civicthemeBannerTypeLarge(),
       'banner_theme' => $helper::civicthemeThemeLight(),
-      'banner_background' => $helper->staticMedia('civictheme_image', 1, 3),
+      'banner_background' => $helper->staticMediaItem('civictheme_image'),
       'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(8),
     ],
     [
       'title' => 'Demo Page, Banner, Large, Dark, Background',
       'banner_type' => $helper::civicthemeBannerTypeLarge(),
       'banner_theme' => $helper::civicthemeThemeDark(),
-      'banner_background' => $helper->staticMedia('civictheme_image', 1, 4),
+      'banner_background' => $helper->staticMediaItem('civictheme_image'),
       'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(9),
     ],
 
@@ -174,35 +174,34 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
       'title' => 'Demo Page, Banner, Default, Light, Background, Image',
       'banner_type' => $helper::civicthemeBannerTypeDefault(),
       'banner_theme' => $helper::civicthemeThemeLight(),
-      'banner_background' => $helper->staticMedia('civictheme_image', 1, 5),
-      'banner_featured_image' => $helper->staticMedia('civictheme_image', 1, 6),
+      'banner_background' => $helper->staticMediaItem('civictheme_image'),
+      'banner_featured_image' => $helper->staticMediaItem('civictheme_image'),
       'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(10),
     ],
     [
       'title' => 'Demo Page, Banner, Default, Dark, Background, Image',
       'banner_type' => $helper::civicthemeBannerTypeDefault(),
       'banner_theme' => $helper::civicthemeThemeDark(),
-      'banner_background' => $helper->staticMedia('civictheme_image', 1, 7),
-      'banner_featured_image' => $helper->staticMedia('civictheme_image', 1, 8),
+      'banner_background' => $helper->staticMediaItem('civictheme_image'),
+      'banner_featured_image' => $helper->staticMediaItem('civictheme_image'),
       'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(11),
     ],
     [
       'title' => 'Demo Page, Banner, Large, Light, Background, Image',
       'banner_type' => $helper::civicthemeBannerTypeLarge(),
       'banner_theme' => $helper::civicthemeThemeLight(),
-      'banner_background' => $helper->staticMedia('civictheme_image', 1, 9),
-      'banner_featured_image' => $helper->staticMedia('civictheme_image', 1, 10),
+      'banner_background' => $helper->staticMediaItem('civictheme_image'),
+      'banner_featured_image' => $helper->staticMediaItem('civictheme_image'),
       'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(12),
     ],
     [
       'title' => 'Demo Page, Banner, Large, Dark, Background, Image',
       'banner_type' => $helper::civicthemeBannerTypeLarge(),
       'banner_theme' => $helper::civicthemeThemeDark(),
-      'banner_background' => $helper->staticMedia('civictheme_image', 1, 11),
-      'banner_featured_image' => $helper->staticMedia('civictheme_image', 1, 12),
+      'banner_background' => $helper->staticMediaItem('civictheme_image'),
+      'banner_featured_image' => $helper->staticMediaItem('civictheme_image'),
       'content' => _cs_generated_content_create_node_civictheme_page__components__variants__content_default(13),
     ],
-
   ];
 
   return $variations;
@@ -216,29 +215,49 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
   $helper = CsGeneratedContentHelper::getInstance();
 
   return [
-
     [
       'title' => 'Demo Page, Content component',
-      'content' => [
+      'components' => [
         [
-          'content' => $helper::staticRichText(3, '', 14),
+          'type' => 'content',
+          'content' => $helper::staticRichText(3),
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Content component, Dark',
-      'content' => [
+      'title' => 'Demo Page, Content component, 3 on page',
+      'components' => [
         [
-          'content' => $helper::staticRichText(3, '', 15),
+          'type' => 'content',
+          'content' => $helper::staticRichText(3),
+        ],
+        [
+          'type' => 'content',
+          'content' => $helper::staticRichText(3),
+        ],
+        [
+          'type' => 'content',
+          'content' => $helper::staticRichText(3),
+        ],
+      ],
+    ],
+
+    [
+      'title' => 'Demo Page, Content component, Dark',
+      'components' => [
+        [
+          'type' => 'content',
+          'content' => $helper::staticRichText(3),
           'theme' => $helper::civicthemeThemeDark(),
         ],
       ],
     ],
     [
       'title' => 'Demo Page, Content component, Light, BG',
-      'content' => [
+      'components' => [
         [
-          'content' => $helper::staticRichText(3, '', 16),
+          'type' => 'content',
+          'content' => $helper::staticRichText(3),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -246,9 +265,10 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
     ],
     [
       'title' => 'Demo Page, Content component, Dark, BG',
-      'content' => [
+      'components' => [
         [
-          'content' => $helper::staticRichText(3, '', 17),
+          'type' => 'content',
+          'content' => $helper::staticRichText(3),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -256,9 +276,10 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
     ],
     [
       'title' => 'Demo Page, Content component, Light, BG, Both spaces',
-      'content' => [
+      'components' => [
         [
-          'content' => $helper::staticRichText(3, '', 18),
+          'type' => 'content',
+          'content' => $helper::staticRichText(3),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -267,9 +288,10 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
     ],
     [
       'title' => 'Demo Page, Content component, Dark, No BG, Both spaces',
-      'content' => [
+      'components' => [
         [
-          'content' => $helper::staticRichText(3, '', 19),
+          'type' => 'content',
+          'content' => $helper::staticRichText(3),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -278,9 +300,10 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
     ],
     [
       'title' => 'Demo Page, Content component, Light, BG, Both spaces',
-      'content' => [
+      'components' => [
         [
-          'content' => $helper::staticRichText(3, '', 20),
+          'type' => 'content',
+          'content' => $helper::staticRichText(3),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -289,9 +312,10 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
     ],
     [
       'title' => 'Demo Page, Content component, Dark, BG, Both spaces',
-      'content' => [
+      'components' => [
         [
-          'content' => $helper::staticRichText(3, '', 21),
+          'type' => 'content',
+          'content' => $helper::staticRichText(3),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -302,15 +326,289 @@ function _cs_generated_content_create_node_civictheme_page__components__variatio
 }
 
 /**
- * Default values for Content component to ue in variations.
+ * Page, Components - Accordion.
  */
-function _cs_generated_content_create_node_civictheme_page__components__variants__content_default($idx) {
+function _cs_generated_content_create_node_civictheme_page__components__variations__accordion() {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
   return [
     [
-      'content' => $helper::staticRichText(3, '', $idx),
+      'title' => 'Demo Page, Accordion component',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Accordion component, 2 panels',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Accordion component, 2 panels, all expanded',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+          'expand_all' => TRUE,
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Accordion component, 2 panels, only first expanded',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+              'expand' => TRUE,
+            ],
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Accordion component, 2 panels, first and all expanded',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+              'expand' => TRUE,
+            ],
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+          'expand_all' => TRUE,
+        ],
+      ],
+    ],
+
+    [
+      'title' => 'Demo Page, Accordion component, Light, 2 panels, only first expanded',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+              'expand' => TRUE,
+            ],
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+          'theme' => $helper::civicthemeThemeLight(),
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Accordion component, Light, BG, 2 panels, only first expanded',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+              'expand' => TRUE,
+            ],
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+          'theme' => $helper::civicthemeThemeLight(),
+          'background' => TRUE,
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Accordion component, Light, BG, Both spaces, 2 panels, only first expanded',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+              'expand' => TRUE,
+            ],
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+          'theme' => $helper::civicthemeThemeLight(),
+          'background' => TRUE,
+          'space' => $helper::civicthemeSpaceTypeBoth(),
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Accordion component, Light, No BG, Both spaces, 2 panels, only first expanded',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+              'expand' => TRUE,
+            ],
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+          'theme' => $helper::civicthemeThemeLight(),
+          'background' => FALSE,
+          'space' => $helper::civicthemeSpaceTypeBoth(),
+        ],
+      ],
+    ],
+
+    [
+      'title' => 'Demo Page, Accordion component, Dark, 2 panels, only first expanded',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+              'expand' => TRUE,
+            ],
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+          'theme' => $helper::civicthemeThemeDark(),
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Accordion component, Dark, BG, 2 panels, only first expanded',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+              'expand' => TRUE,
+            ],
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+          'theme' => $helper::civicthemeThemeDark(),
+          'background' => TRUE,
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Accordion component, Dark, BG, Both spaces, 2 panels, only first expanded',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+              'expand' => TRUE,
+            ],
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+          'theme' => $helper::civicthemeThemeDark(),
+          'background' => TRUE,
+          'space' => $helper::civicthemeSpaceTypeBoth(),
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Accordion component, Dark, No BG, Both spaces, 2 panels, only first expanded',
+      'components' => [
+        [
+          'type' => 'accordion',
+          'panels' => [
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+              'expand' => TRUE,
+            ],
+            [
+              'title' => $helper::staticSentence(3),
+              'content' => $helper::staticRichText(3),
+            ],
+          ],
+          'theme' => $helper::civicthemeThemeDark(),
+          'background' => FALSE,
+          'space' => $helper::civicthemeSpaceTypeBoth(),
+        ],
+      ],
+    ],
+  ];
+}
+
+/**
+ * Default values for Content component to use in variations.
+ */
+function _cs_generated_content_create_node_civictheme_page__components__variants__content_default() {
+  /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
+  $helper = CsGeneratedContentHelper::getInstance();
+
+  return [
+    [
+      'type' => 'content',
+      'content' => $helper::staticRichText(3),
       'space' => $helper::civicthemeSpaceTypeNone(),
     ],
   ];
