@@ -7,6 +7,7 @@
 
 use Drupal\Core\Link;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
+use Drupal\generated_content\Helpers\GeneratedContentAssetGenerator;
 use Drupal\media\Entity\Media;
 
 /**
@@ -33,9 +34,8 @@ function cs_generated_content_generated_content_create_media_civictheme_document
   $total_files_count = 30;
 
   $filename = sprintf('Demo document file %s', $helper::staticString());
-  $file = $helper::createFile($helper::FILE_TYPE_BINARY, [
+  $file = $helper::createFile(GeneratedContentAssetGenerator::ASSET_TYPE_PDF, [
     'filename' => $filename,
-    'extension' => 'pdf',
   ], FALSE);
 
   $entities = [];

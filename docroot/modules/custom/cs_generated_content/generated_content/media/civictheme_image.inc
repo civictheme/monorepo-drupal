@@ -7,6 +7,7 @@
 
 use Drupal\Core\Link;
 use Drupal\cs_generated_content\CsGeneratedContentHelper;
+use Drupal\generated_content\Helpers\GeneratedContentAssetGenerator;
 use Drupal\media\Entity\Media;
 
 /**
@@ -33,10 +34,9 @@ function cs_generated_content_generated_content_create_media_civictheme_image() 
   $total_files_count = 50;
 
   $filename = sprintf('Demo image file %s', $helper::staticSentence(2));
-  $file = $helper::createFile($helper::FILE_TYPE_BINARY, [
+  $file = $helper::createFile(GeneratedContentAssetGenerator::ASSET_TYPE_PNG, [
     'filename' => $filename,
-    'extension' => 'png',
-  ], FALSE);
+  ], GeneratedContentAssetGenerator::GENERATE_TYPE_STATIC);
 
   $entities = [];
   for ($i = 0; $i < $total_files_count; $i++) {

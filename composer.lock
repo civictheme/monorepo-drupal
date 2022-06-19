@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3857a3eb77839eead76698dd95dc1f1f",
+    "content-hash": "6f3f8ff35a146cd2826ccb97844de5cd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5834,17 +5834,17 @@
         },
         {
             "name": "drupal/generated_content",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/generated_content.git",
-                "reference": "1.0.0"
+                "reference": "1.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/generated_content-1.0.0.zip",
-                "reference": "1.0.0",
-                "shasum": "7115abe74f03e8423ba8b9afadcc66752728efed"
+                "url": "https://ftp.drupal.org/files/projects/generated_content-1.1.0.zip",
+                "reference": "1.1.0",
+                "shasum": "f8421f96fc5c88c7637ca46160496902a4e24c4f"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -5853,8 +5853,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.0",
-                    "datestamp": "1654918820",
+                    "version": "1.1.0",
+                    "datestamp": "1655626338",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
