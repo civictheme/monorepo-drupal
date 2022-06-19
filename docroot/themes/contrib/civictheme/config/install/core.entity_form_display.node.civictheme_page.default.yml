@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_banner_theme
     - field.field.node.civictheme_page.field_c_n_banner_type
     - field.field.node.civictheme_page.field_c_n_components
+    - field.field.node.civictheme_page.field_c_n_hide_sidebar
     - field.field.node.civictheme_page.field_c_n_show_toc
     - field.field.node.civictheme_page.field_c_n_space
     - field.field.node.civictheme_page.field_c_n_summary
