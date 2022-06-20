@@ -286,4 +286,42 @@ trait CsGeneratedContentCivicthemeTrait {
     return in_array($value, $options) ? $value : reset($options);
   }
 
+  /**
+   * Attach Attachment paragraph to a node.
+   */
+  public static function civicthemeParagraphAttachmentAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    if (empty($options['title']) || empty($options['summary']) || empty($options['attachments'])) {
+      return;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_attachment', $node, $field_name, $options);
+
+    $paragraph->save();
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
+   * Attach Callout paragraph to a node.
+   */
+  public static function civicthemeParagraphCalloutAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    if (empty($options['title']) || empty($options['summary']) || empty($options['links'])) {
+      return;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_callout', $node, $field_name, $options);
+
+    $paragraph->save();
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
 }
