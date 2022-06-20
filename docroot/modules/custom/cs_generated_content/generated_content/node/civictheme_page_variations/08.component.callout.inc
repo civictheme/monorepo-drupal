@@ -167,7 +167,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, Light, BG, Top space',
+      'title' => 'Demo Page, Callout component, Light, Top space',
       'components' => [
         [
           'type' => 'callout',
@@ -183,7 +183,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, Dark, BG, Top space',
+      'title' => 'Demo Page, Callout component, Dark, Top space',
       'components' => [
         [
           'type' => 'callout',
@@ -199,7 +199,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, Light, BG, Bottom space',
+      'title' => 'Demo Page, Callout component, Light, Bottom space',
       'components' => [
         [
           'type' => 'callout',
@@ -215,7 +215,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Callout component, Dark, BG, Bottom space',
+      'title' => 'Demo Page, Callout component, Dark, Bottom space',
       'components' => [
         [
           'type' => 'callout',

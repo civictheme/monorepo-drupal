@@ -109,7 +109,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Content attachment, Light, BG, Both spaces, Image, Icon',
+      'title' => 'Demo Page, Content attachment, Light, No BG, Both spaces, Image, Icon',
       'components' => [
         [
           'type' => 'attachment',
@@ -315,7 +315,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Content attachment, Light, BG, Both spaces, Icon',
+      'title' => 'Demo Page, Content attachment, Light, No BG, Both spaces, Icon',
       'components' => [
         [
           'type' => 'attachment',
