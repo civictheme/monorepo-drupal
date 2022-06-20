@@ -15,7 +15,7 @@ function getVariablesCsvPath() {
   paths.forEach((path) => {
     const csvPath = path.match(/.*\.variables.css/);
     if (csvPath) {
-      url['path'] = `${dir.replace('../../../', '')}/${path.replace('.css', '.csv')}`;
+      url.path = `${dir.replace('../../../', '')}/${path.replace('.css', '.csv')}`;
     }
   });
   return url;
