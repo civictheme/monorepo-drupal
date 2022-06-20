@@ -13,6 +13,7 @@ const iconUtils = require('../components/01-atoms/icon/icon.utils');
 const backgroundUtils = require('../components/01-atoms/background/background.utils');
 const logoUtils = require('../components/02-molecules/logo/logo.utils');
 const addonConfig = require('./addon-config').default();
+const colorsUtils = require('../components/00-base/colors/colors.utils');
 
 const customPlugin = new webpack.DefinePlugin({
   BACKGROUNDS: JSON.stringify(backgroundUtils.getBackgrounds()),
@@ -22,6 +23,7 @@ const customPlugin = new webpack.DefinePlugin({
   }),
   LOGOS: JSON.stringify(logoUtils.getLogos()),
   SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
+  CSV_VARIABLES_PATH: JSON.stringify(colorsUtils.getVariablesCsvPath()),
 });
 
 module.exports = {

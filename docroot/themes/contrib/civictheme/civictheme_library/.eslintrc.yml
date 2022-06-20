@@ -10,6 +10,7 @@ globals:
   LOGOS: true
   SCSS_VARIABLES: true
   Set: true
+  CSV_VARIABLES_PATH: true
 rules:
   strict: 0
   import/no-extraneous-dependencies: 0
