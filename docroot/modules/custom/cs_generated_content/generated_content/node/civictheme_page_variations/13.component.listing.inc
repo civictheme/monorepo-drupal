@@ -38,7 +38,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'card_theme' => $helper::civicthemeThemeLight(),
           'topics' => [
             $helper::randomRealTerm('civictheme_topics')->id(),
-          ]
+          ],
         ],
       ],
     ],
@@ -54,7 +54,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'topics' => [
             $helper::randomRealTerm('civictheme_topics')->id(),
             $helper::randomRealTerm('civictheme_topics')->id(),
-          ]
+          ],
         ],
       ],
     ],

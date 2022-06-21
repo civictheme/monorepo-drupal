@@ -535,4 +535,31 @@ trait CsGeneratedContentCivicthemeTrait {
     $node->{$field_name}->appendItem($paragraph);
   }
 
+  /**
+   * Attach Webform paragraph to a node.
+   */
+  public static function civicthemeParagraphWebformAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'webform' => NULL,
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_webform', $node, $field_name, $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
 }
