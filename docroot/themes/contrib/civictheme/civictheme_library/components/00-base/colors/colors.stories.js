@@ -7,7 +7,7 @@ export const Colors = () => {
 
   const types = {};
 
-  const csvPath = { ...CSV_VARIABLES_PATH };
+  const csvFileName = { ...CSV_VARIABLES_FILENAME };
 
   // Standard colors.
   types['civictheme-colors-default'] = 'Standard colors';
@@ -51,8 +51,8 @@ export const Colors = () => {
   }
 
   let html = '';
-  if (Object.values(csvPath.path)) {
-    html += `<div class="example-container__csv"><a href="${csvPath.path}" target="_blank" download>Download color map CSV</a></div>`;
+  if (Object.values(csvFileName.name)) {
+    html += `<div class="example-container__csv"><a href="../dist/${csvFileName.name}" target="_blank" download>Download color map CSV</a></div>`;
   }
 
   let variantDocsShown = false;

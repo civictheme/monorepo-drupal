@@ -22,6 +22,7 @@ const customPlugin = new webpack.DefinePlugin({
   }),
   LOGOS: JSON.stringify(logoUtils.getLogos()),
   SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
+  CSV_VARIABLES_FILENAME: JSON.stringify({name: 'styles.variables.csv'}),
 });
 
 module.exports = {
