@@ -75,6 +75,7 @@ node.settings
 *password_policy*
 pathauto.settings
 paragraphs.settings
+redirect.settings
 rdf.mapping.user.user
 seckit.settings
 seven.settings
@@ -119,11 +120,13 @@ views.view.archive
 views.view.block_content
 views.view.content
 views.view.content_recent
+views.view.cs_generated_content_list
 views.view.files
 views.view.frontpage
 views.view.media
 views.view.media_library
 views.view.moderated_content
+views.view.redirect
 views.view.taxonomy_term
 views.view.user_admin_people
 views.view.webform_submissions

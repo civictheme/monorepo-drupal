@@ -1,0 +1,8 @@
+name: CivicTheme Generated Content
+type: module
+description: Generated content for CivicTheme.
+core_version_requirement: ^8 || ^9
+package: civictheme
+dependencies:
+  - drupal:views
+  - generated_content:generated_content

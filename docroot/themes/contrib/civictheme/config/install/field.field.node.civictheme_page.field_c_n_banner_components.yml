@@ -6,6 +6,8 @@ dependencies:
     - node.type.civictheme_page
     - paragraphs.paragraphs_type.civictheme_card_container
     - paragraphs.paragraphs_type.civictheme_content
+    - paragraphs.paragraphs_type.civictheme_iframe
+    - paragraphs.paragraphs_type.civictheme_map
     - paragraphs.paragraphs_type.civictheme_search
     - paragraphs.paragraphs_type.civictheme_slider
   module:
@@ -23,80 +25,100 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       civictheme_content: civictheme_content
-      civictheme_slider: civictheme_slider
       civictheme_card_container: civictheme_card_container
+      civictheme_iframe: civictheme_iframe
+      civictheme_map: civictheme_map
       civictheme_search: civictheme_search
+      civictheme_slider: civictheme_slider
+    negate: 0
     target_bundles_drag_drop:
       civictheme_accordion:
-        weight: 11
+        weight: -52
         enabled: false
       civictheme_accordion_panel:
-        weight: 12
+        weight: -51
         enabled: false
       civictheme_attachment:
-        weight: 21
+        weight: -46
         enabled: false
       civictheme_callout:
-        weight: 22
+        weight: -45
         enabled: false
       civictheme_card_container:
+        weight: -58
         enabled: true
-        weight: 13
+      civictheme_content:
+        weight: -59
+        enabled: true
       civictheme_event_card:
-        weight: 24
+        weight: -44
         enabled: false
       civictheme_event_card_ref:
-        weight: 25
+        weight: -43
         enabled: false
+      civictheme_iframe:
+        weight: -57
+        enabled: true
+      civictheme_listing:
+        weight: -37
+        enabled: false
+      civictheme_map:
+        weight: -56
+        enabled: true
       civictheme_navigation_card:
-        weight: 14
+        weight: -50
         enabled: false
       civictheme_navigation_card_ref:
-        weight: 27
-        enabled: false
-      civictheme_promo_card:
-        weight: 15
-        enabled: false
-      civictheme_promo_card_ref:
-        weight: 29
-        enabled: false
-      civictheme_subject_card:
-        weight: 35
-        enabled: false
-      civictheme_subject_card_ref:
-        weight: 36
-        enabled: false
-      civictheme_task_card:
-        weight: 16
-        enabled: false
-      civictheme_content:
-        enabled: true
-        weight: 2
-      civictheme_map:
-        weight: 32
+        weight: -42
         enabled: false
       civictheme_next_step:
-        weight: 40
+        weight: -36
         enabled: false
       civictheme_promo:
-        weight: 33
+        weight: -40
+        enabled: false
+      civictheme_promo_card:
+        weight: -49
+        enabled: false
+      civictheme_promo_card_ref:
+        weight: -41
+        enabled: false
+      civictheme_publication_card:
+        weight: -34
         enabled: false
       civictheme_quick_links:
-        weight: 42
+        weight: -35
         enabled: false
       civictheme_search:
+        weight: -55
         enabled: true
-        weight: 43
       civictheme_service_card:
-        weight: 18
+        weight: -47
         enabled: false
       civictheme_slider:
+        weight: -54
         enabled: true
-        weight: 5
       civictheme_slider_slide:
-        weight: 6
+        weight: -53
+        enabled: false
+      civictheme_slider_slide_ref:
+        weight: -33
+        enabled: false
+      civictheme_social_icon:
+        weight: -32
+        enabled: false
+      civictheme_subject_card:
+        weight: -39
+        enabled: false
+      civictheme_subject_card_ref:
+        weight: -38
+        enabled: false
+      civictheme_task_card:
+        weight: -48
+        enabled: false
+      civictheme_webform:
+        weight: -31
         enabled: false
 field_type: entity_reference_revisions
