@@ -166,6 +166,20 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
+   * Small size name.
+   */
+  public static function civicthemeSizeSmall() {
+    return 'small';
+  }
+
+  /**
+   * Large size name.
+   */
+  public static function civicthemeSizeLarge() {
+    return 'large';
+  }
+
+  /**
    * Generic component attach helper.
    */
   public static function civicthemeComponentAttach($node, $field_name, $type, $options) {
@@ -600,6 +614,53 @@ trait CsGeneratedContentCivicthemeTrait {
           $slide = self::civicthemeParagraphAttach($type, $paragraph, 'field_c_p_slides', $slide_options, TRUE);
           if (!empty($slide)) {
             $paragraph->field_c_p_slides->appendItem($slide);
+          }
+        }
+      }
+    }
+
+    $paragraph->save();
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
+   * Attach Card container paragraph to a node.
+   */
+  public static function civicthemeParagraphCardContainerAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'column_count' => NULL,
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    if (!empty($options['cards']) && count($options['cards']) > 0) {
+      $cards = $options['cards'];
+      unset($options['cards']);
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_card_container', $node, $field_name, $options);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    // Slider slide.
+    if (!empty($cards)) {
+      foreach ($cards as $card_options) {
+        if (!empty($card_options['type'])) {
+          $type = $card_options['type'];
+          unset($card_options['type']);
+          $card = self::civicthemeParagraphAttach($type, $paragraph, 'field_c_p_cards', $card_options, TRUE);
+          if (!empty($card)) {
+            $paragraph->field_c_p_cards->appendItem($card);
           }
         }
       }
