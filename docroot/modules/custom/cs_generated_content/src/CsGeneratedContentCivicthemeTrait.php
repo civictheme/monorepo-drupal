@@ -127,7 +127,7 @@ trait CsGeneratedContentCivicthemeTrait {
    * Generic component attach helper.
    */
   public static function civicthemeComponentAttach($node, $field_name, $type, $options) {
-    $method = 'civicthemeParagraph' . ucfirst($type) . 'Attach';
+    $method = 'civicthemeParagraph' . str_replace(' ', '', (ucwords(str_replace('_', ' ', $type)))) . 'Attach';
 
     if (!method_exists(self::class, $method)) {
       throw new \RuntimeException(sprintf('Method "%s" is not defined in "%s" class.', $method, self::class));
@@ -284,6 +284,172 @@ trait CsGeneratedContentCivicthemeTrait {
    */
   protected static function civicthemeValueFromOptions(array $options, $value) {
     return in_array($value, $options) ? $value : reset($options);
+  }
+
+  /**
+   * Attach Attachment paragraph to a node.
+   */
+  public static function civicthemeParagraphAttachmentAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'title' => '',
+      'summary' => '',
+      'attachments' => [],
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_attachment', $node, $field_name, $options);
+
+    $paragraph->save();
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
+   * Attach Callout paragraph to a node.
+   */
+  public static function civicthemeParagraphCalloutAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'title' => '',
+      'summary' => '',
+      'links' => FALSE,
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_callout', $node, $field_name, $options);
+
+    $paragraph->save();
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
+   * Attach Iframe paragraph to a node.
+   */
+  public static function civicthemeParagraphIframeAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'url' => '',
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_iframe', $node, $field_name, $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
+   * Attach Map paragraph to a node.
+   */
+  public static function civicthemeParagraphMapAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'embed_url' => '',
+      'address' => '',
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_map', $node, $field_name, $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
+   * Attach Promo paragraph to a node.
+   */
+  public static function civicthemeParagraphNextStepAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'summary' => '',
+      'link' => FALSE,
+      'title' => '',
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_next_step', $node, $field_name, $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
+   * Attach Promo paragraph to a node.
+   */
+  public static function civicthemeParagraphPromoAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'title' => '',
+      'links' => FALSE,
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_promo', $node, $field_name, $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
   }
 
 }
