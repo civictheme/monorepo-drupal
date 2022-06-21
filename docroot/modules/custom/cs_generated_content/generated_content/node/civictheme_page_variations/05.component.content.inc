@@ -75,7 +75,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Content component, Light, BG, Both spaces',
+      'title' => 'Demo Page, Content component, Light, No BG, Both spaces',
       'components' => [
         [
           'type' => 'content',
