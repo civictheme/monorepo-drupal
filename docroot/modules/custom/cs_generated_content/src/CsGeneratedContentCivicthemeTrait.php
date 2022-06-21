@@ -562,4 +562,51 @@ trait CsGeneratedContentCivicthemeTrait {
     $node->{$field_name}->appendItem($paragraph);
   }
 
+  /**
+   * Attach Slider paragraph to a node.
+   */
+  public static function civicthemeParagraphSliderAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'slides' => NULL,
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    if (!empty($options['slides']) && count($options['slides']) > 0) {
+      $slides = $options['slides'];
+      unset($options['slides']);
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_slider', $node, $field_name, $options);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    // Slider slide.
+    if (!empty($slides)) {
+      foreach ($slides as $slide_options) {
+        if (!empty($slide_options['type'])) {
+          $type = $slide_options['type'];
+          unset($slide_options['type']);
+          $slide = self::civicthemeParagraphAttach($type, $paragraph, 'field_c_p_slides', $slide_options, TRUE);
+          if (!empty($slide)) {
+            $paragraph->field_c_p_slides->appendItem($slide);
+          }
+        }
+      }
+    }
+
+    $paragraph->save();
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
 }
