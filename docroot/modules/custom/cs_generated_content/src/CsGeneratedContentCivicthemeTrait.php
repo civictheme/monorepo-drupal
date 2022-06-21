@@ -26,6 +26,48 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
+   * Page content type name.
+   */
+  public static function civicthemePageContentType() {
+    return 'civictheme_page';
+  }
+
+  /**
+   * Event content type name.
+   */
+  public static function civicthemeEventContentType() {
+    return 'civictheme_event';
+  }
+
+  /**
+   * Limited type name.
+   */
+  public static function civicthemeLimitedType() {
+    return 'limited';
+  }
+
+  /**
+   * Unlimited type name.
+   */
+  public static function civicthemeUnlimitedType() {
+    return 'unlimited';
+  }
+
+  /**
+   * Promo card type name.
+   */
+  public static function civicthemePromoCardType() {
+    return 'civictheme_promo_card';
+  }
+
+  /**
+   * Navigation card type name.
+   */
+  public static function civicthemeNavigationCardType() {
+    return 'civictheme_navigation_card';
+  }
+
+  /**
    * Available theme names.
    */
   public static function civicthemeThemes() {
@@ -444,6 +486,47 @@ trait CsGeneratedContentCivicthemeTrait {
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_promo', $node, $field_name, $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
+  /**
+   * Attach Listing paragraph to a node.
+   */
+  public static function civicthemeParagraphListingAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'content_type' => NULL,
+      'view_as' => NULL,
+      'limit_type' => 'unlimited',
+      'card_theme' => 'light',
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    if ($options['limit_type'] == 'limited') {
+      $options['listing_limit'] = $options['listing_limit'] ?? rand(9, 20);
+    }
+    else {
+      $options['listing_limit'] = $options['listing_limit'] ?? 0;
+    }
+
+    if (!empty($options['show_filters']) && $options['show_filters']) {
+      $options['listing_f_exposed'] = $options['listing_f_exposed'] ?? [];
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_listing', $node, $field_name, $options);
 
     if (empty($paragraph)) {
       return;
