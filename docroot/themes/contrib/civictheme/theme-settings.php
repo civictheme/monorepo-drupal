@@ -5,6 +5,9 @@
  * Theme settings form for CivicTheme theme.
  */
 
+use Drupal\Core\StreamWrapper\StreamWrapperManager;
+use Drupal\Core\Form\FormStateInterface;
+
 /**
  * Implements hook_form_system_theme_settings_alter().
  */
@@ -97,6 +100,25 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
     '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://footer-background.png, or themes/contrib/civictheme/dist/images/svg/footer-background.png.'),
   ];
 
+  $logo_fields = [
+    'civictheme_header_logo_mobile',
+    'civictheme_footer_logo_desktop',
+    'civictheme_footer_logo_mobile',
+  ];
+  foreach ($logo_fields as $type) {
+    if (isset($form['logo']['settings'][$type])) {
+      $element = &$form['logo']['settings'][$type];
+
+      // If path is a public:// URI, display the path relative to the files
+      // directory; stream wrappers are not end-user friendly.
+      $original_path = $element['#default_value'];
+      if (StreamWrapperManager::getScheme($original_path) == 'public') {
+        $friendly_path = StreamWrapperManager::getTarget($original_path);
+        $element['#default_value'] = $friendly_path;
+      }
+    }
+  }
+
   // Show compiled Storybook.
   // @note For development of components, please use `npm run storybook`.
   $form['storybook'] = [
@@ -125,4 +147,70 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
       ]),
     ];
   }
+
+  $form['#validate'][] = '_civictheme_form_system_theme_settings_validate';
+}
+
+/**
+ * {@inheritdoc}
+ */
+function _civictheme_form_system_theme_settings_validate(array $form, FormStateInterface &$form_state) {
+  $values = $form_state->getValues();
+
+  if (!is_array($values)) {
+    return;
+  }
+
+  $field_to_validate = [
+    'civictheme_header_logo_mobile',
+    'civictheme_footer_logo_desktop',
+    'civictheme_footer_logo_mobile',
+  ];
+
+  foreach ($field_to_validate as $field) {
+    if (!empty($values[$field])) {
+      $path = _civictheme_form_system_theme_settings_validate_path($values[$field]);
+      if ($path) {
+        $path = \Drupal::service('file_url_generator')->generateString($path);
+        $form_state->setValue($field, ltrim($path, '/'));
+      }
+      else {
+        $form_state->setErrorByName($field, t('The image path is invalid.'));
+      }
+    }
+  }
+}
+
+/**
+ * Helper function for the system_theme_settings form.
+ *
+ * Attempts to validate normal system paths, paths relative to the public files
+ * directory, or stream wrapper URIs. If the given path is any of the above,
+ * returns a valid path or URI that the theme system can display.
+ *
+ * @param string $path
+ *   A path relative to the Drupal root or to the public files directory, or
+ *   a stream wrapper URI.
+ *
+ * @return mixed
+ *   A valid path that can be displayed through the theme system, or FALSE if
+ *   the path could not be validated.
+ */
+function _civictheme_form_system_theme_settings_validate_path($path) {
+  // Absolute local file paths are invalid.
+  if (\Drupal::service('file_system')->realpath($path) == $path) {
+    return FALSE;
+  }
+  // A path relative to the Drupal root or a fully qualified URI is valid.
+  if (is_file($path)) {
+    return $path;
+  }
+  // Prepend 'public://' for relative file paths within public filesystem.
+  if (StreamWrapperManager::getScheme($path) === FALSE) {
+    $path = 'public://' . $path;
+  }
+  if (is_file($path)) {
+    return $path;
+  }
+  return FALSE;
 }
