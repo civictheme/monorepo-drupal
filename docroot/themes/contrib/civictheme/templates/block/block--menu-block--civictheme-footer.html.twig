@@ -5,9 +5,4 @@
  */
 #}
 
-{% include '@organisms/navigation/navigation.twig' with  {
-  theme: theme,
-  title: configuration.label_display ? configuration.label : '',
-  items: content['#items'],
-  attributes: attributes,
-} only%}
+{% include '@organisms/navigation/navigation.twig' %}

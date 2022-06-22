@@ -15,6 +15,8 @@ function civictheme_preprocess_block__menu_block__civictheme_secondary_navigatio
   $variables['items'] = $variables['content']['#items'] ?? [];
   $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
 
+  _civictheme_preprocess_menu_items($variables['items']);
+
   $block = Block::load($variables['elements']['#id']);
   $region = $block->getRegion();
 
