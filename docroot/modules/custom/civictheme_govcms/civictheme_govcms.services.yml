@@ -1,0 +1,5 @@
+services:
+  plugin.manager.civictheme_govcms.govcms_manager:
+    class: Drupal\civictheme_govcms\CivicthemeGovcmsManager
+    arguments:
+      - '@entity_type.manager'
