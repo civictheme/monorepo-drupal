@@ -19,10 +19,10 @@ settings:
   label: 'Side Navigation'
   label_display: '0'
   provider: menu_block
-  follow: true
+  follow: false
   follow_parent: active
   level: 1
-  depth: 2
+  depth: 3
   expand_all_items: true
   parent: 'civictheme-primary-navigation:'
   suggestion: civictheme_primary_navigation
