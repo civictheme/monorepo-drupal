@@ -1,5 +1,5 @@
 import {
-  boolean, number, radios,
+  boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
 import CivicThemeHeaderExample from './header.stories.twig';
@@ -17,6 +17,7 @@ export const Header = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
   const primaryNavigationKnobTab = 'Primary navigation';
   const secondaryNavigationKnobTab = 'Secondary navigation';
+  const SearchLinkKnobTab = 'Search link';
 
   const generalKnobs = {
     theme: radios(
@@ -62,6 +63,10 @@ export const Header = (knobTab) => {
       primaryNavigationKnobTab,
     );
     generalKnobs.primary_navigation_dropdown_columns_fill = boolean('Fill width for missing columns', false, primaryNavigationKnobTab);
+    generalKnobs.search = boolean('Show Search', true, SearchLinkKnobTab) ? {
+      text: text('Text', 'Search', SearchLinkKnobTab),
+      url: text('Url', '/search', SearchLinkKnobTab),
+    } : null;
   }
 
   return CivicThemeHeaderExample({

@@ -102,6 +102,7 @@ config_devel:
     - block_content.type.civictheme_banner
     - block_content.type.civictheme_component_block
     - block_content.type.civictheme_mobile_navigation
+    - block_content.type.civictheme_search
     - block_content.type.civictheme_social_links
     - civictheme.settings
     - core.base_field_override.node.civictheme_alert.promote
@@ -111,6 +112,7 @@ config_devel:
     - core.entity_form_display.block_content.civictheme_banner.default
     - core.entity_form_display.block_content.civictheme_component_block.default
     - core.entity_form_display.block_content.civictheme_mobile_navigation.default
+    - core.entity_form_display.block_content.civictheme_search.default
     - core.entity_form_display.block_content.civictheme_social_links.default
     - core.entity_form_display.media.civictheme_audio.default
     - core.entity_form_display.media.civictheme_audio.media_library
@@ -146,7 +148,6 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_promo_card_ref.default
     - core.entity_form_display.paragraph.civictheme_publication_card.default
     - core.entity_form_display.paragraph.civictheme_quick_links.default
-    - core.entity_form_display.paragraph.civictheme_search.default
     - core.entity_form_display.paragraph.civictheme_service_card.default
     - core.entity_form_display.paragraph.civictheme_slider.default
     - core.entity_form_display.paragraph.civictheme_slider_slide.default
@@ -159,6 +160,7 @@ config_devel:
     - core.entity_view_display.block_content.civictheme_banner.default
     - core.entity_view_display.block_content.civictheme_component_block.default
     - core.entity_view_display.block_content.civictheme_mobile_navigation.default
+    - core.entity_view_display.block_content.civictheme_search.default
     - core.entity_view_display.block_content.civictheme_social_links.default
     - core.entity_view_display.media.civictheme_audio.default
     - core.entity_view_display.media.civictheme_audio.media_library
@@ -209,7 +211,6 @@ config_devel:
     - core.entity_view_display.paragraph.civictheme_promo_card_ref.default
     - core.entity_view_display.paragraph.civictheme_publication_card.default
     - core.entity_view_display.paragraph.civictheme_quick_links.default
-    - core.entity_view_display.paragraph.civictheme_search.default
     - core.entity_view_display.paragraph.civictheme_service_card.default
     - core.entity_view_display.paragraph.civictheme_slider.default
     - core.entity_view_display.paragraph.civictheme_slider_slide.default
@@ -235,6 +236,7 @@ config_devel:
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_top_menu
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_trigger_text
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_trigger_theme
+    - field.field.block_content.civictheme_search.field_c_b_link
     - field.field.block_content.civictheme_social_links.field_c_b_social_icons
     - field.field.block_content.civictheme_social_links.field_c_b_theme
     - field.field.block_content.civictheme_social_links.field_c_b_with_border
@@ -389,12 +391,6 @@ config_devel:
     - field.field.paragraph.civictheme_quick_links.field_c_p_links
     - field.field.paragraph.civictheme_quick_links.field_c_p_theme
     - field.field.paragraph.civictheme_quick_links.field_c_p_title
-    - field.field.paragraph.civictheme_search.field_c_p_button_text
-    - field.field.paragraph.civictheme_search.field_c_p_help_text
-    - field.field.paragraph.civictheme_search.field_c_p_placeholder
-    - field.field.paragraph.civictheme_search.field_c_p_search_url
-    - field.field.paragraph.civictheme_search.field_c_p_theme
-    - field.field.paragraph.civictheme_search.field_c_p_title
     - field.field.paragraph.civictheme_service_card.field_c_p_links
     - field.field.paragraph.civictheme_service_card.field_c_p_theme
     - field.field.paragraph.civictheme_service_card.field_c_p_title
@@ -429,6 +425,7 @@ config_devel:
     - field.storage.block_content.field_c_b_background_image
     - field.storage.block_content.field_c_b_bottom_menu
     - field.storage.block_content.field_c_b_components
+    - field.storage.block_content.field_c_b_link
     - field.storage.block_content.field_c_b_social_icons
     - field.storage.block_content.field_c_b_theme
     - field.storage.block_content.field_c_b_top_menu
@@ -472,7 +469,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_attachments
     - field.storage.paragraph.field_c_p_attributes
     - field.storage.paragraph.field_c_p_background
-    - field.storage.paragraph.field_c_p_button_text
     - field.storage.paragraph.field_c_p_card_theme
     - field.storage.paragraph.field_c_p_cards
     - field.storage.paragraph.field_c_p_column_count
@@ -488,7 +484,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_footer_link
     - field.storage.paragraph.field_c_p_header_link
     - field.storage.paragraph.field_c_p_height
-    - field.storage.paragraph.field_c_p_help_text
     - field.storage.paragraph.field_c_p_icon
     - field.storage.paragraph.field_c_p_image
     - field.storage.paragraph.field_c_p_image_position
@@ -500,10 +495,8 @@ config_devel:
     - field.storage.paragraph.field_c_p_listing_multi_select
     - field.storage.paragraph.field_c_p_location
     - field.storage.paragraph.field_c_p_panels
-    - field.storage.paragraph.field_c_p_placeholder
     - field.storage.paragraph.field_c_p_read_more
     - field.storage.paragraph.field_c_p_reference
-    - field.storage.paragraph.field_c_p_search_url
     - field.storage.paragraph.field_c_p_share_link
     - field.storage.paragraph.field_c_p_show_filters
     - field.storage.paragraph.field_c_p_size
@@ -556,7 +549,6 @@ config_devel:
     - paragraphs.paragraphs_type.civictheme_promo_card_ref
     - paragraphs.paragraphs_type.civictheme_publication_card
     - paragraphs.paragraphs_type.civictheme_quick_links
-    - paragraphs.paragraphs_type.civictheme_search
     - paragraphs.paragraphs_type.civictheme_service_card
     - paragraphs.paragraphs_type.civictheme_slider
     - paragraphs.paragraphs_type.civictheme_slider_slide

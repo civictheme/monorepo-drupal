@@ -5,22 +5,17 @@
 .civictheme-search {
   $root: &;
 
-  &__field-wrapper {
-    @include civictheme-breakpoint(m) {
-      display: flex;
-    }
-  }
+  padding: civictheme-space(2) 0;
 
-  &__field {
-    border-radius: $civictheme-border-radius;
-    position: relative;
-    margin-bottom: civictheme-space(2);
+  &__link {
+    @include civictheme-typography('text-regular');
 
-    @include civictheme-breakpoint(m) {
-      flex-grow: 1;
-      margin-right: civictheme-space();
-      margin-bottom: 0;
-    }
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: civictheme-space(2);
+    padding-bottom: civictheme-space(2);
+    border-bottom: solid 4px;
 
     svg {
       fill: currentcolor;
@@ -28,80 +23,40 @@
   }
 
   &__icon {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: civictheme-space(2);
-    margin: auto;
-  }
-
-  &__button {
-    width: 100%;
-
-    @include civictheme-breakpoint(m) {
-      width: auto;
-    }
-
-    &:focus {
-      @include civictheme-outline(true);
-    }
-  }
-
-  &__input {
-    height: 100%;
-
-    .civictheme-input__element {
-      @include civictheme-typography('heading-5');
-
-      border-radius: $civictheme-border-radius;
-      border-width: 1px;
-      border-style: solid;
-      padding: civictheme-space(2) civictheme-space(3) civictheme-space(2) civictheme-space(8);
-      width: 100%;
-      height: 100%;
-
-      &:focus {
-        @include civictheme-outline(true);
-      }
-    }
-  }
-
-  &__help_text {
-    @include civictheme-typography('text-regular');
+    margin-left: rem(4px);
   }
 
   &.civictheme-theme-light {
-    #{$root}__field {
+    #{$root}__link {
       color: $civictheme-search-light-color;
-    }
+      border-bottom-color: $civictheme-primary-navigation-light-menu-item-border-color;
 
-    #{$root}__input {
-      .civictheme-input__element {
-        background-color: $civictheme-search-light-background-color;
-        border-color: $civictheme-search-light-border-color;
+      &:hover {
+        color: $civictheme-search-light-color;
+        border-bottom-color: $civictheme-primary-navigation-light-menu-item-hover-border-color;
       }
-    }
 
-    #{$root}__help_text {
-      color: $civictheme-search-light-help-color;
+      &:active {
+        color: $civictheme-search-light-active-color;
+        border-bottom-color: $civictheme-primary-navigation-light-menu-item-active-border-color;
+      }
     }
   }
 
   &.civictheme-theme-dark {
-    #{$root}__field {
+    #{$root}__link {
       color: $civictheme-search-dark-color;
-    }
+      border-bottom-color: $civictheme-primary-navigation-dark-menu-item-border-color;
 
-    #{$root}__input {
-      .civictheme-input__element {
-        background-color: $civictheme-search-dark-background-color;
-        border-color: $civictheme-search-dark-border-color;
+      &:hover {
         color: $civictheme-search-dark-color;
+        border-bottom-color: $civictheme-primary-navigation-dark-menu-item-hover-border-color;
       }
-    }
 
-    #{$root}__help_text {
-      color: $civictheme-search-dark-help-color;
+      &:active {
+        color: $civictheme-search-dark-active-color;
+        border-bottom-color: $civictheme-primary-navigation-dark-menu-item-active-border-color;
+      }
     }
   }
 }

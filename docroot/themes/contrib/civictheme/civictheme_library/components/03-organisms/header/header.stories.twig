@@ -43,6 +43,15 @@
       'modifier_class': 'civictheme-justify-content-end',
     } only %}
 
+    {% if search %}
+      {% include '@molecules/search/search.twig' with {
+        'theme': theme,
+        'text': search.text,
+        'url': search.url,
+        'modifier_class': 'civictheme-justify-content-end',
+      } only %}
+    {% endif %}
+
     {% include '@organisms/mobile-navigation/mobile-navigation-trigger.twig' with {
       theme: theme,
       text: 'Menu',

@@ -1,4 +1,4 @@
-import { radios, text, select } from '@storybook/addon-knobs';
+import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeSearch from './search.twig';
 
 export default {
@@ -21,15 +21,8 @@ export const Search = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    placeholder: text('Placeholder', 'Enter keywords or phrase', generalKnobTab),
-    search_url: text('Search URL', '/search', generalKnobTab),
-    button_text: text('Button text', 'Search', generalKnobTab),
-    button_type: select('Button type', [
-      'primary',
-      'secondary',
-      'tertiary',
-    ], 'primary', generalKnobTab),
-    help_text: text('Description', 'Search by keyword', generalKnobTab),
+    text: text('Text', 'Search', generalKnobTab),
+    link: text('Search URL', '/search', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
