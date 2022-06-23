@@ -35,6 +35,8 @@ $drush ${DRUSH_ALIAS} -y thun govcms_bartik
 $drush ${DRUSH_ALIAS} -y thun bartik
 
 $drush ${DRUSH_ALIAS} -y pm-enable civictheme_govcms
+$drush ${DRUSH_ALIAS} civictheme_govcms:remove-config
+
 $drush ${DRUSH_ALIAS} -y pm-enable civictheme_content
 
 $drush ${DRUSH_ALIAS} -y pm-enable cs_core

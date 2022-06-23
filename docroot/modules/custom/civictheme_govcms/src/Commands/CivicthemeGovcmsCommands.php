@@ -3,7 +3,7 @@
 namespace Drupal\civictheme_govcms\Commands;
 
 use Drush\Commands\DrushCommands;
-use Drupal\civictheme_govcms\Govcms\GovcmsManager;
+use Drupal\civictheme_govcms\CivicthemeGovcmsManager;
 
 /**
  * Class Civictheme Govcms Commands.
@@ -15,17 +15,17 @@ class CivicthemeGovcmsCommands extends DrushCommands {
   /**
    * The Govcms Manager service.
    *
-   * @var \Drupal\civictheme_govcms\Govcms\GovcmsManager
+   * @var \Drupal\civictheme_govcms\CivicthemeGovcmsManager
    */
   protected $govcmsManager;
 
   /**
    * Migration commands constructor.
    *
-   * @param \Drupal\civictheme_govcms\Govcms\GovcmsManager $govcms_manager
+   * @param \Drupal\civictheme_govcms\CivicthemeGovcmsManager $govcms_manager
    *   The govcms manager service.
    */
-  public function __construct(GovcmsManager $govcms_manager) {
+  public function __construct(CivicthemeGovcmsManager $govcms_manager) {
     $this->govcmsManager = $govcms_manager;
   }
 

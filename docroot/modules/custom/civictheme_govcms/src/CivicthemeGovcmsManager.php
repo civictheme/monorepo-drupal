@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\civictheme_govcms\Govcms;
+namespace Drupal\civictheme_govcms;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\field\Entity\FieldConfig;
@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Defines a civictheme_govcms govcms manager.
  */
-class GovcmsManager {
+class CivicthemeGovcmsManager {
 
   /**
    * The list of removal configurations(methods).
@@ -37,14 +37,15 @@ class GovcmsManager {
   ) {
     $this->entityTypeManager = $entity_type_manager;
     $this->removalList = [
-      'removeGovcmsMediaTypes',
-      'removeGovcmsTextFormat',
-      'removeGovcmsFields',
-      'removeGovcmsContentTypes',
-      'removeGovcmsVocabularies',
-      'removeGovcmsUserRoles',
-      'removeGovcmsMenus',
-      'removeGovcmsPathautoPatterns',
+      // Item name in CLI => callable.
+      'media_types' => [static::class, 'removeGovcmsMediaTypes'],
+      'text_format' => [static::class, 'removeGovcmsTextFormat'],
+      'fields' => [static::class, 'removeGovcmsFields'],
+      'content_types' => [static::class, 'removeGovcmsContentTypes'],
+      'vocabularies' => [static::class, 'removeGovcmsVocabularies'],
+      'user_roles' => [static::class, 'removeGovcmsUserRoles'],
+      'menus' => [static::class, 'removeGovcmsMenus'],
+      'pathauto_patterns' => [static::class, 'removeGovcmsPathautoPatterns'],
     ];
   }
 
@@ -66,13 +67,11 @@ class GovcmsManager {
   public function civicthemeGovcmsRemoveConfig(string $preserve = '') {
     $preserve_list = [];
     if (!empty($preserve)) {
-      $preserve_list = array_map(function ($val) {
-          return 'removeGovcms' . str_replace(' ', '', (ucwords(str_replace('_', ' ', $val))));
-      }, explode(',', $preserve));
+      $preserve_list = explode(',', $preserve);
     }
-    foreach ($this->removalList as $function) {
-      if (strpos($function, 'removeGovcms') === 0 && !in_array($function, $preserve_list)) {
-        $this->$function();
+    foreach ($this->removalList as $key => $function) {
+      if (!in_array($key, $preserve_list)) {
+        call_user_func($function);
       }
     }
   }
