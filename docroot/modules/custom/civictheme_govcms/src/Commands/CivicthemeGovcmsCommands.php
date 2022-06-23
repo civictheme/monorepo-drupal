@@ -6,7 +6,7 @@ use Drush\Commands\DrushCommands;
 use Drupal\civictheme_govcms\Govcms\GovcmsManager;
 
 /**
- * Class SeniorsOnline Migration Commands.
+ * Class Civictheme Govcms Commands.
  *
  * @package Drupal\civictheme_govcms\Commands
  */
