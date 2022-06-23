@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_c_n_show_last_updated
+    - node.type.civictheme_page
+id: node.civictheme_page.field_c_n_show_last_updated
+field_name: field_c_n_show_last_updated
+entity_type: node
+bundle: civictheme_page
+label: 'Show last updated date'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

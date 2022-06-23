@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_banner_type
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
+    - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
     - field.field.node.civictheme_page.field_c_n_space
     - field.field.node.civictheme_page.field_c_n_summary
@@ -22,27 +23,27 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: node.civictheme_page.civictheme_navigation_card
 targetEntityType: node
 bundle: civictheme_page
 mode: civictheme_navigation_card
 content:
   field_c_n_summary:
-    weight: 1
+    type: basic_string
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 1
     region: content
   field_c_n_thumbnail:
-    weight: 0
+    type: entity_reference_label
     label: visually_hidden
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 0
     region: content
 hidden:
   field_c_n_banner_background: true
@@ -53,6 +54,7 @@ hidden:
   field_c_n_banner_type: true
   field_c_n_components: true
   field_c_n_hide_sidebar: true
+  field_c_n_show_last_updated: true
   field_c_n_show_toc: true
   field_c_n_space: true
   field_c_n_topics: true
