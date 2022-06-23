@@ -1,0 +1,6 @@
+services:
+  civictheme_govcms.commands:
+    class: \Drupal\civictheme_govcms\Commands\CivicthemeGovcmsCommands
+    arguments: ['@plugin.manager.civictheme_govcms.govcms_manager']
+    tags:
+      - { name: drush.command }
