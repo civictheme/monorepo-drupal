@@ -1,0 +1,8 @@
+name: 'CivicTheme Default Configurations'
+type: module
+description: 'Provides default Configurations for CivicTheme theme.'
+core_version_requirement: ^9
+package: CivicTheme
+dependencies:
+  - default_content:default_content
+  - civictheme_content:civictheme_content
