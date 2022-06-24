@@ -135,10 +135,12 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
   $is_front = \Drupal::service('path.matcher')->isFrontPage();
   $variables['is_front'] = $is_front;
 
-  if (!$is_front) {
-    $variables['content'][] = [
+  // Last updated date.
+  if ($node->hasField('field_c_n_show_last_updated') && !$node->get('field_c_n_show_last_updated')->isEmpty() && $node->get('field_c_n_show_last_updated')->getString()) {
+    $variables['content_middle'][] = [
       '#theme' => 'civictheme_basic_content',
-      '#content' => 'Last updated: ' . \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civictheme_short_date'),
+      '#component_theme' => $variables['theme'] ?? NULL,
+      '#content' => '<p>Last updated: ' . \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civictheme_short_date') . '<p>',
     ];
   }
 

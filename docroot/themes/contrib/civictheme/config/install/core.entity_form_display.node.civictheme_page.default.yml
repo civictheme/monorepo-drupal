@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_banner_type
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
+    - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
     - field.field.node.civictheme_page.field_c_n_space
     - field.field.node.civictheme_page.field_c_n_summary
@@ -17,7 +18,6 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_topics
     - node.type.civictheme_page
   module:
-    - content_moderation
     - field_group
     - media_library
     - paragraphs
@@ -29,15 +29,15 @@ third_party_settings:
         - group_civictheme_general
         - group_civictheme_banner
         - group_civictheme_content
+      label: Tabs
+      region: content
       parent_name: ''
       weight: 0
       format_type: tabs
-      region: content
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         direction: horizontal
-      label: Tabs
     group_civictheme_banner:
       children:
         - field_c_n_banner_type
@@ -46,32 +46,32 @@ third_party_settings:
         - field_c_n_banner_featured_image
         - field_c_n_banner_components
         - field_c_n_banner_components_bott
+      label: Banner
+      region: content
       parent_name: group_civictheme_tabs
       weight: 10
       format_type: tab
-      region: content
       format_settings:
-        id: ''
         classes: ''
-        description: ''
+        id: ''
         formatter: closed
+        description: ''
         required_fields: true
-      label: Banner
     group_civictheme_content:
       children:
         - field_c_n_components
         - field_c_n_show_toc
+      label: Content
+      region: content
       parent_name: group_civictheme_tabs
       weight: 12
       format_type: tab
-      region: content
       format_settings:
-        id: ''
         classes: ''
-        description: ''
+        id: ''
         formatter: closed
+        description: ''
         required_fields: true
-      label: Content
     group_civictheme_general:
       children:
         - title
@@ -80,17 +80,18 @@ third_party_settings:
         - field_c_n_thumbnail
         - field_c_n_space
         - field_c_n_hide_sidebar
+        - field_c_n_show_last_updated
+      label: General
+      region: content
       parent_name: group_civictheme_tabs
       weight: 9
       format_type: tab
-      region: content
       format_settings:
-        id: ''
         classes: ''
-        description: ''
+        id: ''
         formatter: closed
+        description: ''
         required_fields: true
-      label: General
 id: node.civictheme_page.default
 targetEntityType: node
 bundle: civictheme_page
@@ -105,13 +106,14 @@ content:
   field_c_n_banner_background:
     type: media_library_widget
     weight: 9
+    region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-    region: content
   field_c_n_banner_components:
     type: paragraphs
-    weight: 11
+    weight: 12
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -127,10 +129,10 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
     third_party_settings: {  }
-    region: content
   field_c_n_banner_components_bott:
     type: paragraphs
-    weight: 12
+    weight: 13
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -146,29 +148,29 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
     third_party_settings: {  }
-    region: content
   field_c_n_banner_featured_image:
     type: media_library_widget
-    weight: 10
+    weight: 11
+    region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-    region: content
   field_c_n_banner_theme:
+    type: options_buttons
     weight: 8
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   field_c_n_banner_type:
+    type: options_buttons
     weight: 7
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   field_c_n_components:
     type: paragraphs
     weight: 9
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -184,7 +186,6 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
     third_party_settings: {  }
-    region: content
   field_c_n_hide_sidebar:
     type: boolean_checkbox
     weight: 7
@@ -192,49 +193,56 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
-  field_c_n_show_toc:
-    weight: 10
+  field_c_n_show_last_updated:
+    type: boolean_checkbox
+    weight: 8
+    region: content
     settings:
       display_label: true
     third_party_settings: {  }
+  field_c_n_show_toc:
     type: boolean_checkbox
+    weight: 11
     region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_c_n_space:
+    type: options_select
     weight: 6
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_c_n_summary:
+    type: string_textarea
     weight: 3
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
-    region: content
   field_c_n_thumbnail:
+    type: media_library_widget
     weight: 5
+    region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-    type: media_library_widget
-    region: content
   field_c_n_topics:
+    type: entity_reference_autocomplete
     weight: 4
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   moderation_state:
     type: moderation_state_default
     weight: 7
-    settings: {  }
     region: content
+    settings: {  }
     third_party_settings: {  }
   path:
     type: path
@@ -244,24 +252,24 @@ content:
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 4
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 8
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 5
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -274,11 +282,16 @@ content:
   uid:
     type: entity_reference_autocomplete
     weight: 2
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
     region: content
+    settings: {  }
     third_party_settings: {  }
 hidden: {  }
