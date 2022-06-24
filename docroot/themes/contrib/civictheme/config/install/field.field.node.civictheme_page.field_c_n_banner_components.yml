@@ -8,7 +8,6 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_content
     - paragraphs.paragraphs_type.civictheme_iframe
     - paragraphs.paragraphs_type.civictheme_map
-    - paragraphs.paragraphs_type.civictheme_search
     - paragraphs.paragraphs_type.civictheme_slider
   module:
     - entity_reference_revisions
@@ -30,7 +29,6 @@ settings:
       civictheme_card_container: civictheme_card_container
       civictheme_iframe: civictheme_iframe
       civictheme_map: civictheme_map
-      civictheme_search: civictheme_search
       civictheme_slider: civictheme_slider
     negate: 0
     target_bundles_drag_drop:
