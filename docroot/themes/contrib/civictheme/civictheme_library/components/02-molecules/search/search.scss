@@ -29,16 +29,16 @@
   &.civictheme-theme-light {
     #{$root}__link {
       color: $civictheme-search-light-color;
-      border-bottom-color: $civictheme-primary-navigation-light-menu-item-border-color;
+      border-bottom-color: $civictheme-search-light-menu-item-border-color;
 
       &:hover {
         color: $civictheme-search-light-color;
-        border-bottom-color: $civictheme-primary-navigation-light-menu-item-hover-border-color;
+        border-bottom-color: $civictheme-search-light-menu-item-hover-border-color;
       }
 
       &:active {
         color: $civictheme-search-light-active-color;
-        border-bottom-color: $civictheme-primary-navigation-light-menu-item-active-border-color;
+        border-bottom-color: $civictheme-search-light-menu-item-active-border-color;
       }
     }
   }
@@ -46,16 +46,16 @@
   &.civictheme-theme-dark {
     #{$root}__link {
       color: $civictheme-search-dark-color;
-      border-bottom-color: $civictheme-primary-navigation-dark-menu-item-border-color;
+      border-bottom-color: $civictheme-search-dark-menu-item-border-color;
 
       &:hover {
         color: $civictheme-search-dark-color;
-        border-bottom-color: $civictheme-primary-navigation-dark-menu-item-hover-border-color;
+        border-bottom-color: $civictheme-search-dark-menu-item-hover-border-color;
       }
 
       &:active {
         color: $civictheme-search-dark-active-color;
-        border-bottom-color: $civictheme-primary-navigation-dark-menu-item-active-border-color;
+        border-bottom-color: $civictheme-search-dark-menu-item-active-border-color;
       }
     }
   }

@@ -17,7 +17,7 @@ export const Header = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
   const primaryNavigationKnobTab = 'Primary navigation';
   const secondaryNavigationKnobTab = 'Secondary navigation';
-  const SearchLinkKnobTab = 'Search link';
+  const SearchLinkKnobTab = 'Search';
 
   const generalKnobs = {
     theme: radios(
@@ -63,7 +63,7 @@ export const Header = (knobTab) => {
       primaryNavigationKnobTab,
     );
     generalKnobs.primary_navigation_dropdown_columns_fill = boolean('Fill width for missing columns', false, primaryNavigationKnobTab);
-    generalKnobs.search = boolean('Show Search', true, SearchLinkKnobTab) ? {
+    generalKnobs.with_search = boolean('With Search', true, primaryNavigationKnobTab) ? {
       text: text('Text', 'Search', SearchLinkKnobTab),
       url: text('Url', '/search', SearchLinkKnobTab),
     } : null;

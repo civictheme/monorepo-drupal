@@ -43,11 +43,11 @@
       'modifier_class': 'civictheme-justify-content-end',
     } only %}
 
-    {% if search %}
+    {% if with_search %}
       {% include '@molecules/search/search.twig' with {
         'theme': theme,
-        'text': search.text,
-        'url': search.url,
+        'text': with_search.text,
+        'url': with_search.url,
         'modifier_class': 'civictheme-justify-content-end',
       } only %}
     {% endif %}
