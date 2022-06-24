@@ -57,6 +57,9 @@ Feature: Fields on Page content type
     And I should see text matching "Hide sidebar"
     And should see an "input[name='field_c_n_hide_sidebar[value]']" element
 
+    And I should see text matching "Show last updated date"
+    And should see an "input[name='field_c_n_show_last_updated[value]']" element
+
     And I should see text matching "Show Table of Contents"
     And should see an "input[name='field_c_n_show_toc[value]']" element
 

@@ -83,6 +83,13 @@ function civictheme_theme() {
       ],
       'template' => 'misc/slider-slide-tags',
     ],
+    'civictheme_basic_content' => [
+      'variables' => [
+        'component_theme' => 'light',
+        'content' => '',
+      ],
+      'template' => 'misc/basic-content',
+    ],
   ];
 }
 
