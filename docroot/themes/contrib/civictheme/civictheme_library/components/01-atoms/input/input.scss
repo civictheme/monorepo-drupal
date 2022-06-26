@@ -37,6 +37,10 @@
     display: inline;
   }
 
+  &--hidden {
+    margin-bottom: 0;
+  }
+
   &__state {
     position: relative;
     margin-left: - civictheme-space(4);
