@@ -48,7 +48,8 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
         ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
       ];
       $tree = $menu_tree_service->transform($tree, $manipulators);
-      $variables[$menu_key] = $menu_tree_service->build($tree)['#items'];
+      $build = $menu_tree_service->build($tree);
+      $variables[$menu_key] = $build['#items'] ?? [];
       _civictheme_preprocess_menu_items($variables[$menu_key]);
       $cache_tags = Cache::mergeTags($cache_tags, $menu_block->getCacheTags());
     }
