@@ -42,7 +42,7 @@ This will build:
 
 ## Documentation
 
-Please refer to dedicated [Documentation](docs/introduction.md).
+Please refer to dedicated [Documentation](docs/README.md).
 
 ----
 
