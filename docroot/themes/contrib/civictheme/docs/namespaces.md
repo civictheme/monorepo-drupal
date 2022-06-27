@@ -1,4 +1,4 @@
-_[CivicTheme Documentation](../README.md) &#8594; [CivicTheme Drupal Theme documentation](introduction.md)  &#8594; Namespaces_
+_[CivicTheme Documentation](../README.md) &#8594; [CivicTheme Drupal Theme documentation](README.md)  &#8594; Namespaces_
 
 # Namespaces
 

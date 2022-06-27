@@ -126,4 +126,26 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
       $helper::civicthemeComponentAttach($node, 'field_c_n_components', $component_type, $component_options);
     }
   }
+
+  // Banner Components.
+  if (!empty($variation['banner_components']) && $node->hasField('field_c_n_banner_components')) {
+    for ($i = 0; $i < count($variation['banner_components']); $i++) {
+      // Extract component type.
+      $component_type = $variation['banner_components'][$i]['type'];
+      // Remove component type and passthrough properties.
+      $component_options = array_diff_key($variation['banner_components'][$i], ['type' => TRUE]);
+      $helper::civicthemeComponentAttach($node, 'field_c_n_banner_components', $component_type, $component_options);
+    }
+  }
+
+  // Banner Components Bottom.
+  if (!empty($variation['banner_components_bott']) && $node->hasField('field_c_n_banner_components_bott')) {
+    for ($i = 0; $i < count($variation['banner_components_bott']); $i++) {
+      // Extract component type.
+      $component_type = $variation['banner_components_bott'][$i]['type'];
+      // Remove component type and passthrough properties.
+      $component_options = array_diff_key($variation['banner_components_bott'][$i], ['type' => TRUE]);
+      $helper::civicthemeComponentAttach($node, 'field_c_n_banner_components_bott', $component_type, $component_options);
+    }
+  }
 }

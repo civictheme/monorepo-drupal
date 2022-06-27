@@ -670,4 +670,34 @@ trait CsGeneratedContentCivicthemeTrait {
     $node->{$field_name}->appendItem($paragraph);
   }
 
+  /**
+   * Attach Search paragraph to a node.
+   */
+  public static function civicthemeParagraphSearchAttach($node, $field_name, $options) {
+    if (!$node->hasField($field_name)) {
+      return;
+    }
+
+    $defaults = [
+      'theme' => NULL,
+      'title' => '',
+      'button_text' => '',
+      'search_url' => '',
+    ];
+
+    $options += $defaults;
+
+    if (empty(array_filter($options))) {
+      return NULL;
+    }
+
+    $paragraph = self::civicthemeParagraphAttach('civictheme_search', $node, $field_name, $options, TRUE);
+
+    if (empty($paragraph)) {
+      return;
+    }
+
+    $node->{$field_name}->appendItem($paragraph);
+  }
+
 }
