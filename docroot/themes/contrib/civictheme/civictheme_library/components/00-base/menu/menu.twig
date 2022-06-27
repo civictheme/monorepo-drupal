@@ -14,22 +14,35 @@
  *   - is_expanded: [boolean] Flag if the current item has visible child.
  *   - in_active_trail: [boolean] Flag if the current item is in the active trail.
  * - is_collapsible: [boolean] Flag whether to collapse the menu.
+ * - is_mobile: [boolean] Flag whether its a mobile menu.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set is_mobile = is_mobile is defined ? 'data-mobile-menu' : '' %}
 
 {% import _self as menus %}
 
-{% macro menu_links(items, menu_level, modifier_class, theme, is_collapsible, parent_key) %}
+{% macro menu_links_is_active(items) %}
+  {% set break = false %}
+  {% for item in items if not break %}
+   {% if item.is_active %}
+     {{ 'is_active' }}
+     {% set break = true %}
+   {% endif %}
+  {% endfor %}
+{% endmacro %}
+
+{% macro menu_links(items, menu_level, modifier_class, theme, is_collapsible, is_mobile, parent_key) %}
   {% if items %}
+    {% set is_active = menus.menu_links_is_active(items)|trim %}
     {% if menu_level == 0 %}
-      <ul class="civictheme-menu civictheme-menu--level-{{ menu_level }} {{ modifier_class }} " data-component-name="civictheme-menu" {{ attributes|default('') }}>
+      <ul class="civictheme-menu civictheme-menu--level-{{ menu_level }} {{ modifier_class }} {{ is_active }}" data-component-name="civictheme-menu" {{ attributes|default('') }} {{ is_mobile }}>
     {% else %}
       <div class="civictheme-menu__sub-menu__wrapper civictheme-menu__sub-menu__wrapper--level-{{ menu_level }}">
-        <ul class="civictheme-menu civictheme-menu__sub-menu civictheme-menu--level-{{ menu_level }}">
+        <ul class="civictheme-menu civictheme-menu__sub-menu civictheme-menu--level-{{ menu_level }}  {{ is_active }}">
     {% endif %}
 
     {% for key, item in items %}
@@ -38,13 +51,14 @@
         'civictheme-menu__item--level-' ~ menu_level,
         item.below ? 'civictheme-menu__item--has-children' : '',
         item.in_active_trail ? 'civictheme-menu__item--active-trail' : '',
+        item.is_active ? 'is_active' : '',
         item.modifier_class|default(''),
       ] %}
 
       {% set item_attributes = item.attributes|default('') %}
       {% if is_collapsible %}
         {% set collapsible_collapsed = item.in_active_trail ? '' : 'data-collapsible-collapsed' %}
-        {% set item_attributes = [item_attributes, 'data-collapsible', 'data-collapsible-duration=500', collapsible_collapsed]|join(' ') %}
+        {% set item_attributes = is_mobile ? item_attributes : [item_attributes, 'data-collapsible', 'data-collapsible-duration=500', collapsible_collapsed]|join(' ') %}
       {% endif %}
 
       <li class="{{ item_classes|join(' ') }}" {{ item_attributes }}>
@@ -60,12 +74,12 @@
           is_external: item.is_external is defined ? item.is_external : false,
         } only %}
 
-        {% if is_collapsible and item.below %}
+        {% if is_collapsible and item.below and not is_mobile %}
           <a href="#" class="civictheme-menu__item__link-trigger" data-collapsible-trigger title="Expand {{ item.title }} menu"></a>
         {% endif %}
 
         {% if item.below %}
-          {{ menus.menu_links_below(item.below, menu_level + 1, classes, theme, is_collapsible, key) }}
+          {{ menus.menu_links_below(item.below, menu_level + 1, classes, theme, is_collapsible, is_mobile, key) }}
         {% endif %}
 
       </li>
@@ -88,8 +102,8 @@
   The main macro is split into multiple macros to allow to override only the
   required parts while preserving (cloned) main generation macro.
 #}
-{% macro menu_links_below(items, menu_level, modifier_class, theme, is_collapsible, parent_key) %}
-  {{ menus.menu_links(items, menu_level, modifier_class, theme, is_collapsible, parent_key) }}
+{% macro menu_links_below(items, menu_level, modifier_class, theme, is_collapsible, is_mobile, parent_key) %}
+  {{ menus.menu_links(items, menu_level, modifier_class, theme, is_collapsible, is_mobile, parent_key) }}
 {% endmacro %}
 
-{{ menus.menu_links(items, 0, modifier_class, theme, is_collapsible) }}
+{{ menus.menu_links(items, 0, modifier_class, theme, is_collapsible, is_mobile) }}

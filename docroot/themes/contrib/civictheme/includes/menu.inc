@@ -31,13 +31,21 @@ function _civictheme_preprocess_block__civictheme_footer_menu(&$variables) {
 
 /**
  * Add required element for external link.
+ *
+ * Set the current active item.
  */
 function _civictheme_preprocess_menu_items(&$items) {
+  $current_path = \Drupal::request()->getRequestUri();
   foreach ($items as &$item) {
     $item += [
       'is_new_window' => $item['url']->isExternal(),
       'is_external' => $item['url']->isExternal(),
     ];
+    if ($item['url']->toString() == $current_path) {
+      $item += [
+        'is_active' => TRUE,
+      ];
+    }
 
     if (count($item['below'])) {
       _civictheme_preprocess_menu_items($item['below']);

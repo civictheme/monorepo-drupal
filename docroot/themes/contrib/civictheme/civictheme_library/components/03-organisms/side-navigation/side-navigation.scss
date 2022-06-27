@@ -95,6 +95,49 @@
         padding: civictheme-space(1.25) civictheme-space(0.25);
       }
     }
+
+    &:not([data-mobile-menu]) {
+      display: none;
+
+      @include civictheme-breakpoint('m') {
+        display: block;
+      }
+    }
+
+    &[data-mobile-menu] {
+      li {
+        &.civictheme-menu__item {
+          display: none !important;
+
+          &.civictheme-menu__item--active-trail {
+            display: block !important;
+          }
+
+          ul.is_active {
+            > li,
+            > li a {
+              display: block !important;
+            }
+          }
+        }
+
+        a {
+          display: none !important;
+        }
+
+        &.is_active {
+          a,
+          & ~ li,
+          & ~ li a {
+            display: block !important;
+          }
+        }
+      }
+
+      @include civictheme-breakpoint('m') {
+        display: none;
+      }
+    }
   }
 
   &.civictheme-theme-light {

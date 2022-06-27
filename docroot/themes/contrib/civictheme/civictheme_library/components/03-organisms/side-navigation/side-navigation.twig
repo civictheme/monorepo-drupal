@@ -32,5 +32,12 @@
       modifier_class: 'civictheme-side-navigation__menu',
       is_collapsible: true,
     } only %}
+    {% include '@base/menu/menu.twig' with {
+      theme: theme,
+      items: items,
+      modifier_class: 'civictheme-side-navigation__menu',
+      is_collapsible: true,
+      is_mobile: true,
+    } only %}
   </div>
 {% endif %}
