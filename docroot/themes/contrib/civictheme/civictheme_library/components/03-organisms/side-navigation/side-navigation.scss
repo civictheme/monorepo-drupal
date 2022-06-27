@@ -105,34 +105,11 @@
     }
 
     &[data-mobile-menu] {
-      li {
-        &.civictheme-menu__item {
-          display: none !important;
+      display: none;
+    }
 
-          &.civictheme-menu__item--active-trail {
-            display: block !important;
-          }
-
-          ul.is_active {
-            > li,
-            > li a {
-              display: block !important;
-            }
-          }
-        }
-
-        a {
-          display: none !important;
-        }
-
-        &.is_active {
-          a,
-          & ~ li,
-          & ~ li a {
-            display: block !important;
-          }
-        }
-      }
+    &[data-mobile-menu-active] {
+      display: block;
 
       @include civictheme-breakpoint('m') {
         display: none;
