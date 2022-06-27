@@ -256,7 +256,7 @@ $civictheme-typography-default: (
     'm': ($civictheme-font-base-size * 2.5, $civictheme-font-base-line-height * 3, 700, 'primary', -0.8px)
   ),
   'heading-3': (
-    'xxs': ($civictheme-font-base-size * 1.5, $civictheme-font-base-line-height * 2, 700, 'primary', 0.35px),
+    'xxs': ($civictheme-font-base-size * 1.5, $civictheme-font-base-line-height * 2, 700, 'primary', -0.35px),
     'm': ($civictheme-font-base-size * 2, $civictheme-font-base-line-height * 2.5, 700, 'primary', -0.6px)
   ),
   'heading-4': (
