@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  theme:
+    - civictheme
+id: civictheme_acknowledgmentofcountry
+theme: civictheme
+region: footer_bottom_1
+weight: -7
+provider: null
+plugin: 'block_content:7cf65f98-cbae-4e9d-b6ea-7d6d1c437c1c'
+settings:
+  id: 'block_content:7cf65f98-cbae-4e9d-b6ea-7d6d1c437c1c'
+  label: 'Acknowledgment of country'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
