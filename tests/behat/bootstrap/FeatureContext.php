@@ -15,6 +15,7 @@ use DrevOps\BehatSteps\FileTrait;
 use DrevOps\BehatSteps\JsTrait;
 use DrevOps\BehatSteps\LinkTrait;
 use DrevOps\BehatSteps\MediaTrait;
+use DrevOps\BehatSteps\MenuTrait;
 use DrevOps\BehatSteps\OverrideTrait;
 use DrevOps\BehatSteps\ParagraphsTrait;
 use DrevOps\BehatSteps\PathTrait;
@@ -38,6 +39,7 @@ class FeatureContext extends DrupalContext {
   use JsTrait;
   use LinkTrait;
   use MediaTrait;
+  use MenuTrait;
   use OverrideTrait;
   use PathTrait;
   use ParagraphsTrait;
