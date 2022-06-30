@@ -33,3 +33,22 @@ function _civictheme_content_modules_installed($module, $modules) {
     }
   }
 }
+
+/**
+ * Clear all items in the menu.
+ *
+ * @param string $menu_name
+ *   String machine menu name.
+ */
+function civictheme_content_clear_menu($menu_name) {
+  /** @var \Drupal\menu_link_content\MenuLinkContentStorage $storage */
+  $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+
+  $menu_items = $storage->loadByProperties([
+    'menu_name' => $menu_name,
+  ]);
+
+  foreach ($menu_items as $menu_item) {
+    $menu_item->delete();
+  }
+}
