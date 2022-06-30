@@ -193,7 +193,10 @@ jobs:
       - checkout
       - *step_process_codebase
       - *step_setup_remote_docker
-      - run: docker-compose build cli
+      - run:
+          name: Build site
+          command: ahoy build
+          no_output_timeout: 30m
 
   # No subtheme.
   build-alt2:
@@ -207,7 +210,10 @@ jobs:
       - checkout
       - *step_process_codebase
       - *step_setup_remote_docker
-      - run: docker-compose build cli
+      - run:
+          name: Build site
+          command: ahoy build
+          no_output_timeout: 30m
 
   # Deploy primary branches.
   deploy: &job_deploy
