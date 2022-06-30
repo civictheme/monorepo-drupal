@@ -5,14 +5,14 @@
  * Theme settings form for CivicTheme theme.
  */
 
-use Drupal\Core\StreamWrapper\StreamWrapperManager;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StreamWrapper\StreamWrapperManager;
 
 /**
  * Implements hook_form_system_theme_settings_alter().
  */
 function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
-  $theme = \Drupal::theme()->getActiveTheme();
+  $active_theme = \Drupal::theme()->getActiveTheme();
 
   // Disable default settings as we do not support uploading of custom logos
   // through config form (yet).
@@ -50,56 +50,6 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
     '#description' => t('Text for the alt attribute of site logo image'),
   ];
 
-  $form['components'] = [
-    '#type' => 'details',
-    '#title' => t('CivicTheme components'),
-    '#weight' => 50,
-    '#open' => TRUE,
-  ];
-
-  $form['components']['header'] = [
-    '#type' => 'details',
-    '#title' => t('Header'),
-    '#weight' => 50,
-    '#open' => TRUE,
-  ];
-
-  $form['components']['header']['civictheme_header_theme'] = [
-    '#title' => t('@component theme', ['@component' => 'Header']),
-    '#description' => t('Set the theme option for the @component.', ['@component' => 'Header']),
-    '#type' => 'radios',
-    '#options' => [
-      'light' => t('Light'),
-      'dark' => t('Dark'),
-    ],
-    '#default_value' => theme_get_setting('civictheme_header_theme') ?? 'light',
-  ];
-
-  $form['components']['footer'] = [
-    '#type' => 'details',
-    '#title' => t('Footer'),
-    '#weight' => 50,
-    '#open' => TRUE,
-  ];
-
-  $form['components']['footer']['civictheme_footer_theme'] = [
-    '#title' => t('@component theme', ['@component' => 'Footer']),
-    '#description' => t('Set the theme option for the @component.', ['@component' => 'Footer']),
-    '#type' => 'radios',
-    '#options' => [
-      'light' => t('Light'),
-      'dark' => t('Dark'),
-    ],
-    '#default_value' => theme_get_setting('civictheme_footer_theme') ?? 'dark',
-  ];
-
-  $form['components']['footer']['civictheme_footer_background_image'] = [
-    '#type' => 'textfield',
-    '#title' => t('Footer background image path'),
-    '#default_value' => theme_get_setting('civictheme_footer_background_image'),
-    '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://footer-background.png, or themes/contrib/civictheme/dist/images/svg/footer-background.png.'),
-  ];
-
   $logo_fields = [
     'civictheme_header_logo_mobile',
     'civictheme_footer_logo_desktop',
@@ -119,18 +69,70 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
     }
   }
 
+  $form['components'] = [
+    '#type' => 'details',
+    '#title' => t('CivicTheme components'),
+    '#weight' => 50,
+    '#open' => TRUE,
+  ];
+
+  $form['components']['header'] = [
+    '#type' => 'details',
+    '#title' => t('Header'),
+    '#weight' => 50,
+    '#open' => TRUE,
+  ];
+
+  $form['components']['header']['civictheme_header_theme'] = [
+    '#title' => t('@component theme', ['@component' => 'Header']),
+    '#description' => t('Set the theme option for the @component.', ['@component' => 'Header']),
+    '#type' => 'radios',
+    '#required' => TRUE,
+    '#options' => [
+      'light' => t('Light'),
+      'dark' => t('Dark'),
+    ],
+    '#default_value' => theme_get_setting('civictheme_header_theme') ?? 'light',
+  ];
+
+  $form['components']['footer'] = [
+    '#type' => 'details',
+    '#title' => t('Footer'),
+    '#weight' => 50,
+    '#open' => TRUE,
+  ];
+
+  $form['components']['footer']['civictheme_footer_theme'] = [
+    '#title' => t('@component theme', ['@component' => 'Footer']),
+    '#description' => t('Set the theme option for the @component.', ['@component' => 'Footer']),
+    '#type' => 'radios',
+    '#required' => TRUE,
+    '#options' => [
+      'light' => t('Light'),
+      'dark' => t('Dark'),
+    ],
+    '#default_value' => theme_get_setting('civictheme_footer_theme') ?? 'dark',
+  ];
+
+  $form['components']['footer']['civictheme_footer_background_image'] = [
+    '#type' => 'textfield',
+    '#title' => t('Footer background image path'),
+    '#default_value' => theme_get_setting('civictheme_footer_background_image'),
+    '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://footer-background.png, or themes/contrib/civictheme/dist/images/svg/footer-background.png.'),
+  ];
+
   // Show compiled Storybook.
   // @note For development of components, please use `npm run storybook`.
   $form['storybook'] = [
     '#type' => 'details',
     '#title' => t('Storybook for %theme theme', [
-      '%theme' => $theme->getName(),
+      '%theme' => $active_theme->getName(),
     ]),
     '#open' => TRUE,
     '#weight' => 51,
   ];
 
-  $storybook_file = $theme->getPath() . '/storybook-static/index.html';
+  $storybook_file = $active_theme->getPath() . '/storybook-static/index.html';
   if (file_exists($storybook_file)) {
     $form['storybook']['markup'] = [
       '#type' => 'inline_template',
@@ -212,5 +214,6 @@ function _civictheme_form_system_theme_settings_validate_path($path) {
   if (is_file($path)) {
     return $path;
   }
+
   return FALSE;
 }
