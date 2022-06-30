@@ -37,11 +37,11 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
     ) {
       $menu_block = $entity->get($menu_field)->referencedEntities()[0];
       $menu_name = str_replace('menu_block:', '', $menu_block->get('settings')['id']);
-      $root = empty(str_replace($menu_name . ':', '', $menu_block->get('settings')['parent'])) ? '' : $menu_block->get('settings')['parent'];
+      $root = empty(str_replace($menu_name . ':', '', $menu_block->get('settings')['parent'] ?? '')) ? '' : $menu_block->get('settings')['parent'];
 
       $menu_parameters = new MenuTreeParameters();
       // Only set max depth if the depth was provided (greater than 0).
-      if ($menu_block->get('settings')['depth']) {
+      if ($menu_block->get('settings')['depth'] ?? 0) {
         $menu_parameters->setMaxDepth($menu_block->get('settings')['depth']);
       }
       $menu_parameters->setRoot($root);
