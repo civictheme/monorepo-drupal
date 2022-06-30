@@ -51,7 +51,7 @@ if [ -z "${DREVOPS_LINT_TYPE##*fe*}" ] && [ -n "${DREVOPS_DRUPAL_THEME}" ] && gr
 fi
 
 # Lint theme configuration.
-if [ -z "${LINT_TYPE##*config*}" ]; then
+if [ -z "${DREVOPS_LINT_TYPE##*config*}" ]; then
   # Lint theme configuration.
   ./scripts/lint-theme-config.sh
 fi
