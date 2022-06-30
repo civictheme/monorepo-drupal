@@ -111,7 +111,12 @@ commands:
 
   install-site:
     usage: Install a site.
-    cmd: docker-compose exec -e DREVOPS_DRUPAL_INSTALL_OPERATIONS_SKIP=${DREVOPS_DRUPAL_INSTALL_OPERATIONS_SKIP:-} -e DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB=${DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB:-0} -T cli ./scripts/drevops/drupal-install-site.sh
+    cmd: |
+      docker-compose exec \
+      -e DREVOPS_DRUPAL_INSTALL_OPERATIONS_SKIP=${DREVOPS_DRUPAL_INSTALL_OPERATIONS_SKIP:-} \
+      -e DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB=${DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB:-0} \
+      -e SKIP_SUBTHEME_ACTIVATION=${SKIP_SUBTHEME_ACTIVATION:-0} \
+      -T cli ./scripts/drevops/drupal-install-site.sh
 
   export-db:
     usage: Export database dump or database image (DREVOPS_DB_DOCKER_IMAGE variable must be set).
