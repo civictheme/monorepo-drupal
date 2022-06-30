@@ -140,4 +140,5 @@ function _civictheme_preprocess_node__civictheme_event__summary(&$variables) {
     $value = $node->get('field_c_n_body')->getValue();
     $variables['summary'] = $value[0]['value'];
   }
+  _civictheme_preprocess_node__date($variables);
 }
