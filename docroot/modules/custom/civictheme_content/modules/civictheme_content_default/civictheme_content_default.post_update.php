@@ -25,13 +25,13 @@ function civictheme_content_default_post_update_set_homepage() {
 /**
  * Provisions links in footer and updates menu block configurations.
  */
-function civictheme_content_default_post_update_provision_footer_links() {
+function civictheme_content_default_post_update_provision_footer_links2() {
   $theme = \Drupal::theme()->getActiveTheme()->getName();
 
   $map = [
     $theme . '_footer_menu_1' => Helper::findMenuItemByTitle('civictheme-footer', 'General'),
-    $theme . '_footer_menu_2' => Helper::findMenuItemByTitle('civictheme-footer', 'About us'),
-    $theme . '_footer_menu_3' => Helper::findMenuItemByTitle('civictheme-footer', 'Help'),
+    $theme . '_footer_menu_2' => Helper::findMenuItemByTitle('civictheme-footer', 'Help'),
+    $theme . '_footer_menu_3' => Helper::findMenuItemByTitle('civictheme-footer', 'About us'),
     $theme . '_footer_menu_4' => Helper::findMenuItemByTitle('civictheme-footer', 'Services'),
   ];
 
