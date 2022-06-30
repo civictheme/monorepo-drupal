@@ -26,9 +26,9 @@ Feature: Open external links in a new tab
   @api
   Scenario: External menu links open in a new tab.
     Given I am logged in as a user with the "Administrator" role
-    When I go to "/admin/structure/block/add/menu_block:civictheme-footer/civictheme?region=footer_top_1"
+    When I go to "/admin/structure/block/add/menu_block:civictheme-footer/civictheme_demo?region=footer_top_1"
     And I press "Save"
-    When I go to "/admin/structure/block/add/menu_block:test-new-menu/civictheme?region=footer_top_1"
+    When I go to "/admin/structure/block/add/menu_block:test-new-menu/civictheme_demo?region=footer_top_1"
     And I press "Save"
     Given I visit civictheme_page "[TEST] Page Internal"
     And I should see the '.civictheme-secondary-navigation__menu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
