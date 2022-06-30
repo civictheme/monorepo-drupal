@@ -19,7 +19,7 @@ DRUSH_ALIAS="${DRUSH_ALIAS:-}"
 drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush"; else command -v drush; fi)"
 
 echo "  > Provision content."
-$drush ${DRUSH_ALIAS} ev "require_once '/app/docroot/themes/contrib/civictheme/civictheme.provision.inc'; civictheme_provision_cli();"
+$drush ${DRUSH_ALIAS} ev -v "require_once '/app/docroot/themes/contrib/civictheme/civictheme.provision.inc'; civictheme_provision_cli();"
 
 echo "  > Provision default content."
 $drush ${DRUSH_ALIAS} -y pm-enable civictheme_content

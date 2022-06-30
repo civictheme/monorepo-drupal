@@ -20,6 +20,8 @@ use Drupal\Core\Url;
 use Drupal\media\Entity\Media;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drush\Drush;
+use Drush\Log\LogLevel;
 
 /**
  * @defgroup settings_form Settings form
@@ -147,7 +149,7 @@ function _civictheme_form_system_theme_settings_submit_provision(array &$form, F
  *   -  message: (string) Provisioning finished unsuccessfully for this type and
  *      the value contains an error message.
  */
-function civictheme_provision(array $types = [], $clear_cache = TRUE) {
+function civictheme_provision(array $types = [], $clear_cache = TRUE, $verbose = FALSE) {
   $results = [];
 
   $callbacks = _civictheme_provision_discover_callbacks();
@@ -158,6 +160,12 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE) {
 
   foreach ($callbacks as $callback_type => $callback) {
     if (in_array($callback_type, $types)) {
+      if ($verbose) {
+        civictheme_provision_cli_log(t('Started provisioning @type.', [
+          '@type' => $callback_type,
+        ]));
+      }
+
       try {
         $results[$callback_type] = FALSE;
         $return = call_user_func($callbacks[$callback_type]);
@@ -169,6 +177,15 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE) {
       }
       catch (\Exception $exception) {
         $results[$callback_type] = $exception->getMessage();
+      }
+
+      if ($verbose) {
+        civictheme_provision_cli_log(t('Finished provisioning @type: @message.', [
+          '@type' => $callback_type,
+          '@message' => $results[$callback_type] === TRUE ? t('Success') : t('ERROR: @error', [
+            '@error' => is_string($results[$callback_type]) ? $results[$callback_type] : t('Unknown.'),
+          ]),
+        ]));
       }
     }
   }
@@ -187,7 +204,7 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE) {
  * failure.
  */
 function civictheme_provision_cli() {
-  $results = civictheme_provision();
+  $results = civictheme_provision([], TRUE, TRUE);
   $errors = array_filter($results, function ($value) {
     return $value !== TRUE;
   });
@@ -196,8 +213,28 @@ function civictheme_provision_cli() {
     printf('Errors encountered during provisioning: %s', implode(PHP_EOL, $errors));
     exit(1);
   }
+}
 
-  exit (0);
+/**
+ * Print a log message to stdout.
+ *
+ * Using \Drupal::messenger() when running Drush commands have side effects
+ * where messages are displayed only after the command has finished rather than
+ * during the command run.
+ *
+ * @param string $message
+ *   String containing message.
+ */
+function civictheme_provision_cli_log($message) {
+  if (class_exists('\Drush\Drush')) {
+    Drush::getContainer()->get('logger')->log(LogLevel::OK, strip_tags(html_entity_decode($message)));
+  }
+  elseif (PHP_SAPI === 'cli') {
+    print strip_tags(html_entity_decode($message)) . PHP_EOL;
+  }
+  else {
+    \Drupal::messenger()->addMessage($message);
+  }
 }
 
 /**
@@ -694,7 +731,7 @@ function _civictheme_provision__blocks__acknowledgment_of_country() {
   $paragraph->field_c_p_theme = 'dark';
   $block_content->field_c_b_components->appendItem($paragraph);
   $block_content->save();
-  civictheme_provision_place_block('Acknowledgment of country', 'footer_bottom_1', 'block_content:' . $block_content->uuid());
+  civictheme_provision_place_block('Acknowledgment of country', 'footer_bottom_1', $block_content->uuid());
 }
 
 /**
