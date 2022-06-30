@@ -67,6 +67,7 @@ function _civictheme_preprocess_node__civictheme_promo_card(&$variables) {
   $node = $variables['node'];
   $variables['date'] = \Drupal::service('date.formatter')->format($node->getCreatedTime(), 'civictheme_short_date');
   _civictheme_preprocess_node__card($variables);
+  _civictheme_preprocess_node__date($variables);
   _civictheme_preprocess_node__thumbnail($variables);
   _civictheme_preprocess_node__topics($variables);
 }
@@ -140,5 +141,4 @@ function _civictheme_preprocess_node__civictheme_event__summary(&$variables) {
     $value = $node->get('field_c_n_body')->getValue();
     $variables['summary'] = $value[0]['value'];
   }
-  _civictheme_preprocess_node__date($variables);
 }
