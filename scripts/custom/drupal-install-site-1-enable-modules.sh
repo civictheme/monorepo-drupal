@@ -38,24 +38,9 @@ $drush ${DRUSH_ALIAS} -y thun claro
 $drush ${DRUSH_ALIAS} -y thun govcms_bartik
 $drush ${DRUSH_ALIAS} -y thun bartik
 
-echo "  > Provision content."
-$drush ${DRUSH_ALIAS} ev "require_once '/app/docroot/themes/contrib/civictheme/civictheme.provision.inc'; civictheme_provision();"
-
 echo "  > Remove GovCMS configs."
 $drush ${DRUSH_ALIAS} -y pm-enable civictheme_govcms
 $drush ${DRUSH_ALIAS} civictheme_govcms:remove-config
-
-echo "  > Provision default content."
-$drush ${DRUSH_ALIAS} -y pm-enable civictheme_content
-
-echo "  > Enable helper module."
-$drush ${DRUSH_ALIAS} -y pm-enable cs_core
-
-echo "  > Generate test content."
-GENERATED_CONTENT_CREATE=1 $drush ${DRUSH_ALIAS} -y pm-enable cs_generated_content
-
-echo "  > Generate sitemap."
-$drush ${DRUSH_ALIAS} simple-sitemap:generate
 
 if $drush ${DRUSH_ALIAS} ev "print \Drupal\core\Site\Settings::get('environment');" | grep -q -e local; then
   echo "==> Enable modules in non-production environment."

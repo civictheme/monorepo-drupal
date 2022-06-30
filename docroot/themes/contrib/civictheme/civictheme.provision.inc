@@ -386,16 +386,19 @@ function civictheme_provision_clear_menu($menu_name) {
  * Provision files.
  */
 function civictheme_provision__files() {
-  $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
+  $active_theme = \Drupal::theme()->getActiveTheme();
+
+  $theme_name = $active_theme->getName();
+  $theme_path = $active_theme->getPath();
 
   $filepaths = [
-    $civictheme_path . '/assets/images/facebook.svg',
-    $civictheme_path . '/assets/images/linkedin.svg',
-    $civictheme_path . '/assets/images/twitter.svg',
-    $civictheme_path . '/assets/backgrounds/civictheme_background_dark_1.jpg',
-    $civictheme_path . '/assets/backgrounds/civictheme_background_dark_2.jpg',
-    $civictheme_path . '/assets/backgrounds/civictheme_background_light_1.jpg',
-    $civictheme_path . '/assets/backgrounds/civictheme_background_light_2.jpg',
+    $theme_path . '/assets/images/facebook.svg',
+    $theme_path . '/assets/images/linkedin.svg',
+    $theme_path . '/assets/images/twitter.svg',
+    $theme_path . "/assets/backgrounds/{$theme_name}_background_dark_1.jpg",
+    $theme_path . "/assets/backgrounds/{$theme_name}_background_dark_2.jpg",
+    $theme_path . "/assets/backgrounds/{$theme_name}_background_light_1.jpg",
+    $theme_path . "/assets/backgrounds/{$theme_name}_background_light_2.jpg",
   ];
 
   /** @var \Drupal\file\FileRepositoryInterface $file_repository */
@@ -415,6 +418,8 @@ function civictheme_provision__files() {
  * Provision media.
  */
 function civictheme_provision__media() {
+  $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+
   $filenames_for_media = [
     'icon' => [
       'facebook.svg',
@@ -422,10 +427,10 @@ function civictheme_provision__media() {
       'twitter.svg',
     ],
     'image' => [
-      'civictheme_background_dark_1.jpg',
-      'civictheme_background_dark_2.jpg',
-      'civictheme_background_light_1.jpg',
-      'civictheme_background_light_2.jpg',
+      "{$theme_name}_background_dark_1.jpg",
+      "{$theme_name}_background_dark_2.jpg",
+      "{$theme_name}_background_light_1.jpg",
+      "{$theme_name}_background_light_2.jpg",
     ],
   ];
 
@@ -463,14 +468,16 @@ function civictheme_provision__media() {
  * Provision menus.
  */
 function civictheme_provision__menus() {
+  $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+
   $menus = [
-    'civictheme-primary-navigation' => [
+    "{$theme_name}-primary-navigation" => [
       'Home' => '/',
     ],
-    'civictheme-secondary-navigation' => [
+    "{$theme_name}-secondary-navigation" => [
       'Contact' => '/enquiry',
     ],
-    'civictheme-footer' => [
+    "{$theme_name}-footer" => [
       'Home' => '/',
       'Contact' => '/enquiry',
     ],
@@ -509,33 +516,35 @@ function civictheme_provision__blocks() {
  * Provision menu blocks.
  */
 function _civictheme_provision__blocks__menu_blocks() {
+  $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+
   civictheme_provision_place_block('Primary Navigation', 'header_middle_3', NULL, [
-    'plugin' => 'menu_block:civictheme-primary-navigation',
-    'id' => 'civictheme_primarynavigation_menu',
+    'plugin' => "menu_block:{$theme_name}-primary-navigation",
+    'id' => "{$theme_name}_primarynavigation_menu",
     'depth' => 3,
   ]);
   civictheme_provision_place_block('Secondary Navigation', 'header_top_3', NULL, [
-    'plugin' => 'menu_block:civictheme-secondary-navigation',
-    'id' => 'civictheme_secondarynavigation_menu',
+    'plugin' => "menu_block:{$theme_name}-secondary-navigation",
+    'id' => "{$theme_name}_secondarynavigation_menu",
   ]);
   civictheme_provision_place_block('Footer menu 1', 'footer_middle_1', NULL, [
-    'plugin' => 'menu_block:civictheme-footer',
-    'id' => 'civictheme_footer_menu_1',
+    'plugin' => "menu_block:{$theme_name}-footer",
+    'id' => "{$theme_name}_footer_menu_1",
     'depth' => 1,
   ]);
   civictheme_provision_place_block('Footer menu 2', 'footer_middle_2', NULL, [
-    'plugin' => 'menu_block:civictheme-footer',
-    'id' => 'civictheme_footer_menu_2',
+    'plugin' => "menu_block:{$theme_name}-footer",
+    'id' => "{$theme_name}_footer_menu_2",
     'depth' => 1,
   ]);
   civictheme_provision_place_block('Footer menu 3', 'footer_middle_3', NULL, [
-    'plugin' => 'menu_block:civictheme-footer',
-    'id' => 'civictheme_footer_menu_3',
+    'plugin' => "menu_block:{$theme_name}-footer",
+    'id' => "{$theme_name}_footer_menu_3",
     'depth' => 1,
   ]);
   civictheme_provision_place_block('Footer menu 4', 'footer_middle_4', NULL, [
-    'plugin' => 'menu_block:civictheme-footer',
-    'id' => 'civictheme_footer_menu_4',
+    'plugin' => "menu_block:{$theme_name}-footer",
+    'id' => "{$theme_name}_footer_menu_4",
     'depth' => 1,
   ]);
 }
@@ -577,10 +586,12 @@ function _civictheme_provision__blocks__search() {
  * Provision mobile navigation block.
  */
 function _civictheme_provision__blocks__mobile_navigation() {
+  $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+
   $block_content = civictheme_provision_create_block_content('civictheme_mobile_navigation', t('Mobile Navigation'));
   // @todo Fix this.
-  $block_content->field_c_b_top_menu = 'civictheme_primarynavigation_menu';
-  $block_content->field_c_b_bottom_menu = 'civictheme_secondarynavigation_menu';
+  $block_content->field_c_b_top_menu = "{$theme_name}_primarynavigation_menu";
+  $block_content->field_c_b_bottom_menu = "{$theme_name}_secondarynavigation_menu";
   $block_content->field_c_b_trigger_text = 'Menu';
   $block_content->field_c_b_trigger_theme = 'light';
   $block_content->save();
