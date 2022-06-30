@@ -164,9 +164,9 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
  */
 function civictheme_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'] ?? NULL;
+  $variables['modifier_class'] = 'civictheme-card-container--listing';
   // On Grid view title should be added to card container.
   if ($view && $view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
-    $variables['modifier_class'] = 'civictheme-card-container--listing civictheme-card-container--with-background';
     $variables['title'] = $view->header['result']->render();
   }
   // Adds component theme settings to view / listing template.
