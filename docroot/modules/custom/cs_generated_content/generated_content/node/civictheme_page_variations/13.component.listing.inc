@@ -24,6 +24,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'view_as' => $helper::civicthemePromoCardType(),
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeLight(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -38,6 +46,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'card_theme' => $helper::civicthemeThemeLight(),
           'topics' => [
             $helper::randomRealTerm('civictheme_topics')->id(),
+          ],
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
           ],
         ],
       ],
@@ -55,6 +71,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
             $helper::randomRealTerm('civictheme_topics')->id(),
             $helper::randomRealTerm('civictheme_topics')->id(),
           ],
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -68,6 +92,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeLimitedType(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -80,6 +112,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'view_as' => $helper::civicthemeNavigationCardType(),
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeLight(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -93,6 +133,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeLimitedType(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -105,6 +153,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'view_as' => $helper::civicthemePromoCardType(),
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeLight(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -118,6 +174,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeLimitedType(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -130,6 +194,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'view_as' => $helper::civicthemeNavigationCardType(),
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeLight(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -143,6 +215,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeLimitedType(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -155,6 +235,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'view_as' => $helper::civicthemePromoCardType(),
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -168,6 +256,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeLimitedType(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -180,6 +276,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'view_as' => $helper::civicthemeNavigationCardType(),
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -193,6 +297,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeLimitedType(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -205,6 +317,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'view_as' => $helper::civicthemePromoCardType(),
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -218,6 +338,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeLimitedType(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -230,6 +358,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'view_as' => $helper::civicthemeNavigationCardType(),
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -243,6 +379,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeLimitedType(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -256,6 +400,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeLimitedType(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
         [
           'type' => 'listing',
@@ -284,6 +436,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -298,6 +458,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -311,6 +479,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -325,6 +501,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -338,6 +522,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -352,6 +544,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -365,6 +565,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -379,6 +587,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -392,6 +608,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -406,6 +630,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -419,6 +651,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -433,6 +673,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -446,6 +694,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -460,6 +716,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -473,6 +737,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -487,6 +759,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -732,6 +1012,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
           'background' => TRUE,
         ],
       ],
@@ -1369,6 +1657,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -1385,6 +1681,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -1416,6 +1720,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -1431,6 +1743,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
@@ -1447,6 +1767,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
+          'read_more' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
+          'link' => [
+            'uri' => $helper::randomUrl(),
+            'title' => $helper::staticString(30),
+          ],
         ],
       ],
     ],
