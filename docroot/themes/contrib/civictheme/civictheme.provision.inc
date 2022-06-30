@@ -36,7 +36,7 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
   $form['provision_content'] = [
     '#type' => 'details',
     '#title' => t('CivicTheme content provisioning'),
-    '#description' => t('Create all required content to make your site look like default CivicTheme.<br/>Triggering this multiple times will result in removal and re-creation of content items.'),
+    '#description' => t('Create all required content to make your site look like default CivicTheme.<br/><br/>Triggering this multiple times will result in removal and re-creation of content items.'),
     '#weight' => 51,
     '#open' => TRUE,
   ];
@@ -359,13 +359,16 @@ function civictheme_provision_create_block_content($block_type, $info) {
  *   Optional block type. Defaults to 'block_content'.
  */
 function civictheme_provision_place_block($label, $region, $uuid = NULL, array $settings = [], $block_type = 'block_content') {
-  $theme = \Drupal::configFactory()->get('system.theme')->get('default');
+  $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
 
+  $label_machine_name = preg_replace('@[^a-zA-Z0-9_]+@', '_', strtolower(str_replace(' ', '_', $label)));
+  $id = $theme_name . '_' . $label_machine_name;
+  $base_theme_id = 'civictheme_' . $label_machine_name;
   $settings += [
     'plugin' => $block_type . ':' . ($uuid ?? \Drupal::service('uuid')->generate()),
     'region' => $region,
-    'id' => $theme . '_' . preg_replace('@[^a-zA-Z0-9_]+@', '_', strtolower(str_replace(' ', '', $label))),
-    'theme' => $theme,
+    'id' => $id,
+    'theme' => $theme_name,
     'label' => $label,
     'label_display' => FALSE,
     'visibility' => [],
@@ -384,7 +387,15 @@ function civictheme_provision_place_block($label, $region, $uuid = NULL, array $
   }
   $values['settings'] = $settings;
 
+  // Remove block if it already exists.
   $block = Block::load($values['id']);
+  if ($block) {
+    $block->delete();
+  }
+
+  // Special case: remove existing blocks created by the base theme to avoid
+  // duplicated blocks.
+  $block = Block::load($base_theme_id);
   if ($block) {
     $block->delete();
   }
@@ -571,32 +582,26 @@ function civictheme_provision__blocks() {
  */
 function _civictheme_provision__blocks__menu_blocks() {
   civictheme_provision_place_block('Primary Navigation', 'header_middle_3', NULL, [
-    'plugin' => "menu_block:civictheme-primary-navigation",
-    'id' => "civictheme_primarynavigation_menu",
+    'plugin' => 'menu_block:civictheme-primary-navigation',
     'depth' => 3,
   ]);
   civictheme_provision_place_block('Secondary Navigation', 'header_top_3', NULL, [
-    'plugin' => "menu_block:civictheme-secondary-navigation",
-    'id' => "civictheme_secondarynavigation_menu",
+    'plugin' => 'menu_block:civictheme-secondary-navigation',
   ]);
   civictheme_provision_place_block('Footer menu 1', 'footer_middle_1', NULL, [
-    'plugin' => "menu_block:civictheme-footer",
-    'id' => "civictheme_footer_menu_1",
+    'plugin' => 'menu_block:civictheme-footer',
     'depth' => 1,
   ]);
   civictheme_provision_place_block('Footer menu 2', 'footer_middle_2', NULL, [
-    'plugin' => "menu_block:civictheme-footer",
-    'id' => "civictheme_footer_menu_2",
+    'plugin' => 'menu_block:civictheme-footer',
     'depth' => 1,
   ]);
   civictheme_provision_place_block('Footer menu 3', 'footer_middle_3', NULL, [
-    'plugin' => "menu_block:civictheme-footer",
-    'id' => "civictheme_footer_menu_3",
+    'plugin' => 'menu_block:civictheme-footer',
     'depth' => 1,
   ]);
   civictheme_provision_place_block('Footer menu 4', 'footer_middle_4', NULL, [
-    'plugin' => "menu_block:civictheme-footer",
-    'id' => "civictheme_footer_menu_4",
+    'plugin' => 'menu_block:civictheme-footer',
     'depth' => 1,
   ]);
 }
