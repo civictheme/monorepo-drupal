@@ -27,7 +27,9 @@ module.exports = function (babel) {
               NAME: t.identifier(identifier),
               BODY: path.node.body,
             });
+            /* eslint-disable */
             console.log(`Created Drupal behavior: Drupal.behavior.${identifier}`);
+            /* eslint-enable */
             path.replaceWith(t.program([addBehavior]));
           }
           path.node.directives = [];
