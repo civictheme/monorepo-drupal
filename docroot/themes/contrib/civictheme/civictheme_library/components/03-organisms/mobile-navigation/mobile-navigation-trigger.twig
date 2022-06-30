@@ -11,8 +11,7 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = 'civictheme-mobile-navigation__trigger %s %s'|format(theme_class, modifier_class|default('')) %}
+{% set modifier_class = 'civictheme-mobile-navigation__trigger %s'|format(modifier_class|default('')) %}
 {% set icon = icon|default('content_justifyalignment') %}
 
 {% include '@atoms/button/button.twig' with {
