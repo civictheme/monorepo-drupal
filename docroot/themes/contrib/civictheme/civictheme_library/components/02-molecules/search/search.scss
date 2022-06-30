@@ -10,20 +10,21 @@
   &__link {
     @include civictheme-typography('text-regular');
 
+    // Make button appear as a Primary Navigation item.
+    // @see civictheme-primary-navigation.scss
     display: flex;
     align-items: center;
     text-decoration: none;
     padding: civictheme-space(2);
-    padding-bottom: civictheme-space(2);
     border-bottom: solid 4px;
 
-    svg {
-      fill: currentcolor;
-    }
-  }
+    .civictheme-button__icon {
+      margin-left: civictheme-space(0.5);
 
-  &__icon {
-    margin-left: rem(4px);
+      .civictheme-icon {
+        vertical-align: middle;
+      }
+    }
   }
 
   &.civictheme-theme-light {
