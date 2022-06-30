@@ -34,4 +34,4 @@ Feature: Open external links in a new tab
     And I should see the '.civictheme-secondary-navigation__menu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
     And I should see the '.civictheme-primary-navigation__menu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
     And I should see the '.civictheme-side-navigation__menu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
-    And I should see the '.civictheme-navigation__menu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
+    And I should see the '#block-testnewmenu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
