@@ -181,6 +181,26 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE) {
 }
 
 /**
+ * Provision content from the CLI script.
+ *
+ * This will exit with a non-zero code if there was at least one provisioning
+ * failure.
+ */
+function civictheme_provision_cli() {
+  $results = civictheme_provision();
+  $errors = array_filter($results, function ($value) {
+    return $value !== TRUE;
+  });
+
+  if (count($errors) > 0) {
+    printf('Errors encountered during provisioning: %s', implode(PHP_EOL, $errors));
+    exit(1);
+  }
+
+  exit (0);
+}
+
+/**
  * Get provision types.
  *
  * @return array
