@@ -222,3 +222,10 @@ function civictheme_preprocess_image(&$variables) {
 function civictheme_preprocess_menu_local_tasks(&$variables) {
   _civictheme_preprocess_menu_local_tasks($variables);
 }
+
+/**
+ * Implements template_preprocess_menu().
+ */
+function civictheme_preprocess_menu(&$variables) {
+  _civictheme_preprocess_menu_items($variables['items']);
+}
