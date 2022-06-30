@@ -488,16 +488,14 @@ function civictheme_provision__media() {
  * Provision menus.
  */
 function civictheme_provision__menus() {
-  $theme_name = \Drupal::theme()->getActiveTheme()->getName();
-
   $menus = [
-    "{$theme_name}-primary-navigation" => [
+    'civictheme-primary-navigation' => [
       'Home' => '/',
     ],
-    "{$theme_name}-secondary-navigation" => [
+    'civictheme-secondary-navigation' => [
       'Contact' => '/enquiry',
     ],
-    "{$theme_name}-footer" => [
+    'civictheme-footer' => [
       'Home' => '/',
       'Contact' => '/enquiry',
     ],
