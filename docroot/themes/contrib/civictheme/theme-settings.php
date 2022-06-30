@@ -121,6 +121,14 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
     '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://footer-background.png, or themes/contrib/civictheme/dist/images/svg/footer-background.png.'),
   ];
 
+  // Programmatically provision content.
+  $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
+  $provision_file = $civictheme_path . DIRECTORY_SEPARATOR . 'civictheme.provision.inc';
+  if (file_exists($provision_file)) {
+    require_once $provision_file;
+    _civictheme_form_system_theme_settings_alter_provision($form, $form_state);
+  }
+
   // Show compiled Storybook.
   // @note For development of components, please use `npm run storybook`.
   $form['storybook'] = [

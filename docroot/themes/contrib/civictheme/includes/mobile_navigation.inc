@@ -38,19 +38,27 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
       $menu_block = $entity->get($menu_field)->referencedEntities()[0];
       $menu_name = str_replace('menu_block:', '', $menu_block->get('settings')['id']);
       $root = empty(str_replace($menu_name . ':', '', $menu_block->get('settings')['parent'])) ? '' : $menu_block->get('settings')['parent'];
+
       $menu_parameters = new MenuTreeParameters();
-      $menu_parameters->setMaxDepth($menu_block->get('settings')['depth']);
+      // Only set max depth if the depth was provided (greater than 0).
+      if ($menu_block->get('settings')['depth']) {
+        $menu_parameters->setMaxDepth($menu_block->get('settings')['depth']);
+      }
       $menu_parameters->setRoot($root);
       $menu_parameters->excludeRoot();
       $menu_tree_service = \Drupal::service('menu.link_tree');
+
       $tree = $menu_tree_service->load($menu_name, $menu_parameters);
       $manipulators = [
         ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
       ];
       $tree = $menu_tree_service->transform($tree, $manipulators);
+
       $build = $menu_tree_service->build($tree);
       $variables[$menu_key] = $build['#items'] ?? [];
+
       _civictheme_preprocess_menu_items($variables[$menu_key]);
+
       $cache_tags = Cache::mergeTags($cache_tags, $menu_block->getCacheTags());
     }
   }
