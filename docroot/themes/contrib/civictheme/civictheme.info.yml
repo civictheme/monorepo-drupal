@@ -261,6 +261,7 @@ config_devel:
     - field.field.node.civictheme_page.field_c_n_banner_featured_image
     - field.field.node.civictheme_page.field_c_n_banner_hide_breadcrumb
     - field.field.node.civictheme_page.field_c_n_banner_theme
+    - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
@@ -440,6 +441,7 @@ config_devel:
     - field.storage.node.field_c_n_banner_featured_image
     - field.storage.node.field_c_n_banner_hide_breadcrumb
     - field.storage.node.field_c_n_banner_theme
+    - field.storage.node.field_c_n_banner_title
     - field.storage.node.field_c_n_banner_type
     - field.storage.node.field_c_n_body
     - field.storage.node.field_c_n_components
