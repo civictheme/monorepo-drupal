@@ -1,0 +1,28 @@
+uuid: 6def98a7-87d8-4677-ad97-e4ebeaf384df
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.civictheme_test
+  module:
+    - system
+    - views
+  theme:
+    - civictheme_demo
+id: exposedformcivictheme_testpage_3
+theme: civictheme_demo
+region: content
+weight: -6
+provider: null
+plugin: 'views_exposed_filter_block:civictheme_test-page_3'
+settings:
+  id: 'views_exposed_filter_block:civictheme_test-page_3'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /test/page_3

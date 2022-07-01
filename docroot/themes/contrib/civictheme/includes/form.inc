@@ -14,47 +14,50 @@ use Drupal\Core\Template\AttributeArray;
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
  */
-function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
+function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Determine whether we render a large filter or a basic filter.
   // If the view exposed form has more than one filter we render a large
   // filter.
   $is_civictheme_large_filter = _civictheme_get_number_of_exposed_form_elements($form) > 1;
   $view = $form_state->get('view');
-  $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
-  $form_elements = Element::children($form);
-  foreach ($form_elements as $form_element) {
-    $form[$form_element]['#attributes']['#civictheme_theme'] = $theme;
-  }
-  $ajax_filter = $form_state->get('view')->ajaxEnabled();
-
-  $form['#attributes']['data-civictheme-filter-type'] = $is_civictheme_large_filter ? 'large' : 'basic';
-  $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $is_civictheme_large_filter ? 500 : 0;
-  $form['#attributes']['data-civictheme-filter'] = '';
-  $form['#large_filter'] = $is_civictheme_large_filter;
-  $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
-  // Ajax exposed view forms hides submit button to have auto-load.
-  if ($ajax_filter) {
-    $form_state->get('view')->setAjaxEnabled(TRUE);
-    $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
-    $form['actions']['#attributes']['class'][] = 'hide-xxs';
-
-    // Attach node to provide access to the paragraph settings on ajax reloads.
-    $form['nid'] = [
-      '#type' => 'hidden',
-      '#value' => _civictheme_listing_get_node($form_state),
-    ];
-  }
-  else {
-    $form['actions']['submit']['#attributes']['class'] = [
-      'civictheme-button--secondary',
-      'civictheme-button--small',
-    ];
-  }
-  foreach ($form as $key => &$element) {
-    if (strpos($key, '#') === 0 || empty($element['#type'])) {
-      continue;
+  $civictheme_listing_view_name = _civictheme_listing_get_view_name('civictheme_listing');
+  if ($form_id == 'views_exposed_form' && $view->id() === $civictheme_listing_view_name) {
+    $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
+    $form_elements = Element::children($form);
+    foreach ($form_elements as $form_element) {
+      $form[$form_element]['#attributes']['#civictheme_theme'] = $theme;
     }
-    _civictheme_form_alter__convert_exposed_form_elements($element, $form, $is_civictheme_large_filter);
+    $ajax_filter = $form_state->get('view')->ajaxEnabled();
+
+    $form['#attributes']['data-civictheme-filter-type'] = $is_civictheme_large_filter ? 'large' : 'basic';
+    $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $is_civictheme_large_filter ? 500 : 0;
+    $form['#attributes']['data-civictheme-filter'] = '';
+    $form['#large_filter'] = $is_civictheme_large_filter;
+    $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
+    // Ajax exposed view forms hides submit button to have auto-load.
+    if ($ajax_filter) {
+      $form_state->get('view')->setAjaxEnabled(TRUE);
+      $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
+      $form['actions']['#attributes']['class'][] = 'hide-xxs';
+
+      // Attach node to provide access to the paragraph settings on ajax reloads.
+      $form['nid'] = [
+        '#type' => 'hidden',
+        '#value' => _civictheme_listing_get_node($form_state),
+      ];
+    }
+    else {
+      $form['actions']['submit']['#attributes']['class'] = [
+        'civictheme-button--secondary',
+        'civictheme-button--small',
+      ];
+    }
+    foreach ($form as $key => &$element) {
+      if (strpos($key, '#') === 0 || empty($element['#type'])) {
+        continue;
+      }
+      _civictheme_form_alter__convert_exposed_form_elements($element, $form, $is_civictheme_large_filter);
+    }
   }
 }
 
