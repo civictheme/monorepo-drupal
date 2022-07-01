@@ -12,7 +12,8 @@ use Drupal\Core\StreamWrapper\StreamWrapperManager;
  * Implements hook_form_system_theme_settings_alter().
  */
 function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
-  $active_theme = \Drupal::theme()->getActiveTheme();
+  $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
+  $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
   // Disable default settings as we do not support uploading of custom logos
   // through config form (yet).
@@ -134,13 +135,13 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['storybook'] = [
     '#type' => 'details',
     '#title' => t('Storybook for %theme theme', [
-      '%theme' => $active_theme->getName(),
+      '%theme' => $theme_name,
     ]),
     '#open' => TRUE,
     '#weight' => 51,
   ];
 
-  $storybook_file = $active_theme->getPath() . '/storybook-static/index.html';
+  $storybook_file = $theme_path . '/storybook-static/index.html';
   if (file_exists($storybook_file)) {
     $form['storybook']['markup'] = [
       '#type' => 'inline_template',
