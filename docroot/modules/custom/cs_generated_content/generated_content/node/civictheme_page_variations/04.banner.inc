@@ -107,11 +107,9 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       'content' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(13),
     ],
     [
-      'title' => 'Demo Page, Banner, Default, Light, Hidden breadcrumb',
-      'banner_type' => $helper::civicthemeBannerTypeDefault(),
-      'banner_theme' => $helper::civicthemeThemeLight(),
+      'title' => 'Demo Page, Banner, Hidden breadcrumb',
       'hide_breadcrumb' => TRUE,
-      'content' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(7),
+      'content' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(14),
     ],
   ];
 
