@@ -15,6 +15,8 @@ DRUSH_ALIAS="${DRUSH_ALIAS:-}"
 
 # ------------------------------------------------------------------------------
 
+[ "${SKIP_SUBTHEME_ACTIVATION}" = "1" ] && echo "Skipping sub-theme activation" && return
+
 # Use local or global Drush, giving priority to a local drush.
 drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush"; else command -v drush; fi)"
 

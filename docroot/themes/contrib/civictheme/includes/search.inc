@@ -5,6 +5,8 @@
  * CivicTheme Search block type.
  */
 
+use Drupal\Core\Url;
+
 /**
  * Implements template_preprocess_block().
  */
@@ -21,7 +23,6 @@ function civictheme_preprocess_block__civictheme_search(&$variables) {
   $variables['content'] = NULL;
 
   $link = $entity->get('field_c_b_link')->first()->getValue();
-  $variables['url'] = $link['uri'] ?? NULL;
-  $variables['text'] = $link['title'] ?? 'Search';
-
+  $variables['url'] = Url::fromUri($link['uri'])->toString();
+  $variables['text'] = $link['title'] ?? '';
 }

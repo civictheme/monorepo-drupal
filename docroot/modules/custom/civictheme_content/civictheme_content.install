@@ -62,26 +62,16 @@ function civictheme_content_install() {
     return 'civictheme_content_' . $value;
   }, $supported);
 
-  $content_module_enabled = FALSE;
   foreach ($modules as $module) {
     if (\Drupal::service('module_installer')->install([$module])) {
       Helper::log(t('Successfully enabled: %name.', [
         '%name' => $module,
       ]));
-      $content_module_enabled = TRUE;
     }
     else {
       // Fail installation as a module with a correct name should have been
       // enabled.
       throw new InstallerException('Unable to enable: ' . $module);
-    }
-  }
-  if ($content_module_enabled) {
-    // Provides default Configurations for CivicTheme theme.
-    if (\Drupal::service('module_installer')->install(['civictheme_default_config'])) {
-      Helper::log(t('Successfully enabled: %name.', [
-        '%name' => 'civictheme_default_config',
-      ]));
     }
   }
 }

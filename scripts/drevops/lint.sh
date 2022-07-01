@@ -49,3 +49,9 @@ if [ -z "${DREVOPS_LINT_TYPE##*fe*}" ] && [ -n "${DREVOPS_DRUPAL_THEME}" ] && gr
   # Flag to allow lint to fail.
   [ "${DREVOPS_LINT_FE_ALLOW_FAILURE}" -eq 1 ]
 fi
+
+# Lint theme configuration.
+if [ -z "${DREVOPS_LINT_TYPE##*config*}" ]; then
+  # Lint theme configuration.
+  ./scripts/lint-theme-config.sh
+fi

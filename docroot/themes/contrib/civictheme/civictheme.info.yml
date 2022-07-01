@@ -79,17 +79,10 @@ ckeditor_stylesheets:
 config_devel:
   install:
     - block.block.civictheme_content
-    - block.block.civictheme_footer_menu_1
-    - block.block.civictheme_footer_menu_2
-    - block.block.civictheme_footer_menu_3
-    - block.block.civictheme_footer_menu_4
     - block.block.civictheme_footer_sitebranding
     - block.block.civictheme_help
     - block.block.civictheme_messages
     - block.block.civictheme_primaryadminactions
-    - block.block.civictheme_primarynavigation_menu
-    - block.block.civictheme_secondarynavigation_menu
-    - block.block.civictheme_side_navigation_menu
     - block.block.civictheme_sitebranding
     - block.block.civictheme_tabs
     - block.block.sitebranding_2
@@ -574,5 +567,6 @@ config_devel:
     - webform.webform.civictheme_enquiry
   optional:
     - core.entity_view_mode.node.teaser
+    - media.settings
     - simple_sitemap.custom_links.default
 #;> DEVELOPMENT
