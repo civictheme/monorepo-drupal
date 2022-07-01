@@ -25,7 +25,7 @@ function civictheme_content_default_post_update_set_homepage() {
 /**
  * Provisions links in footer and updates menu block configurations.
  */
-function civictheme_content_default_post_update_provision_footer_links2() {
+function civictheme_content_default_post_update_provision_footer_links() {
   $theme = \Drupal::theme()->getActiveTheme()->getName();
 
   $map = [
