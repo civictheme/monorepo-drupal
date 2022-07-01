@@ -1,4 +1,3 @@
-uuid: 6def98a7-87d8-4677-ad97-e4ebeaf384df
 langcode: en
 status: true
 dependencies:
@@ -8,9 +7,9 @@ dependencies:
     - system
     - views
   theme:
-    - civictheme_demo
-id: exposedformcivictheme_testpage_3
-theme: civictheme_demo
+    - civictheme
+id: exposedformcivictheme_testpage_civictheme
+theme: civictheme
 region: content
 weight: -6
 provider: null

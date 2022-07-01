@@ -40,7 +40,7 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
       $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
       $form['actions']['#attributes']['class'][] = 'hide-xxs';
 
-      // Attach node to provide access to the paragraph settings on ajax reloads.
+      // On ajax reloads, attach node to allow access to the paragraph settings.
       $form['nid'] = [
         '#type' => 'hidden',
         '#value' => _civictheme_listing_get_node($form_state),
