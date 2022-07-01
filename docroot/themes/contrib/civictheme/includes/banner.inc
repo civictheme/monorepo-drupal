@@ -95,15 +95,33 @@ function _civictheme_preprocess_civictheme_banner_breadcrumb(&$variables) {
     return;
   }
 
-  $route_match = \Drupal::routeMatch();
-  $breadcrumb_manager = \Drupal::service('breadcrumb');
-  $breadcrumb = $breadcrumb_manager->build($route_match);
-  if ($breadcrumb) {
-    $variables['breadcrumb'] = $breadcrumb->toRenderable();
-    if (isset($variables['theme'])) {
-      // Changing to CivicTheme theme to pass other variables to template.
-      $variables['breadcrumb']['#theme'] = 'civictheme_breadcrumb';
-      $variables['breadcrumb']['#display_theme'] = $variables['theme'];
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $node_revision = \Drupal::routeMatch()->getParameter('node_revision');
+
+  if ($node_revision !== NULL) {
+    $node = $node_revision instanceof NodeInterface ? $node_revision : node_revision_load($node_revision);
+  }
+
+  // Breadcrumb visibility.
+  $hide_breadcrumb = FALSE;
+  if (!is_null($node)) {
+    if ($node->hasField('field_c_n_banner_hide_breadcrumb') && !$node->get('field_c_n_banner_hide_breadcrumb')->isEmpty()) {
+      $hide_breadcrumb = $node->get('field_c_n_banner_hide_breadcrumb')->getString();
+    }
+  }
+
+  if (!$hide_breadcrumb) {
+    $route_match = \Drupal::routeMatch();
+    $breadcrumb_manager = \Drupal::service('breadcrumb');
+    $breadcrumb = $breadcrumb_manager->build($route_match);
+    if ($breadcrumb) {
+      $variables['breadcrumb'] = $breadcrumb->toRenderable();
+      if (isset($variables['theme'])) {
+        // Changing to CivicTheme theme to pass other variables to template.
+        $variables['breadcrumb']['#theme'] = 'civictheme_breadcrumb';
+        $variables['breadcrumb']['#display_theme'] = $variables['theme'];
+      }
     }
   }
 }
