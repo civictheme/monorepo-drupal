@@ -116,6 +116,10 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
     $node->field_c_n_banner_featured_image = $variation['banner_featured_image'];
   }
 
+  if (!empty($variation['hide_breadcrumb']) && $node->hasField('field_c_n_banner_hide_breadcrumb')) {
+    $node->field_c_n_banner_hide_breadcrumb = $variation['hide_breadcrumb'];
+  }
+
   // Components.
   if (!empty($variation['components']) && $node->hasField('field_c_n_components')) {
     for ($i = 0; $i < count($variation['components']); $i++) {
