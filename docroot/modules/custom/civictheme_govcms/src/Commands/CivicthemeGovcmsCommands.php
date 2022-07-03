@@ -2,8 +2,9 @@
 
 namespace Drupal\civictheme_govcms\Commands;
 
-use Drush\Commands\DrushCommands;
 use Drupal\civictheme_govcms\CivicthemeGovcmsManager;
+use Drush\Commands\DrushCommands;
+use Drush\Log\LogLevel;
 
 /**
  * Class Civictheme Govcms Commands.
@@ -54,7 +55,16 @@ class CivicthemeGovcmsCommands extends DrushCommands {
   public function drushCivicthemeGovcmsRemoveConfig(array $options = [
     'preserve' => '',
   ]) {
+    // Removing configs will lead to showing warnings about missing bundles,
+    // which are only shown due to dependencies resolution concurrency issues.
+    // We are suppressing them as they do not have any valuable information
+    // and only confuse the user.
+    $current = $this->io()->getVerbosity();
+    $this->io()->setVerbosity(LogLevel::ERROR);
+
     $this->govcmsManager->civicthemeGovcmsRemoveConfig($options['preserve']);
+
+    $this->io()->setVerbosity($current);
   }
 
 }

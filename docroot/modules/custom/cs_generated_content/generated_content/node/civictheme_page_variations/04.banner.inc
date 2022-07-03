@@ -106,6 +106,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       'banner_featured_image' => $helper->staticMediaItem('civictheme_image'),
       'content' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(13),
     ],
+    [
+      'title' => 'Demo Page, Banner, Hidden breadcrumb',
+      'hide_breadcrumb' => TRUE,
+      'content' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(14),
+    ],
   ];
 
   return $variations;
