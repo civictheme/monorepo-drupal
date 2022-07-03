@@ -107,3 +107,64 @@ function _civictheme_preprocess_page__node(&$variables) {
     $variables['hide_sidebar'] = TRUE;
   }
 }
+
+/**
+ * Pre-process CivicTheme nodes Slider slide view mode.
+ */
+function _civictheme_preprocess_node__civictheme_slider_slide(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $variables['title'] = $node->label();
+
+  // Image.
+  if ($node->hasField('field_c_n_thumbnail') && !$node->get('field_c_n_thumbnail')->isEmpty()) {
+    $target = $node->get('field_c_n_thumbnail')->first()->get('entity')->getTarget();
+    if ($target) {
+      $media = $target->getValue();
+      $variables['image'] = civictheme_media_image_process_variables($media);
+    }
+  }
+
+  $variables['attributes']['data-component-civictheme-slider-slide'] = '';
+
+  // Topic.
+  if ($node->hasField('field_c_n_topics') && !$node->get('field_c_n_topics')->isEmpty()) {
+    $topics = [];
+    foreach ($node->get('field_c_n_topics')->referencedEntities() as $topic) {
+      $topics[] = [
+        'theme' => $variables['theme'],
+        'text' => $topic->label(),
+      ];
+    }
+    $variables['content_top']['slide_topics'] = [
+      '#theme' => 'civictheme_slider_slide_tags',
+      '#tags' => $topics,
+    ];
+  }
+
+  // Summary.
+  // Page.
+  if ($node->hasField('field_c_n_summary') && !$node->get('field_c_n_summary')->isEmpty()) {
+    $variables['summary'] = $node->get('field_c_n_summary')->getValue()[0]['value'];
+  }
+  // Event.
+  if ($node->hasField('field_c_n_tagline') && !$node->get('field_c_n_tagline')->isEmpty()) {
+    $variables['summary'] = $node->get('field_c_n_tagline')->getValue()[0]['value'];
+  }
+
+  // Links.
+  $inverse_theme = $variables['theme'] === 'dark' ? 'light' : 'dark';
+  $links = [];
+  $links[] = [
+    'type' => 'primary',
+    'size' => 'regular',
+    'text' => $node->label(),
+    'url' => $variables['url'],
+  ];
+  $variables['links']['slide_links'] = [
+    '#theme' => 'civictheme_slider_slide_links',
+    '#component_theme' => $inverse_theme,
+    '#links' => $links,
+  ];
+}
