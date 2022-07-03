@@ -81,6 +81,21 @@ function _civictheme_preprocess_civictheme_banner_title(&$variables) {
   $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
   $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $node_revision = \Drupal::routeMatch()->getParameter('node_revision');
+
+  if ($node_revision !== NULL) {
+    $node = $node_revision instanceof NodeInterface ? $node_revision : node_revision_load($node_revision);
+  }
+
+  if (!is_null($node)) {
+    if ($node->hasField('field_c_n_banner_title') && !$node->get('field_c_n_banner_title')->isEmpty()) {
+      $page_title = $node->get('field_c_n_banner_title')->getString();
+    }
+  }
+
   $variables['title'] = $page_title ?? '';
 }
 
