@@ -21,7 +21,9 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
   $is_civictheme_large_filter = _civictheme_get_number_of_exposed_form_elements($form) > 1;
   $view = $form_state->get('view');
   $civictheme_listing_view_name = _civictheme_listing_get_view_name('civictheme_listing');
-  if ($form_id == 'views_exposed_form' && $view->id() === $civictheme_listing_view_name) {
+  // Apply filters to all views whose name starts with `civictheme_listing` or
+  // a view defined in the hook.
+  if ($form_id == 'views_exposed_form' && (strpos($civictheme_listing_view_name, 'civictheme_listing') === 0 || $view->id() === $civictheme_listing_view_name)) {
     $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
     $form_elements = Element::children($form);
     foreach ($form_elements as $form_element) {
