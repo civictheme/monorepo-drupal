@@ -57,6 +57,8 @@
 
     .civictheme-link--attachment {
       @include civictheme-typography('label-regular');
+
+      word-break: break-word;
     }
   }
 
