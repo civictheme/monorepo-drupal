@@ -5,8 +5,8 @@
  * CivicTheme mobile menu block theme alterations.
  */
 
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Cache\CacheableMetadata;
 
 /**
  * Pre-process for Mobile Navigation block.
@@ -28,6 +28,7 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
   // Get primary and secondary menu links by building menu tree based on
   // menu block settings.
   $cache_tags = $entity->getCacheTags();
+  $cacheability = new CacheableMetadata();
   foreach ($menu_fields as $menu_key => $menu_field) {
     if (
       $entity->hasField($menu_field)
@@ -59,10 +60,10 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
 
       _civictheme_preprocess_menu_items($variables[$menu_key]);
 
-      $cache_tags = Cache::mergeTags($cache_tags, $menu_block->getCacheTags());
+      $cacheability = $cacheability->merge(CacheableMetadata::createFromRenderArray($build), $cache_tags, $menu_block->getCacheTags());
     }
   }
-  $variables['#cache']['tags'] = $cache_tags;
+  $cacheability->applyTo($variables);
 
   if ($entity->hasField('field_c_b_trigger_text') && !$entity->get('field_c_b_trigger_text')->isEmpty()) {
     $variables['trigger_text'] = $entity->get('field_c_b_trigger_text')->getString();
