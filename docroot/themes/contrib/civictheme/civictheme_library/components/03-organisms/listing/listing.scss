@@ -64,8 +64,11 @@
     justify-content: center;
   }
 
-  &__empty-results {
+  &__empty-results,
+  &__feed_icons {
     @include civictheme-content();
+
+    padding: civictheme-space(6) 0;
   }
 
   &--with-background {
