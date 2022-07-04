@@ -7,9 +7,10 @@
 
   @include civictheme-typography('text-regular');
 
-  &__top {
-    padding-top: civictheme-space();
-    padding-bottom: civictheme-space();
+  &__content-top2,
+  &__content-top3 {
+    margin-top: civictheme-space();
+    margin-bottom: civictheme-space();
   }
 
   &__logo {

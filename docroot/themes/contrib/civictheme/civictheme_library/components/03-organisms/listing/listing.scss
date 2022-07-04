@@ -64,6 +64,10 @@
     justify-content: center;
   }
 
+  &__empty-results {
+    @include civictheme-content();
+  }
+
   &--with-background {
     #{$root}__header,
     #{$root}__exposed-form,

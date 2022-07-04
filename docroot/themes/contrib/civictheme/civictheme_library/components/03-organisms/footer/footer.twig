@@ -52,11 +52,11 @@
       </div>
     {% endif %}
 
-    {% if content_middle1|render|striptags|trim is not empty or content_middle2|render|striptags|trim is not empty or content_middle3|render|striptags|trim is not empty or content_middle4|render|striptags|trim is not empty %}
+    {% if content_middle1 is not empty or content_middle2 is not empty or content_middle3 is not empty or content_middle4 is not empty %}
       <div class="container civictheme-footer__middle">
         <div class="row">
 
-          {% if content_middle1|render|striptags|trim is not empty %}
+          {% if content_middle1 is not empty %}
             {%- block content_middle1 %}
               <div class="col-xs-12 col-m-3">
                 <div class="civictheme-footer__middle__content-middle1">
@@ -66,7 +66,7 @@
             {% endblock -%}
           {% endif %}
 
-          {% if content_middle2|render|striptags|trim is not empty %}
+          {% if content_middle2 is not empty %}
             {%- block content_middle2 %}
               <div class="col-xs-12 col-m-3">
                 <div class="civictheme-footer__middle__content-middle2">
@@ -76,7 +76,7 @@
             {% endblock -%}
           {% endif %}
 
-          {% if content_middle3|render|striptags|trim is not empty %}
+          {% if content_middle3 is not empty %}
             {%- block content_middle3 %}
               <div class="col-xs-12 col-m-3">
                 <div class="civictheme-footer__middle__content-middle3">
@@ -86,7 +86,7 @@
             {% endblock -%}
           {% endif %}
 
-          {% if content_middle4|render|striptags|trim is not empty %}
+          {% if content_middle4 is not empty %}
             {%- block content_middle4 %}
               <div class="col-xs-12 col-m-3">
                 <div class="civictheme-footer__middle__content-middle4">
@@ -100,11 +100,11 @@
       </div>
     {% endif %}
 
-    {% if content_bottom1|render|striptags|trim is not empty or content_bottom2|render|striptags|trim is not empty %}
+    {% if content_bottom1 is not empty or content_bottom2 is not empty %}
       <div class="container civictheme-footer__bottom">
         <div class="row">
 
-          {% if content_bottom1|render|striptags|trim is not empty %}
+          {% if content_bottom1 is not empty %}
             {%- block content_bottom1 %}
               <div class="col-xs-12 col-m-7">
                 <div class="civictheme-footer__bottom__content-bottom1">
@@ -114,7 +114,7 @@
             {% endblock -%}
           {% endif %}
 
-          {% if content_bottom2|render|striptags|trim is not empty %}
+          {% if content_bottom2 is not empty %}
             {%- block content_bottom2 %}
               <div class="col-xs-12 col-m-5">
                 <div class="civictheme-footer__bottom__content-bottom2">

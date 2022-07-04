@@ -22,10 +22,10 @@
 {% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty or content_middle1 is not empty or content_middle2 is not empty or content_middle3 is not empty  or content_bottom1 is not empty %}
   <header class="civictheme-header {{ modifier_class }}" role="banner">
 
-    {% if content_top1|render|striptags|trim is not empty or content_top2|render|striptags|trim is not empty or content_top3|render|striptags|trim is not empty %}
+    {% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty %}
       <div class="civictheme-header__top">
 
-        {% if content_top1|render|striptags|trim is not empty %}
+        {% if content_top1 is not empty %}
           {% block content_top1 %}
             <div class="container">
               <div class="row">
@@ -39,7 +39,7 @@
           {% endblock %}
         {% endif %}
 
-        {% if content_top2|render|striptags|trim is not empty or content_top3|render|striptags|trim is not empty %}
+        {% if content_top2 is not empty or content_top3 is not empty %}
           <div class="container">
             <div class="row">
 
