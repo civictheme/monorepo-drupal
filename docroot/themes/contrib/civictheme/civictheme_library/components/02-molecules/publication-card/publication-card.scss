@@ -24,7 +24,6 @@
 
   #{$root}__content {
     padding: civictheme-space(3);
-    width: calc(100% - civictheme-space(6));
   }
 
   #{$root}__title {
@@ -58,6 +57,7 @@
 
     .civictheme-link--attachment {
       @include civictheme-typography('label-regular');
+
       word-break: break-word;
     }
   }
