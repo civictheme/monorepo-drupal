@@ -650,8 +650,8 @@ function _civictheme_provision__blocks__mobile_navigation() {
   $theme_name = \Drupal::config('system.theme')->get('default');
 
   $block_content = civictheme_provision_create_block_content('civictheme_mobile_navigation', t('Mobile Navigation'));
-  $block_content->field_c_b_top_menu = "{$theme_name}_primarynavigation_menu";
-  $block_content->field_c_b_bottom_menu = "{$theme_name}_secondarynavigation_menu";
+  $block_content->field_c_b_top_menu = "{$theme_name}_primary_navigation";
+  $block_content->field_c_b_bottom_menu = "{$theme_name}_secondary_navigation";
   $block_content->field_c_b_trigger_text = 'Menu';
   $block_content->field_c_b_trigger_theme = 'light';
   $block_content->save();
