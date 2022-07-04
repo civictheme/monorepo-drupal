@@ -120,6 +120,10 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
     $node->field_c_n_banner_hide_breadcrumb = $variation['hide_breadcrumb'];
   }
 
+  if (!empty($variation['banner_title']) && $node->hasField('field_c_n_banner_title')) {
+    $node->field_c_n_banner_title = $variation['banner_title'];
+  }
+
   // Components.
   if (!empty($variation['components']) && $node->hasField('field_c_n_components')) {
     for ($i = 0; $i < count($variation['components']); $i++) {

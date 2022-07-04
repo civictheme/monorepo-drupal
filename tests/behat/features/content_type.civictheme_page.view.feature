@@ -327,3 +327,17 @@ Feature: View of Page content type
     And I should see an "div.civictheme-banner__breadcrumb" element
     When I visit "civictheme_page" "[TEST] Page without breadcrumb"
     And I should not see an "div.civictheme-banner__breadcrumb" element
+
+  @api @banner_title
+  Scenario: CivicTheme page content type page can override banner title.
+    Given I am an anonymous user
+    And "civictheme_page" content:
+      | title                            | status | field_c_n_banner_title           |
+      | [TEST] Page with Banner title    | 1      | [OVERRIDE] Banner title          |
+      | [TEST] Page without Banner title | 1      |                                  |
+
+    When I visit "civictheme_page" "[TEST] Page with Banner title"
+    Then I should not see "[TEST] Page with Banner title" in the "div.civictheme-banner__title" element
+    And I should see "[OVERRIDE] Banner title" in the "div.civictheme-banner__title" element
+    When I visit "civictheme_page" "[TEST] Page without Banner title"
+    Then I should see "[TEST] Page without Banner title" in the "div.civictheme-banner__title" element
