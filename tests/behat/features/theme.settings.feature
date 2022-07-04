@@ -13,7 +13,6 @@ Feature: Check that custom settings is available in theme settings
   Scenario Outline: The CivicTheme theme settings has custom logo configuration
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "<path>"
-    Then the response status code should be "<response>"
     And I should see an "details#edit-logo" element
     And I see field "Header desktop logo path"
     And I should see an "input[name='logo_path']" element
@@ -53,6 +52,6 @@ Feature: Check that custom settings is available in theme settings
     And I should see the "div.civictheme-logo img.civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/footer_logo_mobile.jpg"
 
     Examples:
-      | path                                       | response |
-      | /admin/appearance/settings/civictheme      | 200      |
-      | /admin/appearance/settings/civictheme_demo | 200      |
+      | path                                       |
+      | /admin/appearance/settings/civictheme      |
+      | /admin/appearance/settings/civictheme_demo |
