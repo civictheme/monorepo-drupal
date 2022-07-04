@@ -23,7 +23,7 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
   $civictheme_listing_view_name = _civictheme_listing_get_view_name('civictheme_listing');
   // Apply filters to all views whose name starts with `civictheme_listing` or
   // a view defined in the hook.
-  if ($form_id == 'views_exposed_form' && (strpos($civictheme_listing_view_name, 'civictheme_listing') === 0 || $view->id() === $civictheme_listing_view_name)) {
+  if ($form_id == 'views_exposed_form' && (strpos($view->id(), 'civictheme_listing') === 0 || $view->id() === $civictheme_listing_view_name)) {
     $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
     $form_elements = Element::children($form);
     foreach ($form_elements as $form_element) {
