@@ -71,6 +71,9 @@ default:
   field_c_n_banner_featured_image:
     -
       entity: ba705a5b-91ca-4f48-9d82-feeabb645cff
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
   field_c_n_banner_theme:
     -
       value: dark
@@ -109,6 +112,12 @@ default:
           field_c_p_theme:
             -
               value: light
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
   field_c_n_show_toc:
     -
       value: false
