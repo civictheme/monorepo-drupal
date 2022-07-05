@@ -78,10 +78,10 @@
     &[aria-hidden='false'] {
       height: auto;
       border-top: none;
+      visibility: visible;
 
       #{$content}--inner {
         opacity: 100%;
-        visibility: visible;
       }
     }
 
