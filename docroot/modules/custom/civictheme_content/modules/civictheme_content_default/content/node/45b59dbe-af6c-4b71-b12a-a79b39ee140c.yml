@@ -62,9 +62,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -94,9 +91,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -119,9 +113,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -146,9 +137,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -173,9 +161,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -200,9 +185,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_summary:
                     -
                       value: 'Short summary of a quick link goes here'
@@ -218,6 +200,9 @@ default:
           field_c_p_theme:
             -
               value: light
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
   field_c_n_banner_theme:
     -
       value: dark
@@ -243,15 +228,15 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
+          field_c_p_background:
             -
-              value: true
+              value: false
+          field_c_p_card_theme:
+            -
+              value: light
           field_c_p_content_type:
             -
               value: civictheme_page
-          field_c_p_hide_count:
-            -
-              value: true
           field_c_p_limit_type:
             -
               value: limited
@@ -264,9 +249,9 @@ default:
           field_c_p_show_filters:
             -
               value: false
-          field_c_p_show_pager:
+          field_c_p_theme:
             -
-              value: false
+              value: light
           field_c_p_topics:
             -
               entity: dcbc66a3-946d-435b-8ce8-54a680bf3b18
@@ -291,9 +276,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -316,9 +298,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
@@ -351,9 +330,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: e07cdb41-1bd4-463f-9e7c-126302b24740
@@ -386,9 +362,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
@@ -421,9 +394,6 @@ default:
                   behavior_settings:
                     -
                       value: {  }
-                  revision_translation_affected:
-                    -
-                      value: true
                   field_c_p_image:
                     -
                       entity: 68d50fea-aae4-4dde-832c-b385ff9731e1
@@ -471,9 +441,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_links:
             -
               uri: 'internal:/'
@@ -491,6 +458,12 @@ default:
           field_c_p_title:
             -
               value: 'Callout component - title'
+  field_c_n_hide_sidebar:
+    -
+      value: true
+  field_c_n_show_last_updated:
+    -
+      value: true
   field_c_n_show_toc:
     -
       value: false

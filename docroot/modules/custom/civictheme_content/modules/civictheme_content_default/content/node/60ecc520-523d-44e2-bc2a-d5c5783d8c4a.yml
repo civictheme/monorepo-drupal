@@ -93,21 +93,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_button_text:
-            -
-              value: Search
-          field_c_p_placeholder:
-            -
-              value: 'Enter keyword'
-          field_c_p_search_url:
-            -
-              value: /search
-          field_c_p_theme:
-            -
-              value: light
-          field_c_p_title:
-            -
-              value: Search
   field_c_n_banner_components_bott:
     -
       entity:
@@ -286,6 +271,9 @@ default:
   field_c_n_banner_featured_image:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
   field_c_n_banner_theme:
     -
       value: light
@@ -611,6 +599,12 @@ default:
           field_c_p_title:
             -
               value: 'Lorem ipsum dolor sit amet. Lorem ipsum'
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
   field_c_n_show_toc:
     -
       value: false
