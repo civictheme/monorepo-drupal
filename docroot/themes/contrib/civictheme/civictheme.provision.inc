@@ -650,8 +650,8 @@ function _civictheme_provision__blocks__mobile_navigation() {
   $theme_name = \Drupal::config('system.theme')->get('default');
 
   $block_content = civictheme_provision_create_block_content('civictheme_mobile_navigation', t('Mobile Navigation'));
-  $block_content->field_c_b_top_menu = "{$theme_name}_primarynavigation_menu";
-  $block_content->field_c_b_bottom_menu = "{$theme_name}_secondarynavigation_menu";
+  $block_content->field_c_b_top_menu = "{$theme_name}_primary_navigation";
+  $block_content->field_c_b_bottom_menu = "{$theme_name}_secondary_navigation";
   $block_content->field_c_b_trigger_text = 'Menu';
   $block_content->field_c_b_trigger_theme = 'light';
   $block_content->save();
@@ -755,6 +755,44 @@ function _civictheme_provision__blocks__copyright() {
   $block_content->field_c_b_components->appendItem($paragraph);
   $block_content->save();
   civictheme_provision_place_block('Copyright', 'footer_bottom_2', $block_content->uuid());
+}
+
+/**
+ * Provision civictheme_demo theme settings.
+ */
+function civictheme_provision__update_theme_settings() {
+  $logo_header_desktop = '/themes/custom/civictheme_demo/dist/assets/logos/civictheme_demo_logo_desktop_light.png';
+  $logo_header_mobile = '/themes/custom/civictheme_demo/dist/assets/logos/civictheme_demo_logo_mobile_light.png';
+  $logo_footer_desktop = '/themes/custom/civictheme_demo/dist/assets/logos/civictheme_demo_logo_desktop_dark.png';
+  $logo_footer_mobile = '/themes/custom/civictheme_demo/dist/assets/logos/civictheme_demo_logo_mobile_dark.png';
+
+  $favicon = '/themes/custom/civictheme_demo/dist/assets/favicon.ico';
+
+  $config = \Drupal::service('config.factory')->getEditable('civictheme_demo.settings');
+
+  $config->set('logo', [
+    'use_default' => FALSE,
+    'path' => substr($logo_header_desktop, 1),
+    'url' => $logo_header_desktop,
+  ]);
+
+  $config->set('logo_path', substr($logo_header_desktop, 1));
+  $config->set('civictheme_header_logo_mobile', substr($logo_header_mobile, 1));
+  $config->set('civictheme_footer_logo_desktop', substr($logo_footer_desktop, 1));
+  $config->set('civictheme_footer_logo_mobile', substr($logo_footer_mobile, 1));
+
+  $config->set('civictheme_site_logo_alt', 'CivicTheme demo logo');
+
+  $config->set('favicon', [
+    'use_default' => FALSE,
+    'path' => substr($favicon, 1),
+    'mimetype' => 'image/vnd.microsoft.icon',
+  ]);
+
+  $config->set('civictheme_header_theme', 'light');
+  $config->set('civictheme_footer_theme', 'dark');
+
+  $config->save();
 }
 
 /**

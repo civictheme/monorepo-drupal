@@ -19,13 +19,13 @@ default:
       value: true
   field_c_b_bottom_menu:
     -
-      target_id: civictheme_demo_secondarynavigation_menu
+      target_id: civictheme_demo_secondary_navigation
   field_c_b_theme:
     -
       value: light
   field_c_b_top_menu:
     -
-      target_id: civictheme_demo_primarynavigation_menu
+      target_id: civictheme_demo_primary_navigation
   field_c_b_trigger_text:
     -
       value: Menu
