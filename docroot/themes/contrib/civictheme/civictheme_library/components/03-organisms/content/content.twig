@@ -21,6 +21,7 @@
  * - content: [string]  Content slot.
  * - content_bottom: [string] Content slot.
  * - sidebar: [string] Sidebar slot.
+ * - hide_sidebar: [bool] Whether the sidebar is to be shown on the page.
  * - is_contained: [bool] Whether the page is to be contained for non-layout managed pages.
  * - vertical_space: [string] With top, bottom or both vertical spaces.
  * - sidebar_attributes: [string] Sidebar attributes.
@@ -30,6 +31,7 @@
 #}
 
 {% set has_sidebar = sidebar is not empty %}
+{% set has_sidebar = hide_sidebar ? FALSE : has_sidebar %}
 {% set vertical_space = has_sidebar ? 'both' : vertical_space %}
 {% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-content--vertical-space-%s'|format(vertical_space) : '' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
@@ -51,7 +53,7 @@
       <div class="row">
       {% endif %}
 
-        {% if sidebar is not empty %}
+        {% if has_sidebar %}
           {% block sidebar %}
             <aside class="civictheme-content__sidebar {% if has_sidebar %}col-m-3 col-xxs-12{% endif %}" role="complementary" {% if sidebar_attributes %}{{ sidebar_attributes }}{% endif %}>
               {{ sidebar }}

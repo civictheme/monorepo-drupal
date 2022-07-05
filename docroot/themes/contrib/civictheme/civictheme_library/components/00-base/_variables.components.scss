@@ -768,22 +768,6 @@ $civictheme-promo-dark-body-color: civictheme-color('neutral', 1) !default;
 $civictheme-promo-dark-background-color: civictheme-color('primary', 4) !default;
 
 //
-// Search.
-//
-$civictheme-search-light-color: civictheme-color('neutral', 6) !default;
-$civictheme-search-light-background-color: civictheme-color('neutral', 1) !default;
-$civictheme-search-light-border-color: civictheme-color('primary', 3) !default;
-$civictheme-search-light-help-color: $civictheme-search-light-color !default;
-$civictheme-search-light-input-background-color: civictheme-color('neutral', 1) !default;
-$civictheme-search-light-input-border-color: civictheme-color('primary', 3) !default;
-$civictheme-search-light-input-color: civictheme-color('neutral', 6) !default;
-$civictheme-search-light-input-helper-color: civictheme-color('neutral', 1) !default;
-$civictheme-search-dark-color: civictheme-color('neutral', 6) !default;
-$civictheme-search-dark-background-color: civictheme-color('neutral', 1) !default;
-$civictheme-search-dark-border-color: civictheme-color('primary', 3) !default;
-$civictheme-search-dark-help-color: civictheme-color('neutral', 1) !default;
-
-//
 // Skip link.
 //
 $civictheme-skip-link-light-color: civictheme-color('primary', 3) !default;
@@ -1051,6 +1035,7 @@ $civictheme-header-dark-top-color: civictheme-color('neutral', 4) !default;
 $civictheme-header-dark-top-background-color: civictheme-color('primary', 5) !default;
 $civictheme-header-dark-middle-background-color: civictheme-color('primary', 4) !default;
 $civictheme-header-dark-middle-border-color: transparent !default;
+$civictheme-header-sticky-scroll-offset: 100px !default;
 
 //
 // Listing.
@@ -1265,6 +1250,20 @@ $civictheme-mobile-navigation-dark-close-all-trigger-background-color: civicthem
 $civictheme-mobile-navigation-dark-close-all-trigger-color: civictheme-color('neutral', 1) !default;
 $civictheme-mobile-navigation-trigger-light-color: civictheme-color('neutral', 7) !default;
 $civictheme-mobile-navigation-trigger-dark-color: civictheme-color('neutral', 1) !default;
+
+//
+// Search.
+//
+$civictheme-search-light-color: civictheme-color('neutral', 7) !default;
+$civictheme-search-light-active-color: civictheme-color('primary') !default;
+$civictheme-search-light-menu-item-border-color: $civictheme-primary-navigation-light-menu-item-border-color !default;
+$civictheme-search-light-menu-item-hover-border-color: $civictheme-primary-navigation-light-menu-item-hover-border-color !default;
+$civictheme-search-light-menu-item-active-border-color: $civictheme-primary-navigation-light-menu-item-active-border-color !default;
+$civictheme-search-dark-color: civictheme-color('neutral', 1) !default;
+$civictheme-search-dark-active-color: civictheme-color('secondary') !default;
+$civictheme-search-dark-menu-item-border-color: $civictheme-primary-navigation-dark-menu-item-border-color !default;
+$civictheme-search-dark-menu-item-hover-border-color: $civictheme-primary-navigation-dark-menu-item-hover-border-color !default;
+$civictheme-search-dark-menu-item-active-border-color: $civictheme-primary-navigation-dark-menu-item-active-border-color !default;
 
 //
 // Navigation/Table Of Contents.

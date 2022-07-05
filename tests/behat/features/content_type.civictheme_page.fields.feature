@@ -15,6 +15,8 @@ Feature: Fields on Page content type
     Then I should see the text "Banner background" in the "field_c_n_banner_background" row
     Then I should see the text "Banner components" in the "field_c_n_banner_components" row
     Then I should see the text "Banner type" in the "field_c_n_banner_type" row
+    Then I should see the text "Hide breadcrumb" in the "field_c_n_banner_hide_breadcrumb" row
+    Then I should see the text "Banner title" in the "field_c_n_banner_title" row
     Then I should see the text "Banner components" in the "field_c_n_banner_components" row
     Then I should see the text "Banner components bottom" in the "field_c_n_banner_components_bott" row
     Then I should see the text "Banner featured image" in the "field_c_n_banner_featured_image" row
@@ -47,12 +49,24 @@ Feature: Fields on Page content type
     And I should see text matching "Banner type"
     And should see an "input[name='field_c_n_banner_type']" element
 
+    And I should see text matching "Hide breadcrumb"
+    And should see an "input[name='field_c_n_banner_hide_breadcrumb[value]']" element
+
+    And I should see text matching "Banner title"
+    And should see an "input[name='field_c_n_banner_title[0][value]']" element
+
     And I should see text matching "Components"
     And should see an "input[name='field_c_n_components_civictheme_content_add_more']" element
     And should see an "input[name='field_c_n_components_civictheme_card_container_add_more']" element
 
     And I should see text matching "With space"
     And should see an "select[name='field_c_n_space']" element
+
+    And I should see text matching "Hide sidebar"
+    And should see an "input[name='field_c_n_hide_sidebar[value]']" element
+
+    And I should see text matching "Show last updated date"
+    And should see an "input[name='field_c_n_show_last_updated[value]']" element
 
     And I should see text matching "Show Table of Contents"
     And should see an "input[name='field_c_n_show_toc[value]']" element

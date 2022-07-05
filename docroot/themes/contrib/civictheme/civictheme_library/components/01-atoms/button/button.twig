@@ -8,7 +8,7 @@
  * - kind: [string] Button kind: submit, reset, button, link, checkbox, radio.
  * - type: [string] Button type: primary, primary, secondary, tertiary, chip.
  * - size: [string] Button size: extra-large, large, regular, small, extra-small.
- * - icon: [boolean] Button icon visibility: true, false.
+ * - icon: [string] Icon name.
  * - icon_placement: [string] Icon position: left, right
  * - icon_size: [string] Icon size: extra-large, large, regular, small, extra-small.
  * - text: [string] Button text.
@@ -31,7 +31,7 @@
 {% set type = type in ['primary', 'secondary', 'tertiary', 'chip'] ? type : null %}
 {% set size = size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? size : 'regular' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
-{% set icon_size = icon_size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? icon_size : size %}
+{% set icon_size = icon_size in ['regular', 'small', 'extra-small'] ? icon_size : 'regular' %}
 {% set component_name = type == 'chip' ? 'chip' : 'button' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set type_class = type ? 'civictheme-button--%s'|format(type) : '' %}

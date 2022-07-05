@@ -42,36 +42,14 @@
       margin: 0;
     }
 
-    .civictheme-menu__item {
-      .civictheme-menu {
-        display: none;
-      }
-    }
-
-    .civictheme-menu__item--has-children {
-      > .civictheme-menu__item__link {
-        &::after {
-          @include civictheme-icon-size('regular');
-
-          content: $civictheme-side-navigation-link-expanded-icon;
-          position: absolute;
-          right: civictheme-space(1);
-          transform: rotate(-180deg);
-          line-height: 0;
-        }
-      }
-    }
-
     .civictheme-menu__item--expanded {
       .civictheme-menu {
         display: block;
       }
+    }
 
-      > .civictheme-menu__item__link {
-        &::after {
-          transform: rotate(0);
-        }
-      }
+    .civictheme-menu__item {
+      position: relative;
     }
 
     .civictheme-menu__item__link {
@@ -101,6 +79,20 @@
 
       &:focus {
         z-index: 1;
+      }
+    }
+
+    [data-collapsible]:not([data-collapsible-trigger-no-icon]) .civictheme-menu__item__link-trigger[data-collapsible-trigger] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: civictheme-space(3);
+      height: civictheme-space(3);
+      padding: civictheme-space() civictheme-space(0.25);
+      z-index: 1;
+
+      @include civictheme-breakpoint('m') {
+        padding: civictheme-space(1.25) civictheme-space(0.25);
       }
     }
   }
@@ -139,12 +131,10 @@
             @include civictheme-outline();
           }
         }
-      }
 
-      .civictheme-menu__item--has-children {
-        > .civictheme-menu__item__link {
+        .civictheme-menu__item__link-trigger[data-collapsible-trigger] {
           &::after {
-            color: $civictheme-side-navigation-light-link-expanded-icon-color;
+            @include civictheme-icon-fill-color($civictheme-side-navigation-light-link-expanded-icon-color);
           }
         }
       }
@@ -207,12 +197,10 @@
             @include civictheme-outline();
           }
         }
-      }
 
-      .civictheme-menu__item--has-children {
-        > .civictheme-menu__item__link {
+        .civictheme-menu__item__link-trigger[data-collapsible-trigger] {
           &::after {
-            color: $civictheme-side-navigation-dark-link-expanded-icon-color;
+            @include civictheme-icon-fill-color($civictheme-side-navigation-dark-link-expanded-icon-color);
           }
         }
       }

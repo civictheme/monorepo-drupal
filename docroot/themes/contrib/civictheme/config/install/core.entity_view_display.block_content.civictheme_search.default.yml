@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.civictheme_search
+    - field.field.block_content.civictheme_search.field_c_b_link
+  module:
+    - link
+id: block_content.civictheme_search.default
+targetEntityType: block_content
+bundle: civictheme_search
+mode: default
+content:
+  field_c_b_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

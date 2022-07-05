@@ -38,6 +38,8 @@
 
     @include civictheme-breakpoint($civictheme-header-desktop-menu-breakpoint) {
       position: static;
+      display: flex;
+      justify-content: flex-end;
     }
   }
 

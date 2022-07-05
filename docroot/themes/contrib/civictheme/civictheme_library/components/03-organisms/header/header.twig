@@ -43,25 +43,21 @@
           <div class="container">
             <div class="row">
 
-              {% if content_top2 is not empty %}
-                {% block content_top2 %}
-                  <div class="col-xxs-12 col-m-6">
-                    <div class="civictheme-header__content-top2">
-                      {{ content_top2 }}
-                    </div>
+              {% block content_top2 %}
+                <div class="col-xxs-12 col-m-6">
+                  <div class="civictheme-header__content-top2">
+                    {{ content_top2 }}
                   </div>
-                {% endblock %}
-              {% endif %}
+                </div>
+              {% endblock %}
 
-              {% if content_top3 is not empty %}
-                {% block content_top3 %}
-                  <div class="col-xxs-12 col-m-6">
-                    <div class="civictheme-header__content-top3">
-                      {{ content_top3 }}
-                    </div>
+              {% block content_top3 %}
+                <div class="col-xxs-12 col-m-6">
+                  <div class="civictheme-header__content-top3">
+                    {{ content_top3 }}
                   </div>
-                {% endblock %}
-              {% endif %}
+                </div>
+              {% endblock %}
 
             </div>
           </div>

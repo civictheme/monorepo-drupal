@@ -59,8 +59,8 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   }
 
   _civictheme_preprocess_civictheme_banner_title($variables);
-  _civictheme_preprocess_civictheme_banner_breadcrumb($variables);
   _civictheme_preprocess_civictheme_banner_node($variables);
+  _civictheme_preprocess_civictheme_banner_breadcrumb($variables);
 
   if ($variables['type'] == CIVICTHEME_BANNER_TYPE_LARGE) {
     $variables['is_decorative'] = TRUE;
@@ -81,6 +81,21 @@ function _civictheme_preprocess_civictheme_banner_title(&$variables) {
   $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
   $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $node_revision = \Drupal::routeMatch()->getParameter('node_revision');
+
+  if ($node_revision !== NULL) {
+    $node = $node_revision instanceof NodeInterface ? $node_revision : node_revision_load($node_revision);
+  }
+
+  if (!is_null($node)) {
+    if ($node->hasField('field_c_n_banner_title') && !$node->get('field_c_n_banner_title')->isEmpty()) {
+      $page_title = $node->get('field_c_n_banner_title')->getString();
+    }
+  }
+
   $variables['title'] = $page_title ?? '';
 }
 
@@ -95,15 +110,33 @@ function _civictheme_preprocess_civictheme_banner_breadcrumb(&$variables) {
     return;
   }
 
-  $route_match = \Drupal::routeMatch();
-  $breadcrumb_manager = \Drupal::service('breadcrumb');
-  $breadcrumb = $breadcrumb_manager->build($route_match);
-  if ($breadcrumb) {
-    $variables['breadcrumb'] = $breadcrumb->toRenderable();
-    if (isset($variables['theme'])) {
-      // Changing to CivicTheme theme to pass other variables to template.
-      $variables['breadcrumb']['#theme'] = 'civictheme_breadcrumb';
-      $variables['breadcrumb']['#display_theme'] = $variables['theme'];
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $node_revision = \Drupal::routeMatch()->getParameter('node_revision');
+
+  if ($node_revision !== NULL) {
+    $node = $node_revision instanceof NodeInterface ? $node_revision : node_revision_load($node_revision);
+  }
+
+  // Breadcrumb visibility.
+  $hide_breadcrumb = FALSE;
+  if (!is_null($node)) {
+    if ($node->hasField('field_c_n_banner_hide_breadcrumb') && !$node->get('field_c_n_banner_hide_breadcrumb')->isEmpty()) {
+      $hide_breadcrumb = $node->get('field_c_n_banner_hide_breadcrumb')->getString();
+    }
+  }
+
+  if (!$hide_breadcrumb) {
+    $route_match = \Drupal::routeMatch();
+    $breadcrumb_manager = \Drupal::service('breadcrumb');
+    $breadcrumb = $breadcrumb_manager->build($route_match);
+    if ($breadcrumb) {
+      $variables['breadcrumb'] = $breadcrumb->toRenderable();
+      if (isset($variables['theme'])) {
+        // Changing to CivicTheme theme to pass other variables to template.
+        $variables['breadcrumb']['#theme'] = 'civictheme_breadcrumb';
+        $variables['breadcrumb']['#display_theme'] = $variables['theme'];
+      }
     }
   }
 }
@@ -135,10 +168,12 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
   $is_front = \Drupal::service('path.matcher')->isFrontPage();
   $variables['is_front'] = $is_front;
 
-  if (!$is_front) {
-    $variables['content'][] = [
+  // Last updated date.
+  if ($node->hasField('field_c_n_show_last_updated') && !$node->get('field_c_n_show_last_updated')->isEmpty() && $node->get('field_c_n_show_last_updated')->getString()) {
+    $variables['content_middle'][] = [
       '#theme' => 'civictheme_basic_content',
-      '#content' => 'Last updated: ' . \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civictheme_short_date'),
+      '#component_theme' => $variables['theme'] ?? NULL,
+      '#content' => '<p>Last updated: ' . \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civictheme_short_date') . '<p>',
     ];
   }
 

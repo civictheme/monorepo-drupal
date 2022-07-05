@@ -83,6 +83,13 @@ function civictheme_theme() {
       ],
       'template' => 'misc/slider-slide-tags',
     ],
+    'civictheme_basic_content' => [
+      'variables' => [
+        'component_theme' => 'light',
+        'content' => '',
+      ],
+      'template' => 'misc/basic-content',
+    ],
   ];
 }
 
@@ -214,4 +221,11 @@ function civictheme_preprocess_image(&$variables) {
  */
 function civictheme_preprocess_menu_local_tasks(&$variables) {
   _civictheme_preprocess_menu_local_tasks($variables);
+}
+
+/**
+ * Implements template_preprocess_menu().
+ */
+function civictheme_preprocess_menu(&$variables) {
+  _civictheme_preprocess_menu_items($variables['items']);
 }

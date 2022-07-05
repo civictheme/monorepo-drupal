@@ -7,9 +7,13 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_banner_components
     - field.field.node.civictheme_page.field_c_n_banner_components_bott
     - field.field.node.civictheme_page.field_c_n_banner_featured_image
+    - field.field.node.civictheme_page.field_c_n_banner_hide_breadcrumb
     - field.field.node.civictheme_page.field_c_n_banner_theme
+    - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
     - field.field.node.civictheme_page.field_c_n_components
+    - field.field.node.civictheme_page.field_c_n_hide_sidebar
+    - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
     - field.field.node.civictheme_page.field_c_n_space
     - field.field.node.civictheme_page.field_c_n_summary
@@ -21,30 +25,34 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: node.civictheme_page.civictheme_subject_card
 targetEntityType: node
 bundle: civictheme_page
 mode: civictheme_subject_card
 content:
   field_c_n_thumbnail:
-    weight: 0
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      link: true
       view_mode: default
+      link: true
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    weight: 0
     region: content
 hidden:
   field_c_n_banner_background: true
   field_c_n_banner_components: true
   field_c_n_banner_components_bott: true
   field_c_n_banner_featured_image: true
+  field_c_n_banner_hide_breadcrumb: true
   field_c_n_banner_theme: true
+  field_c_n_banner_title: true
   field_c_n_banner_type: true
   field_c_n_components: true
+  field_c_n_hide_sidebar: true
+  field_c_n_show_last_updated: true
   field_c_n_show_toc: true
   field_c_n_space: true
   field_c_n_summary: true

@@ -121,8 +121,12 @@ aliases:
   - &step_process_codebase
     run:
       name: Process codebase to run in CI
-      # Remove lines containing '###' and uncomment comments starting with '##'.
-      command: sed -i -e "/###/d" docker-compose.yml && sed -i -e "s/##//" docker-compose.yml
+
+      command: |
+        # Remove lines containing '###' and uncomment comments starting with '##'.
+        sed -i -e "/###/d" docker-compose.yml && sed -i -e "s/##//" docker-compose.yml
+        # Alter build for an alternative build setup.
+        [ "$CI_ALTERNATIVE_BUILD" = "1" ] && cp -Rf .docker/Dockerfile.cli2 .docker/Dockerfile.cli || true
 
 ################################################################################
 # JOBS
@@ -149,6 +153,9 @@ jobs:
           name: Lint code
           command: ahoy lint
       - run:
+          name: Lint theme config
+          command: ahoy lint config || true
+      - run:
           name: Run tooling tests
           command: ./scripts/test-tooling.sh
       - run:
@@ -173,6 +180,40 @@ jobs:
           root: /workspace
           paths:
             - code
+
+  # Subtheme is a sibling.
+  build-alt:
+    <<: *container_config
+    parallelism: 1
+    environment:
+      CI_ALTERNATIVE_BUILD: 1
+    steps:
+      - attach_workspace:
+          at: /workspace
+      - checkout
+      - *step_process_codebase
+      - *step_setup_remote_docker
+      - run:
+          name: Build site
+          command: ahoy build
+          no_output_timeout: 30m
+
+  # No subtheme.
+  build-alt2:
+    <<: *container_config
+    parallelism: 1
+    environment:
+      SKIP_SUBTHEME_ACTIVATION: 1
+    steps:
+      - attach_workspace:
+          at: /workspace
+      - checkout
+      - *step_process_codebase
+      - *step_setup_remote_docker
+      - run:
+          name: Build site
+          command: ahoy build
+          no_output_timeout: 30m
 
   # Deploy primary branches.
   deploy: &job_deploy
@@ -298,9 +339,19 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - build-alt:
+          filters:
+            tags:
+              only: /.*/
+      - build-alt2:
+          filters:
+            tags:
+              only: /.*/
       - deploy:
           requires:
             - build
+            - build-alt
+            - build-alt2
           filters:
             branches:
               # Allowed branches:
@@ -315,13 +366,14 @@ workflows:
       - deploy_tags:
           requires:
             - build
+            - build-alt
+            - build-alt2
           filters:
             branches:
               ignore: /.*/
             tags:
               # Allowed tags: 1, 123, 123.456, 123.456.789, 123.456.789-rc123
               only: /^[0-9]+(\.[0-9]+)+(-rc[0-9]+)?$/
-
 
   renovatebot_self_hosted:
     triggers:

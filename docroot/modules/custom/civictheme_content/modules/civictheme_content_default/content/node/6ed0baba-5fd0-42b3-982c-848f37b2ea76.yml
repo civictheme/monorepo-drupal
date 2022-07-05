@@ -40,12 +40,21 @@ default:
   field_c_n_banner_background:
     -
       entity: 67b42d97-926d-425b-b9db-488627bcbd1f
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
   field_c_n_banner_theme:
     -
       value: light
   field_c_n_banner_type:
     -
       value: default
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
   field_c_n_show_toc:
     -
       value: false

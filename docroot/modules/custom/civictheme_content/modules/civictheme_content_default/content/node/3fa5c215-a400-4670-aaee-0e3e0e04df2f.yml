@@ -5,7 +5,6 @@ _meta:
   bundle: civictheme_page
   default_langcode: en
   depends:
-    b8ae7216-9d98-4f61-8ac1-638b39ce5276: media
     4c9975b0-77ca-4f82-95d0-3fb2a1122978: media
     d0ff700e-b452-4b72-a94d-7e509e2a8b80: media
 default:
@@ -38,6 +37,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
   field_c_n_banner_theme:
     -
       value: dark
@@ -66,9 +68,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_icon:
-            -
-              entity: b8ae7216-9d98-4f61-8ac1-638b39ce5276
           field_c_p_summary:
             -
               value: 'Donec rutrum congue leo eget malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Donec rutrum congue leo eget malesuada.'
@@ -99,9 +98,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_icon:
-            -
-              entity: b8ae7216-9d98-4f61-8ac1-638b39ce5276
           field_c_p_image:
             -
               entity: 4c9975b0-77ca-4f82-95d0-3fb2a1122978
@@ -114,6 +110,12 @@ default:
           field_c_p_title:
             -
               value: 'Next step title 2 1'
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
   field_c_n_show_toc:
     -
       value: false

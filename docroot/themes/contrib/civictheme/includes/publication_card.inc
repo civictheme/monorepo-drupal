@@ -37,7 +37,7 @@ function civictheme_preprocess_paragraph__civictheme_publication_card(&$variable
       $url = $file->createFileUrl(FALSE);
       $file_size = format_size($file->getSize());
       $variables['link']['url'] = $url;
-      $variables['link']['text'] = basename($url) . ' (' . $file_size . ')';
+      $variables['link']['text'] = sprintf('%s (%s)', $file->getFilename(), $file_size);
       $variables['url'] = $url;
     }
   }

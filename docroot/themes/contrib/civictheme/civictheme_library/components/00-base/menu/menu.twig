@@ -13,6 +13,7 @@
  *   - below: [array] Array of submenu items.
  *   - is_expanded: [boolean] Flag if the current item has visible child.
  *   - in_active_trail: [boolean] Flag if the current item is in the active trail.
+ * - is_collapsible: [boolean] Flag whether to collapse the menu.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -22,7 +23,7 @@
 
 {% import _self as menus %}
 
-{% macro menu_links(items, menu_level, modifier_class) %}
+{% macro menu_links(items, menu_level, modifier_class, theme, is_collapsible, parent_key) %}
   {% if items %}
     {% if menu_level == 0 %}
       <ul class="civictheme-menu civictheme-menu--level-{{ menu_level }} {{ modifier_class }} " data-component-name="civictheme-menu" {{ attributes|default('') }}>
@@ -31,16 +32,22 @@
         <ul class="civictheme-menu civictheme-menu__sub-menu civictheme-menu--level-{{ menu_level }}">
     {% endif %}
 
-    {% for item in items %}
+    {% for key, item in items %}
       {% set item_classes = [
         'civictheme-menu__item',
         'civictheme-menu__item--level-' ~ menu_level,
         item.below ? 'civictheme-menu__item--has-children' : '',
-        item.is_expanded ? 'civictheme-menu__item--expanded' : '',
         item.in_active_trail ? 'civictheme-menu__item--active-trail' : '',
         item.modifier_class|default(''),
       ] %}
-      <li class="{{ item_classes|join(' ') }}" {{ item.attributes|default('') }}>
+
+      {% set item_attributes = item.attributes|default('') %}
+      {% if is_collapsible %}
+        {% set collapsible_collapsed = item.in_active_trail ? '' : 'data-collapsible-collapsed' %}
+        {% set item_attributes = [item_attributes, 'data-collapsible', 'data-collapsible-duration=500', collapsible_collapsed]|join(' ') %}
+      {% endif %}
+
+      <li class="{{ item_classes|join(' ') }}" {{ item_attributes }}>
 
         {% include '@atoms/link/link.twig' with {
           theme: theme,
@@ -49,10 +56,16 @@
           url: item.url,
           modifier_class: 'civictheme-menu__item__link',
           attributes: item.link_attributes|default(''),
+          is_new_window: item.is_new_window is defined ? item.is_new_window : false,
+          is_external: item.is_external is defined ? item.is_external : false,
         } only %}
 
+        {% if is_collapsible and item.below %}
+          <a href="#" class="civictheme-menu__item__link-trigger" data-collapsible-trigger title="Expand {{ item.title }} menu"></a>
+        {% endif %}
+
         {% if item.below %}
-          {{ menus.menu_links_below(item.below, menu_level + 1, classes, item) }}
+          {{ menus.menu_links_below(item.below, menu_level + 1, classes, theme, is_collapsible, key) }}
         {% endif %}
 
       </li>
@@ -75,8 +88,8 @@
   The main macro is split into multiple macros to allow to override only the
   required parts while preserving (cloned) main generation macro.
 #}
-{% macro menu_links_below(items, menu_level, modifier_class, parent_item) %}
-  {{ menus.menu_links(items, menu_level, modifier_class) }}
+{% macro menu_links_below(items, menu_level, modifier_class, theme, is_collapsible, parent_key) %}
+  {{ menus.menu_links(items, menu_level, modifier_class, theme, is_collapsible, parent_key) }}
 {% endmacro %}
 
-{{ menus.menu_links(items, 0, modifier_class) }}
+{{ menus.menu_links(items, 0, modifier_class, theme, is_collapsible) }}

@@ -63,6 +63,12 @@
   margin-bottom: civictheme-space(4);
 }
 
+.example-container__csv {
+  @include civictheme-breakpoint($civictheme-header-desktop-menu-breakpoint) {
+    float: right;
+  }
+}
+
 .example-container__title {
   @include civictheme-typography('label-large');
 

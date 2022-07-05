@@ -117,7 +117,7 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
       '@label' => $media->label(),
     ]));
     $variables['share_link'] = [
-      'text' => t('Share this video'),
+      'text' => !empty($media->get('field_c_m_share_link')->first()->get('title')->getValue()) ? $media->get('field_c_m_share_link')->first()->get('title')->getValue() : t('Share this video'),
       'is_external' => $media->get('field_c_m_share_link')->first()->isExternal(),
       'is_new_window' => $media->get('field_c_m_share_link')->first()->isExternal(),
       'url' => $media->get('field_c_m_share_link')->first()->getUrl()->toString(),
@@ -140,7 +140,7 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
   }
   elseif ($media->hasField('field_c_m_transcript_link') && !$media->get('field_c_m_transcript_link')->isEmpty()) {
     $variables['transcript_link'] = [
-      'text' => $media->get('field_c_m_transcript_link')->first()->get('title')->getValue(),
+      'text' => !empty($media->get('field_c_m_transcript_link')->first()->get('title')->getValue()) ? $media->get('field_c_m_transcript_link')->first()->get('title')->getValue() : t('View transcript'),
       'url' => $media->get('field_c_m_transcript_link')->first()->getUrl()->toString(),
       'is_external' => $media->get('field_c_m_transcript_link')->first()->isExternal(),
       'is_new_window' => $media->get('field_c_m_transcript_link')->first()->isExternal(),

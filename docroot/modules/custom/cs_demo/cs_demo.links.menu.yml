@@ -1,5 +1,0 @@
-cs_demo.cs_demo_form:
-  title: 'CivicTheme Demo'
-  description: 'Administer CivicTheme Demo content'
-  route_name: cs_demo.cs_demo_form
-  parent: system.admin_config_development

@@ -2,32 +2,27 @@
 
 /**
  * @file
- * CivicTheme Accordion paragraph component.
+ * CivicTheme Search block type.
  */
 
-use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\Url;
 
 /**
- * Implements template_preprocess_paragraph().
+ * Implements template_preprocess_block().
  */
-function civictheme_preprocess_paragraph__civictheme_search(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $variables['button_text'] = $paragraph->get('field_c_p_button_text')->getString();
-  $variables['help_text'] = $paragraph->get('field_c_p_help_text')->getString();
-  $variables['placeholder'] = $paragraph->get('field_c_p_placeholder')->getString();
-  $search_url = $paragraph->get('field_c_p_search_url')->getString();
-  $variables['theme'] = $paragraph->get('field_c_p_theme')->getString();
-
-  // Check if the url is valid.
-  if (UrlHelper::isValid($search_url)) {
-    $variables['search_url'] = $search_url;
+function civictheme_preprocess_block__civictheme_search(&$variables) {
+  if ($variables['base_plugin_id'] != 'block_content') {
+    return;
   }
 
-  // Add query string if available.
-  $keys = \Drupal::request()->query->get('keys');
-  if (!empty($keys)) {
-    $variables['keys'] = $keys;
+  $entity = $variables['elements']['content']['#block_content'];
+  if ($entity->bundle() != 'civictheme_search' || ($entity->hasField('field_c_b_link') && $entity->field_c_b_link->isEmpty())) {
+    return;
   }
 
+  $variables['content'] = NULL;
+
+  $link = $entity->get('field_c_b_link')->first()->getValue();
+  $variables['url'] = Url::fromUri($link['uri'])->toString();
+  $variables['text'] = $link['title'] ?? '';
 }
