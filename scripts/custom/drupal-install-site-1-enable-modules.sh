@@ -19,7 +19,7 @@ DRUSH_ALIAS="${DRUSH_ALIAS:-}"
 drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush"; else command -v drush; fi)"
 
 echo "==> Removing all files."
-rm -Rf "${APP}"/docroot/sites/default/files/* > /dev/null || true
+rm -Rf "${APP}"/docroot/sites/default/files/* >/dev/null || true
 
 echo "  > Enable modules required by CivicTheme."
 $drush ${DRUSH_ALIAS} ev "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/civictheme.provision.inc'; civictheme_enable_modules();"
@@ -33,11 +33,13 @@ $drush ${DRUSH_ALIAS} -y then civictheme
 $drush ${DRUSH_ALIAS} -y config-set system.theme default civictheme
 $drush ${DRUSH_ALIAS} -y config-set media.settings standalone_url true
 
-echo "  > Uninstall obsolete themes."
-$drush ${DRUSH_ALIAS} -y thun claro || true
-$drush ${DRUSH_ALIAS} -y thun govcms_bartik || true
-$drush ${DRUSH_ALIAS} -y thun bartik || true
+if [ "${DREVOPS_DRUPAL_PROFILE}" = "govcms" ]; then
+  echo "  > Uninstall obsolete themes."
+  $drush ${DRUSH_ALIAS} -y thun claro || true
+  $drush ${DRUSH_ALIAS} -y thun govcms_bartik || true
+  $drush ${DRUSH_ALIAS} -y thun bartik || true
 
-echo "  > Remove GovCMS configs."
-$drush ${DRUSH_ALIAS} -y pm-enable civictheme_govcms
-$drush ${DRUSH_ALIAS} civictheme_govcms:remove-config
+  echo "  > Remove GovCMS configs."
+  $drush ${DRUSH_ALIAS} -y pm-enable civictheme_govcms
+  $drush ${DRUSH_ALIAS} civictheme_govcms:remove-config
+fi
