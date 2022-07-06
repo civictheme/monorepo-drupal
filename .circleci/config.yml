@@ -121,7 +121,6 @@ aliases:
   - &step_process_codebase
     run:
       name: Process codebase to run in CI
-
       command: |
         # Remove lines containing '###' and uncomment comments starting with '##'.
         sed -i -e "/###/d" docker-compose.yml && sed -i -e "s/##//" docker-compose.yml
@@ -204,6 +203,24 @@ jobs:
     parallelism: 1
     environment:
       SKIP_SUBTHEME_ACTIVATION: 1
+    steps:
+      - attach_workspace:
+          at: /workspace
+      - checkout
+      - *step_process_codebase
+      - *step_setup_remote_docker
+      - run:
+          name: Build site
+          command: ahoy build
+          no_output_timeout: 30m
+
+  # Standard profile.
+  build-alt3:
+    <<: *container_config
+    parallelism: 1
+    environment:
+      SKIP_SUBTHEME_ACTIVATION: 1
+      DREVOPS_DRUPAL_PROFILE: standard
     steps:
       - attach_workspace:
           at: /workspace
@@ -347,11 +364,16 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - build-alt3:
+          filters:
+            tags:
+              only: /.*/
       - deploy:
           requires:
             - build
             - build-alt
             - build-alt2
+            - build-alt3
           filters:
             branches:
               # Allowed branches:
@@ -368,6 +390,7 @@ workflows:
             - build
             - build-alt
             - build-alt2
+            - build-alt3
           filters:
             branches:
               ignore: /.*/
