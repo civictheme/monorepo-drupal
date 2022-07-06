@@ -32,3 +32,8 @@ GENERATED_CONTENT_CREATE=1 $drush ${DRUSH_ALIAS} -y pm-enable cs_generated_conte
 
 echo "  > Generate sitemap."
 $drush ${DRUSH_ALIAS} simple-sitemap:generate
+
+if $drush ${DRUSH_ALIAS} ev "print \Drupal\core\Site\Settings::get('environment');" | grep -q -e local; then
+  echo "==> Enable modules in non-production environment."
+  $drush ${DRUSH_ALIAS} -y pm-enable config_devel
+fi

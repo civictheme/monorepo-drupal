@@ -904,3 +904,22 @@ function civictheme_provision_permissions_map() {
 /**
  * @}
  */
+
+/**
+ * Helper to install modules required by CivicTheme.
+ *
+ * @see https://www.drupal.org/node/2652542
+ */
+function civictheme_enable_modules() {
+  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
+  $theme_handler = \Drupal::getContainer()->get('theme_handler');
+  $theme_data = $theme_handler->rebuildThemeData();
+
+  if (!empty($theme_data['civictheme'])) {
+    $modules = array_keys($theme_data['civictheme']->module_dependencies);
+    /** @var \Drupal\Core\Extension\ModuleInstaller $module_installer */
+    $module_installer = \Drupal::getContainer()->get('module_installer');
+    $module_installer->install($modules);
+  }
+
+}

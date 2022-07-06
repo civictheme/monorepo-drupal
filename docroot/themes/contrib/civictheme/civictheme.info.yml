@@ -13,6 +13,7 @@ dependencies:
   - drupal:inline_form_errors
   - drupal:layout_builder
   - drupal:layout_discovery
+  - drupal:media
   - drupal:rest
   - field_group:field_group
   - layout_builder_restrictions:layout_builder_restrictions
