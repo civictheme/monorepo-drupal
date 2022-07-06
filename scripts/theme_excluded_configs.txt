@@ -96,6 +96,8 @@ shortcut.set.default
 simple_sitemap.settings
 simple_sitemap.sitemap.default
 simple_sitemap.type.default_hreflang
+simple_sitemap.bundle_*
+simple_sitemap.custom_links.*
 stage_file_proxy*
 system.action*
 system.advisories
