@@ -34,9 +34,9 @@ $drush ${DRUSH_ALIAS} -y config-set system.theme default civictheme
 $drush ${DRUSH_ALIAS} -y config-set media.settings standalone_url true
 
 echo "  > Uninstall obsolete themes."
-$drush ${DRUSH_ALIAS} -y thun claro
-$drush ${DRUSH_ALIAS} -y thun govcms_bartik
-$drush ${DRUSH_ALIAS} -y thun bartik
+$drush ${DRUSH_ALIAS} -y thun claro || true
+$drush ${DRUSH_ALIAS} -y thun govcms_bartik || true
+$drush ${DRUSH_ALIAS} -y thun bartik || true
 
 echo "  > Remove GovCMS configs."
 $drush ${DRUSH_ALIAS} -y pm-enable civictheme_govcms
