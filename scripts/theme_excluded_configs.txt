@@ -148,3 +148,5 @@ webform.settings
 webform.webform.contact
 webform.webform_options*
 workflows.workflow.editorial
+block.block.exposedformcivictheme_testpage_civictheme
+views.view.civictheme_test
