@@ -32,12 +32,17 @@ class CsCoreIgnoreFilter extends IgnoreFilter implements ContainerFactoryPluginI
     if (fnmatch('user.role.*', $name)) {
       $role_name = substr($name, strlen('user.role.'));
 
+      // Exclude permissions.
       $permissions = $this->getExcludedRolePermissions($role_name);
       if (isset($data['permissions'])) {
         $data['permissions'] = array_values(array_diff($data['permissions'], $permissions));
       }
 
+      // Exclude modules, but only if permissions that are not ignored do not
+      // depend on them.
       $modules = $this->getExcludedRoleDependencyModules($role_name);
+      $used_modules = $this->getPermissionsProviders($data['permissions']);
+      $modules = array_diff($modules, $used_modules);
       if (isset($data['dependencies']['module'])) {
         foreach ($data['dependencies']['module'] as $key => $module_name) {
           if (in_array($module_name, $modules)) {
@@ -95,6 +100,31 @@ class CsCoreIgnoreFilter extends IgnoreFilter implements ContainerFactoryPluginI
     }
 
     array_filter($modules);
+
+    return $modules;
+  }
+
+  /**
+   * Get a list of providers for permissions.
+   *
+   * @param array $permissions
+   *   Array of permissions.
+   *
+   * @return array
+   *   Array of providers.
+   */
+  protected function getPermissionsProviders(array $permissions) {
+    $modules = [];
+
+    $permissions_data = \Drupal::service('user.permissions')->getPermissions();
+
+    foreach ($permissions as $permission) {
+      if (!empty($permissions_data[$permission])) {
+        $modules[] = $permissions_data[$permission]['provider'];
+      }
+    }
+
+    $modules = array_unique($modules);
 
     return $modules;
   }
