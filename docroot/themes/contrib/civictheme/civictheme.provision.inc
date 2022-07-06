@@ -828,6 +828,32 @@ function civictheme_provision__permissions() {
 }
 
 /**
+ * Provision simple sitemap.
+ */
+function civictheme_provision__simple_sitemap() {
+  if (\Drupal::moduleHandler()->moduleExists('simple_sitemap')) {
+    return;
+  }
+
+  /** @var \Drupal\simple_sitemap\Manager\Generator $generator */
+  $generator = \Drupal::service('simple_sitemap.generator');
+
+  $settings = [
+    'index' => TRUE,
+    'priority' => 0.5,
+    'changefreq' => 'hourly',
+    'include_images' => FALSE,
+  ];
+
+  $bundles = ['civictheme_page', 'civictheme_event'];
+  foreach ($bundles as $bundle) {
+    $generator->entityManager()->setBundleSettings('node', $bundle, $settings);
+  }
+
+  $generator->customLinkManager()->add('/', $settings);
+}
+
+/**
  * Map of roles and permissions to be granted.
  *
  * This allows to centrally manage additional permissions that may be
