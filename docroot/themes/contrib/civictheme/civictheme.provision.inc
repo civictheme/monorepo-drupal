@@ -759,34 +759,37 @@ function _civictheme_provision__blocks__copyright() {
 }
 
 /**
- * Provision civictheme_demo theme settings.
+ * Provision theme settings.
  */
-function civictheme_provision__update_theme_settings() {
-  $logo_header_desktop = '/themes/custom/civictheme_demo/dist/assets/logos/civictheme_demo_logo_desktop_light.png';
-  $logo_header_mobile = '/themes/custom/civictheme_demo/dist/assets/logos/civictheme_demo_logo_mobile_light.png';
-  $logo_footer_desktop = '/themes/custom/civictheme_demo/dist/assets/logos/civictheme_demo_logo_desktop_dark.png';
-  $logo_footer_mobile = '/themes/custom/civictheme_demo/dist/assets/logos/civictheme_demo_logo_mobile_dark.png';
+function civictheme_provision__theme_settings() {
+  $theme_name = \Drupal::config('system.theme')->get('default');
+  $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
-  $favicon = '/themes/custom/civictheme_demo/dist/assets/favicon.ico';
+  $logo_header_desktop = "$theme_path/dist/assets/logos/{$theme_name}_logo_desktop_light.png";
+  $logo_header_mobile = "$theme_path/dist/assets/logos/{$theme_name}_logo_mobile_light.png";
+  $logo_footer_desktop = "$theme_path/dist/assets/logos/{$theme_name}_logo_desktop_dark.png";
+  $logo_footer_mobile = "$theme_path/dist/assets/logos/{$theme_name}_logo_mobile_dark.png";
 
-  $config = \Drupal::service('config.factory')->getEditable('civictheme_demo.settings');
+  $favicon = "$theme_path/dist/assets/favicon.ico";
+
+  $config = \Drupal::service('config.factory')->getEditable("$theme_name.settings");
 
   $config->set('logo', [
     'use_default' => FALSE,
-    'path' => substr($logo_header_desktop, 1),
-    'url' => $logo_header_desktop,
+    'path' => $logo_header_desktop,
+    'url' => '/' . ltrim($logo_header_desktop, '/'),
   ]);
 
-  $config->set('logo_path', substr($logo_header_desktop, 1));
-  $config->set('civictheme_header_logo_mobile', substr($logo_header_mobile, 1));
-  $config->set('civictheme_footer_logo_desktop', substr($logo_footer_desktop, 1));
-  $config->set('civictheme_footer_logo_mobile', substr($logo_footer_mobile, 1));
+  $config->set('logo_path', $logo_header_desktop);
+  $config->set('civictheme_header_logo_mobile', $logo_header_mobile);
+  $config->set('civictheme_footer_logo_desktop', $logo_footer_desktop);
+  $config->set('civictheme_footer_logo_mobile', $logo_footer_mobile);
 
   $config->set('civictheme_site_logo_alt', 'CivicTheme demo logo');
 
   $config->set('favicon', [
     'use_default' => FALSE,
-    'path' => substr($favicon, 1),
+    'path' => $favicon,
     'mimetype' => 'image/vnd.microsoft.icon',
   ]);
 
