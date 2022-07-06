@@ -831,8 +831,8 @@ function civictheme_provision__permissions() {
  * Provision simple sitemap.
  */
 function civictheme_provision__simple_sitemap() {
-  if (\Drupal::moduleHandler()->moduleExists('simple_sitemap')) {
-    return;
+  if (!\Drupal::moduleHandler()->moduleExists('simple_sitemap')) {
+    \Drupal::service('module_installer')->install(['simple_sitemap']);
   }
 
   /** @var \Drupal\simple_sitemap\Manager\Generator $generator */
