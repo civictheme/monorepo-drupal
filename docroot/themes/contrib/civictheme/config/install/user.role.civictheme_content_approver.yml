@@ -10,12 +10,9 @@ dependencies:
     - contextual
     - file
     - filter
-    - honeypot
     - media
     - node
     - system
-    - tfa
-    - toolbar
 id: civictheme_content_approver
 label: 'Content Approver'
 weight: -7
@@ -25,9 +22,6 @@ permissions:
   - 'access contextual links'
   - 'access files overview'
   - 'access media overview'
-  - 'access toolbar'
-  - 'bypass honeypot protection'
-  - 'setup own tfa'
   - 'use editorial transition archive'
   - 'use editorial transition archived_draft'
   - 'use editorial transition archived_published'

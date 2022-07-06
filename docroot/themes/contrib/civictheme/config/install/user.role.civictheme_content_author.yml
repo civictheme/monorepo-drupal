@@ -19,14 +19,11 @@ dependencies:
     - contextual
     - file
     - filter
-    - honeypot
     - media
     - node
     - path
     - shortcut
     - system
-    - tfa
-    - toolbar
 id: civictheme_content_author
 label: 'Content Author'
 weight: -8
@@ -38,10 +35,7 @@ permissions:
   - 'access in-place editing'
   - 'access media overview'
   - 'access shortcuts'
-  - 'access toolbar'
-  - 'administer media'
   - 'administer url aliases'
-  - 'bypass honeypot protection'
   - 'create civictheme_alert content'
   - 'create civictheme_audio media'
   - 'create civictheme_document media'
@@ -99,7 +93,6 @@ permissions:
   - 'revert civictheme_alert revisions'
   - 'revert civictheme_event revisions'
   - 'revert civictheme_page revisions'
-  - 'setup own tfa'
   - 'update any media'
   - 'update media'
   - 'use editorial transition create_new_draft'
