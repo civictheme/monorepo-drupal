@@ -21,15 +21,12 @@ dependencies:
     - contextual
     - file
     - filter
-    - honeypot
     - media
     - node
     - path
     - shortcut
     - system
     - taxonomy
-    - tfa
-    - toolbar
     - webform
 id: civictheme_site_administrator
 label: 'Site Administrator'
@@ -48,7 +45,6 @@ permissions:
   - 'access site in maintenance mode'
   - 'access site reports'
   - 'access taxonomy overview'
-  - 'access toolbar'
   - 'access user profiles'
   - 'access webform help'
   - 'access webform overview'
@@ -69,7 +65,6 @@ permissions:
   - 'administer webform'
   - 'administer webform element access'
   - 'administer webform submission'
-  - 'bypass honeypot protection'
   - 'bypass node access'
   - 'create civictheme_alert content'
   - 'create civictheme_audio media'
@@ -146,7 +141,7 @@ permissions:
   - 'revert civictheme_alert revisions'
   - 'revert civictheme_event revisions'
   - 'revert civictheme_page revisions'
-  - 'setup own tfa'
+  - 'select account cancellation method'
   - 'switch shortcut sets'
   - 'update any media'
   - 'update media'
