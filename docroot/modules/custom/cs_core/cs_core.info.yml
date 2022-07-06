@@ -10,6 +10,7 @@ dependencies:
   - adminimal_admin_toolbar:adminimal_admin_toolbar
   - coffee:coffee
   - config_devel:config_devel
+  - config_filter:config_filter
   - config_update:config_update
   - environment_indicator:environment_indicator
   - permissions_filter:permissions_filter
