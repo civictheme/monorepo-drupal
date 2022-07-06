@@ -20,6 +20,7 @@ use Drupal\Core\Url;
 use Drupal\media\Entity\Media;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\user\Entity\Role;
 use Drush\Drush;
 use Drush\Log\LogLevel;
 
@@ -793,6 +794,132 @@ function civictheme_provision__update_theme_settings() {
   $config->set('civictheme_footer_theme', 'dark');
 
   $config->save();
+}
+
+/**
+ * Provision permissions.
+ */
+function civictheme_provision__permissions() {
+  $map = civictheme_provision_permissions_map();
+
+  /** @var \Drupal\user\PermissionHandler $permission_handler */
+  $permission_handler = \Drupal::getContainer()->get('user.permissions');
+  $all_permissions = array_keys($permission_handler->getPermissions());
+
+  foreach ($map as $role_name => $permissions_map) {
+    $role = Role::load($role_name);
+    if (!$role) {
+      continue;
+    }
+
+    foreach ($permissions_map as $permissions) {
+      foreach ($permissions as $permission) {
+        // Only grant permissions that are currently available on the site.
+        if (in_array($permission, $all_permissions)) {
+          $role->grantPermission($permission);
+        }
+      }
+    }
+    $role->save();
+  }
+}
+
+/**
+ * Map of roles and permissions to be granted.
+ *
+ * This allows to centrally manage additional permissions that may be
+ * optionally provisioned for specific CivicTheme roles. Such permissions
+ * would not be a part of CivicTheme roles' configurations, but would be
+ * expected the roles to have in some Drupal profiles (like GovCMS).
+ *
+ * @return array
+ *   Array of with role names as keys and permissions arrays as values, each of
+ *   which is keyed by a module.
+ */
+function civictheme_provision_permissions_map() {
+  $map = [
+    'civictheme_content_approver' => [
+      'honeypot' => [
+        'bypass honeypot protection',
+      ],
+      'tfa' => [
+        'setup own tfa',
+      ],
+      'toolbar' => [
+        'access toolbar',
+      ],
+    ],
+    'civictheme_content_author' => [
+      'honeypot' => [
+        'bypass honeypot protection',
+      ],
+      'tfa' => [
+        'setup own tfa',
+      ],
+      'toolbar' => [
+        'access toolbar',
+      ],
+    ],
+    'civictheme_site_administrator' => [
+      'honeypot' => [
+        'bypass honeypot protection',
+      ],
+      'tfa' => [
+        'setup own tfa',
+      ],
+      'toolbar' => [
+        'access toolbar',
+      ],
+      'password_policy' => [
+        'manage password reset',
+      ],
+      'pathauto' => [
+        'notify of path changes',
+      ],
+      'webform' => [
+        'access webform help',
+        'access webform overview',
+        'access webform submission log',
+        'access webform submission user',
+        'administer webform element access',
+        'administer webform submission',
+        'administer webform',
+        'create webform content',
+        'create webform',
+        'delete any webform content',
+        'delete any webform submission',
+        'delete any webform',
+        'delete own webform content',
+        'delete own webform submission',
+        'delete own webform',
+        'delete webform revisions',
+        'delete webform submissions any node',
+        'delete webform submissions own node',
+        'edit any webform content',
+        'edit any webform submission',
+        'edit any webform',
+        'edit own webform content',
+        'edit own webform submission',
+        'edit own webform',
+        'edit webform assets',
+        'edit webform source',
+        'edit webform submissions any node',
+        'edit webform submissions any node',
+        'edit webform submissions any node',
+        'edit webform submissions own node',
+        'edit webform twig',
+        'edit webform variants',
+        'revert webform revisions',
+        'view any webform submission',
+        'view own webform submission',
+        'view webform revisions',
+        'view webform submissions any node',
+        'view webform submissions own node',
+      ],
+    ],
+  ];
+
+  return $map;
 }
 
 /**
