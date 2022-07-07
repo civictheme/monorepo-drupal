@@ -1,7 +1,7 @@
 _meta:
   version: '1.0'
   entity_type: block_content
-  uuid: 9770b254-70c4-4f73-af00-d737895efde4
+  uuid: b7f36176-620f-4178-aadd-9b448c610986
   bundle: civictheme_mobile_navigation
   default_langcode: en
 default:

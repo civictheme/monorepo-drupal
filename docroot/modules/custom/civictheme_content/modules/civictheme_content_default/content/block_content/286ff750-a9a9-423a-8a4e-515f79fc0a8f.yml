@@ -1,8 +1,8 @@
 _meta:
   version: '1.0'
   entity_type: block_content
-  uuid: ba4ce2e6-0347-41ec-9507-139b4075b58a
-  bundle: civictheme_banner
+  uuid: 286ff750-a9a9-423a-8a4e-515f79fc0a8f
+  bundle: civictheme_search
   default_langcode: en
 default:
   status:
@@ -10,13 +10,15 @@ default:
       value: true
   info:
     -
-      value: Banner
+      value: Search
   reusable:
     -
       value: true
   revision_translation_affected:
     -
       value: true
-  field_c_b_theme:
+  field_c_b_link:
     -
-      value: dark
+      uri: 'internal:/'
+      title: Search
+      options: {  }
