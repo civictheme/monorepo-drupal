@@ -327,7 +327,7 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid = N
   if (!empty($uuid)) {
     $block = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', $uuid);
     if (!empty($block)) {
-      return $block;
+      $block->delete();
     }
   }
   $uuid = $uuid ?? \Drupal::service('uuid')->generate();
