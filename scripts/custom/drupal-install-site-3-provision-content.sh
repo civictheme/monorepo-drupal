@@ -18,11 +18,11 @@ DRUSH_ALIAS="${DRUSH_ALIAS:-}"
 # Use local or global Drush, giving priority to a local drush.
 drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush"; else command -v drush; fi)"
 
-echo "  > Provision default content."
-$drush ${DRUSH_ALIAS} -y pm-enable civictheme_content
-
 echo "  > Provision content."
 $drush ${DRUSH_ALIAS} ev -v "require_once '/app/docroot/themes/contrib/civictheme/civictheme.provision.inc'; civictheme_provision_cli();"
+
+echo "  > Provision default content."
+$drush ${DRUSH_ALIAS} -y pm-enable civictheme_content
 
 echo "  > Enable helper module."
 $drush ${DRUSH_ALIAS} -y pm-enable cs_core

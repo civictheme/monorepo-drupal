@@ -62,6 +62,30 @@ function civictheme_content_install() {
     return 'civictheme_content_' . $value;
   }, $supported);
 
+  // Blocks with existing name will be removed and re-created.
+  $remove_block_list = [
+    'Banner',
+    'Search',
+    'Mobile Navigation',
+    'Signup',
+    'Social links',
+    'Footer - Acknowledgment of country',
+    'Footer - Copyright',
+
+  ];
+  foreach ($remove_block_list as $info) {
+    /** @var \Drupal\block_content\Entity\BlockContent $block */
+    $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties([
+      'info' => $info,
+    ]);
+
+    if (!empty($blocks)) {
+      foreach ($blocks as $block) {
+        $block->delete();
+      }
+    }
+  }
+
   foreach ($modules as $module) {
     if (\Drupal::service('module_installer')->install([$module])) {
       Helper::log(t('Successfully enabled: %name.', [
