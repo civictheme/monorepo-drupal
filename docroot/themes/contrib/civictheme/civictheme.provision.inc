@@ -20,6 +20,7 @@ use Drupal\Core\Url;
 use Drupal\media\Entity\Media;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\user\Entity\Role;
 use Drush\Drush;
 use Drush\Log\LogLevel;
 
@@ -758,34 +759,37 @@ function _civictheme_provision__blocks__copyright() {
 }
 
 /**
- * Provision civictheme_demo theme settings.
+ * Provision theme settings.
  */
-function civictheme_provision__update_theme_settings() {
-  $logo_header_desktop = '/themes/custom/civictheme_demo/dist/assets/logos/civictheme_demo_logo_desktop_light.png';
-  $logo_header_mobile = '/themes/custom/civictheme_demo/dist/assets/logos/civictheme_demo_logo_mobile_light.png';
-  $logo_footer_desktop = '/themes/custom/civictheme_demo/dist/assets/logos/civictheme_demo_logo_desktop_dark.png';
-  $logo_footer_mobile = '/themes/custom/civictheme_demo/dist/assets/logos/civictheme_demo_logo_mobile_dark.png';
+function civictheme_provision__theme_settings() {
+  $theme_name = \Drupal::config('system.theme')->get('default');
+  $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
-  $favicon = '/themes/custom/civictheme_demo/dist/assets/favicon.ico';
+  $logo_header_desktop = "$theme_path/dist/assets/logos/{$theme_name}_logo_desktop_light.png";
+  $logo_header_mobile = "$theme_path/dist/assets/logos/{$theme_name}_logo_mobile_light.png";
+  $logo_footer_desktop = "$theme_path/dist/assets/logos/{$theme_name}_logo_desktop_dark.png";
+  $logo_footer_mobile = "$theme_path/dist/assets/logos/{$theme_name}_logo_mobile_dark.png";
 
-  $config = \Drupal::service('config.factory')->getEditable('civictheme_demo.settings');
+  $favicon = "$theme_path/dist/assets/favicon.ico";
+
+  $config = \Drupal::service('config.factory')->getEditable("$theme_name.settings");
 
   $config->set('logo', [
     'use_default' => FALSE,
-    'path' => substr($logo_header_desktop, 1),
-    'url' => $logo_header_desktop,
+    'path' => $logo_header_desktop,
+    'url' => '/' . ltrim($logo_header_desktop, '/'),
   ]);
 
-  $config->set('logo_path', substr($logo_header_desktop, 1));
-  $config->set('civictheme_header_logo_mobile', substr($logo_header_mobile, 1));
-  $config->set('civictheme_footer_logo_desktop', substr($logo_footer_desktop, 1));
-  $config->set('civictheme_footer_logo_mobile', substr($logo_footer_mobile, 1));
+  $config->set('logo_path', $logo_header_desktop);
+  $config->set('civictheme_header_logo_mobile', $logo_header_mobile);
+  $config->set('civictheme_footer_logo_desktop', $logo_footer_desktop);
+  $config->set('civictheme_footer_logo_mobile', $logo_footer_mobile);
 
   $config->set('civictheme_site_logo_alt', 'CivicTheme demo logo');
 
   $config->set('favicon', [
     'use_default' => FALSE,
-    'path' => substr($favicon, 1),
+    'path' => $favicon,
     'mimetype' => 'image/vnd.microsoft.icon',
   ]);
 
@@ -796,5 +800,155 @@ function civictheme_provision__update_theme_settings() {
 }
 
 /**
+ * Provision permissions.
+ */
+function civictheme_provision__permissions() {
+  $map = civictheme_provision_permissions_map();
+
+  /** @var \Drupal\user\PermissionHandler $permission_handler */
+  $permission_handler = \Drupal::getContainer()->get('user.permissions');
+  $all_permissions = array_keys($permission_handler->getPermissions());
+
+  foreach ($map as $role_name => $permissions_map) {
+    $role = Role::load($role_name);
+    if (!$role) {
+      continue;
+    }
+
+    foreach ($permissions_map as $permissions) {
+      foreach ($permissions as $permission) {
+        // Only grant permissions that are currently available on the site.
+        if (in_array($permission, $all_permissions)) {
+          $role->grantPermission($permission);
+        }
+      }
+    }
+    $role->save();
+  }
+}
+
+/**
+ * Provision simple sitemap.
+ */
+function civictheme_provision__simple_sitemap() {
+  if (!\Drupal::moduleHandler()->moduleExists('simple_sitemap')) {
+    \Drupal::service('module_installer')->install(['simple_sitemap']);
+  }
+
+  /** @var \Drupal\simple_sitemap\Manager\Generator $generator */
+  $generator = \Drupal::service('simple_sitemap.generator');
+
+  $settings = [
+    'index' => TRUE,
+    'priority' => 0.5,
+    'changefreq' => 'hourly',
+    'include_images' => FALSE,
+  ];
+
+  $bundles = ['civictheme_page', 'civictheme_event'];
+  foreach ($bundles as $bundle) {
+    $generator->entityManager()->setBundleSettings('node', $bundle, $settings);
+  }
+
+  $generator->customLinkManager()->add('/', $settings);
+}
+
+/**
+ * Map of roles and permissions to be granted.
+ *
+ * This allows to centrally manage additional permissions that may be
+ * optionally provisioned for specific CivicTheme roles. Such permissions
+ * would not be a part of CivicTheme roles' configurations, but would be
+ * expected the roles to have in some Drupal profiles (like GovCMS).
+ *
+ * @return array
+ *   Array of with role names as keys and permissions arrays as values, each of
+ *   which is keyed by a module.
+ */
+function civictheme_provision_permissions_map() {
+  $map = [
+    'civictheme_content_approver' => [
+      'honeypot' => [
+        'bypass honeypot protection',
+      ],
+      'tfa' => [
+        'setup own tfa',
+      ],
+      'toolbar' => [
+        'access toolbar',
+      ],
+    ],
+    'civictheme_content_author' => [
+      'honeypot' => [
+        'bypass honeypot protection',
+      ],
+      'tfa' => [
+        'setup own tfa',
+      ],
+      'toolbar' => [
+        'access toolbar',
+      ],
+    ],
+    'civictheme_site_administrator' => [
+      'honeypot' => [
+        'bypass honeypot protection',
+      ],
+      'tfa' => [
+        'setup own tfa',
+      ],
+      'toolbar' => [
+        'access toolbar',
+      ],
+      'password_policy' => [
+        'manage password reset',
+      ],
+      'pathauto' => [
+        'notify of path changes',
+      ],
+      'webform' => [
+        'access webform submission log',
+        'create webform content',
+        'delete any webform content',
+        'delete own webform content',
+        'delete webform revisions',
+        'delete webform submissions any node',
+        'delete webform submissions own node',
+        'edit any webform content',
+        'edit own webform content',
+        'edit webform submissions any node',
+        'edit webform submissions any node',
+        'edit webform submissions any node',
+        'edit webform submissions own node',
+        'revert webform revisions',
+        'view webform revisions',
+        'view webform submissions any node',
+        'view webform submissions own node',
+      ],
+    ],
+  ];
+
+  return $map;
+}
+
+/**
  * @}
  */
+
+/**
+ * Helper to install modules required by CivicTheme.
+ *
+ * @see https://www.drupal.org/node/2652542
+ */
+function civictheme_enable_modules() {
+  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
+  $theme_handler = \Drupal::getContainer()->get('theme_handler');
+  $theme_data = $theme_handler->rebuildThemeData();
+
+  if (!empty($theme_data['civictheme'])) {
+    $modules = array_keys($theme_data['civictheme']->module_dependencies);
+    /** @var \Drupal\Core\Extension\ModuleInstaller $module_installer */
+    $module_installer = \Drupal::getContainer()->get('module_installer');
+    $module_installer->install($modules);
+  }
+
+}

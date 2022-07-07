@@ -9,15 +9,20 @@ libraries:
 
 dependencies:
   - components:components
+  - content_moderation:content_moderation
   - drupal:block_content
+  - drupal:datetime_range
   - drupal:inline_form_errors
   - drupal:layout_builder
   - drupal:layout_discovery
+  - drupal:media
+  - drupal:media_library
   - drupal:rest
   - field_group:field_group
   - layout_builder_restrictions:layout_builder_restrictions
   - menu_block:menu_block
   - paragraphs:paragraphs
+  - pathauto:pathauto
   - webform:webform
 
 regions:
@@ -554,8 +559,6 @@ config_devel:
     - pathauto.pattern.civictheme_alert
     - pathauto.pattern.civictheme_event
     - pathauto.pattern.civictheme_page
-    - simple_sitemap.bundle_settings.default.node.civictheme_event
-    - simple_sitemap.bundle_settings.default.node.civictheme_page
     - system.menu.civictheme-footer
     - system.menu.civictheme-primary-navigation
     - system.menu.civictheme-secondary-navigation
@@ -572,5 +575,4 @@ config_devel:
   optional:
     - core.entity_view_mode.node.teaser
     - media.settings
-    - simple_sitemap.custom_links.default
 #;> DEVELOPMENT

@@ -1,0 +1,6 @@
+services:
+  cs_core.config_devel_subscriber:
+    class: Drupal\cs_core\EventSubscriber\CsCoreConfigDevelSubscriber
+    arguments: ['@config.factory', '@config.manager', '@plugin.manager.config_filter']
+    tags:
+      - { name: event_subscriber }

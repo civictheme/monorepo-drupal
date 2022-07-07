@@ -96,6 +96,8 @@ shortcut.set.default
 simple_sitemap.settings
 simple_sitemap.sitemap.default
 simple_sitemap.type.default_hreflang
+simple_sitemap.bundle_*
+simple_sitemap.custom_links.*
 stage_file_proxy*
 system.action*
 system.advisories
@@ -148,3 +150,5 @@ webform.settings
 webform.webform.contact
 webform.webform_options*
 workflows.workflow.editorial
+block.block.exposedformcivictheme_testpage_civictheme
+views.view.civictheme_test
