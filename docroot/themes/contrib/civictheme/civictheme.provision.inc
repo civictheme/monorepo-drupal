@@ -330,7 +330,7 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid = N
       return $block;
     }
   }
-  $uuid = \Drupal::service('uuid')->generate();
+  $uuid = $uuid ?? \Drupal::service('uuid')->generate();
   $info = (string) $info;
 
   /** @var \Drupal\block_content\Entity\BlockContent $block */
