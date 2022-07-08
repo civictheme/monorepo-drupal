@@ -17,6 +17,7 @@
  * of CIVICTHEME_CONTENT_TYPES to 'none'.
  */
 
+use Drupal\block\Entity\Block;
 use Drupal\civictheme_content\Helper;
 use Drupal\Core\Installer\Exception\InstallerException;
 
@@ -62,21 +63,30 @@ function civictheme_content_install() {
     return 'civictheme_content_' . $value;
   }, $supported);
 
-  // Blocks with existing name will be removed and re-created.
-  $remove_block_list = [
-    'Banner',
-    'Search',
-    'Mobile Navigation',
-    'Signup',
-    'Social links',
-    'Footer - Acknowledgment of country',
-    'Footer - Copyright',
+  $theme_block_list = [
+    'Banner' => ['banner', '50c52459-c100-4e4d-92a4-9c4c77d8f8d0'],
+    'Search' => ['header_middle_3', '286ff750-a9a9-423a-8a4e-515f79fc0a8f'],
+    'Mobile Navigation' => [
+      'header_middle_3',
+      'b7f36176-620f-4178-aadd-9b448c610986',
+    ],
+    'Signup' => ['content_bottom', '5508dc51-1cf8-4577-9038-b572fbd698ae'],
+    'Social links' => ['footer_top_2', '5c0ad15f-3e9c-4eeb-8525-7a064b06fc58'],
+    'Footer - Acknowledgment of country' => [
+      'footer_bottom_1',
+      '7cf65f98-cbae-4e9d-b6ea-7d6d1c437c1c',
+    ],
+    'Footer - Copyright' => [
+      'footer_bottom_2',
+      'd7098a8c-3ba3-48f7-bc0c-5787ebaa0427',
+    ],
 
   ];
-  foreach ($remove_block_list as $info) {
+  // Blocks with existing name will be removed and re-created.
+  foreach ($theme_block_list as $key => $info) {
     /** @var \Drupal\block_content\Entity\BlockContent $block */
     $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties([
-      'info' => $info,
+      'info' => $key,
     ]);
 
     if (!empty($blocks)) {
@@ -85,12 +95,13 @@ function civictheme_content_install() {
       }
     }
   }
-
+  $assign_region = FALSE;
   foreach ($modules as $module) {
     if (\Drupal::service('module_installer')->install([$module])) {
       Helper::log(t('Successfully enabled: %name.', [
         '%name' => $module,
       ]));
+      $assign_region = TRUE;
     }
     else {
       // Fail installation as a module with a correct name should have been
@@ -98,4 +109,73 @@ function civictheme_content_install() {
       throw new InstallerException('Unable to enable: ' . $module);
     }
   }
+  if ($assign_region) {
+    // Assign blocks to region.
+    foreach ($theme_block_list as $key => $info) {
+      _civictheme_content_place_block($key, $info[0], $info[1]);
+    }
+  }
+}
+
+/**
+ * Place block.
+ *
+ * @param string $label
+ *   Admin label for the block.
+ * @param string $region
+ *   Region to place the block into.
+ * @param string $uuid
+ *   Optional UUID to use for plugin_id. Defaults to NULL. If not provided - a
+ *   random UUID will be generated.
+ * @param array $settings
+ *   Optional array of settings to pass to the block. Default to empty array.
+ *   If not provided - sensible defaults will be used.
+ * @param string $block_type
+ *   Optional block type. Defaults to 'block_content'.
+ */
+function _civictheme_content_place_block($label, $region, $uuid = NULL, array $settings = [], $block_type = 'block_content') {
+  $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
+
+  $label_machine_name = preg_replace('@[^a-zA-Z0-9_]+@', '_', strtolower(str_replace(' ', '_', $label)));
+  $id = $theme_name . '_' . $label_machine_name;
+  $base_theme_id = 'civictheme_' . $label_machine_name;
+  $settings += [
+    'plugin' => $block_type . ':' . ($uuid ?? \Drupal::service('uuid')->generate()),
+    'region' => $region,
+    'id' => $id,
+    'theme' => $theme_name,
+    'label' => $label,
+    'label_display' => FALSE,
+    'visibility' => [],
+    'weight' => 0,
+  ];
+
+  $values = [];
+  // Remove extra values that do not belong in the settings array.
+  foreach (['region', 'id', 'theme', 'plugin', 'weight', 'visibility'] as $key) {
+    $values[$key] = $settings[$key];
+    unset($settings[$key]);
+  }
+
+  foreach ($values['visibility'] as $id => $visibility) {
+    $values['visibility'][$id]['id'] = $id;
+  }
+  $values['settings'] = $settings;
+
+  // Remove block if it already exists.
+  $block = Block::load($values['id']);
+  if ($block) {
+    $block->delete();
+  }
+
+  // Special case: remove existing blocks created by the base theme to avoid
+  // duplicated blocks.
+  $block = Block::load($base_theme_id);
+  if ($block) {
+    $block->delete();
+  }
+
+  $block = Block::create($values);
+
+  $block->save();
 }
