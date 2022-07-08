@@ -14,7 +14,7 @@
  * @code
  * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description"
  *
- * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description" path/to/theme/new_machine_name
+ * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description" /path/to/theme/new_machine_name
  * @endcode
  *
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingBefore
