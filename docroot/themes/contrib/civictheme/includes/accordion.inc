@@ -22,7 +22,7 @@ function civictheme_preprocess_paragraph__civictheme_accordion(&$variables) {
     $variables['panels'][] = [
       'expanded' => (bool) $panel_paragraph->get('field_c_p_expand')->getString(),
       'title' => $panel_paragraph->get('field_c_p_title')->getString(),
-      'content' => $panel_paragraph->get('field_c_p_content')->getValue()[0]['value'],
+      'content' => $panel_paragraph->get('field_c_p_content')->view(),
     ];
   }
 }
