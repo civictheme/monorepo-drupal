@@ -22,7 +22,7 @@
   {% for type, logo in logos %}
     {% set visibility_class = type == 'mobile' ? 'show-xxs hide-m' : 'hide-xxs show-m' %}
     {% if logo.src is not empty %}
-      <div {% if attributes is not empty %}{{ attributes|raw }}{% endif %} class="civictheme-logo {{ visibility_class }} {{ modifier_class }}">
+      <div class="civictheme-logo {{ visibility_class }} {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
         {% if url is not empty %}
         <a class="civictheme-logo__url" href="{{ url }}" title="{{ title|default('Click to go to the homepage') }}">
         {% endif %}
