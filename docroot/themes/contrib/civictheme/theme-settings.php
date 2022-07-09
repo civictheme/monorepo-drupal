@@ -34,8 +34,8 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['logo']['settings']['civictheme_footer_logo_desktop'] = [
     '#type' => 'textfield',
     '#title' => t('Footer desktop logo path'),
-    '#description' => _civictheme_field_description(theme_get_setting('civictheme_header_logo_desktop'), 'logo-header-desktop.svg'),
-    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_header_logo_desktop')),
+    '#description' => _civictheme_field_description(theme_get_setting('civictheme_footer_logo_desktop'), 'logo-header-desktop.svg'),
+    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_footer_logo_desktop')),
   ];
 
   $form['logo']['settings']['civictheme_footer_logo_mobile'] = [
