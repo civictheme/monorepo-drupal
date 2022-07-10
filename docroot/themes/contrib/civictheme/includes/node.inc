@@ -146,11 +146,11 @@ function _civictheme_preprocess_node__civictheme_slider_slide(&$variables) {
   // Summary.
   // Page.
   if ($node->hasField('field_c_n_summary') && !$node->get('field_c_n_summary')->isEmpty()) {
-    $variables['summary'] = $node->get('field_c_n_summary')->getValue()[0]['value'];
+    $variables['summary'] = $node->get('field_c_n_summary')->view();
   }
   // Event.
   if ($node->hasField('field_c_n_tagline') && !$node->get('field_c_n_tagline')->isEmpty()) {
-    $variables['summary'] = $node->get('field_c_n_tagline')->getValue()[0]['value'];
+    $variables['summary'] = $node->get('field_c_n_tagline')->view();
   }
 
   // Links.

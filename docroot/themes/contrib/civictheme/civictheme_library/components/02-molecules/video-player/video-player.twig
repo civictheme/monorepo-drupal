@@ -24,7 +24,7 @@
 {% if sources is not empty or embedded_source is not empty or raw_source is not empty %}
   <div class="civictheme-video-player {{ modifier_class }}">
     {% block video %}
-      <div class="civictheme-video__wrapper">
+      <div class="civictheme-video-player__wrapper">
         {% if sources is not empty %}
           {% include '@atoms/video/video.twig' with {
             sources: sources,

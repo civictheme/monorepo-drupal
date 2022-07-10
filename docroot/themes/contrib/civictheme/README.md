@@ -29,16 +29,20 @@ you to get started with.
 
 Run the following command from within `civictheme` theme directory:
 
-    php civictheme_create_subtheme.php <theme_machine_name> "Human theme name" "Human theme description"
+    php civictheme_create_subtheme.php <theme_machine_name> "Human theme name" "Human theme description" /path/to/theme_machine_name
 
-This will generate a sub-theme in your `custom` theme directory with everything
-ready to be installed and compiled.
+This will generate a sub-theme in 'path/to/theme_machine_name' theme directory
+with everything ready to be installed and compiled.
 
 ## Compiling sub-theme assets
 
 Run the following command from within your sub-theme directory:
 
     npm run build
+
+## Updating CivicTheme
+
+See `README.md` in your custom theme.
 
 ## Development documentation
 

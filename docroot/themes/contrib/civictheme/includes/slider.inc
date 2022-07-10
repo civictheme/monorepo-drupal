@@ -72,7 +72,7 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
 
   // Summary.
   if ($paragraph->hasField('field_c_p_content') && !$paragraph->get('field_c_p_content')->isEmpty()) {
-    $variables['summary'] = $paragraph->get('field_c_p_content')->getValue()[0]['value'];
+    $variables['summary'] = $paragraph->get('field_c_p_content')->view();
   }
 
   // Links.

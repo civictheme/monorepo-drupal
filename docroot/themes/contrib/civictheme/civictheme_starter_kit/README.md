@@ -21,8 +21,25 @@ Learn more about developing with CivicTheme in [CivicTheme documentation](../../
 
 ## Updating site configuration after CivicTheme update
 
-    php ./scripts/update_config.php ../../contrib/civictheme/config ../../../config/default scripts/example.site_custom_configs.txt
+1. Check that your custom theme has 2 files:
+   - `update_config.php` - script to update configurations.
+   - `civictheme_starter_kit.site_custom_configs.txt` - file with configuration
+      exclusions that are considered to be custom for the current site.
+      This file contains some generic defaults.
 
-Note that this script can be run on your host, and it does not require a running
-site to copy config files. You will need to import and export config using a
-running site though after the config files are updated.
+2. Adjust custom configurations in `civictheme_starter_kit.site_custom_configs.txt`.
+   These configurations will not be compared against configurations provided by the CivicTheme.
+   Wildcards are supported.
+
+3. Run the configuration update script:
+
+    php ./scripts/update_config.php \
+      ../../contrib/civictheme/config \
+      ../../../config/default \
+      scripts/civictheme_starter_kit.site_custom_configs.txt
+
+4. Check updated configuration with a diff tool of your choice.
+5. Resolve configuration overrides one-by-one.
+6. Re-build local environment with updated configuration.
+7. Check that everything looks good
+8. If there are issues - repeat steps 2-7 until desired result is achieved.
