@@ -19,7 +19,13 @@
 
 {% block content %}
   {% if show_site_logo %}
-    {% include '@molecules/logo/logo.twig' %}
+    {% include '@molecules/logo/logo.twig' with {
+      logos: logos,
+      url: url,
+      title: title,
+      theme: theme,
+      modifier_class: modifier_class
+    } only %}
   {% endif %}
 
   {% if show_site_name and site_name %}
