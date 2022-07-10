@@ -23,6 +23,15 @@ function cs_core_mail_alter(&$message) {
  * Implements hook_preprocess_html().
  */
 function cs_core_preprocess_html(&$variables) {
+  /** @var \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list */
+  $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
+  $civictheme_theme_path = $civictheme_path . DIRECTORY_SEPARATOR . 'civictheme.theme';
+  if (!file_exists($civictheme_theme_path)) {
+    return;
+  }
+
+  require_once $civictheme_theme_path;
+
   $version = civictheme_get_version();
 
   $style = <<<HTML
