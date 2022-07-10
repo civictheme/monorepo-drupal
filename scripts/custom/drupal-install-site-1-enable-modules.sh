@@ -32,14 +32,3 @@ echo "  > Enable CivicTheme theme and set as default."
 $drush ${DRUSH_ALIAS} -y then civictheme
 $drush ${DRUSH_ALIAS} -y config-set system.theme default civictheme
 $drush ${DRUSH_ALIAS} -y config-set media.settings standalone_url true
-
-if [ "${DREVOPS_DRUPAL_PROFILE}" = "govcms" ]; then
-  echo "  > Uninstall obsolete themes."
-  $drush ${DRUSH_ALIAS} -y thun claro || true
-  $drush ${DRUSH_ALIAS} -y thun govcms_bartik || true
-  $drush ${DRUSH_ALIAS} -y thun bartik || true
-
-  echo "  > Remove GovCMS configs."
-  $drush ${DRUSH_ALIAS} -y pm-enable civictheme_govcms
-  $drush ${DRUSH_ALIAS} civictheme_govcms:remove-config
-fi
