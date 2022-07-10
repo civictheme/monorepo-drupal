@@ -18,3 +18,32 @@ function cs_core_mail_alter(&$message) {
     $message['send'] = FALSE;
   }
 }
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function cs_core_preprocess_html(&$variables) {
+  $version = civictheme_get_version();
+
+  $style = <<<HTML
+<style>
+.civictheme-footer__logo::after {
+  content: 'Version $version';
+  bottom: 0;
+  display: block;
+  font-family: sans-serif;
+  font-size: x-small;
+  left: 50px;
+  position: absolute;
+}
+</style>"
+HTML;
+
+  $variables['page_bottom']['civictheme_version'] = [
+    '#type' => 'inline_template',
+    '#template' => '{{ content|raw }}',
+    '#context' => [
+      'content' => $style,
+    ],
+  ];
+}

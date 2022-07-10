@@ -6,8 +6,10 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
 use Drupal\Core\StreamWrapper\PublicStream;
 use Drupal\Core\StreamWrapper\StreamWrapperManager;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_form_system_theme_settings_alter().
@@ -15,6 +17,20 @@ use Drupal\Core\StreamWrapper\StreamWrapperManager;
 function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
   $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
+
+  $civictheme_version = civictheme_get_version();
+  if ($civictheme_version) {
+    $form['civictheme_version'] = [
+      '#type' => 'inline_template',
+      '#template' => '{{ content|raw }}',
+      '#context' => [
+        'content' => t('<div class="messages messages--info">CivicTheme version: @version</div>', [
+          '@version' => Link::fromTextAndUrl($civictheme_version, Url::fromUri('https://github.com/salsadigitalauorg/civictheme/releases/tag/' . $civictheme_version))->toString(),
+        ]),
+      ],
+      '#weight' => -100,
+    ];
+  }
 
   // Disable default settings as we do not support uploading of custom logos
   // through config form (yet).
