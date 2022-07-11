@@ -173,7 +173,7 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
     $variables['content_middle'][] = [
       '#theme' => 'civictheme_basic_content',
       '#component_theme' => $variables['theme'] ?? NULL,
-      '#content' => '<p>Last updated: ' . \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civictheme_short_date') . '<p>',
+      '#content' => '<p class="civictheme-banner__last_updated">Last updated: ' . \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civictheme_short_date') . '<p>',
     ];
   }
 
