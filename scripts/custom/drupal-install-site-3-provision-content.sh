@@ -18,6 +18,17 @@ DRUSH_ALIAS="${DRUSH_ALIAS:-}"
 # Use local or global Drush, giving priority to a local drush.
 drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush"; else command -v drush; fi)"
 
+if [ "${DREVOPS_DRUPAL_PROFILE}" = "govcms" ]; then
+  echo "  > Uninstall obsolete themes."
+  $drush ${DRUSH_ALIAS} -y thun claro || true
+  $drush ${DRUSH_ALIAS} -y thun govcms_bartik || true
+  $drush ${DRUSH_ALIAS} -y thun bartik || true
+
+  echo "  > Remove GovCMS configs."
+  $drush ${DRUSH_ALIAS} -y pm-enable civictheme_govcms
+  $drush ${DRUSH_ALIAS} civictheme_govcms:remove-config
+fi
+
 echo "  > Provision content."
 $drush ${DRUSH_ALIAS} ev -v "require_once '/app/docroot/themes/contrib/civictheme/civictheme.provision.inc'; civictheme_provision_cli();"
 

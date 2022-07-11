@@ -14,7 +14,7 @@
  * @code
  * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description"
  *
- * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description" path/to/theme/new_machine_name
+ * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description" /path/to/theme/new_machine_name
  * @endcode
  *
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingBefore
@@ -189,6 +189,16 @@ function process_stub($dir, $options) {
   file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'gulpfile.js');
   file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/webpack/' . 'theme_js.js');
   file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'package.json');
+
+  // Adjust per-file settings.
+  //
+  // Remove 'hidden: true' from the info.
+  $info_file = $dir . DIRECTORY_SEPARATOR . $options['machine_name'] . '.info.yml';
+  if (file_exists($info_file)) {
+    $content = file_get_contents($info_file);
+    $content = str_replace("hidden: true\n", '', $content);
+    file_put_contents($info_file, $content);
+  }
 }
 
 /**

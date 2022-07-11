@@ -33,21 +33,21 @@
 %}
 <!DOCTYPE html>
 <html{{ html_attributes }}>
-<head>
+  <head>
     <head-placeholder token="{{ placeholder_token }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
-</head>
-<body{{ attributes.addClass(body_classes) }}>
+  </head>
+  <body{{ attributes.addClass(body_classes) }}>
 
-{% include '@molecules/skip-link/skip-link.twig' with {
-  url: '#main-content' ,
-} only %}
+    {% include '@molecules/skip-link/skip-link.twig' with {
+      url: '#main-content' ,
+    } only %}
 
-{{ page_top }}
-{{ page }}
-{{ page_bottom }}
-<js-bottom-placeholder token="{{ placeholder_token }}">
-</body>
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+    <js-bottom-placeholder token="{{ placeholder_token }}">
+  </body>
 </html>
