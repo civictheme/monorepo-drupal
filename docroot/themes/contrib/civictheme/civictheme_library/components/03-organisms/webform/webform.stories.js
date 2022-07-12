@@ -2,7 +2,6 @@ import {
   boolean, radios, text,
 } from '@storybook/addon-knobs';
 import CivicThemeWebform from './webform.twig';
-import FormElement from '../form-element/form-element.twig';
 
 export default {
   title: 'Organisms/Webform',
@@ -10,7 +9,6 @@ export default {
 
 export const Webform = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-  const inputKnobTab = 'Input';
 
   const theme = radios(
     'Theme',
