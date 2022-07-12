@@ -10,6 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Template\AttributeArray;
+use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
@@ -476,4 +477,27 @@ function _civictheme_listing_get_node($form_state) {
   }
 
   return $nid;
+}
+
+/**
+ * Implements hook_form__alter().
+ */
+function civictheme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (!empty($form_id) && strpos($form_id, 'webform_submission_') === 0) {
+    /** @var \Drupal\webform\WebformSubmissionForm $form_object */
+    $form_object = $form_state->getFormObject();
+    /** @var \Drupal\webform\WebformSubmissionInterface $webform_submission */
+    $webform_submission = $form_object->getEntity();
+    $source = $webform_submission->getSourceEntity();
+    $paragraph_id = !empty($source) ? $source->id() : '';
+    if (!empty($paragraph_id)) {
+      $paragraph = Paragraph::load($paragraph_id);
+      if (!empty($paragraph) && $paragraph->hasField('field_c_p_theme') && !$paragraph->get('field_c_p_theme')->isEmpty()) {
+        $theme = $paragraph->get('field_c_p_theme')->getString();
+      }
+      if (!empty($form['elements']) && !empty($theme)) {
+        _civictheme_propagate_component_theme_settings($form['elements'], $theme);
+      }
+    }
+  }
 }
