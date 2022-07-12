@@ -37,5 +37,85 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
         ],
       ],
     ],
+    [
+      'title' => 'Demo Page, Webform component, Dark',
+      'components' => [
+        [
+          'type' => 'content',
+          'webform' => $helper::randomRealWebform(),
+          'theme' => $helper::civicthemeThemeDark(),
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Webform component, Light, BG',
+      'components' => [
+        [
+          'type' => 'content',
+          'webform' => $helper::randomRealWebform(),
+          'theme' => $helper::civicthemeThemeLight(),
+          'background' => TRUE,
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Webform component, Dark, BG',
+      'components' => [
+        [
+          'type' => 'content',
+          'webform' => $helper::randomRealWebform(),
+          'theme' => $helper::civicthemeThemeDark(),
+          'background' => TRUE,
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Webform component, Light, No BG, Both spaces',
+      'components' => [
+        [
+          'type' => 'content',
+          'webform' => $helper::randomRealWebform(),
+          'theme' => $helper::civicthemeThemeLight(),
+          'background' => FALSE,
+          'space' => $helper::civicthemeSpaceTypeBoth(),
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Webform component, Dark, No BG, Both spaces',
+      'components' => [
+        [
+          'type' => 'content',
+          'webform' => $helper::randomRealWebform(),
+          'theme' => $helper::civicthemeThemeDark(),
+          'background' => FALSE,
+          'space' => $helper::civicthemeSpaceTypeBoth(),
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Webform component, Light, BG, Both spaces',
+      'components' => [
+        [
+          'type' => 'content',
+          'webform' => $helper::randomRealWebform(),
+          'theme' => $helper::civicthemeThemeLight(),
+          'background' => TRUE,
+          'space' => $helper::civicthemeSpaceTypeBoth(),
+        ],
+      ],
+    ],
+    [
+      'title' => 'Demo Page, Webform component, Dark, BG, Both spaces',
+      'components' => [
+        [
+          'type' => 'content',
+          'webform' => $helper::randomRealWebform(),
+          'theme' => $helper::civicthemeThemeDark(),
+          'background' => TRUE,
+          'space' => $helper::civicthemeSpaceTypeBoth(),
+        ],
+      ],
+    ],
   ];
 }

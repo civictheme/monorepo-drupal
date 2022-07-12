@@ -1347,3 +1347,15 @@ $civictheme-tabs-dark-links-selected-border-color: $civictheme-tabs-dark-links-b
 $civictheme-tabs-dark-panel-color: $civictheme-tabs-dark-links-color !default;
 $civictheme-tabs-dark-panel-background-color: civictheme-color('primary', 4) civictheme-color('primary', 4) !default;
 $civictheme-tabs-dark-panel-border-color: civictheme-color('neutral', 1) !default;
+
+//
+// Webfrom.
+//
+$civictheme-webform-space-vertical: civictheme-space(10) !default;
+$civictheme-webform-space-horizontal: civictheme-space(7) !default;
+$civictheme-webform-light-color: civictheme-color('neutral', 7) !default;
+$civictheme-webform-light-background-color: civictheme-color('neutral', 2) !default;
+$civictheme-webform-light-wrapper-background-color: civictheme-color('neutral', 2) !default;
+$civictheme-webform-dark-color: civictheme-color('neutral', 1) !default;
+$civictheme-webform-dark-background-color: civictheme-color('primary', 5) !default;
+$civictheme-webform-dark-wrapper-background-color: civictheme-color('primary', 4) !default;

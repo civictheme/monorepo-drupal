@@ -60,6 +60,7 @@ function _civictheme_preprocess_paragraph(&$variables) {
   _civictheme_preprocess_paragraph__field__space($variables);
   _civictheme_preprocess_paragraph__field__background($variables);
   _civictheme_preprocess_paragraph__civictheme_card($variables);
+  _civictheme_preprocess_paragraph__field__webform($variables);
 
 }
 
@@ -226,4 +227,14 @@ function _civictheme_paragraph_get_theme(Paragraph $paragraph) {
  */
 function _civictheme_paragraph_field_has_value(Paragraph $paragraph, $field_name) {
   return $paragraph && $paragraph->hasField($field_name) && !$paragraph->get($field_name)->isEmpty();
+}
+
+/**
+ * Preprocessing reference webfrom paragraphs.
+ */
+function _civictheme_preprocess_paragraph__field__webform(&$variables) {
+  $paragraph = $variables['paragraph'];
+  if ($paragraph->hasField('field_c_p_webform') && !$paragraph->get('field_c_p_webform')->isEmpty()) {
+    $variables['reference_webform'] = $paragraph->get('field_c_p_webform')->view();
+  }
 }
