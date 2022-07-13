@@ -416,6 +416,9 @@ config_devel:
     - field.field.paragraph.civictheme_task_card.field_c_p_link
     - field.field.paragraph.civictheme_task_card.field_c_p_summary
     - field.field.paragraph.civictheme_task_card.field_c_p_title
+    - field.field.paragraph.civictheme_webform.field_c_p_background
+    - field.field.paragraph.civictheme_webform.field_c_p_space
+    - field.field.paragraph.civictheme_webform.field_c_p_theme
     - field.field.paragraph.civictheme_webform.field_c_p_webform
     - field.storage.block_content.field_c_b_background_image
     - field.storage.block_content.field_c_b_bottom_menu
