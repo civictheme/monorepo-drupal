@@ -17,7 +17,6 @@
  * of CIVICTHEME_CONTENT_TYPES to 'none'.
  */
 
-use Drupal\block\Entity\Block;
 use Drupal\civictheme_content\Helper;
 use Drupal\Core\Installer\Exception\InstallerException;
 
