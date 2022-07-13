@@ -21,7 +21,7 @@ function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
   $variables['next_label'] = t('Next');
 
   // Link.
-  if ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_link')) {
     $link = $paragraph->get('field_c_p_link')->first();
     $variables['link'] = [
       'type' => 'secondary',
@@ -51,12 +51,12 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   $variables['attributes']['data-component-civictheme-slider-slide'] = '';
 
   // Image position.
-  if ($paragraph->hasField('field_c_p_image_position') && !$paragraph->get('field_c_p_image_position')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_image_position')) {
     $variables['image_position'] = $paragraph->get('field_c_p_image_position')->getString();
   }
 
   // Topic.
-  if ($paragraph->hasField('field_c_p_topic') && !$paragraph->get('field_c_p_topic')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_topic')) {
     $topics = [];
     foreach ($paragraph->get('field_c_p_topic')->referencedEntities() as $topic) {
       $topics[] = [
@@ -71,12 +71,12 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   }
 
   // Summary.
-  if ($paragraph->hasField('field_c_p_content') && !$paragraph->get('field_c_p_content')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_content')) {
     $variables['summary'] = $paragraph->get('field_c_p_content')->view();
   }
 
   // Links.
-  if ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_link')) {
     $inverse_theme = $variables['theme'] === 'dark' ? 'light' : 'dark';
     $link = $paragraph->get('field_c_p_link')->first();
     $links = [];

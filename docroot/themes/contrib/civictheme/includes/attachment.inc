@@ -14,7 +14,7 @@ function civictheme_preprocess_paragraph__civictheme_attachment(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  if ($paragraph->hasField('field_c_p_attachments') && !$paragraph->get('field_c_p_attachments')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_attachments')) {
     $attachments = [];
     foreach ($paragraph->field_c_p_attachments->referencedEntities() as $attachment) {
       $fid = $attachment->getSource()->getSourceFieldValue($attachment);

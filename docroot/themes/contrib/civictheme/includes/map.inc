@@ -15,12 +15,12 @@ function civictheme_preprocess_paragraph__civictheme_map(&$variables) {
   $paragraph = $variables['paragraph'];
   $variables['url'] = $paragraph->get('field_c_p_embed_url')->getString();
   $variables['address'] = $paragraph->get('field_c_p_address')->getString();
-  if (!$paragraph->get('field_c_p_share_link')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_share_link')) {
     $link = $paragraph->get('field_c_p_share_link');
     $variables['share_link'] = $link->getString();
     $variables['share_link_is_external'] = UrlHelper::isExternal($link->first()->getValue()['uri']);
   }
-  if (!$paragraph->get('field_c_p_view_link')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_view_link')) {
     $link = $paragraph->get('field_c_p_view_link');
     $variables['view_link'] = $link->getString();
     $variables['view_link_is_external'] = UrlHelper::isExternal($link->first()->getValue()['uri']);

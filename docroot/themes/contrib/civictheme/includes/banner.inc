@@ -50,11 +50,11 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   $variables['type'] = CIVICTHEME_BANNER_TYPE_DEFAULT;
 
   $variables['theme'] = CIVICTHEME_BANNER_DEFAULT_THEME;
-  if ($entity->hasField('field_c_b_theme') && !$entity->get('field_c_b_theme')->isEmpty()) {
+  if (civictheme_field_has_value($entity, 'field_c_b_theme')) {
     $variables['theme'] = strtolower($entity->get('field_c_b_theme')->getString());
   }
 
-  if ($entity->hasField('field_c_b_background_image') && !$entity->get('field_c_b_background_image')->isEmpty()) {
+  if (civictheme_field_has_value($entity, 'field_c_b_background_image')) {
     $variables['background_image'] = civictheme_media_get_url_from_field($entity, 'field_c_b_background_image');
   }
 
@@ -91,7 +91,7 @@ function _civictheme_preprocess_civictheme_banner_title(&$variables) {
   }
 
   if (!is_null($node)) {
-    if ($node->hasField('field_c_n_banner_title') && !$node->get('field_c_n_banner_title')->isEmpty()) {
+    if (civictheme_field_has_value($node, 'field_c_n_banner_title')) {
       $page_title = $node->get('field_c_n_banner_title')->getString();
     }
   }
@@ -121,7 +121,7 @@ function _civictheme_preprocess_civictheme_banner_breadcrumb(&$variables) {
   // Breadcrumb visibility.
   $hide_breadcrumb = FALSE;
   if (!is_null($node)) {
-    if ($node->hasField('field_c_n_banner_hide_breadcrumb') && !$node->get('field_c_n_banner_hide_breadcrumb')->isEmpty()) {
+    if (civictheme_field_has_value($node, 'field_c_n_banner_hide_breadcrumb')) {
       $hide_breadcrumb = $node->get('field_c_n_banner_hide_breadcrumb')->getString();
     }
   }
@@ -157,11 +157,11 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
     return;
   }
 
-  if ($node->hasField('field_c_n_banner_type') && !$node->get('field_c_n_banner_type')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_banner_type')) {
     $variables['type'] = $node->get('field_c_n_banner_type')->getString();
   }
 
-  if ($node->hasField('field_c_n_banner_theme') && !$node->get('field_c_n_banner_theme')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_banner_theme')) {
     $variables['theme'] = $node->get('field_c_n_banner_theme')->getString();
   }
 
@@ -169,7 +169,7 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
   $variables['is_front'] = $is_front;
 
   // Last updated date.
-  if ($node->hasField('field_c_n_show_last_updated') && !$node->get('field_c_n_show_last_updated')->isEmpty() && $node->get('field_c_n_show_last_updated')->getString()) {
+  if (civictheme_field_has_value($node, 'field_c_n_show_last_updated') && $node->get('field_c_n_show_last_updated')->getString()) {
     $variables['content_middle'][] = [
       '#theme' => 'civictheme_basic_content',
       '#component_theme' => $variables['theme'] ?? NULL,
@@ -178,26 +178,26 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
   }
 
   // Banner background.
-  if ($node->hasField('field_c_n_banner_background') && !$node->get('field_c_n_banner_background')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_banner_background')) {
     $variables['background_image'] = civictheme_media_get_url_from_field($node, 'field_c_n_banner_background');
   }
 
   // Banner featured image.
-  if ($node->hasField('field_c_n_banner_featured_image') && !$node->get('field_c_n_banner_featured_image')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_banner_featured_image')) {
     $variables['featured_image']['src'] = civictheme_media_get_url_from_field($node, 'field_c_n_banner_featured_image');
     // @todo Iplement correct getter for alt attribute.
     $variables['featured_image']['alt'] = t('Banner featured image');
   }
 
   // Banner content components.
-  if ($node->hasField('field_c_n_banner_components') && !$node->get('field_c_n_banner_components')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_banner_components')) {
     $entities = $node->field_c_n_banner_components->referencedEntities();
     $render_controller = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
     $variables['content'][] = $render_controller->viewMultiple($entities, 'default');
   }
 
   // Banner content below components.
-  if ($node->hasField('field_c_n_banner_components_bott') && !$node->get('field_c_n_banner_components_bott')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_banner_components_bott')) {
     $entities = $node->field_c_n_banner_components_bott->referencedEntities();
     $render_controller = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
     $variables['content_below'][] = $render_controller->viewMultiple($entities, 'default');

@@ -111,7 +111,7 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
 
-  if ($media->hasField('field_c_m_share_link') && !$media->get('field_c_m_share_link')->isEmpty()) {
+  if (civictheme_field_has_value($media, 'field_c_m_share_link')) {
     $share_attributes = new Attribute();
     $share_attributes->setAttribute('aria-label', t('Share this video @label', [
       '@label' => $media->label(),
@@ -131,14 +131,14 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
   ]));
   // Transcript link points to the video if the transcript is empty or
   // to the external transcript, if provided.
-  if ($media->hasField('field_c_m_transcript') && !$media->get('field_c_m_transcript')->isEmpty()) {
+  if (civictheme_field_has_value($media, 'field_c_m_transcript')) {
     $variables['transcript_link'] = [
       'text' => t('View transcript'),
       'url' => $media->toUrl()->toString(),
       'attributes' => $transcript_attributes,
     ];
   }
-  elseif ($media->hasField('field_c_m_transcript_link') && !$media->get('field_c_m_transcript_link')->isEmpty()) {
+  elseif (civictheme_field_has_value($media, 'field_c_m_transcript_link')) {
     $variables['transcript_link'] = [
       'text' => !empty($media->get('field_c_m_transcript_link')->first()->get('title')->getValue()) ? $media->get('field_c_m_transcript_link')->first()->get('title')->getValue() : t('View transcript'),
       'url' => $media->get('field_c_m_transcript_link')->first()->getUrl()->toString(),

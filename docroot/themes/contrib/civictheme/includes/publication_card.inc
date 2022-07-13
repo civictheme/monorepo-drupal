@@ -15,18 +15,18 @@ use Drupal\file\Entity\File;
 function civictheme_preprocess_paragraph__civictheme_publication_card(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $link = ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
+  $link = civictheme_field_has_value($paragraph, 'field_c_p_link') ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
   if (!empty($link['uri']) && !UrlHelper::isExternal($link['uri'])) {
     $link['uri'] = Url::fromUri($link['uri'])->toString();
   }
   $variables['url'] = $link['uri'] ?? NULL;
   $variables['is_external'] = !empty($link['uri']) ? UrlHelper::isExternal($link['uri']) : FALSE;
   // Publication card size.
-  if ($paragraph->hasField('field_c_p_size') && !$paragraph->get('field_c_p_size')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_size')) {
     $variables['size'] = $paragraph->get('field_c_p_size')->getString();
   }
 
-  if ($paragraph->hasField('field_c_p_document') && !$paragraph->get('field_c_p_document')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_document')) {
     $documents = $paragraph->field_c_p_document->referencedEntities();
     $document = reset($documents);
     $fid = $document->getSource()->getSourceFieldValue($document);

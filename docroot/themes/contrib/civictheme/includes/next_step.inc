@@ -15,7 +15,7 @@ function civictheme_preprocess_paragraph__civictheme_next_step(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  $link = ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
+  $link = (civictheme_field_has_value($paragraph, 'field_c_p_link')) ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
   if (!empty($link['uri']) && !UrlHelper::isExternal($link['uri'])) {
     $link['uri'] = Url::fromUri($link['uri'])->toString();
   }
