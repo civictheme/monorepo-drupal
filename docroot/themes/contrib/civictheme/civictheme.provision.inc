@@ -318,17 +318,15 @@ function _civictheme_provision_discover_callbacks() {
  * @param string $info
  *   Block info.
  * @param string $uuid
- *   Block uuid (Optional).
+ *   Block uuid.
  *
  * @return \Drupal\Core\Entity\EntityInterface
  *   An instance of block_content.
  */
-function civictheme_provision_create_block_content($block_type, $info, $uuid = NULL) {
-  if (!empty($uuid)) {
-    $block = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', $uuid);
-    if (!empty($block)) {
-      $block->delete();
-    }
+function civictheme_provision_create_block_content($block_type, $info, $uuid) {
+  $block = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', $uuid);
+  if ($block !== NULL) {
+    $block->delete();
   }
   $uuid = $uuid ?? \Drupal::service('uuid')->generate();
   $info = (string) $info;
@@ -577,13 +575,10 @@ function civictheme_provision__menu_links() {
  */
 function civictheme_provision__blocks() {
   _civictheme_provision__blocks__menu_blocks();
-  _civictheme_provision__blocks__banner();
-  _civictheme_provision__blocks__search();
-  _civictheme_provision__blocks__mobile_navigation();
-  _civictheme_provision__blocks__signup();
-  _civictheme_provision__blocks__social_links();
-  _civictheme_provision__blocks__acknowledgment_of_country();
-  _civictheme_provision__blocks__copyright();
+  $blocks = _civictheme_get_theme_block();
+  foreach ($blocks as $block) {
+    call_user_func($block['builder'], $block);
+  }
 }
 
 /**
@@ -621,19 +616,25 @@ function _civictheme_provision__blocks__menu_blocks() {
 
 /**
  * Provision banner block.
+ *
+ * @param array $block
+ *   Data structure of block.
  */
-function _civictheme_provision__blocks__banner() {
-  $block_content = civictheme_provision_create_block_content('civictheme_banner', t('Banner'), '50c52459-c100-4e4d-92a4-9c4c77d8f8d0');
+function _civictheme_provision__blocks__banner(array $block) {
+  $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $block_content->field_c_b_background_image = civictheme_provision_load_media_by_name('civictheme_background_dark_1.jpg');
   $block_content->field_c_b_theme = 'dark';
   $block_content->save();
-  civictheme_provision_place_block('Banner', 'banner', $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
 
 /**
  * Provision search block.
+ *
+ * @param array $block
+ *   Data structure of block.
  */
-function _civictheme_provision__blocks__search() {
+function _civictheme_provision__blocks__search(array $block) {
   // Redirect to 'Search' page if the path exists.
   $search_path = '/search';
   $fallback_path = '/';
@@ -643,35 +644,41 @@ function _civictheme_provision__blocks__search() {
   $alias = $alias_repository->lookupByAlias($search_path, \Drupal::languageManager()->getCurrentLanguage()->getId());
   $uri = 'internal:' . ($alias ? $alias['path'] : $fallback_path);
 
-  $block_content = civictheme_provision_create_block_content('civictheme_search', t('Search'), '286ff750-a9a9-423a-8a4e-515f79fc0a8f');
+  $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $block_content->field_c_b_link = [
     'title' => 'Search',
     'uri' => $uri,
   ];
   $block_content->save();
-  civictheme_provision_place_block('Search', 'header_middle_3', $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
 
 /**
  * Provision mobile navigation block.
+ *
+ * @param array $block
+ *   Data structure of block.
  */
-function _civictheme_provision__blocks__mobile_navigation() {
+function _civictheme_provision__blocks__mobile_navigation(array $block) {
   $theme_name = \Drupal::config('system.theme')->get('default');
 
-  $block_content = civictheme_provision_create_block_content('civictheme_mobile_navigation', t('Mobile Navigation'), 'b7f36176-620f-4178-aadd-9b448c610986');
+  $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $block_content->field_c_b_top_menu = "{$theme_name}_primary_navigation";
   $block_content->field_c_b_bottom_menu = "{$theme_name}_secondary_navigation";
   $block_content->field_c_b_trigger_text = 'Menu';
   $block_content->field_c_b_trigger_theme = 'light';
   $block_content->save();
-  civictheme_provision_place_block('Mobile Navigation', 'header_middle_3', $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
 
 /**
  * Provision signup block.
+ *
+ * @param array $block
+ *   Data structure of block.
  */
-function _civictheme_provision__blocks__signup() {
-  $block_content = civictheme_provision_create_block_content('civictheme_component_block', t('Signup'), '5508dc51-1cf8-4577-9038-b572fbd698ae');
+function _civictheme_provision__blocks__signup(array $block) {
+  $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $paragraph = Paragraph::create([
     'type' => 'civictheme_promo',
   ]);
@@ -685,14 +692,17 @@ function _civictheme_provision__blocks__signup() {
   $paragraph->field_c_p_space = 'top';
   $block_content->field_c_b_components->appendItem($paragraph);
   $block_content->save();
-  civictheme_provision_place_block('Signup', 'content_bottom', $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
 
 /**
  * Provision social links block.
+ *
+ * @param array $block
+ *   Data structure of block.
  */
-function _civictheme_provision__blocks__social_links() {
-  $block_content = civictheme_provision_create_block_content('civictheme_social_links', t('Social links'), '5c0ad15f-3e9c-4eeb-8525-7a064b06fc58');
+function _civictheme_provision__blocks__social_links(array $block) {
+  $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
 
   $paragraph = Paragraph::create([
     'type' => 'civictheme_social_icon',
@@ -727,14 +737,17 @@ function _civictheme_provision__blocks__social_links() {
   $block_content->field_c_b_theme = 'dark';
   $block_content->field_c_b_with_border = TRUE;
   $block_content->save();
-  civictheme_provision_place_block('Social_links', 'footer_top_2', $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
 
 /**
  * Provision acknowledgment of country block.
+ *
+ * @param array $block
+ *   Data structure of block.
  */
-function _civictheme_provision__blocks__acknowledgment_of_country() {
-  $block_content = civictheme_provision_create_block_content('civictheme_component_block', t('Footer - Acknowledgment of country'), '7cf65f98-cbae-4e9d-b6ea-7d6d1c437c1c');
+function _civictheme_provision__blocks__acknowledgment_of_country(array $block) {
+  $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $paragraph = Paragraph::create([
     'type' => 'civictheme_content',
   ]);
@@ -745,14 +758,17 @@ function _civictheme_provision__blocks__acknowledgment_of_country() {
   $paragraph->field_c_p_theme = 'dark';
   $block_content->field_c_b_components->appendItem($paragraph);
   $block_content->save();
-  civictheme_provision_place_block('Acknowledgment of country', 'footer_bottom_1', $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
 
 /**
  * Provision copyright block.
+ *
+ * @param array $block
+ *   Data structure of block.
  */
-function _civictheme_provision__blocks__copyright() {
-  $block_content = civictheme_provision_create_block_content('civictheme_component_block', t('Footer - Copyright'), 'd7098a8c-3ba3-48f7-bc0c-5787ebaa0427');
+function _civictheme_provision__blocks__copyright(array $block) {
+  $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $paragraph = Paragraph::create([
     'type' => 'civictheme_content',
   ]);
@@ -763,7 +779,7 @@ function _civictheme_provision__blocks__copyright() {
   $paragraph->field_c_p_theme = 'dark';
   $block_content->field_c_b_components->appendItem($paragraph);
   $block_content->save();
-  civictheme_provision_place_block('Copyright', 'footer_bottom_2', $block_content->uuid());
+  civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
 
 /**
@@ -959,4 +975,69 @@ function civictheme_enable_modules() {
     $module_installer->install($modules);
   }
 
+}
+
+/**
+ * Map of blocks to be created.
+ */
+function _civictheme_get_theme_block() {
+  $blocks = [
+    'civictheme_banner' =>
+    [
+      'name' => 'Banner',
+      'region' => 'banner',
+      'uuid' => '50c52459-c100-4e4d-92a4-9c4c77d8f8d0',
+      'builder' => '_civictheme_provision__blocks__banner',
+      'type' => 'civictheme_banner',
+    ],
+    'civictheme_search' =>
+    [
+      'name' => 'Search',
+      'region' => 'header_middle_3',
+      'uuid' => '286ff750-a9a9-423a-8a4e-515f79fc0a8f',
+      'builder' => '_civictheme_provision__blocks__search',
+      'type' => 'civictheme_search',
+    ],
+    'civictheme_mobile_navigation' =>
+    [
+      'name' => 'Mobile Navigation',
+      'region' => 'header_middle_3',
+      'uuid' => 'b7f36176-620f-4178-aadd-9b448c610986',
+      'builder' => '_civictheme_provision__blocks__mobile_navigation',
+      'type' => 'civictheme_mobile_navigation',
+    ],
+    'civictheme_signup' =>
+    [
+      'name' => 'Signup',
+      'region' => 'content_bottom',
+      'uuid' => '5508dc51-1cf8-4577-9038-b572fbd698ae',
+      'builder' => '_civictheme_provision__blocks__signup',
+      'type' => 'civictheme_component_block',
+    ],
+    'civictheme_social_links' =>
+    [
+      'name' => 'Social links',
+      'region' => 'footer_top_2',
+      'uuid' => '5c0ad15f-3e9c-4eeb-8525-7a064b06fc58',
+      'builder' => '_civictheme_provision__blocks__social_links',
+      'type' => 'civictheme_social_links',
+    ],
+    'civictheme_footer_acknowledgment' =>
+    [
+      'name' => 'Footer - Acknowledgment of country',
+      'region' => 'footer_bottom_1',
+      'uuid' => '7cf65f98-cbae-4e9d-b6ea-7d6d1c437c1c',
+      'builder' => '_civictheme_provision__blocks__acknowledgment_of_country',
+      'type' => 'civictheme_component_block',
+    ],
+    'civictheme_footer_copyright' =>
+    [
+      'name' => 'Footer - Copyright',
+      'region' => 'footer_bottom_2',
+      'uuid' => 'd7098a8c-3ba3-48f7-bc0c-5787ebaa0427',
+      'builder' => '_civictheme_provision__blocks__copyright',
+      'type' => 'civictheme_component_block',
+    ],
+  ];
+  return $blocks;
 }
