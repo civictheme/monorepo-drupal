@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
@@ -84,7 +85,7 @@ function civictheme_media_image_process_variables(MediaInterface $media, $image_
  *   Image URL or FALSE if not available.
  */
 function civictheme_media_get_url_from_field(EntityInterface $entity, string $field_name) {
-  if ($entity->hasField($field_name) && !$entity->get($field_name)->isEmpty()) {
+  if (civictheme_field_has_value($entity, $field_name)) {
     /** @var \Drupal\media\Entity\Media $media */
     $media = $entity->get($field_name)->first()->entity;
     if ($media) {
@@ -187,4 +188,19 @@ function civictheme_get_css_class_attributes(Attribute $attributes) {
  */
 function civictheme_format_short_date($date) {
   return \Drupal::service('date.formatter')->format(strtotime($date), 'civictheme_short_date');
+}
+
+/**
+ * Checks whether the field exists and has a value on a given entity.
+ *
+ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+ *   Entity to check field existence.
+ * @param string $field_name
+ *   Field name to check for.
+ *
+ * @return bool
+ *   Whether the field exists and is not empty.
+ */
+function civictheme_field_has_value(FieldableEntityInterface $entity, string $field_name):bool {
+  return ($entity->hasField($field_name) && !$entity->get($field_name)->isEmpty());
 }

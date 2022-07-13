@@ -114,7 +114,7 @@ function _civictheme_preprocess_node__topics(&$variables) {
 function _civictheme_preprocess_node__thumbnail(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  if ($node->hasField('field_c_n_thumbnail') && !$node->get('field_c_n_thumbnail')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_thumbnail')) {
     $media = $node->get('field_c_n_thumbnail')->first()->get('entity')->getTarget()->getValue();
     $variables['image'] = civictheme_media_image_process_variables($media);
   }
@@ -126,7 +126,7 @@ function _civictheme_preprocess_node__thumbnail(&$variables) {
 function _civictheme_preprocess_node__civictheme_page__summary(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  if ($node->hasField('field_c_n_summary') && !$node->get('field_c_n_summary')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_summary')) {
     $variables['summary'] = text_summary($node->get('field_c_n_summary')->getString(), NULL, 100);
   }
 }
@@ -137,7 +137,7 @@ function _civictheme_preprocess_node__civictheme_page__summary(&$variables) {
 function _civictheme_preprocess_node__civictheme_event__summary(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  if ($node->hasField('field_c_n_body') && !$node->get('field_c_n_body')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_body')) {
     $value = $node->get('field_c_n_body')->getValue();
     $variables['summary'] = $value[0]['value'];
   }

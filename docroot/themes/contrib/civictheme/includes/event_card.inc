@@ -16,7 +16,7 @@ function civictheme_preprocess_paragraph__civictheme_event_card(&$variables) {
   $paragraph = $variables['paragraph'];
 
   // Event url.
-  $link = ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
+  $link = civictheme_field_has_value($paragraph, 'field_c_p_link') ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
   if (!empty($link['uri']) && !UrlHelper::isExternal($link['uri'])) {
     $link['uri'] = Url::fromUri($link['uri'])->toString();
   }
@@ -24,17 +24,17 @@ function civictheme_preprocess_paragraph__civictheme_event_card(&$variables) {
   $variables['is_external'] = !empty($link['uri']) ? UrlHelper::isExternal($link['uri']) : FALSE;
 
   // Event date.
-  if ($paragraph->hasField('field_c_p_date') && !$paragraph->get('field_c_p_date')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_date')) {
     $variables['date'] = \Drupal::service('date.formatter')->format(strtotime($paragraph->get('field_c_p_date')->value), 'civictheme_short_date');
   }
 
   // Event topics.
-  if ($paragraph->hasField('field_c_p_topic') && !$paragraph->get('field_c_p_topic')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_topic')) {
     foreach ($paragraph->get('field_c_p_topic')->referencedEntities() as $topic) {
       $variables['tags'][] = $topic->label();
     }
   }
 
   // Event location.
-  $variables['location'] = ($paragraph->hasField('field_c_p_location') && !$paragraph->get('field_c_p_location')->isEmpty()) ? $paragraph->get('field_c_p_location')->getString() : NULL;
+  $variables['location'] = civictheme_field_has_value($paragraph, 'field_c_p_location') ? $paragraph->get('field_c_p_location')->getString() : NULL;
 }

@@ -123,7 +123,7 @@ function civictheme_preprocess_views_view(&$variables) {
 function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) {
   $settings = [];
   if ($paragraph !== NULL) {
-    $link = $paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty() ? $paragraph->get('field_c_p_link')->first() : NULL;
+    $link = civictheme_field_has_value($paragraph, 'field_c_p_link') ? $paragraph->get('field_c_p_link')->first() : NULL;
     $link_data = $link !== NULL ? [
       'text' => $link->get('title')->getString(),
       'is_external' => $link->isExternal(),
@@ -131,7 +131,7 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
       'url' => $link->getUrl()->toString(),
     ] : [];
 
-    $read_more = $paragraph->hasField('field_c_p_read_more') && !$paragraph->get('field_c_p_read_more')->isEmpty() ? $paragraph->get('field_c_p_read_more')->first() : NULL;
+    $read_more = civictheme_field_has_value($paragraph, 'field_c_p_read_more') ? $paragraph->get('field_c_p_read_more')->first() : NULL;
     $read_more_data = $read_more !== NULL ? [
       'text' => $read_more->get('title')->getString(),
       'is_external' => $read_more->isExternal(),
@@ -140,13 +140,13 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
     ] : [];
 
     $settings = [
-      'theme' => _civictheme_paragraph_get_theme($paragraph) !== FALSE ? _civictheme_paragraph_get_theme($paragraph) : 'light',
-      'card_theme' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_card_theme') ? $paragraph->get('field_c_p_card_theme')->getString() : 'light',
+      'theme' => civictheme_field_has_value($paragraph, 'field_c_p_theme') !== FALSE ? _civictheme_paragraph_get_theme($paragraph) : 'light',
+      'card_theme' => civictheme_field_has_value($paragraph, 'field_c_p_card_theme') ? $paragraph->get('field_c_p_card_theme')->getString() : 'light',
       'link' => $link_data,
-      'title' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_title') ? $paragraph->get('field_c_p_title')->getString() : '',
-      'with_background' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_background') ? (bool) $paragraph->get('field_c_p_background')->getString() : '',
-      'vertical_space' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_space') ? $paragraph->get('field_c_p_space')->getString() : '',
-      'show_filters' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_show_filters') ? (bool) $paragraph->get('field_c_p_show_filters')->getString() : TRUE,
+      'title' => civictheme_field_has_value($paragraph, 'field_c_p_title') ? $paragraph->get('field_c_p_title')->getString() : '',
+      'with_background' => civictheme_field_has_value($paragraph, 'field_c_p_background') ? (bool) $paragraph->get('field_c_p_background')->getString() : '',
+      'vertical_space' => civictheme_field_has_value($paragraph, 'field_c_p_space') ? $paragraph->get('field_c_p_space')->getString() : '',
+      'show_filters' => civictheme_field_has_value($paragraph, 'field_c_p_show_filters') ? (bool) $paragraph->get('field_c_p_show_filters')->getString() : TRUE,
       'read_more' => $read_more_data,
     ];
   }
@@ -200,7 +200,7 @@ function _civictheme_get_listing_paragraph_from_route() {
   }
 
   if ($node && $node->bundle() == 'civictheme_page') {
-    if (!$node->get('field_c_n_components')->isEmpty()) {
+    if (civictheme_field_has_value($node, 'field_c_n_components')) {
       foreach ($node->get('field_c_n_components')->referencedEntities() as $paragraph) {
         if ($paragraph->getType() == 'civictheme_listing') {
           return $paragraph;

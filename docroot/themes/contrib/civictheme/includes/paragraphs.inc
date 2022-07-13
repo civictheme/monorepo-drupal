@@ -82,7 +82,7 @@ function _civictheme_preprocess_paragraph_classes(&$variables) {
 function _civictheme_preprocess_paragraph__field__summary(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_summary') && !$paragraph->get('field_c_p_summary')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_summary')) {
     $variables['summary'] = text_summary($paragraph->get('field_c_p_summary')->getString(), NULL, 100);
   }
 }
@@ -93,7 +93,7 @@ function _civictheme_preprocess_paragraph__field__summary(&$variables) {
 function _civictheme_preprocess_paragraph__field__title(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_title') && !$paragraph->get('field_c_p_title')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_title')) {
     $variables['title'] = $paragraph->get('field_c_p_title')->getString();
   }
 }
@@ -104,7 +104,7 @@ function _civictheme_preprocess_paragraph__field__title(&$variables) {
 function _civictheme_preprocess_paragraph__field__space(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_space') && !$paragraph->get('field_c_p_space')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_space')) {
     $variables['vertical_space'] = $paragraph->get('field_c_p_space')->getString();
   }
 }
@@ -115,10 +115,7 @@ function _civictheme_preprocess_paragraph__field__space(&$variables) {
 function _civictheme_preprocess_paragraph__field__background(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_background')
-    && !$paragraph->get('field_c_p_background')->isEmpty()
-    && $paragraph->field_c_p_background->value != FALSE
-  ) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_background') && (bool) $paragraph->field_c_p_background->value !== FALSE) {
     $component_name = str_replace('_', '-', $paragraph->getType());
     if (!array_key_exists('modifier_class', $variables)) {
       $variables['modifier_class'] = '';
@@ -144,7 +141,7 @@ function _civictheme_preprocess_paragraph__field__theme(&$variables) {
 function _civictheme_preprocess_paragraph__card__icon(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_icon') && !$paragraph->get('field_c_p_icon')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_icon')) {
     $target = $paragraph->get('field_c_p_icon')->first()->get('entity')->getTarget();
     if ($target) {
       $media = $target->getValue();
@@ -161,7 +158,7 @@ function _civictheme_preprocess_paragraph__card__icon(&$variables) {
 function _civictheme_preprocess_paragraph__card__image(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_image') && !$paragraph->get('field_c_p_image')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_image')) {
     $target = $paragraph->get('field_c_p_image')->first()->get('entity')->getTarget();
     if ($target) {
       $media = $target->getValue();
@@ -208,25 +205,10 @@ function _civictheme_preprocess_paragraph__reference_card(&$variables) {
  *   Paragraph Entity.
  */
 function _civictheme_paragraph_get_theme(Paragraph $paragraph) {
-  if ($paragraph->hasField('field_c_p_theme') && !$paragraph->get('field_c_p_theme')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_theme')) {
     return $paragraph->get('field_c_p_theme')->getString();
   }
   return FALSE;
-}
-
-/**
- * Check if paragraph has a non-empty field.
- *
- * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   The paragraph to check.
- * @param string $field_name
- *   Field name to check.
- *
- * @return bool
- *   TRUE if the paragraph is not empty and has a non-empty specified field.
- */
-function _civictheme_paragraph_field_has_value(Paragraph $paragraph, $field_name) {
-  return $paragraph && $paragraph->hasField($field_name) && !$paragraph->get($field_name)->isEmpty();
 }
 
 /**
@@ -234,7 +216,7 @@ function _civictheme_paragraph_field_has_value(Paragraph $paragraph, $field_name
  */
 function _civictheme_preprocess_paragraph__field__webform(&$variables) {
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_webform') && !$paragraph->get('field_c_p_webform')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_webform')) {
     $variables['reference_webform'] = $paragraph->get('field_c_p_webform')->view();
   }
 }

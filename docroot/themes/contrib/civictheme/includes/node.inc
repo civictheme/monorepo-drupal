@@ -103,7 +103,7 @@ function _civictheme_preprocess_page__node(&$variables) {
   }
 
   // Hide sidebar check.
-  if ($node->hasField('field_c_n_hide_sidebar') && !$node->get('field_c_n_hide_sidebar')->isEmpty() && $node->get('field_c_n_hide_sidebar')->getString()) {
+  if (civictheme_field_has_value($node, 'field_c_n_hide_sidebar') && $node->get('field_c_n_hide_sidebar')->getString()) {
     $variables['hide_sidebar'] = TRUE;
   }
 }
@@ -118,7 +118,7 @@ function _civictheme_preprocess_node__civictheme_slider_slide(&$variables) {
   $variables['title'] = $node->label();
 
   // Image.
-  if ($node->hasField('field_c_n_thumbnail') && !$node->get('field_c_n_thumbnail')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_thumbnail')) {
     $target = $node->get('field_c_n_thumbnail')->first()->get('entity')->getTarget();
     if ($target) {
       $media = $target->getValue();
@@ -129,7 +129,7 @@ function _civictheme_preprocess_node__civictheme_slider_slide(&$variables) {
   $variables['attributes']['data-component-civictheme-slider-slide'] = '';
 
   // Topic.
-  if ($node->hasField('field_c_n_topics') && !$node->get('field_c_n_topics')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_topics')) {
     $topics = [];
     foreach ($node->get('field_c_n_topics')->referencedEntities() as $topic) {
       $topics[] = [
@@ -145,11 +145,11 @@ function _civictheme_preprocess_node__civictheme_slider_slide(&$variables) {
 
   // Summary.
   // Page.
-  if ($node->hasField('field_c_n_summary') && !$node->get('field_c_n_summary')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_summary')) {
     $variables['summary'] = $node->get('field_c_n_summary')->view();
   }
   // Event.
-  if ($node->hasField('field_c_n_tagline') && !$node->get('field_c_n_tagline')->isEmpty()) {
+  if (civictheme_field_has_value($node, 'field_c_n_tagline')) {
     $variables['summary'] = $node->get('field_c_n_tagline')->view();
   }
 

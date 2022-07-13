@@ -14,7 +14,7 @@ use Drupal\Core\Url;
 function civictheme_preprocess_paragraph__civictheme_promo_card(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $link = ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
+  $link = civictheme_field_has_value($paragraph, 'field_c_p_link') ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
   if (!empty($link['uri']) && !UrlHelper::isExternal($link['uri'])) {
     $link['uri'] = Url::fromUri($link['uri'])->toString();
   }
@@ -22,12 +22,12 @@ function civictheme_preprocess_paragraph__civictheme_promo_card(&$variables) {
   $variables['is_external'] = !empty($link['uri']) ? UrlHelper::isExternal($link['uri']) : FALSE;
 
   // Promo date.
-  if ($paragraph->hasField('field_c_p_date') && !$paragraph->get('field_c_p_date')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_date')) {
     $variables['date'] = \Drupal::service('date.formatter')->format(strtotime($paragraph->get('field_c_p_date')->value), 'civictheme_short_date');
   }
 
   // Topics.
-  if ($paragraph->hasField('field_c_p_topics') && !$paragraph->get('field_c_p_topics')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_topics')) {
     foreach ($paragraph->get('field_c_p_topics')->referencedEntities() as $topic) {
       $variables['tags'][] = $topic->label();
     }

@@ -17,7 +17,7 @@ function civictheme_preprocess_paragraph__civictheme_promo(&$variables) {
 
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $link = ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
+  $link = civictheme_field_has_value($paragraph, 'field_c_p_link') ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
   if (!empty($link['uri'])) {
     $variables['link'] = [
       'text' => $link['title'] ?? '',
@@ -25,7 +25,7 @@ function civictheme_preprocess_paragraph__civictheme_promo(&$variables) {
       'is_new_window' => UrlHelper::isExternal($link['uri']),
     ];
   }
-  if ($paragraph->hasField('field_c_p_summary') && !$paragraph->get('field_c_p_title')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_summary')) {
     $variables['content'] = $paragraph->get('field_c_p_summary')->getString();
   }
 }

@@ -15,7 +15,7 @@ function civictheme_preprocess_paragraph__civictheme_callout(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  if ($paragraph->hasField('field_c_p_links') && !$paragraph->get('field_c_p_links')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_links')) {
     $links = [];
     foreach ($paragraph->field_c_p_links as $link) {
       if (empty($link)) {

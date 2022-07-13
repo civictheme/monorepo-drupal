@@ -492,7 +492,7 @@ function civictheme_form_alter(&$form, FormStateInterface $form_state, $form_id)
     $paragraph_id = !empty($source) ? $source->id() : '';
     if (!empty($paragraph_id)) {
       $paragraph = Paragraph::load($paragraph_id);
-      if (!empty($paragraph) && $paragraph->hasField('field_c_p_theme') && !$paragraph->get('field_c_p_theme')->isEmpty()) {
+      if (!empty($paragraph) && civictheme_field_has_value($paragraph, 'field_c_p_theme')) {
         $theme = $paragraph->get('field_c_p_theme')->getString();
       }
       if (!empty($form['elements']) && !empty($theme)) {

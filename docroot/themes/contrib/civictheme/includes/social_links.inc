@@ -19,7 +19,7 @@ function _civictheme_preprocess_block__civictheme_social_links(&$variables) {
   }
 
   $entity = $variables['elements']['content']['#block_content'];
-  if ($entity->bundle() != 'civictheme_social_links' || ($entity->hasField('field_c_b_social_icons') && $entity->field_c_b_social_icons->isEmpty())) {
+  if ($entity->bundle() != 'civictheme_social_links' || !civictheme_field_has_value($entity, 'field_c_b_social_icons')) {
     return;
   }
 
@@ -30,7 +30,7 @@ function _civictheme_preprocess_block__civictheme_social_links(&$variables) {
   if (!empty($paragraphs)) {
     foreach ($paragraphs as $paragraph) {
       $vars = [];
-      $link = $paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty() ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
+      $link = civictheme_field_has_value($paragraph, 'field_c_p_link') ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
       $vars['url'] = $link['uri'] ?? NULL;
       $vars['title'] = $link['title'] ?? NULL;
       $vars['size'] = 'regular';
@@ -54,9 +54,9 @@ function _civictheme_preprocess_block__civictheme_social_links(&$variables) {
   $variables['items'] = $items;
 
   $variables['theme'] = CIVICTHEME_SOCIAL_LINKS_DEFAULT_THEME;
-  if ($entity->hasField('field_c_b_theme') && !$entity->get('field_c_b_theme')->isEmpty()) {
+  if (civictheme_field_has_value($entity, 'field_c_b_theme')) {
     $variables['theme'] = strtolower($entity->get('field_c_b_theme')->getString());
   }
 
-  $variables['with_border'] = $entity->hasField('field_c_b_with_border') ? (bool) $entity->get('field_c_b_with_border')->getString() : FALSE;
+  $variables['with_border'] = civictheme_field_has_value($entity, 'field_c_b_with_border') ? (bool) $entity->get('field_c_b_with_border')->getString() : FALSE;
 }

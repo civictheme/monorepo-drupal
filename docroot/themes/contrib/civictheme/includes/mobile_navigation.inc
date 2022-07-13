@@ -31,8 +31,7 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
   $cacheability = new CacheableMetadata();
   foreach ($menu_fields as $menu_key => $menu_field) {
     if (
-      $entity->hasField($menu_field)
-      && !$entity->get($menu_field)->isEmpty()
+      civictheme_field_has_value($entity, $menu_field)
       && !empty($entity->get($menu_field)->referencedEntities()[0])
       && strpos($entity->get($menu_field)->referencedEntities()[0]->getPluginId(), 'menu_block') === 0
     ) {
@@ -65,15 +64,15 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
   }
   $cacheability->applyTo($variables);
 
-  if ($entity->hasField('field_c_b_trigger_text') && !$entity->get('field_c_b_trigger_text')->isEmpty()) {
+  if (civictheme_field_has_value($entity, 'field_c_b_trigger_text')) {
     $variables['trigger_text'] = $entity->get('field_c_b_trigger_text')->getString();
   }
 
-  if ($entity->hasField('field_c_b_theme') && !$entity->get('field_c_b_theme')->isEmpty()) {
+  if (civictheme_field_has_value($entity, 'field_c_b_theme')) {
     $variables['theme'] = strtolower($entity->get('field_c_b_theme')->getString());
   }
 
-  if ($entity->hasField('field_c_b_trigger_theme') && !$entity->get('field_c_b_trigger_theme')->isEmpty()) {
+  if (civictheme_field_has_value($entity, 'field_c_b_trigger_theme')) {
     $variables['trigger_theme'] = strtolower($entity->get('field_c_b_trigger_theme')->getString());
   }
 }

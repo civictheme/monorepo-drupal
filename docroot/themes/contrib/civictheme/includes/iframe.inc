@@ -15,15 +15,15 @@ function civictheme_preprocess_paragraph__civictheme_iframe(&$variables) {
   $paragraph = $variables['paragraph'];
   $variables['url'] = $paragraph->get('field_c_p_url')->getString();
 
-  if (!$paragraph->get('field_c_p_width')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_width')) {
     $variables['width'] = $paragraph->get('field_c_p_width')->getString();
   }
 
-  if (!$paragraph->get('field_c_p_height')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_height')) {
     $variables['height'] = $paragraph->get('field_c_p_height')->getString();
   }
 
-  if (!$paragraph->get('field_c_p_attributes')->isEmpty()) {
+  if (civictheme_field_has_value($paragraph, 'field_c_p_attributes')) {
     $variables['attributes'] = new Attribute(civictheme_parse_attributes($paragraph->get('field_c_p_attributes')->getString()));
   }
 
