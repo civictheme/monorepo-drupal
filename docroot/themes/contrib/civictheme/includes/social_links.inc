@@ -29,34 +29,31 @@ function _civictheme_preprocess_block__civictheme_social_links(&$variables) {
   $items = [];
   if (!empty($paragraphs)) {
     foreach ($paragraphs as $paragraph) {
-      $vars = [];
+      $item = [];
       $link = civictheme_field_has_value($paragraph, 'field_c_p_link') ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
-      $vars['url'] = $link['uri'] ?? NULL;
-      $vars['title'] = $link['title'] ?? NULL;
-      $vars['size'] = 'regular';
+      $item['url'] = $link['uri'] ?? NULL;
+      $item['title'] = $link['title'] ?? NULL;
+      $item['size'] = 'regular';
 
       if (!isset($items['image'])) {
-        $vars['paragraph'] = $paragraph;
-        _civictheme_preprocess_paragraph__card__icon($vars);
-        unset($vars['paragraph']);
+        $item['paragraph'] = $paragraph;
+        _civictheme_preprocess_paragraph__card__icon($item);
+        unset($item['paragraph']);
       }
 
-      if (isset($vars['image'])) {
+      if (isset($item['image'])) {
         // Embed SVG as HTML content by passing as text.
-        $vars['text'] = civictheme_embed_svg($vars['image']['src'], [
+        $item['text'] = civictheme_embed_svg($item['image']['src'], [
           'civictheme-icon',
-          'civictheme-icon--size-' . $vars['size'],
+          'civictheme-icon--size-' . $item['size'],
         ]);
       }
-      $items[] = $vars;
+      $items[] = $item;
     }
   }
   $variables['items'] = $items;
 
-  $variables['theme'] = CIVICTHEME_SOCIAL_LINKS_DEFAULT_THEME;
-  if (civictheme_field_has_value($entity, 'field_c_b_theme')) {
-    $variables['theme'] = strtolower($entity->get('field_c_b_theme')->getString());
-  }
+  $variables['theme'] = civictheme_get_theme_value($entity) ?? CIVICTHEME_SOCIAL_LINKS_DEFAULT_THEME;
 
   $variables['with_border'] = civictheme_field_has_value($entity, 'field_c_b_with_border') ? (bool) $entity->get('field_c_b_with_border')->getString() : FALSE;
 }

@@ -20,6 +20,4 @@ function civictheme_preprocess_paragraph__civictheme_next_step(&$variables) {
     $link['uri'] = Url::fromUri($link['uri'])->toString();
   }
   $variables['url'] = $link['uri'] ?? NULL;
-
-  $variables['theme'] = $paragraph->get('field_c_p_theme')->getString();
 }

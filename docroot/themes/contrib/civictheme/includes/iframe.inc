@@ -26,6 +26,4 @@ function civictheme_preprocess_paragraph__civictheme_iframe(&$variables) {
   if (civictheme_field_has_value($paragraph, 'field_c_p_attributes')) {
     $variables['attributes'] = new Attribute(civictheme_parse_attributes($paragraph->get('field_c_p_attributes')->getString()));
   }
-
-  $variables['theme'] = $paragraph->get('field_c_p_theme')->getString();
 }

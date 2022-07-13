@@ -6,7 +6,11 @@
  */
 
 use Drupal\Component\Utility\Html;
-use Drupal\paragraphs\Entity\Paragraph;
+
+/**
+ * Defines paragraph default theme.
+ */
+define('CIVICTHEME_PARAGRAPH_DEFAULT_THEME', 'light');
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
@@ -50,11 +54,13 @@ function _civictheme_preprocess_paragraph__civictheme_card(&$variables) {
  * Global paragraph preprocessor calls.
  */
 function _civictheme_preprocess_paragraph(&$variables) {
+  // Set theme for all paragraphs.
+  $variables['theme'] = civictheme_get_theme_value($variables['paragraph']) ?? CIVICTHEME_PARAGRAPH_DEFAULT_THEME;
+
   // Generic Drupal classes from paragraph template files.
   _civictheme_preprocess_paragraph_classes($variables);
 
   // Global paragraph fields.
-  _civictheme_preprocess_paragraph__field__theme($variables);
   _civictheme_preprocess_paragraph__field__title($variables);
   _civictheme_preprocess_paragraph__field__summary($variables);
   _civictheme_preprocess_paragraph__field__space($variables);
@@ -125,17 +131,6 @@ function _civictheme_preprocess_paragraph__field__background(&$variables) {
 }
 
 /**
- * Pre-process Theme fields for CivicTheme paragraphs.
- */
-function _civictheme_preprocess_paragraph__field__theme(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  if ($theme = _civictheme_paragraph_get_theme($paragraph)) {
-    $variables['theme'] = $theme;
-  }
-}
-
-/**
  * Pre-process icon for CivicTheme cards.
  */
 function _civictheme_preprocess_paragraph__card__icon(&$variables) {
@@ -196,19 +191,6 @@ function _civictheme_preprocess_paragraph__reference_card(&$variables) {
   // Card type are handled at node level via view modes.
   // @see civictheme_theme_suggestions_paragraph_alter()
   $variables['reference_card'] = $variables['content']['field_c_p_reference'];
-}
-
-/**
- * Get theme name from Paragraph Entity.
- *
- * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   Paragraph Entity.
- */
-function _civictheme_paragraph_get_theme(Paragraph $paragraph) {
-  if (civictheme_field_has_value($paragraph, 'field_c_p_theme')) {
-    return $paragraph->get('field_c_p_theme')->getString();
-  }
-  return FALSE;
 }
 
 /**
