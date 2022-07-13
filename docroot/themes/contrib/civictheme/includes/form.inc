@@ -39,6 +39,7 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
     $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
     // Ajax exposed view forms hides submit button to have auto-load.
     if ($ajax_filter) {
+      $form['#attached']['library'][] = 'civictheme/civictheme.ajax_views';
       $form_state->get('view')->setAjaxEnabled(TRUE);
       $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
       $form['actions']['#attributes']['class'][] = 'hide-xxs';
