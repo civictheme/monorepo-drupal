@@ -5,8 +5,6 @@
  * CivicTheme Slider paragraph component.
  */
 
-use Drupal\Core\Url;
-
 /**
  * Implements template_preprocess_paragraph().
  */
@@ -17,13 +15,14 @@ function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
   $variables['next_label'] = t('Next');
 
   // Link.
-  if (civictheme_field_has_value($paragraph, 'field_c_p_link')) {
-    $link = $paragraph->get('field_c_p_link')->first();
+  $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+  if ($link) {
     $variables['link'] = [
       'type' => 'secondary',
       'size' => 'regular',
       'text' => $link->get('title')->getString(),
-      'url' => Url::fromUri($link->get('uri')->getString()),
+      'url' => $link->getUrl()->toString(),
+      'is_external' => $link->isExternal(),
     ];
   }
 
@@ -39,25 +38,24 @@ function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
 function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+  $theme = $variables['theme'];
 
   _civictheme_preprocess_paragraph__card__image($variables);
 
   $variables['attributes']['data-component-civictheme-slider-slide'] = '';
 
   // Image position.
-  if (civictheme_field_has_value($paragraph, 'field_c_p_image_position')) {
-    $variables['image_position'] = $paragraph->get('field_c_p_image_position')->getString();
-  }
+  $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
 
   // Topic.
-  if (civictheme_field_has_value($paragraph, 'field_c_p_topic')) {
-    $topics = [];
-    foreach ($paragraph->get('field_c_p_topic')->referencedEntities() as $topic) {
-      $topics[] = [
-        'theme' => $variables['theme'],
-        'text' => $topic->label(),
+  if ($topics = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topic')) {
+    $topics = array_map(function ($topic) use ($theme) {
+      return [
+        'text' => $topic,
+        'theme' => $theme,
       ];
-    }
+    }, $topics);
+
     $variables['content_top']['slide_topics'] = [
       '#theme' => 'civictheme_slider_slide_tags',
       '#tags' => $topics,
@@ -65,20 +63,17 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   }
 
   // Summary.
-  if (civictheme_field_has_value($paragraph, 'field_c_p_content')) {
-    $variables['summary'] = $paragraph->get('field_c_p_content')->view();
-  }
+  $variables['summary'] = civictheme_get_field_value($paragraph, 'field_c_p_content', TRUE);
 
   // Links.
-  if (civictheme_field_has_value($paragraph, 'field_c_p_link')) {
-    $inverse_theme = $variables['theme'] === 'dark' ? 'light' : 'dark';
-    $link = $paragraph->get('field_c_p_link')->first();
-    $links = [];
+  $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+  if ($link) {
+    $inverse_theme = $theme === 'dark' ? 'light' : 'dark';
     $links[] = [
       'type' => 'primary',
       'size' => 'regular',
       'text' => $link->get('title')->getString(),
-      'url' => Url::fromUri($link->get('uri')->getString()),
+      'url' => $link->getUrl()->toString(),
     ];
     $variables['links']['slide_links'] = [
       '#theme' => 'civictheme_slider_slide_links',
@@ -86,4 +81,16 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
       '#links' => $links,
     ];
   }
+}
+
+/**
+ * Implements template_preprocess_paragraph().
+ */
+function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $parent = $paragraph->_referringItem->getEntity();
+  // @todo add theme field to reference slide.
+  $theme = civictheme_get_theme_value($parent);
+  $paragraph->civic_theme = $theme;
 }

@@ -14,33 +14,32 @@ function civictheme_preprocess_paragraph__civictheme_attachment(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  if (civictheme_field_has_value($paragraph, 'field_c_p_attachments')) {
-    $attachments = [];
-    foreach ($paragraph->field_c_p_attachments->referencedEntities() as $attachment) {
-      $fid = $attachment->getSource()->getSourceFieldValue($attachment);
-      /** @var \Drupal\file\FileInterface $file */
-      $file = $fid ? File::load($fid) : NULL;
-      if (!empty($file)) {
-        $url = $file->createFileUrl(FALSE);
-        $file_size = format_size($file->getSize());
-        $mime_type = $file->getMimeType();
-        $icon = _civictheme_attachment_file_icon_map($mime_type);
-        $file_extension = pathinfo($file->getFileUri(), PATHINFO_EXTENSION);
-        $attachments[] = [
-          'url' => $url,
-          'text' => t('@name <span class="extension">(@ext, @size)</span>', [
-            '@name' => $file->label(),
-            '@ext' => strtoupper($file_extension),
-            '@size' => strtoupper($file_size),
-          ]),
-          'icon' => $icon,
-          'last_updated' => \Drupal::service('date.formatter')->format($attachment->getChangedTime(), 'civictheme_short_date'),
-        ];
-      }
+  $links = NULL;
+  $attachments = civictheme_get_field_value($paragraph, 'field_c_p_attachments') ?? [];
+  foreach ($attachments as $attachment) {
+    $fid = $attachment->getSource()->getSourceFieldValue($attachment);
+    /** @var \Drupal\file\FileInterface $file */
+    $file = $fid ? File::load($fid) : NULL;
+    if (!empty($file)) {
+      $url = $file->createFileUrl(FALSE);
+      $file_size = format_size($file->getSize());
+      $mime_type = $file->getMimeType();
+      $icon = _civictheme_attachment_file_icon_map($mime_type);
+      $file_extension = pathinfo($file->getFileUri(), PATHINFO_EXTENSION);
+      $links[] = [
+        'url' => $url,
+        'text' => t('@name <span class="extension">(@ext, @size)</span>', [
+          '@name' => $file->label(),
+          '@ext' => strtoupper($file_extension),
+          '@size' => strtoupper($file_size),
+        ]),
+        'icon' => $icon,
+        'last_updated' => \Drupal::service('date.formatter')->format($attachment->getChangedTime(), 'civictheme_short_date'),
+      ];
     }
-
-    $variables['links'] = $attachments;
   }
+
+  $variables['links'] = $links;
 }
 
 /**

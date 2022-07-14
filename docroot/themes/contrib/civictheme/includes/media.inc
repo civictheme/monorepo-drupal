@@ -17,8 +17,8 @@ function civictheme_preprocess_media__civictheme_image(&$variables) {
 
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
-  /** @var \Drupal\file\Entity\File $image_file */
-  $image_file = $media->get('field_c_m_image')->referencedEntities()[0];
+  /** @var \Drupal\file\Entity\File|null $image_file */
+  $image_file = civictheme_get_field_referenced_entities($media, 'field_c_m_image', TRUE);
   if ($image_file) {
     /** @var \Drupal\Core\Image\ImageInterface $image */
     $image = \Drupal::service('image.factory')->get($image_file->getFileUri());

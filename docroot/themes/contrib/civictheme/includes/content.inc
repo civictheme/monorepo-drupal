@@ -9,7 +9,6 @@
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_content(&$variables) {
-  _civictheme_preprocess_paragraph($variables);
   $content = '';
   if (!empty($variables['content']['field_c_p_content'])) {
     $content = \Drupal::service('renderer')->render($variables['content']['field_c_p_content']);
