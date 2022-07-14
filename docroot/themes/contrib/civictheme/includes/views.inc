@@ -8,6 +8,7 @@
 use Drupal\node\Entity\Node;
 use Drupal\Core\Render\Element;
 use Drupal\views\ViewExecutable;
+use Drupal\Core\Cache\Cache;
 
 /**
  * Defines default view theme.
@@ -153,6 +154,7 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
       'vertical_space' => civictheme_field_has_value($paragraph, 'field_c_p_space') ? $paragraph->get('field_c_p_space')->getString() : '',
       'show_filters' => civictheme_field_has_value($paragraph, 'field_c_p_show_filters') ? (bool) $paragraph->get('field_c_p_show_filters')->getString() : TRUE,
       'read_more' => $read_more_data,
+      'cache_tags' => $paragraph->getCacheTags(),
     ];
   }
 
@@ -182,6 +184,11 @@ function civictheme_preprocess_views_view_grid(&$variables) {
   if (isset($variables['card_theme'])) {
     foreach ($variables['rows'] as $id => $row) {
       $variables['rows'][$id]['#node']->civictheme_theme = $variables['card_theme'];
+      $variables['rows'][$id]['#cache']['contexts'][] = 'url.path';
+      $variables['rows'][$id]['#cache']['contexts'][] = 'url.query_args';
+      if (!empty($variables['view']->civictheme_listing['cache_tags'])) {
+        $variables['rows'][$id]['#cache']['tags'] = Cache::mergeTags($variables['view']->civictheme_listing['cache_tags'], $view->getCacheTags());
+      }
     }
   }
 }

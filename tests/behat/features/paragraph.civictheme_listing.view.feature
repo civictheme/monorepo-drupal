@@ -22,6 +22,8 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
       | [TEST] All Topics               | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 |
       | [TEST] Topic 1 and Topic 2 Page | 1      | [TEST] Topic 1, [TEST] Topic 2                 |
       | [TEST] Topic 1 Page             | 1      | [TEST] Topic 1                                 |
+      | [TEST] Topic 1 Page Light       | 1      | [TEST] Topic 1                                 |
+      | [TEST] Topic 1 Page Dark        | 1      | [TEST] Topic 1                                 |
       | [TEST] Topic 2 Page             | 1      | [TEST] Topic 2                                 |
       | [TEST] Topic 3 Page             | 1      | [TEST] Topic 3                                 |
       | [TEST] No Topics Page           | 1      |                                                |
@@ -268,11 +270,11 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And I should not see "[TEST] Topic 3 Page" in the ".civictheme-card-container" element
 
 
-  @api @javascript @skipped
+  @api @javascript @civictheme_listing_theming
   Scenario: CivicTheme listing pages with different theming options should display correct classes on component.
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Topic 1 Page" has "civictheme_listing" paragraph:
-      | field_c_p_title                | [TEST] Listing component 1                 |
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Topic 1 Page Light" has "civictheme_listing" paragraph:
+      | field_c_p_title                | [TEST] Listing component Light             |
       | field_c_p_content_type         | civictheme_page                            |
       | field_c_p_read_more            | 0: View all pages - 1: https://example.com |
       | field_c_p_view_as              | 0                                          |
@@ -287,7 +289,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
       | field_c_p_card_theme           | dark                                       |
       | field_c_p_background           | 1                                          |
       | field_c_p_space                | both                                       |
-    And I visit civictheme_page "[TEST] Topic 1 Page"
+    And I visit civictheme_page "[TEST] Topic 1 Page Light"
     And I should see an ".civictheme-listing.civictheme-theme-light" element
     And I should not see an ".civictheme-listing.civictheme-theme-dark" element
     And I should see an ".civictheme-listing.civictheme-listing--with-background" element
@@ -296,6 +298,33 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And I should not see an ".civictheme-listing.civictheme-listing--vertical-space-bottom" element
     And I should see an ".civictheme-promo-card.civictheme-theme-dark" element
     And I should not see an ".civictheme-promo-card.civictheme-theme-light" element
+
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Topic 1 Page Dark" has "civictheme_listing" paragraph:
+      | field_c_p_title                | [TEST] Listing component 1 Dark            |
+      | field_c_p_content_type         | civictheme_page                            |
+      | field_c_p_read_more            | 0: View all pages - 1: https://example.com |
+      | field_c_p_view_as              | 0                                          |
+      | field_c_p_listing_f_exposed    | 0                                          |
+      | field_c_p_hide_count           | 0                                          |
+      | field_c_p_listing_limit        | 6                                          |
+      | field_c_p_limit_type           | limited                                    |
+      | field_c_p_listing_multi_select | 1                                          |
+      | field_c_p_show_filters         | 0                                          |
+      | field_c_p_show_pager           | 0                                          |
+      | field_c_p_theme                | dark                                       |
+      | field_c_p_card_theme           | light                                      |
+      | field_c_p_background           | 1                                          |
+      | field_c_p_space                | both                                       |
+    And I visit civictheme_page "[TEST] Topic 1 Page Dark"
+    And I should see an ".civictheme-listing.civictheme-theme-dark" element
+    And I should not see an ".civictheme-listing.civictheme-theme-light" element
+    And I should see an ".civictheme-listing.civictheme-listing--with-background" element
+    And I should see an ".civictheme-listing.civictheme-listing--vertical-space-both" element
+    And I should not see an ".civictheme-listing.civictheme-listing--vertical-space-top" element
+    And I should not see an ".civictheme-listing.civictheme-listing--vertical-space-bottom" element
+    And I should see an ".civictheme-promo-card.civictheme-theme-light" element
+    And I should not see an ".civictheme-promo-card.civictheme-theme-dark" element
 
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Topic 2 Page" has "civictheme_listing" paragraph:
