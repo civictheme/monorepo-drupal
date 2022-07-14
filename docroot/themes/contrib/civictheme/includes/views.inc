@@ -181,7 +181,7 @@ function civictheme_preprocess_views_view_grid(&$variables) {
       $variables['rows'][$id]['#node']->civictheme_theme = $variables['card_theme'];
       $variables['rows'][$id]['#cache']['contexts'][] = 'url.path';
       $variables['rows'][$id]['#cache']['contexts'][] = 'url.query_args';
-      if ($is_view_component) {
+      if (!empty($variables['view']->civictheme_listing['cache_tags'])) {
         $variables['rows'][$id]['#cache']['tags'] = Cache::mergeTags($variables['view']->civictheme_listing['cache_tags'], $view->getCacheTags());
       }
     }
