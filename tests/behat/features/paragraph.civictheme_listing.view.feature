@@ -268,7 +268,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And I should not see "[TEST] Topic 3 Page" in the ".civictheme-card-container" element
 
 
-  @api @javascript @skipped
+  @api @javascript
   Scenario: CivicTheme listing pages with different theming options should display correct classes on component.
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Topic 1 Page" has "civictheme_listing" paragraph:
