@@ -13,10 +13,6 @@ use Drupal\Core\Url;
 function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-
-  _civictheme_preprocess_paragraph__field__theme($variables);
-  _civictheme_preprocess_paragraph__field__title($variables);
-
   $variables['previous_label'] = t('Previous');
   $variables['next_label'] = t('Next');
 
@@ -44,8 +40,6 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  _civictheme_preprocess_paragraph__field__theme($variables);
-  _civictheme_preprocess_paragraph__field__title($variables);
   _civictheme_preprocess_paragraph__card__image($variables);
 
   $variables['attributes']['data-component-civictheme-slider-slide'] = '';

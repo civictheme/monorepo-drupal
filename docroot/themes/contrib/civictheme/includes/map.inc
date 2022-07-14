@@ -25,5 +25,4 @@ function civictheme_preprocess_paragraph__civictheme_map(&$variables) {
     $variables['view_link'] = $link->getString();
     $variables['view_link_is_external'] = UrlHelper::isExternal($link->first()->getValue()['uri']);
   }
-  $variables['theme'] = $paragraph->get('field_c_p_theme')->getString();
 }

@@ -10,6 +10,11 @@ use Drupal\Core\Render\Element;
 use Drupal\views\ViewExecutable;
 
 /**
+ * Defines default view theme.
+ */
+define('CIVICTHEME_VIEWS_DEFAULT_THEME', 'light');
+
+/**
  * Page pre-process for views.
  */
 function _civictheme_preprocess_page__views(&$variables) {
@@ -140,8 +145,8 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
     ] : [];
 
     $settings = [
-      'theme' => civictheme_field_has_value($paragraph, 'field_c_p_theme') !== FALSE ? _civictheme_paragraph_get_theme($paragraph) : 'light',
-      'card_theme' => civictheme_field_has_value($paragraph, 'field_c_p_card_theme') ? $paragraph->get('field_c_p_card_theme')->getString() : 'light',
+      'theme' => civictheme_get_theme_value($paragraph) ?? CIVICTHEME_VIEWS_DEFAULT_THEME,
+      'card_theme' => civictheme_field_has_value($paragraph, 'field_c_p_card_theme') ? $paragraph->get('field_c_p_card_theme')->getString() : CIVICTHEME_VIEWS_DEFAULT_THEME,
       'link' => $link_data,
       'title' => civictheme_field_has_value($paragraph, 'field_c_p_title') ? $paragraph->get('field_c_p_title')->getString() : '',
       'with_background' => civictheme_field_has_value($paragraph, 'field_c_p_background') ? (bool) $paragraph->get('field_c_p_background')->getString() : '',

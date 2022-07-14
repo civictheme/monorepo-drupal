@@ -204,3 +204,33 @@ function civictheme_format_short_date($date) {
 function civictheme_field_has_value(FieldableEntityInterface $entity, string $field_name):bool {
   return ($entity->hasField($field_name) && !$entity->get($field_name)->isEmpty());
 }
+
+/**
+ * Get an entity's theme value.
+ *
+ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+ *   Entity to check field existence.
+ *
+ * @return string
+ *   The theme value for the entity - light is default if it does not exist.
+ */
+function civictheme_get_theme_value(FieldableEntityInterface $entity): ?string {
+  switch (get_class($entity)) {
+    case 'Drupal\paragraphs\Entity\Paragraph':
+      $field_name = 'field_c_p_theme';
+      break;
+
+    case 'Drupal\node\Entity\Node':
+      $field_name = 'field_c_n_banner_theme';
+      break;
+
+    case 'Drupal\block_content\Entity\BlockContent':
+      $field_name = 'field_c_b_theme';
+      break;
+
+    default:
+      $field_name = FALSE;
+  }
+
+  return $field_name !== FALSE && civictheme_field_has_value($entity, $field_name) && $entity->get($field_name)->getString() ? $entity->get($field_name)->getString() : NULL;
+}

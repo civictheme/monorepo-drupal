@@ -49,10 +49,7 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
 
   $variables['type'] = CIVICTHEME_BANNER_TYPE_DEFAULT;
 
-  $variables['theme'] = CIVICTHEME_BANNER_DEFAULT_THEME;
-  if (civictheme_field_has_value($entity, 'field_c_b_theme')) {
-    $variables['theme'] = strtolower($entity->get('field_c_b_theme')->getString());
-  }
+  $variables['theme'] = civictheme_get_theme_value($entity) ?? CIVICTHEME_BANNER_DEFAULT_THEME;
 
   if (civictheme_field_has_value($entity, 'field_c_b_background_image')) {
     $variables['background_image'] = civictheme_media_get_url_from_field($entity, 'field_c_b_background_image');
@@ -161,9 +158,7 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
     $variables['type'] = $node->get('field_c_n_banner_type')->getString();
   }
 
-  if (civictheme_field_has_value($node, 'field_c_n_banner_theme')) {
-    $variables['theme'] = $node->get('field_c_n_banner_theme')->getString();
-  }
+  $variables['theme'] = civictheme_get_theme_value($node) ?? CIVICTHEME_BANNER_DEFAULT_THEME;
 
   $is_front = \Drupal::service('path.matcher')->isFrontPage();
   $variables['is_front'] = $is_front;

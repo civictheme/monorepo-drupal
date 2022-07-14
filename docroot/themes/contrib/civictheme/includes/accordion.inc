@@ -13,7 +13,6 @@ use Drupal\paragraphs\Entity\Paragraph;
 function civictheme_preprocess_paragraph__civictheme_accordion(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $variables['theme'] = $paragraph->get('field_c_p_theme')->getString();
   $variables['expand_all'] = (bool) $paragraph->get('field_c_p_expand')->getString();
   $variables['panels'] = [];
   foreach ($paragraph->get('field_c_p_panels') as $panel_reference) {

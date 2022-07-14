@@ -68,9 +68,7 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
     $variables['trigger_text'] = $entity->get('field_c_b_trigger_text')->getString();
   }
 
-  if (civictheme_field_has_value($entity, 'field_c_b_theme')) {
-    $variables['theme'] = strtolower($entity->get('field_c_b_theme')->getString());
-  }
+  $variables['theme'] = civictheme_get_theme_value($entity);
 
   if (civictheme_field_has_value($entity, 'field_c_b_trigger_theme')) {
     $variables['trigger_theme'] = strtolower($entity->get('field_c_b_trigger_theme')->getString());

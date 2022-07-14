@@ -12,9 +12,6 @@ use Drupal\Core\Url;
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_promo(&$variables) {
-  _civictheme_preprocess_paragraph__field__theme($variables);
-  _civictheme_preprocess_paragraph__field__title($variables);
-
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $link = civictheme_field_has_value($paragraph, 'field_c_p_link') ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
