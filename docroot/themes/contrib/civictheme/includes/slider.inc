@@ -38,7 +38,7 @@ function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
 function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $theme = $variables['theme'];
+  $theme = civictheme_get_theme_value($paragraph) ?? $variables['theme'];
 
   _civictheme_preprocess_paragraph__card__image($variables);
 
@@ -89,8 +89,60 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
 function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $parent = $paragraph->_referringItem->getEntity();
-  // @todo add theme field to reference slide.
-  $theme = civictheme_get_theme_value($parent);
-  $paragraph->civic_theme = $theme;
+  $theme = civictheme_get_theme_value($paragraph) ?? $variables['theme'];
+  // Image position.
+  $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
+  $variables['attributes']['data-component-civictheme-slider-slide'] = '';
+
+  if ($paragraph->hasField('field_c_p_reference')) {
+    $node = $paragraph->field_c_p_reference->referencedEntities();
+    if (!empty($node)) {
+      /** @var \Drupal\node\NodeInterface $node */
+      $node = reset($node);
+      $variables['title'] = $node->label();
+
+      // Image.
+      if (civictheme_field_has_value($node, 'field_c_n_thumbnail')) {
+        $target = $node->get('field_c_n_thumbnail')->first()->get('entity')->getTarget();
+        if ($target) {
+          $media = $target->getValue();
+          $variables['image'] = civictheme_media_image_process_variables($media);
+        }
+      }
+
+      // Topic.
+      if ($topics = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics')) {
+        $topics = array_map(function ($topic) use ($theme) {
+          return [
+            'text' => $topic,
+            'theme' => $theme,
+          ];
+
+        }, $topics);
+
+        $variables['content_top']['slide_topics'] = [
+          '#theme' => 'civictheme_slider_slide_tags',
+          '#tags' => $topics,
+        ];
+      }
+
+      // Summary.
+      $variables['summary'] = civictheme_get_field_value($node, 'field_c_n_summary') ?? civictheme_get_field_value($node, 'field_c_n_tagline');
+
+      // Links.
+      $inverse_theme = $variables['theme'] === 'dark' ? 'light' : 'dark';
+      $links = [];
+      $links[] = [
+        'type' => 'primary',
+        'size' => 'regular',
+        'text' => $node->label(),
+        'url' => $node->toUrl()->toString(),
+      ];
+      $variables['links']['slide_links'] = [
+        '#theme' => 'civictheme_slider_slide_links',
+        '#component_theme' => $inverse_theme,
+        '#links' => $links,
+      ];
+    }
+  }
 }
