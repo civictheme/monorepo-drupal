@@ -42,6 +42,10 @@ Feature: Tests the Slider slide - reference paragraph
     And I press the "field_c_n_components_0_subform_field_c_p_slides_civictheme_slider_slide_ref_add_more" button
     And I wait for AJAX to finish
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_reference][0][target_id]']" element
+    And I should see an "select[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_image_position]']" element
+    And I should see an "select[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_image_position]'].required" element
+    And I should see an "select[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_theme]']" element
+    And I should see an "select[name='field_c_n_components[0][subform][field_c_p_slides][0][subform][field_c_p_theme]'].required" element
 
   @api
   Scenario: CivicTheme slider paragraph field_c_p_slides field settings.
