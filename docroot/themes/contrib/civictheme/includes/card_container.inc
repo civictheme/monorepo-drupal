@@ -12,19 +12,17 @@ function civictheme_preprocess_paragraph__civictheme_card_container(&$variables)
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  $variables['column_count'] = civictheme_field_has_value($paragraph, 'field_c_p_column_count') ? $paragraph->get('field_c_p_column_count')->getString() : '';
+  $variables['column_count'] = civictheme_get_field_value($paragraph, 'field_c_p_column_count') ?? '';
+  $variables['fill_width'] = civictheme_get_field_value($paragraph, 'field_c_p_fill_width') ?? FALSE;
 
-  $variables['fill_width'] = civictheme_field_has_value($paragraph, 'field_c_p_fill_width') ? (bool) $paragraph->get('field_c_p_fill_width')->getString() : FALSE;
+  $header_link = civictheme_get_field_value($paragraph, 'field_c_p_header_link', TRUE) ?? NULL;
+  $variables['header_link_text'] = $header_link !== NULL ? $header_link->get('title')->getString() : NULL;
+  $variables['header_link_url'] = $header_link !== NULL ? $header_link->getUrl()->toString() : NULL;
 
-  $header_link = civictheme_field_has_value($paragraph, 'field_c_p_header_link') ? $paragraph->get('field_c_p_header_link')->first()->getValue() : [];
-  $variables['header_link_text'] = $header_link['title'] ?? NULL;
-  $variables['header_link_url'] = $header_link['uri'] ?? NULL;
-
-  $footer_link = civictheme_field_has_value($paragraph, 'field_c_p_footer_link') ? $paragraph->get('field_c_p_footer_link')->first()->getValue() : [];
-  $variables['footer_link_text'] = $footer_link['title'] ?? NULL;
-  $variables['footer_link_url'] = $footer_link['uri'] ?? NULL;
-
-  $variables['description'] = civictheme_field_has_value($paragraph, 'field_c_p_description') ? $paragraph->get('field_c_p_description')->getString() : FALSE;
+  $footer_link = civictheme_get_field_value($paragraph, 'field_c_p_footer_link', TRUE);
+  $variables['footer_link_text'] = $footer_link !== NULL ? $footer_link->get('title')->getString() : NULL;
+  $variables['footer_link_url'] = $footer_link !== NULL ? $footer_link->getUrl()->toString() : NULL;
+  $variables['description'] = civictheme_get_field_value($paragraph, 'field_c_p_description') ?? '';
 
   $variables['cards'] = array_filter($variables['content']['field_c_p_cards'], function ($key) {
     return is_numeric($key);

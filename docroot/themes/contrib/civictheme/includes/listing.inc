@@ -6,7 +6,6 @@
  */
 
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Render\Element;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\views\Views;
@@ -34,8 +33,8 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   // Get the parent bundle.
-  $variables['view_as'] = $paragraph->get('field_c_p_view_as')->getString();
-  $variables['limit'] = $paragraph->field_c_p_listing_limit->value;
+  $variables['view_as'] = civictheme_get_field_value($paragraph, 'field_c_p_view_as');
+  $variables['limit'] = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit');
   $variables['attributes']['id'] = Html::getUniqueId('listing-' . $paragraph->id());
   if (is_array($variables['attributes'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
@@ -94,14 +93,14 @@ function _civictheme_listing_get_view_name($view_name) {
  */
 function _civictheme_listing_alter_view($paragraph, &$view) {
   $fallback_limit = CIVICTHEME_LISTINGS_FULL_FALLBACK_LIMIT;
-  $title = $paragraph->field_c_p_title->value;
-  $content_type = $paragraph->field_c_p_content_type->value;
-  $topics = _civictheme_get_entity_field_values($paragraph, 'field_c_p_topics', 'target_id');
-  $view_mode = $paragraph->field_c_p_view_as->value;
-  $limit_type = $paragraph->field_c_p_limit_type->value;
-  $limit = (int) $paragraph->field_c_p_listing_limit->value;
-  $items_per_page = (int) $paragraph->field_c_p_listing_limit->value;
-  $show_filters = (int) $paragraph->field_c_p_show_filters->value;
+  $title = civictheme_get_field_value($paragraph, 'field_c_p_title');
+  $content_type = civictheme_get_field_value($paragraph, 'field_c_p_content_type');
+  $topics = civictheme_get_entity_field_key_values($paragraph, 'field_c_p_topics', 'target_id');
+  $view_mode = civictheme_get_field_value($paragraph, 'field_c_p_view_as');
+  $limit_type = civictheme_get_field_value($paragraph, 'field_c_p_limit_type');
+  $limit = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit');
+  $items_per_page = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit');
+  $show_filters = civictheme_get_field_value($paragraph, 'field_c_p_show_filters');
 
   if ($view) {
     $args = [];
@@ -163,32 +162,4 @@ function _civictheme_listing_alter_view($paragraph, &$view) {
     }
   }
 
-}
-
-/**
- * Get raw multivalued field values from the entity.
- *
- * @param \Drupal\Core\Entity\EntityInterface $entity
- *   The entity to get the values from.
- * @param string $field_name
- *   The field name.
- * @param string $value_key
- *   (optional) The value key. Default to 'value'.
- *
- * @return array
- *   Array of field values. If field does not exist or incorrect $value_key
- *   provided, empty array will be returned.
- */
-function _civictheme_get_entity_field_values(EntityInterface $entity, $field_name, $value_key = 'value') {
-  $values = [];
-
-  if ($entity->hasField($field_name)) {
-    foreach ($entity->get($field_name)->getValue() as $value) {
-      if (isset($value[$value_key])) {
-        $values[] = $value[$value_key];
-      }
-    }
-  }
-
-  return $values;
 }

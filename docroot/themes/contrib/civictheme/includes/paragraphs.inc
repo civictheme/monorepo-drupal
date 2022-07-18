@@ -89,7 +89,7 @@ function _civictheme_preprocess_paragraph__field__summary(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   if (civictheme_field_has_value($paragraph, 'field_c_p_summary')) {
-    $variables['summary'] = text_summary($paragraph->get('field_c_p_summary')->getString(), NULL, 100);
+    $variables['summary'] = text_summary(civictheme_get_field_value($paragraph, 'field_c_p_summary'), NULL, 100);
   }
 }
 
@@ -100,7 +100,7 @@ function _civictheme_preprocess_paragraph__field__title(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   if (civictheme_field_has_value($paragraph, 'field_c_p_title')) {
-    $variables['title'] = $paragraph->get('field_c_p_title')->getString();
+    $variables['title'] = civictheme_get_field_value($paragraph, 'field_c_p_title');
   }
 }
 
@@ -111,7 +111,7 @@ function _civictheme_preprocess_paragraph__field__space(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   if (civictheme_field_has_value($paragraph, 'field_c_p_space')) {
-    $variables['vertical_space'] = $paragraph->get('field_c_p_space')->getString();
+    $variables['vertical_space'] = civictheme_get_field_value($paragraph, 'field_c_p_space');
   }
 }
 
@@ -121,7 +121,7 @@ function _civictheme_preprocess_paragraph__field__space(&$variables) {
 function _civictheme_preprocess_paragraph__field__background(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if (civictheme_field_has_value($paragraph, 'field_c_p_background') && (bool) $paragraph->field_c_p_background->value !== FALSE) {
+  if (civictheme_get_field_value($paragraph, 'field_c_p_background')) {
     $component_name = str_replace('_', '-', $paragraph->getType());
     if (!array_key_exists('modifier_class', $variables)) {
       $variables['modifier_class'] = '';
@@ -136,14 +136,9 @@ function _civictheme_preprocess_paragraph__field__background(&$variables) {
 function _civictheme_preprocess_paragraph__card__icon(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if (civictheme_field_has_value($paragraph, 'field_c_p_icon')) {
-    $target = $paragraph->get('field_c_p_icon')->first()->get('entity')->getTarget();
-    if ($target) {
-      $media = $target->getValue();
-      if ($image = civictheme_media_image_process_variables($media)) {
-        $variables['image'] = $image;
-      }
-    }
+  $media = civictheme_get_field_value($paragraph, 'field_c_p_icon', TRUE);
+  if ($media) {
+    $variables['image'] = civictheme_media_image_process_variables($media);
   }
 }
 
@@ -153,12 +148,9 @@ function _civictheme_preprocess_paragraph__card__icon(&$variables) {
 function _civictheme_preprocess_paragraph__card__image(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if (civictheme_field_has_value($paragraph, 'field_c_p_image')) {
-    $target = $paragraph->get('field_c_p_image')->first()->get('entity')->getTarget();
-    if ($target) {
-      $media = $target->getValue();
-      $variables['image'] = civictheme_media_image_process_variables($media);
-    }
+  $media = civictheme_get_field_value($paragraph, 'field_c_p_image', TRUE);
+  if ($media) {
+    $variables['image'] = civictheme_media_image_process_variables($media);
   }
 }
 
