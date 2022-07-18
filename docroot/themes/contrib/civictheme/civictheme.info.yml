@@ -402,7 +402,9 @@ config_devel:
     - field.field.paragraph.civictheme_slider_slide.field_c_p_theme
     - field.field.paragraph.civictheme_slider_slide.field_c_p_title
     - field.field.paragraph.civictheme_slider_slide.field_c_p_topic
+    - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_image_position
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_reference
+    - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_theme
     - field.field.paragraph.civictheme_social_icon.field_c_p_icon
     - field.field.paragraph.civictheme_social_icon.field_c_p_link
     - field.field.paragraph.civictheme_subject_card.field_c_p_image
