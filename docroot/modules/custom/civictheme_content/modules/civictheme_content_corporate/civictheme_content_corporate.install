@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Install for civictheme_content_corporate module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function civictheme_content_corporate_install() {
+  civictheme_content_clear_menu('civictheme-primary-navigation');
+  civictheme_content_clear_menu('civictheme-secondary-navigation');
+  civictheme_content_clear_menu('civictheme-footer');
+}

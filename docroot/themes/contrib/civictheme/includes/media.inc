@@ -17,8 +17,8 @@ function civictheme_preprocess_media__civictheme_image(&$variables) {
 
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
-  /** @var \Drupal\file\Entity\File $image_file */
-  $image_file = $media->get('field_c_m_image')->referencedEntities()[0];
+  /** @var \Drupal\file\Entity\File|null $image_file */
+  $image_file = civictheme_get_field_referenced_entities($media, 'field_c_m_image', TRUE);
   if ($image_file) {
     /** @var \Drupal\Core\Image\ImageInterface $image */
     $image = \Drupal::service('image.factory')->get($image_file->getFileUri());
@@ -111,13 +111,13 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
 
-  if ($media->hasField('field_c_m_share_link') && !$media->get('field_c_m_share_link')->isEmpty()) {
+  if (civictheme_field_has_value($media, 'field_c_m_share_link')) {
     $share_attributes = new Attribute();
     $share_attributes->setAttribute('aria-label', t('Share this video @label', [
       '@label' => $media->label(),
     ]));
     $variables['share_link'] = [
-      'text' => t('Share this video'),
+      'text' => !empty($media->get('field_c_m_share_link')->first()->get('title')->getValue()) ? $media->get('field_c_m_share_link')->first()->get('title')->getValue() : t('Share this video'),
       'is_external' => $media->get('field_c_m_share_link')->first()->isExternal(),
       'is_new_window' => $media->get('field_c_m_share_link')->first()->isExternal(),
       'url' => $media->get('field_c_m_share_link')->first()->getUrl()->toString(),
@@ -131,16 +131,16 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
   ]));
   // Transcript link points to the video if the transcript is empty or
   // to the external transcript, if provided.
-  if ($media->hasField('field_c_m_transcript') && !$media->get('field_c_m_transcript')->isEmpty()) {
+  if (civictheme_field_has_value($media, 'field_c_m_transcript')) {
     $variables['transcript_link'] = [
       'text' => t('View transcript'),
       'url' => $media->toUrl()->toString(),
       'attributes' => $transcript_attributes,
     ];
   }
-  elseif ($media->hasField('field_c_m_transcript_link') && !$media->get('field_c_m_transcript_link')->isEmpty()) {
+  elseif (civictheme_field_has_value($media, 'field_c_m_transcript_link')) {
     $variables['transcript_link'] = [
-      'text' => $media->get('field_c_m_transcript_link')->first()->get('title')->getValue(),
+      'text' => !empty($media->get('field_c_m_transcript_link')->first()->get('title')->getValue()) ? $media->get('field_c_m_transcript_link')->first()->get('title')->getValue() : t('View transcript'),
       'url' => $media->get('field_c_m_transcript_link')->first()->getUrl()->toString(),
       'is_external' => $media->get('field_c_m_transcript_link')->first()->isExternal(),
       'is_new_window' => $media->get('field_c_m_transcript_link')->first()->isExternal(),

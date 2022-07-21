@@ -40,6 +40,9 @@ default:
   field_c_n_banner_background:
     -
       entity: d0ff700e-b452-4b72-a94d-7e509e2a8b80
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
   field_c_n_banner_theme:
     -
       value: dark
@@ -429,6 +432,12 @@ default:
           field_c_p_title:
             -
               value: 'Publication card container - Dark'
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
   field_c_n_show_toc:
     -
       value: false

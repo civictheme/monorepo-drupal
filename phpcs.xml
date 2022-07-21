@@ -13,7 +13,7 @@
     <arg name="parallel" value="75"/>
     <!--Lint code against platform version specified in composer.json
     key "config.platform.php".-->
-    <config name="testVersion" value="7.4"/>
+    <config name="testVersion" value="8.0"/>
 
     <!-- Exclude civictheme theme assets. -->
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/.storybook\/.*</exclude-pattern>
@@ -51,6 +51,9 @@
     <!-- Exclude CircleCI config files. -->
     <exclude-pattern>circle\.yml</exclude-pattern>
     <exclude-pattern>\.circle\/config\.yml</exclude-pattern>
+
+    <!-- Exclude array-heavy files without any logic. -->
+    <exclude-pattern>docroot\/modules\/custom\/cs_generated_content\/generated_content\/node\/civictheme_page_variations\/.*</exclude-pattern>
 
     <!--Force short array syntax.-->
     <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found">

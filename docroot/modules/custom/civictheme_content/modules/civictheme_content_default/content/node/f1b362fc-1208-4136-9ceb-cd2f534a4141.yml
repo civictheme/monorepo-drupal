@@ -36,6 +36,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
   field_c_n_banner_theme:
     -
       value: dark
@@ -83,6 +86,12 @@ default:
               uri: 'http://www.google.com'
               title: Google
               options: {  }
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
   field_c_n_show_toc:
     -
       value: false

@@ -3,6 +3,7 @@ type: theme
 base theme: civictheme
 description: 'CivicTheme Starter Kit description.'
 core_version_requirement: ^8 || ^9
+hidden: true
 
 regions:
   header_top_1: 'Header top 1'

@@ -6,7 +6,9 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_banner_components
     - field.field.node.civictheme_page.field_c_n_banner_components_bott
     - field.field.node.civictheme_page.field_c_n_banner_featured_image
+    - field.field.node.civictheme_page.field_c_n_banner_hide_breadcrumb
     - field.field.node.civictheme_page.field_c_n_banner_theme
+    - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
@@ -69,6 +71,24 @@ targetEntityType: node
 bundle: civictheme_page
 mode: default
 content:
+  field_c_n_banner_hide_breadcrumb:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_c_n_banner_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_c_n_components:
     type: entity_reference_revisions_entity_view
     label: hidden

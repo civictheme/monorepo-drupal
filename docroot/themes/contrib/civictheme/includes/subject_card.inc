@@ -5,18 +5,16 @@
  * CivicTheme subject card paragraph component.
  */
 
-use Drupal\Component\Utility\UrlHelper;
-use Drupal\Core\Url;
-
 /**
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_subject_card(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $link = ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
-  if (!empty($link['uri']) && !UrlHelper::isExternal($link['uri'])) {
-    $link['uri'] = Url::fromUri($link['uri'])->toString();
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
+  $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+  if ($link) {
+    $variables['url'] = $link->getUrl()->toString();
+    $variables['is_external'] = $link->isExternal();
   }
-  $variables['url'] = $link['uri'] ?? NULL;
 }

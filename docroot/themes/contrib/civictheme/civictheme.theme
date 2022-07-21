@@ -49,6 +49,36 @@ require_once 'includes/system_branding.inc';
 require_once 'includes/views.inc';
 
 /**
+ * Return CivicTheme version.
+ */
+function civictheme_get_version() {
+  $version = NULL;
+
+  /** @var \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list */
+  $theme_extension_list = \Drupal::service('extension.list.theme');
+  $civictheme_theme = $theme_extension_list->get('civictheme');
+
+  // Discover from the .info file set by the Drupal.org's publishing script.
+  if (!empty($civictheme_theme->info['version'])) {
+    return $civictheme_theme->info['version'];
+  }
+
+  // Fallback to the version specified in CivicTheme's README.md.
+  $theme_path = $civictheme_theme->getPath();
+  $readme_file = $theme_path . DIRECTORY_SEPARATOR . 'README.md';
+
+  if (file_exists($readme_file)) {
+    $contents = file_get_contents($readme_file);
+    preg_match('/Version: `([0-9]+(?:\.[0-9]+)+(?:-rc[0-9]+)?)`/', $contents, $matches);
+    if (!empty($matches[1])) {
+      $version = $matches[1];
+    }
+  }
+
+  return $version;
+}
+
+/**
  * Implements hook_theme().
  */
 function civictheme_theme() {
@@ -221,4 +251,11 @@ function civictheme_preprocess_image(&$variables) {
  */
 function civictheme_preprocess_menu_local_tasks(&$variables) {
   _civictheme_preprocess_menu_local_tasks($variables);
+}
+
+/**
+ * Implements template_preprocess_menu().
+ */
+function civictheme_preprocess_menu(&$variables) {
+  _civictheme_preprocess_menu_items($variables['items']);
 }

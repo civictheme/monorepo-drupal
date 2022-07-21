@@ -2,21 +2,49 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.civictheme_webform.field_c_p_background
+    - field.field.paragraph.civictheme_webform.field_c_p_space
+    - field.field.paragraph.civictheme_webform.field_c_p_theme
     - field.field.paragraph.civictheme_webform.field_c_p_webform
     - paragraphs.paragraphs_type.civictheme_webform
   module:
+    - options
     - webform
 id: paragraph.civictheme_webform.default
 targetEntityType: paragraph
 bundle: civictheme_webform
 mode: default
 content:
+  field_c_p_background:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_c_p_space:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_c_p_theme:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_c_p_webform:
-    weight: 0
+    type: webform_entity_reference_entity_view
     label: hidden
     settings:
       source_entity: true
     third_party_settings: {  }
-    type: webform_entity_reference_entity_view
+    weight: 0
     region: content
 hidden: {  }

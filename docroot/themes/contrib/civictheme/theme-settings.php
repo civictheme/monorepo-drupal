@@ -5,14 +5,32 @@
  * Theme settings form for CivicTheme theme.
  */
 
-use Drupal\Core\StreamWrapper\StreamWrapperManager;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\Core\StreamWrapper\PublicStream;
+use Drupal\Core\StreamWrapper\StreamWrapperManager;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_form_system_theme_settings_alter().
  */
 function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
-  $theme = \Drupal::theme()->getActiveTheme();
+  $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
+  $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
+
+  $civictheme_version = civictheme_get_version();
+  if ($civictheme_version) {
+    $form['civictheme_version'] = [
+      '#type' => 'inline_template',
+      '#template' => '{{ content|raw }}',
+      '#context' => [
+        'content' => t('<div class="messages messages--info">CivicTheme version: @version</div>', [
+          '@version' => Link::fromTextAndUrl($civictheme_version, Url::fromUri('https://github.com/salsadigitalauorg/civictheme/releases/tag/' . $civictheme_version))->toString(),
+        ]),
+      ],
+      '#weight' => -100,
+    ];
+  }
 
   // Disable default settings as we do not support uploading of custom logos
   // through config form (yet).
@@ -25,29 +43,29 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['logo']['settings']['civictheme_header_logo_mobile'] = [
     '#type' => 'textfield',
     '#title' => t('Header mobile logo path'),
-    '#default_value' => theme_get_setting('civictheme_header_logo_mobile'),
-    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-header-mobile.svg, or themes/contrib/civictheme/assets/images/svg/logo-header-mobile.svg.'),
+    '#description' => _civictheme_field_description(theme_get_setting('civictheme_header_logo_mobile'), 'logo-header-mobile.svg'),
+    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_header_logo_mobile')),
   ];
 
   $form['logo']['settings']['civictheme_footer_logo_desktop'] = [
     '#type' => 'textfield',
     '#title' => t('Footer desktop logo path'),
-    '#default_value' => theme_get_setting('civictheme_footer_logo_desktop'),
-    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-footer-desktop.svg, or themes/contrib/civictheme/dist/images/svg/logo-footer-desktop.svg.'),
+    '#description' => _civictheme_field_description(theme_get_setting('civictheme_footer_logo_desktop'), 'logo-header-desktop.svg'),
+    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_footer_logo_desktop')),
   ];
 
   $form['logo']['settings']['civictheme_footer_logo_mobile'] = [
     '#type' => 'textfield',
     '#title' => t('Footer mobile logo path'),
-    '#default_value' => theme_get_setting('civictheme_footer_logo_mobile'),
-    '#description' => t('Examples: logo.svg (for a file in the public filesystem), public://logo-footer-mobile.svg, or themes/contrib/civictheme/dist/images/svg/logo-footer-mobile.svg.'),
+    '#description' => _civictheme_field_description(theme_get_setting('civictheme_footer_logo_mobile'), 'logo-footer-mobile.svg'),
+    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_footer_logo_mobile')),
   ];
 
   $form['logo']['settings']['civictheme_site_logo_alt'] = [
     '#type' => 'textfield',
     '#title' => t('Logo alt attribute text'),
+    '#description' => t('Text for the alt attribute of the site logo image.'),
     '#default_value' => theme_get_setting('civictheme_site_logo_alt'),
-    '#description' => t('Text for the alt attribute of site logo image'),
   ];
 
   $form['components'] = [
@@ -68,6 +86,7 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
     '#title' => t('@component theme', ['@component' => 'Header']),
     '#description' => t('Set the theme option for the @component.', ['@component' => 'Header']),
     '#type' => 'radios',
+    '#required' => TRUE,
     '#options' => [
       'light' => t('Light'),
       'dark' => t('Dark'),
@@ -86,6 +105,7 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
     '#title' => t('@component theme', ['@component' => 'Footer']),
     '#description' => t('Set the theme option for the @component.', ['@component' => 'Footer']),
     '#type' => 'radios',
+    '#required' => TRUE,
     '#options' => [
       'light' => t('Light'),
       'dark' => t('Dark'),
@@ -96,27 +116,16 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['components']['footer']['civictheme_footer_background_image'] = [
     '#type' => 'textfield',
     '#title' => t('Footer background image path'),
-    '#default_value' => theme_get_setting('civictheme_footer_background_image'),
-    '#description' => t('Examples: footer-background.png (for a file in the public filesystem), public://footer-background.png, or themes/contrib/civictheme/dist/images/svg/footer-background.png.'),
+    '#description' => _civictheme_field_description(theme_get_setting('civictheme_footer_background_image'), 'footer-background.png'),
+    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_footer_background_image')),
   ];
 
-  $logo_fields = [
-    'civictheme_header_logo_mobile',
-    'civictheme_footer_logo_desktop',
-    'civictheme_footer_logo_mobile',
-  ];
-  foreach ($logo_fields as $type) {
-    if (isset($form['logo']['settings'][$type])) {
-      $element = &$form['logo']['settings'][$type];
-
-      // If path is a public:// URI, display the path relative to the files
-      // directory; stream wrappers are not end-user friendly.
-      $original_path = $element['#default_value'];
-      if (StreamWrapperManager::getScheme($original_path) == 'public') {
-        $friendly_path = StreamWrapperManager::getTarget($original_path);
-        $element['#default_value'] = $friendly_path;
-      }
-    }
+  // Programmatically provision content.
+  $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
+  $provision_file = $civictheme_path . DIRECTORY_SEPARATOR . 'civictheme.provision.inc';
+  if (file_exists($provision_file)) {
+    require_once $provision_file;
+    _civictheme_form_system_theme_settings_alter_provision($form, $form_state);
   }
 
   // Show compiled Storybook.
@@ -124,13 +133,13 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
   $form['storybook'] = [
     '#type' => 'details',
     '#title' => t('Storybook for %theme theme', [
-      '%theme' => $theme->getName(),
+      '%theme' => $theme_name,
     ]),
     '#open' => TRUE,
     '#weight' => 51,
   ];
 
-  $storybook_file = $theme->getPath() . '/storybook-static/index.html';
+  $storybook_file = $theme_path . '/storybook-static/index.html';
   if (file_exists($storybook_file)) {
     $form['storybook']['markup'] = [
       '#type' => 'inline_template',
@@ -165,6 +174,7 @@ function _civictheme_form_system_theme_settings_validate(array $form, FormStateI
     'civictheme_header_logo_mobile',
     'civictheme_footer_logo_desktop',
     'civictheme_footer_logo_mobile',
+    'civictheme_footer_background_image',
   ];
 
   foreach ($field_to_validate as $field) {
@@ -212,5 +222,61 @@ function _civictheme_form_system_theme_settings_validate_path($path) {
   if (is_file($path)) {
     return $path;
   }
+
   return FALSE;
+}
+
+/**
+ * Convert path to a human-friendly path.
+ *
+ * @param string $original_path
+ *   The original path.
+ *
+ * @return string
+ *   Friendly path or original path if an invalid stream wrapper was provided.
+ */
+function _civictheme_field_friendly_path($original_path) {
+  // If path is a public:// URI, display the path relative to the files
+  // directory; stream wrappers are not end-user friendly.
+  $friendly_path = NULL;
+
+  if ($original_path && StreamWrapperManager::getScheme($original_path) == 'public') {
+    $friendly_path = StreamWrapperManager::getTarget($original_path);
+  }
+
+  return $friendly_path ?? $original_path;
+}
+
+/**
+ * Provide a description for a path field.
+ *
+ * @param string $original_path
+ *   The original path from the current field value.
+ * @param string $fallback_path
+ *   Fallback file name.
+ *
+ * @return string
+ *   Description string.
+ */
+function _civictheme_field_description($original_path, $fallback_path) {
+  $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
+  /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
+  $theme_handler = \Drupal::getContainer()->get('theme_handler');
+
+  // Prepare local file path for description.
+  if ($original_path && isset($friendly_path)) {
+    $local_file = strtr($original_path, ['public:/' => PublicStream::basePath()]);
+  }
+  elseif ($theme_name) {
+    $local_file = $theme_handler->getTheme($theme_name)->getPath() . '/' . $fallback_path;
+  }
+  else {
+    $local_file = $theme_handler->getActiveTheme()->getPath() . '/' . $fallback_path;
+  }
+
+  return t('Examples: <code>@implicit-public-file</code> (for a file in the public filesystem), <code>@explicit-file</code>, or <code>@local-file</code>.', [
+    '@implicit-public-file' => $friendly_path ?? $fallback_path,
+    '@explicit-file' => StreamWrapperManager::getScheme($original_path) !== FALSE ? $original_path : 'public://' . $fallback_path,
+    '@local-file' => $local_file,
+  ]);
 }

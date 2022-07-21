@@ -35,6 +35,11 @@ CivicTheme theme development
 - Content types are prefixed with `civictheme_`.
 - Field names are prefixed with `field_c_`.
 
+## Custom Drupal site building scripts
+
+Scripts in `scripts/custom` run after site is installed from profile in the
+order they are numbered.
+
 ## Compiling theme assets
 
 To compile all assets in all themes: `ahoy fe`

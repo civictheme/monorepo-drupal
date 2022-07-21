@@ -5,9 +5,6 @@
  * CivicTheme event card paragraph component.
  */
 
-use Drupal\Component\Utility\UrlHelper;
-use Drupal\Core\Url;
-
 /**
  * Implements template_preprocess_paragraph().
  */
@@ -16,25 +13,21 @@ function civictheme_preprocess_paragraph__civictheme_event_card(&$variables) {
   $paragraph = $variables['paragraph'];
 
   // Event url.
-  $link = ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
-  if (!empty($link['uri']) && !UrlHelper::isExternal($link['uri'])) {
-    $link['uri'] = Url::fromUri($link['uri'])->toString();
+  $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+  if ($link) {
+    $variables['url'] = $link->getUrl()->toString();
+    $variables['is_external'] = $link->isExternal();
   }
-  $variables['url'] = $link['uri'] ?? NULL;
-  $variables['is_external'] = !empty($link['uri']) ? UrlHelper::isExternal($link['uri']) : FALSE;
 
   // Event date.
-  if ($paragraph->hasField('field_c_p_date') && !$paragraph->get('field_c_p_date')->isEmpty()) {
-    $variables['date'] = \Drupal::service('date.formatter')->format(strtotime($paragraph->get('field_c_p_date')->value), 'civictheme_short_date');
+  $date = civictheme_get_field_value($paragraph, 'field_c_p_date', TRUE);
+  if ($date) {
+    $variables['date'] = civictheme_format_short_date($date->get('value')->getDateTime());
   }
 
   // Event topics.
-  if ($paragraph->hasField('field_c_p_topic') && !$paragraph->get('field_c_p_topic')->isEmpty()) {
-    foreach ($paragraph->get('field_c_p_topic')->referencedEntities() as $topic) {
-      $variables['tags'][] = $topic->label();
-    }
-  }
+  $variables['tags'] = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topic');
 
   // Event location.
-  $variables['location'] = ($paragraph->hasField('field_c_p_location') && !$paragraph->get('field_c_p_location')->isEmpty()) ? $paragraph->get('field_c_p_location')->getString() : NULL;
+  $variables['location'] = civictheme_get_field_value($paragraph, 'field_c_p_location');
 }

@@ -41,39 +41,35 @@
             <div class="civictheme-map__links">
             {% if view_link is not empty %}
               <div class="civictheme-map__view_link">
-                {% set view_text %}
-                  {% include '@atoms/icon/icon.twig' with {
-                    symbol: 'locationandmaps_map',
-                    modifier_class: 'civictheme-link__link-icon',
-                  } %}
-                {% endset %}
                 {% set view_text = view_text|trim ~ 'View in Google Maps' %}
-                {% include '@atoms/link/link.twig' with {
+                {% include '@atoms/button/button.twig' with {
+                  kind: 'link',
                   theme: theme,
+                  type: 'primary',
                   text: view_text,
                   url: view_link,
                   is_new_window: true,
                   is_external: true,
-                } %}
+                  icon: 'locationandmaps_map',
+                  icon_placement: 'before',
+                } only %}
               </div>
             {% endif %}
 
             {% if share_link is not empty %}
               <div class="civictheme-map__share_link">
-                {% set share_text %}
-                  {% include '@atoms/icon/icon.twig' with {
-                    symbol: 'userinterface_share',
-                    modifier_class: 'civictheme-link__link-icon',
-                  } %}
-                {% endset %}
                 {% set share_text = share_text|trim ~ 'Share this Location' %}
-                {% include '@atoms/link/link.twig' with {
+                {% include '@atoms/button/button.twig' with {
+                  kind: 'link',
                   theme: theme,
+                  type: 'secondary',
                   text: share_text,
                   url: share_link,
                   is_new_window: true,
                   is_external: true,
-                } %}
+                  icon: 'userinterface_share',
+                  icon_placement: 'before',
+                } only %}
               </div>
             {% endif %}
           </div>

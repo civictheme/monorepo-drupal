@@ -19,9 +19,9 @@ function civictheme_preprocess_block__civictheme_search(&$variables) {
   }
 
   $variables['content'] = NULL;
-
-  $link = $entity->get('field_c_b_link')->first()->getValue();
-  $variables['url'] = $link['uri'] ?? NULL;
-  $variables['text'] = $link['title'] ?? 'Search';
-
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
+  if ($link = civictheme_get_field_value($entity, 'field_c_b_link', TRUE)) {
+    $variables['url'] = $link->getUrl()->toString();
+    $variables['text'] = $link->get('title')->getString();
+  }
 }

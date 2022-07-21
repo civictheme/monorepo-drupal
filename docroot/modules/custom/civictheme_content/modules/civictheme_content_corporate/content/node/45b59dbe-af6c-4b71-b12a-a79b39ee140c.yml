@@ -31,7 +31,7 @@ _meta:
 default:
   revision_uid:
     -
-      target_id: 2
+      target_id: 1
   status:
     -
       value: true
@@ -80,9 +80,6 @@ default:
           behavior_settings:
             -
               value: {  }
-          revision_translation_affected:
-            -
-              value: true
           field_c_p_background:
             -
               value: false
@@ -229,6 +226,9 @@ default:
           field_c_p_theme:
             -
               value: light
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
   field_c_n_banner_theme:
     -
       value: dark
@@ -254,12 +254,18 @@ default:
           behavior_settings:
             -
               value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_card_theme:
+            -
+              value: light
           field_c_p_content_type:
             -
               value: civictheme_page
-          field_c_p_hide_count:
-            -
-              value: true
           field_c_p_limit_type:
             -
               value: limited
@@ -272,12 +278,9 @@ default:
           field_c_p_show_filters:
             -
               value: false
-          field_c_p_show_pager:
+          field_c_p_theme:
             -
-              value: false
-          field_c_p_space:
-            -
-              value: both
+              value: light
           field_c_p_topics:
             -
               entity: d95f5188-650c-4dea-abcb-df8ea008919b
@@ -706,6 +709,12 @@ default:
           field_c_p_title:
             -
               value: 'Upcoming events'
+  field_c_n_hide_sidebar:
+    -
+      value: true
+  field_c_n_show_last_updated:
+    -
+      value: true
   field_c_n_show_toc:
     -
       value: false

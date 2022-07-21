@@ -62,13 +62,33 @@ function civictheme_content_install() {
     return 'civictheme_content_' . $value;
   }, $supported);
 
-  $content_module_enabled = FALSE;
+  // Programmatically provision content.
+  $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
+  $provision_file = $civictheme_path . DIRECTORY_SEPARATOR . 'civictheme.provision.inc';
+  if (file_exists($provision_file)) {
+    require_once $provision_file;
+    $theme_block_list = _civictheme_get_theme_block();
+    // Blocks with existing name will be removed and re-created.
+    foreach ($theme_block_list as $info) {
+      /** @var \Drupal\block_content\Entity\BlockContent $block */
+      $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties([
+        'info' => $info['name'],
+      ]);
+
+      if (!empty($blocks)) {
+        foreach ($blocks as $block) {
+          $block->delete();
+        }
+      }
+    }
+  }
+  $assign_region = FALSE;
   foreach ($modules as $module) {
     if (\Drupal::service('module_installer')->install([$module])) {
       Helper::log(t('Successfully enabled: %name.', [
         '%name' => $module,
       ]));
-      $content_module_enabled = TRUE;
+      $assign_region = TRUE;
     }
     else {
       // Fail installation as a module with a correct name should have been
@@ -76,12 +96,10 @@ function civictheme_content_install() {
       throw new InstallerException('Unable to enable: ' . $module);
     }
   }
-  if ($content_module_enabled) {
-    // Provides default Configurations for CivicTheme theme.
-    if (\Drupal::service('module_installer')->install(['civictheme_default_config'])) {
-      Helper::log(t('Successfully enabled: %name.', [
-        '%name' => 'civictheme_default_config',
-      ]));
+  if ($assign_region && !empty($theme_block_list)) {
+    // Assign blocks to region.
+    foreach ($theme_block_list as $info) {
+      civictheme_provision_place_block($info['name'], $info['region'], $info['uuid']);
     }
   }
 }

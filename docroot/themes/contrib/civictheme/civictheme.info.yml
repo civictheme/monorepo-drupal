@@ -9,15 +9,20 @@ libraries:
 
 dependencies:
   - components:components
+  - content_moderation:content_moderation
   - drupal:block_content
+  - drupal:datetime_range
   - drupal:inline_form_errors
   - drupal:layout_builder
   - drupal:layout_discovery
+  - drupal:media
+  - drupal:media_library
   - drupal:rest
   - field_group:field_group
   - layout_builder_restrictions:layout_builder_restrictions
   - menu_block:menu_block
   - paragraphs:paragraphs
+  - pathauto:pathauto
   - webform:webform
 
 regions:
@@ -79,17 +84,10 @@ ckeditor_stylesheets:
 config_devel:
   install:
     - block.block.civictheme_content
-    - block.block.civictheme_footer_menu_1
-    - block.block.civictheme_footer_menu_2
-    - block.block.civictheme_footer_menu_3
-    - block.block.civictheme_footer_menu_4
     - block.block.civictheme_footer_sitebranding
     - block.block.civictheme_help
     - block.block.civictheme_messages
     - block.block.civictheme_primaryadminactions
-    - block.block.civictheme_primarynavigation_menu
-    - block.block.civictheme_secondarynavigation_menu
-    - block.block.civictheme_side_navigation_menu
     - block.block.civictheme_sitebranding
     - block.block.civictheme_tabs
     - block.block.sitebranding_2
@@ -266,7 +264,9 @@ config_devel:
     - field.field.node.civictheme_page.field_c_n_banner_components
     - field.field.node.civictheme_page.field_c_n_banner_components_bott
     - field.field.node.civictheme_page.field_c_n_banner_featured_image
+    - field.field.node.civictheme_page.field_c_n_banner_hide_breadcrumb
     - field.field.node.civictheme_page.field_c_n_banner_theme
+    - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
@@ -402,7 +402,9 @@ config_devel:
     - field.field.paragraph.civictheme_slider_slide.field_c_p_theme
     - field.field.paragraph.civictheme_slider_slide.field_c_p_title
     - field.field.paragraph.civictheme_slider_slide.field_c_p_topic
+    - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_image_position
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_reference
+    - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_theme
     - field.field.paragraph.civictheme_social_icon.field_c_p_icon
     - field.field.paragraph.civictheme_social_icon.field_c_p_link
     - field.field.paragraph.civictheme_subject_card.field_c_p_image
@@ -416,6 +418,9 @@ config_devel:
     - field.field.paragraph.civictheme_task_card.field_c_p_link
     - field.field.paragraph.civictheme_task_card.field_c_p_summary
     - field.field.paragraph.civictheme_task_card.field_c_p_title
+    - field.field.paragraph.civictheme_webform.field_c_p_background
+    - field.field.paragraph.civictheme_webform.field_c_p_space
+    - field.field.paragraph.civictheme_webform.field_c_p_theme
     - field.field.paragraph.civictheme_webform.field_c_p_webform
     - field.storage.block_content.field_c_b_background_image
     - field.storage.block_content.field_c_b_bottom_menu
@@ -444,7 +449,9 @@ config_devel:
     - field.storage.node.field_c_n_banner_components
     - field.storage.node.field_c_n_banner_components_bott
     - field.storage.node.field_c_n_banner_featured_image
+    - field.storage.node.field_c_n_banner_hide_breadcrumb
     - field.storage.node.field_c_n_banner_theme
+    - field.storage.node.field_c_n_banner_title
     - field.storage.node.field_c_n_banner_type
     - field.storage.node.field_c_n_body
     - field.storage.node.field_c_n_components
@@ -557,8 +564,6 @@ config_devel:
     - pathauto.pattern.civictheme_alert
     - pathauto.pattern.civictheme_event
     - pathauto.pattern.civictheme_page
-    - simple_sitemap.bundle_settings.default.node.civictheme_event
-    - simple_sitemap.bundle_settings.default.node.civictheme_page
     - system.menu.civictheme-footer
     - system.menu.civictheme-primary-navigation
     - system.menu.civictheme-secondary-navigation
@@ -574,5 +579,5 @@ config_devel:
     - webform.webform.civictheme_enquiry
   optional:
     - core.entity_view_mode.node.teaser
-    - simple_sitemap.custom_links.default
+    - media.settings
 #;> DEVELOPMENT

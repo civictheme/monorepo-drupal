@@ -8,6 +8,12 @@
 use Drupal\node\Entity\Node;
 use Drupal\Core\Render\Element;
 use Drupal\views\ViewExecutable;
+use Drupal\Core\Cache\Cache;
+
+/**
+ * Defines default view theme.
+ */
+define('CIVICTHEME_VIEWS_DEFAULT_THEME', 'light');
 
 /**
  * Page pre-process for views.
@@ -38,7 +44,7 @@ function civictheme_preprocess_views_mini_pager(&$variables) {
  */
 function civictheme_preprocess_views_exposed_form(&$variables) {
   $variables['filter_title'] = 'Filter search results by:';
-  $variables['large_filter'] = $variables['form']['#large_filter'];
+  $variables['large_filter'] = $variables['form']['#large_filter'] ?? FALSE;
   $is_view_component = isset($variables['attributes']['civictheme_listing']);
   if ($is_view_component) {
     $variables += $variables['attributes']['civictheme_listing'];
@@ -123,16 +129,16 @@ function civictheme_preprocess_views_view(&$variables) {
 function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) {
   $settings = [];
   if ($paragraph !== NULL) {
-    $link = $paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty() ? $paragraph->get('field_c_p_link')->first() : NULL;
-    $link_data = $link !== NULL ? [
+    $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+    $link_data = $link ? [
       'text' => $link->get('title')->getString(),
       'is_external' => $link->isExternal(),
       'is_new_window' => $link->isExternal(),
       'url' => $link->getUrl()->toString(),
     ] : [];
 
-    $read_more = $paragraph->hasField('field_c_p_read_more') && !$paragraph->get('field_c_p_read_more')->isEmpty() ? $paragraph->get('field_c_p_read_more')->first() : NULL;
-    $read_more_data = $read_more !== NULL ? [
+    $read_more = civictheme_get_field_value($paragraph, 'field_c_p_read_more', TRUE);
+    $read_more_data = $read_more ? [
       'text' => $read_more->get('title')->getString(),
       'is_external' => $read_more->isExternal(),
       'is_new_window' => $read_more->isExternal(),
@@ -140,14 +146,15 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
     ] : [];
 
     $settings = [
-      'theme' => _civictheme_paragraph_get_theme($paragraph) !== FALSE ? _civictheme_paragraph_get_theme($paragraph) : 'light',
-      'card_theme' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_card_theme') ? $paragraph->get('field_c_p_card_theme')->getString() : 'light',
+      'theme' => civictheme_get_theme_value($paragraph) ?? CIVICTHEME_VIEWS_DEFAULT_THEME,
+      'card_theme' => civictheme_field_has_value($paragraph, 'field_c_p_card_theme') ? $paragraph->get('field_c_p_card_theme')->getString() : CIVICTHEME_VIEWS_DEFAULT_THEME,
       'link' => $link_data,
-      'title' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_title') ? $paragraph->get('field_c_p_title')->getString() : '',
-      'with_background' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_background') ? (bool) $paragraph->get('field_c_p_background')->getString() : '',
-      'vertical_space' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_space') ? $paragraph->get('field_c_p_space')->getString() : '',
-      'show_filters' => _civictheme_paragraph_field_has_value($paragraph, 'field_c_p_show_filters') ? (bool) $paragraph->get('field_c_p_show_filters')->getString() : TRUE,
+      'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
+      'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,
+      'vertical_space' => civictheme_get_field_value($paragraph, 'field_c_p_space') ?? '',
+      'show_filters' => civictheme_get_field_value($paragraph, 'field_c_p_show_filters') ?? TRUE,
       'read_more' => $read_more_data,
+      'cache_tags' => $paragraph->getCacheTags(),
     ];
   }
 
@@ -164,9 +171,9 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
  */
 function civictheme_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'] ?? NULL;
+  $variables['modifier_class'] = 'civictheme-card-container--listing';
   // On Grid view title should be added to card container.
   if ($view && $view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
-    $variables['modifier_class'] = 'civictheme-card-container--listing civictheme-card-container--with-background';
     $variables['title'] = $view->header['result']->render();
   }
   // Adds component theme settings to view / listing template.
@@ -177,6 +184,11 @@ function civictheme_preprocess_views_view_grid(&$variables) {
   if (isset($variables['card_theme'])) {
     foreach ($variables['rows'] as $id => $row) {
       $variables['rows'][$id]['#node']->civictheme_theme = $variables['card_theme'];
+      $variables['rows'][$id]['#cache']['contexts'][] = 'url.path';
+      $variables['rows'][$id]['#cache']['contexts'][] = 'url.query_args';
+      if (!empty($variables['view']->civictheme_listing['cache_tags'])) {
+        $variables['rows'][$id]['#cache']['tags'] = Cache::mergeTags($variables['view']->civictheme_listing['cache_tags'], $view->getCacheTags());
+      }
     }
   }
 }
@@ -200,11 +212,10 @@ function _civictheme_get_listing_paragraph_from_route() {
   }
 
   if ($node && $node->bundle() == 'civictheme_page') {
-    if (!$node->get('field_c_n_components')->isEmpty()) {
-      foreach ($node->get('field_c_n_components')->referencedEntities() as $paragraph) {
-        if ($paragraph->getType() == 'civictheme_listing') {
-          return $paragraph;
-        }
+    $components = civictheme_get_field_referenced_entities($node, 'field_c_n_components');
+    foreach ($components as $component) {
+      if ($component->getType() == 'civictheme_listing') {
+        return $component;
       }
     }
   }

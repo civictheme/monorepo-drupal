@@ -36,6 +36,9 @@ default:
       alias: /news-events
       langcode: en
       pathauto: 1
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
   field_c_n_banner_theme:
     -
       value: dark
@@ -64,12 +67,15 @@ default:
           revision_translation_affected:
             -
               value: true
+          field_c_p_background:
+            -
+              value: false
+          field_c_p_card_theme:
+            -
+              value: light
           field_c_p_content_type:
             -
               value: civictheme_page
-          field_c_p_hide_count:
-            -
-              value: true
           field_c_p_limit_type:
             -
               value: unlimited
@@ -82,15 +88,21 @@ default:
           field_c_p_show_filters:
             -
               value: true
-          field_c_p_show_pager:
+          field_c_p_theme:
             -
-              value: false
+              value: light
           field_c_p_topics:
             -
               entity: d95f5188-650c-4dea-abcb-df8ea008919b
           field_c_p_view_as:
             -
               value: civictheme_promo_card
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
   field_c_n_show_toc:
     -
       value: false
