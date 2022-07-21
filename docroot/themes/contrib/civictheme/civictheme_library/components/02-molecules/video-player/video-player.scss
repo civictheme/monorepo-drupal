@@ -28,7 +28,7 @@
     .civictheme-link {
       @include civictheme-typography('text-regular');
 
-      @include breakpoint(xss) {
+      @include breakpoint(xxs) {
         font-family: civictheme-font('secondary');
       }
 
