@@ -26,7 +26,7 @@ function _civictheme_theme_suggestions__civictheme_filter(array &$suggestions, a
 /**
  * Theme suggestions for civictheme basic filter elements.
  */
-function _civictheme_theme_suggestions__civictheme_basic_filter(array &$suggestions, array $variables, $type = NULL) {
+function _civictheme_theme_suggestions__civictheme_basic_filter(array &$suggestions, array $variables) {
   // For civictheme basic filter both radios / checkboxes and checkbox / radio
   // require custom templates.
   if (in_array($variables['element']['#type'], ['radio', 'checkbox'])

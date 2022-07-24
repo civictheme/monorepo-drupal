@@ -75,6 +75,8 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
 
 /**
  * Validate callback for theme settings form alter to provision content.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
 function _civictheme_form_system_theme_settings_validate_provision(array &$form, FormStateInterface $form_state) {
   $triggering_element = $form_state->getTriggeringElement();
@@ -90,6 +92,8 @@ function _civictheme_form_system_theme_settings_validate_provision(array &$form,
 
 /**
  * Submit callback for theme settings form alter to provision content.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
 function _civictheme_form_system_theme_settings_submit_provision(array &$form, FormStateInterface $form_state) {
   $triggering_element = $form_state->getTriggeringElement();
@@ -150,6 +154,10 @@ function _civictheme_form_system_theme_settings_submit_provision(array &$form, F
  *      no error message was provided.
  *   -  message: (string) Provisioning finished unsuccessfully for this type and
  *      the value contains an error message.
+ *
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function civictheme_provision(array $types = [], $clear_cache = TRUE, $verbose = FALSE) {
   $results = [];
@@ -160,7 +168,7 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, $verbose =
     $types = array_keys($callbacks);
   }
 
-  foreach ($callbacks as $callback_type => $callback) {
+  foreach (array_keys($callbacks) as $callback_type) {
     if (in_array($callback_type, $types)) {
       if ($verbose) {
         civictheme_provision_cli_log(t('Started provisioning @type.', [
@@ -233,10 +241,10 @@ function civictheme_provision_cli_log($message) {
   }
   elseif (PHP_SAPI === 'cli') {
     print strip_tags(html_entity_decode($message)) . PHP_EOL;
+
+    return;
   }
-  else {
-    \Drupal::messenger()->addMessage($message);
-  }
+  \Drupal::messenger()->addMessage($message);
 }
 
 /**
@@ -364,6 +372,8 @@ function civictheme_provision_create_block_content($block_type, $info, $uuid) {
  *   If not provided - sensible defaults will be used.
  * @param string $block_type
  *   Optional block type. Defaults to 'block_content'.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_provision_place_block($label, $region, $uuid = NULL, array $settings = [], $block_type = 'block_content') {
   $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
@@ -389,7 +399,7 @@ function civictheme_provision_place_block($label, $region, $uuid = NULL, array $
     unset($settings[$key]);
   }
 
-  foreach ($values['visibility'] as $id => $visibility) {
+  foreach (array_keys($values['visibility']) as $id) {
     $values['visibility'][$id]['id'] = $id;
   }
   $values['settings'] = $settings;
@@ -420,6 +430,8 @@ function civictheme_provision_place_block($label, $region, $uuid = NULL, array $
  *
  * @return \Drupal\media\Entity\Media|null
  *   Found media instance or NULL if not found.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_provision_load_media_by_name($name) {
   $media = \Drupal::entityTypeManager()
@@ -434,6 +446,8 @@ function civictheme_provision_load_media_by_name($name) {
  *
  * @param string $menu_name
  *   String machine menu name.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_provision_clear_menu($menu_name) {
   /** @var \Drupal\menu_link_content\MenuLinkContentStorage $storage */
@@ -460,6 +474,9 @@ function civictheme_provision_clear_menu($menu_name) {
 
 /**
  * Provision files.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function civictheme_provision__files() {
   $theme_name = \Drupal::config('system.theme')->get('default');
@@ -481,15 +498,17 @@ function civictheme_provision__files() {
   foreach ($filepaths as $filepath) {
     if (file_exists($filepath)) {
       $file_repository->writeData(file_get_contents($filepath), $default_file_scheme . basename($filepath), FileSystemInterface::EXISTS_REPLACE);
+      continue;
     }
-    else {
-      throw new \Exception(sprintf('File %s does not exist.', $filepath));
-    }
+    throw new \Exception(sprintf('File %s does not exist.', $filepath));
   }
 }
 
 /**
  * Provision media.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function civictheme_provision__media() {
   $theme_name = \Drupal::config('system.theme')->get('default');
@@ -540,6 +559,8 @@ function civictheme_provision__media() {
 
 /**
  * Provision menu links.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_provision__menu_links() {
   $menus = [
@@ -633,6 +654,8 @@ function _civictheme_provision__blocks__banner(array $block) {
  *
  * @param array $block
  *   Data structure of block.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_provision__blocks__search(array $block) {
   // Redirect to 'Search' page if the path exists.
@@ -676,6 +699,8 @@ function _civictheme_provision__blocks__mobile_navigation(array $block) {
  *
  * @param array $block
  *   Data structure of block.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_provision__blocks__signup(array $block) {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
@@ -700,6 +725,8 @@ function _civictheme_provision__blocks__signup(array $block) {
  *
  * @param array $block
  *   Data structure of block.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_provision__blocks__social_links(array $block) {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
@@ -745,6 +772,8 @@ function _civictheme_provision__blocks__social_links(array $block) {
  *
  * @param array $block
  *   Data structure of block.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_provision__blocks__acknowledgment_of_country(array $block) {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
@@ -766,6 +795,8 @@ function _civictheme_provision__blocks__acknowledgment_of_country(array $block) 
  *
  * @param array $block
  *   Data structure of block.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_provision__blocks__copyright(array $block) {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
@@ -784,6 +815,8 @@ function _civictheme_provision__blocks__copyright(array $block) {
 
 /**
  * Provision theme settings.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_provision__theme_settings() {
   $theme_name = \Drupal::config('system.theme')->get('default');
@@ -825,6 +858,8 @@ function civictheme_provision__theme_settings() {
 
 /**
  * Provision permissions.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_provision__permissions() {
   $map = civictheme_provision_permissions_map();
@@ -853,14 +888,13 @@ function civictheme_provision__permissions() {
 
 /**
  * Provision simple sitemap.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_provision__simple_sitemap() {
   if (!\Drupal::moduleHandler()->moduleExists('simple_sitemap')) {
     \Drupal::service('module_installer')->install(['simple_sitemap']);
   }
-
-  /** @var \Drupal\simple_sitemap\Manager\Generator $generator */
-  $generator = \Drupal::service('simple_sitemap.generator');
 
   $settings = [
     'index' => TRUE,
@@ -871,10 +905,10 @@ function civictheme_provision__simple_sitemap() {
 
   $bundles = ['civictheme_page', 'civictheme_event'];
   foreach ($bundles as $bundle) {
-    $generator->entityManager()->setBundleSettings('node', $bundle, $settings);
+    \Drupal::service('simple_sitemap.generator')->entityManager()->setBundleSettings('node', $bundle, $settings);
   }
 
-  $generator->customLinkManager()->add('/', $settings);
+  \Drupal::service('simple_sitemap.generator')->customLinkManager()->add('/', $settings);
 }
 
 /**
@@ -962,6 +996,7 @@ function civictheme_provision_permissions_map() {
  * Helper to install modules required by CivicTheme.
  *
  * @see https://www.drupal.org/node/2652542
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_enable_modules() {
   /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
@@ -983,61 +1018,62 @@ function civictheme_enable_modules() {
 function _civictheme_get_theme_block() {
   $blocks = [
     'civictheme_banner' =>
-    [
-      'name' => 'Banner',
-      'region' => 'banner',
-      'uuid' => '50c52459-c100-4e4d-92a4-9c4c77d8f8d0',
-      'builder' => '_civictheme_provision__blocks__banner',
-      'type' => 'civictheme_banner',
-    ],
+      [
+        'name' => 'Banner',
+        'region' => 'banner',
+        'uuid' => '50c52459-c100-4e4d-92a4-9c4c77d8f8d0',
+        'builder' => '_civictheme_provision__blocks__banner',
+        'type' => 'civictheme_banner',
+      ],
     'civictheme_search' =>
-    [
-      'name' => 'Search',
-      'region' => 'header_middle_3',
-      'uuid' => '286ff750-a9a9-423a-8a4e-515f79fc0a8f',
-      'builder' => '_civictheme_provision__blocks__search',
-      'type' => 'civictheme_search',
-    ],
+      [
+        'name' => 'Search',
+        'region' => 'header_middle_3',
+        'uuid' => '286ff750-a9a9-423a-8a4e-515f79fc0a8f',
+        'builder' => '_civictheme_provision__blocks__search',
+        'type' => 'civictheme_search',
+      ],
     'civictheme_mobile_navigation' =>
-    [
-      'name' => 'Mobile Navigation',
-      'region' => 'header_middle_3',
-      'uuid' => 'b7f36176-620f-4178-aadd-9b448c610986',
-      'builder' => '_civictheme_provision__blocks__mobile_navigation',
-      'type' => 'civictheme_mobile_navigation',
-    ],
+      [
+        'name' => 'Mobile Navigation',
+        'region' => 'header_middle_3',
+        'uuid' => 'b7f36176-620f-4178-aadd-9b448c610986',
+        'builder' => '_civictheme_provision__blocks__mobile_navigation',
+        'type' => 'civictheme_mobile_navigation',
+      ],
     'civictheme_signup' =>
-    [
-      'name' => 'Signup',
-      'region' => 'content_bottom',
-      'uuid' => '5508dc51-1cf8-4577-9038-b572fbd698ae',
-      'builder' => '_civictheme_provision__blocks__signup',
-      'type' => 'civictheme_component_block',
-    ],
+      [
+        'name' => 'Signup',
+        'region' => 'content_bottom',
+        'uuid' => '5508dc51-1cf8-4577-9038-b572fbd698ae',
+        'builder' => '_civictheme_provision__blocks__signup',
+        'type' => 'civictheme_component_block',
+      ],
     'civictheme_social_links' =>
-    [
-      'name' => 'Social links',
-      'region' => 'footer_top_2',
-      'uuid' => '5c0ad15f-3e9c-4eeb-8525-7a064b06fc58',
-      'builder' => '_civictheme_provision__blocks__social_links',
-      'type' => 'civictheme_social_links',
-    ],
+      [
+        'name' => 'Social links',
+        'region' => 'footer_top_2',
+        'uuid' => '5c0ad15f-3e9c-4eeb-8525-7a064b06fc58',
+        'builder' => '_civictheme_provision__blocks__social_links',
+        'type' => 'civictheme_social_links',
+      ],
     'civictheme_footer_acknowledgment' =>
-    [
-      'name' => 'Footer - Acknowledgment of country',
-      'region' => 'footer_bottom_1',
-      'uuid' => '7cf65f98-cbae-4e9d-b6ea-7d6d1c437c1c',
-      'builder' => '_civictheme_provision__blocks__acknowledgment_of_country',
-      'type' => 'civictheme_component_block',
-    ],
+      [
+        'name' => 'Footer - Acknowledgment of country',
+        'region' => 'footer_bottom_1',
+        'uuid' => '7cf65f98-cbae-4e9d-b6ea-7d6d1c437c1c',
+        'builder' => '_civictheme_provision__blocks__acknowledgment_of_country',
+        'type' => 'civictheme_component_block',
+      ],
     'civictheme_footer_copyright' =>
-    [
-      'name' => 'Footer - Copyright',
-      'region' => 'footer_bottom_2',
-      'uuid' => 'd7098a8c-3ba3-48f7-bc0c-5787ebaa0427',
-      'builder' => '_civictheme_provision__blocks__copyright',
-      'type' => 'civictheme_component_block',
-    ],
+      [
+        'name' => 'Footer - Copyright',
+        'region' => 'footer_bottom_2',
+        'uuid' => 'd7098a8c-3ba3-48f7-bc0c-5787ebaa0427',
+        'builder' => '_civictheme_provision__blocks__copyright',
+        'type' => 'civictheme_component_block',
+      ],
   ];
+
   return $blocks;
 }

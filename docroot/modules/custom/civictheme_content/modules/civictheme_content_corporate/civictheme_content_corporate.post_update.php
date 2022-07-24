@@ -12,6 +12,8 @@ use Drupal\Core\Utility\UpdateException;
 
 /**
  * Sets homepage.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_content_corporate_post_update_set_homepage() {
   try {
@@ -24,6 +26,8 @@ function civictheme_content_corporate_post_update_set_homepage() {
 
 /**
  * Provisions links in footer and updates menu block configurations.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_content_corporate_post_update_provision_footer_links() {
   $theme = \Drupal::theme()->getActiveTheme()->getName();

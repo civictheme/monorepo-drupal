@@ -40,13 +40,12 @@ function _civictheme_preprocess_paragraph__civictheme_card(&$variables) {
   // Cards that are generated via reference are handled separately.
   if ($paragraph->hasField('field_c_p_reference')) {
     _civictheme_preprocess_paragraph__reference_card($variables);
+    return;
   }
-  else {
-    // @todo documentation for the field api ie they must have certain fields in
-    // card fielded paragraph types.
-    _civictheme_preprocess_paragraph__card__icon($variables);
-    _civictheme_preprocess_paragraph__card__image($variables);
-  }
+  // @todo documentation for the field api ie they must have certain fields in
+  // card fielded paragraph types.
+  _civictheme_preprocess_paragraph__card__icon($variables);
+  _civictheme_preprocess_paragraph__card__image($variables);
 
 }
 
@@ -72,6 +71,8 @@ function _civictheme_preprocess_paragraph(&$variables) {
 
 /**
  * Pre-process drupal generic paragraph classes.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph_classes(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */

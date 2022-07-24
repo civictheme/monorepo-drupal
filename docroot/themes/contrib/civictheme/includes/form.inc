@@ -14,6 +14,9 @@ use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Determine whether we render a large filter or a basic filter.
@@ -140,6 +143,9 @@ function civictheme_preprocess_select(&$variables) {
 
 /**
  * Implements template_preprocess_form_element().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_form_element(&$variables) {
   _civictheme_get_theme_from_attributes($variables);
@@ -198,6 +204,8 @@ function civictheme_preprocess_form_element(&$variables) {
  *
  * Since we are converting select to checkboxes or radios we need to modify the
  * pre_render and process callbacks that do not relate to new inputs.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_form_alter__modify_element_callbacks(&$element) {
   $element_class = $element['#type'] === 'radios' ? '\Drupal\Core\Render\Element\Radios' : '\Drupal\Core\Render\Element\Checkboxes';
@@ -290,6 +298,9 @@ function civictheme_preprocess_form_element_label(&$variables) {
 
 /**
  * Implements template_preprocess_fieldset().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_fieldset(&$variables) {
   _civictheme_get_theme_from_attributes($variables);
@@ -466,6 +477,8 @@ function civictheme_preprocess_form(&$variables) {
 
 /**
  * Get the nid that the listing block is embedded in.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_listing_get_node($form_state) {
   $nid = $form_state->getUserInput()['nid'] ?? NULL;
@@ -482,6 +495,8 @@ function _civictheme_listing_get_node($form_state) {
 
 /**
  * Implements hook_form__alter().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if (!empty($form_id) && strpos($form_id, 'webform_submission_') === 0) {

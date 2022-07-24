@@ -7,6 +7,8 @@
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -48,7 +50,8 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
 
   // Topic.
-  if ($topics = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topic')) {
+  $topics = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topic');
+  if ($topics) {
     $topics = array_map(function ($topic) use ($theme) {
       return [
         'text' => $topic,
@@ -67,6 +70,7 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
 
   // Links.
   $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+  $links = [];
   if ($link) {
     $inverse_theme = $theme === 'dark' ? 'light' : 'dark';
     $links[] = [
@@ -111,7 +115,8 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variable
       }
 
       // Topic.
-      if ($topics = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics')) {
+      $topics = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics');
+      if ($topics) {
         $topics = array_map(function ($topic) use ($theme) {
           return [
             'text' => $topic,

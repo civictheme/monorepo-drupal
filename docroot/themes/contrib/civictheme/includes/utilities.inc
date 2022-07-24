@@ -16,6 +16,8 @@ use Drupal\node\NodeInterface;
 
 /**
  * Load node or the node revision if the route is a node revision.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_load_node_or_revision($variables) {
   $node = $variables['node'] ?? NULL;
@@ -47,6 +49,8 @@ function civictheme_load_node_or_revision($variables) {
  *
  * @return array
  *   Image array or false if not available.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_media_image_process_variables(MediaInterface $media, $image_style = NULL) {
   if ($media instanceof Media) {
@@ -65,6 +69,7 @@ function civictheme_media_image_process_variables(MediaInterface $media, $image_
         }
       }
       // @todo fix image style generation from static content.
+      $image = [];
       $image['src'] = $image_src;
       $image['alt'] = !empty($image_entity['alt']) ? $image_entity['alt'] : NULL;
       $image['title'] = !empty($image_entity['title']) ? $image_entity['title'] : NULL;
@@ -102,6 +107,8 @@ function civictheme_media_get_url_from_field(EntityInterface $entity, string $fi
  *
  * @return string|false
  *   The url for the source file or false.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_media_get_url(MediaInterface $media) {
   $fid = $media->getSource()->getSourceFieldValue($media);
@@ -155,10 +162,9 @@ function civictheme_parse_attributes($string) {
     for ($i = 0; $i < count($matches[0]); $i++) {
       if ($matches[3][$i]) {
         $attributes[$matches[3][$i]] = NULL;
+        continue;
       }
-      else {
-        $attributes[$matches[1][$i]] = $matches[2][$i];
-      }
+      $attributes[$matches[1][$i]] = $matches[2][$i];
     }
   }
 
@@ -167,11 +173,14 @@ function civictheme_parse_attributes($string) {
 
 /**
  * Parse attribute classes into a string for modifier_class property.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_attributes_to_modifier_class(&$variables) {
   if (isset($variables['attributes'])) {
     $attributes = new Attribute($variables['attributes']);
-    if ($classes = civictheme_get_css_class_attributes($attributes)) {
+    $classes = civictheme_get_css_class_attributes($attributes);
+    if ($classes) {
       $variables['modifier_class'] = $classes;
     }
   }
@@ -198,6 +207,8 @@ function civictheme_get_css_class_attributes(Attribute $attributes) {
  *
  * @return mixed
  *   Formatted date.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_format_short_date($date) {
   return \Drupal::service('date.formatter')->format(strtotime($date), 'civictheme_short_date');
@@ -263,63 +274,68 @@ function civictheme_get_theme_value(FieldableEntityInterface $entity): ?string {
  *
  * @return mixed|null
  *   Whether the field exists and is not empty.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function civictheme_get_field_value(FieldableEntityInterface $entity, string $field_name, $only_first = FALSE) {
   $value = NULL;
-  if (civictheme_field_has_value($entity, $field_name)) {
-    $field = $entity->get($field_name);
-    $field_type = $field->getFieldDefinition()->getType();
-    switch ($field_type) {
-      case 'boolean':
-        $value = (bool) $field->getString();
-        break;
+  if (!civictheme_field_has_value($entity, $field_name)) {
+    return $value;
+  }
+  $field = $entity->get($field_name);
+  $field_type = $field->getFieldDefinition()->getType();
+  switch ($field_type) {
+    case 'boolean':
+      $value = (bool) $field->getString();
+      break;
 
-      case 'integer':
-        $value = (integer) $field->getString();
-        break;
+    case 'integer':
+      $value = (integer) $field->getString();
+      break;
 
-      case 'list_integer':
-        $value = (int) $field->getString();
-        break;
+    case 'list_integer':
+      $value = (int) $field->getString();
+      break;
 
-      case 'list_string':
-      case 'string':
-      case 'string_long':
-        $value = $field->getString();
-        break;
+    case 'list_string':
+    case 'string':
+    case 'string_long':
+      $value = $field->getString();
+      break;
 
-      // Field types where we want to return field item.
-      case 'datetime':
-      case 'daterange':
-      case 'image':
-      case 'link':
-        $list = reset($field);
-        if (!empty($list)) {
-          $value = $only_first ? reset($list) : $list;
-        }
-        break;
+    // Field types where we want to return field item.
+    case 'datetime':
+    case 'daterange':
+    case 'image':
+    case 'link':
+      $list = reset($field);
+      if (!empty($list)) {
+        $value = $only_first ? reset($list) : $list;
+      }
+      break;
 
-      // Field types where we want to return entities.
-      case 'entity_reference':
-      case 'entity_reference_revisions':
-        $value = civictheme_get_field_referenced_entities($entity, $field_name, $only_first);
-        break;
+    // Field types where we want to return entities.
+    case 'entity_reference':
+    case 'entity_reference_revisions':
+      $value = civictheme_get_field_referenced_entities($entity, $field_name, $only_first);
+      break;
 
-      // Opinionated - but we want to render field if single or allow view
-      // to handle it if it's all values.
-      case 'text_long':
-        if ($only_first) {
-          $field = $field->first();
-          $value = check_markup($field->get('value')->getString(), $field->get('format')->getString());
-          break;
-        }
-        $value = $field->view();
+    // Opinionated - but we want to render field if single or allow view
+    // to handle it if it's all values.
+    case 'text_long':
+      if ($only_first) {
+        $field = $field->first();
+        $value = check_markup($field->get('value')->getString(), $field->get('format')->getString());
         break;
+      }
+      $value = $field->view();
+      break;
 
-      default:
-        \Drupal::logger('civic_theme')->warning('civictheme_get_field_value has encountered an unknown field type "@field_type"', ['@field_type' => $field_type]);
-        $value = NULL;
-    }
+    default:
+      \Drupal::logger('civic_theme')->warning('civictheme_get_field_value has encountered an unknown field type "@field_type"', ['@field_type' => $field_type]);
+      $value = NULL;
   }
 
   return $value;
@@ -335,6 +351,8 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
  *
  * @return \Drupal\Core\Entity\EntityInterface[]|EntityInterface|null
  *   Referenced entities, or referenced entity if found.
+ *
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, string $field_name, bool $only_first = FALSE):array|EntityInterface|null {
   $entities = NULL;
