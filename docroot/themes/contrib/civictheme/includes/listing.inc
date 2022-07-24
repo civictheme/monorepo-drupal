@@ -28,6 +28,8 @@ define('CIVICTHEME_LISTINGS_FULL_FALLBACK_LIMIT', 100);
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -59,6 +61,8 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
  *
  * @return array
  *   The render array for view and exposed form.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_listing_element(Paragraph $paragraph) {
   $view_name = _civictheme_listing_get_view_name('civictheme_listing');
@@ -66,6 +70,7 @@ function _civictheme_listing_element(Paragraph $paragraph) {
   $view_display = 'civictheme_listing_block';
 
   $view = Views::getView($view_name);
+  $element = NULL;
   if ($view) {
     $view->setDisplay($view_display);
 
@@ -80,6 +85,8 @@ function _civictheme_listing_element(Paragraph $paragraph) {
 
 /**
  * Get the civictheme listing view name.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_listing_get_view_name($view_name) {
   // Call modules/theme that implement the hook, and let them change the view.
@@ -90,6 +97,8 @@ function _civictheme_listing_get_view_name($view_name) {
 
 /**
  * Loads and alters view for civictheme listing.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_listing_alter_view($paragraph, &$view) {
   $fallback_limit = CIVICTHEME_LISTINGS_FULL_FALLBACK_LIMIT;

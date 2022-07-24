@@ -9,6 +9,8 @@ use Drupal\file\Entity\File;
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_attachment(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -50,6 +52,8 @@ function civictheme_preprocess_paragraph__civictheme_attachment(&$variables) {
  *
  * @return string
  *   Return Symbol.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_attachment_file_icon_map($mime_type) {
   switch ($mime_type) {

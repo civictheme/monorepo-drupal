@@ -41,7 +41,8 @@ function _civictheme_preprocess_node__theme(&$variables) {
   if (isset($node->_referringItem)) {
     /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
     $referring_paragraph = $node->_referringItem->getEntity();
-    if ($theme = civictheme_get_theme_value($referring_paragraph)) {
+    $theme = civictheme_get_theme_value($referring_paragraph);
+    if ($theme) {
       $variables['theme'] = $theme;
     }
   }

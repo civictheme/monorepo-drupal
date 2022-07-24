@@ -57,6 +57,8 @@ function civictheme_preprocess_views_exposed_form(&$variables) {
 
 /**
  * Propagate component theme setting to nested form elements.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_propagate_component_theme_settings(&$elements, $theme) {
   $form_elements = Element::children($elements);
@@ -71,6 +73,9 @@ function _civictheme_propagate_component_theme_settings(&$elements, $theme) {
 
 /**
  * Implements hook_preprocess_HOOK().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_views_view(&$variables) {
   $view = &$variables['view'];
@@ -168,6 +173,8 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
 
 /**
  * Implements hook_preprocess_HOOK().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'] ?? NULL;
@@ -182,7 +189,7 @@ function civictheme_preprocess_views_view_grid(&$variables) {
     $variables += $variables['view']->civictheme_listing;
   }
   if (isset($variables['card_theme'])) {
-    foreach ($variables['rows'] as $id => $row) {
+    foreach (array_keys($variables['rows']) as $id) {
       $variables['rows'][$id]['#node']->civictheme_theme = $variables['card_theme'];
       $variables['rows'][$id]['#cache']['contexts'][] = 'url.path';
       $variables['rows'][$id]['#cache']['contexts'][] = 'url.query_args';
@@ -199,6 +206,8 @@ function civictheme_preprocess_views_view_grid(&$variables) {
  * @return \Drupal\paragraphs\Entity\Paragraph|null
  *   First Listing paragraph from the node in route or NULL if no listing
  *   paragraphs are present.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_get_listing_paragraph_from_route() {
   $node = \Drupal::routeMatch()->getParameter('node');

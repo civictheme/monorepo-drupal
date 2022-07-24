@@ -9,6 +9,8 @@ use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_preprocess__HOOK().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_media__civictheme_image(&$variables) {
   if (empty($variables['media'])) {
@@ -59,6 +61,9 @@ function civictheme_preprocess_media__civictheme_video(&$variables) {
 
 /**
  * Implements hook_preprocess__HOOK().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function civictheme_preprocess_media__civictheme_remote_video(&$variables) {
   if (empty($variables['media'])) {
@@ -67,19 +72,14 @@ function civictheme_preprocess_media__civictheme_remote_video(&$variables) {
 
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
-
-  /** @var \Drupal\media\OEmbed\UrlResolverInterface $url_resolver */
-  $url_resolver = \Drupal::service('media.oembed.url_resolver');
-  /** @var \Drupal\media\OEmbed\ResourceFetcherInterface $resource_fetcher */
-  $resource_fetcher = \Drupal::service('media.oembed.resource_fetcher');
   try {
-    $resource_url = $url_resolver->getResourceUrl($media->get('field_c_m_oembed_video')->first()->getValue()['value'], $variables['width'] ?? NULL, $variables['height'] ?? NULL);
-    $resource = $resource_fetcher->fetchResource($resource_url);
+    $resource_url = \Drupal::service('media.oembed.url_resolver')->getResourceUrl($media->get('field_c_m_oembed_video')->first()->getValue()['value'], $variables['width'] ?? NULL, $variables['height'] ?? NULL);
+    $resource = \Drupal::service('media.oembed.resource_fetcher')->fetchResource($resource_url);
 
     $html = $resource->getHtml();
 
     // Set 'title' attribute (if provided) on the oEmbed iframe element.
-    $doc = new DOMDocument();
+    $doc = new \DOMDocument();
     if ($doc->loadHTML($html)) {
       $iframe_elements = $doc->getElementsByTagName('iframe');
       // oEmbed can use an HTML tag other than <iframe> - skip setting an
@@ -102,6 +102,8 @@ function civictheme_preprocess_media__civictheme_remote_video(&$variables) {
 
 /**
  * Pre-process civictheme_video media links.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
   if (empty($variables['media'])) {
@@ -151,6 +153,8 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
 
 /**
  * Pre-process civictheme_video media transcript.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_media__civictheme_video_transcript(&$variables) {
   // Show transcript on the media landing page.

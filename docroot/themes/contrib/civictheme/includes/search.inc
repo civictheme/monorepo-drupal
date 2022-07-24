@@ -20,7 +20,8 @@ function civictheme_preprocess_block__civictheme_search(&$variables) {
 
   $variables['content'] = NULL;
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
-  if ($link = civictheme_get_field_value($entity, 'field_c_b_link', TRUE)) {
+  $link = civictheme_get_field_value($entity, 'field_c_b_link', TRUE);
+  if ($link) {
     $variables['url'] = $link->getUrl()->toString();
     $variables['text'] = $link->get('title')->getString();
   }
