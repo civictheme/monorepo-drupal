@@ -515,7 +515,6 @@ function _civictheme_listing_get_node($form_state) {
  * Implements hook_form__alter().
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if (!empty($form_id) && strpos($form_id, 'webform_submission_') === 0) {
