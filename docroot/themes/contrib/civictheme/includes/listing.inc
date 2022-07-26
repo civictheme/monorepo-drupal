@@ -97,8 +97,6 @@ function _civictheme_listing_get_view_name($view_name) {
 
 /**
  * Loads and alters view for civictheme listing.
- *
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_listing_alter_view($paragraph, &$view) {
   $title = civictheme_get_field_value($paragraph, 'field_c_p_title');

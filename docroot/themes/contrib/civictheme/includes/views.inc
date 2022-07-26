@@ -78,16 +78,22 @@ function _civictheme_propagate_component_theme_settings(&$elements, $theme) {
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_views_view(&$variables) {
-  $view = $variables['view'];
-  _civictheme_listing_preprocess_view($variables, $view);
-  _civictheme_preprocess_listing_component_settings($variables);
-}
+  $view = &$variables['view'];
+  $is_page_load = isset($view->civictheme_listing_entity);
+  if ($is_page_load) {
+    _civictheme_listing_preprocess_view($view->civictheme_listing_entity, $view);
+  }
+  else {
+    $listing_paragraph = _civictheme_get_listing_paragraph_from_route();
+    _civictheme_listing_preprocess_view($listing_paragraph, $view);
+  }
 
-/**
- * Preprocess listing component settings.
- */
-function _civictheme_preprocess_listing_component_settings(&$variables) {
-  if (isset($variables['view']->civictheme_listing)) {
+  $route_parameters = \Drupal::routeMatch()->getParameters();
+  $is_view_page = $route_parameters->get('view_id') !== NULL;
+  $is_view_component = isset($variables['view']->civictheme_listing);
+
+  // Adds component theme settings to view / listing template.
+  if ($is_view_component) {
     $variables += $variables['view']->civictheme_listing;
     // Override already set title.
     $variables['title'] = $variables['view']->civictheme_listing['title'] ?? '';
@@ -97,17 +103,35 @@ function _civictheme_preprocess_listing_component_settings(&$variables) {
     if (!empty($variables['pager'])) {
       $variables['pager']['#attributes']['#civictheme_theme'] = $variables['view']->civictheme_listing['theme'] ?? 'light';
     }
-    if ($variables['view']->civictheme_listing['show_filters'] === FALSE) {
-      $variables['exposed'] = NULL;
-    }
+  }
+  // Header is displayed within card container.
+  if ($view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
+    unset($variables['header']);
+  }
+  // Adding template required classes in for civictheme component.
+  $variables['theme'] = $variables['theme'] ?? 'light';
+  $variables['with_background'] = $variables['with_background'] ?? $is_view_page;
+
+  if (!empty($variables['attributes']['class'])) {
+    $variables['modifier_class'] = $variables['attributes']['class'];
+    unset($variables['attributes']['class']);
+  }
+  else {
+    $variables['modifier_class'] = [];
+  }
+  $variables['modifier_class'] = array_merge($variables['modifier_class'], [
+    !empty($variables['dom_id']) ? ' js-view-dom-id-' . $variables['dom_id'] : '',
+  ]);
+  $variables['modifier_class'] = implode(' ', $variables['modifier_class']);
+  if (isset($view->civictheme_listing['show_filters']) && $view->civictheme_listing['show_filters'] === FALSE) {
+    $variables['exposed'] = NULL;
   }
 }
 
 /**
  * Adds preprocessing data to view to provide to listing child components.
  */
-function _civictheme_listing_preprocess_view(&$variables, ViewExecutable &$view) {
-  $paragraph = $view->civictheme_listing_entity ?? _civictheme_get_listing_paragraph_from_route();
+function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) {
   $settings = [];
   if ($paragraph !== NULL) {
     $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
@@ -145,26 +169,6 @@ function _civictheme_listing_preprocess_view(&$variables, ViewExecutable &$view)
 
   $view->civictheme_listing = $settings;
 
-  // Process theme and classes.
-  $route_parameters = \Drupal::routeMatch()->getParameters();
-  $is_view_page = $route_parameters->get('view_id') !== NULL;
-  // Adding template required classes in for civictheme component.
-  $variables['theme'] = $variables['theme'] ?? 'light';
-  $variables['with_background'] = $variables['with_background'] ?? $is_view_page;
-  $variables['modifier_class'] = [];
-  if (!empty($variables['attributes']['class'])) {
-    $variables['modifier_class'] = $variables['attributes']['class'];
-    unset($variables['attributes']['class']);
-  }
-  $variables['modifier_class'] = array_merge($variables['modifier_class'], [
-    !empty($variables['dom_id']) ? ' js-view-dom-id-' . $variables['dom_id'] : '',
-  ]);
-  $variables['modifier_class'] = implode(' ', $variables['modifier_class']);
-
-  // Header is displayed within card container.
-  if ($view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
-    unset($variables['header']);
-  }
 }
 
 /**

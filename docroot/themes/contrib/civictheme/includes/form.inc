@@ -22,55 +22,50 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
   // Determine whether we render a large filter or a basic filter.
   // If the view exposed form has more than one filter we render a large
   // filter.
+  $is_civictheme_large_filter = _civictheme_get_number_of_exposed_form_elements($form) > 1;
   $view = $form_state->get('view');
   $civictheme_listing_view_name = _civictheme_listing_get_view_name('civictheme_listing');
   // Apply filters to all views whose name starts with `civictheme_listing` or
   // a view defined in the hook.
   if ($form_id == 'views_exposed_form' && (strpos($view->id(), 'civictheme_listing') === 0 || $view->id() === $civictheme_listing_view_name)) {
-    _civictheme_form_civic_listing_views_exposed_form_alter($form, $form_state);
+    $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
+    $form_elements = Element::children($form);
+    foreach ($form_elements as $form_element) {
+      $form[$form_element]['#attributes']['#civictheme_theme'] = $theme;
+    }
+    $ajax_filter = $form_state->get('view')->ajaxEnabled();
+
+    $form['#attributes']['data-civictheme-filter-type'] = $is_civictheme_large_filter ? 'large' : 'basic';
+    $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $is_civictheme_large_filter ? 500 : 0;
+    $form['#attributes']['data-civictheme-filter'] = '';
+    $form['#large_filter'] = $is_civictheme_large_filter;
+    $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
+    // Ajax exposed view forms hides submit button to have auto-load.
+    if ($ajax_filter) {
+      $form['#attached']['library'][] = 'civictheme/civictheme.ajax_views';
+      $form_state->get('view')->setAjaxEnabled(TRUE);
+      $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
+      $form['actions']['#attributes']['class'][] = 'hide-xxs';
+
+      // On ajax reloads, attach node to allow access to the paragraph settings.
+      $form['nid'] = [
+        '#type' => 'hidden',
+        '#value' => _civictheme_listing_get_node($form_state),
+      ];
+    }
+    else {
+      $form['actions']['submit']['#attributes']['class'] = [
+        'civictheme-button--secondary',
+        'civictheme-button--small',
+      ];
+    }
+    foreach ($form as $key => &$element) {
+      if (strpos($key, '#') === 0 || empty($element['#type'])) {
+        continue;
+      }
+      _civictheme_form_alter__convert_exposed_form_elements($element, $form, $is_civictheme_large_filter);
+    }
   }
-}
-
-/**
- * Preprocess civic listing view exposed form.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function _civictheme_form_civic_listing_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
-  $view = $form_state->get('view');
-  $is_civictheme_large_filter = _civictheme_get_number_of_exposed_form_elements($form) > 1;
-  $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
-  $form_elements = Element::children($form);
-  foreach ($form_elements as $form_element) {
-    $form[$form_element]['#attributes']['#civictheme_theme'] = $theme;
-    _civictheme_form_alter__convert_exposed_form_elements($form_element, $form, $is_civictheme_large_filter);
-  }
-  $ajax_filter = $form_state->get('view')->ajaxEnabled();
-
-  $form['#attributes']['data-civictheme-filter-type'] = $is_civictheme_large_filter ? 'large' : 'basic';
-  $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $is_civictheme_large_filter ? 500 : 0;
-  $form['#attributes']['data-civictheme-filter'] = '';
-  $form['#large_filter'] = $is_civictheme_large_filter;
-  $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
-  // Ajax exposed view forms hides submit button to have auto-load.
-  if ($ajax_filter) {
-    $form['#attached']['library'][] = 'civictheme/civictheme.ajax_views';
-    $form_state->get('view')->setAjaxEnabled(TRUE);
-    $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
-    $form['actions']['#attributes']['class'][] = 'hide-xxs';
-
-    // On ajax reloads, attach node to allow access to the paragraph settings.
-    $form['nid'] = [
-      '#type' => 'hidden',
-      '#value' => _civictheme_listing_get_node($form_state),
-    ];
-
-    return;
-  }
-  $form['actions']['submit']['#attributes']['class'] = [
-    'civictheme-button--secondary',
-    'civictheme-button--small',
-  ];
 }
 
 /**
@@ -95,9 +90,12 @@ function _civictheme_get_number_of_exposed_form_elements($form) {
 function _civictheme_form_alter__convert_exposed_form_elements(&$element, $form, $is_large_filter) {
   // Convert select to either radio buttons or checkboxes.
   if ($element['#type'] === 'select') {
-    $element['#type'] = !empty($element['#multiple']) ? 'checkboxes' : 'radios';
     if (!empty($element['#multiple'])) {
+      $element['#type'] = 'checkboxes';
       unset($element['#multiple']);
+    }
+    else {
+      $element['#type'] = 'radios';
     }
     _civictheme_form_alter__modify_element_callbacks($element);
   }
@@ -146,20 +144,12 @@ function civictheme_preprocess_select(&$variables) {
 /**
  * Implements template_preprocess_form_element().
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_form_element(&$variables) {
-  _civictheme_preprocess_form_element_attributes($variables);
-  _civictheme_preprocess_form_element_description($variables);
-  _civictheme_preprocess_civictheme_filter_form_element_alter($variables);
-}
-
-/**
- * Set form element attributes.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function _civictheme_preprocess_form_element_attributes(&$variables) {
   _civictheme_get_theme_from_attributes($variables);
   // Handle any malformed attribute class properties.
   $variables['attributes']['class'] = $variables['attributes']['class'] ?? [];
@@ -184,21 +174,16 @@ function _civictheme_preprocess_form_element_attributes(&$variables) {
     $variables['attributes']['class'][] = 'form-item--error';
   }
 
-  if (isset($variables['attributes']['class']) && is_array($variables['attributes']['class'])) {
-    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
-    unset($variables['attributes']['class']);
-  }
-}
-
-/**
- * Set form element description.
- */
-function _civictheme_preprocess_form_element_description(&$variables) {
   if (isset($variables['description'])) {
     if (empty($variables['description']['attributes'])) {
       $variables['description']['attributes'] = new Attribute();
     }
     $variables['description']['attributes']->addClass('description');
+  }
+
+  if (isset($variables['attributes']['class']) && is_array($variables['attributes']['class'])) {
+    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
+    unset($variables['attributes']['class']);
   }
 
   if (isset($variables['description']['attributes']['class']) && $variables['description']['attributes']['class'] instanceof AttributeArray) {
@@ -212,6 +197,8 @@ function _civictheme_preprocess_form_element_description(&$variables) {
   if (isset($variables['element']['#description_display'])) {
     $variables['description_position'] = $variables['element']['#description_display'];
   }
+
+  _civictheme_preprocess_civictheme_filter_form_element_alter($variables);
 }
 
 /**
@@ -219,16 +206,13 @@ function _civictheme_preprocess_form_element_description(&$variables) {
  *
  * Since we are converting select to checkboxes or radios we need to modify the
  * pre_render and process callbacks that do not relate to new inputs.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_form_alter__modify_element_callbacks(&$element) {
-  _civictheme_form_element__remove_pre_render_callbacks($element);
-  _civictheme_form_element_modify_ajax_callback($element);
-}
+  $element_class = $element['#type'] === 'radios' ? '\Drupal\Core\Render\Element\Radios' : '\Drupal\Core\Render\Element\Checkboxes';
 
-/**
- * Removes pre_render callbacks from element.
- */
-function _civictheme_form_element__remove_pre_render_callbacks(&$element) {
+  // Unsetting pre-render as we do not need these.
   if (!empty($element['#pre_render'])) {
     foreach ($element['#pre_render'] as $index => $callback) {
       if (is_array($callback) && $callback[0] === 'Drupal\Core\Render\Element\Select') {
@@ -236,14 +220,9 @@ function _civictheme_form_element__remove_pre_render_callbacks(&$element) {
       }
     }
   }
-}
 
-/**
- * Modify ajax callback on select elements.
- */
-function _civictheme_form_element_modify_ajax_callback(&$element) {
+  // Modifying the ajax callbacks.
   if (!empty($element['#pre_render'])) {
-    $element_class = $element['#type'] === 'radios' ? '\Drupal\Core\Render\Element\Radios' : '\Drupal\Core\Render\Element\Checkboxes';
     foreach ($element['#process'] as $index => $callback) {
       if (is_array($callback) && $callback[0] === 'Drupal\Core\Render\Element\Select') {
         if (method_exists($element_class, $callback[1])) {
@@ -251,13 +230,13 @@ function _civictheme_form_element_modify_ajax_callback(&$element) {
             $element_class,
             $callback[1],
           ];
-          continue;
         }
-        unset($element['#process'][$index]);
+        else {
+          unset($element['#process'][$index]);
+        }
       }
     }
   }
-
 }
 
 /**
@@ -323,8 +302,6 @@ function civictheme_preprocess_form_element_label(&$variables) {
 
 /**
  * Implements template_preprocess_fieldset().
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_fieldset(&$variables) {
   _civictheme_preprocess_fieldset_attributes($variables);
@@ -333,8 +310,6 @@ function civictheme_preprocess_fieldset(&$variables) {
 
 /**
  * Sets fieldset form element type.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_fieldset_type(&$variables) {
   $children = Element::children($variables['element']);
