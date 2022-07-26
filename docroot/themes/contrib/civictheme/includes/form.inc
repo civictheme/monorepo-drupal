@@ -10,51 +10,61 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Template\AttributeArray;
+use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
+function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Determine whether we render a large filter or a basic filter.
   // If the view exposed form has more than one filter we render a large
   // filter.
   $is_civictheme_large_filter = _civictheme_get_number_of_exposed_form_elements($form) > 1;
   $view = $form_state->get('view');
-  $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
-  $form_elements = Element::children($form);
-  foreach ($form_elements as $form_element) {
-    $form[$form_element]['#attributes']['#civictheme_theme'] = $theme;
-  }
-  $ajax_filter = $form_state->get('view')->ajaxEnabled();
-
-  $form['#attributes']['data-civictheme-filter-type'] = $is_civictheme_large_filter ? 'large' : 'basic';
-  $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $is_civictheme_large_filter ? 500 : 0;
-  $form['#attributes']['data-civictheme-filter'] = '';
-  $form['#large_filter'] = $is_civictheme_large_filter;
-  $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
-  // Ajax exposed view forms hides submit button to have auto-load.
-  if ($ajax_filter) {
-    $form_state->get('view')->setAjaxEnabled(TRUE);
-    $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
-    $form['actions']['#attributes']['class'][] = 'hide-xxs';
-
-    // Attach node to provide access to the paragraph settings on ajax reloads.
-    $form['nid'] = [
-      '#type' => 'hidden',
-      '#value' => _civictheme_listing_get_node($form_state),
-    ];
-  }
-  else {
-    $form['actions']['submit']['#attributes']['class'] = [
-      'civictheme-button--secondary',
-      'civictheme-button--small',
-    ];
-  }
-  foreach ($form as $key => &$element) {
-    if (strpos($key, '#') === 0 || empty($element['#type'])) {
-      continue;
+  $civictheme_listing_view_name = _civictheme_listing_get_view_name('civictheme_listing');
+  // Apply filters to all views whose name starts with `civictheme_listing` or
+  // a view defined in the hook.
+  if ($form_id == 'views_exposed_form' && (strpos($view->id(), 'civictheme_listing') === 0 || $view->id() === $civictheme_listing_view_name)) {
+    $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
+    $form_elements = Element::children($form);
+    foreach ($form_elements as $form_element) {
+      $form[$form_element]['#attributes']['#civictheme_theme'] = $theme;
     }
-    _civictheme_form_alter__convert_exposed_form_elements($element, $form, $is_civictheme_large_filter);
+    $ajax_filter = $form_state->get('view')->ajaxEnabled();
+
+    $form['#attributes']['data-civictheme-filter-type'] = $is_civictheme_large_filter ? 'large' : 'basic';
+    $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $is_civictheme_large_filter ? 500 : 0;
+    $form['#attributes']['data-civictheme-filter'] = '';
+    $form['#large_filter'] = $is_civictheme_large_filter;
+    $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
+    // Ajax exposed view forms hides submit button to have auto-load.
+    if ($ajax_filter) {
+      $form['#attached']['library'][] = 'civictheme/civictheme.ajax_views';
+      $form_state->get('view')->setAjaxEnabled(TRUE);
+      $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
+      $form['actions']['#attributes']['class'][] = 'hide-xxs';
+
+      // On ajax reloads, attach node to allow access to the paragraph settings.
+      $form['nid'] = [
+        '#type' => 'hidden',
+        '#value' => _civictheme_listing_get_node($form_state),
+      ];
+    }
+    else {
+      $form['actions']['submit']['#attributes']['class'] = [
+        'civictheme-button--secondary',
+        'civictheme-button--small',
+      ];
+    }
+    foreach ($form as $key => &$element) {
+      if (strpos($key, '#') === 0 || empty($element['#type'])) {
+        continue;
+      }
+      _civictheme_form_alter__convert_exposed_form_elements($element, $form, $is_civictheme_large_filter);
+    }
   }
 }
 
@@ -133,6 +143,9 @@ function civictheme_preprocess_select(&$variables) {
 
 /**
  * Implements template_preprocess_form_element().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_form_element(&$variables) {
   _civictheme_get_theme_from_attributes($variables);
@@ -191,6 +204,8 @@ function civictheme_preprocess_form_element(&$variables) {
  *
  * Since we are converting select to checkboxes or radios we need to modify the
  * pre_render and process callbacks that do not relate to new inputs.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_form_alter__modify_element_callbacks(&$element) {
   $element_class = $element['#type'] === 'radios' ? '\Drupal\Core\Render\Element\Radios' : '\Drupal\Core\Render\Element\Checkboxes';
@@ -283,6 +298,9 @@ function civictheme_preprocess_form_element_label(&$variables) {
 
 /**
  * Implements template_preprocess_fieldset().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_fieldset(&$variables) {
   _civictheme_get_theme_from_attributes($variables);
@@ -459,6 +477,8 @@ function civictheme_preprocess_form(&$variables) {
 
 /**
  * Get the nid that the listing block is embedded in.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_listing_get_node($form_state) {
   $nid = $form_state->getUserInput()['nid'] ?? NULL;
@@ -471,4 +491,27 @@ function _civictheme_listing_get_node($form_state) {
   }
 
   return $nid;
+}
+
+/**
+ * Implements hook_form__alter().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (!empty($form_id) && strpos($form_id, 'webform_submission_') === 0) {
+    /** @var \Drupal\webform\WebformSubmissionForm $form_object */
+    $form_object = $form_state->getFormObject();
+    /** @var \Drupal\webform\WebformSubmissionInterface $webform_submission */
+    $webform_submission = $form_object->getEntity();
+    $source = $webform_submission->getSourceEntity();
+    $paragraph_id = !empty($source) ? $source->id() : '';
+    if (!empty($paragraph_id)) {
+      $paragraph = Paragraph::load($paragraph_id);
+      $theme = civictheme_get_theme_value($paragraph);
+      if (!empty($form['elements']) && $theme !== NULL) {
+        _civictheme_propagate_component_theme_settings($form['elements'], $theme);
+      }
+    }
+  }
 }

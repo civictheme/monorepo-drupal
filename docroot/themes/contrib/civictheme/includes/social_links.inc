@@ -19,44 +19,37 @@ function _civictheme_preprocess_block__civictheme_social_links(&$variables) {
   }
 
   $entity = $variables['elements']['content']['#block_content'];
-  if ($entity->bundle() != 'civictheme_social_links' || ($entity->hasField('field_c_b_social_icons') && $entity->field_c_b_social_icons->isEmpty())) {
+  if ($entity->bundle() != 'civictheme_social_links' || !civictheme_field_has_value($entity, 'field_c_b_social_icons')) {
     return;
   }
 
-  /** @var \Drupal\paragraphs\Entity\Paragraph[] $paragraphs */
-  $paragraphs = $entity->field_c_b_social_icons->referencedEntities();
-
   $items = [];
-  if (!empty($paragraphs)) {
-    foreach ($paragraphs as $paragraph) {
-      $vars = [];
-      $link = $paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty() ? $paragraph->get('field_c_p_link')->first()->getValue() : [];
-      $vars['url'] = $link['uri'] ?? NULL;
-      $vars['title'] = $link['title'] ?? NULL;
-      $vars['size'] = 'regular';
-
-      if (!isset($items['image'])) {
-        $vars['paragraph'] = $paragraph;
-        _civictheme_preprocess_paragraph__card__icon($vars);
-        unset($vars['paragraph']);
-      }
-
-      if (isset($vars['image'])) {
-        // Embed SVG as HTML content by passing as text.
-        $vars['text'] = civictheme_embed_svg($vars['image']['src'], [
-          'civictheme-icon',
-          'civictheme-icon--size-' . $vars['size'],
-        ]);
-      }
-      $items[] = $vars;
+  /** @var \Drupal\paragraphs\Entity\Paragraph[] $paragraphs|null */
+  $social_link_paragraphs = civictheme_get_field_referenced_entities($entity, 'field_c_b_social_icons') ?? [];
+  foreach ($social_link_paragraphs as $social_link_paragraph) {
+    $item = [];
+    /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem|null $link */
+    $link = civictheme_get_field_value($social_link_paragraph, 'field_c_p_link', TRUE);
+    if ($link) {
+      $item['url'] = $link->getUrl()->toString();
+      $item['title'] = $link->get('title')->getString();
     }
+    $item['size'] = 'regular';
+    $media = civictheme_get_field_value($social_link_paragraph, 'field_c_p_icon', TRUE);
+    if ($media) {
+      $item['image'] = civictheme_media_image_process_variables($media);
+    }
+
+    if (isset($item['image'])) {
+      // Embed SVG as HTML content by passing as text.
+      $item['text'] = civictheme_embed_svg($item['image']['src'], [
+        'civictheme-icon',
+        'civictheme-icon--size-' . $item['size'],
+      ]);
+    }
+    $items[] = $item;
   }
   $variables['items'] = $items;
-
-  $variables['theme'] = CIVICTHEME_SOCIAL_LINKS_DEFAULT_THEME;
-  if ($entity->hasField('field_c_b_theme') && !$entity->get('field_c_b_theme')->isEmpty()) {
-    $variables['theme'] = strtolower($entity->get('field_c_b_theme')->getString());
-  }
-
-  $variables['with_border'] = $entity->hasField('field_c_b_with_border') ? (bool) $entity->get('field_c_b_with_border')->getString() : FALSE;
+  $variables['theme'] = civictheme_get_theme_value($entity) ?? CIVICTHEME_SOCIAL_LINKS_DEFAULT_THEME;
+  $variables['with_border'] = civictheme_get_field_value($entity, 'field_c_b_with_border') ?? FALSE;
 }

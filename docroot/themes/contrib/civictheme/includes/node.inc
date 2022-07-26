@@ -8,6 +8,11 @@
 use Drupal\Core\Template\Attribute;
 
 /**
+ * Defines default node theme.
+ */
+define('CIVICTHEME_NODE_DEFAULT_THEME', 'light');
+
+/**
  * Generic pre-process for all view mode of nodes.
  */
 function _civictheme_preprocess_node(&$variables) {
@@ -29,7 +34,7 @@ function _civictheme_preprocess_node(&$variables) {
   }
 
   // Add Table of Contents if the value is set on node.
-  if ($node->hasField('field_c_n_show_toc') && $node->field_c_n_show_toc->getString()) {
+  if (civictheme_get_field_value($node, 'field_c_n_show_toc')) {
     $toc_attributes = [];
     $toc_attributes['data-table-of-contents-position'] = 'prepend';
     $toc_attributes['data-table-of-contents-theme'] = 'light';
@@ -80,7 +85,7 @@ function _civictheme_preprocess_node__civictheme_alert__full(&$variables) {
   $variables['id'] = $node->id();
   $variables['title'] = $node->label();
   $variables['description'] = $node->get('field_c_n_body')->value;
-  $variables['type'] = $node->get('field_c_n_alert_type')->getString();
+  $variables['type'] = civictheme_get_field_value($node, 'field_c_n_alert_type');
 }
 
 /**
@@ -97,13 +102,8 @@ function _civictheme_preprocess_page__node(&$variables) {
   // Layout determines whether a node is contained and what it's layout is.
   $variables['page']['content_contained'] = FALSE;
 
-  // Add vertical space.
-  if ($node->hasField('field_c_n_space')) {
-    $variables['vertical_space'] = $node->get('field_c_n_space')->getString();
-  }
+  $variables['vertical_space'] = civictheme_get_field_value($node, 'field_c_n_space');
 
   // Hide sidebar check.
-  if ($node->hasField('field_c_n_hide_sidebar') && !$node->get('field_c_n_hide_sidebar')->isEmpty() && $node->get('field_c_n_hide_sidebar')->getString()) {
-    $variables['hide_sidebar'] = TRUE;
-  }
+  $variables['hide_sidebar'] = civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ?? FALSE;
 }

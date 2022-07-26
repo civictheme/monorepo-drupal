@@ -5,29 +5,26 @@
  * CivicTheme Slider paragraph component.
  */
 
-use Drupal\Core\Url;
-
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-
-  _civictheme_preprocess_paragraph__field__theme($variables);
-  _civictheme_preprocess_paragraph__field__title($variables);
-
   $variables['previous_label'] = t('Previous');
   $variables['next_label'] = t('Next');
 
   // Link.
-  if ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) {
-    $link = $paragraph->get('field_c_p_link')->first();
+  $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+  if ($link) {
     $variables['link'] = [
       'type' => 'secondary',
       'size' => 'regular',
       'text' => $link->get('title')->getString(),
-      'url' => Url::fromUri($link->get('uri')->getString()),
+      'url' => $link->getUrl()->toString(),
+      'is_external' => $link->isExternal(),
     ];
   }
 
@@ -43,27 +40,25 @@ function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
 function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+  $theme = civictheme_get_theme_value($paragraph) ?? $variables['theme'];
 
-  _civictheme_preprocess_paragraph__field__theme($variables);
-  _civictheme_preprocess_paragraph__field__title($variables);
   _civictheme_preprocess_paragraph__card__image($variables);
 
   $variables['attributes']['data-component-civictheme-slider-slide'] = '';
 
   // Image position.
-  if ($paragraph->hasField('field_c_p_image_position') && !$paragraph->get('field_c_p_image_position')->isEmpty()) {
-    $variables['image_position'] = $paragraph->get('field_c_p_image_position')->getString();
-  }
+  $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
 
   // Topic.
-  if ($paragraph->hasField('field_c_p_topic') && !$paragraph->get('field_c_p_topic')->isEmpty()) {
-    $topics = [];
-    foreach ($paragraph->get('field_c_p_topic')->referencedEntities() as $topic) {
-      $topics[] = [
-        'theme' => $variables['theme'],
-        'text' => $topic->label(),
+  $topics = civictheme_get_referenced_entity_labels($paragraph, 'field_c_p_topic');
+  if ($topics) {
+    $topics = array_map(function ($topic) use ($theme) {
+      return [
+        'text' => $topic,
+        'theme' => $theme,
       ];
-    }
+    }, $topics);
+
     $variables['content_top']['slide_topics'] = [
       '#theme' => 'civictheme_slider_slide_tags',
       '#tags' => $topics,
@@ -71,25 +66,88 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   }
 
   // Summary.
-  if ($paragraph->hasField('field_c_p_content') && !$paragraph->get('field_c_p_content')->isEmpty()) {
-    $variables['summary'] = $paragraph->get('field_c_p_content')->getValue()[0]['value'];
-  }
+  $variables['summary'] = civictheme_get_field_value($paragraph, 'field_c_p_content', TRUE);
 
   // Links.
-  if ($paragraph->hasField('field_c_p_link') && !$paragraph->get('field_c_p_link')->isEmpty()) {
-    $inverse_theme = $variables['theme'] === 'dark' ? 'light' : 'dark';
-    $link = $paragraph->get('field_c_p_link')->first();
-    $links = [];
+  $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+  $links = [];
+  if ($link) {
+    $inverse_theme = $theme === 'dark' ? 'light' : 'dark';
     $links[] = [
       'type' => 'primary',
       'size' => 'regular',
       'text' => $link->get('title')->getString(),
-      'url' => Url::fromUri($link->get('uri')->getString()),
+      'url' => $link->getUrl()->toString(),
     ];
     $variables['links']['slide_links'] = [
       '#theme' => 'civictheme_slider_slide_links',
       '#component_theme' => $inverse_theme,
       '#links' => $links,
     ];
+  }
+}
+
+/**
+ * Implements template_preprocess_paragraph().
+ */
+function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $theme = civictheme_get_theme_value($paragraph) ?? $variables['theme'];
+  // Image position.
+  $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
+  $variables['attributes']['data-component-civictheme-slider-slide'] = '';
+
+  if ($paragraph->hasField('field_c_p_reference')) {
+    $node = $paragraph->field_c_p_reference->referencedEntities();
+    if (!empty($node)) {
+      /** @var \Drupal\node\NodeInterface $node */
+      $node = reset($node);
+      $variables['title'] = $node->label();
+
+      // Image.
+      if (civictheme_field_has_value($node, 'field_c_n_thumbnail')) {
+        $target = $node->get('field_c_n_thumbnail')->first()->get('entity')->getTarget();
+        if ($target) {
+          $media = $target->getValue();
+          $variables['image'] = civictheme_media_image_process_variables($media);
+        }
+      }
+
+      // Topic.
+      $topics = civictheme_get_referenced_entity_labels($node, 'field_c_n_topics');
+      if ($topics) {
+        $topics = array_map(function ($topic) use ($theme) {
+          return [
+            'text' => $topic,
+            'theme' => $theme,
+          ];
+
+        }, $topics);
+
+        $variables['content_top']['slide_topics'] = [
+          '#theme' => 'civictheme_slider_slide_tags',
+          '#tags' => $topics,
+        ];
+      }
+
+      // Summary.
+      $variables['summary'] = civictheme_get_field_value($node, 'field_c_n_summary') ?? civictheme_get_field_value($node, 'field_c_n_tagline');
+
+      // Links.
+      $inverse_theme = $variables['theme'] === 'dark' ? 'light' : 'dark';
+      $links = [];
+      $links[] = [
+        'type' => 'primary',
+        'size' => 'regular',
+        'text' => $node->label(),
+        'url' => $node->toUrl()->toString(),
+      ];
+      $variables['links']['slide_links'] = [
+        '#theme' => 'civictheme_slider_slide_links',
+        '#component_theme' => $inverse_theme,
+        '#links' => $links,
+      ];
+    }
   }
 }

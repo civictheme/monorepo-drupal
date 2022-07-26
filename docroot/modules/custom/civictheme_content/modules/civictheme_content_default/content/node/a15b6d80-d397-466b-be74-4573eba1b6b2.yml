@@ -38,6 +38,9 @@ default:
       alias: ''
       langcode: en
       pathauto: 0
+  field_c_n_banner_hide_breadcrumb:
+    -
+      value: false
   field_c_n_banner_theme:
     -
       value: dark
@@ -141,9 +144,6 @@ default:
           field_c_p_theme:
             -
               value: light
-          field_c_p_title:
-            -
-              value: 'Accordion Light with bg & spacing'
     -
       entity:
         _meta:
@@ -237,9 +237,6 @@ default:
           field_c_p_theme:
             -
               value: light
-          field_c_p_title:
-            -
-              value: 'Accordion Light - no bg, no spacing'
     -
       entity:
         _meta:
@@ -333,9 +330,6 @@ default:
           field_c_p_theme:
             -
               value: light
-          field_c_p_title:
-            -
-              value: 'Accordion Light - bg & only horizontal spacing'
     -
       entity:
         _meta:
@@ -432,9 +426,6 @@ default:
           field_c_p_theme:
             -
               value: dark
-          field_c_p_title:
-            -
-              value: 'Accordion Dark with bg & spacing'
     -
       entity:
         _meta:
@@ -528,9 +519,6 @@ default:
           field_c_p_theme:
             -
               value: dark
-          field_c_p_title:
-            -
-              value: 'Accordion Dark - no bg, no spacing'
     -
       entity:
         _meta:
@@ -624,9 +612,6 @@ default:
           field_c_p_theme:
             -
               value: dark
-          field_c_p_title:
-            -
-              value: 'Accordion Dark - bg & only horizontal spacing'
     -
       entity:
         _meta:
@@ -2016,9 +2001,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_icon:
-            -
-              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
           field_c_p_space:
             -
               value: both
@@ -2052,9 +2034,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_icon:
-            -
-              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
           field_c_p_summary:
             -
               value: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,'
@@ -2085,9 +2064,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_icon:
-            -
-              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
           field_c_p_space:
             -
               value: both
@@ -2121,9 +2097,6 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_icon:
-            -
-              entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
           field_c_p_summary:
             -
               value: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,'
@@ -2693,6 +2666,12 @@ default:
           field_c_p_title:
             -
               value: 'Slider Dark - bg & only horizontal spacing'
+  field_c_n_hide_sidebar:
+    -
+      value: false
+  field_c_n_show_last_updated:
+    -
+      value: true
   field_c_n_show_toc:
     -
       value: false

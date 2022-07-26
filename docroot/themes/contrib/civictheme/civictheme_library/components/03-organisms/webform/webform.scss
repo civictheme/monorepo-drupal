@@ -1,0 +1,47 @@
+//
+// Webform component.
+//
+
+.civictheme-webform {
+  $root: &;
+
+  &.civictheme-webform--vertical-space-top {
+    @include civictheme-component-with-vertical-space(top, $civictheme-webform-space-vertical);
+  }
+
+  &.civictheme-webform--vertical-space-bottom {
+    @include civictheme-component-with-vertical-space(bottom, $civictheme-webform-space-vertical);
+  }
+
+  &.civictheme-webform--vertical-space-both {
+    @include civictheme-component-with-vertical-space(both, $civictheme-webform-space-vertical);
+  }
+
+  &.civictheme-theme-light {
+    color: $civictheme-webform-light-color;
+
+    &#{$root}--with-background {
+      background-color: $civictheme-webform-light-wrapper-background-color;
+      padding-left: $civictheme-webform-space-horizontal;
+      padding-right: $civictheme-webform-space-horizontal;
+    }
+
+    &#{$root}--with-spacing {
+      background-color: $civictheme-webform-light-background-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-webform-dark-color;
+
+    &#{$root}--with-background {
+      background-color: $civictheme-webform-dark-wrapper-background-color;
+      padding-left: $civictheme-webform-space-horizontal;
+      padding-right: $civictheme-webform-space-horizontal;
+    }
+
+    &#{$root}--with-spacing {
+      background-color: $civictheme-webform-dark-background-color;
+    }
+  }
+}

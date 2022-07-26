@@ -26,26 +26,26 @@
     {% set fallback_text = "Your browser doesn't support HTML5 video." %}
   {% endif %}
 
-  {% set attributes = atributes|default('') %}
+  {% set attributes = attributes|default('') %}
 
   {% if title is not empty %}
-    {% set attributes = atributes ~ 'title="' ~ title ~ '"' %}
+    {% set attributes = attributes ~ 'title="' ~ title ~ '"' %}
   {% endif %}
 
   {% if has_controls %}
-    {% set attributes = atributes ~ 'controls' %}
+    {% set attributes = attributes ~ 'controls' %}
   {% endif %}
 
   {% if poster is not empty %}
-    {% set attributes = atributes ~ 'poster="' ~ poster ~ '"' %}
+    {% set attributes = attributes ~ 'poster="' ~ poster ~ '"' %}
   {% endif %}
 
   {% if width is not empty %}
-    {% set attributes = atributes ~ 'width="' ~ width ~ '"' %}
+    {% set attributes = attributes ~ 'width="' ~ width ~ '"' %}
   {% endif %}
 
   {% if height is not empty %}
-    {% set attributes = atributes ~ 'height="' ~ height ~ '"' %}
+    {% set attributes = attributes ~ 'height="' ~ height ~ '"' %}
   {% endif %}
 
   <video class="civictheme-video {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>

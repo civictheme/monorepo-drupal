@@ -8,11 +8,13 @@
  * - content: [string] Content.
  * - is_contained: [boolean] Contained or not.
  * - modifier_class: [string] Additional classes.
+ * - vertical_space: [string] With top, bottom or both vertical spaces.
  */
 #}
 
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-content--vertical-space-%s'|format(vertical_space) : '' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 {% set is_contained = is_contained is not defined or is_contained != false ? true : false %}
 
 {% if content is not empty %}

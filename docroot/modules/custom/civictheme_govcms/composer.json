@@ -6,5 +6,12 @@
     "require": {
         "php": ">=7.4",
         "govcms/govcms": "^2"
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^9"
+            }
+        }
     }
 }

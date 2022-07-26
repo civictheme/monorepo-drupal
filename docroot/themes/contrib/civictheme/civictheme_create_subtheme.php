@@ -14,7 +14,7 @@
  * @code
  * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description"
  *
- * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description" path/to/theme/new_machine_name
+ * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description" /path/to/theme/new_machine_name
  * @endcode
  *
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingBefore
@@ -87,6 +87,8 @@ function main(array $argv, $argc) {
 
 /**
  * Print help.
+ *
+ * @SuppressWarnings(PHPMD.UnusedLocalVariable)
  */
 function print_help($default_new_theme_dir) {
   $script_name = basename(__FILE__);
@@ -144,6 +146,8 @@ EOF;
 
 /**
  * Validate theme machine name.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function validate_theme_machine_name($name) {
   if (!preg_match('/^[a-z][a-z_0-9]*$/', $name)) {
@@ -167,6 +171,8 @@ function prepare_stub() {
 
 /**
  * Process stub directory.
+ *
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function process_stub($dir, $options) {
   $machine_name_hyphenated = str_replace('_', '-', $options['machine_name']);
@@ -189,6 +195,16 @@ function process_stub($dir, $options) {
   file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'gulpfile.js');
   file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/webpack/' . 'theme_js.js');
   file_replace_file_content('../../contrib/civictheme/', $relative_dir, $dir . '/' . 'package.json');
+
+  // Adjust per-file settings.
+  //
+  // Remove 'hidden: true' from the info.
+  $info_file = $dir . DIRECTORY_SEPARATOR . $options['machine_name'] . '.info.yml';
+  if (file_exists($info_file)) {
+    $content = file_get_contents($info_file);
+    $content = str_replace("hidden: true\n", '', $content);
+    file_put_contents($info_file, $content);
+  }
 }
 
 /**
@@ -199,6 +215,8 @@ function process_stub($dir, $options) {
  *
  * @throws \Exception
  *   If directory does not exist.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function find_starter_kit_dir() {
   $dir = __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_starter_kit';
@@ -232,6 +250,10 @@ function find_starter_kit_dir() {
  *
  * @return bool
  *   TRUE if the result of copy was successful, FALSE otherwise.
+ *
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function file_copy_recursively($src, $dst, array $exclude = [], $permissions = 0755, $copy_empty_dirs = FALSE) {
   $parent = dirname($dst);
@@ -331,6 +353,8 @@ function file_replace_string_filename($search, $replace, $dir) {
 
 /**
  * Recursively scan directory for files.
+ *
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 function file_scandir_recursive($dir, $ignore_paths = [], $include_dirs = FALSE) {
   $discovered = [];
@@ -401,6 +425,8 @@ function file_is_excluded_from_processing($filename) {
 
 /**
  * Creates a random unique temporary directory.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function file_tempdir($dir = NULL, $prefix = 'tmp_', $mode = 0700, $max_attempts = 1000) {
   if (is_null($dir)) {
@@ -483,6 +509,8 @@ function file_get_relative_dir($dir1, $dir2) {
  *   Path with all '.', '..', './' and '../' removed.
  *
  * @see https://datatracker.ietf.org/doc/html/rfc3986#section-5.2.4
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function file_path_canonicalize($path) {
   $output = '';

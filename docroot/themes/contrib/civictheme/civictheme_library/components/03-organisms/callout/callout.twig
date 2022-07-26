@@ -65,6 +65,8 @@
                     size: link.size,
                     text: link.text,
                     url: link.url,
+                    icon: link.text ? '' : 'arrows_rightarrow_3',
+                    is_external: link.is_external,
                   } only %}
                 {% endif %}
               {% endfor %}
