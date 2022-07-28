@@ -99,6 +99,14 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
     $node->field_c_n_space = $variation['space'];
   }
 
+  if (isset($variation['show_last_updated']) && $node->hasField('field_c_n_show_last_updated')) {
+    $node->field_c_n_show_last_updated = $variation['show_last_updated'];
+  }
+
+  if (isset($variation['custom_updated_date']) && $node->hasField('field_c_n_custom_last_updated')) {
+    $node->field_c_n_custom_last_updated = $variation['custom_updated_date'];
+  }
+
   // Banner.
   if (!empty($variation['banner_type']) && $node->hasField('field_c_n_banner_type')) {
     $node->field_c_n_banner_type = $variation['banner_type'];
