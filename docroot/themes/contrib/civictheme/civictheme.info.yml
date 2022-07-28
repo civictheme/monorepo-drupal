@@ -269,6 +269,7 @@ config_devel:
     - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
     - field.field.node.civictheme_page.field_c_n_components
+    - field.field.node.civictheme_page.field_c_n_custom_last_updated
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
     - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
@@ -455,6 +456,7 @@ config_devel:
     - field.storage.node.field_c_n_banner_type
     - field.storage.node.field_c_n_body
     - field.storage.node.field_c_n_components
+    - field.storage.node.field_c_n_custom_last_updated
     - field.storage.node.field_c_n_date
     - field.storage.node.field_c_n_date_range
     - field.storage.node.field_c_n_hide_sidebar
