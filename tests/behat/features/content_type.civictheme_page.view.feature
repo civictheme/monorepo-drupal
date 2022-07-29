@@ -299,13 +299,34 @@ Feature: View of Page content type
     And I should see an "nav.civictheme-breadcrumb.civictheme-theme-dark" element
     And I should not see an "nav.civictheme-breadcrumb.civictheme-theme-light" element
 
+  @api @lastcustomupdated
+  Scenario: CivicTheme page content type page can configure Last updated date display
+    Given I am an anonymous user
+    And "civictheme_page" content:
+      | title                                       | status | field_c_n_show_last_updated | field_c_n_custom_last_updated |
+      | [TEST] Page with date                       | 1      | 1                           | 2022-07-01                    |
+      | [TEST] Page with last updated date checked  | 1      | 1                           |                               |
+      | [TEST] Page without date                    | 1      | 0                           | 2022-07-14                    |
+
+    When I visit "civictheme_page" "[TEST] Page with date"
+    And I should see the text "[TEST] Page with date"
+    And I should see an "div.civictheme-banner__content-middle" element
+    And I should see the text "Last updated: 1 Jul 2022"
+    When I visit "civictheme_page" "[TEST] Page with last updated date checked"
+    And I should see the text "[TEST] Page with last updated date checked"
+    And I should see an "div.civictheme-banner__content-middle" element
+    And I should see the text "Last updated"
+    When I visit "civictheme_page" "[TEST] Page without date"
+    And I should see the text "[TEST] Page without date"
+    And I should not see the text "Last updated"
+
   @api @lastupdated
   Scenario: CivicTheme page content type page can configure Last updated date display
     Given I am an anonymous user
     And "civictheme_page" content:
-      | title                    | status | field_c_n_show_last_updated |
-      | [TEST] Page with date    | 1      | 1                           |
-      | [TEST] Page without date | 1      | 0                           |
+      | title                                       | status | field_c_n_show_last_updated |
+      | [TEST] Page with date                       | 1      | 1                           |
+      | [TEST] Page without date                    | 1      | 0                           |
 
     When I visit "civictheme_page" "[TEST] Page with date"
     And I should see the text "[TEST] Page with date"
