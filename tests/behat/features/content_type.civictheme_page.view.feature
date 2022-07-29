@@ -324,9 +324,9 @@ Feature: View of Page content type
   Scenario: CivicTheme page content type page can configure Last updated date display
     Given I am an anonymous user
     And "civictheme_page" content:
-      | title                                       | status | field_c_n_show_last_updated |
-      | [TEST] Page with date                       | 1      | 1                           |
-      | [TEST] Page without date                    | 1      | 0                           |
+      | title                    | status | field_c_n_show_last_updated |
+      | [TEST] Page with date    | 1      | 1                           |
+      | [TEST] Page without date | 1      | 0                           |
 
     When I visit "civictheme_page" "[TEST] Page with date"
     And I should see the text "[TEST] Page with date"
