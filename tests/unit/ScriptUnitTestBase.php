@@ -84,7 +84,7 @@ abstract class ScriptUnitTestBase extends TestCase {
    * Replace path to a fixture file.
    */
   protected function fixtureFile($filename) {
-    $path = 'tests/phpunit/fixtures/drupal_configs/' . $filename;
+    $path = 'tests/fixtures/drupal_configs/' . $filename;
     if (!is_readable($path)) {
       throw new \RuntimeException(sprintf('Unable to find fixture file %s.', $path));
     }
