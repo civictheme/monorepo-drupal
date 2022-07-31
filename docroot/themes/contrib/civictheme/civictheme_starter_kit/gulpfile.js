@@ -1,3 +1,5 @@
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing.NoSpaceBefore
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing.NoSpaceAfter
 /**
  * @file
  * Additional processing to merge current and CivicTheme components.

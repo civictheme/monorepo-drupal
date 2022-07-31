@@ -1,3 +1,5 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
 import {
   boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';

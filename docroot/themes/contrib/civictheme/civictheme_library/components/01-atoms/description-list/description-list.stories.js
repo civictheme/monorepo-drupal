@@ -1,3 +1,5 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
 import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
@@ -16,10 +18,12 @@ export const DescriptionList = (knobTab) => {
   const generateItems = (count) => {
     const items = [];
     for (let i = 0; i < count; i++) {
+      // phpcs:disable Drupal.ControlStructures.InlineControlStructure.NotAllowed
       items.push({
         title: `Term ${i + 1}`,
         description: `Description for term ${i + 1}`,
       });
+      // phpcs:enable Drupal.ControlStructures.InlineControlStructure.NotAllowed
     }
     return items;
   };

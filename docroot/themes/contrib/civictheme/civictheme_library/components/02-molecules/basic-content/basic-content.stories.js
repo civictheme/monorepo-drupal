@@ -1,3 +1,6 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
+// phpcs:disable Drupal.ControlStructures.InlineControlStructure.NotAllowed
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicThemeBasicContent from './basic-content.twig';

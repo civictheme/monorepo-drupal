@@ -1,3 +1,7 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
+// phpcs:disable PEAR.Functions.FunctionCallSignature.SpaceBeforeOpenBracket
+// phpcs:disable Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction
 /**
  * @file
  * Responsive component.

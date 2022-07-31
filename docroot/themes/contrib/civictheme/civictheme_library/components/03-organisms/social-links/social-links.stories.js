@@ -1,3 +1,5 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeSocialLinks from './social-links.twig';
 import { demoIcon } from '../../00-base/base.stories';

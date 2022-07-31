@@ -1,3 +1,5 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
 /**
  * @file
  * Collapsible component.
@@ -187,7 +189,9 @@ CivicCollapsible.prototype.focusoutEvent = function (e) {
  * React on pressed keys.
  */
 CivicCollapsible.prototype.keydownEvent = function (e) {
-  if (!/(32|27|38|40)/.test(e.which) || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select|object/i.test(e.target.tagName)) return;
+  if (!/(32|27|38|40)/.test(e.which) || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select|object/i.test(e.target.tagName)) {
+    return;
+  }
 
   e.stopPropagation();
   e.preventDefault();
@@ -460,7 +464,9 @@ CivicCollapsible.prototype.isFocusable = function (element) {
 
   // Check if an element itself is visible.
   function elIsVisible(el) {
-    if (!(el instanceof Element)) throw Error('DomUtil: el is not an element.');
+    if (!(el instanceof Element)) {
+      throw Error('DomUtil: el is not an element.');
+    }
 
     const style = getComputedStyle(el);
 

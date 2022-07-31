@@ -86,7 +86,12 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
 
     $expected_new_theme_dir_full = $this->tmpDir . '/' . $expected_newtheme_dir;
 
-    $result = $this->runScript([$newtheme_name, $newtheme_name, $newtheme_name, $newtheme_rel_dir], TRUE);
+    $result = $this->runScript([
+      $newtheme_name,
+      $newtheme_name,
+      $newtheme_name,
+      $newtheme_rel_dir,
+    ], TRUE);
     $this->assertEquals(0, $result['code']);
     $this->assertStringContainsString('sub-theme was created successfully ', $result['output']);
     $this->assertStringContainsString($expected_new_theme_dir_full, $result['output']);

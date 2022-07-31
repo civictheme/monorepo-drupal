@@ -1,3 +1,5 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
 import { radios } from '@storybook/addon-knobs';
 
 import CivicThemeCollapsible from './collapsible.stories.twig';

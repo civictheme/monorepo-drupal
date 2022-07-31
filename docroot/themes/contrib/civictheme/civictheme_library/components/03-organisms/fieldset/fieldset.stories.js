@@ -1,3 +1,5 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
 import { radios, text, number } from '@storybook/addon-knobs';
 import { randomFormElements } from '../../00-base/base.stories';
 import CivicThemeFieldset from './fieldset.twig';

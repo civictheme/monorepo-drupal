@@ -1,3 +1,4 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
 exports.default = function () {
   // Lean storybook config.
   let config = [

@@ -43,7 +43,7 @@
     },
     "autoload-dev": {
         "classmap": [
-            "tests/phpunit/unit"
+            "tests/unit"
         ]
     },
     "config": {

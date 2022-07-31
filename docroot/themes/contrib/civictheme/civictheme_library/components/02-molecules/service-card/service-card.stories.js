@@ -1,3 +1,5 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
 import { number, radios, text } from '@storybook/addon-knobs';
 import { getSlots, randomLinks } from '../../00-base/base.stories';
 

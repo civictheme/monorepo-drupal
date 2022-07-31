@@ -1,3 +1,4 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
 require('twig');
 
 export const parameters = {

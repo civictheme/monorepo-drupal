@@ -1,3 +1,6 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
+// phpcs:disable Drupal.ControlStructures.InlineControlStructure.NotAllowed
 import CivicThemeLink from '../../01-atoms/link/link.twig';
 import CivicThemeTable from '../../01-atoms/table/table.twig';
 import CivicThemeFigure from '../figure/figure.twig';

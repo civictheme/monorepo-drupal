@@ -1,3 +1,4 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
 //
 // Extract CSS variables as object from SCSS file.
 //

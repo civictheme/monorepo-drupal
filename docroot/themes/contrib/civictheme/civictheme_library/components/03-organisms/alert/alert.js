@@ -1,3 +1,5 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
 /**
  * Alert component.
  *
@@ -192,7 +194,9 @@ CivicAlert.prototype.hashString = function (string) {
   let i;
   let
     chr;
-  if (string.length === 0) return hash;
+  if (string.length === 0) {
+    return hash;
+  }
   for (i = 0; i < string.length; i++) {
     chr = string.charCodeAt(i);
     // eslint-disable-next-line no-bitwise

@@ -1,3 +1,5 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
 //
 // Shared JS helpers for Storybook stories.
 //
@@ -144,12 +146,15 @@ export const formElement = (inputType, options, theme, rand, itr) => {
     case 'radio':
       formElementOptions.children.push(Radio(inputOptions));
       break;
+
     case 'checkbox':
       formElementOptions.children.push(Checkbox(inputOptions));
       break;
+
     case 'select':
       formElementOptions.children.push(Select({ ...inputOptions, options: inputOptions.value }));
       break;
+
     default:
       formElementOptions.children.push(Input(inputOptions));
   }

@@ -1,3 +1,4 @@
+//phpcs:disable PEAR
 /**
  * Custom configuration for Storybook.
  */

@@ -34,9 +34,9 @@ load _helper
   assert_file_exists "dist/styles.variables.css"
   assert_file_exists "dist/styles.ckeditor.css"
   assert_file_contains "dist/styles.variables.css" "--civictheme"
-  assert_file_exists "dist/scripts.js"
-  assert_file_not_exists "dist/styles-variables.js"
-  assert_file_not_exists "dist/styles-ckeditor.js"
+  assert_file_exists "dist/scripts.min.js"
+  assert_file_not_exists "dist/styles-variables.min.js"
+  assert_file_not_exists "dist/styles-ckeditor.min.js"
   assert_file_exists "dist/styles.variables.csv"
 
   assert_dir_exists "dist/assets"

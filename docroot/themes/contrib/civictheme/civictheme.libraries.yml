@@ -3,7 +3,7 @@ global:
     theme:
       dist/civictheme.css: {}
   js:
-    dist/civictheme.js: {}
+    dist/civictheme.min.js: {}
   dependencies:
     - core/jquery
     - core/jquery.once

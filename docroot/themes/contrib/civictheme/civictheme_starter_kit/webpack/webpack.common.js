@@ -1,3 +1,7 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing.NoSpaceAfter
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing.NoSpaceBefore
+
 const path = require('path');
 const glob = require('glob');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -55,7 +59,7 @@ module.exports = {
     },
   },
   output: {
-    filename: (pathData) => (pathData.chunk.name === 'main' ? 'scripts.js' : 'scripts-[name].js'),
+    filename: (pathData) => (pathData.chunk.name === 'main' ? 'scripts.min.js' : 'scripts-[name].min.js'),
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [

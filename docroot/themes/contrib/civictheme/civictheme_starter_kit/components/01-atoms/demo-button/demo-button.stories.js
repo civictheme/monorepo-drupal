@@ -1,3 +1,4 @@
+//phpcs:disable Generic.PHP.UpperCaseConstant.Found
 /**
  * @file
  * Demo Button stories.

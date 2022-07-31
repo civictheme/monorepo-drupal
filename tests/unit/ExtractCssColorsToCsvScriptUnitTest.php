@@ -101,28 +101,76 @@ class ExtractCssColorsToCsvScriptUnitTest extends ScriptUnitTestBase {
       ['--var1:val1; --var2:val2;', ['--var1' => 'val1', '--var2' => 'val2']],
       ['--var1:val1; --var2:val2 ;', ['--var1' => 'val1', '--var2' => 'val2']],
       ['--var1: val1; --var2:val2 ;', ['--var1' => 'val1', '--var2' => 'val2']],
-      ['--var1: val1; --var2: val2 ;', ['--var1' => 'val1', '--var2' => 'val2']],
-      [' --var1: val1; --var2: val2 ;', ['--var1' => 'val1', '--var2' => 'val2']],
-      [' --var1: val1;  --var2: val2 ;', ['--var1' => 'val1', '--var2' => 'val2']],
-      [' --var1: val1 ;  --var2: val2 ;', ['--var1' => 'val1', '--var2' => 'val2']],
-      [' --var1:  val1 ;  --var2: val2 ;', ['--var1' => 'val1', '--var2' => 'val2']],
+      [
+        '--var1: val1; --var2: val2 ;',
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
+      [
+        ' --var1: val1; --var2: val2 ;',
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
+      [
+        ' --var1: val1;  --var2: val2 ;',
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
+      [
+        ' --var1: val1 ;  --var2: val2 ;',
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
+      [
+        ' --var1:  val1 ;  --var2: val2 ;',
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
 
       // Valid - multiple - mixed.
-      ['html{--var1:val1;--var2:val2;}', ['--var1' => 'val1', '--var2' => 'val2']],
-      ['html{ --var1:val1;--var2:val2;}', ['--var1' => 'val1', '--var2' => 'val2']],
-      ['html{ --var1:val1; --var2:val2;}', ['--var1' => 'val1', '--var2' => 'val2']],
-      ['html{ --var1:val1; --var2:val2; }', ['--var1' => 'val1', '--var2' => 'val2']],
+      [
+        'html{--var1:val1;--var2:val2;}',
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
+      [
+        'html{ --var1:val1;--var2:val2;}',
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
+      [
+        'html{ --var1:val1; --var2:val2;}',
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
+      [
+        'html{ --var1:val1; --var2:val2; }',
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
 
       // Valid - multiple - mixed - multiline.
-      ["html{\n--var1:val1;\n--var2:val2;\n}", ['--var1' => 'val1', '--var2' => 'val2']],
-      ["html{\n--var1:\nval1;\n--var2:val2;\n}", ['--var1' => 'val1', '--var2' => 'val2']],
-      ["html{\n--var1:\nval1;\n--var2:\nval2;\n}", ['--var1' => 'val1', '--var2' => 'val2']],
-      ["html\n{\n--var1:\nval1;\n--var2:\nval2;\n}", ['--var1' => 'val1', '--var2' => 'val2']],
+      [
+        "html{\n--var1:val1;\n--var2:val2;\n}",
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
+      [
+        "html{\n--var1:\nval1;\n--var2:val2;\n}",
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
+      [
+        "html{\n--var1:\nval1;\n--var2:\nval2;\n}",
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
+      [
+        "html\n{\n--var1:\nval1;\n--var2:\nval2;\n}",
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
 
       // Valid - multiple - mixed - non-vars.
-      ['html{--var1:val1;--var2:val2;var3:val3;}', ['--var1' => 'val1', '--var2' => 'val2']],
-      ['html{--var1:val1;--var2:val2; var3: val3;}', ['--var1' => 'val1', '--var2' => 'val2']],
-      ['html{--var1:val1;--var2:val2; var3: val3 ;}', ['--var1' => 'val1', '--var2' => 'val2']],
+      [
+        'html{--var1:val1;--var2:val2;var3:val3;}',
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
+      [
+        'html{--var1:val1;--var2:val2; var3: val3;}',
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
+      [
+        'html{--var1:val1;--var2:val2; var3: val3 ;}',
+        ['--var1' => 'val1', '--var2' => 'val2'],
+      ],
 
       // Invalid.
       ['--var1:val1', []],
@@ -133,7 +181,10 @@ class ExtractCssColorsToCsvScriptUnitTest extends ScriptUnitTestBase {
       ['--var1 val1;--var2:val2;', ['--var2' => 'val2']],
       ["--var1 val1;\n--var2:val2;", ['--var2' => 'val2']],
       ["--var1:val1;\n--var2 val2;", ['--var1' => 'val1']],
-      ["--var1:val1; --var2 val2; --var3: val3;", ['--var1' => 'val1', '--var3' => 'val3']],
+      [
+        "--var1:val1; --var2 val2; --var3: val3;",
+        ['--var1' => 'val1', '--var3' => 'val3'],
+      ],
     ];
   }
 

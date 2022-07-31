@@ -1,3 +1,5 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
 import { text, radios, select } from '@storybook/addon-knobs';
 import CivicThemeTooltip from './tooltip.twig';
 

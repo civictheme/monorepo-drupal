@@ -1,3 +1,4 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
 function requireAll(r) {
   r.keys().forEach(r);
 }

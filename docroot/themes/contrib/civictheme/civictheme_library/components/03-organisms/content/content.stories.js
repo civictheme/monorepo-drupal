@@ -1,3 +1,5 @@
+// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeContent from './content.twig';
 import CivicThemeLayoutSingleColumn from './content-layout--single-column.twig';
@@ -60,11 +62,13 @@ export const Content = (knobTab) => {
           content: generalKnobs.content,
         });
         break;
+
       case 'single_column_contained':
         generalKnobs.content = CivicThemeLayoutSingleColumnContained({
           content: generalKnobs.content,
         });
         break;
+
       default:
         generalKnobs.content = '';
     }
