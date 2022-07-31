@@ -12,9 +12,11 @@
  *
  * Usage:
  * @code
- * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description"
+ * php civictheme_create_subtheme.php --machine-name="new_machine_name" --name="Human name" --description="Human description"
  *
- * php civictheme_create_subtheme.php new_machine_name "Human name" "Human description" /path/to/theme/new_machine_name
+ * php civictheme_create_subtheme.php --machine-name="new_machine_name" --name="Human name" --description="Human description" --theme-path="/path/to/theme/new_machine_name"
+ *
+ * php civictheme_create_subtheme.php --machine-name="new_machine_name" --name="Human name" --description="Human description" --remove-examples
  * @endcode
  *
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingBefore
@@ -33,31 +35,20 @@ define('EXIT_ERROR', 1);
  */
 define('ERROR_LEVEL', E_USER_WARNING);
 
+global $remove_example;
+
 /**
  * Main functionality.
  */
-function main(array $argv, $argc) {
+function main(array $params) {
   $default_new_theme_directory = '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'custom';
 
-  if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {
-    print_help($default_new_theme_directory);
-
-    return EXIT_SUCCESS;
-  }
-
-  // Show help if not enough or more than required arguments.
-  if ($argc < 4 || $argc > 5) {
-    print_help($default_new_theme_directory);
-
-    return EXIT_ERROR;
-  }
-
   // Collect and validate values from arguments.
-  $new_theme_machine_name = trim($argv[1]);
+  $new_theme_machine_name = trim($params['machine-name']);
   validate_theme_machine_name($new_theme_machine_name);
-  $new_theme_name = trim($argv[2]);
-  $new_theme_description = trim($argv[3]);
-  $new_theme_directory = trim($argv[4] ?? $default_new_theme_directory . DIRECTORY_SEPARATOR . $new_theme_machine_name);
+  $new_theme_name = trim($params['name']);
+  $new_theme_description = trim($params['description']);
+  $new_theme_directory = trim($params['theme-path'] ?? $default_new_theme_directory . DIRECTORY_SEPARATOR . $new_theme_machine_name);
 
   // @todo Add check if path is absolute.
   $new_theme_directory = file_path_canonicalize(__DIR__ . DIRECTORY_SEPARATOR . $new_theme_directory);
@@ -71,6 +62,7 @@ function main(array $argv, $argc) {
     'name' => $new_theme_name,
     'description' => $new_theme_description,
     'path' => $new_theme_directory,
+    'remove-examples' => $params['remove-examples'] ?? FALSE,
   ]);
 
   // Copy files from stub to the new theme path.
@@ -96,20 +88,21 @@ function print_help($default_new_theme_dir) {
 CivicTheme Starter Kit scaffolding
 ----------------------------------
 
-Arguments:
-  machine_name           New theme machine name.
-  name                   New theme human-readable name.
-  description            New theme description.
-  new_theme_directory    Optional new theme directory, including theme machine
-                         name. Defaults to ${default_new_theme_dir}/machine_name.
+Options required:
+  -m|--machine-name           New theme machine name.
+  -n|--name                   New theme human-readable name.
+  -d|--description            New theme description.
 
-Options:
+Options optional:
+  -p|--theme-path        Optional new theme directory, including theme machine
+                         name. Defaults to ${default_new_theme_dir}/machine_name.
   --help                 This help.
+  --remove-examples      Remove examples from the produced theme.
 
 Examples:
-  php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
+  php ${script_name} --machine-name="civictheme_demo"  --name="CivicTheme Demo" --description"Demo sub-theme for a CivicTheme theme."
 
-  php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme." ../civictheme_demo
+  php ${script_name} --machine-name="civictheme_demo"  --name="CivicTheme Demo" --description"Demo sub-theme for a CivicTheme theme." --theme-path="../civictheme_demo"
 
 EOF;
   print PHP_EOL;
@@ -204,6 +197,16 @@ function process_stub($dir, $options) {
     $content = file_get_contents($info_file);
     $content = str_replace("hidden: true\n", '', $content);
     file_put_contents($info_file, $content);
+  }
+
+  // Remove all the examples component before moving to final path.
+  if ($options['remove-examples']) {
+    $example_components = example_component_paths();
+    foreach ($example_components as $example_dir) {
+      array_map('unlink', array_filter(
+        (array) array_merge(glob($dir . DIRECTORY_SEPARATOR . $example_dir . DIRECTORY_SEPARATOR . "*"))));
+      rmdir($dir . DIRECTORY_SEPARATOR . $example_dir);
+    }
   }
 }
 
@@ -409,6 +412,17 @@ function file_internal_paths() {
 }
 
 /**
+ * Example component paths.
+ */
+function example_component_paths() {
+    return [
+      'components/01-atoms/demo-button',
+      'components/02-molecules/navigation-card',
+      'components/03-organisms/header',
+    ];
+}
+
+/**
  * Check if the file ia excluded from the processing.
  */
 function file_is_excluded_from_processing($filename) {
@@ -591,6 +605,55 @@ function verbose() {
   }
 }
 
+/**
+ * validate inputs.
+ */
+function validate_inputs($options) {
+  $default_new_theme_directory = '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'custom';
+  $params = [];
+  $required_params = [
+    'name',
+    'machine-name',
+    'description',
+  ];
+
+  if(isset($options["h"]) || isset($options["help"])) {
+    print_help($default_new_theme_directory);
+
+    return EXIT_SUCCESS;
+  }
+
+  if(isset($options["t"]) || isset($options["name"])) {
+    $params['name'] = $options["t"] ?? $options["name"];
+  }
+
+  if(isset($options["m"]) || isset($options["machine-name"])) {
+    $params['machine-name'] = $options["m"] ?? $options["machine-name"];
+  }
+
+  if(isset($options["d"]) || isset($options["description"])) {
+    $params['description'] = $options["d"] ?? $options["description"];
+  }
+
+  if(isset($options["p"]) || isset($options["theme-path"])) {
+    $params['theme-path'] = $options["p"] ?? $options["theme-path"];
+  }
+
+  if(isset($options["r"]) || isset($options["remove-examples"])) {
+    $params['remove-examples'] = TRUE;
+  }
+
+  $missing_params = array_diff_key(array_flip($required_params), $params);
+  // Check that all required parameters are present.
+  if (count($missing_params) > 0) {
+    print_help($default_new_theme_directory);
+    return EXIT_ERROR;
+  }
+
+  return $params;
+
+}
+
 // ////////////////////////////////////////////////////////////////////////// //
 //                                ENTRYPOINT                                  //
 // ////////////////////////////////////////////////////////////////////////// //
@@ -613,7 +676,16 @@ if (getenv('SCRIPT_RUN_SKIP') != 1) {
   });
 
   try {
-    $code = main($argv, $argc);
+    $short_options = "t:m:d:p::hr";
+    $long_options = ["name:", "machine-name:", "description:", "path::", 'help', 'remove-examples'];
+    $options = getopt($short_options, $long_options);
+    $params = validate_inputs($options);
+
+    if (!is_array($params)) {
+      exit($params);
+    }
+
+    $code = main($params);
     if (is_null($code)) {
       throw new \Exception('Script exited without providing an exit code.');
     }

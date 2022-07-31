@@ -88,7 +88,7 @@ RUN cd /app/docroot/themes/contrib/civictheme && npm run build
 
 # Create another subtheme in the same directory as CivicTheme.
 RUN cd /app/docroot/themes/contrib/civictheme \
-  && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo Sibling" "Demo sub-theme for a CivicTheme theme installed in the same directory." ../civictheme_demo
+  && php civictheme_create_subtheme.php --machine-name="civictheme_demo" --name="CivicTheme Demo Sibling" --description="Demo sub-theme for a CivicTheme theme installed in the same directory." --theme-path="../civictheme_demo"
 
 # Compile subtheme assets.
 RUN npm --prefix docroot/themes/contrib/civictheme_demo ci --no-audit --no-progress --unsafe-perm \
