@@ -35,8 +35,6 @@ define('EXIT_ERROR', 1);
  */
 define('ERROR_LEVEL', E_USER_WARNING);
 
-global $remove_example;
-
 /**
  * Main functionality.
  */
@@ -417,11 +415,11 @@ function file_internal_paths() {
  * Example component paths.
  */
 function example_component_paths() {
-    return [
-      'components/01-atoms/demo-button',
-      'components/02-molecules/navigation-card',
-      'components/03-organisms/header',
-    ];
+  return [
+    'components/01-atoms/demo-button',
+    'components/02-molecules/navigation-card',
+    'components/03-organisms/header',
+  ];
 }
 
 /**
@@ -608,7 +606,7 @@ function verbose() {
 }
 
 /**
- * validate inputs.
+ * Validate inputs.
  */
 function validate_inputs($options) {
   $default_new_theme_directory = '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'custom';
@@ -619,29 +617,29 @@ function validate_inputs($options) {
     'description',
   ];
 
-  if(isset($options["h"]) || isset($options["help"])) {
+  if (isset($options["h"]) || isset($options["help"])) {
     print_help($default_new_theme_directory);
 
     return EXIT_SUCCESS;
   }
 
-  if(isset($options["t"]) || isset($options["name"])) {
+  if (isset($options["t"]) || isset($options["name"])) {
     $params['name'] = $options["t"] ?? $options["name"];
   }
 
-  if(isset($options["m"]) || isset($options["machine-name"])) {
+  if (isset($options["m"]) || isset($options["machine-name"])) {
     $params['machine-name'] = $options["m"] ?? $options["machine-name"];
   }
 
-  if(isset($options["d"]) || isset($options["description"])) {
+  if (isset($options["d"]) || isset($options["description"])) {
     $params['description'] = $options["d"] ?? $options["description"];
   }
 
-  if(isset($options["p"]) || isset($options["theme-path"])) {
+  if (isset($options["p"]) || isset($options["theme-path"])) {
     $params['theme-path'] = $options["p"] ?? $options["theme-path"];
   }
 
-  if(isset($options["r"]) || isset($options["remove-examples"])) {
+  if (isset($options["r"]) || isset($options["remove-examples"])) {
     $params['remove-examples'] = TRUE;
   }
 
@@ -679,7 +677,14 @@ if (getenv('SCRIPT_RUN_SKIP') != 1) {
 
   try {
     $short_options = "t:m:d:p::hr";
-    $long_options = ["name:", "machine-name:", "description:", "path::", 'help', 'remove-examples'];
+    $long_options = [
+      "name:",
+      "machine-name:",
+      "description:",
+      "path::",
+      'help',
+      'remove-examples',
+    ];
     $options = getopt($short_options, $long_options);
     $params = validate_inputs($options);
 
