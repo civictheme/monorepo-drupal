@@ -109,7 +109,7 @@ export const CardContainer = (knobTab) => {
     modifier_class: text('Additional class', '', cardsKnobTab),
   };
 
-  if (cardType == 'navigation-card' || cardType == 'random') {
+  if (cardType == 'navigation-card' || cardType == 'promo-card' || cardType == 'random') {
     cardsProps.tags = randomTags(number(
       'Number of tags',
       2,
@@ -121,6 +121,10 @@ export const CardContainer = (knobTab) => {
       },
       cardsKnobTab,
     ), true);
+  }
+
+  if (cardType == 'navigation-card' || cardType == 'random') {
+    cardsProps.is_external = boolean('Is external', false, cardsKnobTab);
   }
 
   if (cardType == 'service-card' || cardType == 'random') {
@@ -137,13 +141,11 @@ export const CardContainer = (knobTab) => {
     ), 10);
   }
 
-  if (cardType == 'navigation-card' || cardType == 'random') {
+  if (cardType == 'publication-card' || cardType == 'random') {
     cardsProps.link = boolean('With file', true, cardsKnobTab) ? {
       url: 'https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.doc',
       text: 'Filename.pdf (175.96KB)',
     } : null;
-
-    cardsProps.is_external = boolean('Is external', false, generalKnobTab);
   }
 
   cardsProps.date = new Date(cardsProps.date).toLocaleDateString('en-uk', {
