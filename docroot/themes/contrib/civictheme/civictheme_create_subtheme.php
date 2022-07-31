@@ -203,9 +203,11 @@ function process_stub($dir, $options) {
   if ($options['remove-examples']) {
     $example_components = example_component_paths();
     foreach ($example_components as $example_dir) {
-      array_map('unlink', array_filter(
-        (array) array_merge(glob($dir . DIRECTORY_SEPARATOR . $example_dir . DIRECTORY_SEPARATOR . "*"))));
-      rmdir($dir . DIRECTORY_SEPARATOR . $example_dir);
+      if (is_dir($example_dir)) {
+        array_map('unlink', array_filter(
+          (array) array_merge(glob($dir . DIRECTORY_SEPARATOR . $example_dir . DIRECTORY_SEPARATOR . "*"))));
+        rmdir($dir . DIRECTORY_SEPARATOR . $example_dir);
+      }
     }
   }
 }
