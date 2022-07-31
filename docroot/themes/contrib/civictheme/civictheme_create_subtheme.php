@@ -607,6 +607,12 @@ function verbose() {
 
 /**
  * Validate inputs.
+ *
+ * @param array $options
+ *   Options.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function validate_inputs($options) {
   $default_new_theme_directory = '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'custom';
