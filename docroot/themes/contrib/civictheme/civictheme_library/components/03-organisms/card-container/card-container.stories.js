@@ -3,7 +3,11 @@ import {
 } from '@storybook/addon-knobs';
 import CivicThemeCardContainer from './card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
-import { demoImage, getSlots } from '../../00-base/base.stories';
+import NavigationCard from '../../02-molecules/navigation-card/navigation-card.twig';
+import PublicationCard from '../../02-molecules/publication-card/publication-card.twig';
+import ServiceCard from '../../02-molecules/service-card/service-card.twig';
+import SubjectCard from '../../02-molecules/subject-card/subject-card.twig';
+import { demoImage, getSlots, randomTags, randomLinks } from '../../00-base/base.stories';
 
 export default {
   title: 'Organisms/Card Container',
@@ -57,6 +61,20 @@ export const CardContainer = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
+  const cardType = radios(
+    'Card type',
+    {
+      'Navigation card': 'navigation-card',
+      'Promo card': 'promo-card',
+      'Publication card': 'publication-card',
+      'Service card': 'service-card',
+      'Subject card': 'subject-card',
+      'Random': 'random',
+    },
+    'promo-card',
+    generalKnobTab,
+  );
+
   const cardsKnobTab = 'Cards';
   const cardsCount = number(
     'Number of cards',
@@ -91,15 +109,78 @@ export const CardContainer = (knobTab) => {
     modifier_class: text('Additional class', '', cardsKnobTab),
   };
 
+  if (cardType == 'navigation-card' || cardType == 'random') {
+    cardsProps.tags = randomTags(number(
+      'Number of tags',
+      2,
+      {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      cardsKnobTab,
+    ), true);
+  }
+
+  if (cardType == 'service-card' || cardType == 'random') {
+    cardsProps.links = randomLinks(number(
+      'Number of links',
+      5,
+      {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      cardsKnobTab,
+    ), 10);
+  }
+
+  if (cardType == 'navigation-card' || cardType == 'random') {
+    cardsProps.link = boolean('With file', true, cardsKnobTab) ? {
+      url: 'https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.doc',
+      text: 'Filename.pdf (175.96KB)',
+    } : null;
+
+    cardsProps.is_external = boolean('Is external', false, generalKnobTab);
+  }
+
   cardsProps.date = new Date(cardsProps.date).toLocaleDateString('en-uk', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
   });
 
+  const cardTypes = [
+    NavigationCard(cardsProps),
+    PromoCard(cardsProps),
+    PublicationCard(cardsProps),
+    ServiceCard(cardsProps),
+    SubjectCard(cardsProps),
+  ]
   const cards = [];
   for (let itr = 0; itr < cardsCount; itr += 1) {
-    cards.push(PromoCard(cardsProps));
+    switch (cardType) {
+      case "navigation-card":
+        cards.push(cardTypes[0]);
+        break;
+      case "promo-card":
+        cards.push(cardTypes[1]);
+        break;
+      case "publication-card":
+        cards.push(cardTypes[2]);
+        break;
+      case "service-card":
+        cards.push(cardTypes[3]);
+        break;
+      case "subject-card":
+        cards.push(cardTypes[4]);
+        break;
+      case "random":
+      default:
+        cards.push(cardTypes[Math.floor(Math.random() * 5)]);
+    }
   }
 
   return CivicThemeCardContainer({
