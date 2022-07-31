@@ -56,8 +56,8 @@ module.exports = {
       dry: false,
       dangerouslyAllowCleanPatternsOutsideProject: true,
       cleanAfterEveryBuildPatterns: [
-        '../dist/civictheme-variables.js',
-        '../dist/civictheme-variables.js.map',
+        '../dist/civictheme-variables.min.js',
+        '../dist/civictheme-variables.min.js.map',
       ],
     }),
   ],
