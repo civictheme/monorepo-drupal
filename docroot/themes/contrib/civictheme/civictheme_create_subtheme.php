@@ -100,9 +100,9 @@ Options optional:
   --remove-examples      Remove examples from the produced theme.
 
 Examples:
-  php ${script_name} --machine-name="civictheme_demo"  --name="CivicTheme Demo" --description"Demo sub-theme for a CivicTheme theme."
+  php ${script_name} --machine-name="civictheme_demo"  --name="CivicTheme Demo" --description="Demo sub-theme for a CivicTheme theme."
 
-  php ${script_name} --machine-name="civictheme_demo"  --name="CivicTheme Demo" --description"Demo sub-theme for a CivicTheme theme." --theme-path="../civictheme_demo"
+  php ${script_name} --machine-name="civictheme_demo"  --name="CivicTheme Demo" --description="Demo sub-theme for a CivicTheme theme." --theme-path="../civictheme_demo"
 
 EOF;
   print PHP_EOL;
