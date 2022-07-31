@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
     - field.field.node.civictheme_page.field_c_n_components
+    - field.field.node.civictheme_page.field_c_n_custom_last_updated
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
     - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
@@ -20,6 +21,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_topics
     - node.type.civictheme_page
   module:
+    - datetime
     - entity_reference_revisions
     - layout_builder
     - layout_builder_restrictions
@@ -56,6 +58,23 @@ third_party_settings:
                   view_mode: default
                 third_party_settings: {  }
             weight: 0
+            additional: {  }
+          c1f9f850-f470-4069-8711-9c7edaffde7e:
+            uuid: c1f9f850-f470-4069-8711-9c7edaffde7e
+            region: content
+            configuration:
+              id: 'field_block:node:civictheme_page:field_c_n_custom_last_updated'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: datetime_default
+                label: above
+                settings:
+                  timezone_override: ''
+                  format_type: medium
+                third_party_settings: {  }
+            weight: 1
             additional: {  }
         third_party_settings: {  }
   layout_builder_restrictions:
@@ -97,6 +116,15 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_c_n_custom_last_updated:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 6
     region: content
   field_c_n_show_last_updated:
     type: boolean
