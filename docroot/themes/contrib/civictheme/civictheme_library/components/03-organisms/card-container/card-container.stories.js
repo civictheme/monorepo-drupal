@@ -2,6 +2,7 @@ import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import CivicThemeCardContainer from './card-container.twig';
+import { EventCard } from '../../02-molecules/event-card/event-card.stories';
 import { PromoCard } from '../../02-molecules/promo-card/promo-card.stories';
 import { NavigationCard } from '../../02-molecules/navigation-card/navigation-card.stories';
 import { PublicationCard } from '../../02-molecules/publication-card/publication-card.stories';
@@ -66,6 +67,7 @@ export const CardContainer = (knobTab) => {
   const cardType = radios(
     'Card type',
     {
+      'Event cards': 'event-card',
       'Navigation card': 'navigation-card',
       'Promo card': 'promo-card',
       'Publication card': 'publication-card',
@@ -92,6 +94,9 @@ export const CardContainer = (knobTab) => {
   for (let itr = 0; itr < cardsCount; itr += 1) {
     const cardNumber = `Card ${itr + 1}`;
     switch (cardType) {
+      case 'event-card':
+        cards.push(EventCard(cardNumber));
+        break;
       case 'navigation-card':
         cards.push(NavigationCard(cardNumber));
         break;
