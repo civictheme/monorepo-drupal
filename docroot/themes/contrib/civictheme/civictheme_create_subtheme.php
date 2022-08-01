@@ -39,6 +39,14 @@ define('ERROR_LEVEL', E_USER_WARNING);
 function main(array $argv, $argc) {
   $default_new_theme_directory = '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'custom';
 
+  // Optional remove example flag.
+  $remove_example = array_search('--remove-examples', $argv);
+  if ($remove_example) {
+    unset($argv[$remove_example]);
+    $argv = array_values($argv);
+    $argc = count($argv);
+  }
+
   if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {
     print_help($default_new_theme_directory);
 
@@ -71,6 +79,7 @@ function main(array $argv, $argc) {
     'name' => $new_theme_name,
     'description' => $new_theme_description,
     'path' => $new_theme_directory,
+    'remove-examples' => $remove_example,
   ]);
 
   // Copy files from stub to the new theme path.
@@ -105,6 +114,7 @@ Arguments:
 
 Options:
   --help                 This help.
+  --remove-examples      Remove example component from generated theme.
 
 Examples:
   php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
@@ -205,6 +215,20 @@ function process_stub($dir, $options) {
     $content = str_replace("hidden: true\n", '', $content);
     file_put_contents($info_file, $content);
   }
+
+  // Remove all the examples component before moving to final path.
+  if ($options['remove-examples']) {
+    $example_components = example_component_paths();
+    foreach ($example_components as $example_dir) {
+      $example_dir = $dir . DIRECTORY_SEPARATOR . $example_dir;
+      if (is_dir($example_dir)) {
+        array_map('unlink', array_filter(
+          (array) array_merge(glob($example_dir . DIRECTORY_SEPARATOR . "*"))));
+        rmdir($example_dir);
+      }
+    }
+  }
+
 }
 
 /**
@@ -406,6 +430,17 @@ function file_ignore_paths() {
  */
 function file_internal_paths() {
   return [];
+}
+
+/**
+ * Example component paths.
+ */
+function example_component_paths() {
+  return [
+    'components/01-atoms/demo-button',
+    'components/02-molecules/navigation-card',
+    'components/03-organisms/header',
+  ];
 }
 
 /**
