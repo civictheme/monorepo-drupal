@@ -1,4 +1,4 @@
-// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:ignoreFile
 function requireAll(r) {
   r.keys().forEach(r);
 }

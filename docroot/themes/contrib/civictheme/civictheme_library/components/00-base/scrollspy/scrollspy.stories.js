@@ -1,5 +1,4 @@
-// phpcs:disable Generic.PHP.UpperCaseConstant.Found
-// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
+// phpcs:ignoreFile
 import './scrollspy';
 
 export default {

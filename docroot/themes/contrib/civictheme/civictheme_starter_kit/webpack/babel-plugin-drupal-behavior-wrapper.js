@@ -1,4 +1,4 @@
-// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:ignoreFile
 // Based on Babel Plugin drupal behaviors.
 // https://github.com/fourkitchens/babel-plugin-drupal-behaviors
 

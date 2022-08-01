@@ -1,5 +1,4 @@
-// phpcs:disable Generic.PHP.UpperCaseConstant.Found
-// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
+// phpcs:ignoreFile
 import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeNextSteps from './next-steps.twig';
 import { randomUrl } from '../../00-base/base.stories';

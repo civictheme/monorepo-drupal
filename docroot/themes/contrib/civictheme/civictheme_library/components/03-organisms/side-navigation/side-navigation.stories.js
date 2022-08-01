@@ -1,5 +1,4 @@
-// phpcs:disable Generic.PHP.UpperCaseConstant.Found
-// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
+// phpcs:ignoreFile
 // @todo This is a placeholder component. It is not finished!
 import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeSideNavigation from './side-navigation.twig';

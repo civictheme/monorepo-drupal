@@ -1,5 +1,4 @@
-// phpcs:disable Generic.PHP.UpperCaseConstant.Found
-// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
+// phpcs:ignoreFile
 import { radios, text } from '@storybook/addon-knobs';
 import CivicThemePrimaryNavigation from './primary-navigation.twig';
 import getMenuLinks from '../../00-base/menu/menu.utils';

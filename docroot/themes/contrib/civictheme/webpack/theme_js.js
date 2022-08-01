@@ -1,4 +1,4 @@
-// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:ignoreFile
 /**
  * Import current Drupal theme scripts to be discoverable by the loader.
  */

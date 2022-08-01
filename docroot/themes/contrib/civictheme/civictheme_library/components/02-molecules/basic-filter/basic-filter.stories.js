@@ -1,5 +1,4 @@
-// phpcs:disable Generic.PHP.UpperCaseConstant.Found
-// phpcs:disable Squiz.WhiteSpace.OperatorSpacing
+// phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicThemeBasicFilter from './basic-filter.twig';

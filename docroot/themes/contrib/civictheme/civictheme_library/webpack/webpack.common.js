@@ -1,7 +1,4 @@
-// phpcs:disable Generic.PHP.UpperCaseConstant.Found
-// phpcs:disable Squiz.WhiteSpace.OperatorSpacing.NoSpaceAfter
-// phpcs:disable Squiz.WhiteSpace.OperatorSpacing.NoSpaceBefore
-
+// phpcs:ignoreFile
 const path = require('path');
 const glob = require('glob');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');

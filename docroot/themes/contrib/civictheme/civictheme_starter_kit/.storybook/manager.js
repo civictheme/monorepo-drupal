@@ -1,4 +1,4 @@
-// phpcs:disable Generic.PHP.UpperCaseConstant.Found
+// phpcs:ignoreFile
 import { addons } from '@storybook/addons';
 import theme from './theme';
 
