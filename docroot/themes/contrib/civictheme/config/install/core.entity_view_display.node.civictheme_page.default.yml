@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
     - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
+    - field.field.node.civictheme_page.field_c_n_site_section
     - field.field.node.civictheme_page.field_c_n_space
     - field.field.node.civictheme_page.field_c_n_summary
     - field.field.node.civictheme_page.field_c_n_thumbnail
@@ -76,6 +77,22 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 1
             additional: {  }
+          298d3b98-55f3-4df6-909f-c4877d9c1e7d:
+            uuid: 298d3b98-55f3-4df6-909f-c4877d9c1e7d
+            region: content
+            configuration:
+              id: 'field_block:node:civictheme_page:field_c_n_site_section'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
         third_party_settings: {  }
   layout_builder_restrictions:
     allowed_block_categories: {  }
@@ -135,6 +152,14 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_c_n_site_section:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 7
     region: content
   field_c_n_space:
     type: list_default
