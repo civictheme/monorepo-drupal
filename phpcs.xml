@@ -19,10 +19,6 @@
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/node_modules\/.*</exclude-pattern>
     <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/node_modules\/.*</exclude-pattern>
 
-    <!-- Exclude civictheme storybook files. -->
-<!--    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/civictheme_library\/storybook-static\/.*</exclude-pattern>-->
-    <exclude-pattern>docroot\/themes\/contrib\/civictheme\/storybook-static\/.*</exclude-pattern>
-
     <!-- Exclude all minified files. -->
     <exclude-pattern>*\.min\.js</exclude-pattern>
     <exclude-pattern>*\.css</exclude-pattern>
