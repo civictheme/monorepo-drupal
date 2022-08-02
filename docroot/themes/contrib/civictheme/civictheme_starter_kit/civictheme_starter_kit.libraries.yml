@@ -3,7 +3,7 @@ global:
     theme:
       dist/civictheme.css: {}
   js:
-    dist/civictheme.min.js: {}
+    dist/civictheme.js: {}
   dependencies:
     - core/drupal
     - core/drupalSettings

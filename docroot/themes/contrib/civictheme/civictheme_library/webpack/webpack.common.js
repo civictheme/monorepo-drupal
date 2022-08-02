@@ -42,7 +42,7 @@ module.exports = {
     },
   },
   output: {
-    filename: (pathData) => (pathData.chunk.name === 'main' ? 'civictheme.min.js' : 'civictheme-[name].min.js'),
+    filename: (pathData) => (pathData.chunk.name === 'main' ? 'civictheme.js' : 'civictheme-[name].js'),
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
@@ -53,8 +53,8 @@ module.exports = {
       dry: false,
       dangerouslyAllowCleanPatternsOutsideProject: true,
       cleanAfterEveryBuildPatterns: [
-        '../dist/civictheme-variables.min.js',
-        '../dist/civictheme-variables.min.js.map',
+        '../dist/civictheme-variables.js',
+        '../dist/civictheme-variables.js.map',
       ],
     }),
   ],

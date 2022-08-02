@@ -57,7 +57,7 @@ module.exports = {
     },
   },
   output: {
-    filename: (pathData) => (pathData.chunk.name === 'main' ? 'scripts.min.js' : 'scripts-[name].min.js'),
+    filename: (pathData) => (pathData.chunk.name === 'main' ? 'scripts.js' : 'scripts-[name].js'),
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
@@ -68,10 +68,10 @@ module.exports = {
       dry: false,
       dangerouslyAllowCleanPatternsOutsideProject: true,
       cleanAfterEveryBuildPatterns: [
-        '../dist/scripts-variables.min.js',
-        '../dist/scripts-variables.min.js.map',
-        '../dist/scripts-ckeditor.min.js',
-        '../dist/scripts-ckeditor.min.js.map',
+        '../dist/scripts-variables.js',
+        '../dist/scripts-variables.js.map',
+        '../dist/scripts-ckeditor.js',
+        '../dist/scripts-ckeditor.js.map',
       ],
     }),
   ],
