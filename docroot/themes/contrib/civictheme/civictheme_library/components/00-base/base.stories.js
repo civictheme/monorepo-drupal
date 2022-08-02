@@ -145,15 +145,12 @@ export const formElement = (inputType, options, theme, rand, itr) => {
     case 'radio':
       formElementOptions.children.push(Radio(inputOptions));
       break;
-
     case 'checkbox':
       formElementOptions.children.push(Checkbox(inputOptions));
       break;
-
     case 'select':
       formElementOptions.children.push(Select({ ...inputOptions, options: inputOptions.value }));
       break;
-
     default:
       formElementOptions.children.push(Input(inputOptions));
   }

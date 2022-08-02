@@ -21,7 +21,6 @@ export const DescriptionList = (knobTab) => {
         title: `Term ${i + 1}`,
         description: `Description for term ${i + 1}`,
       });
-      // phpcs:enable Drupal.ControlStructures.InlineControlStructure.NotAllowed
     }
     return items;
   };
