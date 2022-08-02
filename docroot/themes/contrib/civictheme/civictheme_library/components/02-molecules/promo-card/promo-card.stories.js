@@ -50,7 +50,7 @@ export const PromoCard = (knobTab) => {
       },
       generalKnobTab,
     ), true),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
   };
 
   generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {
@@ -69,5 +69,5 @@ export const PromoCard = (knobTab) => {
     ]),
   });
 
-  return `<div class="story-wrapper-size--small">${html}</div>`;
+  return `${html}`;
 };

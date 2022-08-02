@@ -85,9 +85,10 @@ export const Callout = (knobTab) => {
         ),
       },
     ],
+    modifier_class: `story-wrapper-size--large ${text('Additional class', '', generalKnobTab)}`,
   };
 
   const html = CivicThemeCallout(calloutKnobs);
 
-  return `<div class="story-wrapper-size--large">${html}</div>`;
+  return `${html}`;
 };
