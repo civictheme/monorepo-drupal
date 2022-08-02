@@ -1,4 +1,4 @@
-@civictheme @content_type @civictheme_page
+@civictheme @content_type @civictheme_page @blabla
 Feature: Fields on Page content type
 
   Ensure that Review fields have been setup correctly.
@@ -26,6 +26,7 @@ Feature: Fields on Page content type
     Then I should see the text "Thumbnail" in the "field_c_n_thumbnail" row
     Then I should see the text "Topics" in the "field_c_n_topics" row
     Then I should see the text "With space" in the "field_c_n_space" row
+    Then I should see the text "Site section" in the "field_c_n_site_section" row
 
   @api
   Scenario: Page content type page has the relevant fields
@@ -77,3 +78,6 @@ Feature: Fields on Page content type
     And I should see text matching "Topics"
     And I should see an "input[name='field_c_n_topics[0][target_id]']" element
     And I should see an "input[name='field_c_n_thumbnail-media-library-open-button']" element
+
+    And I should see text matching "Site section"
+    And should see an "select[name='field_c_n_site_section']" element
