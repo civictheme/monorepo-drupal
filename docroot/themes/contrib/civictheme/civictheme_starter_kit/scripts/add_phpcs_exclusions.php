@@ -2,19 +2,11 @@
 
 /**
  * @file
- * PHP CLI script template.
+ * Add PHPCS exclusion comments to generated static storybook assets.
  *
- * -----------------------------------------------------------------------------
- * PHP script template for single-file CLI scripts without dependency on
- * external packages.
- *
- * To adopt script template:
- * - Replace "PHP CLI script template" with your script human name.
- * - Update print_help() function with your content.
- * - Copy '/tests' directory into your project and update
- *   ExampleScriptUnitTest.php (with a test class inside) to a script file name.
- * - Remove this block of comments.
- * -----------------------------------------------------------------------------
+ * This is required for environments where PHPCS configurations cannot be
+ * modified. In such environments, generated storybook assets would report as
+ * false positive PHPCS violations.
  *
  * Environment variables:
  * - SCRIPT_QUIET: Set to '1' to suppress verbose messages.
@@ -23,7 +15,7 @@
  *
  * Usage:
  * @code
- * php add-lint-exclusions /path/to/storybook-static
+ * php add_phpcs_exclusions.php path/to/storybook-static
  * @endcode
  *
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingBefore
@@ -59,27 +51,31 @@ function main(array $argv, $argc) {
     return EXIT_ERROR;
   }
 
+  $template = "// phpcs:ignoreFile\n";
+
   $target_directory = $argv[1];
   $target_directory = getcwd() . '/' . $target_directory;
-  $exclusion = "// phpcs:ignoreFile\n";
-  if (file_exists($target_directory) && is_dir($target_directory)) {
-    $files = glob($target_directory . '**/*bundle.js');
-    if (count($files) === 0) {
-      print 'No files found';
 
-      return EXIT_ERROR;
-    }
-    foreach ($files as $file) {
-      $contents = file_get_contents($file);
-      file_put_contents($file, $exclusion . $contents);
-      print "Added PHPCS lint exclusion to: $file\n";
-    }
-    return EXIT_SUCCESS;
+  print "==> Started adding of PHPCS exclusions to files in directory $target_directory." . PHP_EOL;
+
+  if (!file_exists($target_directory) || !is_dir($target_directory)) {
+    throw new \Exception(sprintf('Directory "%s" is not readable.', $target_directory) . PHP_EOL);
   }
 
-  print "Directory $target_directory is not readable.\n";
+  $files = glob($target_directory . '**/*bundle.js');
+  if (count($files) == 0) {
+    throw new \Exception('No files found' . PHP_EOL);
+  }
 
-  return EXIT_ERROR;
+  foreach ($files as $file) {
+    $contents = file_get_contents($file);
+    file_put_contents($file, $template . $contents);
+    print "  > Added PHPCS lint exclusion to: $file\n";
+  }
+
+  print "==> Finished adding of PHPCS exclusions to files in directory $target_directory." . PHP_EOL;
+
+  return EXIT_SUCCESS;
 }
 
 /**
@@ -87,14 +83,14 @@ function main(array $argv, $argc) {
  */
 function print_help() {
   print <<<EOF
-Lint exclusion script
-------------------------
+Add PHPCS exclusions
+--------------------
 Arguments:
-       Value of the first argument.
+  Value of the first argument.
 Options:
   --help                This help.
 Examples:
-  php add-lint-exclusions.php path/to/storybook-static-directory
+  php add_phpcs_exclusions.php path/to/storybook-static
 EOF;
   print PHP_EOL;
 }

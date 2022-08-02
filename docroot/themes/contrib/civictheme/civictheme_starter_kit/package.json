@@ -16,7 +16,7 @@
     "dist:dev": "npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
     "generate-icon-library": "npm run gulp:build && node ./components_combined/01-atoms/icon/icon.generate-library.utils.js",
     "export-colors": "php ../../contrib/civictheme/civictheme_library/scripts/extract_css_colors_to_csv.php dist/styles.variables.css > dist/styles.variables.csv",
-    "add-lint-exclusions": "php ../../contrib/civictheme/civictheme_library/scripts/add-lint-exclusions.php storybook-static"
+    "add-lint-exclusions": "php scripts/add_phpcs_exclusions.php storybook-static"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",

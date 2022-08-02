@@ -1,21 +1,21 @@
 <?php
 
 /**
- * Class AddLintExclusionsUnitTest.
+ * Class AddPhpcsExclusionsUnitTest.
  *
- * Unit tests for add-lint-exclusions.php.
+ * Unit tests for add_phpcs_exclusions.php.
  *
  * @group scripts
  *
  * phpcs:disable Drupal.Commenting.DocComment.MissingShort
  * phpcs:disable Drupal.Commenting.FunctionComment.Missing
  */
-class AddLintExclusionsUnitTest extends ScriptUnitTestBase {
+class AddPhpcsExclusionsUnitTest extends ScriptUnitTestBase {
 
   /**
    * {@inheritdoc}
    */
-  protected $script = 'docroot/themes/contrib/civictheme/civictheme_library/scripts/add-lint-exclusions.php';
+  protected $script = 'docroot/themes/contrib/civictheme/civictheme_starter_kit/scripts/add_phpcs_exclusions.php';
 
   /**
    * @dataProvider dataProviderMain
@@ -24,6 +24,7 @@ class AddLintExclusionsUnitTest extends ScriptUnitTestBase {
   public function testMain($args, $expected_code, $expected_output) {
     $args = is_array($args) ? $args : [$args];
     $result = $this->runScript($args, TRUE);
+
     $this->assertEquals($expected_code, $result['code']);
     $this->assertStringContainsString($expected_output, $result['output']);
   }
@@ -33,39 +34,39 @@ class AddLintExclusionsUnitTest extends ScriptUnitTestBase {
       [
         '--help',
         0,
-        'Lint exclusion script',
+        'Add PHPCS exclusions',
       ],
       [
         '-help',
         0,
-        'Lint exclusion script',
+        'Add PHPCS exclusions',
       ],
       [
         '-h',
         0,
-        'Lint exclusion script',
+        'Add PHPCS exclusions',
       ],
       [
         '-?',
         0,
-        'Lint exclusion script',
+        'Add PHPCS exclusions',
       ],
       [
         [],
         1,
-        'Lint exclusion script',
+        'Add PHPCS exclusions',
       ],
       [
         [1, 2, 3, 4, 5],
         1,
-        'Lint exclusion script',
+        'Add PHPCS exclusions',
       ],
 
       // Validation of path existence.
       [
         'some/non_existing/storybook-static',
         1,
-        'Directory /app/some/non_existing/storybook-static/some/non_existing/storybook-static is not readable.',
+        'Directory "/app/some/non_existing/storybook-static" is not readable.',
       ],
     ];
   }
