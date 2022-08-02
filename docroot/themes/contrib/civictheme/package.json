@@ -4,7 +4,7 @@
   "private": true,
   "description": "Components for CivicTheme Drupal theme",
   "scripts": {
-    "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet && npm run export-colors",
+    "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet && npm run export-colors && php scripts/add-lint-exclusions.php storybook-static",
     "build-storybook": "build-storybook -s .storybook/static",
     "storybook": "start-storybook -s .storybook/static",
     "storybook-full": "STORYBOOK_FULL=1 start-storybook -s .storybook/static",
