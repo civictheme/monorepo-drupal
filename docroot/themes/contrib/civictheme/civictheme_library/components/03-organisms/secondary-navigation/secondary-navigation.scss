@@ -11,6 +11,10 @@
     display: flex;
   }
 
+  @include civictheme-print() {
+    display: none;
+  }
+
   &__menu {
     &.civictheme-menu,
     .civictheme-menu {

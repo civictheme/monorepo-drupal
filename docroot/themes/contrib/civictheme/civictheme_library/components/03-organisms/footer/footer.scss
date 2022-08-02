@@ -119,6 +119,10 @@
     }
   }
 
+  @include civictheme-print() {
+    display: none;
+  }
+
   &.civictheme-theme-light {
     background-color: $civictheme-footer-light-background-color;
     color: $civictheme-footer-light-color;

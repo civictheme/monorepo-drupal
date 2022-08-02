@@ -17,6 +17,10 @@
     display: flex;
   }
 
+  @include civictheme-print() {
+    display: none;
+  }
+
   &__menu {
     // Reset all menu styles.
     &.civictheme-menu,

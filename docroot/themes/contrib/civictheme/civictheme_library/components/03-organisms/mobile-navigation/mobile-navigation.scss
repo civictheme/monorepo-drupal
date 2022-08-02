@@ -231,6 +231,10 @@ $civictheme-mobile-navigation-spacing: civictheme-space(2);
     display: none;
   }
 
+  @include civictheme-print() {
+    display: none;
+  }
+
   .civictheme-icon {
     width: civictheme-icon-size-dimension('regular', 'xxs', 'width');
     height: civictheme-icon-size-dimension('regular', 'xxs', 'height');

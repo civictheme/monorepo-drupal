@@ -1,0 +1,17 @@
+//
+// Print mixins.
+//
+
+// @code
+//
+// @include civictheme-print(s) {
+//   width: 50%;
+// }
+//
+// @endcode
+//
+@mixin civictheme-print() {
+  @media print {
+    @content;
+  }
+}
