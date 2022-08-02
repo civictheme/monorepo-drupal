@@ -68,7 +68,7 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
         'CivicTheme Starter Kit scaffolding',
       ],
       [
-        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 4, 5, 6, 7],
         1,
         'CivicTheme Starter Kit scaffolding',
       ],
@@ -119,6 +119,11 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
 
     $this->assertStringContainsString($expected_rel_path, file_get_contents($expected_new_theme_dir_full . 'gulpfile.js'));
+
+    // Examples assertions.
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components/01-atoms/demo-button');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components/02-molecules/navigation-card');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components/03-organisms/header');
   }
 
   public function dataProviderTestLocation() {
@@ -167,6 +172,55 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
         '../../civictheme/',
       ],
     ];
+  }
+
+  /**
+   * @runInSeparateProcess
+   */
+  public function testExamplesRemoval() {
+    $civictheme_dir = 'docroot/themes/contrib/civictheme';
+    $newtheme_rel_dir = '';
+    $newtheme_name = 'new_theme';
+    $expected_newtheme_dir = 'docroot/themes/custom/new_theme';
+    $expected_rel_path = '../../contrib/civictheme/';
+
+    $this->prepareSut($civictheme_dir);
+    $expected_new_theme_dir_full = $this->tmpDir . '/' . $expected_newtheme_dir;
+
+    $result = $this->runScript([$newtheme_name, $newtheme_name, $newtheme_name, $newtheme_rel_dir, '--remove-examples'], TRUE);
+    $this->assertEquals(0, $result['code']);
+    $this->assertStringContainsString('sub-theme was created successfully ', $result['output']);
+    $this->assertStringContainsString($expected_new_theme_dir_full, $result['output']);
+
+    $expected_new_theme_dir_full .= '/';
+    $this->assertDirectoryExists($expected_new_theme_dir_full);
+
+    // Standard assertions.
+    $this->assertDirectoryExists($expected_new_theme_dir_full . '.storybook');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'assets');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'components');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'templates');
+    $this->assertDirectoryExists($expected_new_theme_dir_full . 'webpack');
+    $this->assertFileExists($expected_new_theme_dir_full . '.eslintignore');
+    $this->assertFileExists($expected_new_theme_dir_full . '.eslintrc.yml');
+    $this->assertFileExists($expected_new_theme_dir_full . '.gitignore');
+    $this->assertFileExists($expected_new_theme_dir_full . '.nvmrc');
+    $this->assertFileExists($expected_new_theme_dir_full . '.stylelintrc.json');
+    $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.info.yml');
+    $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.libraries.yml');
+    $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.theme');
+    $this->assertFileExists($expected_new_theme_dir_full . 'gulpfile.js');
+    $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
+    $this->assertFileExists($expected_new_theme_dir_full . 'package-lock.json');
+    $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
+    $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
+
+    $this->assertStringContainsString($expected_rel_path, file_get_contents($expected_new_theme_dir_full . 'gulpfile.js'));
+
+    // Examples assertions.
+    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/01-atoms/demo-button');
+    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/02-molecules/navigation-card');
+    $this->assertDirectoryDoesNotExist($expected_new_theme_dir_full . 'components/03-organisms/header');
   }
 
   /**
