@@ -20,8 +20,8 @@ export const Logo = (knobTab) => {
     logos: {},
     url: text('Link', randomUrl(), generalKnobTab),
     title: text('Title', 'Logo title', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: `civictheme-logo-example story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
   };
 
   generalKnobs.logos = {
@@ -39,5 +39,5 @@ export const Logo = (knobTab) => {
     ...generalKnobs,
   });
 
-  return `<div class="civictheme-logo-example story-wrapper-size--small">${html}</div>`;
+  return `${html}`;
 };
