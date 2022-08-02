@@ -1,0 +1,28 @@
+import { radios, text } from '@storybook/addon-knobs';
+import CivicThemeHeading from './section.twig';
+
+export default {
+  section: 'Atoms/Section',
+};
+
+export const Section = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const generalKnobs = {
+    level: radios('Level', {
+      H1: '1',
+      H2: '2',
+      H3: '3',
+      H4: '4',
+      H5: '5',
+      H6: '6',
+    }, '1', generalKnobTab),
+    content: text('Content', 'Section content', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
+  };
+
+  return CivicThemeHeading({
+    ...generalKnobs,
+  });
+};
