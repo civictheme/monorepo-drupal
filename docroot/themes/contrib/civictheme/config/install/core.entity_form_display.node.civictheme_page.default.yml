@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
     - field.field.node.civictheme_page.field_c_n_components
+    - field.field.node.civictheme_page.field_c_n_custom_last_updated
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
     - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
@@ -20,7 +21,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_topics
     - node.type.civictheme_page
   module:
-    - content_moderation
+    - datetime
     - field_group
     - media_library
     - paragraphs
@@ -86,6 +87,7 @@ third_party_settings:
         - field_c_n_space
         - field_c_n_hide_sidebar
         - field_c_n_show_last_updated
+        - field_c_n_custom_last_updated
       label: General
       region: content
       parent_name: group_civictheme_tabs
@@ -117,7 +119,7 @@ content:
     third_party_settings: {  }
   field_c_n_banner_components:
     type: paragraphs
-    weight: 16
+    weight: 17
     region: content
     settings:
       title: Paragraph
@@ -136,7 +138,7 @@ content:
     third_party_settings: {  }
   field_c_n_banner_components_bott:
     type: paragraphs
-    weight: 17
+    weight: 18
     region: content
     settings:
       title: Paragraph
@@ -205,6 +207,12 @@ content:
         add_above: '0'
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
+    third_party_settings: {  }
+  field_c_n_custom_last_updated:
+    type: datetime_default
+    weight: 9
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_c_n_hide_sidebar:
     type: boolean_checkbox
@@ -279,7 +287,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 8
+    weight: 7
     region: content
     settings:
       display_label: true
@@ -310,7 +318,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
