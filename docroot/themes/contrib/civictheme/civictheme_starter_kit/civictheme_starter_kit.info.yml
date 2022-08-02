@@ -34,7 +34,7 @@ libraries-override:
       theme:
         dist/civictheme.css: dist/styles.css
     js:
-      dist/civictheme.min.js: dist/scripts.js
+      dist/civictheme.min.js: dist/scripts.min.js
 
 ckeditor_stylesheets:
   - dist/styles.ckeditor.css
