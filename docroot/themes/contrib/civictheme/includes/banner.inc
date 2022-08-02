@@ -60,6 +60,7 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   _civictheme_preprocess_civictheme_banner_title($variables);
   _civictheme_preprocess_civictheme_banner_node($variables);
   _civictheme_preprocess_civictheme_banner_breadcrumb($variables);
+  _civictheme_preprocess_civictheme_banner_section($variables);
 
   if ($variables['type'] == CIVICTHEME_BANNER_TYPE_LARGE) {
     $variables['is_decorative'] = TRUE;
@@ -70,6 +71,22 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   $variables['content_top2'] = NULL;
   $variables['content_top3'] = NULL;
   $variables['content_bottom'] = NULL;
+}
+
+/**
+ * Pre-process banner section.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_civictheme_banner_section(&$variables) {
+  // Site section.
+
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  if (!is_null($node)) {
+    $variables['section'] = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE)->getName();
+  }
 }
 
 /**
