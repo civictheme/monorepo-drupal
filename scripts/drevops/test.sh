@@ -78,7 +78,7 @@ if [ -z "${DREVOPS_TEST_TYPE##*unit*}" ]; then
   vendor/bin/phpunit "${phpunit_opts[@]}" docroot/themes/contrib/civictheme --filter '/.*Unit.*/' "$@" \
   || [ "${DREVOPS_TEST_UNIT_ALLOW_FAILURE}" -eq 1 ]
 
-  vendor/bin/phpunit "${phpunit_opts[@]}" tests/unit/ --filter '/.*Unit.*/' "$@" \
+  vendor/bin/phpunit "${phpunit_opts[@]}" tests/phpunit/unit/ --filter '/.*Unit.*/' "$@" \
   || [ "${DREVOPS_TEST_UNIT_ALLOW_FAILURE}" -eq 1 ]
 fi
 
