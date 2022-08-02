@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 const template = require('babel-template');
 const babelTransform = require('babel-plugin-transform-strict-mode');
 

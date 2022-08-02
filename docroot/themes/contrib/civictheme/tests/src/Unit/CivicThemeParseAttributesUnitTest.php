@@ -12,6 +12,8 @@ namespace Drupal\Tests\civictheme\Unit;
 class CivicThemeParseAttributesUnitTest extends CivicThemeUnitTestBase {
 
   /**
+   * Test for civictheme_parse_attributes().
+   *
    * @dataProvider dataProviderParseAttributes
    */
   public function testParse($string, $expected) {
@@ -20,6 +22,9 @@ class CivicThemeParseAttributesUnitTest extends CivicThemeUnitTestBase {
     $this->assertEquals($expected, $actual);
   }
 
+  /**
+   * Data provider for testParse().
+   */
   public function dataProviderParseAttributes() {
     return [
       // Empty.

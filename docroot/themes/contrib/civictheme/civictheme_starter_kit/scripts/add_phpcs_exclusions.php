@@ -69,8 +69,12 @@ function main(array $argv, $argc) {
 
   foreach ($files as $file) {
     $contents = file_get_contents($file);
+    if (str_contains($contents, $template)) {
+      print "  > [SKIPPED] $file" . PHP_EOL;
+      continue;
+    }
     file_put_contents($file, $template . $contents);
-    print "  > Added PHPCS lint exclusion to: $file\n";
+    print "  > [ADDED] $file" . PHP_EOL;
   }
 
   print "==> Finished adding of PHPCS exclusions to files in directory $target_directory." . PHP_EOL;

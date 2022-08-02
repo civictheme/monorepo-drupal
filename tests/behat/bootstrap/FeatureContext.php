@@ -51,6 +51,8 @@ class FeatureContext extends DrupalContext {
   use VisibilityTrait;
 
   /**
+   * Assert that content is present in an iframe.
+   *
    * @Then I see content in iframe with id :id
    */
   public function iSeeContentInIframe($id) {
