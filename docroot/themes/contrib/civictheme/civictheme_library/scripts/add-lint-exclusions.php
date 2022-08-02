@@ -61,7 +61,7 @@ function main(array $argv, $argc) {
 
   $target_directory = $argv[1];
   $target_directory = getcwd() . '/' . $target_directory;
-  $exclusion = "// phpcs:disable\n// phpcs:disable Internal.Tokenizer.Exception\n";
+  $exclusion = "// phpcs:ignoreFile\n";
   if (file_exists($target_directory) && is_dir($target_directory)) {
     $files = glob($target_directory . '**/*bundle.js');
     if (count($files) === 0) {

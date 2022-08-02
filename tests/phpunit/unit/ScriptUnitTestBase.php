@@ -84,7 +84,7 @@ abstract class ScriptUnitTestBase extends TestCase {
    * Replace path to a fixture file.
    */
   protected function fixtureFile($filename) {
-    $path = 'tests/fixtures/drupal_configs/' . $filename;
+    $path = 'tests/phpunit/fixtures/drupal_configs/' . $filename;
     if (!is_readable($path)) {
       throw new \RuntimeException(sprintf('Unable to find fixture file %s.', $path));
     }
@@ -96,9 +96,7 @@ abstract class ScriptUnitTestBase extends TestCase {
    * Path to a temporary file.
    */
   protected function toTmpPath($filename, $prefix = NULL) {
-    return $prefix
-      ? $this->tmpDir . DIRECTORY_SEPARATOR . $prefix . DIRECTORY_SEPARATOR . $filename
-      : $this->tmpDir . DIRECTORY_SEPARATOR . $filename;
+    return $prefix ? $this->tmpDir . DIRECTORY_SEPARATOR . $prefix . DIRECTORY_SEPARATOR . $filename : $this->tmpDir . DIRECTORY_SEPARATOR . $filename;
   }
 
   /**

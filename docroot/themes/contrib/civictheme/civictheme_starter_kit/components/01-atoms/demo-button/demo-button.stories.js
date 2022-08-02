@@ -1,4 +1,4 @@
-//phpcs:disable Generic.PHP.UpperCaseConstant.Found
+//phpcs:ignoreFile
 /**
  * @file
  * Demo Button stories.

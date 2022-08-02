@@ -15,7 +15,7 @@ class AddLintExclusionsUnitTest extends ScriptUnitTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $script = 'docroot/themes/contrib/civictheme/scripts/add-lint-exclusions.php';
+  protected $script = 'docroot/themes/contrib/civictheme/civictheme_library/scripts/add-lint-exclusions.php';
 
   /**
    * @dataProvider dataProviderMain

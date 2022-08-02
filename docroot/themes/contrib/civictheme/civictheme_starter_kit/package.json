@@ -4,7 +4,7 @@
   "private": true,
   "description": "CivicTheme Starter Kit consumer theme",
   "scripts": {
-    "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet && npm run export-colors",
+    "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet && npm run export-colors && npm run add-lint-exclusions",
     "build-storybook": "npm run gulp:build && build-storybook -s .storybook/static",
     "storybook": "npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s .storybook/static\"\n",
     "storybook-full": "STORYBOOK_FULL=1 npm run gulp:build && concurrently --raw=true \"npm run gulp:watch\" \"start-storybook -s .storybook/static\"\n",
@@ -15,7 +15,8 @@
     "dist": "npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
     "generate-icon-library": "npm run gulp:build && node ./components_combined/01-atoms/icon/icon.generate-library.utils.js",
-    "export-colors": "php ../../contrib/civictheme/civictheme_library/scripts/extract_css_colors_to_csv.php dist/styles.variables.css > dist/styles.variables.csv"
+    "export-colors": "php ../../contrib/civictheme/civictheme_library/scripts/extract_css_colors_to_csv.php dist/styles.variables.css > dist/styles.variables.csv",
+    "add-lint-exclusions": "php ../../contrib/civictheme/civictheme_library/scripts/add-lint-exclusions.php storybook-static"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",

@@ -16,7 +16,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet && npm run export-colors && php ../scripts/add-lint-exclusions.php storybook-static",
+    "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet && npm run export-colors && npm run add-lint-exclusions",
     "build-storybook": "build-storybook -s .storybook/static",
     "storybook": "start-storybook -s .storybook/static",
     "storybook-full": "STORYBOOK_FULL=1 start-storybook -s .storybook/static",
@@ -25,7 +25,8 @@
     "dist": "webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "webpack --config ./webpack/webpack.dev.js",
     "generate-icon-library": "node ./components/01-atoms/icon/icon.generate-library.utils.js",
-    "export-colors": "php scripts/extract_css_colors_to_csv.php dist/civictheme.variables.css > dist/civictheme.variables.csv"
+    "export-colors": "php scripts/extract_css_colors_to_csv.php dist/civictheme.variables.css > dist/civictheme.variables.csv",
+    "add-lint-exclusions": "php scripts/add-lint-exclusions.php storybook-static"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
