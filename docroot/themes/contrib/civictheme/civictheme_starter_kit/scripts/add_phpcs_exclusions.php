@@ -62,17 +62,19 @@ function main(array $argv, $argc) {
     throw new \Exception(sprintf('Directory "%s" is not readable.', $target_directory) . PHP_EOL);
   }
 
-  $files = glob($target_directory . '**/*bundle.js');
-  if (count($files) == 0) {
-    throw new \Exception('No files found' . PHP_EOL);
-  }
+  $files = glob($target_directory . '**/*.js');
 
   foreach ($files as $file) {
+    if (!file_exists($file)) {
+      continue;
+    }
+
     $contents = file_get_contents($file);
     if (str_contains($contents, $template)) {
       print "  > [SKIPPED] $file" . PHP_EOL;
       continue;
     }
+
     file_put_contents($file, $template . $contents);
     print "  > [ADDED] $file" . PHP_EOL;
   }

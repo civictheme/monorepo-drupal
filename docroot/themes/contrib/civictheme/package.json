@@ -13,10 +13,7 @@
     "dist": "webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "webpack --config ./webpack/webpack.dev.js",
     "export-colors": "php civictheme_library/scripts/extract_css_colors_to_csv.php dist/civictheme.variables.css > dist/civictheme.variables.csv",
-    "add-lint-exclusions": [
-      "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php civictheme_library/storybook-static || true",
-      "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php storybook-static",
-    ]
+    "add-lint-exclusions": "php civictheme_starter_kit/scripts/add_phpcs_exclusions.php civictheme_library/storybook-static && php civictheme_starter_kit/scripts/add_phpcs_exclusions.php storybook-static"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
