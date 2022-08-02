@@ -39,14 +39,6 @@ define('ERROR_LEVEL', E_USER_WARNING);
 function main(array $argv, $argc) {
   $default_new_theme_directory = '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'custom';
 
-  // Optional remove example flag.
-  $remove_example = array_search('--remove-examples', $argv);
-  if ($remove_example) {
-    unset($argv[$remove_example]);
-    $argv = array_values($argv);
-    $argc = count($argv);
-  }
-
   if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {
     print_help($default_new_theme_directory);
 
@@ -54,10 +46,17 @@ function main(array $argv, $argc) {
   }
 
   // Show help if not enough or more than required arguments.
-  if ($argc < 4 || $argc > 5) {
+  if ($argc < 4 || $argc > 6) {
     print_help($default_new_theme_directory);
 
     return EXIT_ERROR;
+  }
+
+  // Optional remove example flag.
+  $remove_examples = array_search('--remove-examples', $argv);
+  if ($remove_examples) {
+    unset($argv[$remove_examples]);
+    $argv = array_values($argv);
   }
 
   // Collect and validate values from arguments.
@@ -79,7 +78,7 @@ function main(array $argv, $argc) {
     'name' => $new_theme_name,
     'description' => $new_theme_description,
     'path' => $new_theme_directory,
-    'remove-examples' => $remove_example,
+    'remove_examples' => $remove_examples,
   ]);
 
   // Copy files from stub to the new theme path.
@@ -216,19 +215,13 @@ function process_stub($dir, $options) {
     file_put_contents($info_file, $content);
   }
 
-  // Remove all the examples component before moving to final path.
-  if ($options['remove-examples']) {
+  // Remove all the examples component before moving to the final path.
+  if ($options['remove_examples']) {
     $example_components = example_component_paths();
     foreach ($example_components as $example_dir) {
-      $example_dir = $dir . DIRECTORY_SEPARATOR . $example_dir;
-      if (is_dir($example_dir)) {
-        array_map('unlink', array_filter(
-          (array) array_merge(glob($example_dir . DIRECTORY_SEPARATOR . "*"))));
-        rmdir($example_dir);
-      }
+      file_remove_dir($dir . DIRECTORY_SEPARATOR . $example_dir);
     }
   }
-
 }
 
 /**
@@ -372,6 +365,17 @@ function file_replace_string_filename($search, $replace, $dir) {
       }
       rename($filename, $new_filename);
     }
+  }
+}
+
+/**
+ * Remove directory.
+ */
+function file_remove_dir($dir) {
+  if (is_dir($dir)) {
+    $files = file_scandir_recursive($dir);
+    array_map('unlink', $files);
+    rmdir($dir);
   }
 }
 
