@@ -173,10 +173,6 @@ commands:
     usage: Run all tests.
     cmd: ahoy test-unit && ahoy test-kernel && ahoy test-functional && ahoy test-bdd
 
-  test-tooling:
-    usage: Run PhpUnit unit tests.
-    cmd: ahoy cli "./scripts/test-tooling.sh $@"
-
   test-unit:
     usage: Run PhpUnit unit tests.
     cmd: ahoy cli "DREVOPS_TEST_TYPE=unit DREVOPS_TEST_REPORTS_DIR=${DREVOPS_TEST_REPORTS_DIR} ./scripts/drevops/test.sh $@"
