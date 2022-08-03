@@ -80,7 +80,6 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
  */
 function _civictheme_preprocess_civictheme_banner_section(&$variables) {
   // Site section.
-
   /** @var \Drupal\node\Entity\Node $node */
   $node = \Drupal::routeMatch()->getParameter('node');
 
