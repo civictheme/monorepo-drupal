@@ -37,7 +37,7 @@ function cs_generated_content_generated_content_create_media_civictheme_image() 
   $files = [];
   for ($i = 1; $i < 4; $i++) {
     $files[] = $helper::createFile(GeneratedContentAssetGenerator::ASSET_TYPE_PNG, [
-      'filename' => $filename,
+      'filename' => $filename . '-' . $i,
       'width' => 350 * $i,
       'height' => 200 * $i,
     ], GeneratedContentAssetGenerator::GENERATE_TYPE_RANDOM);
