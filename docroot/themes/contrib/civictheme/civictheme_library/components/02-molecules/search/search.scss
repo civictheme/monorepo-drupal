@@ -27,6 +27,10 @@
     }
   }
 
+  @include civictheme-print() {
+    display: none;
+  }
+
   &.civictheme-theme-light {
     #{$root}__link {
       color: $civictheme-search-light-color;

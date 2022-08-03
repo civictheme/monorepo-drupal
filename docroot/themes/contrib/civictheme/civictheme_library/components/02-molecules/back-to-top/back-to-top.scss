@@ -22,6 +22,10 @@
     padding: civictheme-space();
   }
 
+  @include civictheme-print() {
+    display: none;
+  }
+
   &.civictheme-theme-light {
     .civictheme-button {
       background-color: $civictheme-back-to-top-light-background-color;
