@@ -85,7 +85,8 @@ function _civictheme_preprocess_civictheme_banner_section(&$variables) {
   $node = \Drupal::routeMatch()->getParameter('node');
 
   if (!is_null($node)) {
-    $variables['section'] = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE)->getName();
+    $the_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE);
+    $variables['section'] = isset($the_section) ? $the_section->getName() : '';
   }
 }
 
