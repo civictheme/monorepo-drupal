@@ -176,13 +176,23 @@ function _civictheme_form_system_theme_settings_storybook(&$form) {
 
   $storybook_file = $theme_path . '/storybook-static/index.html';
   if (file_exists($storybook_file)) {
+    $url = \Drupal::service('file_url_generator')->generateAbsoluteString($storybook_file) . '?cachebust=' . time();
+    $form['storybook']['link'] = [
+      '#type' => 'inline_template',
+      '#template' => '<p><a href="{{ url }}">{{ url }}</a></p>',
+      '#context' => [
+        'url' => $url,
+      ],
+    ];
+
     $form['storybook']['markup'] = [
       '#type' => 'inline_template',
       '#template' => '<iframe id="storybook" width="100%" height="1024" src="{{ url }}"></iframe>',
       '#context' => [
-        'url' => \Drupal::service('file_url_generator')->generateAbsoluteString($storybook_file) . '?cachebust=' . time(),
+        'url' => $url,
       ],
     ];
+
     return;
   }
   $form['storybook']['markup'] = [

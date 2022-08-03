@@ -51,6 +51,8 @@ class FeatureContext extends DrupalContext {
   use VisibilityTrait;
 
   /**
+   * Assert that content is present in an iframe.
+   *
    * @Then I see content in iframe with id :id
    */
   public function iSeeContentInIframe($id) {
@@ -106,7 +108,10 @@ class FeatureContext extends DrupalContext {
    */
   public function assertSelectFilterChip($label) {
     $element = $this->getSession()->getPage();
-    $filter_chip = $element->find('named', ['radio', $this->getSession()->getSelectorsHandler()->xpathLiteral($label)]);
+    $filter_chip = $element->find('named', [
+      'radio',
+      $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
+    ]);
     if ($filter_chip === NULL) {
       throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s', $label, $this->getSession()->getCurrentUrl()));
     }
@@ -121,7 +126,10 @@ class FeatureContext extends DrupalContext {
    */
   public function assertCheckFilterChip($label) {
     $element = $this->getSession()->getPage();
-    $filter_chip = $element->find('named', ['checkbox', $this->getSession()->getSelectorsHandler()->xpathLiteral($label)]);
+    $filter_chip = $element->find('named', [
+      'checkbox',
+      $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
+    ]);
 
     if ($filter_chip === NULL) {
       throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s', $label, $this->getSession()->getCurrentUrl()));
@@ -142,7 +150,10 @@ class FeatureContext extends DrupalContext {
    */
   public function assertUncheckFilterChip($label) {
     $element = $this->getSession()->getPage();
-    $filter_chip = $element->find('named', ['checkbox', $this->getSession()->getSelectorsHandler()->xpathLiteral($label)]);
+    $filter_chip = $element->find('named', [
+      'checkbox',
+      $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
+    ]);
 
     if ($filter_chip === NULL) {
       throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s', $label, $this->getSession()->getCurrentUrl()));

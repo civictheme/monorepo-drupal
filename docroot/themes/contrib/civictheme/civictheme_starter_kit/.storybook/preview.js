@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import Twig from 'twig';
 
 import { addDecorator } from '@storybook/html';

@@ -96,9 +96,7 @@ abstract class ScriptUnitTestBase extends TestCase {
    * Path to a temporary file.
    */
   protected function toTmpPath($filename, $prefix = NULL) {
-    return $prefix
-      ? $this->tmpDir . DIRECTORY_SEPARATOR . $prefix . DIRECTORY_SEPARATOR . $filename
-      : $this->tmpDir . DIRECTORY_SEPARATOR . $filename;
+    return $prefix ? $this->tmpDir . DIRECTORY_SEPARATOR . $prefix . DIRECTORY_SEPARATOR . $filename : $this->tmpDir . DIRECTORY_SEPARATOR . $filename;
   }
 
   /**
