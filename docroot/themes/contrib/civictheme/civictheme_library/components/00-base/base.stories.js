@@ -85,7 +85,15 @@ export const randomTags = (count, rand) => {
   return tags;
 };
 
-export const demoImage = () => './assets/images/demo.png';
+export const demoImage = () => {
+  const images = [
+    './assets/images/demo.png',
+    './assets/images/demo2.jpeg',
+    './assets/images/demo3.jpeg',
+  ];
+
+  return images[Math.floor(Math.random() * images.length)];
+}
 
 export const demoVideos = () => [
   {

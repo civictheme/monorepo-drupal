@@ -34,9 +34,14 @@ function cs_generated_content_generated_content_create_media_civictheme_image() 
   $total_files_count = 50;
 
   $filename = sprintf('Demo image file %s', $helper::staticSentence(2));
-  $file = $helper::createFile(GeneratedContentAssetGenerator::ASSET_TYPE_PNG, [
-    'filename' => $filename,
-  ], GeneratedContentAssetGenerator::GENERATE_TYPE_STATIC);
+  $files = [];
+  for ($i = 1; $i < 4; $i++) {
+    $files[] = $helper::createFile(GeneratedContentAssetGenerator::ASSET_TYPE_PNG, [
+      'filename' => $filename,
+      'width' => 350 * $i,
+      'height' => 200 * $i,
+    ], GeneratedContentAssetGenerator::GENERATE_TYPE_RANDOM);
+  }
 
   $entities = [];
   for ($i = 0; $i < $total_files_count; $i++) {
@@ -47,7 +52,7 @@ function cs_generated_content_generated_content_create_media_civictheme_image() 
       'name' => $name,
     ]);
 
-    $media->field_c_m_image->setValue($file->id());
+    $media->field_c_m_image->setValue($files[random_int(0, 2)]->id());
     $media->field_c_m_image->alt = sprintf('Alt for %s', $name);
     $media->field_c_m_caption = $helper::staticSentence(2);
     $media->save();

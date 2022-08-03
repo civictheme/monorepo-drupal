@@ -2,6 +2,8 @@
 // Publication Card component.
 //
 
+@use 'sass:map';
+
 .civictheme-publication-card {
   $root: &;
 
@@ -24,6 +26,9 @@
 
   #{$root}__content {
     padding: civictheme-space(3);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
   #{$root}__title {
@@ -62,6 +67,26 @@
     }
   }
 
+  #{$root}__content-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: civictheme-space(3);
+  }
+
+  &#{$root}--small {
+    display: flex;
+    flex-direction: column;
+
+    #{$root}__image-wrapper {
+      height:  map.get($civictheme-card-image-height-default, 'mobile');
+
+      @include civictheme-breakpoint('m') {
+        height: map.get($civictheme-card-image-height-default, 'desktop');
+      }
+    }
+  }
+
   &#{$root}--large {
     @include civictheme-breakpoint(m) {
       display: flex;
@@ -71,6 +96,10 @@
       @include civictheme-breakpoint(m) {
         max-width: 12.5rem;
         flex-shrink: 0;
+      }
+
+      @include civictheme-breakpoint-upto('m') {
+        height:  map.get($civictheme-card-image-height-default, 'mobile');
       }
     }
   }

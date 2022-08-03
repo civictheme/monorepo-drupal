@@ -2,6 +2,8 @@
 // Navigation Card component.
 //
 
+@use 'sass:map';
+
 .civictheme-navigation-card {
   $root: &;
 
@@ -62,6 +64,10 @@
       @include civictheme-breakpoint(m) {
         max-width: 12.5rem;
         flex-shrink: 1;
+      }
+
+      @include civictheme-breakpoint-upto('m') {
+        height:  map.get($civictheme-card-image-height-default, 'mobile');
       }
     }
 
