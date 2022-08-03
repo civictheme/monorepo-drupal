@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeSearch from './search.twig';
 

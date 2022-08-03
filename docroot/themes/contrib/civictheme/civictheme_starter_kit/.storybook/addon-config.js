@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 exports.default = function () {
   // Lean storybook config.
   let config = [

@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 /**
  * @file
  * Generate icon library file from icon files.

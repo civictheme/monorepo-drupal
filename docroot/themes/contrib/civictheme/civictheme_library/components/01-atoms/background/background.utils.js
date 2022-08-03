@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 /**
  * @file
  * Background component utilities.

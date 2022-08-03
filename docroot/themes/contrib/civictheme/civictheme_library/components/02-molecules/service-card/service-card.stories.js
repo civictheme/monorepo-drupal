@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import { number, radios, text } from '@storybook/addon-knobs';
 import { getSlots, randomLinks } from '../../00-base/base.stories';
 
