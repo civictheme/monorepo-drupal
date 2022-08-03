@@ -23,6 +23,20 @@
     }
   }
 
+  &__sidebar {
+    @include civictheme-print() {
+      display: none;
+    }
+  }
+
+  &__main {
+    @include civictheme-print() {
+      flex-basis: 100% !important;
+      max-width: 100%;
+      margin-left: 0;
+    }
+  }
+
   &.civictheme-theme-light {
     #{$root}__inner {
       background: $civictheme-content-light-background-color;
