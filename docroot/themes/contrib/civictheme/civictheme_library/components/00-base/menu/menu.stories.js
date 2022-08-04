@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeMenu from './menu.twig';
 import getMenuLinks from './menu.utils';

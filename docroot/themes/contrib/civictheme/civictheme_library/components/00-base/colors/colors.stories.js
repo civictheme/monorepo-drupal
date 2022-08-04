@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 export default {
   title: 'Base/Colors',
 };

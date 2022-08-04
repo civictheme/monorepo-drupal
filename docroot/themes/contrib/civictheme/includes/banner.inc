@@ -176,11 +176,21 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
  */
 function _civictheme_preprocess_civictheme_banner_last_updated(&$variables, $node) {
   $last_updated = civictheme_get_field_value($node, 'field_c_n_show_last_updated');
-  if ($last_updated) {
+  $custom_updated = civictheme_get_field_value($node, 'field_c_n_custom_last_updated', TRUE);
+
+  if ($last_updated && $custom_updated) {
+    $final_date = civictheme_format_short_date($custom_updated->get('value')->getDateTime());
+  }
+
+  elseif ($last_updated) {
+    $final_date = \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civictheme_short_date');
+  }
+
+  if (isset($final_date)) {
     $variables['content_middle'][] = [
       '#theme' => 'civictheme_basic_content',
       '#component_theme' => $variables['theme'] ?? NULL,
-      '#content' => '<p class="civictheme-banner__last_updated">Last updated: ' . \Drupal::service('date.formatter')->format($node->getChangedTime(), 'civictheme_short_date') . '<p>',
+      '#content' => '<p class="civictheme-banner__last_updated">Last updated: ' . $final_date . '<p>',
     ];
   }
 }
