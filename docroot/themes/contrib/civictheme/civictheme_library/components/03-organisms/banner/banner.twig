@@ -86,7 +86,10 @@
               {%- block section %}
                 <div class="col-xs-12">
                   <div class="civictheme-banner__section">
-                    {{- section -}}
+                    {% include '@atoms/heading/heading.twig' with {
+                      content: section,
+                      level: 3,
+                    } only %}
                   </div>
                 </div>
               {% endblock -%}
