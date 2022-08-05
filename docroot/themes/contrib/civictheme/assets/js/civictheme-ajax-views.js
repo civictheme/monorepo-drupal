@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 /**
  * Handles views exposed filter forms providing auto-submit functionality.
  */

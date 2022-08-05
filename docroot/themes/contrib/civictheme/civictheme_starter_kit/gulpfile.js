@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 /**
  * @file
  * Additional processing to merge current and CivicTheme components.

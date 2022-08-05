@@ -149,6 +149,7 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_subject_card_ref.default
     - core.entity_form_display.paragraph.civictheme_task_card.default
     - core.entity_form_display.paragraph.civictheme_webform.default
+    - core.entity_form_display.taxonomy_term.civictheme_site_sections.default
     - core.entity_view_display.block_content.civictheme_banner.default
     - core.entity_view_display.block_content.civictheme_component_block.default
     - core.entity_view_display.block_content.civictheme_mobile_navigation.default
@@ -273,6 +274,7 @@ config_devel:
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
     - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
+    - field.field.node.civictheme_page.field_c_n_site_section
     - field.field.node.civictheme_page.field_c_n_space
     - field.field.node.civictheme_page.field_c_n_summary
     - field.field.node.civictheme_page.field_c_n_thumbnail
@@ -465,6 +467,7 @@ config_devel:
     - field.storage.node.field_c_n_more_information
     - field.storage.node.field_c_n_show_last_updated
     - field.storage.node.field_c_n_show_toc
+    - field.storage.node.field_c_n_site_section
     - field.storage.node.field_c_n_space
     - field.storage.node.field_c_n_summary
     - field.storage.node.field_c_n_tagline
@@ -569,6 +572,7 @@ config_devel:
     - system.menu.civictheme-footer
     - system.menu.civictheme-primary-navigation
     - system.menu.civictheme-secondary-navigation
+    - taxonomy.vocabulary.civictheme_site_sections
     - taxonomy.vocabulary.civictheme_topics
     - user.role.civictheme_content_approver
     - user.role.civictheme_content_author

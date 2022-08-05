@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import { radios, text, number } from '@storybook/addon-knobs';
 import { randomFormElements } from '../../00-base/base.stories';
 import CivicThemeFieldset from './fieldset.twig';

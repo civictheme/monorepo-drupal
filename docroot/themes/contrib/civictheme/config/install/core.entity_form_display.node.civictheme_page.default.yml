@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
     - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
+    - field.field.node.civictheme_page.field_c_n_site_section
     - field.field.node.civictheme_page.field_c_n_space
     - field.field.node.civictheme_page.field_c_n_summary
     - field.field.node.civictheme_page.field_c_n_thumbnail
@@ -88,6 +89,7 @@ third_party_settings:
         - field_c_n_hide_sidebar
         - field_c_n_show_last_updated
         - field_c_n_custom_last_updated
+        - field_c_n_site_section
       label: General
       region: content
       parent_name: group_civictheme_tabs
@@ -235,6 +237,12 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+  field_c_n_site_section:
+    type: options_select
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_c_n_space:
     type: options_select
     weight: 6
@@ -285,6 +293,11 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+  simple_sitemap:
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   status:
     type: boolean_checkbox
     weight: 7
@@ -318,7 +331,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 9
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
