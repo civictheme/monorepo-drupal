@@ -90,7 +90,7 @@ function _civictheme_get_number_of_exposed_form_elements($form) {
  */
 function _civictheme_form_alter__convert_exposed_form_elements(&$element, $form, $is_large_filter) {
   // Convert select to either radio buttons or checkboxes.
-  if ($element['#type'] === 'select') {
+  if (isset($element['#type']) && $element['#type'] === 'select') {
     if (!empty($element['#multiple'])) {
       $element['#type'] = 'checkboxes';
       unset($element['#multiple']);
