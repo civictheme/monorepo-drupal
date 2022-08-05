@@ -31,7 +31,7 @@ function cs_generated_content_generated_content_create_media_civictheme_image() 
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  $total_files_count = 5;
+  $total_files_count = 50;
 
   $filename = sprintf('Demo image file %s', $helper::staticSentence(2));
   $file = $helper::createFile(GeneratedContentAssetGenerator::ASSET_TYPE_PNG, [
