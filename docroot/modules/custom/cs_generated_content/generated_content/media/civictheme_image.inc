@@ -31,16 +31,22 @@ function cs_generated_content_generated_content_create_media_civictheme_image() 
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  $total_files_count = 50;
+  $total_files_count = 5;
 
   $filename = sprintf('Demo image file %s', $helper::staticSentence(2));
-  $files = [];
-  for ($i = 1; $i < 4; $i++) {
-    $files[] = $helper::createFile(GeneratedContentAssetGenerator::ASSET_TYPE_PNG, [
-      'filename' => $filename . '-' . $i,
-      'width' => 350 * $i,
-      'height' => 200 * $i,
-    ], GeneratedContentAssetGenerator::GENERATE_TYPE_RANDOM);
+  $file = $helper::createFile(GeneratedContentAssetGenerator::ASSET_TYPE_PNG, [
+    'filename' => $filename,
+    'use_existing' => FALSE,
+  ], GeneratedContentAssetGenerator::GENERATE_TYPE_STATIC);
+
+  $files = [
+    $file,
+  ];
+
+  // Create variation of the same file.
+  for ($i = 4; $i < 7; $i++) {
+    $resized_file = $helper::resizeImagePng($file, $i);
+    $files[] = $resized_file ?? $file;
   }
 
   $entities = [];
