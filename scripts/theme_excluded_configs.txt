@@ -81,6 +81,7 @@ image.style.medium
 image.style.thumbnail
 image.style.wide
 login_security.settings
+media.settings
 media_library.settings
 menu_ui.settings
 node.settings
@@ -90,12 +91,15 @@ paragraphs.settings
 redirect.settings
 rdf.mapping.user.user
 seckit.settings
+securitytxt.settings
 seven.settings
 shield.settings
 shortcut.set.default
 simple_sitemap.settings
 simple_sitemap.sitemap.default
+simple_sitemap.sitemap.index
 simple_sitemap.type.default_hreflang
+simple_sitemap.type.index
 simple_sitemap.bundle_*
 simple_sitemap.custom_links.*
 stage_file_proxy*

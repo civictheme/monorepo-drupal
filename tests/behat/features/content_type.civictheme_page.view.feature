@@ -8,21 +8,25 @@ Feature: View of Page content type
       | filename       | uri                                     | path           |
       | test_image.jpg | public://civictheme_test/test_image.jpg | test_image.jpg |
       | test_svg.svg   | public://civictheme_test/test_svg.svg   | test_svg.svg   |
+    Given "civictheme_site_sections" terms:
+      | name                  |
+      | [TEST] Site Section 1 |
 
     And "civictheme_image" media:
       | name                    | field_c_m_image |
       | [TEST] CivicTheme Image | test_image.jpg  |
 
     And "civictheme_page" content:
-      | title                             | status |
-      | [TEST] Page Promo cards test      | 1      |
-      | [TEST] Page Navigation cards test | 1      |
-      | [TEST] Page Event cards test      | 1      |
-      | [TEST] Page Subject cards test    | 1      |
-      | [TEST] Page Service cards test    | 1      |
-      | [TEST] Page Tasks cards test      | 1      |
-      | [TEST] Page Reference cards test  | 1      |
-      | [TEST] Page Revision test         | 1      |
+      | title                             | status | field_c_n_site_section |
+      | [TEST] Page Promo cards test      | 1      |                        |
+      | [TEST] Page Navigation cards test | 1      |                        |
+      | [TEST] Page Event cards test      | 1      |                        |
+      | [TEST] Page Subject cards test    | 1      |                        |
+      | [TEST] Page Service cards test    | 1      |                        |
+      | [TEST] Page Tasks cards test      | 1      |                        |
+      | [TEST] Page Reference cards test  | 1      |                        |
+      | [TEST] Page Revision test         | 1      |                        |
+      | [TEST] Page with Site section     | 1      | [TEST] Site Section 1  |
 
     And "civictheme_event" content:
       | title                                  | status |
@@ -362,3 +366,19 @@ Feature: View of Page content type
     And I should see "[OVERRIDE] Banner title" in the "div.civictheme-banner__title" element
     When I visit "civictheme_page" "[TEST] Page without Banner title"
     Then I should see "[TEST] Page without Banner title" in the "div.civictheme-banner__title" element
+
+  @api @sitesections
+  Scenario: CivicTheme page content type page can configure Site sections
+    Given I am an anonymous user
+    And "civictheme_page" content:
+      | title                            | status | field_c_n_site_section |
+      | [TEST] Page with Site section    | 1      | [TEST] Site Section 1  |
+      | [TEST] Page without Site section | 1      |                        |
+
+    When I visit "civictheme_page" "[TEST] Page with Site section"
+    And I should see the text "[TEST] Page with Site section"
+    And I should see an "div.civictheme-banner__section" element
+    And I should see the text "[TEST] Site Section 1"
+    When I visit "civictheme_page" "[TEST] Page without Site section"
+    And I should see the text "[TEST] Page without Site section"
+    And I should not see an "div.civictheme-banner__section" element
