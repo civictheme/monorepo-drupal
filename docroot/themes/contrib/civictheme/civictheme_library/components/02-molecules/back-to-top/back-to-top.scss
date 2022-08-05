@@ -5,6 +5,8 @@
 .civictheme-back-to-top {
   $root: &;
 
+  @include civictheme-print-hide();
+
   position: fixed;
   right: $civictheme-back-to-top-space-right;
   bottom: $civictheme-back-to-top-space-bottom;
@@ -20,10 +22,6 @@
   .civictheme-button {
     border-radius: rem(100px);
     padding: civictheme-space();
-  }
-
-  @include civictheme-print() {
-    display: none;
   }
 
   &.civictheme-theme-light {

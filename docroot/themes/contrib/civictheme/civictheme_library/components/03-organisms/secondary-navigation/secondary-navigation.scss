@@ -5,14 +5,12 @@
 .civictheme-secondary-navigation {
   $root: &;
 
+  @include civictheme-print-hide();
+
   display: none;
 
   @include civictheme-breakpoint($civictheme-secondary-navigation-breakpoint) {
     display: flex;
-  }
-
-  @include civictheme-print() {
-    display: none;
   }
 
   &__menu {

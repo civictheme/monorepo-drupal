@@ -14,13 +14,11 @@
   &__menu {
     &.civictheme-menu,
     .civictheme-menu {
+      @include civictheme-print-hide();
+
       list-style: none;
       padding: 0;
       margin: 0;
-
-      @include civictheme-print() {
-        display: none;
-      }
     }
 
     .civictheme-menu__sub-menu {

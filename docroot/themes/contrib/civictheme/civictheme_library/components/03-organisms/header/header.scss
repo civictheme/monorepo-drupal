@@ -14,9 +14,7 @@
   }
 
   &__top {
-    @include civictheme-print() {
-      display: none;
-    }
+    @include civictheme-print-hide();
   }
 
   &__logo {
@@ -32,9 +30,7 @@
   }
 
   &__content-middle1 {
-    @include civictheme-print() {
-      display: none;
-    }
+    @include civictheme-print-hide();
   }
 
   &__content-middle2 {
@@ -44,6 +40,8 @@
   }
 
   &__content-middle3 {
+    @include civictheme-print-hide();
+
     height: 100%;
     position: relative;
 
@@ -51,10 +49,6 @@
       position: static;
       display: flex;
       justify-content: flex-end;
-    }
-
-    @include civictheme-print() {
-      display: none;
     }
   }
 

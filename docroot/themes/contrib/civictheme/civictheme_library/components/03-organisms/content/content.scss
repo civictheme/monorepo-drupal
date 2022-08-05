@@ -24,9 +24,7 @@
   }
 
   &__sidebar {
-    @include civictheme-print() {
-      display: none;
-    }
+    @include civictheme-print-hide();
   }
 
   &__main {
