@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
     - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
+    - field.field.node.civictheme_page.field_c_n_site_section
     - field.field.node.civictheme_page.field_c_n_space
     - field.field.node.civictheme_page.field_c_n_summary
     - field.field.node.civictheme_page.field_c_n_thumbnail
@@ -67,5 +68,6 @@ hidden:
   field_c_n_hide_sidebar: true
   field_c_n_show_last_updated: true
   field_c_n_show_toc: true
+  field_c_n_site_section: true
   field_c_n_space: true
   field_c_n_topics: true

@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 // @todo This is a placeholder component. It is not finished!
 import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeSideNavigation from './side-navigation.twig';

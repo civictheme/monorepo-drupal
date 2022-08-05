@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 /**
  * Slider component.
  */

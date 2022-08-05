@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import { getSlots } from '../../00-base/base.stories';
 import CivicThemeAttachment from './attachment.twig';

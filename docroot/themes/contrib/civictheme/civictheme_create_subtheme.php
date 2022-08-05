@@ -46,10 +46,17 @@ function main(array $argv, $argc) {
   }
 
   // Show help if not enough or more than required arguments.
-  if ($argc < 4 || $argc > 5) {
+  if ($argc < 4 || $argc > 6) {
     print_help($default_new_theme_directory);
 
     return EXIT_ERROR;
+  }
+
+  // Optional remove example flag.
+  $remove_examples = array_search('--remove-examples', $argv);
+  if ($remove_examples) {
+    unset($argv[$remove_examples]);
+    $argv = array_values($argv);
   }
 
   // Collect and validate values from arguments.
@@ -71,6 +78,7 @@ function main(array $argv, $argc) {
     'name' => $new_theme_name,
     'description' => $new_theme_description,
     'path' => $new_theme_directory,
+    'remove_examples' => $remove_examples,
   ]);
 
   // Copy files from stub to the new theme path.
@@ -105,6 +113,7 @@ Arguments:
 
 Options:
   --help                 This help.
+  --remove-examples      Remove example component from generated theme.
 
 Examples:
   php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
@@ -204,6 +213,14 @@ function process_stub($dir, $options) {
     $content = file_get_contents($info_file);
     $content = str_replace("hidden: true\n", '', $content);
     file_put_contents($info_file, $content);
+  }
+
+  // Remove all the examples component before moving to the final path.
+  if ($options['remove_examples']) {
+    $example_components = example_component_paths();
+    foreach ($example_components as $example_dir) {
+      file_remove_dir($dir . DIRECTORY_SEPARATOR . $example_dir);
+    }
   }
 }
 
@@ -352,6 +369,17 @@ function file_replace_string_filename($search, $replace, $dir) {
 }
 
 /**
+ * Remove directory.
+ */
+function file_remove_dir($dir) {
+  if (is_dir($dir)) {
+    $files = file_scandir_recursive($dir);
+    array_map('unlink', $files);
+    rmdir($dir);
+  }
+}
+
+/**
  * Recursively scan directory for files.
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
@@ -406,6 +434,17 @@ function file_ignore_paths() {
  */
 function file_internal_paths() {
   return [];
+}
+
+/**
+ * Example component paths.
+ */
+function example_component_paths() {
+  return [
+    'components/01-atoms/demo-button',
+    'components/02-molecules/navigation-card',
+    'components/03-organisms/header',
+  ];
 }
 
 /**

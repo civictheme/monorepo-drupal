@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 /**
  * @file
  * Menu component utilities.

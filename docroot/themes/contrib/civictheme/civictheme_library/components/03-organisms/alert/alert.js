@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 /**
  * Alert component.
  *
