@@ -218,6 +218,8 @@ $civictheme-mobile-navigation-spacing: civictheme-space(2);
 
 // Mobile navigation open trigger.
 .civictheme-mobile-navigation__trigger {
+  @include civictheme-print-hide();
+
   background-color: transparent;
   border: none;
   padding-left: 0;
