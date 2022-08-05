@@ -93,7 +93,7 @@ export const demoImage = () => {
   ];
 
   return images[Math.floor(Math.random() * images.length)];
-}
+};
 
 export const demoVideos = () => [
   {

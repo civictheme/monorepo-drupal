@@ -79,7 +79,7 @@
     flex-direction: column;
 
     #{$root}__image-wrapper {
-      height:  map.get($civictheme-card-image-height-default, 'mobile');
+      height: map.get($civictheme-card-image-height-default, 'mobile');
 
       @include civictheme-breakpoint('m') {
         height: map.get($civictheme-card-image-height-default, 'desktop');
@@ -99,7 +99,7 @@
       }
 
       @include civictheme-breakpoint-upto('m') {
-        height:  map.get($civictheme-card-image-height-default, 'mobile');
+        height: map.get($civictheme-card-image-height-default, 'mobile');
       }
     }
   }

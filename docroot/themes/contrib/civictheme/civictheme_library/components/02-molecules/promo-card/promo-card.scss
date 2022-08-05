@@ -13,7 +13,6 @@
   // Promo image from "spilling" over the border radius.
   overflow: hidden;
   width: 100%;
-
   display: flex;
   flex-direction: column;
 
@@ -30,7 +29,7 @@
 
   #{$root}__image-wrapper {
     position: relative;
-    height:  map.get($civictheme-card-image-height-default, 'mobile');
+    height: map.get($civictheme-card-image-height-default, 'mobile');
 
     @include civictheme-image-fit ();
 

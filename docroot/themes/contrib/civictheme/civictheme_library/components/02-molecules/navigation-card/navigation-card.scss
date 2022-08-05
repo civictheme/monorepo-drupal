@@ -67,7 +67,7 @@
       }
 
       @include civictheme-breakpoint-upto('m') {
-        height:  map.get($civictheme-card-image-height-default, 'mobile');
+        height: map.get($civictheme-card-image-height-default, 'mobile');
       }
     }
 
