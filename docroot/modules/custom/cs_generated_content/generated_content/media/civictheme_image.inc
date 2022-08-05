@@ -36,7 +36,6 @@ function cs_generated_content_generated_content_create_media_civictheme_image() 
   $filename = sprintf('Demo image file %s', $helper::staticSentence(2));
   $file = $helper::createFile(GeneratedContentAssetGenerator::ASSET_TYPE_PNG, [
     'filename' => $filename,
-    'use_existing' => FALSE,
   ], GeneratedContentAssetGenerator::GENERATE_TYPE_STATIC);
 
   $files = [
