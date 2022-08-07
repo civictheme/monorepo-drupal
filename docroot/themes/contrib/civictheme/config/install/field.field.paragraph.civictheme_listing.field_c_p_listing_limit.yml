@@ -12,7 +12,9 @@ label: Limit
 description: 'Number of items to display if limit type is limited. Items per page in case of unlimited limit type.'
 required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    value: 12
 default_value_callback: ''
 settings:
   min: 1
