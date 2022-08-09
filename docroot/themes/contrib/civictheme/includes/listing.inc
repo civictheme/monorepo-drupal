@@ -64,7 +64,7 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_listing_element(Paragraph $paragraph) {
+function _civictheme_listing_element(Paragraph $paragraph, &$variables) {
   $view_name = 'civictheme_listing';
   $view_display = 'block1';
   _civictheme_listing_get_view_name($view_name, $view_display, $paragraph);
@@ -73,6 +73,10 @@ function _civictheme_listing_element(Paragraph $paragraph) {
   $element = NULL;
   if ($view) {
     $view->setDisplay($view_display);
+
+    if ($variables['attributes'] instanceof Attribute) {
+      $variables['attributes']->setAttribute('data-view', $view->id());
+    }
 
     _civictheme_listing_alter_view($paragraph, $view);
     $view->civictheme_listing_entity = $paragraph;

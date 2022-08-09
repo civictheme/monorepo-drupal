@@ -40,6 +40,13 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
+   * Default listing view name.
+   */
+  public static function civicthemeListingType() {
+    return 'civictheme_listing__block1';
+  }
+
+  /**
    * Limited type name.
    */
   public static function civicthemeLimitedType() {
