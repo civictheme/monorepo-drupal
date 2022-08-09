@@ -21,7 +21,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
         [
           'type' => 'listing',
           'listing_type' => $helper->civicthemeListingType(),
-          'content_type' => $helper::civicthemeListingType(),
+          'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
           'limit_type' => $helper::civicthemeUnlimitedType(),
           'card_theme' => $helper::civicthemeThemeLight(),
