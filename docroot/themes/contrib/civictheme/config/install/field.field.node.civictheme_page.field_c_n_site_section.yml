@@ -10,7 +10,7 @@ field_name: field_c_n_site_section
 entity_type: node
 bundle: civictheme_page
 label: 'Site section'
-description: ''
+description: 'Add this content to be a part of pre-defined site section.'
 required: false
 translatable: false
 default_value: {  }
