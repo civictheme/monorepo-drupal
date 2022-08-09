@@ -73,9 +73,7 @@ Feature: Tests the Listing paragraph
     And select "field_c_n_components[0][subform][field_c_p_card_theme]" should have an option "Dark"
     And I click on "div.paragraphs-subform .horizontal-tab-button-1 a" element
     And I wait 1 second
-    And I should see an "select[name='field_c_n_components[0][subform][field_c_p_limit_type]']" element
-    Then select "field_c_n_components[0][subform][field_c_p_limit_type]" should have an option "limited"
-    Then select "field_c_n_components[0][subform][field_c_p_limit_type]" should have an option "unlimited"
+    And I should see an "input[name='field_c_n_components[0][subform][field_c_p_limit_type]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_listing_limit][0][value]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_listing_multi_select][value]']" element
     And I click on "div.paragraphs-subform .horizontal-tab-button-2 a" element
