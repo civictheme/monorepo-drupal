@@ -360,7 +360,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
       | field_c_p_view_as              | 0                                          |
       | field_c_p_listing_f_exposed    | 0                                          |
       | field_c_p_hide_count           | 0                                          |
-      | field_c_p_listing_limit        | 6                                          |
+      | field_c_p_listing_limit        | 0                                          |
       | field_c_p_limit_type           | limited                                    |
       | field_c_p_listing_multi_select | 1                                          |
       | field_c_p_show_filters         | 0                                          |
@@ -377,3 +377,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And I should not see an ".civictheme-listing.civictheme-listing--vertical-space-top" element
     And I should not see an ".civictheme-listing.civictheme-listing--vertical-space-bottom" element
     And I should see an ".civictheme-listing .civictheme-promo-card.civictheme-theme-dark" element
+    #Should only see 12 items and no pager
+    And I should see an "div.civictheme-listing .civictheme-card-container__cards" element
+    And I should see 12 "div.civictheme-card-container__card" elements
+    And I should not see an "div.civictheme-listing__results-below .civictheme-pager" element
