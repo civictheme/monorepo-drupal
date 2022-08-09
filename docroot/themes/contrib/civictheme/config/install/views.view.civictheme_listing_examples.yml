@@ -445,10 +445,10 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  civictheme_listing_page:
-    id: civictheme_listing_page
+  block1:
+    id: block1
     display_title: 'Complex filter'
-    display_plugin: page
+    display_plugin: block
     position: 2
     display_options:
       title: 'CivicTheme Large Filter'
@@ -456,7 +456,6 @@ display:
         title: false
       display_description: 'Multiple filters'
       display_extenders: {  }
-      path: civictheme/listing
     cache_metadata:
       max-age: -1
       contexts:
@@ -468,10 +467,10 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  page_1:
-    id: page_1
+  block2:
+    id: block2
     display_title: 'Basic Listing'
-    display_plugin: page
+    display_plugin: block
     position: 2
     display_options:
       title: 'CivicTheme Basic Filter'
@@ -605,7 +604,6 @@ display:
         filter_groups: false
       display_description: 'Single exposed filter (non-textfield)'
       display_extenders: {  }
-      path: civictheme/listing-basic
     cache_metadata:
       max-age: -1
       contexts:
@@ -617,10 +615,10 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  page_2:
-    id: page_2
+  block3:
+    id: block3
     display_title: 'Basic Listing with multiple value'
-    display_plugin: page
+    display_plugin: block
     position: 2
     display_options:
       title: 'CivicTheme Basic Filter with Multi-Value'
@@ -754,7 +752,6 @@ display:
         filter_groups: false
       display_description: 'Single exposed filter (non-textfield)'
       display_extenders: {  }
-      path: civictheme/listing-basic-multi
     cache_metadata:
       max-age: -1
       contexts:

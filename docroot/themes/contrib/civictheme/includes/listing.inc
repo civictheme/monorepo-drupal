@@ -65,9 +65,9 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_listing_element(Paragraph $paragraph) {
-  $view_name = _civictheme_listing_get_view_name('civictheme_listing');
-
-  $view_display = 'civictheme_listing_block';
+  $view_name = 'civictheme_listing';
+  $view_display = 'block1';
+  _civictheme_listing_get_view_name($view_name, $view_display, $paragraph);
 
   $view = Views::getView($view_name);
   $element = NULL;
@@ -88,11 +88,10 @@ function _civictheme_listing_element(Paragraph $paragraph) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_listing_get_view_name($view_name) {
+function _civictheme_listing_get_view_name(&$view_name, &$display_id, Paragraph $paragraph) {
   // Call modules/theme that implement the hook, and let them change the view.
-  \Drupal::moduleHandler()->alter('civictheme_listing_view_name', $view_name);
-  \Drupal::service('theme.manager')->alter('civictheme_listing_view_name', $view_name);
-  return $view_name;
+  \Drupal::moduleHandler()->alter('civictheme_listing_view_name', $view_name, $display_id, $paragraph);
+  \Drupal::service('theme.manager')->alter('civictheme_listing_view_name', $view_name, $display_id, $paragraph);
 }
 
 /**

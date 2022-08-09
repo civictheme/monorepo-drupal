@@ -444,8 +444,8 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  civictheme_listing_block:
-    id: civictheme_listing_block
+  block1:
+    id: block1
     display_title: Block
     display_plugin: block
     position: 1

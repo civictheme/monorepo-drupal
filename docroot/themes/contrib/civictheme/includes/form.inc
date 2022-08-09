@@ -17,7 +17,18 @@ use Drupal\paragraphs\Entity\Paragraph;
  */
 function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $view = $form_state->get('view');
-  $civictheme_listing_view_name = _civictheme_listing_get_view_name('civictheme_listing');
+  $civictheme_listing_view_name = 'civictheme_listing';
+  $view_display = 'block1';
+
+  $is_page_load = isset($view->civictheme_listing_entity);
+  if ($is_page_load) {
+    _civictheme_listing_get_view_name($is_page_load, $view_display, $view->civictheme_listing_entity);
+  }
+  else {
+    $listing_paragraph = _civictheme_get_listing_paragraph_from_route();
+    _civictheme_listing_get_view_name($listing_paragraph, $view_display, $view->civictheme_listing_entity);
+  }
+
   // Apply filters to all views whose name starts with `civictheme_listing` or
   // a view defined in the hook.
   if ($form_id == 'views_exposed_form' && (strpos($view->id(), 'civictheme_listing') === 0 || $view->id() === $civictheme_listing_view_name)) {

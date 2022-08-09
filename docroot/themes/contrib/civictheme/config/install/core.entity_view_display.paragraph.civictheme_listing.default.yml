@@ -10,6 +10,7 @@ dependencies:
     - field.field.paragraph.civictheme_listing.field_c_p_listing_f_exposed
     - field.field.paragraph.civictheme_listing.field_c_p_listing_limit
     - field.field.paragraph.civictheme_listing.field_c_p_listing_multi_select
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_type
     - field.field.paragraph.civictheme_listing.field_c_p_read_more
     - field.field.paragraph.civictheme_listing.field_c_p_show_filters
     - field.field.paragraph.civictheme_listing.field_c_p_space
@@ -94,6 +95,13 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_c_p_listing_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 17
     region: content
   field_c_p_read_more:
     type: link

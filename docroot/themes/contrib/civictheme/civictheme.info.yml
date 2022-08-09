@@ -339,6 +339,7 @@ config_devel:
     - field.field.paragraph.civictheme_listing.field_c_p_listing_f_exposed
     - field.field.paragraph.civictheme_listing.field_c_p_listing_limit
     - field.field.paragraph.civictheme_listing.field_c_p_listing_multi_select
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_type
     - field.field.paragraph.civictheme_listing.field_c_p_read_more
     - field.field.paragraph.civictheme_listing.field_c_p_show_filters
     - field.field.paragraph.civictheme_listing.field_c_p_space
@@ -501,6 +502,7 @@ config_devel:
     - field.storage.paragraph.field_c_p_listing_f_exposed
     - field.storage.paragraph.field_c_p_listing_limit
     - field.storage.paragraph.field_c_p_listing_multi_select
+    - field.storage.paragraph.field_c_p_listing_type
     - field.storage.paragraph.field_c_p_location
     - field.storage.paragraph.field_c_p_panels
     - field.storage.paragraph.field_c_p_read_more
