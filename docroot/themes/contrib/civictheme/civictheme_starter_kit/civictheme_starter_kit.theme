@@ -51,7 +51,7 @@ function civictheme_starter_kit_civictheme_listing_view_name_alter(string &$view
   // This is an example.
   if ($paragraph->hasField('field_c_p_content_type') && !$paragraph->get('field_c_p_content_type')->isEmpty()) {
     if ($paragraph->get('field_c_p_content_type')->getString() == 'civictheme_event') {
-      list($view, $display_id) = explode("__", "civictheme_listing_examples__block1");
+      [$view, $display_id] = explode("__", "civictheme_listing_examples__block1");
     }
   }
 }

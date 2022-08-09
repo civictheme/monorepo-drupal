@@ -26,7 +26,7 @@ function hook_civictheme_listing_view_name_alter(string &$view, string &$display
   $display_id = 'block1';
 
   if ($paragraph->hasField('field_c_p_listing_type') && !$paragraph->get('field_c_p_listing_type')->isEmpty()) {
-    list($view, $display_id) = $paragraph->get('field_c_p_listing_type')->getString();
+    [$view, $display_id] = $paragraph->get('field_c_p_listing_type')->getString();
   }
 }
 
