@@ -35,6 +35,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Listing component" has "civictheme_listing" paragraph:
       | field_c_p_title                | [TEST] Listing component                   |
       | field_c_p_content_type         | civictheme_page                            |
+      | field_c_p_listing_type         | civictheme_listing__block1                 |
       | field_c_p_read_more            | 0: View all pages - 1: https://example.com |
       | field_c_p_view_as              | 0                                          |
       | field_c_p_listing_f_exposed    | 0                                          |
@@ -58,6 +59,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Listing component" has "civictheme_listing" paragraph:
       | field_c_p_title                | [TEST] Listing component                   |
       | field_c_p_content_type         | civictheme_page                            |
+      | field_c_p_listing_type         | civictheme_listing__block1                 |
       | field_c_p_read_more            | 0: View all pages - 1: https://example.com |
       | field_c_p_view_as              | 0                                          |
       | field_c_p_listing_f_exposed    | 0                                          |
@@ -276,6 +278,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Topic 1 Page Light" has "civictheme_listing" paragraph:
       | field_c_p_title                | [TEST] Listing component Light             |
       | field_c_p_content_type         | civictheme_page                            |
+      | field_c_p_listing_type         | civictheme_listing__block1                 |
       | field_c_p_read_more            | 0: View all pages - 1: https://example.com |
       | field_c_p_view_as              | 0                                          |
       | field_c_p_listing_f_exposed    | 0                                          |
@@ -303,6 +306,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Topic 1 Page Dark" has "civictheme_listing" paragraph:
       | field_c_p_title                | [TEST] Listing component 1 Dark            |
       | field_c_p_content_type         | civictheme_page                            |
+      | field_c_p_listing_type         | civictheme_listing__block1                 |
       | field_c_p_read_more            | 0: View all pages - 1: https://example.com |
       | field_c_p_view_as              | 0                                          |
       | field_c_p_listing_f_exposed    | 0                                          |
@@ -330,6 +334,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Topic 2 Page" has "civictheme_listing" paragraph:
       | field_c_p_title                | [TEST] Listing component 2                 |
       | field_c_p_content_type         | civictheme_page                            |
+      | field_c_p_listing_type         | civictheme_listing__block1                 |
       | field_c_p_read_more            | 0: View all pages - 1: https://example.com |
       | field_c_p_view_as              | 0                                          |
       | field_c_p_listing_f_exposed    | 0                                          |
@@ -356,6 +361,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Topic 3 Page" has "civictheme_listing" paragraph:
       | field_c_p_title                | [TEST] Listing component 3                 |
       | field_c_p_content_type         | civictheme_page                            |
+      | field_c_p_listing_type         | civictheme_listing__block1                 |
       | field_c_p_read_more            | 0: View all pages - 1: https://example.com |
       | field_c_p_view_as              | 0                                          |
       | field_c_p_listing_f_exposed    | 0                                          |
@@ -377,3 +383,74 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And I should not see an ".civictheme-listing.civictheme-listing--vertical-space-top" element
     And I should not see an ".civictheme-listing.civictheme-listing--vertical-space-bottom" element
     And I should see an ".civictheme-listing .civictheme-promo-card.civictheme-theme-dark" element
+
+  @api
+  Scenario: CivicTheme listing page with different view set and enforced by hook.
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Listing component" has "civictheme_listing" paragraph:
+      | field_c_p_title                | [TEST] Listing component                   |
+      | field_c_p_content_type         | civictheme_event                           |
+      | field_c_p_listing_type         | civictheme_listing__block1                 |
+      | field_c_p_read_more            | 0: View all pages - 1: https://example.com |
+      | field_c_p_view_as              | 0                                          |
+      | field_c_p_listing_f_exposed    | 0                                          |
+      | field_c_p_hide_count           | 0                                          |
+      | field_c_p_listing_limit        | 6                                          |
+      | field_c_p_limit_type           | limited                                    |
+      | field_c_p_listing_multi_select | 1                                          |
+      | field_c_p_show_filters         | 0                                          |
+      | field_c_p_show_pager           | 0                                          |
+    When I visit "civictheme_page" "[TEST] Page Listing component"
+    And I should see the text "[TEST] Listing component"
+    And I should see an "[data-view='civictheme_listing_examples']" element
+
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Listing component" has "civictheme_listing" paragraph:
+      | field_c_p_title                | [TEST] Listing component                   |
+      | field_c_p_content_type         | civictheme_page                            |
+      | field_c_p_listing_type         | civictheme_listing__block1                 |
+      | field_c_p_read_more            | 0: View all pages - 1: https://example.com |
+      | field_c_p_view_as              | 0                                          |
+      | field_c_p_listing_f_exposed    | 0                                          |
+      | field_c_p_hide_count           | 0                                          |
+      | field_c_p_listing_limit        | 6                                          |
+      | field_c_p_limit_type           | limited                                    |
+      | field_c_p_listing_multi_select | 1                                          |
+      | field_c_p_show_filters         | 0                                          |
+      | field_c_p_show_pager           | 0                                          |
+    When I visit "civictheme_page" "[TEST] Page Listing component"
+    And I should see the text "[TEST] Listing component"
+    And I should see an "[data-view='civictheme_listing']" element
+
+  @api @javascript
+  Scenario: CivicTheme listing page with different view set and enforced by hook.
+    Given I am logged in as a user with the "Administrator" role
+    And I go to "admin/structure/paragraphs_type/civictheme_listing/fields/paragraph.civictheme_listing.field_c_p_listing_type/storage"
+    And I fill in "Allowed values list" with:
+      """
+      civictheme_listing__block1|Default Listing
+      civictheme_listing_examples__block1|Example Listing
+      """
+    And I press "Save field settings"
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Listing component" has "civictheme_listing" paragraph:
+      | field_c_p_title                | [TEST] Listing component                   |
+      | field_c_p_content_type         | civictheme_page                            |
+      | field_c_p_listing_type         | civictheme_listing_examples__block1        |
+      | field_c_p_read_more            | 0: View all pages - 1: https://example.com |
+      | field_c_p_view_as              | 0                                          |
+      | field_c_p_listing_f_exposed    | 0                                          |
+      | field_c_p_hide_count           | 0                                          |
+      | field_c_p_listing_limit        | 6                                          |
+      | field_c_p_limit_type           | limited                                    |
+      | field_c_p_listing_multi_select | 1                                          |
+      | field_c_p_show_filters         | 0                                          |
+      | field_c_p_show_pager           | 0                                          |
+    When I visit "civictheme_page" "[TEST] Page Listing component"
+    And I should see the text "[TEST] Listing component"
+    And I should see an "[data-view='civictheme_listing_examples']" element
+    And I go to "admin/structure/paragraphs_type/civictheme_listing/fields/paragraph.civictheme_listing.field_c_p_listing_type/storage"
+    And I fill in "Allowed values list" with:
+      """
+      civictheme_listing__block1|Default Listing
+      """
+    And I press "Save field settings"

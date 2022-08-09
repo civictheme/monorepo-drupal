@@ -29,6 +29,7 @@ Feature: Tests the Listing paragraph
     And I should see the text "field_c_p_topics" in the "Topics" row
     And I should see the text "field_c_p_view_as" in the "View as" row
     And I should see the text "field_c_p_space" in the "With space" row
+    And I should see the text "field_c_p_listing_type" in the "Listing type" row
 
   @api
   Scenario: CivicTheme Page field_c_n_components fields settings.
