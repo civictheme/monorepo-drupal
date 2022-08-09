@@ -29,6 +29,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
       | [TEST] No Topics Page           | 1      |                                                |
       | [TEST] Unpublished page         | 0      |                                                |
       | [TEST] Page limited to 5 cards  | 1      |                                                |
+      | [TEST] Page unlimited cards     | 1      |                                                |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with listing
@@ -397,3 +398,18 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And I should see an "div.civictheme-listing .civictheme-card-container__cards" element
     And I should see 5 "div.civictheme-card-container__card" elements
     And I should not see an "div.civictheme-listing__results-below .civictheme-pager" element
+
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page unlimited cards" has "civictheme_listing" paragraph:
+      | field_c_p_title                | [TEST] Page unlimited cards                  |
+      | field_c_p_content_type         | civictheme_page                              |
+      | field_c_p_read_more            | 0: View all pages - 1: https://example.com   |
+      | field_c_p_view_as              | 0                                            |
+      | field_c_p_listing_f_exposed    | 0                                            |
+      | field_c_p_hide_count           | 0                                            |
+      | field_c_p_listing_limit        | 0                                            |
+      | field_c_p_limit_type           | unlimited                                    |
+    And I visit civictheme_page "[TEST] Page unlimited cards"
+    And I should see an "div.civictheme-listing .civictheme-card-container__cards" element
+    And I should see 12 "div.civictheme-card-container__card" elements
+    And I should see an "div.civictheme-listing__results-below .civictheme-pager" element
