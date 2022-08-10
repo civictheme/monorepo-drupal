@@ -17,8 +17,8 @@
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
-{% set is_external = is_external|default(false) %}
+{% set is_external = is_external ? 'civictheme-link--external' : '' %}
+{% set modifier_class = '%s %s %s'|format(theme_class, modifier_class|default(''), is_external) %}
 
 {% if text is not empty %}
   <a class="civictheme-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {% if title is not empty %}title="{{ title }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
@@ -29,12 +29,5 @@
     {% endif %}
 
     {{ text|raw }}
-
-    {% if is_external %}
-      {% include '@atoms/icon/icon.twig' with {
-        symbol: 'arrows_upperrightarrow',
-        modifier_class: 'civictheme-link__external-icon'
-      } %}
-    {% endif %}
   </a>
 {% endif %}

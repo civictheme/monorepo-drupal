@@ -51,6 +51,18 @@
     }
   }
 
+  &.civictheme-link--external {
+    &::after {
+      content: $civictheme-link-external;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      width: 24px;
+      height: 24px;
+      fill: currentcolor;
+      vertical-align: bottom;
+    }
+  }
+
   &:visited {
     @include civictheme-link-visited ();
   }
