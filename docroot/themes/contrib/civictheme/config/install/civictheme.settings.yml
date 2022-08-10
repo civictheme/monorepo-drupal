@@ -10,6 +10,7 @@ civictheme_site_logo_alt: 'CivicTheme logo'
 civictheme_header_theme: light
 civictheme_footer_theme: dark
 civictheme_footer_background_image: ''
+civictheme_override_domains: ''
 features:
   node_user_picture: true
   comment_user_picture: true

@@ -18,6 +18,7 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
   _civictheme_form_system_theme_settings_theme_version($form);
   _civictheme_form_system_theme_settings_logo($form);
   _civictheme_form_system_theme_settings_components($form);
+  _civictheme_form_system_theme_settings_external_links($form);
   _civictheme_form_system_theme_settings_content_provision($form, $form_state);
   _civictheme_form_system_theme_settings_storybook($form);
 }
@@ -169,7 +170,7 @@ function _civictheme_form_system_theme_settings_storybook(&$form) {
       '%theme' => $theme_name,
     ]),
     '#open' => TRUE,
-    '#weight' => 51,
+    '#weight' => 52,
   ];
 
   $form['#validate'][] = '_civictheme_form_system_theme_settings_validate';
@@ -328,4 +329,24 @@ function _civictheme_path_field_description($original_path, $fallback_path) {
     '@explicit-file' => StreamWrapperManager::getScheme($original_path) !== FALSE ? $original_path : 'public://' . $fallback_path,
     '@local-file' => $local_file,
   ]);
+}
+
+/**
+ * Provide external links settings to theme settings form.
+ */
+function _civictheme_form_system_theme_settings_external_links(&$form) {
+  $form['external_links'] = [
+    '#type' => 'details',
+    '#title' => t('External links'),
+    '#weight' => 51,
+    '#open' => TRUE,
+  ];
+
+  $form['external_links']['civictheme_override_domains'] = [
+    '#type' => 'textarea',
+    '#title' => t('Override domains'),
+    '#description' => t('A list of domains that should be considered as internal. One domain per line. Wildcards are supported.'),
+    '#default_value' => theme_get_setting('civictheme_override_domains'),
+    '#rows' => 4,
+  ];
 }
