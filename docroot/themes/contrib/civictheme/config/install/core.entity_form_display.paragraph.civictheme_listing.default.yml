@@ -120,7 +120,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_c_p_limit_type:
-    type: options_select
+    type: options_buttons
     weight: 13
     region: content
     settings: {  }
