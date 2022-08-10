@@ -16,17 +16,17 @@ use Drupal\paragraphs\Entity\Paragraph;
 /**
  * Alter the name of view in CivicTheme listing component.
  *
- * @param string $view
+ * @param string $view_name
  *   The name of the view used in listing component.
  * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
  *   The paragraph containing view conditions.
  */
-function hook_civictheme_listing_view_name_alter(string &$view, string &$display_id, Paragraph $paragraph) {
-  $view = 'civictheme_listing';
+function hook_civictheme_listing_view_name_alter(string &$view_name, string &$display_id, Paragraph $paragraph) {
+  $view_name = 'civictheme_listing';
   $display_id = 'block1';
 
   if ($paragraph->hasField('field_c_p_listing_type') && !$paragraph->get('field_c_p_listing_type')->isEmpty()) {
-    [$view, $display_id] = $paragraph->get('field_c_p_listing_type')->getString();
+    [$view_name, $display_id] = explode('__', $paragraph->get('field_c_p_listing_type')->getString());
   }
 }
 
