@@ -415,3 +415,40 @@ function civictheme_get_entity_field_key_values(EntityInterface $entity, $field_
 
   return $values;
 }
+
+/**
+ * Check if the provided link is external.
+ *
+ * @param string $url
+ *   Attributes object.
+ *
+ * @return bool
+ *   TRUE if the link is external, FALSE otherwise.
+ */
+function civictheme_is_link_external(string $url) {
+  // If the link does not have a domain.
+  if ((strpos($url, 'internal:') === 0) || (strpos($url, '/') === 0)) {
+    return FALSE;
+  }
+  // If the link has a domain.
+  $url_data = parse_url($url);
+  if (!empty($url_data['host'])) {
+    $domain = trim($url_data['host'], '/');
+    // If domain is the same as the current site.
+    $host = \Drupal::request()->getHost();
+    if ($domain == $host) {
+      return FALSE;
+    }
+    // Included in the list of the overridden domains, including wildcards.
+    $overridden_domains = theme_get_setting('civictheme_override_domains') ?? '';
+    if (!empty($overridden_domains)) {
+      $overridden_domains_list = explode("\r\n", $overridden_domains);
+      foreach ($overridden_domains_list as $overridden_domain) {
+        if (strpos($overridden_domain, $domain) !== FALSE) {
+          return FALSE;
+        }
+      }
+    }
+  }
+  return TRUE;
+}
