@@ -21,7 +21,7 @@
   <img
     class="civictheme-image {{ modifier_class }}"
     src="{{ src }}"
-    {% if alt is not empty %}alt="{{ alt }}"{% endif %}
+    {% if alt is not null %}alt="{{ alt }}"{% endif %}
     {% if width is not empty %}width="{{ width }}"{% endif %}
     {% if height is not empty %}height="{{ height }}"{% endif %}
     {% if attributes is not empty %}{{ attributes|raw }}{% endif %}/>

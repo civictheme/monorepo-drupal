@@ -486,10 +486,8 @@ function civictheme_provision__files() {
     $theme_path . '/assets/images/facebook.svg',
     $theme_path . '/assets/images/linkedin.svg',
     $theme_path . '/assets/images/twitter.svg',
-    $theme_path . "/assets/backgrounds/{$theme_name}_background_dark_1.jpg",
-    $theme_path . "/assets/backgrounds/{$theme_name}_background_dark_2.jpg",
-    $theme_path . "/assets/backgrounds/{$theme_name}_background_light_1.jpg",
-    $theme_path . "/assets/backgrounds/{$theme_name}_background_light_2.jpg",
+    $theme_path . "/assets/backgrounds/{$theme_name}_background_1.png",
+    $theme_path . "/assets/backgrounds/{$theme_name}_background_2.png",
   ];
 
   /** @var \Drupal\file\FileRepositoryInterface $file_repository */
@@ -520,10 +518,8 @@ function civictheme_provision__media() {
       'twitter.svg',
     ],
     'image' => [
-      "{$theme_name}_background_dark_1.jpg",
-      "{$theme_name}_background_dark_2.jpg",
-      "{$theme_name}_background_light_1.jpg",
-      "{$theme_name}_background_light_2.jpg",
+      "{$theme_name}_background_1.png",
+      "{$theme_name}_background_2.png",
     ],
   ];
 
@@ -643,7 +639,7 @@ function _civictheme_provision__blocks__menu_blocks() {
  */
 function _civictheme_provision__blocks__banner(array $block) {
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
-  $block_content->field_c_b_background_image = civictheme_provision_load_media_by_name('civictheme_background_dark_1.jpg');
+  $block_content->field_c_b_background_image = civictheme_provision_load_media_by_name('civictheme_background_1.png');
   $block_content->field_c_b_theme = 'dark';
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());

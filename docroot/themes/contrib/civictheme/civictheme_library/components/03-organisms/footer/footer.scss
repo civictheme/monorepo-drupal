@@ -6,10 +6,7 @@
   $root: &;
 
   @include civictheme-print-hide();
-
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  @include civictheme-background();
 
   &__top {
     padding-top: civictheme-space(4);
