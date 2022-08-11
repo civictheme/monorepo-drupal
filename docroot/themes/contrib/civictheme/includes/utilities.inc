@@ -5,6 +5,7 @@
  * Theme utility functions.
  */
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Template\Attribute;
@@ -420,12 +421,16 @@ function civictheme_get_entity_field_key_values(EntityInterface $entity, $field_
  * Check if the provided link is external.
  *
  * @param string $url
- *   Attributes object.
+ *   The url to be validated.
+ * @param string $host
+ *   The current site host.
+ * @param array $overridden_domains
+ *   Array of overridden domains.
  *
  * @return bool
  *   TRUE if the link is external, FALSE otherwise.
  */
-function civictheme_is_link_external(string $url) {
+function civictheme_link_is_external(string $url, string $host, array $overridden_domains) {
   // If the link does not have a domain.
   if ((strpos($url, 'internal:') === 0) || (strpos($url, '/') === 0)) {
     return FALSE;
@@ -435,19 +440,12 @@ function civictheme_is_link_external(string $url) {
   if (!empty($url_data['host'])) {
     $domain = trim($url_data['host'], '/');
     // If domain is the same as the current site.
-    $host = \Drupal::service('request_stack')->getCurrentRequest()->getHost();
     if ($domain == $host) {
       return FALSE;
     }
     // Included in the list of the overridden domains, including wildcards.
-    
-    $config_factory = \Drupal::service('config.factory');
-    $theme_name = $config_factory->get('system.theme')->get('default');
-    $config = $config_factory->get("$theme_name.settings");
-    $overridden_domains = $config->get('civictheme_override_domains') ?? '';
     if (!empty($overridden_domains)) {
-      $overridden_domains_list = explode("\r\n", $overridden_domains);
-      foreach ($overridden_domains_list as $overridden_domain) {
+      foreach ($overridden_domains as $overridden_domain) {
         if (strpos($overridden_domain, $domain) !== FALSE) {
           return FALSE;
         }
@@ -455,4 +453,53 @@ function civictheme_is_link_external(string $url) {
     }
   }
   return TRUE;
+}
+
+/**
+ * Get the list of override domains.
+ *
+ * @return array
+ *   List of override domains.
+ */
+function civictheme_get_override_domains() {
+  $config_factory = \Drupal::service('config.factory');
+  $theme_name = $config_factory->get('system.theme')->get('default');
+  $config = $config_factory->get("$theme_name.settings");
+  $overridden_domains = $config->get('civictheme_override_domains') ?? '';
+  if (!empty($overridden_domains)) {
+    return explode("\r\n", $overridden_domains);
+  }
+  return [];
+}
+
+/**
+ * Adds CSS class to all links.
+ *
+ * @param string $string
+ *   The string to be processed.
+ *
+ * @return string
+ *   The processed string.
+ */
+function civictheme_process_link_attributes(string $string) {
+  $dom = Html::load($string);
+  if ($dom) {
+    $anchors = $dom->getElementsByTagName('a');
+    if ($anchors) {
+      foreach ($anchors as $a) {
+        if ($a->hasAttribute('href')) {
+          $classes = $a->getAttribute('class') ? $a->getAttribute('class') . ' civictheme-link' : 'civictheme-link';
+          $url = $a->getAttribute('href');
+          $host = \Drupal::service('request_stack')->getCurrentRequest()->getHost();
+          $overridden_domains = civictheme_get_override_domains();
+          if (civictheme_link_is_external($url, $host, $overridden_domains)) {
+            $classes .= ' civictheme-link--external';
+          }
+          $a->setAttribute('class', $classes);
+        }
+      }
+      $string = Html::serialize($dom);
+    }
+  }
+  return $string;
 }
