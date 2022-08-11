@@ -19,6 +19,9 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     Given "civictheme_page" content:
       | title                           | status | field_c_n_topics                               |
       | [TEST] Page Listing component   | 1      |                                                |
+      | [TEST] Page limited to 5 cards  | 1      |                                                |
+      | [TEST] Page unlimited cards     | 1      |                                                |
+      | [TEST] Page unlimited cards max | 1      |                                                |
       | [TEST] All Topics               | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 |
       | [TEST] Topic 1 and Topic 2 Page | 1      | [TEST] Topic 1, [TEST] Topic 2                 |
       | [TEST] Topic 1 Page             | 1      | [TEST] Topic 1                                 |
@@ -28,9 +31,6 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
       | [TEST] Topic 3 Page             | 1      | [TEST] Topic 3                                 |
       | [TEST] No Topics Page           | 1      |                                                |
       | [TEST] Unpublished page         | 0      |                                                |
-      | [TEST] Page limited to 5 cards  | 1      |                                                |
-      | [TEST] Page unlimited cards     | 1      |                                                |
-      | [TEST] Page unlimited cards max | 1      |                                                |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with listing
