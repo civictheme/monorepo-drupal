@@ -24,7 +24,7 @@ define('CIVICTHEME_LISTINGS_LIMIT_TYPE_UNLIMITED', 'unlimited');
 /**
  * Defines fallback limit of Full listings items if pager is disabled.
  */
-define('CIVICTHEME_LISTINGS_FULL_FALLBACK_LIMIT', 100);
+define('CIVICTHEME_LISTINGS_FULL_FALLBACK_LIMIT', 12);
 
 /**
  * Implements template_preprocess_paragraph().
