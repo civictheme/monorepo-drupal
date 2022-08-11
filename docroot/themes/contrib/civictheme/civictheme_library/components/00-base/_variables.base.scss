@@ -245,6 +245,7 @@ $civictheme-fonts-default: (
 // Base font size.
 $civictheme-font-base-size: 16px !default;
 $civictheme-font-base-line-height: $civictheme-font-base-size !default;
+$civictheme-font-smoothing: true !default;
 $civictheme-typography: () !default;
 $civictheme-typography-default: (
   // Headings.
