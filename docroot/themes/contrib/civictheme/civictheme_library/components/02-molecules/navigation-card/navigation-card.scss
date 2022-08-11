@@ -61,13 +61,13 @@
     }
 
     #{$root}__image-wrapper {
-      @include civictheme-breakpoint(m) {
-        max-width: 12.5rem;
-        flex-shrink: 1;
-      }
+      width: $civictheme-navigation-card-image-width-mobile;
+      height: $civictheme-navigation-card-image-height-mobile;
 
-      @include civictheme-breakpoint-upto('m') {
-        height: map.get($civictheme-card-image-height-default, 'mobile');
+      @include civictheme-breakpoint(m) {
+        width: $civictheme-navigation-card-image-width-desktop;
+        height: $civictheme-navigation-card-image-height-desktop;
+        flex-shrink: 1;
       }
     }
 

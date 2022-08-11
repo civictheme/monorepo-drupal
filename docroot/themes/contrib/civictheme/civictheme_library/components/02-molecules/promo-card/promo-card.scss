@@ -28,13 +28,15 @@
   }
 
   #{$root}__image-wrapper {
-    position: relative;
-    height: map.get($civictheme-card-image-height-default, 'mobile');
+    @include civictheme-image-fit();
 
-    @include civictheme-image-fit ();
+    position: relative;
+    height: $civictheme-promo-card-image-height-mobile;
+    width: $civictheme-promo-card-image-width-mobile;
 
     @include civictheme-breakpoint('m') {
-      height: map.get($civictheme-card-image-height-default, 'desktop');
+      height: $civictheme-promo-card-image-height-desktop;
+      width: $civictheme-promo-card-image-width-desktop;
     }
   }
 

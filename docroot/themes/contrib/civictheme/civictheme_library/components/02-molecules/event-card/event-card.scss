@@ -29,12 +29,14 @@
 
   #{$root}__image-wrapper {
     position: relative;
-    height: map.get($civictheme-card-image-height-default, 'mobile');
+    height: $civictheme-event-card-image-height-mobile;
+    width: $civictheme-event-card-image-width-mobile;
 
     @include civictheme-image-fit();
 
     @include civictheme-breakpoint('m') {
-      height: map.get($civictheme-card-image-height-default, 'desktop');
+      height: $civictheme-event-card-image-height-desktop;
+      width: $civictheme-event-card-image-width-desktop;
     }
   }
 

@@ -79,10 +79,12 @@
     flex-direction: column;
 
     #{$root}__image-wrapper {
-      height: map.get($civictheme-card-image-height-default, 'mobile');
+      width: $civictheme-publication-card-image-width-mobile;
+      height: $civictheme-publication-card-image-height-mobile;
 
       @include civictheme-breakpoint('m') {
-        height: map.get($civictheme-card-image-height-default, 'desktop');
+        width: $civictheme-publication-card-image-width-desktop;
+        height: $civictheme-publication-card-image-height-desktop;
       }
     }
   }
@@ -93,13 +95,13 @@
     }
 
     #{$root}__image-wrapper {
-      @include civictheme-breakpoint(m) {
-        max-width: 12.5rem;
-        flex-shrink: 0;
-      }
+      height: $civictheme-publication-card-image-height-mobile;
+      width: $civictheme-publication-card-image-width-mobile;
 
-      @include civictheme-breakpoint-upto('m') {
-        height: map.get($civictheme-card-image-height-default, 'mobile');
+      @include civictheme-breakpoint(m) {
+        height: $civictheme-publication-card-image-height-desktop;
+        width: $civictheme-publication-card-image-width-desktop;
+        flex-shrink: 0;
       }
     }
   }

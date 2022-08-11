@@ -566,6 +566,10 @@ $civictheme-directional-link-dark-disabled-color: civictheme-color('neutral', 5)
 // Card/Event card.
 //
 $civictheme-event-card-border-radius: $civictheme-border-radius !default;
+$civictheme-event-card-image-height-mobile: 210px !default;
+$civictheme-event-card-image-width-mobile: auto !default;
+$civictheme-event-card-image-height-desktop: 240px !default;
+$civictheme-event-card-image-width-desktop: auto !default;
 $civictheme-event-card-light-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-event-card-light-border-top-color: civictheme-color('neutral', 8) !default;
 $civictheme-event-card-light-heading-color: civictheme-color('neutral', 7) !default;
@@ -591,6 +595,10 @@ $civictheme-event-card-dark-icon-arrow-color: civictheme-color('secondary') !def
 // Card/Navigation card.
 //
 $civictheme-navigation-card-border-radius: $civictheme-border-radius !default;
+$civictheme-navigation-card-image-width-mobile: auto !default;
+$civictheme-navigation-card-image-height-mobile: 280px !default;
+$civictheme-navigation-card-image-width-desktop: 200px !default;
+$civictheme-navigation-card-image-height-desktop: auto !default;
 $civictheme-navigation-card-light-color: civictheme-color('neutral', 6) !default;
 $civictheme-navigation-card-light-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-navigation-card-light-heading-color: civictheme-color('neutral', 7) !default;
@@ -610,6 +618,10 @@ $civictheme-navigation-card-dark-icon-arrow-color: civictheme-color('secondary')
 // Card/Promo card.
 //
 $civictheme-promo-card-border-radius: $civictheme-border-radius !default;
+$civictheme-promo-card-image-height-mobile: 210px !default;
+$civictheme-promo-card-image-width-mobile: auto !default;
+$civictheme-promo-card-image-height-desktop: 240px !default;
+$civictheme-promo-card-image-width-desktop: auto !default;
 $civictheme-promo-card-light-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-promo-card-light-border-top-color: civictheme-color('neutral', 8) !default;
 $civictheme-promo-card-light-heading-color: civictheme-color('neutral', 7) !default;
@@ -633,6 +645,10 @@ $civictheme-promo-card-dark-icon-arrow-color: civictheme-color('secondary') !def
 // Card/Publication card.
 //
 $civictheme-publication-card-border-radius: $civictheme-border-radius !default;
+$civictheme-publication-card-image-height-mobile: 180px;
+$civictheme-publication-card-image-width-mobile: auto;
+$civictheme-publication-card-image-height-desktop: auto;
+$civictheme-publication-card-image-width-desktop: 160px;
 $civictheme-publication-card-light-color: civictheme-color('neutral', 6) !default;
 $civictheme-publication-card-light-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-publication-card-light-heading-color: civictheme-color('neutral', 7) !default;
@@ -669,6 +685,10 @@ $civictheme-service-card-dark-heading-active-color: civictheme-color('neutral', 
 // Card/Subject card.
 //
 $civictheme-subject-card-border-radius: $civictheme-border-radius !default;
+$civictheme-subject-card-image-height-mobile: 160px;
+$civictheme-subject-card-image-width-mobile: auto;
+$civictheme-subject-card-image-height-desktop: 220px;
+$civictheme-subject-card-image-width-desktop: auto;
 $civictheme-subject-card-light-color: civictheme-color('neutral', 1) !default;
 $civictheme-subject-card-light-hover-color: civictheme-color('neutral', 1) !default;
 $civictheme-subject-card-light-active-color: civictheme-color('primary', 4) !default;
