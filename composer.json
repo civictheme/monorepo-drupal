@@ -12,7 +12,7 @@
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
         "drupal/default_content": "^2.0@alpha",
-        "drupal/generated_content": "^1.1",
+        "drupal/generated_content": "^1.2",
         "drupal/permissions_filter": "^1.1",
         "drupal/redirect": "^1.6",
         "drupal/stage_file_proxy": "^1.1",

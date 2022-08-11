@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d48a14cd321248ae6086b910e6bfd4f8",
+    "content-hash": "14f046ecefbd65924fcb45039cef0f55",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5836,27 +5836,30 @@
         },
         {
             "name": "drupal/generated_content",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/generated_content.git",
-                "reference": "1.1.0"
+                "reference": "1.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/generated_content-1.1.0.zip",
-                "reference": "1.1.0",
-                "shasum": "f8421f96fc5c88c7637ca46160496902a4e24c4f"
+                "url": "https://ftp.drupal.org/files/projects/generated_content-1.2.0.zip",
+                "reference": "1.2.0",
+                "shasum": "af388d821d68cd92a50aa6b8986a1115a7ba5d89"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
                 "php": ">=7.4"
             },
+            "suggest": {
+                "drupal/config_ignore": "Ignore certain configuration during import."
+            },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.1.0",
-                    "datestamp": "1655626338",
+                    "version": "1.2.0",
+                    "datestamp": "1660212265",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
