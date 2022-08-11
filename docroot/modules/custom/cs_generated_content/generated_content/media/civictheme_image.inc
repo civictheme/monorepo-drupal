@@ -35,7 +35,7 @@ function cs_generated_content_generated_content_create_media_civictheme_image() 
 
   $entities = [];
   for ($i = 0; $i < $total_media_count; $i++) {
-    $file = $helper->staticFile(GeneratedContentAssetGenerator::ASSET_TYPE_PNG);
+    $file = $helper->staticFile(GeneratedContentAssetGenerator::ASSET_TYPE_JPG);
     $name = sprintf('Demo static Image media %s %s', $i + 1, $helper::staticSentence(2));
 
     if (!$file) {

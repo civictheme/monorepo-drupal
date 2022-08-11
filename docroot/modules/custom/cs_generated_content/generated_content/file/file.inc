@@ -37,7 +37,7 @@ function cs_generated_content_generated_content_create_file_file() {
 
   $generation_types = [
     GeneratedContentAssetGenerator::GENERATE_TYPE_STATIC => [
-      GeneratedContentAssetGenerator::ASSET_TYPE_PNG,
+      GeneratedContentAssetGenerator::ASSET_TYPE_JPG,
       GeneratedContentAssetGenerator::ASSET_TYPE_SVG,
       GeneratedContentAssetGenerator::ASSET_TYPE_PDF,
     ],

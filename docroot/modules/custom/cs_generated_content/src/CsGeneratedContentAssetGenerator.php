@@ -19,9 +19,9 @@ class CsGeneratedContentAssetGenerator extends GeneratedContentAssetGenerator {
   protected function getAssetsDirs() {
     $module_path = $this->moduleExtensionList->getPath('cs_generated_content');
 
-    return array_merge(parent::getAssetsDirs(), [
+    return [
       $module_path . DIRECTORY_SEPARATOR . rtrim(static::ASSETS_DIRECTORY, DIRECTORY_SEPARATOR),
-    ]);
+    ];
   }
 
 }
