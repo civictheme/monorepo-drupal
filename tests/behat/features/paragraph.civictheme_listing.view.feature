@@ -19,6 +19,9 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     Given "civictheme_page" content:
       | title                           | status | field_c_n_topics                               |
       | [TEST] Page Listing component   | 1      |                                                |
+      | [TEST] Page limited to 5 cards  | 1      |                                                |
+      | [TEST] Page unlimited cards     | 1      |                                                |
+      | [TEST] Page unlimited cards max | 1      |                                                |
       | [TEST] All Topics               | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 |
       | [TEST] Topic 1 and Topic 2 Page | 1      | [TEST] Topic 1, [TEST] Topic 2                 |
       | [TEST] Topic 1 Page             | 1      | [TEST] Topic 1                                 |
@@ -28,9 +31,6 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
       | [TEST] Topic 3 Page             | 1      | [TEST] Topic 3                                 |
       | [TEST] No Topics Page           | 1      |                                                |
       | [TEST] Unpublished page         | 0      |                                                |
-      | [TEST] Page limited to 5 cards  | 1      |                                                |
-      | [TEST] Page unlimited cards     | 1      |                                                |
-      | [TEST] Page unlimited cards max | 1      |                                                |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with listing
@@ -67,7 +67,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
       | field_c_p_view_as              | 0                                          |
       | field_c_p_listing_f_exposed    | 0                                          |
       | field_c_p_hide_count           | 0                                          |
-      | field_c_p_listing_limit        | 0                                          |
+      | field_c_p_listing_limit        | 9                                          |
       | field_c_p_limit_type           | unlimited                                  |
       | field_c_p_listing_multi_select | 1                                          |
       | field_c_p_show_filters         | 1                                          |
@@ -335,7 +335,7 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
     And I should see an "[data-view='civictheme_listing']" element
 
   @api @javascript
-  Scenario: CivicTheme listing page with different view set and enforced by hook.
+  Scenario: CivicTheme listing page with different view from listing type field.
     Given I am logged in as a user with the "Administrator" role
     And I go to "admin/structure/paragraphs_type/civictheme_listing/fields/paragraph.civictheme_listing.field_c_p_listing_type/storage"
     And I fill in "Allowed values list" with:
