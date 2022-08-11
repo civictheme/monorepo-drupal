@@ -435,12 +435,16 @@ function civictheme_is_link_external(string $url) {
   if (!empty($url_data['host'])) {
     $domain = trim($url_data['host'], '/');
     // If domain is the same as the current site.
-    $host = \Drupal::request()->getHost();
+    $host = \Drupal::service('request_stack')->getCurrentRequest()->getHost();
     if ($domain == $host) {
       return FALSE;
     }
     // Included in the list of the overridden domains, including wildcards.
-    $overridden_domains = theme_get_setting('civictheme_override_domains') ?? '';
+    
+    $config_factory = \Drupal::service('config.factory');
+    $theme_name = $config_factory->get('system.theme')->get('default');
+    $config = $config_factory->get("$theme_name.settings");
+    $overridden_domains = $config->get('civictheme_override_domains') ?? '';
     if (!empty($overridden_domains)) {
       $overridden_domains_list = explode("\r\n", $overridden_domains);
       foreach ($overridden_domains_list as $overridden_domain) {
