@@ -245,7 +245,6 @@ $civictheme-fonts-default: (
 // Base font size.
 $civictheme-font-base-size: 16px !default;
 $civictheme-font-base-line-height: $civictheme-font-base-size !default;
-$civictheme-font-smoothing: true !default;
 $civictheme-typography: () !default;
 $civictheme-typography-default: (
   // Headings.
@@ -310,6 +309,9 @@ $civictheme-typography-default: (
     'm': ($civictheme-font-base-size * 1.5, $civictheme-font-base-size * 2.5, 400, 'primary', -0.35px)
   ),
 );
+
+// Font smoothing.
+$civictheme-font-smoothing-enable: true !default;
 
 //
 // Icon size.
