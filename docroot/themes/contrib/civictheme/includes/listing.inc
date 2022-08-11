@@ -27,6 +27,11 @@ define('CIVICTHEME_LISTINGS_LIMIT_TYPE_UNLIMITED', 'unlimited');
 define('CIVICTHEME_LISTINGS_FULL_FALLBACK_LIMIT', 12);
 
 /**
+ * Defines fallback view name.
+ */
+define('CIVICTHEME_LISTINGS_DEFAULT_VIEW', 'civictheme_listing__block1');
+
+/**
  * Implements template_preprocess_paragraph().
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
@@ -65,8 +70,8 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_listing_element(Paragraph $paragraph, &$variables) {
-  $view_name = 'civictheme_listing';
-  $view_display = 'block1';
+  // Setting up default view name.
+  [$view_name, $view_display] = explode('__', CIVICTHEME_LISTINGS_DEFAULT_VIEW);
   _civictheme_listing_get_view_name($view_name, $view_display, $paragraph);
 
   $view = Views::getView($view_name);
@@ -93,6 +98,9 @@ function _civictheme_listing_element(Paragraph $paragraph, &$variables) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_listing_get_view_name(&$view_name, &$display_id, Paragraph $paragraph) {
+  if ($paragraph->hasField('field_c_p_listing_type') && !$paragraph->get('field_c_p_listing_type')->isEmpty()) {
+    [$view_name, $display_id] = explode('__', $paragraph->get('field_c_p_listing_type')->getString());
+  }
   // Call modules/theme that implement the hook, and let them change the view.
   \Drupal::moduleHandler()->alter('civictheme_listing_view_name', $view_name, $display_id, $paragraph);
   \Drupal::service('theme.manager')->alter('civictheme_listing_view_name', $view_name, $display_id, $paragraph);
