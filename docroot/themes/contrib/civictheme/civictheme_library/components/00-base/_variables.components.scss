@@ -597,8 +597,12 @@ $civictheme-event-card-dark-icon-arrow-color: civictheme-color('secondary') !def
 $civictheme-navigation-card-border-radius: $civictheme-border-radius !default;
 $civictheme-navigation-card-image-width-mobile: auto !default;
 $civictheme-navigation-card-image-height-mobile: 280px !default;
-$civictheme-navigation-card-image-width-desktop: 200px !default;
-$civictheme-navigation-card-image-height-desktop: auto !default;
+$civictheme-navigation-card-image-width-desktop: auto !default;
+$civictheme-navigation-card-image-height-desktop: 200px !default;
+$civictheme-navigation-card-large-image-width-mobile: 160px !default;
+$civictheme-navigation-card-large-image-height-mobile: 280px !default;
+$civictheme-navigation-card-large-image-width-desktop: 200px !default;
+$civictheme-navigation-card-large-image-height-desktop: auto !default;
 $civictheme-navigation-card-light-color: civictheme-color('neutral', 6) !default;
 $civictheme-navigation-card-light-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-navigation-card-light-heading-color: civictheme-color('neutral', 7) !default;
@@ -645,10 +649,14 @@ $civictheme-promo-card-dark-icon-arrow-color: civictheme-color('secondary') !def
 // Card/Publication card.
 //
 $civictheme-publication-card-border-radius: $civictheme-border-radius !default;
-$civictheme-publication-card-image-height-mobile: 180px;
+$civictheme-publication-card-image-height-mobile: 210px !default;
 $civictheme-publication-card-image-width-mobile: auto;
-$civictheme-publication-card-image-height-desktop: auto;
-$civictheme-publication-card-image-width-desktop: 160px;
+$civictheme-publication-card-image-height-desktop: 240px !default;
+$civictheme-publication-card-image-width-desktop: auto;
+$civictheme-publication-card-large-image-height-mobile: 100%;
+$civictheme-publication-card-large-image-width-mobile: 160px !default;
+$civictheme-publication-card-large-image-height-desktop: 100%;
+$civictheme-publication-card-large-image-width-desktop: 160px !default;
 $civictheme-publication-card-light-color: civictheme-color('neutral', 6) !default;
 $civictheme-publication-card-light-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-publication-card-light-heading-color: civictheme-color('neutral', 7) !default;

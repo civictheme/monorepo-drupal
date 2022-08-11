@@ -79,11 +79,10 @@
     flex-direction: column;
 
     #{$root}__image-wrapper {
-      width: $civictheme-publication-card-image-width-mobile;
+      width: 100%;
       height: $civictheme-publication-card-image-height-mobile;
 
       @include civictheme-breakpoint('m') {
-        width: $civictheme-publication-card-image-width-desktop;
         height: $civictheme-publication-card-image-height-desktop;
       }
     }
@@ -95,13 +94,14 @@
     }
 
     #{$root}__image-wrapper {
-      height: $civictheme-publication-card-image-height-mobile;
-      width: $civictheme-publication-card-image-width-mobile;
+      height: $civictheme-publication-card-large-image-height-mobile;
+      width: $civictheme-publication-card-large-image-width-mobile;
 
       @include civictheme-breakpoint(m) {
-        height: $civictheme-publication-card-image-height-desktop;
-        width: $civictheme-publication-card-image-width-desktop;
+        height: $civictheme-publication-card-large-image-height-desktop;
+        width: $civictheme-publication-card-large-image-width-desktop;
         flex-shrink: 0;
+        max-width: 50%;
       }
     }
   }
