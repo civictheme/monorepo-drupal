@@ -12,15 +12,16 @@ Feature: Fields on Page content type
   Scenario: Event content type exists with fields.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/types/manage/civictheme_event/fields"
-    And I should see the text "field_c_n_attachments" in the "Attachments" row
-    And I should see the text "field_c_n_body" in the "Body" row
-    And I should see the text "field_c_n_show_toc" in the "Show Table of Contents" row
-    And I should see the text "field_c_n_date" in the "Event date" row
-    And I should see the text "field_c_n_image" in the "Featured image" row
-    And I should see the text "field_c_n_location" in the "Location" row
-    And I should see the text "field_c_n_more_information" in the "More information" row
-    And I should see the text "field_c_n_tagline" in the "Tagline" row
-    And I should see the text "field_c_n_thumbnail" in the "Thumbnail" row
+    Then I should see the text "Attachments" in the "field_c_n_attachments" row
+    And I should see the text "Body" in the "field_c_n_body" row
+    And I should see the text "Custom Last updated date" in the "field_c_n_custom_last_updated" row
+    And I should see the text "Date" in the "field_c_n_date" row
+    And I should see the text "Location" in the "field_c_n_location" row
+    And I should see the text "how Last updated date" in the "field_c_n_show_last_updated" row
+    And I should see the text "Show Table of Contents" in the "field_c_n_show_toc" row
+    And I should see the text "Summary" in the "field_c_n_summary" row
+    And I should see the text "Thumbnail" in the "field_c_n_thumbnail" row
+    And I should see the text "Topics" in the "field_c_n_topics" row
 
   @api
   Scenario: Event content type page has the relevant fields
