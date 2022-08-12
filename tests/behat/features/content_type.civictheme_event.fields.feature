@@ -1,15 +1,10 @@
 @civictheme @content_type @civictheme_event
-Feature: Fields on Page content type
+Feature: Fields on CivicTheme Event content type
 
-  Ensure that Review fields have been setup correctly.
-
-  Background:
-    Given civictheme_event content:
-      | title                   | status    |
-      | [TEST] Test Event title | published |
+  Ensure that fields have been setup correctly.
 
   @api
-  Scenario: Event content type exists with fields.
+  Scenario: CivicTheme Event content type exists with fields
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/types/manage/civictheme_event/fields"
     Then I should see the text "Attachments" in the "field_c_n_attachments" row
@@ -24,7 +19,7 @@ Feature: Fields on Page content type
     And I should see the text "Topics" in the "field_c_n_topics" row
 
   @api
-  Scenario: Event content type page has the relevant fields
+  Scenario: CivicTheme Event content type form has the relevant fields
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_event"
     Then the response status code should be 200
@@ -34,13 +29,54 @@ Feature: Fields on Page content type
     And should see an "input#edit-title-0-value.required" element
     And should not see an "input#edit-title-0-value[disabled]" element
 
-    And I see field "Tagline"
-    And I see field "field_c_n_body[0][value]"
-    And I see field "field_c_n_show_toc[value]"
-    And I should see an "input[name='field_c_n_location_civictheme_map_add_more']" element
-    And I should see an "input[name='field_c_n_attachments_civictheme_attachment_add_more']" element
-    And I should see an "input[name='field_c_n_thumbnail-media-library-open-button']" element
-    And I should see an "input[name='field_c_n_image-media-library-open-button']" element
-    And I should see an "input[name='field_c_n_more_information_civictheme_promo_add_more']" element
-    And I see field "field_c_n_date[0][value][date]"
-    And I see field "field_c_n_date[0][end_value][date]"
+    And I see field "Summary"
+    And should see a "textarea#edit-field-c-n-summary-0-value" element
+    And should not see a "textarea#edit-field-c-n-summary-0-value.required" element
+    And should not see a "textarea#edit-field-c-n-summary-0-value[disabled]" element
+
+    And I see field "Topics"
+    And should see a "input#edit-field-c-n-topics-0-target-id" element
+    And should not see a "input#edit-field-c-n-topics-0-target-id.required" element
+    And should not see a "input#edit-field-c-n-topics-0-target-id[disabled]" element
+
+    And I should see the text "Thumbnail"
+    And should see a "input#edit-field-c-n-thumbnail-open-button" element
+    And should not see a "input#edit-field-c-n-thumbnail-open-button.required" element
+    And should not see a "input#edit-field-c-n-thumbnail-open-button[disabled]" element
+
+    And I should see the text "Start date"
+    And I should see a "input#edit-field-c-n-date-0-value-date" element
+    And I should not see a "input#edit-field-c-n-date-0-value-date.required" element
+    And I should not see a "input#edit-field-c-n-date-0-value-date.required[disabled]" element
+    And I should see the text "End date"
+    And I should see a "input#edit-field-c-n-date-0-end-value-date" element
+    And I should not see a "input#edit-field-c-n-date-0-end-value-date.required" element
+    And I should not see a "input#edit-field-c-n-date-0-end-value-date.required[disabled]" element
+
+    And I see field "Address"
+    And I should see a "input#edit-field-c-n-location-0-subform-field-c-p-address-0-value" element
+
+    And I see field "Show Table of Contents"
+    And I should see a "input#edit-field-c-n-show-toc-value" element
+    And I should not see a "input#edit-field-c-n-show-toc-value.required" element
+    And I should not see a "input#edit-field-c-n-show-toc-value[disabled]" element
+
+    And I see field "Body"
+    And should see a "textarea#edit-field-c-n-body-0-value" element
+    And should see a "textarea#edit-field-c-n-body-0-value.required" element
+    And should not see a "textarea#edit-field-c-n-body-0-value[disabled]" element
+
+    And I see field "Show Last updated date"
+    And I should see a "input#edit-field-c-n-show-last-updated-value" element
+    And I should not see a "input#edit-field-c-n-show-last-updated-value.required" element
+    And I should not see a "input#edit-field-c-n-show-last-updated-value[disabled]" element
+
+    And I should see the text "Custom Last updated date"
+    And I should see a "input#edit-field-c-n-custom-last-updated-0-value-date" element
+    And I should not see a "input#edit-field-c-n-custom-last-updated-0-value-date.required" element
+    And I should not see a "input#edit-field-c-n-custom-last-updated-0-value-date[disabled]" element
+
+    And I see field "Published"
+    And I should see a "input#edit-status-value" element
+    And I should not see a "input#edit-status-value.required" element
+    And I should not see a "input#edit-status-value[disabled]" element
