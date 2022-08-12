@@ -97,8 +97,8 @@ function _civictheme_listing_element(Paragraph $paragraph, &$variables) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_listing_get_view_name(&$view_name, &$display_id, Paragraph $paragraph) {
-  if ($paragraph->hasField('field_c_p_listing_type') && !$paragraph->get('field_c_p_listing_type')->isEmpty()) {
+function _civictheme_listing_get_view_name(&$view_name, &$display_id, $paragraph) {
+  if ($paragraph && $paragraph->hasField('field_c_p_listing_type') && !$paragraph->get('field_c_p_listing_type')->isEmpty()) {
     [$view_name, $display_id] = explode('__', $paragraph->get('field_c_p_listing_type')->getString());
   }
   // Call modules/theme that implement the hook, and let them change the view.

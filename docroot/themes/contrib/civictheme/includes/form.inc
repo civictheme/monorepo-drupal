@@ -22,11 +22,13 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
 
   $is_page_load = isset($view->civictheme_listing_entity);
   if ($is_page_load) {
-    _civictheme_listing_get_view_name($is_page_load, $view_display, $view->civictheme_listing_entity);
+    _civictheme_listing_get_view_name($civictheme_listing_view_name, $view_display, $view->civictheme_listing_entity);
   }
   else {
     $listing_paragraph = _civictheme_get_listing_paragraph_from_route();
-    _civictheme_listing_get_view_name($listing_paragraph, $view_display, $view->civictheme_listing_entity);
+    if ($listing_paragraph) {
+      _civictheme_listing_get_view_name($civictheme_listing_view_name, $view_display, $listing_paragraph);
+    }
   }
 
   // Apply filters to all views whose name starts with `civictheme_listing` or
