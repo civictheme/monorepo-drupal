@@ -10,10 +10,10 @@ dependencies:
     - taxonomy
     - user
 id: civictheme_listing_examples
-label: 'CivicTheme Example Views'
+label: 'Listing Examples'
 module: views
-description: ''
-tag: ''
+description: 'Example view used as an alternative in the Listing component'
+tag: CivicTheme
 base_table: node_field_data
 base_field: nid
 display:
