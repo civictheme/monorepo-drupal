@@ -65,11 +65,11 @@ Feature: Tests the CivicTheme filtering system within blocks and view pages.
       | field_c_p_view_as              | 0                                          |
       | field_c_p_listing_f_exposed    | 0                                          |
       | field_c_p_hide_count           | 0                                          |
-      | field_c_p_listing_limit        | 0                                          |
+      | field_c_p_listing_limit        | 12                                         |
       | field_c_p_limit_type           | unlimited                                  |
       | field_c_p_listing_multi_select | 1                                          |
       | field_c_p_show_filters         | 1                                          |
-      | field_c_p_show_pager           | 0                                          |
+      | field_c_p_show_pager           | 1                                          |
     When I visit "civictheme_page" "[TEST] Page Listing component"
     And I should see the text "[TEST] Listing component"
     Then I should see the link "View all pages" with "https://example.com" in 'div.civictheme-listing__cta'
