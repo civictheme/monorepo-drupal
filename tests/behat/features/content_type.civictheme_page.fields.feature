@@ -13,20 +13,20 @@ Feature: Fields on Page content type
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/types/manage/civictheme_page/fields"
     Then I should see the text "Banner background" in the "field_c_n_banner_background" row
-    Then I should see the text "Banner components" in the "field_c_n_banner_components" row
-    Then I should see the text "Banner type" in the "field_c_n_banner_type" row
-    Then I should see the text "Hide breadcrumb" in the "field_c_n_banner_hide_breadcrumb" row
-    Then I should see the text "Banner title" in the "field_c_n_banner_title" row
-    Then I should see the text "Banner components" in the "field_c_n_banner_components" row
-    Then I should see the text "Banner components bottom" in the "field_c_n_banner_components_bott" row
-    Then I should see the text "Banner featured image" in the "field_c_n_banner_featured_image" row
-    Then I should see the text "Components" in the "field_c_n_components" row
-    Then I should see the text "Show Table of Contents" in the "field_c_n_show_toc" row
-    Then I should see the text "Summary" in the "field_c_n_summary" row
-    Then I should see the text "Thumbnail" in the "field_c_n_thumbnail" row
-    Then I should see the text "Topics" in the "field_c_n_topics" row
-    Then I should see the text "With space" in the "field_c_n_space" row
-    Then I should see the text "Site section" in the "field_c_n_site_section" row
+    And I should see the text "Banner components bottom" in the "field_c_n_banner_components_bott" row
+    And I should see the text "Banner components" in the "field_c_n_banner_components" row
+    And I should see the text "Banner components" in the "field_c_n_banner_components" row
+    And I should see the text "Banner featured image" in the "field_c_n_banner_featured_image" row
+    And I should see the text "Banner title" in the "field_c_n_banner_title" row
+    And I should see the text "Banner type" in the "field_c_n_banner_type" row
+    And I should see the text "Components" in the "field_c_n_components" row
+    And I should see the text "Hide breadcrumb" in the "field_c_n_banner_hide_breadcrumb" row
+    And I should see the text "Show Table of Contents" in the "field_c_n_show_toc" row
+    And I should see the text "Site section" in the "field_c_n_site_section" row
+    And I should see the text "Summary" in the "field_c_n_summary" row
+    And I should see the text "Thumbnail" in the "field_c_n_thumbnail" row
+    And I should see the text "Topics" in the "field_c_n_topics" row
+    And I should see the text "With space" in the "field_c_n_space" row
 
   @api
   Scenario: Page content type page has the relevant fields
