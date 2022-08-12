@@ -10,7 +10,7 @@ field_name: field_c_n_thumbnail
 entity_type: node
 bundle: civictheme_event
 label: Thumbnail
-description: ''
+description: 'Image to appear in teasers and on cards.'
 required: false
 translatable: false
 default_value: {  }

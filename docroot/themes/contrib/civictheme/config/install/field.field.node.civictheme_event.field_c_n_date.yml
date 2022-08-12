@@ -10,7 +10,7 @@ id: node.civictheme_event.field_c_n_date
 field_name: field_c_n_date
 entity_type: node
 bundle: civictheme_event
-label: 'Event date'
+label: Date
 description: ''
 required: false
 translatable: false

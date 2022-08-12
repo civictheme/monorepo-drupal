@@ -20,8 +20,8 @@ id: node.civictheme_page.field_c_n_banner_components_bott
 field_name: field_c_n_banner_components_bott
 entity_type: node
 bundle: civictheme_page
-label: 'Banner components bottom'
-description: ''
+label: 'Banner bottom components'
+description: 'Components that will appear below banner, but above the page content.'
 required: false
 translatable: false
 default_value: {  }
@@ -98,9 +98,6 @@ settings:
         enabled: false
       civictheme_quick_links:
         weight: -37
-        enabled: false
-      civictheme_search:
-        weight: -33
         enabled: false
       civictheme_service_card:
         weight: -36
