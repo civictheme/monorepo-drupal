@@ -1,7 +1,7 @@
-@civictheme @blocks
-Feature: Tests the CivicTheme demo block
+@civictheme @civictheme_starter_kit
+Feature: Content blocks are provisioned
 
-  Ensure that CivicTheme Demo block are visible.
+  Ensure that CivicTheme content block are visible.
 
   @api
   Scenario: Anonymous user visits homepage

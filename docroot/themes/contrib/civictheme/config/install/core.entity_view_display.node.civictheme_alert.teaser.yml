@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.civictheme_alert.body
     - field.field.node.civictheme_alert.field_c_n_alert_page_visibility
     - field.field.node.civictheme_alert.field_c_n_alert_type
     - field.field.node.civictheme_alert.field_c_n_body
@@ -17,12 +16,11 @@ bundle: civictheme_alert
 mode: teaser
 content:
   links:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
 hidden:
-  body: true
   field_c_n_alert_page_visibility: true
   field_c_n_alert_type: true
   field_c_n_body: true

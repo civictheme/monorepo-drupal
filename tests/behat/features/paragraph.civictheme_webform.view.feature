@@ -5,8 +5,8 @@ Feature: View of Page content with webform component
 
   Background:
     Given "civictheme_page" content:
-      | title                           | status |
-      | [TEST] Page Webform test        | 1      |
+      | title                    | status |
+      | [TEST] Page Webform test | 1      |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with Webform

@@ -246,7 +246,6 @@ config_devel:
     - field.field.media.civictheme_video.field_c_m_transcript
     - field.field.media.civictheme_video.field_c_m_transcript_link
     - field.field.media.civictheme_video.field_c_m_video_file
-    - field.field.node.civictheme_alert.body
     - field.field.node.civictheme_alert.field_c_n_alert_page_visibility
     - field.field.node.civictheme_alert.field_c_n_alert_type
     - field.field.node.civictheme_alert.field_c_n_body
