@@ -574,10 +574,8 @@ config_devel:
     - user.role.civictheme_content_author
     - user.role.civictheme_site_administrator
     - views.view.civictheme_alerts
-    - views.view.civictheme_events
     - views.view.civictheme_listing
     - views.view.civictheme_listing_examples
-    - views.view.civictheme_pages
     - webform.webform.civictheme_enquiry
   optional:
     - core.entity_view_mode.node.teaser
