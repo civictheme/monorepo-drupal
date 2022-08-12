@@ -63,6 +63,14 @@ echo "  optional:" >> "${TMP_FILE}"
 echo "  > Writing config to theme info ${THEME_INFO}"
 sed -i -e '/install:/,/optional:/!b' -e "/optional:/!d;r ${TMP_FILE}" -e 'd' "${THEME_INFO}"
 
+# Remove config files as the command below does not remove files of deleted config.
+theme_dir="$(dirname ${THEME_INFO})"
+theme_config_install_dir="${theme_dir}/config/install"
+theme_config_optional_dir="${theme_dir}/config/optional"
+echo "  > Removing existing theme configs."
+rm "${theme_config_install_dir}"/* > /dev/null
+rm "${theme_config_optional_dir}"/* > /dev/null
+
 echo "  > Exporting theme configs"
 drush -q cde civictheme
 
