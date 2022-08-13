@@ -100,8 +100,9 @@ function _civictheme_form_alter__convert_exposed_form_elements(&$element, $form,
     }
     _civictheme_form_alter__modify_element_callbacks($element);
   }
+
   // Only radio buttons and checkboxes work with filter chips.
-  $filter_key = !$is_large_filter && in_array($element['#type'], [
+  $filter_key = !$is_large_filter && in_array($element['#type'] ?? NULL, [
     'radios',
     'checkboxes',
   ]) ? '#civictheme-basic-filter' : '#civictheme-large-filter';
