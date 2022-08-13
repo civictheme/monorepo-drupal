@@ -9,6 +9,7 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Exception\ElementNotFoundException;
 use DrevOps\BehatSteps\ContentTrait;
+use DrevOps\BehatSteps\DateTrait;
 use DrevOps\BehatSteps\ElementTrait;
 use DrevOps\BehatSteps\FieldTrait;
 use DrevOps\BehatSteps\FileTrait;
@@ -21,6 +22,7 @@ use DrevOps\BehatSteps\ParagraphsTrait;
 use DrevOps\BehatSteps\PathTrait;
 use DrevOps\BehatSteps\SelectTrait;
 use DrevOps\BehatSteps\TaxonomyTrait;
+use DrevOps\BehatSteps\TestmodeTrait;
 use DrevOps\BehatSteps\VisibilityTrait;
 use DrevOps\BehatSteps\WaitTrait;
 use DrevOps\BehatSteps\WatchdogTrait;
@@ -33,6 +35,7 @@ use Drupal\DrupalExtension\Context\DrupalContext;
 class FeatureContext extends DrupalContext {
 
   use ContentTrait;
+  use DateTrait;
   use ElementTrait;
   use FieldTrait;
   use FileTrait;
@@ -45,6 +48,7 @@ class FeatureContext extends DrupalContext {
   use ParagraphsTrait;
   use SelectTrait;
   use TaxonomyTrait;
+  use TestmodeTrait;
   use WatchdogTrait;
   use WaitTrait;
   use WysiwygTrait;
