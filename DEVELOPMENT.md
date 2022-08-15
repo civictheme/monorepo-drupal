@@ -60,22 +60,23 @@ For development:
        cd docroot/themes/custom/civictheme_demo
        npm run build
 
-## Theme configuration export
+## Configuration export
 
 Use shortcut command every time there is a configuration change to validate that
 all new, updated or deleted configuration was captured
 
-    ahoy local export-config
+    ahoy export-config
 
-Configuration is captured into CivicTheme Drupal theme's `config/install` and
-`config/optional` using Config Devel module.
+Configuration is captured using Config Devel module for:
+- development modules into `cs_core` module's `config/install` and `config/optional` directories.
+- theme into CivicTheme Drupal theme's `config/install` and `config/optional` directories.
 
 To add new configuration to the export, add configuration name to `civictheme.info.yml`.
 
 Tip: You can get the configuration name by exporting configuration with `drush cex -y`
 to `config/default` and using file names without `.yml` extension. Do not forget
 to remove all exported configuration files from `config/default` or the next site
-install will fail.
+install will fail. But this all is already handled in `ahoy export-config`.
 
 Note that configuration for blocks in `civictheme` will be copied to `civictheme_demo` on
 installation of `civictheme_demo`. We do not capture configuration for `civictheme_demo`.

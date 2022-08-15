@@ -18,3 +18,11 @@ dependencies:
   - shield:shield
   - stage_file_proxy:stage_file_proxy
   - simple_sitemap:simple_sitemap
+
+config_devel:
+  install:
+    - views.view.civictheme_listing_examples
+  optional:
+    - block.block.civictheme_listing_example_spage_one_filter_single_select_exp
+    - block.block.civictheme_listing_examples_page_multiple_filters_exp
+    - block.block.civictheme_listing_examples_page_one_filter_multi_select_exp
