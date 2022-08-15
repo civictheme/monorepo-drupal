@@ -86,9 +86,6 @@ config_devel:
     - block.block.civictheme_content
     - block.block.civictheme_footer_sitebranding
     - block.block.civictheme_help
-    - block.block.civictheme_listing_example_spage_one_filter_single_select_exp
-    - block.block.civictheme_listing_examples_page_multiple_filters_exp
-    - block.block.civictheme_listing_examples_page_one_filter_multi_select_exp
     - block.block.civictheme_messages
     - block.block.civictheme_primaryadminactions
     - block.block.civictheme_sitebranding
@@ -578,7 +575,6 @@ config_devel:
     - user.role.civictheme_site_administrator
     - views.view.civictheme_alerts
     - views.view.civictheme_listing
-    - views.view.civictheme_listing_examples
     - webform.webform.civictheme_enquiry
   optional:
     - core.entity_view_mode.node.teaser

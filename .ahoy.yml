@@ -189,9 +189,20 @@ commands:
     usage: Run BDD tests.
     cmd: ahoy cli "DREVOPS_TEST_TYPE=bdd DREVOPS_TEST_ARTIFACT_DIR=${DREVOPS_TEST_ARTIFACT_DIR} DREVOPS_TEST_REPORTS_DIR=${DREVOPS_TEST_REPORTS_DIR} DREVOPS_TEST_BEHAT_PROFILE=${DREVOPS_TEST_BEHAT_PROFILE:-} DREVOPS_TEST_BEHAT_FORMAT=${DREVOPS_TEST_BEHAT_FORMAT:-} DREVOPS_TEST_BEHAT_PARALLEL_INDEX=${DREVOPS_TEST_BEHAT_PARALLEL_INDEX:-} BEHAT_SCREENSHOT_PURGE=${BEHAT_SCREENSHOT_PURGE-} ./scripts/drevops/test.sh $@"
 
+  test-bats:
+    usage: Run Bats tests (host only).
+    cmd: bats --tap tests/bats/
+
+
   debug:
     usage: Enable PHP Xdebug.
     cmd: ahoy cli php -v | grep -q Xdebug || XDEBUG_ENABLE=true ahoy up cli php nginx && ahoy cli php -v | grep -q Xdebug && echo "Enabled debug confguration. Use 'ahoy up' to disable."
+
+  export-config:
+    usage: Export theme config.
+    cmd: |
+      ahoy cli "./scripts/update-theme-config.sh"
+      ahoy drush cde cs_core
 
   deploy:
     usage: Run remote deployment procedures.
