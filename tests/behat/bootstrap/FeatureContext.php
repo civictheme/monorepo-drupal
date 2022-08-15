@@ -82,30 +82,6 @@ class FeatureContext extends DrupalContext {
   }
 
   /**
-   * Navigate to delete page with specified type and title.
-   *
-   * @code
-   * When I delete "article" "Test article"
-   * @endcode
-   *
-   * @When I delete :type :title
-   */
-  public function contentDeletePageWithTitle($type, $title) {
-    $nids = $this->contentNodeLoadMultiple($type, [
-      'title' => $title,
-    ]);
-
-    if (empty($nids)) {
-      throw new \RuntimeException(sprintf('Unable to find %s page "%s"', $type, $title));
-    }
-
-    $nid = current($nids);
-    $path = $this->locatePath('/node/' . $nid) . '/delete';
-    print $path;
-    $this->getSession()->visit($path);
-  }
-
-  /**
    * Selects a filter chip.
    *
    * @When I select the filter chip :label
