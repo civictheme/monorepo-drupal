@@ -17552,30 +17552,28 @@
         },
         {
             "name": "drevops/behat-steps",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drevops/behat-steps.git",
-                "reference": "8c74110f200464ce9e193970a03f8e26b879f944"
+                "reference": "1bbb323ba35577ac405e8d57a477048a972223db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drevops/behat-steps/zipball/8c74110f200464ce9e193970a03f8e26b879f944",
-                "reference": "8c74110f200464ce9e193970a03f8e26b879f944",
+                "url": "https://api.github.com/repos/drevops/behat-steps/zipball/1bbb323ba35577ac405e8d57a477048a972223db",
+                "reference": "1bbb323ba35577ac405e8d57a477048a972223db",
                 "shasum": ""
             },
             "require": {
-                "behat/behat": "^3"
+                "behat/behat": "^3",
+                "drupal/drupal-extension": "^4"
             },
             "require-dev": {
-                "cweagans/composer-patches": "^1.6.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-                "drevops/behat-format-progress-fail": "^1",
                 "drevops/behat-screenshot": "^1",
                 "drupal/coder": "^8.3",
-                "drupal/drupal-extension": "^4",
-                "php-parallel-lint/php-parallel-lint": "^1.2",
-                "phpcompatibility/php-compatibility": "^9.0",
+                "php-parallel-lint/php-parallel-lint": "^1.3",
+                "phpcompatibility/php-compatibility": "^9.3",
                 "phpunit/phpunit": "^8.5 || ^9.0"
             },
             "type": "library",
@@ -17597,9 +17595,9 @@
             "description": "Collection of Behat traits",
             "support": {
                 "issues": "https://github.com/drevops/behat-steps/issues",
-                "source": "https://github.com/drevops/behat-steps/tree/1.4.1"
+                "source": "https://github.com/drevops/behat-steps/tree/1.4.2"
             },
-            "time": "2022-05-16T11:48:38+00:00"
+            "time": "2022-08-15T10:16:51+00:00"
         },
         {
             "name": "drupal/coder",

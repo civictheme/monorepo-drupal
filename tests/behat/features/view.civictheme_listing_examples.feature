@@ -37,7 +37,7 @@ Feature: CivicTheme listing renders on views pages with filters
       | [TEST] Page 14 | [relative:-14 minutes] | 1      |                                                |
       | [TEST] Page 15 | [relative:-15 minutes] | 1      |                                                |
 
-  @api @testmode @wip11
+  @api @testmode
   Scenario: Listing example - no filters
     Given I am an anonymous user
     When I go to "civictheme-no-sidebar/listing-no-filter"
