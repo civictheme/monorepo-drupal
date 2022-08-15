@@ -525,7 +525,15 @@ display:
         filters: false
         filter_groups: false
       display_description: ''
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.5'
+              changefreq: ''
+              arguments: {  }
+              max_links: 100
       path: civictheme-no-sidebar/listing-multiple-filters
     cache_metadata:
       max-age: -1
@@ -713,7 +721,15 @@ display:
         filter_groups: false
       display_description: ''
       exposed_block: true
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.5'
+              changefreq: ''
+              arguments: {  }
+              max_links: 100
       path: civictheme-no-sidebar/listing-multiple-filters-exposed-block
     cache_metadata:
       max-age: -1
@@ -736,7 +752,15 @@ display:
       defaults:
         title: false
       display_description: ''
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.5'
+              changefreq: ''
+              arguments: {  }
+              max_links: 100
       path: civictheme-no-sidebar/listing-no-filter
     cache_metadata:
       max-age: -1
@@ -884,7 +908,15 @@ display:
         filters: false
         filter_groups: false
       display_description: ''
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.5'
+              changefreq: ''
+              arguments: {  }
+              max_links: 100
       path: civictheme-no-sidebar/listing-one-filter-multi-select
     cache_metadata:
       max-age: -1
@@ -1034,7 +1066,15 @@ display:
         filter_groups: false
       display_description: ''
       exposed_block: true
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.5'
+              changefreq: ''
+              arguments: {  }
+              max_links: 100
       path: civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block
     cache_metadata:
       max-age: -1
@@ -1183,7 +1223,15 @@ display:
         filters: false
         filter_groups: false
       display_description: ''
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.5'
+              changefreq: ''
+              arguments: {  }
+              max_links: 100
       path: civictheme-no-sidebar/listing-one-filter-single-select
     cache_metadata:
       max-age: -1
@@ -1333,7 +1381,15 @@ display:
         filter_groups: false
       display_description: ''
       exposed_block: true
-      display_extenders: {  }
+      display_extenders:
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.5'
+              changefreq: ''
+              arguments: {  }
+              max_links: 100
       path: civictheme-no-sidebar/listing-one-filter-single-select-exposed-block
     cache_metadata:
       max-age: -1
