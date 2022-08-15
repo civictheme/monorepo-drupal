@@ -5,6 +5,7 @@
  * Post update hooks for core.
  */
 
+use Drupal\Core\Utility\UpdateException;
 use Drupal\redirect\Entity\Redirect;
 use Drupal\user\Entity\User;
 
@@ -61,4 +62,25 @@ function cs_core_post_update_provision_storybook_redirects() {
     $redirect->setStatusCode(301);
     $redirect->save();
   }
+}
+
+/**
+ * Updates Side Navigation block visibility settings.
+ */
+function cs_core_post_update_update_side_navigation_block() {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $blocks = $entity_type_manager->getStorage('block')->loadByProperties([
+    'region' => 'sidebar',
+  ]);
+
+  if (empty($blocks)) {
+    throw new UpdateException('Unable to find Side Navigation block.');
+  }
+
+  $block = reset($blocks);
+  $visibility = $block->get('visibility');
+  $visibility['request_path']['pages'] .= "\n\r/civictheme-no-sidebar/*";
+  $visibility['request_path']['negate'] = TRUE;
+  $block->set('visibility', $visibility);
+  $block->save();
 }
