@@ -32,3 +32,12 @@ Feature: XML Sitemap
 
     And the response should not contain "http://example.com/alerts/test-published-alert"
     And the response should not contain "http://example.com/alerts/test-draft-alert"
+
+    # Assert that views' paths are present.
+    And the response should contain "http://example.com/civictheme-no-sidebar/listing-no-filter"
+    And the response should contain "http://example.com/civictheme-no-sidebar/listing-one-filter-single-select"
+    And the response should contain "http://example.com/civictheme-no-sidebar/listing-one-filter-single-select-exposed-block"
+    And the response should contain "http://example.com/civictheme-no-sidebar/listing-one-filter-multi-select"
+    And the response should contain "http://example.com/civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block"
+    And the response should contain "http://example.com/civictheme-no-sidebar/listing-multiple-filters"
+    And the response should contain "http://example.com/civictheme-no-sidebar/listing-multiple-filters-exposed-block"
