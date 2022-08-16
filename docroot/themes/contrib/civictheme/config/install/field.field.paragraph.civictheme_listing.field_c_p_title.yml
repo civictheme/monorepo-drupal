@@ -9,7 +9,7 @@ field_name: field_c_p_title
 entity_type: paragraph
 bundle: civictheme_listing
 label: Title
-description: ''
+description: 'Title appears above the listing.'
 required: false
 translatable: true
 default_value: {  }

@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_c_p_listing_multi_select
+    - field.storage.paragraph.field_c_p_listing_show_filters
     - paragraphs.paragraphs_type.civictheme_listing
-id: paragraph.civictheme_listing.field_c_p_listing_multi_select
-field_name: field_c_p_listing_multi_select
+id: paragraph.civictheme_listing.field_c_p_listing_show_filters
+field_name: field_c_p_listing_show_filters
 entity_type: paragraph
 bundle: civictheme_listing
-label: 'Multi select'
+label: 'Show filters'
 description: ''
 required: false
 translatable: false

@@ -4,16 +4,22 @@ dependencies:
   module:
     - options
     - paragraphs
-id: paragraph.field_c_p_listing_f_exposed
-field_name: field_c_p_listing_f_exposed
+id: paragraph.field_c_p_listing_content_type
+field_name: field_c_p_listing_content_type
 entity_type: paragraph
 type: list_string
 settings:
-  allowed_values: {  }
+  allowed_values:
+    -
+      value: civictheme_page
+      label: Page
+    -
+      value: civictheme_event
+      label: Event
   allowed_values_function: ''
 module: options
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

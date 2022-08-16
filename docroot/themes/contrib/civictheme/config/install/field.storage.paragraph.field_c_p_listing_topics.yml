@@ -2,16 +2,17 @@ langcode: en
 status: true
 dependencies:
   module:
-    - link
     - paragraphs
-id: paragraph.field_c_p_read_more
-field_name: field_c_p_read_more
+    - taxonomy
+id: paragraph.field_c_p_listing_topics
+field_name: field_c_p_listing_topics
 entity_type: paragraph
-type: link
-settings: {  }
-module: link
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false
