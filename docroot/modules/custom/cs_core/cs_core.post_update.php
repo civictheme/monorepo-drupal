@@ -86,3 +86,13 @@ function cs_core_post_update_update_side_navigation_block() {
   ]);
   $block->save();
 }
+
+/**
+ * Updates Testmode module settings.
+ */
+function cs_core_post_update_update_testmode_settings() {
+  $config = \Drupal::service('config.factory')->getEditable('testmode.settings');
+  $views_list = $config->get('views_node', []);
+  $views_list[] = 'civictheme_listing_examples';
+  $config->set('views_node', $views_list)->save();
+}
