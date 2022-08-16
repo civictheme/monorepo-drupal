@@ -161,3 +161,4 @@ webform.settings
 webform.webform.contact
 webform.webform_options*
 workflows.workflow.editorial
+simple_sitemap.types.*

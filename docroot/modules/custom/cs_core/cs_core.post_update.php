@@ -96,3 +96,25 @@ function cs_core_post_update_update_testmode_settings() {
   $views_list[] = 'civictheme_listing_examples';
   $config->set('views_node', $views_list)->save();
 }
+
+/**
+ * Updates Simple Sitemap configuration to include views.
+ */
+function cs_core_post_update_update_simplesitemap() {
+  $config_factory = \Drupal::service('config.factory');
+
+  $config_factory
+    ->getEditable('simple_sitemap.types.default_hreflang')
+    ->setData([
+      'label' => 'Default hreflang',
+      'description' => 'The default hreflang sitemap type.',
+      'sitemap_generator' => 'default',
+      'url_generators' => [
+        'custom',
+        'entity',
+        'entity_menu_link_content',
+        'arbitrary',
+        'views',
+      ],
+    ])->save();
+}
