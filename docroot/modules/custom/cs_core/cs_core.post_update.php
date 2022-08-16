@@ -78,9 +78,11 @@ function cs_core_post_update_update_side_navigation_block() {
   }
 
   $block = reset($blocks);
-  $visibility = $block->get('visibility');
-  $visibility['request_path']['pages'] .= "\n\r/civictheme-no-sidebar/*";
-  $visibility['request_path']['negate'] = TRUE;
-  $block->set('visibility', $visibility);
+
+  $block->setVisibilityConfig('request_path', [
+    'id' => 'request_path',
+    'negate' => TRUE,
+    'pages' => "\n\r/civictheme-no-sidebar/*",
+  ]);
   $block->save();
 }
