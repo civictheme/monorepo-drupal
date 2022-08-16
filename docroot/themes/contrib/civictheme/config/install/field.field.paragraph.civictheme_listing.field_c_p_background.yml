@@ -9,7 +9,7 @@ field_name: field_c_p_background
 entity_type: paragraph
 bundle: civictheme_listing
 label: Background
-description: 'Apply a themed background color and provide horizontal spacing to the component'
+description: 'Apply a themed background colour and provide horizontal spacing to the component.'
 required: false
 translatable: true
 default_value:

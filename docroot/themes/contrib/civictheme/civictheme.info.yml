@@ -331,20 +331,20 @@ config_devel:
     - field.field.paragraph.civictheme_iframe.field_c_p_url
     - field.field.paragraph.civictheme_iframe.field_c_p_width
     - field.field.paragraph.civictheme_listing.field_c_p_background
-    - field.field.paragraph.civictheme_listing.field_c_p_card_theme
-    - field.field.paragraph.civictheme_listing.field_c_p_content_type
-    - field.field.paragraph.civictheme_listing.field_c_p_limit_type
-    - field.field.paragraph.civictheme_listing.field_c_p_link
-    - field.field.paragraph.civictheme_listing.field_c_p_listing_f_exposed
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_content_type
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_filters_exp
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_item_theme
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_item_view_as
     - field.field.paragraph.civictheme_listing.field_c_p_listing_limit
-    - field.field.paragraph.civictheme_listing.field_c_p_listing_multi_select
-    - field.field.paragraph.civictheme_listing.field_c_p_read_more
-    - field.field.paragraph.civictheme_listing.field_c_p_show_filters
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_limit_type
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_link_above
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_link_below
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_show_filters
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_site_sections
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_topics
     - field.field.paragraph.civictheme_listing.field_c_p_space
     - field.field.paragraph.civictheme_listing.field_c_p_theme
     - field.field.paragraph.civictheme_listing.field_c_p_title
-    - field.field.paragraph.civictheme_listing.field_c_p_topics
-    - field.field.paragraph.civictheme_listing.field_c_p_view_as
     - field.field.paragraph.civictheme_map.field_c_p_address
     - field.field.paragraph.civictheme_map.field_c_p_background
     - field.field.paragraph.civictheme_map.field_c_p_embed_url
@@ -473,11 +473,9 @@ config_devel:
     - field.storage.paragraph.field_c_p_attachments
     - field.storage.paragraph.field_c_p_attributes
     - field.storage.paragraph.field_c_p_background
-    - field.storage.paragraph.field_c_p_card_theme
     - field.storage.paragraph.field_c_p_cards
     - field.storage.paragraph.field_c_p_column_count
     - field.storage.paragraph.field_c_p_content
-    - field.storage.paragraph.field_c_p_content_type
     - field.storage.paragraph.field_c_p_date
     - field.storage.paragraph.field_c_p_default_panel
     - field.storage.paragraph.field_c_p_description
@@ -491,18 +489,23 @@ config_devel:
     - field.storage.paragraph.field_c_p_icon
     - field.storage.paragraph.field_c_p_image
     - field.storage.paragraph.field_c_p_image_position
-    - field.storage.paragraph.field_c_p_limit_type
     - field.storage.paragraph.field_c_p_link
     - field.storage.paragraph.field_c_p_links
-    - field.storage.paragraph.field_c_p_listing_f_exposed
+    - field.storage.paragraph.field_c_p_listing_content_type
+    - field.storage.paragraph.field_c_p_listing_filters_exp
+    - field.storage.paragraph.field_c_p_listing_item_theme
+    - field.storage.paragraph.field_c_p_listing_item_view_as
     - field.storage.paragraph.field_c_p_listing_limit
-    - field.storage.paragraph.field_c_p_listing_multi_select
+    - field.storage.paragraph.field_c_p_listing_limit_type
+    - field.storage.paragraph.field_c_p_listing_link_above
+    - field.storage.paragraph.field_c_p_listing_link_below
+    - field.storage.paragraph.field_c_p_listing_show_filters
+    - field.storage.paragraph.field_c_p_listing_site_sections
+    - field.storage.paragraph.field_c_p_listing_topics
     - field.storage.paragraph.field_c_p_location
     - field.storage.paragraph.field_c_p_panels
-    - field.storage.paragraph.field_c_p_read_more
     - field.storage.paragraph.field_c_p_reference
     - field.storage.paragraph.field_c_p_share_link
-    - field.storage.paragraph.field_c_p_show_filters
     - field.storage.paragraph.field_c_p_size
     - field.storage.paragraph.field_c_p_slides
     - field.storage.paragraph.field_c_p_space
@@ -512,7 +515,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_topic
     - field.storage.paragraph.field_c_p_topics
     - field.storage.paragraph.field_c_p_url
-    - field.storage.paragraph.field_c_p_view_as
     - field.storage.paragraph.field_c_p_view_link
     - field.storage.paragraph.field_c_p_webform
     - field.storage.paragraph.field_c_p_width

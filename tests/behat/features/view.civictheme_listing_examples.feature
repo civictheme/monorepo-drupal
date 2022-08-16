@@ -14,7 +14,8 @@ Feature: CivicTheme listing renders on views pages with filters
       | [TEST] Topic 2 |
       | [TEST] Topic 3 |
       | [TEST] Topic 4 |
-    Given "civictheme_page" content:
+
+    And "civictheme_page" content:
       | title          | created                | status | field_c_n_topics                               |
       | [TEST] Page 1  | [relative:-1 minutes]  | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 |
       | [TEST] Page 2  | [relative:-2 minutes]  | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 |
@@ -162,8 +163,8 @@ Feature: CivicTheme listing renders on views pages with filters
     And I should not see the text "[TEST] Page 15"
 
     Examples:
-      | path                                                                 |
-      | civictheme-no-sidebar/listing-one-filter-multi-select                |
-      | civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block  |
-      | civictheme-no-sidebar/listing-multiple-filters                       |
-      | civictheme-no-sidebar/listing-multiple-filters-exposed-block         |
+      | path                                                                |
+      | civictheme-no-sidebar/listing-one-filter-multi-select               |
+      | civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block |
+      | civictheme-no-sidebar/listing-multiple-filters                      |
+      | civictheme-no-sidebar/listing-multiple-filters-exposed-block        |

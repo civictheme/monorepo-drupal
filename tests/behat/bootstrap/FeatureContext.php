@@ -202,4 +202,16 @@ class FeatureContext extends DrupalContext {
     $this->paragraphsAttachFromStubToEntity($entity, $paragraph_node_field_name, $paragraph_type, $stub);
   }
 
+  /**
+   * Scroll to an element with ID.
+   *
+   * @Then /^I scroll to an? element with id "([^"]*)"$/
+   */
+  public function iScrollToElementWithId($id) {
+    $this->getSession()->executeScript("
+      var element = document.getElementById('" . $id . "');
+      element.scrollIntoView( true );
+    ");
+  }
+
 }
