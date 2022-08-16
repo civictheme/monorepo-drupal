@@ -7,9 +7,9 @@ dependencies:
     - system
     - views
   theme:
-    - civictheme_demo
+    - civictheme
 id: civictheme_listing_examples_page_multiple_filters_exp
-theme: civictheme_demo
+theme: civictheme
 region: content
 weight: -9
 provider: null
