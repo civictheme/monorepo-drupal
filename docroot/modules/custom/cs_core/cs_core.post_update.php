@@ -101,20 +101,19 @@ function cs_core_post_update_update_testmode_settings() {
  * Updates Simple Sitemap configuration to include views.
  */
 function cs_core_post_update_update_simplesitemap() {
-  $config_factory = \Drupal::service('config.factory');
+  /** @var \Drupal\simple_sitemap\Entity\SimpleSitemapTypeStorage $type_storage */
+  $type_storage = \Drupal::entityTypeManager()->getStorage('simple_sitemap_type');
+  $type = $type_storage->load('default_hreflang');
 
-  $config_factory
-    ->getEditable('simple_sitemap.types.default_hreflang')
-    ->setData([
-      'label' => 'Default hreflang',
-      'description' => 'The default hreflang sitemap type.',
-      'sitemap_generator' => 'default',
-      'url_generators' => [
-        'custom',
-        'entity',
-        'entity_menu_link_content',
-        'arbitrary',
-        'views',
-      ],
-    ])->save();
+  if ($type) {
+    $type->url_generators = [
+      'custom',
+      'entity',
+      'entity_menu_link_content',
+      'arbitrary',
+      'views',
+    ];
+
+    $type->save();
+  }
 }
