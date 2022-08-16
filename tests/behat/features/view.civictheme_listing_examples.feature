@@ -1,4 +1,4 @@
-@civictheme @development
+@civictheme @civictheme_listing
 Feature: CivicTheme listing renders on views pages with filters
 
   Ensure that CivicTheme listing component can be used on the views

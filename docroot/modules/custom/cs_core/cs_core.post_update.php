@@ -5,6 +5,7 @@
  * Post update hooks for core.
  */
 
+use Drupal\block\Entity\Block;
 use Drupal\Core\Utility\UpdateException;
 use Drupal\redirect\Entity\Redirect;
 use Drupal\user\Entity\User;
@@ -115,5 +116,28 @@ function cs_core_post_update_update_simplesitemap() {
     ];
 
     $type->save();
+  }
+}
+
+/**
+ * Places Listing example view blocks the current theme's regions.
+ */
+function cs_core_post_update_place_listing_example_blocks_into_regions() {
+  $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
+  if ($theme_name == 'civictheme') {
+    return 'Skipping update for the CivicTheme as blocks already exist.';
+  }
+
+  $block_ids = [
+    'civictheme_listing_example_spage_one_filter_single_select_exp',
+    'civictheme_listing_examples_page_multiple_filters_exp',
+    'civictheme_listing_examples_page_one_filter_multi_select_exp',
+  ];
+
+  foreach ($block_ids as $block_id) {
+    $parent_block = Block::load($block_id);
+    $new_id = str_replace('civictheme', $theme_name, $parent_block->get('id'));
+    $child_block = $parent_block->createDuplicateBlock($new_id, $theme_name);
+    $child_block->save();
   }
 }
