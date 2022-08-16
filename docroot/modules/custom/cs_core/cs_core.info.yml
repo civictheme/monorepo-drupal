@@ -19,6 +19,7 @@ dependencies:
   - stage_file_proxy:stage_file_proxy
   - simple_sitemap:simple_sitemap
   - simple_sitemap:simple_sitemap_views
+  - testmode:testmode
 
 config_devel:
   install:
