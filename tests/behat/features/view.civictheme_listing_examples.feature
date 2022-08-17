@@ -111,6 +111,7 @@ Feature: CivicTheme listing renders on views pages with filters
     Given I am an anonymous user
     When I go to "<path>"
     Then the response status code should be 200
+    And save screenshot
 
     When I select the radio button "[TEST] Topic 1"
     And I press "Apply"
