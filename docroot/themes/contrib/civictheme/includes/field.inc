@@ -11,12 +11,6 @@ use Drupal\Core\Render\Element;
  * Add post-processing for all WYSIWYG fields.
  */
 function _civictheme_preprocess_wysiwyg_field(&$variables) {
-  $wysiwyg_field_list = [
-    'body',
-    'field_c_m_transcript',
-    'field_c_n_body',
-    'field_c_p_content',
-  ];
   if (isset($variables['field_name'])) {
     if (civictheme_field_is_wysiwyg($variables['field_name'])) {
       foreach (Element::children($variables['items']) as $item) {
