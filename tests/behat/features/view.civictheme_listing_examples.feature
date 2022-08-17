@@ -33,7 +33,7 @@ Feature: CivicTheme listing renders on views pages with filters
       | [TEST] Page 14 | [relative:-14 minutes] | 1      |                                                |
       | [TEST] Page 15 | [relative:-15 minutes] | 1      |                                                |
 
-  @api @testmode
+  @api
   Scenario: Listing example - no filters
     Given I am an anonymous user
     When I go to "civictheme-no-sidebar/listing-no-filter"
@@ -64,7 +64,7 @@ Feature: CivicTheme listing renders on views pages with filters
     # Pager should be visible.
     And I should see a ".civictheme-pager" element
 
-  @api @testmode
+  @api
   Scenario Outline: Listing example - Filters
     Given I am an anonymous user
     When I go to "<path>"
@@ -106,7 +106,7 @@ Feature: CivicTheme listing renders on views pages with filters
       | civictheme-no-sidebar/listing-multiple-filters                       | .civictheme-large-filter |
       | civictheme-no-sidebar/listing-multiple-filters-exposed-block         | .civictheme-large-filter |
 
-  @api @testmode
+  @api
   Scenario Outline: Listing example - One filter - Single
     Given I am an anonymous user
     When I go to "<path>"
@@ -136,7 +136,7 @@ Feature: CivicTheme listing renders on views pages with filters
       | civictheme-no-sidebar/listing-one-filter-single-select               |
       | civictheme-no-sidebar/listing-one-filter-single-select-exposed-block |
 
-  @api @testmode
+  @api
   Scenario Outline: Listing example - One filter - Multi and Multiple filters
     Given I am an anonymous user
     When I go to "<path>"

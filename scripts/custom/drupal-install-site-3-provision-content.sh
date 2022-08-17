@@ -38,8 +38,8 @@ $drush ${DRUSH_ALIAS} -y pm-enable civictheme_content
 echo "  > Enable helper module."
 $drush ${DRUSH_ALIAS} -y pm-enable cs_core
 
-echo "  > Generate test content."
-GENERATED_CONTENT_CREATE=1 $drush ${DRUSH_ALIAS} -y pm-enable cs_generated_content
+# echo "  > Generate test content."
+# GENERATED_CONTENT_CREATE=1 $drush ${DRUSH_ALIAS} -y pm-enable cs_generated_content
 
 echo "  > Generate sitemap."
 $drush ${DRUSH_ALIAS} simple-sitemap:generate
