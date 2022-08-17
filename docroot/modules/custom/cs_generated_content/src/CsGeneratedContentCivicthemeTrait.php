@@ -180,6 +180,38 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
+   * Static Topics.
+   */
+  public static function civicthemeStaticTopics($count = NULL) {
+    return static::staticTerms('civictheme_topics', $count);
+  }
+
+  /**
+   * Static Topic.
+   */
+  public static function civicthemeStaticTopic() {
+    $entities = static::civicthemeStaticTopics(1);
+
+    return count($entities) > 0 ? reset($entities) : NULL;
+  }
+
+  /**
+   * Static Site sections.
+   */
+  public static function civicthemeStaticSiteSections($count = NULL) {
+    return static::staticTerms('civictheme_site_sections', $count);
+  }
+
+  /**
+   * Static Site section.
+   */
+  public static function civicthemeStaticSiteSection() {
+    $entities = static::civicthemeStaticSiteSections(1);
+
+    return count($entities) > 0 ? reset($entities) : NULL;
+  }
+
+  /**
    * Generic component attach helper.
    */
   public static function civicthemeComponentAttach($node, $field_name, $type, $options) {
