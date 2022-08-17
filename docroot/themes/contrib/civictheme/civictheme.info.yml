@@ -246,19 +246,18 @@ config_devel:
     - field.field.media.civictheme_video.field_c_m_transcript
     - field.field.media.civictheme_video.field_c_m_transcript_link
     - field.field.media.civictheme_video.field_c_m_video_file
-    - field.field.node.civictheme_alert.body
     - field.field.node.civictheme_alert.field_c_n_alert_page_visibility
     - field.field.node.civictheme_alert.field_c_n_alert_type
     - field.field.node.civictheme_alert.field_c_n_body
     - field.field.node.civictheme_alert.field_c_n_date_range
     - field.field.node.civictheme_event.field_c_n_attachments
     - field.field.node.civictheme_event.field_c_n_body
+    - field.field.node.civictheme_event.field_c_n_custom_last_updated
     - field.field.node.civictheme_event.field_c_n_date
-    - field.field.node.civictheme_event.field_c_n_image
     - field.field.node.civictheme_event.field_c_n_location
-    - field.field.node.civictheme_event.field_c_n_more_information
+    - field.field.node.civictheme_event.field_c_n_show_last_updated
     - field.field.node.civictheme_event.field_c_n_show_toc
-    - field.field.node.civictheme_event.field_c_n_tagline
+    - field.field.node.civictheme_event.field_c_n_summary
     - field.field.node.civictheme_event.field_c_n_thumbnail
     - field.field.node.civictheme_event.field_c_n_topics
     - field.field.node.civictheme_page.field_c_n_banner_background
@@ -462,15 +461,12 @@ config_devel:
     - field.storage.node.field_c_n_date
     - field.storage.node.field_c_n_date_range
     - field.storage.node.field_c_n_hide_sidebar
-    - field.storage.node.field_c_n_image
     - field.storage.node.field_c_n_location
-    - field.storage.node.field_c_n_more_information
     - field.storage.node.field_c_n_show_last_updated
     - field.storage.node.field_c_n_show_toc
     - field.storage.node.field_c_n_site_section
     - field.storage.node.field_c_n_space
     - field.storage.node.field_c_n_summary
-    - field.storage.node.field_c_n_tagline
     - field.storage.node.field_c_n_thumbnail
     - field.storage.node.field_c_n_topics
     - field.storage.paragraph.field_c_p_address

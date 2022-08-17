@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_topics
     - node.type.civictheme_page
   module:
+    - content_moderation
     - datetime
     - field_group
     - media_library
@@ -66,8 +67,8 @@ third_party_settings:
         required_fields: true
     group_civictheme_content:
       children:
-        - field_c_n_components
         - field_c_n_show_toc
+        - field_c_n_components
       label: Content
       region: content
       parent_name: group_civictheme_tabs
@@ -83,13 +84,11 @@ third_party_settings:
       children:
         - title
         - field_c_n_summary
+        - field_c_n_site_section
         - field_c_n_topics
         - field_c_n_thumbnail
         - field_c_n_space
         - field_c_n_hide_sidebar
-        - field_c_n_show_last_updated
-        - field_c_n_custom_last_updated
-        - field_c_n_site_section
       label: General
       region: content
       parent_name: group_civictheme_tabs
@@ -101,6 +100,23 @@ third_party_settings:
         formatter: closed
         description: ''
         required_fields: true
+    group_last_updated_date:
+      children:
+        - field_c_n_show_last_updated
+        - field_c_n_custom_last_updated
+      label: 'Last updated date'
+      region: content
+      parent_name: ''
+      weight: 2
+      format_type: details_sidebar
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
+        weight: 0
 id: node.civictheme_page.default
 targetEntityType: node
 bundle: civictheme_page
@@ -108,7 +124,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -193,7 +209,7 @@ content:
     third_party_settings: {  }
   field_c_n_components:
     type: paragraphs
-    weight: 52
+    weight: 54
     region: content
     settings:
       title: Paragraph
@@ -212,20 +228,20 @@ content:
     third_party_settings: {  }
   field_c_n_custom_last_updated:
     type: datetime_default
-    weight: 9
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   field_c_n_hide_sidebar:
     type: boolean_checkbox
-    weight: 7
+    weight: 8
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_c_n_show_last_updated:
     type: boolean_checkbox
-    weight: 8
+    weight: 9
     region: content
     settings:
       display_label: true
@@ -239,13 +255,13 @@ content:
     third_party_settings: {  }
   field_c_n_site_section:
     type: options_select
-    weight: 10
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   field_c_n_space:
     type: options_select
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -259,14 +275,14 @@ content:
     third_party_settings: {  }
   field_c_n_thumbnail:
     type: media_library_widget
-    weight: 5
+    weight: 6
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_c_n_topics:
     type: entity_reference_autocomplete
-    weight: 4
+    weight: 5
     region: content
     settings:
       match_operator: CONTAINS
@@ -282,32 +298,32 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 4
+    weight: 5
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   simple_sitemap:
-    weight: 9
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 7
+    weight: 8
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 5
+    weight: 6
     region: content
     settings:
       display_label: true
@@ -322,7 +338,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS
@@ -331,7 +347,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }

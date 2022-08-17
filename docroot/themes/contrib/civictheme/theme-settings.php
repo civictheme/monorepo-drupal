@@ -159,7 +159,7 @@ function _civictheme_form_system_theme_settings_content_provision(&$form, &$form
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_form_system_theme_settings_storybook(&$form) {
-  $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
+  $theme_name = \Drupal::service('theme.manager')->getActiveTheme()->getName();
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
   // Show compiled Storybook.

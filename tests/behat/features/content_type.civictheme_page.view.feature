@@ -290,9 +290,9 @@ Feature: View of Page content type
   Scenario: CivicTheme page content type page breadcrumb theme can be overridden
     Given I am an anonymous user
     And "civictheme_page" content:
-      | title                             | status | field_c_n_banner_theme |
-      | [TEST] Page breadcrumb light      | 1      | light                  |
-      | [TEST] Page breadcrumb dark       | 1      | dark                   |
+      | title                        | status | field_c_n_banner_theme |
+      | [TEST] Page breadcrumb light | 1      | light                  |
+      | [TEST] Page breadcrumb dark  | 1      | dark                   |
 
     When I visit "civictheme_page" "[TEST] Page breadcrumb light"
     And I should see the text "[TEST] Page breadcrumb light"
@@ -307,10 +307,10 @@ Feature: View of Page content type
   Scenario: CivicTheme page content type page can configure Last updated date display
     Given I am an anonymous user
     And "civictheme_page" content:
-      | title                                       | status | field_c_n_show_last_updated | field_c_n_custom_last_updated |
-      | [TEST] Page with date                       | 1      | 1                           | 2022-07-01                    |
-      | [TEST] Page with last updated date checked  | 1      | 1                           |                               |
-      | [TEST] Page without date                    | 1      | 0                           | 2022-07-14                    |
+      | title                                      | status | field_c_n_show_last_updated | field_c_n_custom_last_updated |
+      | [TEST] Page with date                      | 1      | 1                           | 2022-07-01                    |
+      | [TEST] Page with last updated date checked | 1      | 1                           |                               |
+      | [TEST] Page without date                   | 1      | 0                           | 2022-07-14                    |
 
     When I visit "civictheme_page" "[TEST] Page with date"
     And I should see the text "[TEST] Page with date"
@@ -357,9 +357,9 @@ Feature: View of Page content type
   Scenario: CivicTheme page content type page can override banner title.
     Given I am an anonymous user
     And "civictheme_page" content:
-      | title                            | status | field_c_n_banner_title           |
-      | [TEST] Page with Banner title    | 1      | [OVERRIDE] Banner title          |
-      | [TEST] Page without Banner title | 1      |                                  |
+      | title                            | status | field_c_n_banner_title  |
+      | [TEST] Page with Banner title    | 1      | [OVERRIDE] Banner title |
+      | [TEST] Page without Banner title | 1      |                         |
 
     When I visit "civictheme_page" "[TEST] Page with Banner title"
     Then I should not see "[TEST] Page with Banner title" in the "div.civictheme-banner__title" element
