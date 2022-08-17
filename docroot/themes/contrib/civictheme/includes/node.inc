@@ -84,7 +84,7 @@ function _civictheme_preprocess_node__civictheme_alert__full(&$variables) {
   $node = $variables['node'];
   $variables['id'] = $node->id();
   $variables['title'] = $node->label();
-  $variables['description'] = $node->get('field_c_n_body')->value;
+  $variables['description'] = civictheme_get_field_value($node, 'field_c_n_body', TRUE);
   $variables['type'] = civictheme_get_field_value($node, 'field_c_n_alert_type');
 }
 

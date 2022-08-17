@@ -338,6 +338,10 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
       \Drupal::logger('civic_theme')->warning('civictheme_get_field_value has encountered an unknown field type "@field_type"', ['@field_type' => $field_type]);
       $value = NULL;
   }
+  // Post processing for all WYSIWYG fields.
+  if ($value && civictheme_field_is_wysiwyg($field_name) && $only_first) {
+    $value = civictheme_process_link_attributes($value);
+  }
 
   return $value;
 }
@@ -502,4 +506,24 @@ function civictheme_process_link_attributes(string $string) {
     }
   }
   return $string;
+}
+
+/**
+ * Check if the provided field is wysiwyg.
+ *
+ * @param string $field_name
+ *   Field name to check.
+ *
+ * @return bool
+ *   TRUE if the field is wysiwyg, FALSE otherwise.
+ */
+function civictheme_field_is_wysiwyg(string $field_name) {
+  $wysiwyg_field_list = [
+    'field_c_n_body',
+    'field_c_p_content',
+  ];
+  if (in_array($field_name, $wysiwyg_field_list)) {
+    return TRUE;
+  }
+  return FALSE;
 }

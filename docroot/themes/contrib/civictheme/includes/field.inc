@@ -18,10 +18,10 @@ function _civictheme_preprocess_wysiwyg_field(&$variables) {
     'field_c_p_content',
   ];
   if (isset($variables['field_name'])) {
-    if (in_array($variables['field_name'], $wysiwyg_field_list)) {
+    if (civictheme_field_is_wysiwyg($variables['field_name'])) {
       foreach (Element::children($variables['items']) as $item) {
         if (!empty($variables['items'][$item]['content']['#text'])) {
-          $variables['items'][$item]['#markup'] = civictheme_process_link_attributes($variables['items'][$item]['content']['#text']);
+          $variables['items'][$item]['content']['#text'] = civictheme_process_link_attributes($variables['items'][$item]['content']['#text']);
         }
       }
     }
