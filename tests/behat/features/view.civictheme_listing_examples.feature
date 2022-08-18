@@ -33,6 +33,11 @@ Feature: CivicTheme listing renders on views pages with filters
       | [TEST] Page 14 | [relative:-14 minutes] | 1      |                                                |
       | [TEST] Page 15 | [relative:-15 minutes] | 1      |                                                |
 
+    # @todo Exposed filter blocks do not reset caches when terms are added.
+    # Remove cache clear below once cache invalidation is added to core or CivicTheme.
+    # @see https://www.drupal.org/project/drupal/issues/2900248
+    And the cache has been cleared
+
   @api @testmode
   Scenario: Listing example - no filters
     Given I am an anonymous user
