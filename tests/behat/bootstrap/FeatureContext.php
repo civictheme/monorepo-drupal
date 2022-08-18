@@ -86,7 +86,7 @@ class FeatureContext extends DrupalContext {
    *
    * @When I select the filter chip :label
    */
-  public function assertSelectFilterChip($label) {
+  public function iSelectFilterChip($label) {
     $element = $this->getSession()->getPage();
     $filter_chip = $element->find('named', [
       'radio',
