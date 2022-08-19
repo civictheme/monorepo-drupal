@@ -32,7 +32,23 @@ class CivicThemeIsExternalLinkUnitTest extends CivicThemeUnitTestBase {
       // Link without domain.
       [
         '/about-us',
-        'http://test.com',
+        'test.com',
+        [],
+        FALSE,
+      ],
+      [
+        '/about-us',
+        'test.com',
+        [
+          'overridden.com',
+          'overriddendomain.com',
+        ],
+        FALSE,
+      ],
+      // Link same as host.
+      [
+        'http://test.com/about-us',
+        'test.com',
         [
           'overridden.com',
           'overriddendomain.com',
@@ -42,7 +58,7 @@ class CivicThemeIsExternalLinkUnitTest extends CivicThemeUnitTestBase {
       // Link with an overridden domain.
       [
         'http://overridden.com',
-        'http://test.com',
+        'test.com',
         [
           'overridden.com',
           'overriddendomain.com',
@@ -52,7 +68,7 @@ class CivicThemeIsExternalLinkUnitTest extends CivicThemeUnitTestBase {
       // Link with an wildcard overridden domain.
       [
         'http://overriddendomain.com/about-us',
-        'http://test.com',
+        'test.com',
         [
           'overridden.com',
           'overriddendomain.com/*',
@@ -61,7 +77,7 @@ class CivicThemeIsExternalLinkUnitTest extends CivicThemeUnitTestBase {
       ],
       [
         'http://overriddendomain.com/about-us',
-        'http://test.com',
+        'test.com',
         [
           'overridden.com',
           'overriddendomain.com/test/*',
@@ -70,17 +86,36 @@ class CivicThemeIsExternalLinkUnitTest extends CivicThemeUnitTestBase {
       ],
       [
         'http://overriddendomain.com/test/about-us',
-        'http://test.com',
+        'test.com',
         [
           'overridden.com',
           'overriddendomain.com/test/*',
         ],
         TRUE,
       ],
+      [
+        'http://overriddendomain.com/test/abc/about-us',
+        'test.com',
+        [
+          'overridden.com',
+          'overriddendomain.com/test/abc/*',
+        ],
+        TRUE,
+      ],
+      // Link with no wildcard overridden domain.
+      [
+        'http://overriddendomain.com/test/about-us',
+        'test.com',
+        [
+          'overridden.com',
+          'overriddendomain.com',
+        ],
+        TRUE,
+      ],
       // Link with an external domain.
       [
         'http://example.com',
-        'http://test.com',
+        'test.com',
         [
           'overridden.com',
           'overriddendomain.com',

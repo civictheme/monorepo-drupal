@@ -448,10 +448,10 @@ function civictheme_link_is_external(string $url, string $host, array $overridde
     }
     // Included in the list of the overridden domains, including wildcards.
     if (!empty($overridden_domains)) {
+      $domain .= (!empty($url_data['path'])) ? '/' . $url_data['path'] : '';
       if (in_array($domain, $overridden_domains)) {
         return FALSE;
       }
-      $domain .= (!empty($url_data['path'])) ? '/' . $url_data['path'] : '';
       foreach ($overridden_domains as $overridden_domain) {
         $pattern = str_replace('\*', '.*', preg_quote($overridden_domain, '/'));
         $matched = preg_match('/^' . $pattern . '$/i', $domain);
