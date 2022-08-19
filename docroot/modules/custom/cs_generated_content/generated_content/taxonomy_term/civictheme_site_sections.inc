@@ -26,7 +26,7 @@ function cs_generated_content_generated_content_create_taxonomy_term_civictheme_
  * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE().
  */
 function cs_generated_content_generated_content_create_taxonomy_term_civictheme_site_sections() {
-  $total_terms_count = 50;
+  $total_terms_count = 10;
 
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();

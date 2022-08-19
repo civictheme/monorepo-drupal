@@ -4,18 +4,18 @@ dependencies:
   module:
     - options
     - paragraphs
-id: paragraph.field_c_p_content_type
-field_name: field_c_p_content_type
+id: paragraph.field_c_p_listing_item_theme
+field_name: field_c_p_listing_item_theme
 entity_type: paragraph
 type: list_string
 settings:
   allowed_values:
     -
-      value: civictheme_page
-      label: Page
+      value: light
+      label: Light
     -
-      value: civictheme_event
-      label: Event
+      value: dark
+      label: Dark
   allowed_values_function: ''
 module: options
 locked: false

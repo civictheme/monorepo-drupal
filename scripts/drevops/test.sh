@@ -129,6 +129,6 @@ if [ -z "${DREVOPS_TEST_TYPE##*bdd*}" ]; then
   [ -n "${DREVOPS_TEST_REPORTS_DIR}" ] && behat_opts+=(--format "junit" --out "${DREVOPS_TEST_REPORTS_DIR}"/behat)
 
   vendor/bin/behat "${behat_opts[@]}" "$@" \
-  || ( [ -n "${CI}" ] && vendor/bin/behat "${behat_opts[@]}" "$@" ) \
+  || ( [ -n "${CI}" ] && vendor/bin/behat "${behat_opts[@]}" --rerun "$@" ) \
   || [ "${DREVOPS_TEST_BDD_ALLOW_FAILURE}" -eq 1 ]
 fi

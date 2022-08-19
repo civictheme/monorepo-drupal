@@ -42,14 +42,14 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Limited type name.
    */
-  public static function civicthemeLimitedType() {
+  public static function civicthemeListingLimitTypeLimited() {
     return 'limited';
   }
 
   /**
    * Unlimited type name.
    */
-  public static function civicthemeUnlimitedType() {
+  public static function civicthemeListingLimitTypeUnlimited() {
     return 'unlimited';
   }
 
@@ -180,6 +180,38 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
+   * Static Topics.
+   */
+  public static function civicthemeStaticTopics($count = NULL) {
+    return static::staticTerms('civictheme_topics', $count);
+  }
+
+  /**
+   * Static Topic.
+   */
+  public static function civicthemeStaticTopic() {
+    $entities = static::civicthemeStaticTopics(1);
+
+    return count($entities) > 0 ? reset($entities) : NULL;
+  }
+
+  /**
+   * Static Site sections.
+   */
+  public static function civicthemeStaticSiteSections($count = NULL) {
+    return static::staticTerms('civictheme_site_sections', $count);
+  }
+
+  /**
+   * Static Site section.
+   */
+  public static function civicthemeStaticSiteSection() {
+    $entities = static::civicthemeStaticSiteSections(1);
+
+    return count($entities) > 0 ? reset($entities) : NULL;
+  }
+
+  /**
    * Generic component attach helper.
    */
   public static function civicthemeComponentAttach($node, $field_name, $type, $options) {
@@ -191,8 +223,8 @@ trait CsGeneratedContentCivicthemeTrait {
 
     $defaults = [
       'content' => '',
-      'theme' => 'light',
-      'space' => 'top',
+      'theme' => static::civicthemeThemeLight(),
+      'space' => static::civicthemeSpaceTypeTop(),
       'background' => FALSE,
     ];
 
@@ -517,10 +549,20 @@ trait CsGeneratedContentCivicthemeTrait {
     }
 
     $defaults = [
-      'content_type' => NULL,
-      'view_as' => NULL,
-      'limit_type' => 'unlimited',
-      'card_theme' => 'light',
+      'listing_content_type' => static::civicthemePageContentType(),
+      'listing_item_view_as' => static::civicthemePromoCardType(),
+      'listing_filters_exp' => FALSE,
+      'listing_item_theme' => static::civicthemeThemeLight(),
+      'listing_limit' => 0,
+      'listing_limit_type' => self::civicthemeListingLimitTypeUnlimited(),
+      'listing_link_above' => NULL,
+      'listing_link_below' => NULL,
+      'listing_show_filters' => FALSE,
+      'listing_site_sections' => NULL,
+      'theme' => static::civicthemeThemeLight(),
+      'title' => NULL,
+      'listing_topics' => NULL,
+      'space' => static::civicthemeSpaceTypeNone(),
     ];
 
     $options += $defaults;
@@ -529,15 +571,15 @@ trait CsGeneratedContentCivicthemeTrait {
       return NULL;
     }
 
-    if ($options['limit_type'] == 'limited') {
+    if ($options['listing_limit_type'] == static::civicthemeListingLimitTypeLimited()) {
       $options['listing_limit'] = $options['listing_limit'] ?? rand(9, 20);
     }
     else {
       $options['listing_limit'] = $options['listing_limit'] ?? 0;
     }
 
-    if (!empty($options['show_filters']) && $options['show_filters']) {
-      $options['listing_f_exposed'] = $options['listing_f_exposed'] ?? [];
+    if ($options['listing_show_filters']) {
+      $options['listing_filters_exp'] = $options['listing_filters_exp'] ?? [];
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_listing', $node, $field_name, $options);

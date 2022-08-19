@@ -134,7 +134,7 @@ function civictheme_preprocess_views_view(&$variables) {
 function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) {
   $settings = [];
   if ($paragraph !== NULL) {
-    $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+    $link = civictheme_get_field_value($paragraph, 'field_c_p_listing_link_above', TRUE);
     $link_data = $link ? [
       'text' => $link->get('title')->getString(),
       'is_external' => $link->isExternal(),
@@ -142,7 +142,7 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
       'url' => $link->getUrl()->toString(),
     ] : [];
 
-    $read_more = civictheme_get_field_value($paragraph, 'field_c_p_read_more', TRUE);
+    $read_more = civictheme_get_field_value($paragraph, 'field_c_p_listing_link_below', TRUE);
     $read_more_data = $read_more ? [
       'text' => $read_more->get('title')->getString(),
       'is_external' => $read_more->isExternal(),
@@ -152,12 +152,12 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
 
     $settings = [
       'theme' => civictheme_get_theme_value($paragraph) ?? CIVICTHEME_VIEWS_DEFAULT_THEME,
-      'card_theme' => civictheme_field_has_value($paragraph, 'field_c_p_card_theme') ? $paragraph->get('field_c_p_card_theme')->getString() : CIVICTHEME_VIEWS_DEFAULT_THEME,
+      'card_theme' => civictheme_field_has_value($paragraph, 'field_c_p_listing_item_theme') ? $paragraph->get('field_c_p_listing_item_theme')->getString() : CIVICTHEME_VIEWS_DEFAULT_THEME,
       'link' => $link_data,
       'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
       'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,
       'vertical_space' => civictheme_get_field_value($paragraph, 'field_c_p_space') ?? '',
-      'show_filters' => civictheme_get_field_value($paragraph, 'field_c_p_show_filters') ?? TRUE,
+      'show_filters' => civictheme_get_field_value($paragraph, 'field_c_p_listing_show_filters') ?? FALSE,
       'read_more' => $read_more_data,
       'cache_tags' => $paragraph->getCacheTags(),
     ];

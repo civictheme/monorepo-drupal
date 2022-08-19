@@ -4,18 +4,18 @@ dependencies:
   module:
     - options
     - paragraphs
-id: paragraph.field_c_p_view_as
-field_name: field_c_p_view_as
+id: paragraph.field_c_p_listing_item_view_as
+field_name: field_c_p_listing_item_view_as
 entity_type: paragraph
 type: list_string
 settings:
   allowed_values:
     -
       value: civictheme_promo_card
-      label: Promo
+      label: 'Promo card'
     -
       value: civictheme_navigation_card
-      label: Navigation
+      label: 'Navigation card'
   allowed_values_function: ''
 module: options
 locked: false

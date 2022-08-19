@@ -420,6 +420,7 @@ display:
           plugin_id: standard
           required: false
       use_ajax: true
+      group_by: true
       header:
         result:
           id: result

@@ -50,7 +50,6 @@ function _civictheme_civic_listing_exposed_form_alter(&$form, FormStateInterface
   $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
   // Ajax exposed view forms hides submit button to have auto-load.
   if ($ajax_filter) {
-    $form['#attached']['library'][] = 'civictheme/civictheme.ajax_views';
     $form_state->get('view')->setAjaxEnabled(TRUE);
     $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
     $form['actions']['#attributes']['class'][] = 'hide-xxs';
@@ -100,8 +99,9 @@ function _civictheme_form_alter__convert_exposed_form_elements(&$element, $form,
     }
     _civictheme_form_alter__modify_element_callbacks($element);
   }
+
   // Only radio buttons and checkboxes work with filter chips.
-  $filter_key = !$is_large_filter && in_array($element['#type'], [
+  $filter_key = !$is_large_filter && in_array($element['#type'] ?? NULL, [
     'radios',
     'checkboxes',
   ]) ? '#civictheme-basic-filter' : '#civictheme-large-filter';

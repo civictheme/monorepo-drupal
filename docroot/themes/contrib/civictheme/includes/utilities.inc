@@ -226,7 +226,7 @@ function civictheme_format_short_date($date) {
  * @return bool
  *   Whether the field exists and is not empty.
  */
-function civictheme_field_has_value(FieldableEntityInterface $entity, string $field_name):bool {
+function civictheme_field_has_value(FieldableEntityInterface $entity, string $field_name) {
   return ($entity->hasField($field_name) && !$entity->get($field_name)->isEmpty());
 }
 
@@ -239,7 +239,7 @@ function civictheme_field_has_value(FieldableEntityInterface $entity, string $fi
  * @return string
  *   The theme value for the entity - light is default if it does not exist.
  */
-function civictheme_get_theme_value(FieldableEntityInterface $entity): ?string {
+function civictheme_get_theme_value(FieldableEntityInterface $entity) {
   switch (get_class($entity)) {
     case 'Drupal\paragraphs\Entity\Paragraph':
       $field_name = 'field_c_p_theme';
@@ -359,7 +359,7 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, string $field_name, bool $only_first = FALSE):array|EntityInterface|null {
+function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, string $field_name, bool $only_first = FALSE) {
   $entities = NULL;
 
   if (civictheme_field_has_value($entity, $field_name)) {
@@ -381,7 +381,7 @@ function civictheme_get_field_referenced_entities(FieldableEntityInterface $enti
  * @return string[]
  *   The label(s).
  */
-function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entity, string $field_name):array {
+function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entity, string $field_name) {
   $labels = [];
   $referenced_entities = civictheme_get_field_value($entity, $field_name) ?? [];
   foreach ($referenced_entities as $referenced_entity) {
