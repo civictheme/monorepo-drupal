@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 /**
  * Large filter component.
  */

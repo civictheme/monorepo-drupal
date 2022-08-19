@@ -95,8 +95,20 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
     $node->field_c_n_topics = $variation['topics'];
   }
 
+  if (!empty($variation['site_section']) && $node->hasField('field_c_n_site_section')) {
+    $node->field_c_n_site_section = $variation['site_section'];
+  }
+
   if (isset($variation['space']) && $node->hasField('field_c_n_space')) {
     $node->field_c_n_space = $variation['space'];
+  }
+
+  if (isset($variation['show_last_updated']) && $node->hasField('field_c_n_show_last_updated')) {
+    $node->field_c_n_show_last_updated = $variation['show_last_updated'];
+  }
+
+  if (isset($variation['custom_updated_date']) && $node->hasField('field_c_n_custom_last_updated')) {
+    $node->field_c_n_custom_last_updated = $variation['custom_updated_date'];
   }
 
   // Banner.

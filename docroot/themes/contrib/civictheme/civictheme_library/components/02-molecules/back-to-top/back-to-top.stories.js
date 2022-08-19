@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import { radios } from '@storybook/addon-knobs';
 import CivicThemeBackToTop from './back-to-top.twig';
 

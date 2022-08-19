@@ -5,6 +5,8 @@
 .civictheme-secondary-navigation {
   $root: &;
 
+  @include civictheme-print-hide();
+
   display: none;
 
   @include civictheme-breakpoint($civictheme-secondary-navigation-breakpoint) {

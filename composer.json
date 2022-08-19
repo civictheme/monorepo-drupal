@@ -12,12 +12,13 @@
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
         "drupal/default_content": "^2.0@alpha",
-        "drupal/generated_content": "^1.1",
+        "drupal/generated_content": "^1.2",
         "drupal/permissions_filter": "^1.1",
         "drupal/redirect": "^1.6",
         "drupal/stage_file_proxy": "^1.1",
+        "drupal/testmode": "^2.1",
         "drush/drush": "^10",
-        "govcms/govcms": "^2.17",
+        "govcms/govcms": "^2.18",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2"
@@ -32,6 +33,7 @@
         "drupal/drupal-extension": "^4",
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpcompatibility/php-compatibility": "^9.0",
+        "phpmd/phpmd": "^2.12",
         "phpspec/prophecy-phpunit": "^2",
         "pyrech/composer-changelogs": "^1.7"
     },

@@ -89,6 +89,10 @@
       opacity: 0%;
       transition: opacity 0.5s;
       padding: 0 civictheme-space(3) civictheme-space(3);
+
+      @include civictheme-print() {
+        opacity: 100%;
+      }
     }
   }
 

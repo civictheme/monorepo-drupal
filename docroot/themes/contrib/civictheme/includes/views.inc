@@ -57,6 +57,8 @@ function civictheme_preprocess_views_exposed_form(&$variables) {
 
 /**
  * Propagate component theme setting to nested form elements.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_propagate_component_theme_settings(&$elements, $theme) {
   $form_elements = Element::children($elements);
@@ -71,6 +73,9 @@ function _civictheme_propagate_component_theme_settings(&$elements, $theme) {
 
 /**
  * Implements hook_preprocess_HOOK().
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_views_view(&$variables) {
   $view = &$variables['view'];
@@ -129,7 +134,7 @@ function civictheme_preprocess_views_view(&$variables) {
 function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) {
   $settings = [];
   if ($paragraph !== NULL) {
-    $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
+    $link = civictheme_get_field_value($paragraph, 'field_c_p_listing_link_above', TRUE);
     $link_data = $link ? [
       'text' => $link->get('title')->getString(),
       'is_external' => $link->isExternal(),
@@ -137,7 +142,7 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
       'url' => $link->getUrl()->toString(),
     ] : [];
 
-    $read_more = civictheme_get_field_value($paragraph, 'field_c_p_read_more', TRUE);
+    $read_more = civictheme_get_field_value($paragraph, 'field_c_p_listing_link_below', TRUE);
     $read_more_data = $read_more ? [
       'text' => $read_more->get('title')->getString(),
       'is_external' => $read_more->isExternal(),
@@ -147,12 +152,12 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
 
     $settings = [
       'theme' => civictheme_get_theme_value($paragraph) ?? CIVICTHEME_VIEWS_DEFAULT_THEME,
-      'card_theme' => civictheme_field_has_value($paragraph, 'field_c_p_card_theme') ? $paragraph->get('field_c_p_card_theme')->getString() : CIVICTHEME_VIEWS_DEFAULT_THEME,
+      'card_theme' => civictheme_field_has_value($paragraph, 'field_c_p_listing_item_theme') ? $paragraph->get('field_c_p_listing_item_theme')->getString() : CIVICTHEME_VIEWS_DEFAULT_THEME,
       'link' => $link_data,
       'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
       'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,
       'vertical_space' => civictheme_get_field_value($paragraph, 'field_c_p_space') ?? '',
-      'show_filters' => civictheme_get_field_value($paragraph, 'field_c_p_show_filters') ?? TRUE,
+      'show_filters' => civictheme_get_field_value($paragraph, 'field_c_p_listing_show_filters') ?? FALSE,
       'read_more' => $read_more_data,
       'cache_tags' => $paragraph->getCacheTags(),
     ];
@@ -168,6 +173,8 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
 
 /**
  * Implements hook_preprocess_HOOK().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'] ?? NULL;
@@ -182,7 +189,7 @@ function civictheme_preprocess_views_view_grid(&$variables) {
     $variables += $variables['view']->civictheme_listing;
   }
   if (isset($variables['card_theme'])) {
-    foreach ($variables['rows'] as $id => $row) {
+    foreach (array_keys($variables['rows']) as $id) {
       $variables['rows'][$id]['#node']->civictheme_theme = $variables['card_theme'];
       $variables['rows'][$id]['#cache']['contexts'][] = 'url.path';
       $variables['rows'][$id]['#cache']['contexts'][] = 'url.query_args';
@@ -199,6 +206,8 @@ function civictheme_preprocess_views_view_grid(&$variables) {
  * @return \Drupal\paragraphs\Entity\Paragraph|null
  *   First Listing paragraph from the node in route or NULL if no listing
  *   paragraphs are present.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_get_listing_paragraph_from_route() {
   $node = \Drupal::routeMatch()->getParameter('node');

@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeSearch from './search.twig';
 
@@ -23,12 +24,12 @@ export const Search = (knobTab) => {
     ),
     text: text('Text', 'Search', generalKnobTab),
     link: text('Search URL', '/search', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    modifier_class: `story-wrapper-size--large ${text('Additional class', '', generalKnobTab)}`,
   };
 
   const html = CivicThemeSearch({
     ...generalKnobs,
   });
 
-  return `<div class="story-wrapper-size--large">${html}</div>`;
+  return `${html}`;
 };

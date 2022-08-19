@@ -10,6 +10,8 @@ use Drupal\Core\Cache\CacheableMetadata;
 
 /**
  * Pre-process for Mobile Navigation block.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {

@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 require('twig');
 
 export const parameters = {

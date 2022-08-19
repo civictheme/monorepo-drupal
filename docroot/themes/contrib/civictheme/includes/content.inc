@@ -7,6 +7,8 @@
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_content(&$variables) {
   $content = '';

@@ -46,10 +46,17 @@ function main(array $argv, $argc) {
   }
 
   // Show help if not enough or more than required arguments.
-  if ($argc < 4 || $argc > 5) {
+  if ($argc < 4 || $argc > 6) {
     print_help($default_new_theme_directory);
 
     return EXIT_ERROR;
+  }
+
+  // Optional remove example flag.
+  $remove_examples = array_search('--remove-examples', $argv);
+  if ($remove_examples) {
+    unset($argv[$remove_examples]);
+    $argv = array_values($argv);
   }
 
   // Collect and validate values from arguments.
@@ -71,6 +78,7 @@ function main(array $argv, $argc) {
     'name' => $new_theme_name,
     'description' => $new_theme_description,
     'path' => $new_theme_directory,
+    'remove_examples' => $remove_examples,
   ]);
 
   // Copy files from stub to the new theme path.
@@ -87,6 +95,8 @@ function main(array $argv, $argc) {
 
 /**
  * Print help.
+ *
+ * @SuppressWarnings(PHPMD.UnusedLocalVariable)
  */
 function print_help($default_new_theme_dir) {
   $script_name = basename(__FILE__);
@@ -103,6 +113,7 @@ Arguments:
 
 Options:
   --help                 This help.
+  --remove-examples      Remove example component from generated theme.
 
 Examples:
   php ${script_name} civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
@@ -144,6 +155,8 @@ EOF;
 
 /**
  * Validate theme machine name.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function validate_theme_machine_name($name) {
   if (!preg_match('/^[a-z][a-z_0-9]*$/', $name)) {
@@ -167,6 +180,8 @@ function prepare_stub() {
 
 /**
  * Process stub directory.
+ *
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function process_stub($dir, $options) {
   $machine_name_hyphenated = str_replace('_', '-', $options['machine_name']);
@@ -199,6 +214,14 @@ function process_stub($dir, $options) {
     $content = str_replace("hidden: true\n", '', $content);
     file_put_contents($info_file, $content);
   }
+
+  // Remove all the examples component before moving to the final path.
+  if ($options['remove_examples']) {
+    $example_components = example_component_paths();
+    foreach ($example_components as $example_dir) {
+      file_remove_dir($dir . DIRECTORY_SEPARATOR . $example_dir);
+    }
+  }
 }
 
 /**
@@ -209,6 +232,8 @@ function process_stub($dir, $options) {
  *
  * @throws \Exception
  *   If directory does not exist.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function find_starter_kit_dir() {
   $dir = __DIR__ . DIRECTORY_SEPARATOR . 'civictheme_starter_kit';
@@ -242,6 +267,10 @@ function find_starter_kit_dir() {
  *
  * @return bool
  *   TRUE if the result of copy was successful, FALSE otherwise.
+ *
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function file_copy_recursively($src, $dst, array $exclude = [], $permissions = 0755, $copy_empty_dirs = FALSE) {
   $parent = dirname($dst);
@@ -340,7 +369,20 @@ function file_replace_string_filename($search, $replace, $dir) {
 }
 
 /**
+ * Remove directory.
+ */
+function file_remove_dir($dir) {
+  if (is_dir($dir)) {
+    $files = file_scandir_recursive($dir);
+    array_map('unlink', $files);
+    rmdir($dir);
+  }
+}
+
+/**
  * Recursively scan directory for files.
+ *
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 function file_scandir_recursive($dir, $ignore_paths = [], $include_dirs = FALSE) {
   $discovered = [];
@@ -395,6 +437,17 @@ function file_internal_paths() {
 }
 
 /**
+ * Example component paths.
+ */
+function example_component_paths() {
+  return [
+    'components/01-atoms/demo-button',
+    'components/02-molecules/navigation-card',
+    'components/03-organisms/header',
+  ];
+}
+
+/**
  * Check if the file ia excluded from the processing.
  */
 function file_is_excluded_from_processing($filename) {
@@ -411,6 +464,8 @@ function file_is_excluded_from_processing($filename) {
 
 /**
  * Creates a random unique temporary directory.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function file_tempdir($dir = NULL, $prefix = 'tmp_', $mode = 0700, $max_attempts = 1000) {
   if (is_null($dir)) {
@@ -493,6 +548,8 @@ function file_get_relative_dir($dir1, $dir2) {
  *   Path with all '.', '..', './' and '../' removed.
  *
  * @see https://datatracker.ietf.org/doc/html/rfc3986#section-5.2.4
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function file_path_canonicalize($path) {
   $output = '';

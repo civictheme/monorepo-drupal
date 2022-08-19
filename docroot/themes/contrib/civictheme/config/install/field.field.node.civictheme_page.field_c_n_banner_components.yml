@@ -16,7 +16,7 @@ field_name: field_c_n_banner_components
 entity_type: node
 bundle: civictheme_page
 label: 'Banner components'
-description: ''
+description: 'Components that will appear within the banner content.'
 required: false
 translatable: false
 default_value: {  }
@@ -89,9 +89,6 @@ settings:
       civictheme_quick_links:
         weight: -35
         enabled: false
-      civictheme_search:
-        weight: -55
-        enabled: true
       civictheme_service_card:
         weight: -47
         enabled: false

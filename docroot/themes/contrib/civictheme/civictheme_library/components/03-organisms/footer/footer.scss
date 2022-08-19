@@ -5,9 +5,8 @@
 .civictheme-footer {
   $root: &;
 
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  @include civictheme-print-hide();
+  @include civictheme-background();
 
   &__top {
     padding-top: civictheme-space(4);

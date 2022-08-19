@@ -9,13 +9,15 @@ field_name: field_c_p_listing_limit
 entity_type: paragraph
 bundle: civictheme_listing
 label: Limit
-description: 'Number of items to display if limit type is limited. Items per page in case of unlimited limit type.'
+description: 'Number of items to display if <em>Limit type</em> is <em>Limited</em> or items per page if <em>Limit type</em> is <em>Unlimited</em>.<br/>Use <code>0</code> to show all items.'
 required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    value: 12
 default_value_callback: ''
 settings:
-  min: 1
+  min: 0
   max: null
   prefix: ''
   suffix: ''

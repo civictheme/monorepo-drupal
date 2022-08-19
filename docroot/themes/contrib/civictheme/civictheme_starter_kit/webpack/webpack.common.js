@@ -1,3 +1,5 @@
+// phpcs:ignoreFile
+
 const path = require('path');
 const glob = require('glob');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');

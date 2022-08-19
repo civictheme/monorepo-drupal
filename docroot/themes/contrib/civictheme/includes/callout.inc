@@ -16,7 +16,7 @@ function civictheme_preprocess_paragraph__civictheme_callout(&$variables) {
   foreach ($paragraph_links as $paragraph_link) {
     $links[] = [
       'url' => $paragraph_link->getUrl()->toString(),
-      'text' => $paragraph_link->title,
+      'text' => $paragraph_link->get('title')->getString(),
       'type' => 'primary',
       'size' => 'regular',
       'is_external' => $paragraph_link->getUrl()->isExternal(),

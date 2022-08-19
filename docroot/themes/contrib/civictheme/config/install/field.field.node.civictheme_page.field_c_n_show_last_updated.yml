@@ -8,8 +8,8 @@ id: node.civictheme_page.field_c_n_show_last_updated
 field_name: field_c_n_show_last_updated
 entity_type: node
 bundle: civictheme_page
-label: 'Show last updated date'
-description: ''
+label: 'Show Last updated date'
+description: 'Show <em>Last updated</em> date on the page.'
 required: false
 translatable: false
 default_value:

@@ -36,7 +36,7 @@
         {% elseif embedded_source is not empty %}
           {% set attributes = 'allowfullscreen data-chromatic="ignore"' %}
           {% if title is not empty %}
-            {% set attributes = atributes ~ 'title="' ~ title ~ '"' %}
+            {% set attributes = attributes ~ 'title="' ~ title ~ '"' %}
           {% endif %}
           {% include '@atoms/iframe/iframe.twig' with {
             url: embedded_source,

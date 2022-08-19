@@ -9,6 +9,8 @@ use Drupal\block\Entity\Block;
 
 /**
  * Implements template_preprocess_block__HOOK().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_block__menu_block__civictheme_secondary_navigation(&$variables) {
   $variables['theme'] = theme_get_setting('civictheme_header_theme') ?? 'light';

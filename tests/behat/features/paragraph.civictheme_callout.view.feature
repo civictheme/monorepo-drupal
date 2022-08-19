@@ -5,17 +5,17 @@ Feature: View of Page content with Callout component
 
   Background:
     Given "civictheme_page" content:
-      | title                           | status |
-      | [TEST] Page callout test        | 1      |
+      | title                    | status |
+      | [TEST] Page callout test | 1      |
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with callout light
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page callout test" has "civictheme_callout" paragraph:
-      | field_c_p_title          | [TEST] callout title               |
-      | field_c_p_theme          | light                              |
-      | field_c_p_summary        | Summary text                       |
-      | field_c_p_links          | 0: [TEST] link 1 - 1: https://example.com/link1, 0: [TEST] link 11 - 1: https://example.com/link11 |
+      | field_c_p_title   | [TEST] callout title                                                                               |
+      | field_c_p_theme   | light                                                                                              |
+      | field_c_p_summary | Summary text                                                                                       |
+      | field_c_p_links   | 0: [TEST] link 1 - 1: https://example.com/link1, 0: [TEST] link 11 - 1: https://example.com/link11 |
 
     When I visit "civictheme_page" "[TEST] Page callout test"
     And I should see an "div.civictheme-callout" element
@@ -34,10 +34,10 @@ Feature: View of Page content with Callout component
   Scenario: CivicTheme page content type page can be viewed by anonymous with callout dark
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page callout test" has "civictheme_callout" paragraph:
-      | field_c_p_title          | [TEST] callout title               |
-      | field_c_p_theme          | dark                               |
-      | field_c_p_summary        | Summary text                       |
-      | field_c_p_links          | 0: [TEST] link 1 - 1: https://example.com/link1, 0: [TEST] link 11 - 1: https://example.com/link11 |
+      | field_c_p_title   | [TEST] callout title                                                                               |
+      | field_c_p_theme   | dark                                                                                               |
+      | field_c_p_summary | Summary text                                                                                       |
+      | field_c_p_links   | 0: [TEST] link 1 - 1: https://example.com/link1, 0: [TEST] link 11 - 1: https://example.com/link11 |
 
     When I visit "civictheme_page" "[TEST] Page callout test"
     And I should see an "div.civictheme-callout" element

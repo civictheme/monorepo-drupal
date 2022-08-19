@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.civictheme_listing_examples
+  module:
+    - system
+    - views
+  theme:
+    - civictheme
+id: civictheme_listing_example_spage_one_filter_single_select_exp
+theme: civictheme
+region: content
+weight: -11
+provider: null
+plugin: 'views_exposed_filter_block:civictheme_listing_examples-page_one_filter_single_select_exposed_block'
+settings:
+  id: 'views_exposed_filter_block:civictheme_listing_examples-page_one_filter_single_select_exposed_block'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /civictheme-no-sidebar/listing-one-filter-single-select-exposed-block

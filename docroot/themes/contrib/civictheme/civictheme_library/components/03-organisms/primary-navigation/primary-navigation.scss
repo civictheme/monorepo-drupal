@@ -9,6 +9,8 @@
 .civictheme-primary-navigation {
   $root: &;
 
+  @include civictheme-print-hide();
+
   align-items: center;
   height: 100%;
   display: none;

@@ -12,11 +12,15 @@
   }
 
   #{$root}__wrapper__inner {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    @include civictheme-background();
+
     padding-top: civictheme-space(12);
     padding-bottom: civictheme-space(15);
+
+    @include civictheme-print() {
+      padding-top: civictheme-space(2);
+      padding-bottom: civictheme-space(3);
+    }
   }
 
   &#{$root}--decorative {
