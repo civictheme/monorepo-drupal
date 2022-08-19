@@ -5,7 +5,6 @@
  * Theme utility functions.
  */
 
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Template\Attribute;
@@ -340,7 +339,7 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
   }
   // Post processing for all WYSIWYG fields.
   if ($value && civictheme_field_is_wysiwyg($field_name) && $only_first) {
-    $value = civictheme_process_link_attributes($value);
+    $value = _civictheme_process_link_attributes($value);
   }
 
   return $value;
@@ -449,8 +448,14 @@ function civictheme_link_is_external(string $url, string $host, array $overridde
     }
     // Included in the list of the overridden domains, including wildcards.
     if (!empty($overridden_domains)) {
+      if (in_array($domain, $overridden_domains)) {
+        return FALSE;
+      }
+      $domain .= (!empty($url_data['path'])) ? '/' . $url_data['path'] : '';
       foreach ($overridden_domains as $overridden_domain) {
-        if (strpos($overridden_domain, $domain) !== FALSE) {
+        $pattern = str_replace('\*', '.*', preg_quote($overridden_domain, '/'));
+        $matched = preg_match('/^' . $pattern . '$/i', $domain);
+        if ($matched > 0) {
           return FALSE;
         }
       }
@@ -469,43 +474,8 @@ function civictheme_get_override_domains() {
   $config_factory = \Drupal::service('config.factory');
   $theme_name = $config_factory->get('system.theme')->get('default');
   $config = $config_factory->get("$theme_name.settings");
-  $overridden_domains = $config->get('civictheme_override_domains') ?? '';
-  if (!empty($overridden_domains)) {
-    return explode("\r\n", $overridden_domains);
-  }
-  return [];
-}
-
-/**
- * Adds CSS class to all links.
- *
- * @param string $string
- *   The string to be processed.
- *
- * @return string
- *   The processed string.
- */
-function civictheme_process_link_attributes(string $string) {
-  $dom = Html::load($string);
-  if ($dom) {
-    $anchors = $dom->getElementsByTagName('a');
-    if ($anchors) {
-      foreach ($anchors as $a) {
-        if ($a->hasAttribute('href')) {
-          $classes = $a->getAttribute('class') ? $a->getAttribute('class') . ' civictheme-link' : 'civictheme-link';
-          $url = $a->getAttribute('href');
-          $host = \Drupal::service('request_stack')->getCurrentRequest()->getHost();
-          $overridden_domains = civictheme_get_override_domains();
-          if (civictheme_link_is_external($url, $host, $overridden_domains)) {
-            $classes .= ' civictheme-link--external';
-          }
-          $a->setAttribute('class', $classes);
-        }
-      }
-      $string = Html::serialize($dom);
-    }
-  }
-  return $string;
+  $overridden_domains = $config->get('civictheme_override_domains') ?? [];
+  return civictheme_multiline_to_array($overridden_domains);
 }
 
 /**
@@ -522,8 +492,19 @@ function civictheme_field_is_wysiwyg(string $field_name) {
     'field_c_n_body',
     'field_c_p_content',
   ];
-  if (in_array($field_name, $wysiwyg_field_list)) {
-    return TRUE;
-  }
-  return FALSE;
+  return in_array($field_name, $wysiwyg_field_list);
+}
+
+/**
+ * Convert new line characters to a list of strings.
+ *
+ * @param string $string
+ *   The string to be processed.
+ *
+ * @return array
+ *   The array list.
+ */
+function civictheme_multiline_to_array($string) {
+  $lines = is_array($string) ? $string : explode("\n", str_replace("\r\n", "\n", $string));
+  return array_values(array_filter(array_map('trim', $lines)));
 }

@@ -23,6 +23,6 @@ function civictheme_preprocess_paragraph__civictheme_content(&$variables) {
   // if the component is dark we str_replace the theme class and replace.
   $content = str_replace('civictheme-theme-light', 'civictheme-theme-' . $variables['theme'], $content);
   // Post processing for all WYSIWYG fields.
-  $content = civictheme_process_link_attributes($content);
+  $content = _civictheme_process_link_attributes($content);
   $variables['content'] = $content;
 }

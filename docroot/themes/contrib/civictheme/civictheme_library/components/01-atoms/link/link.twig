@@ -18,7 +18,7 @@
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set is_external = is_external ? 'civictheme-link--external' : '' %}
-{% set modifier_class = '%s %s %s'|format(theme_class, modifier_class|default(''), is_external) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_external, modifier_class|default('')) %}
 
 {% if text is not empty %}
   <a class="civictheme-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {% if title is not empty %}title="{{ title }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>

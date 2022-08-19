@@ -53,13 +53,7 @@
 
   &.civictheme-link--external {
     &::after {
-      content: $civictheme-link-external;
-      overflow-x: hidden;
-      overflow-y: hidden;
-      width: 24px;
-      height: 24px;
-      fill: currentcolor;
-      vertical-align: bottom;
+      @include civictheme-icon-inline ($civictheme-link-icon-external);
     }
   }
 
@@ -86,6 +80,16 @@
       color: $civictheme-link-dark-visited-hover-color;
     }
   }
+}
+
+@mixin civictheme-icon-inline($content) {
+  content: $content;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: rem(24px);
+  height: rem(24px);
+  fill: currentcolor;
+  vertical-align: bottom;
 }
 
 //

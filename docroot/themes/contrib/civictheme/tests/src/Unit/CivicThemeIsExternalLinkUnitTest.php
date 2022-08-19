@@ -16,34 +16,77 @@ class CivicThemeIsExternalLinkUnitTest extends CivicThemeUnitTestBase {
    *
    * @dataProvider dataProviderIsExternalLink
    */
-  public function testParse($url, $host, $overridden_domains, $expected) {
+  public function testCivichthemeLinkIsExternal($url, $host, $overridden_domains, $expected) {
     $actual = civictheme_link_is_external($url, $host, $overridden_domains);
 
     $this->assertEquals($expected, $actual);
   }
 
   /**
-   * Data provider for testParse().
+   * Data provider for testCivichthemeLinkIsExternal().
    */
   public function dataProviderIsExternalLink() {
-    $host = 'http://test.com';
-    $overridden_domains = [
-      'http://overridden.com',
-      'http://overriddendomain.com',
-    ];
     return [
+      // Empty.
+      ['', '', [], TRUE],
       // Link without domain.
-      ['/about-us', $host, $overridden_domains, FALSE],
+      [
+        '/about-us',
+        'http://test.com',
+        [
+          'overridden.com',
+          'overriddendomain.com',
+        ],
+        FALSE,
+      ],
       // Link with an overridden domain.
-      ['http://overridden.com', $host, $overridden_domains, FALSE],
+      [
+        'http://overridden.com',
+        'http://test.com',
+        [
+          'overridden.com',
+          'overriddendomain.com',
+        ],
+        FALSE,
+      ],
       // Link with an wildcard overridden domain.
       [
         'http://overriddendomain.com/about-us',
-        $host, $overridden_domains,
+        'http://test.com',
+        [
+          'overridden.com',
+          'overriddendomain.com/*',
+        ],
         FALSE,
       ],
+      [
+        'http://overriddendomain.com/about-us',
+        'http://test.com',
+        [
+          'overridden.com',
+          'overriddendomain.com/test/*',
+        ],
+        TRUE,
+      ],
+      [
+        'http://overriddendomain.com/test/about-us',
+        'http://test.com',
+        [
+          'overridden.com',
+          'overriddendomain.com/test/*',
+        ],
+        TRUE,
+      ],
       // Link with an external domain.
-      ['http://example.com', $host, $overridden_domains, TRUE],
+      [
+        'http://example.com',
+        'http://test.com',
+        [
+          'overridden.com',
+          'overriddendomain.com',
+        ],
+        TRUE,
+      ],
     ];
   }
 
