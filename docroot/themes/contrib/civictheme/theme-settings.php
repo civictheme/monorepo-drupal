@@ -176,7 +176,9 @@ function _civictheme_form_system_theme_settings_footer_validate(array $form, For
       $path = \Drupal::service('file_url_generator')->generateString($path);
       $form_state->setValue($field_name_key, ltrim($path, '/'));
     }
-    $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
+    else {
+      $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
+    }
   }
 }
 
