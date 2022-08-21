@@ -22,7 +22,6 @@ use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\user\Entity\Role;
 use Drush\Drush;
-use Drush\Log\LogLevel;
 
 /**
  * @defgroup settings_form Settings form
@@ -243,7 +242,7 @@ function civictheme_provision_cli() {
  */
 function civictheme_provision_cli_log($message) {
   if (class_exists('\Drush\Drush')) {
-    Drush::getContainer()->get('logger')->log(LogLevel::OK, strip_tags(html_entity_decode($message)));
+    Drush::getContainer()->get('logger')->notice(strip_tags(html_entity_decode($message)));
   }
   elseif (PHP_SAPI === 'cli') {
     print strip_tags(html_entity_decode($message)) . PHP_EOL;
