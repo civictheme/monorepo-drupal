@@ -171,6 +171,11 @@
             "docroot/sites/default/files",
             "docroot/robots.txt",
             "docroot/.htaccess"
-        ]
+        ],
+        "patches": {
+            "drupal/core": {
+                "drupal_phpunit_find_extension_directories() uses infinite recursion ⇒ more directories = slower tests": "https://www.drupal.org/files/issues/2021-11-23/3249443-37.patch"
+            }
+        }
     }
 }
