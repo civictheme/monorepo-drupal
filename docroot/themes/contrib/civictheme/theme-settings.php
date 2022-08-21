@@ -101,7 +101,7 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
     '#type' => 'radios',
     '#required' => TRUE,
     '#options' => civictheme_theme_options(),
-    '#default_value' => theme_get_setting('components.header.theme') ?? CIVICTHEME_THEME_LIGHT,
+    '#default_value' => theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT,
   ];
 
   $form['components']['footer'] = [
@@ -117,7 +117,7 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
     '#type' => 'radios',
     '#required' => TRUE,
     '#options' => civictheme_theme_options(),
-    '#default_value' => theme_get_setting('components.footer.theme') ?? CIVICTHEME_THEME_DARK,
+    '#default_value' => theme_get_setting('components.footer.theme') ?? CIVICTHEME_FOOTER_THEME_DEFAULT,
   ];
 
   $form['components']['footer']['background_image'] = [

@@ -8,11 +8,6 @@
 use Drupal\Core\Template\Attribute;
 
 /**
- * Defines default node theme.
- */
-define('CIVICTHEME_NODE_DEFAULT_THEME', 'light');
-
-/**
  * Generic pre-process for all view mode of nodes.
  */
 function _civictheme_preprocess_node(&$variables) {
@@ -37,7 +32,6 @@ function _civictheme_preprocess_node(&$variables) {
   if (civictheme_get_field_value($node, 'field_c_n_show_toc')) {
     $toc_attributes = [];
     $toc_attributes['data-table-of-contents-position'] = 'prepend';
-    $toc_attributes['data-table-of-contents-theme'] = 'light';
     $toc_attributes['data-table-of-contents-anchor-selector'] = 'h2';
     $toc_attributes['data-table-of-contents-title'] = t('On this page');
     $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.civictheme-content__main';
