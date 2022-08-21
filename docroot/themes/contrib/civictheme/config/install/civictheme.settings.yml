@@ -16,3 +16,7 @@ components:
   footer:
     theme: dark
     background_image: ''
+  link:
+    new_window: false
+    external_new_window: true
+    external_override_domains: {  }

@@ -5,6 +5,7 @@
  * Theme settings form for CivicTheme theme.
  */
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\StreamWrapper\PublicStream;
@@ -127,6 +128,45 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
     '#default_value' => _civictheme_field_friendly_path(theme_get_setting('components.footer.background_image')),
   ];
 
+  $form['components']['link'] = [
+    '#type' => 'details',
+    '#title' => t('Link'),
+    '#group' => 'components',
+    '#tree' => TRUE,
+  ];
+
+  $form['components']['link']['new_window'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Open links in a new window'),
+    '#description' => t('Open internal and external links in a new browser window.'),
+    '#default_value' => theme_get_setting('components.link.new_window'),
+  ];
+
+  $form['components']['link']['external_new_window'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Open external links in a new window'),
+    '#description' => t('Open all external links in a new browser window.'),
+    '#default_value' => theme_get_setting('components.link.new_window'),
+    '#states' => [
+      'visible' => [
+        ':input[name="components[link][new_window]"]' => ['checked' => FALSE],
+      ],
+    ],
+  ];
+
+  $form['components']['link']['external_override_domains'] = [
+    '#type' => 'textarea',
+    '#title' => t('Override external link domains'),
+    '#description' => t('A list of domains that should be considered as internal. External links matching these domains will not be displayed as external.<br/>One domain per line.<br/>Do not include trailing slash (/).<br/>Protocol is optional.'),
+    '#default_value' => civictheme_array_to_multiline(theme_get_setting('components.link.override_domains')),
+    '#rows' => 4,
+    '#states' => [
+      'visible' => [
+        ':input[name="components[link][new_window]"]' => ['checked' => FALSE],
+      ],
+    ],
+  ];
+
   // Create validators for all components, if they exist.
   foreach (array_keys($form['components']) as $component_name) {
     $validator = "_civictheme_form_system_theme_settings_{$component_name}_validate";
@@ -137,7 +177,7 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
 }
 
 /**
- * Validate callback for theme settings form to check logo settings.
+ * Validate callback for theme settings form of Logo component.
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
@@ -179,6 +219,45 @@ function _civictheme_form_system_theme_settings_footer_validate(array $form, For
     else {
       $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
     }
+  }
+}
+
+/**
+ * Validate callback for theme settings form of Link component.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_link_validate(array &$form, FormStateInterface $form_state) {
+  $override_domain_field_name_keys = [
+    'components',
+    'link',
+    'external_override_domains',
+  ];
+  $domains = $form_state->getValue($override_domain_field_name_keys, '');
+  $domains = civictheme_multiline_to_array($domains);
+  $invalid_domains = [];
+  foreach ($domains as $domain) {
+    // Allow to enter 'example.com' instead of 'http://example.com'.
+    $domain_normalised = _civictheme_external_link_normalise_domain($domain);
+    if (!UrlHelper::isValid($domain_normalised, TRUE)) {
+      $invalid_domains[] = $domain;
+      continue;
+    }
+
+    $domain_parts = parse_url($domain_normalised);
+    if (!empty($domain_parts['path']) || !empty($domain_parts['query']) || !empty($domain_parts['fragment'])) {
+      $invalid_domains[] = $domain;
+    }
+  }
+
+  if (!empty($invalid_domains)) {
+    $form_state->setErrorByName(implode('][', $override_domain_field_name_keys), t('Domain values are not valid domains: %domains', [
+      '%domains' => implode(', ', $invalid_domains),
+    ]));
+  }
+  else {
+    // Set field to converted array of links.
+    $form_state->setValue($override_domain_field_name_keys, $domains);
   }
 }
 

@@ -90,7 +90,7 @@ function civictheme_media_image_process_variables(MediaInterface $media, $image_
  * @return string
  *   Image URL or FALSE if not available.
  */
-function civictheme_media_get_url_from_field(EntityInterface $entity, string $field_name) {
+function civictheme_media_get_url_from_field(EntityInterface $entity, $field_name) {
   /** @var \Drupal\media\Entity\Media|NULL $media */
   $media = civictheme_get_field_value($entity, $field_name, TRUE);
   if ($media) {
@@ -227,8 +227,8 @@ function civictheme_format_short_date($date) {
  * @return bool
  *   Whether the field exists and is not empty.
  */
-function civictheme_field_has_value(FieldableEntityInterface $entity, string $field_name) {
-  return ($entity->hasField($field_name) && !$entity->get($field_name)->isEmpty());
+function civictheme_field_has_value(FieldableEntityInterface $entity, $field_name) {
+  return $entity->hasField($field_name) && !$entity->get($field_name)->isEmpty();
 }
 
 /**
@@ -247,17 +247,19 @@ function civictheme_field_has_value(FieldableEntityInterface $entity, string $fi
  * @return mixed|null
  *   Whether the field exists and is not empty.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
-function civictheme_get_field_value(FieldableEntityInterface $entity, string $field_name, $only_first = FALSE) {
+function civictheme_get_field_value(FieldableEntityInterface $entity, $field_name, $only_first = FALSE) {
   $value = NULL;
+
   if (!civictheme_field_has_value($entity, $field_name)) {
     return $value;
   }
+
   $field = $entity->get($field_name);
   $field_type = $field->getFieldDefinition()->getType();
+
   switch ($field_type) {
     case 'boolean':
       $value = (bool) $field->getString();
@@ -294,31 +296,27 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
       $value = civictheme_get_field_referenced_entities($entity, $field_name, $only_first);
       break;
 
-    // Opinionated - but we want to render field if single or allow view
-    // to handle it if it's all values.
     case 'text_long':
+      // Opinionated. We want to render field if single or allow view() to
+      // handle it if it's all values.
       if ($only_first) {
         $field = $field->first();
         $value = check_markup($field->get('value')->getString(), $field->get('format')->getString());
-        break;
       }
-      $value = $field->view();
+      else {
+        $value = $field->view();
+      }
       break;
 
     default:
-      \Drupal::logger('civic_theme')->warning('civictheme_get_field_value has encountered an unknown field type "@field_type"', ['@field_type' => $field_type]);
       $value = NULL;
-  }
-  // Post processing for all WYSIWYG fields.
-  if ($value && civictheme_field_is_wysiwyg($field_name) && $only_first) {
-    $value = _civictheme_process_link_attributes($value);
   }
 
   return $value;
 }
 
 /**
- * Gets the entity referenced entiites in a field of an entity.
+ * Gets the entity referenced entities in a field of an entity.
  *
  * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
  *   The host entity.
@@ -330,7 +328,7 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, string $field_name, bool $only_first = FALSE) {
+function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, $field_name, bool $only_first = FALSE) {
   $entities = NULL;
 
   if (civictheme_field_has_value($entity, $field_name)) {
@@ -352,7 +350,7 @@ function civictheme_get_field_referenced_entities(FieldableEntityInterface $enti
  * @return string[]
  *   The label(s).
  */
-function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entity, string $field_name) {
+function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entity, $field_name) {
   $labels = [];
   $referenced_entities = civictheme_get_field_value($entity, $field_name) ?? [];
   foreach ($referenced_entities as $referenced_entity) {
@@ -439,90 +437,61 @@ function civictheme_theme_options() {
 }
 
 /**
- * Check if the provided link is external.
+ * Process an HTML content string by applying several processors.
  *
- * @param string $url
- *   The url to be validated.
- * @param string $host
- *   The current site host.
- * @param array $overridden_domains
- *   Array of overridden domains.
+ * Use this on all rendered HTML content fields to additionally process content.
  *
- * @return bool
- *   TRUE if the link is external, FALSE otherwise.
+ * @param string $html
+ *   The string to be processed.
+ *
+ * @return string
+ *   The processed string.
  */
-function civictheme_link_is_external(string $url, string $host, array $overridden_domains) {
-  // If the link does not have a domain.
-  if ((strpos($url, 'internal:') === 0) || (strpos($url, '/') === 0)) {
-    return FALSE;
-  }
-  // If the link has a domain.
-  $url_data = parse_url($url);
-  if (!empty($url_data['host'])) {
-    $domain = trim($url_data['host'], '/');
-    // If domain is the same as the current site.
-    if ($domain == $host) {
-      return FALSE;
-    }
-    // Included in the list of the overridden domains, including wildcards.
-    if (!empty($overridden_domains)) {
-      $domain .= (!empty($url_data['path'])) ? '/' . $url_data['path'] : '';
-      if (in_array($domain, $overridden_domains)) {
-        return FALSE;
-      }
-      foreach ($overridden_domains as $overridden_domain) {
-        $pattern = str_replace('\*', '.*', preg_quote($overridden_domain, '/'));
-        $matched = preg_match('/^' . $pattern . '$/i', $domain);
-        if ($matched > 0) {
-          return FALSE;
-        }
-      }
-    }
-  }
-  return TRUE;
+function civictheme_process_html_content($html) {
+  $request = \Drupal::service('request_stack')->getCurrentRequest();
+  $base_url = $request->getHost() . (!empty($request->getPort()) ? ':' . $request->getPort() : '');
+
+  // Process links.
+  $link_settings = theme_get_setting('components.link') ?? [];
+  $html = _civictheme_process_html_content_links(
+    $html,
+    $base_url,
+    $link_settings['new_window'] ?? FALSE,
+    $link_settings['external_new_window'] ?? FALSE,
+    $link_settings['external_override_domains'] ?? []
+  );
+
+  return $html;
 }
 
 /**
- * Get the list of override domains.
- *
- * @return array
- *   List of override domains.
- */
-function civictheme_get_override_domains() {
-  $config_factory = \Drupal::service('config.factory');
-  $theme_name = $config_factory->get('system.theme')->get('default');
-  $config = $config_factory->get("$theme_name.settings");
-  $overridden_domains = $config->get('civictheme_override_domains') ?? [];
-  return civictheme_multiline_to_array($overridden_domains);
-}
-
-/**
- * Check if the provided field is wysiwyg.
- *
- * @param string $field_name
- *   Field name to check.
- *
- * @return bool
- *   TRUE if the field is wysiwyg, FALSE otherwise.
- */
-function civictheme_field_is_wysiwyg(string $field_name) {
-  $wysiwyg_field_list = [
-    'field_c_n_body',
-    'field_c_p_content',
-  ];
-  return in_array($field_name, $wysiwyg_field_list);
-}
-
-/**
- * Convert new line characters to a list of strings.
+ * Convert multi-line strings to a list of strings.
  *
  * @param string $string
  *   The string to be processed.
  *
  * @return array
- *   The array list.
+ *   A list of strings.
  */
 function civictheme_multiline_to_array($string) {
   $lines = is_array($string) ? $string : explode("\n", str_replace("\r\n", "\n", $string));
+
   return array_values(array_filter(array_map('trim', $lines)));
+}
+
+/**
+ * Convert an array to multi-line string value.
+ *
+ * @param string|array $array
+ *   Array to convert.
+ * @param string $delimiter
+ *   Delimiter to use for multiline. Defaults to PHP_EOL.
+ *
+ * @return string
+ *   String value of the array.
+ */
+function civictheme_array_to_multiline($array, $delimiter = PHP_EOL) {
+  $array = is_array($array) ? $array : [$array];
+
+  return implode($delimiter, array_filter($array));
 }
