@@ -5,6 +5,7 @@
  * Functions to support theming in the CivicTheme theme.
  */
 
+require_once 'includes/constants.inc';
 require_once 'includes/utilities.inc';
 require_once 'includes/accordion.inc';
 require_once 'includes/alert.inc';
@@ -103,7 +104,7 @@ function civictheme_theme() {
     ],
     'civictheme_slider_slide_links' => [
       'variables' => [
-        'component_theme' => 'light',
+        'component_theme' => CIVICTHEME_THEME_LIGHT,
         'links' => [],
       ],
       'template' => 'misc/slider-slide-links',
@@ -116,7 +117,7 @@ function civictheme_theme() {
     ],
     'civictheme_basic_content' => [
       'variables' => [
-        'component_theme' => 'light',
+        'component_theme' => CIVICTHEME_THEME_LIGHT,
         'content' => '',
       ],
       'template' => 'misc/basic-content',

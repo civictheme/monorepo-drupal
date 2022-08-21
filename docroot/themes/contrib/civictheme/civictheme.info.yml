@@ -48,6 +48,9 @@ regions:
   footer_bottom_1: 'Footer bottom 1'
   footer_bottom_2: 'Footer bottom 2'
 
+features:
+  - favicon
+
 components:
   namespaces:
     civictheme-base:

@@ -8,11 +8,6 @@
 use Drupal\Component\Utility\Html;
 
 /**
- * Defines paragraph default theme.
- */
-define('CIVICTHEME_PARAGRAPH_DEFAULT_THEME', 'light');
-
-/**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function civictheme_theme_suggestions_paragraph_alter(array &$suggestions, array $variables) {
@@ -54,7 +49,7 @@ function _civictheme_preprocess_paragraph__civictheme_card(&$variables) {
  */
 function _civictheme_preprocess_paragraph(&$variables) {
   // Set theme for all paragraphs.
-  $variables['theme'] = civictheme_get_theme_value($variables['paragraph']) ?? CIVICTHEME_PARAGRAPH_DEFAULT_THEME;
+  $variables['theme'] = civictheme_get_field_theme_value($variables['paragraph']);
 
   // Generic Drupal classes from paragraph template files.
   _civictheme_preprocess_paragraph_classes($variables);

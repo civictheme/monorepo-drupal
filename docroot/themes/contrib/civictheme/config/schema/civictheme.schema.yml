@@ -1,0 +1,46 @@
+# Schema for the configuration files of the CivicTheme theme.
+
+civictheme.settings:
+  type: theme_settings
+  label: 'CivicTheme settings'
+  mapping:
+    components:
+      type: mapping
+      label: 'Components settings'
+      mapping:
+        logo:
+          type: mapping
+          label: 'Logo settings'
+          mapping:
+            image_light_desktop:
+              label: 'Logo image in light theme for desktop'
+              type: string
+            image_light_mobile:
+              label: 'Logo image in light theme for mobile'
+              type: string
+            image_dark_desktop:
+              label: 'Logo image in dark theme for desktop'
+              type: string
+            image_dark_mobile:
+              label: 'Logo image in dark theme for mobile'
+              type: string
+            image_alt:
+              label: 'Logo image "alt" text'
+              type: string
+        header:
+          type: mapping
+          label: 'Header settings'
+          mapping:
+            theme:
+              label: 'Header theme'
+              type: string
+        footer:
+          type: mapping
+          label: 'Footer settings'
+          mapping:
+            theme:
+              label: 'Footer theme'
+              type: string
+            background_image:
+              label: 'Footer background image'
+              type: string

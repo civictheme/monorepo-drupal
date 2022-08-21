@@ -11,11 +11,6 @@ use Drupal\views\ViewExecutable;
 use Drupal\Core\Cache\Cache;
 
 /**
- * Defines default view theme.
- */
-define('CIVICTHEME_VIEWS_DEFAULT_THEME', 'light');
-
-/**
  * Page pre-process for views.
  */
 function _civictheme_preprocess_page__views(&$variables) {
@@ -151,8 +146,8 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
     ] : [];
 
     $settings = [
-      'theme' => civictheme_get_theme_value($paragraph) ?? CIVICTHEME_VIEWS_DEFAULT_THEME,
-      'card_theme' => civictheme_field_has_value($paragraph, 'field_c_p_listing_item_theme') ? $paragraph->get('field_c_p_listing_item_theme')->getString() : CIVICTHEME_VIEWS_DEFAULT_THEME,
+      'theme' => civictheme_get_field_theme_value($paragraph),
+      'card_theme' => civictheme_get_field_value($paragraph, 'field_c_p_listing_item_theme'),
       'link' => $link_data,
       'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
       'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,

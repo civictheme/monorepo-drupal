@@ -14,21 +14,20 @@ use Drupal\Core\Url;
 /**
  * Implements hook_form_system_theme_settings_alter().
  */
-function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
-  _civictheme_form_system_theme_settings_theme_version($form);
-  _civictheme_form_system_theme_settings_logo($form);
-  _civictheme_form_system_theme_settings_components($form);
-  _civictheme_form_system_theme_settings_external_links($form);
+function civictheme_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state) {
+  _civictheme_form_system_theme_settings_theme_version($form, $form_state);
+  _civictheme_form_system_theme_settings_components($form, $form_state);
   _civictheme_form_system_theme_settings_content_provision($form, $form_state);
-  _civictheme_form_system_theme_settings_storybook($form);
+  _civictheme_form_system_theme_settings_storybook($form, $form_state);
 }
 
 /**
  * Provide theme version to theme settings.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
-function _civictheme_form_system_theme_settings_theme_version(&$form) {
+function _civictheme_form_system_theme_settings_theme_version(&$form, FormStateInterface &$form_state) {
   $civictheme_version = civictheme_get_version();
   if ($civictheme_version) {
     $form['civictheme_version'] = [
@@ -45,108 +44,151 @@ function _civictheme_form_system_theme_settings_theme_version(&$form) {
 }
 
 /**
- * Provide logo settings to theme settings form.
- */
-function _civictheme_form_system_theme_settings_logo(&$form) {
-  // Disable default settings as we do not support uploading of custom logos
-  // through config form (yet).
-  // @todo Remove this once support for uploading of the custom logos is
-  // added.
-  $form['logo']['settings']['logo_upload']['#access'] = FALSE;
-  $form['logo']['settings']['logo_path']['#title'] = t('Header desktop logo path');
-  $form['logo']['settings']['civictheme_header_logo_mobile'] = [
-    '#type' => 'textfield',
-    '#title' => t('Header mobile logo path'),
-    '#description' => _civictheme_path_field_description(theme_get_setting('civictheme_header_logo_mobile'), 'logo-header-mobile.svg'),
-    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_header_logo_mobile')),
-  ];
-
-  $form['logo']['settings']['civictheme_footer_logo_desktop'] = [
-    '#type' => 'textfield',
-    '#title' => t('Footer desktop logo path'),
-    '#description' => _civictheme_path_field_description(theme_get_setting('civictheme_footer_logo_desktop'), 'logo-header-desktop.svg'),
-    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_footer_logo_desktop')),
-  ];
-
-  $form['logo']['settings']['civictheme_footer_logo_mobile'] = [
-    '#type' => 'textfield',
-    '#title' => t('Footer mobile logo path'),
-    '#description' => _civictheme_path_field_description(theme_get_setting('civictheme_footer_logo_mobile'), 'logo-footer-mobile.svg'),
-    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_footer_logo_mobile')),
-  ];
-
-  $form['logo']['settings']['civictheme_site_logo_alt'] = [
-    '#type' => 'textfield',
-    '#title' => t('Logo alt attribute text'),
-    '#description' => t('Text for the alt attribute of the site logo image.'),
-    '#default_value' => theme_get_setting('civictheme_site_logo_alt'),
-  ];
-}
-
-/**
  * Provide components settings to theme settings form.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
-function _civictheme_form_system_theme_settings_components(&$form) {
+function _civictheme_form_system_theme_settings_components(&$form, FormStateInterface &$form_state) {
   $form['components'] = [
-    '#type' => 'details',
+    '#type' => 'vertical_tabs',
     '#title' => t('CivicTheme components'),
     '#weight' => 50,
+    '#tree' => TRUE,
+  ];
+
+  $form['components']['logo'] = [
+    '#type' => 'details',
+    '#title' => t('Logo'),
     '#open' => TRUE,
+    '#group' => 'components',
+    '#tree' => TRUE,
+  ];
+
+  $breakpoints = ['desktop', 'mobile'];
+
+  foreach (civictheme_theme_options() as $theme => $theme_label) {
+    foreach ($breakpoints as $breakpoint) {
+      $form['components']['logo']["image_{$theme}_{$breakpoint}"] = [
+        '#type' => 'textfield',
+        '#title' => t('Logo image in @theme theme for @breakpoint', [
+          '@theme' => $theme_label,
+          '@breakpoint' => $breakpoint,
+        ]),
+        '#description' => _civictheme_path_field_description(theme_get_setting("components.logo.image_{$theme}_{$breakpoint}"), "logo-{$theme}-{$breakpoint}.svg"),
+        '#default_value' => _civictheme_field_friendly_path(theme_get_setting("components.logo.image_{$theme}_{$breakpoint}")),
+      ];
+    }
+  }
+
+  $form['components']['logo']['image_alt'] = [
+    '#type' => 'textfield',
+    '#title' => t('Logo image "alt" text'),
+    '#description' => t('Text for the <code>alt</code> attribute of the site logo image.'),
+    '#default_value' => theme_get_setting('components.logo.image_alt'),
   ];
 
   $form['components']['header'] = [
     '#type' => 'details',
     '#title' => t('Header'),
-    '#weight' => 50,
-    '#open' => TRUE,
+    '#group' => 'components',
+    '#tree' => TRUE,
   ];
 
-  $form['components']['header']['civictheme_header_theme'] = [
-    '#title' => t('@component theme', ['@component' => 'Header']),
-    '#description' => t('Set the theme option for the @component.', ['@component' => 'Header']),
+  $form['components']['header']['theme'] = [
+    '#title' => t('Header theme'),
+    '#description' => t('Set the theme option for the Header component.'),
     '#type' => 'radios',
     '#required' => TRUE,
-    '#options' => [
-      'light' => t('Light'),
-      'dark' => t('Dark'),
-    ],
-    '#default_value' => theme_get_setting('civictheme_header_theme') ?? 'light',
+    '#options' => civictheme_theme_options(),
+    '#default_value' => theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT,
   ];
 
   $form['components']['footer'] = [
     '#type' => 'details',
     '#title' => t('Footer'),
-    '#weight' => 50,
-    '#open' => TRUE,
+    '#group' => 'components',
+    '#tree' => TRUE,
   ];
 
-  $form['components']['footer']['civictheme_footer_theme'] = [
-    '#title' => t('@component theme', ['@component' => 'Footer']),
-    '#description' => t('Set the theme option for the @component.', ['@component' => 'Footer']),
+  $form['components']['footer']['theme'] = [
+    '#title' => t('Footer theme'),
+    '#description' => t('Set the theme option for the Footer component.'),
     '#type' => 'radios',
     '#required' => TRUE,
-    '#options' => [
-      'light' => t('Light'),
-      'dark' => t('Dark'),
-    ],
-    '#default_value' => theme_get_setting('civictheme_footer_theme') ?? 'dark',
+    '#options' => civictheme_theme_options(),
+    '#default_value' => theme_get_setting('components.footer.theme') ?? CIVICTHEME_FOOTER_THEME_DEFAULT,
   ];
 
-  $form['components']['footer']['civictheme_footer_background_image'] = [
+  $form['components']['footer']['background_image'] = [
     '#type' => 'textfield',
     '#title' => t('Footer background image path'),
-    '#description' => _civictheme_path_field_description(theme_get_setting('civictheme_footer_background_image'), 'footer-background.png'),
-    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_footer_background_image')),
+    '#description' => _civictheme_path_field_description(theme_get_setting('components.footer.background_image'), 'footer-background.png'),
+    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('components.footer.background_image')),
   ];
+
+  // Create validators for all components, if they exist.
+  foreach (array_keys($form['components']) as $component_name) {
+    $validator = "_civictheme_form_system_theme_settings_{$component_name}_validate";
+    if (is_callable($validator)) {
+      $form['#validate'][] = $validator;
+    }
+  }
+}
+
+/**
+ * Validate callback for theme settings form to check logo settings.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_logo_validate(array $form, FormStateInterface &$form_state) {
+  $breakpoints = ['desktop', 'mobile'];
+  foreach (array_keys(civictheme_theme_options()) as $theme) {
+    foreach ($breakpoints as $breakpoint) {
+      $field_name_key = ['components', 'logo', "image_{$theme}_{$breakpoint}"];
+      $path = $form_state->getValue($field_name_key);
+
+      if (!empty($path)) {
+        $path = _civictheme_form_system_theme_settings_validate_path($path);
+        if ($path) {
+          $path = \Drupal::service('file_url_generator')->generateString($path);
+          $form_state->setValue($field_name_key, ltrim($path, '/'));
+          continue;
+        }
+        $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
+      }
+    }
+  }
+}
+
+/**
+ * Validate callback for theme settings form to check footer settings.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_footer_validate(array $form, FormStateInterface &$form_state) {
+  $field_name_key = ['components', 'footer', 'background_image'];
+  $path = $form_state->getValue($field_name_key);
+
+  if (!empty($path)) {
+    $path = _civictheme_form_system_theme_settings_validate_path($path);
+    if ($path) {
+      $path = \Drupal::service('file_url_generator')->generateString($path);
+      $form_state->setValue($field_name_key, ltrim($path, '/'));
+    }
+    else {
+      $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
+    }
+  }
 }
 
 /**
  * Provide content provision to theme settings form.
  */
-function _civictheme_form_system_theme_settings_content_provision(&$form, &$form_state) {
+function _civictheme_form_system_theme_settings_content_provision(&$form, FormStateInterface &$form_state) {
   // Programmatically provision content.
   $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
-  $provision_file = $civictheme_path . DIRECTORY_SEPARATOR . 'civictheme.provision.inc';
+  $provision_file = $civictheme_path . DIRECTORY_SEPARATOR . 'theme-settings.provision.inc';
   if (file_exists($provision_file)) {
     require_once $provision_file;
     _civictheme_form_system_theme_settings_alter_provision($form, $form_state);
@@ -157,8 +199,9 @@ function _civictheme_form_system_theme_settings_content_provision(&$form, &$form
  * Provide storybook to theme settings form.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
-function _civictheme_form_system_theme_settings_storybook(&$form) {
+function _civictheme_form_system_theme_settings_storybook(&$form, FormStateInterface &$form_state) {
   $theme_name = \Drupal::service('theme.manager')->getActiveTheme()->getName();
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
@@ -172,8 +215,6 @@ function _civictheme_form_system_theme_settings_storybook(&$form) {
     '#open' => TRUE,
     '#weight' => 52,
   ];
-
-  $form['#validate'][] = '_civictheme_form_system_theme_settings_validate';
 
   $storybook_file = $theme_path . '/storybook-static/index.html';
   if (file_exists($storybook_file)) {
@@ -201,38 +242,6 @@ function _civictheme_form_system_theme_settings_storybook(&$form) {
       '@path' => $storybook_file,
     ]),
   ];
-}
-
-/**
- * {@inheritdoc}
- *
- * @SuppressWarnings(PHPMD.UnusedFormalParameter)
- */
-function _civictheme_form_system_theme_settings_validate(array $form, FormStateInterface &$form_state) {
-  $values = $form_state->getValues();
-
-  if (!is_array($values)) {
-    return;
-  }
-
-  $field_to_validate = [
-    'civictheme_header_logo_mobile',
-    'civictheme_footer_logo_desktop',
-    'civictheme_footer_logo_mobile',
-    'civictheme_footer_background_image',
-  ];
-
-  foreach ($field_to_validate as $field) {
-    if (!empty($values[$field])) {
-      $path = _civictheme_form_system_theme_settings_validate_path($values[$field]);
-      if ($path) {
-        $path = \Drupal::service('file_url_generator')->generateString($path);
-        $form_state->setValue($field, ltrim($path, '/'));
-        continue;
-      }
-      $form_state->setErrorByName($field, t('The image path is invalid.'));
-    }
-  }
 }
 
 /**
@@ -329,24 +338,4 @@ function _civictheme_path_field_description($original_path, $fallback_path) {
     '@explicit-file' => StreamWrapperManager::getScheme($original_path) !== FALSE ? $original_path : 'public://' . $fallback_path,
     '@local-file' => $local_file,
   ]);
-}
-
-/**
- * Provide external links settings to theme settings form.
- */
-function _civictheme_form_system_theme_settings_external_links(&$form) {
-  $form['external_links'] = [
-    '#type' => 'details',
-    '#title' => t('External links'),
-    '#weight' => 51,
-    '#open' => TRUE,
-  ];
-
-  $form['external_links']['civictheme_override_domains'] = [
-    '#type' => 'textarea',
-    '#title' => t('Override domains'),
-    '#description' => t('A list of domains that should be considered as internal. One domain per line. Wildcards are supported.'),
-    '#default_value' => theme_get_setting('civictheme_override_domains'),
-    '#rows' => 4,
-  ];
 }
