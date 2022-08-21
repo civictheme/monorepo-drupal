@@ -5,6 +5,12 @@
  * Functions to support theming in the CivicTheme theme.
  */
 
+define('CIVICTHEME_THEME_LIGHT', 'light');
+define('CIVICTHEME_THEME_LIGHT_LABEL', 'Light');
+
+define('CIVICTHEME_THEME_DARK', 'dark');
+define('CIVICTHEME_THEME_DARK_LABEL', 'Dark');
+
 require_once 'includes/utilities.inc';
 require_once 'includes/accordion.inc';
 require_once 'includes/alert.inc';

@@ -27,7 +27,7 @@ if [ "${DREVOPS_DRUPAL_PROFILE}" = "govcms" ]; then
 fi
 
 echo "  > Provision content."
-$drush ev -v "require_once '/app/docroot/themes/contrib/civictheme/civictheme.provision.inc'; civictheme_provision_cli();"
+$drush ev -v "require_once '/app/docroot/themes/contrib/civictheme/theme-settings.provision.inc'; civictheme_provision_cli();"
 
 echo "  > Provision default content."
 $drush -y pm-enable civictheme_content

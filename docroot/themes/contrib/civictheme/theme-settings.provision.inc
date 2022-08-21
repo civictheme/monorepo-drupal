@@ -39,7 +39,7 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
     '#title' => t('CivicTheme content provisioning'),
     '#description' => t('Create all required content to make your site look like default CivicTheme.<br/><br/>Triggering this multiple times will result in removal and re-creation of content items.'),
     '#weight' => 51,
-    '#open' => TRUE,
+    '#open' => FALSE,
   ];
 
   $options = [];
@@ -67,10 +67,9 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
     '#type' => 'submit',
     '#name' => 'provision',
     '#value' => t('Provision content'),
+    '#validate' => ['_civictheme_form_system_theme_settings_provision_validate'],
+    '#submit' => ['_civictheme_form_system_theme_settings_provision_submit'],
   ];
-
-  $form['#validate'][] = '_civictheme_form_system_theme_settings_validate_provision';
-  $form['#submit'][] = '_civictheme_form_system_theme_settings_submit_provision';
 }
 
 /**
@@ -78,10 +77,16 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
-function _civictheme_form_system_theme_settings_validate_provision(array &$form, FormStateInterface $form_state) {
+function _civictheme_form_system_theme_settings_provision_validate(array &$form, FormStateInterface $form_state) {
+  // Do not store any provision settings as they are used only for on-page
+  // actions.
+  $form_state->addCleanValueKey('provision_types');
+  $form_state->addCleanValueKey('provision_clear_cache');
+
   $triggering_element = $form_state->getTriggeringElement();
   $button_name = $triggering_element['#name'] ?? '';
 
+  // Validate provision types.
   if ($button_name === 'provision') {
     $types = array_filter($form_state->getValue('provision_types'));
     if (empty($types)) {
@@ -95,9 +100,10 @@ function _civictheme_form_system_theme_settings_validate_provision(array &$form,
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
-function _civictheme_form_system_theme_settings_submit_provision(array &$form, FormStateInterface $form_state) {
+function _civictheme_form_system_theme_settings_provision_submit(array &$form, FormStateInterface $form_state) {
   $triggering_element = $form_state->getTriggeringElement();
   $button_name = $triggering_element['#name'] ?? '';
+
   if ($button_name === 'provision') {
     $types = array_filter($form_state->getValue('provision_types'));
     $clear_cache = $form_state->getValue('provision_clear_cache');
@@ -122,8 +128,6 @@ function _civictheme_form_system_theme_settings_submit_provision(array &$form, F
       }
     }
   }
-
-  $form_state->unsetValue('provision_types');
 }
 
 /**
@@ -818,36 +822,31 @@ function civictheme_provision__theme_settings() {
   $theme_name = \Drupal::config('system.theme')->get('default');
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
-  $logo_header_desktop = "$theme_path/dist/assets/logos/{$theme_name}_logo_desktop_light.png";
-  $logo_header_mobile = "$theme_path/dist/assets/logos/{$theme_name}_logo_mobile_light.png";
-  $logo_footer_desktop = "$theme_path/dist/assets/logos/{$theme_name}_logo_desktop_dark.png";
-  $logo_footer_mobile = "$theme_path/dist/assets/logos/{$theme_name}_logo_mobile_dark.png";
+  $components['logo'] = [];
 
-  $favicon = "$theme_path/dist/assets/favicon.ico";
+  $themes = [
+    'light',
+    'dark',
+  ];
+  $breakpoints = ['desktop', 'mobile'];
+  foreach ($themes as $theme) {
+    foreach ($breakpoints as $breakpoint) {
+      $components['logo']["image_{$theme}_{$breakpoint}"] = "$theme_path/dist/assets/logos/{$theme_name}_logo_{$theme}_{$breakpoint}.png";
+    }
+  }
+  $components['logo']['image_alt'] = 'CivicTheme demo logo';
+  $components['header']['theme'] = 'light';
+  $components['footer']['theme'] = 'dark';
 
   $config = \Drupal::service('config.factory')->getEditable("$theme_name.settings");
 
-  $config->set('logo', [
-    'use_default' => FALSE,
-    'path' => $logo_header_desktop,
-    'url' => '/' . ltrim($logo_header_desktop, '/'),
-  ]);
-
-  $config->set('logo_path', $logo_header_desktop);
-  $config->set('civictheme_header_logo_mobile', $logo_header_mobile);
-  $config->set('civictheme_footer_logo_desktop', $logo_footer_desktop);
-  $config->set('civictheme_footer_logo_mobile', $logo_footer_mobile);
-
-  $config->set('civictheme_site_logo_alt', 'CivicTheme demo logo');
+  $config->set('components', $components);
 
   $config->set('favicon', [
     'use_default' => FALSE,
-    'path' => $favicon,
+    'path' => "$theme_path/dist/assets/favicon.ico",
     'mimetype' => 'image/vnd.microsoft.icon',
   ]);
-
-  $config->set('civictheme_header_theme', 'light');
-  $config->set('civictheme_footer_theme', 'dark');
 
   $config->save();
 }

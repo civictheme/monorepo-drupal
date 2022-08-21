@@ -19,7 +19,7 @@ echo "==> Removing all files."
 rm -Rf "${APP}"/docroot/sites/default/files/* >/dev/null || true
 
 echo "  > Enable modules required by CivicTheme."
-$drush ev "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/civictheme.provision.inc'; civictheme_enable_modules();"
+$drush ev "require_once dirname(\Drupal::getContainer()->get('theme_handler')->rebuildThemeData()['civictheme']->getPathname()) . '/theme-settings.provision.inc'; civictheme_enable_modules();"
 
 echo "  > Enable admin theme and set as default."
 $drush -y then adminimal_theme
