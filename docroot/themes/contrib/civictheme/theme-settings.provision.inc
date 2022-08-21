@@ -107,8 +107,10 @@ function _civictheme_form_system_theme_settings_provision_submit(array &$form, F
   if ($button_name === 'provision') {
     $types = array_filter($form_state->getValue('provision_types'));
     $clear_cache = $form_state->getValue('provision_clear_cache');
+
     if (!empty($types)) {
       $results = civictheme_provision($types, $clear_cache);
+
       foreach ($results as $type => $result) {
         if ($result === TRUE) {
           \Drupal::messenger()->addStatus(t('Successfully provisioned @type.', [
@@ -685,11 +687,13 @@ function _civictheme_provision__blocks__search(array $block) {
 function _civictheme_provision__blocks__mobile_navigation(array $block) {
   $theme_name = \Drupal::config('system.theme')->get('default');
 
+  $context_theme = theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT;
+
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
   $block_content->field_c_b_top_menu = "{$theme_name}_primary_navigation";
   $block_content->field_c_b_bottom_menu = "{$theme_name}_secondary_navigation";
   $block_content->field_c_b_trigger_text = 'Menu';
-  $block_content->field_c_b_trigger_theme = 'light';
+  $block_content->field_c_b_trigger_theme = $context_theme;
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
@@ -824,6 +828,8 @@ function civictheme_provision__theme_settings() {
 
   $components['logo'] = [];
 
+  // Do not use constants as they may be not available when provisioning
+  // through CLI.
   $themes = [
     'light',
     'dark',

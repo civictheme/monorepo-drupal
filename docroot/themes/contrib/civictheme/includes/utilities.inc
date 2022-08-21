@@ -73,6 +73,7 @@ function civictheme_media_image_process_variables(MediaInterface $media, $image_
       $image['src'] = $image_src;
       $image['alt'] = !empty($image_entity['alt']) ? $image_entity['alt'] : NULL;
       $image['title'] = !empty($image_entity['title']) ? $image_entity['title'] : NULL;
+
       return $image;
     }
   }
@@ -199,6 +200,7 @@ function civictheme_get_css_class_attributes(Attribute $attributes) {
   if ($attributes->hasAttribute('class')) {
     return implode(' ', $attributes->getClass()->value());
   }
+
   return FALSE;
 }
 
@@ -227,36 +229,6 @@ function civictheme_format_short_date($date) {
  */
 function civictheme_field_has_value(FieldableEntityInterface $entity, string $field_name) {
   return ($entity->hasField($field_name) && !$entity->get($field_name)->isEmpty());
-}
-
-/**
- * Get an entity's theme value.
- *
- * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
- *   Entity to check field existence.
- *
- * @return string
- *   The theme value for the entity - light is default if it does not exist.
- */
-function civictheme_get_theme_value(FieldableEntityInterface $entity) {
-  switch (get_class($entity)) {
-    case 'Drupal\paragraphs\Entity\Paragraph':
-      $field_name = 'field_c_p_theme';
-      break;
-
-    case 'Drupal\node\Entity\Node':
-      $field_name = 'field_c_n_banner_theme';
-      break;
-
-    case 'Drupal\block_content\Entity\BlockContent':
-      $field_name = 'field_c_b_theme';
-      break;
-
-    default:
-      $field_name = FALSE;
-  }
-
-  return $field_name !== FALSE && civictheme_field_has_value($entity, $field_name) && $entity->get($field_name)->getString() ? $entity->get($field_name)->getString() : NULL;
 }
 
 /**
@@ -414,6 +386,42 @@ function civictheme_get_entity_field_key_values(EntityInterface $entity, $field_
   }
 
   return $values;
+}
+
+/**
+ * Get an entity's theme field value.
+ *
+ * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+ *   Entity to check field existence.
+ * @param string $default
+ *   Optional default theme value. Defaults to NULL.
+ *
+ * @return string
+ *   The theme field value for the entity.
+ *   If field does not have a value - $default is returned.
+ */
+function civictheme_get_field_theme_value(FieldableEntityInterface $entity, $default = NULL) {
+  $field_name = FALSE;
+
+  if (empty($entity)) {
+    return $default;
+  }
+
+  switch (get_class($entity)) {
+    case 'Drupal\paragraphs\Entity\Paragraph':
+      $field_name = 'field_c_p_theme';
+      break;
+
+    case 'Drupal\node\Entity\Node':
+      $field_name = 'field_c_n_banner_theme';
+      break;
+
+    case 'Drupal\block_content\Entity\BlockContent':
+      $field_name = 'field_c_b_theme';
+      break;
+  }
+
+  return $field_name ? civictheme_get_field_value($entity, $field_name) : $default;
 }
 
 /**

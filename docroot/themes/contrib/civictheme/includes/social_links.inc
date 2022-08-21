@@ -50,6 +50,6 @@ function _civictheme_preprocess_block__civictheme_social_links(&$variables) {
     $items[] = $item;
   }
   $variables['items'] = $items;
-  $variables['theme'] = civictheme_get_theme_value($entity) ?? CIVICTHEME_SOCIAL_LINKS_DEFAULT_THEME;
+  $variables['theme'] = civictheme_get_field_theme_value($entity);
   $variables['with_border'] = civictheme_get_field_value($entity, 'field_c_b_with_border') ?? FALSE;
 }
