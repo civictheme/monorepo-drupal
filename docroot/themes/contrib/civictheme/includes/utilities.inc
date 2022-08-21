@@ -415,3 +415,13 @@ function civictheme_get_entity_field_key_values(EntityInterface $entity, $field_
 
   return $values;
 }
+
+/**
+ * Theme options suitable for FormAPI.
+ */
+function civictheme_theme_options() {
+  return [
+    CIVICTHEME_THEME_LIGHT => CIVICTHEME_THEME_LIGHT_LABEL,
+    CIVICTHEME_THEME_DARK => CIVICTHEME_THEME_DARK_LABEL,
+  ];
+}
