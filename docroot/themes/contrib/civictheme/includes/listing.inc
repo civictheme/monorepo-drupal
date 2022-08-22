@@ -12,26 +12,6 @@ use Drupal\views\Views;
 use Drupal\Core\Template\Attribute;
 
 /**
- * Defines limited limit type.
- */
-define('CIVICTHEME_LISTINGS_LIMIT_TYPE_LIMITED', 'limited');
-
-/**
- * Defines unlimited limit type.
- */
-define('CIVICTHEME_LISTINGS_LIMIT_TYPE_UNLIMITED', 'unlimited');
-
-/**
- * Defines fallback limit of Full listings items if pager is disabled.
- */
-define('CIVICTHEME_LISTINGS_FULL_FALLBACK_LIMIT', 12);
-
-/**
- * Defines fallback view name.
- */
-define('CIVICTHEME_LISTINGS_DEFAULT_VIEW', 'civictheme_listing__block1');
-
-/**
  * Implements template_preprocess_paragraph().
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
@@ -71,7 +51,7 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
  */
 function _civictheme_listing_element(Paragraph $paragraph, &$variables) {
   // Setting up default view name.
-  [$view_name, $view_display] = explode('__', CIVICTHEME_LISTINGS_DEFAULT_VIEW);
+  [$view_name, $view_display] = explode('__', CIVICTHEME_LISTING_DEFAULT_VIEW);
   _civictheme_listing_get_view_name($view_name, $view_display, $paragraph);
 
   $view = Views::getView($view_name);
@@ -144,14 +124,14 @@ function _civictheme_listing_alter_view($paragraph, &$view) {
  */
 function _civictheme_listing_view_pager_alter($paragraph, &$view) {
   $header = $view->display_handler->getOption('header');
-  $fallback_limit = CIVICTHEME_LISTINGS_FULL_FALLBACK_LIMIT;
+  $fallback_limit = CIVICTHEME_LISTING_FULL_FALLBACK_LIMIT;
   $limit_type = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit_type');
   $limit = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit');
   $items_per_page = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit');
   $show_filters = civictheme_get_field_value($paragraph, 'field_c_p_listing_show_filters');
 
   // Show exact number of items.
-  if ($limit_type == CIVICTHEME_LISTINGS_LIMIT_TYPE_LIMITED) {
+  if ($limit_type == CIVICTHEME_LISTING_LIMIT_TYPE_LIMITED) {
     // Prevent endless lists by using a fallback limit if a limit is 0.
     $limit = $limit > 0 ? $limit : $fallback_limit;
 
@@ -169,7 +149,7 @@ function _civictheme_listing_view_pager_alter($paragraph, &$view) {
       $view->display_handler->setOption('header', []);
     }
   }
-  elseif ($limit_type == CIVICTHEME_LISTINGS_LIMIT_TYPE_UNLIMITED) {
+  elseif ($limit_type == CIVICTHEME_LISTING_LIMIT_TYPE_UNLIMITED) {
     if ($items_per_page == 0) {
       // Show pager and default number of items.
       // This is default view display state, so no change is required.
