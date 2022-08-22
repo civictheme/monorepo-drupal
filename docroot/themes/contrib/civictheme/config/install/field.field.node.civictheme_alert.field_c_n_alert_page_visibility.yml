@@ -9,7 +9,7 @@ field_name: field_c_n_alert_page_visibility
 entity_type: node
 bundle: civictheme_alert
 label: 'Page visibility'
-description: 'Specify pages by using their paths to show this alert. One path per line. The ''''*'''' character is a wildcard. An example path is <code>''/user/*''</code> for every user page. Use <code>/</code> for the home page.<br/> Leave this field empty to display the alert on all pages.'
+description: "Only show this message on the specified paths. One path per line.<br/>\r\nThe ''*'' character is a wildcard.<br/>\r\nUse <code>/</code> for the home page.<br/>\r\nFor example, use <code>/user/*</code> for the message to appear on every user page.<br/> \r\nLeave empty to display on all pages."
 required: false
 translatable: false
 default_value: {  }

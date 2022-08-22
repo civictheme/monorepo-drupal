@@ -9,21 +9,6 @@ use Drupal\Core\Cache\Cache;
 use Drupal\node\NodeInterface;
 
 /**
- * Defines Small banner style.
- */
-define('CIVICTHEME_BANNER_TYPE_DEFAULT', 'default');
-
-/**
- * Defines Large banner style.
- */
-define('CIVICTHEME_BANNER_TYPE_LARGE', 'large');
-
-/**
- * Defines Large banner style.
- */
-define('CIVICTHEME_BANNER_DEFAULT_THEME', 'light');
-
-/**
  * Pre-process for Programmatic Block - Banner block.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
@@ -51,7 +36,7 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
 
   $variables['type'] = CIVICTHEME_BANNER_TYPE_DEFAULT;
 
-  $variables['theme'] = civictheme_get_theme_value($entity) ?? CIVICTHEME_BANNER_DEFAULT_THEME;
+  $variables['theme'] = civictheme_get_field_theme_value($entity);
 
   if (civictheme_field_has_value($entity, 'field_c_b_background_image')) {
     $variables['background_image'] = civictheme_media_get_url_from_field($entity, 'field_c_b_background_image');
@@ -176,8 +161,7 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
   }
 
   $variables['type'] = civictheme_get_field_value($node, 'field_c_n_banner_type');
-
-  $variables['theme'] = civictheme_get_theme_value($node) ?? CIVICTHEME_BANNER_DEFAULT_THEME;
+  $variables['theme'] = civictheme_get_field_theme_value($node);
 
   $is_front = \Drupal::service('path.matcher')->isFrontPage();
   $variables['is_front'] = $is_front;

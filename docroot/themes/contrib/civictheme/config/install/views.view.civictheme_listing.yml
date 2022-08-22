@@ -9,10 +9,10 @@ dependencies:
     - taxonomy
     - user
 id: civictheme_listing
-label: 'CivicTheme Listing'
+label: Listing
 module: views
-description: ''
-tag: ''
+description: 'Default view used in the Listing component.'
+tag: CivicTheme
 base_table: node_field_data
 base_field: nid
 display:
@@ -420,6 +420,7 @@ display:
           plugin_id: standard
           required: false
       use_ajax: true
+      group_by: true
       header:
         result:
           id: result

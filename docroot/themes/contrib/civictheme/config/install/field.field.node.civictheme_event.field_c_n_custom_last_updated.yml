@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_c_n_custom_last_updated
+    - node.type.civictheme_event
+  module:
+    - datetime
+id: node.civictheme_event.field_c_n_custom_last_updated
+field_name: field_c_n_custom_last_updated
+entity_type: node
+bundle: civictheme_event
+label: 'Custom Last updated date'
+description: "Override <em>Last updated</em> system date with a custom value. Leave empty to use system last updated date.<br/>\r\nApplies only if <em>Show Last updated date</em> is enabled above."
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -35,11 +35,11 @@ export const Footer = (knobTab) => {
 
   generalKnobs.logos = boolean('Show Logo', true, generalKnobTab) ? {
     mobile: {
-      src: LOGOS.mobile[generalKnobs.theme],
+      src: LOGOS[generalKnobs.theme].mobile,
       alt: 'Logo mobile alt text',
     },
     desktop: {
-      src: LOGOS.desktop[generalKnobs.theme],
+      src: LOGOS[generalKnobs.theme].desktop,
       alt: 'Logo desktop alt text',
     },
   } : null;

@@ -3,21 +3,21 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civictheme_listing.field_c_p_background
-    - field.field.paragraph.civictheme_listing.field_c_p_card_theme
-    - field.field.paragraph.civictheme_listing.field_c_p_content_type
-    - field.field.paragraph.civictheme_listing.field_c_p_limit_type
-    - field.field.paragraph.civictheme_listing.field_c_p_link
-    - field.field.paragraph.civictheme_listing.field_c_p_listing_f_exposed
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_content_type
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_filters_exp
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_item_theme
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_item_view_as
     - field.field.paragraph.civictheme_listing.field_c_p_listing_limit
-    - field.field.paragraph.civictheme_listing.field_c_p_listing_multi_select
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_limit_type
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_link_above
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_link_below
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_show_filters
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_site_sections
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_topics
     - field.field.paragraph.civictheme_listing.field_c_p_listing_type
-    - field.field.paragraph.civictheme_listing.field_c_p_read_more
-    - field.field.paragraph.civictheme_listing.field_c_p_show_filters
     - field.field.paragraph.civictheme_listing.field_c_p_space
     - field.field.paragraph.civictheme_listing.field_c_p_theme
     - field.field.paragraph.civictheme_listing.field_c_p_title
-    - field.field.paragraph.civictheme_listing.field_c_p_topics
-    - field.field.paragraph.civictheme_listing.field_c_p_view_as
     - paragraphs.paragraphs_type.civictheme_listing
   module:
     - link
@@ -35,42 +35,30 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
+    weight: 5
+    region: content
+  field_c_p_listing_content_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_c_p_listing_filters_exp:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
     weight: 15
     region: content
-  field_c_p_card_theme:
+  field_c_p_listing_item_theme:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 16
+    weight: 6
     region: content
-  field_c_p_content_type:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_c_p_limit_type:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 10
-    region: content
-  field_c_p_link:
-    type: link
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 1
-    region: content
-  field_c_p_listing_f_exposed:
+  field_c_p_listing_item_view_as:
     type: list_default
     label: above
     settings: {  }
@@ -84,26 +72,16 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 5
+    weight: 2
     region: content
-  field_c_p_listing_multi_select:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 6
-    region: content
-  field_c_p_listing_type:
+  field_c_p_listing_limit_type:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 17
+    weight: 9
     region: content
-  field_c_p_read_more:
+  field_c_p_listing_link_above:
     type: link
     label: above
     settings:
@@ -115,7 +93,19 @@ content:
     third_party_settings: {  }
     weight: 12
     region: content
-  field_c_p_show_filters:
+  field_c_p_listing_link_below:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_c_p_listing_show_filters:
     type: boolean
     label: above
     settings:
@@ -123,21 +113,44 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 9
+    weight: 14
+    region: content
+  field_c_p_listing_site_sections:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_c_p_listing_topics:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_c_p_listing_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
     region: content
   field_c_p_space:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 13
+    weight: 3
     region: content
   field_c_p_theme:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 14
+    weight: 4
     region: content
   field_c_p_title:
     type: string
@@ -146,20 +159,5 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 0
-    region: content
-  field_c_p_topics:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 3
-    region: content
-  field_c_p_view_as:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 4
     region: content
 hidden: {  }

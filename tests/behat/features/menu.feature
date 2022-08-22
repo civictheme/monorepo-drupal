@@ -5,23 +5,23 @@ Feature: Open external links in a new tab
 
   Background:
     Given "civictheme_page" content:
-      | title                 | status | path[0][pathauto] | path[0][alias] | field_c_n_hide_sidebar[value] |
-      | [TEST] Page Internal  | 1      | 0                 | /internal-test | 0                             |
+      | title                | status | path[0][pathauto] | path[0][alias] | field_c_n_hide_sidebar[value] |
+      | [TEST] Page Internal | 1      | 0                 | /internal-test | 0                             |
     Given 'Footer' menu_links:
-      | title                       | enabled | uri                     |
-      | [TEST] External Footer link | 1       | https://example.com     |
+      | title                       | enabled | uri                 |
+      | [TEST] External Footer link | 1       | https://example.com |
     Given 'Primary Navigation' menu_links:
-      | title                        | enabled | uri                     |
-      | [TEST] External Primary link | 1       | https://example.com     |
+      | title                        | enabled | uri                 |
+      | [TEST] External Primary link | 1       | https://example.com |
     Given 'Secondary Navigation' menu_links:
-      | title                          | enabled | uri                     |
-      | [TEST] External Secondary link | 1       | https://example.com     |
+      | title                          | enabled | uri                 |
+      | [TEST] External Secondary link | 1       | https://example.com |
     Given menus:
       | label         | description        | id            |
       | Test new menu | Text external link | test-new-menu |
     Given 'Test new menu' menu_links:
-      | title                    | enabled | uri                     |
-      | [TEST] External new link | 1       | https://example.com     |
+      | title                    | enabled | uri                 |
+      | [TEST] External new link | 1       | https://example.com |
 
   @api
   Scenario: External menu links open in a new tab.
