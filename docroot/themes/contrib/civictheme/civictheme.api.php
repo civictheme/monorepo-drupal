@@ -5,11 +5,6 @@
  * Hooks related to the CivicTheme theme.
  */
 
-/**
- * @addtogroup hooks
- * @{
- */
-
 use Drupal\views\ViewExecutable;
 use Drupal\paragraphs\Entity\Paragraph;
 
@@ -43,7 +38,3 @@ function hook_civictheme_listing_preprocess_view_alter(array &$settings, ViewExe
     $settings['vertical_space'] = 'both';
   }
 }
-
-/**
- * @} End of "addtogroup hooks".
- */
