@@ -18,7 +18,7 @@ function civictheme_preprocess_paragraph__civictheme_accordion(&$variables) {
     $variables['panels'][] = [
       'expanded' => civictheme_get_field_value($panel, 'field_c_p_expand'),
       'title' => civictheme_get_field_value($panel, 'field_c_p_title'),
-      'content' => civictheme_get_field_value($panel, 'field_c_p_content', TRUE),
+      'content' => $panel->field_c_p_content->view(),
     ];
   }
 }

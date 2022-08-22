@@ -51,6 +51,11 @@ function _civictheme_preprocess_paragraph(&$variables) {
   // Set theme for all paragraphs.
   $variables['theme'] = civictheme_get_field_theme_value($variables['paragraph']);
 
+  // Set content for all paragraphs.
+  if (!empty($variables['content']['field_c_p_content'])) {
+    $variables['content'] = \Drupal::service('renderer')->render($variables['content']['field_c_p_content']);
+  }
+
   // Generic Drupal classes from paragraph template files.
   _civictheme_preprocess_paragraph_classes($variables);
 
@@ -61,7 +66,6 @@ function _civictheme_preprocess_paragraph(&$variables) {
   _civictheme_preprocess_paragraph__field__background($variables);
   _civictheme_preprocess_paragraph__civictheme_card($variables);
   _civictheme_preprocess_paragraph__field__webform($variables);
-
 }
 
 /**

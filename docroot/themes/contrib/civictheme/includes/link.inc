@@ -29,7 +29,7 @@ use Drupal\Component\Utility\UrlHelper;
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function _civictheme_process_html_content_links($html, $base_url, $new_window = FALSE, $external_new_window = FALSE, array $override_domains = []) {
-  $link_class = 'civictheme-link';
+  $link_class = 'civictheme-link civictheme-theme-light';
   $link_external_class = 'civictheme-link--external';
 
   $dom = Html::load($html);

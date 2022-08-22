@@ -5,6 +5,8 @@
  * Functions to support theming in the CivicTheme theme.
  */
 
+use Drupal\Core\Render\Element;
+
 require_once 'includes/constants.inc';
 require_once 'includes/utilities.inc';
 require_once 'includes/process.inc';
@@ -22,7 +24,6 @@ require_once 'includes/promo_card.inc';
 require_once 'includes/subject_card.inc';
 require_once 'includes/task_card.inc';
 require_once 'includes/cards.inc';
-require_once 'includes/content.inc';
 require_once 'includes/filter.inc';
 require_once 'includes/form.inc';
 require_once 'includes/iframe.inc';
@@ -261,4 +262,50 @@ function civictheme_preprocess_menu_local_tasks(&$variables) {
  */
 function civictheme_preprocess_menu(&$variables) {
   _civictheme_preprocess_menu_items($variables['items']);
+}
+
+/**
+ * Implements template_preprocess_field().
+ */
+function civictheme_preprocess_field(&$variables) {
+  _civictheme_preprocess_wysiwyg_field($variables);
+}
+
+/**
+ * Add post-processing for all WYSIWYG fields.
+ */
+function _civictheme_preprocess_wysiwyg_field(&$variables) {
+  if (isset($variables['field_name'])) {
+    if (civictheme_field_is_wysiwyg($variables['field_name'])) {
+      foreach (Element::children($variables['items']) as $item) {
+        if (!empty($variables['items'][$item]['content']['#text'])) {
+          $theme = !empty($variables['element']['#object']) ? civictheme_get_field_theme_value($variables['element']['#object']) : NULL;
+          $variables['items'][$item]['content']['#text'] = civictheme_process_html_content($variables['items'][$item]['content']['#text'], [
+            'theme' => $theme,
+          ]);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Check if the provided field is wysiwyg.
+ *
+ * @param string $field_name
+ *   Field name to check.
+ *
+ * @return bool
+ *   TRUE if the field is wysiwyg, FALSE otherwise.
+ */
+function civictheme_field_is_wysiwyg(string $field_name) {
+  $wysiwyg_field_list = [
+    'field_c_n_body',
+    'field_c_p_content',
+  ];
+  if (in_array($field_name, $wysiwyg_field_list)) {
+    return TRUE;
+  }
+
+  return FALSE;
 }
