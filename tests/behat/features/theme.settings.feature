@@ -52,6 +52,22 @@ Feature: Check that components settings are available in theme settings
     And should see an "input#edit-components-footer-background-image" element
     And should not see an "input#edit-components-footer-background-image.required" element
 
+    And I should see the text "Header theme"
+    And I should see an "input[name='components[header][theme]']" element
+    And I should see an "#edit-components-header-theme--wrapper.required" element
+
+    And I should see the text "Open links in a new window"
+    And should see an "input#edit-components-link-new-window" element
+    And should not see an "#edit-components-link-new-window.required" element
+
+    And I should see the text "Open external links in a new window"
+    And should see an "input#edit-components-link-external-new-window" element
+    And should not see an "#edit-components-link-external-new-window.required" element
+
+    And I see field "Override external link domains"
+    And should see an "textarea#edit-components-link-external-override-domains" element
+    And should not see an "textarea#edit-components-link-external-override-domains.required" element
+
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with stream wrapper
     Given I am logged in as a user with the "Site Administrator" role
@@ -60,14 +76,16 @@ Feature: Check that components settings are available in theme settings
     And I fill in "Logo image in Light theme for mobile" with "public://civictheme_test/logo_light_mobile.jpg"
     And I fill in "Logo image in Dark theme for desktop" with "public://civictheme_test/logo_dark_desktop.jpg"
     And I fill in "Logo image in Dark theme for mobile" with "public://civictheme_test/logo_dark_mobile.jpg"
+    And I select the radio button "Light" with the id "edit-components-header-theme-light"
+    And I select the radio button "Dark" with the id "edit-components-footer-theme-dark"
     And I fill in "Footer background image path" with "public://civictheme_test/footer_background_image.jpg"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
     And I should see the ".civictheme-header .civictheme-logo .civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
-    And I should see the ".civictheme-header .civictheme-logo img.civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
-    And I should see the "div.civictheme-logo img.civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
-    And I should see the "div.civictheme-logo img.civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
+    And I should see the ".civictheme-header .civictheme-logo .civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
+    And I should see the "div.civictheme-logo .civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
+    And I should see the "div.civictheme-logo .civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
 
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with static assets
@@ -97,3 +115,16 @@ Feature: Check that components settings are available in theme settings
     And I fill in "Footer background image path" with "/sites/default/files/civictheme_test/footer_background_image.jpg"
     And I press "Save configuration"
     Then I should see the text "5 errors have been found"
+
+  @api
+  Scenario: The CivicTheme theme settings External Links comnponent validation works.
+    Given I am logged in as a user with the "Site Administrator" role
+    And I visit "/admin/appearance/settings/civictheme_demo"
+
+    When I fill in "Override external link domains" with "http://exampleoverridden.com"
+    And I press "Save configuration"
+    Then I should see the text "The configuration options have been saved."
+
+    When I fill in "Override external link domains" with "http//invaliddomain.com"
+    And I press "Save configuration"
+    Then I should not see the text "The configuration options have been saved."
