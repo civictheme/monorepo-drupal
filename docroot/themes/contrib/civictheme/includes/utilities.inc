@@ -90,7 +90,7 @@ function civictheme_media_image_process_variables(MediaInterface $media, $image_
  * @return string
  *   Image URL or FALSE if not available.
  */
-function civictheme_media_get_url_from_field(EntityInterface $entity, string $field_name) {
+function civictheme_media_get_url_from_field(EntityInterface $entity, $field_name) {
   /** @var \Drupal\media\Entity\Media|NULL $media */
   $media = civictheme_get_field_value($entity, $field_name, TRUE);
   if ($media) {
@@ -227,8 +227,8 @@ function civictheme_format_short_date($date) {
  * @return bool
  *   Whether the field exists and is not empty.
  */
-function civictheme_field_has_value(FieldableEntityInterface $entity, string $field_name) {
-  return ($entity->hasField($field_name) && !$entity->get($field_name)->isEmpty());
+function civictheme_field_has_value(FieldableEntityInterface $entity, $field_name) {
+  return $entity->hasField($field_name) && !$entity->get($field_name)->isEmpty();
 }
 
 /**
@@ -247,17 +247,19 @@ function civictheme_field_has_value(FieldableEntityInterface $entity, string $fi
  * @return mixed|null
  *   Whether the field exists and is not empty.
  *
- * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
-function civictheme_get_field_value(FieldableEntityInterface $entity, string $field_name, $only_first = FALSE) {
+function civictheme_get_field_value(FieldableEntityInterface $entity, $field_name, $only_first = FALSE) {
   $value = NULL;
+
   if (!civictheme_field_has_value($entity, $field_name)) {
     return $value;
   }
+
   $field = $entity->get($field_name);
   $field_type = $field->getFieldDefinition()->getType();
+
   switch ($field_type) {
     case 'boolean':
       $value = (bool) $field->getString();
@@ -294,19 +296,21 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
       $value = civictheme_get_field_referenced_entities($entity, $field_name, $only_first);
       break;
 
-    // Opinionated - but we want to render field if single or allow view
-    // to handle it if it's all values.
     case 'text_long':
+      // Opinionated. We want to render field if single or allow view() to
+      // handle it if it's all values.
       if ($only_first) {
         $field = $field->first();
-        $value = check_markup($field->get('value')->getString(), $field->get('format')->getString());
-        break;
+        $field_value = $field->get('value')->getString();
+        $field_format = $field->get('format')->getString();
+        $value = !empty($field_format) ? check_markup($field_value, $field_format) : $field_value;
       }
-      $value = $field->view();
+      else {
+        $value = $field->view();
+      }
       break;
 
     default:
-      \Drupal::logger('civic_theme')->warning('civictheme_get_field_value has encountered an unknown field type "@field_type"', ['@field_type' => $field_type]);
       $value = NULL;
   }
 
@@ -314,7 +318,7 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
 }
 
 /**
- * Gets the entity referenced entiites in a field of an entity.
+ * Gets the entity referenced entities in a field of an entity.
  *
  * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
  *   The host entity.
@@ -326,7 +330,7 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, string $fi
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
-function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, string $field_name, bool $only_first = FALSE) {
+function civictheme_get_field_referenced_entities(FieldableEntityInterface $entity, $field_name, bool $only_first = FALSE) {
   $entities = NULL;
 
   if (civictheme_field_has_value($entity, $field_name)) {
@@ -348,7 +352,7 @@ function civictheme_get_field_referenced_entities(FieldableEntityInterface $enti
  * @return string[]
  *   The label(s).
  */
-function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entity, string $field_name) {
+function civictheme_get_referenced_entity_labels(FieldableEntityInterface $entity, $field_name) {
   $labels = [];
   $referenced_entities = civictheme_get_field_value($entity, $field_name) ?? [];
   foreach ($referenced_entities as $referenced_entity) {
@@ -432,4 +436,36 @@ function civictheme_theme_options() {
     CIVICTHEME_THEME_LIGHT => CIVICTHEME_THEME_LIGHT_LABEL,
     CIVICTHEME_THEME_DARK => CIVICTHEME_THEME_DARK_LABEL,
   ];
+}
+
+/**
+ * Convert multi-line strings to a list of strings.
+ *
+ * @param string $string
+ *   The string to be processed.
+ *
+ * @return array
+ *   A list of strings.
+ */
+function civictheme_multiline_to_array($string) {
+  $lines = is_array($string) ? $string : explode("\n", str_replace("\r\n", "\n", $string));
+
+  return array_values(array_filter(array_map('trim', $lines)));
+}
+
+/**
+ * Convert an array to multi-line string value.
+ *
+ * @param string|array $array
+ *   Array to convert.
+ * @param string $delimiter
+ *   Delimiter to use for multiline. Defaults to PHP_EOL.
+ *
+ * @return string
+ *   String value of the array.
+ */
+function civictheme_array_to_multiline($array, $delimiter = PHP_EOL) {
+  $array = is_array($array) ? $array : [$array];
+
+  return implode($delimiter, array_filter($array));
 }

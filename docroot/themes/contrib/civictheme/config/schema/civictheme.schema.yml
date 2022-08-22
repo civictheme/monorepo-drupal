@@ -44,3 +44,18 @@ civictheme.settings:
             background_image:
               label: 'Footer background image'
               type: string
+        link:
+          type: mapping
+          label: 'Link settings'
+          mapping:
+            new_window:
+              label: 'Open all links in the new window'
+              type: boolean
+            external_new_window:
+              label: 'Open external links in the new window'
+              type: boolean
+            external_override_domains:
+              label: 'List of override domains for external links'
+              type: sequence
+              sequence:
+                type: string
