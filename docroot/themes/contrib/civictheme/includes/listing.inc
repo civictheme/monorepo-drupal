@@ -7,9 +7,9 @@
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Template\Attribute;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\views\Views;
-use Drupal\Core\Template\Attribute;
 
 /**
  * Implements template_preprocess_paragraph().
@@ -19,15 +19,18 @@ use Drupal\Core\Template\Attribute;
 function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+
   // Get the parent bundle.
   $variables['view_as'] = civictheme_get_field_value($paragraph, 'field_c_p_listing_item_view_as');
   $variables['limit'] = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit');
   $variables['attributes']['id'] = Html::getUniqueId('listing-' . $paragraph->id());
+
   if (is_array($variables['attributes'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
     unset($variables['attributes']['class']);
     $variables['attributes'] = new Attribute($variables['attributes']);
   }
+
   $variables['listing'] = _civictheme_listing_element($paragraph, $variables);
   $form_elements = Element::children($variables['listing']['view']['#view']->exposed_widgets);
   foreach ($form_elements as $form_element) {
@@ -81,6 +84,7 @@ function _civictheme_listing_get_view_name(&$view_name, &$display_id, $paragraph
   if ($paragraph && $paragraph->hasField('field_c_p_listing_type') && !$paragraph->get('field_c_p_listing_type')->isEmpty()) {
     [$view_name, $display_id] = explode('__', $paragraph->get('field_c_p_listing_type')->getString());
   }
+
   // Call modules/theme that implement the hook, and let them change the view.
   \Drupal::moduleHandler()->alter('civictheme_listing_view_name', $view_name, $display_id, $paragraph);
   \Drupal::service('theme.manager')->alter('civictheme_listing_view_name', $view_name, $display_id, $paragraph);

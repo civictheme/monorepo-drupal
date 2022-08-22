@@ -38,7 +38,7 @@ function hook_civictheme_listing_view_name_alter(string &$view_name, string &$di
  */
 function hook_civictheme_listing_preprocess_view_alter(array &$settings, ViewExecutable &$view) {
   if ($view->id() === 'civictheme_view_examples') {
-    $settings['theme'] = 'dark';
+    $settings['theme'] = CIVICTHEME_THEME_DARK;
     $settings['with_background'] = TRUE;
     $settings['vertical_space'] = 'both';
   }

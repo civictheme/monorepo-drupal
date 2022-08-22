@@ -556,6 +556,7 @@ trait CsGeneratedContentCivicthemeTrait {
     }
 
     $defaults = [
+      'listing_type' => static::civicthemeListingType(),
       'listing_content_type' => static::civicthemePageContentType(),
       'listing_item_view_as' => static::civicthemePromoCardType(),
       'listing_filters_exp' => FALSE,
