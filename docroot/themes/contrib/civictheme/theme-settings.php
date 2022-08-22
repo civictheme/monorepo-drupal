@@ -6,6 +6,8 @@
  */
 
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\File\Exception\FileException;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\StreamWrapper\PublicStream;
@@ -78,6 +80,20 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
         ]),
         '#description' => _civictheme_path_field_description(theme_get_setting("components.logo.image_{$theme}_{$breakpoint}"), "logo-{$theme}-{$breakpoint}.svg"),
         '#default_value' => _civictheme_field_friendly_path(theme_get_setting("components.logo.image_{$theme}_{$breakpoint}")),
+      ];
+
+      $form['components']['logo']["image_{$theme}_{$breakpoint}_upload"] = [
+        '#type' => 'file',
+        '#title' => t('Upload logo image in @theme theme for @breakpoint', [
+          '@theme' => $theme_label,
+          '@breakpoint' => $breakpoint,
+        ]),
+        '#name' => "files[components_logo_image_{$theme}_{$breakpoint}_upload]",
+        '#maxlength' => 40,
+        '#description' => t("If you don't have direct file access to the server, use this field to upload your logo."),
+        '#upload_validators' => [
+          'file_validate_is_image' => [],
+        ],
       ];
     }
   }
@@ -173,6 +189,11 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
     if (is_callable($validator)) {
       $form['#validate'][] = $validator;
     }
+
+    $submit = "_civictheme_form_system_theme_settings_{$component_name}_submit";
+    if (is_callable($submit)) {
+      $form['#submit'][] = $submit;
+    }
   }
 }
 
@@ -181,12 +202,21 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
-function _civictheme_form_system_theme_settings_logo_validate(array $form, FormStateInterface &$form_state) {
+function _civictheme_form_system_theme_settings_logo_validate(array &$form, FormStateInterface $form_state) {
   $breakpoints = ['desktop', 'mobile'];
   foreach (array_keys(civictheme_theme_options()) as $theme) {
     foreach ($breakpoints as $breakpoint) {
       $field_name_key = ['components', 'logo', "image_{$theme}_{$breakpoint}"];
       $path = $form_state->getValue($field_name_key);
+
+      // Check for a new uploaded logo.
+      if (isset($form['components']['logo']["image_{$theme}_{$breakpoint}_upload"])) {
+        $file = _file_save_upload_from_form($form['components']['logo']["image_{$theme}_{$breakpoint}_upload"], $form_state, 0, FileSystemInterface::EXISTS_REPLACE);
+        if ($file) {
+          // Put the temporary file in form_values so we can save it on submit.
+          $form_state->setValue("components_logo_image_{$theme}_{$breakpoint}_upload", $file);
+        }
+      }
 
       if (!empty($path)) {
         $path = _civictheme_form_system_theme_settings_validate_path($path);
@@ -197,6 +227,42 @@ function _civictheme_form_system_theme_settings_logo_validate(array $form, FormS
         }
         $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
       }
+    }
+  }
+}
+
+/**
+ * Submit callback for theme settings form of Logo component.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_logo_submit(array &$form, FormStateInterface $form_state) {
+  $breakpoints = ['desktop', 'mobile'];
+  $values = $form_state->getValues();
+  foreach (array_keys(civictheme_theme_options()) as $theme) {
+    foreach ($breakpoints as $breakpoint) {
+      $logo_field_name_key = ['components', 'logo', "image_{$theme}_{$breakpoint}"];
+      $field_name_key = "components_logo_image_{$theme}_{$breakpoint}_upload";
+
+      // If the user uploaded a new logo or favicon, save it to a permanent location
+      // and use it in place of the default theme-provided file.
+      $default_scheme = \Drupal::config('system.file')->get('default_scheme');
+      try {
+        if (!empty($values[$field_name_key])) {
+          $filename = \Drupal::service('file_system')->copy($values[$field_name_key]->getFileUri(), $default_scheme . '://');
+          if (!empty($filename)) {
+            $path = _civictheme_form_system_theme_settings_validate_path($filename);
+            if ($path) {
+              $path = \Drupal::service('file_url_generator')->generateString($path);
+              $form_state->setValue($logo_field_name_key, ltrim($path, '/'));
+            }
+          }
+        }
+      }
+      catch (FileException $e) {
+        // Ignore.
+      }
+      $form_state->unsetValue($field_name_key);
     }
   }
 }
