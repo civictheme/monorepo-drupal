@@ -20,9 +20,9 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  // Get the parent bundle.
   $variables['view_as'] = civictheme_get_field_value($paragraph, 'field_c_p_listing_item_view_as');
   $variables['limit'] = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit');
+
   $variables['attributes']['id'] = Html::getUniqueId('listing-' . $paragraph->id());
 
   if (is_array($variables['attributes'])) {
@@ -32,6 +32,7 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
   }
 
   $variables['listing'] = _civictheme_listing_element($paragraph, $variables);
+
   $form_elements = Element::children($variables['listing']['view']['#view']->exposed_widgets);
   foreach ($form_elements as $form_element) {
     $variables['listing']['view']['#view']->exposed_widgets[$form_element]['#civictheme_theme'] = $variables['theme'];

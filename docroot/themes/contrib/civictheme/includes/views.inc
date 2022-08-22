@@ -38,16 +38,18 @@ function civictheme_preprocess_views_mini_pager(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function civictheme_preprocess_views_exposed_form(&$variables) {
-  $variables['filter_title'] = 'Filter search results by:';
+  $variables['filter_title'] = t('Filter search results by:');
   $variables['large_filter'] = $variables['form']['#large_filter'] ?? FALSE;
+
   $is_view_component = isset($variables['attributes']['civictheme_listing']);
   if ($is_view_component) {
     $variables += $variables['attributes']['civictheme_listing'];
     unset($variables['attributes']['civictheme_listing']);
-    $variables['theme'] = $variables['theme'] ?? 'light';
+    $variables['theme'] = $variables['theme'] ?? CIVICTHEME_THEME_LIGHT;
     _civictheme_propagate_component_theme_settings($variables['form'], $variables['theme']);
   }
-  $variables['theme'] = $variables['theme'] ?? 'light';
+
+  $variables['theme'] = $variables['theme'] ?? CIVICTHEME_THEME_LIGHT;
 }
 
 /**
@@ -95,14 +97,17 @@ function civictheme_preprocess_views_view(&$variables) {
     if (!empty($variables['exposed'])) {
       $variables['exposed']['#attributes']['civictheme_listing'] = $variables['view']->civictheme_listing;
     }
+
     if (!empty($variables['pager'])) {
       $variables['pager']['#attributes']['#civictheme_theme'] = $variables['view']->civictheme_listing['theme'] ?? 'light';
     }
   }
+
   // Header is displayed within card container.
   if ($view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     unset($variables['header']);
   }
+
   // Adding template required classes in for civictheme component.
   $variables['theme'] = $variables['theme'] ?? 'light';
   $variables['with_background'] = $variables['with_background'] ?? $is_view_page;
@@ -114,10 +119,13 @@ function civictheme_preprocess_views_view(&$variables) {
   else {
     $variables['modifier_class'] = [];
   }
+
   $variables['modifier_class'] = array_merge($variables['modifier_class'], [
     !empty($variables['dom_id']) ? ' js-view-dom-id-' . $variables['dom_id'] : '',
   ]);
+
   $variables['modifier_class'] = implode(' ', $variables['modifier_class']);
+
   if (isset($view->civictheme_listing['show_filters']) && $view->civictheme_listing['show_filters'] === FALSE) {
     $variables['exposed'] = NULL;
   }
@@ -163,7 +171,6 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
   \Drupal::service('theme.manager')->alter('civictheme_listing_preprocess_view', $settings, $view);
 
   $view->civictheme_listing = $settings;
-
 }
 
 /**
@@ -173,21 +180,25 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
  */
 function civictheme_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'] ?? NULL;
+
   $variables['modifier_class'] = 'civictheme-card-container--listing';
   // On Grid view title should be added to card container.
   if ($view && $view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     $variables['title'] = $view->header['result']->render();
   }
+
   // Adds component theme settings to view / listing template.
   $is_view_component = isset($variables['view']->civictheme_listing);
   if ($is_view_component) {
     $variables += $variables['view']->civictheme_listing;
   }
+
   if (isset($variables['card_theme'])) {
     foreach (array_keys($variables['rows']) as $id) {
       $variables['rows'][$id]['#node']->civictheme_theme = $variables['card_theme'];
       $variables['rows'][$id]['#cache']['contexts'][] = 'url.path';
       $variables['rows'][$id]['#cache']['contexts'][] = 'url.query_args';
+
       if (!empty($variables['view']->civictheme_listing['cache_tags'])) {
         $variables['rows'][$id]['#cache']['tags'] = Cache::mergeTags($variables['view']->civictheme_listing['cache_tags'], $view->getCacheTags());
       }
