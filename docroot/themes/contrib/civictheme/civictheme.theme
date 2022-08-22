@@ -7,6 +7,7 @@
 
 require_once 'includes/constants.inc';
 require_once 'includes/utilities.inc';
+require_once 'includes/process.inc';
 require_once 'includes/accordion.inc';
 require_once 'includes/alert.inc';
 require_once 'includes/attachment.inc';
