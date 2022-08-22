@@ -301,7 +301,9 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, $field_nam
       // handle it if it's all values.
       if ($only_first) {
         $field = $field->first();
-        $value = check_markup($field->get('value')->getString(), $field->get('format')->getString());
+        $field_value = $field->get('value')->getString();
+        $field_format = $field->get('format')->getString();
+        $value = !empty($field_format) ? check_markup($field_value, $field_format) : $field_value;
       }
       else {
         $value = $field->view();
