@@ -70,9 +70,7 @@ function _civictheme_civic_listing_exposed_form_alter(&$form, FormStateInterface
   // Exposed term filter is not updated when terms are added,
   // deleted, or rearranged (caching issue?).
   $tags = $view->display_handler->getCacheMetadata()->getCacheTags();
-  if ($tags) {
-    $form['#cache']['tags'] = Cache::mergeTags($view->getCacheTags(), $tags);
-  }
+  $form['#cache']['tags'] = Cache::mergeTags($view->getCacheTags(), $tags);
 }
 
 /**
