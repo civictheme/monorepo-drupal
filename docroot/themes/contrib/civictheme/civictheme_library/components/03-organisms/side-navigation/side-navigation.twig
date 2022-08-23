@@ -34,10 +34,9 @@
     } only %}
     {% include '@base/menu/menu.twig' with {
       theme: theme,
-      items: items,
-      modifier_class: 'civictheme-side-navigation__menu',
+      items: mobile_items,
+      modifier_class: 'civictheme-side-navigation__menu civictheme-side-navigation__mobile-menu',
       is_collapsible: true,
-      is_mobile: true,
     } only %}
   </div>
 {% endif %}

@@ -18,9 +18,13 @@
       &::after {
         @include civictheme-icon-size('regular');
 
-        content: $civictheme-collapsible-icon;
+        content: $civictheme-mobile-collapsible-icon;
+
+        @include civictheme-breakpoint('m') {
+          content: $civictheme-collapsible-icon;
+        }
+
         position: absolute;
-        right: 0;
         transform: rotate(-180deg);
         line-height: 0;
       }
@@ -75,7 +79,11 @@
     &:not([data-collapsible-trigger-no-icon]) {
       [data-collapsible-trigger] {
         &::after {
-          content: civictheme-color-svg-fill($civictheme-collapsible-icon, $civictheme-collapsible-light-icon-color);
+          content: civictheme-color-svg-fill($civictheme-mobile-collapsible-icon, $civictheme-collapsible-light-icon-color);
+
+          @include civictheme-breakpoint('m') {
+            content: civictheme-color-svg-fill($civictheme-collapsible-icon, $civictheme-collapsible-light-icon-color);
+          }
         }
       }
     }
@@ -87,7 +95,11 @@
     &:not([data-collapsible-trigger-no-icon]) {
       [data-collapsible-trigger] {
         &::after {
-          content: civictheme-color-svg-fill($civictheme-collapsible-icon, $civictheme-collapsible-dark-icon-color);
+          content: civictheme-color-svg-fill($civictheme-mobile-collapsible-icon, $civictheme-collapsible-dark-icon-color);
+
+          @include civictheme-breakpoint('m') {
+            content: civictheme-color-svg-fill($civictheme-collapsible-icon, $civictheme-collapsible-dark-icon-color);
+          }
         }
       }
     }

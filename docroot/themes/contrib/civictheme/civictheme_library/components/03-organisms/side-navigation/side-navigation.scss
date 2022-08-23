@@ -35,6 +35,12 @@
   }
 
   &__menu {
+    display: none;
+
+    @include civictheme-breakpoint('m') {
+      display: block;
+    }
+
     &,
     .civictheme-menu {
       list-style: none;
@@ -95,25 +101,13 @@
         padding: civictheme-space(1.25) civictheme-space(0.25);
       }
     }
+  }
 
-    &:not([data-mobile-menu]) {
+  &__mobile-menu {
+    display: block;
+
+    @include civictheme-breakpoint('m') {
       display: none;
-
-      @include civictheme-breakpoint('m') {
-        display: block;
-      }
-    }
-
-    &[data-mobile-menu] {
-      display: none;
-    }
-
-    &[data-mobile-menu-active] {
-      display: block;
-
-      @include civictheme-breakpoint('m') {
-        display: none;
-      }
     }
   }
 

@@ -52,3 +52,33 @@ function _civictheme_preprocess_menu_items(&$items) {
     }
   }
 }
+
+/**
+ * Helper to generate mobile menu links for side navigation.
+ */
+function _civictheme_preprocess_mobile_side_navigation_menu_items($items) {
+  $mobile_items = [];
+  foreach ($items as $mlid => $item) {
+    if (isset($item['is_active']) && $item['is_active'] === TRUE) {
+      $item['is_expanded'] = FALSE;
+      $items_below = array_filter($items, function ($item) {
+        return (!isset($item['is_active']) || $item['is_active'] !== TRUE);
+      });
+      foreach ($items_below as &$item_below) {
+        $item_below['is_expanded'] = FALSE;
+        unset($item_below['below']);
+      }
+      $item['below'] = $items_below;
+      $mobile_items[$mlid] = $item;
+      break;
+    }
+    if (count($item['below'])) {
+      $mobile_items = _civictheme_preprocess_mobile_side_navigation_menu_items($item['below']);
+      if (!empty($mobile_items)) {
+        break;
+      }
+    }
+  }
+
+  return $mobile_items;
+}

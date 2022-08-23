@@ -28,5 +28,6 @@ function civictheme_preprocess_block__menu_block__civictheme_primary_navigation(
 
   if (strpos($region, 'sidebar') === 0) {
     $variables['in_sidebar'] = TRUE;
+    $variables['mobile_items'] = _civictheme_preprocess_mobile_side_navigation_menu_items($variables['items']);
   }
 }
