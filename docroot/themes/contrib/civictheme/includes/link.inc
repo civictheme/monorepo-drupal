@@ -44,30 +44,31 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
   }
 
   foreach ($anchors as $anchor) {
+    // Apply only to anchors with links.
+    if (!$anchor->hasAttribute('href')) {
+      continue;
+    }
+
+    $url = $anchor->getAttribute('href');
+    $is_external = civictheme_url_is_external($url, $base_url, $override_domains);
+
     $classes = $anchor->hasAttribute('class') ? ($anchor->getAttribute('class') ?: '') : '';
 
     if (!str_contains($classes, $link_class)) {
       $classes .= ' ' . $link_class;
     }
 
-    if ($anchor->hasAttribute('href')) {
-      $url = $anchor->getAttribute('href');
-      $is_external = civictheme_url_is_external($url, $base_url, $override_domains);
+    if ($is_external && !str_contains($classes, $link_external_class)) {
+      $classes .= ' ' . $link_external_class;
+    }
 
-      if (!$anchor->hasAttribute('target')) {
-        if ($is_external) {
-          $classes .= ' ' . $link_external_class;
-        }
-
-        if ($new_window || ($is_external && $external_new_window)) {
-          $anchor->setAttribute('target', '_blank');
-        }
+    if (!$anchor->hasAttribute('target')) {
+      if ($new_window || ($is_external && $external_new_window)) {
+        $anchor->setAttribute('target', '_blank');
       }
     }
 
-    $classes = trim($classes);
-
-    $anchor->setAttribute('class', $classes);
+    $anchor->setAttribute('class', trim($classes));
   }
 
   return Html::serialize($dom);
