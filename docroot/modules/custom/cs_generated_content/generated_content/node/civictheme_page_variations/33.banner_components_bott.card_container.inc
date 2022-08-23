@@ -29,7 +29,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'summary' => $helper::staticSentence(8),
               'link' => [
                 'uri' => $helper::randomUrl(),
-                'title' => $helper::staticString(30),
+                'title' => $helper::staticSentence(2),
               ],
             ],
           ],
@@ -50,7 +50,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'summary' => $helper::staticSentence(8),
               'link' => [
                 'uri' => $helper::randomUrl(),
-                'title' => $helper::staticString(30),
+                'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeLight(),
             ],
@@ -72,7 +72,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'summary' => $helper::staticSentence(8),
               'link' => [
                 'uri' => $helper::randomUrl(),
-                'title' => $helper::staticString(30),
+                'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
             ],
@@ -92,7 +92,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'title' => $helper::staticSentence(3),
               'links' => [
                 'uri' => $helper::randomUrl(),
-                'title' => $helper::staticString(30),
+                'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
             ],
@@ -113,11 +113,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'links' => [
                 [
                   'uri' => $helper::randomUrl(),
-                  'title' => $helper::staticString(30),
+                  'title' => $helper::staticSentence(2),
                 ],
                 [
                   'uri' => $helper::randomUrl(),
-                  'title' => $helper::staticString(30),
+                  'title' => $helper::staticSentence(2),
                 ],
               ],
               'theme' => $helper::civicthemeThemeLight(),
@@ -188,7 +188,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'summary' => $helper::staticSentence(8),
               'link' => [
                 'uri' => $helper::randomUrl(),
-                'title' => $helper::staticString(30),
+                'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
               'location' => $helper::staticSentence(3),
@@ -245,7 +245,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'summary' => $helper::staticSentence(8),
               'link' => [
                 'uri' => $helper::randomUrl(),
-                'title' => $helper::staticString(30),
+                'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
               'topics' => $helper::staticTerms('civictheme_topics', 3),
@@ -268,7 +268,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'title' => $helper::staticSentence(3),
               'link' => [
                 'uri' => $helper::randomUrl(),
-                'title' => $helper::staticString(30),
+                'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
             ],
@@ -381,7 +381,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'summary' => $helper::staticSentence(8),
               'link' => [
                 'uri' => $helper::randomUrl(),
-                'title' => $helper::staticString(30),
+                'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
               'topics' => $helper::staticTerms('civictheme_topics', 3),
@@ -400,7 +400,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'summary' => $helper::staticSentence(8),
               'link' => [
                 'uri' => $helper::randomUrl(),
-                'title' => $helper::staticString(30),
+                'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
               'topics' => $helper::staticTerms('civictheme_topics', 3),
@@ -424,7 +424,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'summary' => $helper::staticSentence(8),
               'link' => [
                 'uri' => $helper::randomUrl(),
-                'title' => $helper::staticString(30),
+                'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeDark(),
               'location' => $helper::staticSentence(3),
@@ -436,11 +436,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'theme' => $helper::civicthemeThemeDark(),
           'footer_link' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
           'header_link' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -457,11 +457,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'links' => [
                 [
                   'uri' => $helper::randomUrl(),
-                  'title' => $helper::staticString(30),
+                  'title' => $helper::staticSentence(2),
                 ],
                 [
                   'uri' => $helper::randomUrl(),
-                  'title' => $helper::staticString(30),
+                  'title' => $helper::staticSentence(2),
                 ],
               ],
               'theme' => $helper::civicthemeThemeLight(),
@@ -470,7 +470,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'column_count' => rand(1, 4),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
-          'title' => $helper::staticString(30),
+          'title' => $helper::staticSentence(2),
           'description' => $helper::staticSentence(8),
         ],
       ],
@@ -488,7 +488,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
               'summary' => $helper::staticSentence(8),
               'link' => [
                 'uri' => $helper::randomUrl(),
-                'title' => $helper::staticString(30),
+                'title' => $helper::staticSentence(2),
               ],
               'theme' => $helper::civicthemeThemeLight(),
             ],
@@ -496,7 +496,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'column_count' => rand(1, 4),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
-          'title' => $helper::staticString(30),
+          'title' => $helper::staticSentence(2),
           'description' => $helper::staticSentence(8),
         ],
       ],

@@ -27,11 +27,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeLight(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -49,11 +49,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_topics' => $helper::civicthemeStaticTopics(2),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -71,11 +71,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_topics' => $helper::civicthemeStaticTopics(2),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -93,11 +93,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeLight(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -114,11 +114,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeLight(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -136,11 +136,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeLight(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -157,11 +157,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeLight(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -179,11 +179,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeLight(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -200,11 +200,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeLight(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -222,11 +222,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeLight(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -243,11 +243,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -265,11 +265,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -286,11 +286,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -308,11 +308,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -329,11 +329,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -351,11 +351,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -372,11 +372,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -394,11 +394,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -416,11 +416,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'listing_item_theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
         [
@@ -455,11 +455,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -478,11 +478,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -500,11 +500,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -523,11 +523,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -545,11 +545,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -568,11 +568,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -590,11 +590,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -613,11 +613,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -635,11 +635,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -658,11 +658,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -680,11 +680,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -703,11 +703,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -725,11 +725,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -748,11 +748,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -770,11 +770,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -793,11 +793,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -1063,11 +1063,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'theme' => $helper::civicthemeThemeDark(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
           'background' => TRUE,
         ],
@@ -1750,11 +1750,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -1775,11 +1775,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -1816,11 +1816,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -1840,11 +1840,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -1865,11 +1865,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2978,11 +2978,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3004,11 +3004,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3029,11 +3029,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3055,11 +3055,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3080,11 +3080,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3106,11 +3106,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3131,11 +3131,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3157,11 +3157,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3182,11 +3182,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3208,11 +3208,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3233,11 +3233,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3259,11 +3259,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3284,11 +3284,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3310,11 +3310,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3335,11 +3335,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
@@ -3361,11 +3361,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'title' => $helper::staticSentence(3),
           'listing_link_above' => [
             'uri' => $helper::randomUrl() . '/above',
-            'title' => 'Above ' . $helper::staticString(30),
+            'title' => 'Above ' . $helper::staticSentence(2),
           ],
           'listing_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
-            'title' => 'Below ' . $helper::staticString(30),
+            'title' => 'Below ' . $helper::staticSentence(2),
           ],
         ],
       ],
