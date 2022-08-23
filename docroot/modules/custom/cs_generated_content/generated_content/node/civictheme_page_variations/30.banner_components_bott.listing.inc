@@ -2653,11 +2653,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2679,11 +2679,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2704,11 +2704,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2730,11 +2730,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2755,11 +2755,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2781,11 +2781,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2806,11 +2806,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2832,11 +2832,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2857,11 +2857,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2883,11 +2883,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2908,11 +2908,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2934,11 +2934,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2959,11 +2959,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -2985,11 +2985,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -3010,11 +3010,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -3036,11 +3036,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
