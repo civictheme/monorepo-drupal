@@ -105,7 +105,7 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
           'file_validate_is_image' => [],
         ],
         '#tree' => FALSE,
-        '#weight'=> 1,
+        '#weight' => 1,
       ];
     }
   }
