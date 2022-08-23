@@ -158,9 +158,9 @@ function _civictheme_listing_view_alter($view) {
   // First view argument - content types.
   $view_args[] = !empty($listing_content_type) ? $listing_content_type : 'all';
   // Second view argument - Topics.
-  $view_args[] = !empty($listing_topics) ? implode('+', $listing_topics) : $view_args[] = 'all';
+  $view_args[] = !empty($listing_topics) ? implode('+', $listing_topics) : 'all';
   // Third view argument - Site Sections.
-  $view_args[] = !empty($listing_site_sections) ? implode('+', $listing_site_sections) : $view_args[] = 'all';
+  $view_args[] = !empty($listing_site_sections) ? implode('+', $listing_site_sections) : 'all';
   $view->setArguments($view_args);
 
   // Title.
