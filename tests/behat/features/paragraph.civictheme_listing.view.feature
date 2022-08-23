@@ -162,7 +162,8 @@ Feature: View of Page content with Listing component
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_listing" paragraph:
       # Selection.
-      | field_c_p_listing_show_filters | 1 |
+      | field_c_p_listing_show_filters | 1                  |
+      | field_c_p_listing_filters_exp  | type, topic, title |
 
     When I visit "civictheme_page" "Page Listing component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element

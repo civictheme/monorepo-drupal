@@ -82,24 +82,47 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
  * Since Listing component uses Views view, view exposed form is rendered
  * for Listing component and standalone views. Filters component properties
  * are applied within view exposed form for both cases.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
   $view = $form_state->get('view');
+
+  $filter_form_keys = _civictheme_get_views_exposed_form_elements_keys($form);
 
   // Retrieve theme from listing settings (if this is rendered in the context
   // of a listing) or use default theme if this rendered as a standalone view.
   $theme = $view->civictheme_listing['theme'] ?? CIVICTHEME_LISTING_DEFAULT_THEME;
 
+  // Retrieve exposed filter settings.
+  $listing_filters = NULL;
+  if (!empty($view->civictheme_listing_entity)) {
+    $listing_show_filters = civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_show_filters');
+    if ($listing_show_filters) {
+      $listing_filters = explode(', ', civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_filters_exp'));
+    }
+  }
+
   // Determine whether to use a large filter based on the number of exposed
   // elements.
-  $listing_use_large_filter = _civictheme_get_views_exposed_form_elements_count($form) > 1;
+  $listing_use_large_filter = count($filter_form_keys) > 1;
 
   // Convert exposed form elements to the format expected by the filter
   // components.
-  $form_elements = Element::children($form);
-  foreach ($form_elements as $form_element) {
-    $form[$form_element]['#attributes']['#civictheme_theme'] = $theme;
-    _civictheme_filter_views_exposed_form_alter__process_elements($form[$form_element], $form, $listing_use_large_filter);
+  $form_element_keys = Element::children($form);
+  foreach ($form_element_keys as $form_element_key) {
+    // Hide listing filter if it is not in a list of selected filters.
+    if (
+      in_array($form_element_key, $filter_form_keys)
+      && is_array($listing_filters)
+      && !in_array($form_element_key, $listing_filters)
+    ) {
+      $form[$form_element_key]['#access'] = FALSE;
+    }
+    else {
+      $form[$form_element_key]['#attributes']['#civictheme_theme'] = $theme;
+      _civictheme_filter_views_exposed_form_alter__process_elements($form[$form_element_key], $form, $listing_use_large_filter);
+    }
   }
 
   $form['#attributes']['data-civictheme-filter'] = '';
@@ -140,13 +163,13 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
 }
 
 /**
- * Count of the exposed views form elements.
+ * Return keys of exposed views form elements.
  *
- * @return int
- *   Count of the exposed views form elements.
+ * @return array
+ *   Array of form keys.
  */
-function _civictheme_get_views_exposed_form_elements_count($form) {
-  $count = 0;
+function _civictheme_get_views_exposed_form_elements_keys($form) {
+  $keys = [];
 
   foreach ($form as $key => &$element) {
     if (
@@ -156,10 +179,10 @@ function _civictheme_get_views_exposed_form_elements_count($form) {
     ) {
       continue;
     }
-    $count++;
+    $keys[] = $key;
   }
 
-  return $count;
+  return $keys;
 }
 
 /**
