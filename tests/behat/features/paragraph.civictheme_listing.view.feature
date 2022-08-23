@@ -43,7 +43,7 @@ Feature: View of Page content with Listing component
     And I should see 12 ".civictheme-card-container__card" elements
     And I should see an ".civictheme-listing__results-below .civictheme-pager" element
 
-    And I should not see an ".civictheme-listing__exposed-form .views-exposed-form" element
+    And I should not see an ".civictheme-listing__filters .views-exposed-form" element
 
   @api @testmode
   Scenario: Listing, custom values
@@ -70,8 +70,8 @@ Feature: View of Page content with Listing component
 
     When I visit "civictheme_page" "[TEST] Page Listing component"
     Then I should see the text "[TEST] Listing component title"
-    And I should see the link "Link above" with "https://example.com/above" in ".civictheme-listing__header-link"
-    And I should see the link "Link below" with "https://example.com/below" in ".civictheme-listing__cta"
+    And I should see the link "Link above" with "https://example.com/above" in ".civictheme-listing__header-link-above"
+    And I should see the link "Link below" with "https://example.com/below" in ".civictheme-listing__link-below"
 
     And I should see an ".civictheme-listing" element
     And I should see an ".civictheme-listing.civictheme-theme-dark" element
@@ -83,7 +83,7 @@ Feature: View of Page content with Listing component
     And I should see 12 ".civictheme-card-container__card .civictheme-promo-card.civictheme-theme-dark" elements
     And I should see an ".civictheme-listing__results-below .civictheme-pager" element
 
-    And I should not see an ".civictheme-listing__exposed-form .views-exposed-form" element
+    And I should not see an ".civictheme-listing__filters .views-exposed-form" element
 
   @api @testmode
   Scenario: Listing, unlimited
@@ -155,7 +155,7 @@ Feature: View of Page content with Listing component
     And I should see 12 ".civictheme-card-container__card" elements
     And I should see an ".civictheme-listing__results-below .civictheme-pager" element
 
-    And I should see an ".civictheme-listing__exposed-form .views-exposed-form" element
+    And I should see an ".civictheme-listing__filters .views-exposed-form" element
 
   @api @javascript
   Scenario: Listing, exposed filters, filtering
@@ -169,7 +169,7 @@ Feature: View of Page content with Listing component
     And I should see 12 ".civictheme-card-container__card" elements
     And I should see an ".civictheme-listing__results-below .civictheme-pager" element
 
-    And I should see an ".civictheme-listing__exposed-form .views-exposed-form" element
+    And I should see an ".civictheme-listing__filters .views-exposed-form" element
 
     And I press the "Topics" button
     And I check the box "[TEST] Topic 2"
