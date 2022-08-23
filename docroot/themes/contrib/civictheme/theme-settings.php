@@ -241,11 +241,15 @@ function _civictheme_form_system_theme_settings_logo_submit(array &$form, FormSt
   $values = $form_state->getValues();
   foreach (array_keys(civictheme_theme_options()) as $theme) {
     foreach ($breakpoints as $breakpoint) {
-      $logo_field_name_key = ['components', 'logo', "image_{$theme}_{$breakpoint}"];
+      $logo_field_name_key = [
+        'components',
+        'logo',
+        "image_{$theme}_{$breakpoint}",
+      ];
       $field_name_key = "components_logo_image_{$theme}_{$breakpoint}_upload";
 
-      // If the user uploaded a new logo or favicon, save it to a permanent location
-      // and use it in place of the default theme-provided file.
+      // If the user uploaded a new logo, save it to a permanent location and
+      // use it in place of the provided path.
       $default_scheme = \Drupal::config('system.file')->get('default_scheme');
       try {
         if (!empty($values[$field_name_key])) {
