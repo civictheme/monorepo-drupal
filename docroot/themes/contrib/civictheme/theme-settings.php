@@ -72,6 +72,16 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
 
   foreach (civictheme_theme_options() as $theme => $theme_label) {
     foreach ($breakpoints as $breakpoint) {
+      $form['components']['logo']["image_{$theme}_{$breakpoint}_group"] = [
+        '#type' => 'fieldset',
+        '#title' => t('Logo @theme @breakpoint', [
+          '@theme' => $theme_label,
+          '@breakpoint' => $breakpoint,
+        ]),
+        '#open' => TRUE,
+        '#tree' => FALSE,
+      ];
+
       $form['components']['logo']["image_{$theme}_{$breakpoint}"] = [
         '#type' => 'textfield',
         '#title' => t('Logo image in @theme theme for @breakpoint', [
@@ -80,20 +90,22 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
         ]),
         '#description' => _civictheme_path_field_description(theme_get_setting("components.logo.image_{$theme}_{$breakpoint}"), "logo-{$theme}-{$breakpoint}.svg"),
         '#default_value' => _civictheme_field_friendly_path(theme_get_setting("components.logo.image_{$theme}_{$breakpoint}")),
+        '#group' => "image_{$theme}_{$breakpoint}_group",
       ];
 
-      $form['components']['logo']["image_{$theme}_{$breakpoint}_upload"] = [
+      $form['components']['logo']["image_{$theme}_{$breakpoint}_group"]["image_{$theme}_{$breakpoint}_upload"] = [
         '#type' => 'file',
         '#title' => t('Upload logo image in @theme theme for @breakpoint', [
           '@theme' => $theme_label,
           '@breakpoint' => $breakpoint,
         ]),
-        '#name' => "files[components_logo_image_{$theme}_{$breakpoint}_upload]",
         '#maxlength' => 40,
         '#description' => t("If you don't have direct file access to the server, use this field to upload your logo."),
         '#upload_validators' => [
           'file_validate_is_image' => [],
         ],
+        '#tree' => FALSE,
+        '#weight'=> 1,
       ];
     }
   }
@@ -210,11 +222,11 @@ function _civictheme_form_system_theme_settings_logo_validate(array &$form, Form
       $path = $form_state->getValue($field_name_key);
 
       // Check for a new uploaded logo.
-      if (isset($form['components']['logo']["image_{$theme}_{$breakpoint}_upload"])) {
-        $file = _file_save_upload_from_form($form['components']['logo']["image_{$theme}_{$breakpoint}_upload"], $form_state, 0, FileSystemInterface::EXISTS_REPLACE);
+      if (isset($form['components']['logo']["image_{$theme}_{$breakpoint}_group"]["image_{$theme}_{$breakpoint}_upload"])) {
+        $file = _file_save_upload_from_form($form['components']['logo']["image_{$theme}_{$breakpoint}_group"]["image_{$theme}_{$breakpoint}_upload"], $form_state, 0, FileSystemInterface::EXISTS_REPLACE);
         if ($file) {
           // Put the temporary file in form_values so we can save it on submit.
-          $form_state->setValue("components_logo_image_{$theme}_{$breakpoint}_upload", $file);
+          $form_state->setValue("image_{$theme}_{$breakpoint}_upload", $file);
         }
       }
 
@@ -246,7 +258,7 @@ function _civictheme_form_system_theme_settings_logo_submit(array &$form, FormSt
         'logo',
         "image_{$theme}_{$breakpoint}",
       ];
-      $field_name_key = "components_logo_image_{$theme}_{$breakpoint}_upload";
+      $field_name_key = "image_{$theme}_{$breakpoint}_upload";
 
       // If the user uploaded a new logo, save it to a permanent location and
       // use it in place of the provided path.
