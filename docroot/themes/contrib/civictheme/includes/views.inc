@@ -132,6 +132,11 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
       'civictheme-button--small',
     ];
   }
+
+  // Exposed term filter is not updated when terms are added,
+  // deleted, or rearranged.
+  $tags = $view->display_handler->getCacheMetadata()->getCacheTags();
+  $form['#cache']['tags'] = Cache::mergeTags($view->getCacheTags(), $tags);
 }
 
 /**
