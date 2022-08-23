@@ -5,6 +5,8 @@
 .civictheme-search {
   $root: &;
 
+  @include civictheme-print-hide();
+
   padding: civictheme-space(2) 0;
 
   &__link {

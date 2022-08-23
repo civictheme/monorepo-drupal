@@ -14,6 +14,8 @@
   &__menu {
     &.civictheme-menu,
     .civictheme-menu {
+      @include civictheme-print-hide();
+
       list-style: none;
       padding: 0;
       margin: 0;

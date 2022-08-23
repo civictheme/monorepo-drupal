@@ -1,4 +1,4 @@
-//phpcs:ignoreFile
+// phpcs:ignoreFile
 /**
  * @file
  * Demo Button stories.

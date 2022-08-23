@@ -10,7 +10,7 @@ field_name: field_c_n_banner_background
 entity_type: node
 bundle: civictheme_page
 label: 'Banner background'
-description: ''
+description: 'Image displayed as an edge-to-edge banner background.'
 required: false
 translatable: false
 default_value: {  }

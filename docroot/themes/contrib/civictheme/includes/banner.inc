@@ -9,21 +9,6 @@ use Drupal\Core\Cache\Cache;
 use Drupal\node\NodeInterface;
 
 /**
- * Defines Small banner style.
- */
-define('CIVICTHEME_BANNER_TYPE_DEFAULT', 'default');
-
-/**
- * Defines Large banner style.
- */
-define('CIVICTHEME_BANNER_TYPE_LARGE', 'large');
-
-/**
- * Defines Large banner style.
- */
-define('CIVICTHEME_BANNER_DEFAULT_THEME', 'light');
-
-/**
  * Pre-process for Programmatic Block - Banner block.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
@@ -51,7 +36,7 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
 
   $variables['type'] = CIVICTHEME_BANNER_TYPE_DEFAULT;
 
-  $variables['theme'] = civictheme_get_theme_value($entity) ?? CIVICTHEME_BANNER_DEFAULT_THEME;
+  $variables['theme'] = civictheme_get_field_theme_value($entity);
 
   if (civictheme_field_has_value($entity, 'field_c_b_background_image')) {
     $variables['background_image'] = civictheme_media_get_url_from_field($entity, 'field_c_b_background_image');
@@ -60,6 +45,7 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   _civictheme_preprocess_civictheme_banner_title($variables);
   _civictheme_preprocess_civictheme_banner_node($variables);
   _civictheme_preprocess_civictheme_banner_breadcrumb($variables);
+  _civictheme_preprocess_civictheme_banner_section($variables);
 
   if ($variables['type'] == CIVICTHEME_BANNER_TYPE_LARGE) {
     $variables['is_decorative'] = TRUE;
@@ -70,6 +56,22 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   $variables['content_top2'] = NULL;
   $variables['content_top3'] = NULL;
   $variables['content_bottom'] = NULL;
+}
+
+/**
+ * Pre-process banner section.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_preprocess_civictheme_banner_section(&$variables) {
+  // Site section.
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  if (!is_null($node)) {
+    $the_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE);
+    $variables['section'] = isset($the_section) ? $the_section->getName() : '';
+  }
 }
 
 /**
@@ -159,8 +161,7 @@ function _civictheme_preprocess_civictheme_banner_node(&$variables) {
   }
 
   $variables['type'] = civictheme_get_field_value($node, 'field_c_n_banner_type');
-
-  $variables['theme'] = civictheme_get_theme_value($node) ?? CIVICTHEME_BANNER_DEFAULT_THEME;
+  $variables['theme'] = civictheme_get_field_theme_value($node);
 
   $is_front = \Drupal::service('path.matcher')->isFrontPage();
   $variables['is_front'] = $is_front;

@@ -28,7 +28,7 @@ export const Banner = (knobTab) => {
   const generalKnobs = {
     theme,
     title: text('Title', 'Providing visually engaging digital experiences', generalKnobTab),
-    background_image: BACKGROUNDS[theme][select('Background', Object.keys(BACKGROUNDS[theme]), Object.keys(BACKGROUNDS[theme])[0], generalKnobTab)],
+    background_image: BACKGROUNDS[select('Background', Object.keys(BACKGROUNDS), Object.keys(BACKGROUNDS)[0], generalKnobTab)],
     featured_image: boolean('With featured image', true, generalKnobTab) ? {
       src: demoImage(),
       alt: 'Featured image alt text',

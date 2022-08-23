@@ -13,6 +13,10 @@
     margin-bottom: civictheme-space();
   }
 
+  &__top {
+    @include civictheme-print-hide();
+  }
+
   &__logo {
     padding: civictheme-space() 0;
 
@@ -25,6 +29,10 @@
     border-bottom: solid 1px;
   }
 
+  &__content-middle1 {
+    @include civictheme-print-hide();
+  }
+
   &__content-middle2 {
     height: 100%;
     display: flex;
@@ -32,6 +40,8 @@
   }
 
   &__content-middle3 {
+    @include civictheme-print-hide();
+
     height: 100%;
     position: relative;
 

@@ -35,11 +35,11 @@ export const Footer = (knobTab) => {
 
   generalKnobs.logos = boolean('Show Logo', true, generalKnobTab) ? {
     mobile: {
-      src: LOGOS.mobile[generalKnobs.theme],
+      src: LOGOS[generalKnobs.theme].mobile,
       alt: 'Logo mobile alt text',
     },
     desktop: {
-      src: LOGOS.desktop[generalKnobs.theme],
+      src: LOGOS[generalKnobs.theme].desktop,
       alt: 'Logo desktop alt text',
     },
   } : null;
@@ -57,7 +57,7 @@ export const Footer = (knobTab) => {
   }
 
   if (boolean('Show background image', false, generalKnobTab)) {
-    generalKnobs.background_image = BACKGROUNDS[theme][select('Background', Object.keys(BACKGROUNDS[theme]), Object.keys(BACKGROUNDS[theme])[0], generalKnobTab)];
+    generalKnobs.background_image = BACKGROUNDS[select('Background', Object.keys(BACKGROUNDS), Object.keys(BACKGROUNDS)[0], generalKnobTab)];
   }
 
   return CivicThemeFooter({

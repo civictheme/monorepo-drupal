@@ -27,11 +27,11 @@ export const Logo = (knobTab) => {
 
   generalKnobs.logos = {
     mobile: {
-      src: LOGOS.mobile[generalKnobs.theme],
+      src: LOGOS[generalKnobs.theme].mobile,
       alt: 'Logo mobile alt text',
     },
     desktop: {
-      src: LOGOS.desktop[generalKnobs.theme],
+      src: LOGOS[generalKnobs.theme].desktop,
       alt: 'Logo desktop alt text',
     },
   };

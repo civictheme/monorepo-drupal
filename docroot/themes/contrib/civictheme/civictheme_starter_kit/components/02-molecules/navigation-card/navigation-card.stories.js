@@ -1,4 +1,4 @@
-//phpcs:ignoreFile
+// phpcs:ignoreFile
 /**
  * @file
  * Navigation Card stories.

@@ -10,8 +10,8 @@ field_name: field_c_n_topics
 entity_type: node
 bundle: civictheme_event
 label: Topics
-description: ''
-required: true
+description: 'Group content by topics to allow sorting in lists.'
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''

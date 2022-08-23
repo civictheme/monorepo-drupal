@@ -1,4 +1,4 @@
-@civictheme @content_type @civictheme_alert
+@civictheme @civictheme_alert
 Feature: CivicTheme alert rendering
 
   Ensure that alerts are shown correctly.

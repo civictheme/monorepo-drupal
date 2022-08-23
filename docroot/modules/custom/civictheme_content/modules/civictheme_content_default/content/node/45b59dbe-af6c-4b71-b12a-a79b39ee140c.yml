@@ -231,13 +231,13 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_card_theme:
+          field_c_p_listing_item_theme:
             -
               value: light
-          field_c_p_content_type:
+          field_c_p_listing_content_type:
             -
               value: civictheme_page
-          field_c_p_limit_type:
+          field_c_p_listing_limit_type:
             -
               value: limited
           field_c_p_listing_limit:
@@ -246,16 +246,16 @@ default:
           field_c_p_listing_multi_select:
             -
               value: false
-          field_c_p_show_filters:
+          field_c_p_listing_show_filters:
             -
               value: false
           field_c_p_theme:
             -
               value: light
-          field_c_p_topics:
+          field_c_p_listing_topics:
             -
               entity: dcbc66a3-946d-435b-8ce8-54a680bf3b18
-          field_c_p_view_as:
+          field_c_p_listing_item_view_as:
             -
               value: civictheme_promo_card
     -

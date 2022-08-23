@@ -5,6 +5,8 @@
 .civictheme-back-to-top {
   $root: &;
 
+  @include civictheme-print-hide();
+
   position: fixed;
   right: $civictheme-back-to-top-space-right;
   bottom: $civictheme-back-to-top-space-bottom;

@@ -8,11 +8,6 @@
 use Drupal\Core\Template\Attribute;
 
 /**
- * Defines default node theme.
- */
-define('CIVICTHEME_NODE_DEFAULT_THEME', 'light');
-
-/**
  * Generic pre-process for all view mode of nodes.
  */
 function _civictheme_preprocess_node(&$variables) {
@@ -37,7 +32,6 @@ function _civictheme_preprocess_node(&$variables) {
   if (civictheme_get_field_value($node, 'field_c_n_show_toc')) {
     $toc_attributes = [];
     $toc_attributes['data-table-of-contents-position'] = 'prepend';
-    $toc_attributes['data-table-of-contents-theme'] = 'light';
     $toc_attributes['data-table-of-contents-anchor-selector'] = 'h2';
     $toc_attributes['data-table-of-contents-title'] = t('On this page');
     $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.civictheme-content__main';
@@ -84,7 +78,11 @@ function _civictheme_preprocess_node__civictheme_alert__full(&$variables) {
   $node = $variables['node'];
   $variables['id'] = $node->id();
   $variables['title'] = $node->label();
-  $variables['description'] = $node->get('field_c_n_body')->value;
+  $variables['description'] = civictheme_process_html_content(civictheme_get_field_value($node, 'field_c_n_body', TRUE), [
+    // Force dark theme to make sure that text colour has enough contrast with
+    // a background.
+    'theme' => CIVICTHEME_THEME_DARK,
+  ]);
   $variables['type'] = civictheme_get_field_value($node, 'field_c_n_alert_type');
 }
 

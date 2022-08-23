@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.civictheme_site_sections
+id: taxonomy_term.civictheme_site_sections.default
+targetEntityType: taxonomy_term
+bundle: civictheme_site_sections
+mode: default
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  path: true
+  simple_sitemap: true
+  status: true
