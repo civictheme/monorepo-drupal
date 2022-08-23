@@ -16,7 +16,7 @@ required: true
 translatable: false
 default_value:
   -
-    value: civictheme_page
+    value: all
 default_value_callback: ''
 settings: {  }
 field_type: list_string
