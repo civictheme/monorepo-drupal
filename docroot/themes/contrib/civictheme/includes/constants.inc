@@ -56,26 +56,26 @@ define('CIVICTHEME_BANNER_TYPE_DEFAULT', 'default');
 define('CIVICTHEME_BANNER_TYPE_LARGE', 'large');
 
 /**
- * Defines limited limit type.
+ * Defines Listing default view name.
+ */
+define('CIVICTHEME_LISTING_DEFAULT_VIEW_NAME', 'civictheme_listing');
+
+/**
+ * Defines Listing default view display name.
+ */
+define('CIVICTHEME_LISTING_DEFAULT_VIEW_DISPLAY_NAME', 'block1');
+
+/**
+ * Defines Listing "limited" limit type.
  */
 define('CIVICTHEME_LISTING_LIMIT_TYPE_LIMITED', 'limited');
 
 /**
- * Defines unlimited limit type.
+ * Defines Listing "unlimited" limit type.
  */
 define('CIVICTHEME_LISTING_LIMIT_TYPE_UNLIMITED', 'unlimited');
 
 /**
- * Defines fallback limit of Full listings items if pager is disabled.
+ * Defines Listing limit fallback.
  */
-define('CIVICTHEME_LISTING_FULL_FALLBACK_LIMIT', 12);
-
-/**
- * Defines fallback view name.
- */
-define('CIVICTHEME_LISTING_DEFAULT_VIEW', 'civictheme_listing__block1');
-
-/**
- * Defines Large banner style.
- */
-define('CIVICTHEME_SOCIAL_LINKS_DEFAULT_THEME', 'dark');
+define('CIVICTHEME_LISTING_LIMIT_FALLBACK', 12);

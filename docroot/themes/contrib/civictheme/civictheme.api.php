@@ -5,23 +5,30 @@
  * Hooks related to the CivicTheme theme.
  */
 
-use Drupal\views\ViewExecutable;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\views\ViewExecutable;
 
 /**
- * Alter the name of view in CivicTheme listing component.
+ * Alter the view info used in the Listing component.
  *
- * @param string $view_name
- *   The name of the view used in listing component.
+ * @param array $info
+ *   View info array to alter passed by reference. Keys are:
+ *   - view_name: (string) A view machine name.
+ *   - display_name: (string) A view display machine name.
  * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   The paragraph containing view conditions.
+ *   The Listing component paragraph.
  */
-function hook_civictheme_listing_view_name_alter(string &$view_name, string &$display_id, Paragraph $paragraph) {
-  $view_name = 'civictheme_listing';
-  $display_id = 'block1';
-
-  if ($paragraph->hasField('field_c_p_listing_type') && !$paragraph->get('field_c_p_listing_type')->isEmpty()) {
-    [$view_name, $display_id] = explode('__', $paragraph->get('field_c_p_listing_type')->getString());
+function hook_civictheme_listing_view_info_alter(array &$info, Paragraph $paragraph) {
+  // Change the view name and block based on the conditions set in the
+  // listing paragraph.
+  if (civictheme_get_field_value($paragraph, 'field_c_p_content_type') == 'event') {
+    // Use a custom display id.
+    $info['view_name'] = 'my_custom_view';
+    $info['display_name'] = 'my_custom_block_1';
+  }
+  elseif (civictheme_get_field_value($paragraph, 'field_c_p_content_type') == 'profile') {
+    // Use a 'default' display id.
+    $info['my_other_view'] = 'my_custom_view';
   }
 }
 

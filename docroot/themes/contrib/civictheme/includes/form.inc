@@ -15,62 +15,63 @@ use Drupal\paragraphs\Entity\Paragraph;
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
  */
-function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
   $view = $form_state->get('view');
-  $civictheme_listing_view_name = 'civictheme_listing';
-  $view_display = 'block1';
 
-  $is_page_load = isset($view->civictheme_listing_entity);
-  if ($is_page_load) {
-    _civictheme_listing_get_view_name($civictheme_listing_view_name, $view_display, $view->civictheme_listing_entity);
-  }
-  else {
-    $listing_paragraph = _civictheme_get_listing_paragraph_from_route();
-    if ($listing_paragraph) {
-      _civictheme_listing_get_view_name($civictheme_listing_view_name, $view_display, $listing_paragraph);
-    }
-  }
+  $listing_paragraph = $view->civictheme_listing_entity ?? _civictheme_get_listing_paragraph_from_route();
+  $info = _civictheme_listing_get_view_info($listing_paragraph);
 
-  // Apply filters to all views whose name starts with `civictheme_listing` or
-  // a view defined in the hook.
-  if ($form_id == 'views_exposed_form' && (strpos($view->id(), 'civictheme_listing') === 0 || $view->id() === $civictheme_listing_view_name)) {
-    _civictheme_civic_listing_exposed_form_alter($form, $form_state);
+  if ($view->id() == $info['view_name']) {
+    _civictheme_listing_views_exposed_form_alter($form, $form_state);
   }
 }
 
 /**
- * Helper to preprocess civictheme listing exposed forms.
+ * Helper to preprocess Listing exposed forms.
  */
-function _civictheme_civic_listing_exposed_form_alter(&$form, FormStateInterface $form_state) {
+function _civictheme_listing_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
   $view = $form_state->get('view');
-  // Determine whether we render a large filter or a basic filter.
-  // If the view exposed form has more than one filter we render a large
-  // filter.
-  $is_civictheme_large_filter = _civictheme_get_number_of_exposed_form_elements($form) > 1;
 
-  $theme = $view !== NULL && isset($view->civictheme_listing) ? ($view->civictheme_listing['theme'] ?? NULL) : NULL;
+  // Determine whether to use a large filter based on the number of exposed
+  // elements.
+  $listing_use_large_filter = _civictheme_listing_get_views_exposed_form_elements_count($form) > 1;
+
+  // Get theme from the listing.
+  // @todo Revisit this as all listing settings need to be retrieved from the
+  // centrally managed property.
+  $listing_theme = $view->civictheme_listing['theme'] ?? NULL;
+
+  // Convert exposed form elements to the format expected by the filter
+  // components.
+  // @todo Revisit this to move processing loop into a helper function.
   $form_elements = Element::children($form);
   foreach ($form_elements as $form_element) {
-    $form[$form_element]['#attributes']['#civictheme_theme'] = $theme;
-    _civictheme_form_alter__convert_exposed_form_elements($form[$form_element], $form, $is_civictheme_large_filter);
+    $form[$form_element]['#attributes']['#civictheme_theme'] = $listing_theme;
+    _civictheme_listing_views_exposed_form_alter__convert_exposed_form_elements($form[$form_element], $form, $listing_use_large_filter);
   }
-  $ajax_filter = $form_state->get('view')->ajaxEnabled();
 
-  $form['#attributes']['data-civictheme-filter-type'] = $is_civictheme_large_filter ? 'large' : 'basic';
-  $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $is_civictheme_large_filter ? 500 : 0;
   $form['#attributes']['data-civictheme-filter'] = '';
-  $form['#large_filter'] = $is_civictheme_large_filter;
-  $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
+  $form['#attributes']['data-civictheme-filter-type'] = $listing_use_large_filter ? 'large' : 'basic';
+  $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $listing_use_large_filter ? 500 : 0;
+
+  // Made preprocessors know that we are using a large filter.
+  // @todo Revisit this as we should not be passing custom values like this.
+  $form['#is_large_filter'] = $listing_use_large_filter;
+
   // Ajax exposed view forms hides submit button to have auto-load.
+  $ajax_filter = $form_state->get('view')->ajaxEnabled();
   if ($ajax_filter) {
+    $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
+
     $form_state->get('view')->setAjaxEnabled(TRUE);
+
     $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
     $form['actions']['#attributes']['class'][] = 'hide-xxs';
 
-    // On ajax reloads, attach node to allow access to the paragraph settings.
+    // On ajax reloads, attach NID to allow access to the paragraph settings.
     $form['nid'] = [
       '#type' => 'hidden',
-      '#value' => _civictheme_listing_get_node($form_state),
+      '#value' => _civictheme_listing_get_node_id_from_form_state($form_state),
     ];
   }
   else {
@@ -82,25 +83,32 @@ function _civictheme_civic_listing_exposed_form_alter(&$form, FormStateInterface
 }
 
 /**
- * Counts how many filters are in the form.
+ * Count of the exposed views form elements.
+ *
+ * @return int
+ *   Count of the exposed views form elements.
  */
-function _civictheme_get_number_of_exposed_form_elements($form) {
-  $num_of_elements = 0;
+function _civictheme_listing_get_views_exposed_form_elements_count($form) {
+  $count = 0;
+
   foreach ($form as $key => &$element) {
-    if (strpos($key, '#') === 0 || empty($element['#type'])
-      || in_array($element['#type'], ['actions', 'hidden'])) {
+    if (
+      str_starts_with($key, '#')
+      || empty($element['#type'])
+      || in_array($element['#type'], ['actions', 'hidden'])
+    ) {
       continue;
     }
-    $num_of_elements++;
+    $count++;
   }
 
-  return $num_of_elements;
+  return $count;
 }
 
 /**
  * Alter form elements to work within civictheme large and basic filters.
  */
-function _civictheme_form_alter__convert_exposed_form_elements(&$element, $form, $is_large_filter) {
+function _civictheme_listing_views_exposed_form_alter__convert_exposed_form_elements(&$element, $form, $is_large_filter) {
   // Convert select to either radio buttons or checkboxes.
   if (isset($element['#type']) && $element['#type'] === 'select') {
     if (!empty($element['#multiple'])) {
@@ -110,7 +118,7 @@ function _civictheme_form_alter__convert_exposed_form_elements(&$element, $form,
     else {
       $element['#type'] = 'radios';
     }
-    _civictheme_form_alter__modify_element_callbacks($element);
+    _civictheme_listing_views_exposed_form_alter__modify_element_callbacks($element);
   }
 
   // Only radio buttons and checkboxes work with filter chips.
@@ -141,7 +149,6 @@ function civictheme_preprocess_input(&$variables) {
   if (isset($variables['attributes']['#civictheme_theme'])) {
     unset($variables['attributes']['#civictheme_theme']);
   }
-
 }
 
 /**
@@ -149,6 +156,7 @@ function civictheme_preprocess_input(&$variables) {
  */
 function civictheme_preprocess_select(&$variables) {
   _civictheme_get_theme_from_attributes($variables);
+
   if (isset($variables['attributes']['class'])) {
     $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
     unset($variables['attributes']['class']);
@@ -228,7 +236,7 @@ function _civictheme_preprocess_form_element_label(&$variables) {
  * Since we are converting select to checkboxes or radios we need to modify the
  * pre_render and process callbacks that do not relate to new inputs.
  */
-function _civictheme_form_alter__modify_element_callbacks(&$element) {
+function _civictheme_listing_views_exposed_form_alter__modify_element_callbacks(&$element) {
   $element_class = $element['#type'] === 'radios' ? '\Drupal\Core\Render\Element\Radios' : '\Drupal\Core\Render\Element\Checkboxes';
 
   // Unsetting pre-render as we do not need these.
@@ -274,10 +282,10 @@ function _civictheme_preprocess_civictheme_filter_form_element_alter(&$variables
     }
   }
   elseif (isset($element['#attributes']['#civictheme-large-filter'])) {
-    if (isset($element['#type']) && in_array($element['#type'], [
-      'radio',
-      'checkbox',
-    ])) {
+    if (
+      isset($element['#type'])
+      && in_array($element['#type'], ['radio', 'checkbox'])
+    ) {
       $variables['#attributes']['data-dropdown-filter-item'] = '';
       $variables['attributes'] = new Attribute($variables['#attributes']);
     }
@@ -511,7 +519,7 @@ function civictheme_preprocess_form(&$variables) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_listing_get_node($form_state) {
+function _civictheme_listing_get_node_id_from_form_state($form_state) {
   $nid = $form_state->getUserInput()['nid'] ?? NULL;
   $nid = is_numeric($nid) ? $nid : NULL;
   if (!$nid) {
@@ -525,7 +533,7 @@ function _civictheme_listing_get_node($form_state) {
 }
 
 /**
- * Implements hook_form__alter().
+ * Implements hook_form_alter().
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */

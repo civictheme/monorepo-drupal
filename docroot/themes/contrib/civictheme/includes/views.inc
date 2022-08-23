@@ -39,7 +39,7 @@ function civictheme_preprocess_views_mini_pager(&$variables) {
  */
 function civictheme_preprocess_views_exposed_form(&$variables) {
   $variables['filter_title'] = t('Filter search results by:');
-  $variables['large_filter'] = $variables['form']['#large_filter'] ?? FALSE;
+  $variables['large_filter'] = $variables['form']['#is_large_filter'] ?? FALSE;
 
   $is_view_component = isset($variables['attributes']['civictheme_listing']);
   if ($is_view_component) {
