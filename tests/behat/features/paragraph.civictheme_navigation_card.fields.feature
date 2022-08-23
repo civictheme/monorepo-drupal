@@ -17,6 +17,7 @@ Feature: Tests the Card container paragraph
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_image" in the "Image" row
     And I should see the text "field_c_p_link" in the "Link" row
+    And I should see the text "field_c_p_size" in the "Size" row
     And I should see the text "field_c_p_summary" in the "Summary" row
 
   @api
@@ -49,6 +50,8 @@ Feature: Tests the Card container paragraph
     And I wait for AJAX to finish
     Then select "field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_theme]" should have an option "light"
     And the option "Light" from select "Theme" is selected
+    Then select "field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_size]" should have an option "Large"
+    And the option "Large" from select "Size" is selected
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_title][0][value]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_title][0][value]'].required" element
     And I should see an "textarea[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_summary][0][value]']" element
