@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_c_n_summary
+    - node.type.civictheme_event
+id: node.civictheme_event.field_c_n_summary
+field_name: field_c_n_summary
+entity_type: node
+bundle: civictheme_event
+label: Summary
+description: 'Short summary of the page contents. Shown in teasers and on cards.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

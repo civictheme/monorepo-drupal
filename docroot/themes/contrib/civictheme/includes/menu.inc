@@ -16,7 +16,7 @@ function _civictheme_preprocess_block__civictheme_footer_menu(&$variables) {
   $menu_name = strtr($variables['elements']['#derivative_plugin_id'], '-', '_');
   if ($menu_name == 'civictheme_footer') {
     // Set menu theme as per footer theme.
-    $variables['theme'] = theme_get_setting('civictheme_footer_theme') ?? 'dark';
+    $variables['theme'] = theme_get_setting('components.footer.theme') ?? CIVICTHEME_FOOTER_THEME_DEFAULT;
     $variables['items'] = $variables['content']['#items'] ?? [];
     $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
 

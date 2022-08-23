@@ -20,17 +20,17 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -40,20 +40,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
-          'topics' => [
-            $helper::randomRealTerm('civictheme_topics')->id(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
+          'listing_topics' => $helper::civicthemeStaticTopics(2),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
-          ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -63,21 +61,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
-          'topics' => [
-            $helper::randomRealTerm('civictheme_topics')->id(),
-            $helper::randomRealTerm('civictheme_topics')->id(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
+          'listing_topics' => $helper::civicthemeStaticTopics(2),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
-          ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -87,18 +82,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -108,17 +103,17 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -128,18 +123,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -149,17 +144,17 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -169,18 +164,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -190,17 +185,17 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -210,18 +205,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -231,17 +226,17 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -251,18 +246,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -272,17 +267,17 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -292,18 +287,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -313,17 +308,17 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -333,18 +328,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -354,17 +349,17 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -374,18 +369,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -395,34 +390,34 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
         ],
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
         ],
       ],
     ],
@@ -431,18 +426,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -452,19 +447,19 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -474,18 +469,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -495,19 +490,19 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -517,18 +512,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -538,19 +533,19 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -560,18 +555,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -581,19 +576,19 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -603,18 +598,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -624,19 +619,19 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -646,18 +641,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -667,19 +662,19 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -689,18 +684,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -710,19 +705,19 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -732,18 +727,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -753,19 +748,19 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -775,10 +770,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -789,11 +784,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -804,10 +799,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -818,11 +813,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -833,10 +828,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -847,11 +842,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -862,10 +857,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -876,11 +871,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -891,10 +886,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -905,11 +900,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -920,10 +915,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -934,11 +929,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -949,10 +944,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -963,11 +958,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -978,10 +973,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -992,11 +987,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
         ],
@@ -1007,18 +1002,18 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
           'background' => TRUE,
         ],
@@ -1029,11 +1024,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1044,10 +1039,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1058,11 +1053,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1073,10 +1068,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1087,11 +1082,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1102,10 +1097,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1116,11 +1111,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1131,10 +1126,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1145,11 +1140,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1160,10 +1155,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1174,11 +1169,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1189,10 +1184,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1203,11 +1198,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1218,10 +1213,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1232,11 +1227,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
         ],
@@ -1247,10 +1242,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1262,11 +1257,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1278,10 +1273,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1293,11 +1288,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1309,10 +1304,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1324,11 +1319,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1340,10 +1335,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1355,11 +1350,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1371,10 +1366,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1386,11 +1381,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1402,10 +1397,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1417,11 +1412,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1433,10 +1428,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1448,11 +1443,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1464,10 +1459,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1479,11 +1474,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1495,10 +1490,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1510,11 +1505,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1526,10 +1521,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1541,11 +1536,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1557,10 +1552,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1572,11 +1567,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1588,10 +1583,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1603,11 +1598,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1619,10 +1614,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1634,11 +1629,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1650,20 +1645,20 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -1673,21 +1668,21 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -1697,10 +1692,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1712,21 +1707,21 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -1736,20 +1731,20 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -1759,21 +1754,21 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
@@ -1783,10 +1778,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1798,11 +1793,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1814,10 +1809,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1829,11 +1824,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1845,10 +1840,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1860,11 +1855,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1876,10 +1871,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1891,11 +1886,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1907,10 +1902,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1922,11 +1917,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1938,10 +1933,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1953,11 +1948,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1969,10 +1964,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -1984,11 +1979,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2000,10 +1995,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2015,11 +2010,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2031,10 +2026,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2046,11 +2041,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2062,10 +2057,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2077,11 +2072,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2093,10 +2088,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2108,11 +2103,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2124,10 +2119,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2139,11 +2134,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2155,10 +2150,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2170,11 +2165,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2186,10 +2181,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2201,11 +2196,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2217,10 +2212,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2232,11 +2227,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2248,10 +2243,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2263,11 +2258,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2279,10 +2274,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2295,11 +2290,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2312,10 +2307,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2328,11 +2323,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2345,10 +2340,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2361,11 +2356,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2378,10 +2373,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2394,11 +2389,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2411,10 +2406,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2427,11 +2422,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2444,10 +2439,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2460,11 +2455,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2477,10 +2472,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2493,11 +2488,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2510,10 +2505,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2526,11 +2521,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2543,10 +2538,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2559,11 +2554,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2576,10 +2571,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2592,11 +2587,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2609,10 +2604,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2625,11 +2620,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2642,10 +2637,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2658,11 +2653,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2675,10 +2670,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2691,11 +2686,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2708,10 +2703,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2724,11 +2719,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2741,10 +2736,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2757,11 +2752,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2774,10 +2769,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2790,11 +2785,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -2803,393 +2798,393 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Page content, Unlimited, Light card, Promo Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Page content, Unlimited, Light card, Promo Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Page content, Limited - 2, Light card, Promo Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Page content, Limited - 2, Light card, Promo Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Page content, Unlimited, Light card, Navigation Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Page content, Unlimited, Light card, Navigation Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Page content, Limited - 2, Light card, Navigation Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Page content, Limited - 2, Light card, Navigation Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Event content, Unlimited, Light card, Promo Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Event content, Unlimited, Light card, Promo Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Event content, Limited - 2, Light card, Promo Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Event content, Limited - 2, Light card, Promo Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Event content, Unlimited, Light card, Navigation Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Event content, Unlimited, Light card, Navigation Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Event content, Limited - 2, Light card, Navigation Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Event content, Limited - 2, Light card, Navigation Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeLight(),
+          'listing_item_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Page content, Unlimited, Dark card, Promo Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Page content, Unlimited, Dark card, Promo Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Page content, Limited - 2, Dark card, Promo Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Page content, Limited - 2, Dark card, Promo Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Page content, Unlimited, Dark card, Navigation Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Page content, Unlimited, Dark card, Navigation Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Page content, Limited - 2, Dark card, Navigation Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Page content, Limited - 2, Dark card, Navigation Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemePageContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemePageContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Event content, Unlimited, Dark card, Promo Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Event content, Unlimited, Dark card, Promo Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Event content, Limited - 2, Dark card, Promo Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Event content, Limited - 2, Dark card, Promo Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemePromoCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Event content, Unlimited, Dark card, Navigation Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Event content, Unlimited, Dark card, Navigation Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],
     ],
     [
-      'title' => 'Demo Page, Listing component, Event content, Limited - 2, Dark card, Navigation Card, Dark, BG, Both spaces, Title, Link, Read more',
+      'title' => 'Demo Page, Listing component, Event content, Limited - 2, Dark card, Navigation Card, Dark, BG, Both spaces, Title, Link above, Link below',
       'components' => [
         [
           'type' => 'listing',
-          'content_type' => $helper::civicthemeEventContentType(),
-          'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'listing_content_type' => $helper::civicthemeEventContentType(),
+          'listing_view_as' => $helper::civicthemeNavigationCardType(),
+          'listing_limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
-          'card_theme' => $helper::civicthemeThemeDark(),
+          'listing_item_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_above' => [
+            'uri' => $helper::randomUrl() . '/above',
+            'title' => 'Above ' . $helper::staticString(30),
           ],
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+          'listing_link_below' => [
+            'uri' => $helper::randomUrl() . '/below',
+            'title' => 'Below ' . $helper::staticString(30),
           ],
         ],
       ],

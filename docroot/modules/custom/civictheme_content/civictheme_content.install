@@ -64,7 +64,7 @@ function civictheme_content_install() {
 
   // Programmatically provision content.
   $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
-  $provision_file = $civictheme_path . DIRECTORY_SEPARATOR . 'civictheme.provision.inc';
+  $provision_file = $civictheme_path . DIRECTORY_SEPARATOR . 'theme-settings.provision.inc';
   if (file_exists($provision_file)) {
     require_once $provision_file;
     $theme_block_list = _civictheme_get_theme_block();

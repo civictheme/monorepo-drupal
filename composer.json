@@ -16,8 +16,9 @@
         "drupal/permissions_filter": "^1.1",
         "drupal/redirect": "^1.6",
         "drupal/stage_file_proxy": "^1.1",
+        "drupal/testmode": "^2.1",
         "drush/drush": "^10",
-        "govcms/govcms": "^2.17",
+        "govcms/govcms": "^2.18",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2"

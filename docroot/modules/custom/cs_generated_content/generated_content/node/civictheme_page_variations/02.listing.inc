@@ -11,8 +11,9 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
  * Variations of pages used for listings.
  */
 function _cs_generated_content_create_node_civictheme_page__variations__for_listings() {
-  $total_nodes = 30;
+  $total_nodes = 50;
 
+  /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
   $variations = [];
@@ -23,7 +24,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__for_list
     $variation['status'] = $i % 4 != 0;
     $variation['summary'] = $helper::staticPlainParagraph($i);
     $variation['components'] = _cs_generated_content_create_node_civictheme_page__variations_components_content_default();
+    $variation['topics'] = $i % 2 != 0 ? $helper::civicthemeStaticTopic() : NULL;
+    $variation['site_section'] = $i % 2 != 0 ? $helper::civicthemeStaticSiteSection() : NULL;
     $variation['alias'] = '/demo/civictheme_page/{title}';
+
     $variations[] = $variation;
   }
 

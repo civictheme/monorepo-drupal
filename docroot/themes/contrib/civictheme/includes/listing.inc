@@ -35,7 +35,7 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   // Get the parent bundle.
-  $variables['view_as'] = civictheme_get_field_value($paragraph, 'field_c_p_view_as');
+  $variables['view_as'] = civictheme_get_field_value($paragraph, 'field_c_p_listing_item_view_as');
   $variables['limit'] = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit');
   $variables['attributes']['id'] = Html::getUniqueId('listing-' . $paragraph->id());
   if (is_array($variables['attributes'])) {
@@ -100,9 +100,9 @@ function _civictheme_listing_get_view_name($view_name) {
  */
 function _civictheme_listing_alter_view($paragraph, &$view) {
   $title = civictheme_get_field_value($paragraph, 'field_c_p_title');
-  $content_type = civictheme_get_field_value($paragraph, 'field_c_p_content_type');
-  $topics = civictheme_get_entity_field_key_values($paragraph, 'field_c_p_topics', 'target_id');
-  $view_mode = civictheme_get_field_value($paragraph, 'field_c_p_view_as');
+  $content_type = civictheme_get_field_value($paragraph, 'field_c_p_listing_content_type');
+  $topics = civictheme_get_entity_field_key_values($paragraph, 'field_c_p_listing_topics', 'target_id');
+  $view_mode = civictheme_get_field_value($paragraph, 'field_c_p_listing_item_view_as');
 
   if ($view) {
     $args = [];
@@ -134,14 +134,16 @@ function _civictheme_listing_alter_view($paragraph, &$view) {
 function _civictheme_listing_view_pager_alter($paragraph, &$view) {
   $header = $view->display_handler->getOption('header');
   $fallback_limit = CIVICTHEME_LISTINGS_FULL_FALLBACK_LIMIT;
-  $limit_type = civictheme_get_field_value($paragraph, 'field_c_p_limit_type');
+  $limit_type = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit_type');
   $limit = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit');
   $items_per_page = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit');
-  $show_filters = civictheme_get_field_value($paragraph, 'field_c_p_show_filters');
-  // Do not show pager, but show exact number of items.
+  $show_filters = civictheme_get_field_value($paragraph, 'field_c_p_listing_show_filters');
+
+  // Show exact number of items.
   if ($limit_type == CIVICTHEME_LISTINGS_LIMIT_TYPE_LIMITED) {
     // Prevent endless lists by using a fallback limit if a limit is 0.
     $limit = $limit > 0 ? $limit : $fallback_limit;
+
     // Changing pager type to 'some' and setting 'items_per_page'.
     $pager = $view->display_handler->getOption('pager');
     $pager['type'] = 'some';

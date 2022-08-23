@@ -9,7 +9,7 @@ field_name: field_c_n_summary
 entity_type: node
 bundle: civictheme_page
 label: Summary
-description: ''
+description: 'Short summary of the page contents. Shown in teasers and on cards.'
 required: false
 translatable: false
 default_value: {  }

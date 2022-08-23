@@ -35,7 +35,7 @@ function _civictheme_civic_listing_exposed_form_alter(&$form, FormStateInterface
   // filter.
   $is_civictheme_large_filter = _civictheme_get_number_of_exposed_form_elements($form) > 1;
 
-  $theme = $view !== NULL && isset($view->civictheme_listing) ? $view->civictheme_listing['theme'] : 'light';
+  $theme = $view !== NULL && isset($view->civictheme_listing) ? ($view->civictheme_listing['theme'] ?? NULL) : NULL;
   $form_elements = Element::children($form);
   foreach ($form_elements as $form_element) {
     $form[$form_element]['#attributes']['#civictheme_theme'] = $theme;
@@ -50,7 +50,6 @@ function _civictheme_civic_listing_exposed_form_alter(&$form, FormStateInterface
   $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
   // Ajax exposed view forms hides submit button to have auto-load.
   if ($ajax_filter) {
-    $form['#attached']['library'][] = 'civictheme/civictheme.ajax_views';
     $form_state->get('view')->setAjaxEnabled(TRUE);
     $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
     $form['actions']['#attributes']['class'][] = 'hide-xxs';
@@ -100,8 +99,9 @@ function _civictheme_form_alter__convert_exposed_form_elements(&$element, $form,
     }
     _civictheme_form_alter__modify_element_callbacks($element);
   }
+
   // Only radio buttons and checkboxes work with filter chips.
-  $filter_key = !$is_large_filter && in_array($element['#type'], [
+  $filter_key = !$is_large_filter && in_array($element['#type'] ?? NULL, [
     'radios',
     'checkboxes',
   ]) ? '#civictheme-basic-filter' : '#civictheme-large-filter';
@@ -397,8 +397,9 @@ function _civictheme_preprocess_composite_form_elements(&$variables) {
   // Add theme to radio / checkbox inputs.
   $form_elements = Element::children($variables['element']);
   foreach ($form_elements as $form_element) {
-    $variables['element'][$form_element]['#civictheme_theme'] = $variables['theme'] ?? 'light';
+    $variables['element'][$form_element]['#civictheme_theme'] = $variables['theme'] ?? NULL;
   }
+
   if (isset($element['#civictheme-large-filter'])) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
@@ -464,8 +465,8 @@ function _civictheme_get_theme_from_attributes(&$variables) {
   // Setting theme for form element.
   if (isset($variables['element']['#attributes']['#civictheme_theme'])
     && in_array($variables['element']['#attributes']['#civictheme_theme'], [
-      'light',
-      'dark',
+      CIVICTHEME_THEME_LIGHT,
+      CIVICTHEME_THEME_DARK,
     ])) {
     $variables['theme'] = $variables['element']['#attributes']['#civictheme_theme'];
     unset($variables['element']['#attributes']['#civictheme_theme']);
@@ -478,7 +479,6 @@ function _civictheme_get_theme_from_attributes(&$variables) {
 
     return;
   }
-  $variables['theme'] = 'light';
 }
 
 /**
@@ -520,16 +520,15 @@ function civictheme_form_alter(&$form, FormStateInterface $form_state, $form_id)
   if (!empty($form_id) && strpos($form_id, 'webform_submission_') === 0) {
     /** @var \Drupal\webform\WebformSubmissionForm $form_object */
     $form_object = $form_state->getFormObject();
+
     /** @var \Drupal\webform\WebformSubmissionInterface $webform_submission */
     $webform_submission = $form_object->getEntity();
     $source = $webform_submission->getSourceEntity();
+
     $paragraph_id = !empty($source) ? $source->id() : '';
-    if (!empty($paragraph_id)) {
-      $paragraph = Paragraph::load($paragraph_id);
-      $theme = civictheme_get_theme_value($paragraph);
-      if (!empty($form['elements']) && $theme !== NULL) {
-        _civictheme_propagate_component_theme_settings($form['elements'], $theme);
-      }
+    if (!empty($paragraph_id) && !empty($form['elements'])) {
+      $theme = civictheme_get_field_theme_value(Paragraph::load($paragraph_id));
+      _civictheme_propagate_component_theme_settings($form['elements'], $theme);
     }
   }
 }

@@ -22,6 +22,7 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
   if ($entity->bundle() != 'civictheme_mobile_navigation') {
     return;
   }
+
   $menu_fields = [
     'top_menu' => 'field_c_b_top_menu',
     'bottom_menu' => 'field_c_b_bottom_menu',
@@ -65,6 +66,8 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
   $cacheability->applyTo($variables);
 
   $variables['trigger_text'] = civictheme_get_field_value($entity, 'field_c_b_trigger_text');
-  $variables['theme'] = civictheme_get_theme_value($entity);
-  $variables['trigger_theme'] = civictheme_get_field_value($entity, 'field_c_b_trigger_theme') ?? 'light';
+  $variables['theme'] = civictheme_get_field_theme_value($entity);
+
+  $context_theme = theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT;
+  $variables['trigger_theme'] = civictheme_get_field_value($entity, 'field_c_b_trigger_theme') ?? $context_theme;
 }

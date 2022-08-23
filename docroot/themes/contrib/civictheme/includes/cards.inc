@@ -38,14 +38,13 @@ function _civictheme_preprocess_node__civictheme_event_card(&$variables) {
 function _civictheme_preprocess_node__theme(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
+
   if (isset($node->_referringItem)) {
-    /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-    $referring_paragraph = $node->_referringItem->getEntity();
-    $theme = civictheme_get_theme_value($referring_paragraph);
-    if ($theme) {
-      $variables['theme'] = $theme;
-    }
+    /** @var \Drupal\paragraphs\Entity\Paragraph $referring_paragraph */
+    $referring_paragraph = $node->_referringItem->getEntity() ?? NULL;
+    $variables['theme'] = civictheme_get_field_theme_value($referring_paragraph);
   }
+
   // For when theme is set by view or other third party.
   if (isset($node->civictheme_theme)) {
     $variables['theme'] = $node->civictheme_theme;

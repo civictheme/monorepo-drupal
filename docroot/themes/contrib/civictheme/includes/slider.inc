@@ -40,7 +40,7 @@ function civictheme_preprocess_paragraph__civictheme_slider(&$variables) {
 function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $theme = civictheme_get_theme_value($paragraph) ?? $variables['theme'];
+  $theme = civictheme_get_field_theme_value($paragraph, $variables['theme'] ?? NULL);
 
   _civictheme_preprocess_paragraph__card__image($variables);
 
@@ -93,7 +93,7 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
 function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $theme = civictheme_get_theme_value($paragraph) ?? $variables['theme'];
+  $theme = civictheme_get_field_theme_value($paragraph, $variables['theme'] ?? NULL);
   // Image position.
   $variables['image_position'] = civictheme_get_field_value($paragraph, 'field_c_p_image_position');
   $variables['attributes']['data-component-civictheme-slider-slide'] = '';
