@@ -80,7 +80,7 @@ display:
           id: 0
           tags:
             next: Next
-            previous: Back
+            previous: Previous
             first: First
             last: Last
           expose:

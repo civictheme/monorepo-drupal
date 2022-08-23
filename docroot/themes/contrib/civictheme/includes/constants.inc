@@ -79,3 +79,8 @@ define('CIVICTHEME_LISTING_LIMIT_TYPE_UNLIMITED', 'unlimited');
  * Defines Listing limit fallback.
  */
 define('CIVICTHEME_LISTING_LIMIT_FALLBACK', 12);
+
+/**
+ * Defines Listing default theme.
+ */
+define('CIVICTHEME_LISTING_DEFAULT_THEME', CIVICTHEME_THEME_LIGHT);
