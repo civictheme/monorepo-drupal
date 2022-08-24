@@ -40,6 +40,13 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
+   * Default listing view name.
+   */
+  public static function civicthemeListingType() {
+    return 'civictheme_listing__block1';
+  }
+
+  /**
    * Limited type name.
    */
   public static function civicthemeListingLimitTypeLimited() {
@@ -549,6 +556,7 @@ trait CsGeneratedContentCivicthemeTrait {
     }
 
     $defaults = [
+      'listing_type' => static::civicthemeListingType(),
       'listing_content_type' => static::civicthemePageContentType(),
       'listing_item_view_as' => static::civicthemePromoCardType(),
       'listing_filters_exp' => FALSE,

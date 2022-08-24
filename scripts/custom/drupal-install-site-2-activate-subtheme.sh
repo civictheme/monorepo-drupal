@@ -33,15 +33,13 @@ $drush config-set system.theme default civictheme_demo -y
 if [ "$SKIP_SUBTHEME_FE" != "1" ] && command -v npm &> /dev/null; then
   pushd $APP/docroot/themes/custom/civictheme_demo >/dev/null || exit 1
 
-  if [ ! -d $APP/docroot/themes/custom/civictheme_demo/dist ]; then
-    if [ ! -d $APP/docroot/themes/custom/civictheme_demo/node_modules ]; then
-      echo "  > Installing FE dependencies."
-      npm ci
-    fi
-
-    echo "  > Building FE assets."
-    npm run build
+  if [ ! -d $APP/docroot/themes/custom/civictheme_demo/node_modules ]; then
+    echo "  > Installing FE dependencies."
+    npm ci
   fi
+
+  echo "  > Building FE assets."
+  npm run build
 
   popd >/dev/null || exit 1
 fi

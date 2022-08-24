@@ -23,7 +23,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'slides' => [
             [
               'type' => 'civictheme_slider_slide',
-              'title' => $helper::staticString(30),
+              'title' => $helper::staticSentence(2),
               'theme' => $helper::civicthemeThemeLight(),
               'image' => $helper->staticMediaItem('civictheme_image')->id(),
               'image_position' => $helper::civicthemeSliderSlideImagePositionLeft(),
@@ -40,7 +40,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'slides' => [
             [
               'type' => 'civictheme_slider_slide',
-              'title' => $helper::staticString(30),
+              'title' => $helper::staticSentence(2),
               'theme' => $helper::civicthemeThemeDark(),
               'image' => $helper->staticMediaItem('civictheme_image')->id(),
               'image_position' => $helper::civicthemeSliderSlideImagePositionRight(),
@@ -57,7 +57,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'slides' => [
             [
               'type' => 'civictheme_slider_slide',
-              'title' => $helper::staticString(30),
+              'title' => $helper::staticSentence(2),
               'theme' => $helper::civicthemeThemeDark(),
               'image' => $helper->staticMediaItem('civictheme_image')->id(),
               'image_position' => $helper::civicthemeSliderSlideImagePositionRight(),
@@ -75,7 +75,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'slides' => [
             [
               'type' => 'civictheme_slider_slide',
-              'title' => $helper::staticString(30),
+              'title' => $helper::staticSentence(2),
               'theme' => $helper::civicthemeThemeDark(),
               'image' => $helper->staticMediaItem('civictheme_image')->id(),
               'image_position' => $helper::civicthemeSliderSlideImagePositionRight(),
@@ -91,10 +91,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
         [
           'type' => 'slider',
           'slides' => [
-           [
-             'type' => 'civictheme_slider_slide_ref',
-             'reference' => $helper::randomRealNode($helper::civicthemePageContentType())->id(),
-           ],
+            [
+              'type' => 'civictheme_slider_slide_ref',
+              'reference' => $helper::randomRealNode($helper::civicthemePageContentType())->id(),
+            ],
           ],
         ],
       ],
@@ -121,7 +121,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'title' => $helper::staticSentence(3),
           'link' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
           'slides' => [
             [
@@ -135,7 +135,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'slides' => [
             [
               'type' => 'civictheme_slider_slide',
-              'title' => $helper::staticString(30),
+              'title' => $helper::staticSentence(2),
               'theme' => $helper::civicthemeThemeDark(),
               'image' => $helper->staticMediaItem('civictheme_image')->id(),
               'image_position' => $helper::civicthemeSliderSlideImagePositionRight(),
@@ -145,7 +145,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'title' => $helper::staticSentence(3),
           'link' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
         [
@@ -153,7 +153,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'slides' => [
             [
               'type' => 'civictheme_slider_slide',
-              'title' => $helper::staticString(30),
+              'title' => $helper::staticSentence(2),
               'theme' => $helper::civicthemeThemeDark(),
               'image' => $helper->staticMediaItem('civictheme_image')->id(),
               'image_position' => $helper::civicthemeSliderSlideImagePositionRight(),
@@ -176,7 +176,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'slides' => [
             [
               'type' => 'civictheme_slider_slide',
-              'title' => $helper::staticString(30),
+              'title' => $helper::staticSentence(2),
               'theme' => $helper::civicthemeThemeDark(),
               'image' => $helper->staticMediaItem('civictheme_image')->id(),
               'image_position' => $helper::civicthemeSliderSlideImagePositionRight(),
@@ -211,7 +211,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
           'slides' => [
             [
               'type' => 'civictheme_slider_slide',
-              'title' => $helper::staticString(30),
+              'title' => $helper::staticSentence(2),
               'theme' => $helper::civicthemeThemeDark(),
               'image' => $helper->staticMediaItem('civictheme_image')->id(),
               'image_position' => $helper::civicthemeSliderSlideImagePositionRight(),

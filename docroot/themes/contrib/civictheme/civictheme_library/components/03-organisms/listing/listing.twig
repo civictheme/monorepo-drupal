@@ -6,7 +6,7 @@
  * Variables:
  * - theme: [string] Theme: light, dark.
  * - title: [string] Title.
- * - exposed: [string] Exposed filters.
+ * - filters: [string] Exposed filters.
  * - header: [string] Header slot.
  * - rows: [string] Rows content.
  * - empty: [string] Empty results content.
@@ -24,9 +24,11 @@
 
 <div class="civictheme-listing {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   <div class="civictheme-listing__container">
+
     {% block header %}
-      {% if title is not empty or link is not empty %}
+      {% if title is not empty or link_above is not empty %}
         <div class="civictheme-listing__header">
+
           {% block title %}
             {% if title -%}
               <div class="civictheme-listing__header-title">
@@ -37,28 +39,32 @@
               </div>
             {% endif %}
           {% endblock %}
-          {% block link %}
-            {% if link %}
-              <div class="civictheme-listing__header-link">
+
+          {% block link_above %}
+            {% if link_above %}
+              <div class="civictheme-listing__header-link-above">
                 {% include '@atoms/link/link.twig' with {
                   theme: theme,
-                  text: link.text,
-                  url: link.url,
-                  title: link.title,
-                  is_new_window: link.is_external,
-                  is_external: link.is_external,
+                  text: link_above.text,
+                  url: link_above.url,
+                  title: link_above.title,
+                  is_new_window: link_above.is_external,
+                  is_external: link_above.is_external,
                 } %}
               </div>
             {% endif %}
           {% endblock %}
+
         </div>
       {% endif %}
     {% endblock %}
+
     {% block listing %}
-      {% block exposed %}
-        {% if exposed -%}
-          <div class="civictheme-listing__exposed-form">
-            {{ exposed }}
+
+      {% block filters %}
+        {% if filters -%}
+          <div class="civictheme-listing__filters">
+            {{ filters }}
           </div>
         {% endif %}
       {% endblock %}
@@ -113,17 +119,18 @@
             </div>
           </div>
         {% endif %}
-        {% if read_more %}
-          <div class="civictheme-listing__cta">
+
+        {% if link_below %}
+          <div class="civictheme-listing__link-below">
             {% include '@atoms/button/button.twig' with {
               theme: theme,
               type: 'primary',
               kind: 'link',
               size: 'large',
-              text: read_more.text,
-              url: read_more.url,
-              is_new_window: read_more.is_external,
-              is_external: read_more.is_external
+              text: link_below.text,
+              url: link_below.url,
+              is_new_window: link_below.is_external,
+              is_external: link_below.is_external
             } only %}
           </div>
         {% endif %}
@@ -136,6 +143,8 @@
           </footer>
         {% endif %}
       {% endblock %}
+
     {% endblock %}
+
   </div>
 </div>
