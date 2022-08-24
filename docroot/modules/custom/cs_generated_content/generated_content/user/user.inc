@@ -11,21 +11,21 @@ use Drupal\user\Entity\Role;
 use Drupal\user\Entity\User;
 
 /**
- * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
+ * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
 function cs_generated_content_generated_content_create_user_user_weight() {
   return 0;
 }
 
 /**
- * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE_tracking().
+ * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_tracking().
  */
 function cs_generated_content_generated_content_create_user_user_tracking() {
   return TRUE;
 }
 
 /**
- * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE().
+ * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE().
  */
 function cs_generated_content_generated_content_create_user_user() {
   $total_users_per_role = 3;

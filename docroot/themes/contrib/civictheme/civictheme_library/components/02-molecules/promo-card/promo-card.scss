@@ -2,6 +2,8 @@
 // Promo Card component.
 //
 
+@use 'sass:map';
+
 .civictheme-promo-card {
   $root: &;
 
@@ -11,6 +13,8 @@
   // Promo image from "spilling" over the border radius.
   overflow: hidden;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 
   @include civictheme-elevation(3);
 
@@ -24,13 +28,23 @@
   }
 
   #{$root}__image-wrapper {
-    position: relative;
+    @include civictheme-image-fit();
 
-    @include civictheme-image-fit ();
+    position: relative;
+    height: $civictheme-promo-card-image-height-mobile;
+    width: $civictheme-promo-card-image-width-mobile;
+
+    @include civictheme-breakpoint('m') {
+      height: $civictheme-promo-card-image-height-desktop;
+      width: $civictheme-promo-card-image-width-desktop;
+    }
   }
 
   #{$root}__content {
     padding: civictheme-space(3);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
   #{$root}__date {
@@ -65,7 +79,8 @@
   #{$root}__bottom-wrapper {
     display: flex;
     justify-content: space-between;
-    margin-top: civictheme-space(3);
+    margin-top: auto;
+    padding-top: civictheme-space(3);
   }
 
   #{$root}__tags {

@@ -2,6 +2,8 @@
 // Event Card component.
 //
 
+@use 'sass:map';
+
 .civictheme-event-card {
   $root: &;
 
@@ -11,6 +13,8 @@
   // Prevent image from "spilling" over the border radius.
   overflow: hidden;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 
   @include civictheme-elevation(3);
 
@@ -25,16 +29,27 @@
 
   #{$root}__image-wrapper {
     position: relative;
+    height: $civictheme-event-card-image-height-mobile;
+    width: $civictheme-event-card-image-width-mobile;
 
-    @include civictheme-image-fit ();
+    @include civictheme-image-fit();
+
+    @include civictheme-breakpoint('m') {
+      height: $civictheme-event-card-image-height-desktop;
+      width: $civictheme-event-card-image-width-desktop;
+    }
   }
 
   #{$root}__content {
     padding: civictheme-space(3);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
   #{$root}__date {
     margin-bottom: civictheme-space(2);
+    align-self: self-start;
   }
 
   #{$root}__title {
@@ -63,7 +78,8 @@
   #{$root}__bottom-wrapper {
     display: flex;
     justify-content: space-between;
-    margin-top: civictheme-space(3);
+    margin-top: auto;
+    padding-top: civictheme-space(3);
   }
 
   #{$root}__tags {

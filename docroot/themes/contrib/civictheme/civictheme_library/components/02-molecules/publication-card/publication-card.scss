@@ -2,6 +2,8 @@
 // Publication Card component.
 //
 
+@use 'sass:map';
+
 .civictheme-publication-card {
   $root: &;
 
@@ -24,6 +26,9 @@
 
   #{$root}__content {
     padding: civictheme-space(3);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
   #{$root}__title {
@@ -62,15 +67,41 @@
     }
   }
 
+  #{$root}__content-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: civictheme-space(3);
+  }
+
+  &#{$root}--small {
+    display: flex;
+    flex-direction: column;
+
+    #{$root}__image-wrapper {
+      width: 100%;
+      height: $civictheme-publication-card-image-height-mobile;
+
+      @include civictheme-breakpoint('m') {
+        height: $civictheme-publication-card-image-height-desktop;
+      }
+    }
+  }
+
   &#{$root}--large {
     @include civictheme-breakpoint(m) {
       display: flex;
     }
 
     #{$root}__image-wrapper {
+      height: $civictheme-publication-card-large-image-height-mobile;
+      width: $civictheme-publication-card-large-image-width-mobile;
+
       @include civictheme-breakpoint(m) {
-        max-width: 12.5rem;
+        height: $civictheme-publication-card-large-image-height-desktop;
+        width: $civictheme-publication-card-large-image-width-desktop;
         flex-shrink: 0;
+        max-width: 50%;
       }
     }
   }
