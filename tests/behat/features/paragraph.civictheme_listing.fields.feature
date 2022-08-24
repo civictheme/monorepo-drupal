@@ -28,6 +28,7 @@ Feature: Tests the Listing paragraph
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_listing_topics" in the "Topics" row
     And I should see the text "field_c_p_space" in the "With space" row
+    And I should see the text "field_c_p_listing_type" in the "Listing type" row
 
   @api @javascript
   Scenario: Listing paragraph fields
@@ -82,9 +83,9 @@ Feature: Tests the Listing paragraph
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_listing_show_filters][value]'][disabled]" element
 
     And I see the text "Exposed filters"
-    And should see a "select[name='field_c_n_components[0][subform][field_c_p_listing_filters_exp]']" element
-    And should not see a "select[name='field_c_n_components[0][subform][field_c_p_listing_filters_exp]'].required" element
-    And should not see a "select[name='field_c_n_components[0][subform][field_c_p_listing_filters_exp]'][disabled]" element
+    And should see a "input[name='field_c_n_components[0][subform][field_c_p_listing_filters_exp][type]']" element
+    And should see a "input[name='field_c_n_components[0][subform][field_c_p_listing_filters_exp][topic]']" element
+    And should see a "input[name='field_c_n_components[0][subform][field_c_p_listing_filters_exp][title]']" element
 
     And I see the text "Fields"
     And I scroll to an element with id "edit-field-c-n-components-wrapper"

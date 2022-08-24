@@ -11,6 +11,9 @@ type: list_string
 settings:
   allowed_values:
     -
+      value: all
+      label: Any
+    -
       value: civictheme_page
       label: Page
     -

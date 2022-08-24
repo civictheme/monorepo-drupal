@@ -2,21 +2,21 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_c_p_listing_content_type
+    - field.storage.paragraph.field_c_p_listing_type
     - paragraphs.paragraphs_type.civictheme_listing
   module:
     - options
-id: paragraph.civictheme_listing.field_c_p_listing_content_type
-field_name: field_c_p_listing_content_type
+id: paragraph.civictheme_listing.field_c_p_listing_type
+field_name: field_c_p_listing_type
 entity_type: paragraph
 bundle: civictheme_listing
-label: 'Content type'
+label: 'Listing type'
 description: ''
 required: true
 translatable: false
 default_value:
   -
-    value: all
+    value: civictheme_listing__block1
 default_value_callback: ''
 settings: {  }
 field_type: list_string

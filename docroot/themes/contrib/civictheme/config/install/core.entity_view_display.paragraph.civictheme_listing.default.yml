@@ -14,6 +14,7 @@ dependencies:
     - field.field.paragraph.civictheme_listing.field_c_p_listing_show_filters
     - field.field.paragraph.civictheme_listing.field_c_p_listing_site_sections
     - field.field.paragraph.civictheme_listing.field_c_p_listing_topics
+    - field.field.paragraph.civictheme_listing.field_c_p_listing_type
     - field.field.paragraph.civictheme_listing.field_c_p_space
     - field.field.paragraph.civictheme_listing.field_c_p_theme
     - field.field.paragraph.civictheme_listing.field_c_p_title
@@ -34,35 +35,35 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 15
+    weight: 5
     region: content
   field_c_p_listing_content_type:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 19
+    weight: 8
     region: content
   field_c_p_listing_filters_exp:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 29
+    weight: 15
     region: content
   field_c_p_listing_item_theme:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 17
+    weight: 6
     region: content
   field_c_p_listing_item_view_as:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 18
+    weight: 7
     region: content
   field_c_p_listing_limit:
     type: number_integer
@@ -71,14 +72,14 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 5
+    weight: 2
     region: content
   field_c_p_listing_limit_type:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 20
+    weight: 9
     region: content
   field_c_p_listing_link_above:
     type: link
@@ -90,7 +91,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 26
+    weight: 12
     region: content
   field_c_p_listing_link_below:
     type: link
@@ -102,7 +103,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 27
+    weight: 13
     region: content
   field_c_p_listing_show_filters:
     type: boolean
@@ -112,7 +113,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 28
+    weight: 14
     region: content
   field_c_p_listing_site_sections:
     type: entity_reference_label
@@ -120,7 +121,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 24
+    weight: 11
     region: content
   field_c_p_listing_topics:
     type: entity_reference_label
@@ -128,21 +129,28 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 23
+    weight: 10
+    region: content
+  field_c_p_listing_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
     region: content
   field_c_p_space:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 13
+    weight: 3
     region: content
   field_c_p_theme:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 14
+    weight: 4
     region: content
   field_c_p_title:
     type: string

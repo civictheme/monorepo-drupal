@@ -469,3 +469,21 @@ function civictheme_array_to_multiline($array, $delimiter = PHP_EOL) {
 
   return implode($delimiter, array_filter($array));
 }
+
+/**
+ * Get the nid that the listing block is embedded in.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_get_node_id_from_form_state($form_state) {
+  $nid = $form_state->getUserInput()['nid'] ?? NULL;
+  $nid = is_numeric($nid) ? $nid : NULL;
+  if (!$nid) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node) {
+      $nid = $node->id();
+    }
+  }
+
+  return $nid;
+}

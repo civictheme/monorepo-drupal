@@ -4,25 +4,19 @@ dependencies:
   module:
     - options
     - paragraphs
-id: paragraph.field_c_p_listing_filters_exp
-field_name: field_c_p_listing_filters_exp
+id: paragraph.field_c_p_listing_type
+field_name: field_c_p_listing_type
 entity_type: paragraph
 type: list_string
 settings:
   allowed_values:
     -
-      value: type
-      label: Type
-    -
-      value: topic
-      label: Topic
-    -
-      value: title
-      label: Title
+      value: civictheme_listing__block1
+      label: 'Default Listing'
   allowed_values_function: ''
 module: options
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

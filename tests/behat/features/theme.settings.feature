@@ -117,6 +117,24 @@ Feature: Check that components settings are available in theme settings
     Then I should see the text "5 errors have been found"
 
   @api
+  Scenario: The CivicTheme theme settings verify custom logo configuration with image upload
+    Given I am logged in as a user with the "Site Administrator" role
+    And I visit "/admin/appearance/settings/civictheme_demo"
+    When I attach the file "test_image_logo_light_desktop.jpg" to "Upload logo image in Light theme for desktop"
+    And I attach the file "test_image_logo_light_mobile.jpg" to "Upload logo image in Light theme for mobile"
+    And I attach the file "test_image_logo_dark_desktop.jpg" to "Upload logo image in Dark theme for desktop"
+    And I attach the file "test_image_logo_dark_mobile.jpg" to "Upload logo image in Dark theme for mobile"
+    And I select the radio button "Light" with the id "edit-components-header-theme-light"
+    And I select the radio button "Dark" with the id "edit-components-footer-theme-dark"
+    And I press "Save configuration"
+    Then I should see the text "The configuration options have been saved."
+    And I go to the homepage
+    And I should see the ".civictheme-header .civictheme-logo .civictheme-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_light_desktop.jpg"
+    And I should see the "div.civictheme-logo img.civictheme-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_light_mobile.jpg"
+    And I should see the "div.civictheme-logo img.civictheme-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_dark_desktop.jpg"
+    And I should see the "div.civictheme-logo img.civictheme-image" element with the "src" attribute set to "/sites/default/files/test_image_logo_dark_mobile.jpg"
+
+  @api
   Scenario: The CivicTheme theme settings External Links comnponent validation works.
     Given I am logged in as a user with the "Site Administrator" role
     And I visit "/admin/appearance/settings/civictheme_demo"
