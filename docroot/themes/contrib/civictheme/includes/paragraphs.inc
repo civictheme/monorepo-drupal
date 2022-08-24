@@ -34,7 +34,8 @@ function _civictheme_preprocess_paragraph__civictheme_card(&$variables) {
   }
   // Cards that are generated via reference are handled separately.
   if ($paragraph->hasField('field_c_p_reference')) {
-    _civictheme_preprocess_paragraph__reference_card($variables);
+    $theme = civictheme_get_field_theme_value($paragraph);
+    _civictheme_preprocess_paragraph__reference_card($variables, $theme);
     return;
   }
   // @todo documentation for the field api ie they must have certain fields in
@@ -178,11 +179,15 @@ function _civictheme_get_card_types() {
 /**
  * Preprocessing reference cards paragraphs.
  */
-function _civictheme_preprocess_paragraph__reference_card(&$variables) {
+function _civictheme_preprocess_paragraph__reference_card(&$variables, $theme) {
   // Card reference paragraph types are handled on a generic template.
   // Card type are handled at node level via view modes.
   // @see civictheme_theme_suggestions_paragraph_alter()
-  $variables['reference_card'] = $variables['content']['field_c_p_reference'];
+  $content = \Drupal::service('renderer')->render($variables['content']['field_c_p_reference']);
+  // Set theme variable with component level component theme.
+  $inverse_theme = $theme === 'dark' ? 'light' : 'dark';
+  $content = str_replace('civictheme-theme-' . $inverse_theme, 'civictheme-theme-' . $theme, $content);
+  $variables['reference_card'] = $content;
 }
 
 /**
