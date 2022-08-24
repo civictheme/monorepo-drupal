@@ -38,7 +38,7 @@ export const CardContainer = (knobTab) => {
     footer_link_url: text('Footer link URL', 'http://example.com', generalKnobTab),
     column_count: number(
       'Columns',
-      3,
+      4,
       {
         range: true,
         min: 0,

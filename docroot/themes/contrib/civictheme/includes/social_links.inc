@@ -6,11 +6,6 @@
  */
 
 /**
- * Defines Large banner style.
- */
-define('CIVICTHEME_SOCIAL_LINKS_DEFAULT_THEME', 'dark');
-
-/**
  * Pre-process for Social Links block.
  */
 function _civictheme_preprocess_block__civictheme_social_links(&$variables) {

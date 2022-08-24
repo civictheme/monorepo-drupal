@@ -24,7 +24,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'summary' => $helper::staticSentence(8),
           'link' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -51,7 +51,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'summary' => $helper::staticSentence(8),
           'link' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
           'image' => $helper->staticMediaItem('civictheme_image'),
         ],
@@ -80,7 +80,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'summary' => $helper::staticSentence(8),
           'link' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
         [
@@ -103,7 +103,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'summary' => $helper::staticSentence(8),
           'link' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeDark(),
         ],
@@ -118,7 +118,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'summary' => $helper::staticSentence(8),
           'link' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeLight(),
         ],
@@ -133,7 +133,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'summary' => $helper::staticSentence(8),
           'link' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeLight(),
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -149,7 +149,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'summary' => $helper::staticSentence(8),
           'link' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
           'theme' => $helper::civicthemeThemeDark(),
           'space' => $helper::civicthemeSpaceTypeBoth(),

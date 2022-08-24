@@ -59,7 +59,7 @@ export const NavigationCard = (knobTab) => {
       },
       generalKnobTab,
     ), true),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
   };
 
   const iconKnobTab = 'Icon';
@@ -69,7 +69,7 @@ export const NavigationCard = (knobTab) => {
     icon: withIcon ? select('Icon', icons, 'business_calendar', iconKnobTab) : null,
   };
 
-  const html = CivicThemeNavigationCard({
+  return CivicThemeNavigationCard({
     ...generalKnobs,
     ...iconKnobs,
     ...getSlots([
@@ -79,6 +79,4 @@ export const NavigationCard = (knobTab) => {
       'content_bottom',
     ]),
   });
-
-  return `<div class="story-wrapper-size--medium">${html}</div>`;
 };

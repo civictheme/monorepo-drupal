@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.civictheme_promo_card
+    - taxonomy.vocabulary.civictheme_site_sections
     - taxonomy.vocabulary.civictheme_topics
   module:
     - node
@@ -79,7 +80,7 @@ display:
           id: 0
           tags:
             next: Next
-            previous: Back
+            previous: Previous
             first: First
             last: Last
           expose:
@@ -219,6 +220,48 @@ display:
           validate_options:
             bundles:
               civictheme_topics: civictheme_topics
+            access: false
+            operation: view
+            multiple: 1
+          break_phrase: true
+          depth: 0
+          use_taxonomy_term_path: false
+        term_node_tid_depth_1:
+          id: term_node_tid_depth_1
+          table: node_field_data
+          field: term_node_tid_depth
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: taxonomy_index_tid_depth
+          default_action: default
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: fixed
+          default_argument_options:
+            argument: all
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            override: false
+            items_per_page: 25
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: true
+          validate:
+            type: 'entity:taxonomy_term'
+            fail: ignore
+          validate_options:
+            bundles:
+              civictheme_site_sections: civictheme_site_sections
             access: false
             operation: view
             multiple: 1
@@ -419,6 +462,15 @@ display:
           admin_label: 'field_c_n_topics: Taxonomy term'
           plugin_id: standard
           required: false
+        field_c_n_site_section:
+          id: field_c_n_site_section
+          table: node__field_c_n_site_section
+          field: field_c_n_site_section
+          relationship: none
+          group_type: group
+          admin_label: 'field_c_n_site_section: Taxonomy term'
+          plugin_id: standard
+          required: false
       use_ajax: true
       group_by: true
       header:
@@ -445,8 +497,8 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  civictheme_listing_block:
-    id: civictheme_listing_block
+  block1:
+    id: block1
     display_title: Block
     display_plugin: block
     position: 1

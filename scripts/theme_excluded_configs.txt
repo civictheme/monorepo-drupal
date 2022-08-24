@@ -106,6 +106,7 @@ simple_sitemap.sitemap.default
 simple_sitemap.sitemap.index
 simple_sitemap.type.default_hreflang
 simple_sitemap.type.index
+simple_sitemap.types.*
 stage_file_proxy*
 system.action*
 system.advisories
@@ -147,6 +148,7 @@ views.view.content_recent
 views.view.cs_generated_content_list
 views.view.files
 views.view.frontpage
+views.view.civictheme_listing_test
 views.view.media
 views.view.media_library
 views.view.moderated_content
@@ -161,4 +163,3 @@ webform.settings
 webform.webform.contact
 webform.webform_options*
 workflows.workflow.editorial
-simple_sitemap.types.*

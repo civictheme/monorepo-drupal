@@ -95,6 +95,7 @@ function cs_core_post_update_update_testmode_settings() {
   $config = \Drupal::service('config.factory')->getEditable('testmode.settings');
   $views_list = $config->get('views_node', []);
   $views_list[] = 'civictheme_listing_examples';
+  $views_list[] = 'civictheme_listing_test';
   $config->set('views_node', $views_list)->save();
 }
 

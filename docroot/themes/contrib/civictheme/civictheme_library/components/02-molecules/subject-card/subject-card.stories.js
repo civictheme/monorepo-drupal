@@ -33,12 +33,10 @@ export const SubjectCard = (knobTab) => {
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
   };
 
-  const html = CivicThemeSubjectCard({
+  return CivicThemeSubjectCard({
     ...generalKnobs,
     ...getSlots([
       'image_over',
     ]),
   });
-
-  return `${html}`;
 };

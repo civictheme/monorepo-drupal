@@ -2,6 +2,8 @@
 // Navigation Card component.
 //
 
+@use 'sass:map';
+
 .civictheme-navigation-card {
   $root: &;
 
@@ -59,9 +61,13 @@
     }
 
     #{$root}__image-wrapper {
+      width: $civictheme-navigation-card-large-image-width-mobile;
+      height: $civictheme-navigation-card-large-image-height-mobile;
+
       @include civictheme-breakpoint(m) {
-        max-width: 12.5rem;
-        flex-shrink: 1;
+        width: $civictheme-navigation-card-large-image-width-desktop;
+        height: $civictheme-navigation-card-large-image-height-desktop;
+        flex-shrink: 0;
       }
     }
 
@@ -71,8 +77,20 @@
   }
 
   &#{$root}--small {
+    display: flex;
+    flex-direction: column;
+
     #{$root}__title {
       @include civictheme-typography('heading-5');
+    }
+
+    #{$root}__image-wrapper {
+      width: 100%;
+      height: $civictheme-navigation-card-image-height-mobile;
+
+      @include civictheme-breakpoint('m') {
+        height: $civictheme-navigation-card-image-height-desktop;
+      }
     }
   }
 
