@@ -19,6 +19,7 @@ dependencies:
     - contextual
     - file
     - filter
+    - linkit
     - media
     - node
     - path
@@ -35,6 +36,7 @@ permissions:
   - 'access in-place editing'
   - 'access media overview'
   - 'access shortcuts'
+  - 'administer linkit profiles'
   - 'administer url aliases'
   - 'create civictheme_alert content'
   - 'create civictheme_audio media'
