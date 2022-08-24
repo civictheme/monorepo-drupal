@@ -10,6 +10,7 @@ dependencies:
     - contextual
     - file
     - filter
+    - linkit
     - media
     - node
     - system
@@ -22,6 +23,7 @@ permissions:
   - 'access contextual links'
   - 'access files overview'
   - 'access media overview'
+  - 'administer linkit profiles'
   - 'use editorial transition archive'
   - 'use editorial transition archived_draft'
   - 'use editorial transition archived_published'
