@@ -21,6 +21,7 @@ dependencies:
     - contextual
     - file
     - filter
+    - linkit
     - media
     - node
     - path
@@ -51,6 +52,7 @@ permissions:
   - 'access webform submission user'
   - 'administer account settings'
   - 'administer blocks'
+  - 'administer linkit profiles'
   - 'administer managed modules'
   - 'administer managed modules permissions'
   - 'administer media'

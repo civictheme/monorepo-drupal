@@ -20,6 +20,7 @@ dependencies:
   - drupal:rest
   - field_group:field_group
   - layout_builder_restrictions:layout_builder_restrictions
+  - linkit:linkit
   - menu_block:menu_block
   - paragraphs:paragraphs
   - pathauto:pathauto
@@ -586,5 +587,6 @@ config_devel:
     - webform.webform.civictheme_enquiry
   optional:
     - core.entity_view_mode.node.teaser
+    - linkit.linkit_profile.civictheme
     - media.settings
 #;> DEVELOPMENT

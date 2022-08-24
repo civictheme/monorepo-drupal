@@ -5,6 +5,7 @@ dependencies:
     - core.entity_view_mode.media.embedded
   module:
     - editor
+    - linkit
     - media
 name: 'Rich text'
 format: civictheme_rich_text
@@ -40,7 +41,7 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<br> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id class=""> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid> <u> <s> <sup> <sub> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <p class="civictheme-text-large civictheme-text-small text-align-left text-align-center text-align-right"> <drupal-entity alt title data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <table class="civictheme-table civictheme-table--striped civictheme-theme-light"> <a href hreflang data-entity-substitution data-entity-type data-entity-uuid target class="civictheme-link civictheme-link--external civictheme-button civictheme-theme-light civictheme-theme-dark civictheme-button--primary civictheme-button--large civictheme-button--regular civictheme-button--secondary civictheme-button--secondary">'
+      allowed_html: '<br> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id class=""> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid> <u> <s> <sup> <sub> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <p class="civictheme-text-large civictheme-text-small text-align-left text-align-center text-align-right"> <drupal-entity alt title data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <table class="civictheme-table civictheme-table--striped civictheme-theme-light"> <a href hreflang data-entity-substitution data-entity-type data-entity-uuid target title class="civictheme-link civictheme-link--external civictheme-button civictheme-theme-light civictheme-theme-dark civictheme-button--primary civictheme-button--large civictheme-button--regular civictheme-button--secondary civictheme-button--secondary">'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:
@@ -81,3 +82,10 @@ filters:
         civictheme_image: civictheme_image
         civictheme_remote_video: civictheme_remote_video
         civictheme_video: civictheme_video
+  linkit:
+    id: linkit
+    provider: linkit
+    status: true
+    weight: 0
+    settings:
+      title: true
