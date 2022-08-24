@@ -11,36 +11,36 @@ use Drupal\generated_content\Helpers\GeneratedContentAssetGenerator;
 use Drupal\media\Entity\Media;
 
 /**
- * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
+ * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
 function cs_generated_content_generated_content_create_media_civictheme_icon_weight() {
   return 11;
 }
 
 /**
- * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE_tracking().
+ * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_tracking().
  */
 function cs_generated_content_generated_content_create_media_civictheme_icon_tracking() {
   return TRUE;
 }
 
 /**
- * Implements hook_cs_generated_content_create_ENTITY_TYPE_BUNDLE().
+ * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE().
  */
 function cs_generated_content_generated_content_create_media_civictheme_icon() {
+  /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  $total_files_count = 20;
-
-  $filename = sprintf('Demo icon file %s', $helper::staticString());
-  $file = $helper::createFile(GeneratedContentAssetGenerator::ASSET_TYPE_SVG, [
-    'filename' => $filename,
-    'use_existing' => FALSE,
-  ], GeneratedContentAssetGenerator::GENERATE_TYPE_STATIC);
+  $total_media_count = 20;
 
   $entities = [];
-  for ($i = 0; $i < $total_files_count; $i++) {
-    $name = sprintf('Demo Icon media %s %s', $i + 1, $helper::staticSentence(2));
+  for ($i = 0; $i < $total_media_count; $i++) {
+    $file = $helper->staticFile(GeneratedContentAssetGenerator::ASSET_TYPE_SVG);
+    $name = sprintf('Demo static Icon media %s %s', $i + 1, $helper::staticSentence(2));
+
+    if (!$file) {
+      continue;
+    }
 
     $media = Media::create([
       'bundle' => 'civictheme_icon',
@@ -48,11 +48,11 @@ function cs_generated_content_generated_content_create_media_civictheme_icon() {
     ]);
 
     $media->field_c_m_icon->setValue($file->id());
+
     $media->save();
 
     $helper::log(
-      'Created media %s "%s" [ID: %s] %s',
-      $media->bundle(),
+      'Created media Icon "%s" [ID: %s] %s',
       Link::createFromRoute($media->getName(), 'entity.media.canonical', ['media' => $media->id()])->toString(),
       $media->id(),
       Link::createFromRoute('Edit', 'entity.media.edit_form', ['media' => $media->id()])->toString()

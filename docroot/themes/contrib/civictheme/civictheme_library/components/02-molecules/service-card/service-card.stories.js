@@ -40,13 +40,11 @@ export const ServiceCard = (knobTab) => {
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
   };
 
-  const html = CivicThemeServiceCard({
+  return CivicThemeServiceCard({
     ...generalKnobs,
     ...getSlots([
       'content_top',
       'content_bottom',
     ]),
   });
-
-  return `${html}`;
 };
