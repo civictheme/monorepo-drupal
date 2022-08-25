@@ -134,11 +134,6 @@ services:
     labels:
       lagoon.type: mariadb # See https://docs.lagoon.sh/using-lagoon-advanced/service-types/
 
-  redis:
-    image: uselagoon/redis-6:22.4.1
-    labels:
-      lagoon.type: redis # Change to 'none' if dedicated Redis service is used. See https://docs.lagoon.sh/using-lagoon-advanced/service-types/
-
   solr:
     build:
       context: .
