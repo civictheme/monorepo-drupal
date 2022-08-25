@@ -118,7 +118,8 @@
         "patches": {
             "drupal/core": {
               "Correct vertical tab does not focus on form validation - https://www.drupal.org/project/drupal/issues/2911932#comment-14514089": "https://www.drupal.org/files/issues/2022-05-13/2911932-22.patch",
-              "drupal_phpunit_find_extension_directories() uses infinite recursion ⇒ more directories = slower tests - https://www.drupal.org/project/drupal/issues/3249443#comment-14299938": "https://www.drupal.org/files/issues/2021-11-23/3249443-37.patch"
+              "drupal_phpunit_find_extension_directories() uses infinite recursion ⇒ more directories = slower tests - https://www.drupal.org/project/drupal/issues/3249443#comment-14299938": "https://www.drupal.org/files/issues/2021-11-23/3249443-37.patch",
+              "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2021-04-12/D9-3204271-2-missing-layout-exception.patch"
             }
         },
         "drupal-scaffold": {
