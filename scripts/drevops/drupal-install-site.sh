@@ -181,7 +181,6 @@ else
       echo "  > Existing site content will be removed and new content will be created from the profile."
       $drush cc drush || true
       $drush cr || true
-      $drush eval "drupal_flush_all_caches();" || true
       install_profile
     else
       echo "  > Site content will be preserved."
