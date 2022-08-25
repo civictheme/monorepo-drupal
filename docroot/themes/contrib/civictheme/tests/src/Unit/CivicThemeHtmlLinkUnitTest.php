@@ -245,6 +245,12 @@ class CivicThemeHtmlLinkUnitTest extends CivicThemeUnitTestBase {
         '<p>Word5 <a href="http://example2.com" class="someclass civictheme-link civictheme-theme-light">Link</a> word6</p>' .
         '<p>Word7 <a href="http://example2.com/path" class="someclass civictheme-link civictheme-theme-light">Link</a> word8</p>',
       ],
+
+      // Existing classes.
+      ['<a href="http://example.com" class="civictheme-link">Link</a>', 'example.com', FALSE, FALSE, [], '<a href="http://example.com" class="civictheme-link">Link</a>'],
+      ['<a href="http://example.com" class="civictheme-button someclass">Link</a>', 'example.com', FALSE, FALSE, [], '<a href="http://example.com" class="civictheme-button someclass">Link</a>'],
+      ['<a href="http://example.com" class="someclass civictheme-button">Link</a>', 'example.com', FALSE, FALSE, [], '<a href="http://example.com" class="someclass civictheme-button">Link</a>'],
+      ['<a href="http://example.com" class="someclass civictheme-link">Link</a>', 'example.com', FALSE, FALSE, [], '<a href="http://example.com" class="someclass civictheme-link">Link</a>'],
     ];
   }
 
