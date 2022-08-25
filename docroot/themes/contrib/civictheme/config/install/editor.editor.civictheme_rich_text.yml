@@ -54,10 +54,13 @@ settings:
             - Source
             - Maximize
   plugins:
-    stylescombo:
-      styles: "a.civictheme-button.civictheme-theme-light.civictheme-button--primary.civictheme-button--regular|Button - primary regular\r\na.civictheme-button.civictheme-theme-light.civictheme-button--secondary.civictheme-button--regular|Button - secondary regular\r\na.civictheme-button.civictheme-theme-light.civictheme-button--secondary.civictheme-button--large|Button - primary large\r\na.civictheme-button.civictheme-theme-light.civictheme-button--secondary.civictheme-button--large|Button - secondary large\r\np.civictheme-text-large|Lead paragraph\r\np.civictheme-text-small|Small\r\ntable.civictheme-theme-light.civictheme-table|Table\r\ntable.civictheme-theme-light.civictheme-table.civictheme-table--striped|Table striped rows"
+    drupallink:
+      linkit_enabled: true
+      linkit_profile: civictheme
     language:
       language_list: un
+    stylescombo:
+      styles: "a.civictheme-button.civictheme-theme-light.civictheme-button--primary.civictheme-button--regular|Button - primary regular\r\na.civictheme-button.civictheme-theme-light.civictheme-button--secondary.civictheme-button--regular|Button - secondary regular\r\na.civictheme-button.civictheme-theme-light.civictheme-button--secondary.civictheme-button--large|Button - primary large\r\na.civictheme-button.civictheme-theme-light.civictheme-button--secondary.civictheme-button--large|Button - secondary large\r\np.civictheme-text-large|Lead paragraph\r\np.civictheme-text-small|Small\r\ntable.civictheme-theme-light.civictheme-table|Table\r\ntable.civictheme-theme-light.civictheme-table.civictheme-table--striped|Table striped rows"
 image_upload:
   status: false
   scheme: public
