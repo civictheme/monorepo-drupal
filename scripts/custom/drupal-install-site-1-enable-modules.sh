@@ -25,6 +25,8 @@ echo "  > Enable admin theme and set as default."
 $drush -y then adminimal_theme
 $drush -y config-set system.theme admin adminimal_theme
 
+$drush eval "drupal_flush_all_caches();" || true
+
 echo "  > Enable CivicTheme theme and set as default."
 $drush -y then civictheme
 $drush -y config-set system.theme default civictheme
