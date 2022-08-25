@@ -179,8 +179,9 @@ else
 
     if [ "${DREVOPS_DRUPAL_INSTALL_OVERRIDE_EXISTING_DB}" = "1" ]; then
       echo "  > Existing site content will be removed and new content will be created from the profile."
-      $drush cr
-      install_profile || true
+      $drush cc drush || true
+      $drush cr || true
+      install_profile
     else
       echo "  > Site content will be preserved."
       echo "  > Sanitization will be skipped for an existing database."
@@ -189,6 +190,7 @@ else
   else
     echo "  > Existing site was not found."
     echo "  > The site content will be created from the profile."
+    $drush cc drush || true
     $drush cr || true
     install_profile
   fi
