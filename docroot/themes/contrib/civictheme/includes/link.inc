@@ -29,6 +29,7 @@ use Drupal\Component\Utility\UrlHelper;
  * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function _civictheme_process_html_content_links($html, $base_url, $new_window = FALSE, $external_new_window = FALSE, array $override_domains = []) {
+  $class_prefix = 'civictheme-';
   $link_class = 'civictheme-link civictheme-theme-light';
   $link_external_class = 'civictheme-link--external';
 
@@ -49,10 +50,14 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
       continue;
     }
 
+    // Apply only if there are no classes prefixed with a prefix.
+    $classes = $anchor->hasAttribute('class') ? ($anchor->getAttribute('class') ?: '') : '';
+    if (str_contains($classes, $class_prefix)) {
+      continue;
+    }
+
     $url = $anchor->getAttribute('href');
     $is_external = civictheme_url_is_external($url, $base_url, $override_domains);
-
-    $classes = $anchor->hasAttribute('class') ? ($anchor->getAttribute('class') ?: '') : '';
 
     if (!str_contains($classes, $link_class)) {
       $classes .= ' ' . $link_class;
