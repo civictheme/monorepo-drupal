@@ -689,8 +689,8 @@ function _civictheme_provision__blocks__mobile_navigation(array $block) {
   $context_theme = theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT;
 
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
-  $block_content->field_c_b_top_menu = "{$theme_name}_primary_navigation";
-  $block_content->field_c_b_bottom_menu = "{$theme_name}_secondary_navigation";
+  $block_content->field_c_b_top = "{$theme_name}_primary_navigation";
+  $block_content->field_c_b_bottom = "{$theme_name}_secondary_navigation";
   $block_content->field_c_b_trigger_text = 'Menu';
   $block_content->field_c_b_trigger_theme = $context_theme;
   $block_content->save();
