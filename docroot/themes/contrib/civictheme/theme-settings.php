@@ -186,7 +186,7 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
     '#type' => 'textarea',
     '#title' => t('Override external link domains'),
     '#description' => t('A list of domains that should be considered as internal. External links matching these domains will not be displayed as external.<br/>One domain per line.<br/>Do not include trailing slash (/).<br/>Protocol is optional.'),
-    '#default_value' => civictheme_array_to_multiline(theme_get_setting('components.link.override_domains')),
+    '#default_value' => civictheme_array_to_multiline(theme_get_setting('components.link.external_override_domains')),
     '#rows' => 4,
   ];
 
