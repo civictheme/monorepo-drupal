@@ -13,8 +13,8 @@ export default {
 
 export const MobileNavigation = () => {
   const generalKnobTab = 'Menu';
-  const topMenuKnobTab = 'Top block';
-  const bottomMenuKnobTab = 'Bottom block';
+  const topMenuKnobTab = 'Top menu';
+  const bottomMenuKnobTab = 'Bottom menu';
 
   const { icons } = ICONS;
   const defaultIcon = icons.indexOf('content_justifyalignment');
