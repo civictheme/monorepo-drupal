@@ -250,7 +250,7 @@ CivicCollapsible.prototype.collapseAllGroups = function () {
  * @param {boolean} animate
  *   Flag to collapse with animation.
  */
- CivicCollapsible.prototype.collapse = function (animate, evt) {
+CivicCollapsible.prototype.collapse = function (animate, evt) {
   const t = this;
 
   if (this.isCollapsed(t.el)) {
