@@ -17,13 +17,13 @@ default:
   revision_translation_affected:
     -
       value: true
-  field_c_b_bottom_menu:
+  field_c_b_bottom:
     -
       target_id: civictheme_secondary_navigation
   field_c_b_theme:
     -
       value: light
-  field_c_b_top_menu:
+  field_c_b_top:
     -
       target_id: civictheme_primary_navigation
   field_c_b_trigger_text:

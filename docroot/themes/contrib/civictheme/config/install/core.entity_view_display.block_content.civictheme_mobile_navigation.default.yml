@@ -3,9 +3,9 @@ status: true
 dependencies:
   config:
     - block_content.type.civictheme_mobile_navigation
-    - field.field.block_content.civictheme_mobile_navigation.field_c_b_bottom_menu
+    - field.field.block_content.civictheme_mobile_navigation.field_c_b_bottom
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_theme
-    - field.field.block_content.civictheme_mobile_navigation.field_c_b_top_menu
+    - field.field.block_content.civictheme_mobile_navigation.field_c_b_top
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_trigger_text
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_trigger_theme
   module:
@@ -15,7 +15,7 @@ targetEntityType: block_content
 bundle: civictheme_mobile_navigation
 mode: default
 content:
-  field_c_b_bottom_menu:
+  field_c_b_bottom:
     weight: 5
     label: above
     settings:
@@ -30,7 +30,7 @@ content:
     third_party_settings: {  }
     type: list_default
     region: content
-  field_c_b_top_menu:
+  field_c_b_top:
     weight: 6
     label: above
     settings:

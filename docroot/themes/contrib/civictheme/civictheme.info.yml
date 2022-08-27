@@ -228,9 +228,9 @@ config_devel:
     - field.field.block_content.civictheme_banner.field_c_b_background_image
     - field.field.block_content.civictheme_banner.field_c_b_theme
     - field.field.block_content.civictheme_component_block.field_c_b_components
-    - field.field.block_content.civictheme_mobile_navigation.field_c_b_bottom_menu
+    - field.field.block_content.civictheme_mobile_navigation.field_c_b_bottom
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_theme
-    - field.field.block_content.civictheme_mobile_navigation.field_c_b_top_menu
+    - field.field.block_content.civictheme_mobile_navigation.field_c_b_top
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_trigger_text
     - field.field.block_content.civictheme_mobile_navigation.field_c_b_trigger_theme
     - field.field.block_content.civictheme_search.field_c_b_link
@@ -431,12 +431,12 @@ config_devel:
     - field.field.paragraph.civictheme_webform.field_c_p_theme
     - field.field.paragraph.civictheme_webform.field_c_p_webform
     - field.storage.block_content.field_c_b_background_image
-    - field.storage.block_content.field_c_b_bottom_menu
+    - field.storage.block_content.field_c_b_bottom
     - field.storage.block_content.field_c_b_components
     - field.storage.block_content.field_c_b_link
     - field.storage.block_content.field_c_b_social_icons
     - field.storage.block_content.field_c_b_theme
-    - field.storage.block_content.field_c_b_top_menu
+    - field.storage.block_content.field_c_b_top
     - field.storage.block_content.field_c_b_trigger_text
     - field.storage.block_content.field_c_b_trigger_theme
     - field.storage.block_content.field_c_b_with_border

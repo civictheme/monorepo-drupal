@@ -4,8 +4,8 @@ dependencies:
   module:
     - block
     - block_content
-id: block_content.field_c_b_bottom_menu
-field_name: field_c_b_bottom_menu
+id: block_content.field_c_b_bottom
+field_name: field_c_b_bottom
 entity_type: block_content
 type: entity_reference
 settings:

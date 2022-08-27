@@ -24,8 +24,8 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
   }
 
   $menu_fields = [
-    'top_menu' => 'field_c_b_top_menu',
-    'bottom_menu' => 'field_c_b_bottom_menu',
+    'top_menu' => 'field_c_b_top',
+    'bottom_menu' => 'field_c_b_bottom',
   ];
 
   // Get primary and secondary menu links by building menu tree based on

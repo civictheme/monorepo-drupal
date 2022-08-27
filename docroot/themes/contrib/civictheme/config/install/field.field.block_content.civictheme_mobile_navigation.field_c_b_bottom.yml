@@ -3,12 +3,12 @@ status: true
 dependencies:
   config:
     - block_content.type.civictheme_mobile_navigation
-    - field.storage.block_content.field_c_b_bottom_menu
-id: block_content.civictheme_mobile_navigation.field_c_b_bottom_menu
-field_name: field_c_b_bottom_menu
+    - field.storage.block_content.field_c_b_bottom
+id: block_content.civictheme_mobile_navigation.field_c_b_bottom
+field_name: field_c_b_bottom
 entity_type: block_content
 bundle: civictheme_mobile_navigation
-label: 'Bottom menu'
+label: 'Bottom block'
 description: ''
 required: false
 translatable: false
