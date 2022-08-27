@@ -265,100 +265,6 @@
         ),
       )
     ),
-    'chip': (
-      'light': (
-        'normal': (
-          'color': $civictheme-button-light-chip-color,
-          'background-color': $civictheme-button-light-chip-background-color,
-          'border-color': $civictheme-button-light-chip-border-color,
-          'outline-color': $civictheme-button-light-chip-outline-color,
-        ),
-        'hover': (
-          'color': $civictheme-button-light-chip-hover-color,
-          'background-color': $civictheme-button-light-chip-hover-background-color,
-          'border-color': $civictheme-button-light-chip-hover-border-color,
-          'outline-color': $civictheme-button-light-chip-hover-outline-color,
-        ),
-        'visited': (
-          'color': $civictheme-button-light-chip-visited-color,
-          'background-color': $civictheme-button-light-chip-visited-background-color,
-          'border-color': $civictheme-button-light-chip-visited-border-color,
-          'outline-color': $civictheme-button-light-chip-visited-outline-color,
-        ),
-        'active': (
-          'color': $civictheme-button-light-chip-active-color,
-          'background-color': $civictheme-button-light-chip-active-background-color,
-          'border-color': $civictheme-button-light-chip-active-border-color,
-          'outline-color': $civictheme-button-light-chip-active-outline-color,
-        ),
-        'focus': (
-          'color': $civictheme-button-light-chip-focus-color,
-          'background-color': $civictheme-button-light-chip-focus-background-color,
-          'border-color': $civictheme-button-light-chip-focus-border-color,
-          'outline-color': $civictheme-button-light-chip-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-light-chip-disabled-color,
-          'background-color': $civictheme-button-light-chip-disabled-background-color,
-          'border-color': $civictheme-button-light-chip-disabled-border-color,
-          'outline-color': $civictheme-button-light-chip-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-light-chip-dismiss-color,
-          'fill-selected': $civictheme-button-light-chip-selected-color,
-        ),
-        'selected': (
-          'color': $civictheme-button-light-chip-selected-color,
-          'background-color': $civictheme-button-light-chip-selected-background-color
-        ),
-      ),
-      'dark': (
-        'normal': (
-          'color': $civictheme-button-dark-chip-color,
-          'background-color': $civictheme-button-dark-chip-background-color,
-          'border-color': $civictheme-button-dark-chip-border-color,
-          'outline-color': $civictheme-button-dark-chip-outline-color,
-        ),
-        'hover': (
-          'color': $civictheme-button-dark-chip-hover-color,
-          'background-color': $civictheme-button-dark-chip-hover-background-color,
-          'border-color': $civictheme-button-dark-chip-hover-border-color,
-          'outline-color': $civictheme-button-dark-chip-hover-outline-color,
-        ),
-        'visited': (
-          'color': $civictheme-button-dark-chip-visited-color,
-          'background-color': $civictheme-button-dark-chip-visited-background-color,
-          'border-color': $civictheme-button-dark-chip-visited-border-color,
-          'outline-color': $civictheme-button-dark-chip-visited-outline-color,
-        ),
-        'active': (
-          'color': $civictheme-button-dark-chip-active-color,
-          'background-color': $civictheme-button-dark-chip-active-background-color,
-          'border-color': $civictheme-button-dark-chip-active-border-color,
-          'outline-color': $civictheme-button-dark-chip-active-outline-color,
-        ),
-        'focus': (
-          'color': $civictheme-button-dark-chip-focus-color,
-          'background-color': $civictheme-button-dark-chip-focus-background-color,
-          'border-color': $civictheme-button-dark-chip-focus-border-color,
-          'outline-color': $civictheme-button-dark-chip-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-chip-disabled-color,
-          'background-color': $civictheme-button-dark-chip-disabled-background-color,
-          'border-color': $civictheme-button-dark-chip-disabled-border-color,
-          'outline-color': $civictheme-button-dark-chip-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-dark-chip-dismiss-color,
-          'fill-selected': $civictheme-button-dark-chip-selected-color
-        ),
-        'selected': (
-          'color': $civictheme-button-dark-chip-selected-color,
-          'background-color': $civictheme-button-dark-chip-selected-background-color
-        ),
-      )
-    ),
   );
   $types: map.keys($map);
 
@@ -474,12 +380,6 @@
       }
     }
   }
-
-  @if $type == 'chip' {
-    border-radius: civictheme-space(6);
-
-    @include civictheme-link-decoration(false, false, false, false);
-  }
 }
 
 @mixin _civictheme-button-print-rules($rules) {
@@ -549,10 +449,6 @@
 
   &--tertiary {
     @include civictheme-button-type('tertiary');
-  }
-
-  &--chip {
-    @include civictheme-button-type('chip');
   }
 
   // Size.

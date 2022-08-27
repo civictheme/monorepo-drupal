@@ -1,18 +1,17 @@
 {#
 /**
  * @file
- * Button component.
+ * Chip component.
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - kind: [string] Button kind: submit, reset, button, link.
- * - type: [string] Button type: primary, primary, secondary, tertiary.
- * - size: [string] Button size: extra-large, large, regular, small, extra-small.
+ * - kind: [string] Chip kind: submit, reset, button, link, checkbox, radio.
+ * - size: [string] Chip size: extra-large, large, regular, small, extra-small.
  * - icon: [string] Icon name.
  * - icon_placement: [string] Icon position: left, right
  * - icon_size: [string] Icon size: extra-large, large, regular, small, extra-small.
- * - text: [string] Button text.
- * - title: [string] Button title.
+ * - text: [string] Chip text.
+ * - title: [string] Chip title.
  * - url: [string] URL for the link button.
  * - id: [string] ID attribute.
  * - name: [string] Name attribute.
@@ -27,22 +26,21 @@
  */
 #}
 
-{% set kind = kind in ['button', 'link', 'reset', 'submit'] ? kind : 'button' %}
-{% set type = type in ['primary', 'secondary', 'tertiary'] ? type : null %}
+{% set kind = kind in ['button', 'link', 'reset', 'submit', 'checkbox', 'radio'] ? kind : 'button' %}
 {% set size = size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? size : 'regular' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
 {% set icon_size = icon_size in ['regular', 'small', 'extra-small'] ? icon_size : 'regular' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set type_class = type ? 'civictheme-button--%s'|format(type) : '' %}
-{% set kind_class = kind ? 'civictheme-button--%s'|format(kind) : '' %}
-{% set size_class = 'civictheme-button--%s'|format(size) %}
+{% set type_class = 'civictheme-chip--chip' %}
+{% set kind_class = kind ? 'civictheme-chip--%s'|format(kind) : '' %}
+{% set size_class = 'civictheme-chip--%s'|format(size) %}
 {% set selected_class = is_selected ? 'selected' : '' %}
-{% set dismiss_class =  is_dismissable ? 'civictheme-button--dismiss' : '' %}
+{% set dismiss_class =  is_dismissable ? 'civictheme-chip--dismiss' : '' %}
 {% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, type_class, kind_class, size_class, selected_class, dismiss_class, modifier_class|default('')) %}
 
 {% set button_icon %}
   {% if icon %}
-    <span class="civictheme-button__icon">
+    <span class="civictheme-chip__icon">
 		  {% include '@atoms/icon/icon.twig' with {
         symbol: icon,
         size: icon_size,
@@ -65,7 +63,7 @@
 
 {% set button_text %}
   {% if is_external %}
-    {{ button_text }}<span class="civictheme-button__external">
+    {{ button_text }}<span class="civictheme-chip__external">
     {% include '@atoms/icon/icon.twig' with {
       symbol: 'arrows_upperrightarrow',
       size: icon_size,
@@ -78,7 +76,7 @@
 
 {% set button_text %}
   {% if is_dismissible %}
-    {{ button_text }}<span class="civictheme-button__dismiss" data-button-dismiss>
+    {{ button_text }}<span class="civictheme-chip__dismiss" data-button-dismiss>
     {% include '@atoms/icon/icon.twig' with {
       symbol: 'userinterface_cancel',
       size: icon_size,
@@ -90,9 +88,11 @@
 {% endset %}
 
 {% if kind == 'button' %}
-  <button class="civictheme-button {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="button" {% if id is not empty %}id="{{ id }}"{% endif %} {% if name is not empty %}name="{{ name }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}>{{ button_text }}</button>
+  <button class="civictheme-chip {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="chip" {% if id is not empty %}id="{{ id }}"{% endif %} {% if name is not empty %}name="{{ name }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}>{{ button_text }}</button>
 {% elseif kind == 'link' %}
-  <a class="civictheme-button {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} role="button" data-component-name="button" {% if url %}href="{{ url }}"{% endif %} title="{{ title }}" {{ is_new_window ? 'target="_blank"' }} {% if id is not empty %}id="{{ id }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}>{{ button_text }}</a>
+  <a class="civictheme-chip {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} role="button" data-component-name="chip" {% if url %}href="{{ url }}"{% endif %} title="{{ title }}" {{ is_new_window ? 'target="_blank"' }} {% if id is not empty %}id="{{ id }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %}>{{ button_text }}</a>
 {% elseif kind in ['reset', 'submit'] %}
-  <input class="civictheme-button {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} type="{{ kind }}" data-component-name="button" {% if id is not empty %}id="{{ id }}"{% endif %} {% if name is not empty %}name="{{ name }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %} value="{{ (is_raw_text ? text|raw : text) |trim }}"/>
+  <input class="civictheme-chip {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} type="{{ kind }}" data-component-name="chip" {% if id is not empty %}id="{{ id }}"{% endif %} {% if name is not empty %}name="{{ name }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %} value="{{ (is_raw_text ? text|raw : text) |trim }}"/>
+{% elseif kind in ['checkbox', 'radio'] %}
+  <label class="civictheme-chip {{ modifier_class }}" data-component-name="chip" {% if is_disabled %}disabled="disabled"{% endif %} {% if id is not empty %}for="{{ id }}"{% endif %}><input type="{{ kind }}" {% if id is not empty %}id="{{ id }}"{% endif %} {% if name is not empty %}name="{{ name }}"{% endif %} {% if is_disabled %}disabled="disabled" aria-disabled="true"{% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ button_text|trim }}</label>
 {% endif %}
