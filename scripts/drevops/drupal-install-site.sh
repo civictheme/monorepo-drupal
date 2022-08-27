@@ -188,8 +188,6 @@ else
   else
     echo "  > Existing site was not found."
     echo "  > The site content will be created from the profile."
-    $drush cc drush || true
-    $drush cr || true
     install_profile
   fi
 fi
