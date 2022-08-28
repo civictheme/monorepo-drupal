@@ -25,9 +25,8 @@
             {% for item in items %}
               {% if item.text is not empty %}
                 <div class="civictheme-basic-filter__list--row">
-                  {% include '@atoms/button/button.twig' with {
+                  {% include '@atoms/chip/chip.twig' with {
                     theme: theme,
-                    type: 'chip',
                     kind: is_multiple ? 'checkbox': 'radio',
                     size: 'small',
                     text: item.text,
