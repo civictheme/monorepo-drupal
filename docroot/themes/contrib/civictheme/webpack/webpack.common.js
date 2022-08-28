@@ -156,7 +156,7 @@ module.exports = {
       '@organisms': path.resolve(__dirname, '../components/03-organisms'),
       '@templates': path.resolve(__dirname, '../components/04-templates'),
       '@pages': path.resolve(__dirname, '../components/05-pages'),
-      'twig': path.resolve(__dirname, '../node_modules/twig'),
+      twig: path.resolve(__dirname, '../node_modules/twig'),
       'lorem-ipsum': path.resolve(__dirname, '../node_modules/lorem-ipsum'),
       '@storybook': path.resolve(__dirname, '../node_modules/@storybook'),
     },
