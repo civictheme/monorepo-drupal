@@ -1,5 +1,5 @@
 // phpcs:ignoreFile
-import {boolean, radios, text} from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeRadio from './radio.twig';
 
 export default {
