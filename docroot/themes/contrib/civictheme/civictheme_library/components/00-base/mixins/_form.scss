@@ -74,6 +74,7 @@
       & + .civictheme-#{$type}__state {
         &::before {
           @include civictheme-outline();
+
           background-color: $civictheme-radio-light-selected-background-color;
           border-color: $civictheme-radio-light-selected-background-color;
           box-shadow: inset 0 0 0 3px $civictheme-radio-light-check-color;
@@ -151,6 +152,7 @@
       & + .civictheme-#{$type}__state {
         &::before {
           @include civictheme-outline();
+
           background-color: $civictheme-radio-dark-selected-background-color;
           border-color: $civictheme-radio-dark-selected-background-color;
           box-shadow: inset 0 0 0 3px $civictheme-radio-dark-check-color;

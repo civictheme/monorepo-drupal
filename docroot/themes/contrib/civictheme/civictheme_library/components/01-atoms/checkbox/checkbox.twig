@@ -21,7 +21,7 @@
 {% set disabled_class = disabled ? 'civictheme-input--disabled disabled' : '' %}
 {% set required_class = required ? 'civictheme-input--required required' : '' %}
 {% set error_class = has_error ? 'civictheme-input--error error' : '' %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, error_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, error_class, modifier_class|default('')) %}
 
 <div class="civictheme-checkbox {{ theme_class }}">
   <input class="civictheme-checkbox__element civictheme-input__element {{ modifier_class }}" type="checkbox" value="{{ value }}" {% if attributes %}{{ attributes|raw }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
