@@ -15,7 +15,7 @@ export const Fonts = () => {
   const types = {
     Regular: 'regular',
     Italic: 'italic',
-    Thin: 'thin-300',
+    Thin: 'thin',
     Bold: 'bold',
     'Extra Bold': 'extra-bold',
     'Bold Italic': 'bold-italic',
