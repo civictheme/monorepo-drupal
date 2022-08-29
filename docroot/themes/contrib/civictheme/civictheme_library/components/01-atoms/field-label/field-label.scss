@@ -1,0 +1,74 @@
+//
+// Label component.
+//
+
+@use 'sass:map';
+@use 'sass:math';
+
+@mixin civictheme-field-label-size($size) {
+  // stylelint-disable-next-line scss/dollar-variable-pattern
+  $sizes: ('extra-large', 'large', 'regular', 'small', 'extra-small');
+
+  @if $size == 'extra-large' {
+    @include civictheme-typography('label-#{$size}');
+  }
+  @else if $size == 'large' {
+    @include civictheme-typography('label-#{$size}');
+  }
+  @else if $size == 'regular' {
+    @include civictheme-typography('label-#{$size}');
+  }
+  @else if $size == 'small' {
+    @include civictheme-typography('label-#{$size}');
+  }
+  @else if $size == 'extra-small' {
+    @include civictheme-typography('label-#{$size}');
+  }
+  @else {
+    @error '"#{$size}" is not one of allowed #{$sizes}.';
+  }
+}
+
+.civictheme-field-label {
+  $root: &;
+  $sizes: ('extra-large', 'large', 'regular', 'small', 'extra-small');
+
+  display: block;
+  margin-bottom: civictheme-space();
+
+  @include civictheme-typography('label-regular');
+
+  &--required {
+    &::after {
+      content: ' (Required)';
+
+      @include civictheme-typography('label-small');
+    }
+  }
+
+  @each $size in $sizes {
+    &.civictheme-field-label--#{$size} {
+      @include civictheme-field-label-size($size);
+    }
+  }
+
+  &.civictheme-theme-light {
+    color: $civictheme-field-label-light-color;
+
+    #{$root}--required {
+      &::after {
+        color: $civictheme-field-label-light-required-color;
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-field-label-dark-color;
+
+    #{$root}--required {
+      &::after {
+        color: $civictheme-field-label-dark-required-color;
+      }
+    }
+  }
+}

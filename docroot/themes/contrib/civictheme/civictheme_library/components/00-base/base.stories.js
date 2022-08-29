@@ -10,7 +10,7 @@ import Select from '../01-atoms/select/select.twig';
 import Checkbox from '../01-atoms/checkbox/checkbox.twig';
 import Radio from '../01-atoms/radio/radio.twig';
 import FormElement from '../03-organisms/form-element/form-element.twig';
-import Label from '../01-atoms/label/label.twig';
+import Label from '../01-atoms/field-label/field-label.twig';
 import DropdownFilter
   from '../02-molecules/dropdown-filter/dropdown-filter.twig';
 
