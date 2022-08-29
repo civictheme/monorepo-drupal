@@ -5,10 +5,12 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
+ * - text: [string] Input field label.
  * - value: [string] Input field value.
  * - state: [string] Input field state: error, success.
  * - required: [boolean] Required state.
  * - disabled: [boolean] Disabled state.
+ * - has_error: [boolean] Error state.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
@@ -19,9 +21,13 @@
 {% set state_class = 'civictheme-input--%s'|format(state) %}
 {% set disabled_class = disabled ? 'civictheme-input--disabled disabled' : '' %}
 {% set required_class = required ? 'civictheme-input--required required' : '' %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, modifier_class|default('')) %}
+{% set error_class = has_error ? 'civictheme-input--error error' : '' %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, error_class, modifier_class|default('')) %}
 
 <div class="civictheme-radio">
   <input class="civictheme-radio__element civictheme-input__element {{ modifier_class }}" type="radio" value="{{ value }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
   <span class="civictheme-radio__state"></span>
+  {% if text is not empty %}
+    <label class="civictheme-radio__label">{{ text }}</label>
+  {% endif %}
 </div>

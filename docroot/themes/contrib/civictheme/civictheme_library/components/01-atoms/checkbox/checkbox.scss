@@ -6,6 +6,8 @@
 
 .civictheme-checkbox {
   position: absolute;
+  display: flex;
+  align-items: center;
 
   &__element {
     @include civictheme-checkbox-radio('checkbox');
@@ -41,6 +43,10 @@
         }
       }
     }
+  }
+
+  &__label {
+    @include civictheme-typography('text-regular');
   }
 }
 

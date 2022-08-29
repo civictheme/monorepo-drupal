@@ -6,9 +6,15 @@
 
 .civictheme-radio {
   position: absolute;
+  display: flex;
+  align-items: center;
 
   .civictheme-radio__element {
     @include civictheme-checkbox-radio('radio');
+  }
+
+  &__label {
+    @include civictheme-typography('text-regular');
   }
 }
 

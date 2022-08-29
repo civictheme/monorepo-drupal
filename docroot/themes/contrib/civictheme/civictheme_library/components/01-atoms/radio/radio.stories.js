@@ -1,5 +1,5 @@
 // phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
+import {boolean, radios, text} from '@storybook/addon-knobs';
 import CivicThemeRadio from './radio.twig';
 
 export default {
@@ -22,8 +22,12 @@ export const Radio = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    text: text('Text', 'Input label', generalKnobTab),
+    required: boolean('Required', false, generalKnobTab),
+    disabled: boolean('Disabled', false, generalKnobTab),
+    has_error: boolean('Has error', false, generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   return CivicThemeRadio({

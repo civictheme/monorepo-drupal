@@ -5,9 +5,11 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
+ * - text: [string] Input field label.
  * - state: [string] Checkbox state: default or other.
  * - disabled: [boolean] Disabled state.
  * - required: [boolean] Required state.
+ * - has_error: [boolean] Error state.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
@@ -18,9 +20,13 @@
 {% set state_class = 'civictheme-input--%s'|format(state) %}
 {% set disabled_class = disabled ? 'civictheme-input--disabled disabled' : '' %}
 {% set required_class = required ? 'civictheme-input--required required' : '' %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, modifier_class|default('')) %}
+{% set error_class = has_error ? 'civictheme-input--error error' : '' %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, error_class, modifier_class|default('')) %}
 
 <div class="civictheme-checkbox">
   <input class="civictheme-checkbox__element civictheme-input__element {{ modifier_class }}" type="checkbox" value="{{ value }}" {% if attributes %}{{ attributes|raw }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
   <span class="civictheme-checkbox__state"></span>
+  {% if text is not empty %}
+    <label class="civictheme-checkbox__label">{{ text }}</label>
+  {% endif %}
 </div>
