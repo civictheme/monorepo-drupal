@@ -10,6 +10,14 @@ export const Heading = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
+    theme: radios(
+      'Theme', {
+        Light: 'light',
+        Dark: 'dark',
+      },
+      'light',
+      generalKnobTab,
+    ),
     level: radios('Level', {
       H1: '1',
       H2: '2',
@@ -19,8 +27,8 @@ export const Heading = (knobTab) => {
       H6: '6',
     }, '1', generalKnobTab),
     content: text('Content', 'Heading content', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   return CivicThemeHeading({
