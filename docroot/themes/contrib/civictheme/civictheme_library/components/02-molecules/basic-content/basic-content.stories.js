@@ -2,7 +2,7 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
 import CivicThemeBasicContent from './basic-content.twig';
-import CivicThemeLink from '../../01-atoms/link/link.twig';
+import CivicThemeContentLink from '../../01-atoms/content-link/content-link.twig';
 import CivicThemeTable from '../../01-atoms/table/table.twig';
 import CivicThemeFigure from '../figure/figure.twig';
 import CivicThemeVideoPlayer from '../video-player/video-player.twig';
@@ -52,7 +52,7 @@ export const BasicContent = (knobTab) => {
     <p class="civictheme-text-large">Large text sed aute in sed consequat veniam excepteur minim mollit.</p>
     <p class="civictheme-text-regular">Regular text veniam reprehenderit velit ea veniam occaecat magna est sed duis quis elit occaecat dolore ut enim est do in dolor non elit aliquip commodo aliquip sint veniam ullamco adipisicing tempor ad.</p>
     <p class="civictheme-text-small">Small text <span>duis sunt velit.</span><span>Ea eu non.</span></p>
-    <p>In mollit in minim ut non ${CivicThemeLink({
+    <p>In mollit in minim ut non ${CivicThemeContentLink({
     theme,
     text: 'commodo dolore',
     url: 'https://example.com',
