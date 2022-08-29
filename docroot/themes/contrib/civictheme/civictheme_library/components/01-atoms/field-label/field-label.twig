@@ -15,7 +15,7 @@
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set size = size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? size : 'regular' %}
 {% set size_class = 'civictheme-field-label--%s'|format(size) %}
-{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s'|format(theme_class, size_class, modifier_class|default('')) %}
 
 
 {% if content is not empty -%}
