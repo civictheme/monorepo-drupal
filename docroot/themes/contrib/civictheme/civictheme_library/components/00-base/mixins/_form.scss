@@ -115,7 +115,7 @@
           cursor: default;
           color: $civictheme-input-light-disabled-color;
           background-color: $civictheme-input-light-disabled-background-color;
-          border-color: $civictheme-radio-light-disabled-border-color;
+          border-color: $civictheme-input-light-disabled-color;
         }
       }
     }
@@ -137,10 +137,23 @@
       }
     }
 
+    &:active {
+      & + .civictheme-#{$type}__state {
+        &::before {
+          background-color: $civictheme-radio-dark-active-background-color;
+          border-color: $civictheme-radio-dark-active-background-color;
+          box-shadow: inset 0 0 0 3px $civictheme-radio-dark-check-color;
+        }
+      }
+    }
+
     &:focus {
       & + .civictheme-#{$type}__state {
         &::before {
           @include civictheme-outline();
+          background-color: $civictheme-radio-dark-selected-background-color;
+          border-color: $civictheme-radio-dark-selected-background-color;
+          box-shadow: inset 0 0 0 3px $civictheme-radio-dark-check-color;
         }
       }
     }
@@ -168,12 +181,16 @@
     &:disabled {
       & + .civictheme-#{$type}__state {
         &::before {
-          cursor: default;
           color: $civictheme-input-dark-disabled-color;
+          border-color: $civictheme-radio-dark-disabled-border-color;
           background-color: $civictheme-input-dark-disabled-background-color;
         }
       }
     }
+  }
+
+  &:disabled {
+    pointer-events: none;
   }
 
   &.error,

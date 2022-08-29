@@ -23,10 +23,10 @@
 {% set error_class = has_error ? 'civictheme-input--error error' : '' %}
 {% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, error_class, modifier_class|default('')) %}
 
-<div class="civictheme-checkbox">
+<div class="civictheme-checkbox {{ theme_class }}">
   <input class="civictheme-checkbox__element civictheme-input__element {{ modifier_class }}" type="checkbox" value="{{ value }}" {% if attributes %}{{ attributes|raw }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
   <span class="civictheme-checkbox__state"></span>
   {% if text is not empty %}
-    <label class="civictheme-checkbox__label">{{ text }}</label>
+    <label class="civictheme-checkbox__label {{ disabled ? 'disabled' }}">{{ text }}</label>
   {% endif %}
 </div>

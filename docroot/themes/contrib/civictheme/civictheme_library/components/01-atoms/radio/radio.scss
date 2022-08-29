@@ -5,6 +5,8 @@
 @import '../../00-base/mixins/form';
 
 .civictheme-radio {
+  $root: &;
+
   position: absolute;
   display: flex;
   align-items: center;
@@ -13,8 +15,26 @@
     @include civictheme-checkbox-radio('radio');
   }
 
-  &__label {
-    @include civictheme-typography('text-regular');
+  &.civictheme-theme-light {
+    #{$root}__label {
+      @include civictheme-typography('text-regular');
+      color: $civictheme-radio-label-light-color;
+
+      &.disabled {
+        color: $civictheme-radio-label-disabled-light-color;
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    #{$root}__label {
+      @include civictheme-typography('text-regular');
+      color: $civictheme-radio-label-dark-color;
+
+      &.disabled {
+        color: $civictheme-radio-label-disabled-dark-color;
+      }
+    }
   }
 }
 
