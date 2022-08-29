@@ -84,6 +84,7 @@ $civictheme-button-outline-width: civictheme-space(0.375) !default;
 $civictheme-button-outline-offset: civictheme-space(0.25) !default;
 
 // Primary button.
+$civictheme-button-primary-disabled-opacity: 50% !default;
 $civictheme-button-light-primary-color: civictheme-color('neutral', 1) !default;
 $civictheme-button-light-primary-background-color: civictheme-color('primary') !default;
 $civictheme-button-light-primary-border-color: transparent !default;
@@ -104,11 +105,6 @@ $civictheme-button-light-primary-focus-color: none !default;
 $civictheme-button-light-primary-focus-background-color: none !default;
 $civictheme-button-light-primary-focus-border-color: none !default;
 $civictheme-button-light-primary-focus-outline-color: civictheme-color('outline') !default;
-$civictheme-button-light-primary-disabled-color: civictheme-color('neutral', 6) !default;
-$civictheme-button-light-primary-disabled-background-color: civictheme-color('neutral', 4) !default;
-$civictheme-button-light-primary-disabled-border-color: none !default;
-$civictheme-button-light-primary-disabled-outline-color: none !default;
-$civictheme-button-light-primary-dismiss-color: civictheme-color('primary') !default;
 $civictheme-button-dark-primary-color: civictheme-color('primary', 4) !default;
 $civictheme-button-dark-primary-background-color: civictheme-color('secondary') !default;
 $civictheme-button-dark-primary-border-color: transparent !default;
@@ -129,13 +125,9 @@ $civictheme-button-dark-primary-focus-color: none !default;
 $civictheme-button-dark-primary-focus-background-color: none !default;
 $civictheme-button-dark-primary-focus-border-color: none !default;
 $civictheme-button-dark-primary-focus-outline-color: civictheme-color('outline') !default;
-$civictheme-button-dark-primary-disabled-color: civictheme-color('neutral', 6) !default;
-$civictheme-button-dark-primary-disabled-background-color: civictheme-color('neutral', 4) !default;
-$civictheme-button-dark-primary-disabled-border-color: none !default;
-$civictheme-button-dark-primary-disabled-outline-color: none !default;
-$civictheme-button-dark-primary-dismiss-color: civictheme-color('secondary') !default;
 
 // Secondary button.
+$civictheme-button-secondary-disabled-opacity: 50% !default;
 $civictheme-button-light-secondary-color: civictheme-color('primary') !default;
 $civictheme-button-light-secondary-background-color: transparent !default;
 $civictheme-button-light-secondary-border-color: civictheme-color('primary') !default;
@@ -156,11 +148,6 @@ $civictheme-button-light-secondary-focus-color: civictheme-color('neutral', 1) !
 $civictheme-button-light-secondary-focus-background-color: civictheme-color('primary') !default;
 $civictheme-button-light-secondary-focus-border-color: none !default;
 $civictheme-button-light-secondary-focus-outline-color: civictheme-color('outline') !default;
-$civictheme-button-light-secondary-disabled-color: civictheme-color('neutral', 6) !default;
-$civictheme-button-light-secondary-disabled-background-color: civictheme-color('neutral', 4) !default;
-$civictheme-button-light-secondary-disabled-border-color: none !default;
-$civictheme-button-light-secondary-disabled-outline-color: none !default;
-$civictheme-button-light-secondary-dismiss-color: civictheme-color('secondary') !default;
 $civictheme-button-dark-secondary-color: civictheme-color('secondary') !default;
 $civictheme-button-dark-secondary-background-color: transparent !default;
 $civictheme-button-dark-secondary-border-color: civictheme-color('secondary') !default;
@@ -181,13 +168,9 @@ $civictheme-button-dark-secondary-focus-color: none !default;
 $civictheme-button-dark-secondary-focus-background-color: none !default;
 $civictheme-button-dark-secondary-focus-border-color: none !default;
 $civictheme-button-dark-secondary-focus-outline-color: civictheme-color('outline') !default;
-$civictheme-button-dark-secondary-disabled-color: civictheme-color('neutral', 6) !default;
-$civictheme-button-dark-secondary-disabled-background-color: civictheme-color('neutral', 4) !default;
-$civictheme-button-dark-secondary-disabled-border-color: transparent !default;
-$civictheme-button-dark-secondary-disabled-outline-color: none !default;
-$civictheme-button-dark-secondary-dismiss-color: civictheme-color('secondary') !default;
 
 // Tertiary button.
+$civictheme-button-tertiary-disabled-opacity: 50% !default;
 $civictheme-button-light-tertiary-color: civictheme-color('primary') !default;
 $civictheme-button-light-tertiary-background-color: transparent !default;
 $civictheme-button-light-tertiary-border-color: transparent !default;
@@ -208,11 +191,6 @@ $civictheme-button-light-tertiary-focus-color: civictheme-color('neutral', 1) !d
 $civictheme-button-light-tertiary-focus-background-color: civictheme-color('primary') !default;
 $civictheme-button-light-tertiary-focus-border-color: none !default;
 $civictheme-button-light-tertiary-focus-outline-color: civictheme-color('outline') !default;
-$civictheme-button-light-tertiary-disabled-color: civictheme-color('neutral', 6) !default;
-$civictheme-button-light-tertiary-disabled-background-color: civictheme-color('neutral', 4) !default;
-$civictheme-button-light-tertiary-disabled-border-color: none !default;
-$civictheme-button-light-tertiary-disabled-outline-color: none !default;
-$civictheme-button-light-tertiary-dismiss-color: civictheme-color('secondary') !default;
 $civictheme-button-dark-tertiary-color: civictheme-color('primary') !default;
 $civictheme-button-dark-tertiary-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-button-dark-tertiary-border-color: transparent !default;
@@ -233,11 +211,6 @@ $civictheme-button-dark-tertiary-focus-color: none !default;
 $civictheme-button-dark-tertiary-focus-background-color: none !default;
 $civictheme-button-dark-tertiary-focus-border-color: none !default;
 $civictheme-button-dark-tertiary-focus-outline-color: civictheme-color('outline') !default;
-$civictheme-button-dark-tertiary-disabled-color: civictheme-color('neutral', 6) !default;
-$civictheme-button-dark-tertiary-disabled-background-color: civictheme-color('neutral', 4) !default;
-$civictheme-button-dark-tertiary-disabled-border-color: transparent !default;
-$civictheme-button-dark-tertiary-disabled-outline-color: none !default;
-$civictheme-button-dark-tertiary-dismiss-color: civictheme-color('secondary') !default;
 
 // Chip.
 
