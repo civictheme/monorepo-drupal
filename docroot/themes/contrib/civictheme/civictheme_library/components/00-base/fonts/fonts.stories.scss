@@ -32,7 +32,7 @@
     font-weight: bold;
   }
 
-  @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--thin-100') using($key, $value, $index) {
+  @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--thin') using($key, $value, $index) {
     font-family: civictheme-font($key);
     font-size: $font-size;
     font-weight: 100;
