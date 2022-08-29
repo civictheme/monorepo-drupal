@@ -14,7 +14,6 @@
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "npm run gulp:build && webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "npm run gulp:build && webpack --config ./webpack/webpack.dev.js",
-    "generate-icon-library": "npm run gulp:build && node ./components_combined/01-atoms/icon/icon.generate-library.utils.js",
     "export-colors": "php ../../contrib/civictheme/civictheme_library/scripts/extract_css_colors_to_csv.php dist/styles.variables.css > dist/styles.variables.csv",
     "add-lint-exclusions": "php scripts/add_phpcs_exclusions.php storybook-static"
   },

@@ -6,16 +6,6 @@
 
 .civictheme-icon {
   vertical-align: bottom;
-  fill: currentcolor;
-
-  // Generate color classes for all pre-set colors.
-  $all-colors: map.merge($civictheme-colors-default, $civictheme-colors);
-
-  @each $key, $value in $all-colors {
-    &--color-#{$key} {
-      fill: civictheme-color($key);
-    }
-  }
 
   // Generate size classes for all pre-set sizes.
   @each $size, $values in _civictheme-icon-sizes-all() {

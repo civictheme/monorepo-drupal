@@ -5,19 +5,16 @@
  *
  * Variables:
  * - symbol: [string] Icon name as per map.
- * - color: [string] Icon color.
  * - size: [string] Icon size.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% extends '@atoms/icon/icon_library.generated.twig' %}
-
 {% block content %}
   {% set icon = icons[symbol] %}
   {% set width = icon.width | default(16) %}
   {% set height = icon.height | default(16) %}
-  {% set modifier_class = '%s %s %s'|format((color ? 'civictheme-icon--color-' ~ color : ''), (size ? 'civictheme-icon--size-' ~ size : ''), modifier_class|default('')) %}
+  {% set modifier_class = '%s %s'|format((size ? 'civictheme-icon--size-' ~ size : ''), modifier_class|default('')) %}
 
   {% if icon.paths is defined %}
     <svg
