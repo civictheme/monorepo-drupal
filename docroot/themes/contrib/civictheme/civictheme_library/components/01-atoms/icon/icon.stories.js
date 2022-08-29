@@ -14,7 +14,6 @@ export const Icon = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const { icons } = ICONS;
-  const colors = [...new Set([...SCSS_VARIABLES['civictheme-colors-default'], ...SCSS_VARIABLES['civictheme-colors']])];
   const sizes = [...new Set([
     ...SCSS_VARIABLES['civictheme-icon-sizes-default'],
     ...SCSS_VARIABLES['civictheme-icon-sizes'],
@@ -22,7 +21,6 @@ export const Icon = (knobTab) => {
 
   return CivicThemeIcon({
     symbol: select('Symbol', icons, icons[0], generalKnobTab),
-    color: select('Color', colors, 'primary', generalKnobTab),
     size: radios('Size', sizes, sizes[0], generalKnobTab),
   });
 };
@@ -31,7 +29,6 @@ export const IconLibrary = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const { packs } = ICONS;
-  const colors = [...new Set([...SCSS_VARIABLES['civictheme-colors-default'], ...SCSS_VARIABLES['civictheme-colors']])];
   const sizes = SCSS_VARIABLES['civictheme-icon-sizes'];
 
   const selectedPack = select('Pack', Object.keys(packs), Object.keys(packs).length ? Object.keys(packs)[0] : null, generalKnobTab);
@@ -43,7 +40,6 @@ export const IconLibrary = (knobTab) => {
     packs[selectedPack].forEach((icon) => {
       html += CivicThemeIcon({
         symbol: icon,
-        color: select('Color', colors, 'primary', generalKnobTab),
         size: radios('Size', sizes, sizes[0], generalKnobTab),
       });
     });
