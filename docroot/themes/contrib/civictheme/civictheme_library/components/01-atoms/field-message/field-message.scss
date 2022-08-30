@@ -2,6 +2,8 @@
 // Field description component.
 //
 
+@use 'sass:color';
+
 @mixin _civictheme-background-color-opacity($opacity ,$color) {
   background-color: rgba(color.red($color), color.green($color), color.blue($color), $opacity);
 }
