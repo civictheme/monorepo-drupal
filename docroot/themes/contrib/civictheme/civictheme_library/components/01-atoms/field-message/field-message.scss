@@ -13,17 +13,21 @@
 
   display: block;
   border-radius: $civictheme-border-radius;
+  padding: civictheme-space(0.5);
 
   @include civictheme-typography('text-regular');
 
   @each $type, $value in _civictheme-colors-all() {
     &--#{$type} {
-      @include _civictheme-background-color-opacity(10%, civictheme-color($type));
-
       border: 1px solid civictheme-color($type);
+      background-color: civictheme-color($type);
+
+      &.civictheme-theme-light {
+        @include _civictheme-background-color-opacity(10%, civictheme-color($type));
+      }
 
       .civictheme-icon {
-        vertical-align: middle;
+        vertical-align: text-top;
       }
     }
   }
