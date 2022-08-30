@@ -7,11 +7,11 @@
 .civictheme-icon {
   vertical-align: bottom;
 
-  @each $svg in _civictheme-icon-symbols-all() {
-    &--#{$svg} {
+  @each $symbol, $values in _civictheme-icon-symbols-all() {
+    &--#{$symbol} {
       width: civictheme-space(2);
       height: civictheme-space(2);
-      content: url('../assets/icons/' + $svg + '.svg');
+      content: url('../assets/icons/' + $symbol + '.svg');
     }
   }
 
