@@ -34,15 +34,21 @@
 
     @include civictheme-icon-fill-color($civictheme-tag-light-color);
 
-    &#{$root}--is-alt {
-      background-color: $civictheme-tag-light-alt-background-color;
-      color: $civictheme-tag-light-alt-color;
+    &#{$root}--tertiary,
+    &#{$root}--secondary {
+      background-color: $civictheme-tag-light-secondary-background-color;
+      border:solid 1px $civictheme-tag-light-secondary-border-color;
+      color: $civictheme-tag-light-secondary-color;
 
       #{$root}__link {
-        color: $civictheme-tag-light-alt-color;
+        color: $civictheme-tag-light-secondary-color;
       }
 
-      @include civictheme-icon-fill-color($civictheme-tag-light-alt-color);
+      @include civictheme-icon-fill-color($civictheme-tag-light-secondary-color);
+    }
+
+    &#{$root}--tertiary {
+      border: none;
     }
 
     #{$root}__link {
@@ -57,15 +63,21 @@
 
     @include civictheme-icon-fill-color($civictheme-tag-dark-color);
 
-    &#{$root}--is-alt {
-      background-color: $civictheme-tag-dark-alt-background-color;
-      color: $civictheme-tag-dark-alt-color;
+    &#{$root}--tertiary,
+    &#{$root}--secondary {
+      background-color: $civictheme-tag-dark-secondary-background-color;
+      border:solid 1px $civictheme-tag-dark-secondary-border-color;
+      color: $civictheme-tag-dark-secondary-color;
 
       #{$root}__link {
-        color: $civictheme-tag-dark-alt-color;
+        color: $civictheme-tag-dark-secondary-color;
       }
 
-      @include civictheme-icon-fill-color($civictheme-tag-dark-alt-color);
+      @include civictheme-icon-fill-color($civictheme-tag-dark-secondary-color);
+    }
+
+    &#{$root}--tertiary {
+      border: none;
     }
 
     #{$root}__link {

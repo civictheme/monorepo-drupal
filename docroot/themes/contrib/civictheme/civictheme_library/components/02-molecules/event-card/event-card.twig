@@ -54,7 +54,7 @@
       {% if date %}
         {% include '@atoms/tag/tag.twig' with {
           theme: theme,
-          text: date,
+          content: date,
           icon: 'business_calendar',
           icon_placement: 'before',
           modifier_class: 'civictheme-event-card__date'
@@ -108,8 +108,7 @@
               {% for tag in tags %}
                 {% include '@atoms/tag/tag.twig' with {
                   theme: theme,
-                  text: tag,
-                  is_alt: true,
+                  content: tag,
                 } only %}
               {% endfor %}
             </div>

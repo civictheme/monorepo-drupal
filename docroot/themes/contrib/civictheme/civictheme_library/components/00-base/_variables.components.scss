@@ -382,13 +382,15 @@ $civictheme-tag-border-width: 0 !default;
 $civictheme-tag-light-color: civictheme-color('neutral', 1) !default;
 $civictheme-tag-light-background-color: civictheme-color('primary') !default;
 $civictheme-tag-light-border-color: civictheme-color('neutral', 4) !default;
-$civictheme-tag-light-alt-color: civictheme-color('neutral', 1) !default;
-$civictheme-tag-light-alt-background-color: civictheme-color('primary') !default;
-$civictheme-tag-dark-color: civictheme-color('neutral', 1) !default;
-$civictheme-tag-dark-background-color: civictheme-color('primary', 3) !default;
+$civictheme-tag-light-secondary-color: civictheme-color('primary') !default;
+$civictheme-tag-light-secondary-border-color: civictheme-color('primary') !default;
+$civictheme-tag-light-secondary-background-color: civictheme-color('neutral', 1) !default;
+$civictheme-tag-dark-color: civictheme-color('primary') !default;
+$civictheme-tag-dark-background-color: civictheme-color('secondary') !default;
 $civictheme-tag-dark-border-color: civictheme-color('neutral', 7) !default;
-$civictheme-tag-dark-alt-color: civictheme-color('neutral', 7) !default;
-$civictheme-tag-dark-alt-background-color: civictheme-color('secondary') !default;
+$civictheme-tag-dark-secondary-color: civictheme-color('secondary') !default;
+$civictheme-tag-dark-secondary-border-color: civictheme-color('secondary') !default;
+$civictheme-tag-dark-secondary-background-color: transparent !default;
 
 //
 // Input.
