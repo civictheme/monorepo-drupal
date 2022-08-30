@@ -1,0 +1,36 @@
+//
+// Field description component.
+//
+
+@mixin _civictheme-background-color-opacity($opacity ,$color) {
+  background-color: rgba(color.red($color), color.green($color), color.blue($color), $opacity);
+}
+
+.civictheme-field-message {
+  $root: &;
+
+  display: block;
+  border-radius: $civictheme-border-radius;
+
+  @include civictheme-typography('text-regular');
+
+  @each $type, $value in _civictheme-colors-all() {
+    &--#{$type} {
+      @include _civictheme-background-color-opacity(10%, civictheme-color($type));
+
+      border: 1px solid civictheme-color($type);
+
+      .civictheme-icon {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &.civictheme-theme-light {
+    color: $civictheme-field-message-light-color;
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-field-message-dark-color;
+  }
+}
