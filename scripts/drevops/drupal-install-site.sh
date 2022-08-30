@@ -139,7 +139,8 @@ install_profile() {
   [ "${site_has_config}" = "1" ] && opts+=(--existing-config)
 
   # Database may exist in non-bootstrappable state - truncuate it.
-  $drush -q sql-drop -y || true
+  $drush sql-drop -y
+  $drush sql-drop -y
   $drush si "${opts[@]}"
   echo "  > Successfully installed a site from profile."
 }
