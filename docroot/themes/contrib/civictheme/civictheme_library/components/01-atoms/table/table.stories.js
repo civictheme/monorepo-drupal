@@ -70,17 +70,18 @@ export const Table = (knobTab) => {
     header: boolean('With header', true, generalKnobTab) ? header : [],
     rows: boolean('With rows', true, generalKnobTab) ? rows : [],
     footer: boolean('With footer', true, generalKnobTab) ? footer : [],
-    caption: text('Caption', 'Table caption Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.', generalKnobTab),
+    is_striped: boolean('Striped', true, generalKnobTab),
+    caption: text('Caption content', 'Table caption Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.', generalKnobTab),
     caption_position: radios(
       'Caption position',
       {
-        Before: 'before',
-        After: 'after',
+        Before: 'top',
+        After: 'bottom',
       },
-      'after',
+      'top',
       generalKnobTab,
     ),
-    is_striped: boolean('Striped', true, generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   });
 };

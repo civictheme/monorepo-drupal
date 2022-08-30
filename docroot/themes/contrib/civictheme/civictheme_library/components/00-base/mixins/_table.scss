@@ -85,19 +85,15 @@
     text-align: left;
     padding: civictheme-space(1.5) 0;
 
-    @include civictheme-typography('label-large');
+    @include civictheme-typography('text-small');
 
     @include civictheme-breakpoint($civictheme-table-breakpoint) {
       padding: civictheme-space(1.5) 0;
     }
   }
 
-  &#{$root}--caption-after {
+  &#{$root}--caption-bottom {
     caption-side: bottom;
-
-    caption {
-      @include civictheme-typography('text-regular');
-    }
   }
 }
 
