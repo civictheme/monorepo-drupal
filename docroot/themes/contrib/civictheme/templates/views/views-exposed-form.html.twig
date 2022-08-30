@@ -2,19 +2,14 @@
 /**
  * @file
  * CivicTheme theme implementation of views exposed form.
- *
- * Available variables:
- * - form: A render element representing the form.
- *
- * @see template_preprocess_views_exposed_form()
  */
 #}
 {% if q is not empty %}
   {#
-    This ensures that, if clean URLs are off, the 'q' is added first,
-    as a hidden form element, so that it shows up first in the POST URL.
+  This ensures that, if clean URLs are off, the 'q' is added first,
+  as a hidden form element, so that it shows up first in the POST URL.
   #}
-{{ q }}
+  {{ q }}
 {% endif %}
 {# Large filter is printed if there is more than 1 exposed filter in the view #}
 {% if large_filter %}
@@ -22,7 +17,7 @@
     filter_title: filter_title,
     desktop_breakpoint: '>=m',
     filters: form,
-  }%}
+  } %}
 {% else %}
   {{ form }}
 {% endif %}

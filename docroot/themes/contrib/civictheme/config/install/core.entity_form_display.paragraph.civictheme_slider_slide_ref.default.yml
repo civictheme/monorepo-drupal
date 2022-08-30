@@ -2,23 +2,37 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_image_position
     - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_reference
+    - field.field.paragraph.civictheme_slider_slide_ref.field_c_p_theme
     - paragraphs.paragraphs_type.civictheme_slider_slide_ref
 id: paragraph.civictheme_slider_slide_ref.default
 targetEntityType: paragraph
 bundle: civictheme_slider_slide_ref
 mode: default
 content:
+  field_c_p_image_position:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_c_p_reference:
+    type: entity_reference_autocomplete
     weight: 0
+    region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+  field_c_p_theme:
+    type: options_select
+    weight: 1
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   created: true
   status: true

@@ -8,7 +8,7 @@ id: cs_generated_content_list
 label: 'Generated content list'
 module: views
 description: 'List of generated content pages.'
-tag: ''
+tag: CivicTheme
 base_table: node_field_data
 base_field: nid
 display:

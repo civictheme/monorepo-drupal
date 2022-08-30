@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.civictheme_mobile_navigation
+    - field.storage.block_content.field_c_b_top
+id: block_content.civictheme_mobile_navigation.field_c_b_top
+field_name: field_c_b_top
+entity_type: block_content
+bundle: civictheme_mobile_navigation
+label: 'Top block'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:block'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

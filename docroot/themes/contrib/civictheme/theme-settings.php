@@ -5,6 +5,9 @@
  * Theme settings form for CivicTheme theme.
  */
 
+use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\File\Exception\FileException;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\StreamWrapper\PublicStream;
@@ -14,10 +17,20 @@ use Drupal\Core\Url;
 /**
  * Implements hook_form_system_theme_settings_alter().
  */
-function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
-  $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
-  $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
+function civictheme_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state) {
+  _civictheme_form_system_theme_settings_theme_version($form, $form_state);
+  _civictheme_form_system_theme_settings_components($form, $form_state);
+  _civictheme_form_system_theme_settings_content_provision($form, $form_state);
+  _civictheme_form_system_theme_settings_storybook($form, $form_state);
+}
 
+/**
+ * Provide theme version to theme settings.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_theme_version(&$form, FormStateInterface &$form_state) {
   $civictheme_version = civictheme_get_version();
   if ($civictheme_version) {
     $form['civictheme_version'] = [
@@ -31,102 +44,322 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
       '#weight' => -100,
     ];
   }
+}
 
-  // Disable default settings as we do not support uploading of custom logos
-  // through config form (yet).
-  // @todo Remove this once support for uploading of the custom logos is
-  // added.
-  $form['logo']['settings']['logo_upload']['#access'] = FALSE;
-
-  $form['logo']['settings']['logo_path']['#title'] = t('Header desktop logo path');
-
-  $form['logo']['settings']['civictheme_header_logo_mobile'] = [
-    '#type' => 'textfield',
-    '#title' => t('Header mobile logo path'),
-    '#description' => _civictheme_field_description(theme_get_setting('civictheme_header_logo_mobile'), 'logo-header-mobile.svg'),
-    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_header_logo_mobile')),
-  ];
-
-  $form['logo']['settings']['civictheme_footer_logo_desktop'] = [
-    '#type' => 'textfield',
-    '#title' => t('Footer desktop logo path'),
-    '#description' => _civictheme_field_description(theme_get_setting('civictheme_footer_logo_desktop'), 'logo-header-desktop.svg'),
-    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_footer_logo_desktop')),
-  ];
-
-  $form['logo']['settings']['civictheme_footer_logo_mobile'] = [
-    '#type' => 'textfield',
-    '#title' => t('Footer mobile logo path'),
-    '#description' => _civictheme_field_description(theme_get_setting('civictheme_footer_logo_mobile'), 'logo-footer-mobile.svg'),
-    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_footer_logo_mobile')),
-  ];
-
-  $form['logo']['settings']['civictheme_site_logo_alt'] = [
-    '#type' => 'textfield',
-    '#title' => t('Logo alt attribute text'),
-    '#description' => t('Text for the alt attribute of the site logo image.'),
-    '#default_value' => theme_get_setting('civictheme_site_logo_alt'),
-  ];
-
+/**
+ * Provide components settings to theme settings form.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ */
+function _civictheme_form_system_theme_settings_components(&$form, FormStateInterface &$form_state) {
   $form['components'] = [
-    '#type' => 'details',
+    '#type' => 'vertical_tabs',
     '#title' => t('CivicTheme components'),
     '#weight' => 50,
+    '#tree' => TRUE,
+  ];
+
+  $form['components']['logo'] = [
+    '#type' => 'details',
+    '#title' => t('Logo'),
     '#open' => TRUE,
+    '#group' => 'components',
+    '#tree' => TRUE,
+  ];
+
+  $breakpoints = ['desktop', 'mobile'];
+
+  foreach (civictheme_theme_options() as $theme => $theme_label) {
+    foreach ($breakpoints as $breakpoint) {
+      $form['components']['logo']["image_{$theme}_{$breakpoint}_group"] = [
+        '#type' => 'fieldset',
+        '#title' => t('Logo @theme @breakpoint', [
+          '@theme' => $theme_label,
+          '@breakpoint' => $breakpoint,
+        ]),
+        '#open' => TRUE,
+        '#tree' => FALSE,
+      ];
+
+      $form['components']['logo']["image_{$theme}_{$breakpoint}"] = [
+        '#type' => 'textfield',
+        '#title' => t('Logo image in @theme theme for @breakpoint', [
+          '@theme' => $theme_label,
+          '@breakpoint' => $breakpoint,
+        ]),
+        '#description' => _civictheme_path_field_description(theme_get_setting("components.logo.image_{$theme}_{$breakpoint}"), "logo-{$theme}-{$breakpoint}.svg"),
+        '#default_value' => _civictheme_field_friendly_path(theme_get_setting("components.logo.image_{$theme}_{$breakpoint}")),
+        '#group' => "image_{$theme}_{$breakpoint}_group",
+      ];
+
+      $form['components']['logo']["image_{$theme}_{$breakpoint}_group"]["image_{$theme}_{$breakpoint}_upload"] = [
+        '#type' => 'file',
+        '#title' => t('Upload logo image in @theme theme for @breakpoint', [
+          '@theme' => $theme_label,
+          '@breakpoint' => $breakpoint,
+        ]),
+        '#maxlength' => 40,
+        '#description' => t("If you don't have direct file access to the server, use this field to upload your logo."),
+        '#upload_validators' => [
+          'file_validate_is_image' => [],
+        ],
+        '#tree' => FALSE,
+        '#weight' => 1,
+      ];
+    }
+  }
+
+  $form['components']['logo']['image_alt'] = [
+    '#type' => 'textfield',
+    '#title' => t('Logo image "alt" text'),
+    '#description' => t('Text for the <code>alt</code> attribute of the site logo image.'),
+    '#default_value' => theme_get_setting('components.logo.image_alt'),
   ];
 
   $form['components']['header'] = [
     '#type' => 'details',
     '#title' => t('Header'),
-    '#weight' => 50,
-    '#open' => TRUE,
+    '#group' => 'components',
+    '#tree' => TRUE,
   ];
 
-  $form['components']['header']['civictheme_header_theme'] = [
-    '#title' => t('@component theme', ['@component' => 'Header']),
-    '#description' => t('Set the theme option for the @component.', ['@component' => 'Header']),
+  $form['components']['header']['theme'] = [
+    '#title' => t('Header theme'),
+    '#description' => t('Set the theme option for the Header component.'),
     '#type' => 'radios',
     '#required' => TRUE,
-    '#options' => [
-      'light' => t('Light'),
-      'dark' => t('Dark'),
-    ],
-    '#default_value' => theme_get_setting('civictheme_header_theme') ?? 'light',
+    '#options' => civictheme_theme_options(),
+    '#default_value' => theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT,
   ];
 
   $form['components']['footer'] = [
     '#type' => 'details',
     '#title' => t('Footer'),
-    '#weight' => 50,
-    '#open' => TRUE,
+    '#group' => 'components',
+    '#tree' => TRUE,
   ];
 
-  $form['components']['footer']['civictheme_footer_theme'] = [
-    '#title' => t('@component theme', ['@component' => 'Footer']),
-    '#description' => t('Set the theme option for the @component.', ['@component' => 'Footer']),
+  $form['components']['footer']['theme'] = [
+    '#title' => t('Footer theme'),
+    '#description' => t('Set the theme option for the Footer component.'),
     '#type' => 'radios',
     '#required' => TRUE,
-    '#options' => [
-      'light' => t('Light'),
-      'dark' => t('Dark'),
-    ],
-    '#default_value' => theme_get_setting('civictheme_footer_theme') ?? 'dark',
+    '#options' => civictheme_theme_options(),
+    '#default_value' => theme_get_setting('components.footer.theme') ?? CIVICTHEME_FOOTER_THEME_DEFAULT,
   ];
 
-  $form['components']['footer']['civictheme_footer_background_image'] = [
+  $form['components']['footer']['background_image'] = [
     '#type' => 'textfield',
     '#title' => t('Footer background image path'),
-    '#description' => _civictheme_field_description(theme_get_setting('civictheme_footer_background_image'), 'footer-background.png'),
-    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('civictheme_footer_background_image')),
+    '#description' => _civictheme_path_field_description(theme_get_setting('components.footer.background_image'), 'footer-background.png'),
+    '#default_value' => _civictheme_field_friendly_path(theme_get_setting('components.footer.background_image')),
   ];
 
+  $form['components']['link'] = [
+    '#type' => 'details',
+    '#title' => t('Link'),
+    '#group' => 'components',
+    '#tree' => TRUE,
+  ];
+
+  $form['components']['link']['new_window'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Open links in a new window'),
+    '#description' => t('Open internal and external links in a new browser window.'),
+    '#default_value' => theme_get_setting('components.link.new_window'),
+  ];
+
+  $form['components']['link']['external_new_window'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Open external links in a new window'),
+    '#description' => t('Open all external links in a new browser window.'),
+    '#default_value' => theme_get_setting('components.link.new_window'),
+    '#states' => [
+      'visible' => [
+        ':input[name="components[link][new_window]"]' => ['checked' => FALSE],
+      ],
+    ],
+  ];
+
+  $form['components']['link']['external_override_domains'] = [
+    '#type' => 'textarea',
+    '#title' => t('Override external link domains'),
+    '#description' => t('A list of domains that should be considered as internal. External links matching these domains will not be displayed as external.<br/>One domain per line.<br/>Do not include trailing slash (/).<br/>Protocol is optional.'),
+    '#default_value' => civictheme_array_to_multiline(theme_get_setting('components.link.external_override_domains')),
+    '#rows' => 4,
+  ];
+
+  // Create validators for all components, if they exist.
+  foreach (array_keys($form['components']) as $component_name) {
+    $validator = "_civictheme_form_system_theme_settings_{$component_name}_validate";
+    if (is_callable($validator)) {
+      $form['#validate'][] = $validator;
+    }
+
+    $submit = "_civictheme_form_system_theme_settings_{$component_name}_submit";
+    if (is_callable($submit)) {
+      $form['#submit'][] = $submit;
+    }
+  }
+}
+
+/**
+ * Validate callback for theme settings form of Logo component.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_logo_validate(array &$form, FormStateInterface $form_state) {
+  $breakpoints = ['desktop', 'mobile'];
+  foreach (array_keys(civictheme_theme_options()) as $theme) {
+    foreach ($breakpoints as $breakpoint) {
+      $field_name_key = ['components', 'logo', "image_{$theme}_{$breakpoint}"];
+      $path = $form_state->getValue($field_name_key);
+
+      // Check for a new uploaded logo.
+      if (isset($form['components']['logo']["image_{$theme}_{$breakpoint}_group"]["image_{$theme}_{$breakpoint}_upload"])) {
+        $file = _file_save_upload_from_form($form['components']['logo']["image_{$theme}_{$breakpoint}_group"]["image_{$theme}_{$breakpoint}_upload"], $form_state, 0, FileSystemInterface::EXISTS_REPLACE);
+        if ($file) {
+          // Put the temporary file in form_values so we can save it on submit.
+          $form_state->setValue("image_{$theme}_{$breakpoint}_upload", $file);
+        }
+      }
+
+      if (!empty($path)) {
+        $path = _civictheme_form_system_theme_settings_validate_path($path);
+        if ($path) {
+          $path = \Drupal::service('file_url_generator')->generateString($path);
+          $form_state->setValue($field_name_key, ltrim($path, '/'));
+          continue;
+        }
+        $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
+      }
+    }
+  }
+}
+
+/**
+ * Submit callback for theme settings form of Logo component.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_logo_submit(array &$form, FormStateInterface $form_state) {
+  $breakpoints = ['desktop', 'mobile'];
+  $values = $form_state->getValues();
+  foreach (array_keys(civictheme_theme_options()) as $theme) {
+    foreach ($breakpoints as $breakpoint) {
+      $logo_field_name_key = [
+        'components',
+        'logo',
+        "image_{$theme}_{$breakpoint}",
+      ];
+      $field_name_key = "image_{$theme}_{$breakpoint}_upload";
+
+      // If the user uploaded a new logo, save it to a permanent location and
+      // use it in place of the provided path.
+      $default_scheme = \Drupal::config('system.file')->get('default_scheme');
+      try {
+        if (!empty($values[$field_name_key])) {
+          $filename = \Drupal::service('file_system')->copy($values[$field_name_key]->getFileUri(), $default_scheme . '://');
+          if (!empty($filename)) {
+            $path = _civictheme_form_system_theme_settings_validate_path($filename);
+            if ($path) {
+              $path = \Drupal::service('file_url_generator')->generateString($path);
+              $form_state->setValue($logo_field_name_key, ltrim($path, '/'));
+            }
+          }
+        }
+      }
+      catch (FileException $e) {
+        // Ignore.
+      }
+      $form_state->unsetValue($field_name_key);
+    }
+  }
+}
+
+/**
+ * Validate callback for theme settings form to check footer settings.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_footer_validate(array $form, FormStateInterface &$form_state) {
+  $field_name_key = ['components', 'footer', 'background_image'];
+  $path = $form_state->getValue($field_name_key);
+
+  if (!empty($path)) {
+    $path = _civictheme_form_system_theme_settings_validate_path($path);
+    if ($path) {
+      $path = \Drupal::service('file_url_generator')->generateString($path);
+      $form_state->setValue($field_name_key, ltrim($path, '/'));
+    }
+    else {
+      $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
+    }
+  }
+}
+
+/**
+ * Validate callback for theme settings form of Link component.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_link_validate(array &$form, FormStateInterface $form_state) {
+  $override_domain_field_name_keys = [
+    'components',
+    'link',
+    'external_override_domains',
+  ];
+  $domains = $form_state->getValue($override_domain_field_name_keys, '');
+  $domains = civictheme_multiline_to_array($domains);
+  $invalid_domains = [];
+  foreach ($domains as $domain) {
+    // Allow to enter 'example.com' instead of 'http://example.com'.
+    $domain_normalised = _civictheme_external_link_normalise_domain($domain);
+    if (!UrlHelper::isValid($domain_normalised, TRUE)) {
+      $invalid_domains[] = $domain;
+      continue;
+    }
+
+    $domain_parts = parse_url($domain_normalised);
+    if (!empty($domain_parts['path']) || !empty($domain_parts['query']) || !empty($domain_parts['fragment'])) {
+      $invalid_domains[] = $domain;
+    }
+  }
+
+  if (!empty($invalid_domains)) {
+    $form_state->setErrorByName(implode('][', $override_domain_field_name_keys), t('Domain values are not valid domains: %domains', [
+      '%domains' => implode(', ', $invalid_domains),
+    ]));
+  }
+  else {
+    // Set field to converted array of links.
+    $form_state->setValue($override_domain_field_name_keys, $domains);
+  }
+}
+
+/**
+ * Provide content provision to theme settings form.
+ */
+function _civictheme_form_system_theme_settings_content_provision(&$form, FormStateInterface &$form_state) {
   // Programmatically provision content.
   $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
-  $provision_file = $civictheme_path . DIRECTORY_SEPARATOR . 'civictheme.provision.inc';
+  $provision_file = $civictheme_path . DIRECTORY_SEPARATOR . 'theme-settings.provision.inc';
   if (file_exists($provision_file)) {
     require_once $provision_file;
     _civictheme_form_system_theme_settings_alter_provision($form, $form_state);
   }
+}
+
+/**
+ * Provide storybook to theme settings form.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_storybook(&$form, FormStateInterface &$form_state) {
+  $theme_name = \Drupal::service('theme.manager')->getActiveTheme()->getName();
+  $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
   // Show compiled Storybook.
   // @note For development of components, please use `npm run storybook`.
@@ -136,59 +369,35 @@ function civictheme_form_system_theme_settings_alter(&$form, &$form_state) {
       '%theme' => $theme_name,
     ]),
     '#open' => TRUE,
-    '#weight' => 51,
+    '#weight' => 52,
   ];
 
   $storybook_file = $theme_path . '/storybook-static/index.html';
   if (file_exists($storybook_file)) {
+    $url = \Drupal::service('file_url_generator')->generateAbsoluteString($storybook_file) . '?cachebust=' . time();
+    $form['storybook']['link'] = [
+      '#type' => 'inline_template',
+      '#template' => '<p><a href="{{ url }}">{{ url }}</a></p>',
+      '#context' => [
+        'url' => $url,
+      ],
+    ];
+
     $form['storybook']['markup'] = [
       '#type' => 'inline_template',
       '#template' => '<iframe id="storybook" width="100%" height="1024" src="{{ url }}"></iframe>',
       '#context' => [
-        'url' => file_create_url($storybook_file) . '?cachebust=' . time(),
+        'url' => $url,
       ],
     ];
-  }
-  else {
-    $form['storybook']['markup'] = [
-      '#markup' => t('Compiled Storybook cannot be found at @path. Try compiling it with <code>npm run build</code>.', [
-        '@path' => $storybook_file,
-      ]),
-    ];
-  }
 
-  $form['#validate'][] = '_civictheme_form_system_theme_settings_validate';
-}
-
-/**
- * {@inheritdoc}
- */
-function _civictheme_form_system_theme_settings_validate(array $form, FormStateInterface &$form_state) {
-  $values = $form_state->getValues();
-
-  if (!is_array($values)) {
     return;
   }
-
-  $field_to_validate = [
-    'civictheme_header_logo_mobile',
-    'civictheme_footer_logo_desktop',
-    'civictheme_footer_logo_mobile',
-    'civictheme_footer_background_image',
+  $form['storybook']['markup'] = [
+    '#markup' => t('Compiled Storybook cannot be found at @path. Try compiling it with <code>npm run build</code>.', [
+      '@path' => $storybook_file,
+    ]),
   ];
-
-  foreach ($field_to_validate as $field) {
-    if (!empty($values[$field])) {
-      $path = _civictheme_form_system_theme_settings_validate_path($values[$field]);
-      if ($path) {
-        $path = \Drupal::service('file_url_generator')->generateString($path);
-        $form_state->setValue($field, ltrim($path, '/'));
-      }
-      else {
-        $form_state->setErrorByName($field, t('The image path is invalid.'));
-      }
-    }
-  }
 }
 
 /**
@@ -205,6 +414,8 @@ function _civictheme_form_system_theme_settings_validate(array $form, FormStateI
  * @return mixed
  *   A valid path that can be displayed through the theme system, or FALSE if
  *   the path could not be validated.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_form_system_theme_settings_validate_path($path) {
   // Absolute local file paths are invalid.
@@ -234,6 +445,8 @@ function _civictheme_form_system_theme_settings_validate_path($path) {
  *
  * @return string
  *   Friendly path or original path if an invalid stream wrapper was provided.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_field_friendly_path($original_path) {
   // If path is a public:// URI, display the path relative to the files
@@ -257,8 +470,10 @@ function _civictheme_field_friendly_path($original_path) {
  *
  * @return string
  *   Description string.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_field_description($original_path, $fallback_path) {
+function _civictheme_path_field_description($original_path, $fallback_path) {
   $theme_name = \Drupal::configFactory()->get('system.theme')->get('default');
   /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
   $theme_handler = \Drupal::getContainer()->get('theme_handler');

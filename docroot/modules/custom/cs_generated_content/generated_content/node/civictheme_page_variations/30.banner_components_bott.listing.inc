@@ -20,9 +20,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
         ],
       ],
@@ -32,9 +33,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'topics' => [
             $helper::randomRealTerm('civictheme_topics')->id(),
@@ -47,9 +49,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'topics' => [
             $helper::randomRealTerm('civictheme_topics')->id(),
@@ -63,9 +66,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
         ],
@@ -76,9 +80,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
         ],
       ],
@@ -88,9 +93,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
         ],
@@ -101,9 +107,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
         ],
       ],
@@ -113,9 +120,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
         ],
@@ -126,9 +134,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
         ],
       ],
@@ -138,9 +147,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
         ],
@@ -151,9 +161,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
         ],
       ],
@@ -163,9 +174,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
         ],
@@ -176,9 +188,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
         ],
       ],
@@ -188,9 +201,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
         ],
@@ -201,9 +215,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
         ],
       ],
@@ -213,9 +228,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
         ],
@@ -226,9 +242,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
         ],
       ],
@@ -238,9 +255,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
         ],
@@ -251,25 +269,28 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
         ],
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
         ],
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
         ],
       ],
@@ -279,9 +300,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
         ],
@@ -292,9 +314,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -306,9 +329,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
         ],
@@ -319,9 +343,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -333,9 +358,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
         ],
@@ -346,9 +372,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -360,9 +387,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
         ],
@@ -373,9 +401,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -387,9 +416,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
         ],
@@ -400,9 +430,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -414,9 +445,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
         ],
@@ -427,9 +459,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -441,9 +474,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
         ],
@@ -454,9 +488,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -468,9 +503,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
         ],
@@ -481,9 +517,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -495,9 +532,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -509,9 +547,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -524,9 +563,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -538,9 +578,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -553,9 +594,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -567,9 +609,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -582,9 +625,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -596,9 +640,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -611,9 +656,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -625,9 +671,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -640,9 +687,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -654,9 +702,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -669,9 +718,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -683,9 +733,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -698,9 +749,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -712,9 +764,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -727,9 +780,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
@@ -741,9 +795,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -756,9 +811,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
@@ -770,9 +826,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -785,9 +842,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
@@ -799,9 +857,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -814,9 +873,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
@@ -828,9 +888,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -843,9 +904,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
@@ -857,9 +919,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -872,9 +935,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
@@ -886,9 +950,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -901,9 +966,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
@@ -915,9 +981,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -930,9 +997,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => TRUE,
@@ -944,9 +1012,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -959,9 +1028,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
@@ -974,9 +1044,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -990,9 +1061,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
@@ -1005,9 +1077,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1021,9 +1094,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
@@ -1036,9 +1110,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1052,9 +1127,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
@@ -1067,9 +1143,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1083,9 +1160,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
@@ -1098,9 +1176,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1114,9 +1193,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
@@ -1129,9 +1209,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1145,9 +1226,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
@@ -1160,9 +1242,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1176,9 +1259,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => FALSE,
@@ -1191,9 +1275,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1207,9 +1292,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
@@ -1222,9 +1308,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -1238,9 +1325,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
@@ -1253,9 +1341,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -1269,9 +1358,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
@@ -1284,9 +1374,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -1300,9 +1391,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
@@ -1315,9 +1407,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -1331,9 +1424,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
@@ -1346,9 +1440,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -1362,9 +1457,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
@@ -1377,9 +1473,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -1393,9 +1490,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
@@ -1408,9 +1506,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -1424,9 +1523,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
           'background' => FALSE,
@@ -1439,9 +1539,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeDark(),
@@ -1455,9 +1556,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1470,9 +1572,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1486,9 +1589,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1501,9 +1605,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1517,9 +1622,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1532,9 +1638,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1548,9 +1655,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1563,9 +1671,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1579,9 +1688,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1594,9 +1704,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1610,9 +1721,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1625,9 +1737,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1641,9 +1754,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1656,9 +1770,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1672,9 +1787,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1687,9 +1803,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1703,9 +1820,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1718,9 +1836,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1734,9 +1853,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1749,9 +1869,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1765,9 +1886,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1780,9 +1902,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1796,9 +1919,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1811,9 +1935,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1827,9 +1952,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1842,9 +1968,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1858,9 +1985,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1873,9 +2001,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1889,9 +2018,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1904,9 +2034,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1920,9 +2051,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1935,9 +2067,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1951,9 +2084,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -1967,9 +2101,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -1984,9 +2119,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2000,9 +2136,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2017,9 +2154,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2033,9 +2171,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2050,9 +2189,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2066,9 +2206,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2083,9 +2224,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2099,9 +2241,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2116,9 +2259,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2132,9 +2276,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2149,9 +2294,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2165,9 +2311,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2182,9 +2329,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2198,9 +2346,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2215,9 +2364,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2231,9 +2381,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2248,9 +2399,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2264,9 +2416,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2281,9 +2434,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2297,9 +2451,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2314,9 +2469,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2330,9 +2486,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2347,9 +2504,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2363,9 +2521,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2380,9 +2539,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2396,9 +2556,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2413,9 +2574,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2429,9 +2591,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2446,9 +2609,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
@@ -2462,9 +2626,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
@@ -2479,21 +2644,22 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2503,22 +2669,23 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2528,21 +2695,22 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2552,22 +2720,23 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2577,21 +2746,22 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2601,22 +2771,23 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2626,21 +2797,22 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2650,22 +2822,23 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeLight(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2675,21 +2848,22 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2699,22 +2873,23 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2724,21 +2899,22 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2748,22 +2924,23 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemePageContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2773,21 +2950,22 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2797,22 +2975,23 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemePromoCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2822,21 +3001,22 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeUnlimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeUnlimited(),
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],
@@ -2846,22 +3026,23 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner_c
       'banner_components_bott' => [
         [
           'type' => 'listing',
+          'listing_type' => $helper::civicthemeListingType(),
           'content_type' => $helper::civicthemeEventContentType(),
           'view_as' => $helper::civicthemeNavigationCardType(),
-          'limit_type' => $helper::civicthemeLimitedType(),
+          'limit_type' => $helper::civicthemeListingLimitTypeLimited(),
           'listing_limit' => 2,
           'card_theme' => $helper::civicthemeThemeDark(),
           'theme' => $helper::civicthemeThemeLight(),
           'background' => TRUE,
           'space' => $helper::civicthemeSpaceTypeBoth(),
           'title' => $helper::staticSentence(3),
-          'read_more' => [
+          'link_below' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
-          'link' => [
+          'link_above' => [
             'uri' => $helper::randomUrl(),
-            'title' => $helper::staticString(30),
+            'title' => $helper::staticSentence(2),
           ],
         ],
       ],

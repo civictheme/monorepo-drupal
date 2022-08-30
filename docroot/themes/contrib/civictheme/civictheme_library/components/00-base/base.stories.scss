@@ -9,6 +9,26 @@
 #root {
   font-family: sans-serif;
   padding: civictheme-space(2);
+
+  // Only apply wrappers used directly in preview, but not within other
+  // components.
+  > .story-wrapper-size--small {
+    max-width: 376px;
+  }
+
+  > .story-wrapper-size--medium {
+    max-width: 576px;
+  }
+
+  > .story-wrapper-size--large {
+    max-width: map.get($civictheme-breakpoints, 'xxl');
+  }
+
+  > .story-wrapper-centered {
+    margin-top: 30vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .sb-show-main {
@@ -18,24 +38,6 @@
       padding: 0;
     }
   }
-}
-
-.story-wrapper-size--small {
-  max-width: 376px;
-}
-
-.story-wrapper-size--medium {
-  max-width: 576px;
-}
-
-.story-wrapper-size--large {
-  max-width: map.get($civictheme-breakpoints, 'xxl');
-}
-
-.story-wrapper-centered {
-  margin-top: 30vh;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .story-slot {

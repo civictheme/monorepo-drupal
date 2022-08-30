@@ -13,74 +13,17 @@ dependencies:
 id: civictheme_alerts
 label: Alerts
 module: views
-description: ''
-tag: ''
+description: 'Alert content type data as an API endpoint'
+tag: CivicTheme
 base_table: node_field_data
 base_field: nid
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Default
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: perm
-        options:
-          perm: 'access content'
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          disable_sql_rewrite: false
-          distinct: false
-          replica: false
-          query_comment: ''
-          query_tags: {  }
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        type: mini
-        options:
-          items_per_page: 10
-          offset: 0
-          id: 0
-          total_pages: null
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
-      style:
-        type: default
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-          uses_fields: false
-      row:
-        type: fields
-        options:
-          inline: {  }
-          separator: ''
-          hide_empty: false
-          default_field_elements: true
       fields:
         rendered_entity:
           id: rendered_entity
@@ -89,6 +32,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          plugin_id: rendered_entity
           label: ''
           exclude: false
           alter:
@@ -131,8 +76,6 @@ display:
           empty_zero: false
           hide_alter_empty: true
           view_mode: default
-          entity_type: node
-          plugin_id: rendered_entity
         nid:
           id: nid
           table: node_field_data
@@ -140,6 +83,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -194,9 +140,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: nid
-          plugin_id: field
         field_c_n_alert_page_visibility:
           id: field_c_n_alert_page_visibility
           table: node__field_c_n_alert_page_visibility
@@ -204,6 +147,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: field
           label: ''
           exclude: false
           alter:
@@ -258,21 +202,74 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
+      pager:
+        type: mini
+        options:
+          offset: 0
+          items_per_page: 10
+          total_pages: null
+          id: 0
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty: {  }
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: created
+          exposed: false
+          granularity: second
+      arguments: {  }
       filters:
         status:
-          value: '1'
+          id: status
           table: node_field_data
           field: status
-          plugin_id: boolean
           entity_type: node
           entity_field: status
-          id: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
           expose:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-          group: 1
         type:
           id: type
           table: node_field_data
@@ -280,6 +277,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
           operator: in
           value:
             civictheme_alert: civictheme_alert
@@ -312,9 +312,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
         field_c_n_date_range_value:
           id: field_c_n_date_range_value
           table: node__field_c_n_date_range
@@ -322,6 +319,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: datetime
           operator: '<='
           value:
             min: ''
@@ -344,9 +342,9 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -359,7 +357,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: datetime
         field_c_n_date_range_end_value:
           id: field_c_n_date_range_end_value
           table: node__field_c_n_date_range
@@ -367,6 +364,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
+          plugin_id: datetime
           operator: '>='
           value:
             min: ''
@@ -389,9 +387,9 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -404,29 +402,31 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: datetime
-      sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          order: DESC
-          entity_type: node
-          entity_field: created
-          plugin_id: date
-          relationship: none
-          group_type: group
-          admin_label: ''
-          exposed: false
-          expose:
-            label: ''
-            field_identifier: created
-          granularity: second
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships: {  }
       header: {  }
       footer: {  }
-      empty: {  }
-      relationships: {  }
-      arguments: {  }
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -442,30 +442,28 @@ display:
         - 'config:core.entity_view_display.node.civictheme_event.civictheme_event_card'
         - 'config:core.entity_view_display.node.civictheme_event.civictheme_navigation_card'
         - 'config:core.entity_view_display.node.civictheme_event.civictheme_promo_card'
-        - 'config:core.entity_view_display.node.civictheme_event.civictheme_subject_card'
         - 'config:core.entity_view_display.node.civictheme_event.civictheme_slider_slide'
+        - 'config:core.entity_view_display.node.civictheme_event.civictheme_subject_card'
         - 'config:core.entity_view_display.node.civictheme_event.default'
         - 'config:core.entity_view_display.node.civictheme_event.teaser'
         - 'config:core.entity_view_display.node.civictheme_page.civictheme_navigation_card'
         - 'config:core.entity_view_display.node.civictheme_page.civictheme_promo_card'
-        - 'config:core.entity_view_display.node.civictheme_page.civictheme_subject_card'
         - 'config:core.entity_view_display.node.civictheme_page.civictheme_slider_slide'
+        - 'config:core.entity_view_display.node.civictheme_page.civictheme_subject_card'
         - 'config:core.entity_view_display.node.civictheme_page.default'
         - 'config:field.storage.node.field_c_n_alert_page_visibility'
   rest_export_civictheme_alerts:
-    display_plugin: rest_export
     id: rest_export_civictheme_alerts
     display_title: 'REST export'
+    display_plugin: rest_export
     position: 1
     display_options:
-      display_extenders: {  }
       style:
         type: serializer
         options:
           uses_fields: false
           formats:
             json: json
-      path: api/civictheme-alerts
       row:
         type: data_field
         options:
@@ -479,6 +477,9 @@ display:
             field_c_n_alert_page_visibility:
               alias: visibility
               raw_output: false
+      display_comment: ''
+      display_extenders: {  }
+      path: api/civictheme-alerts
     cache_metadata:
       max-age: -1
       contexts:
@@ -493,13 +494,13 @@ display:
         - 'config:core.entity_view_display.node.civictheme_event.civictheme_event_card'
         - 'config:core.entity_view_display.node.civictheme_event.civictheme_navigation_card'
         - 'config:core.entity_view_display.node.civictheme_event.civictheme_promo_card'
-        - 'config:core.entity_view_display.node.civictheme_event.civictheme_subject_card'
         - 'config:core.entity_view_display.node.civictheme_event.civictheme_slider_slide'
+        - 'config:core.entity_view_display.node.civictheme_event.civictheme_subject_card'
         - 'config:core.entity_view_display.node.civictheme_event.default'
         - 'config:core.entity_view_display.node.civictheme_event.teaser'
         - 'config:core.entity_view_display.node.civictheme_page.civictheme_navigation_card'
         - 'config:core.entity_view_display.node.civictheme_page.civictheme_promo_card'
-        - 'config:core.entity_view_display.node.civictheme_page.civictheme_subject_card'
         - 'config:core.entity_view_display.node.civictheme_page.civictheme_slider_slide'
+        - 'config:core.entity_view_display.node.civictheme_page.civictheme_subject_card'
         - 'config:core.entity_view_display.node.civictheme_page.default'
         - 'config:field.storage.node.field_c_n_alert_page_visibility'

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.civictheme_mobile_navigation
+    - field.storage.block_content.field_c_b_bottom
+id: block_content.civictheme_mobile_navigation.field_c_b_bottom
+field_name: field_c_b_bottom
+entity_type: block_content
+bundle: civictheme_mobile_navigation
+label: 'Bottom block'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:block'
+  handler_settings: {  }
+field_type: entity_reference

@@ -30,13 +30,13 @@ class Helper {
   public static function log($message) {
     if (class_exists('\Drush\Drush')) {
       Drush::getContainer()->get('logger')->log(LogLevel::OK, strip_tags(html_entity_decode($message)));
+      return;
     }
     elseif (PHP_SAPI === 'cli') {
       print strip_tags(html_entity_decode($message)) . PHP_EOL;
+      return;
     }
-    else {
-      \Drupal::messenger()->addMessage($message);
-    }
+    \Drupal::messenger()->addMessage($message);
   }
 
   /**
@@ -66,6 +66,10 @@ class Helper {
    *
    * @return array
    *   Array of created mlids.
+   *
+   * @SuppressWarnings(PHPMD.MissingImport)
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public static function saveMenuTree($menu_name, array $tree, MenuLinkContent $parent_menu_link = NULL) {
     $created_mlids = [];
@@ -172,6 +176,8 @@ class Helper {
    *
    * @return \Drupal\node\Entity\Node
    *   Found node object or NULL if the node was not found.
+   *
+   * @SuppressWarnings(PHPMD.StaticAccess)
    */
   public static function loadNodeByTitle($title, $type = NULL) {
     $query = \Drupal::entityQuery('node');
@@ -195,6 +201,8 @@ class Helper {
    *
    * @param string $title
    *   Node title to set as a homepage.
+   *
+   * @SuppressWarnings(PHPMD.MissingImport)
    */
   public static function setHomepageFromNode($title) {
     $node = static::loadNodeByTitle($title, 'civictheme_page');

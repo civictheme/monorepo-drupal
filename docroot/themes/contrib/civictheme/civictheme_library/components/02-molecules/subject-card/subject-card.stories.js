@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import { demoImage, getSlots, randomUrl } from '../../00-base/base.stories';
 import CivicThemeSubjectCard from './subject-card.twig';
@@ -29,15 +30,13 @@ export const SubjectCard = (knobTab) => {
       src: demoImage(),
       alt: 'Image alt text',
     } : false,
-    modifier_class: text('Additional class', '', generalKnobTab),
+    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
   };
 
-  const html = CivicThemeSubjectCard({
+  return CivicThemeSubjectCard({
     ...generalKnobs,
     ...getSlots([
       'image_over',
     ]),
   });
-
-  return `<div class="story-wrapper-size--small">${html}</div>`;
 };

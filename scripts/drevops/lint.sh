@@ -38,7 +38,9 @@ if [ -z "${DREVOPS_LINT_TYPE##*be*}" ]; then
   # Lint code for syntax errors.
   vendor/bin/parallel-lint --exclude vendor --exclude node_modules -e ${DREVOPS_LINT_PHPLINT_EXTENSIONS// /} ${DREVOPS_LINT_PHPLINT_TARGETS//,/ } && \
   # Lint code for coding standards.
-  vendor/bin/phpcs ${DREVOPS_LINT_PHPCS_TARGETS//,/ } || \
+  vendor/bin/phpcs ${DREVOPS_LINT_PHPCS_TARGETS//,/ } && \
+  # Lint code for mess.
+  vendor/bin/phpmd --exclude node_modules/*,vendor/* ${DREVOPS_LINT_PHPMD_TARGETS//,/ } "${DREVOPS_LINT_PHPMD_FORMAT:-text}" ${DREVOPS_LINT_PHPMD_RULESETS// /} || \
   # Flag to allow lint to fail.
   [ "${DREVOPS_LINT_BE_ALLOW_FAILURE}" -eq 1 ]
 fi

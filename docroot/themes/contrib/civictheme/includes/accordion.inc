@@ -5,24 +5,20 @@
  * CivicTheme Accordion paragraph component.
  */
 
-use Drupal\paragraphs\Entity\Paragraph;
-
 /**
  * Implements template_preprocess_paragraph().
  */
 function civictheme_preprocess_paragraph__civictheme_accordion(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $variables['theme'] = $paragraph->get('field_c_p_theme')->getString();
-  $variables['expand_all'] = (bool) $paragraph->get('field_c_p_expand')->getString();
+  $variables['expand_all'] = civictheme_get_field_value($paragraph, 'field_c_p_expand') ?? FALSE;
   $variables['panels'] = [];
-  foreach ($paragraph->get('field_c_p_panels') as $panel_reference) {
-    $paragraph_id = $panel_reference->getValue()['target_id'];
-    $panel_paragraph = Paragraph::load($paragraph_id);
+  $panels = civictheme_get_field_value($paragraph, 'field_c_p_panels') ?? [];
+  foreach ($panels as $panel) {
     $variables['panels'][] = [
-      'expanded' => (bool) $panel_paragraph->get('field_c_p_expand')->getString(),
-      'title' => $panel_paragraph->get('field_c_p_title')->getString(),
-      'content' => $panel_paragraph->get('field_c_p_content')->view(),
+      'expanded' => civictheme_get_field_value($panel, 'field_c_p_expand'),
+      'title' => civictheme_get_field_value($panel, 'field_c_p_title'),
+      'content' => $panel->field_c_p_content->view(),
     ];
   }
 }

@@ -1,9 +1,15 @@
+// phpcs:ignoreFile
 import {
-  boolean, date, number, radios, text,
+  boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import CivicThemeCardContainer from './card-container.twig';
-import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
-import { demoImage, getSlots } from '../../00-base/base.stories';
+import { EventCard } from '../../02-molecules/event-card/event-card.stories';
+import { PromoCard } from '../../02-molecules/promo-card/promo-card.stories';
+import { NavigationCard } from '../../02-molecules/navigation-card/navigation-card.stories';
+import { PublicationCard } from '../../02-molecules/publication-card/publication-card.stories';
+import { ServiceCard } from '../../02-molecules/service-card/service-card.stories';
+import { SubjectCard } from '../../02-molecules/subject-card/subject-card.stories';
+import { getSlots } from '../../00-base/base.stories';
 
 export default {
   title: 'Organisms/Card Container',
@@ -32,7 +38,7 @@ export const CardContainer = (knobTab) => {
     footer_link_url: text('Footer link URL', 'http://example.com', generalKnobTab),
     column_count: number(
       'Columns',
-      3,
+      4,
       {
         range: true,
         min: 0,
@@ -58,6 +64,21 @@ export const CardContainer = (knobTab) => {
   };
 
   const cardsKnobTab = 'Cards';
+
+  const cardType = radios(
+    'Card type',
+    {
+      'Event cards': 'event-card',
+      'Navigation card': 'navigation-card',
+      'Promo card': 'promo-card',
+      'Publication card': 'publication-card',
+      'Service card': 'service-card',
+      'Subject card': 'subject-card',
+    },
+    'promo-card',
+    cardsKnobTab,
+  );
+
   const cardsCount = number(
     'Number of cards',
     4,
@@ -70,36 +91,29 @@ export const CardContainer = (knobTab) => {
     cardsKnobTab,
   );
 
-  const cardsProps = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      cardsKnobTab,
-    ),
-    date: date('Date', new Date(), cardsKnobTab),
-    title: text('Title', 'Event name which runs across two or three lines', cardsKnobTab),
-    summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', cardsKnobTab),
-    url: text('Link URL', 'http://example.com', cardsKnobTab),
-    image: boolean('With image', true, cardsKnobTab) ? {
-      src: demoImage(),
-      alt: 'Image alt text',
-    } : false,
-    modifier_class: text('Additional class', '', cardsKnobTab),
-  };
-
-  cardsProps.date = new Date(cardsProps.date).toLocaleDateString('en-uk', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
-
   const cards = [];
   for (let itr = 0; itr < cardsCount; itr += 1) {
-    cards.push(PromoCard(cardsProps));
+    const cardNumber = `Card ${itr + 1}`;
+    switch (cardType) {
+      case 'event-card':
+        cards.push(EventCard(cardNumber));
+        break;
+      case 'navigation-card':
+        cards.push(NavigationCard(cardNumber));
+        break;
+      case 'publication-card':
+        cards.push(PublicationCard(cardNumber));
+        break;
+      case 'service-card':
+        cards.push(ServiceCard(cardNumber));
+        break;
+      case 'subject-card':
+        cards.push(SubjectCard(cardNumber));
+        break;
+      case 'promo-card':
+      default:
+        cards.push(PromoCard(cardNumber));
+    }
   }
 
   return CivicThemeCardContainer({

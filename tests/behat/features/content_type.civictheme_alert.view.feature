@@ -1,4 +1,4 @@
-@civictheme @content_type @civictheme_alert
+@civictheme @civictheme_alert
 Feature: CivicTheme alert rendering
 
   Ensure that alerts are shown correctly.
@@ -52,6 +52,7 @@ Feature: CivicTheme alert rendering
     And I should not see the text "[TEST] Test dismissing alert body all pages"
     # Revisit same page - the banner should remain dismissed.
     When I visit "civictheme_page" "[TEST] Test alerts on pages"
+    And wait 3 seconds
     Then I should not see the text "[TEST] Test alert body Homepage only"
     And I should see the text "[TEST] Test alert body all pages"
     And I should not see the text "[TEST] Test dismissing alert body all pages"

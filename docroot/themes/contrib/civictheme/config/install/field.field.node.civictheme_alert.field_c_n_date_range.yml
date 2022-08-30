@@ -11,7 +11,7 @@ field_name: field_c_n_date_range
 entity_type: node
 bundle: civictheme_alert
 label: 'Date range'
-description: ''
+description: 'Start and end date when this message should appear on site.'
 required: true
 translatable: false
 default_value:

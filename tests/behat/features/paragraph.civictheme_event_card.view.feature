@@ -30,7 +30,7 @@ Feature: Tests the Event Card paragraph
       | field_c_p_header_link  | 0: View all events - 1: https://example.com |
       | field_c_p_fill_width   | 0                                           |
     And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Event card container" has "civictheme_event_card" paragraph:
-      | field_c_p_date     | 2021-04-30                            |
+      | field_c_p_date     | 2021-04-29                            |
       | field_c_p_image    | [TEST] CivicTheme Image               |
       | field_c_p_link     | 0: Test link - 1: https://example.com |
       | field_c_p_summary  | Summary text                          |
@@ -48,7 +48,7 @@ Feature: Tests the Event Card paragraph
       | field_c_p_topic    | [TEST] Topic 2                              |
       | field_c_p_location | [TEST] Location 2                           |
     And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Event card container" has "civictheme_event_card" paragraph:
-      | field_c_p_date     | 2022-05-30                                  |
+      | field_c_p_date     | 2022-05-29                                  |
       | field_c_p_image    | [TEST] CivicTheme Image                     |
       | field_c_p_link     | 0: Test link - 1: https://example.com/card2 |
       | field_c_p_summary  | Summary text 3                              |
@@ -57,7 +57,7 @@ Feature: Tests the Event Card paragraph
       | field_c_p_topic    | [TEST] Topic 1                              |
       | field_c_p_location | [TEST] Location 3                           |
     And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Event card container" has "civictheme_event_card" paragraph:
-      | field_c_p_date     | 2023-06-30                                  |
+      | field_c_p_date     | 2023-06-29                                  |
       | field_c_p_image    | [TEST] CivicTheme Image                     |
       | field_c_p_link     | 0: Test link - 1: https://example.com/card3 |
       | field_c_p_summary  | Summary text 3                              |

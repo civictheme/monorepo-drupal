@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 //
 // Shared JS helpers for Storybook stories.
 //
@@ -10,7 +11,8 @@ import Checkbox from '../01-atoms/checkbox/checkbox.twig';
 import Radio from '../01-atoms/radio/radio.twig';
 import FormElement from '../03-organisms/form-element/form-element.twig';
 import Label from '../01-atoms/label/label.twig';
-import DropdownFilter from '../02-molecules/dropdown-filter/dropdown-filter.twig';
+import DropdownFilter
+  from '../02-molecules/dropdown-filter/dropdown-filter.twig';
 
 export const getSlots = (names) => {
   const showSlots = boolean('Show story-slots', false, 'Slots');
@@ -40,6 +42,8 @@ export const randomText = (words) => {
   return lorem.generateWords(words);
 };
 
+export const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
 export const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -52,6 +56,11 @@ export const getRandomBool = (skew) => {
 };
 
 export const randomString = (length) => randomText(length).substring(0, length).trim();
+
+export const randomSentence = (words) => {
+  words = words || getRandomInt(5, 25);
+  return capitalizeFirstLetter(randomText(words));
+};
 
 export const randomUrl = (domain) => {
   domain = domain || 'http://example.com';
@@ -85,7 +94,18 @@ export const randomTags = (count, rand) => {
   return tags;
 };
 
-export const demoImage = () => './assets/images/demo.png';
+export const demoImage = (idx) => {
+  const images = [
+    './assets/images/demo1.jpg',
+    './assets/images/demo2.jpg',
+    './assets/images/demo3.jpg',
+    './assets/images/demo4.jpg',
+  ];
+
+  idx = idx || Math.floor(Math.random() * images.length);
+
+  return images[idx];
+};
 
 export const demoVideos = () => [
   {

@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 /**
  * @file
  * Background component utilities.
@@ -13,11 +14,7 @@ const paths = fs.readdirSync(basePath);
 function getBackgrounds() {
   const urls = {};
   paths.forEach((path) => {
-    const theme = path.match(/[^_]+_background_([^_]+)/)[1];
-    if (theme) {
-      urls[theme] = urls[theme] || {};
-      urls[theme][path] = `${dir.replace('../../../', '')}/${path}`;
-    }
+    urls[path] = `${dir.replace('../../../', '')}/${path}`;
   });
   return urls;
 }

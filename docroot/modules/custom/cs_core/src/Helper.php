@@ -190,6 +190,8 @@ class Helper {
    *
    * @return array
    *   Array of created mlids.
+   *
+   * @SuppressWarnings(PHPMD.MissingImport)
    */
   public static function saveMenuTree($menu_name, array $tree, MenuLinkContent $parent_menu_link = NULL) {
     $created_mlids = [];
@@ -395,6 +397,8 @@ class Helper {
    *   Array of intersected values.
    *
    * @throws \Exception
+   *
+   * @SuppressWarnings(PHPMD.MissingImport)
    */
   public static function arrayIntersectColumn($column) {
     $arrays = func_get_args();
@@ -428,6 +432,8 @@ class Helper {
 
   /**
    * Portable array_column with support for methods.
+   *
+   * @SuppressWarnings(PHPMD.MissingImport)
    */
   public static function arrayColumn(array $array, $key) {
     if (!is_scalar($key)) {
@@ -460,6 +466,8 @@ class Helper {
    *   If item is an object, but does not have a property or a method with
    *   specified name.
    *   If item is an array and does not have an element with specified key.
+   *
+   * @SuppressWarnings(PHPMD.MissingImport)
    */
   protected static function extractProperty($item, $key) {
     if (!is_scalar($key)) {
@@ -968,7 +976,7 @@ class Helper {
 
       $html = $crawler->filter('body')->html();
 
-      $crawler->filter('a')->each(function ($node, $i) use ($partial_file_name, $new_text) {
+      $crawler->filter('a')->each(function ($node) use ($partial_file_name, $new_text) {
         $link_node = $node->getNode(0);
 
         $href = $link_node->getAttribute('href');
@@ -1210,6 +1218,8 @@ class Helper {
    *   An array of $component details.
    * @param bool $use_stub
    *   Whether or not stubs should be created as part of this.
+   *
+   * @SuppressWarnings(PHPMD.MissingImport)
    */
   public static function nodeAttachTileList(Node &$node, array $component, bool $use_stub = FALSE) {
     $defaults = [

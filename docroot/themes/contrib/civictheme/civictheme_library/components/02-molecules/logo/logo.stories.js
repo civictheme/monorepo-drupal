@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import { radios, text } from '@storybook/addon-knobs';
 import { randomUrl } from '../../00-base/base.stories';
 import CivicThemeLogo from './logo.twig';
@@ -20,17 +21,17 @@ export const Logo = (knobTab) => {
     logos: {},
     url: text('Link', randomUrl(), generalKnobTab),
     title: text('Title', 'Logo title', generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: `civictheme-logo-example story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
   };
 
   generalKnobs.logos = {
     mobile: {
-      src: LOGOS.mobile[generalKnobs.theme],
+      src: LOGOS[generalKnobs.theme].mobile,
       alt: 'Logo mobile alt text',
     },
     desktop: {
-      src: LOGOS.desktop[generalKnobs.theme],
+      src: LOGOS[generalKnobs.theme].desktop,
       alt: 'Logo desktop alt text',
     },
   };
@@ -39,5 +40,5 @@ export const Logo = (knobTab) => {
     ...generalKnobs,
   });
 
-  return `<div class="civictheme-logo-example story-wrapper-size--small">${html}</div>`;
+  return `${html}`;
 };

@@ -1,9 +1,10 @@
+// phpcs:ignoreFile
 import {
   boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';
 import {
   demoImage,
-  getSlots,
+  getSlots, randomSentence,
   randomTags,
   randomUrl,
 } from '../../00-base/base.stories';
@@ -33,7 +34,7 @@ export const EventCard = (knobTab) => {
     date: date('Date', new Date(), generalKnobTab),
     title: text('Title', 'Event name which runs across two or three lines', generalKnobTab),
     location: text('Location', 'Suburb, State – 16:00–17:00', generalKnobTab),
-    summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', generalKnobTab),
+    summary: text('Summary', randomSentence(), generalKnobTab),
     url: text('Link URL', randomUrl(), generalKnobTab),
     is_external: boolean('Is external', false, generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
@@ -51,7 +52,7 @@ export const EventCard = (knobTab) => {
       },
       generalKnobTab,
     ), true),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
   };
 
   generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {
@@ -60,7 +61,7 @@ export const EventCard = (knobTab) => {
     day: 'numeric',
   });
 
-  const html = CivicThemeEventCard({
+  return CivicThemeEventCard({
     ...generalKnobs,
     ...getSlots([
       'image_over',
@@ -69,6 +70,4 @@ export const EventCard = (knobTab) => {
       'content_bottom',
     ]),
   });
-
-  return `<div class="story-wrapper-size--small">${html}</div>`;
 };

@@ -1,0 +1,10 @@
+//
+// Background mixins.
+//
+
+@mixin civictheme-background() {
+  background-blend-mode: $civictheme-background-blend-mode;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

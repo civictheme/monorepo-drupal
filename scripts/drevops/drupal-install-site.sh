@@ -139,7 +139,8 @@ install_profile() {
   [ "${site_has_config}" = "1" ] && opts+=(--existing-config)
 
   # Database may exist in non-bootstrappable state - truncuate it.
-  $drush -q sql-drop -y || true
+  $drush sql-drop -y
+  $drush sql-drop -y
   $drush si "${opts[@]}"
   echo "  > Successfully installed a site from profile."
 }
@@ -269,6 +270,7 @@ fi
 
 if [ "${DREVOPS_DRUPAL_INSTALL_USE_MAINTENANCE_MODE}" = "1" ]; then
   $drush state:set system.maintenance_mode 0 --input-format=integer
+  $drush cache:rebuild
   echo "==> Disabled maintenance mode."
 fi
 

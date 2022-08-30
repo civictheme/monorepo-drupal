@@ -1,9 +1,15 @@
+// phpcs:ignoreFile
 import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
 
 import CivicThemePublicationCard from './publication-card.twig';
-import { demoImage, getSlots, randomUrl } from '../../00-base/base.stories';
+import {
+  demoImage,
+  getSlots,
+  randomSentence,
+  randomUrl,
+} from '../../00-base/base.stories';
 
 export default {
   title: 'Molecules/Card/Publication Card',
@@ -35,7 +41,7 @@ export const PublicationCard = (knobTab) => {
       generalKnobTab,
     ),
     title: text('Title', 'Publication or whitepaper main title.', generalKnobTab),
-    summary: text('Summary', 'Publication summary', generalKnobTab),
+    summary: text('Summary', randomSentence(), generalKnobTab),
     url: text('URL', randomUrl(), generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
       src: demoImage(),
@@ -45,7 +51,7 @@ export const PublicationCard = (knobTab) => {
       url: 'https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.doc',
       text: 'Filename.pdf (175.96KB)',
     } : null,
-    modifier_class: text('Additional class', '', generalKnobTab),
+    modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
   };
 
   const iconKnobTab = 'Icon';
@@ -55,7 +61,7 @@ export const PublicationCard = (knobTab) => {
     icon: withIcon ? select('Icon', icons, 'business_calendar', iconKnobTab) : null,
   };
 
-  const html = CivicThemePublicationCard({
+  return CivicThemePublicationCard({
     ...generalKnobs,
     ...iconKnobs,
     ...getSlots([
@@ -65,6 +71,4 @@ export const PublicationCard = (knobTab) => {
       'content_bottom',
     ]),
   });
-
-  return `<div class="story-wrapper-size--medium">${html}</div>`;
 };

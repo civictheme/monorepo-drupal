@@ -6,43 +6,40 @@
  */
 
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Render\Element;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\views\Views;
-use Drupal\Core\Template\Attribute;
-
-/**
- * Defines limited limit type.
- */
-define('CIVICTHEME_LISTINGS_LIMIT_TYPE_LIMITED', 'limited');
-
-/**
- * Defines unlimited limit type.
- */
-define('CIVICTHEME_LISTINGS_LIMIT_TYPE_UNLIMITED', 'unlimited');
-
-/**
- * Defines fallback limit of Full listings items if pager is disabled.
- */
-define('CIVICTHEME_LISTINGS_FULL_FALLBACK_LIMIT', 100);
 
 /**
  * Implements template_preprocess_paragraph().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  // Get the parent bundle.
-  $variables['view_as'] = $paragraph->get('field_c_p_view_as')->getString();
-  $variables['limit'] = $paragraph->field_c_p_listing_limit->value;
-  $variables['attributes']['id'] = Html::getUniqueId('listing-' . $paragraph->id());
-  if (is_array($variables['attributes'])) {
-    $variables['modifier_class'] = implode(' ', $variables['attributes']['class']);
-    unset($variables['attributes']['class']);
-    $variables['attributes'] = new Attribute($variables['attributes']);
+
+  // Get the listing element.
+  $variables['listing'] = _civictheme_listing_element($paragraph);
+
+  $attributes = [];
+  $attributes['id'] = Html::getUniqueId('listing-' . $paragraph->id());
+  if (!empty($variables['listing']['view_id'])) {
+    $attributes['data-view'] = Html::cleanCssIdentifier($variables['listing']['#view_name']);
+    $attributes['data-view-display'] = Html::cleanCssIdentifier($variables['listing']['#display_name']);
   }
-  $variables['listing'] = _civictheme_listing_element($paragraph, $variables);
+
+  $variables['attributes'] = $variables['attributes'] ?? [];
+  $variables['modifier_class'] = !empty($variables['attributes']['class']) ? implode(' ', $variables['attributes']['class']) : NULL;
+  unset($variables['attributes']['class']);
+  $variables['attributes'] = $variables['attributes'] + $attributes;
+
+  // @todo Review why we need these variables.
+  $variables['view_as'] = civictheme_get_field_value($paragraph, 'field_c_p_listing_item_view_as');
+  $variables['limit'] = civictheme_get_field_value($paragraph, 'field_c_p_listing_limit');
+
+  // Propagate listing theme settings to the view filters.
+  // @todo Possibly move these into _civictheme_listing_element().
   $form_elements = Element::children($variables['listing']['view']['#view']->exposed_widgets);
   foreach ($form_elements as $form_element) {
     $variables['listing']['view']['#view']->exposed_widgets[$form_element]['#civictheme_theme'] = $variables['theme'];
@@ -52,143 +49,187 @@ function civictheme_preprocess_paragraph__civictheme_listing(&$variables) {
 /**
  * Render Listing paragraph.
  *
- * Please, do not optimise conditions in this function - the code is organised
- * this way on purpose to ease readability and debugging.
- *
  * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   The paragraph containing view conditions.
+ *   The paragraph containing Listing component configurations.
  *
  * @return array
  *   The render array for view and exposed form.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_listing_element(Paragraph $paragraph) {
-  $view_name = _civictheme_listing_get_view_name('civictheme_listing');
+  $element = NULL;
 
-  $view_display = 'civictheme_listing_block';
+  $info = _civictheme_listing_get_view_info($paragraph);
 
-  $view = Views::getView($view_name);
-  if ($view) {
-    $view->setDisplay($view_display);
+  $view = Views::getView($info['view_name']);
+  if (!$view) {
+    \Drupal::logger('civictheme')->error(sprintf('Unable to set Listing view "%s".', $info['view_name']));
 
-    _civictheme_listing_alter_view($paragraph, $view);
-    $view->civictheme_listing_entity = $paragraph;
-
-    $element['view'] = $view->executeDisplay($view_display);
+    // Do not render this element if the display does not exist.
+    return NULL;
   }
+
+  if (!$view->setDisplay($info['display_name'])) {
+    \Drupal::logger('civictheme')->error(sprintf('Unable to set Listing view display "%s" for view "%s".', $info['display_name'], $info['view_name']));
+
+    // Do not render this element if the display does not exist.
+    return NULL;
+  }
+
+  // Add config entity to provide access to fields in process hooks.
+  $view->civictheme_listing_entity = $paragraph;
+
+  // Adjust view based on configuration provided in 'civictheme_listing_entity'
+  // field.
+  _civictheme_listing_view_alter($view);
+
+  $element['#view_name'] = $info['view_name'];
+  $element['#display_name'] = $info['display_name'];
+
+  // Render view.
+  $element['view'] = $view->executeDisplay($info['display_name']);
 
   return $element;
 }
 
 /**
- * Get the civictheme listing view name.
+ * Get the Listing view name and display name.
+ *
+ * @param object|null $paragraph
+ *   Configuration paragraph object.
+ *
+ * @return array|null
+ *   Array of view information with 'view_name' and 'display_name' filled in or
+ *   NULL if info was not correctly provided (during alteration, for example).
+ *
+ * @see hook_civictheme_listing_view_info_alter()
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function _civictheme_listing_get_view_name($view_name) {
-  // Call modules/theme that implement the hook, and let them change the view.
-  \Drupal::moduleHandler()->alter('civictheme_listing_view_name', $view_name);
-  \Drupal::service('theme.manager')->alter('civictheme_listing_view_name', $view_name);
-  return $view_name;
+function _civictheme_listing_get_view_info($paragraph) {
+  $info = [
+    'view_name' => CIVICTHEME_LISTING_DEFAULT_VIEW_NAME,
+    'display_name' => CIVICTHEME_LISTING_DEFAULT_VIEW_DISPLAY_NAME,
+  ];
+
+  if (!empty($paragraph)) {
+    $info_from_field = civictheme_get_field_value($paragraph, 'field_c_p_listing_type');
+    $info_from_field = _civictheme_listing_parse_view_info($info_from_field);
+    $info = !empty($info_from_field) ? $info_from_field : $info;
+
+    \Drupal::moduleHandler()->alter('civictheme_listing_view_info', $info, $paragraph);
+    \Drupal::service('theme.manager')->alter('civictheme_listing_view_info', $info, $paragraph);
+  }
+
+  return $info;
 }
 
 /**
- * Loads and alters view for civictheme listing.
+ * Loads and alters Listing view.
+ *
+ * Please, do not optimise conditions in this function - the code is organised
+ * this way on purpose to ease readability and debugging.
+ *
+ * @param object $view
+ *   View object to later. Note that the view object already has
+ *   'civictheme_listing_entity' field populated.
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
-function _civictheme_listing_alter_view($paragraph, &$view) {
-  $fallback_limit = CIVICTHEME_LISTINGS_FULL_FALLBACK_LIMIT;
-  $title = $paragraph->field_c_p_title->value;
-  $content_type = $paragraph->field_c_p_content_type->value;
-  $topics = _civictheme_get_entity_field_values($paragraph, 'field_c_p_topics', 'target_id');
-  $view_mode = $paragraph->field_c_p_view_as->value;
-  $limit_type = $paragraph->field_c_p_limit_type->value;
-  $limit = (int) $paragraph->field_c_p_listing_limit->value;
-  $items_per_page = (int) $paragraph->field_c_p_listing_limit->value;
-  $show_filters = (int) $paragraph->field_c_p_show_filters->value;
+function _civictheme_listing_view_alter($view) {
+  if (!property_exists($view, 'civictheme_listing_entity')) {
+    throw new \Exception('Listing view object is missing required property "civictheme_listing_entity".');
+  }
 
-  if ($view) {
-    $args = [];
+  $listing_title = civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_title');
+  $listing_content_type = civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_content_type');
+  $listing_topics = civictheme_get_entity_field_key_values($view->civictheme_listing_entity, 'field_c_p_listing_topics', 'target_id');
+  $listing_site_sections = civictheme_get_entity_field_key_values($view->civictheme_listing_entity, 'field_c_p_listing_site_sections', 'target_id');
+  $listing_item_view_as = civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_item_view_as');
+  $listing_limit_type = civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_limit_type');
+  $listing_limit = civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_limit');
+  $listing_items_per_page = civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_limit');
+  $listing_show_filters = civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_show_filters');
 
-    // First view argument - content types.
-    $args[] = !empty($content_type) ? $content_type : 'all';
+  $view_args = [];
+  // First view argument - content types.
+  $view_args[] = !empty($listing_content_type) ? $listing_content_type : 'all';
+  // Second view argument - Topics.
+  $view_args[] = !empty($listing_topics) ? implode('+', $listing_topics) : 'all';
+  // Third view argument - Site Sections.
+  $view_args[] = !empty($listing_site_sections) ? implode('+', $listing_site_sections) : 'all';
+  $view->setArguments($view_args);
 
-    // Second view argument - Topics.
-    if (!empty($topics)) {
-      $args[] = implode('+', $topics);
+  // Title.
+  $view->setTitle($listing_title);
+
+  // Items view mode.
+  if (!empty($listing_item_view_as)) {
+    $view_mode_options = $view->display_handler->getOption('row');
+    $view_mode_options['options']['view_mode'] = $listing_item_view_as;
+    $view->display_handler->setOption('row', $view_mode_options);
+  }
+
+  // Pager.
+  $view_header = $view->display_handler->getOption('header');
+
+  // Show exact number of items.
+  if ($listing_limit_type == CIVICTHEME_LISTING_LIMIT_TYPE_LIMITED) {
+    // Prevent endless lists by using a fallback limit if a limit is 0.
+    $listing_limit = $listing_limit > 0 ? $listing_limit : CIVICTHEME_LISTING_LIMIT_FALLBACK;
+
+    // Changing pager type to 'some' and setting 'items_per_page'.
+    $view_pager = $view->display_handler->getOption('pager');
+    $view_pager['type'] = 'some';
+    $view_pager['options']['items_per_page'] = $listing_limit;
+    $view->display_handler->setOption('pager', $view_pager);
+
+    if ($listing_show_filters && isset($view_header['result']['content'])) {
+      $view_header['result']['content'] = 'Showing @end of @total';
     }
     else {
-      $args[] = 'all';
+      $view_header = [];
     }
-
-    // Title.
-    $view->setTitle($title);
-    $view->setArguments($args);
-
-    // View mode.
-    if ($view_mode) {
-      $view_mode_options = $view->display_handler->getOption('row');
-      $view_mode_options['options']['view_mode'] = $view_mode;
-      $view->display_handler->setOption('row', $view_mode_options);
+    $view->display_handler->setOption('header', $view_header);
+  }
+  elseif ($listing_limit_type == CIVICTHEME_LISTING_LIMIT_TYPE_UNLIMITED) {
+    if ($listing_items_per_page == 0) {
+      // Show pager and default number of items.
+      // This is default view display state, so no change is required.
+      // Do not optimise - left empty for clarity.
     }
-
-    // Pager.
-    $pager = NULL;
-    $header = $view->display_handler->getOption('header');
-    // Do not show pager, but show exact number of items.
-    if ($limit_type == CIVICTHEME_LISTINGS_LIMIT_TYPE_LIMITED) {
-      // Prevent endless lists by using a fallback limit if a limit is 0.
-      $limit = $limit > 0 ? $limit : $fallback_limit;
-      // Changing pager type to 'some' and setting 'items_per_page'.
-      $pager = $view->display_handler->getOption('pager');
-      $pager['type'] = 'some';
-      $pager['options']['items_per_page'] = $limit;
-      $view->display_handler->setOption('pager', $pager);
-
-      if ($show_filters && isset($header['result']['content'])) {
-        $header['result']['content'] = 'Showing @end of @total';
-        $view->display_handler->setOption('header', $header);
-      }
-      else {
-        $view->display_handler->setOption('header', []);
-      }
-    }
-    elseif ($limit_type == CIVICTHEME_LISTINGS_LIMIT_TYPE_UNLIMITED) {
-      if ($items_per_page == 0) {
-        // Show pager and default number of items.
-        // This is default view display state, so no change is required.
-        // Do not optimise - left empty for clarity.
-      }
-      else {
-        // Show pager with specified number of items per page.
-        // Re-using existing pager.
-        $view->setItemsPerPage($items_per_page);
-      }
+    else {
+      // Show pager with specified number of items per page.
+      // Re-using existing pager.
+      $view->setItemsPerPage($listing_items_per_page);
     }
   }
-
 }
 
 /**
- * Get raw multivalued field values from the entity.
+ * Parse view info string into array.
  *
- * @param \Drupal\Core\Entity\EntityInterface $entity
- *   The entity to get the values from.
- * @param string $field_name
- *   The field name.
- * @param string $value_key
- *   (optional) The value key. Default to 'value'.
+ * @param string $info_string
+ *   Info string with view name and view display name separated by '__'.
  *
- * @return array
- *   Array of field values. If field does not exist or incorrect $value_key
- *   provided, empty array will be returned.
+ * @return array|null
+ *   View info array to alter passed by reference or NULL if incorrect string
+ *   is provided. Keys are:
+ *   - view_name: (string) A view machine name.
+ *   - display_name: (string) A view display machine name.
  */
-function _civictheme_get_entity_field_values(EntityInterface $entity, $field_name, $value_key = 'value') {
-  $values = [];
-
-  if ($entity->hasField($field_name)) {
-    foreach ($entity->get($field_name)->getValue() as $value) {
-      if (isset($value[$value_key])) {
-        $values[] = $value[$value_key];
-      }
-    }
+function _civictheme_listing_parse_view_info($info_string) {
+  if (!is_string($info_string) || empty($info_string)) {
+    return NULL;
   }
 
-  return $values;
+  $parts = explode('__', $info_string);
+
+  return [
+    'view_name' => $parts[0],
+    'display_name' => $parts[1] ?? 'default',
+  ];
 }

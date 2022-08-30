@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 /**
  * @file
  * Collapsible component.
@@ -58,7 +59,7 @@ function CivicCollapsible(el) {
     const animate = (evt.detail && evt.detail.animate);
     const isCloseAllEvent = (evt.detail && evt.detail.closeAll);
     if ((isCloseAllEvent && this.isGroupsEnabled) || !isCloseAllEvent) {
-      this.collapse(animate);
+      this.collapse(animate, evt);
     }
   });
 
@@ -187,7 +188,9 @@ CivicCollapsible.prototype.focusoutEvent = function (e) {
  * React on pressed keys.
  */
 CivicCollapsible.prototype.keydownEvent = function (e) {
-  if (!/(32|27|38|40)/.test(e.which) || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select|object/i.test(e.target.tagName)) return;
+  if (!/(32|27|38|40)/.test(e.which) || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select|object/i.test(e.target.tagName)) {
+    return;
+  }
 
   e.stopPropagation();
   e.preventDefault();
@@ -247,11 +250,17 @@ CivicCollapsible.prototype.collapseAllGroups = function () {
  * @param {boolean} animate
  *   Flag to collapse with animation.
  */
-CivicCollapsible.prototype.collapse = function (animate) {
+CivicCollapsible.prototype.collapse = function (animate, evt) {
   const t = this;
 
   if (this.isCollapsed(t.el)) {
     return;
+  }
+
+  if (evt && evt.target) {
+    if (evt.target !== t.el) {
+      return;
+    }
   }
 
   // Helper to set attributes after collapsing.
@@ -460,7 +469,9 @@ CivicCollapsible.prototype.isFocusable = function (element) {
 
   // Check if an element itself is visible.
   function elIsVisible(el) {
-    if (!(el instanceof Element)) throw Error('DomUtil: el is not an element.');
+    if (!(el instanceof Element)) {
+      throw Error('DomUtil: el is not an element.');
+    }
 
     const style = getComputedStyle(el);
 

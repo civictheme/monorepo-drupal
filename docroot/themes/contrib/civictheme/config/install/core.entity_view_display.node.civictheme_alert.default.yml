@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.civictheme_alert.body
     - field.field.node.civictheme_alert.field_c_n_alert_page_visibility
     - field.field.node.civictheme_alert.field_c_n_alert_type
     - field.field.node.civictheme_alert.field_c_n_body
@@ -19,36 +18,35 @@ bundle: civictheme_alert
 mode: default
 content:
   field_c_n_alert_page_visibility:
-    weight: 3
+    type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 3
     region: content
   field_c_n_alert_type:
-    weight: 0
+    type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 0
     region: content
   field_c_n_body:
-    weight: 1
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 1
     region: content
   field_c_n_date_range:
-    weight: 2
+    type: daterange_default
     label: hidden
     settings:
-      separator: '-'
-      format_type: medium
       timezone_override: ''
+      format_type: medium
+      separator: '-'
     third_party_settings: {  }
-    type: daterange_default
+    weight: 2
     region: content
 hidden:
-  body: true
   links: true

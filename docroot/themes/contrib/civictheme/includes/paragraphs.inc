@@ -6,7 +6,6 @@
  */
 
 use Drupal\Component\Utility\Html;
-use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
@@ -36,13 +35,12 @@ function _civictheme_preprocess_paragraph__civictheme_card(&$variables) {
   // Cards that are generated via reference are handled separately.
   if ($paragraph->hasField('field_c_p_reference')) {
     _civictheme_preprocess_paragraph__reference_card($variables);
+    return;
   }
-  else {
-    // @todo documentation for the field api ie they must have certain fields in
-    // card fielded paragraph types.
-    _civictheme_preprocess_paragraph__card__icon($variables);
-    _civictheme_preprocess_paragraph__card__image($variables);
-  }
+  // @todo documentation for the field api ie they must have certain fields in
+  // card fielded paragraph types.
+  _civictheme_preprocess_paragraph__card__icon($variables);
+  _civictheme_preprocess_paragraph__card__image($variables);
 
 }
 
@@ -50,21 +48,30 @@ function _civictheme_preprocess_paragraph__civictheme_card(&$variables) {
  * Global paragraph preprocessor calls.
  */
 function _civictheme_preprocess_paragraph(&$variables) {
+  // Set theme for all paragraphs.
+  $variables['theme'] = civictheme_get_field_theme_value($variables['paragraph']);
+
+  // Set content for all paragraphs.
+  if (!empty($variables['content']['field_c_p_content'])) {
+    $variables['content'] = \Drupal::service('renderer')->render($variables['content']['field_c_p_content']);
+  }
+
   // Generic Drupal classes from paragraph template files.
   _civictheme_preprocess_paragraph_classes($variables);
 
   // Global paragraph fields.
-  _civictheme_preprocess_paragraph__field__theme($variables);
   _civictheme_preprocess_paragraph__field__title($variables);
   _civictheme_preprocess_paragraph__field__summary($variables);
   _civictheme_preprocess_paragraph__field__space($variables);
   _civictheme_preprocess_paragraph__field__background($variables);
   _civictheme_preprocess_paragraph__civictheme_card($variables);
-
+  _civictheme_preprocess_paragraph__field__webform($variables);
 }
 
 /**
  * Pre-process drupal generic paragraph classes.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph_classes(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -81,8 +88,8 @@ function _civictheme_preprocess_paragraph_classes(&$variables) {
 function _civictheme_preprocess_paragraph__field__summary(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_summary') && !$paragraph->get('field_c_p_summary')->isEmpty()) {
-    $variables['summary'] = text_summary($paragraph->get('field_c_p_summary')->getString(), NULL, 100);
+  if (civictheme_field_has_value($paragraph, 'field_c_p_summary')) {
+    $variables['summary'] = text_summary(civictheme_get_field_value($paragraph, 'field_c_p_summary'), NULL, 100);
   }
 }
 
@@ -92,8 +99,8 @@ function _civictheme_preprocess_paragraph__field__summary(&$variables) {
 function _civictheme_preprocess_paragraph__field__title(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_title') && !$paragraph->get('field_c_p_title')->isEmpty()) {
-    $variables['title'] = $paragraph->get('field_c_p_title')->getString();
+  if (civictheme_field_has_value($paragraph, 'field_c_p_title')) {
+    $variables['title'] = civictheme_get_field_value($paragraph, 'field_c_p_title');
   }
 }
 
@@ -103,8 +110,8 @@ function _civictheme_preprocess_paragraph__field__title(&$variables) {
 function _civictheme_preprocess_paragraph__field__space(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_space') && !$paragraph->get('field_c_p_space')->isEmpty()) {
-    $variables['vertical_space'] = $paragraph->get('field_c_p_space')->getString();
+  if (civictheme_field_has_value($paragraph, 'field_c_p_space')) {
+    $variables['vertical_space'] = civictheme_get_field_value($paragraph, 'field_c_p_space');
   }
 }
 
@@ -114,10 +121,7 @@ function _civictheme_preprocess_paragraph__field__space(&$variables) {
 function _civictheme_preprocess_paragraph__field__background(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_background')
-    && !$paragraph->get('field_c_p_background')->isEmpty()
-    && $paragraph->field_c_p_background->value != FALSE
-  ) {
+  if (civictheme_get_field_value($paragraph, 'field_c_p_background')) {
     $component_name = str_replace('_', '-', $paragraph->getType());
     if (!array_key_exists('modifier_class', $variables)) {
       $variables['modifier_class'] = '';
@@ -127,30 +131,14 @@ function _civictheme_preprocess_paragraph__field__background(&$variables) {
 }
 
 /**
- * Pre-process Theme fields for CivicTheme paragraphs.
- */
-function _civictheme_preprocess_paragraph__field__theme(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  if ($theme = _civictheme_paragraph_get_theme($paragraph)) {
-    $variables['theme'] = $theme;
-  }
-}
-
-/**
  * Pre-process icon for CivicTheme cards.
  */
 function _civictheme_preprocess_paragraph__card__icon(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_icon') && !$paragraph->get('field_c_p_icon')->isEmpty()) {
-    $target = $paragraph->get('field_c_p_icon')->first()->get('entity')->getTarget();
-    if ($target) {
-      $media = $target->getValue();
-      if ($image = civictheme_media_image_process_variables($media)) {
-        $variables['image'] = $image;
-      }
-    }
+  $media = civictheme_get_field_value($paragraph, 'field_c_p_icon', TRUE);
+  if ($media) {
+    $variables['image'] = civictheme_media_image_process_variables($media);
   }
 }
 
@@ -160,12 +148,9 @@ function _civictheme_preprocess_paragraph__card__icon(&$variables) {
 function _civictheme_preprocess_paragraph__card__image(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if ($paragraph->hasField('field_c_p_image') && !$paragraph->get('field_c_p_image')->isEmpty()) {
-    $target = $paragraph->get('field_c_p_image')->first()->get('entity')->getTarget();
-    if ($target) {
-      $media = $target->getValue();
-      $variables['image'] = civictheme_media_image_process_variables($media);
-    }
+  $media = civictheme_get_field_value($paragraph, 'field_c_p_image', TRUE);
+  if ($media) {
+    $variables['image'] = civictheme_media_image_process_variables($media);
   }
 }
 
@@ -201,29 +186,11 @@ function _civictheme_preprocess_paragraph__reference_card(&$variables) {
 }
 
 /**
- * Get theme name from Paragraph Entity.
- *
- * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   Paragraph Entity.
+ * Preprocessing reference webfrom paragraphs.
  */
-function _civictheme_paragraph_get_theme(Paragraph $paragraph) {
-  if ($paragraph->hasField('field_c_p_theme') && !$paragraph->get('field_c_p_theme')->isEmpty()) {
-    return $paragraph->get('field_c_p_theme')->getString();
+function _civictheme_preprocess_paragraph__field__webform(&$variables) {
+  $paragraph = $variables['paragraph'];
+  if (civictheme_field_has_value($paragraph, 'field_c_p_webform')) {
+    $variables['reference_webform'] = $paragraph->get('field_c_p_webform')->view();
   }
-  return FALSE;
-}
-
-/**
- * Check if paragraph has a non-empty field.
- *
- * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   The paragraph to check.
- * @param string $field_name
- *   Field name to check.
- *
- * @return bool
- *   TRUE if the paragraph is not empty and has a non-empty specified field.
- */
-function _civictheme_paragraph_field_has_value(Paragraph $paragraph, $field_name) {
-  return $paragraph && $paragraph->hasField($field_name) && !$paragraph->get($field_name)->isEmpty();
 }

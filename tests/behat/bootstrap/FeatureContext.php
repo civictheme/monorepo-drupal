@@ -9,6 +9,7 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Exception\ElementNotFoundException;
 use DrevOps\BehatSteps\ContentTrait;
+use DrevOps\BehatSteps\DateTrait;
 use DrevOps\BehatSteps\ElementTrait;
 use DrevOps\BehatSteps\FieldTrait;
 use DrevOps\BehatSteps\FileTrait;
@@ -21,6 +22,7 @@ use DrevOps\BehatSteps\ParagraphsTrait;
 use DrevOps\BehatSteps\PathTrait;
 use DrevOps\BehatSteps\SelectTrait;
 use DrevOps\BehatSteps\TaxonomyTrait;
+use DrevOps\BehatSteps\TestmodeTrait;
 use DrevOps\BehatSteps\VisibilityTrait;
 use DrevOps\BehatSteps\WaitTrait;
 use DrevOps\BehatSteps\WatchdogTrait;
@@ -33,6 +35,7 @@ use Drupal\DrupalExtension\Context\DrupalContext;
 class FeatureContext extends DrupalContext {
 
   use ContentTrait;
+  use DateTrait;
   use ElementTrait;
   use FieldTrait;
   use FileTrait;
@@ -45,12 +48,15 @@ class FeatureContext extends DrupalContext {
   use ParagraphsTrait;
   use SelectTrait;
   use TaxonomyTrait;
+  use TestmodeTrait;
   use WatchdogTrait;
   use WaitTrait;
   use WysiwygTrait;
   use VisibilityTrait;
 
   /**
+   * Assert that content is present in an iframe.
+   *
    * @Then I see content in iframe with id :id
    */
   public function iSeeContentInIframe($id) {
@@ -76,37 +82,16 @@ class FeatureContext extends DrupalContext {
   }
 
   /**
-   * Navigate to delete page with specified type and title.
-   *
-   * @code
-   * When I delete "article" "Test article"
-   * @endcode
-   *
-   * @When I delete :type :title
-   */
-  public function contentDeletePageWithTitle($type, $title) {
-    $nids = $this->contentNodeLoadMultiple($type, [
-      'title' => $title,
-    ]);
-
-    if (empty($nids)) {
-      throw new \RuntimeException(sprintf('Unable to find %s page "%s"', $type, $title));
-    }
-
-    $nid = current($nids);
-    $path = $this->locatePath('/node/' . $nid) . '/delete';
-    print $path;
-    $this->getSession()->visit($path);
-  }
-
-  /**
    * Selects a filter chip.
    *
    * @When I select the filter chip :label
    */
-  public function assertSelectFilterChip($label) {
+  public function iSelectFilterChip($label) {
     $element = $this->getSession()->getPage();
-    $filter_chip = $element->find('named', ['radio', $this->getSession()->getSelectorsHandler()->xpathLiteral($label)]);
+    $filter_chip = $element->find('named', [
+      'radio',
+      $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
+    ]);
     if ($filter_chip === NULL) {
       throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s', $label, $this->getSession()->getCurrentUrl()));
     }
@@ -121,7 +106,10 @@ class FeatureContext extends DrupalContext {
    */
   public function assertCheckFilterChip($label) {
     $element = $this->getSession()->getPage();
-    $filter_chip = $element->find('named', ['checkbox', $this->getSession()->getSelectorsHandler()->xpathLiteral($label)]);
+    $filter_chip = $element->find('named', [
+      'checkbox',
+      $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
+    ]);
 
     if ($filter_chip === NULL) {
       throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s', $label, $this->getSession()->getCurrentUrl()));
@@ -142,7 +130,10 @@ class FeatureContext extends DrupalContext {
    */
   public function assertUncheckFilterChip($label) {
     $element = $this->getSession()->getPage();
-    $filter_chip = $element->find('named', ['checkbox', $this->getSession()->getSelectorsHandler()->xpathLiteral($label)]);
+    $filter_chip = $element->find('named', [
+      'checkbox',
+      $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
+    ]);
 
     if ($filter_chip === NULL) {
       throw new \Exception(sprintf('The filter chip with "%s" was not found on the page %s', $label, $this->getSession()->getCurrentUrl()));
@@ -209,6 +200,18 @@ class FeatureContext extends DrupalContext {
 
     // Attach paragraph from stub to node.
     $this->paragraphsAttachFromStubToEntity($entity, $paragraph_node_field_name, $paragraph_type, $stub);
+  }
+
+  /**
+   * Scroll to an element with ID.
+   *
+   * @Then /^I scroll to an? element with id "([^"]*)"$/
+   */
+  public function iScrollToElementWithId($id) {
+    $this->getSession()->executeScript("
+      var element = document.getElementById('" . $id . "');
+      element.scrollIntoView( true );
+    ");
   }
 
 }

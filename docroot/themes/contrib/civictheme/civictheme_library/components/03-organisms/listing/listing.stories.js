@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 import {
   boolean, radios, number, text, date,
 } from '@storybook/addon-knobs';
@@ -42,7 +43,9 @@ export const Listing = (knobTab) => {
     theme,
     title: text('Title', '', generalKnobTab),
   };
-  const showExposed = boolean('Show filters', true, generalKnobTab);
+
+  const showFilters = boolean('Show filters', true, generalKnobTab);
+
   const filterType = radios(
     'Filter type',
     {
@@ -52,8 +55,9 @@ export const Listing = (knobTab) => {
     'large',
     generalKnobTab,
   );
+
   // Show cards as promo card or navigation card.
-  const viewMode = radios(
+  const viewItemAs = radios(
     'Card type',
     {
       'Promo card': 'promo',
@@ -62,6 +66,7 @@ export const Listing = (knobTab) => {
     'promo',
     generalKnobTab,
   );
+
   const itemsPerPage = number(
     'Items per page',
     6,
@@ -73,6 +78,7 @@ export const Listing = (knobTab) => {
     },
     generalKnobTab,
   );
+
   const resultNumber = number(
     'Number of results',
     6,
@@ -92,19 +98,11 @@ export const Listing = (knobTab) => {
     generalKnobs.empty = '<p>No results found</p>';
   }
 
-  const withLink = boolean('With link', false, generalKnobTab);
-  const withReadMore = boolean('With read more', false, generalKnobTab);
-  if (withLink) {
-    generalKnobs.link = {
-      text: 'View more events',
-      url: 'http://www.example.com',
-      title: 'View more events',
-      is_new_window: false,
-      is_external: false,
-    };
-  }
-  if (withReadMore) {
-    generalKnobs.read_more = {
+  const withLinkAbove = boolean('With link above', false, generalKnobTab);
+  const withLinkBelow = boolean('With link below', false, generalKnobTab);
+
+  if (withLinkAbove) {
+    generalKnobs.link_above = {
       text: 'View more results',
       url: 'http://www.example.com',
       title: 'View more results',
@@ -112,10 +110,21 @@ export const Listing = (knobTab) => {
       is_external: false,
     };
   }
-  let filterNumber;
-  if (showExposed) {
-    filterNumber = number(
-      'Number of extra filters',
+
+  if (withLinkBelow) {
+    generalKnobs.link_below = {
+      text: 'View more results',
+      url: 'http://www.example.com',
+      title: 'View more results',
+      is_new_window: false,
+      is_external: false,
+    };
+  }
+
+  let filterCount;
+  if (showFilters) {
+    filterCount = number(
+      'Number of filters',
       3,
       {
         range: true,
@@ -145,8 +154,8 @@ export const Listing = (knobTab) => {
   generalKnobs.vertical_space = verticalSpace;
   generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
 
-  // Build exposed filters.
-  if (showExposed) {
+  // Build filters.
+  if (showFilters) {
     let count = 0;
     const filters = [];
     const basicFilterTitles = [
@@ -154,8 +163,9 @@ export const Listing = (knobTab) => {
       'Events',
       'Highlights',
     ];
-    if (filterNumber > 0) {
-      for (let i = 0; i < filterNumber; i++) {
+
+    if (filterCount > 0) {
+      for (let i = 0; i < filterCount; i++) {
         if (filterType === 'large') {
           const inputType = ['radio', 'checkbox'][Math.round(Math.random() * 2)];
           filters.push(dropDownFilter(inputType, 4, theme, true, count++));
@@ -166,8 +176,9 @@ export const Listing = (knobTab) => {
         }
       }
     }
+
     if (filterType === 'large') {
-      generalKnobs.exposed = CivicThemeLargeFilter({
+      generalKnobs.filters = CivicThemeLargeFilter({
         theme,
         filter_title: 'Filter search results by:',
         tags_title: 'Selected filters:',
@@ -176,7 +187,7 @@ export const Listing = (knobTab) => {
         with_background: withBackground,
       });
     } else {
-      generalKnobs.exposed = CivicThemeBasicFilter({
+      generalKnobs.filters = CivicThemeBasicFilter({
         theme,
         is_multiple: false,
         items: filters,
@@ -255,7 +266,7 @@ export const Listing = (knobTab) => {
     });
     const cards = [];
     const cardsCount = itemsPerPage > resultNumber ? resultNumber : itemsPerPage;
-    const Card = viewMode === 'promo' ? PromoCard : NavigationCard;
+    const Card = viewItemAs === 'promo' ? PromoCard : NavigationCard;
     for (let itr = 0; itr < cardsCount; itr += 1) {
       cards.push(Card(cardsProps));
     }
@@ -263,7 +274,7 @@ export const Listing = (knobTab) => {
     generalKnobs.rows = CivicThemeCardContainer({
       theme,
       cards,
-      column_count: viewMode === 'promo' ? 3 : 2,
+      column_count: viewItemAs === 'promo' ? 3 : 2,
       fill_width: false,
       with_background: withBackground,
     });

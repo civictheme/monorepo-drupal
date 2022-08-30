@@ -87,26 +87,11 @@ trait CivicThemeTestHelperTrait {
    */
   protected function prepareMock($class, array $methodsMap = [], array $args = []) {
     $methods = array_keys($methodsMap);
-
     $reflectionClass = new \ReflectionClass($class);
 
-    if ($reflectionClass->isAbstract()) {
-      $mock = $this->getMockForAbstractClass(
+    $mock = $reflectionClass->isAbstract() ? $this->getMockForAbstractClass(
         $class, $args, '', !empty($args), TRUE, TRUE, $methods
-      );
-    }
-    else {
-      $mock = $this->getMockBuilder($class);
-      if (!empty($args)) {
-        $mock = $mock->enableOriginalConstructor()
-          ->setConstructorArgs($args);
-      }
-      else {
-        $mock = $mock->disableOriginalConstructor();
-      }
-      $mock = $mock->setMethods($methods)
-        ->getMock();
-    }
+      ) : $this->getMockForConcreteClass($class, $args, $methods);
 
     foreach ($methodsMap as $method => $value) {
       // Handle callback values differently.
@@ -114,13 +99,34 @@ trait CivicThemeTestHelperTrait {
         $mock->expects($this->any())
           ->method($method)
           ->will($value);
+        continue;
       }
-      else {
-        $mock->expects($this->any())
-          ->method($method)
-          ->willReturn($value);
-      }
+      $mock->expects($this->any())
+        ->method($method)
+        ->willReturn($value);
     }
+
+    return $mock;
+  }
+
+  /**
+   * Helper to prepare concrete class mock.
+   *
+   * @param string $class
+   *   Class name to generate the mock.
+   * @param array $args
+   *   Optional array of constructor arguments. If omitted, a constructor will
+   *   not be called.
+   * @param array $methods
+   *   Optional array of methods to be added to mock.
+   *
+   * @return object
+   *   Mocked class.
+   */
+  protected function getMockForConcreteClass($class, array $args = [], array $methods = []) {
+    $mock = $this->getMockBuilder($class);
+    $mock = !empty($args) ? $mock->enableOriginalConstructor()->setConstructorArgs($args) : $mock->disableOriginalConstructor();
+    $mock = $mock->addMethods($methods)->getMock();
 
     return $mock;
   }

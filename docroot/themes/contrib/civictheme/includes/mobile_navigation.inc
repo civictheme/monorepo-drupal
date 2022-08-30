@@ -10,6 +10,8 @@ use Drupal\Core\Cache\CacheableMetadata;
 
 /**
  * Pre-process for Mobile Navigation block.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {
@@ -20,9 +22,10 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
   if ($entity->bundle() != 'civictheme_mobile_navigation') {
     return;
   }
+
   $menu_fields = [
-    'top_menu' => 'field_c_b_top_menu',
-    'bottom_menu' => 'field_c_b_bottom_menu',
+    'top_menu' => 'field_c_b_top',
+    'bottom_menu' => 'field_c_b_bottom',
   ];
 
   // Get primary and secondary menu links by building menu tree based on
@@ -30,50 +33,41 @@ function _civictheme_preprocess_block__civictheme_mobile_navigation(&$variables)
   $cache_tags = $entity->getCacheTags();
   $cacheability = new CacheableMetadata();
   foreach ($menu_fields as $menu_key => $menu_field) {
-    if (
-      $entity->hasField($menu_field)
-      && !$entity->get($menu_field)->isEmpty()
-      && !empty($entity->get($menu_field)->referencedEntities()[0])
-      && strpos($entity->get($menu_field)->referencedEntities()[0]->getPluginId(), 'menu_block') === 0
-    ) {
-      $menu_block = $entity->get($menu_field)->referencedEntities()[0];
-      $menu_name = str_replace('menu_block:', '', $menu_block->get('settings')['id']);
-      $root = empty(str_replace($menu_name . ':', '', $menu_block->get('settings')['parent'] ?? '')) ? '' : $menu_block->get('settings')['parent'];
+    $menu_block = civictheme_get_field_referenced_entities($entity, $menu_field, TRUE);
+    if ($menu_block) {
+      if (str_starts_with($menu_block->getPluginId(), 'menu_block:')) {
+        $menu_name = str_replace('menu_block:', '', $menu_block->get('settings')['id']);
+        $root = empty(str_replace($menu_name . ':', '', $menu_block->get('settings')['parent'] ?? '')) ? '' : $menu_block->get('settings')['parent'];
 
-      $menu_parameters = new MenuTreeParameters();
-      // Only set max depth if the depth was provided (greater than 0).
-      if ($menu_block->get('settings')['depth'] ?? 0) {
-        $menu_parameters->setMaxDepth($menu_block->get('settings')['depth']);
+        $menu_parameters = new MenuTreeParameters();
+        // Only set max depth if the depth was provided (greater than 0).
+        if ($menu_block->get('settings')['depth'] ?? 0) {
+          $menu_parameters->setMaxDepth($menu_block->get('settings')['depth']);
+        }
+        $menu_parameters->setRoot($root);
+        $menu_parameters->excludeRoot();
+        $menu_tree_service = \Drupal::service('menu.link_tree');
+
+        $tree = $menu_tree_service->load($menu_name, $menu_parameters);
+        $manipulators = [
+          ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+        ];
+        $tree = $menu_tree_service->transform($tree, $manipulators);
+
+        $build = $menu_tree_service->build($tree);
+        $variables[$menu_key] = $build['#items'] ?? [];
+
+        _civictheme_preprocess_menu_items($variables[$menu_key]);
+
+        $cacheability = $cacheability->merge(CacheableMetadata::createFromRenderArray($build), $cache_tags, $menu_block->getCacheTags());
       }
-      $menu_parameters->setRoot($root);
-      $menu_parameters->excludeRoot();
-      $menu_tree_service = \Drupal::service('menu.link_tree');
-
-      $tree = $menu_tree_service->load($menu_name, $menu_parameters);
-      $manipulators = [
-        ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
-      ];
-      $tree = $menu_tree_service->transform($tree, $manipulators);
-
-      $build = $menu_tree_service->build($tree);
-      $variables[$menu_key] = $build['#items'] ?? [];
-
-      _civictheme_preprocess_menu_items($variables[$menu_key]);
-
-      $cacheability = $cacheability->merge(CacheableMetadata::createFromRenderArray($build), $cache_tags, $menu_block->getCacheTags());
     }
   }
   $cacheability->applyTo($variables);
 
-  if ($entity->hasField('field_c_b_trigger_text') && !$entity->get('field_c_b_trigger_text')->isEmpty()) {
-    $variables['trigger_text'] = $entity->get('field_c_b_trigger_text')->getString();
-  }
+  $variables['trigger_text'] = civictheme_get_field_value($entity, 'field_c_b_trigger_text');
+  $variables['theme'] = civictheme_get_field_theme_value($entity);
 
-  if ($entity->hasField('field_c_b_theme') && !$entity->get('field_c_b_theme')->isEmpty()) {
-    $variables['theme'] = strtolower($entity->get('field_c_b_theme')->getString());
-  }
-
-  if ($entity->hasField('field_c_b_trigger_theme') && !$entity->get('field_c_b_trigger_theme')->isEmpty()) {
-    $variables['trigger_theme'] = strtolower($entity->get('field_c_b_trigger_theme')->getString());
-  }
+  $context_theme = theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT;
+  $variables['trigger_theme'] = civictheme_get_field_value($entity, 'field_c_b_trigger_theme') ?? $context_theme;
 }

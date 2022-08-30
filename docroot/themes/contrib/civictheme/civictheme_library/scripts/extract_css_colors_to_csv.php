@@ -31,6 +31,8 @@ define('ERROR_LEVEL', E_USER_WARNING);
 
 /**
  * Main functionality.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function main(array $argv, $argc) {
   if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {
@@ -66,6 +68,8 @@ function main(array $argv, $argc) {
 
 /**
  * Print help.
+ *
+ * @SuppressWarnings(PHPMD.UnusedLocalVariable)
  */
 function print_help() {
   $script_name = basename(__FILE__);
@@ -162,6 +166,8 @@ function parse_variables(array $vars) {
  *
  * @throws \Exception
  *   If no values were provided.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function output_csv(array $vars, $stream = 'php://output') {
   if (empty($vars)) {
@@ -209,6 +215,12 @@ function output_csv(array $vars, $stream = 'php://output') {
  *   - If component name is missing.
  *   - If theme is missing.
  *   - If rule is missing.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function parse_variable_name($name, $prefix = NULL) {
   if (empty($name)) {
@@ -322,6 +334,8 @@ function parse_variable_name($name, $prefix = NULL) {
 
 /**
  * Show a verbose message.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function verbose() {
   if (getenv('SCRIPT_QUIET') != '1') {

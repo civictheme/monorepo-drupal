@@ -106,6 +106,7 @@ $civictheme-colors-variants-default: (
 // Theme-based background colors for components.
 $civictheme-theme-light-background-color: civictheme-color('neutral', 1);
 $civictheme-theme-dark-background-color: civictheme-color('primary', 4);
+$civictheme-background-blend-mode: soft-light;
 
 //
 // Spacing.
@@ -308,6 +309,9 @@ $civictheme-typography-default: (
     'm': ($civictheme-font-base-size * 1.5, $civictheme-font-base-size * 2.5, 400, 'primary', -0.35px)
   ),
 );
+
+// Font smoothing.
+$civictheme-font-smoothing-enable: true !default;
 
 //
 // Icon size.

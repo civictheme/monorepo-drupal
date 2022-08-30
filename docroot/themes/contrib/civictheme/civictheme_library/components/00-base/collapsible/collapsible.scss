@@ -61,6 +61,11 @@
     [data-collapsible-panel] {
       height: 0;
       overflow: hidden;
+
+      @include civictheme-print() {
+        height: auto;
+        visibility: visible;
+      }
     }
   }
 

@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_c_n_site_section
+    - node.type.civictheme_page
+    - taxonomy.vocabulary.civictheme_site_sections
+id: node.civictheme_page.field_c_n_site_section
+field_name: field_c_n_site_section
+entity_type: node
+bundle: civictheme_page
+label: 'Site section'
+description: 'Add this content to be a part of pre-defined site section.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      civictheme_site_sections: civictheme_site_sections
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

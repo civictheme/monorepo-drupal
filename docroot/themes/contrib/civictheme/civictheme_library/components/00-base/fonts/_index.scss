@@ -104,3 +104,11 @@ $all-fonts: _civictheme-fonts-all();
     }
   }
 }
+
+@if $civictheme-font-smoothing-enable {
+  html {
+    text-rendering: optimizelegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+}

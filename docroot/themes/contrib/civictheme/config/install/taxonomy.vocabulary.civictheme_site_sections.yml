@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Site sections'
+vid: civictheme_site_sections
+description: 'Site sections used to group content.'
+weight: 0

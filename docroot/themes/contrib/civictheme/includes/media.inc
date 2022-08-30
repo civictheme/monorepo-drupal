@@ -9,6 +9,8 @@ use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_preprocess__HOOK().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_media__civictheme_image(&$variables) {
   if (empty($variables['media'])) {
@@ -17,8 +19,8 @@ function civictheme_preprocess_media__civictheme_image(&$variables) {
 
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
-  /** @var \Drupal\file\Entity\File $image_file */
-  $image_file = $media->get('field_c_m_image')->referencedEntities()[0];
+  /** @var \Drupal\file\Entity\File|null $image_file */
+  $image_file = civictheme_get_field_referenced_entities($media, 'field_c_m_image', TRUE);
   if ($image_file) {
     /** @var \Drupal\Core\Image\ImageInterface $image */
     $image = \Drupal::service('image.factory')->get($image_file->getFileUri());
@@ -59,6 +61,9 @@ function civictheme_preprocess_media__civictheme_video(&$variables) {
 
 /**
  * Implements hook_preprocess__HOOK().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function civictheme_preprocess_media__civictheme_remote_video(&$variables) {
   if (empty($variables['media'])) {
@@ -67,19 +72,14 @@ function civictheme_preprocess_media__civictheme_remote_video(&$variables) {
 
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
-
-  /** @var \Drupal\media\OEmbed\UrlResolverInterface $url_resolver */
-  $url_resolver = \Drupal::service('media.oembed.url_resolver');
-  /** @var \Drupal\media\OEmbed\ResourceFetcherInterface $resource_fetcher */
-  $resource_fetcher = \Drupal::service('media.oembed.resource_fetcher');
   try {
-    $resource_url = $url_resolver->getResourceUrl($media->get('field_c_m_oembed_video')->first()->getValue()['value'], $variables['width'] ?? NULL, $variables['height'] ?? NULL);
-    $resource = $resource_fetcher->fetchResource($resource_url);
+    $resource_url = \Drupal::service('media.oembed.url_resolver')->getResourceUrl($media->get('field_c_m_oembed_video')->first()->getValue()['value'], $variables['width'] ?? NULL, $variables['height'] ?? NULL);
+    $resource = \Drupal::service('media.oembed.resource_fetcher')->fetchResource($resource_url);
 
     $html = $resource->getHtml();
 
     // Set 'title' attribute (if provided) on the oEmbed iframe element.
-    $doc = new DOMDocument();
+    $doc = new \DOMDocument();
     if ($doc->loadHTML($html)) {
       $iframe_elements = $doc->getElementsByTagName('iframe');
       // oEmbed can use an HTML tag other than <iframe> - skip setting an
@@ -102,6 +102,8 @@ function civictheme_preprocess_media__civictheme_remote_video(&$variables) {
 
 /**
  * Pre-process civictheme_video media links.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
   if (empty($variables['media'])) {
@@ -111,7 +113,7 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
 
-  if ($media->hasField('field_c_m_share_link') && !$media->get('field_c_m_share_link')->isEmpty()) {
+  if (civictheme_field_has_value($media, 'field_c_m_share_link')) {
     $share_attributes = new Attribute();
     $share_attributes->setAttribute('aria-label', t('Share this video @label', [
       '@label' => $media->label(),
@@ -131,14 +133,14 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
   ]));
   // Transcript link points to the video if the transcript is empty or
   // to the external transcript, if provided.
-  if ($media->hasField('field_c_m_transcript') && !$media->get('field_c_m_transcript')->isEmpty()) {
+  if (civictheme_field_has_value($media, 'field_c_m_transcript')) {
     $variables['transcript_link'] = [
       'text' => t('View transcript'),
       'url' => $media->toUrl()->toString(),
       'attributes' => $transcript_attributes,
     ];
   }
-  elseif ($media->hasField('field_c_m_transcript_link') && !$media->get('field_c_m_transcript_link')->isEmpty()) {
+  elseif (civictheme_field_has_value($media, 'field_c_m_transcript_link')) {
     $variables['transcript_link'] = [
       'text' => !empty($media->get('field_c_m_transcript_link')->first()->get('title')->getValue()) ? $media->get('field_c_m_transcript_link')->first()->get('title')->getValue() : t('View transcript'),
       'url' => $media->get('field_c_m_transcript_link')->first()->getUrl()->toString(),
@@ -151,6 +153,8 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
 
 /**
  * Pre-process civictheme_video media transcript.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_media__civictheme_video_transcript(&$variables) {
   // Show transcript on the media landing page.

@@ -5,9 +5,8 @@
 .civictheme-footer {
   $root: &;
 
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  @include civictheme-print-hide();
+  @include civictheme-background();
 
   &__top {
     padding-top: civictheme-space(4);
@@ -31,13 +30,15 @@
   }
 
   &__middle {
-    padding-top: civictheme-space(2);
-    padding-bottom: civictheme-space(2);
+    .row {
+      padding-top: civictheme-space(2);
+      padding-bottom: civictheme-space(2);
 
-    @include civictheme-breakpoint(m) {
-      padding-top: civictheme-space(5);
-      padding-bottom: civictheme-space(5);
-      border-bottom: solid rem(1px) transparent;
+      @include civictheme-breakpoint(m) {
+        padding-top: civictheme-space(5);
+        padding-bottom: civictheme-space(5);
+        border-bottom: solid rem(1px) transparent;
+      }
     }
   }
 

@@ -1,3 +1,4 @@
+// phpcs:ignoreFile
 /**
  * @file
  * Logo component utilities.
@@ -16,11 +17,11 @@ function getLogos() {
     const matches = path.matchAll(/[^_]+_logo_([^_]+)+_([^.]+)/g);
     for (const match of matches) {
       if (match.length >= 3) {
-        const type = match[1] === 'mobile' ? 'mobile' : 'desktop';
-        const theme = match[2] === 'dark' ? 'dark' : 'light';
-        urls[type] = urls[type] || {};
-        urls[type][theme] = urls[type][theme] || {};
-        urls[type][theme] = `${dir.replace('../../../', '')}/${path}`;
+        const theme = match[1] === 'dark' ? 'dark' : 'light';
+        const type = match[2] === 'mobile' ? 'mobile' : 'desktop';
+        urls[theme] = urls[theme] || {};
+        urls[theme][type] = urls[theme][type] || {};
+        urls[theme][type] = `${dir.replace('../../../', '')}/${path}`;
       }
     }
   });

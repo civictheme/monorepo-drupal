@@ -10,9 +10,6 @@ set -e
 # Path to the application.
 APP="${APP:-/app}"
 
-# Drush alias.
-DRUSH_ALIAS="${DRUSH_ALIAS:-}"
-
 # ------------------------------------------------------------------------------
 
 [ "${SKIP_SUBTHEME_ACTIVATION}" = "1" ] && echo "Skipping sub-theme activation" && return
@@ -28,23 +25,21 @@ if [ ! -d $APP/docroot/themes/custom/civictheme_demo ]; then
 fi
 
 echo "  > Installing civictheme_demo theme."
-$drush ${DRUSH_ALIAS} theme:enable civictheme_demo -y
+$drush theme:enable civictheme_demo -y
 
 echo "  > Setting civictheme_demo as a default theme."
-$drush ${DRUSH_ALIAS} config-set system.theme default civictheme_demo -y
+$drush config-set system.theme default civictheme_demo -y
 
 if [ "$SKIP_SUBTHEME_FE" != "1" ] && command -v npm &> /dev/null; then
   pushd $APP/docroot/themes/custom/civictheme_demo >/dev/null || exit 1
 
-  if [ ! -d $APP/docroot/themes/custom/civictheme_demo/dist ]; then
-    if [ ! -d $APP/docroot/themes/custom/civictheme_demo/node_modules ]; then
-      echo "  > Installing FE dependencies."
-      npm ci
-    fi
-
-    echo "  > Building FE assets."
-    npm run build
+  if [ ! -d $APP/docroot/themes/custom/civictheme_demo/node_modules ]; then
+    echo "  > Installing FE dependencies."
+    npm ci
   fi
+
+  echo "  > Building FE assets."
+  npm run build
 
   popd >/dev/null || exit 1
 fi

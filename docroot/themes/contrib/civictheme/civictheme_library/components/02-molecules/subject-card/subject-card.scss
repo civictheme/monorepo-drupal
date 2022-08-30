@@ -16,7 +16,8 @@
     flex-direction: column;
     height: 100%;
     justify-content: flex-end;
-    min-height: rem(200px);
+    min-height: $civictheme-subject-card-image-height-mobile;
+    min-width: $civictheme-subject-card-image-width-mobile;
     width: 100%;
 
     @include civictheme-elevation(3);
@@ -27,6 +28,8 @@
 
     @include civictheme-breakpoint('m') {
       padding: civictheme-space(4) civictheme-space(3);
+      min-height: $civictheme-subject-card-image-height-desktop;
+      min-width: $civictheme-subject-card-image-width-desktop;
     }
 
     @include civictheme-image-fit();

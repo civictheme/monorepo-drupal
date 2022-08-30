@@ -7,9 +7,14 @@
 
   @include civictheme-typography('text-regular');
 
+  &__content-top2,
+  &__content-top3 {
+    margin-top: civictheme-space();
+    margin-bottom: civictheme-space();
+  }
+
   &__top {
-    padding-top: civictheme-space();
-    padding-bottom: civictheme-space();
+    @include civictheme-print-hide();
   }
 
   &__logo {
@@ -21,9 +26,11 @@
   }
 
   &__middle {
-    .container {
-      border-bottom: solid 1px;
-    }
+    border-bottom: solid 1px;
+  }
+
+  &__content-middle1 {
+    @include civictheme-print-hide();
   }
 
   &__content-middle2 {
@@ -33,6 +40,8 @@
   }
 
   &__content-middle3 {
+    @include civictheme-print-hide();
+
     height: 100%;
     position: relative;
 
@@ -67,10 +76,7 @@
 
     #{$root}__middle {
       background-color: $civictheme-header-light-middle-background-color;
-
-      .container {
-        border-color: $civictheme-header-light-middle-border-color;
-      }
+      border-color: $civictheme-header-light-middle-border-color;
     }
   }
 
@@ -82,10 +88,7 @@
 
     #{$root}__middle {
       background-color: $civictheme-header-dark-middle-background-color;
-
-      .container {
-        border-color: $civictheme-header-dark-middle-border-color;
-      }
+      border-color: $civictheme-header-dark-middle-border-color;
     }
   }
 }

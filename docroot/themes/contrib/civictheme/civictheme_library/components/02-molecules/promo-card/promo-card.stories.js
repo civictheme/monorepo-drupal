@@ -1,9 +1,10 @@
+// phpcs:ignoreFile
 import {
   boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';
 import {
   demoImage,
-  getSlots,
+  getSlots, randomSentence,
   randomTags,
   randomUrl,
 } from '../../00-base/base.stories';
@@ -30,8 +31,8 @@ export const PromoCard = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    title: text('Title', 'Promo name which runs across two or three lines', generalKnobTab),
-    summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', generalKnobTab),
+    title: text('Title', 'Promo card name which runs across two or three lines', generalKnobTab),
+    summary: text('Summary', randomSentence(), generalKnobTab),
     date: date('Date', new Date(), generalKnobTab),
     url: text('Link URL', randomUrl(), generalKnobTab),
     is_external: boolean('Is external', false, generalKnobTab),
@@ -50,7 +51,7 @@ export const PromoCard = (knobTab) => {
       },
       generalKnobTab,
     ), true),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
   };
 
   generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {
@@ -59,7 +60,7 @@ export const PromoCard = (knobTab) => {
     day: 'numeric',
   });
 
-  const html = CivicThemePromoCard({
+  return CivicThemePromoCard({
     ...generalKnobs,
     ...getSlots([
       'image_over',
@@ -68,6 +69,4 @@ export const PromoCard = (knobTab) => {
       'content_bottom',
     ]),
   });
-
-  return `<div class="story-wrapper-size--small">${html}</div>`;
 };

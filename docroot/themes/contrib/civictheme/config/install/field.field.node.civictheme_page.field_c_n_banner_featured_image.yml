@@ -10,7 +10,7 @@ field_name: field_c_n_banner_featured_image
 entity_type: node
 bundle: civictheme_page
 label: 'Banner featured image'
-description: ''
+description: 'Image displayed on a side of the banner.'
 required: false
 translatable: false
 default_value: {  }
