@@ -49,6 +49,14 @@
 }
 
 //
+// Compile all icon symbols into a single map.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _civictheme-icon-symbols-all() {
+  @return list.join($civictheme-icon-symbols-default, $civictheme-icon-symbols);
+}
+
+//
 // Compile all icon sizes into a single map.
 //
 // Do not use directly.

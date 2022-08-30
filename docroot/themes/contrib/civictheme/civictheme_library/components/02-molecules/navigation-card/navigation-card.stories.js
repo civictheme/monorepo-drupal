@@ -63,10 +63,9 @@ export const NavigationCard = (knobTab) => {
   };
 
   const iconKnobTab = 'Icon';
-  const { icons } = ICONS;
   const withIcon = boolean('With icon', false, iconKnobTab);
   const iconKnobs = {
-    icon: withIcon ? select('Icon', icons, 'business_calendar', iconKnobTab) : null,
+    icon: withIcon ? select('Icon', Object.values(ICONS), 'calendar-1', iconKnobTab) : null,
   };
 
   return CivicThemeNavigationCard({

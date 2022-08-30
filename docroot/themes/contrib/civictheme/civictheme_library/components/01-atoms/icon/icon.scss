@@ -7,6 +7,14 @@
 .civictheme-icon {
   vertical-align: bottom;
 
+  @each $svg in _civictheme-icon-symbols-all() {
+    &--#{$svg} {
+      width: civictheme-space(2);
+      height: civictheme-space(2);
+      content: url('../assets/icons/' + $svg + '.svg');
+    }
+  }
+
   // Generate size classes for all pre-set sizes.
   @each $size, $values in _civictheme-icon-sizes-all() {
     &--size-#{$size} {
