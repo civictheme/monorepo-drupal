@@ -45,15 +45,6 @@
           'border-color': $civictheme-button-light-primary-focus-border-color,
           'outline-color': $civictheme-button-light-primary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-primary-disabled-color,
-          'background-color': $civictheme-button-light-primary-disabled-background-color,
-          'border-color': $civictheme-button-light-primary-disabled-border-color,
-          'outline-color': $civictheme-button-light-primary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-light-primary-dismiss-color,
-        ),
       ),
       'dark': (
         'normal': (
@@ -85,15 +76,6 @@
           'background-color': $civictheme-button-dark-primary-focus-background-color,
           'border-color': $civictheme-button-dark-primary-focus-border-color,
           'outline-color': $civictheme-button-dark-primary-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-primary-disabled-color,
-          'background-color': $civictheme-button-dark-primary-disabled-background-color,
-          'border-color': $civictheme-button-dark-primary-disabled-border-color,
-          'outline-color': $civictheme-button-dark-primary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-dark-primary-dismiss-color,
         ),
       )
     ),
@@ -129,15 +111,6 @@
           'border-color': $civictheme-button-light-secondary-focus-border-color,
           'outline-color': $civictheme-button-light-secondary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-secondary-disabled-color,
-          'background-color': $civictheme-button-light-secondary-disabled-background-color,
-          'border-color': $civictheme-button-light-secondary-disabled-border-color,
-          'outline-color': $civictheme-button-light-secondary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-light-secondary-dismiss-color,
-        ),
       ),
       'dark': (
         'normal': (
@@ -169,15 +142,6 @@
           'background-color': $civictheme-button-dark-secondary-focus-background-color,
           'border-color': $civictheme-button-dark-secondary-focus-border-color,
           'outline-color': $civictheme-button-dark-secondary-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-secondary-disabled-color,
-          'background-color': $civictheme-button-dark-secondary-disabled-background-color,
-          'border-color': $civictheme-button-dark-secondary-disabled-border-color,
-          'outline-color': $civictheme-button-dark-secondary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-dark-secondary-dismiss-color,
         ),
       )
     ),
@@ -213,15 +177,6 @@
           'border-color': $civictheme-button-light-tertiary-focus-border-color,
           'outline-color': $civictheme-button-light-tertiary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-tertiary-disabled-color,
-          'background-color': $civictheme-button-light-tertiary-disabled-background-color,
-          'border-color': $civictheme-button-light-tertiary-disabled-border-color,
-          'outline-color': $civictheme-button-light-tertiary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-light-tertiary-dismiss-color,
-        ),
       ),
       'dark': (
         'normal': (
@@ -253,15 +208,6 @@
           'background-color': $civictheme-button-dark-tertiary-focus-background-color,
           'border-color': $civictheme-button-dark-tertiary-focus-border-color,
           'outline-color': $civictheme-button-dark-tertiary-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-tertiary-disabled-color,
-          'background-color': $civictheme-button-dark-tertiary-disabled-background-color,
-          'border-color': $civictheme-button-dark-tertiary-disabled-border-color,
-          'outline-color': $civictheme-button-dark-tertiary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-dark-tertiary-dismiss-color,
         ),
       )
     ),
@@ -335,48 +281,6 @@
             @include _civictheme-button-print-rules($type-kind-values);
           }
         }
-        @else if $type-kind == 'disabled' {
-          &:disabled,
-          &[disabled],
-          &:disabled:active,
-          &:disabled:focus,
-          &:disabled:focus:hover,
-          &:disabled:focus:active,
-          &:disabled:focus:hover:active,
-          &[disabled]:active,
-          &[disabled]:focus,
-          &[disabled].focus,
-          &[disabled]:focus:hover,
-          &[disabled].focus:hover,
-          &[disabled]:focus:active,
-          &[disabled].focus:active,
-          &[disabled]:focus:hover:active,
-          &[disabled].focus:hover:active {
-            @include _civictheme-button-print-rules($type-kind-values);
-
-            cursor: inherit;
-          }
-        }
-        @else if $type-kind == 'dismiss' {
-          &.civictheme-button--dismiss {
-            padding-right: civictheme-space(2);
-          }
-
-          .civictheme-button__dismiss {
-            user-select: none;
-            pointer-events: none;
-
-            &:hover {
-              @include civictheme-icon-fill-color(map.get($type-kind-values, 'fill'));
-            }
-          }
-
-          &.selected {
-            .civictheme-button__dismiss {
-              @include civictheme-icon-fill-color(map.get($type-kind-values, 'fill-selected'));
-            }
-          }
-        }
       }
     }
   }
@@ -441,54 +345,46 @@
   // Type.
   &--primary {
     @include civictheme-button-type('primary');
+
+    &[disabled] {
+      opacity: $civictheme-button-primary-disabled-opacity;
+    }
   }
 
   &--secondary {
     @include civictheme-button-type('secondary');
+
+    &[disabled] {
+      opacity: $civictheme-button-secondary-disabled-opacity;
+    }
   }
 
   &--tertiary {
     @include civictheme-button-type('tertiary');
+
+    &[disabled] {
+      opacity: $civictheme-button-tertiary-disabled-opacity;
+    }
   }
 
   // Size.
   &--extra-large {
     @include civictheme-button-size('extra-large');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space(4);
-    }
   }
 
   &--large {
     @include civictheme-button-size('large');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space(3);
-    }
   }
 
   &--regular {
     @include civictheme-button-size('regular');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space(3);
-    }
   }
 
   &--small {
     @include civictheme-button-size('small');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space(2);
-    }
   }
 
   &--extra-small {
     @include civictheme-button-size('extra-small');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space();
-    }
   }
 }

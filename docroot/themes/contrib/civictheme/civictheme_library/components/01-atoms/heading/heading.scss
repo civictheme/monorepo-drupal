@@ -6,6 +6,32 @@
   h#{$level} {
     &.civictheme-heading {
       @include civictheme-typography('heading-#{$level}');
+
+      &.civictheme-theme-light {
+        color: $civictheme-heading-light-color;
+
+        &:focus {
+          @include civictheme-outline();
+        }
+
+        &:hover {
+          background-color: $civictheme-heading-light-hover-background-color;
+          color: $civictheme-heading-light-hover-color;
+        }
+      }
+
+      &.civictheme-theme-dark {
+        color: $civictheme-heading-dark-color;
+
+        &:focus {
+          @include civictheme-outline(true);
+        }
+
+        &:hover {
+          background-color: $civictheme-heading-dark-hover-background-color;
+          color: $civictheme-heading-dark-hover-color;
+        }
+      }
     }
   }
 }
