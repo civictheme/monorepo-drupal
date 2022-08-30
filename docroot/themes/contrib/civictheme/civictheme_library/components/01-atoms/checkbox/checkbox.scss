@@ -47,11 +47,13 @@
     }
   }
 
+  #{$root}__label {
+    @include civictheme-typography('text-regular');
+  }
+
   &.civictheme-theme-light {
     #{$root}__label {
       color: $civictheme-radio-label-light-color;
-
-      @include civictheme-typography('text-regular');
 
       &.disabled {
         color: $civictheme-radio-label-disabled-light-color;
@@ -62,8 +64,6 @@
   &.civictheme-theme-dark {
     #{$root}__label {
       color: $civictheme-radio-label-dark-color;
-
-      @include civictheme-typography('text-regular');
 
       &.disabled {
         color: $civictheme-radio-label-disabled-dark-color;

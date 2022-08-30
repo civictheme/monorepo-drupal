@@ -22,7 +22,7 @@ export const Checkbox = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    text: text('Text', 'Input label', generalKnobTab),
+    content: text('Content', 'Checkbox label', generalKnobTab),
     required: boolean('Required', false, generalKnobTab),
     disabled: boolean('Disabled', false, generalKnobTab),
     has_error: boolean('Has error', false, generalKnobTab),
