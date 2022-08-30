@@ -26,7 +26,6 @@ $drush -y then adminimal_theme
 $drush -y config-set system.theme admin adminimal_theme
 
 echo "  > Enable CivicTheme theme and set as default."
-$drush -y then civictheme || true
-$drush -y then civictheme || true
+$drush -y then civictheme
 $drush -y config-set system.theme default civictheme
 $drush -y config-set media.settings standalone_url true
