@@ -282,12 +282,12 @@ $civictheme-iframe-light-background-color: civictheme-color('neutral', 2) !defau
 $civictheme-iframe-dark-background-color: civictheme-color('primary', 5) !default;
 
 //
-// Form element label.
+// Field label.
 //
-$civictheme-label-light-color: civictheme-color('neutral', 7) !default;
-$civictheme-label-light-required-color: civictheme-color('error') !default;
-$civictheme-label-dark-color: civictheme-color('neutral', 1) !default;
-$civictheme-label-dark-required-color: civictheme-color('error') !default;
+$civictheme-field-label-light-color: civictheme-color('neutral', 7) !default;
+$civictheme-field-label-light-required-color: civictheme-color('error') !default;
+$civictheme-field-label-dark-color: civictheme-color('neutral', 1) !default;
+$civictheme-field-label-dark-required-color: civictheme-color('error') !default;
 
 //
 // Table.
