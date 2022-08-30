@@ -23,6 +23,14 @@ tasks:
         shell: bash
 
     - run:
+        name: Replace app entrypoint to prevent probes from bootstrapping
+        command: |
+          mv /app/docroot/index.php /tmp/index.php
+          echo "<? exit('ok');" >> /app/docroot/index.php
+        service: nginx-php
+        container: php
+
+    - run:
         name: Set GitHub deployment status
         command: |
           if  [ -n "${DREVOPS_NOTIFY_GITHUB_TOKEN}" ] && [ -n "$LAGOON_PR_NUMBER" ]; then
@@ -73,6 +81,14 @@ tasks:
           ./scripts/drevops/drupal-install-site.sh
         service: cli
         shell: bash
+
+    - run:
+        name: Restore app entrypoint
+        command: |
+          rm /app/docroot/index.php
+          mv /tmp/index.php /app/docroot/index.php
+        service: nginx-php
+        container: php
 
     - run:
         name: Send deployment notifications
