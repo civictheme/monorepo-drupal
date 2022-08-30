@@ -37,7 +37,7 @@
     &#{$root}--tertiary,
     &#{$root}--secondary {
       background-color: $civictheme-tag-light-secondary-background-color;
-      border:solid 1px $civictheme-tag-light-secondary-border-color;
+      border: solid 1px $civictheme-tag-light-secondary-border-color;
       color: $civictheme-tag-light-secondary-color;
 
       #{$root}__link {
@@ -66,7 +66,7 @@
     &#{$root}--tertiary,
     &#{$root}--secondary {
       background-color: $civictheme-tag-dark-secondary-background-color;
-      border:solid 1px $civictheme-tag-dark-secondary-border-color;
+      border: solid 1px $civictheme-tag-dark-secondary-border-color;
       color: $civictheme-tag-dark-secondary-color;
 
       #{$root}__link {
