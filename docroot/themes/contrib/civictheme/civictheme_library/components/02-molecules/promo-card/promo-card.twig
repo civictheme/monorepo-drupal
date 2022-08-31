@@ -101,8 +101,7 @@
                 {% for tag in tags %}
                   {% include '@atoms/tag/tag.twig' with {
                     theme: theme,
-                    text: tag,
-                    is_alt: true,
+                    content: tag,
                   } only %}
                 {% endfor %}
               </div>

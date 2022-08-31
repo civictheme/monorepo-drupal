@@ -27,8 +27,17 @@ export const Tag = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    is_alt: boolean('Alternative colors', false, generalKnobTab),
-    text: text('Text', 'Tag text', generalKnobTab),
+    type: radios(
+      'Type', {
+        Primary: 'primary',
+        Secondary: 'secondary',
+        Tertiary: 'tertiary',
+      },
+      'primary',
+      generalKnobTab,
+    ),
+    content: text('Content', 'Tag content', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
