@@ -1,0 +1,47 @@
+//
+// Label component.
+//
+
+.civictheme-field-label {
+  $root: &;
+  $sizes: ('extra-large', 'large', 'regular', 'small', 'extra-small');
+
+  display: block;
+  margin-bottom: civictheme-space();
+
+  @include civictheme-typography('label-regular');
+
+  &--required {
+    &::after {
+      content: ' (Required)';
+
+      @include civictheme-typography('label-small');
+    }
+  }
+
+  @each $size in $sizes {
+    &.civictheme-field-label--#{$size} {
+      @include civictheme-typography('label-#{$size}');
+    }
+  }
+
+  &.civictheme-theme-light {
+    color: $civictheme-field-label-light-color;
+
+    #{$root}--required {
+      &::after {
+        color: $civictheme-field-label-light-required-color;
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-field-label-dark-color;
+
+    #{$root}--required {
+      &::after {
+        color: $civictheme-field-label-dark-required-color;
+      }
+    }
+  }
+}

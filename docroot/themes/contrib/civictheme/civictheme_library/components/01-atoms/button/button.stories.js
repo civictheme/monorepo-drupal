@@ -75,10 +75,9 @@ export const Button = (knobTab) => {
   generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
 
   const iconKnobTab = 'Icon';
-  const { icons } = ICONS;
   const withIcon = boolean('With icon', false, iconKnobTab);
   const iconKnobs = {
-    icon: withIcon ? select('Icon', icons, icons[0], iconKnobTab) : null,
+    icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
     icon_placement: withIcon ? radios(
       'Position',
       {
