@@ -32,7 +32,6 @@ export const Tag = (knobTab) => {
         Primary: 'primary',
         Secondary: 'secondary',
         Tertiary: 'tertiary',
-        None: 'none',
       },
       'primary',
       generalKnobTab,

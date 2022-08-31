@@ -378,19 +378,25 @@ $civictheme-heading-dark-hover-background-color: civictheme-color('secondary') !
 // Tag.
 //
 $civictheme-tag-border-radius: $civictheme-border-radius !default;
-$civictheme-tag-border-width: 0 !default;
-$civictheme-tag-light-color: civictheme-color('neutral', 1) !default;
-$civictheme-tag-light-background-color: civictheme-color('primary') !default;
-$civictheme-tag-light-border-color: civictheme-color('neutral', 4) !default;
+$civictheme-tag-border-width: 1px !default;
+$civictheme-tag-light-primary-color: civictheme-color('neutral', 1) !default;
+$civictheme-tag-light-primary-background-color: civictheme-color('primary') !default;
+$civictheme-tag-light-primary-border-color: transparent !default;
 $civictheme-tag-light-secondary-color: civictheme-color('primary') !default;
 $civictheme-tag-light-secondary-border-color: civictheme-color('primary') !default;
 $civictheme-tag-light-secondary-background-color: civictheme-color('neutral', 1) !default;
-$civictheme-tag-dark-color: civictheme-color('primary') !default;
-$civictheme-tag-dark-background-color: civictheme-color('secondary') !default;
-$civictheme-tag-dark-border-color: civictheme-color('neutral', 7) !default;
+$civictheme-tag-light-tertiary-color: civictheme-color('primary') !default;
+$civictheme-tag-light-tertiary-border-color: transparent !default;
+$civictheme-tag-light-tertiary-background-color: transparent !default;
+$civictheme-tag-dark-primary-color: civictheme-color('primary') !default;
+$civictheme-tag-dark-primary-background-color: civictheme-color('secondary') !default;
+$civictheme-tag-dark-primary-border-color: transparent !default;
 $civictheme-tag-dark-secondary-color: civictheme-color('secondary') !default;
 $civictheme-tag-dark-secondary-border-color: civictheme-color('secondary') !default;
 $civictheme-tag-dark-secondary-background-color: transparent !default;
+$civictheme-tag-dark-tertiary-color: civictheme-color('secondary') !default;
+$civictheme-tag-dark-tertiary-border-color: transparent !default;
+$civictheme-tag-dark-tertiary-background-color: transparent !default;
 
 //
 // Input.
