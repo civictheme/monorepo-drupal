@@ -17,10 +17,10 @@
 {% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
 
 {% set icons = {
-  status: 'userinterface_informationmark',
-  warning: 'userinterface_exclamationmark_1',
-  error: 'userinterface_close_2',
-  success: 'userinterface_approve',
+  status: 'information-mark',
+  warning: 'exclamation-mark-1',
+  error: 'close',
+  success: 'approve',
 } %}
 
 <div class="civictheme-message messages {{ modifier_class }}" role="{% if type == 'error' %}error{% else %}contentinfo{% endif %}" aria-label="{{ type }}" {% if type == 'error' %}aria-live="polite"{% endif %}>

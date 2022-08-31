@@ -13,14 +13,13 @@ export default {
 export const Icon = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
-  const { icons } = ICONS;
   const sizes = [...new Set([
     ...SCSS_VARIABLES['civictheme-icon-sizes-default'],
     ...SCSS_VARIABLES['civictheme-icon-sizes'],
   ])];
 
   return CivicThemeIcon({
-    symbol: select('Symbol', icons, icons[0], generalKnobTab),
+    symbol: select('Symbol', Object.values(ICONS), Object.values(ICONS)[0], generalKnobTab),
     size: radios('Size', sizes, sizes[2], generalKnobTab),
   });
 };

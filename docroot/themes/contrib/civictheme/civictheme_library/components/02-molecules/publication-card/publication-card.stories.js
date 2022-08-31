@@ -55,10 +55,9 @@ export const PublicationCard = (knobTab) => {
   };
 
   const iconKnobTab = 'Icon';
-  const { icons } = ICONS;
   const withIcon = boolean('With icon', false, iconKnobTab);
   const iconKnobs = {
-    icon: withIcon ? select('Icon', icons, 'business_calendar', iconKnobTab) : null,
+    icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
   };
 
   return CivicThemePublicationCard({
