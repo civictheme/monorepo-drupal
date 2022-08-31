@@ -13,11 +13,11 @@
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set type = type|default('info') %}
+{% set type = type|default('status') %}
 {% set type_class = 'civictheme-field-message--%s'|format(type|default('status')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
 {% set icons = {
-  info: 'information-mark',
+  status: 'information-mark',
   warning: 'exclamation-mark-1',
   error: 'exclamation-mark-1',
   success: 'approve',
