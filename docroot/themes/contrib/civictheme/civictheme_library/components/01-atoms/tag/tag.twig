@@ -37,12 +37,12 @@
   {{ icon_placement == 'before' ? tag_icon : '' }}{{ content }}{{ icon_placement == 'after' ? tag_icon : '' }}
 {% endset %}
 
-{% if tag_text is not empty %}
+{% if tag_text|trim is not empty %}
   <div class="civictheme-tag {{ modifier_class }}" aria-label="{{ content }}">
     {% if url is not empty %}
       <a class="civictheme-tag__link" href="{{ url }}" {% if content is not empty %}title="{{ content }}" aria-label="{{ content }}"{% endif%} {{ is_new_window ? 'target="_blank"' }}>{{ tag_text }}</a>
     {% else %}
-      <span>{{ tag_text }}</span>
+      <span>{{ tag_text|trim }}</span>
     {% endif %}
   </div>
 {% endif %}
