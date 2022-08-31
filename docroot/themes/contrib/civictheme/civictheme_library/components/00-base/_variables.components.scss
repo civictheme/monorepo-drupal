@@ -422,20 +422,28 @@ $civictheme-input-dark-focus-outline-color: civictheme-color('neutral', 1) !defa
 $civictheme-input-dark-focus-border-color: civictheme-color('neutral', 1) !default;
 $civictheme-input-dark-icon-color: civictheme-color('neutral', 1) !default;
 $civictheme-input-dark-disabled-color: civictheme-color('neutral', 3) !default;
-$civictheme-input-dark-disabled-background-color: civictheme-color('neutral', 6) !default;
+$civictheme-input-dark-disabled-background-color: civictheme-color('primary', 4) !default;
 
 //
-// Radio, Checkbox.
+// Radio.
 //
 $civictheme-radio-border-radius: 50% !default;
-$civictheme-radio-light-border-color: civictheme-color('neutral', 6) !default;
+$civictheme-radio-label-light-color: civictheme-color('neutral', 8) !default;
+$civictheme-radio-label-disabled-light-color: civictheme-color('neutral', 6) !default;
+$civictheme-radio-light-border-color: civictheme-color('primary', 5) !default;
+$civictheme-radio-light-disabled-border-color: civictheme-color('primary', 3) !default;
 $civictheme-radio-light-background-color: civictheme-color('neutral', 3) !default;
 $civictheme-radio-light-selected-background-color: civictheme-color('primary') !default;
+$civictheme-radio-light-active-background-color: civictheme-color('neutral', 8) !default;
 $civictheme-radio-light-check-color: civictheme-color('neutral', 1) !default;
 $civictheme-radio-dark-border-color: civictheme-color('neutral', 5) !default;
-$civictheme-radio-dark-background-color: civictheme-color('primary') !default;
+$civictheme-radio-dark-disabled-border-color: civictheme-color('primary', 2) !default;
+$civictheme-radio-dark-background-color: civictheme-color('primary', 4) !default;
 $civictheme-radio-dark-selected-background-color: civictheme-color('secondary') !default;
+$civictheme-radio-dark-active-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-radio-dark-check-color: civictheme-color('neutral', 7) !default;
+$civictheme-radio-label-dark-color: civictheme-color('neutral', 1) !default;
+$civictheme-radio-label-disabled-dark-color: civictheme-color('primary', 2) !default;
 
 //
 // Checkbox.
