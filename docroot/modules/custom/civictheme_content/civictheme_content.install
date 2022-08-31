@@ -31,8 +31,6 @@ function civictheme_content_install() {
     $types = ['default'];
   }
 
-  $types = ['corporate'];
-
   if (in_array('none', $types)) {
     Helper::log(t('Skipping enabling of content modules.'));
     return;
