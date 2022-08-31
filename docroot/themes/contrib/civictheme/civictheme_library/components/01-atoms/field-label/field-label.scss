@@ -2,8 +2,9 @@
 // Label component.
 //
 
-.civictheme-label {
+.civictheme-field-label {
   $root: &;
+  $sizes: ('extra-large', 'large', 'regular', 'small', 'extra-small');
 
   display: block;
   margin-bottom: civictheme-space();
@@ -18,22 +19,28 @@
     }
   }
 
+  @each $size in $sizes {
+    &.civictheme-field-label--#{$size} {
+      @include civictheme-typography('label-#{$size}');
+    }
+  }
+
   &.civictheme-theme-light {
-    color: $civictheme-label-light-color;
+    color: $civictheme-field-label-light-color;
 
     #{$root}--required {
       &::after {
-        color: $civictheme-label-light-required-color;
+        color: $civictheme-field-label-light-required-color;
       }
     }
   }
 
   &.civictheme-theme-dark {
-    color: $civictheme-label-dark-color;
+    color: $civictheme-field-label-dark-color;
 
     #{$root}--required {
       &::after {
-        color: $civictheme-label-dark-required-color;
+        color: $civictheme-field-label-dark-required-color;
       }
     }
   }
