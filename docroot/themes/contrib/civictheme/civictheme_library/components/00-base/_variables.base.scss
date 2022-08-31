@@ -341,6 +341,60 @@ $civictheme-icon-sizes-default: (
 );
 
 //
+// Icon symbols.
+//
+$civictheme-icon-symbols: () !default;
+$civictheme-icon-symbols-default: (
+  'account': 'account',
+  'approve': 'approve',
+  'bars': 'bars',
+  'bullet': 'bullet',
+  'calendar-1': 'calendar-1',
+  'calendar-2': 'calendar-2',
+  'call': 'call',
+  'cancel': 'cancel',
+  'checked': 'checked',
+  'close-outline': 'close-outline',
+  'close': 'close',
+  'down-arrow-1': 'down-arrow-1',
+  'down-arrow-2': 'down-arrow-2',
+  'down-arrow-large': 'down-arrow-large',
+  'download-file': 'download-file',
+  'download': 'download',
+  'exclamation-mark-1': 'exclamation-mark-1',
+  'exclamation-mark-2': 'exclamation-mark-2',
+  'exclamation-mark-3': 'exclamation-mark-3',
+  'eye': 'eye',
+  'facebook': 'facebook',
+  'help': 'help',
+  'image': 'image',
+  'information-mark': 'information-mark',
+  'left-arrow-outline': 'left-arrow-outline',
+  'left-arrow': 'left-arrow',
+  'linkedin': 'linkedin',
+  'magnifier': 'magnifier',
+  'map': 'map',
+  'megaphone': 'megaphone',
+  'mortarboard': 'mortarboard',
+  'newspaper': 'newspaper',
+  'pdf-file': 'pdf-file',
+  'progress': 'progress',
+  'right-arrow-1': 'right-arrow-1',
+  'right-arrow-2': 'right-arrow-2',
+  'select-box': 'select-box',
+  'share': 'share',
+  'square': 'square',
+  'to-do': 'to-do',
+  'twitter': 'twitter',
+  'up-arrow-large': 'up-arrow-large',
+  'up-arrow': 'up-arrow',
+  'upper-arrow': 'upper-arrow',
+  'upper-right-arrow': 'upper-right-arrow',
+  'watch': 'watch',
+  'word-file': 'word-file'
+);
+
+//
 // Elevations.
 //
 $civictheme-elevations: (
