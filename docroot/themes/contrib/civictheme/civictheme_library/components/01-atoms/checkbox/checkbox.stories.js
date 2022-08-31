@@ -1,15 +1,15 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemeLabel from './label.twig';
+import CivicThemeCheckbox from './checkbox.twig';
 
 export default {
-  title: 'Atoms/Form/Label',
+  title: 'Atoms/Checkbox',
   parameters: {
     layout: 'centered',
   },
 };
 
-export const Label = (knobTab) => {
+export const Checkbox = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -22,23 +22,15 @@ export const Label = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    content: text('Content', 'Label text', generalKnobTab),
+    content: text('Content', 'Checkbox label', generalKnobTab),
     required: boolean('Required', false, generalKnobTab),
-    title_display: radios(
-      'Title display',
-      {
-        None: '',
-        After: 'after',
-        Invisible: 'invisible',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    disabled: boolean('Disabled', false, generalKnobTab),
+    has_error: boolean('Has error', false, generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: text('Additional classes', '', generalKnobTab),
   };
 
-  return CivicThemeLabel({
+  return CivicThemeCheckbox({
     ...generalKnobs,
   });
 };
