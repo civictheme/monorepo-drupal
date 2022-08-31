@@ -127,6 +127,13 @@
             border-color: $civictheme-input-light-disabled-color;
           }
         }
+        &:checked + .civictheme-radio__state {
+          &::before {
+            color: $civictheme-input-light-disabled-color;
+            border-color: $civictheme-input-light-disabled-background-color;
+            background-color: $civictheme-input-light-disabled-color;
+          }
+        }
       }
     }
 
@@ -226,6 +233,14 @@
             color: $civictheme-input-dark-disabled-color;
             border-color: $civictheme-radio-dark-disabled-border-color;
             background-color: $civictheme-input-dark-disabled-background-color;
+          }
+        }
+
+        &:checked + .civictheme-radio__state {
+          &::before {
+            color: $civictheme-input-dark-disabled-color;
+            border-color: $civictheme-radio-dark-disabled-border-color;
+            background-color: $civictheme-input-dark-disabled-color;
           }
         }
       }

@@ -2,37 +2,15 @@
 // Checkbox component.
 //
 
+@import '../../00-base/mixins/form';
+
 .civictheme-checkbox {
-  $root: &;
-
   position: absolute;
-  display: flex;
-  align-items: center;
 
-  .civictheme-checkbox__element {
-    position: absolute;
-    // stylelint-disable-next-line alpha-value-notation
-    opacity: 0;
-    width: rem(26px);
-    height: rem(26px);
-    z-index: 1;
-    cursor: pointer;
+  &__element {
+    @include civictheme-checkbox-radio('checkbox');
 
-    & + .civictheme-checkbox__state {
-      &::before {
-        content: '';
-        border-radius: $civictheme-checkbox-border-radius;
-        border: 1px solid;
-        display: block;
-        width: rem(24px);
-        height: rem(24px);
-        position: relative;
-        margin-right: civictheme-space();
-        vertical-align: middle;
-        cursor: pointer;
-        text-align: center;
-      }
-
+    &.civictheme-input__element + .civictheme-checkbox__state {
       &::after {
         position: absolute;
         top: 2px;
@@ -44,241 +22,28 @@
       }
     }
 
-    &:checked {
-      & + .civictheme-checkbox__state {
-        &::before {
-          width: rem(22px);
-          height: rem(22px);
-          border-width: 2px;
-        }
-      }
-    }
-
-    &:focus,
-    &:hover {
-      & + .civictheme-checkbox__state {
-        &::before {
-          box-shadow: 0 0 0 1px;
-        }
-      }
-    }
-
-    &:disabled {
-      pointer-events: none;
-    }
-  }
-
-  #{$root}__label {
-    @include civictheme-typography('text-regular');
-  }
-
-  &.civictheme-theme-light {
-    #{$root}__label {
-      color: $civictheme-checkbox-label-light-color;
-
-      &--disabled {
-        color: $civictheme-checkbox-label-disabled-light-color;
-      }
-    }
-
-    #{$root}__element {
-      & + .civictheme-checkbox__state {
-        &::before {
-          border-color: $civictheme-checkbox-light-border-color;
-        }
-      }
-
-      &:active {
-        & + .civictheme-checkbox__state {
-          &::before {
-            background-color: $civictheme-checkbox-light-active-background-color;
-            border-color: $civictheme-checkbox-light-active-background-color;
-            box-shadow: inset 0 0 0 3px $civictheme-checkbox-light-check-color;
-          }
-        }
-      }
-
-      &:focus {
-        & + .civictheme-checkbox__state {
-          &::before {
-            @include civictheme-outline();
-
-            background-color: $civictheme-checkbox-light-selected-background-color;
-            border-color: $civictheme-checkbox-light-selected-background-color;
-            box-shadow: inset 0 0 0 3px $civictheme-checkbox-light-check-color;
-          }
-        }
-      }
-
-      &:hover {
-        & + .civictheme-checkbox__state {
-          &::before {
-            box-shadow: 0 0 0 1px $civictheme-checkbox-light-border-color;
-          }
-        }
-      }
-
+    &.civictheme-theme-light {
       &:checked {
         & + .civictheme-checkbox__state {
-          &::before {
-            background-color: $civictheme-checkbox-light-selected-background-color;
-            border-color: $civictheme-checkbox-light-selected-background-color;
-            box-shadow: inset 0 0 0 3px $civictheme-checkbox-light-check-color;
-          }
-
           &::after {
-            content: civictheme-color-svg-fill($civictheme-checkbox-check, $civictheme-checkbox-light-check-color);
-          }
-        }
-      }
-
-      &:disabled {
-        & + .civictheme-checkbox__state {
-          &::before {
-            cursor: default;
-            color: $civictheme-input-light-disabled-color;
-            background-color: $civictheme-input-light-disabled-background-color;
-            border-color: $civictheme-input-light-disabled-color;
+            content: civictheme-color-svg-fill($civictheme-radio-check, $civictheme-radio-light-check-color);
           }
         }
       }
     }
 
-    &.success,
-    &.civictheme-input--success {
-      #{$root}__element {
-        &:checked + .civictheme-checkbox__state {
-          &::before {
-            border-color: $civictheme-input-light-success-border-color;
-            background-color: $civictheme-input-light-success-border-color;
-          }
-        }
-      }
-    }
-
-    &.error,
-    &.civictheme-input--error {
-      #{$root}__element {
-        & + .civictheme-checkbox__state {
-          &::before {
-            border-color: $civictheme-input-light-error-border-color;
-          }
-        }
-
-        &:checked {
-          & + .civictheme-checkbox__state {
-            &::before {
-              border-color: $civictheme-input-light-error-border-color;
-              background-color: $civictheme-input-light-error-border-color;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  &.civictheme-theme-dark {
-    #{$root}__label {
-      color: $civictheme-checkbox-label-dark-color;
-
-      &--disabled {
-        color: $civictheme-checkbox-label-disabled-dark-color;
-      }
-    }
-
-    #{$root}__element {
-      & + .civictheme-checkbox__state {
-        &::before {
-          border-color: $civictheme-checkbox-dark-border-color;
-          background-color: $civictheme-checkbox-dark-background-color;
-        }
-      }
-
-      &:hover {
-        & + .civictheme-checkbox__state {
-          &::before {
-            box-shadow: 0 0 0 1px $civictheme-checkbox-dark-border-color;
-          }
-        }
-      }
-
-      &:active {
-        & + .civictheme-checkbox__state {
-          &::before {
-            background-color: $civictheme-checkbox-dark-active-background-color;
-            border-color: $civictheme-checkbox-dark-active-background-color;
-            box-shadow: inset 0 0 0 3px $civictheme-checkbox-dark-check-color;
-          }
-        }
-      }
-
-      &:focus {
-        & + .civictheme-checkbox__state {
-          &::before {
-            @include civictheme-outline();
-
-            background-color: $civictheme-checkbox-dark-selected-background-color;
-            border-color: $civictheme-checkbox-dark-selected-background-color;
-            box-shadow: inset 0 0 0 3px $civictheme-checkbox-dark-check-color;
-          }
-        }
-      }
-
+    &.civictheme-theme-dark {
       &:checked {
         & + .civictheme-checkbox__state {
-          &::before {
-            background-color: $civictheme-checkbox-dark-selected-background-color;
-            border-color: $civictheme-checkbox-dark-selected-background-color;
-            box-shadow: inset 0 0 0 3px $civictheme-checkbox-dark-background-color;
-          }
-
           &::after {
-            content: civictheme-color-svg-fill($civictheme-checkbox-check, $civictheme-checkbox-dark-check-color);
-          }
-        }
-      }
-
-      &:disabled {
-        & + .civictheme-checkbox__state {
-          &::before {
-            color: $civictheme-input-dark-disabled-color;
-            border-color: $civictheme-checkbox-dark-disabled-border-color;
-            background-color: $civictheme-input-dark-disabled-background-color;
-          }
-        }
-      }
-    }
-
-    &.success,
-    &.civictheme-input--success {
-      #{$root}__element {
-        &:checked + .civictheme-checkbox__state {
-          &::before {
-            border-color: $civictheme-input-dark-success-border-color;
-            background-color: $civictheme-input-dark-success-border-color;
-          }
-        }
-      }
-    }
-
-    &.error,
-    &.civictheme-input--error {
-      #{$root}__element {
-        & + .civictheme-checkbox__state {
-          &::before {
-            border-color: $civictheme-input-dark-error-border-color;
-          }
-        }
-
-        &:checked {
-          & + .civictheme-checkbox__state {
-            &::before {
-              border-color: $civictheme-input-dark-error-border-color;
-              background-color: $civictheme-input-dark-error-border-color;
-            }
+            content: civictheme-color-svg-fill($civictheme-radio-check, $civictheme-radio-dark-check-color);
           }
         }
       }
     }
   }
+}
+
+.checkboxes--wrapper {
+  @include civictheme-typography('text-regular');
 }
