@@ -5,9 +5,9 @@ _meta:
   bundle: civictheme_social_links
   default_langcode: en
   depends:
-    128cf256-533b-4a10-bedb-e878deada4a5: media
-    f7f391de-797d-4345-90c4-46d1f01c468e: media
-    930bbaa2-e37b-403a-86e6-c16d1aa79ad9: media
+    9dd16162-6e1b-43f7-821e-003f0711b0a9: media
+    eb524ad3-657f-4287-bafd-7b76b3619831: media
+    d862309a-96ab-4961-9e69-28ccc203a5ff: media
 default:
   status:
     -
@@ -45,7 +45,7 @@ default:
               value: true
           field_c_p_icon:
             -
-              entity: 128cf256-533b-4a10-bedb-e878deada4a5
+              entity: 9dd16162-6e1b-43f7-821e-003f0711b0a9
           field_c_p_link:
             -
               uri: 'https://www.facebook.com/'
@@ -74,7 +74,7 @@ default:
               value: true
           field_c_p_icon:
             -
-              entity: f7f391de-797d-4345-90c4-46d1f01c468e
+              entity: eb524ad3-657f-4287-bafd-7b76b3619831
           field_c_p_link:
             -
               uri: 'https://www.linkedin.com/'
@@ -103,7 +103,7 @@ default:
               value: true
           field_c_p_icon:
             -
-              entity: 930bbaa2-e37b-403a-86e6-c16d1aa79ad9
+              entity: d862309a-96ab-4961-9e69-28ccc203a5ff
           field_c_p_link:
             -
               uri: 'https://twitter.com/'
