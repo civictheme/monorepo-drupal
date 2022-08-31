@@ -127,6 +127,7 @@
             border-color: $civictheme-input-light-disabled-color;
           }
         }
+
         &:checked + .civictheme-radio__state {
           &::before {
             color: $civictheme-input-light-disabled-color;
