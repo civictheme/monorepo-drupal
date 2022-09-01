@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeTextfield from './textfield.twig';
 
 export default {
-  title: 'Atoms/Form/Textfield',
+  title: 'Atoms/Textfield',
   parameters: {
     layout: 'centered',
   },
@@ -22,11 +22,11 @@ export const Textfield = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    text: text('Text', 'Textfield text', generalKnobTab),
+    placeholder: text('Placeholder', 'Placeholder', generalKnobTab),
     required: boolean('Required', false, generalKnobTab),
     disabled: boolean('Disabled', false, generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: text('Additional classes', '', generalKnobTab),
   };
 
   return CivicThemeTextfield({
