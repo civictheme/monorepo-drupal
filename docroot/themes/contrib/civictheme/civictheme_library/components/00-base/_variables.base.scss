@@ -270,6 +270,10 @@ $civictheme-typography-default: (
   ),
   'heading-6': ($civictheme-font-base-size, $civictheme-font-base-line-height * 1.625, 700, 'primary', 0),
   // Text.
+  'text-extra-large': (
+    'xxs': ($civictheme-font-base-size * 1.25, $civictheme-font-base-line-height * 1.5, 400, 'primary', -0.1px),
+    'm': ($civictheme-font-base-size * 1.5, $civictheme-font-base-line-height * 1.5, 400, 'primary', 0)
+  ),
   'text-large': (
     'xxs': ($civictheme-font-base-size * 1.125, $civictheme-font-base-line-height * 1.75, 400, 'primary', 0),
     'm': ($civictheme-font-base-size * 1.25, $civictheme-font-base-line-height * 2.125, 400, 'primary', 0)

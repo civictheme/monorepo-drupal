@@ -1,0 +1,31 @@
+//
+// Body Copy component.
+//
+
+@use 'sass:map';
+
+.civictheme-body-copy {
+  $root: &;
+  $sizes: ( 'extra-large', 'large', 'regular', 'small' );
+
+  display: block;
+  margin-bottom: civictheme-space();
+
+  @include civictheme-content();
+
+  @each $size in $sizes {
+    &.civictheme-body-copy--#{$size} {
+      @if map.get(_civictheme-typography-all(), 'text-#{$size}') != null {
+        @include civictheme-typography('text-#{$size}');
+      }
+    }
+  }
+
+  &.civictheme-theme-light {
+    @include civictheme-content-light();
+  }
+
+  &.civictheme-theme-dark {
+    @include civictheme-content-dark();
+  }
+}
