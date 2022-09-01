@@ -2,9 +2,11 @@
 // Label component.
 //
 
+@use 'sass:map';
+@use 'sass:string';
+
 .civictheme-field-label {
   $root: &;
-  $sizes: ('extra-large', 'large', 'regular', 'small', 'extra-small');
 
   display: block;
   margin-bottom: civictheme-space();
@@ -19,9 +21,12 @@
     }
   }
 
-  @each $size in $sizes {
-    &.civictheme-field-label--#{$size} {
-      @include civictheme-typography('label-#{$size}');
+  @each $name in map.keys(_civictheme-typography-all()) {
+    @if string.index(#{$name}, 'label-') {
+      $size: string.slice(#{$name}, 6, 100);
+      &.civictheme-field-label-#{$size} {
+        @include civictheme-typography($name);
+      }
     }
   }
 

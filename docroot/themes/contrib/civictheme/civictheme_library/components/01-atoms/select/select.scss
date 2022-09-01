@@ -20,15 +20,17 @@
       box-shadow: 0 0 0 1px $civictheme-select-light-hover-border-color;
     }
 
+    &:active,
+    &:focus {
+      border-color: $civictheme-select-light-focus-border-color;
+      box-shadow: 0 0 0 1px $civictheme-select-light-focus-border-color;
+    }
+
+    &:invalid,
     &.error,
     &.civictheme-input--error {
       border-color: $civictheme-input-light-error-border-color;
       box-shadow: 0 0 0 1px $civictheme-input-light-error-border-color;
-    }
-
-    &.civictheme-input--success {
-      border-color: $civictheme-select-light-border-success-color;
-      box-shadow: 0 0 0 1px $civictheme-select-light-border-success-color;
     }
 
     &.disabled {
@@ -46,6 +48,7 @@
       box-shadow: 0 0 0 1px $civictheme-select-dark-hover-border-color;
     }
 
+    &:active,
     &:focus {
       border-color: $civictheme-select-dark-focus-border-color;
       box-shadow: 0 0 0 1px $civictheme-select-dark-focus-border-color;
@@ -56,12 +59,6 @@
     &.civictheme-input--error {
       border-color: $civictheme-select-dark-border-error-color;
       box-shadow: 0 0 0 1px $civictheme-select-dark-border-error-color;
-    }
-
-    &:valid,
-    &.civictheme-input--success {
-      border-color: $civictheme-select-dark-border-success-color;
-      box-shadow: 0 0 0 1px $civictheme-select-dark-border-success-color;
     }
 
     &.disabled {

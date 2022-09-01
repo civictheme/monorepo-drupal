@@ -8,68 +8,80 @@
   border-radius: $civictheme-tag-border-radius;
   border-style: solid;
   border-width: $civictheme-tag-border-width;
-  padding: civictheme-space(0.5) civictheme-space();
   display: inline-block;
 
   @include civictheme-typography('label-small');
+  @include civictheme-link-no-decoration();
+
+  &--icon-before {
+    .civictheme-icon {
+      margin-right: civictheme-space(0.25);
+    }
+  }
 
   &--icon-after {
-    padding-right: rem(4px);
-    padding-left: civictheme-space();
+    .civictheme-icon {
+      margin-left: civictheme-space(0.25);
+    }
   }
 
   .civictheme-icon {
-    padding-right: rem(2px);
-    vertical-align: middle;
-  }
-
-  &__link {
-    text-decoration: none;
+    vertical-align: text-bottom;
   }
 
   &.civictheme-theme-light {
-    background-color: $civictheme-tag-light-background-color;
-    border-color: $civictheme-tag-light-border-color;
-    color: $civictheme-tag-light-color;
+    &#{$root}--primary {
+      background-color: $civictheme-tag-light-primary-background-color;
+      border-color: $civictheme-tag-light-primary-border-color;
+      color: $civictheme-tag-light-primary-color;
+      padding: civictheme-space(0.5) civictheme-space();
 
-    @include civictheme-icon-fill-color($civictheme-tag-light-color);
-
-    &#{$root}--is-alt {
-      background-color: $civictheme-tag-light-alt-background-color;
-      color: $civictheme-tag-light-alt-color;
-
-      #{$root}__link {
-        color: $civictheme-tag-light-alt-color;
-      }
-
-      @include civictheme-icon-fill-color($civictheme-tag-light-alt-color);
+      @include civictheme-icon-fill-color($civictheme-tag-light-primary-color);
     }
 
-    #{$root}__link {
-      color: $civictheme-tag-light-color;
+    &#{$root}--secondary {
+      background-color: $civictheme-tag-light-secondary-background-color;
+      border-color: $civictheme-tag-light-secondary-border-color;
+      color: $civictheme-tag-light-secondary-color;
+      padding: civictheme-space(0.5) civictheme-space();
+
+      @include civictheme-icon-fill-color($civictheme-tag-light-secondary-color);
+    }
+
+    &#{$root}--tertiary {
+      background-color: $civictheme-tag-light-tertiary-background-color;
+      border-color: $civictheme-tag-light-tertiary-border-color;
+      color: $civictheme-tag-light-tertiary-color;
+
+      @include civictheme-icon-fill-color($civictheme-tag-light-tertiary-color);
     }
   }
 
   &.civictheme-theme-dark {
-    background-color: $civictheme-tag-dark-background-color;
-    border-color: $civictheme-tag-dark-border-color;
-    color: $civictheme-tag-dark-color;
+    &#{$root}--primary {
+      background-color: $civictheme-tag-dark-primary-background-color;
+      border-color: $civictheme-tag-dark-primary-border-color;
+      color: $civictheme-tag-dark-primary-color;
+      padding: civictheme-space(0.5) civictheme-space();
 
-    @include civictheme-icon-fill-color($civictheme-tag-dark-color);
-
-    &#{$root}--is-alt {
-      background-color: $civictheme-tag-dark-alt-background-color;
-      color: $civictheme-tag-dark-alt-color;
-
-      #{$root}__link {
-        color: $civictheme-tag-dark-alt-color;
-      }
-
-      @include civictheme-icon-fill-color($civictheme-tag-dark-alt-color);
+      @include civictheme-icon-fill-color($civictheme-tag-dark-primary-color);
     }
 
-    #{$root}__link {
-      color: $civictheme-tag-dark-color;
+    &#{$root}--secondary {
+      background-color: $civictheme-tag-dark-secondary-background-color;
+      border-color: $civictheme-tag-dark-secondary-border-color;
+      color: $civictheme-tag-dark-secondary-color;
+      padding: civictheme-space(0.5) civictheme-space();
+
+      @include civictheme-icon-fill-color($civictheme-tag-dark-secondary-color);
+    }
+
+    &#{$root}--tertiary {
+      background-color: $civictheme-tag-dark-tertiary-background-color;
+      border-color: $civictheme-tag-dark-tertiary-border-color;
+      color: $civictheme-tag-dark-tertiary-color;
+
+      @include civictheme-icon-fill-color($civictheme-tag-dark-tertiary-color);
     }
   }
 }

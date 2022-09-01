@@ -378,17 +378,25 @@ $civictheme-heading-dark-hover-background-color: civictheme-color('secondary') !
 // Tag.
 //
 $civictheme-tag-border-radius: $civictheme-border-radius !default;
-$civictheme-tag-border-width: 0 !default;
-$civictheme-tag-light-color: civictheme-color('neutral', 1) !default;
-$civictheme-tag-light-background-color: civictheme-color('primary') !default;
-$civictheme-tag-light-border-color: civictheme-color('neutral', 4) !default;
-$civictheme-tag-light-alt-color: civictheme-color('neutral', 1) !default;
-$civictheme-tag-light-alt-background-color: civictheme-color('primary') !default;
-$civictheme-tag-dark-color: civictheme-color('neutral', 1) !default;
-$civictheme-tag-dark-background-color: civictheme-color('primary', 3) !default;
-$civictheme-tag-dark-border-color: civictheme-color('neutral', 7) !default;
-$civictheme-tag-dark-alt-color: civictheme-color('neutral', 7) !default;
-$civictheme-tag-dark-alt-background-color: civictheme-color('secondary') !default;
+$civictheme-tag-border-width: 1px !default;
+$civictheme-tag-light-primary-color: civictheme-color('neutral', 1) !default;
+$civictheme-tag-light-primary-background-color: civictheme-color('primary') !default;
+$civictheme-tag-light-primary-border-color: transparent !default;
+$civictheme-tag-light-secondary-color: civictheme-color('primary') !default;
+$civictheme-tag-light-secondary-border-color: civictheme-color('primary') !default;
+$civictheme-tag-light-secondary-background-color: civictheme-color('neutral', 1) !default;
+$civictheme-tag-light-tertiary-color: civictheme-color('primary') !default;
+$civictheme-tag-light-tertiary-border-color: transparent !default;
+$civictheme-tag-light-tertiary-background-color: transparent !default;
+$civictheme-tag-dark-primary-color: civictheme-color('primary') !default;
+$civictheme-tag-dark-primary-background-color: civictheme-color('secondary') !default;
+$civictheme-tag-dark-primary-border-color: transparent !default;
+$civictheme-tag-dark-secondary-color: civictheme-color('secondary') !default;
+$civictheme-tag-dark-secondary-border-color: civictheme-color('secondary') !default;
+$civictheme-tag-dark-secondary-background-color: transparent !default;
+$civictheme-tag-dark-tertiary-color: civictheme-color('secondary') !default;
+$civictheme-tag-dark-tertiary-border-color: transparent !default;
+$civictheme-tag-dark-tertiary-background-color: transparent !default;
 
 //
 // Input.
@@ -422,20 +430,28 @@ $civictheme-input-dark-focus-outline-color: civictheme-color('neutral', 1) !defa
 $civictheme-input-dark-focus-border-color: civictheme-color('neutral', 1) !default;
 $civictheme-input-dark-icon-color: civictheme-color('neutral', 1) !default;
 $civictheme-input-dark-disabled-color: civictheme-color('neutral', 3) !default;
-$civictheme-input-dark-disabled-background-color: civictheme-color('neutral', 6) !default;
+$civictheme-input-dark-disabled-background-color: civictheme-color('primary', 4) !default;
 
 //
-// Radio, Checkbox.
+// Radio.
 //
 $civictheme-radio-border-radius: 50% !default;
-$civictheme-radio-light-border-color: civictheme-color('neutral', 6) !default;
+$civictheme-radio-label-light-color: civictheme-color('neutral', 8) !default;
+$civictheme-radio-label-disabled-light-color: civictheme-color('neutral', 6) !default;
+$civictheme-radio-light-border-color: civictheme-color('primary', 5) !default;
+$civictheme-radio-light-disabled-border-color: civictheme-color('primary', 3) !default;
 $civictheme-radio-light-background-color: civictheme-color('neutral', 3) !default;
 $civictheme-radio-light-selected-background-color: civictheme-color('primary') !default;
+$civictheme-radio-light-active-background-color: civictheme-color('neutral', 8) !default;
 $civictheme-radio-light-check-color: civictheme-color('neutral', 1) !default;
 $civictheme-radio-dark-border-color: civictheme-color('neutral', 5) !default;
-$civictheme-radio-dark-background-color: civictheme-color('primary') !default;
+$civictheme-radio-dark-disabled-border-color: civictheme-color('primary', 2) !default;
+$civictheme-radio-dark-background-color: civictheme-color('primary', 4) !default;
 $civictheme-radio-dark-selected-background-color: civictheme-color('secondary') !default;
+$civictheme-radio-dark-active-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-radio-dark-check-color: civictheme-color('neutral', 7) !default;
+$civictheme-radio-label-dark-color: civictheme-color('neutral', 1) !default;
+$civictheme-radio-label-disabled-dark-color: civictheme-color('primary', 2) !default;
 
 //
 // Checkbox.
@@ -466,7 +482,8 @@ $civictheme-select-light-color: civictheme-color('neutral', 7) !default;
 $civictheme-select-light-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-select-light-border-color: civictheme-color('neutral', 4) !default;
 $civictheme-select-light-hover-border-color: civictheme-color('neutral', 6) !default;
-$civictheme-select-light-border-success-color: civictheme-color('success') !default;
+$civictheme-select-light-focus-border-color: civictheme-color('primary') !default;
+$civictheme-select-light-border-active-color: civictheme-color('success') !default;
 $civictheme-select-light-disabled-color: civictheme-color('neutral', 5) !default;
 $civictheme-select-light-disabled-background-color: civictheme-color('neutral', 3) !default;
 $civictheme-select-dark-color: civictheme-color('neutral', 1) !default;
@@ -475,7 +492,7 @@ $civictheme-select-dark-border-color: civictheme-color('neutral', 5) !default;
 $civictheme-select-dark-hover-border-color: civictheme-color('neutral', 3) !default;
 $civictheme-select-dark-focus-border-color: civictheme-color('secondary') !default;
 $civictheme-select-dark-border-error-color: civictheme-color('error') !default;
-$civictheme-select-dark-border-success-color: civictheme-color('success') !default;
+$civictheme-select-dark-border-active-color: civictheme-color('success') !default;
 $civictheme-select-dark-disabled-color: civictheme-color('neutral', 5) !default;
 $civictheme-select-dark-disabled-background-color: civictheme-color('neutral', 7) !default;
 
