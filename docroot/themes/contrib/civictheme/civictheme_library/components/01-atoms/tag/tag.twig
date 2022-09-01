@@ -5,53 +5,53 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - text: [string] Text.
- * - is_alt: [boolean] Flag to render as "alternative" color scheme.
+ * - type: [string] Type: primary, secondary, tertiary
+ * - content: [string] Content.
  * - icon: [string] Icon name.
  * - icon_placement: [string] Icon position: before, after.
  * - url: [string] Optional URL to convert to a link.
  * - is_new_window: [boolean] Open in a new window. Only if url is provided.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set alt_class = is_alt ? 'civictheme-tag--is-alt' : '' %}
+{% set type = type in ['primary', 'secondary', 'tertiary'] ? type : 'primary' %}
+{% set type_class = 'civictheme-tag--%s'|format(type) %}
 {% set icon_class = icon is not empty ? 'civictheme-tag--with-icon' : '' %}
 {% set icon_placement_class = icon ? 'civictheme-tag--icon-%s'|format(icon_placement|default('before')) : '' %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, alt_class, icon_class, icon_placement_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, type_class, icon_class, icon_placement_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, type_class, icon_class, icon_placement_class, modifier_class|default('')) %}
 
-{% set tag_icon %}
+{% set tag = url is not empty ? 'a' : 'span' %}
+
+{% set icon %}
   {% if icon %}
-    <span class="civictheme-tag__icon">
-		  {% include '@atoms/icon/icon.twig' with {
-        symbol: icon,
-        size: 'small',
-      } only %}
-		</span>
+    {% include '@atoms/icon/icon.twig' with {
+      symbol: icon,
+      size: 'small',
+    } only %}
   {% endif %}
 {% endset %}
 
-{% set tag_text %}
-  {% if icon %}
-    {% if icon_placement == 'before' %}
-      {{ tag_icon }}{{ text }}
-    {% elseif icon_placement == 'after' %}
-      {{ text }}{{ tag_icon }}
-    {% endif %}
-  {% else %}
-    {{ text }}
-  {% endif %}
+{% set text %}
+  {{ icon_placement == 'before' ? icon : '' }}{{ content }}{{ icon_placement == 'after' ? icon : '' }}
 {% endset %}
 
-{% if tag_text %}
-  <div class="civictheme-tag {{ modifier_class }}" aria-label="{{ text }}">
+{% if text|trim is not empty %}
+  <{{ tag }}
+    class="civictheme-tag {{ modifier_class }}"
     {% if url is not empty %}
-      <a class="civictheme-tag__link" href="{{ url }}" {% if text is not empty %}title="{{ text }}" aria-label="{{ text }}"{% endif%} {{ is_new_window ? 'target="_blank"' }}>
+      href="{{ url }}"
+    {% endif%}
+    {% if content is not empty %}
+      title="{{ content }}"
+      aria-label="{{ content }}"
+    {% endif%}
+
+    {% if attributes is not empty %}
+      {{ attributes|raw }}
     {% endif %}
-        {{ tag_text }}
-    {% if url is not empty %}
-      </a>
-    {% endif %}
-  </div>
+  >{{ text|trim }}</{{ tag }}>
 {% endif %}

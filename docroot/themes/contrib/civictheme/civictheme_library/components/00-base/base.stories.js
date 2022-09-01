@@ -236,3 +236,18 @@ export const dropDownFilter = (filterType, numOfOptions, theme, rand, itr) => {
     options: children.join(''),
   });
 };
+
+export const randomOptions = (numOfOptions, optionType = 'option') => {
+  const options = [];
+  for (let i = 1; i <= numOfOptions; i++) {
+    const option = {
+      type: optionType,
+      selected: false,
+      label: optionType === 'optgroup' ? `Group ${i}` : randomString(getRandomInt(3, 8)),
+      value: randomString(getRandomInt(1, 8)),
+      options: optionType === 'optgroup' ? randomOptions(numOfOptions) : null,
+    };
+    options.push(option);
+  }
+  return options;
+};
