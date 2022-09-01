@@ -482,7 +482,8 @@ $civictheme-select-light-color: civictheme-color('neutral', 7) !default;
 $civictheme-select-light-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-select-light-border-color: civictheme-color('neutral', 4) !default;
 $civictheme-select-light-hover-border-color: civictheme-color('neutral', 6) !default;
-$civictheme-select-light-border-success-color: civictheme-color('success') !default;
+$civictheme-select-light-focus-border-color: civictheme-color('primary') !default;
+$civictheme-select-light-border-active-color: civictheme-color('success') !default;
 $civictheme-select-light-disabled-color: civictheme-color('neutral', 5) !default;
 $civictheme-select-light-disabled-background-color: civictheme-color('neutral', 3) !default;
 $civictheme-select-dark-color: civictheme-color('neutral', 1) !default;
@@ -491,7 +492,7 @@ $civictheme-select-dark-border-color: civictheme-color('neutral', 5) !default;
 $civictheme-select-dark-hover-border-color: civictheme-color('neutral', 3) !default;
 $civictheme-select-dark-focus-border-color: civictheme-color('secondary') !default;
 $civictheme-select-dark-border-error-color: civictheme-color('error') !default;
-$civictheme-select-dark-border-success-color: civictheme-color('success') !default;
+$civictheme-select-dark-border-active-color: civictheme-color('success') !default;
 $civictheme-select-dark-disabled-color: civictheme-color('neutral', 5) !default;
 $civictheme-select-dark-disabled-background-color: civictheme-color('neutral', 7) !default;
 
