@@ -1,0 +1,65 @@
+//
+// Textfield component.
+//
+
+.civictheme-textfield {
+  $root: &;
+
+  @include civictheme-typography('text-regular');
+
+  display: block;
+  margin: 0 auto 0.5rem;
+  padding: civictheme-space(1.25) civictheme-space(2);
+  border-radius: $civictheme-input-border-radius;
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 50%;
+  }
+
+  &.civictheme-theme-light {
+    color: $civictheme-input-light-color;
+    background-color: $civictheme-input-light-background-color;
+
+    &:hover {
+      box-shadow: 0 0 0 1px $civictheme-input-light-hover-border-color;
+    }
+
+    &:active,
+    &:focus {
+      border-color: $civictheme-input-light-focus-border-color;
+      box-shadow: 0 0 0 1px $civictheme-input-light-focus-border-color;
+    }
+
+    &:invalid,
+    &.error,
+    &.civictheme-input--error {
+      border-color: $civictheme-input-light-error-border-color;
+      box-shadow: 0 0 0 1px $civictheme-input-light-error-border-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-input-dark-color;
+    background-color: $civictheme-input-dark-background-color;
+    border-color: $civictheme-input-dark-border-color;
+
+    &:hover {
+      border-color: $civictheme-input-dark-hover-border-color;
+      box-shadow: 0 0 0 1px $civictheme-input-dark-hover-border-color;
+    }
+
+    &:active,
+    &:focus {
+      border-color: $civictheme-input-dark-focus-border-color;
+      box-shadow: 0 0 0 1px $civictheme-input-dark-focus-border-color;
+    }
+
+    &:invalid,
+    &.error,
+    &.civictheme-input--error {
+      border-color: $civictheme-input-dark-error-border-color;
+      box-shadow: 0 0 0 1px $civictheme-input-dark-error-border-color;
+    }
+  }
+}
