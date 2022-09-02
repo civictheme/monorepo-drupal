@@ -491,7 +491,7 @@ function _civictheme_path_field_description($original_path, $fallback_path) {
 
   return t('Examples: <code>@implicit-public-file</code> (for a file in the public filesystem), <code>@explicit-file</code>, or <code>@local-file</code>.', [
     '@implicit-public-file' => $friendly_path ?? $fallback_path,
-    '@explicit-file' => StreamWrapperManager::getScheme($original_path) !== FALSE ? $original_path : 'public://' . $fallback_path,
+    '@explicit-file' => StreamWrapperManager::getScheme($original_path ?? '') !== FALSE ? $original_path : 'public://' . $fallback_path,
     '@local-file' => $local_file,
   ]);
 }
