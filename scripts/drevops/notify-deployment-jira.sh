@@ -22,7 +22,8 @@ DREVOPS_NOTIFY_DEPLOY_BRANCH="${DREVOPS_NOTIFY_DEPLOY_BRANCH:-}"
 # Deployment environment URL.
 DREVOPS_NOTIFY_DEPLOY_ENVIRONMENT_URL="${DREVOPS_NOTIFY_DEPLOY_ENVIRONMENT_URL:-}"
 
-DREVOPS_NOTIFY_DEPLOY_JIRA_ASSIGNEE="${DREVOPS_NOTIFY_DEPLOY_JIRA_ASSIGNEE:-"Deployed to "}"
+# Deployment comment prefix.
+DREVOPS_NOTIFY_DEPLOY_JIRA_COMMENT_PREFIX="${DREVOPS_NOTIFY_DEPLOY_JIRA_COMMENT_PREFIX:-"Deployed to "}"
 
 # State to move the ticket to.
 DREVOPS_NOTIFY_DEPLOY_JIRA_TRANSITION="${DREVOPS_NOTIFY_DEPLOY_JIRA_TRANSITION:-}"
@@ -30,7 +31,7 @@ DREVOPS_NOTIFY_DEPLOY_JIRA_TRANSITION="${DREVOPS_NOTIFY_DEPLOY_JIRA_TRANSITION:-
 # Assign the ticket to this account.
 DREVOPS_NOTIFY_DEPLOY_JIRA_ASSIGNEE="${DREVOPS_NOTIFY_DEPLOY_JIRA_ASSIGNEE:-}"
 
-# JIRA API endpoint.l
+# JIRA API endpoint.
 DREVOPS_NOTIFY_JIRA_ENDPOINT="${DREVOPS_NOTIFY_JIRA_ENDPOINT:-https://jira.atlassian.com}"
 
 # Flag to skip notification.
@@ -46,7 +47,6 @@ DREVOPS_NOTIFY_DEPLOY_JIRA_SKIP="${DREVOPS_NOTIFY_DEPLOY_JIRA_SKIP:-}"
 [ -z "${DREVOPS_NOTIFY_DEPLOY_JIRA_USER}" ] && echo "ERROR: Missing required value for DREVOPS_NOTIFY_DEPLOY_JIRA_USER" && exit 1
 [ -z "${DREVOPS_NOTIFY_DEPLOY_JIRA_TOKEN}" ] && echo "ERROR: Missing required value for DREVOPS_NOTIFY_DEPLOY_JIRA_TOKEN" && exit 1
 [ -z "${DREVOPS_NOTIFY_DEPLOY_BRANCH}" ] && echo "ERROR: Missing required value for DREVOPS_NOTIFY_DEPLOY_BRANCH" && exit 1
-[ -z "${DREVOPS_NOTIFY_DEPLOY_JIRA_ASSIGNEE}" ] && [ -z "${DREVOPS_NOTIFY_DEPLOY_JIRA_TRANSITION}" ] && [ -z "${DREVOPS_NOTIFY_DEPLOY_JIRA_ASSIGNEE}" ] && echo "ERROR: At least one of the DREVOPS_NOTIFY_DEPLOY_JIRA_ASSIGNEE, DREVOPS_NOTIFY_DEPLOY_JIRA_TRANSITION or DREVOPS_NOTIFY_DEPLOY_JIRA_ASSIGNEE is required" && exit 1
 
 echo "==> Started JIRA deployment notification"
 
@@ -90,7 +90,8 @@ issue="$(extract_issue "${DREVOPS_NOTIFY_DEPLOY_BRANCH}")"
 echo "    Found issue ${issue}"
 
 echo "  > Creating API token"
-token="$(echo -n "${DREVOPS_NOTIFY_DEPLOY_JIRA_USER}:${DREVOPS_NOTIFY_DEPLOY_JIRA_TOKEN}" | base64 -w 0)"
+base64_opts=() && [ "$(uname)" != "Darwin" ] && base64_opts=(-w 0)
+token="$(echo -n "${DREVOPS_NOTIFY_DEPLOY_JIRA_USER}:${DREVOPS_NOTIFY_DEPLOY_JIRA_TOKEN}" | base64 "${base64_opts[@]}")"
 
 echo -n "  > Checking API access..."
 payload="$(curl \
@@ -107,12 +108,12 @@ account_id="$(echo "${payload}" | extract_json_value "accountId" || echo "error"
 && echo "ERROR: Failed to authenticate" && echo "${payload}" && exit 1
 echo "success"
 
-if [ -n "${DREVOPS_NOTIFY_DEPLOY_JIRA_ASSIGNEE}" ]; then
+if [ -n "${DREVOPS_NOTIFY_DEPLOY_JIRA_COMMENT_PREFIX}" ]; then
   echo "  > Posting a comment"
 
   [ -z "${DREVOPS_NOTIFY_DEPLOY_ENVIRONMENT_URL}" ] && echo "ERROR: Missing required value for DREVOPS_NOTIFY_DEPLOY_ENVIRONMENT_URL" && exit 1
 
-  comment="[{\"type\": \"text\",\"text\": \"${DREVOPS_NOTIFY_DEPLOY_JIRA_ASSIGNEE}\"},{\"type\": \"inlineCard\",\"attrs\": {\"url\": \"${DREVOPS_NOTIFY_DEPLOY_ENVIRONMENT_URL}\"}}]"
+  comment="[{\"type\": \"text\",\"text\": \"${DREVOPS_NOTIFY_DEPLOY_JIRA_COMMENT_PREFIX}\"},{\"type\": \"inlineCard\",\"attrs\": {\"url\": \"${DREVOPS_NOTIFY_DEPLOY_ENVIRONMENT_URL}\"}}]"
   payload="$(curl \
     -s \
     -X POST \
