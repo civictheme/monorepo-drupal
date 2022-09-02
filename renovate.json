@@ -27,7 +27,8 @@
                 "drupal/core-composer-scaffold",
                 "drupal/core-project-message",
                 "drupal/core-recommended",
-                "drush/drush"
+                "drush/drush",
+                "slevomat/coding-standard"
             ],
             "enabled": false
         },
@@ -42,7 +43,8 @@
                 "drupal/core-composer-scaffold",
                 "drupal/core-project-message",
                 "drupal/core-recommended",
-                "drush/drush"
+                "drush/drush",
+                "slevomat/coding-standard"
             ]
         }
     ]
