@@ -285,8 +285,8 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, $field_nam
     case 'image':
     case 'link':
       $list = $field;
-       if (!$list->isEmpty()) {
-         $value = $only_first ? $list->first() : $list;
+      if (!$list->isEmpty()) {
+        $value = $only_first ? $list->first() : $list;
       }
       break;
 
