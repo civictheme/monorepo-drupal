@@ -7,10 +7,8 @@
  * - theme: [string] Theme: light, dark.
  * - text: [string] Button text.
  * - url: [string] URL.
- * - title: [string] Defines the title of a link.
  * - is_new_window: [boolean] Open in a new window.
  * - is_external [boolean] Link is external.
- * - hidden_text: [string] Additional hidden text for link (visually hidden).
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
@@ -21,13 +19,7 @@
 {% set modifier_class = '%s %s %s'|format(theme_class, is_external, modifier_class|default('')) %}
 
 {% if text is not empty %}
-  <a class="civictheme-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {% if title is not empty %}title="{{ title }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-    {% if hidden_text is not empty %}
-      <span class="visually-hidden">
-        {{ hidden_text }}
-      </span>
-    {% endif %}
-
+  <a class="civictheme-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {{ text|raw }}
   </a>
 {% endif %}
