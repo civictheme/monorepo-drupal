@@ -8,9 +8,14 @@
   @include civictheme-typography('text-regular');
 
   display: block;
-  font-weight: 600;
   margin: 0 auto 0.5rem;
-  padding: civictheme-space(1.5) civictheme-space(3) civictheme-space(1.5) civictheme-space(2);
+  padding: civictheme-space(1.25) civictheme-space(2);
+  border-radius: $civictheme-select-border-radius;
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 50%;
+  }
 
   &.civictheme-theme-light {
     color: $civictheme-select-light-color;
@@ -29,19 +34,15 @@
     &:invalid,
     &.error,
     &.civictheme-input--error {
-      border-color: $civictheme-input-light-error-border-color;
-      box-shadow: 0 0 0 1px $civictheme-input-light-error-border-color;
-    }
-
-    &.disabled {
-      color: $civictheme-select-light-disabled-color;
+      border-color: $civictheme-select-light-error-border-color;
+      box-shadow: 0 0 0 1px $civictheme-select-light-error-border-color;
     }
   }
 
   &.civictheme-theme-dark {
     color: $civictheme-select-dark-color;
     background-color: $civictheme-select-dark-background-color;
-    border-color: $civictheme-input-dark-error-border-color;
+    border-color: $civictheme-select-dark-border-color;
 
     &:hover {
       border-color: $civictheme-select-dark-hover-border-color;
@@ -57,14 +58,8 @@
     &:invalid,
     &.error,
     &.civictheme-input--error {
-      border-color: $civictheme-select-dark-border-error-color;
-      box-shadow: 0 0 0 1px $civictheme-select-dark-border-error-color;
-    }
-
-    &.disabled {
-      border-color: $civictheme-select-dark-disabled-color;
-      color: $civictheme-select-dark-disabled-color;
-      background-color: $civictheme-select-dark-disabled-background-color;
+      border-color: $civictheme-select-dark-error-border-color;
+      box-shadow: 0 0 0 1px $civictheme-select-dark-error-border-color;
     }
   }
 }
