@@ -47,7 +47,7 @@ CivicChip.prototype.clickEvent = function (e) {
 
     if (isChecked) {
       // Dispatch custom event when click on input label.
-      this.el.dispatchEvent(new CustomEvent('civictheme.chip.dismiss', {bubbles: true}));
+      this.el.dispatchEvent(new CustomEvent('civictheme.chip.dismiss', { bubbles: true }));
     }
   }
 };

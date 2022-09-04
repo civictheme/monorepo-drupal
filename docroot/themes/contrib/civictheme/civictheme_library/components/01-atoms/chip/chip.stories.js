@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import {
-  boolean, radios, select, text,
+  boolean, radios, text,
 } from '@storybook/addon-knobs';
 
 import CivicThemeChip from './chip.twig';
@@ -17,12 +17,12 @@ export default {
 export const Chip = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
-  const kind =  radios(
+  const kind = radios(
     'Kind', {
       Default: 'default',
       Input: 'input',
     },
-      'default',
+    'default',
       generalKnobTab,
   );
 
@@ -37,14 +37,14 @@ export const Chip = (knobTab) => {
     ),
     kind: kind,
     content: text('Chip label', 'Chip label', generalKnobTab),
-    is_dismissible: (kind == 'default') ? boolean('Dismissible', false, generalKnobTab) : null,
-    is_multiple: (kind == 'input') ? boolean('Is multiple', false, generalKnobTab) : null,
-    is_selected: (kind == 'input') ? boolean('Is selected', false, generalKnobTab) : null,
+    is_dismissible: (kind === 'default') ? boolean('Dismissible', false, generalKnobTab) : null,
+    is_multiple: (kind === 'input') ? boolean('Is multiple', false, generalKnobTab) : null,
+    is_selected: (kind === 'input') ? boolean('Is selected', false, generalKnobTab) : null,
     attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
   };
 
   return CivicThemeChip({
-    ...generalKnobs
+    ...generalKnobs,
   });
 };
