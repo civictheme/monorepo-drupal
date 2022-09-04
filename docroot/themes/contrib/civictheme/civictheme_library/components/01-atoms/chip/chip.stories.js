@@ -23,7 +23,7 @@ export const Chip = (knobTab) => {
       Input: 'input',
     },
     'default',
-      generalKnobTab,
+    generalKnobTab,
   );
 
   const generalKnobs = {
@@ -35,7 +35,7 @@ export const Chip = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    kind: kind,
+    kind: () => kind,
     content: text('Chip label', 'Chip label', generalKnobTab),
     is_dismissible: (kind === 'default') ? boolean('Dismissible', false, generalKnobTab) : null,
     is_multiple: (kind === 'input') ? boolean('Is multiple', false, generalKnobTab) : null,

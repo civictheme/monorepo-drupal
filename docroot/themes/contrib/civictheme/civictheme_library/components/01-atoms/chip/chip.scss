@@ -22,7 +22,7 @@
 
     &.focus,
     &:focus {
-      @include  civictheme-outline();
+      @include civictheme-outline();
 
       outline-offset: $civictheme-chip-outline-offset;
       outline-width: $civictheme-chip-outline-width;
