@@ -1,8 +1,15 @@
 {
   "name": "civictheme-theme",
-  "version": "1.0.0",
   "private": true,
   "description": "Components for CivicTheme Drupal theme",
+  "homepage": "https://github.com/salsadigitalauorg/civictheme",
+  "bugs": {
+    "url": "https://github.com/salsadigitalauorg/civictheme_source/issues"
+  },
+  "license": "GPL-2.0",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet && npm run export-colors && npm run add-lint-exclusions",
     "build-storybook": "build-storybook -s .storybook/static",
@@ -41,6 +48,8 @@
     "lorem-ipsum": "^2.0.4",
     "mini-css-extract-plugin": "^1.6.2",
     "node-sass-magic-importer": "^5.3.2",
+    "react": "^17",
+    "react-dom": "^17",
     "sass": "^1.41.0",
     "sass-loader": "^10.2.0",
     "storybook-addon-pseudo-states": "^1.0.0",
