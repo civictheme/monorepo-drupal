@@ -78,7 +78,7 @@ export const Table = (knobTab) => {
         Before: 'before',
         After: 'after',
       },
-      'after',
+      'before',
       generalKnobTab,
     ),
     attributes: text('Additional attributes', '', generalKnobTab),
