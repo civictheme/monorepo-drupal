@@ -1,6 +1,6 @@
 {
   "name": "civictheme",
-  "version": "0.19.0",
+  "version": "{{ VERSION }}",
   "private": true,
   "description": "CivicTheme components with Storybook integration.",
   "keywords": [
@@ -14,7 +14,10 @@
   "bugs": {
     "url": "https://github.com/salsadigitalauorg/civictheme_source/issues"
   },
-  "main": "index.js",
+  "license": "GPL-2.0",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "build": "npm run dist && STORYBOOK_FULL=1 npm run build-storybook -- --quiet && npm run export-colors",
     "build-storybook": "build-storybook -s .storybook/static",
