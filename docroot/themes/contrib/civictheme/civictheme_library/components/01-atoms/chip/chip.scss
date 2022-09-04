@@ -2,333 +2,111 @@
 // Chip component.
 //
 
-@use 'sass:map';
-@use 'sass:math';
-
-//
-// Mixins.
-//
-
-@mixin civictheme-chip-type($type) {
-  // SASS does not allow variables interpolation, so we are creating a local
-  // map to easily generate rules.
-  $map: (
-    'chip': (
-      'light': (
-        'normal': (
-          'color': $civictheme-chip-light-color,
-          'background-color': $civictheme-chip-light-background-color,
-          'border-color': $civictheme-chip-light-border-color,
-          'outline-color': $civictheme-chip-light-outline-color,
-        ),
-        'hover': (
-          'color': $civictheme-chip-light-hover-color,
-          'background-color': $civictheme-chip-light-hover-background-color,
-          'border-color': $civictheme-chip-light-hover-border-color,
-          'outline-color': $civictheme-chip-light-hover-outline-color,
-        ),
-        'visited': (
-          'color': $civictheme-chip-light-visited-color,
-          'background-color': $civictheme-chip-light-visited-background-color,
-          'border-color': $civictheme-chip-light-visited-border-color,
-          'outline-color': $civictheme-chip-light-visited-outline-color,
-        ),
-        'active': (
-          'color': $civictheme-chip-light-active-color,
-          'background-color': $civictheme-chip-light-active-background-color,
-          'border-color': $civictheme-chip-light-active-border-color,
-          'outline-color': $civictheme-chip-light-active-outline-color,
-        ),
-        'focus': (
-          'color': $civictheme-chip-light-focus-color,
-          'background-color': $civictheme-chip-light-focus-background-color,
-          'border-color': $civictheme-chip-light-focus-border-color,
-          'outline-color': $civictheme-chip-light-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-chip-light-disabled-color,
-          'background-color': $civictheme-chip-light-disabled-background-color,
-          'border-color': $civictheme-chip-light-disabled-border-color,
-          'outline-color': $civictheme-chip-light-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-chip-light-dismiss-color,
-          'fill-selected': $civictheme-chip-light-selected-color,
-        ),
-        'selected': (
-          'color': $civictheme-chip-light-selected-color,
-          'background-color': $civictheme-chip-light-selected-background-color
-        ),
-      ),
-      'dark': (
-        'normal': (
-          'color': $civictheme-chip-dark-color,
-          'background-color': $civictheme-chip-dark-background-color,
-          'border-color': $civictheme-chip-dark-border-color,
-          'outline-color': $civictheme-chip-dark-outline-color,
-        ),
-        'hover': (
-          'color': $civictheme-chip-dark-hover-color,
-          'background-color': $civictheme-chip-dark-hover-background-color,
-          'border-color': $civictheme-chip-dark-hover-border-color,
-          'outline-color': $civictheme-chip-dark-hover-outline-color,
-        ),
-        'visited': (
-          'color': $civictheme-chip-dark-visited-color,
-          'background-color': $civictheme-chip-dark-visited-background-color,
-          'border-color': $civictheme-chip-dark-visited-border-color,
-          'outline-color': $civictheme-chip-dark-visited-outline-color,
-        ),
-        'active': (
-          'color': $civictheme-chip-dark-active-color,
-          'background-color': $civictheme-chip-dark-active-background-color,
-          'border-color': $civictheme-chip-dark-active-border-color,
-          'outline-color': $civictheme-chip-dark-active-outline-color,
-        ),
-        'focus': (
-          'color': $civictheme-chip-dark-focus-color,
-          'background-color': $civictheme-chip-dark-focus-background-color,
-          'border-color': $civictheme-chip-dark-focus-border-color,
-          'outline-color': $civictheme-chip-dark-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-chip-dark-disabled-color,
-          'background-color': $civictheme-chip-dark-disabled-background-color,
-          'border-color': $civictheme-chip-dark-disabled-border-color,
-          'outline-color': $civictheme-chip-dark-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-chip-dark-dismiss-color,
-          'fill-selected': $civictheme-chip-dark-selected-color
-        ),
-        'selected': (
-          'color': $civictheme-chip-dark-selected-color,
-          'background-color': $civictheme-chip-dark-selected-background-color
-        ),
-      )
-    ),
-  );
-  $types: map.keys($map);
-
-  @if not index($types, $type) {
-    @error '"#{$type}" is not one of allowed #{$types}.';
-  }
-
-  display: inline-block;
-  text-decoration: none;
-  outline-style: solid;
-  outline-offset: $civictheme-chip-outline-offset;
-  outline-width: $civictheme-chip-outline-width;
-
-  &:focus,
-  &:hover,
-  &:active {
-    text-decoration: underline;
-  }
-
-  &[disabled] {
-    text-decoration: none;
-  }
-
-  .civictheme-icon {
-    vertical-align: middle;
-  }
-
-  input {
-    @include civictheme-visually-hidden();
-  }
-
-  $map-per-type: map.get($map, $type);
-
-  @each $theme, $type-kinds in $map-per-type {
-    &.civictheme-theme-#{$theme} {
-      @each $type-kind, $type-kind-values in $type-kinds {
-        @if $type-kind == 'normal' {
-          @include _civictheme-chip-print-rules($type-kind-values);
-        }
-        @else if $type-kind == 'hover' {
-          &:hover {
-            @include _civictheme-chip-print-rules($type-kind-values);
-          }
-        }
-        @else if $type-kind == 'active' {
-          &:active,
-          &.active {
-            @include _civictheme-chip-print-rules($type-kind-values);
-          }
-        }
-        @else if $type-kind == 'focus' {
-          &:focus,
-          &.focus,
-          &:focus:hover,
-          &.focus:hover,
-          &:focus:active,
-          &.focus:active,
-          &:focus:hover:active,
-          &.focus:hover:active {
-            @include _civictheme-chip-print-rules($type-kind-values);
-          }
-        }
-        @else if $type-kind == 'selected' {
-          &.selected,
-          &.selected:hover,
-          &.selected:active,
-          &.selected:hover:active {
-            @include _civictheme-chip-print-rules($type-kind-values);
-          }
-        }
-        @else if $type-kind == 'disabled' {
-          &:disabled,
-          &[disabled],
-          &:disabled:active,
-          &:disabled:focus,
-          &:disabled:focus:hover,
-          &:disabled:focus:active,
-          &:disabled:focus:hover:active,
-          &[disabled]:active,
-          &[disabled]:focus,
-          &[disabled].focus,
-          &[disabled]:focus:hover,
-          &[disabled].focus:hover,
-          &[disabled]:focus:active,
-          &[disabled].focus:active,
-          &[disabled]:focus:hover:active,
-          &[disabled].focus:hover:active {
-            @include _civictheme-chip-print-rules($type-kind-values);
-
-            cursor: inherit;
-          }
-        }
-        @else if $type-kind == 'dismiss' {
-          &.civictheme-chip--dismiss {
-            padding-right: civictheme-space(2);
-          }
-
-          .civictheme-chip__dismiss {
-            user-select: none;
-            pointer-events: none;
-
-            &:hover {
-              @include civictheme-icon-fill-color(map.get($type-kind-values, 'fill'));
-            }
-          }
-
-          &.selected {
-            .civictheme-chip__dismiss {
-              @include civictheme-icon-fill-color(map.get($type-kind-values, 'fill-selected'));
-            }
-          }
-        }
-      }
-    }
-  }
-
-  @if $type == 'chip' {
-    border-radius: civictheme-space(6);
-
-    @include civictheme-link-decoration(false, false, false, false);
-  }
-}
-
-@mixin _civictheme-chip-print-rules($rules) {
-  color: map.get($rules, 'color');
-  background-color: map.get($rules, 'background-color');
-  border-color: map.get($rules, 'border-color');
-  outline-color: map.get($rules, 'outline-color');
-}
-
-@mixin civictheme-chip-size($size) {
-  // stylelint-disable-next-line scss/dollar-variable-pattern
-  $sizes: ('extra-large', 'large', 'regular', 'small', 'extra-small');
-
-  @if $size == 'extra-large' {
-    @include civictheme-typography('label-#{$size}');
-
-    padding: civictheme-space(3) civictheme-space(6);
-  }
-  @else if $size == 'large' {
-    @include civictheme-typography('label-#{$size}');
-
-    padding: civictheme-space(2) civictheme-space(5);
-  }
-  @else if $size == 'regular' {
-    @include civictheme-typography('label-#{$size}');
-
-    padding: civictheme-space(2) civictheme-space(5);
-  }
-  @else if $size == 'small' {
-    @include civictheme-typography('label-#{$size}');
-
-    padding: civictheme-space() civictheme-space(3);
-    border-width: math.div($civictheme-chip-border-width, 2);
-  }
-  @else if $size == 'extra-small' {
-    @include civictheme-typography('label-#{$size}');
-
-    padding: civictheme-space(0.5) civictheme-space(1.5);
-    border-width: math.div($civictheme-chip-border-width, 2);
-  }
-  @else {
-    @error '"#{$size}" is not one of allowed #{$sizes}.';
-  }
-}
-
-//
-// Classes.
-//
-
 .civictheme-chip {
   $root: &;
 
   cursor: pointer;
   border: $civictheme-chip-border-width solid transparent;
   border-radius: $civictheme-chip-border-radius;
+  padding: civictheme-space(1.25) civictheme-space(3);
 
-  @include civictheme-chip-size('regular');
+  @include civictheme-typography('label-small');
 
   // Type.
   &--chip {
-    @include civictheme-chip-type('chip');
-  }
+    display: inline-block;
+    text-decoration: none;
+    border-radius: civictheme-space(6);
 
-  // Size.
-  &--extra-large {
-    @include civictheme-chip-size('extra-large');
+    @include civictheme-link-decoration(false, false, false, false);
 
-    #{$root}__dismiss {
-      margin-left: civictheme-space(4);
+    &.focus,
+    &:focus {
+      @include  civictheme-outline();
+
+      outline-offset: $civictheme-chip-outline-offset;
+      outline-width: $civictheme-chip-outline-width;
+    }
+
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
+
+    &[disabled] {
+      text-decoration: none;
+    }
+
+    .civictheme-icon {
+      vertical-align: middle;
+    }
+
+    input {
+      @include civictheme-visually-hidden();
+
+      &:not(:checked) + .civictheme-chip__dismiss {
+        @include civictheme-visually-hidden();
+      }
+    }
+
+    &.civictheme-theme-light {
+      color: $civictheme-chip-light-color;
+      background-color: $civictheme-chip-light-background-color;
+      border-color: $civictheme-chip-light-border-color;
+
+      &.focus,
+      &:focus {
+        outline-color: $civictheme-chip-light-active-outline-color;
+      }
+
+      &.active {
+        color: $civictheme-chip-light-active-color;
+        background-color: $civictheme-chip-light-active-background-color;
+        border-color: $civictheme-chip-light-active-border-color;
+      }
+
+      &.active:hover,
+      &:hover {
+        color: $civictheme-chip-light-hover-color;
+        background-color: $civictheme-chip-light-hover-background-color;
+        border-color: $civictheme-chip-light-hover-border-color;
+      }
+    }
+
+    &.civictheme-theme-dark {
+      color: $civictheme-chip-dark-color;
+      background-color: $civictheme-chip-dark-background-color;
+      border-color: $civictheme-chip-dark-border-color;
+
+      &.focus,
+      &:focus {
+        outline-color: $civictheme-chip-dark-active-outline-color;
+      }
+
+      &.active {
+        color: $civictheme-chip-dark-active-color;
+        background-color: $civictheme-chip-dark-active-background-color;
+        border-color: $civictheme-chip-dark-active-color;
+      }
+
+      &.active:hover,
+      &:hover {
+        color: $civictheme-chip-dark-hover-color;
+        background-color: $civictheme-chip-dark-hover-background-color;
+        border-color: $civictheme-chip-dark-hover-border-color;
+      }
     }
   }
 
-  &--large {
-    @include civictheme-chip-size('large');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space(3);
-    }
+  &--dismiss {
+    padding-right: civictheme-space(2);
   }
 
-  &--regular {
-    @include civictheme-chip-size('regular');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space(3);
-    }
-  }
-
-  &--small {
-    @include civictheme-chip-size('small');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space(2);
-    }
-  }
-
-  &--extra-small {
-    @include civictheme-chip-size('extra-small');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space();
-    }
+  &__dismiss {
+    display: inline-block;
+    padding-left: civictheme-space(2);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    vertical-align: middle;
   }
 }

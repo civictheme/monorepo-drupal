@@ -3,6 +3,7 @@
  * @file
  * Chip component.
  */
+
 function CivicChip(el) {
   if (el.getAttribute('data-chip') === 'true') {
     return;
@@ -43,6 +44,11 @@ CivicChip.prototype.clickEvent = function (e) {
       return;
     }
     this.setChecked(input, !isChecked);
+
+    if (isChecked) {
+      // Dispatch custom event when click on input label.
+      this.el.dispatchEvent(new CustomEvent('civictheme.chip.dismiss', {bubbles: true}));
+    }
   }
 };
 
@@ -54,9 +60,11 @@ CivicChip.prototype.setChecked = function (input, check) {
   if (chip && !chip.hasAttribute('disabled')) {
     if (check) {
       input.setAttribute('checked', 'checked');
+      input.value = 1;
       chip.classList.add('active');
     } else {
       input.removeAttribute('checked');
+      input.value = 0;
       chip.classList.remove('active');
     }
   }
@@ -88,8 +96,10 @@ CivicChip.prototype.focusoutEvent = function (e) {
 CivicChip.prototype.dismissClickEvent = function (e) {
   const chip = this.findChip(e.target);
   if (chip) {
-    chip.remove();
-    this.el.dispatchEvent(new CustomEvent('civictheme.chip.dismiss', { bubbles: true }));
+    if (!chip.classList.contains('civictheme-chip--input')) {
+      chip.remove();
+      this.el.dispatchEvent(new CustomEvent('civictheme.chip.dismiss', { bubbles: true }));
+    }
   }
 };
 
