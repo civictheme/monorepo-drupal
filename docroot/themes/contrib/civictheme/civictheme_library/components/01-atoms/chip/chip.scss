@@ -7,15 +7,12 @@
 
   cursor: pointer;
   border: $civictheme-chip-border-width solid transparent;
-  border-radius: $civictheme-chip-border-radius;
   padding: civictheme-space(1.25) civictheme-space(3);
-
-  @include civictheme-typography('label-small');
-
   display: inline-block;
   text-decoration: none;
   border-radius: civictheme-space(6);
 
+  @include civictheme-typography('label-small');
   @include civictheme-link-decoration(false, false, false, false);
 
   &.focus,
