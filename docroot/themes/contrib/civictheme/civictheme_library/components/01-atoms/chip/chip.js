@@ -60,11 +60,9 @@ CivicChip.prototype.setChecked = function (input, check) {
   if (chip && !chip.hasAttribute('disabled')) {
     if (check) {
       input.setAttribute('checked', 'checked');
-      input.value = 1;
       chip.classList.add('active');
     } else {
       input.removeAttribute('checked');
-      input.value = 0;
       chip.classList.remove('active');
     }
   }
@@ -95,8 +93,9 @@ CivicChip.prototype.focusoutEvent = function (e) {
  */
 CivicChip.prototype.dismissClickEvent = function (e) {
   const chip = this.findChip(e.target);
+  const input = e.target.closest('.civictheme-chip').getElementsByTagName('input');
   if (chip) {
-    if (!chip.classList.contains('civictheme-chip--input')) {
+    if (input.length <= 0) {
       chip.remove();
       this.el.dispatchEvent(new CustomEvent('civictheme.chip.dismiss', { bubbles: true }));
     }

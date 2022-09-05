@@ -5,7 +5,7 @@ import {
 
 import CivicThemeChip from './chip.twig';
 import './chip';
-import './chip.event';
+import './chip.stories.event';
 
 export default {
   title: 'Atoms/Chip',
