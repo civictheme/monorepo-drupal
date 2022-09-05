@@ -93,8 +93,8 @@ CivicChip.prototype.focusoutEvent = function (e) {
  */
 CivicChip.prototype.dismissClickEvent = function (e) {
   const chip = this.findChip(e.target);
-  const input = e.target.closest('.civictheme-chip').getElementsByTagName('input');
   if (chip) {
+    const input = chip.getElementsByTagName('input');
     if (input.length <= 0) {
       chip.remove();
       this.el.dispatchEvent(new CustomEvent('civictheme.chip.dismiss', { bubbles: true }));
