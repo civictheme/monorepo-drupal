@@ -115,13 +115,13 @@ function _civictheme_form_system_theme_settings_provision_submit(array &$form, F
           \Drupal::messenger()->addStatus(t('Successfully provisioned @type.', [
             '@type' => $type,
           ]));
+          continue;
         }
-        else {
-          \Drupal::messenger()->addError(t('Unable to provision @type: @message.', [
-            '@type' => $type,
-            '@message' => $result ?: t('Unknown reason'),
-          ]));
-        }
+
+        \Drupal::messenger()->addError(t('Unable to provision @type: @message.', [
+          '@type' => $type,
+          '@message' => $result ?: t('Unknown reason'),
+        ]));
       }
 
       if ($clear_cache) {
@@ -824,6 +824,8 @@ function _civictheme_provision__blocks__copyright(array $block) {
 function civictheme_provision__theme_settings() {
   $theme_name = \Drupal::config('system.theme')->get('default');
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
+
+  $components = [];
 
   $components['logo'] = [];
 

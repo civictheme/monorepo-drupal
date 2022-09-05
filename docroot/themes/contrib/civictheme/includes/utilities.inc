@@ -304,10 +304,10 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, $field_nam
         $field_value = $field->get('value')->getString();
         $field_format = $field->get('format')->getString();
         $value = !empty($field_format) ? check_markup($field_value, $field_format) : $field_value;
+        break;
       }
-      else {
-        $value = $field->view();
-      }
+
+      $value = $field->view();
       break;
 
     default:
@@ -486,4 +486,17 @@ function _civictheme_get_node_id_from_form_state($form_state) {
   }
 
   return $nid;
+}
+
+/**
+ * Get DOMDocument object from HTML content.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
+function _civictheme_get_dom_document($content) {
+  $doc = new \DOMDocument();
+
+  $doc->loadHTML($content);
+
+  return $doc;
 }

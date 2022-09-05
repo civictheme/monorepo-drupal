@@ -282,6 +282,7 @@ function _civictheme_form_system_theme_settings_logo_submit(array &$form, FormSt
  * Validate callback for theme settings form to check footer settings.
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_form_system_theme_settings_footer_validate(array $form, FormStateInterface &$form_state) {
   $field_name_key = ['components', 'footer', 'background_image'];
@@ -303,6 +304,7 @@ function _civictheme_form_system_theme_settings_footer_validate(array $form, For
  * Validate callback for theme settings form of Link component.
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_form_system_theme_settings_link_validate(array &$form, FormStateInterface $form_state) {
   $override_domain_field_name_keys = [
@@ -331,11 +333,12 @@ function _civictheme_form_system_theme_settings_link_validate(array &$form, Form
     $form_state->setErrorByName(implode('][', $override_domain_field_name_keys), t('Domain values are not valid domains: %domains', [
       '%domains' => implode(', ', $invalid_domains),
     ]));
+
+    return;
   }
-  else {
-    // Set field to converted array of links.
-    $form_state->setValue($override_domain_field_name_keys, $domains);
-  }
+
+  // Set field to converted array of links.
+  $form_state->setValue($override_domain_field_name_keys, $domains);
 }
 
 /**
@@ -358,7 +361,7 @@ function _civictheme_form_system_theme_settings_content_provision(&$form, FormSt
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
 function _civictheme_form_system_theme_settings_storybook(&$form, FormStateInterface &$form_state) {
-  $theme_name = \Drupal::service('theme.manager')->getActiveTheme()->getName();
+  $theme_name = \Drupal::theme()->getActiveTheme()->getName();
   $theme_path = \Drupal::service('extension.list.theme')->getPath($theme_name);
 
   // Show compiled Storybook.
@@ -478,15 +481,16 @@ function _civictheme_path_field_description($original_path, $fallback_path) {
   /** @var \Drupal\Core\Extension\ThemeHandler $theme_handler */
   $theme_handler = \Drupal::getContainer()->get('theme_handler');
 
+  $friendly_path = _civictheme_field_friendly_path($original_path);
+
+  $local_file = \Drupal::theme()->getActiveTheme()->getPath() . '/' . $fallback_path;
+
   // Prepare local file path for description.
-  if ($original_path && isset($friendly_path)) {
+  if ($original_path && !empty($friendly_path)) {
     $local_file = strtr($original_path, ['public:/' => PublicStream::basePath()]);
   }
   elseif ($theme_name) {
     $local_file = $theme_handler->getTheme($theme_name)->getPath() . '/' . $fallback_path;
-  }
-  else {
-    $local_file = $theme_handler->getActiveTheme()->getPath() . '/' . $fallback_path;
   }
 
   return t('Examples: <code>@implicit-public-file</code> (for a file in the public filesystem), <code>@explicit-file</code>, or <code>@local-file</code>.', [
