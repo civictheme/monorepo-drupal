@@ -17,8 +17,8 @@
     text-decoration: underline;
   }
 
-  .civictheme--is-new-window {
-    visibility: hidden;
+  &--is-new-window {
+    @include civictheme-visually-hidden();
   }
 
   .civictheme-link__link-icon {
@@ -37,12 +37,6 @@
       color: $civictheme-link-light-hover-color;
     }
 
-    &.civictheme-link--external {
-      &::after {
-        @include civictheme-icon-inline ($civictheme-link-light-icon-external);
-      }
-    }
-
     .civictheme-link__external-icon {
       vertical-align: middle;
     }
@@ -57,12 +51,6 @@
 
     &:hover {
       color: $civictheme-link-dark-hover-color;
-    }
-
-    &.civictheme-link--external {
-      &::after {
-        @include civictheme-icon-inline ($civictheme-link-dark-icon-external);
-      }
     }
   }
 

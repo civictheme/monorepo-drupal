@@ -18,11 +18,10 @@
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set is_external = is_external ? 'civictheme-link--external' : '' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
 {% set icon_size = icon_size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? icon_size : 'regular' %}
 {% set icon_class = icon_type == 'css' ? 'civictheme-icon--' ~ icon ~ '--' ~ icon_placement ~ '--' ~ icon_size: '' %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, is_external, icon_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, icon_class, modifier_class|default('')) %}
 
 {% if icon_type == 'html' %}
   {% set button_icon %}
@@ -36,25 +35,31 @@
   {% endset %}
 {% endif %}
 
+{% if is_external %}
+  {% set external_icon %}
+    {% include '@atoms/icon/icon.twig' with {
+       symbol: 'upper-right-arrow',
+     } only %}
+  {% endset %}
+{% endif %}
+
 {% set link_text %}
   {% if icon and button_icon %}
     {% if icon_placement == 'before' %}
-      {{ button_icon }}{{ text|raw }}
+      {{ button_icon }}{{ text|raw }} {{ external_icon }}
     {% elseif icon_placement == 'after' %}
-      {{ text|raw }}{{ button_icon }}
+      {{ text|raw }}{{ external_icon }}{{ button_icon }}
     {% endif %}
   {% else %}
-    {{ text|raw }}
+    {{ text|raw }}{{ external_icon }}
   {% endif %}
 {% endset %}
 
-{% set link_text %}
-  {% if is_new_window %}
-    {{ link_text }} <span class="civictheme--is-new-window">Opens in a new tab/window.</span>
-  {% else %}
-    {{ link_text }}
-  {% endif %}
-{% endset %}
+{% if is_new_window %}
+  {% set link_text %}
+    {{ link_text }} <span class="civictheme-link--is-new-window">Opens in a new tab/window.</span>
+  {% endset %}
+{% endif %}
 
 {% if text is not empty %}
   <a class="civictheme-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
