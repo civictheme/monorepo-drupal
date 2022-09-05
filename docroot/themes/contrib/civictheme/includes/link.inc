@@ -27,6 +27,8 @@ use Drupal\Component\Utility\UrlHelper;
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 function _civictheme_process_html_content_links($html, $base_url, $new_window = FALSE, $external_new_window = FALSE, array $override_domains = []) {
   $class_prefix = 'civictheme-';
@@ -91,6 +93,8 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
  *
  * @return bool
  *   TRUE if the link is external, FALSE otherwise.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_url_is_external($url, $base_url, array $override_domains = []) {
   if (UrlHelper::isExternal($url)) {

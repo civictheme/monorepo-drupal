@@ -84,6 +84,7 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
  * are applied within view exposed form for both cases.
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface $form_state) {
   $view = $form_state->get('view');
@@ -118,11 +119,11 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
       && !in_array($form_element_key, $listing_filters)
     ) {
       $form[$form_element_key]['#access'] = FALSE;
+      continue;
     }
-    else {
-      $form[$form_element_key]['#attributes']['#civictheme_theme'] = $theme;
-      _civictheme_filter_views_exposed_form_alter__process_elements($form[$form_element_key], $form, $listing_use_large_filter);
-    }
+
+    $form[$form_element_key]['#attributes']['#civictheme_theme'] = $theme;
+    _civictheme_filter_views_exposed_form_alter__process_elements($form[$form_element_key], $form, $listing_use_large_filter);
   }
 
   $form['#attributes']['data-civictheme-filter'] = '';
@@ -132,6 +133,11 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   // Made preprocessors know that we are using a large filter.
   // @todo Revisit this as we should not be passing custom values like this.
   $form['#is_large_filter'] = $listing_use_large_filter;
+
+  $form['actions']['submit']['#attributes']['class'] = [
+    'civictheme-button--secondary',
+    'civictheme-button--small',
+  ];
 
   // Ajax exposed view forms hides submit button to have auto-load.
   $ajax_filter = $form_state->get('view')->ajaxEnabled();
@@ -147,12 +153,6 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
     $form['nid'] = [
       '#type' => 'hidden',
       '#value' => _civictheme_get_node_id_from_form_state($form_state),
-    ];
-  }
-  else {
-    $form['actions']['submit']['#attributes']['class'] = [
-      'civictheme-button--secondary',
-      'civictheme-button--small',
     ];
   }
 
@@ -191,13 +191,13 @@ function _civictheme_get_views_exposed_form_elements_keys($form) {
 function _civictheme_filter_views_exposed_form_alter__process_elements(&$element, $form, $is_large_filter) {
   // Convert select to either radio buttons or checkboxes.
   if (isset($element['#type']) && $element['#type'] === 'select') {
+    $element['#type'] = 'radios';
+
     if (!empty($element['#multiple'])) {
       $element['#type'] = 'checkboxes';
       unset($element['#multiple']);
     }
-    else {
-      $element['#type'] = 'radios';
-    }
+
     _civictheme_filter_views_exposed_form_alter__modify_element_callbacks($element);
   }
 
@@ -215,6 +215,7 @@ function _civictheme_filter_views_exposed_form_alter__process_elements(&$element
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function civictheme_preprocess_views_view(&$variables) {
   $view = &$variables['view'];
@@ -261,12 +262,10 @@ function civictheme_preprocess_views_view(&$variables) {
   $variables['theme'] = $variables['theme'] ?? 'light';
   $variables['with_background'] = $variables['with_background'] ?? $is_view_page;
 
+  $variables['modifier_class'] = [];
   if (!empty($variables['attributes']['class'])) {
     $variables['modifier_class'] = $variables['attributes']['class'];
     unset($variables['attributes']['class']);
-  }
-  else {
-    $variables['modifier_class'] = [];
   }
 
   $variables['modifier_class'] = array_merge($variables['modifier_class'], [

@@ -85,7 +85,7 @@ function main(array $argv, $argc) {
   file_copy_recursively($stub_path, $new_theme_directory);
 
   // Remove stub directory.
-  @unlink($stub_path);
+  file_remove_dir($stub_path);
 
   // Print footer message.
   print_footer($new_theme_name, $new_theme_machine_name, $new_theme_directory);
@@ -330,12 +330,10 @@ function file_replace_file_content($needle, $replacement, $filename) {
 
   $content = file_get_contents($filename);
 
-  if (is_regex($needle)) {
-    $replaced = preg_replace($needle, $replacement, $content);
-  }
-  else {
-    $replaced = str_replace($needle, $replacement, $content);
-  }
+  $replaced = is_regex($needle)
+    ? preg_replace($needle, $replacement, $content)
+    : str_replace($needle, $replacement, $content);
+
   if ($replaced != $content) {
     file_put_contents($filename, $replaced);
   }
@@ -373,8 +371,18 @@ function file_replace_string_filename($search, $replace, $dir) {
  */
 function file_remove_dir($dir) {
   if (is_dir($dir)) {
-    $files = file_scandir_recursive($dir);
-    array_map('unlink', $files);
+    $files = file_scandir_recursive($dir, [], TRUE);
+    foreach ($files as $file) {
+      if (is_dir($file)) {
+        file_remove_dir($file);
+        continue;
+      }
+
+      if (file_exists($file)) {
+        unlink($file);
+      }
+    }
+
     rmdir($dir);
   }
 }
@@ -389,23 +397,26 @@ function file_scandir_recursive($dir, $ignore_paths = [], $include_dirs = FALSE)
 
   if (is_dir($dir)) {
     $paths = array_diff(scandir($dir), ['.', '..']);
+
     foreach ($paths as $path) {
       $path = $dir . '/' . $path;
+
       foreach ($ignore_paths as $ignore_path) {
         // Exclude based on sub-path match.
         if (strpos($path, $ignore_path) !== FALSE) {
           continue(2);
         }
       }
+
       if (is_dir($path)) {
         if ($include_dirs) {
           $discovered[] = $path;
         }
         $discovered = array_merge($discovered, file_scandir_recursive($path, $ignore_paths, $include_dirs));
+        continue;
       }
-      else {
-        $discovered[] = $path;
-      }
+
+      $discovered[] = $path;
     }
   }
 
@@ -522,17 +533,16 @@ function file_get_relative_dir($dir1, $dir2) {
   foreach ($dir1 as $depth => $dir) {
     if ($dir === $dir2[$depth]) {
       array_shift($parts);
+      continue;
     }
-    else {
-      $remaining = count($dir1) - $depth;
-      if ($remaining > 1) {
-        $parts = array_pad($parts, -1 * (count($parts) + $remaining - 1), '..');
-        break;
-      }
-      else {
-        $parts[0] = './' . $parts[0];
-      }
+
+    $remaining = count($dir1) - $depth;
+    if ($remaining > 1) {
+      $parts = array_pad($parts, -1 * (count($parts) + $remaining - 1), '..');
+      break;
     }
+
+    $parts[0] = './' . $parts[0];
   }
 
   return implode('/', $parts);
@@ -550,6 +560,8 @@ function file_get_relative_dir($dir1, $dir2) {
  * @see https://datatracker.ietf.org/doc/html/rfc3986#section-5.2.4
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.IfStatementAssignment)
  */
 function file_path_canonicalize($path) {
   $output = '';
@@ -560,36 +572,42 @@ function file_path_canonicalize($path) {
       ($prefix = substr($path, 0, 2)) == './'
     ) {
       $path = substr($path, strlen($prefix));
+      continue;
     }
-    elseif (
+
+    if (
       ($prefix = substr($path, 0, 3)) == '/./' ||
       ($prefix = $path) == '/.'
     ) {
       $path = '/' . substr($path, strlen($prefix));
+      continue;
     }
-    elseif (
+
+    if (
       ($prefix = substr($path, 0, 4)) == '/../' ||
       ($prefix = $path) == '/..'
     ) {
       $path = '/' . substr($path, strlen($prefix));
       $output = substr($output, 0, strrpos($output, '/'));
+      continue;
     }
-    else {
-      if ($path == '.' || $path == '..') {
-        $path = '';
-      }
-      else {
-        $pos = strpos($path, '/');
-        if ($pos === 0) {
-          $pos = strpos($path, '/', $pos + 1);
-        }
-        if ($pos === FALSE) {
-          $pos = strlen($path);
-        }
-        $output .= substr($path, 0, $pos);
-        $path = substr($path, $pos);
-      }
+
+    if ($path == '.' || $path == '..') {
+      $path = '';
+      continue;
     }
+
+    $pos = strpos($path, '/');
+    if ($pos === 0) {
+      $pos = strpos($path, '/', $pos + 1);
+    }
+
+    if ($pos === FALSE) {
+      $pos = strlen($path);
+    }
+
+    $output .= substr($path, 0, $pos);
+    $path = substr($path, $pos);
   }
 
   return $output;
