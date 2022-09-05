@@ -17,6 +17,15 @@ export default {
 export const Chip = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
+  const theme = radios(
+    'Theme', {
+      Light: 'light',
+      Dark: 'dark',
+    },
+    'light',
+    generalKnobTab,
+  );
+
   const kind = radios(
     'Kind', {
       Default: 'default',
@@ -27,14 +36,7 @@ export const Chip = (knobTab) => {
   );
 
   const generalKnobs = {
-    theme: radios(
-      'Theme', {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
+    theme: () => theme,
     kind: () => kind,
     content: text('Chip label', 'Chip label', generalKnobTab),
     is_dismissible: (kind === 'default') ? boolean('Dismissible', false, generalKnobTab) : null,

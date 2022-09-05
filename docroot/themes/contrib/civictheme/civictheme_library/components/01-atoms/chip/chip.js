@@ -11,7 +11,7 @@ function CivicChip(el) {
 
   this.el = el;
   this.el.setAttribute('data-chip', 'true');
-  this.dismissChip = this.el.querySelector('[data-chip-dismiss]');
+  this.dismissChip = this.el.querySelector('.civictheme-chip__icon--dismiss');
 
   this.el.addEventListener('click', this.clickEvent.bind(this));
   this.el.addEventListener('focusin', this.focusinEvent.bind(this));
