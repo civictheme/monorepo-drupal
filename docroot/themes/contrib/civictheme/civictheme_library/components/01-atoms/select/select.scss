@@ -7,12 +7,14 @@
 
   @include civictheme-typography('text-regular');
 
-  display: block;
-  margin: 0 auto 0.5rem;
-  padding: civictheme-space(1.25) civictheme-space(2);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   border-radius: $civictheme-select-border-radius;
+  min-width: rem(300px);
+  min-height: rem(46px);
 
-  &.disabled {
+  &[disabled] {
     pointer-events: none;
     opacity: 50%;
   }
