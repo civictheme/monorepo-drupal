@@ -12,6 +12,7 @@
  * Usage:
  * @code
  * php extract_css_colors_to_csv.php path/to/variables.css
+ * @endcode
  *
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingBefore
  * phpcs:disable Drupal.Commenting.InlineComment.SpacingAfter

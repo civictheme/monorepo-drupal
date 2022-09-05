@@ -11,6 +11,7 @@
   margin: 0 auto 0.5rem;
   padding: civictheme-space(1.25) civictheme-space(2);
   border-radius: $civictheme-input-border-radius;
+  min-width: rem(300px);
 
   &.disabled {
     pointer-events: none;
