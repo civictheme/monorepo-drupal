@@ -29,7 +29,7 @@ function _civictheme_preprocess_menu_local_tasks(&$variables) {
     }
 
     // Sort tabs by weight.
-    array_multisort(array_column($variables['links'][$local_task_type], "weight"), SORT_ASC, $variables['links'][$local_task_type]);
+    array_multisort(array_column($variables['links'][$local_task_type], 'weight'), SORT_ASC, $variables['links'][$local_task_type]);
     unset($variables[$local_task_type]);
   }
 }
