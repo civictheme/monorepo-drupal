@@ -66,6 +66,12 @@
             color: $civictheme-field-message-dark-color;
           }
         }
+
+        @if $theme == 'light' {
+          .civictheme-icon {
+            background-color: map.get($values, 'border-color');
+          }
+        }
       }
     }
   }
