@@ -114,7 +114,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.theme');
     $this->assertFileExists($expected_new_theme_dir_full . 'gulpfile.js');
     $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
-    $this->assertFileExists($expected_new_theme_dir_full . 'package-lock.json');
     $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
     $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
 
@@ -217,7 +216,6 @@ class CivicthemeCreateSubthemeScriptUnitTest extends ScriptUnitTestBase {
     $this->assertFileExists($expected_new_theme_dir_full . $newtheme_name . '.theme');
     $this->assertFileExists($expected_new_theme_dir_full . 'gulpfile.js');
     $this->assertFileExists($expected_new_theme_dir_full . 'package.json');
-    $this->assertFileExists($expected_new_theme_dir_full . 'package-lock.json');
     $this->assertFileExists($expected_new_theme_dir_full . 'README.md');
     $this->assertFileExists($expected_new_theme_dir_full . 'screenshot.png');
 
