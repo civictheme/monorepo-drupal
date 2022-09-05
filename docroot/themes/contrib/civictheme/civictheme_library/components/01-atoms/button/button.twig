@@ -7,10 +7,10 @@
  * - theme: [string] Theme: light, dark.
  * - kind: [string] Button kind: submit, reset, button, link.
  * - type: [string] Button type: primary, primary, secondary, tertiary.
- * - size: [string] Button size: extra-large, large, regular, small, extra-small.
+ * - size: [string] Button size: large, regular, small.
  * - icon: [string] Icon name.
  * - icon_placement: [string] Icon position: left, right
- * - icon_size: [string] Icon size: extra-large, large, regular, small, extra-small.
+ * - icon_size: [string] Icon size: large, regular, small.
  * - text: [string] Button text.
  * - url: [string] URL for the link button.
  * - is_raw_text: [boolean] Output text as raw value.
@@ -24,9 +24,9 @@
 
 {% set kind = kind in ['button', 'link', 'reset', 'submit'] ? kind : 'button' %}
 {% set type = type in ['primary', 'secondary', 'tertiary'] ? type : null %}
-{% set size = size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? size : 'regular' %}
+{% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
-{% set icon_size = icon_size in ['regular', 'small', 'extra-small'] ? icon_size : 'regular' %}
+{% set icon_size = icon_size in ['large', 'regular', 'small'] ? icon_size : 'regular' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set type_class = type ? 'civictheme-button--%s'|format(type) : '' %}
 {% set kind_class = kind ? 'civictheme-button--%s'|format(kind) : '' %}
