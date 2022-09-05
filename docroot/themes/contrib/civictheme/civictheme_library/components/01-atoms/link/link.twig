@@ -48,6 +48,14 @@
   {% endif %}
 {% endset %}
 
+{% set link_text %}
+  {% if is_new_window %}
+    {{ link_text }} <span class="civictheme--is-new-window">Opens in a new tab/window.</span>
+  {% else %}
+    {{ link_text }}
+  {% endif %}
+{% endset %}
+
 {% if text is not empty %}
   <a class="civictheme-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {{ link_text }}

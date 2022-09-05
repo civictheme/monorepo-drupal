@@ -17,6 +17,10 @@
     text-decoration: underline;
   }
 
+  .civictheme--is-new-window {
+    visibility: hidden;
+  }
+
   .civictheme-link__link-icon {
     margin-right: rem(4px);
   }
