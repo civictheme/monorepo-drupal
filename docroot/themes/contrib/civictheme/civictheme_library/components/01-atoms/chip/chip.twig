@@ -39,10 +39,10 @@
 
 {% if content|trim is not empty %}
   {% if kind == 'input' and is_multiple %}
-    <label class="civictheme-chip {{ modifier_class }}" data-component-name="chip" aria-live="polite"><input type="checkbox" {% if is_selected %} checked="checked" {% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ chip_content|trim }}</label>
+    <label class="civictheme-chip {{ modifier_class }}" data-component-name="chip"><input type="checkbox" {% if is_selected %} checked="checked" {% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ chip_content|trim }}</label>
   {% elseif kind == 'input' %}
-    <label class="civictheme-chip {{ modifier_class }}" data-component-name="chip" aria-live="polite"><input type="radio" {% if is_selected %} checked="checked" {% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ chip_content|trim }}</label>
+    <label class="civictheme-chip {{ modifier_class }}" data-component-name="chip"><input type="radio" {% if is_selected %} checked="checked" {% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ chip_content|trim }}</label>
   {% else %}
-    <span aria-live="polite" class="civictheme-chip {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="chip">{{ chip_content }}</span>
+    <span class="civictheme-chip {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="chip">{{ chip_content }}</span>
   {% endif %}
 {% endif %}
