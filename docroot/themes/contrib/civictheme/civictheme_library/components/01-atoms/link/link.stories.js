@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import {
-  boolean, radios, text,
+  boolean, radios, text, select,
 } from '@storybook/addon-knobs';
 import CivicThemeLink from './link.twig';
 import { randomUrl } from '../../00-base/base.stories';
@@ -35,7 +35,32 @@ export const Link = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
+  const iconKnobTab = 'Icon';
+  const withIcon = boolean('With icon', false, generalKnobTab);
+  const iconKnobs = withIcon ? {
+    icon_type: withIcon ? radios(
+      'Icon Type',
+      {
+        'HTML element': 'html',
+        'CSS class': 'css',
+      },
+      'html',
+      iconKnobTab,
+    ) : null,
+    icon_placement: withIcon ? radios(
+      'Icon Position',
+      {
+        Before: 'before',
+        After: 'after',
+      },
+      'before',
+      iconKnobTab,
+    ) : null,
+    icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
+  } : null;
+
   return CivicThemeLink({
     ...generalKnobs,
+    ...iconKnobs,
   });
 };
