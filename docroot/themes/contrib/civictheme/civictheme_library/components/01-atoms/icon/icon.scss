@@ -5,13 +5,22 @@
 @use 'sass:map';
 
 .civictheme-icon {
-  vertical-align: bottom;
+  vertical-align: sub;
 
   @each $symbol, $values in _civictheme-icon-symbols-all() {
     &--#{$symbol} {
-      width: civictheme-space(2);
-      height: civictheme-space(2);
-      content: url('../assets/icons/' + $symbol + '.svg');
+      content: '';
+      display: inline-block;
+      // stylelint-disable-next-line property-no-vendor-prefix
+      -webkit-mask-image: url('../assets/icons/' + $symbol + '.svg');
+      mask-image: url('../assets/icons/' + $symbol + '.svg');
+      // stylelint-disable-next-line property-no-vendor-prefix
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      // stylelint-disable-next-line property-no-vendor-prefix
+      -webkit-mask-position: center;
+      mask-position: center;
+      background-color: currentcolor;
     }
   }
 
