@@ -39,9 +39,15 @@
   {{ icon_placement == 'before' ? icon : '' }}{{ content }}{{ icon_placement == 'after' ? icon : '' }}
 {% endset %}
 
-{% if is_external %}
+{% if is_new_window %}
   {% set text %}
     {{ text }}<span class="civictheme-tag--external">(Opens in a new tab / window)</span>
+  {% endset %}
+{% endif %}
+
+{% if is_external %}
+  {% set text %}
+    {{ text }}
     {% include '@atoms/icon/icon.twig' with {
       symbol: 'upper-right-arrow',
       size: 'small',
