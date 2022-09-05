@@ -39,12 +39,27 @@
   {{ icon_placement == 'before' ? icon : '' }}{{ content }}{{ icon_placement == 'after' ? icon : '' }}
 {% endset %}
 
+{% if is_external %}
+  {% set text %}
+    {{ text }}<span class="civictheme-tag--external">(Opens in a new tab / window)</span>
+    {% include '@atoms/icon/icon.twig' with {
+      symbol: 'upper-right-arrow',
+      size: 'small',
+    } only %}
+  {% endset %}
+{% endif %}
+
 {% if text|trim is not empty %}
   <{{ tag }}
     class="civictheme-tag {{ modifier_class }}"
     {% if url is not empty %}
       href="{{ url }}"
     {% endif%}
+
+    {% if is_new_window is not empty or is_external %}
+      target="_blank"
+    {% endif%}
+
     {% if content is not empty %}
       title="{{ content }}"
       aria-label="{{ content }}"

@@ -29,6 +29,10 @@
     vertical-align: text-bottom;
   }
 
+  &--external {
+    @include civictheme-visually-hidden();
+  }
+
   &.civictheme-theme-light {
     &#{$root}--primary {
       background-color: $civictheme-tag-light-primary-background-color;
