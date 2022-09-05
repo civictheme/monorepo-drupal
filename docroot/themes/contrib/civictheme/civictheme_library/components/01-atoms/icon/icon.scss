@@ -5,13 +5,16 @@
 @use 'sass:map';
 
 .civictheme-icon {
-  vertical-align: bottom;
+  vertical-align: sub;
 
   @each $symbol, $values in _civictheme-icon-symbols-all() {
     &--#{$symbol} {
-      width: civictheme-space(2);
-      height: civictheme-space(2);
-      content: url('../assets/icons/' + $symbol + '.svg');
+      content: '';
+      display: inline-block;
+      mask-image: url('../assets/icons/' + $symbol + '.svg');
+      mask-repeat: no-repeat;
+      mask-position: center;
+      background-color: currentcolor;
     }
   }
 
