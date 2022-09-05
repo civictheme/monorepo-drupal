@@ -138,6 +138,8 @@ function _civictheme_listing_get_view_info($paragraph) {
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.MissingImport)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_listing_view_alter($view) {
   if (!property_exists($view, 'civictheme_listing_entity')) {
@@ -187,11 +189,9 @@ function _civictheme_listing_view_alter($view) {
     $view_pager['options']['items_per_page'] = $listing_limit;
     $view->display_handler->setOption('pager', $view_pager);
 
+    $view_header = [];
     if ($listing_show_filters && isset($view_header['result']['content'])) {
       $view_header['result']['content'] = 'Showing @end of @total';
-    }
-    else {
-      $view_header = [];
     }
     $view->display_handler->setOption('header', $view_header);
   }
