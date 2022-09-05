@@ -61,6 +61,7 @@
 
           @if $theme == 'light' {
             color: $civictheme-field-message-light-color;
+
             .civictheme-icon {
               background-color: map.get($values, 'border-color');
             }
