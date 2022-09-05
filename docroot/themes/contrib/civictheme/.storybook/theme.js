@@ -7,5 +7,5 @@ export default create({
   base: 'light',
   brandTitle: 'CivicTheme',
   brandUrl: 'https://github.com/salsadigitalauorg/civictheme-theme',
-  brandImage: './assets/logos/civictheme_logo_desktop_light.png',
+  brandImage: './assets/logos/civictheme_logo_light_desktop.png',
 });
