@@ -23,13 +23,13 @@ function _civictheme_preprocess_menu_local_tasks(&$variables) {
           'is_new_window' => FALSE,
           'is_external' => $link['#link']['url']->isExternal(),
           'modifier_class' => $link['#active'] ? 'selected' : '',
-          'weight' => $variables[$local_task_type]['#weight'] ?? 0,
+          'weight' => $link['#weight'] ?? 0,
         ];
       }
     }
 
     // Sort tabs by weight.
-    array_multisort(array_column($variables['links'][$local_task_type], "text"), SORT_ASC, $variables['links'][$local_task_type]);
+    array_multisort(array_column($variables['links'][$local_task_type], 'weight'), SORT_ASC, $variables['links'][$local_task_type]);
     unset($variables[$local_task_type]);
   }
 }
