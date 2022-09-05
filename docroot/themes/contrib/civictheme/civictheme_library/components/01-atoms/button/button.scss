@@ -291,14 +291,9 @@
 
 @mixin civictheme-button-size($size) {
   // stylelint-disable-next-line scss/dollar-variable-pattern
-  $sizes: ('extra-large', 'large', 'regular', 'small', 'extra-small');
+  $sizes: ('large', 'regular', 'small');
 
-  @if $size == 'extra-large' {
-    @include civictheme-typography('label-#{$size}');
-
-    padding: civictheme-space(3) civictheme-space(6);
-  }
-  @else if $size == 'large' {
+  @if $size == 'large' {
     @include civictheme-typography('label-#{$size}');
 
     padding: civictheme-space(2) civictheme-space(5);
@@ -312,12 +307,6 @@
     @include civictheme-typography('label-#{$size}');
 
     padding: civictheme-space() civictheme-space(3);
-    border-width: math.div($civictheme-button-border-width, 2);
-  }
-  @else if $size == 'extra-small' {
-    @include civictheme-typography('label-#{$size}');
-
-    padding: civictheme-space(0.5) civictheme-space(1.5);
     border-width: math.div($civictheme-button-border-width, 2);
   }
   @else {
@@ -364,10 +353,6 @@
   }
 
   // Size.
-  &--extra-large {
-    @include civictheme-button-size('extra-large');
-  }
-
   &--large {
     @include civictheme-button-size('large');
   }
@@ -378,9 +363,5 @@
 
   &--small {
     @include civictheme-button-size('small');
-  }
-
-  &--extra-small {
-    @include civictheme-button-size('extra-small');
   }
 }
