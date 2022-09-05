@@ -11,15 +11,45 @@
  * - is_external [boolean] Link is external.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
+ * - icon: [string] Icon name.
+ * - icon_type: [string] Icon type: html, css.
+ * - icon_placement: [string] Icon position: left, right.
  */
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set is_external = is_external ? 'civictheme-link--external' : '' %}
-{% set modifier_class = '%s %s %s'|format(theme_class, is_external, modifier_class|default('')) %}
+{% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
+{% set icon_size = icon_size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? icon_size : 'regular' %}
+{% set icon_class = icon_type == 'css' ? 'civictheme-icon--' ~ icon ~ '--' ~ icon_placement ~ '--' ~ icon_size: '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, is_external, icon_class, modifier_class|default('')) %}
+
+{% if icon_type == 'html' %}
+  {% set button_icon %}
+    {% if icon %}
+      <span class="civictheme-button__icon">
+        {% include '@atoms/icon/icon.twig' with {
+          symbol: icon,
+        } only %}
+      </span>
+    {% endif %}
+  {% endset %}
+{% endif %}
+
+{% set link_text %}
+  {% if icon and button_icon %}
+    {% if icon_placement == 'before' %}
+      {{ button_icon }}{{ text|raw }}
+    {% elseif icon_placement == 'after' %}
+      {{ text|raw }}{{ button_icon }}
+    {% endif %}
+  {% else %}
+    {{ text|raw }}
+  {% endif %}
+{% endset %}
 
 {% if text is not empty %}
   <a class="civictheme-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-    {{ text|raw }}
+    {{ link_text }}
   </a>
 {% endif %}
