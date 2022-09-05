@@ -364,4 +364,8 @@
   &--small {
     @include civictheme-button-size('small');
   }
+
+  &--is-new-window {
+    @include civictheme-visually-hidden();
+  }
 }
