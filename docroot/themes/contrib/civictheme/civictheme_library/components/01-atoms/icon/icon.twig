@@ -7,6 +7,7 @@
  * - symbol: [string] Icon name as per map.
  * - size: [string] Icon size.
  * - modifier_class: [string] Additional classes.
+ * - alt: [string] Alternate text of the image.
  */
 #}
 
@@ -14,7 +15,7 @@
   {% set modifier_class = '%s %s %s'|format((symbol ? 'civictheme-icon--' ~ symbol : ''),(size ? 'civictheme-icon--size-' ~ size : ''), modifier_class|default('')) %}
 
   {% if symbol is defined %}
-    <span class="civictheme-icon {{ modifier_class }}"></span>
+    <span class="civictheme-icon {{ modifier_class }}" {% if alt is defined %}alt="{{ alt }}"{% endif %}></span>
   {% endif %}
 
 {% endblock %}

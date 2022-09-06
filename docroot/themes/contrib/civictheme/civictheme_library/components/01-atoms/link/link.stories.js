@@ -31,23 +31,14 @@ export const Link = (knobTab) => {
     url: text('URL', randomUrl(), generalKnobTab),
     is_external: boolean('Is external', false, generalKnobTab),
     is_new_window: boolean('Open in a new window', false, generalKnobTab),
+    with_icon: boolean('With icon', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   const iconKnobTab = 'Icon';
-  const withIcon = boolean('With icon', false, generalKnobTab);
-  const iconKnobs = withIcon ? {
-    icon_type: withIcon ? radios(
-      'Icon Type',
-      {
-        'HTML element': 'html',
-        'CSS class': 'css',
-      },
-      'html',
-      iconKnobTab,
-    ) : null,
-    icon_placement: withIcon ? radios(
+  const iconKnobs = generalKnobs.with_icon ? {
+    icon_placement: radios(
       'Icon Position',
       {
         Before: 'before',
@@ -55,8 +46,8 @@ export const Link = (knobTab) => {
       },
       'before',
       iconKnobTab,
-    ) : null,
-    icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
+    ),
+    icon: select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab),
   } : null;
 
   return CivicThemeLink({
