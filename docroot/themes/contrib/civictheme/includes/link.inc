@@ -106,7 +106,13 @@ function civictheme_url_is_external($url, $base_url, array $override_domains = [
         continue;
       }
 
-      if (UrlHelper::externalIsLocal($url, $override_domain)) {
+      // UrlHelper throws exception on telephone URIs.
+      try {
+        if (UrlHelper::externalIsLocal($url, $override_domain)) {
+          return FALSE;
+        }
+      }
+      catch (\InvalidArgumentException $exception) {
         return FALSE;
       }
     }
