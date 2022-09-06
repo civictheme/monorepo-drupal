@@ -27,11 +27,13 @@
 {% set chip_content %}
   {% if is_dismissible or kind == 'input' %}
     {{ content }}
-    {% include '@atoms/icon/icon.twig' with {
-      symbol: 'cancel',
-      size: 'small',
-      modifier_class: 'civictheme-chip__icon civictheme-chip__icon--dismiss'
-    } only %}
+    <span class="civictheme-chip__dismiss" data-chip-dismiss>
+      {% include '@atoms/icon/icon.twig' with {
+        symbol: 'cancel',
+        size: 'small',
+        modifier_class: 'civictheme-chip__icon civictheme-chip__icon--dismiss'
+      } only %}
+    </span>
   {% else %}
     {{ content }}
   {% endif %}

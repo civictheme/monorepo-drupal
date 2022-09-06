@@ -31,7 +31,7 @@
   input {
     @include civictheme-visually-hidden();
 
-    &:not(:checked) + .civictheme-chip__icon--dismiss {
+    &:not(:checked) + #{$root}__dismiss {
       @include civictheme-visually-hidden();
     }
   }
