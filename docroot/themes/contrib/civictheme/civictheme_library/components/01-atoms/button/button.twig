@@ -26,13 +26,14 @@
 {% set type = type in ['primary', 'secondary', 'tertiary'] ? type : null %}
 {% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
-{% set icon_size = icon_size in ['large', 'regular', 'small'] ? icon_size : 'regular' %}
+{% set icon_size = icon_size in ['large', 'regular', 'small'] ? icon_size : 'small' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set type_class = type ? 'civictheme-button--%s'|format(type) : '' %}
 {% set kind_class = kind ? 'civictheme-button--%s'|format(kind) : '' %}
 {% set size_class = 'civictheme-button--%s'|format(size) %}
 {% set dismiss_class =  is_dismissable ? 'civictheme-button--dismiss' : '' %}
-{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, type_class, kind_class, size_class, dismiss_class, modifier_class|default('')) %}
+{% set is_external = is_external ? 'civictheme-link--external civictheme-icon--upper-right-arrow--after--' ~ icon_size : '' %}
+{% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, type_class, kind_class, size_class, dismiss_class, is_external, modifier_class|default('')) %}
 
 {% set button_icon %}
   {% if icon %}
@@ -57,22 +58,9 @@
   {% endif %}
 {% endset %}
 
-{% set button_text %}
-  {% if is_external %}
-    {{ button_text }}<span class="civictheme-button__external">
-    {% include '@atoms/icon/icon.twig' with {
-      symbol: 'upper-right-arrow',
-      size: icon_size,
-    } only %}
-    </span>
-  {% else %}
-    {{ button_text }}
-  {% endif %}
-{% endset %}
-
 {% if is_new_window %}
   {% set is_new_window_text %}
-    <span class="civictheme-button--is-new-window">Opens in a new tab/window.</span>
+    <span class="civictheme-visually-hidden">Opens in a new tab/window</span>
   {% endset %}
 {% endif %}
 
