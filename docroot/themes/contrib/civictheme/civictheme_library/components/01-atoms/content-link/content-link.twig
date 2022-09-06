@@ -16,11 +16,17 @@
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set is_external = is_external ? 'civictheme-content-link--external' : '' %}
+{% set is_external = is_external ? 'civictheme-content-link--external civictheme-icon--upper-right-arrow--after--small' : '' %}
 {% set modifier_class = '%s %s %s'|format(theme_class, is_external, modifier_class|default('')) %}
+
+{% if is_new_window %}
+   {% set is_new_window_text %}
+     <span class="civictheme-visually-hidden">Opens in a new tab/window</span>
+   {% endset %}
+ {% endif %}
 
 {% if text is not empty %}
   <a class="civictheme-content-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {% if title is not empty %}title="{{ title }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-    {{ text|raw }}
+    {{ text|raw }}{{ is_new_window_text }}
   </a>
 {% endif %}

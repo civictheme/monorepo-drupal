@@ -32,10 +32,6 @@
       background-color: $civictheme-content-link-light-hover-background-color;
       color: $civictheme-content-link-light-hover-color;
     }
-
-    .civictheme-content-link__external-icon {
-      vertical-align: middle;
-    }
   }
 
   &.civictheme-theme-dark {
@@ -48,12 +44,6 @@
     &:hover {
       background-color: $civictheme-content-link-dark-hover-background-color;
       color: $civictheme-content-link-dark-hover-color;
-    }
-  }
-
-  &.civictheme-content-link--external {
-    &::after {
-      @include civictheme-icon-inline ($civictheme-content-link-icon-external);
     }
   }
 
