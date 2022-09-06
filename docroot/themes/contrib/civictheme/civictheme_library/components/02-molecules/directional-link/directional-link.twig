@@ -32,7 +32,7 @@
   <a class="civictheme-directional-link {{ modifier_class }}" {% if title is not empty %}title="{{ title }}"{% endif %} role="link" href="{{ url }}">
 {% endif %}
   {% if aria_text is not empty %}
-    <span class="visually-hidden">{{ aria_text }}</span>
+    <span class="civictheme-visually-hidden">{{ aria_text }}</span>
     <span aria-hidden="true">{{ text }}</span>
   {% else %}
     {{ text }}

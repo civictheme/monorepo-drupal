@@ -33,12 +33,6 @@
       color: $civictheme-link-light-hover-color;
     }
 
-    &.civictheme-link--external {
-      &::after {
-        @include civictheme-icon-inline ($civictheme-link-light-icon-external);
-      }
-    }
-
     .civictheme-link__external-icon {
       vertical-align: middle;
     }
@@ -53,12 +47,6 @@
 
     &:hover {
       color: $civictheme-link-dark-hover-color;
-    }
-
-    &.civictheme-link--external {
-      &::after {
-        @include civictheme-icon-inline ($civictheme-link-dark-icon-external);
-      }
     }
   }
 
