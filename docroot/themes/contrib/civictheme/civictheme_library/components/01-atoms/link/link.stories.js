@@ -38,15 +38,6 @@ export const Link = (knobTab) => {
 
   const iconKnobTab = 'Icon';
   const iconKnobs = generalKnobs.with_icon ? {
-    icon_type: radios(
-      'Icon Type',
-      {
-        'HTML element': 'html',
-        'CSS class': 'css',
-      },
-      'html',
-      iconKnobTab,
-    ),
     icon_placement: radios(
       'Icon Position',
       {

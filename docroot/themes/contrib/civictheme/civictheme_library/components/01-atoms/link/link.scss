@@ -17,10 +17,6 @@
     text-decoration: underline;
   }
 
-  &--is-new-window {
-    @include civictheme-visually-hidden();
-  }
-
   .civictheme-link__link-icon {
     margin-right: rem(4px);
   }
