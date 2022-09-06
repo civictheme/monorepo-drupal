@@ -30,6 +30,9 @@ class CivicThemeHtmlLinkUnitTest extends CivicThemeUnitTestBase {
       ['', '', [], FALSE],
       ['', '', ['example.com'], FALSE],
       ['', 'example.com', ['example.com'], FALSE],
+      ['', 'example', [], FALSE],
+      ['', 'tel:+6121231234', [], FALSE],
+      ['', 'mailto:example@example.com', [], FALSE],
 
       // Path.
       ['/path', 'example.com', [], FALSE],

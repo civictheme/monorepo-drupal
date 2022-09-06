@@ -92,11 +92,16 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
  *   Array of overridden domains.
  *
  * @return bool
- *   TRUE if the link is external, FALSE otherwise.
+ *   TRUE if the provided URL is external, FALSE if not external or not a valid
+ *   URL.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_url_is_external($url, $base_url, array $override_domains = []) {
+  if (!UrlHelper::isValid($url)) {
+    return FALSE;
+  }
+
   if (UrlHelper::isExternal($url)) {
     $override_domains[] = $base_url;
     foreach ($override_domains as $override_domain) {
