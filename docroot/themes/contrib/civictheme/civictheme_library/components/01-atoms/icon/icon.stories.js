@@ -1,5 +1,5 @@
 // phpcs:ignoreFile
-import { radios, select } from '@storybook/addon-knobs';
+import { radios, select, text } from '@storybook/addon-knobs';
 
 import CivicThemeIcon from './icon.twig';
 
@@ -21,5 +21,6 @@ export const Icon = (knobTab) => {
   return CivicThemeIcon({
     symbol: select('Symbol', Object.values(ICONS), Object.values(ICONS)[0], generalKnobTab),
     size: radios('Size', sizes, sizes[2], generalKnobTab),
+    alt: text('Icon alt text', 'Alternative text', generalKnobTab),
   });
 };
