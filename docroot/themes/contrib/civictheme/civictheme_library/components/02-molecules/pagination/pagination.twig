@@ -20,7 +20,7 @@
 
 {% if items is not empty %}
   <nav class="civictheme-pager {{ modifier_class }}" role="navigation" {% if heading_id is not empty %}aria-labelledby="{{ heading_id }}"{% endif %}>
-    <h4 {% if heading_id is not empty %}id="{{ heading_id }}"{% endif %} class="visually-hidden">{{ 'Pagination' }}</h4>
+    <h4 {% if heading_id is not empty %}id="{{ heading_id }}"{% endif %} class="civictheme-visually-hidden">{{ 'Pagination' }}</h4>
 
     <ul class="civictheme-pager__items {{ pager_items_modifier_class }}">
       {# Print first item if we are not on the first page. #}
