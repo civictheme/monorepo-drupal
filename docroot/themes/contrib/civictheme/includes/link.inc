@@ -98,7 +98,12 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_url_is_external($url, $base_url, array $override_domains = []) {
-  if (!UrlHelper::isValid($url)) {
+  if (empty($url) || !UrlHelper::isValid($url)) {
+    return FALSE;
+  }
+
+  $url_parts = parse_url($url);
+  if (!empty($url_parts['scheme']) && empty($url_parts['host'])) {
     return FALSE;
   }
 
