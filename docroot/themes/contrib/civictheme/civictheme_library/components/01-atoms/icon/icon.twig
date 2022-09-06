@@ -15,7 +15,7 @@
   {% set modifier_class = '%s %s %s'|format((symbol ? 'civictheme-icon--' ~ symbol : ''),(size ? 'civictheme-icon--size-' ~ size : ''), modifier_class|default('')) %}
 
   {% if symbol is defined %}
-    <span class="civictheme-icon {{ modifier_class }}" {% if alt is not null %}alt="{{ alt }}"{% endif %}></span>
+    <span class="civictheme-icon {{ modifier_class }}" {% if alt is defined %}alt="{{ alt }}"{% endif %}></span>
   {% endif %}
 
 {% endblock %}
