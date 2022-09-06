@@ -977,11 +977,11 @@ $civictheme-card-container-dark-footer-link-color: civictheme-color('neutral', 1
 $civictheme-card-container-dark-footer-link-hover-color: civictheme-color('primary', 5) !default;
 
 //
-// Content.
+// Layout.
 //
-$civictheme-content-space-vertical: civictheme-space(8) !default;
-$civictheme-content-light-background-color: inherit !default;
-$civictheme-content-dark-background-color: inherit !default;
+$civictheme-layout-space-vertical: civictheme-space(8) !default;
+$civictheme-layout-light-background-color: inherit !default;
+$civictheme-layout-dark-background-color: inherit !default;
 
 //
 // Form/Large filter.
