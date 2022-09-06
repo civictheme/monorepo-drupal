@@ -243,6 +243,8 @@ function civictheme_field_has_value(FieldableEntityInterface $entity, $field_nam
  *   Field name to get the value for.
  * @param bool $only_first
  *   Return only the first value of a multi-value field.
+ * @param mixed $default
+ *   Default value to return.
  *
  * @return mixed|null
  *   Whether the field exists and is not empty.
@@ -250,8 +252,8 @@ function civictheme_field_has_value(FieldableEntityInterface $entity, $field_nam
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
-function civictheme_get_field_value(FieldableEntityInterface $entity, $field_name, $only_first = FALSE) {
-  $value = NULL;
+function civictheme_get_field_value(FieldableEntityInterface $entity, $field_name, $only_first = FALSE, $default = NULL) {
+  $value = $default;
 
   if (!civictheme_field_has_value($entity, $field_name)) {
     return $value;
@@ -309,9 +311,6 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, $field_nam
 
       $value = $field->view();
       break;
-
-    default:
-      $value = NULL;
   }
 
   return $value;

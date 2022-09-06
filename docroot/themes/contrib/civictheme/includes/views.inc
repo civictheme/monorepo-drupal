@@ -100,7 +100,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   if (!empty($view->civictheme_listing_entity)) {
     $listing_show_filters = civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_show_filters');
     if ($listing_show_filters) {
-      $listing_filters = explode(', ', civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_filters_exp'));
+      $listing_filters = explode(', ', civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_filters_exp', FALSE, ''));
     }
   }
 
