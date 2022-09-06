@@ -6,7 +6,7 @@ Learn more about developing with CivicTheme in [CivicTheme documentation](../../
 
 ## Compiling front-end assets.
 
-    npm ci
+    npm install
     npm run build
 
 ## Linting code

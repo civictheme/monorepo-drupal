@@ -35,6 +35,8 @@ function civictheme_preprocess_input(&$variables) {
 
 /**
  * Implements template_preprocess_select().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_select(&$variables) {
   _civictheme_get_theme_from_attributes($variables);
@@ -57,6 +59,8 @@ function civictheme_preprocess_form_element(&$variables) {
 
 /**
  * Preprocesses form element classes.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_form_element_classes(&$variables) {
   // Handle any malformed attribute class properties.
@@ -216,6 +220,8 @@ function civictheme_preprocess_fieldset(&$variables) {
 
 /**
  * Sets fieldset form element type.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_fieldset_type(&$variables) {
   $children = Element::children($variables['element']);
