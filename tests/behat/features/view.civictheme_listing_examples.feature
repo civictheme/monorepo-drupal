@@ -1,4 +1,4 @@
-@civictheme @civictheme_listing
+@civictheme @civictheme_listing @skipped
 Feature: CivicTheme listing renders on views pages with filters
 
   Ensure that CivicTheme listing component can be used on the views
