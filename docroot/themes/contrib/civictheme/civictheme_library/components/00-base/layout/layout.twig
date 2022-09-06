@@ -31,7 +31,9 @@
 #}
 
 {% set has_sidebar = sidebar is not empty %}
-{% set has_sidebar = hide_sidebar ? FALSE : has_sidebar %}
+{% if hide_sidebar %}
+  {% set has_sidebar = FALSE %}
+{% endif %}
 {% set vertical_space = has_sidebar ? 'both' : vertical_space %}
 {% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-layout--vertical-space-%s'|format(vertical_space) : '' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
