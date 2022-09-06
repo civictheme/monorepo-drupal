@@ -60,6 +60,7 @@ export const Tag = (knobTab) => {
   const withLink = boolean('With link', false, linkKnobTab);
   const linkKnobs = {
     url: withLink ? text('URL', randomUrl(), linkKnobTab) : null,
+    is_external: withLink ? boolean('Is external', false, linkKnobTab) : null,
     is_new_window: withLink ? boolean('Open in a new window', false, linkKnobTab) : null,
   };
 
