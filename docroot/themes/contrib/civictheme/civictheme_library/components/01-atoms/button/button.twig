@@ -32,7 +32,7 @@
 {% set kind_class = kind ? 'civictheme-button--%s'|format(kind) : '' %}
 {% set size_class = 'civictheme-button--%s'|format(size) %}
 {% set dismiss_class =  is_dismissable ? 'civictheme-button--dismiss' : '' %}
-{% set is_external = is_external ? 'civictheme-link--external civictheme-icon--upper-right-arrow--after--' ~ icon_size : '' %}
+{% set is_external = is_external ? 'civictheme-button--external civictheme-icon--upper-right-arrow--after--' ~ icon_size : '' %}
 {% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, type_class, kind_class, size_class, dismiss_class, is_external, modifier_class|default('')) %}
 
 {% set button_icon %}
