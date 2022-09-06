@@ -20,7 +20,7 @@
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
 {% set icon_size = icon_size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? icon_size : 'small' %}
 {% set is_external = is_external ? 'civictheme-link--external civictheme-icon--upper-right-arrow--after--' ~ icon_size : '' %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, is_external, icon_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, is_external, modifier_class|default('')) %}
 
 {% if icon %}
   {% set link_icon %}
