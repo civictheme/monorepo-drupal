@@ -9,3 +9,15 @@
     @include civictheme-typography($name);
   }
 }
+
+.civictheme-content {
+  @include civictheme-content();
+
+  &.civictheme-theme-light {
+    @include civictheme-content-light();
+  }
+
+  &.civictheme-theme-dark {
+    @include civictheme-content-dark();
+  }
+}
