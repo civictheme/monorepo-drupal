@@ -9,7 +9,6 @@
  * Implements template_preprocess_table().
  */
 function civictheme_preprocess_table(&$variables) {
-
   // Header.
   if (!empty($variables['header'])) {
     $rows = NULL;
@@ -39,7 +38,7 @@ function civictheme_preprocess_table(&$variables) {
  * Implements template_preprocess_HOOK() for views_view_table.
  */
 function civictheme_preprocess_views_view_table(&$variables) {
-  // Header
+  // Header.
   if (!empty($variables['header'])) {
     $rows = NULL;
     foreach ($variables['header'] as $row) {
