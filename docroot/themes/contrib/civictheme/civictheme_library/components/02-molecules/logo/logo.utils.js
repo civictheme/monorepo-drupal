@@ -29,6 +29,25 @@ function getLogos() {
   return urls;
 }
 
+function getSecondaryLogos() {
+  const urls = {};
+  paths.forEach((path) => {
+    const matches = path.matchAll(/[^_]+_logo_secondary_([^_]+)+_([^.]+)/g);
+    for (const match of matches) {
+      if (match.length >= 3) {
+        const theme = match[1] === 'dark' ? 'dark' : 'light';
+        const type = match[2] === 'mobile' ? 'mobile' : 'desktop';
+        urls[theme] = urls[theme] || {};
+        urls[theme][type] = urls[theme][type] || {};
+        urls[theme][type] = `${dir.replace('../../../', '')}/${path}`;
+      }
+    }
+  });
+
+  return urls;
+}
+
 module.exports = {
   getLogos,
+  getSecondaryLogos,
 };

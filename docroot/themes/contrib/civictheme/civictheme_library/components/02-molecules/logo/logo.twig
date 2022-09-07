@@ -5,7 +5,12 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
+ * - type: [string] Type: default, inline, stacked.
+ * - with_secondary_image: [boolean] Has secondary image.
  * - logos: [object] Object with 'mobile' and 'desktop' keys:
+ *    - src: [string] URL for the logo.
+ *    - alt: [string] Image alt text.
+ * - logo_secondary: [object] Optional object with 'mobile' and 'desktop' keys:
  *    - src: [string] URL for the logo.
  *    - alt: [string] Image alt text.
  * - url: [string] Optional URL that wraps the logo.
@@ -15,21 +20,50 @@
  */
 #}
 
+{% set type = type in ['default', 'inline', 'stacked'] ? type : 'default' %}
+{% set type_class = 'civictheme-logo-type-%s'|format(type|default('default')) %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set logo_secondary_class = with_secondary_image ? 'civictheme-logo-secondary' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, logo_secondary_class, type_class, modifier_class|default('')) %}
 
 {% if logos is not empty %}
-  {% for type, logo in logos %}
-    {% set visibility_class = type == 'mobile' ? 'show-xxs hide-m' : 'hide-xxs show-m' %}
-    {% if logo.src is not empty %}
+  {% if with_secondary_image and logo_secondary is not empty and type != 'default' %}
+    {% set logos = [logos, logo_secondary] %}
+  {% else %}
+    {% set logos = [logos] %}
+  {% endif %}
+  {% set logo_mobile_components = {} %}
+  {% set logo_desktop_components = {} %}
+  {% for logo in logos %}
+    {% if loop.first %}
+      {% set logo_mobile_components = logo_mobile_components|merge({'logo': logo.mobile}) %}
+      {% set logo_desktop_components = logo_desktop_components|merge({'logo': logo.desktop}) %}
+    {% else %}
+      {% set logo_mobile_components = logo_mobile_components|merge({'secondary': logo.mobile}) %}
+      {% set logo_desktop_components = logo_desktop_components|merge({'secondary': logo.desktop}) %}
+    {% endif %}
+  {% endfor %}
+  {% set logo_components = {'mobile': logo_mobile_components, 'desktop': logo_desktop_components} %}
+
+  {% for screen_type, logos in logo_components %}
+    {% set visibility_class = screen_type == 'mobile' ? 'show-xxs hide-m' : 'hide-xxs show-m' %}
+    {% if logos.logo.src is not empty or logos.secondary.src is not empty %}
       <div class="civictheme-logo {{ visibility_class }} {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
         {% if url is not empty %}
         <a class="civictheme-logo__url" href="{{ url }}" title="{{ title|default('Click to go to the homepage') }}">
         {% endif %}
+          {% if with_secondary_image and type != 'default' %}
+            {% include '@atoms/image/image.twig' with {
+              theme: theme,
+              src: logos.secondary.src,
+              alt:  logos.secondary.alt,
+            } only %}
+            <hr class="civictheme-logo--hr">
+          {% endif %}
           {% include '@atoms/image/image.twig' with {
             theme: theme,
-            src: logo.src,
-            alt:  logo.alt,
+            src: logos.logo.src,
+            alt:  logos.logo.alt,
           } only %}
         {% if url is not empty %}
         </a>
@@ -37,4 +71,5 @@
       </div>
     {% endif %}
   {% endfor %}
+  
 {% endif %}

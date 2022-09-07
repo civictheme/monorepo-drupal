@@ -1,5 +1,5 @@
 // phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import { randomUrl } from '../../00-base/base.stories';
 import CivicThemeLogo from './logo.twig';
 
@@ -18,7 +18,14 @@ export const Logo = (knobTab) => {
       Light: 'light',
       Dark: 'dark',
     }, 'light', generalKnobTab),
+    type: radios('Type', {
+      Default: 'default',
+      Inline: 'inline',
+      Stacked: 'stacked',
+    }, 'default', generalKnobTab),
+    with_secondary_image: boolean('With secondary image', false, generalKnobTab),
     logos: {},
+    logo_secondary: {},
     url: text('Link', randomUrl(), generalKnobTab),
     title: text('Title', 'Logo title', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
@@ -33,6 +40,17 @@ export const Logo = (knobTab) => {
     desktop: {
       src: LOGOS[generalKnobs.theme].desktop,
       alt: 'Logo desktop alt text',
+    },
+  };
+
+  generalKnobs.logo_secondary = {
+    mobile: {
+      src: SECONDARY_LOGOS[generalKnobs.theme].mobile,
+      alt: 'Logo secondary mobile alt text',
+    },
+    desktop: {
+      src: SECONDARY_LOGOS[generalKnobs.theme].desktop,
+      alt: 'Logo secondary desktop alt text',
     },
   };
 
