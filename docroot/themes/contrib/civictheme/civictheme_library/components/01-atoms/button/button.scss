@@ -224,14 +224,8 @@
   outline-offset: $civictheme-button-outline-offset;
   outline-width: $civictheme-button-outline-width;
 
-  &:focus,
-  &:hover,
-  &:active {
-    text-decoration: underline;
-  }
-
   &[disabled] {
-    text-decoration: none;
+    pointer-events: none;
   }
 
   input {

@@ -72,8 +72,8 @@ COPY docroot/themes/contrib/civictheme/ docroot/themes/contrib/civictheme/packag
 # Install NodeJS dependencies.
 # Since Drupal does not use NodeJS for production, it does not matter if we
 # install development dependencies here - they are not exposed in any way.
-RUN npm --prefix docroot/themes/contrib/civictheme/civictheme_library ci --no-audit --no-progress --unsafe-perm
-RUN npm --prefix docroot/themes/contrib/civictheme ci --no-audit --no-progress --unsafe-perm
+RUN npm --prefix docroot/themes/contrib/civictheme/civictheme_library install --no-audit --no-progress --unsafe-perm
+RUN npm --prefix docroot/themes/contrib/civictheme install --no-audit --no-progress --unsafe-perm
 
 # Copy all files into appllication source directory. Existing files are always
 # overridden.
@@ -89,5 +89,5 @@ RUN cd /app/docroot/themes/contrib/civictheme \
   && php civictheme_create_subtheme.php civictheme_demo "CivicTheme Demo" "Demo sub-theme for a CivicTheme theme."
 
 # Compile subtheme assets.
-RUN npm --prefix docroot/themes/custom/civictheme_demo ci --no-audit --no-progress --unsafe-perm \
+RUN npm --prefix docroot/themes/custom/civictheme_demo install --no-audit --no-progress --unsafe-perm \
   && cd /app/docroot/themes/custom/civictheme_demo && npm run build

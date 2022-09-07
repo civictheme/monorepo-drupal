@@ -27,6 +27,8 @@ use Drupal\Component\Utility\UrlHelper;
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.NPathComplexity)
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */
 function _civictheme_process_html_content_links($html, $base_url, $new_window = FALSE, $external_new_window = FALSE, array $override_domains = []) {
   $class_prefix = 'civictheme-';
@@ -90,9 +92,21 @@ function _civictheme_process_html_content_links($html, $base_url, $new_window = 
  *   Array of overridden domains.
  *
  * @return bool
- *   TRUE if the link is external, FALSE otherwise.
+ *   TRUE if the provided URL is external, FALSE if not external or not a valid
+ *   URL.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_url_is_external($url, $base_url, array $override_domains = []) {
+  if (empty($url) || !UrlHelper::isValid($url)) {
+    return FALSE;
+  }
+
+  $url_parts = parse_url($url);
+  if (!empty($url_parts['scheme']) && empty($url_parts['host'])) {
+    return FALSE;
+  }
+
   if (UrlHelper::isExternal($url)) {
     $override_domains[] = $base_url;
     foreach ($override_domains as $override_domain) {

@@ -35,6 +35,18 @@ Feature: Check that content links have the correct classes.
       | field_c_p_content:value  | <a href="http://exampleoverridden.com/external-dark-link">External dark link from overridden domain</a> |
       | field_c_p_content:format | civictheme_rich_text                                                                                    |
       | field_c_p_theme          | dark                                                                                                    |
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page 1" has "civictheme_content" paragraph:
+      | field_c_p_content:value  | <a href="tel:123412341234">Telephone link</a> |
+      | field_c_p_content:format | civictheme_rich_text                          |
+      | field_c_p_theme          | dark                                                                                                    |
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page 1" has "civictheme_content" paragraph:
+      | field_c_p_content:value  | <a href="no-slash">Telephone link</a> |
+      | field_c_p_content:format | civictheme_rich_text                               |
+      | field_c_p_theme          | dark                                               |
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page 1" has "civictheme_content" paragraph:
+      | field_c_p_content:value  | <a href="mailto:test@example.com">Telephone link</a> |
+      | field_c_p_content:format | civictheme_rich_text                               |
+      | field_c_p_theme          | dark                                                                                                    |
 
     And I am logged in as a user with the "Site Administrator" role
     And I visit "/admin/appearance/settings/civictheme_demo"
