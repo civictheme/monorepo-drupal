@@ -16,6 +16,7 @@
         "drupal/permissions_filter": "^1.1",
         "drupal/redirect": "^1.6",
         "drupal/stage_file_proxy": "^1.1",
+        "drupal/styleguide": "^2@beta",
         "drupal/testmode": "^2.1",
         "drush/drush": "^11",
         "govcms/govcms": "^2.18",
