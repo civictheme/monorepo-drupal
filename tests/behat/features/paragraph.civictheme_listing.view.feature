@@ -196,8 +196,10 @@ Feature: View of Page content with Listing component
 
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_listing" paragraph:
       # Selection.
-      | field_c_p_listing_limit_type | unlimited |
-      | field_c_p_listing_limit      | 6         |
+      | field_c_p_listing_limit_type   | unlimited |
+      | field_c_p_listing_limit        | 6         |
+      | field_c_p_listing_show_filters | 1         |
+      | field_c_p_listing_filters_exp  | title     |
     When I visit "civictheme_page" "Page Listing component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
     And I should see 6 ".civictheme-card-container__card" elements
@@ -222,3 +224,7 @@ Feature: View of Page content with Listing component
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
     And I should see 2 ".civictheme-card-container__card" elements
     And I should not see an ".civictheme-listing__results-below .civictheme-pager" element
+
+    And I see field "Title"
+    And should see an "input[name='title']" element
+    And should not see an "input[name='title'].required" element
