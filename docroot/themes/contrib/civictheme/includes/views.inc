@@ -190,25 +190,28 @@ function _civictheme_get_views_exposed_form_elements_keys($form) {
  * Alter form elements to work within Large and Basic filters.
  */
 function _civictheme_filter_views_exposed_form_alter__process_elements(&$element, $form, $is_large_filter) {
-  // Convert select to either radio buttons or checkboxes.
-  if (isset($element['#type']) && $element['#type'] === 'select') {
-    $element['#type'] = 'radios';
+  $valid_process_element_types = ['select', 'radios', 'checkboxes'];
+  if (isset($element['#type']) && in_array($element['#type'], $valid_process_element_types)) {
+    // Convert select to either radio buttons or checkboxes.
+    if (isset($element['#type']) && $element['#type'] === 'select') {
+      $element['#type'] = 'radios';
 
-    if (!empty($element['#multiple'])) {
-      $element['#type'] = 'checkboxes';
-      unset($element['#multiple']);
+      if (!empty($element['#multiple'])) {
+        $element['#type'] = 'checkboxes';
+        unset($element['#multiple']);
+      }
+
+      _civictheme_filter_views_exposed_form_alter__modify_element_callbacks($element);
     }
 
-    _civictheme_filter_views_exposed_form_alter__modify_element_callbacks($element);
+    // Only radio buttons and checkboxes work with filter chips.
+    $filter_key = !$is_large_filter && in_array($element['#type'] ?? NULL, [
+      'radios',
+      'checkboxes',
+    ]) ? '#civictheme-basic-filter' : '#civictheme-large-filter';
+    $element[$filter_key] = $form['#id'];
+    $element['#attributes'][$filter_key] = $form['#id'];
   }
-
-  // Only radio buttons and checkboxes work with filter chips.
-  $filter_key = !$is_large_filter && in_array($element['#type'] ?? NULL, [
-    'radios',
-    'checkboxes',
-  ]) ? '#civictheme-basic-filter' : '#civictheme-large-filter';
-  $element[$filter_key] = $form['#id'];
-  $element['#attributes'][$filter_key] = $form['#id'];
 }
 
 /**
