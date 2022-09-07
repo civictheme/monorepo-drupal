@@ -35,7 +35,7 @@ if [ "$SKIP_SUBTHEME_FE" != "1" ] && command -v npm &> /dev/null; then
 
   if [ ! -d $APP/docroot/themes/custom/civictheme_demo/node_modules ]; then
     echo "  > Installing FE dependencies."
-    npm ci
+    npm install
   fi
 
   echo "  > Building FE assets."

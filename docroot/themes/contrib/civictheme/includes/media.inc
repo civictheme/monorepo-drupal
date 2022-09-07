@@ -79,8 +79,8 @@ function civictheme_preprocess_media__civictheme_remote_video(&$variables) {
     $html = $resource->getHtml();
 
     // Set 'title' attribute (if provided) on the oEmbed iframe element.
-    $doc = new \DOMDocument();
-    if ($doc->loadHTML($html)) {
+    $doc = _civictheme_get_dom_document($html);
+    if ($doc) {
       $iframe_elements = $doc->getElementsByTagName('iframe');
       // oEmbed can use an HTML tag other than <iframe> - skip setting an
       // attribute if this is a case.

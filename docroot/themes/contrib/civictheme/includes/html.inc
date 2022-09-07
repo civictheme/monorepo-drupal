@@ -10,6 +10,8 @@ use Drupal\Component\Utility\Html;
 
 /**
  * Generic HTML pre-process.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_html(&$variables) {
   /** @var \Drupal\node\Entity\Node $node */

@@ -1,19 +1,19 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemeContent from './content.twig';
+import CivicThemeLayout from './layout.twig';
 import CivicThemeLayoutSingleColumn from './content-layout--single-column.twig';
 import CivicThemeLayoutSingleColumnContained
   from './content-layout--single-column-contained.twig';
-import { getSlots, randomText } from '../../00-base/base.stories';
+import { getSlots, randomText } from '../base.stories';
 
 export default {
-  title: 'Organisms/Content',
+  title: 'Base/Layout',
   parameters: {
     layout: 'fullscreen',
   },
 };
 
-export const Content = (knobTab) => {
+export const Layout = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -73,7 +73,7 @@ export const Content = (knobTab) => {
     }
   }
 
-  return CivicThemeContent({
+  return CivicThemeLayout({
     ...generalKnobs,
     ...getSlots([
       'content_top',

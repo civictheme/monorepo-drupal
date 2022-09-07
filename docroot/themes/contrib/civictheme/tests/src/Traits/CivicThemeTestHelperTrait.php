@@ -24,6 +24,8 @@ trait CivicThemeTestHelperTrait {
    *
    * @return mixed
    *   Method result.
+   *
+   * @SuppressWarnings(PHPMD.MissingImport)
    */
   protected static function callProtectedMethod($object, $method, array $args = []) {
     $class = new \ReflectionClass(is_object($object) ? get_class($object) : $object);
@@ -43,6 +45,8 @@ trait CivicThemeTestHelperTrait {
    *   Property name to set the value. Property should exists in the object.
    * @param mixed $value
    *   Value to set to the property.
+   *
+   * @SuppressWarnings(PHPMD.MissingImport)
    */
   protected static function setProtectedValue($object, $property, $value) {
     $class = new \ReflectionClass(get_class($object));
@@ -62,6 +66,8 @@ trait CivicThemeTestHelperTrait {
    *
    * @return mixed
    *   Protected property value.
+   *
+   * @SuppressWarnings(PHPMD.MissingImport)
    */
   protected static function getProtectedValue($object, $property) {
     $class = new \ReflectionClass(get_class($object));
@@ -84,6 +90,8 @@ trait CivicThemeTestHelperTrait {
    *
    * @return object
    *   Mocked class.
+   *
+   * @SuppressWarnings(PHPMD.MissingImport)
    */
   protected function prepareMock($class, array $methodsMap = [], array $args = []) {
     $methods = array_keys($methodsMap);
@@ -122,6 +130,8 @@ trait CivicThemeTestHelperTrait {
    *
    * @return object
    *   Mocked class.
+   *
+   * @SuppressWarnings(PHPMD.MissingImport)
    */
   protected function getMockForConcreteClass($class, array $args = [], array $methods = []) {
     $mock = $this->getMockBuilder($class);

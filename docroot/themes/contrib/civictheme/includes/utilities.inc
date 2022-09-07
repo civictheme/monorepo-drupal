@@ -243,6 +243,8 @@ function civictheme_field_has_value(FieldableEntityInterface $entity, $field_nam
  *   Field name to get the value for.
  * @param bool $only_first
  *   Return only the first value of a multi-value field.
+ * @param mixed $default
+ *   Default value to return.
  *
  * @return mixed|null
  *   Whether the field exists and is not empty.
@@ -250,8 +252,8 @@ function civictheme_field_has_value(FieldableEntityInterface $entity, $field_nam
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
-function civictheme_get_field_value(FieldableEntityInterface $entity, $field_name, $only_first = FALSE) {
-  $value = NULL;
+function civictheme_get_field_value(FieldableEntityInterface $entity, $field_name, $only_first = FALSE, $default = NULL) {
+  $value = $default;
 
   if (!civictheme_field_has_value($entity, $field_name)) {
     return $value;
@@ -304,14 +306,11 @@ function civictheme_get_field_value(FieldableEntityInterface $entity, $field_nam
         $field_value = $field->get('value')->getString();
         $field_format = $field->get('format')->getString();
         $value = !empty($field_format) ? check_markup($field_value, $field_format) : $field_value;
+        break;
       }
-      else {
-        $value = $field->view();
-      }
-      break;
 
-    default:
-      $value = NULL;
+      $value = $field->view();
+      break;
   }
 
   return $value;
@@ -486,4 +485,17 @@ function _civictheme_get_node_id_from_form_state($form_state) {
   }
 
   return $nid;
+}
+
+/**
+ * Get DOMDocument object from HTML content.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
+ */
+function _civictheme_get_dom_document($content) {
+  $doc = new \DOMDocument();
+
+  $doc->loadHTML($content);
+
+  return $doc;
 }
