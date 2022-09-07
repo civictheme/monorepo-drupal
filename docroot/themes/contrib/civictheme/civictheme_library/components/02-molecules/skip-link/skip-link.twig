@@ -17,8 +17,11 @@
 
 {% if text is not empty %}
   <div class="civictheme-skip-link {{ modifier_class }}">
-    <a class="civictheme-skip-link__link civictheme-visually-hidden focusable" href="{{ url }}">
-      {{ text }}
-    </a>
+    {% include '@atoms/content-link/content-link.twig' with {
+      theme: theme,
+      text: text,
+      url: url,
+      modifier_class: 'civictheme-skip-link__link civictheme-visually-hidden focusable',
+    } only %}
   </div>
 {% endif %}

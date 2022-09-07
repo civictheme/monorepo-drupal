@@ -18,10 +18,6 @@
 
     #{$root}__link {
       color: $civictheme-skip-link-light-color;
-
-      &:focus {
-        @include civictheme-outline(false);
-      }
     }
   }
 
@@ -30,10 +26,6 @@
 
     #{$root}__link {
       color: $civictheme-skip-link-dark-color;
-
-      &:focus {
-        @include civictheme-outline(true);
-      }
     }
   }
 }
