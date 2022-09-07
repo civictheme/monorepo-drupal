@@ -245,6 +245,34 @@ $civictheme-chip-dark-active-border-color: civictheme-color('neutral', 1) !defau
 $civictheme-chip-dark-active-outline-color: civictheme-color('outline') !default;
 
 //
+// Field description.
+//
+$civictheme-field-description-light-color: civictheme-color('neutral', 7) !default;
+$civictheme-field-description-dark-color: civictheme-color('neutral', 1) !default;
+
+//
+// Field message.
+//
+$civictheme-field-message-light-color: civictheme-color('neutral', 7) !default;
+$civictheme-field-message-light-status-background-color: color.mix(white, civictheme-color('status'), 90%) !default;
+$civictheme-field-message-light-warning-background-color: color.mix(white, civictheme-color('warning'), 90%) !default;
+$civictheme-field-message-light-error-background-color: color.mix(white, civictheme-color('error'), 90%) !default;
+$civictheme-field-message-light-success-background-color: color.mix(white, civictheme-color('success'), 90%) !default;
+$civictheme-field-message-light-status-border-color: civictheme-color('status') !default;
+$civictheme-field-message-light-warning-border-color: civictheme-color('warning') !default;
+$civictheme-field-message-light-error-border-color: civictheme-color('error') !default;
+$civictheme-field-message-light-success-border-color: civictheme-color('success') !default;
+$civictheme-field-message-dark-color: civictheme-color('neutral', 1) !default;
+$civictheme-field-message-dark-status-background-color: civictheme-color('status') !default;
+$civictheme-field-message-dark-warning-background-color: civictheme-color('warning') !default;
+$civictheme-field-message-dark-error-background-color: civictheme-color('error') !default;
+$civictheme-field-message-dark-success-background-color: civictheme-color('success') !default;
+$civictheme-field-message-dark-status-border-color: civictheme-color('status') !default;
+$civictheme-field-message-dark-warning-border-color: civictheme-color('warning') !default;
+$civictheme-field-message-dark-error-border-color: civictheme-color('error') !default;
+$civictheme-field-message-dark-success-border-color: civictheme-color('success') !default;
+
+//
 // Icon.
 //
 $civictheme-icon-size: 'regular' !default;
@@ -810,17 +838,6 @@ $civictheme-progress-indicator-dark-active-border-color: $civictheme-progress-in
 $civictheme-progress-indicator-dark-background-color: transparent !default;
 
 //
-// Promo.
-//
-$civictheme-promo-space-vertical: civictheme-space(6) !default;
-$civictheme-promo-light-heading-color: civictheme-color('neutral', 7) !default;
-$civictheme-promo-light-body-color: civictheme-color('neutral', 6) !default;
-$civictheme-promo-light-background-color: civictheme-color('neutral', 1) !default;
-$civictheme-promo-dark-heading-color: civictheme-color('neutral', 1) !default;
-$civictheme-promo-dark-body-color: civictheme-color('neutral', 1) !default;
-$civictheme-promo-dark-background-color: civictheme-color('primary', 4) !default;
-
-//
 // Skip link.
 //
 $civictheme-skip-link-light-color: civictheme-color('primary') !default;
@@ -1200,6 +1217,17 @@ $civictheme-primary-navigation-dark-menu-item-active-trail-color: civictheme-col
 $civictheme-primary-navigation-dark-menu-item-active-trail-background-color: civictheme-color('secondary') !default;
 
 //
+// Promo.
+//
+$civictheme-promo-space-vertical: civictheme-space(6) !default;
+$civictheme-promo-light-heading-color: civictheme-color('neutral', 7) !default;
+$civictheme-promo-light-body-color: civictheme-color('neutral', 6) !default;
+$civictheme-promo-light-background-color: civictheme-color('neutral', 1) !default;
+$civictheme-promo-dark-heading-color: civictheme-color('neutral', 1) !default;
+$civictheme-promo-dark-body-color: civictheme-color('neutral', 1) !default;
+$civictheme-promo-dark-background-color: civictheme-color('primary', 4) !default;
+
+//
 // Navigation/Secondary navigation.
 //
 // Top offset for the dropdown from the bottom of the trigger.
@@ -1412,31 +1440,3 @@ $civictheme-webform-light-wrapper-background-color: civictheme-color('neutral', 
 $civictheme-webform-dark-color: civictheme-color('neutral', 1) !default;
 $civictheme-webform-dark-background-color: civictheme-color('primary', 5) !default;
 $civictheme-webform-dark-wrapper-background-color: civictheme-color('primary', 4) !default;
-
-//
-// Field description.
-//
-$civictheme-field-description-light-color: civictheme-color('neutral', 7) !default;
-$civictheme-field-description-dark-color: civictheme-color('neutral', 1) !default;
-
-//
-// Field message.
-//
-$civictheme-field-message-light-color: civictheme-color('neutral', 7) !default;
-$civictheme-field-message-light-status-background-color: color.mix(white, civictheme-color('status'), 90%) !default;
-$civictheme-field-message-light-warning-background-color: color.mix(white, civictheme-color('warning'), 90%) !default;
-$civictheme-field-message-light-error-background-color: color.mix(white, civictheme-color('error'), 90%) !default;
-$civictheme-field-message-light-success-background-color: color.mix(white, civictheme-color('success'), 90%) !default;
-$civictheme-field-message-light-status-border-color: civictheme-color('status') !default;
-$civictheme-field-message-light-warning-border-color: civictheme-color('warning') !default;
-$civictheme-field-message-light-error-border-color: civictheme-color('error') !default;
-$civictheme-field-message-light-success-border-color: civictheme-color('success') !default;
-$civictheme-field-message-dark-color: civictheme-color('neutral', 1) !default;
-$civictheme-field-message-dark-status-background-color: civictheme-color('status') !default;
-$civictheme-field-message-dark-warning-background-color: civictheme-color('warning') !default;
-$civictheme-field-message-dark-error-background-color: civictheme-color('error') !default;
-$civictheme-field-message-dark-success-background-color: civictheme-color('success') !default;
-$civictheme-field-message-dark-status-border-color: civictheme-color('status') !default;
-$civictheme-field-message-dark-warning-border-color: civictheme-color('warning') !default;
-$civictheme-field-message-dark-error-border-color: civictheme-color('error') !default;
-$civictheme-field-message-dark-success-border-color: civictheme-color('success') !default;
