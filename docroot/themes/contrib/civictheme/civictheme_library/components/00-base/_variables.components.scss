@@ -823,10 +823,10 @@ $civictheme-promo-dark-background-color: civictheme-color('primary', 4) !default
 //
 // Skip link.
 //
-$civictheme-skip-link-light-color: civictheme-color('primary', 1) !default;
-$civictheme-skip-link-light-background-color: civictheme-color('primary', 5) !default;
-$civictheme-skip-link-dark-color: civictheme-color('secondary', 1) !default;
-$civictheme-skip-link-dark-background-color: civictheme-color('secondary', 5) !default;
+$civictheme-skip-link-light-color: civictheme-color('primary') !default;
+$civictheme-skip-link-light-background-color: civictheme-color('neutral', 1) !default;
+$civictheme-skip-link-dark-color: civictheme-color('secondary') !default;
+$civictheme-skip-link-dark-background-color: civictheme-color('primary', 4) !default;
 
 //
 // Tooltip.

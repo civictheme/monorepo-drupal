@@ -15,7 +15,8 @@
 
   &.focusable {
     &:active,
-    &:focus {
+    &:focus,
+    &:hover {
       position: static !important;
       overflow: visible;
       clip: auto;
