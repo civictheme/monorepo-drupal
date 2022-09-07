@@ -810,17 +810,6 @@ $civictheme-progress-indicator-dark-active-border-color: $civictheme-progress-in
 $civictheme-progress-indicator-dark-background-color: transparent !default;
 
 //
-// Promo.
-//
-$civictheme-promo-space-vertical: civictheme-space(6) !default;
-$civictheme-promo-light-heading-color: civictheme-color('neutral', 7) !default;
-$civictheme-promo-light-body-color: civictheme-color('neutral', 6) !default;
-$civictheme-promo-light-background-color: civictheme-color('neutral', 1) !default;
-$civictheme-promo-dark-heading-color: civictheme-color('neutral', 1) !default;
-$civictheme-promo-dark-body-color: civictheme-color('neutral', 1) !default;
-$civictheme-promo-dark-background-color: civictheme-color('primary', 4) !default;
-
-//
 // Skip link.
 //
 $civictheme-skip-link-light-color: civictheme-color('primary', 3) !default;
@@ -1198,6 +1187,17 @@ $civictheme-primary-navigation-dark-sub-menu-item-hover-background-color: civict
 $civictheme-primary-navigation-dark-sub-menu-item-active-background-color: civictheme-color('secondary') !default;
 $civictheme-primary-navigation-dark-menu-item-active-trail-color: civictheme-color('primary') !default;
 $civictheme-primary-navigation-dark-menu-item-active-trail-background-color: civictheme-color('secondary') !default;
+
+//
+// Promo.
+//
+$civictheme-promo-space-vertical: civictheme-space(6) !default;
+$civictheme-promo-light-heading-color: civictheme-color('neutral', 7) !default;
+$civictheme-promo-light-body-color: civictheme-color('neutral', 6) !default;
+$civictheme-promo-light-background-color: civictheme-color('neutral', 1) !default;
+$civictheme-promo-dark-heading-color: civictheme-color('neutral', 1) !default;
+$civictheme-promo-dark-body-color: civictheme-color('neutral', 1) !default;
+$civictheme-promo-dark-background-color: civictheme-color('primary', 4) !default;
 
 //
 // Navigation/Secondary navigation.
