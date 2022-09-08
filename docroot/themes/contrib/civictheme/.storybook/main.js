@@ -38,7 +38,7 @@ module.exports = {
     custom.entry = custom.entry.main.map((value) => (value.indexOf('components_css.js') > -1 ? path.resolve(__dirname, 'components_css.stories.js') : value));
 
     // Remove theme-related entries as components should not have them.
-    custom.entry = custom.entry.filter((p) => !/theme_/g.test(p));
+    custom.entry = custom.entry.filter((p) => !/\/theme_/g.test(p));
 
     // Modify common configs to let Storybook take over.
     delete custom.output;

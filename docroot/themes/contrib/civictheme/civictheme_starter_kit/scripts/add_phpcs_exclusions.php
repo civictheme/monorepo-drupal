@@ -36,6 +36,8 @@ define('ERROR_LEVEL', E_USER_WARNING);
 
 /**
  * Main functionality.
+ *
+ * @SuppressWarnings(PHPMD.MissingImport)
  */
 function main(array $argv, $argc) {
   if (in_array($argv[1] ?? NULL, ['--help', '-help', '-h', '-?'])) {

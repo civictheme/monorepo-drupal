@@ -61,3 +61,7 @@ docker-compose.override.yml
 # Ignore generated theme.
 docroot/themes/custom
 .ahoy.local.yml
+
+# Ignore FE lock files. Do not ignore in distributions as they could be required
+# by the consumer sites.
+package-lock.json
