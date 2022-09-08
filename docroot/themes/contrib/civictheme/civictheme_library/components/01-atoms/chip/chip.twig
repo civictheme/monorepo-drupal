@@ -25,7 +25,7 @@
 {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, kind_class, selected_class, multiple_class, dismiss_class, modifier_class|default('')) %}
 
 {% set chip_content %}
-  {% if is_dismissible or kind == 'input' %}
+  {% if is_dismissible or (kind == 'input' and is_multiple) %}
     {{ content }}
     <span class="civictheme-chip__dismiss" data-chip-dismiss>
       {% include '@atoms/icon/icon.twig' with {
