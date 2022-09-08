@@ -10,18 +10,47 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-radius: $civictheme-select-border-radius;
   min-width: rem(300px);
-  min-height: rem(46px);
+  height: rem(46px);
+  padding: 0.5em 3.5em 0.5em 1em;
+
+  // reset
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -webkit-box-sizing: border-box;
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -webkit-appearance: none;
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -moz-appearance: none;
+  appearance: none;
+  background-position: calc(100% - .5rem), 100% 0;
+  background-size: 1.5em 1.5em;
+  background-repeat: no-repeat;
 
   &[disabled] {
     pointer-events: none;
     opacity: 50%;
   }
 
+  &[multiple] {
+    height: inherit;
+  }
+
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+  }
+
+  &:-webkit-scrollbar {
+    background-color: transparent;
+  }
+
   &.civictheme-theme-light {
     color: $civictheme-select-light-color;
     background-color: $civictheme-select-light-background-color;
+    background-image: $civictheme-select-light-dropdown-icon;
 
     &:hover {
       box-shadow: 0 0 0 1px $civictheme-select-light-hover-border-color;
@@ -39,12 +68,26 @@
       border-color: $civictheme-select-light-error-border-color;
       box-shadow: 0 0 0 1px $civictheme-select-light-error-border-color;
     }
+
+    &:-internal-list-box {
+      option {
+        &:checked {
+          background-color: $civictheme-select-light-option-background-color;
+          color: inherit;
+        }
+      }
+    }
+
+    &[multiple] {
+      background: none;
+    }
   }
 
   &.civictheme-theme-dark {
     color: $civictheme-select-dark-color;
     background-color: $civictheme-select-dark-background-color;
     border-color: $civictheme-select-dark-border-color;
+    background-image: $civictheme-select-dark-dropdown-icon;
 
     &:hover {
       border-color: $civictheme-select-dark-hover-border-color;
@@ -62,6 +105,20 @@
     &.civictheme-input--error {
       border-color: $civictheme-select-dark-error-border-color;
       box-shadow: 0 0 0 1px $civictheme-select-dark-error-border-color;
+      background-color: $civictheme-select-dark-error-background-color;
+    }
+
+    &:-internal-list-box {
+      option {
+        &:checked {
+          background-color: $civictheme-select-dark-option-background-color;
+          color: inherit;
+        }
+      }
+    }
+
+    &[multiple] {
+      background: none;
     }
   }
 }
