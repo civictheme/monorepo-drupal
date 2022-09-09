@@ -7,7 +7,7 @@ import './tabs';
 import { randomText, randomUrl } from '../../00-base/base.stories';
 
 export default {
-  title: 'Organisms/Tabs',
+  title: 'Molecules/Tabs',
 };
 
 export const Tabs = (knobTab) => {
@@ -23,18 +23,8 @@ export const Tabs = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    with_panels: boolean('With panels', true, generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
-  };
-
-  let panelKnobs = {};
-  let panelsKnobTab = '';
-
-  if (generalKnobs.with_panels) {
-    panelsKnobTab = 'Panels';
-    // Adding dynamic number of tabs panels.
-    const numOfPanels = number(
-      'Number of panels',
+    tabs_count: number(
+      'Tabs count',
       3,
       {
         range: true,
@@ -42,15 +32,26 @@ export const Tabs = (knobTab) => {
         max: 10,
         step: 1,
       },
-      panelsKnobTab,
-    );
+      generalKnobTab,
+    ),
+    with_panels: boolean('With panels', true, generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: text('Additional classes', '', generalKnobTab),
+  };
+
+  let panelKnobs = {};
+  let panelsKnobTab = '';
+
+  if (generalKnobs.with_panels) {
+    panelsKnobTab = 'Panels';
 
     const panels = [];
     let itr = 1;
-    while (itr <= numOfPanels) {
+    while (itr <= generalKnobs.tabs_count) {
+      panelsKnobTab = `Panel ${itr}`;
       panels.push({
         id: `tab-${itr}`,
-        title: text(`Tab ${itr} title `, `Tab ${itr}`, panelsKnobTab),
+        title: text(`Panel ${itr} title `, `Panel ${itr}`, panelsKnobTab),
         content: text(`Panel ${itr} content`, `Panel ${itr} content ${randomText()}`, panelsKnobTab),
         is_selected: boolean(`Selected ${itr} panel`, false, panelsKnobTab),
       });
@@ -61,22 +62,10 @@ export const Tabs = (knobTab) => {
       panels,
     };
   } else {
-    panelsKnobTab = 'Tabs';
-    const numOfLinks = number(
-      'Number of tabs',
-      3,
-      {
-        range: true,
-        min: 0,
-        max: 10,
-        step: 1,
-      },
-      panelsKnobTab,
-    );
-
     const links = [];
     let itr = 1;
-    while (itr <= numOfLinks) {
+    while (itr <= generalKnobs.tabs_count) {
+      panelsKnobTab =  `Tab ${itr}`;
       links.push({
         text: text(`Tab ${itr} title `, `Tab ${itr}`, panelsKnobTab),
         url: text(`Tab ${itr} URL`, randomUrl(), panelsKnobTab),

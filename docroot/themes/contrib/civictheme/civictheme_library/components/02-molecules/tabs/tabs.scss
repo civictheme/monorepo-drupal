@@ -19,15 +19,17 @@
 
     .civictheme-link {
       margin-bottom: -1px;
+      outline-offset: -3px;
       display: block;
 
       @include civictheme-link-decoration(false, false, false, false);
 
       padding: civictheme-space(1) civictheme-space(2);
       border-radius: $civictheme-tabs-link-border-radius $civictheme-tabs-link-border-radius 0 0;
+      border: solid 1px;
 
-      &.selected {
-        border: solid 1px;
+      @include civictheme-breakpoint('m') {
+        padding: civictheme-space(2.875);
       }
     }
   }
@@ -49,11 +51,24 @@
       border-bottom-color: $civictheme-tabs-light-links-border-color;
 
       .civictheme-link {
+        border-color: $civictheme-tabs-light-links-border-color;
+        color: $civictheme-tabs-light-links-color;
+
+        @include civictheme-link-backgrounds($civictheme-tabs-light-links-background-color);
+
+        &:hover {
+          color: $civictheme-tabs-light-links-hover-color;
+        }
+
         &.selected {
           color: $civictheme-tabs-light-links-selected-color;
-          border-color: $civictheme-tabs-light-links-selected-border-color $civictheme-tabs-light-links-selected-border-color $civictheme-tabs-light-panel-background-color;
+          border-color: $civictheme-tabs-light-links-selected-border-color;
 
-          @include civictheme-link-backgrounds(transparent);
+          &:hover {
+            color: $civictheme-tabs-light-links-selected-hover-color;
+          }
+
+          @include civictheme-link-backgrounds($civictheme-tabs-light-links-selected-background-color, $civictheme-tabs-light-links-selected-background-color, transparent, transparent);
         }
       }
     }
@@ -70,11 +85,24 @@
       border-bottom-color: $civictheme-tabs-dark-links-border-color;
 
       .civictheme-link {
+        border-color: $civictheme-tabs-dark-links-border-color;
+        color: $civictheme-tabs-dark-links-color;
+
+        &:hover {
+          color: $civictheme-tabs-dark-links-hover-color;
+        }
+
+        @include civictheme-link-backgrounds($civictheme-tabs-dark-links-background-color);
+
         &.selected {
           color: $civictheme-tabs-dark-links-selected-color;
-          border-color: $civictheme-tabs-dark-links-selected-border-color $civictheme-tabs-dark-links-selected-border-color $civictheme-tabs-dark-panel-background-color;
+          border-color: $civictheme-tabs-dark-links-selected-border-color;
 
-          @include civictheme-link-backgrounds(transparent);
+          &:hover {
+            color: $civictheme-tabs-dark-links-selected-hover-color;
+          }
+
+          @include civictheme-link-backgrounds($civictheme-tabs-dark-links-selected-background-color, $civictheme-tabs-dark-links-selected-background-color, transparent, transparent);
         }
       }
     }
