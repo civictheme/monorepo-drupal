@@ -169,3 +169,12 @@ Feature: CivicTheme listing renders on views pages with filters
       | civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block |
       | civictheme-no-sidebar/listing-multiple-filters                      |
       | civictheme-no-sidebar/listing-multiple-filters-exposed-block        |
+
+  @api @testmode
+  Scenario: Listing example - Title filter
+    Given I am an anonymous user
+    When I go to "civictheme-no-sidebar/listing-multiple-filters"
+    Then the response status code should be 200
+    And I see field "Title"
+    And should see an "input[name='title']" element
+    And should not see an "input[name='title'].required" element

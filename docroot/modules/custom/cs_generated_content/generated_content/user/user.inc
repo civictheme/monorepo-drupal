@@ -38,7 +38,7 @@ function cs_generated_content_generated_content_create_user_user() {
   $roles = user_roles();
   foreach ($roles as $role) {
     if (in_array($role->id(), [
-      'anonymous', 'authenticated', 'administrator',
+      'anonymous', 'authenticated',
     ])) {
       continue;
     }
