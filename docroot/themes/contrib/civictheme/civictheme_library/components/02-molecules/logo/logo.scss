@@ -20,22 +20,18 @@
   &.civictheme-theme-light {
     &#{$root}-type-inline {
       @include civictheme-logo-type();
-
     }
     &#{$root}-type-stacked {
       @include civictheme-logo-type();
-
     }
   }
 
   &.civictheme-theme-dark {
     &#{$root}-type-inline {
       @include civictheme-logo-type();
-
     }
     &#{$root}-type-stacked {
       @include civictheme-logo-type();
-
     }
   }
 }
