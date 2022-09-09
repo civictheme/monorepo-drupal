@@ -23,6 +23,7 @@ export const Tabs = (knobTab) => {
       'light',
       generalKnobTab,
     ),
+    // Dynamic number of tabs/panels.
     tabs_count: number(
       'Tabs count',
       3,
@@ -43,8 +44,7 @@ export const Tabs = (knobTab) => {
   let panelsKnobTab = '';
 
   if (generalKnobs.with_panels) {
-    panelsKnobTab = 'Panels';
-
+    // Use panels.
     const panels = [];
     let itr = 1;
     while (itr <= generalKnobs.tabs_count) {
@@ -62,11 +62,12 @@ export const Tabs = (knobTab) => {
       panels,
     };
   } else {
-    const links = [];
+    // Use tabs.
+    const tabs = [];
     let itr = 1;
     while (itr <= generalKnobs.tabs_count) {
       panelsKnobTab =  `Tab ${itr}`;
-      links.push({
+      tabs.push({
         text: text(`Tab ${itr} title `, `Tab ${itr}`, panelsKnobTab),
         url: text(`Tab ${itr} URL`, randomUrl(), panelsKnobTab),
         modifier_class: itr === 1 ? 'selected' : '',
@@ -75,7 +76,7 @@ export const Tabs = (knobTab) => {
     }
 
     panelKnobs = {
-      links,
+      tabs,
     };
   }
 
