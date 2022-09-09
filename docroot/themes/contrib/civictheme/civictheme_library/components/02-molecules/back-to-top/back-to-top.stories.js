@@ -1,5 +1,4 @@
 // phpcs:ignoreFile
-import { radios } from '@storybook/addon-knobs';
 import CivicThemeBackToTop from './back-to-top.twig';
 
 export default {
@@ -9,7 +8,7 @@ export default {
   },
 };
 
-export const BackToTop = (knobTab) => {
+export const BackToTop = () => {
   const html = CivicThemeBackToTop();
 
   return `<a id="top"></a><div class="example-container"><div class="example-container__page-content example-civictheme-back-to-top"></div>${html}</div>`;
