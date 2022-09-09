@@ -2,6 +2,12 @@
 // Logo component.
 //
 
+@mixin civictheme-logo-type() {
+  img {
+    width: 50%;
+  }
+}
+
 .civictheme-logo {
   $root: &;
 
@@ -11,47 +17,25 @@
     width: 100%;
   }
 
-  #{$root}--hr {
-    margin: 0.5rem;
-  }
+  &.civictheme-theme-light {
+    &#{$root}-type-inline {
+      @include civictheme-logo-type();
 
-  &#{$root}-type-inline {
-    img {
-      width: 50%;
     }
+    &#{$root}-type-stacked {
+      @include civictheme-logo-type();
 
-    a {
-      display: inline-flex;
-    }
-
-    #{$root}--hr {
-      height: inherit;
-    }
-
-    &.civictheme-theme-light {
-      #{$root}--hr {
-        border-left: 1px solid $civictheme-icon-light-stripe-color;
-      }
-    }
-
-    &.civictheme-theme-dark {
-      #{$root}--hr {
-        border-left: 1px solid $civictheme-icon-dark-stripe-color;
-      }
     }
   }
 
-  &#{$root}-type-stacked {
-    &.civictheme-theme-light {
-      #{$root}--hr {
-        border: 1px solid $civictheme-icon-light-stripe-color;
-      }
-    }
+  &.civictheme-theme-dark {
+    &#{$root}-type-inline {
+      @include civictheme-logo-type();
 
-    &.civictheme-theme-dark {
-      #{$root}--hr {
-        border: 1px solid $civictheme-icon-dark-stripe-color;
-      }
+    }
+    &#{$root}-type-stacked {
+      @include civictheme-logo-type();
+
     }
   }
 }

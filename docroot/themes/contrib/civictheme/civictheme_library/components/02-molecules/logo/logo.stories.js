@@ -32,37 +32,35 @@ export const Logo = (knobTab) => {
   };
 
   generalKnobs.logos = generalKnobs.with_secondary_image ? {
-    mobile: {
-      primary: {
-        src: LOGOS[generalKnobs.theme].mobile.primary,
+    primary: {
+      mobile: {
+        src: LOGOS[generalKnobs.theme].primary.mobile,
         alt: 'Primary logo mobile alt text',
       },
-      secondary: {
-        src: LOGOS[generalKnobs.theme].mobile.secondary,
-        alt: 'Secondary logo mobile alt text',
+      desktop: {
+        src: LOGOS[generalKnobs.theme].primary.desktop,
+        alt: 'Primary logo mobile alt text',
       },
     },
-    desktop: {
-      primary: {
-        src: LOGOS[generalKnobs.theme].desktop.primary,
-        alt: 'Primary logo desktop alt text',
+    secondary: {
+      mobile: {
+        src: LOGOS[generalKnobs.theme].secondary.mobile,
+        alt: 'Secondary logo desktop alt text',
       },
-      secondary: {
-        src: LOGOS[generalKnobs.theme].desktop.secondary,
+      desktop: {
+        src: LOGOS[generalKnobs.theme].secondary.desktop,
         alt: 'Secondary logo desktop alt text',
       },
     },
   } : {
-    mobile: {
-      primary: {
-        src: LOGOS[generalKnobs.theme].mobile.primary,
+    primary: {
+      mobile: {
+        src: LOGOS[generalKnobs.theme].primary.mobile,
         alt: 'Primary logo mobile alt text',
       },
-    },
-    desktop: {
-      primary: {
-        src: LOGOS[generalKnobs.theme].desktop.primary,
-        alt: 'Primary logo desktop alt text',
+      desktop: {
+        src: LOGOS[generalKnobs.theme].primary.desktop,
+        alt: 'Primary logo mobile alt text',
       },
     },
   };
