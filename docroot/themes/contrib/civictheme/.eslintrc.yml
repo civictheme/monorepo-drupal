@@ -9,7 +9,6 @@ globals:
   Drupal: true
   ICONS: true
   LOGOS: true
-  SECONDARY_LOGOS: true
   SCSS_VARIABLES: true
   Set: true
   CSV_VARIABLES_FILENAME: true

@@ -39,14 +39,14 @@ function civictheme_preprocess_block__system_branding_block(&$variables) {
     $alt = theme_get_setting('components.logo.image_alt') ?? t('CivicTheme logo');
 
     if (!empty($desktop_logo)) {
-      $variables['logos']['desktop'] = [
+      $variables['logos']['desktop']['primary'] = [
         'src' => '/' . ltrim($desktop_logo, '/'),
         'alt' => $alt,
       ];
     }
 
     if (!empty($mobile_logo)) {
-      $variables['logos']['mobile'] = [
+      $variables['logos']['mobile']['primary'] = [
         'src' => '/' . ltrim($mobile_logo, '/'),
         'alt' => $alt,
       ];

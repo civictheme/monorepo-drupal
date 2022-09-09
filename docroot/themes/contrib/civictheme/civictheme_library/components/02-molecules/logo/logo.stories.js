@@ -25,32 +25,45 @@ export const Logo = (knobTab) => {
     }, 'default', generalKnobTab),
     with_secondary_image: boolean('With secondary image', false, generalKnobTab),
     logos: {},
-    logo_secondary: {},
     url: text('Link', randomUrl(), generalKnobTab),
     title: text('Title', 'Logo title', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: `civictheme-logo-example story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
   };
 
-  generalKnobs.logos = {
+  generalKnobs.logos = generalKnobs.with_secondary_image ? {
     mobile: {
-      src: LOGOS[generalKnobs.theme].mobile,
-      alt: 'Logo mobile alt text',
+      primary: {
+        src: LOGOS[generalKnobs.theme].mobile.primary,
+        alt: 'Primary logo mobile alt text',
+      },
+      secondary: {
+        src: LOGOS[generalKnobs.theme].mobile.secondary,
+        alt: 'Secondary logo mobile alt text',
+      },
     },
     desktop: {
-      src: LOGOS[generalKnobs.theme].desktop,
-      alt: 'Logo desktop alt text',
+      primary: {
+        src: LOGOS[generalKnobs.theme].desktop.primary,
+        alt: 'Primary logo desktop alt text',
+      },
+      secondary: {
+        src: LOGOS[generalKnobs.theme].desktop.secondary,
+        alt: 'Secondary logo desktop alt text',
+      },
     },
-  };
-
-  generalKnobs.logo_secondary = {
+  } : {
     mobile: {
-      src: SECONDARY_LOGOS[generalKnobs.theme].mobile,
-      alt: 'Logo secondary mobile alt text',
+      primary: {
+        src: LOGOS[generalKnobs.theme].mobile.primary,
+        alt: 'Primary logo mobile alt text',
+      },
     },
     desktop: {
-      src: SECONDARY_LOGOS[generalKnobs.theme].desktop,
-      alt: 'Logo secondary desktop alt text',
+      primary: {
+        src: LOGOS[generalKnobs.theme].desktop.primary,
+        alt: 'Primary logo desktop alt text',
+      },
     },
   };
 

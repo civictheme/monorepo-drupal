@@ -19,7 +19,6 @@ const customPlugin = new webpack.DefinePlugin({
   BACKGROUNDS: JSON.stringify(backgroundUtils.getBackgrounds()),
   ICONS: JSON.stringify(iconUtils.getIcons()),
   LOGOS: JSON.stringify(logoUtils.getLogos()),
-  SECONDARY_LOGOS: JSON.stringify(logoUtils.getSecondaryLogos()),
   SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
   CSV_VARIABLES_FILENAME: JSON.stringify({ name: 'styles.variables.csv' }),
 });

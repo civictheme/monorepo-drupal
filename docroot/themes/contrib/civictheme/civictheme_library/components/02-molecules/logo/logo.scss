@@ -11,47 +11,46 @@
     width: 100%;
   }
 
-  &.civictheme-logo-secondary {
+  #{$root}--hr {
+    margin: 0.5rem;
+  }
+
+  &#{$root}-type-inline {
+    img {
+      width: 50%;
+    }
+
+    a {
+      display: inline-flex;
+    }
 
     #{$root}--hr {
-      margin: 0.5rem;
+      height: inherit;
     }
-    &#{$root}-type-inline {
-      img {
-        width: 50%;
-      }
 
-      a {
-        display: inline-flex;
-      }
-
+    &.civictheme-theme-light {
       #{$root}--hr {
-        height: inherit;
-      }
-
-      &.civictheme-theme-light {
-        #{$root}--hr {
-          border-left: 1px solid $civictheme-icon-light-stripe-color;
-        }
-      }
-
-      &.civictheme-theme-dark {
-        #{$root}--hr {
-          border-left: 1px solid $civictheme-icon-dark-stripe-color;
-        }
+        border-left: 1px solid $civictheme-icon-light-stripe-color;
       }
     }
-    &#{$root}-type-stacked {
-      &.civictheme-theme-light {
-        #{$root}--hr {
-          border: 1px solid $civictheme-icon-light-stripe-color;
-        }
-      }
 
-      &.civictheme-theme-dark {
-        #{$root}--hr {
-          border: 1px solid $civictheme-icon-dark-stripe-color;
-        }
+    &.civictheme-theme-dark {
+      #{$root}--hr {
+        border-left: 1px solid $civictheme-icon-dark-stripe-color;
+      }
+    }
+  }
+
+  &#{$root}-type-stacked {
+    &.civictheme-theme-light {
+      #{$root}--hr {
+        border: 1px solid $civictheme-icon-light-stripe-color;
+      }
+    }
+
+    &.civictheme-theme-dark {
+      #{$root}--hr {
+        border: 1px solid $civictheme-icon-dark-stripe-color;
       }
     }
   }

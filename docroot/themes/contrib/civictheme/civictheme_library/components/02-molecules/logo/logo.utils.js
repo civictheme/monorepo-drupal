@@ -21,25 +21,19 @@ function getLogos() {
         const type = match[2] === 'mobile' ? 'mobile' : 'desktop';
         urls[theme] = urls[theme] || {};
         urls[theme][type] = urls[theme][type] || {};
-        urls[theme][type] = `${dir.replace('../../../', '')}/${path}`;
+        urls[theme][type].primary = urls[theme][type].primary || {};
+        urls[theme][type].primary = `${dir.replace('../../../', '')}/${path}`;
       }
     }
-  });
-
-  return urls;
-}
-
-function getSecondaryLogos() {
-  const urls = {};
-  paths.forEach((path) => {
-    const matches = path.matchAll(/[^_]+_logo_secondary_([^_]+)+_([^.]+)/g);
-    for (const match of matches) {
+    const secondaryMatches = path.matchAll(/[^_]+_logo_secondary_([^_]+)+_([^.]+)/g);
+    for (const match of secondaryMatches) {
       if (match.length >= 3) {
         const theme = match[1] === 'dark' ? 'dark' : 'light';
         const type = match[2] === 'mobile' ? 'mobile' : 'desktop';
         urls[theme] = urls[theme] || {};
         urls[theme][type] = urls[theme][type] || {};
-        urls[theme][type] = `${dir.replace('../../../', '')}/${path}`;
+        urls[theme][type].secondary = urls[theme][type].secondary || {};
+        urls[theme][type].secondary = `${dir.replace('../../../', '')}/${path}`;
       }
     }
   });
@@ -49,5 +43,4 @@ function getSecondaryLogos() {
 
 module.exports = {
   getLogos,
-  getSecondaryLogos,
 };
