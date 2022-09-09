@@ -26,7 +26,7 @@
 {% if content is not empty -%}
   <div class="civictheme-field-message {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% if icons[type] is defined %}
-      {% include "@atoms/icon/icon.twig" with {
+      {% include "@base/icon/icon.twig" with {
         symbol: icons[type],
         size: 'small',
       } only %}

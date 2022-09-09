@@ -18,7 +18,7 @@
 {% if text %}
   <div class="civictheme-tooltip {{ modifier_class }}" data-collapsible data-collapsible-collapsed data-collapsible-duration="0" data-collapsible-trigger-no-icon>
     <button class="civictheme-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %}  aria-expanded="false">
-      {%- include '@atoms/icon/icon.twig' with {
+      {%- include '@base/icon/icon.twig' with {
         symbol: symbol|default('userinterface_informationmark'),
         size: size|default('regular'),
       } only -%}
