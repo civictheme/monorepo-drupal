@@ -66,7 +66,7 @@ export const Tabs = (knobTab) => {
     const tabs = [];
     let itr = 1;
     while (itr <= generalKnobs.tabs_count) {
-      panelsKnobTab =  `Tab ${itr}`;
+      panelsKnobTab = `Tab ${itr}`;
       tabs.push({
         text: text(`Tab ${itr} title `, `Tab ${itr}`, panelsKnobTab),
         url: text(`Tab ${itr} URL`, randomUrl(), panelsKnobTab),
