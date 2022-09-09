@@ -22,27 +22,13 @@
   .civictheme-button {
     border-radius: rem(100px);
     padding: civictheme-space();
-  }
+    background-color: $civictheme-back-to-top-background-color;
+    border-color: $civictheme-back-to-top-background-color;
+    color: $civictheme-back-to-top-color;
+    outline-color: $civictheme-back-to-top-outline-color;
 
-  &.civictheme-theme-light {
-    .civictheme-button {
-      background-color: $civictheme-back-to-top-light-background-color;
-      border-color: $civictheme-back-to-top-light-background-color;
-
-      .civictheme-icon {
-        fill: $civictheme-back-to-top-light-color;
-      }
-    }
-  }
-
-  &.civictheme-theme-dark {
-    .civictheme-button {
-      background-color: $civictheme-back-to-top-dark-background-color;
-      border-color: $civictheme-back-to-top-dark-background-color;
-
-      .civictheme-icon {
-        fill: $civictheme-back-to-top-dark-color;
-      }
+    .civictheme-icon {
+      fill: $civictheme-back-to-top-color;
     }
   }
 }
