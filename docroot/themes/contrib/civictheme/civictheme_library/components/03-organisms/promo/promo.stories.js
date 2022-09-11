@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemePromo from './promo.twig';
 
 export default {
-  title: 'Molecules/Promo',
+  title: 'Organisms/Promo',
   parameters: {
     layout: 'fullscreen',
   },
@@ -41,6 +41,8 @@ export const Promo = () => {
       'none',
       generalKnobTab,
     ),
+    attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: text('Additional classes', '', generalKnobTab),
   };
 
   return CivicThemePromo({

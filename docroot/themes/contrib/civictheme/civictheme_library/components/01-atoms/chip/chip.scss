@@ -31,6 +31,7 @@
   input {
     @include civictheme-visually-hidden();
 
+    &[type="radio"] + #{$root}__dismiss,
     &:not(:checked) + #{$root}__dismiss {
       @include civictheme-visually-hidden();
     }
@@ -54,7 +55,12 @@
       color: $civictheme-chip-light-active-color;
       background-color: $civictheme-chip-light-active-background-color;
       border-color: $civictheme-chip-light-active-border-color;
-      padding-right: civictheme-space(2);
+    }
+
+    &#{$root}--multiple {
+      &.active {
+        padding-right: civictheme-space(2);
+      }
     }
 
     &.active:hover,
