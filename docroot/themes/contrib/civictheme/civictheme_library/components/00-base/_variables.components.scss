@@ -547,10 +547,9 @@ $civictheme-attachment-dark-wrapper-background-color: civictheme-color('primary'
 //
 $civictheme-back-to-top-space-bottom: civictheme-space(8) !default;
 $civictheme-back-to-top-space-right: civictheme-space(1) !default;
-$civictheme-back-to-top-light-background-color: civictheme-color('neutral', 8) !default;
-$civictheme-back-to-top-light-color: civictheme-color('neutral', 1) !default;
-$civictheme-back-to-top-dark-background-color: civictheme-color('secondary') !default;
-$civictheme-back-to-top-dark-color: civictheme-color('neutral', 8) !default;
+$civictheme-back-to-top-background-color: civictheme-color('primary') !default;
+$civictheme-back-to-top-color: civictheme-color('neutral', 1) !default;
+$civictheme-back-to-top-outline-color: transparent !default;
 
 //
 // Basic content.
