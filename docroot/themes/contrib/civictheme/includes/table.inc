@@ -5,6 +5,8 @@
  * Table theme alterations.
  */
 
+define('CIVICTHEME_OPT_OUT', 'CivicThemeOptOut');
+
 /**
  * Implements template_preprocess_table().
  */
@@ -38,27 +40,33 @@ function civictheme_preprocess_table(&$variables) {
  * Implements template_preprocess_HOOK() for views_view_table.
  */
 function civictheme_preprocess_views_view_table(&$variables) {
-  // Header.
-  if (!empty($variables['header'])) {
-    $rows = NULL;
-    foreach ($variables['header'] as $row) {
-      $rows[] = $row['content'];
+  $view = $variables['view'];
+  $variables['opt_civictheme'] = TRUE;
+
+  if ($view->storage->get('tag') !== CIVICTHEME_OPT_OUT) {
+    $variables['opt_civictheme'] = FALSE;
+    // Header.
+    if (!empty($variables['header'])) {
+      $rows = NULL;
+      foreach ($variables['header'] as $row) {
+        $rows[] = $row['content'];
+      }
+      $variables['header'] = $rows;
     }
-    $variables['header'] = $rows;
-  }
 
-  // Rows, Footer.
-  foreach (['rows', 'footer'] as $section) {
-    $rows = NULL;
+    // Rows, Footer.
+    foreach (['rows', 'footer'] as $section) {
+      $rows = NULL;
 
-    if (!empty($variables[$section])) {
-      foreach ($variables[$section] as $row_key => $row) {
-        foreach ($row['columns'] as $cell) {
-          $rows[$row_key][] = $cell['content'];
+      if (!empty($variables[$section])) {
+        foreach ($variables[$section] as $row_key => $row) {
+          foreach ($row['columns'] as $cell) {
+            $rows[$row_key][] = $cell['content'];
+          }
         }
       }
-    }
 
-    $variables[$section] = $rows;
+      $variables[$section] = $rows;
+    }
   }
 }

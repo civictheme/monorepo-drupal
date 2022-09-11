@@ -8,7 +8,7 @@ id: civictheme_test_table
 label: 'Civictheme test table'
 module: views
 description: ''
-tag: ''
+tag: CivicTheme
 base_table: node_field_data
 base_field: nid
 display:
@@ -137,6 +137,27 @@ display:
             operator_list: {  }
       style:
         type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            title: title
+          default: '-1'
+          info:
+            title:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
       row:
         type: fields
       query:

@@ -2,6 +2,15 @@
 /**
  * @file
  * Theme override to display a civictheme table.
+ *
+ * Available variables:
+ * - opt_civictheme: A flag indicating whether civitheme template or default
+ *   system template include.
  */
 #}
-{% include "@atoms/table/table.twig" %}
+
+{% if opt_civictheme is not empty %}
+  {% include "@views/views-view-table.html.twig" %}
+{% else %}
+  {% include "@atoms/table/table.twig" %}
+{% endif %}
