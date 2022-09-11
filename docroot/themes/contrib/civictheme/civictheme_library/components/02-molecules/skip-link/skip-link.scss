@@ -11,6 +11,10 @@
     padding: civictheme-space();
 
     @include civictheme-typography('label-regular');
+
+    &:hover {
+      padding: civictheme-space();
+    }
   }
 
   &.civictheme-theme-light {
@@ -18,6 +22,10 @@
 
     #{$root}__link {
       color: $civictheme-skip-link-light-color;
+
+      &:hover {
+        color: $civictheme-skip-link-light-hover-color;
+      }
     }
   }
 
@@ -26,6 +34,10 @@
 
     #{$root}__link {
       color: $civictheme-skip-link-dark-color;
+
+      &:hover {
+        color: $civictheme-skip-link-dark-hover-color;
+      }
     }
   }
 }
