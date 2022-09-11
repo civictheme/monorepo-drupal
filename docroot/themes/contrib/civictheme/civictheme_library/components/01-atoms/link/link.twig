@@ -7,27 +7,50 @@
  * - theme: [string] Theme: light, dark.
  * - text: [string] Button text.
  * - url: [string] URL.
- * - title: [string] Defines the title of a link.
  * - is_new_window: [boolean] Open in a new window.
  * - is_external [boolean] Link is external.
- * - hidden_text: [string] Additional hidden text for link (visually hidden).
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
+ * - icon: [string] Icon name.
+ * - icon_placement: [string] Icon position: left, right.
  */
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set is_external = is_external ? 'civictheme-link--external' : '' %}
+{% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
+{% set icon_size = icon_size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? icon_size : 'small' %}
+{% set is_external = is_external ? 'civictheme-link--external civictheme-icon--upper-right-arrow--after--' ~ icon_size : '' %}
 {% set modifier_class = '%s %s %s'|format(theme_class, is_external, modifier_class|default('')) %}
 
-{% if text is not empty %}
-  <a class="civictheme-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {% if title is not empty %}title="{{ title }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-    {% if hidden_text is not empty %}
-      <span class="visually-hidden">
-        {{ hidden_text }}
-      </span>
-    {% endif %}
+{% if icon %}
+  {% set link_icon %}
+    {% include '@atoms/icon/icon.twig' with {
+      symbol: icon,
+      size: icon_size,
+    } only %}
+  {% endset %}
+{% endif %}
 
+{% set link_text %}
+  {% if icon and link_icon %}
+    {% if icon_placement == 'before' %}
+      {{ link_icon }}{{ text|raw }}
+    {% elseif icon_placement == 'after' %}
+      {{ text|raw }}{{ link_icon }}
+    {% endif %}
+  {% else %}
     {{ text|raw }}
+  {% endif %}
+{% endset %}
+
+{% if is_new_window %}
+  {% set link_text %}
+    {{ link_text }}<span class="civictheme-visually-hidden">Opens in a new tab/window</span>
+  {% endset %}
+{% endif %}
+
+{% if text is not empty %}
+  <a class="civictheme-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {{ link_text }}
   </a>
 {% endif %}

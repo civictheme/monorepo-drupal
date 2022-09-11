@@ -15,15 +15,15 @@
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set type = type|default('info') %}
+{% set type = type|default('status') %}
 {% set type_class = 'civictheme-alert--%s'|format(type|default('status')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
 
 {% set icons = {
-  status: 'userinterface_informationmark',
-  warning: 'userinterface_exclamationmark_1',
-  error: 'userinterface_exclamationmark_1',
-  success: 'userinterface_approve',
+  status: 'information-mark',
+  warning: 'exclamation-mark-1',
+  error: 'close-outline',
+  success: 'approve',
 } %}
 
 {% if description is not empty %}

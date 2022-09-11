@@ -45,15 +45,6 @@
           'border-color': $civictheme-button-light-primary-focus-border-color,
           'outline-color': $civictheme-button-light-primary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-primary-disabled-color,
-          'background-color': $civictheme-button-light-primary-disabled-background-color,
-          'border-color': $civictheme-button-light-primary-disabled-border-color,
-          'outline-color': $civictheme-button-light-primary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-light-primary-dismiss-color,
-        ),
       ),
       'dark': (
         'normal': (
@@ -85,15 +76,6 @@
           'background-color': $civictheme-button-dark-primary-focus-background-color,
           'border-color': $civictheme-button-dark-primary-focus-border-color,
           'outline-color': $civictheme-button-dark-primary-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-primary-disabled-color,
-          'background-color': $civictheme-button-dark-primary-disabled-background-color,
-          'border-color': $civictheme-button-dark-primary-disabled-border-color,
-          'outline-color': $civictheme-button-dark-primary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-dark-primary-dismiss-color,
         ),
       )
     ),
@@ -129,15 +111,6 @@
           'border-color': $civictheme-button-light-secondary-focus-border-color,
           'outline-color': $civictheme-button-light-secondary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-secondary-disabled-color,
-          'background-color': $civictheme-button-light-secondary-disabled-background-color,
-          'border-color': $civictheme-button-light-secondary-disabled-border-color,
-          'outline-color': $civictheme-button-light-secondary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-light-secondary-dismiss-color,
-        ),
       ),
       'dark': (
         'normal': (
@@ -169,15 +142,6 @@
           'background-color': $civictheme-button-dark-secondary-focus-background-color,
           'border-color': $civictheme-button-dark-secondary-focus-border-color,
           'outline-color': $civictheme-button-dark-secondary-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-secondary-disabled-color,
-          'background-color': $civictheme-button-dark-secondary-disabled-background-color,
-          'border-color': $civictheme-button-dark-secondary-disabled-border-color,
-          'outline-color': $civictheme-button-dark-secondary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-dark-secondary-dismiss-color,
         ),
       )
     ),
@@ -213,15 +177,6 @@
           'border-color': $civictheme-button-light-tertiary-focus-border-color,
           'outline-color': $civictheme-button-light-tertiary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-tertiary-disabled-color,
-          'background-color': $civictheme-button-light-tertiary-disabled-background-color,
-          'border-color': $civictheme-button-light-tertiary-disabled-border-color,
-          'outline-color': $civictheme-button-light-tertiary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-light-tertiary-dismiss-color,
-        ),
       ),
       'dark': (
         'normal': (
@@ -254,109 +209,6 @@
           'border-color': $civictheme-button-dark-tertiary-focus-border-color,
           'outline-color': $civictheme-button-dark-tertiary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-dark-tertiary-disabled-color,
-          'background-color': $civictheme-button-dark-tertiary-disabled-background-color,
-          'border-color': $civictheme-button-dark-tertiary-disabled-border-color,
-          'outline-color': $civictheme-button-dark-tertiary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-dark-tertiary-dismiss-color,
-        ),
-      )
-    ),
-    'chip': (
-      'light': (
-        'normal': (
-          'color': $civictheme-button-light-chip-color,
-          'background-color': $civictheme-button-light-chip-background-color,
-          'border-color': $civictheme-button-light-chip-border-color,
-          'outline-color': $civictheme-button-light-chip-outline-color,
-        ),
-        'hover': (
-          'color': $civictheme-button-light-chip-hover-color,
-          'background-color': $civictheme-button-light-chip-hover-background-color,
-          'border-color': $civictheme-button-light-chip-hover-border-color,
-          'outline-color': $civictheme-button-light-chip-hover-outline-color,
-        ),
-        'visited': (
-          'color': $civictheme-button-light-chip-visited-color,
-          'background-color': $civictheme-button-light-chip-visited-background-color,
-          'border-color': $civictheme-button-light-chip-visited-border-color,
-          'outline-color': $civictheme-button-light-chip-visited-outline-color,
-        ),
-        'active': (
-          'color': $civictheme-button-light-chip-active-color,
-          'background-color': $civictheme-button-light-chip-active-background-color,
-          'border-color': $civictheme-button-light-chip-active-border-color,
-          'outline-color': $civictheme-button-light-chip-active-outline-color,
-        ),
-        'focus': (
-          'color': $civictheme-button-light-chip-focus-color,
-          'background-color': $civictheme-button-light-chip-focus-background-color,
-          'border-color': $civictheme-button-light-chip-focus-border-color,
-          'outline-color': $civictheme-button-light-chip-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-light-chip-disabled-color,
-          'background-color': $civictheme-button-light-chip-disabled-background-color,
-          'border-color': $civictheme-button-light-chip-disabled-border-color,
-          'outline-color': $civictheme-button-light-chip-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-light-chip-dismiss-color,
-          'fill-selected': $civictheme-button-light-chip-selected-color,
-        ),
-        'selected': (
-          'color': $civictheme-button-light-chip-selected-color,
-          'background-color': $civictheme-button-light-chip-selected-background-color
-        ),
-      ),
-      'dark': (
-        'normal': (
-          'color': $civictheme-button-dark-chip-color,
-          'background-color': $civictheme-button-dark-chip-background-color,
-          'border-color': $civictheme-button-dark-chip-border-color,
-          'outline-color': $civictheme-button-dark-chip-outline-color,
-        ),
-        'hover': (
-          'color': $civictheme-button-dark-chip-hover-color,
-          'background-color': $civictheme-button-dark-chip-hover-background-color,
-          'border-color': $civictheme-button-dark-chip-hover-border-color,
-          'outline-color': $civictheme-button-dark-chip-hover-outline-color,
-        ),
-        'visited': (
-          'color': $civictheme-button-dark-chip-visited-color,
-          'background-color': $civictheme-button-dark-chip-visited-background-color,
-          'border-color': $civictheme-button-dark-chip-visited-border-color,
-          'outline-color': $civictheme-button-dark-chip-visited-outline-color,
-        ),
-        'active': (
-          'color': $civictheme-button-dark-chip-active-color,
-          'background-color': $civictheme-button-dark-chip-active-background-color,
-          'border-color': $civictheme-button-dark-chip-active-border-color,
-          'outline-color': $civictheme-button-dark-chip-active-outline-color,
-        ),
-        'focus': (
-          'color': $civictheme-button-dark-chip-focus-color,
-          'background-color': $civictheme-button-dark-chip-focus-background-color,
-          'border-color': $civictheme-button-dark-chip-focus-border-color,
-          'outline-color': $civictheme-button-dark-chip-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-chip-disabled-color,
-          'background-color': $civictheme-button-dark-chip-disabled-background-color,
-          'border-color': $civictheme-button-dark-chip-disabled-border-color,
-          'outline-color': $civictheme-button-dark-chip-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-dark-chip-dismiss-color,
-          'fill-selected': $civictheme-button-dark-chip-selected-color
-        ),
-        'selected': (
-          'color': $civictheme-button-dark-chip-selected-color,
-          'background-color': $civictheme-button-dark-chip-selected-background-color
-        ),
       )
     ),
   );
@@ -372,18 +224,8 @@
   outline-offset: $civictheme-button-outline-offset;
   outline-width: $civictheme-button-outline-width;
 
-  &:focus,
-  &:hover,
-  &:active {
-    text-decoration: underline;
-  }
-
   &[disabled] {
-    text-decoration: none;
-  }
-
-  .civictheme-icon {
-    vertical-align: middle;
+    pointer-events: none;
   }
 
   input {
@@ -429,56 +271,8 @@
             @include _civictheme-button-print-rules($type-kind-values);
           }
         }
-        @else if $type-kind == 'disabled' {
-          &:disabled,
-          &[disabled],
-          &:disabled:active,
-          &:disabled:focus,
-          &:disabled:focus:hover,
-          &:disabled:focus:active,
-          &:disabled:focus:hover:active,
-          &[disabled]:active,
-          &[disabled]:focus,
-          &[disabled].focus,
-          &[disabled]:focus:hover,
-          &[disabled].focus:hover,
-          &[disabled]:focus:active,
-          &[disabled].focus:active,
-          &[disabled]:focus:hover:active,
-          &[disabled].focus:hover:active {
-            @include _civictheme-button-print-rules($type-kind-values);
-
-            cursor: inherit;
-          }
-        }
-        @else if $type-kind == 'dismiss' {
-          &.civictheme-button--dismiss {
-            padding-right: civictheme-space(2);
-          }
-
-          .civictheme-button__dismiss {
-            user-select: none;
-            pointer-events: none;
-
-            &:hover {
-              @include civictheme-icon-fill-color(map.get($type-kind-values, 'fill'));
-            }
-          }
-
-          &.selected {
-            .civictheme-button__dismiss {
-              @include civictheme-icon-fill-color(map.get($type-kind-values, 'fill-selected'));
-            }
-          }
-        }
       }
     }
-  }
-
-  @if $type == 'chip' {
-    border-radius: civictheme-space(6);
-
-    @include civictheme-link-decoration(false, false, false, false);
   }
 }
 
@@ -491,14 +285,9 @@
 
 @mixin civictheme-button-size($size) {
   // stylelint-disable-next-line scss/dollar-variable-pattern
-  $sizes: ('extra-large', 'large', 'regular', 'small', 'extra-small');
+  $sizes: ('large', 'regular', 'small');
 
-  @if $size == 'extra-large' {
-    @include civictheme-typography('label-#{$size}');
-
-    padding: civictheme-space(3) civictheme-space(6);
-  }
-  @else if $size == 'large' {
+  @if $size == 'large' {
     @include civictheme-typography('label-#{$size}');
 
     padding: civictheme-space(2) civictheme-space(5);
@@ -512,12 +301,6 @@
     @include civictheme-typography('label-#{$size}');
 
     padding: civictheme-space() civictheme-space(3);
-    border-width: math.div($civictheme-button-border-width, 2);
-  }
-  @else if $size == 'extra-small' {
-    @include civictheme-typography('label-#{$size}');
-
-    padding: civictheme-space(0.5) civictheme-space(1.5);
     border-width: math.div($civictheme-button-border-width, 2);
   }
   @else {
@@ -541,58 +324,38 @@
   // Type.
   &--primary {
     @include civictheme-button-type('primary');
+
+    &[disabled] {
+      opacity: $civictheme-button-primary-disabled-opacity;
+    }
   }
 
   &--secondary {
     @include civictheme-button-type('secondary');
+
+    &[disabled] {
+      opacity: $civictheme-button-secondary-disabled-opacity;
+    }
   }
 
   &--tertiary {
     @include civictheme-button-type('tertiary');
-  }
 
-  &--chip {
-    @include civictheme-button-type('chip');
+    &[disabled] {
+      opacity: $civictheme-button-tertiary-disabled-opacity;
+    }
   }
 
   // Size.
-  &--extra-large {
-    @include civictheme-button-size('extra-large');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space(4);
-    }
-  }
-
   &--large {
     @include civictheme-button-size('large');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space(3);
-    }
   }
 
   &--regular {
     @include civictheme-button-size('regular');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space(3);
-    }
   }
 
   &--small {
     @include civictheme-button-size('small');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space(2);
-    }
-  }
-
-  &--extra-small {
-    @include civictheme-button-size('extra-small');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space();
-    }
   }
 }

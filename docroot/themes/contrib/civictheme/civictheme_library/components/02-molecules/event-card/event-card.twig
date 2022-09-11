@@ -54,7 +54,7 @@
       {% if date %}
         {% include '@atoms/tag/tag.twig' with {
           theme: theme,
-          text: date,
+          content: date,
           icon: 'business_calendar',
           icon_placement: 'before',
           modifier_class: 'civictheme-event-card__date'
@@ -108,8 +108,7 @@
               {% for tag in tags %}
                 {% include '@atoms/tag/tag.twig' with {
                   theme: theme,
-                  text: tag,
-                  is_alt: true,
+                  content: tag,
                 } only %}
               {% endfor %}
             </div>
@@ -117,13 +116,13 @@
           {% if url %}
             {% if is_external %}
               {% include '@atoms/icon/icon.twig' with {
-                symbol: 'arrows_upperrightarrow',
+                symbol: 'upper-right-arrow',
                 color: 'primary',
                 modifier_class: 'civictheme-navigation-card__icon--external'
               } only %}
             {% else %}
               {% include '@atoms/icon/icon.twig' with {
-                symbol: 'arrows_rightarrow_3',
+                symbol: 'upper-right-arrow',
                 color: 'primary',
                 modifier_class: 'civictheme-navigation-card__icon--arrow',
               } only %}

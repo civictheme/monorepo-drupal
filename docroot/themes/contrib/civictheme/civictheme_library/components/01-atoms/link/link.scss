@@ -6,14 +6,15 @@
 // Mixins.
 //
 @mixin civictheme-link-base() {
-  text-decoration: underline;
+  text-decoration: none;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
   padding: 3px 0 2px;
 
-  &:hover {
-    text-decoration: none;
-    padding: 3px 0 4px;
+  &:focus,
+  &:hover,
+  &:active {
+    text-decoration: underline;
   }
 
   .civictheme-link__link-icon {
@@ -29,14 +30,7 @@
     }
 
     &:hover {
-      background-color: $civictheme-link-light-hover-background-color;
       color: $civictheme-link-light-hover-color;
-    }
-
-    &.civictheme-link--external {
-      &::after {
-        @include civictheme-icon-inline ($civictheme-link-light-icon-external);
-      }
     }
 
     .civictheme-link__external-icon {
@@ -52,14 +46,7 @@
     }
 
     &:hover {
-      background-color: $civictheme-link-dark-hover-background-color;
       color: $civictheme-link-dark-hover-color;
-    }
-
-    &.civictheme-link--external {
-      &::after {
-        @include civictheme-icon-inline ($civictheme-link-dark-icon-external);
-      }
     }
   }
 
@@ -73,7 +60,6 @@
     color: $civictheme-link-light-visited-color;
 
     &:hover {
-      background-color: $civictheme-link-light-visited-hover-background-color;
       color: $civictheme-link-light-visited-hover-color;
     }
   }
@@ -82,7 +68,6 @@
     color: $civictheme-link-dark-visited-color;
 
     &:hover {
-      background-color: $civictheme-link-dark-visited-hover-background-color;
       color: $civictheme-link-dark-visited-hover-color;
     }
   }

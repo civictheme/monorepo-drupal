@@ -1,0 +1,101 @@
+//
+// Chip component.
+//
+
+.civictheme-chip {
+  $root: &;
+
+  cursor: pointer;
+  border: $civictheme-chip-border-width solid transparent;
+  padding: civictheme-space(1.25) civictheme-space(3);
+  text-decoration: none;
+  border-radius: civictheme-space(6);
+  display: flex;
+
+  @include civictheme-typography('label-small');
+  @include civictheme-link-decoration(false, false, false, false);
+
+  &.focus,
+  &:focus {
+    @include civictheme-outline();
+
+    outline-offset: $civictheme-chip-outline-offset;
+    outline-width: $civictheme-chip-outline-width;
+  }
+
+  &:hover,
+  &:active, {
+    text-decoration: none;
+  }
+
+  input {
+    @include civictheme-visually-hidden();
+
+    &[type="radio"] + #{$root}__dismiss,
+    &:not(:checked) + #{$root}__dismiss {
+      @include civictheme-visually-hidden();
+    }
+  }
+
+  &__icon {
+    margin-left: civictheme-space(1.5);
+  }
+
+  &.civictheme-theme-light {
+    color: $civictheme-chip-light-color;
+    background-color: $civictheme-chip-light-background-color;
+    border-color: $civictheme-chip-light-border-color;
+
+    &.focus,
+    &:focus {
+      outline-color: $civictheme-chip-light-active-outline-color;
+    }
+
+    &.active {
+      color: $civictheme-chip-light-active-color;
+      background-color: $civictheme-chip-light-active-background-color;
+      border-color: $civictheme-chip-light-active-border-color;
+    }
+
+    &#{$root}--multiple {
+      &.active {
+        padding-right: civictheme-space(2);
+      }
+    }
+
+    &.active:hover,
+    &:hover {
+      color: $civictheme-chip-light-hover-color;
+      background-color: $civictheme-chip-light-hover-background-color;
+      border-color: $civictheme-chip-light-hover-border-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-chip-dark-color;
+    background-color: $civictheme-chip-dark-background-color;
+    border-color: $civictheme-chip-dark-border-color;
+
+    &.focus,
+    &:focus {
+      outline-color: $civictheme-chip-dark-active-outline-color;
+    }
+
+    &.active {
+      color: $civictheme-chip-dark-active-color;
+      background-color: $civictheme-chip-dark-active-background-color;
+      border-color: $civictheme-chip-dark-active-color;
+    }
+
+    &.active:hover,
+    &:hover {
+      color: $civictheme-chip-dark-hover-color;
+      background-color: $civictheme-chip-dark-hover-background-color;
+      border-color: $civictheme-chip-dark-hover-border-color;
+    }
+  }
+
+  &--dismiss {
+    padding-right: civictheme-space(2);
+  }
+}

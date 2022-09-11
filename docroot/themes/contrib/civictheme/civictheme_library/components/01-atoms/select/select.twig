@@ -5,6 +5,7 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
+ * - is_multiple: [boolean] Is multiple.
  * - options: [array] Options:
  *   - type: [string] Option type: option group (optgroup) or option (option).
  *   - label: [string] Option label.
@@ -14,23 +15,21 @@
  *     - label: [string] Option label.
  *     - value: [string] Option value.
  *     - selected: [string] Flag whether option is selected.
- * - state: [string] Input field state: error, success.
  * - required: [boolean] Required state.
  * - disabled: [boolean] Disabled state.
+ * - has_error: [boolean] Error state.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set state = state is empty or state == 'none' ? 'default' : state %}
-{% set state_class = 'civictheme-input--%s'|format(state) %}
-{% set disabled_class = disabled ? 'civictheme-input--disabled disabled' : '' %}
 {% set required_class = required ? 'civictheme-input--required required' : '' %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, modifier_class|default('')) %}
+{% set error_class = has_error ? 'civictheme-input--error error' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, required_class, error_class, modifier_class|default('')) %}
 
 {% if options is not empty %}
-  <select class="civictheme-select civictheme-input__element {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif%} {{ disabled ? 'disabled' }} {{ required ? 'required' }}>
+  <select class="civictheme-select civictheme-input__element {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif%} {{ disabled ? 'disabled' }} {{ required ? 'required' }} {{ is_multiple ? 'multiple' }}>
     {% for option in options %}
       {% if option.type == 'optgroup' %}
         <optgroup label="{{ option.label }}">

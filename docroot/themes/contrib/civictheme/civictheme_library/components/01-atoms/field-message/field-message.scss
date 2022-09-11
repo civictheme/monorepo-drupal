@@ -1,0 +1,87 @@
+//
+// Field message component.
+//
+
+@use 'sass:map';
+
+//
+// Mixins.
+//
+
+@mixin civictheme-message-type() {
+  $message-types: (
+    'status': (
+      'light': (
+        'background-color': $civictheme-field-message-light-status-background-color,
+        'border-color': $civictheme-field-message-light-status-border-color,
+      ),
+      'dark': (
+        'background-color': $civictheme-field-message-dark-status-background-color,
+        'border-color': $civictheme-field-message-dark-status-border-color,
+      ),
+    ),
+    'warning': (
+      'light': (
+        'background-color': $civictheme-field-message-light-warning-background-color,
+        'border-color': $civictheme-field-message-light-warning-border-color,
+      ),
+      'dark': (
+        'background-color': $civictheme-field-message-dark-warning-background-color,
+        'border-color': $civictheme-field-message-dark-warning-border-color,
+      ),
+    ),
+    'error': (
+      'light': (
+        'background-color': $civictheme-field-message-light-error-background-color,
+        'border-color': $civictheme-field-message-light-error-border-color,
+      ),
+      'dark': (
+        'background-color': $civictheme-field-message-dark-error-background-color,
+        'border-color': $civictheme-field-message-dark-error-border-color,
+      ),
+    ),
+    'success': (
+      'light': (
+        'background-color': $civictheme-field-message-light-success-background-color,
+        'border-color': $civictheme-field-message-light-success-border-color,
+      ),
+      'dark': (
+        'background-color': $civictheme-field-message-dark-success-background-color,
+        'border-color': $civictheme-field-message-dark-success-border-color,
+      ),
+    ),
+  );
+
+  @each $type, $themes in $message-types {
+    &--#{$type} {
+      @each $theme, $values in $themes {
+        &.civictheme-theme-#{$theme} {
+          background-color: map.get($values, 'background-color');
+          border: 1px solid map.get($values, 'border-color');
+
+          @if $theme == 'light' {
+            color: $civictheme-field-message-light-color;
+
+            .civictheme-icon {
+              background-color: map.get($values, 'border-color');
+            }
+          }
+          @else if $theme == 'dark' {
+            color: $civictheme-field-message-dark-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.civictheme-field-message {
+  $root: &;
+
+  display: block;
+  border-radius: $civictheme-border-radius;
+  padding: civictheme-space(0.5);
+
+  @include civictheme-typography('text-regular');
+  @include civictheme-message-type();
+}

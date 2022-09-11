@@ -60,10 +60,7 @@
     @include civictheme-breakpoint(m) {
       padding-right: civictheme-space(3);
     }
-  }
 
-  &__links__transcript,
-  &__links__share {
     & .civictheme-video__action-icon {
       #{$root}.civictheme-theme-light & {
         fill: $civictheme-video-light-icon-color;

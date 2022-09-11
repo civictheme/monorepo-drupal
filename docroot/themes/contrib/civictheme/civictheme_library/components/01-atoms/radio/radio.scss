@@ -2,16 +2,281 @@
 // Radio component.
 //
 
-@import '../../00-base/mixins/form';
-
 .civictheme-radio {
+  $root: &;
+
   position: absolute;
+  display: flex;
+  align-items: center;
 
   .civictheme-radio__element {
-    @include civictheme-checkbox-radio('radio');
-  }
-}
+    position: absolute;
+    // stylelint-disable-next-line alpha-value-notation
+    opacity: 0;
+    width: rem(26px);
+    height: rem(26px);
+    z-index: 1;
+    cursor: pointer;
 
-.radios--wrapper {
-  @include civictheme-typography('text-regular');
+    & + .civictheme-radio__state {
+      &::before {
+        content: '';
+        border-radius: $civictheme-radio-border-radius;
+        border: 1px solid;
+        display: block;
+        width: rem(24px);
+        height: rem(24px);
+        position: relative;
+        margin-right: civictheme-space();
+        vertical-align: middle;
+        cursor: pointer;
+        text-align: center;
+      }
+    }
+
+    &:checked {
+      & + .civictheme-radio__state {
+        &::before {
+          width: rem(22px);
+          height: rem(22px);
+          border-width: 2px;
+        }
+      }
+    }
+
+    &:focus,
+    &:hover {
+      & + .civictheme-radio__state {
+        &::before {
+          box-shadow: 0 0 0 1px;
+        }
+      }
+    }
+
+    &:disabled {
+      pointer-events: none;
+    }
+  }
+
+  #{$root}__label {
+    @include civictheme-typography('text-regular');
+  }
+
+  &.civictheme-theme-light {
+    #{$root}__label {
+      color: $civictheme-radio-label-light-color;
+
+      &--disabled {
+        color: $civictheme-radio-label-disabled-light-color;
+      }
+    }
+
+    #{$root}__element {
+      & + .civictheme-radio__state {
+        &::before {
+          border-color: $civictheme-radio-light-border-color;
+        }
+      }
+
+      &:active {
+        & + .civictheme-radio__state {
+          &::before {
+            background-color: $civictheme-radio-light-active-background-color;
+            border-color: $civictheme-radio-light-active-background-color;
+            box-shadow: inset 0 0 0 3px $civictheme-radio-light-check-color;
+          }
+        }
+      }
+
+      &:focus {
+        & + .civictheme-radio__state {
+          &::before {
+            @include civictheme-outline();
+
+            background-color: $civictheme-radio-light-selected-background-color;
+            border-color: $civictheme-radio-light-selected-background-color;
+            box-shadow: inset 0 0 0 3px $civictheme-radio-light-check-color;
+          }
+        }
+      }
+
+      &:hover {
+        & + .civictheme-radio__state {
+          &::before {
+            box-shadow: 0 0 0 1px $civictheme-radio-light-border-color;
+          }
+        }
+      }
+
+      &:checked {
+        & + .civictheme-radio__state {
+          &::before {
+            background-color: $civictheme-radio-light-selected-background-color;
+            border-color: $civictheme-radio-light-selected-background-color;
+            box-shadow: inset 0 0 0 3px $civictheme-radio-light-check-color;
+          }
+        }
+      }
+
+      &:disabled {
+        & + .civictheme-radio__state {
+          &::before {
+            cursor: default;
+            color: $civictheme-input-light-disabled-color;
+            background-color: $civictheme-input-light-disabled-background-color;
+            border-color: $civictheme-input-light-disabled-color;
+          }
+        }
+
+        &:checked + .civictheme-radio__state {
+          &::before {
+            color: $civictheme-input-light-disabled-color;
+            border-color: $civictheme-input-light-disabled-background-color;
+            background-color: $civictheme-input-light-disabled-color;
+          }
+        }
+      }
+    }
+
+    &.success,
+    &.civictheme-input--success {
+      #{$root}__element {
+        &:checked + .civictheme-radio__state {
+          &::before {
+            border-color: $civictheme-input-light-success-border-color;
+            background-color: $civictheme-input-light-success-border-color;
+          }
+        }
+      }
+    }
+
+    &.error,
+    &.civictheme-input--error {
+      #{$root}__element {
+        & + .civictheme-radio__state {
+          &::before {
+            border-color: $civictheme-input-light-error-border-color;
+          }
+        }
+
+        &:checked {
+          & + .civictheme-radio__state {
+            &::before {
+              border-color: $civictheme-input-light-error-border-color;
+              background-color: $civictheme-input-light-error-border-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    #{$root}__label {
+      color: $civictheme-radio-label-dark-color;
+
+      &--disabled {
+        color: $civictheme-radio-label-disabled-dark-color;
+      }
+    }
+
+    #{$root}__element {
+      & + .civictheme-radio__state {
+        &::before {
+          border-color: $civictheme-radio-dark-border-color;
+          background-color: $civictheme-radio-dark-background-color;
+        }
+      }
+
+      &:hover {
+        & + .civictheme-radio__state {
+          &::before {
+            box-shadow: 0 0 0 1px $civictheme-radio-dark-border-color;
+          }
+        }
+      }
+
+      &:active {
+        & + .civictheme-radio__state {
+          &::before {
+            background-color: $civictheme-radio-dark-active-background-color;
+            border-color: $civictheme-radio-dark-active-background-color;
+            box-shadow: inset 0 0 0 3px $civictheme-radio-dark-check-color;
+          }
+        }
+      }
+
+      &:focus {
+        & + .civictheme-radio__state {
+          &::before {
+            @include civictheme-outline();
+
+            background-color: $civictheme-radio-dark-selected-background-color;
+            border-color: $civictheme-radio-dark-selected-background-color;
+            box-shadow: inset 0 0 0 3px $civictheme-radio-dark-check-color;
+          }
+        }
+      }
+
+      &:checked {
+        & + .civictheme-radio__state {
+          &::before {
+            background-color: $civictheme-radio-dark-selected-background-color;
+            border-color: $civictheme-radio-dark-selected-background-color;
+            box-shadow: inset 0 0 0 3px $civictheme-radio-dark-background-color;
+          }
+        }
+      }
+
+      &:disabled {
+        & + .civictheme-radio__state {
+          &::before {
+            color: $civictheme-input-dark-disabled-color;
+            border-color: $civictheme-radio-dark-disabled-border-color;
+            background-color: $civictheme-input-dark-disabled-background-color;
+          }
+        }
+
+        &:checked + .civictheme-radio__state {
+          &::before {
+            color: $civictheme-input-dark-disabled-color;
+            border-color: $civictheme-radio-dark-disabled-border-color;
+            background-color: $civictheme-input-dark-disabled-color;
+          }
+        }
+      }
+    }
+
+    &.success,
+    &.civictheme-input--success {
+      #{$root}__element {
+        &:checked + .civictheme-radio__state {
+          &::before {
+            border-color: $civictheme-input-dark-success-border-color;
+            background-color: $civictheme-input-dark-success-border-color;
+          }
+        }
+      }
+    }
+
+    &.error,
+    &.civictheme-input--error {
+      #{$root}__element {
+        & + .civictheme-radio__state {
+          &::before {
+            border-color: $civictheme-input-dark-error-border-color;
+          }
+        }
+
+        &:checked {
+          & + .civictheme-radio__state {
+            &::before {
+              border-color: $civictheme-input-dark-error-border-color;
+              background-color: $civictheme-input-dark-error-border-color;
+            }
+          }
+        }
+      }
+    }
+  }
 }

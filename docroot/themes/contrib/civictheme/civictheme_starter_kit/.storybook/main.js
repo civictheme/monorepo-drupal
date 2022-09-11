@@ -17,10 +17,7 @@ const addonConfig = require('./addon-config').default();
 
 const customPlugin = new webpack.DefinePlugin({
   BACKGROUNDS: JSON.stringify(backgroundUtils.getBackgrounds()),
-  ICONS: JSON.stringify({
-    icons: iconUtils.getIcons(),
-    packs: iconUtils.getIconPacks(),
-  }),
+  ICONS: JSON.stringify(iconUtils.getIcons()),
   LOGOS: JSON.stringify(logoUtils.getLogos()),
   SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
   CSV_VARIABLES_FILENAME: JSON.stringify({ name: 'styles.variables.csv' }),

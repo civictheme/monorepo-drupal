@@ -49,6 +49,14 @@
 }
 
 //
+// Compile all icon symbols into a single map.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _civictheme-icon-symbols-all() {
+  @return map.merge($civictheme-icon-symbols-default, $civictheme-icon-symbols);
+}
+
+//
 // Compile all icon sizes into a single map.
 //
 // Do not use directly.
@@ -78,6 +86,9 @@
     @include civictheme-breakpoint($breakpoint) {
       width: civictheme-icon-size-dimension($size, $breakpoint, 'width');
       height: civictheme-icon-size-dimension($size, $breakpoint, 'height');
+      // stylelint-disable-next-line property-no-vendor-prefix
+      -webkit-mask-size: civictheme-icon-size-dimension($size, $breakpoint, 'width'), civictheme-icon-size-dimension($size, $breakpoint, 'height');
+      mask-size: civictheme-icon-size-dimension($size, $breakpoint, 'width'), civictheme-icon-size-dimension($size, $breakpoint, 'height');
     }
   }
 }

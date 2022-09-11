@@ -105,6 +105,13 @@
 }
 
 //
+// Remove text decoration from a link.
+//
+@mixin civictheme-link-no-decoration() {
+  @include civictheme-link-decoration(false, false, false, false);
+}
+
+//
 // Remove an outline from the link.
 //
 @mixin civictheme-link-no-outline() {

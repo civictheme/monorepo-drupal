@@ -10,7 +10,7 @@ import Select from '../01-atoms/select/select.twig';
 import Checkbox from '../01-atoms/checkbox/checkbox.twig';
 import Radio from '../01-atoms/radio/radio.twig';
 import FormElement from '../03-organisms/form-element/form-element.twig';
-import Label from '../01-atoms/label/label.twig';
+import FieldLabel from '../01-atoms/field-label/field-label.twig';
 import DropdownFilter
   from '../02-molecules/dropdown-filter/dropdown-filter.twig';
 
@@ -132,11 +132,10 @@ export const formElement = (inputType, options, theme, rand, itr) => {
   const formElementOptions = {
     theme,
     type: inputType,
-    label: Label({
+    label: FieldLabel({
       theme,
       content: options.title ? options.title : `Input title ${itr + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
       attributes: `for="form-element-${itr}"`,
-      title_position: isCheckboxOrRadio ? 'after' : 'before',
       required: options.required,
     }),
     label_display: isCheckboxOrRadio ? 'after' : 'before',
@@ -236,4 +235,19 @@ export const dropDownFilter = (filterType, numOfOptions, theme, rand, itr) => {
     type: filterType,
     options: children.join(''),
   });
+};
+
+export const randomOptions = (numOfOptions, optionType = 'option') => {
+  const options = [];
+  for (let i = 1; i <= numOfOptions; i++) {
+    const option = {
+      type: optionType,
+      selected: false,
+      label: optionType === 'optgroup' ? `Group ${i}` : randomString(getRandomInt(3, 8)),
+      value: randomString(getRandomInt(1, 8)),
+      options: optionType === 'optgroup' ? randomOptions(numOfOptions) : null,
+    };
+    options.push(option);
+  }
+  return options;
 };

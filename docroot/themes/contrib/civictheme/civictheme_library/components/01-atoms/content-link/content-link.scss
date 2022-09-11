@@ -1,0 +1,91 @@
+//
+// Link component.
+//
+
+//
+// Mixins.
+//
+@mixin civictheme-content-link-base() {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  padding: 3px 0 2px;
+
+  &:hover {
+    text-decoration: none;
+    padding: 3px 0 4px;
+  }
+
+  .civictheme-content-link__link-icon {
+    margin-right: rem(4px);
+  }
+
+  &,
+  &.civictheme-theme-light {
+    color: $civictheme-content-link-light-color;
+
+    &:focus {
+      @include civictheme-outline();
+    }
+
+    &:hover {
+      background-color: $civictheme-content-link-light-hover-background-color;
+      color: $civictheme-content-link-light-hover-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-content-link-dark-color;
+
+    &:focus {
+      @include civictheme-outline(true);
+    }
+
+    &:hover {
+      background-color: $civictheme-content-link-dark-hover-background-color;
+      color: $civictheme-content-link-dark-hover-color;
+    }
+  }
+
+  &:visited {
+    @include civictheme-content-link-visited ();
+  }
+}
+
+@mixin civictheme-content-link-visited() {
+  &.civictheme-theme-light {
+    color: $civictheme-content-link-light-visited-color;
+
+    &:hover {
+      background-color: $civictheme-content-link-light-visited-hover-background-color;
+      color: $civictheme-content-link-light-visited-hover-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-content-link-dark-visited-color;
+
+    &:hover {
+      background-color: $civictheme-content-link-dark-visited-hover-background-color;
+      color: $civictheme-content-link-dark-visited-hover-color;
+    }
+  }
+}
+
+@mixin civictheme-icon-inline($content) {
+  content: $content;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: rem(24px);
+  height: rem(24px);
+  fill: currentcolor;
+  vertical-align: -webkit-baseline-middle;
+}
+
+//
+// Classes.
+//
+
+.civictheme-content-link {
+  @include civictheme-content-link-base();
+}

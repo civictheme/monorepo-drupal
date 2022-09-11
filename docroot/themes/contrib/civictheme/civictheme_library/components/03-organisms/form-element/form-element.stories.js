@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeFormElement from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
 import Select from '../../01-atoms/select/select.twig';
-import CivicThemeLabel from '../../01-atoms/label/label.twig';
+import CivicThemeFieldLabel from '../../01-atoms/field-label/field-label.twig';
 
 export default {
   title: 'Organisms/Form/Form Element',
@@ -140,18 +140,20 @@ export const FormElement = () => {
   const labelKnobTab = 'Label';
   const labelKnobs = {
     theme,
-    content: text('Label', 'Label for input', labelKnobTab),
-    title_display: radios(
-      'Label position',
-      {
-        Before: 'before',
-        After: 'after',
+    size: radios(
+      'Size', {
+        'Extra Large': 'extra-large',
+        Large: 'large',
+        Regular: 'regular',
+        Small: 'small',
+        'Extra Small': 'extra-small',
+        None: '',
       },
-      'before',
+      'regular',
       labelKnobTab,
     ),
+    content: text('Label', 'Label for input', labelKnobTab),
     attributes: `for="input-${inputType}"`,
-    required: generalKnobs.required,
   };
 
   const children = [];
@@ -184,7 +186,7 @@ export const FormElement = () => {
       }));
   }
 
-  const label = [CivicThemeLabel(labelKnobs)];
+  const label = [CivicThemeFieldLabel(labelKnobs)];
 
   const html = CivicThemeFormElement({
     ...generalKnobs,

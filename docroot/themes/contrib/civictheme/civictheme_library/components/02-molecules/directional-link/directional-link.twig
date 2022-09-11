@@ -21,10 +21,10 @@
 {% set modifier_class = '%s %s %s'|format(theme_class, disabled_class, modifier_class|default('')) %}
 
 {% set icons = {
-  top: 'arrows_uparrow_1',
-  bottom: 'arrows_downarrow_2',
-  left: 'arrows_leftarrow_2',
-  right: 'arrows_rightarrow_3',
+  top: 'up-arrow',
+  bottom: 'down-arrow-1',
+  left: 'left-arrow',
+  right: 'right-arrow-1',
 } %}
 {% if disabled %}
   <span class="civictheme-directional-link {{ modifier_class }}" {% if title is not empty %}title="{{ title }}"{% endif %} role="link" disabled="disabled" aria-disabled="true">
@@ -32,7 +32,7 @@
   <a class="civictheme-directional-link {{ modifier_class }}" {% if title is not empty %}title="{{ title }}"{% endif %} role="link" href="{{ url }}">
 {% endif %}
   {% if aria_text is not empty %}
-    <span class="visually-hidden">{{ aria_text }}</span>
+    <span class="civictheme-visually-hidden">{{ aria_text }}</span>
     <span aria-hidden="true">{{ text }}</span>
   {% else %}
     {{ text }}

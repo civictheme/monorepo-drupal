@@ -1,0 +1,50 @@
+{#
+/**
+ * @file
+ * Chip component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - kind: [string] Chip kind: default, input.
+ * - content: [string] Chip text.
+ * - name: [string] Name attribute.
+ * - is_disabled: [boolean] Disabled or not.
+ * - is_dismissible: [boolean] Can be dismissed or not.
+ * - is_multiple: [boolean] Can be multiple.
+ * - is_selected: [boolean] Is the button selected (for filter chips).
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set kind = kind in ['default', 'input'] ? kind : 'default' %}
+{% set kind_class = kind ? 'civictheme-chip--%s'|format(kind) : '' %}
+{% set multiple_class = is_multiple ? 'civictheme-chip--multiple' : '' %}
+{% set dismiss_class =  is_dismissible ? 'civictheme-chip--dismiss' : '' %}
+{% set selected_class =  is_selected ? 'active' : '' %}
+{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, kind_class, selected_class, multiple_class, dismiss_class, modifier_class|default('')) %}
+
+{% set chip_content %}
+  {% if is_dismissible or (kind == 'input' and is_multiple) %}
+    {{ content }}
+    <span class="civictheme-chip__dismiss" data-chip-dismiss>
+      {% include '@atoms/icon/icon.twig' with {
+        symbol: 'cancel',
+        size: 'small',
+        modifier_class: 'civictheme-chip__icon civictheme-chip__icon--dismiss'
+      } only %}
+    </span>
+  {% else %}
+    {{ content }}
+  {% endif %}
+{% endset %}
+
+{% if content|trim is not empty %}
+  {% if kind == 'input' and is_multiple %}
+    <label class="civictheme-chip {{ modifier_class }}" data-component-name="chip"><input type="checkbox" {% if is_selected %} checked="checked" {% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ chip_content|trim }}</label>
+  {% elseif kind == 'input' %}
+    <label class="civictheme-chip {{ modifier_class }}" data-component-name="chip"><input type="radio" {% if is_selected %} checked="checked" {% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ chip_content|trim }}</label>
+  {% else %}
+    <span class="civictheme-chip {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="chip">{{ chip_content }}</span>
+  {% endif %}
+{% endif %}

@@ -26,7 +26,6 @@
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "webpack --config ./webpack/webpack.dev.js",
-    "generate-icon-library": "node ./components/01-atoms/icon/icon.generate-library.utils.js",
     "export-colors": "php scripts/extract_css_colors_to_csv.php dist/civictheme.variables.css > dist/civictheme.variables.csv"
   },
   "devDependencies": {
