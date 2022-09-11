@@ -15,19 +15,27 @@
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-{% if text %}
-  <div class="civictheme-tooltip {{ modifier_class }}" data-collapsible data-collapsible-collapsed data-collapsible-duration="0" data-collapsible-trigger-no-icon>
-    <button class="civictheme-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %}  aria-expanded="false">
+{% if content %}
+  <div class="civictheme-tooltip {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="tooltip">
+    <button class="civictheme-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %} data-tooltip-button data-tooltip-position="{{ position }}">
       {%- include '@atoms/icon/icon.twig' with {
-        symbol: symbol|default('userinterface_informationmark'),
-        size: size|default('regular'),
+        symbol: icon|default('information-mark'),
+        size: icon_size|default('regular'),
       } only -%}
     </button>
 
-    <div class="civictheme-tooltip__description">
+    <div class="civictheme-tooltip__description" data-tooltip-content>
       <div class="civictheme-tooltip__description__inner">
-        {{ text }}
+        {{ content }}
       </div>
+      <div data-tooltip-close>
+        {%- include '@atoms/icon/icon.twig' with {
+          symbol: 'cancel',
+          size: regular,
+        } only -%}
+      </div>
+
+      <div class="civictheme-tooltip__arrow" data-tooltip-arrow></div>
     </div>
   </div>
 {% endif %}

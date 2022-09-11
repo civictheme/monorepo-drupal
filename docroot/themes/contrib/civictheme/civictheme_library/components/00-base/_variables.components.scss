@@ -854,18 +854,16 @@ $civictheme-skip-link-dark-background-color: civictheme-color('primary', 4) !def
 // Tooltip.
 //
 $civictheme-tooltip-width: rem(230px) !default;
-$civictheme-tooltip-triangle-width: civictheme-space() !default;
-$civictheme-tooltip-triangle-height: civictheme-space() !default;
-$civictheme-tooltip-description-border-radius: $civictheme-border-radius !default;
+$civictheme-tooltip-triangle-width: civictheme-space(3) !default;
+$civictheme-tooltip-triangle-height: civictheme-space(2) !default;
+$civictheme-tooltip-description-border-radius: rem(8px) !default;
 $civictheme-tooltip-z-index: 99 !default;
-$civictheme-tooltip-light-icon-color: civictheme-color('primary', 3) !default;
-$civictheme-tooltip-light-icon-hover-color: civictheme-color('neutral', 8) !default;
+$civictheme-tooltip-light-icon-color: civictheme-color('primary') !default;
 $civictheme-tooltip-light-description-color: civictheme-color('neutral', 1) !default;
-$civictheme-tooltip-light-description-background-color: civictheme-color('primary') !default;
-$civictheme-tooltip-dark-icon-color: civictheme-color('neutral', 1) !default;
-$civictheme-tooltip-dark-icon-hover-color: civictheme-color('secondary') !default;
-$civictheme-tooltip-dark-description-color: civictheme-color('neutral', 1) !default;
-$civictheme-tooltip-dark-description-background-color: civictheme-color('primary', 3) !default;
+$civictheme-tooltip-light-description-background-color: civictheme-color('primary', 3) !default;
+$civictheme-tooltip-dark-icon-color: civictheme-color('secondary') !default;
+$civictheme-tooltip-dark-description-color: civictheme-color('neutral', 7) !default;
+$civictheme-tooltip-dark-description-background-color: civictheme-color('neutral', 3) !default;
 
 //
 // Video
