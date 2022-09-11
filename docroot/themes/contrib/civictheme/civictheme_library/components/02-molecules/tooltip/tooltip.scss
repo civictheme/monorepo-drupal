@@ -40,6 +40,7 @@
 
     &[data-popper-placement^='top'] > [data-tooltip-arrow] {
       bottom: -$civictheme-tooltip-triangle-width;
+      width: civictheme-space(4);
 
       &::before {
         border-left: $civictheme-tooltip-triangle-height solid transparent;
@@ -50,6 +51,7 @@
 
     &[data-popper-placement^='bottom'] > [data-tooltip-arrow] {
       top: -$civictheme-tooltip-triangle-width;
+      width: civictheme-space(4);
 
       &::before {
         border-left: $civictheme-tooltip-triangle-height solid transparent;
@@ -60,6 +62,7 @@
 
     &[data-popper-placement^='left'] > [data-tooltip-arrow] {
       right: -$civictheme-tooltip-triangle-width;
+      width: $civictheme-tooltip-triangle-width;
 
       &::before {
         border-top: $civictheme-tooltip-triangle-height solid transparent;
@@ -70,6 +73,7 @@
 
     &[data-popper-placement^='right'] > [data-tooltip-arrow] {
       left: -$civictheme-tooltip-triangle-width;
+      width: $civictheme-tooltip-triangle-width;
 
       &::before {
         border-top: $civictheme-tooltip-triangle-height solid transparent;
