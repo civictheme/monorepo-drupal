@@ -115,13 +115,13 @@
           {% endif %}
           {% if url %}
             {% if is_external %}
-              {% include '@atoms/icon/icon.twig' with {
+              {% include '@base/icon/icon.twig' with {
                 symbol: 'upper-right-arrow',
                 color: 'primary',
                 modifier_class: 'civictheme-navigation-card__icon--external'
               } only %}
             {% else %}
-              {% include '@atoms/icon/icon.twig' with {
+              {% include '@base/icon/icon.twig' with {
                 symbol: 'upper-right-arrow',
                 color: 'primary',
                 modifier_class: 'civictheme-navigation-card__icon--arrow',

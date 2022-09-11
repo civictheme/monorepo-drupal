@@ -33,7 +33,7 @@
         <div class="civictheme-alert__title col-xs-12 col-m-3">
           {% if icons[type] is defined %}
             <span class="civictheme-alert__icon">
-              {% include "@atoms/icon/icon.twig" with {
+              {% include "@base/icon/icon.twig" with {
                 symbol: icons[type],
                 modifier_class: "%s civictheme-icon--%s"|format(theme_class, type)
               } only %}

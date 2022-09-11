@@ -66,6 +66,11 @@ $civictheme-collapsible-dark-color: civictheme-color('neutral', 1) !default;
 $civictheme-collapsible-dark-background-color: $civictheme-theme-dark-background-color !default;
 $civictheme-collapsible-dark-icon-color: $civictheme-collapsible-dark-color !default;
 
+//
+// Icon.
+//
+$civictheme-icon-size: 'regular' !default;
+
 // Outline.
 $civictheme-outline-offset: 0 !default;
 $civictheme-outline: 0.1875rem solid civictheme-color('outline') !default;
@@ -271,11 +276,6 @@ $civictheme-field-message-dark-status-border-color: civictheme-color('status') !
 $civictheme-field-message-dark-warning-border-color: civictheme-color('warning') !default;
 $civictheme-field-message-dark-error-border-color: civictheme-color('error') !default;
 $civictheme-field-message-dark-success-border-color: civictheme-color('success') !default;
-
-//
-// Icon.
-//
-$civictheme-icon-size: 'regular' !default;
 
 //
 // Iframe.
