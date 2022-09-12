@@ -61,7 +61,6 @@ module.exports = {
         '../dist/civictheme-variables.js.map',
       ],
     }),
-    require('@popperjs/core'),
   ],
   module: {
     rules: [
