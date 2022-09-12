@@ -61,7 +61,7 @@
     {% block icon %}
       {% if icon %}
         <div class="civictheme-navigation-card__icon">
-          {% include '@atoms/icon/icon.twig' with {
+          {% include '@base/icon/icon.twig' with {
             symbol: icon,
             size: 'large',
             color: 'primary',
@@ -81,13 +81,13 @@
             {% if url is not empty %}
               <span>
                 {% if is_external %}
-                  {% include '@atoms/icon/icon.twig' with {
+                  {% include '@base/icon/icon.twig' with {
                     symbol: 'upper-right-arrow',
                     color: 'primary',
                     modifier_class: 'civictheme-navigation-card__icon--external'
                   } only %}
                 {% else %}
-                  {% include '@atoms/icon/icon.twig' with {
+                  {% include '@base/icon/icon.twig' with {
                     symbol: 'upper-right-arrow',
                     color: 'primary',
                     modifier_class: 'civictheme-navigation-card__icon--arrow',

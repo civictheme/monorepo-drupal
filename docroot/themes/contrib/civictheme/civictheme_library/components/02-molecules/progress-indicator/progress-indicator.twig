@@ -36,7 +36,7 @@
       {% if step.title is not empty %}
         <div class="civictheme-progress-indicator__step {{ 'civictheme-progress-indicator__step--%s'|format(step.status) }}">
           {% if step.status is defined %}
-            {% include '@atoms/icon/icon.twig' with {
+            {% include '@base/icon/icon.twig' with {
               symbol: statuses[step.status].icon,
             } only %}
           {% endif %}

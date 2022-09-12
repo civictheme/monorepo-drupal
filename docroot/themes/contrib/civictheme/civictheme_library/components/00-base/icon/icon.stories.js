@@ -4,7 +4,7 @@ import { radios, select, text } from '@storybook/addon-knobs';
 import CivicThemeIcon from './icon.twig';
 
 export default {
-  title: 'Atoms/Icon',
+  title: 'Base/Icon',
   parameters: {
     layout: 'centered',
   },

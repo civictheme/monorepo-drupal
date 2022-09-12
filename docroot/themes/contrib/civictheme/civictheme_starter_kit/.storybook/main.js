@@ -10,8 +10,8 @@ const webpack = require('webpack');
 const path = require('path');
 const custom = require('../webpack/webpack.prod');
 const scssVariables = require('./importer.scss_variables');
-const iconUtils = require('../components_combined/01-atoms/icon/icon.utils');
-const backgroundUtils = require('../components_combined/01-atoms/background/background.utils');
+const iconUtils = require('../components_combined/00-base/icon/icon.utils');
+const backgroundUtils = require('../components_combined/00-base/background/background.utils');
 const logoUtils = require('../components_combined/02-molecules/logo/logo.utils');
 const addonConfig = require('./addon-config').default();
 

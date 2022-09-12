@@ -18,6 +18,7 @@
  *   - modifier_class: [string] Additional link classes.
  *   - attributes: [string] Additional link attributes.
  * - modifier_class: [string] Additional classes.
+ * - attributes: [string] Additional classes.
  */
 #}
 
@@ -38,7 +39,7 @@
 {% endif %}
 
 {% if panels is not empty or links is not empty %}
-  <div class="civictheme-tabs {{ modifier_class }}">
+  <div class="civictheme-tabs {{ modifier_class }}" {{ attributes }}>
     {% include '@molecules/link-list/link-list.twig' with {
       theme: theme,
       links: links,
