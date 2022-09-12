@@ -22,7 +22,7 @@ if [ "${DREVOPS_DRUPAL_LOGIN_UNBLOCK_ADMIN}" = "1" ]; then
   if $drush pml --status=enabled | grep -q user_expire; then
     $drush -q sqlq "UPDATE \`user__field_password_expiration\` SET \`field_password_expiration_value\` = 0 WHERE \`bundle\` = \"user\" AND \`entity_id\` = 1;"
   fi
-  $drush sqlq "SELECT name FROM \`users_field_data\` WHERE \`uid\` = '1';" | head -n 1 | xargs $drush -q -- uublk
+  $drush sqlq "SELECT name FROM \`users_field_data\` WHERE \`uid\` = '1';" | awk NF | head -n 1 | xargs $drush -q -- uublk
 fi
 
 $drush uli
