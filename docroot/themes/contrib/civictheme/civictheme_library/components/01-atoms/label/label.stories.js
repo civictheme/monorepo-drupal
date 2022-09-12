@@ -1,15 +1,15 @@
 // phpcs:ignoreFile
 import { radios, text } from '@storybook/addon-knobs';
-import CivicThemeFieldLabel from './field-label.twig';
+import CivicThemeLabel from './label.twig';
 
 export default {
-  title: 'Atoms/Form/Field Label',
+  title: 'Atoms/Form/Label',
   parameters: {
     layout: 'centered',
   },
 };
 
-export const FieldLabel = (knobTab) => {
+export const Label = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -39,7 +39,7 @@ export const FieldLabel = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicThemeFieldLabel({
+  return CivicThemeLabel({
     ...generalKnobs,
   });
 };

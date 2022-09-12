@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeFormElement from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
 import Select from '../../01-atoms/select/select.twig';
-import CivicThemeFieldLabel from '../../01-atoms/field-label/field-label.twig';
+import CivicThemeFieldLabel from '../../01-atoms/label/label.twig';
 
 export default {
   title: 'Organisms/Form/Form Element',

@@ -5,7 +5,7 @@
 @use 'sass:map';
 @use 'sass:string';
 
-.civictheme-field-label {
+.civictheme-label {
   $root: &;
 
   display: block;
@@ -24,28 +24,28 @@
   @each $name in map.keys(_civictheme-typography-all()) {
     @if string.index(#{$name}, 'label-') {
       $size: string.slice(#{$name}, 6, 100);
-      &.civictheme-field-label-#{$size} {
+      &.civictheme-label-#{$size} {
         @include civictheme-typography($name);
       }
     }
   }
 
   &.civictheme-theme-light {
-    color: $civictheme-field-label-light-color;
+    color: $civictheme-label-light-color;
 
     #{$root}--required {
       &::after {
-        color: $civictheme-field-label-light-required-color;
+        color: $civictheme-label-light-required-color;
       }
     }
   }
 
   &.civictheme-theme-dark {
-    color: $civictheme-field-label-dark-color;
+    color: $civictheme-label-dark-color;
 
     #{$root}--required {
       &::after {
-        color: $civictheme-field-label-dark-required-color;
+        color: $civictheme-label-dark-required-color;
       }
     }
   }
