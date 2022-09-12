@@ -838,7 +838,7 @@ function civictheme_provision__theme_settings() {
   $breakpoints = ['desktop', 'mobile'];
   foreach ($themes as $theme) {
     foreach ($breakpoints as $breakpoint) {
-      $components['logo']["image_{$theme}_{$breakpoint}"] = "$theme_path/dist/assets/logos/{$theme_name}_logo_{$theme}_{$breakpoint}.png";
+      $components['logo']["image_{$theme}_{$breakpoint}"] = "$theme_path/dist/assets/logos/{$theme_name}_logo_primary_{$theme}_{$breakpoint}.png";
     }
   }
   $components['logo']['image_alt'] = 'CivicTheme demo logo';

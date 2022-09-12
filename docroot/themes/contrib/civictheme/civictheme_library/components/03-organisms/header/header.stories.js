@@ -36,13 +36,15 @@ export const Header = (knobTab) => {
   };
 
   generalKnobs.logos = boolean('Show Logo', true, generalKnobTab) ? {
-    mobile: {
-      src: LOGOS[generalKnobs.theme].mobile,
-      alt: 'Logo mobile alt text',
-    },
-    desktop: {
-      src: LOGOS[generalKnobs.theme].desktop,
-      alt: 'Logo desktop alt text',
+    primary: {
+      mobile: {
+        src: LOGOS[generalKnobs.theme].primary.mobile,
+        alt: 'Primary logo mobile alt text',
+      },
+      desktop: {
+        src: LOGOS[generalKnobs.theme].primary.desktop,
+        alt: 'Primary logo mobile alt text',
+      },
     },
   } : null;
 
