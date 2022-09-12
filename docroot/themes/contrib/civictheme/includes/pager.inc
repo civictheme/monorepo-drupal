@@ -34,7 +34,7 @@ function civictheme_preprocess_pager(&$variables) {
   $variables['total_pages'] = $pager->getTotalPages();
   $variables['current'] = $variables['current'] ?? $pager->getCurrentPage() + 1;
 
-  if ($variables['total_pages'] > 1) {
+  if ($variables['total_pages'] > 1 && !empty($variables['pager']['#tags'])) {
     // Add in previous and next view defined text with defined tag keys.
     // @see \Drupal\views\Plugin\views\pager\Full::render().
     $controls = [
