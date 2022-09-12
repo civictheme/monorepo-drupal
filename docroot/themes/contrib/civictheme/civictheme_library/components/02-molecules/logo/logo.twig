@@ -51,15 +51,15 @@
             {% set display_logo = FALSE %}
           {% endif %}
         {% endif %}
-        {% if not loop.first and display_logo %}
-          <hr class="civictheme-logo--hr">
-        {% endif %}
         {% if logo.src is not empty and display_logo %}
           {% include '@atoms/image/image.twig' with {
             theme: theme,
             src: logo.src,
             alt:  logo.alt,
           } only %}
+        {% endif %}
+        {% if loop.first and display_logo and logo_values|length > 1 %}
+          <hr class="civictheme-logo--hr">
         {% endif %}
       {% endfor %}
       {% if url is not empty %}
