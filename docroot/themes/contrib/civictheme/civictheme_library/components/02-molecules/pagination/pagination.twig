@@ -10,17 +10,33 @@
  *   - text: [string] Item text.
  *   - href: [string] Item link.
  * - current: [string] Current page number.
- * - pager_items_modifier_class: [string] Additional classes for pager.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set items_per_page_label = items_per_page_label|default('Items per page') %}
+{% set options = {} %}
+{% for key, item in items_per_page %}
+  {% set options = options|merge({ (key): {'type': 'option', 'label': item, 'value': key}}) %}
+{% endfor %}
 
 {% if items is not empty %}
   <nav class="civictheme-pager {{ modifier_class }}" role="navigation" {% if heading_id is not empty %}aria-labelledby="{{ heading_id }}"{% endif %}>
     <h4 {% if heading_id is not empty %}id="{{ heading_id }}"{% endif %} class="civictheme-visually-hidden">{{ 'Pagination' }}</h4>
+
+    {% if items_per_page %}
+      <div class="civictheme-pager__items_per_page">
+        {%- include '@atoms/field-label/field-label.twig' with {
+          content: items_per_page_label
+        } -%}
+        {%- include '@atoms/select/select.twig' with {
+          options: options
+        } -%}
+      </div>
+    {% endif %}
 
     <ul class="civictheme-pager__items {{ pager_items_modifier_class }}">
       {# Print first item if we are not on the first page. #}

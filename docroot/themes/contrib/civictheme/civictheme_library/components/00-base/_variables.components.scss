@@ -824,12 +824,14 @@ $civictheme-next-steps-dark-stripe-color: civictheme-color('neutral', 8) !defaul
 //
 // Pagination.
 //
-$civictheme-pagination-light-link-color: civictheme-color('neutral', 7) !default;
+$civictheme-pagination-light-background-color: civictheme-color('neutral', 3) !default;
+$civictheme-pagination-light-link-color: civictheme-color('primary') !default;
 $civictheme-pagination-light-link-hover-color: civictheme-color('primary', 3) !default;
-$civictheme-pagination-light-link-active-border-color: civictheme-color('primary') !default;
-$civictheme-pagination-dark-link-color: civictheme-color('neutral', 1) !default;
-$civictheme-pagination-dark-link-hover-color: civictheme-color('secondary') !default;
-$civictheme-pagination-dark-link-active-border-color: civictheme-color('secondary') !default;
+$civictheme-pagination-light-link-active-border-color: civictheme-color('primary', 3) !default;
+$civictheme-pagination-dark-background-color: civictheme-color('primary', 3) !default;
+$civictheme-pagination-dark-link-color: civictheme-color('secondary') !default;
+$civictheme-pagination-dark-link-hover-color: civictheme-color('neutral', 1) !default;
+$civictheme-pagination-dark-link-active-border-color: civictheme-color('neutral', 1) !default;
 
 //
 // Progress indicator.
