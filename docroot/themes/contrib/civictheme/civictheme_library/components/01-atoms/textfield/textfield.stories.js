@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeTextfield from './textfield.twig';
 
 export default {
-  title: 'Atoms/Textfield',
+  title: 'Atoms/Form/Textfield',
   parameters: {
     layout: 'centered',
   },

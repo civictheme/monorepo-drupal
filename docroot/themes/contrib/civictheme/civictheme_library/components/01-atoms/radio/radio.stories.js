@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeRadio from './radio.twig';
 
 export default {
-  title: 'Atoms/Radio',
+  title: 'Atoms/Form/Radio',
   parameters: {
     layout: 'centered',
   },
