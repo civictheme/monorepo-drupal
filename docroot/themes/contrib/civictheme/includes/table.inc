@@ -41,14 +41,13 @@ function civictheme_preprocess_table(&$variables) {
  */
 function civictheme_preprocess_views_view_table(&$variables) {
   $view = $variables['view'];
-  $variables['civictheme_optout_table'] = FALSE;
+  $variables['civictheme_optout_table'] = TRUE;
   $tags = $view->storage->get('tag');
   $tags = !empty($tags) ? explode(',', $tags) : [];
 
-  if (in_array(CIVICTHEME_OPTOUT_TABLE, $tags)) {
-    $variables['civictheme_optout_table'] = TRUE;
-  }
-  else {
+  if (!in_array(CIVICTHEME_OPTOUT_TABLE, $tags)) {
+    $variables['civictheme_optout_table'] = FALSE;
+
     // Header.
     if (!empty($variables['header'])) {
       $rows = NULL;
