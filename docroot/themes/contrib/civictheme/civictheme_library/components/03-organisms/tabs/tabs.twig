@@ -32,7 +32,8 @@
     {% set links = links|merge([{
       text: panel.title,
       url: '#' ~ link_id,
-      attributes: 'role="tab" id="' ~ link_id ~ '" aria-controls="' ~ panel[k].id ~ '"'
+      attributes: 'role="tab" id="' ~ link_id ~ '" aria-controls="' ~ panel[k].id ~ '"',
+      link_id: link_id,
     }]) %}
   {% endfor %}
 {% endif %}
