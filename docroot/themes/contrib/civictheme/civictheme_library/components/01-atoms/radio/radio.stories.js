@@ -23,9 +23,10 @@ export const Radio = (knobTab) => {
       generalKnobTab,
     ),
     content: text('Content', 'Radio label', generalKnobTab),
-    required: boolean('Required', false, generalKnobTab),
-    disabled: boolean('Disabled', false, generalKnobTab),
-    has_error: boolean('Has error', false, generalKnobTab),
+    is_invalid: boolean('Invalid', false, generalKnobTab),
+    is_disabled: boolean('Disabled', false, generalKnobTab),
+    name: text('Name', 'element-name', generalKnobTab),
+    id: text('ID', 'element-id', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
   };

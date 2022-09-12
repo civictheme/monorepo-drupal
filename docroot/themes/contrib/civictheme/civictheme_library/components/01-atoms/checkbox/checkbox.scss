@@ -144,20 +144,7 @@
       }
     }
 
-    &.success,
-    &.civictheme-input--success {
-      #{$root}__element {
-        &:checked + .civictheme-checkbox__state {
-          &::before {
-            border-color: $civictheme-input-light-success-border-color;
-            background-color: $civictheme-input-light-success-border-color;
-          }
-        }
-      }
-    }
-
-    &.error,
-    &.civictheme-input--error {
+    &.civictheme-checkbox--error {
       #{$root}__element {
         & + .civictheme-checkbox__state {
           &::before {
@@ -249,19 +236,6 @@
       }
     }
 
-    &.success,
-    &.civictheme-input--success {
-      #{$root}__element {
-        &:checked + .civictheme-checkbox__state {
-          &::before {
-            border-color: $civictheme-input-dark-success-border-color;
-            background-color: $civictheme-input-dark-success-border-color;
-          }
-        }
-      }
-    }
-
-    &.error,
     &.civictheme-input--error {
       #{$root}__element {
         & + .civictheme-checkbox__state {
