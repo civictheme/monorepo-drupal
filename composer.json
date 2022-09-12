@@ -18,7 +18,7 @@
         "drupal/stage_file_proxy": "^1.1",
         "drupal/styleguide": "^2@beta",
         "drupal/testmode": "^2.1",
-        "drush/drush": "^10",
+        "drush/drush": "^11",
         "govcms/govcms": "^2.18",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^5.1",
