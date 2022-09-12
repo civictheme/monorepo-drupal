@@ -28,7 +28,7 @@
   {% if is_dismissible or (kind == 'input' and is_multiple) %}
     {{ content }}
     <span class="civictheme-chip__dismiss" data-chip-dismiss>
-      {% include '@atoms/icon/icon.twig' with {
+      {% include '@base/icon/icon.twig' with {
         symbol: 'cancel',
         size: 'small',
         modifier_class: 'civictheme-chip__icon civictheme-chip__icon--dismiss'

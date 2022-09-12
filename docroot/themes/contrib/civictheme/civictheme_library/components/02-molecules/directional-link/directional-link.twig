@@ -39,7 +39,7 @@
   {% endif %}
 
   {% if direction is not empty and icons[direction] is defined %}
-    {% include '@atoms/icon/icon.twig' with {
+    {% include '@base/icon/icon.twig' with {
       symbol: icons[direction],
       modifier_class: 'civictheme-icon--%s'|format(direction),
     } %}

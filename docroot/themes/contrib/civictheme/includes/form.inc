@@ -422,4 +422,70 @@ function civictheme_form_alter(&$form, FormStateInterface $form_state, $form_id)
       _civictheme_propagate_component_theme_settings($form['elements'], $theme);
     }
   }
+  _civictheme_form_alter_non_form_elements($form);
+}
+
+/**
+ * Alter elements in forms that are not categorised as form elements.
+ *
+ * Form elements should be preprocessed in (and associated preprocess functions)
+ *
+ * However, there area some types of Element in form are not form elements eg
+ * link and html_tag. This function provides the ability to alter these elements
+ * if required.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function _civictheme_form_alter_non_form_elements(&$elements) {
+  $element_keys = Element::children($elements);
+  foreach ($element_keys as $element_key) {
+    if (empty($elements[$element_key]['#type'])) {
+      continue;
+    }
+    $nested_elements = Element::children($elements[$element_key]);
+    if (!empty($nested_elements)) {
+      _civictheme_form_alter_non_form_elements($elements[$element_key]);
+    }
+    // Add elements to modify to this switch.
+    switch ($elements[$element_key]['#type']) {
+      case 'link':
+        _civictheme_form_alter_non_form_elements__link($elements[$element_key]);
+        break;
+
+      default:
+        continue 2;
+    }
+  }
+}
+
+/**
+ * Helper altering link elements within forms.
+ */
+function _civictheme_form_alter_non_form_elements__link(&$element) {
+  // Convert "button" links into civictheme button links.
+  if (!empty($element['#attributes']['class']) && in_array('button', $element['#attributes']['class'])) {
+    $element_theme = _civictheme_get_theme_from_element($element);
+    $element['#attributes']['class'] = array_merge($element['#attributes']['class'], [
+      'civictheme-button',
+      'civictheme-button--regular',
+      'civictheme-button--secondary',
+      'civictheme-theme-' . $element_theme,
+    ]);
+  }
+}
+
+/**
+ * Helper to get theme from the element.
+ */
+function _civictheme_get_theme_from_element($element) {
+  $theme = CIVICTHEME_THEME_LIGHT;
+  if (isset($element['#attributes']['#civictheme_theme'])
+    && in_array($element['#attributes']['#civictheme_theme'], [
+      CIVICTHEME_THEME_LIGHT,
+      CIVICTHEME_THEME_DARK,
+    ])) {
+    $theme = $element['#attributes']['#civictheme_theme'];
+  }
+
+  return $theme;
 }

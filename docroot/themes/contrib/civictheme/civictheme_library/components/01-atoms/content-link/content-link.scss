@@ -57,7 +57,7 @@
     color: $civictheme-content-link-light-visited-color;
 
     &:hover {
-      background-color: $civictheme-content-link-light-visited-hover-background-color;
+      border-color: $civictheme-content-link-light-visited-hover-border-color;
       color: $civictheme-content-link-light-visited-hover-color;
     }
   }
@@ -66,7 +66,7 @@
     color: $civictheme-content-link-dark-visited-color;
 
     &:hover {
-      background-color: $civictheme-content-link-dark-visited-hover-background-color;
+      border-color: $civictheme-content-link-dark-visited-hover-border-color;
       color: $civictheme-content-link-dark-visited-hover-color;
     }
   }

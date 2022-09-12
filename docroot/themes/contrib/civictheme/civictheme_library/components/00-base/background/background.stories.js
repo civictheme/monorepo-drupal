@@ -2,7 +2,7 @@
 import { select } from '@storybook/addon-knobs';
 
 export default {
-  title: 'Atoms/Background',
+  title: 'Base/Background',
   parameters: {
     layout: 'centered',
   },
