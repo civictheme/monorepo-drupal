@@ -99,9 +99,8 @@
     &:disabled {
       & + .civictheme-#{$type}__state {
         &::before {
-          cursor: default;
-          color: $civictheme-input-light-disabled-color;
-          background-color: $civictheme-input-light-disabled-background-color;
+          pointer-events: none;
+          opacity: 50%;
         }
       }
     }
@@ -153,9 +152,8 @@
     &:disabled {
       & + .civictheme-#{$type}__state {
         &::before {
-          cursor: default;
-          color: $civictheme-input-dark-disabled-color;
-          background-color: $civictheme-input-dark-disabled-background-color;
+          pointer-events: none;
+          opacity: 50%;
         }
       }
     }

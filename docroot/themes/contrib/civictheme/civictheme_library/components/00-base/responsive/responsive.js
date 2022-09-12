@@ -3,9 +3,9 @@
  * @file
  * Responsive component.
  *
- * Emits a 'civictheme-responsive' event on breakpoint change allowing components
- * to delay initialisation by providing 'data-responsive' attribute with an
- * operator and breakpoint name.
+ * Emits a 'civictheme-responsive' event on breakpoint change allowing
+ * components to delay initialisation by providing 'data-responsive' attribute
+ * with an operator and breakpoint name.
  *
  * For example: a component with `data-responsive=">=m"` attribute will
  * delay its initialisation to happen only when current screen size is equal
@@ -174,8 +174,10 @@ if (document.querySelectorAll('[data-responsive]').length) {
   // event listeners have been added.
   // Delay the execution until after other components have been initialized.
   // Using setTimeout as an interim solution because:
-  // - DOMContentLoad won't work on prod-site due to being double wrapped in a DOMLoad event.
-  // - window 'load' event won't work on storybook as it's not called per component page change.
+  // - DOMContentLoad won't work on prod-site due to being double wrapped in a
+  //   DOMLoad event.
+  // - window 'load' event won't work on storybook as it's not called per
+  //   component page change.
   setTimeout(() => {
     // Init if there is at least a single component with data-responsive
     // attribute on the page.

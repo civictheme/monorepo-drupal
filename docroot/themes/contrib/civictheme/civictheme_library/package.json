@@ -32,6 +32,7 @@
   "devDependencies": {
     "@babel/cli": "^7.15.4",
     "@babel/core": "^7.15.5",
+    "@integratedexperts/scss-variables-extractor": "^0.1.0",
     "@storybook/addon-a11y": "^6.1.18",
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/addon-knobs": "^6.3.1",
@@ -46,6 +47,7 @@
     "babel-template": "^6.26.0",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^5.2.7",
+    "deepmerge": "^4.2.2",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "file-loader": "^6.2.0",

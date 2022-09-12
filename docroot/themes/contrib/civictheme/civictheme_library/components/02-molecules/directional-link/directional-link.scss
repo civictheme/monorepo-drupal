@@ -45,11 +45,8 @@
     &#{$root}--disabled {
       &,
       &:hover {
-        color: $civictheme-directional-link-light-disabled-color;
-
-        .civictheme-icon {
-          fill: $civictheme-directional-link-light-disabled-color;
-        }
+        pointer-events: none;
+        opacity: 50%;
       }
     }
   }
@@ -76,11 +73,8 @@
     &#{$root}--disabled {
       &,
       &:hover {
-        color: $civictheme-directional-link-dark-disabled-color;
-
-        .civictheme-icon {
-          fill: $civictheme-directional-link-dark-disabled-color;
-        }
+        pointer-events: none;
+        opacity: 50%;
       }
     }
   }

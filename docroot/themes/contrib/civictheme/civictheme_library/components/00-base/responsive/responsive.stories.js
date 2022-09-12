@@ -10,5 +10,5 @@ export default {
 export const Responsive = () => {
   const html = CivicThemeResponsive();
 
-  return `<div class="story-wrapper-centered story-wrapper-size--medium">${html}</div>`;
+  return `<div class="story-wrapper--centered-both story-wrapper-size--medium">${html}</div>`;
 };

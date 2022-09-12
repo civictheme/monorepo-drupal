@@ -7,3 +7,27 @@
 // in _variables.base.scss
 //
 // stylelint-disable scss/dollar-variable-pattern
+
+// Brand colors.
+//
+// This is an example implementation of CivicTheme brand colors.
+//
+// If your custom brand colors are known - update the values below (you can also
+// add new brand colors and map them later) and they will drive color palette
+// values.
+//
+// Alternatively, remove the brand color mappings below (or set them to false)
+// and implement custom mappings using $civictheme-colors variable.
+
+$civictheme-colors-brands: (
+  'light': (
+    'brand1': #00698f,
+    'brand2': #e6e9eb,
+    'brand3': #121313,
+  ),
+  'dark': (
+    'brand1': #61daff,
+    'brand2': #003a4f,
+    'brand3': #00698f,
+  )
+);
