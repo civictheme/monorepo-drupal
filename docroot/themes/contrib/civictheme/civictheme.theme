@@ -51,6 +51,7 @@ require_once 'includes/service_card.inc';
 require_once 'includes/slider.inc';
 require_once 'includes/social_links.inc';
 require_once 'includes/system_branding.inc';
+require_once 'includes/table.inc';
 require_once 'includes/views.inc';
 
 /**
