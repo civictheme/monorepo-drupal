@@ -51,7 +51,7 @@
             {% set display_logo = FALSE %}
           {% endif %}
         {% endif %}
-        {% if not loop.first %}
+        {% if not loop.first and display_logo %}
           <hr class="civictheme-logo--hr">
         {% endif %}
         {% if logo.src is not empty and display_logo %}
