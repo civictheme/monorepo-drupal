@@ -18,7 +18,7 @@
 {% if content %}
   <div class="civictheme-tooltip {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="tooltip">
     <button class="civictheme-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %} data-tooltip-button data-tooltip-position="{{ position }}">
-      {%- include '@atoms/icon/icon.twig' with {
+      {%- include '@base/icon/icon.twig' with {
         symbol: icon|default('information-mark'),
         size: icon_size|default('regular'),
       } only -%}
@@ -29,7 +29,7 @@
         {{ content }}
       </div>
       <div data-tooltip-close>
-        {%- include '@atoms/icon/icon.twig' with {
+        {%- include '@base/icon/icon.twig' with {
           symbol: 'cancel',
           size: regular,
         } only -%}
