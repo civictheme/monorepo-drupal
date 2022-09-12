@@ -58,7 +58,7 @@
 
     {% if icon is not empty %}
       <div class="civictheme-publication-card__icon">
-        {% include '@atoms/icon/icon.twig' with {
+        {% include '@base/icon/icon.twig' with {
           symbol: icon,
           size: 'large',
           color: 'primary',
@@ -75,7 +75,7 @@
             {{ title }}
             {% if link is not empty %}
               <span>
-                {% include '@atoms/icon/icon.twig' with {
+                {% include '@base/icon/icon.twig' with {
                   symbol: 'arrows_download',
                   color: 'primary',
                   modifier_class: 'civictheme-publication-card__icon--download',

@@ -61,7 +61,7 @@
                   {% if link.text is not empty %}
                     <li class="civictheme-attachment__links--link">
                       <span>
-                        {% include '@atoms/icon/icon.twig' with {
+                        {% include '@base/icon/icon.twig' with {
                           symbol: link.icon ? link.icon : 'fileandfolders_document',
                         } only %}
                       </span>
