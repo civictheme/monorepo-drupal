@@ -6,7 +6,7 @@ use Drupal\Core\Url;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\node\Entity\Node;
 use Drush\Drush;
-use Drush\Log\LogLevel;
+use Psr\Log\LogLevel;
 
 /**
  * Class Helper.
@@ -29,7 +29,7 @@ class Helper {
    */
   public static function log($message) {
     if (class_exists('\Drush\Drush')) {
-      Drush::getContainer()->get('logger')->log(LogLevel::OK, strip_tags(html_entity_decode($message)));
+      Drush::getContainer()->get('logger')->log(LogLevel::INFO, strip_tags(html_entity_decode($message)));
       return;
     }
     elseif (PHP_SAPI === 'cli') {
