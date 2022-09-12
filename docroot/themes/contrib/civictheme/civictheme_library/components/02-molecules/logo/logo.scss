@@ -3,9 +3,64 @@
 //
 
 .civictheme-logo {
+  $root: &;
+
   line-height: 0;
 
   img {
     width: 100%;
+  }
+
+  #{$root}--hr {
+    height: inherit;
+    margin: civictheme-space();
+  }
+
+  &.civictheme-theme-light {
+
+    #{$root}-type-inline {
+      display: inline-flex;
+
+      a {
+        display: inline-flex;
+      }
+      #{$root}--hr {
+        border-left: 1px solid $civictheme-icon-light-stripe-color;
+      }
+    }
+    #{$root}-type-stacked {
+      display: inline-block;
+
+      a {
+        display: inline-block;
+      }
+      #{$root}--hr {
+        border: 1px solid $civictheme-icon-light-stripe-color;
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+
+    #{$root}-type-inline {
+      display: inline-flex;
+
+      a {
+        display: inline-flex;
+      }
+      #{$root}--hr {
+        border-left: 1px solid $civictheme-icon-dark-stripe-color;
+      }
+    }
+    #{$root}-type-stacked {
+      display: inline-block;
+
+      a {
+        display: inline-block;
+      }
+      #{$root}--hr {
+        border: 1px solid $civictheme-icon-dark-stripe-color;
+      }
+    }
   }
 }
