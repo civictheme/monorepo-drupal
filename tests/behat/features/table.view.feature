@@ -11,7 +11,7 @@ Feature: Tests the Table
     And I should see a "table.civictheme-table" element
 
   @api
-  Scenario: Styleguide page should show table with correct markup.
+  Scenario: Views page should show table with correct markup.
     Given civictheme_page content:
       | title            | status |
       | [TEST] Page 1    | 1      |

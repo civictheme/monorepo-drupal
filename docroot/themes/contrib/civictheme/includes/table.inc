@@ -5,7 +5,7 @@
  * Table theme alterations.
  */
 
-define('CIVICTHEME_OPT_OUT', 'CivicThemeOptOut');
+define('CIVICTHEME_OPTOUT_TABLE', 'CivicThemeOptOutTable');
 
 /**
  * Implements template_preprocess_table().
@@ -41,13 +41,18 @@ function civictheme_preprocess_table(&$variables) {
  */
 function civictheme_preprocess_views_view_table(&$variables) {
   $view = $variables['view'];
-  $variables['opt_civictheme'] = TRUE;
+  $variables['civictheme_optout_table'] = FALSE;
+  $tags = $view->storage->get('tag');
+  $tags = !empty($tags) ? explode(',', $tags) : [];
 
-  if ($view->storage->get('tag') !== CIVICTHEME_OPT_OUT) {
-    $variables['opt_civictheme'] = FALSE;
+  if (in_array(CIVICTHEME_OPTOUT_TABLE, $tags)) {
+    $variables['civictheme_optout_table'] = TRUE;
+  }
+  else {
     // Header.
     if (!empty($variables['header'])) {
       $rows = NULL;
+
       foreach ($variables['header'] as $row) {
         $rows[] = $row['content'];
       }
