@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Radio component.
+ * Checkbox component.
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
@@ -20,9 +20,9 @@
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set direction_class = 'civictheme-radio-group--%s'|format(direction|default('vertical')) %}
-{% set disabled_class = is_disabled ? 'civictheme-radio-group--disabled' : '' %}
-{% set error_class = is_invalid ? 'civictheme-radio-group--error' : '' %}
+{% set direction_class = 'civictheme-checkbox-group--%s'|format(direction|default('vertical')) %}
+{% set disabled_class = is_disabled ? 'civictheme-checkbox-group--disabled' : '' %}
+{% set error_class = is_invalid ? 'civictheme-checkbox-group--error' : '' %}
 {% set modifier_class = '%s %s %s %s %s'|format(theme_class, direction_class, disabled_class, error_class, modifier_class|default(''))|trim %}
 
 {% if items is not empty %}
@@ -30,12 +30,12 @@
   {% for key, item in items %}
     {% set list_item %}
       {% set item = { theme:theme } | merge(item) %}
-      {% include '@atoms/radio/radio.twig' with item only %}
+      {% include '@atoms/checkbox/checkbox.twig' with item only %}
     {% endset %}
     {% set list_items = list_items|merge([ list_item ]) %}
   {% endfor %}
 
-  <div class="civictheme-radio-group {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+  <div class="civictheme-checkbox-group {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
     {% include '@base/item-list/item-list.twig' with {
       direction: direction,
       items: list_items,

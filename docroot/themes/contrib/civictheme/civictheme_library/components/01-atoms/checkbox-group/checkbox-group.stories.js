@@ -1,16 +1,16 @@
 // phpcs:ignoreFile
-import { number, radios, text } from '@storybook/addon-knobs';
-import CivicThemeRadioGroup from './radio-group.twig';
+import { radios, number, text } from '@storybook/addon-knobs';
+import CivicThemeCheckboxGroup from './checkbox-group.twig';
 import { randomInputItems } from '../../00-base/base.stories';
 
 export default {
-  title: 'Atoms/Form/Radio Group',
+  title: 'Atoms/Form/Checkbox Group',
   parameters: {
     layout: 'centered',
   },
 };
 
-export const RadioGroup = (knobTab) => {
+export const CheckboxGroup = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -42,12 +42,12 @@ export const RadioGroup = (knobTab) => {
         step: 1,
       },
       generalKnobTab,
-    ), true),
+    )),
     attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
   };
 
-  return CivicThemeRadioGroup({
+  return CivicThemeCheckboxGroup({
     ...generalKnobs,
   });
 };
