@@ -14,7 +14,6 @@
   height: rem(46px);
   padding: 0.5em 3.5em 0.5em 1em;
 
-  // reset
   // stylelint-disable-next-line property-no-vendor-prefix
   -webkit-box-sizing: border-box;
   // stylelint-disable-next-line property-no-vendor-prefix
@@ -63,8 +62,7 @@
     }
 
     &:invalid,
-    &.error,
-    &.civictheme-input--error {
+    &.civictheme-select--error {
       border-color: $civictheme-select-light-error-border-color;
       box-shadow: 0 0 0 1px $civictheme-select-light-error-border-color;
     }
@@ -102,7 +100,7 @@
 
     &:invalid,
     &.error,
-    &.civictheme-input--error {
+    &.civictheme-select--error {
       border-color: $civictheme-select-dark-error-border-color;
       box-shadow: 0 0 0 1px $civictheme-select-dark-error-border-color;
       background-color: $civictheme-select-dark-error-background-color;

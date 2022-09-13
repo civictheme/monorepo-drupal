@@ -5,7 +5,6 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - is_multiple: [boolean] Is multiple.
  * - options: [array] Options:
  *   - type: [string] Option type: option group (optgroup) or option (option).
  *   - label: [string] Option label.
@@ -15,21 +14,31 @@
  *     - label: [string] Option label.
  *     - value: [string] Option value.
  *     - selected: [string] Flag whether option is selected.
- * - required: [boolean] Required state.
- * - disabled: [boolean] Disabled state.
- * - has_error: [boolean] Error state.
+ * - is_multiple: [boolean] Is multiple.
+ * - name: [string] DOM name.
+ * - id: [string] DOM id.
+ * - is_disabled: [boolean] Denote if the component is disabled.
+ * - is_invalid: [boolean] Denote if the component is invalid.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set required_class = required ? 'civictheme-input--required required' : '' %}
-{% set error_class = has_error ? 'civictheme-input--error error' : '' %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, required_class, error_class, modifier_class|default('')) %}
+{% set disabled_class = is_disabled ? 'civictheme-select--disabled' : '' %}
+{% set error_class = is_invalid ? 'civictheme-select--error' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, error_class, modifier_class|default(''))|trim %}
 
-{% if options is not empty %}
-  <select class="civictheme-select civictheme-input__element {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif%} {{ disabled ? 'disabled' }} {{ required ? 'required' }} {{ is_multiple ? 'multiple' }}>
+{% if name is not empty and options is not empty %}
+  <select
+    class="civictheme-select {{ modifier_class }}"
+    {{ disabled ? 'disabled' }}
+    {{ is_multiple ? 'multiple' }}
+    name="{{ name }}"
+    {% if id %}id="{{ id }}"{% endif %}
+    {{ is_disabled ? 'disabled' }}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif%}
+  >
     {% for option in options %}
       {% if option.type == 'optgroup' %}
         <optgroup label="{{ option.label }}">
