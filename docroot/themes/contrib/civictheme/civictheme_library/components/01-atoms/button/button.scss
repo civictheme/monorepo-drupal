@@ -481,6 +481,12 @@
 
   &--tertiary {
     @include civictheme-button-type('tertiary');
+
+    &:focus,
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
   }
 
   &--chip {
