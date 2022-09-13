@@ -7,6 +7,7 @@
  * - theme: [string] Theme: light, dark.
  * - size: [string] Chip size: extra-large, large, regular, small, extra-small.
  * - content: [string] The label's content.
+ * - for: [string] Which component this label belongs to.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
@@ -18,5 +19,9 @@
 {% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
 
 {% if content is not empty -%}
-  <label class="civictheme-label {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>{% if content is not empty %}{{ content }}{% endif %}</label>
+  <label
+    class="civictheme-label {{ modifier_class }}"
+    {% if for is not empty %}for="{{ for }}"{% endif %}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >{% if content is not empty %}{{ content }}{% endif %}</label>
 {%- endif %}

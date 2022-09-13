@@ -1,7 +1,7 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeSelect from './select.twig';
-import { randomOptions, getRandomInt } from '../../00-base/base.stories';
+import { randomSelectOptions, getRandomInt } from '../../00-base/base.stories';
 
 export default {
   title: 'Atoms/Form/Select',
@@ -24,7 +24,7 @@ export const Select = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    options: boolean('With options', true, generalKnobTab) ? randomOptions(numOfOptions, (boolean('Options have groups', false, generalKnobTab) ? 'optgroup' : 'option')) : [],
+    options: boolean('With options', true, generalKnobTab) ? randomSelectOptions(numOfOptions, (boolean('Options have groups', false, generalKnobTab) ? 'optgroup' : 'option')) : [],
     is_multiple: boolean('Is multiple', false, generalKnobTab),
     is_invalid: boolean('Invalid', false, generalKnobTab),
     is_disabled: boolean('Disabled', false, generalKnobTab),

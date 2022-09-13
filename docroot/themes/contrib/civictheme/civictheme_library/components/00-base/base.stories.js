@@ -167,7 +167,10 @@ export const formElement = (inputType, options, theme, rand, itr) => {
       formElementOptions.children.push(Checkbox(inputOptions));
       break;
     case 'select':
-      formElementOptions.children.push(Select({ ...inputOptions, options: inputOptions.value }));
+      formElementOptions.children.push(Select({
+        ...inputOptions,
+        options: inputOptions.value,
+      }));
       break;
     default:
       formElementOptions.children.push(Input(inputOptions));
@@ -237,15 +240,27 @@ export const dropDownFilter = (filterType, numOfOptions, theme, rand, itr) => {
   });
 };
 
-export const randomOptions = (numOfOptions, optionType = 'option') => {
-  const options = [];
-  for (let i = 1; i <= numOfOptions; i++) {
-    const option = {
-      type: optionType,
-      selected: false,
-      label: optionType === 'optgroup' ? `Group ${i}` : randomString(getRandomInt(3, 8)),
+export const randomInputItems = (count) => {
+  const items = [];
+  for (let i = 1; i <= count; i++) {
+    const item = {
+      label: randomString(getRandomInt(3, 8)),
       value: randomString(getRandomInt(1, 8)),
-      options: optionType === 'optgroup' ? randomOptions(numOfOptions) : null,
+    };
+    items.push(item);
+  }
+  return items;
+};
+
+export const randomSelectOptions = (count, type = 'option') => {
+  const options = [];
+  for (let i = 1; i <= count; i++) {
+    const option = {
+      type,
+      selected: false,
+      label: type === 'optgroup' ? `Group ${i}` : randomString(getRandomInt(3, 8)),
+      value: randomString(getRandomInt(1, 8)),
+      options: type === 'optgroup' ? randomSelectOptions(count) : null,
     };
     options.push(option);
   }

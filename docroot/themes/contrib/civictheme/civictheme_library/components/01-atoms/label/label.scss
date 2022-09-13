@@ -8,10 +8,13 @@
 .civictheme-label {
   $root: &;
 
-  display: block;
-  margin-bottom: civictheme-space();
-
   @include civictheme-typography('label-regular');
+
+  display: block;
+
+  &[for] {
+    cursor: pointer;
+  }
 
   &--required {
     &::after {

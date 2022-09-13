@@ -5,7 +5,6 @@
 .civictheme-radio {
   $root: &;
 
-  position: absolute;
   display: flex;
   align-items: center;
 
@@ -58,19 +57,7 @@
     }
   }
 
-  #{$root}__label {
-    @include civictheme-typography('text-regular');
-  }
-
   &.civictheme-theme-light {
-    #{$root}__label {
-      color: $civictheme-radio-light-label-color;
-
-      &--disabled {
-        color: $civictheme-radio-light-label-disabled-color;
-      }
-    }
-
     #{$root}__element {
       & + .civictheme-radio__state {
         &::before {
@@ -160,14 +147,6 @@
   }
 
   &.civictheme-theme-dark {
-    #{$root}__label {
-      color: $civictheme-radio-dark-label-color;
-
-      &--disabled {
-        color: $civictheme-radio-dark-label-disabled-color;
-      }
-    }
-
     #{$root}__element {
       & + .civictheme-radio__state {
         &::before {

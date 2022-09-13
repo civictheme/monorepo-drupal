@@ -5,7 +5,7 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - content: [string] Label content.
+ * - label: [string] Label content.
  * - name: [string] DOM name.
  * - value: [string] DOM value.
  * - id: [string] DOM id.
@@ -34,10 +34,13 @@
       {{ is_disabled ? 'disabled' }}
     />
     <span class="civictheme-radio__state"></span>
-    {% if content is not empty %}
-      <label class="civictheme-radio__label" {% if id %}for="{{ id }}"{% endif %}>
-        {{ content }}
-      </label>
+    {% if label is not empty %}
+      {% include '@atoms/label/label.twig' with {
+        theme: theme,
+        content: label,
+        for: id ? id : null,
+        modifier_class: 'civictheme-radio__label',
+      } only %}
     {% endif %}
   </div>
 {% endif %}
