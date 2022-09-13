@@ -16,14 +16,14 @@ export const ItemList = (knobTab) => {
   const generateItems = (count) => {
     const items = [];
     for (let i = 0; i < count; i++) {
-      items.push(`Item ${i + 1}`);
+      items.push(`<div class="story-slot"></div>`);
     }
     return items;
   };
 
   const generalKnobs = {
-    type: radios(
-      'Type',
+    direction: radios(
+      'Direction',
       {
         Horizontal: 'horizontal',
         Vertical: 'vertical',
