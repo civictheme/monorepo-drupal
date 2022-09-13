@@ -31,13 +31,9 @@
   }
 
   &__content {
-    @include civictheme-typography('text-large');
+    @include civictheme-typography('quote');
 
     margin-bottom: 0;
-
-    @include civictheme-breakpoint('m') {
-      @include civictheme-typography('text-extra-large');
-    }
   }
 
   &__author {
