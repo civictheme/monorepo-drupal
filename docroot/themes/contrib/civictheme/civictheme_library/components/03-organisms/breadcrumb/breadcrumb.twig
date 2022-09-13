@@ -9,6 +9,7 @@
  *   - text: [string] Link text.
  *   - url: [string] Link URL.
  * - active_is_link: [boolean] Show active element as a link.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -20,11 +21,12 @@
   {% set links_count = links|length %}
   {% set parent = false %}
 
-  <nav class="civictheme-breadcrumb {{ modifier_class }}" aria-label="breadcrumb">
+  <nav class="civictheme-breadcrumb {{ modifier_class }}" {{ attributes }} aria-label="breadcrumb">
     <ul class="civictheme-breadcrumb__links">
       {% for link in links %}
         {% if link.text is not empty %}
-          <li class="civictheme-breadcrumb__links--link">
+          {% set last_class = 'civictheme-breadcrumb__links--link--last' %}
+          <li class="civictheme-breadcrumb__links--link{% if loop.index == links_count %} civictheme-breadcrumb__links--link--last{% endif %}">
 
             {% if loop.index == links_count - 1 %}
               {% set parent = link %}
@@ -39,11 +41,6 @@
                 url: link.url,
                 attributes: loop.index == links_count ? 'aria-current="location"' : '',
               } only %}
-              {% if (loop.index < links_count) %}
-                {% include '@atoms/icon/icon.twig' with {
-                  symbol: 'arrows_rightarrow',
-                } only %}
-              {% endif %}
             {% endif %}
 
           </li>

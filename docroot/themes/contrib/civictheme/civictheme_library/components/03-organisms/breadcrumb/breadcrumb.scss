@@ -5,7 +5,7 @@
 .civictheme-breadcrumb {
   $root: &;
 
-  @include civictheme-typography('label-small');
+  @include civictheme-typography('label-regular');
 
   &__links {
     list-style: none;
@@ -25,14 +25,33 @@
         display: none;
       }
 
+      &:not(#{$root}__links--link--last) {
+        @include civictheme-breakpoint('m') {
+          &::after {
+            background-size: contain;
+            background-position: center;
+            content: '';
+            display: block;
+            width: civictheme-space(2.5);
+            height: civictheme-space(2.5);
+          }
+        }
+      }
+
       &.mobile-only {
         display: none;
 
         @include civictheme-breakpoint-upto('m') {
           display: flex;
 
+          .civictheme-icon {
+            width: civictheme-space(2.5);
+            height: civictheme-space(2.5);
+          }
+
           .civictheme-link {
             border: none;
+            margin-left: civictheme-space(0.5);
           }
         }
       }
@@ -40,9 +59,10 @@
   }
 
   .civictheme-link {
-    @include civictheme-typography('label-small');
+    @include civictheme-typography('label-regular');
 
     padding: 0;
+    margin-right: civictheme-space();
 
     &:hover {
       padding: 0;
@@ -50,35 +70,63 @@
   }
 
   &.civictheme-theme-light {
-    color: $civictheme-breadcrumb-light-color;
-
     .civictheme-icon {
       fill: $civictheme-breadcrumb-light-icon-color;
     }
 
-    .civictheme-link {
-      color: $civictheme-breadcrumb-light-color;
-      text-decoration-color: $civictheme-breadcrumb-light-color;
+    #{$root}__links {
+      &--link {
+        &:not(#{$root}__links--link--last) {
+          &::after {
+            background-image: civictheme-color-svg-fill($civictheme-breadcrumb-delimiter-icon, $civictheme-breadcrumb-light-icon-color);
+          }
+        }
 
-      &:hover {
-        color: $civictheme-breadcrumb-light-hover-color;
+        [aria-current="location"],
+        .civictheme-link.civictheme-theme-light[aria-current="location"] {
+          color: $civictheme-breadcrumb-light-active-color;
+
+          &:hover {
+            color: $civictheme-link-light-hover-color;
+          }
+        }
+
+        &.mobile-only {
+          .civictheme-icon {
+            fill: $civictheme-link-light-color;
+          }
+        }
       }
     }
   }
 
   &.civictheme-theme-dark {
-    color: $civictheme-breadcrumb-dark-color;
-
     .civictheme-icon {
       fill: $civictheme-breadcrumb-dark-icon-color;
     }
 
-    .civictheme-link {
-      color: $civictheme-breadcrumb-dark-color;
-      text-decoration-color: $civictheme-breadcrumb-dark-color;
+    #{$root}__links {
+      &--link {
+        &:not(#{$root}__links--link--last) {
+          &::after {
+            background-image: civictheme-color-svg-fill($civictheme-breadcrumb-delimiter-icon, $civictheme-breadcrumb-dark-icon-color);
+          }
+        }
 
-      &:hover {
-        color: $civictheme-breadcrumb-dark-hover-color;
+        [aria-current="location"],
+        .civictheme-link.civictheme-theme-dark[aria-current="location"] {
+          color: $civictheme-breadcrumb-dark-active-color;
+
+          &:hover {
+            color: $civictheme-link-dark-hover-color;
+          }
+        }
+
+        &.mobile-only {
+          .civictheme-icon {
+            fill: $civictheme-link-light-color;
+          }
+        }
       }
     }
   }
