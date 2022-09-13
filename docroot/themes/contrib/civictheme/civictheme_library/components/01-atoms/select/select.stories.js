@@ -4,7 +4,7 @@ import CivicThemeSelect from './select.twig';
 import { randomOptions, getRandomInt } from '../../00-base/base.stories';
 
 export default {
-  title: 'Atoms/Select',
+  title: 'Atoms/Form/Select',
   parameters: {
     layout: 'centered',
   },

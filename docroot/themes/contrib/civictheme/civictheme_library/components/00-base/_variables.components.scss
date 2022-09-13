@@ -539,6 +539,76 @@ $civictheme-select-dark-success-border-color: civictheme-color('success') !defau
 $civictheme-select-dark-success-icon-color: civictheme-color('success') !default;
 $civictheme-select-dark-option-background-color: civictheme-color('neutral', 4) !default;
 
+//
+// Textarea.
+//
+$civictheme-textarea-light-color: civictheme-color('neutral', 7) !default;
+$civictheme-textarea-border-radius: math.div($civictheme-border-radius, 1) !default;
+$civictheme-textarea-light-background-color: civictheme-color('neutral', 1) !default;
+$civictheme-textarea-light-border-color: civictheme-color('neutral', 6) !default;
+$civictheme-textarea-light-hover-border-color: civictheme-color('neutral', 6) !default;
+$civictheme-textarea-light-focus-background-color: civictheme-color('neutral', 1) !default;
+$civictheme-textarea-light-focus-color: civictheme-color('neutral', 7) !default;
+$civictheme-textarea-light-focus-outline-color: civictheme-color('neutral', 7) !default;
+$civictheme-textarea-light-focus-border-color: civictheme-color('neutral', 7) !default;
+$civictheme-textarea-light-disabled-color: civictheme-color('neutral', 5) !default;
+$civictheme-textarea-light-disabled-background-color: civictheme-color('neutral', 3) !default;
+$civictheme-textarea-light-error-border-color: civictheme-color('error') !default;
+$civictheme-textarea-light-error-icon-color: civictheme-color('error') !default;
+$civictheme-textarea-light-success-border-color: civictheme-color('success') !default;
+$civictheme-textarea-light-success-icon-color: civictheme-color('success') !default;
+$civictheme-textarea-dark-base-color: civictheme-color('neutral', 1) !default;
+$civictheme-textarea-dark-background-color: civictheme-color('primary', 5) !default;
+$civictheme-textarea-dark-color: civictheme-color('neutral', 3) !default;
+$civictheme-textarea-dark-border-color: civictheme-color('neutral', 5) !default;
+$civictheme-textarea-dark-hover-border-color: civictheme-color('neutral', 3) !default;
+$civictheme-textarea-dark-focus-background-color: civictheme-color('primary', 4) !default;
+$civictheme-textarea-dark-error-border-color: civictheme-color('error') !default;
+$civictheme-textarea-dark-error-icon-color: civictheme-color('error') !default;
+$civictheme-textarea-dark-success-border-color: civictheme-color('success') !default;
+$civictheme-textarea-dark-success-icon-color: civictheme-color('success') !default;
+$civictheme-textarea-dark-focus-color: civictheme-color('neutral', 1) !default;
+$civictheme-textarea-dark-focus-outline-color: civictheme-color('neutral', 1) !default;
+$civictheme-textarea-dark-focus-border-color: civictheme-color('neutral', 1) !default;
+$civictheme-textarea-dark-icon-color: civictheme-color('neutral', 1) !default;
+$civictheme-textarea-dark-disabled-color: civictheme-color('neutral', 3) !default;
+$civictheme-textarea-dark-disabled-background-color: civictheme-color('primary', 4) !default;
+
+//
+// Textfield.
+//
+$civictheme-textfield-light-color: civictheme-color('neutral', 7) !default;
+$civictheme-textfield-border-radius: math.div($civictheme-border-radius, 1) !default;
+$civictheme-textfield-light-background-color: civictheme-color('neutral', 1) !default;
+$civictheme-textfield-light-border-color: civictheme-color('neutral', 6) !default;
+$civictheme-textfield-light-hover-border-color: civictheme-color('neutral', 6) !default;
+$civictheme-textfield-light-focus-background-color: civictheme-color('neutral', 1) !default;
+$civictheme-textfield-light-focus-color: civictheme-color('neutral', 7) !default;
+$civictheme-textfield-light-focus-outline-color: civictheme-color('neutral', 7) !default;
+$civictheme-textfield-light-focus-border-color: civictheme-color('neutral', 7) !default;
+$civictheme-textfield-light-disabled-color: civictheme-color('neutral', 5) !default;
+$civictheme-textfield-light-disabled-background-color: civictheme-color('neutral', 3) !default;
+$civictheme-textfield-light-error-border-color: civictheme-color('error') !default;
+$civictheme-textfield-light-error-icon-color: civictheme-color('error') !default;
+$civictheme-textfield-light-success-border-color: civictheme-color('success') !default;
+$civictheme-textfield-light-success-icon-color: civictheme-color('success') !default;
+$civictheme-textfield-dark-base-color: civictheme-color('neutral', 1) !default;
+$civictheme-textfield-dark-background-color: civictheme-color('primary', 5) !default;
+$civictheme-textfield-dark-color: civictheme-color('neutral', 3) !default;
+$civictheme-textfield-dark-border-color: civictheme-color('neutral', 5) !default;
+$civictheme-textfield-dark-hover-border-color: civictheme-color('neutral', 3) !default;
+$civictheme-textfield-dark-focus-background-color: civictheme-color('primary', 4) !default;
+$civictheme-textfield-dark-error-border-color: civictheme-color('error') !default;
+$civictheme-textfield-dark-error-icon-color: civictheme-color('error') !default;
+$civictheme-textfield-dark-success-border-color: civictheme-color('success') !default;
+$civictheme-textfield-dark-success-icon-color: civictheme-color('success') !default;
+$civictheme-textfield-dark-focus-color: civictheme-color('neutral', 1) !default;
+$civictheme-textfield-dark-focus-outline-color: civictheme-color('neutral', 1) !default;
+$civictheme-textfield-dark-focus-border-color: civictheme-color('neutral', 1) !default;
+$civictheme-textfield-dark-icon-color: civictheme-color('neutral', 1) !default;
+$civictheme-textfield-dark-disabled-color: civictheme-color('neutral', 3) !default;
+$civictheme-textfield-dark-disabled-background-color: civictheme-color('primary', 4) !default;
+
 ////////////////////////////////////////////////////////////////////////////////
 //                               MOLECULES                                    //
 ////////////////////////////////////////////////////////////////////////////////

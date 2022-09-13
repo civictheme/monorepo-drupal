@@ -144,6 +144,7 @@
       }
     }
 
+    &:invalid,
     &.civictheme-checkbox--error {
       #{$root}__element {
         & + .civictheme-checkbox__state {
@@ -236,6 +237,7 @@
       }
     }
 
+    &:invalid,
     &.civictheme-checkbox--error {
       #{$root}__element {
         & + .civictheme-checkbox__state {

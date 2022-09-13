@@ -10,57 +10,55 @@
   display: block;
   margin: 0 auto 0.5rem;
   padding: civictheme-space(1.25) civictheme-space(2);
-  border-radius: $civictheme-input-border-radius;
+  border-radius: $civictheme-textarea-border-radius;
   min-width: rem(300px);
 
-  &.disabled {
+  &:disabled {
     pointer-events: none;
     opacity: 50%;
   }
 
   &.civictheme-theme-light {
-    color: $civictheme-input-light-color;
-    background-color: $civictheme-input-light-background-color;
+    color: $civictheme-textarea-light-color;
+    background-color: $civictheme-textarea-light-background-color;
 
     &:hover {
-      box-shadow: 0 0 0 1px $civictheme-input-light-hover-border-color;
+      box-shadow: 0 0 0 1px $civictheme-textarea-light-hover-border-color;
     }
 
     &:active,
     &:focus {
-      border-color: $civictheme-input-light-focus-border-color;
-      box-shadow: 0 0 0 1px $civictheme-input-light-focus-border-color;
+      border-color: $civictheme-textarea-light-focus-border-color;
+      box-shadow: 0 0 0 1px $civictheme-textarea-light-focus-border-color;
     }
 
     &:invalid,
-    &.error,
-    &.civictheme-input--error {
-      border-color: $civictheme-input-light-error-border-color;
-      box-shadow: 0 0 0 1px $civictheme-input-light-error-border-color;
+    &.civictheme-textarea--error {
+      border-color: $civictheme-textarea-light-error-border-color;
+      box-shadow: 0 0 0 1px $civictheme-textarea-light-error-border-color;
     }
   }
 
   &.civictheme-theme-dark {
-    color: $civictheme-input-dark-color;
-    background-color: $civictheme-input-dark-background-color;
-    border-color: $civictheme-input-dark-border-color;
+    color: $civictheme-textarea-dark-color;
+    background-color: $civictheme-textarea-dark-background-color;
+    border-color: $civictheme-textarea-dark-border-color;
 
     &:hover {
-      border-color: $civictheme-input-dark-hover-border-color;
-      box-shadow: 0 0 0 1px $civictheme-input-dark-hover-border-color;
+      border-color: $civictheme-textarea-dark-hover-border-color;
+      box-shadow: 0 0 0 1px $civictheme-textarea-dark-hover-border-color;
     }
 
     &:active,
     &:focus {
-      border-color: $civictheme-input-dark-focus-border-color;
-      box-shadow: 0 0 0 1px $civictheme-input-dark-focus-border-color;
+      border-color: $civictheme-textarea-dark-focus-border-color;
+      box-shadow: 0 0 0 1px $civictheme-textarea-dark-focus-border-color;
     }
 
     &:invalid,
-    &.error,
-    &.civictheme-input--error {
-      border-color: $civictheme-input-dark-error-border-color;
-      box-shadow: 0 0 0 1px $civictheme-input-dark-error-border-color;
+    &.civictheme-textarea--error {
+      border-color: $civictheme-textarea-dark-error-border-color;
+      box-shadow: 0 0 0 1px $civictheme-textarea-dark-error-border-color;
     }
   }
 }

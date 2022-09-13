@@ -138,6 +138,7 @@
       }
     }
 
+    &:invalid,
     &.civictheme-radio--error {
       #{$root}__element {
         & + .civictheme-radio__state {
@@ -234,6 +235,7 @@
       }
     }
 
+    &:invalid,
     &.civictheme-radio--error {
       #{$root}__element {
         & + .civictheme-radio__state {
