@@ -74,10 +74,10 @@
 
   &.civictheme-theme-light {
     #{$root}__label {
-      color: $civictheme-checkbox-label-light-color;
+      color: $civictheme-checkbox-light-label-color;
 
       &--disabled {
-        color: $civictheme-checkbox-label-disabled-light-color;
+        color: $civictheme-checkbox-light-label-disabled-color;
       }
     }
 
@@ -136,9 +136,9 @@
         & + .civictheme-checkbox__state {
           &::before {
             cursor: default;
-            color: $civictheme-input-light-disabled-color;
-            background-color: $civictheme-input-light-disabled-background-color;
-            border-color: $civictheme-input-light-disabled-color;
+            color: $civictheme-checkbox-light-disabled-color;
+            background-color: $civictheme-checkbox-light-disabled-background-color;
+            border-color: $civictheme-checkbox-light-disabled-color;
           }
         }
       }
@@ -148,15 +148,15 @@
       #{$root}__element {
         & + .civictheme-checkbox__state {
           &::before {
-            border-color: $civictheme-input-light-error-border-color;
+            border-color: $civictheme-checkbox-light-error-border-color;
           }
         }
 
         &:checked {
           & + .civictheme-checkbox__state {
             &::before {
-              border-color: $civictheme-input-light-error-border-color;
-              background-color: $civictheme-input-light-error-border-color;
+              border-color: $civictheme-checkbox-light-error-border-color;
+              background-color: $civictheme-checkbox-light-error-background-color;
             }
           }
         }
@@ -166,10 +166,10 @@
 
   &.civictheme-theme-dark {
     #{$root}__label {
-      color: $civictheme-checkbox-label-dark-color;
+      color: $civictheme-checkbox-dark-label-color;
 
       &--disabled {
-        color: $civictheme-checkbox-label-disabled-dark-color;
+        color: $civictheme-checkbox-dark-label-disabled-color;
       }
     }
 
@@ -177,15 +177,6 @@
       & + .civictheme-checkbox__state {
         &::before {
           border-color: $civictheme-checkbox-dark-border-color;
-          background-color: $civictheme-checkbox-dark-background-color;
-        }
-      }
-
-      &:hover {
-        & + .civictheme-checkbox__state {
-          &::before {
-            box-shadow: 0 0 0 1px $civictheme-checkbox-dark-border-color;
-          }
         }
       }
 
@@ -211,12 +202,20 @@
         }
       }
 
+      &:hover {
+        & + .civictheme-checkbox__state {
+          &::before {
+            box-shadow: 0 0 0 1px $civictheme-checkbox-dark-border-color;
+          }
+        }
+      }
+
       &:checked {
         & + .civictheme-checkbox__state {
           &::before {
             background-color: $civictheme-checkbox-dark-selected-background-color;
             border-color: $civictheme-checkbox-dark-selected-background-color;
-            box-shadow: inset 0 0 0 3px $civictheme-checkbox-dark-background-color;
+            box-shadow: inset 0 0 0 3px $civictheme-checkbox-dark-check-color;
           }
 
           &::after {
@@ -228,27 +227,28 @@
       &:disabled {
         & + .civictheme-checkbox__state {
           &::before {
-            color: $civictheme-input-dark-disabled-color;
-            border-color: $civictheme-checkbox-dark-disabled-border-color;
-            background-color: $civictheme-input-dark-disabled-background-color;
+            cursor: default;
+            color: $civictheme-checkbox-dark-disabled-color;
+            background-color: $civictheme-checkbox-dark-disabled-background-color;
+            border-color: $civictheme-checkbox-dark-disabled-color;
           }
         }
       }
     }
 
-    &.civictheme-input--error {
+    &.civictheme-checkbox--error {
       #{$root}__element {
         & + .civictheme-checkbox__state {
           &::before {
-            border-color: $civictheme-input-dark-error-border-color;
+            border-color: $civictheme-checkbox-dark-error-border-color;
           }
         }
 
         &:checked {
           & + .civictheme-checkbox__state {
             &::before {
-              border-color: $civictheme-input-dark-error-border-color;
-              background-color: $civictheme-input-dark-error-border-color;
+              border-color: $civictheme-checkbox-dark-error-border-color;
+              background-color: $civictheme-checkbox-dark-error-background-color;
             }
           }
         }
