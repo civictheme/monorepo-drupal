@@ -45,12 +45,6 @@
           'border-color': $civictheme-button-light-primary-focus-border-color,
           'outline-color': $civictheme-button-light-primary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-primary-disabled-color,
-          'background-color': $civictheme-button-light-primary-disabled-background-color,
-          'border-color': $civictheme-button-light-primary-disabled-border-color,
-          'outline-color': $civictheme-button-light-primary-disabled-outline-color,
-        ),
         'dismiss': (
           'fill': $civictheme-button-light-primary-dismiss-color,
         ),
@@ -85,12 +79,6 @@
           'background-color': $civictheme-button-dark-primary-focus-background-color,
           'border-color': $civictheme-button-dark-primary-focus-border-color,
           'outline-color': $civictheme-button-dark-primary-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-primary-disabled-color,
-          'background-color': $civictheme-button-dark-primary-disabled-background-color,
-          'border-color': $civictheme-button-dark-primary-disabled-border-color,
-          'outline-color': $civictheme-button-dark-primary-disabled-outline-color,
         ),
         'dismiss': (
           'fill': $civictheme-button-dark-primary-dismiss-color,
@@ -129,12 +117,6 @@
           'border-color': $civictheme-button-light-secondary-focus-border-color,
           'outline-color': $civictheme-button-light-secondary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-secondary-disabled-color,
-          'background-color': $civictheme-button-light-secondary-disabled-background-color,
-          'border-color': $civictheme-button-light-secondary-disabled-border-color,
-          'outline-color': $civictheme-button-light-secondary-disabled-outline-color,
-        ),
         'dismiss': (
           'fill': $civictheme-button-light-secondary-dismiss-color,
         ),
@@ -169,12 +151,6 @@
           'background-color': $civictheme-button-dark-secondary-focus-background-color,
           'border-color': $civictheme-button-dark-secondary-focus-border-color,
           'outline-color': $civictheme-button-dark-secondary-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-secondary-disabled-color,
-          'background-color': $civictheme-button-dark-secondary-disabled-background-color,
-          'border-color': $civictheme-button-dark-secondary-disabled-border-color,
-          'outline-color': $civictheme-button-dark-secondary-disabled-outline-color,
         ),
         'dismiss': (
           'fill': $civictheme-button-dark-secondary-dismiss-color,
@@ -213,12 +189,6 @@
           'border-color': $civictheme-button-light-tertiary-focus-border-color,
           'outline-color': $civictheme-button-light-tertiary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-tertiary-disabled-color,
-          'background-color': $civictheme-button-light-tertiary-disabled-background-color,
-          'border-color': $civictheme-button-light-tertiary-disabled-border-color,
-          'outline-color': $civictheme-button-light-tertiary-disabled-outline-color,
-        ),
         'dismiss': (
           'fill': $civictheme-button-light-tertiary-dismiss-color,
         ),
@@ -253,12 +223,6 @@
           'background-color': $civictheme-button-dark-tertiary-focus-background-color,
           'border-color': $civictheme-button-dark-tertiary-focus-border-color,
           'outline-color': $civictheme-button-dark-tertiary-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-tertiary-disabled-color,
-          'background-color': $civictheme-button-dark-tertiary-disabled-background-color,
-          'border-color': $civictheme-button-dark-tertiary-disabled-border-color,
-          'outline-color': $civictheme-button-dark-tertiary-disabled-outline-color,
         ),
         'dismiss': (
           'fill': $civictheme-button-dark-tertiary-dismiss-color,
@@ -296,12 +260,6 @@
           'background-color': $civictheme-button-light-chip-focus-background-color,
           'border-color': $civictheme-button-light-chip-focus-border-color,
           'outline-color': $civictheme-button-light-chip-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-light-chip-disabled-color,
-          'background-color': $civictheme-button-light-chip-disabled-background-color,
-          'border-color': $civictheme-button-light-chip-disabled-border-color,
-          'outline-color': $civictheme-button-light-chip-disabled-outline-color,
         ),
         'dismiss': (
           'fill': $civictheme-button-light-chip-dismiss-color,
@@ -343,12 +301,6 @@
           'border-color': $civictheme-button-dark-chip-focus-border-color,
           'outline-color': $civictheme-button-dark-chip-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-dark-chip-disabled-color,
-          'background-color': $civictheme-button-dark-chip-disabled-background-color,
-          'border-color': $civictheme-button-dark-chip-disabled-border-color,
-          'outline-color': $civictheme-button-dark-chip-disabled-outline-color,
-        ),
         'dismiss': (
           'fill': $civictheme-button-dark-chip-dismiss-color,
           'fill-selected': $civictheme-button-dark-chip-selected-color
@@ -380,6 +332,8 @@
 
   &[disabled] {
     text-decoration: none;
+    pointer-events: none;
+    opacity: 50%;
   }
 
   .civictheme-icon {
@@ -427,28 +381,6 @@
           &.selected:active,
           &.selected:hover:active {
             @include _civictheme-button-print-rules($type-kind-values);
-          }
-        }
-        @else if $type-kind == 'disabled' {
-          &:disabled,
-          &[disabled],
-          &:disabled:active,
-          &:disabled:focus,
-          &:disabled:focus:hover,
-          &:disabled:focus:active,
-          &:disabled:focus:hover:active,
-          &[disabled]:active,
-          &[disabled]:focus,
-          &[disabled].focus,
-          &[disabled]:focus:hover,
-          &[disabled].focus:hover,
-          &[disabled]:focus:active,
-          &[disabled].focus:active,
-          &[disabled]:focus:hover:active,
-          &[disabled].focus:hover:active {
-            @include _civictheme-button-print-rules($type-kind-values);
-
-            cursor: inherit;
           }
         }
         @else if $type-kind == 'dismiss' {
