@@ -28,10 +28,11 @@
     type="textarea"
     {% if rows %}rows="{{ rows }}"{% endif %}
     name="{{ name }}"
-    {% if value %}value="{{ value }}"{% endif %}
     {% if id %}id="{{ id }}"{% endif %}
     {{ is_disabled ? 'disabled' }}
     {% if placeholder %} placeholder="{{ placeholder }}" {% endif %}
     {% if attributes is not empty %}{{ attributes|raw }}{% endif%}
-/>
+  >
+  {% if value is not empty %}{{ value }}{% endif %}
+  </textarea>
 {% endif %}
