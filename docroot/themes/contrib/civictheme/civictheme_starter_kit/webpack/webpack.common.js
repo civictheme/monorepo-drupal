@@ -27,6 +27,9 @@ module.exports = {
     entries.main.push(path.resolve(__dirname, 'theme_css.js'));
     entries.main.push(path.resolve(__dirname, 'assets.js'));
 
+    // Add libraries.
+    entries.main.push(path.resolve(__dirname, 'libraries.js'));
+
     // Add explicitly css_variables.js.
     entries.variables.push(path.resolve(__dirname, 'css_variables.js'));
 

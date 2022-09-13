@@ -7,6 +7,30 @@
 
   @include civictheme-typography('label-regular');
 
+  display: flex;
+  align-items: center;
+  padding: civictheme-space(3);
+
+  @include civictheme-breakpoint-upto('m') {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__items_per_page {
+    display: flex;
+    align-items: center;
+
+    .civictheme-select {
+      min-width: auto;
+      max-width: rem(80px);
+      margin-left: civictheme-space();
+    }
+
+    @include civictheme-breakpoint-upto('m') {
+      margin-bottom: civictheme-space(2);
+    }
+  }
+
   #{$root}__items {
     list-style: none;
     margin: 0;
@@ -15,6 +39,10 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+
+    @include civictheme-breakpoint('m') {
+      margin-left: auto;
+    }
   }
 
   #{$root}__item {
@@ -38,6 +66,7 @@
 
   &.civictheme-theme-light {
     color: $civictheme-pagination-light-link-color;
+    background-color: $civictheme-pagination-light-background-color;
 
     #{$root}__link {
       @include civictheme-link-colors($civictheme-pagination-light-link-color, $civictheme-pagination-light-link-hover-color, $active: $civictheme-pagination-light-link-active-border-color);
@@ -54,6 +83,7 @@
 
   &.civictheme-theme-dark {
     color: $civictheme-pagination-dark-link-color;
+    background-color: $civictheme-pagination-dark-background-color;
 
     #{$root}__link {
       @include civictheme-link-colors($civictheme-pagination-dark-link-color, $civictheme-pagination-dark-link-hover-color, $active: $civictheme-pagination-dark-link-active-border-color);
