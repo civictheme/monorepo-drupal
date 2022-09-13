@@ -64,10 +64,10 @@
 
   &.civictheme-theme-light {
     #{$root}__label {
-      color: $civictheme-radio-label-light-color;
+      color: $civictheme-radio-light-label-color;
 
       &--disabled {
-        color: $civictheme-radio-label-disabled-light-color;
+        color: $civictheme-radio-light-label-disabled-color;
       }
     }
 
@@ -122,48 +122,35 @@
         & + .civictheme-radio__state {
           &::before {
             cursor: default;
-            color: $civictheme-input-light-disabled-color;
-            background-color: $civictheme-input-light-disabled-background-color;
-            border-color: $civictheme-input-light-disabled-color;
+            color: $civictheme-radio-light-disabled-color;
+            background-color: $civictheme-radio-light-disabled-background-color;
+            border-color: $civictheme-radio-light-disabled-color;
           }
         }
 
         &:checked + .civictheme-radio__state {
           &::before {
-            color: $civictheme-input-light-disabled-color;
-            border-color: $civictheme-input-light-disabled-background-color;
-            background-color: $civictheme-input-light-disabled-color;
+            color: $civictheme-radio-light-disabled-color;
+            border-color: $civictheme-radio-light-disabled-background-color;
+            background-color: $civictheme-radio-light-disabled-color;
           }
         }
       }
     }
 
-    &.success,
-    &.civictheme-input--success {
-      #{$root}__element {
-        &:checked + .civictheme-radio__state {
-          &::before {
-            border-color: $civictheme-input-light-success-border-color;
-            background-color: $civictheme-input-light-success-border-color;
-          }
-        }
-      }
-    }
-
-    &.error,
-    &.civictheme-input--error {
+    &.civictheme-radio--error {
       #{$root}__element {
         & + .civictheme-radio__state {
           &::before {
-            border-color: $civictheme-input-light-error-border-color;
+            border-color: $civictheme-radio-light-error-border-color;
           }
         }
 
         &:checked {
           & + .civictheme-radio__state {
             &::before {
-              border-color: $civictheme-input-light-error-border-color;
-              background-color: $civictheme-input-light-error-border-color;
+              border-color: $civictheme-radio-light-error-border-color;
+              background-color: $civictheme-radio-light-error-border-color;
             }
           }
         }
@@ -173,10 +160,10 @@
 
   &.civictheme-theme-dark {
     #{$root}__label {
-      color: $civictheme-radio-label-dark-color;
+      color: $civictheme-radio-dark-label-color;
 
       &--disabled {
-        color: $civictheme-radio-label-disabled-dark-color;
+        color: $civictheme-radio-dark-label-disabled-color;
       }
     }
 
@@ -184,15 +171,6 @@
       & + .civictheme-radio__state {
         &::before {
           border-color: $civictheme-radio-dark-border-color;
-          background-color: $civictheme-radio-dark-background-color;
-        }
-      }
-
-      &:hover {
-        & + .civictheme-radio__state {
-          &::before {
-            box-shadow: 0 0 0 1px $civictheme-radio-dark-border-color;
-          }
         }
       }
 
@@ -218,12 +196,20 @@
         }
       }
 
+      &:hover {
+        & + .civictheme-radio__state {
+          &::before {
+            box-shadow: 0 0 0 1px $civictheme-radio-dark-border-color;
+          }
+        }
+      }
+
       &:checked {
         & + .civictheme-radio__state {
           &::before {
             background-color: $civictheme-radio-dark-selected-background-color;
             border-color: $civictheme-radio-dark-selected-background-color;
-            box-shadow: inset 0 0 0 3px $civictheme-radio-dark-background-color;
+            box-shadow: inset 0 0 0 3px $civictheme-radio-dark-check-color;
           }
         }
       }
@@ -231,48 +217,36 @@
       &:disabled {
         & + .civictheme-radio__state {
           &::before {
-            color: $civictheme-input-dark-disabled-color;
-            border-color: $civictheme-radio-dark-disabled-border-color;
-            background-color: $civictheme-input-dark-disabled-background-color;
+            cursor: default;
+            color: $civictheme-radio-dark-disabled-color;
+            background-color: $civictheme-radio-dark-disabled-background-color;
+            border-color: $civictheme-radio-dark-disabled-color;
           }
         }
 
         &:checked + .civictheme-radio__state {
           &::before {
-            color: $civictheme-input-dark-disabled-color;
-            border-color: $civictheme-radio-dark-disabled-border-color;
-            background-color: $civictheme-input-dark-disabled-color;
+            color: $civictheme-radio-dark-disabled-color;
+            border-color: $civictheme-radio-dark-disabled-background-color;
+            background-color: $civictheme-radio-dark-disabled-color;
           }
         }
       }
     }
 
-    &.success,
-    &.civictheme-input--success {
-      #{$root}__element {
-        &:checked + .civictheme-radio__state {
-          &::before {
-            border-color: $civictheme-input-dark-success-border-color;
-            background-color: $civictheme-input-dark-success-border-color;
-          }
-        }
-      }
-    }
-
-    &.error,
-    &.civictheme-input--error {
+    &.civictheme-radio--error {
       #{$root}__element {
         & + .civictheme-radio__state {
           &::before {
-            border-color: $civictheme-input-dark-error-border-color;
+            border-color: $civictheme-radio-dark-error-border-color;
           }
         }
 
         &:checked {
           & + .civictheme-radio__state {
             &::before {
-              border-color: $civictheme-input-dark-error-border-color;
-              background-color: $civictheme-input-dark-error-border-color;
+              border-color: $civictheme-radio-dark-error-border-color;
+              background-color: $civictheme-radio-dark-error-border-color;
             }
           }
         }
