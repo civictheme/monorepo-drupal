@@ -1446,3 +1446,18 @@ $civictheme-quote-dark-body-color: civictheme-color('neutral', 4) !default;
 $civictheme-quote-dark-author-color: civictheme-color('neutral', 2) !default;
 $civictheme-quote-dark-background-color: civictheme-color('primary', 4) !default;
 $civictheme-quote-dark-border-color: civictheme-color('primary') !default;
+
+//
+// Popover.
+//
+$civictheme-popover-width: rem(280px) !default;
+$civictheme-popover-description-border-radius: rem(8px) !default;
+$civictheme-popover-z-index: 99 !default;
+$civictheme-tooltip-light-trigger-color: civictheme-color('neutral', 7) !default;
+$civictheme-popover-light-content-color: civictheme-color('neutral', 7) !default;
+$civictheme-popover-light-content-background-color: civictheme-color('neutral', 1) !default;
+$civictheme-popover-light-content-border-color: civictheme-color('neutral', 4) !default;
+$civictheme-tooltip-dark-trigger-color: civictheme-color('secondary') !default;
+$civictheme-popover-dark-content-color: civictheme-color('neutral', 1) !default;
+$civictheme-popover-dark-content-background-color: civictheme-color('primary', 4) !default;
+$civictheme-popover-dark-content-border-color: civictheme-color('primary', 2) !default;
