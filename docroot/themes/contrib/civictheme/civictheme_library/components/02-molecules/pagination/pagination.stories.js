@@ -44,12 +44,10 @@ export const Pagination = (knobTab) => {
     active_is_link: boolean('Active is a link', true, generalKnobTab),
     items: pageCount > 0 ? {
       previous: {
-        text: 'Previous',
         href: randomUrl(),
       },
       pages,
       next: {
-        text: 'Next',
         href: randomUrl(),
       },
     } : null,
@@ -66,7 +64,7 @@ export const Pagination = (knobTab) => {
     } : null,
     current: number(
       'Current page',
-      Math.floor(pageCount / 2),
+      1,
       {
         range: true,
         min: 1,
@@ -75,6 +73,7 @@ export const Pagination = (knobTab) => {
       },
       generalKnobTab,
     ),
+    total_pages: pageCount,
     attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
   };
