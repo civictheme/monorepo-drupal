@@ -8,7 +8,7 @@
   position: relative;
   padding-left: civictheme-space(2);
 
-  &:before {
+  &::before {
     content: '';
     width: civictheme-space();
     border-radius: $civictheme-border-radius;
@@ -51,7 +51,7 @@
     background-color: $civictheme-quote-light-background-color;
     color: $civictheme-quote-light-body-color;
 
-    &:before {
+    &::before {
       background-color: $civictheme-quote-light-border-color;
     }
 
@@ -64,7 +64,7 @@
     background-color: $civictheme-quote-dark-background-color;
     color: $civictheme-quote-dark-body-color;
 
-    &:before {
+    &::before {
       background-color: $civictheme-quote-dark-border-color;
     }
 
