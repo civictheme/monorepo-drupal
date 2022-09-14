@@ -29,13 +29,13 @@
 
   &.civictheme-theme-light {
     background-color: $civictheme-tag-light-background-color;
-    border-color: $civictheme-tag-light-border-color;
     color: $civictheme-tag-light-color;
 
     @include civictheme-icon-fill-color($civictheme-tag-light-color);
 
     &#{$root}--is-alt {
       background-color: $civictheme-tag-light-alt-background-color;
+      border-color: $civictheme-tag-light-alt-border-color;
       color: $civictheme-tag-light-alt-color;
 
       #{$root}__link {
@@ -52,13 +52,13 @@
 
   &.civictheme-theme-dark {
     background-color: $civictheme-tag-dark-background-color;
-    border-color: $civictheme-tag-dark-border-color;
     color: $civictheme-tag-dark-color;
 
     @include civictheme-icon-fill-color($civictheme-tag-dark-color);
 
     &#{$root}--is-alt {
       background-color: $civictheme-tag-dark-alt-background-color;
+      border-color: $civictheme-tag-dark-alt-border-color;
       color: $civictheme-tag-dark-alt-color;
 
       #{$root}__link {

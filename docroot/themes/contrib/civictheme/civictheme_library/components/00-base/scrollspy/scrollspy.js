@@ -4,7 +4,8 @@
  * Scrollspy component.
  *
  * Adds '.civictheme-scrollspy-scrolled' class to an element whose
- * data-scrollspy-offset attribute's value is more than a vertical window scroll.
+ * data-scrollspy-offset attribute's value is more than a vertical window
+ * scroll.
  */
 function CivicScrollspy(el) {
   if (el.getAttribute('data-scrollspy') === 'true' || this.el) {

@@ -99,9 +99,8 @@
     &:disabled {
       & + .civictheme-#{$type}__state {
         &::before {
-          cursor: default;
-          color: $civictheme-input-light-disabled-color;
-          background-color: $civictheme-input-light-disabled-background-color;
+          pointer-events: none;
+          opacity: 50%;
         }
       }
     }
@@ -153,9 +152,8 @@
     &:disabled {
       & + .civictheme-#{$type}__state {
         &::before {
-          cursor: default;
-          color: $civictheme-input-dark-disabled-color;
-          background-color: $civictheme-input-dark-disabled-background-color;
+          pointer-events: none;
+          opacity: 50%;
         }
       }
     }
@@ -165,15 +163,15 @@
   &.civictheme-input--error {
     & + .civictheme-#{$type}__state {
       &::before {
-        border-color: $civictheme-input-dark-error-border-color;
+        border-color: $civictheme-input-error-border-color;
       }
     }
 
     &:checked {
       & + .civictheme-#{$type}__state {
         &::before {
-          border-color: $civictheme-input-dark-error-border-color;
-          background-color: $civictheme-input-dark-error-border-color;
+          border-color: $civictheme-input-error-border-color;
+          background-color: $civictheme-input-error-border-color;
         }
       }
     }

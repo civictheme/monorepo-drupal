@@ -11,7 +11,7 @@
 //
 // These are split into 2 files to allow changing base variables without the
 // need to provide component variables in custom themes (e.g., to override
-// primary color in child theme and have it propagate to components).
+// heading color in child theme and have it propagate to components).
 //
 // Variables organisation rules:
 // 1. Variables are grouped by their atomic type.
@@ -57,56 +57,67 @@ $civictheme-assets-directory: './assets/' !default;
 //
 // Colors.
 //
-// Components are using colors and color variants.
+// Components are using colors defined in the color palette variables.
 //
-// Use $civictheme-colors to override any color values. It is available (and empty)
-// so that any sub-themes could specify their colors in here to override
-// the defaults. This allows CivicTheme to make palette additions without breaking
-// sub-themes.
+// Color palette variables can have custom color values or can be based on
+// the brand colors to allow quick mapping.
+//
+
+// Use $civictheme-colors-brands to provide brand color values.
+// It is available (and empty) so that consumer site implementations could
+// specify their custom brand color values an *additional* colors to extend the
+// brand color set.
+$civictheme-colors-brands: () !default;
+
+// Default CivicTheme colors palette.
+// Use $civictheme-colors to override and extend color palette values.
+// It is available (and empty) so that consumer site implementations could
+// specify their custom color values (to override defaults) and *additional*
+// colors to extend the color palette set. This allows CivicTheme to make
+// color palette additions without breaking consumer site implementations.
 $civictheme-colors: () !default;
-
-// Default CivicTheme colors palette.
 $civictheme-colors-default: (
-  'primary': #00698f,
-  'secondary': #61daff,
-  'outline': #8258c4,
-  'status': #007cbf,
-  'warning': #c95100,
-  'error': #ce3836,
-  'success': #008583,
+  'light': (
+    'heading': civictheme-color-shade(civictheme-color-light('brand1'), 60),
+    'body': civictheme-color-tint(civictheme-color-shade(civictheme-color-light('brand1'), 80), 20),
+    'background-light': civictheme-color-tint(civictheme-color-light('brand2'), 90),
+    'background': civictheme-color-light('brand2'),
+    'background-dark': civictheme-color-shade(civictheme-color-light('brand2'), 20),
+    'border-light': civictheme-color-shade(civictheme-color-light('brand2'), 25),
+    'border': civictheme-color-shade(civictheme-color-light('brand2'), 60),
+    'border-dark': civictheme-color-shade(civictheme-color-light('brand2'), 90),
+    'interaction-text': civictheme-color-tint(civictheme-color-light('brand2'), 80),
+    'interaction-background': civictheme-color-light('brand1'),
+    'interaction-hover-text': civictheme-color-tint(civictheme-color-light('brand2'), 80),
+    'interaction-hover-background': civictheme-color-shade(civictheme-color-light('brand1'), 40),
+    'interaction-focus': #8b5cd7,
+    'highlight': civictheme-color-light('brand3'),
+    'information': #007cbf,
+    'warning': #c95100,
+    'error': #ce3836,
+    'success': #008482,
+  ),
+  'dark': (
+    'heading': civictheme-color-tint(civictheme-color-dark('brand1'), 95),
+    'body': civictheme-color-tint(civictheme-color-dark('brand1'), 85),
+    'background-light': civictheme-color-tint(civictheme-color-dark('brand2'), 5),
+    'background': civictheme-color-dark('brand2'),
+    'background-dark': civictheme-color-shade(civictheme-color-dark('brand2'), 30),
+    'border-light': civictheme-color-tint(civictheme-color-dark('brand2'), 65),
+    'border': civictheme-color-tint(civictheme-color-dark('brand2'), 10),
+    'border-dark': civictheme-color-shade(civictheme-color-dark('brand2'), 30),
+    'interaction-text': civictheme-color-dark('brand2'),
+    'interaction-background': civictheme-color-dark('brand1'),
+    'interaction-hover-text': civictheme-color-shade(civictheme-color-dark('brand2'), 30),
+    'interaction-hover-background': civictheme-color-tint(civictheme-color-dark('brand1'), 40),
+    'interaction-focus': #8b5cd7,
+    'highlight': civictheme-color-dark('brand3'),
+    'information': #4cc4fc,
+    'warning': #e38444,
+    'error': #e85653,
+    'success': #12b0ae,
+  )
 );
-
-// Color variants are derivatives of the colors above, mapped to some sensible
-// defaults using shades.
-//
-// Use $civictheme-colors-variants to override any color variant values  values.
-// It is available (and empty) so that any sub-themes could specify their colors
-// variants in here to override the defaults. This allows CivicTheme to make
-// palette additions without breaking sub-themes.
-
-$civictheme-colors-variants: () !default;
-
-// Default CivicTheme colors palette.
-$civictheme-colors-variants-default: (
-  'primary-variant1': civictheme-color-tint(90, civictheme-color('primary')),
-  'primary-variant2': civictheme-color-shade(15, civictheme-color('primary')),
-  'primary-variant3': civictheme-color-shade(30, civictheme-color('primary')),
-  'primary-variant4': civictheme-color-shade(45, civictheme-color('primary')),
-  'primary-variant5': civictheme-color-shade(60, civictheme-color('primary')),
-  'neutral-variant1': civictheme-color-tone(0, civictheme-color('primary')),
-  'neutral-variant2': civictheme-color-tone(5, civictheme-color('primary')),
-  'neutral-variant3': civictheme-color-tone(10, civictheme-color('primary')),
-  'neutral-variant4': civictheme-color-tone(20, civictheme-color('primary')),
-  'neutral-variant5': civictheme-color-tone(40, civictheme-color('primary')),
-  'neutral-variant6': civictheme-color-tone(60, civictheme-color('primary')),
-  'neutral-variant7': civictheme-color-tone(80, civictheme-color('primary')),
-  'neutral-variant8': civictheme-color-tone(90, civictheme-color('primary')),
-);
-
-// Theme-based background colors for components.
-$civictheme-theme-light-background-color: civictheme-color('neutral', 1);
-$civictheme-theme-dark-background-color: civictheme-color('primary', 4);
-$civictheme-background-blend-mode: soft-light;
 
 //
 // Spacing.
@@ -114,7 +125,7 @@ $civictheme-background-blend-mode: soft-light;
 // Do not use these directly.
 // Use @include civictheme-space() function instead.
 //
-$civictheme-space: 0.5rem !default; // 8px
+$civictheme-space: 0.5rem !default;
 
 //
 // Breakpoints.
@@ -137,7 +148,8 @@ $civictheme-breakpoints: (
 //
 // Grid.
 //
-// Any updates made to the grid system update the documentation at: `/civictheme_library/docs/grid.md`
+
+// Number of grid columns.
 $civictheme-grid-columns: 12 !default;
 
 // Grid spacing used to calculate gutter spacings. Since the grid is based on
@@ -173,6 +185,7 @@ $civictheme-grid-offsets: (
 //
 // Visibility.
 //
+
 // The lowest breakpoint where visibility classes should apply.
 $civictheme-visibility-lowest-breakpoint: 'xxs' !default;
 
@@ -181,9 +194,9 @@ $civictheme-visibility-lowest-breakpoint: 'xxs' !default;
 //
 
 // Use $civictheme-fonts to override any font family values. It is available
-// (and empty) so that any sub-themes could specify their fonts in here to
+// (and empty) so that any consumer sites could specify their fonts in here to
 // override the defaults. This allows CivicTheme to make font additions without
-// breaking sub-themes.
+// breaking consumer sites.
 $civictheme-fonts: () !default;
 $civictheme-fonts-default: (
   'primary': (
@@ -207,7 +220,8 @@ $civictheme-fonts-default: (
 // Add custom fonts to $civictheme-fonts with the same key as above to override
 // fonts or with a new key to add a new font kind.
 // 'uri' can be a URL to the external font or a list of local files with
-// extensions to be imported. The font type will be taken from the file extensions.
+// extensions to be imported. The font type will be taken from the file
+// extensions.
 // Use $civictheme-assets-directory to provide a relative path.
 //
 // IMPORTANT: Make sure to put commas at the end of every list or SASS will not
@@ -242,9 +256,17 @@ $civictheme-fonts-default: (
 //
 // Typography.
 //
+
 // Base font size.
 $civictheme-font-base-size: 16px !default;
+
+// Base font line height.
 $civictheme-font-base-line-height: $civictheme-font-base-size !default;
+
+// Use $civictheme-typography to override any typography values. It is available
+// (and empty) so that any consumer sites could specify their typography in here to
+// override the defaults. This allows CivicTheme to make typography additions
+// without breaking consumer sites.
 $civictheme-typography: () !default;
 $civictheme-typography-default: (
   // Headings.
@@ -316,6 +338,11 @@ $civictheme-font-smoothing-enable: true !default;
 //
 // Icon size.
 //
+
+// Use $civictheme-icon-sizes to override any icon size values. It is available
+// (and empty) so that any consumer sites could specify their icons sizes here
+// to override the defaults. This allows CivicTheme to make icon sizes additions
+// without breaking consumer sites.
 $civictheme-icon-sizes: () !default;
 $civictheme-icon-sizes-default: (
   'extra-large': (
@@ -353,13 +380,19 @@ $civictheme-elevations: (
 //
 // Flyout.
 //
+
+// Flyout animation duration.
 $civictheme-flyout-duration: 0.5s !default;
+
+// Flyout animation direction.
 $civictheme-flyout-direction-transforms: (
   'right': translateX(100%),
   'left': translateX(-100%),
   'top': translateY(-100%),
   'bottom': translateY(100%),
 ) !default;
+
+// Flyout z-index.
 $civictheme-flyout-zindex: 1000 !default;
 
 //
@@ -367,4 +400,7 @@ $civictheme-flyout-zindex: 1000 !default;
 //
 
 // Border radius.
-$civictheme-border-radius: 0.25rem !default;
+$civictheme-border-radius: math.div($civictheme-space, 2) !default;
+
+// Theme-based background colors for components.
+$civictheme-background-blend-mode: soft-light;

@@ -9,9 +9,9 @@
   outline-offset: $civictheme-outline-offset;
 
   @if $is_accent {
-    outline: $civictheme-outline-accent;
+    outline: $civictheme-outline-dark;
   }
   @else {
-    outline: $civictheme-outline;
+    outline: $civictheme-outline-light;
   }
 }
