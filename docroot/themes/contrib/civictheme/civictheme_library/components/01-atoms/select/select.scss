@@ -15,15 +15,21 @@
   &.civictheme-theme-light {
     color: $civictheme-select-light-color;
     background-color: $civictheme-select-light-background-color;
+    border-color: $civictheme-input-light-error-border-color;
 
     &:hover {
       box-shadow: 0 0 0 1px $civictheme-select-light-hover-border-color;
     }
 
+    &:focus {
+      border-color: $civictheme-select-light-focus-border-color;
+      box-shadow: 0 0 0 1px $civictheme-select-light-focus-border-color;
+    }
+
     &.error,
     &.civictheme-input--error {
-      border-color: $civictheme-input-light-error-border-color;
-      box-shadow: 0 0 0 1px $civictheme-input-light-error-border-color;
+      border-color: $civictheme-select-light-error-border-color;
+      box-shadow: 0 0 0 1px $civictheme-select-light-error-border-color;
     }
 
     &.civictheme-input--success {

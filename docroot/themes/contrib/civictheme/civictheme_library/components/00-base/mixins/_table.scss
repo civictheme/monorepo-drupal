@@ -210,10 +210,18 @@
     tbody {
       tr:nth-child(odd) {
         background: $civictheme-table-dark-row-odd-background-color;
+
+        td {
+          color: $civictheme-table-dark-row-odd-color;
+        }
       }
 
       tr:nth-child(even) {
         background: $civictheme-table-dark-row-even-background-color;
+
+        td {
+          color: $civictheme-table-dark-row-even-color;
+        }
       }
     }
   }

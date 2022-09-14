@@ -93,7 +93,6 @@
     flex: 1;
     color: $civictheme-attachment-light-color;
     border-radius: $civictheme-attachment-border-radius;
-    border: solid 1px $civictheme-attachment-light-border-color;
 
     @include civictheme-breakpoint('m') {
       padding: civictheme-space(4);
@@ -169,6 +168,7 @@
     .civictheme-attachment {
       &__content {
         background-color: $civictheme-attachment-light-background-color;
+        border: solid 1px $civictheme-attachment-light-border-color;
       }
 
       &__title {
@@ -203,6 +203,7 @@
     .civictheme-attachment {
       &__content {
         color: $civictheme-attachment-dark-color;
+        border: solid 1px $civictheme-attachment-dark-border-color;
       }
 
       &__title {

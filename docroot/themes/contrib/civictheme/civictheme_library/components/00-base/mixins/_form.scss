@@ -163,15 +163,15 @@
   &.civictheme-input--error {
     & + .civictheme-#{$type}__state {
       &::before {
-        border-color: $civictheme-input-dark-error-border-color;
+        border-color: $civictheme-input-error-border-color;
       }
     }
 
     &:checked {
       & + .civictheme-#{$type}__state {
         &::before {
-          border-color: $civictheme-input-dark-error-border-color;
-          background-color: $civictheme-input-dark-error-border-color;
+          border-color: $civictheme-input-error-border-color;
+          background-color: $civictheme-input-error-border-color;
         }
       }
     }
