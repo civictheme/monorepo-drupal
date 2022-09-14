@@ -12,6 +12,7 @@ use Drupal\node\NodeInterface;
  * Pre-process for Programmatic Block - Banner block.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {
