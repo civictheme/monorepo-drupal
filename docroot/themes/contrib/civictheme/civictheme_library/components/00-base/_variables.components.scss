@@ -834,22 +834,6 @@ $civictheme-pagination-dark-link-hover-color: civictheme-color('neutral', 1) !de
 $civictheme-pagination-dark-link-active-border-color: civictheme-color('neutral', 1) !default;
 
 //
-// Progress indicator.
-//
-$civictheme-progress-indicator-light-color: civictheme-color('neutral', 6) !default;
-$civictheme-progress-indicator-light-active-background-color: civictheme-color('neutral', 2) !default;
-$civictheme-progress-indicator-light-icon-color: civictheme-color('primary') !default;
-$civictheme-progress-indicator-light-border-color: civictheme-color('neutral', 5) !default;
-$civictheme-progress-indicator-light-active-border-color: $civictheme-progress-indicator-light-icon-color !default;
-$civictheme-progress-indicator-light-background-color: transparent !default;
-$civictheme-progress-indicator-dark-color: civictheme-color('neutral', 1) !default;
-$civictheme-progress-indicator-dark-active-background-color: civictheme-color('primary', 3) !default;
-$civictheme-progress-indicator-dark-icon-color: civictheme-color('secondary') !default;
-$civictheme-progress-indicator-dark-border-color: transparent !default;
-$civictheme-progress-indicator-dark-active-border-color: $civictheme-progress-indicator-dark-icon-color !default;
-$civictheme-progress-indicator-dark-background-color: transparent !default;
-
-//
 // Skip link.
 //
 $civictheme-skip-link-light-color: civictheme-color('primary') !default;
