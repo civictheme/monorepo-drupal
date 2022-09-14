@@ -99,7 +99,6 @@ export const demoImage = (idx) => {
     './assets/images/demo1.jpg',
     './assets/images/demo2.jpg',
     './assets/images/demo3.jpg',
-    './assets/images/demo4.jpg',
   ];
 
   idx = idx || Math.floor(Math.random() * images.length);
