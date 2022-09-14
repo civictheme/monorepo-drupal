@@ -15,7 +15,7 @@
     "build-storybook": "build-storybook -s .storybook/static",
     "storybook": "start-storybook -s .storybook/static",
     "storybook-full": "STORYBOOK_FULL=1 start-storybook -s .storybook/static",
-    "lint": "eslint ./components ./.storybook ./webpack && stylelint 'components/**/*.scss'",
+    "lint": "eslint ./components ./.storybook ./webpack && stylelint '{components,assets/sass}/**/*.scss'",
     "lint:fix": "eslint ./components ./.storybook ./webpack --fix && stylelint 'components/**/*.scss' --fix",
     "dist": "webpack --config ./webpack/webpack.prod.js",
     "dist:dev": "webpack --config ./webpack/webpack.dev.js",
