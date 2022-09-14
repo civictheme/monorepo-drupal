@@ -12,12 +12,6 @@ export default {
 export const Pagination = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
-  const pagerType = radios('Pager type', {
-    Default: 'default',
-    Full: 'full',
-    Mini: 'mini',
-  }, 'default', generalKnobTab);
-
   const pageCount = number(
     'Count of pages',
     5,
@@ -31,12 +25,10 @@ export const Pagination = (knobTab) => {
   );
 
   const pages = {};
-  if (pagerType !== 'mini') {
-    for (let i = 0; i < pageCount; i++) {
-      pages[i + 1] = {
-        href: randomUrl(),
-      };
-    }
+  for (let i = 0; i < pageCount; i++) {
+    pages[i + 1] = {
+      href: randomUrl(),
+    };
   }
 
   const generalKnobs = {
@@ -85,15 +77,6 @@ export const Pagination = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
   };
-
-  if (pagerType === 'full') {
-    generalKnobs.items.first = {
-      href: randomUrl(),
-    };
-    generalKnobs.items.last = {
-      href: randomUrl(),
-    };
-  }
 
   return CivicThemePagination({
     ...generalKnobs,
