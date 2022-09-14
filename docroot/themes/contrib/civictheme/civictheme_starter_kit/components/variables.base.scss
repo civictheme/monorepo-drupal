@@ -11,21 +11,31 @@
 
 // Example to override existing CivicTheme's palette color and define
 // custom colors, which will automatically appear in Storybook.
-$civictheme-colors: (
-  // Override palette color.
-  'success': green,
-  // Define custom colors.
-  'custom1': red,
-  'custom2': orange,
-  'custom3': blue,
+
+$civictheme-colors-brands: (
+  'light': (
+    'brand1': #00698f,
+    'brand2': #e6e9eb,
+    'brand3': #121313,
+  ),
+  'dark': (
+    'brand1': #61daff,
+    'brand2': #003a4f,
+    'brand3': #00698f,
+  )
 );
 
 // Example to override existing CivicTheme's palette color variants.
-$civictheme-colors-variants: (
-  // Override palette colors variant.
-  'primary-variant1': lime,
-  // Define custom colors variant.
-  'primary-variant6': brown,
+$civictheme-colors: (
+  // Override palette color variant.
+  'light': (
+    'success': green,
+  ),// Define custom colors variant.
+  'dark': (
+    'custom1': red,
+    'custom2': orange,
+    'custom3': blue,
+  ),
 );
 
 // Example to define 2 custom local fonts which will automatically appear
