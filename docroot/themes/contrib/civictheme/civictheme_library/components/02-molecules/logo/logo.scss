@@ -21,6 +21,12 @@
     #{$root}-type-inline {
       display: inline-flex;
 
+      &#{$root}-dual {
+        img {
+          width: 50%;
+        }
+      }
+
       a {
         display: inline-flex;
       }
@@ -44,6 +50,12 @@
 
     #{$root}-type-inline {
       display: inline-flex;
+
+      &#{$root}-dual {
+        img {
+          width: 50%;
+        }
+      }
 
       a {
         display: inline-flex;
