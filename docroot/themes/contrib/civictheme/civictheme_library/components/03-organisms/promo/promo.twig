@@ -11,6 +11,7 @@
  *   - title [string] Link title.
  *   - url [string] Link URL.
  *   - is_new_window [boolean] Open link in the new window.
+ *   - is_external: [boolean] Link is external.
  * - vertical_space: [string] With top, bottom or both vertical spaces.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
@@ -49,8 +50,8 @@
                       text: link.text,
                       url: link.url,
                       is_new_window: link.is_new_window is defined ? link.is_new_window : false,
+                      is_external: link.is_external is defined ? link.is_external : false,
                       modifier_class: 'civictheme-promo__button',
-                      icon: 'upper-right-arrow',
                     } only %}
                   {% endif %}
                 </div>
