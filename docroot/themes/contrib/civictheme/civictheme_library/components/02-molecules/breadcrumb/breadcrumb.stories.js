@@ -6,7 +6,7 @@ import CivicThemeBreadcrumb from './breadcrumb.twig';
 import { randomLinks } from '../../00-base/base.stories';
 
 export default {
-  title: 'Organisms/Breadcrumb',
+  title: 'Molecules/Breadcrumb',
 };
 
 export const Breadcrumb = (knobTab) => {
