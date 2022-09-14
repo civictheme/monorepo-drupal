@@ -22,18 +22,15 @@
   }
 
   #{$root}__link {
-    width: civictheme-space(3);
-    display: block;
+    display: flex;
+    justify-content: center;
+    min-width: civictheme-space(3);
     text-align: center;
     text-decoration-color: transparent;
 
     &:hover {
       background: transparent;
     }
-  }
-
-  .civictheme-directional-link {
-    padding: 0 civictheme-space();
   }
 
   &.civictheme-theme-light {

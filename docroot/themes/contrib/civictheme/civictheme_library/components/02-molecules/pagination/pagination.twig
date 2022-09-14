@@ -25,14 +25,20 @@
     <ul class="civictheme-pager__items {{ pager_items_modifier_class }}">
       {# Print first item if we are not on the first page. #}
       {% if items.first is not empty %}
-        <li class="civictheme-pager__item civictheme-pager__item--first hide-xxs show-l">
-          {% include '@molecules/directional-link/directional-link.twig' with {
+        {% set text %}
+          {% include '@atoms/icon/icon.twig' with {
             theme: theme,
-            text: items.first.text|default('First1'),
+            symbol: 'arrows_leftarrow_2',
+          } %} {{ items.first.text|default('First') }}
+        {% endset %}
+        <li class="civictheme-pager__item civictheme-pager__item--first hide-xxs show-l">
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: text,
             title: 'Go to first page',
-            aria_text: 'First page',
             url: items.first.href,
-            direction: 'left',
+            hidden_text: 'First page',
+            modifier_class: 'civictheme-pager__link',
           } only %}
         </li>
       {% endif %}
@@ -44,15 +50,26 @@
         {% else %}
           {% set title = 'Go to previous page' %}
         {% endif %}
-        {% include '@molecules/directional-link/directional-link.twig' with {
-          theme: theme,
-          text: items.previous.text|default('Previous'),
-          title: title,
-          aria_text: 'Previous page',
-          url: items.previous.href,
-          disabled: (current - 1) ? 0 : 1,
-          direction: 'left',
-        } only %}
+        {% set text %}
+          {% include '@atoms/icon/icon.twig' with {
+            theme: theme,
+            symbol: 'arrows_leftarrow_2',
+          } %} {{ items.previous.text|default('Previous') }}
+        {% endset %}
+        {% set disabled = (current - 1) ? false : true %}
+        {% set modifier_class = '%s %s'|format('civictheme-pager__link', disabled ? 'civictheme-pager__link--disabled' : '') %}
+        {% if disabled %}
+          <span class="{{ modifier_class }}">{{ text }}</span>
+        {% else %}
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: text,
+            title: title,
+            url: items.previous.href,
+            hidden_text: 'Previous page',
+            modifier_class: modifier_class
+          } only %}
+        {% endif %}
       </li>
 
       {# Add an ellipsis if there are further previous pages. #}
@@ -70,13 +87,14 @@
           {% else %}
             {% set title = 'Go to page %s of %s'|format(key, items.pages|length) %}
           {% endif %}
+          {% set modifier_class = '%s %s'|format('civictheme-pager__link', (current == key ? 'civictheme-pager__link--active' : '')) %}
           {% include '@atoms/link/link.twig' with {
             theme: theme,
             text: key,
             title: title,
             hidden_text: current == key ? 'Current page' : 'Page',
             url: item.href,
-            modifier_class: 'civictheme-pager__link ' ~ (current == key ? 'civictheme-pager__link--active' : ''),
+            modifier_class: modifier_class,
           } only %}
         </li>
       {% endfor %}
@@ -95,27 +113,44 @@
         {% else %}
           {% set title = 'Go to next page' %}
         {% endif %}
-        {% include '@molecules/directional-link/directional-link.twig' with {
-          theme: theme,
-          text: items.next.text|default('Next'),
-          title: title,
-          aria_text: 'Next page',
-          url: items.next.href,
-          disabled: (current < total_pages) ? 0 : 1,
-          direction: 'right',
-        } only %}
+        {% set text %}
+          {{ items.next.text|default('Next')|trim }}{% include '@atoms/icon/icon.twig' with {
+            theme: theme,
+            symbol: 'arrows_rightarrow_3',
+          } %}
+        {% endset %}
+        {% set disabled = (current < total_pages) ? false : true %}
+        {% set modifier_class = '%s %s'|format('civictheme-pager__link', disabled ? 'civictheme-pager__link--disabled' : '') %}
+        {% if disabled %}
+          <span class="{{ modifier_class }}">{{ text }}</span>
+        {% else %}
+          {% include '@atoms/link/link.twig' with {
+            theme: theme,
+            text: text,
+            title: title,
+            url: items.next.href,
+            hidden_text: 'Next page',
+            modifier_class: modifier_class
+          } only %}
+        {% endif %}
       </li>
 
       {# Print last item if we are not on the last page. #}
       {% if items.last %}
         <li class="civictheme-pager__item civictheme-pager__item--last hide-xxs show-l">
-          {% include '@molecules/directional-link/directional-link.twig' with {
+          {% set text %}
+            {% include '@atoms/icon/icon.twig' with {
+              theme: theme,
+              symbol: 'arrows_rightarrow_3',
+            } %} {{ items.last.text|default('Last') }}
+          {% endset %}
+          {% include '@atoms/link/link.twig' with {
             theme: theme,
-            text: items.last.text|default('Last'),
+            text: text,
             title: 'Go to last page',
-            aria_text: 'Last page',
             url: items.last.href,
-            direction: 'right',
+            hidden_text: 'Last page',
+            modifier_class: 'civictheme-pager__link'
           } only %}
         </li>
       {% endif %}

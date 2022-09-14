@@ -68,6 +68,7 @@ export const Pagination = (knobTab) => {
       },
       generalKnobTab,
     ),
+    total_pages: pageCount,
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
