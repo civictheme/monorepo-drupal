@@ -1463,3 +1463,19 @@ $civictheme-webform-light-wrapper-background-color: civictheme-color('neutral', 
 $civictheme-webform-dark-color: civictheme-color('neutral', 1) !default;
 $civictheme-webform-dark-background-color: civictheme-color('primary', 5) !default;
 $civictheme-webform-dark-wrapper-background-color: civictheme-color('primary', 4) !default;
+
+//
+// Quote.
+//
+$civictheme-quote-border-width: civictheme-space(0.75) !default;
+$civictheme-quote-space-vertical: civictheme-space(6) !default;
+$civictheme-quote-light-heading-color: civictheme-color('neutral', 7) !default;
+$civictheme-quote-light-body-color: civictheme-color('neutral', 6) !default;
+$civictheme-quote-light-author-color: civictheme-color('neutral', 7) !default;
+$civictheme-quote-light-background-color: civictheme-color('neutral', 1) !default;
+$civictheme-quote-light-border-color: civictheme-color('neutral', 7) !default;
+$civictheme-quote-dark-heading-color: civictheme-color('neutral', 1) !default;
+$civictheme-quote-dark-body-color: civictheme-color('neutral', 4) !default;
+$civictheme-quote-dark-author-color: civictheme-color('neutral', 2) !default;
+$civictheme-quote-dark-background-color: civictheme-color('primary', 4) !default;
+$civictheme-quote-dark-border-color: civictheme-color('primary') !default;
