@@ -83,7 +83,7 @@
         }
 
         [aria-current="location"],
-        .civictheme-link.civictheme-theme-light[aria-current="location"] {
+        .civictheme-link.civictheme-theme-light[aria-current='location'] {
           color: $civictheme-breadcrumb-light-active-color;
         }
 
@@ -115,8 +115,8 @@
           }
         }
 
-        [aria-current="location"],
-        .civictheme-link.civictheme-theme-dark[aria-current="location"] {
+        [aria-current='location'],
+        .civictheme-link.civictheme-theme-dark[aria-current='location'] {
           color: $civictheme-breadcrumb-dark-active-color;
         }
 
