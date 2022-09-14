@@ -65,7 +65,7 @@
         {% endif %}
         {% include '@atoms/link/link.twig' with {
           theme: theme,
-          text: items.previous.text|default('Previous'),
+          text: items.previous.text|default('Prev'),
           url: items.previous.href,
           disabled: (current - 1) ? 0 : 1,
           icon: 'left-arrow',
@@ -84,7 +84,7 @@
 
       {# Generate pager. #}
       {% for key, item in items.pages %}
-        <li class="civictheme-pager__item hide-xxs show-l {{ current == key ? ' civictheme-pager__item--active' : '' }}">
+        <li class="civictheme-pager__item {{ current == key ? ' civictheme-pager__item--active' : 'hide-xxs show-l' }}">
           {% if current == key %}
             {% set attributes = 'title="Current page"' %}
           {% else %}

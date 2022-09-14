@@ -64,7 +64,7 @@ export const Pagination = (knobTab) => {
     } : null,
     current: number(
       'Current page',
-      1,
+      Math.max(1, Math.floor(pageCount / 2)),
       {
         range: true,
         min: 1,
