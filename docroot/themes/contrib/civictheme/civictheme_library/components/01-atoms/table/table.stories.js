@@ -26,25 +26,25 @@ export const Table = (knobTab) => {
 
   const rows = [
     [
-      "<a class='civictheme-link' href='#' title='Row 1 with link'>Row 4 with link</a>",
+      "<a class='civictheme-content-link' href='#' title='Row 1 with link'>Row 4 with link</a>",
       'Description summary on odd row with space',
       'Another column',
       'One more column column',
     ],
     [
-      "<a class='civictheme-link' href='#' title='Row 2 with link'>Row 4 with link</a>",
+      "<a class='civictheme-content-link' href='#' title='Row 2 with link'>Row 4 with link</a>",
       'Description summary on even row',
       'Another column',
       'One more column column',
     ],
     [
-      "<a class='civictheme-link' href='#' title='Row 3 with link'>Row 4 with link</a>",
+      "<a class='civictheme-content-link' href='#' title='Row 3 with link'>Row 4 with link</a>",
       'Description summary on odd row with space',
       'Another column',
       'One more column column',
     ],
     [
-      "<a class='civictheme-link' href='#' title='Row 4 with link'>Row 4 with link</a>",
+      "<a class='civictheme-content-link' href='#' title='Row 4 with link'>Row 4 with link</a>",
       'Description summary on even row',
       'Another column',
       'One more column column',
