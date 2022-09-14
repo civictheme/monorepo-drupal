@@ -139,10 +139,10 @@
       {% if items.last %}
         <li class="civictheme-pager__item civictheme-pager__item--last hide-xxs show-l">
           {% set text %}
-            {% include '@atoms/icon/icon.twig' with {
+            {{ items.last.text|default('Last') }} {% include '@atoms/icon/icon.twig' with {
               theme: theme,
               symbol: 'arrows_rightarrow_3',
-            } %} {{ items.last.text|default('Last') }}
+            } %}
           {% endset %}
           {% include '@atoms/link/link.twig' with {
             theme: theme,

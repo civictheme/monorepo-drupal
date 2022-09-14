@@ -31,6 +31,8 @@ export const Pagination = (knobTab) => {
     };
   }
 
+  const showFullPager = boolean('Show full pager', false, generalKnobTab);
+
   const generalKnobs = {
     theme: radios(
       'Theme',
@@ -44,12 +46,10 @@ export const Pagination = (knobTab) => {
     heading_id: text('Heading Id', 'civictheme-pager-demo', generalKnobTab),
     items: {
       previous: {
-        text: 'Previous',
         href: randomUrl(),
       },
       pages,
       next: {
-        text: 'Next',
         href: randomUrl(),
       },
     },
@@ -71,6 +71,15 @@ export const Pagination = (knobTab) => {
     total_pages: pageCount,
     modifier_class: text('Additional class', '', generalKnobTab),
   };
+
+  if (showFullPager) {
+    generalKnobs.items.first = {
+      href: randomUrl(),
+    }
+    generalKnobs.items.last = {
+      href: randomUrl(),
+    }
+  }
 
   return CivicThemePagination({
     ...generalKnobs,

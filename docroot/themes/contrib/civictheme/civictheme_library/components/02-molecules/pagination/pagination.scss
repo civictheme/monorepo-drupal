@@ -46,6 +46,16 @@
       &--active {
         text-decoration-color: $civictheme-pagination-light-link-active-border-color;
       }
+
+      &--disabled,
+      &--disabled:hover {
+        color: $civictheme-directional-link-dark-disabled-color;
+
+        .civictheme-icon {
+          fill: $civictheme-directional-link-dark-disabled-color;
+        }
+      }
+
     }
   }
 
@@ -61,6 +71,15 @@
 
       &--active {
         text-decoration-color: $civictheme-pagination-dark-link-active-border-color;
+      }
+
+      &--disabled,
+      &--disabled:hover {
+        color: $civictheme-directional-link-dark-disabled-color;
+
+        .civictheme-icon {
+          fill: $civictheme-directional-link-dark-disabled-color;
+        }
       }
     }
   }
