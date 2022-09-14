@@ -85,50 +85,50 @@
   $map: (
     'status': (
       'light': (
-        'color': $civictheme-alert-status-light-color,
-        'background-color': $civictheme-alert-status-light-background-color,
-        'icon-color': $civictheme-alert-status-light-icon-color,
+        'color': $civictheme-alert-light-status-color,
+        'background-color': $civictheme-alert-light-status-background-color,
+        'icon-color': $civictheme-alert-light-status-icon-color,
       ),
       'dark': (
-        'color': $civictheme-alert-status-dark-color,
-        'background-color': $civictheme-alert-status-dark-background-color,
-        'icon-color': $civictheme-alert-status-dark-icon-color,
+        'color': $civictheme-alert-dark-status-color,
+        'background-color': $civictheme-alert-dark-status-background-color,
+        'icon-color': $civictheme-alert-dark-status-icon-color,
       )
     ),
     'warning': (
       'light': (
-        'color': $civictheme-alert-warning-light-color,
-        'background-color': $civictheme-alert-warning-light-background-color,
-        'icon-color': $civictheme-alert-warning-light-icon-color,
+        'color': $civictheme-alert-light-warning-color,
+        'background-color': $civictheme-alert-light-warning-background-color,
+        'icon-color': $civictheme-alert-light-warning-icon-color,
       ),
       'dark': (
-        'color': $civictheme-alert-warning-dark-color,
-        'background-color': $civictheme-alert-warning-dark-background-color,
-        'icon-color': $civictheme-alert-warning-dark-icon-color,
+        'color': $civictheme-alert-dark-warning-color,
+        'background-color': $civictheme-alert-dark-warning-background-color,
+        'icon-color': $civictheme-alert-dark-warning-icon-color,
       )
     ),
     'error': (
       'light': (
-        'color': $civictheme-alert-error-light-color,
-        'background-color': $civictheme-alert-error-light-background-color,
-        'icon-color': $civictheme-alert-error-light-icon-color,
+        'color': $civictheme-alert-light-error-color,
+        'background-color': $civictheme-alert-light-error-background-color,
+        'icon-color': $civictheme-alert-light-error-icon-color,
       ),
       'dark': (
-        'color': $civictheme-alert-error-dark-color,
-        'background-color': $civictheme-alert-error-dark-background-color,
-        'icon-color': $civictheme-alert-error-dark-icon-color,
+        'color': $civictheme-alert-dark-error-color,
+        'background-color': $civictheme-alert-dark-error-background-color,
+        'icon-color': $civictheme-alert-dark-error-icon-color,
       )
     ),
     'success': (
       'light': (
-        'color': $civictheme-alert-success-light-color,
-        'background-color': $civictheme-alert-success-light-background-color,
-        'icon-color': $civictheme-alert-success-light-icon-color,
+        'color': $civictheme-alert-light-success-color,
+        'background-color': $civictheme-alert-light-success-background-color,
+        'icon-color': $civictheme-alert-light-success-icon-color,
       ),
       'dark': (
-        'color': $civictheme-alert-success-dark-color,
-        'background-color': $civictheme-alert-success-dark-background-color,
-        'icon-color': $civictheme-alert-success-dark-icon-color,
+        'color': $civictheme-alert-dark-success-color,
+        'background-color': $civictheme-alert-dark-success-background-color,
+        'icon-color': $civictheme-alert-dark-success-icon-color,
       )
     ),
   );

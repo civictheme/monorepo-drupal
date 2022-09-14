@@ -150,15 +150,6 @@
 
         td {
           color: $civictheme-table-light-row-odd-color;
-
-          .civictheme-link,
-          a {
-            color: $civictheme-table-light-row-odd-link-color;
-
-            &:hover {
-              color: $civictheme-table-light-row-odd-link-hover-color;
-            }
-          }
         }
       }
 
@@ -167,25 +158,8 @@
 
         td {
           color: $civictheme-table-light-row-even-color;
-
-          .civictheme-link,
-          a {
-            color: $civictheme-table-light-row-even-link-color;
-
-            &:hover {
-              color: $civictheme-table-light-row-odd-link-hover-color;
-            }
-          }
         }
       }
-    }
-  }
-
-  .civictheme-link {
-    color: $civictheme-table-light-link-color;
-
-    &:hover {
-      color: $civictheme-table-light-link-hover-color;
     }
   }
 }
@@ -239,15 +213,6 @@
 
         td {
           color: $civictheme-table-dark-row-odd-color;
-
-          .civictheme-link,
-          a {
-            color: $civictheme-table-dark-row-odd-link-color;
-
-            &:hover {
-              color: $civictheme-table-dark-row-odd-link-hover-color;
-            }
-          }
         }
       }
 
@@ -256,25 +221,8 @@
 
         td {
           color: $civictheme-table-dark-row-even-color;
-
-          .civictheme-link,
-          a {
-            color: $civictheme-table-dark-row-even-link-color;
-
-            &:hover {
-              color: $civictheme-table-dark-row-odd-link-hover-color;
-            }
-          }
         }
       }
-    }
-  }
-
-  .civictheme-link {
-    color: $civictheme-table-dark-link-color;
-
-    &:hover {
-      color: $civictheme-table-dark-link-hover-color;
     }
   }
 }

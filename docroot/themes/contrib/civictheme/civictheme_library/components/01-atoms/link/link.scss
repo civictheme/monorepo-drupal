@@ -11,9 +11,9 @@
   text-underline-offset: 3px;
   padding: 3px 0 2px;
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: none;
-    padding: 3px 0 4px;
   }
 
   .civictheme-link__link-icon {
@@ -26,6 +26,8 @@
 
     &:focus {
       @include civictheme-outline();
+
+      border-radius: $civictheme-link-border-radius;
     }
 
     &:hover {
@@ -49,6 +51,8 @@
 
     &:focus {
       @include civictheme-outline(true);
+
+      border-radius: $civictheme-link-border-radius;
     }
 
     &:hover {

@@ -28,8 +28,6 @@
   }
 
   &__header {
-    $header: &;
-
     display: block;
     margin: 0;
     border-top-left-radius: $civictheme-accordion-header-border-radius;
@@ -133,6 +131,7 @@
 
     #{$root}__header__button {
       background-color: $civictheme-accordion-light-button-background-color;
+      color: $civictheme-accordion-light-button-color;
 
       svg {
         fill: $civictheme-accordion-light-icon-color;

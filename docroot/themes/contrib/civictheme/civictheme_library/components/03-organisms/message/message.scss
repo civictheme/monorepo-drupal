@@ -42,58 +42,58 @@
   $map: (
     'status': (
       'light': (
-        'color': $civictheme-message-status-light-color,
-        'background-color': $civictheme-message-status-light-background-color,
-        'border-color': $civictheme-message-status-light-border-color,
-        'icon-color': $civictheme-message-status-light-icon-color,
+        'color': $civictheme-message-light-status-color,
+        'background-color': $civictheme-message-light-status-background-color,
+        'border-color': $civictheme-message-light-status-border-color,
+        'icon-color': $civictheme-message-light-status-icon-color,
       ),
       'dark': (
-        'color': $civictheme-message-status-dark-color,
-        'background-color': $civictheme-message-status-dark-background-color,
-        'border-color': $civictheme-message-status-dark-border-color,
-        'icon-color': $civictheme-message-status-dark-icon-color,
+        'color': $civictheme-message-dark-status-color,
+        'background-color': $civictheme-message-dark-status-background-color,
+        'border-color': $civictheme-message-dark-status-border-color,
+        'icon-color': $civictheme-message-dark-status-icon-color,
       )
     ),
     'warning': (
       'light': (
-        'color': $civictheme-message-warning-light-color,
-        'background-color': $civictheme-message-warning-light-background-color,
-        'border-color': $civictheme-message-warning-light-border-color,
-        'icon-color': $civictheme-message-warning-light-icon-color,
+        'color': $civictheme-message-light-warning-color,
+        'background-color': $civictheme-message-light-warning-background-color,
+        'border-color': $civictheme-message-light-warning-border-color,
+        'icon-color': $civictheme-message-light-warning-icon-color,
       ),
       'dark': (
-        'color': $civictheme-message-warning-dark-color,
-        'background-color': $civictheme-message-warning-dark-background-color,
-        'border-color': $civictheme-message-warning-dark-border-color,
-        'icon-color': $civictheme-message-warning-dark-icon-color,
+        'color': $civictheme-message-dark-warning-dark-color,
+        'background-color': $civictheme-message-dark-warning-background-color,
+        'border-color': $civictheme-message-dark-warning-border-color,
+        'icon-color': $civictheme-message-dark-warning-icon-color,
       )
     ),
     'error': (
       'light': (
-        'color': $civictheme-message-error-light-color,
-        'background-color': $civictheme-message-error-light-background-color,
-        'border-color': $civictheme-message-error-light-border-color,
-        'icon-color': $civictheme-message-error-light-icon-color,
+        'color': $civictheme-message-light-error-color,
+        'background-color': $civictheme-message-light-error-background-color,
+        'border-color': $civictheme-message-light-error-border-color,
+        'icon-color': $civictheme-message-light-error-icon-color,
       ),
       'dark': (
-        'color': $civictheme-message-error-dark-color,
-        'background-color': $civictheme-message-error-dark-background-color,
-        'border-color': $civictheme-message-error-dark-border-color,
-        'icon-color': $civictheme-message-error-dark-icon-color,
+        'color': $civictheme-message-dark-error-color,
+        'background-color': $civictheme-message-dark-error-background-color,
+        'border-color': $civictheme-message-dark-error-border-color,
+        'icon-color': $civictheme-message-dark-error-icon-color,
       )
     ),
     'success': (
       'light': (
-        'color': $civictheme-message-success-light-color,
-        'background-color': $civictheme-message-success-light-background-color,
-        'border-color': $civictheme-message-success-light-border-color,
-        'icon-color': $civictheme-message-success-light-icon-color,
+        'color': $civictheme-message-light-success-color,
+        'background-color': $civictheme-message-light-success-background-color,
+        'border-color': $civictheme-message-light-success--border-color,
+        'icon-color': $civictheme-message-light-success-icon-color,
       ),
       'dark': (
-        'color': $civictheme-message-success-dark-color,
-        'background-color': $civictheme-message-success-dark-background-color,
-        'border-color': $civictheme-message-success-dark-border-color,
-        'icon-color': $civictheme-message-success-dark-icon-color,
+        'color': $civictheme-message-dark-success-color,
+        'background-color': $civictheme-message-dark-success-background-color,
+        'border-color': $civictheme-message-dark-success-border-color,
+        'icon-color': $civictheme-message-dark-success-icon-color,
       )
     ),
   );

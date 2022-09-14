@@ -8,73 +8,40 @@
 @use 'sass:string';
 
 //
-// Get a color or a color variant from the pre-defined list of colors.
+// Retrieve light theme color.
 //
-@function civictheme-color($name, $idx: null) {
-  @if $idx != null {
-    $all-colors-variants: _civictheme-colors-variants-all();
-    $name: '#{$name}-variant#{$idx}';
+@function civictheme-color-light($name, $arg2: false) {
+  @return _civictheme-color($name, 'light');
+}
 
-    @if map.get($all-colors-variants, $name) != null {
-      @return map.get($all-colors-variants, $name);
-    }
-    @else {
-      @error '"#{$name}" is not an available color variant.';
-    }
-  }
-
-  $all-colors: _civictheme-colors-all();
-
-  @if map.get($all-colors, $name) != null {
-    @return map.get($all-colors, $name);
-  }
-
-  @error '"#{$name}" is not an available color.';
+//
+// Retrieve dark theme color.
+//
+@function civictheme-color-dark($name, $arg2: false) {
+  @return _civictheme-color($name, 'dark');
 }
 
 //
 // Color shade. Do not use on components directly - map to a color variant instead.
 //
-@function civictheme-color-shade($number, $base) {
-  @return color.mix(black, $base, math.percentage(math.div($number, 100)));
+@function civictheme-color-shade($color, $number) {
+  @return color.mix(black, $color, math.percentage(math.div($number, 100)));
 }
 
 //
 // Color tint. Do not use on components directly - map to a color variant instead.
 //
-@function civictheme-color-tint($number, $base) {
-  @return color.mix(white, $base, math.percentage(math.div($number, 100)));
+@function civictheme-color-tint($color, $number) {
+  @return color.mix(white, $color, math.percentage(math.div($number, 100)));
 }
 
 //
 // Color tone. Do not use on components directly - map to a color variant instead.
 //
-@function civictheme-color-tone($number, $base) {
+@function civictheme-color-tone($base, $color) {
   $neutral: color.adjust(color.adjust($base, $saturation: -20%), $lightness: -1 * math.max(color.lightness($base) - 5%, 0%));
 
-  @return color.mix($neutral, white, math.percentage(math.div($number, 100)));
-}
-
-//
-// Compile all colors into a single map.
-//
-// Do not use directly.
-// Use @include civictheme-color() mixin instead.
-//
-// stylelint-disable-next-line scss/at-function-pattern
-@function _civictheme-colors-all() {
-  @return map.merge($civictheme-colors-default, $civictheme-colors);
-}
-
-//
-// Compile all color variants into a single map.
-//
-// Do not use directly.
-// Use @include civictheme-color() mixin instead.
-//
-// stylelint-disable-next-line scss/at-function-pattern
-@function _civictheme-colors-variants-all() {
-  @return map.merge($civictheme-colors-variants-default, $civictheme-colors-variants);
+  @return color.mix($neutral, white, math.percentage(math.div($color, 100)));
 }
 
 //
@@ -96,4 +63,57 @@
 //
 @function civictheme-color-svg-fill($svg, $color) {
   @return civictheme-str-replace($svg, "fill=''", "fill='#{civictheme-color-encode($color)}'");
+}
+
+//
+// Get a color from the pre-defined list of colors.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _civictheme-color($name, $theme) {
+  @if $theme != 'light' and $theme != 'dark' {
+    @error '"#{$theme}" is not an available theme.';
+  }
+
+  $colors: map.deep-merge(_civictheme-colors(), _civictheme-colors-brands());
+  $color: map.get(map.get($colors, $theme), $name);
+
+  @if $color == null {
+    @error '"#{$name}" is not an available color.';
+  }
+
+  @return $color;
+}
+
+//
+// Retrieve all palette colors.
+//
+// Do not use directly.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _civictheme-colors() {
+  $civictheme-colors-default: (
+    'light': (),
+    'dark': ()
+  ) !default;
+  $civictheme-colors: (
+    'light': (),
+    'dark': ()
+  ) !default;
+
+  @return map.deep-merge($civictheme-colors-default, $civictheme-colors);
+}
+
+//
+// Retrieve all brand colors.
+//
+// Do not use directly.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _civictheme-colors-brands() {
+  $civictheme-colors-brands: (
+    'light': (),
+    'dark': ()
+  ) !default;
+
+  @return $civictheme-colors-brands;
 }
