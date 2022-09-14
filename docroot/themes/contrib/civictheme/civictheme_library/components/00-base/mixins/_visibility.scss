@@ -13,9 +13,10 @@
   width: 1px;
   word-wrap: normal;
 
-  &.focusable {
+  &.civictheme-focusable {
     &:active,
-    &:focus {
+    &:focus,
+    &:hover {
       position: static !important;
       overflow: visible;
       clip: auto;

@@ -66,6 +66,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.6",
     "breakpoint-sass": "^2.7.1",
     "normalize.css": "^8.0.1"
   }

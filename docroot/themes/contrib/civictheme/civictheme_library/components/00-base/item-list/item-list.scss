@@ -1,0 +1,33 @@
+//
+// Item List component.
+//
+
+.civictheme-item-list {
+  $root: &;
+
+  &.civictheme-type-horizontal {
+
+    #{$root}__list {
+      display: flex;
+      list-style: none;
+    }
+
+    #{$root}__list__item {
+      margin-right: civictheme-space(2);
+      margin-bottom: auto;
+    }
+  }
+
+  &.civictheme-type-vertical {
+
+    #{$root}__list {
+      display: inline-block;
+      list-style: none;
+    }
+
+    #{$root}__list__item {
+      margin-right: civictheme-space(2);
+      margin-bottom: auto;
+    }
+  }
+}

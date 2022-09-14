@@ -27,16 +27,24 @@ export const Tag = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    is_alt: boolean('Alternative colors', false, generalKnobTab),
-    text: text('Text', 'Tag text', generalKnobTab),
+    type: radios(
+      'Type', {
+        Primary: 'primary',
+        Secondary: 'secondary',
+        Tertiary: 'tertiary',
+      },
+      'primary',
+      generalKnobTab,
+    ),
+    content: text('Content', 'Tag content', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   const iconKnobTab = 'Icon';
-  const { icons } = ICONS;
   const withIcon = boolean('With icon', false, iconKnobTab);
   const iconKnobs = {
-    icon: withIcon ? select('Icon', icons, 'business_calendar', iconKnobTab) : null,
+    icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
     icon_placement: withIcon ? radios(
       'Position',
       {
@@ -52,6 +60,7 @@ export const Tag = (knobTab) => {
   const withLink = boolean('With link', false, linkKnobTab);
   const linkKnobs = {
     url: withLink ? text('URL', randomUrl(), linkKnobTab) : null,
+    is_external: withLink ? boolean('Is external', false, linkKnobTab) : null,
     is_new_window: withLink ? boolean('Open in a new window', false, linkKnobTab) : null,
   };
 

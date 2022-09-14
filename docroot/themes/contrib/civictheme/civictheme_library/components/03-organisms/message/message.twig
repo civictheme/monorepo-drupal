@@ -12,21 +12,21 @@
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set type = type|default('info') %}
+{% set type = type|default('status') %}
 {% set type_class = 'civictheme-message--%s messages--%s'|format(type, type) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
 
 {% set icons = {
-  status: 'userinterface_informationmark',
-  warning: 'userinterface_exclamationmark_1',
-  error: 'userinterface_close_2',
-  success: 'userinterface_approve',
+  status: 'information-mark',
+  warning: 'exclamation-mark-1',
+  error: 'close-outline',
+  success: 'approve',
 } %}
 
 <div class="civictheme-message messages {{ modifier_class }}" role="{% if type == 'error' %}error{% else %}contentinfo{% endif %}" aria-label="{{ type }}" {% if type == 'error' %}aria-live="polite"{% endif %}>
   {% if icons[type] is defined %}
     <div class="civictheme-message__icon">
-      {% include "@atoms/icon/icon.twig" with {
+      {% include "@base/icon/icon.twig" with {
         symbol: icons[type],
         modifier_class: "%s civictheme-icon--%s"|format(theme_class, type)
       } only %}

@@ -101,22 +101,21 @@
                 {% for tag in tags %}
                   {% include '@atoms/tag/tag.twig' with {
                     theme: theme,
-                    text: tag,
-                    is_alt: true,
+                    content: tag,
                   } only %}
                 {% endfor %}
               </div>
             {% endif %}
             {% if url %}
               {% if is_external %}
-                {% include '@atoms/icon/icon.twig' with {
-                  symbol: 'arrows_upperrightarrow',
+                {% include '@base/icon/icon.twig' with {
+                  symbol: 'upper-right-arrow',
                   color: 'primary',
                   modifier_class: 'civictheme-navigation-card__icon--external'
                 } only %}
               {% else %}
-                {% include '@atoms/icon/icon.twig' with {
-                  symbol: 'arrows_rightarrow_3',
+                {% include '@base/icon/icon.twig' with {
+                  symbol: 'upper-right-arrow',
                   color: 'primary',
                   modifier_class: 'civictheme-navigation-card__icon--arrow',
                 } only %}
