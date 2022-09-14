@@ -85,7 +85,9 @@
         [aria-current="location"],
         .civictheme-link.civictheme-theme-light[aria-current="location"] {
           color: $civictheme-breadcrumb-light-active-color;
+        }
 
+        .civictheme-link.civictheme-theme-light {
           &:hover {
             color: $civictheme-link-light-hover-color;
           }
@@ -116,7 +118,9 @@
         [aria-current="location"],
         .civictheme-link.civictheme-theme-dark[aria-current="location"] {
           color: $civictheme-breadcrumb-dark-active-color;
+        }
 
+        .civictheme-link.civictheme-theme-dark {
           &:hover {
             color: $civictheme-link-dark-hover-color;
           }
@@ -124,7 +128,7 @@
 
         &.mobile-only {
           .civictheme-icon {
-            fill: $civictheme-link-light-color;
+            fill: $civictheme-link-dark-color;
           }
         }
       }
