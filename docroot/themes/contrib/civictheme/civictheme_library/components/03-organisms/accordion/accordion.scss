@@ -28,8 +28,6 @@
   }
 
   &__header {
-    $header: &;
-
     display: block;
     margin: 0;
     border-top-left-radius: $civictheme-accordion-header-border-radius;

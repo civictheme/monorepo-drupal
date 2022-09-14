@@ -38,8 +38,6 @@ $all-fonts: _civictheme-fonts-all();
 
     // Validate list: either single URL OR single or multiple local files.
     @each $path in $uri {
-      $has-url: false;
-
       @if string.index($path, 'http') == 1 and list.length($uri) > 1 {
         @error "Font #{$font-map-name} 'uri' value must have only one absolute URL.";
       }
