@@ -68,13 +68,13 @@
 //
 // Get a color from the pre-defined list of colors.
 //
+// stylelint-disable-next-line scss/at-function-pattern
 @function _civictheme-color($name, $theme) {
   @if $theme != 'light' and $theme != 'dark' {
     @error '"#{$theme}" is not an available theme.';
   }
 
   $colors: map.deep-merge(_civictheme-colors(), _civictheme-colors-brands());
-
   $color: map.get(map.get($colors, $theme), $name);
 
   @if $color == null {
@@ -99,6 +99,7 @@
     'light': (),
     'dark': ()
   ) !default;
+
   @return map.deep-merge($civictheme-colors-default, $civictheme-colors);
 }
 
@@ -113,5 +114,6 @@
     'light': (),
     'dark': ()
   ) !default;
+
   @return $civictheme-colors-brands;
 }
