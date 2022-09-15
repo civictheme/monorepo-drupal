@@ -23,6 +23,7 @@ export const Popover = (knobTab) => {
       'light',
       generalKnobTab,
     ),
+    content: boolean('With content', true, generalKnobTab) ? 'Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Sed porttitor lectus nibh.' : '',
     trigger_event: radios(
       'Trigger event',
       {
@@ -32,7 +33,6 @@ export const Popover = (knobTab) => {
       'click',
       generalKnobTab,
     ),
-    content: boolean('With content', true, generalKnobTab) ? 'Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Sed porttitor lectus nibh.' : '',
     attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
   };
