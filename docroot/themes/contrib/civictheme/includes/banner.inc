@@ -207,7 +207,7 @@ function _civictheme_preprocess_civictheme_banner_last_updated(&$variables, $nod
 
 /**
  * Preprocess banner background image.
- * 
+ *
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_preprocess_civictheme_banner_background_image(&$variables, $node) {
