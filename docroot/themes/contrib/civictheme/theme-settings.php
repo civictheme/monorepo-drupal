@@ -79,8 +79,7 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
           '@theme' => $theme_label,
           '@logo_type' => $logo_type,
         ]),
-        '#open' => TRUE,
-        '#tree' => FALSE,
+        '#tree' => TRUE,
       ];
       foreach ($breakpoints as $breakpoint) {
         $form['components']['logo'][$logo_type][$theme]["image_{$logo_type}_{$theme}_{$breakpoint}_group"] = [
@@ -90,7 +89,6 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
             '@breakpoint' => $breakpoint,
             '@logo_type' => $logo_type,
           ]),
-          '#open' => TRUE,
           '#tree' => FALSE,
         ];
 
@@ -248,14 +246,25 @@ function _civictheme_form_system_theme_settings_logo_validate(array &$form, Form
   foreach (array_keys(civictheme_theme_options()) as $theme) {
     foreach ($logo_types as $logo_type) {
       foreach ($breakpoints as $breakpoint) {
-        $field_name_key = ['components', 'logo', "image_{$logo_type}_{$theme}_{$breakpoint}"];
+        $field_name_key = [
+          'components',
+          'logo',
+          $logo_type,
+          $theme,
+          "image_{$logo_type}_{$theme}_{$breakpoint}",
+        ];
         $path = $form_state->getValue($field_name_key);
+        $field_name_processed_key = [
+          'components',
+          'logo',
+          "image_{$logo_type}_{$theme}_{$breakpoint}",
+        ];
 
         // Check for a new uploaded logo.
         if (isset($form['components']['logo']["image_{$logo_type}_{$theme}_{$breakpoint}_group"]["image_{$logo_type}_{$theme}_{$breakpoint}_upload"])) {
           $file = _file_save_upload_from_form($form['components']['logo']["image_{$logo_type}_{$theme}_{$breakpoint}_group"]["image_{$logo_type}_{$theme}_{$breakpoint}_upload"], $form_state, 0, FileSystemInterface::EXISTS_REPLACE);
           if ($file) {
-            // Put the temporary file in form_values so we can save it on submit.
+            // Put the temp file in form_values so we can save it on submit.
             $form_state->setValue("image_{$logo_type}_{$theme}_{$breakpoint}_upload", $file);
           }
         }
@@ -264,7 +273,7 @@ function _civictheme_form_system_theme_settings_logo_validate(array &$form, Form
           $path = _civictheme_form_system_theme_settings_validate_path($path);
           if ($path) {
             $path = \Drupal::service('file_url_generator')->generateString($path);
-            $form_state->setValue($field_name_key, ltrim($path, '/'));
+            $form_state->setValue($field_name_processed_key, ltrim($path, '/'));
             continue;
           }
           $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
