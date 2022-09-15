@@ -27,6 +27,7 @@ function CivicPopover(el) {
 
   this.el = el;
   this.el.setAttribute('data-popover', 'true');
+  this.el.setAttribute('aria-live', 'polite');
   this.button = trigger;
   this.content = content;
 
