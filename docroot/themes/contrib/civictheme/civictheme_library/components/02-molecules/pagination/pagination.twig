@@ -24,7 +24,7 @@
 {% endfor %}
 
 {% if items is not empty %}
-  <nav class="civictheme-pager {{ modifier_class }}" role="navigation" {% if heading_id is not empty %}aria-labelledby="{{ heading_id }}"{% endif %}>
+  <nav class="civictheme-pager {{ modifier_class }}" role="navigation" {% if heading_id is not empty %}aria-labelledby="{{ heading_id }}"{% endif %} title="{{ "Page %s of %s"|format(current, total_pages) }}">
     <h4 {% if heading_id is not empty %}id="{{ heading_id }}"{% endif %} class="civictheme-visually-hidden">{{ 'Pagination' }}</h4>
 
     {% if items_per_page %}
