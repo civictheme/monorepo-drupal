@@ -12,7 +12,7 @@ default:
       value: true
   title:
     -
-      value: 'Menu ites 3'
+      value: 'Menu item 3'
   menu_name:
     -
       value: civictheme-primary-navigation
