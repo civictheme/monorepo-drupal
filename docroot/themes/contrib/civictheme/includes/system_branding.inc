@@ -13,6 +13,8 @@ use Drupal\Core\Url;
  * Implements template_preprocess_block__HOOK().
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.NPathComplexity)
  */
 function civictheme_preprocess_block__system_branding_block(&$variables) {
   $variables['show_site_logo'] = !empty($variables['elements']['#configuration']['use_site_logo']);
