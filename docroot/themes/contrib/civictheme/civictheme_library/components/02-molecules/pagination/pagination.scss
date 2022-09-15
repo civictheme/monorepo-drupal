@@ -50,7 +50,7 @@
   }
 
   #{$root}__link {
-    width: civictheme-space(3);
+    min-width: civictheme-space(3);
     display: block;
     text-align: center;
     text-decoration-color: transparent;
