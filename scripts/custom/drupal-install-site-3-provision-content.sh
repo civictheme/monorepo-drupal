@@ -26,11 +26,11 @@ if [ "${DREVOPS_DRUPAL_PROFILE}" = "govcms" ]; then
   $drush civictheme_govcms:remove-config
 fi
 
-echo "  > Provision content."
-$drush ev -v "require_once '/app/docroot/themes/contrib/civictheme/theme-settings.provision.inc'; civictheme_provision_cli();"
-
 echo "  > Provision default content."
 $drush -y pm-enable civictheme_content
+
+echo "  > Provision content."
+$drush ev -v "require_once '/app/docroot/themes/contrib/civictheme/theme-settings.provision.inc'; civictheme_provision_cli();"
 
 echo "  > Enable helper module."
 $drush -y pm-enable cs_core
