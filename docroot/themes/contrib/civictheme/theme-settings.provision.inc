@@ -36,6 +36,8 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
   $form['provision_content'] = [
     '#type' => 'details',
     '#title' => t('CivicTheme content provisioning'),
+    // @todo Improve content creation by allowing to skip overwriting of the
+    // existing items.
     '#description' => t('Create all required content to make your site look like default CivicTheme.<br/><br/>Triggering this multiple times will result in removal and re-creation of content items.'),
     '#weight' => 51,
     '#open' => FALSE,
@@ -218,8 +220,8 @@ function civictheme_provision(array $types = [], $clear_cache = TRUE, $verbose =
  * This will exit with a non-zero code if there was at least one provisioning
  * failure.
  */
-function civictheme_provision_cli() {
-  $results = civictheme_provision([], TRUE, TRUE);
+function civictheme_provision_cli($types = []) {
+  $results = civictheme_provision($types, TRUE, TRUE);
   $errors = array_filter($results, function ($value) {
     return $value !== TRUE;
   });
@@ -447,6 +449,28 @@ function civictheme_provision_load_media_by_name($name) {
 }
 
 /**
+ * Load menu items.
+ *
+ * @param string $menu_name
+ *   String machine menu name.
+ *
+ * @return array
+ *   Array of menu items.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_provision_load_menu_items($menu_name) {
+  /** @var \Drupal\menu_link_content\MenuLinkContentStorage $storage */
+  $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+
+  $menu_items = $storage->loadByProperties([
+    'menu_name' => $menu_name,
+  ]);
+
+  return $menu_items;
+}
+
+/**
  * Clear all items in the menu.
  *
  * @param string $menu_name
@@ -455,12 +479,7 @@ function civictheme_provision_load_media_by_name($name) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_provision_clear_menu($menu_name) {
-  /** @var \Drupal\menu_link_content\MenuLinkContentStorage $storage */
-  $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
-
-  $menu_items = $storage->loadByProperties([
-    'menu_name' => $menu_name,
-  ]);
+  $menu_items = civictheme_provision_load_menu_items($menu_name);
 
   foreach ($menu_items as $menu_item) {
     $menu_item->delete();
@@ -578,7 +597,11 @@ function civictheme_provision__menu_links() {
   ];
 
   foreach ($menus as $menu_name => $links) {
-    civictheme_provision_clear_menu($menu_name);
+    if (!empty(civictheme_provision_load_menu_items($menu_name))) {
+      // Special case for menu items: only provision for menus without items.
+      // @todo Refactor to support conditional items removal based on the flag.
+      continue;
+    }
     foreach ($links as $title => $uri) {
       $menu_link = MenuLinkContent::create([
         'menu_name' => $menu_name,
