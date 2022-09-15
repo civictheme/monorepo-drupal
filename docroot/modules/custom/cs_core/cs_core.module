@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Site\Settings;
+use Drupal\cs_core\Styleguide;
 
 /**
  * Implements hook_mail_alter().
@@ -60,4 +61,22 @@ HTML;
       ],
     ];
   }
+}
+
+/**
+ * Implements hook_styleguide().
+ */
+function cs_core_styleguide_alter(&$items) {
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(Styleguide::class)
+    ->alter($items);
+}
+
+/**
+ * Implements hook_preprocess_styleguide_links().
+ */
+function cs_core_preprocess_styleguide_links(&$variables) {
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(Styleguide::class)
+    ->preprocessLinks($variables);
 }
