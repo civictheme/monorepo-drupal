@@ -178,7 +178,11 @@
               <li>Ordered list item 5</li>
             </ol>
           </li>
-          <li>Ordered list item 5 - ${ExampleLink('External link in list', randomUrl(), true)}</li>
+          <li>Ordered list item 5 - {% include '@atoms/link/link.twig' with {
+              text: 'External link 2',
+              url: 'http://example.com/qwer',
+              is_external: true,
+            } only %}</li>
         </ol>
       </li>
       <li>Ordered list item 4</li>

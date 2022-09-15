@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_banner_theme
     - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
+    - field.field.node.civictheme_page.field_c_n_blend_mode
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_custom_last_updated
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
@@ -52,6 +53,7 @@ hidden:
   field_c_n_banner_theme: true
   field_c_n_banner_title: true
   field_c_n_banner_type: true
+  field_c_n_blend_mode: true
   field_c_n_components: true
   field_c_n_custom_last_updated: true
   field_c_n_hide_sidebar: true

@@ -39,8 +39,9 @@
 {% if logos is not empty %}
   {% for visibility_type, logo_values in logos %}
     {% set visibility_class = visibility_type == 'mobile' ? 'show-xxs hide-m' : 'hide-xxs show-m' %}
+    {% set logo_class = logo_values|length > 1 ? 'civictheme-logo-dual' : '' %}
     <div class="civictheme-logo {{ visibility_class }} {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-      <div class="{{ type_class }}">
+      <div class="{{ type_class }} {{ logo_class }}">
       {% if url is not empty %}
         <a class="civictheme-logo__url" href="{{ url }}" title="{{ title|default('Click to go to the homepage') }}">
       {% endif %}

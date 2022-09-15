@@ -2,32 +2,34 @@
 // Item List component.
 //
 
+@import '../mixins/reset';
+
 .civictheme-item-list {
   $root: &;
 
-  &.civictheme-type-horizontal {
+  #{$root}__list {
+    @include civictheme-reset-box-model();
 
+    list-style: none;
+  }
+
+  &--horizontal {
     #{$root}__list {
       display: flex;
-      list-style: none;
     }
 
     #{$root}__list__item {
       margin-right: civictheme-space(2);
-      margin-bottom: auto;
     }
   }
 
-  &.civictheme-type-vertical {
-
+  &--vertical {
     #{$root}__list {
       display: inline-block;
-      list-style: none;
     }
 
     #{$root}__list__item {
-      margin-right: civictheme-space(2);
-      margin-bottom: auto;
+      margin-bottom: civictheme-space(2);
     }
   }
 }

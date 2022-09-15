@@ -42,13 +42,16 @@
       {# Print first item if we are not on the first page. #}
       {% if items.first is not empty %}
         <li class="civictheme-pager__item civictheme-pager__item--first hide-xxs show-l">
-          {% include '@molecules/directional-link/directional-link.twig' with {
+          {% set attributes = 'title="Go to last page"' %}
+          {% include '@atoms/link/link.twig' with {
             theme: theme,
-            text: items.first.text|default('First1'),
-            title: 'Go to first page',
-            aria_text: 'First page',
+            text: items.first.text|default('First'),
             url: items.first.href,
-            direction: 'left',
+            disabled: (current - 1) ? 0 : 1,
+            icon: 'left-arrow',
+            icon_placement: 'before',
+            attributes: attributes,
+            modifier_class: 'civictheme-pager__link',
           } only %}
         </li>
       {% endif %}
@@ -56,18 +59,19 @@
       {# Print previous item. #}
       <li class="civictheme-pager__item civictheme-pager__item--previous">
         {% if current - 1 %}
-          {% set title = 'Go to previous page - page %s'|format(current - 1) %}
+          {% set attributes = 'title="Go to previous page - page %s"'|format(current - 1) %}
         {% else %}
-          {% set title = 'Go to previous page' %}
+          {% set attributes = 'title="Go to previous page"' %}
         {% endif %}
-        {% include '@molecules/directional-link/directional-link.twig' with {
+        {% include '@atoms/link/link.twig' with {
           theme: theme,
           text: items.previous.text|default('Previous'),
-          title: title,
-          aria_text: 'Previous page',
           url: items.previous.href,
           disabled: (current - 1) ? 0 : 1,
-          direction: 'left',
+          icon: 'left-arrow',
+          icon_placement: 'before',
+          attributes: attributes,
+          modifier_class: 'civictheme-pager__link',
         } only %}
       </li>
 
@@ -82,9 +86,9 @@
       {% for key, item in items.pages %}
         <li class="civictheme-pager__item hide-xxs show-l {{ current == key ? ' civictheme-pager__item--active' : '' }}">
           {% if current == key %}
-            {% set title = 'Current page' %}
+            {% set attributes = 'title="Current page"' %}
           {% else %}
-            {% set title = 'Go to page %s of %s'|format(key, items.pages|length) %}
+            {% set attributes = 'title="Go to page %s of %s"'|format(key, items.pages|length) %}
           {% endif %}
           {% include '@atoms/link/link.twig' with {
             theme: theme,
@@ -92,6 +96,7 @@
             title: title,
             hidden_text: current == key ? 'Current page' : 'Page',
             url: item.href,
+            attributes: attributes,
             modifier_class: 'civictheme-pager__link ' ~ (current == key ? 'civictheme-pager__link--active' : ''),
           } only %}
         </li>
@@ -107,31 +112,37 @@
       {# Print next item if we are not on the last page. #}
       <li class="civictheme-pager__item civictheme-pager__item--next">
         {% if current < total_pages %}
-          {% set title = 'Go to next page - page %s'|format(current + 1) %}
+          {% set attributes = 'title="Go to next page - page %s"'|format(current + 1) %}
         {% else %}
-          {% set title = 'Go to next page' %}
+          {% set attributes = 'title="Go to next page"' %}
         {% endif %}
-        {% include '@molecules/directional-link/directional-link.twig' with {
+        {% include '@atoms/link/link.twig' with {
           theme: theme,
           text: items.next.text|default('Next'),
           title: title,
           aria_text: 'Next page',
           url: items.next.href,
           disabled: (current < total_pages) ? 0 : 1,
-          direction: 'right',
+          icon: 'right-arrow-2',
+          icon_placement: 'after',
+          attributes: attributes,
+          modifier_class: 'civictheme-pager__link',
         } only %}
       </li>
 
       {# Print last item if we are not on the last page. #}
       {% if items.last %}
+        {% set attributes = 'title="Go to last page"' %}
         <li class="civictheme-pager__item civictheme-pager__item--last hide-xxs show-l">
-          {% include '@molecules/directional-link/directional-link.twig' with {
+          {% include '@atoms/link/link.twig' with {
             theme: theme,
             text: items.last.text|default('Last'),
-            title: 'Go to last page',
-            aria_text: 'Last page',
             url: items.last.href,
-            direction: 'right',
+            disabled: (current < total_pages) ? 0 : 1,
+            icon: 'right-arrow-2',
+            icon_placement: 'after',
+            attributes: attributes,
+            modifier_class: 'civictheme-pager__link',
           } only %}
         </li>
       {% endif %}

@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_banner_theme
     - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
+    - field.field.node.civictheme_page.field_c_n_blend_mode
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_custom_last_updated
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
@@ -22,7 +23,6 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_topics
     - node.type.civictheme_page
   module:
-    - content_moderation
     - datetime
     - field_group
     - media_library
@@ -51,6 +51,7 @@ third_party_settings:
         - field_c_n_banner_hide_breadcrumb
         - field_c_n_banner_title
         - field_c_n_banner_background
+        - field_c_n_blend_mode
         - field_c_n_banner_featured_image
         - field_c_n_banner_components
         - field_c_n_banner_components_bott
@@ -175,7 +176,7 @@ content:
     third_party_settings: {  }
   field_c_n_banner_featured_image:
     type: media_library_widget
-    weight: 15
+    weight: 16
     region: content
     settings:
       media_types: {  }
@@ -204,6 +205,12 @@ content:
   field_c_n_banner_type:
     type: options_buttons
     weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_c_n_blend_mode:
+    type: options_select
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
