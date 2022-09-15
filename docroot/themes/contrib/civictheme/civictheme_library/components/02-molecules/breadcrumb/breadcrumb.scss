@@ -5,25 +5,35 @@
 .civictheme-breadcrumb {
   $root: &;
 
-  &__links {
-    list-style: none;
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    padding: 0;
+  .civictheme-item-list {
+    &.civictheme-breadcrumb__links {
+      .civictheme-item-list__list__item {
+        margin-right: civictheme-space();
+      }
+    }
 
-    &--link {
-      margin-right: civictheme-space();
+    &__list {
+      display: none;
+      flex-wrap: wrap;
+      margin: civictheme-space(0.75) 0;
+      padding: 0;
+    }
+
+    &__list__item {
       display: flex;
-      align-items: center;
 
-      @include civictheme-breakpoint-upto('m') {
-        display: none;
+      .civictheme-link {
+        // Hide external icon.
+        &::after {
+          display: none;
+        }
+
+        &[aria-current='location'] {
+          text-decoration: underline;
+        }
       }
 
-      &:not(#{$root}__links--link--last) {
+      &:not(:last-child) {
         @include civictheme-breakpoint('m') {
           &::after {
             background-size: contain;
@@ -35,23 +45,28 @@
           }
         }
       }
+    }
+  }
 
-      &.mobile-only {
-        display: none;
+  &__links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    line-height: civictheme-space(2.5);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 
-        @include civictheme-breakpoint-upto('m') {
-          display: flex;
+    @include civictheme-breakpoint-upto('m') {
+      display: none;
+    }
 
-          .civictheme-icon {
-            width: civictheme-space(2.5);
-            height: civictheme-space(2.5);
-          }
+    &.mobile-only {
+      display: none;
 
-          .civictheme-link {
-            border: none;
-            margin-left: civictheme-space(0.5);
-          }
-        }
+      @include civictheme-breakpoint-upto('m') {
+        display: flex;
       }
     }
   }
@@ -71,27 +86,27 @@
     }
 
     #{$root}__links {
-      &--link {
-        &:not(#{$root}__links--link--last) {
+      .civictheme-item-list {
+        &__list__item {
           &::after {
             background-image: civictheme-color-svg-fill($civictheme-breadcrumb-delimiter-icon, $civictheme-breadcrumb-light-icon-color);
           }
-        }
 
-        [aria-current='location'],
-        .civictheme-link.civictheme-theme-light[aria-current='location'] {
-          color: $civictheme-breadcrumb-light-active-color;
-        }
-
-        .civictheme-link.civictheme-theme-light {
-          &:hover {
-            color: $civictheme-link-light-hover-color;
+          [aria-current='location'],
+          .civictheme-link.civictheme-theme-light[aria-current='location'] {
+            color: $civictheme-breadcrumb-light-active-color;
           }
-        }
 
-        &.mobile-only {
-          .civictheme-icon {
-            fill: $civictheme-link-light-color;
+          .civictheme-link.civictheme-theme-light {
+            &:hover {
+              color: $civictheme-link-light-hover-color;
+            }
+          }
+
+          &.mobile-only {
+            .civictheme-icon {
+              fill: $civictheme-link-light-color;
+            }
           }
         }
       }
@@ -104,27 +119,27 @@
     }
 
     #{$root}__links {
-      &--link {
-        &:not(#{$root}__links--link--last) {
+      .civictheme-item-list {
+        &__list__item {
           &::after {
             background-image: civictheme-color-svg-fill($civictheme-breadcrumb-delimiter-icon, $civictheme-breadcrumb-dark-icon-color);
           }
-        }
 
-        [aria-current='location'],
-        .civictheme-link.civictheme-theme-dark[aria-current='location'] {
-          color: $civictheme-breadcrumb-dark-active-color;
-        }
-
-        .civictheme-link.civictheme-theme-dark {
-          &:hover {
-            color: $civictheme-link-dark-hover-color;
+          [aria-current='location'],
+          .civictheme-link.civictheme-theme-dark[aria-current='location'] {
+            color: $civictheme-breadcrumb-dark-active-color;
           }
-        }
 
-        &.mobile-only {
-          .civictheme-icon {
-            fill: $civictheme-link-dark-color;
+          .civictheme-link.civictheme-theme-dark {
+            &:hover {
+              color: $civictheme-link-dark-hover-color;
+            }
+          }
+
+          &.mobile-only {
+            .civictheme-icon {
+              fill: $civictheme-link-dark-color;
+            }
           }
         }
       }

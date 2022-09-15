@@ -22,43 +22,47 @@
   {% set parent = false %}
 
   <nav class="civictheme-breadcrumb {{ modifier_class }}" {{ attributes }} aria-label="breadcrumb">
-    <ul class="civictheme-breadcrumb__links">
-      {% for link in links %}
-        {% if link.text is not empty %}
-          {% set last_class = 'civictheme-breadcrumb__links--link--last' %}
-          <li class="civictheme-breadcrumb__links--link{% if loop.index == links_count %} civictheme-breadcrumb__links--link--last{% endif %}">
-
-            {% if loop.index == links_count - 1 %}
-              {% set parent = link %}
-            {% endif %}
-
-            {% if not active_is_link and (loop.index == links_count) %}
-              <span aria-current="location">{{ link.text }}</span>
-            {% else %}
-              {% include '@atoms/link/link.twig' with {
-                theme: theme,
-                text: link.text,
-                url: link.url,
-                attributes: loop.index == links_count ? 'aria-current="location"' : '',
-              } only %}
-            {% endif %}
-
-          </li>
+    {% include '@base/icon/icon.twig' with {
+      symbol: 'arrows_leftarrow_2',
+    } only %}
+    {% set link_items = [] %}
+    {% for key, link in links %}
+      {% set link_item %}
+        {% set link = {
+          theme: theme,
+          attributes: loop.index == links_count ? 'aria-current="location"' : '',
+          modifier_class: 'civictheme-breadcrumb__links__link',
+        } | merge(link) %}
+        {% if not active_is_link and (loop.index == links_count) %}
+          <span aria-current="location">{{ link.text }}</span>
+        {% else %}
+          {% include '@atoms/link/link.twig' with link only %}
         {% endif %}
-      {% endfor %}
-
-      {% if parent is not empty %}
-        <li class="civictheme-breadcrumb__links--link mobile-only">
-          {% include '@base/icon/icon.twig' with {
-            symbol: 'arrows_leftarrow_2',
-          } only %}
-          {% include '@atoms/link/link.twig' with {
-            theme: theme,
-            text: parent.text,
-            url: parent.url,
-          } only %}
-        </li>
+      {% endset %}
+      {% if loop.index == links_count - 1 %}
+        {% set parent = link %}
       {% endif %}
-    </ul>
+      {% set link_items = link_items|merge([ link_item ]) %}
+    {% endfor %}
+
+    {% if parent %}
+      {% set parent_link_item %}
+        {% include '@base/icon/icon.twig' with {
+          symbol: 'arrows_leftarrow_2',
+        } only %}
+        {% include '@atoms/link/link.twig' with parent only %}
+      {% endset %}
+      {% include '@base/item-list/item-list.twig' with {
+        direction: 'horizontal',
+        items: [parent_link_item],
+        modifier_class: 'civictheme-breadcrumb__links mobile-only',
+      } only %}
+    {% endif %}
+
+    {% include '@base/item-list/item-list.twig' with {
+      direction: 'horizontal',
+      items: link_items,
+      modifier_class: 'civictheme-breadcrumb__links',
+    } only %}
   </nav>
 {% endif %}
