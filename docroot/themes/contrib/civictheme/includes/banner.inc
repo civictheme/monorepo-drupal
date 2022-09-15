@@ -207,6 +207,8 @@ function _civictheme_preprocess_civictheme_banner_last_updated(&$variables, $nod
 
 /**
  * Preprocess banner background image.
+ * 
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_preprocess_civictheme_banner_background_image(&$variables, $node) {
   $background_image = civictheme_get_field_value($node, 'field_c_n_banner_background', TRUE);
