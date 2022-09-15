@@ -1456,7 +1456,7 @@ $civictheme-quote-dark-border-color: civictheme-color('primary') !default;
 // Popover.
 //
 $civictheme-popover-width: rem(280px) !default;
-$civictheme-popover-description-border-radius: rem(8px) !default;
+$civictheme-popover-description-border-radius: $civictheme-border-radius !default;
 $civictheme-popover-z-index: 99 !default;
 $civictheme-tooltip-light-trigger-color: civictheme-color('neutral', 7) !default;
 $civictheme-popover-light-content-color: civictheme-color('neutral', 7) !default;
