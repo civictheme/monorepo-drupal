@@ -42,26 +42,6 @@ export const Pagination = (knobTab) => {
       generalKnobTab,
     ),
     active_is_link: boolean('Active is a link', true, generalKnobTab),
-    items: pageCount > 0 ? {
-      previous: {
-        href: randomUrl(),
-      },
-      pages,
-      next: {
-        href: randomUrl(),
-      },
-    } : null,
-    heading_id: text('Heading Id', 'civictheme-pager-demo', generalKnobTab),
-    ellipses: boolean('With ellipses', true, generalKnobTab) ? {
-      previous: 0,
-      next: 1,
-    } : false,
-    items_per_page: boolean('With items per page', true, generalKnobTab) ? {
-      10: 10,
-      20: 20,
-      50: 50,
-      100: 100,
-    } : null,
     current: number(
       'Current page',
       1,
@@ -73,6 +53,26 @@ export const Pagination = (knobTab) => {
       },
       generalKnobTab,
     ),
+    items_per_page: boolean('With items per page', true, generalKnobTab) ? {
+      10: 10,
+      20: 20,
+      50: 50,
+      100: 100,
+    } : null,
+    items: pageCount > 0 ? {
+      previous: {
+        href: randomUrl(),
+      },
+      pages,
+      next: {
+        href: randomUrl(),
+      },
+    } : null,
+    heading_id: text('Heading Id', '', generalKnobTab),
+    ellipses: boolean('With ellipses', true, generalKnobTab) ? {
+      previous: 0,
+      next: 1,
+    } : false,
     total_pages: pageCount,
     attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),

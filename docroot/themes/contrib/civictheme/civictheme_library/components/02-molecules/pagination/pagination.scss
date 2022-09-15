@@ -19,10 +19,16 @@
   &__items_per_page {
     display: flex;
     align-items: center;
+    flex-wrap: nowrap;
+
+    label {
+      display: inline-block;
+      white-space: nowrap;
+    }
 
     .civictheme-select {
       min-width: auto;
-      max-width: rem(80px);
+      max-width: civictheme-space(15);
       margin-left: civictheme-space();
     }
 
@@ -47,6 +53,7 @@
 
   #{$root}__item {
     margin-right: civictheme-space();
+    min-width: civictheme-space(3);
   }
 
   #{$root}__link {
@@ -57,6 +64,10 @@
 
     &:hover {
       background: transparent;
+    }
+
+    &--active {
+      text-decoration: underline;
     }
   }
 
@@ -77,6 +88,7 @@
 
       &--active {
         text-decoration-color: $civictheme-pagination-light-link-active-border-color;
+        color: $civictheme-pagination-light-link-hover-color;
       }
     }
   }
@@ -94,6 +106,7 @@
 
       &--active {
         text-decoration-color: $civictheme-pagination-dark-link-active-border-color;
+        color: $civictheme-pagination-dark-link-hover-color;
       }
     }
   }
