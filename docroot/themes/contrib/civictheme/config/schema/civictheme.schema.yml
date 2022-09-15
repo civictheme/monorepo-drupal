@@ -46,12 +46,18 @@ civictheme.settings:
             theme:
               label: 'Header theme'
               type: string
+            type:
+              label: 'Header type'
+              type: string
         footer:
           type: mapping
           label: 'Footer settings'
           mapping:
             theme:
               label: 'Footer theme'
+              type: string
+            type:
+              label: 'Footer type'
               type: string
             background_image:
               label: 'Footer background image'

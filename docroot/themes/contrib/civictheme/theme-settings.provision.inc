@@ -846,7 +846,9 @@ function civictheme_provision__theme_settings() {
   }
   $components['logo']['image_alt'] = 'CivicTheme demo logo';
   $components['header']['theme'] = 'light';
+  $components['header']['type'] = 'default';
   $components['footer']['theme'] = 'dark';
+  $components['footer']['type'] = 'default';
 
   $config = \Drupal::service('config.factory')->getEditable("$theme_name.settings");
 

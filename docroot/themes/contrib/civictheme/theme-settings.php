@@ -148,6 +148,15 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
     '#default_value' => theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT,
   ];
 
+  $form['components']['header']['type'] = [
+    '#title' => t('Header logo type'),
+    '#description' => t('Set the type option for the Header component.'),
+    '#type' => 'radios',
+    '#required' => TRUE,
+    '#options' => civictheme_type_options(),
+    '#default_value' => theme_get_setting('components.header.type') ?? CIVICTHEME_HEADER_TYPE_DEFAULT,
+  ];
+
   $form['components']['footer'] = [
     '#type' => 'details',
     '#title' => t('Footer'),
@@ -162,6 +171,15 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
     '#required' => TRUE,
     '#options' => civictheme_theme_options(),
     '#default_value' => theme_get_setting('components.footer.theme') ?? CIVICTHEME_FOOTER_THEME_DEFAULT,
+  ];
+
+  $form['components']['footer']['type'] = [
+    '#title' => t('Footer logo type'),
+    '#description' => t('Set the type option for the Footer component.'),
+    '#type' => 'radios',
+    '#required' => TRUE,
+    '#options' => civictheme_type_options(),
+    '#default_value' => theme_get_setting('components.footer.type') ?? CIVICTHEME_FOOTER_TYPE_DEFAULT,
   ];
 
   $form['components']['footer']['background_image'] = [

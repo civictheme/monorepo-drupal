@@ -41,9 +41,19 @@ define('CIVICTHEME_THEME_DARK_LABEL', 'Dark');
 define('CIVICTHEME_HEADER_THEME_DEFAULT', CIVICTHEME_THEME_LIGHT);
 
 /**
+ * Defines header default type.
+ */
+define('CIVICTHEME_HEADER_TYPE_DEFAULT', 'default');
+
+/**
  * Defines footer default theme.
  */
 define('CIVICTHEME_FOOTER_THEME_DEFAULT', CIVICTHEME_THEME_DARK);
+
+/**
+ * Defines footer default type.
+ */
+define('CIVICTHEME_FOOTER_TYPE_DEFAULT', 'default');
 
 /**
  * Defines 'default' banner style.
