@@ -1345,7 +1345,7 @@ $civictheme-table-of-contents-light-active-border-color: civictheme-color('neutr
 $civictheme-table-of-contents-dark-title-color: civictheme-color('neutral', 1) !default;
 $civictheme-table-of-contents-dark-link-color: civictheme-color('neutral', 1) !default;
 $civictheme-table-of-contents-dark-link-border-color: transparent !default;
-$civictheme-table-of-contents-dark-link-hover-background-color: transparent !default;
+$civictheme-table-of-contents-dark-link-hover-background-color: civictheme-color('primary', 3);
 $civictheme-table-of-contents-dark-link-hover-border-color: transparent !default;
 $civictheme-table-of-contents-dark-link-strip-background-color: civictheme-color('primary', 3) !default;
 $civictheme-table-of-contents-dark-link-strip-hover-background-color: civictheme-color('secondary') !default;
