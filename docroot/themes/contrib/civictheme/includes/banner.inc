@@ -207,11 +207,29 @@ function _civictheme_preprocess_civictheme_banner_last_updated(&$variables, $nod
 
 /**
  * Preprocess banner background image.
+ *
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_preprocess_civictheme_banner_background_image(&$variables, $node) {
   $background_image = civictheme_get_field_value($node, 'field_c_n_banner_background', TRUE);
   if ($background_image !== NULL) {
     $variables['background_image'] = civictheme_media_get_url($background_image);
+    if (civictheme_field_has_value($node, 'field_c_n_blend_mode')) {
+      $blend_mode = civictheme_get_field_value($node, 'field_c_n_blend_mode', TRUE);
+      if (!array_key_exists('modifier_class', $variables)) {
+        $variables['modifier_class'] = 'civictheme-background--' . $blend_mode;
+      }
+      else {
+        $modifier_class = explode(' ', $variables['modifier_class']);
+        $blend_class = preg_grep('~civictheme-background--~i', $modifier_class);
+        if (!empty($blend_class)) {
+          $variables['modifier_class'] = str_replace($blend_class, 'civictheme-background--' . $blend_mode, $variables['modifier_class']);
+        }
+        else {
+          $variables['modifier_class'] .= ' civictheme-background--' . $blend_mode;
+        }
+      }
+    }
   }
 }
 
