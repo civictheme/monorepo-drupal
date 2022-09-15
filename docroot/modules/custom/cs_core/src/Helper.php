@@ -29,7 +29,7 @@ use Symfony\Component\DomCrawler\Crawler;
  *
  * Helper class for manipulating content.
  *
- * @package Drupal\osp_core
+ * @package Drupal\cs_core
  */
 class Helper {
 
