@@ -850,9 +850,10 @@ $civictheme-skip-link-dark-hover-color: civictheme-color('primary', 5) !default;
 //
 // Tooltip.
 //
-$civictheme-tooltip-width: rem(230px) !default;
-$civictheme-tooltip-triangle-width: civictheme-space(4) !default;
-$civictheme-tooltip-triangle-height: civictheme-space(2) !default;
+$civictheme-tooltip-width: rem(468px) !default;
+$civictheme-tooltip-width-m: rem(327px) !default;
+$civictheme-tooltip-triangle-width: civictheme-space(3.2) !default;
+$civictheme-tooltip-triangle-height: civictheme-space(2.6) !default;
 $civictheme-tooltip-description-border-radius: rem(8px) !default;
 $civictheme-tooltip-z-index: 99 !default;
 $civictheme-tooltip-light-icon-color: civictheme-color('primary') !default;
