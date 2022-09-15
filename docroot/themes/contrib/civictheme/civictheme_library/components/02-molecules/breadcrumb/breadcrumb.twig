@@ -22,9 +22,6 @@
   {% set parent = false %}
 
   <nav class="civictheme-breadcrumb {{ modifier_class }}" {{ attributes }} aria-label="breadcrumb">
-    {% include '@base/icon/icon.twig' with {
-      symbol: 'left-arrow',
-    } only %}
     {% set link_items = [] %}
     {% for key, link in links %}
       {% set link_item %}
