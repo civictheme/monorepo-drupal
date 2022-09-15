@@ -23,7 +23,7 @@
 
   <nav class="civictheme-breadcrumb {{ modifier_class }}" {{ attributes }} aria-label="breadcrumb">
     {% include '@base/icon/icon.twig' with {
-      symbol: 'arrows_leftarrow_2',
+      symbol: 'left-arrow',
     } only %}
     {% set link_items = [] %}
     {% for key, link in links %}
@@ -48,7 +48,7 @@
     {% if parent %}
       {% set parent_link_item %}
         {% include '@base/icon/icon.twig' with {
-          symbol: 'arrows_leftarrow_2',
+          symbol: 'left-arrow',
         } only %}
         {% include '@atoms/link/link.twig' with parent only %}
       {% endset %}
