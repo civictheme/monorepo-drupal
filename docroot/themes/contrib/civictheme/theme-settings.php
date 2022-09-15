@@ -69,44 +69,59 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
   ];
 
   $breakpoints = ['desktop', 'mobile'];
+  $logo_types = ['primary', 'secondary'];
 
   foreach (civictheme_theme_options() as $theme => $theme_label) {
-    foreach ($breakpoints as $breakpoint) {
-      $form['components']['logo']["image_{$theme}_{$breakpoint}_group"] = [
+    foreach ($logo_types as $logo_type) {
+      $form['components']['logo'][$logo_type][$theme] = [
         '#type' => 'fieldset',
-        '#title' => t('Logo @theme @breakpoint', [
+        '#title' => t('Logo @logo_type @theme', [
           '@theme' => $theme_label,
-          '@breakpoint' => $breakpoint,
+          '@logo_type' => $logo_type,
         ]),
         '#open' => TRUE,
         '#tree' => FALSE,
       ];
+      foreach ($breakpoints as $breakpoint) {
+        $form['components']['logo'][$logo_type][$theme]["image_{$logo_type}_{$theme}_{$breakpoint}_group"] = [
+          '#type' => 'fieldset',
+          '#title' => t('Logo @logo_type @theme @breakpoint', [
+            '@theme' => $theme_label,
+            '@breakpoint' => $breakpoint,
+            '@logo_type' => $logo_type,
+          ]),
+          '#open' => TRUE,
+          '#tree' => FALSE,
+        ];
 
-      $form['components']['logo']["image_{$theme}_{$breakpoint}"] = [
-        '#type' => 'textfield',
-        '#title' => t('Logo image in @theme theme for @breakpoint', [
-          '@theme' => $theme_label,
-          '@breakpoint' => $breakpoint,
-        ]),
-        '#description' => _civictheme_path_field_description(theme_get_setting("components.logo.image_{$theme}_{$breakpoint}"), "logo-{$theme}-{$breakpoint}.svg"),
-        '#default_value' => _civictheme_field_friendly_path(theme_get_setting("components.logo.image_{$theme}_{$breakpoint}")),
-        '#group' => "image_{$theme}_{$breakpoint}_group",
-      ];
+        $form['components']['logo'][$logo_type][$theme]["image_{$logo_type}_{$theme}_{$breakpoint}"] = [
+          '#type' => 'textfield',
+          '#title' => t('Logo image for @logo_type in @theme theme for @breakpoint', [
+            '@theme' => $theme_label,
+            '@breakpoint' => $breakpoint,
+            '@logo_type' => $logo_type,
+          ]),
+          '#description' => _civictheme_path_field_description(theme_get_setting("components.logo.image_{$logo_type}_{$theme}_{$breakpoint}"), "logo-{$logo_type}-{$theme}-{$breakpoint}.svg"),
+          '#default_value' => _civictheme_field_friendly_path(theme_get_setting("components.logo.image_{$logo_type}_{$theme}_{$breakpoint}")),
+          '#group' => "image_{$logo_type}_{$theme}_{$breakpoint}_group",
+        ];
 
-      $form['components']['logo']["image_{$theme}_{$breakpoint}_group"]["image_{$theme}_{$breakpoint}_upload"] = [
-        '#type' => 'file',
-        '#title' => t('Upload logo image in @theme theme for @breakpoint', [
-          '@theme' => $theme_label,
-          '@breakpoint' => $breakpoint,
-        ]),
-        '#maxlength' => 40,
-        '#description' => t("If you don't have direct file access to the server, use this field to upload your logo."),
-        '#upload_validators' => [
-          'file_validate_is_image' => [],
-        ],
-        '#tree' => FALSE,
-        '#weight' => 1,
-      ];
+        $form['components']['logo'][$logo_type][$theme]["image_{$logo_type}_{$theme}_{$breakpoint}_group"]["image_{$logo_type}_{$theme}_{$breakpoint}_upload"] = [
+          '#type' => 'file',
+          '#title' => t('Upload logo image for @logo_type in @theme theme for @breakpoint', [
+            '@theme' => $theme_label,
+            '@breakpoint' => $breakpoint,
+            '@logo_type' => $logo_type,
+          ]),
+          '#maxlength' => 40,
+          '#description' => t("If you don't have direct file access to the server, use this field to upload your logo."),
+          '#upload_validators' => [
+            'file_validate_is_image' => [],
+          ],
+          '#tree' => FALSE,
+          '#weight' => 1,
+        ];
+      }
     }
   }
 
@@ -211,28 +226,31 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
  */
 function _civictheme_form_system_theme_settings_logo_validate(array &$form, FormStateInterface $form_state) {
   $breakpoints = ['desktop', 'mobile'];
+  $logo_types = ['primary', 'secondary'];
   foreach (array_keys(civictheme_theme_options()) as $theme) {
-    foreach ($breakpoints as $breakpoint) {
-      $field_name_key = ['components', 'logo', "image_{$theme}_{$breakpoint}"];
-      $path = $form_state->getValue($field_name_key);
+    foreach ($logo_types as $logo_type) {
+      foreach ($breakpoints as $breakpoint) {
+        $field_name_key = ['components', 'logo', "image_{$logo_type}_{$theme}_{$breakpoint}"];
+        $path = $form_state->getValue($field_name_key);
 
-      // Check for a new uploaded logo.
-      if (isset($form['components']['logo']["image_{$theme}_{$breakpoint}_group"]["image_{$theme}_{$breakpoint}_upload"])) {
-        $file = _file_save_upload_from_form($form['components']['logo']["image_{$theme}_{$breakpoint}_group"]["image_{$theme}_{$breakpoint}_upload"], $form_state, 0, FileSystemInterface::EXISTS_REPLACE);
-        if ($file) {
-          // Put the temporary file in form_values so we can save it on submit.
-          $form_state->setValue("image_{$theme}_{$breakpoint}_upload", $file);
+        // Check for a new uploaded logo.
+        if (isset($form['components']['logo']["image_{$logo_type}_{$theme}_{$breakpoint}_group"]["image_{$logo_type}_{$theme}_{$breakpoint}_upload"])) {
+          $file = _file_save_upload_from_form($form['components']['logo']["image_{$logo_type}_{$theme}_{$breakpoint}_group"]["image_{$logo_type}_{$theme}_{$breakpoint}_upload"], $form_state, 0, FileSystemInterface::EXISTS_REPLACE);
+          if ($file) {
+            // Put the temporary file in form_values so we can save it on submit.
+            $form_state->setValue("image_{$logo_type}_{$theme}_{$breakpoint}_upload", $file);
+          }
         }
-      }
 
-      if (!empty($path)) {
-        $path = _civictheme_form_system_theme_settings_validate_path($path);
-        if ($path) {
-          $path = \Drupal::service('file_url_generator')->generateString($path);
-          $form_state->setValue($field_name_key, ltrim($path, '/'));
-          continue;
+        if (!empty($path)) {
+          $path = _civictheme_form_system_theme_settings_validate_path($path);
+          if ($path) {
+            $path = \Drupal::service('file_url_generator')->generateString($path);
+            $form_state->setValue($field_name_key, ltrim($path, '/'));
+            continue;
+          }
+          $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
         }
-        $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
       }
     }
   }
@@ -245,35 +263,38 @@ function _civictheme_form_system_theme_settings_logo_validate(array &$form, Form
  */
 function _civictheme_form_system_theme_settings_logo_submit(array &$form, FormStateInterface $form_state) {
   $breakpoints = ['desktop', 'mobile'];
+  $logo_types = ['primary', 'secondary'];
   $values = $form_state->getValues();
   foreach (array_keys(civictheme_theme_options()) as $theme) {
-    foreach ($breakpoints as $breakpoint) {
-      $logo_field_name_key = [
-        'components',
-        'logo',
-        "image_{$theme}_{$breakpoint}",
-      ];
-      $field_name_key = "image_{$theme}_{$breakpoint}_upload";
+    foreach ($logo_types as $logo_type) {
+      foreach ($breakpoints as $breakpoint) {
+        $logo_field_name_key = [
+          'components',
+          'logo',
+          "image_{$logo_type}_{$theme}_{$breakpoint}",
+        ];
+        $field_name_key = "image_{$logo_type}_{$theme}_{$breakpoint}_upload";
 
-      // If the user uploaded a new logo, save it to a permanent location and
-      // use it in place of the provided path.
-      $default_scheme = \Drupal::config('system.file')->get('default_scheme');
-      try {
-        if (!empty($values[$field_name_key])) {
-          $filename = \Drupal::service('file_system')->copy($values[$field_name_key]->getFileUri(), $default_scheme . '://');
-          if (!empty($filename)) {
-            $path = _civictheme_form_system_theme_settings_validate_path($filename);
-            if ($path) {
-              $path = \Drupal::service('file_url_generator')->generateString($path);
-              $form_state->setValue($logo_field_name_key, ltrim($path, '/'));
+        // If the user uploaded a new logo, save it to a permanent location and
+        // use it in place of the provided path.
+        $default_scheme = \Drupal::config('system.file')->get('default_scheme');
+        try {
+          if (!empty($values[$field_name_key])) {
+            $filename = \Drupal::service('file_system')->copy($values[$field_name_key]->getFileUri(), $default_scheme . '://');
+            if (!empty($filename)) {
+              $path = _civictheme_form_system_theme_settings_validate_path($filename);
+              if ($path) {
+                $path = \Drupal::service('file_url_generator')->generateString($path);
+                $form_state->setValue($logo_field_name_key, ltrim($path, '/'));
+              }
             }
           }
         }
+        catch (FileException $e) {
+          // Ignore.
+        }
+        $form_state->unsetValue($field_name_key);
       }
-      catch (FileException $e) {
-        // Ignore.
-      }
-      $form_state->unsetValue($field_name_key);
     }
   }
 }

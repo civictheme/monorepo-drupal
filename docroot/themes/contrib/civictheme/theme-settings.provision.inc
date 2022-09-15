@@ -836,9 +836,12 @@ function civictheme_provision__theme_settings() {
     'dark',
   ];
   $breakpoints = ['desktop', 'mobile'];
+  $logo_types = ['primary', 'secondary'];
   foreach ($themes as $theme) {
-    foreach ($breakpoints as $breakpoint) {
-      $components['logo']["image_{$theme}_{$breakpoint}"] = "$theme_path/dist/assets/logos/{$theme_name}_logo_primary_{$theme}_{$breakpoint}.png";
+    foreach ($logo_types as $logo_type) {
+      foreach ($breakpoints as $breakpoint) {
+        $components['logo']["image_{$logo_type}_{$theme}_{$breakpoint}"] = "$theme_path/dist/assets/logos/{$theme_name}_logo_{$logo_type}_{$theme}_{$breakpoint}.png";
+      }
     }
   }
   $components['logo']['image_alt'] = 'CivicTheme demo logo';

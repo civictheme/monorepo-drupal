@@ -12,17 +12,29 @@ civictheme.settings:
           type: mapping
           label: 'Logo settings'
           mapping:
-            image_light_desktop:
-              label: 'Logo image in light theme for desktop'
+            image_primary_light_desktop:
+              label: 'Logo primary image in light theme for desktop'
               type: string
-            image_light_mobile:
-              label: 'Logo image in light theme for mobile'
+            image_primary_light_mobile:
+              label: 'Logo primary image in light theme for mobile'
               type: string
-            image_dark_desktop:
-              label: 'Logo image in dark theme for desktop'
+            image_primary_dark_desktop:
+              label: 'Logo primary image in dark theme for desktop'
               type: string
-            image_dark_mobile:
-              label: 'Logo image in dark theme for mobile'
+            image_primary_dark_mobile:
+              label: 'Logo primary image in dark theme for mobile'
+              type: string
+            image_secondary_light_desktop:
+              label: 'Logo secondary image in light theme for desktop'
+              type: string
+            image_secondary_light_mobile:
+              label: 'Logo secondary image in light theme for mobile'
+              type: string
+            image_secondary_dark_desktop:
+              label: 'Logo secondary image in dark theme for desktop'
+              type: string
+            image_secondary_dark_mobile:
+              label: 'Logo secondary image in dark theme for mobile'
               type: string
             image_alt:
               label: 'Logo image "alt" text'
