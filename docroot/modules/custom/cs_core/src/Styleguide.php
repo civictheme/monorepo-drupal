@@ -57,6 +57,9 @@ class Styleguide {
       'menu_tree',
       'Display Suite',
       'form-vertical-tabs',
+      'progress_bar',
+      'maintenance_page',
+      'menu_link',
     ];
   }
 
