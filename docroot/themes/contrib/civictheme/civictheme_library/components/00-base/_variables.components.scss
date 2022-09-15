@@ -1438,6 +1438,7 @@ $civictheme-webform-dark-wrapper-background-color: civictheme-color('primary', 4
 //
 // Quote.
 //
+$civictheme-quote-border-radius: civictheme-space(0.25) !default;
 $civictheme-quote-border-width: civictheme-space(0.75) !default;
 $civictheme-quote-space-vertical: civictheme-space(6) !default;
 $civictheme-quote-light-heading-color: civictheme-color('neutral', 7) !default;
@@ -1446,8 +1447,8 @@ $civictheme-quote-light-author-color: civictheme-color('neutral', 7) !default;
 $civictheme-quote-light-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-quote-light-border-color: civictheme-color('neutral', 7) !default;
 $civictheme-quote-dark-heading-color: civictheme-color('neutral', 1) !default;
-$civictheme-quote-dark-body-color: civictheme-color('neutral', 4) !default;
-$civictheme-quote-dark-author-color: civictheme-color('neutral', 2) !default;
+$civictheme-quote-dark-body-color: civictheme-color('neutral', 2) !default;
+$civictheme-quote-dark-author-color: civictheme-color('neutral', 1) !default;
 $civictheme-quote-dark-background-color: civictheme-color('primary', 4) !default;
 $civictheme-quote-dark-border-color: civictheme-color('primary') !default;
 
