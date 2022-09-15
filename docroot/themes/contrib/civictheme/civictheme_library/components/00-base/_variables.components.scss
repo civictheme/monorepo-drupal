@@ -783,8 +783,12 @@ $civictheme-link-list-dark-color: civictheme-color('neutral', 1) !default;
 //
 // Logo.
 //
-$civictheme-icon-light-stripe-color: civictheme-color('neutral', 8) !default;
-$civictheme-icon-dark-stripe-color: civictheme-color('neutral', 1) !default;
+$civictheme-logo-image-height-mobile: 210px !default;
+$civictheme-logo-image-width-mobile: 100% !default;
+$civictheme-logo-image-height-desktop: 240px !default;
+$civictheme-logo-image-width-desktop: 100% !default;
+$civictheme-logo-light-stripe-color: civictheme-color('neutral', 8) !default;
+$civictheme-logo-dark-stripe-color: civictheme-color('neutral', 1) !default;
 
 //
 // Map.
