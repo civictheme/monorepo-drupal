@@ -99,11 +99,15 @@ export const TableOfContents = (knobTab) => {
       }, 'before', tocKnobTab),
     };
 
+    const attributesAdditional = text('Additional attributes', '', tocKnobTab);
+
+    const modifierClass = text('Additional class', '', tocKnobTab);
+
     const html = generateContent(countOfContentItems, htmlSelector, duplicate, i + 1);
 
     const attributesStr = Object.keys(attributes).map((key) => (attributes[key] !== '' ? `${key}="${attributes[key]}"` : '')).join(' ');
 
-    wrappers.push(`<div class="civictheme-basic-content civictheme-basic-content-${i + 1} civictheme-theme-${attributes['data-table-of-contents-theme']}" ${attributesStr}>${html}</div>`);
+    wrappers.push(`<div class="civictheme-basic-content civictheme-basic-content-${i + 1} civictheme-theme-${attributes['data-table-of-contents-theme']} ${modifierClass}" ${attributesStr} ${attributesAdditional}>${html}</div>`);
   }
 
   return wrappers.join(' ');
