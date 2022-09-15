@@ -18,7 +18,6 @@ function CivicTooltip(el) {
   this.position = 'auto';
 
   if (this.button) {
-
     // Generate unique id for the tooltip content.
     let prefix = 'tooltip';
     do {
