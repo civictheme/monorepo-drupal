@@ -64,7 +64,7 @@
 
   #{$root}__item--first,
   #{$root}__item--previous {
-    padding: 0 civictheme-space(3) 0 0;
+    padding: 0 civictheme-space(1) 0 0;
 
     @include civictheme-breakpoint('m') {
       padding: 0 civictheme-space(4) 0 0;
@@ -72,7 +72,7 @@
   }
   #{$root}__item--next,
   #{$root}__item--last {
-    padding: 0 0 0 civictheme-space(3);
+    padding: 0 0 0 civictheme-space(1);
 
     @include civictheme-breakpoint('m') {
       padding: 0 0 0 civictheme-space(4);
