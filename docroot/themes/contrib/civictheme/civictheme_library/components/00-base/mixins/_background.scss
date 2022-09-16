@@ -7,4 +7,27 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  $blend_modes: color,
+    color-burn,
+    color-dodge,
+    darken,
+    difference,
+    exclusion,
+    hard-light,
+    hue,
+    lighten,
+    luminosity,
+    multiply,
+    normal,
+    overlay,
+    saturation,
+    screen,
+    soft-light,;
+
+  @each $blend_mode in $blend_modes {
+    &.civictheme-background--#{$blend_mode} {
+      background-blend-mode: $blend_mode;
+    }
+  }
 }
