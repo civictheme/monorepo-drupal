@@ -35,5 +35,5 @@ export const Background = (knobTab) => {
     generalKnobTab,
   );
 
-  return `<div class="story-background-wrapper story-wrapper-size--large civictheme-background--${blendMode}" style="background-image: url('${BACKGROUNDS[bg]}')"></div>`;
+  return `<div class="story-background-wrapper story-wrapper-size--large" style="background-image: url('${BACKGROUNDS[bg]}'); background-blend-mode: ${blendMode};"></div>`;
 };

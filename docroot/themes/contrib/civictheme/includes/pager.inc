@@ -9,6 +9,7 @@
  * Implements template_preprocess_pager().
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function civictheme_preprocess_pager(&$variables) {
   /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
