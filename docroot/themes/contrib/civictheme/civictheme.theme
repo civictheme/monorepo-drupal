@@ -30,7 +30,7 @@ require_once 'includes/html.inc';
 require_once 'includes/iframe.inc';
 require_once 'includes/image.inc';
 require_once 'includes/link.inc';
-require_once 'includes/listing.inc';
+require_once 'includes/automated_list.inc';
 require_once 'includes/local_tasks.inc';
 require_once 'includes/map.inc';
 require_once 'includes/media.inc';
