@@ -56,12 +56,20 @@ export const Pagination = (knobTab) => {
       previous: 0,
       next: 1,
     } : false,
-    items_per_page: boolean('With items per page', true, generalKnobTab) ? {
-      10: 10,
-      20: 20,
-      50: 50,
-      100: 100,
-    } : null,
+    items_per_page_options: boolean('With items per page', true, generalKnobTab) ? [
+      {
+        type: 'option', label: 10, value: 10, selected: false,
+      },
+      {
+        type: 'option', label: 20, value: 20, selected: true,
+      },
+      {
+        type: 'option', label: 50, value: 50, selected: false,
+      },
+      {
+        type: 'option', label: 100, value: 100, selected: false,
+      },
+    ] : null,
     current: number(
       'Current page',
       Math.max(1, Math.floor(pageCount / 2)),
