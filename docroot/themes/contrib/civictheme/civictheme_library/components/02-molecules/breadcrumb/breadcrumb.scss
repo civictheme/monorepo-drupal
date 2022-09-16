@@ -68,7 +68,7 @@
 
     &.mobile-only {
       display: none;
-  
+
       @include civictheme-breakpoint-upto('m') {
         display: flex;
       }
