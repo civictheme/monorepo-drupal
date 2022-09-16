@@ -5,12 +5,14 @@
 .civictheme-header {
   $root: &;
 
-  @include civictheme-typography('text-regular');
-
   &__content-top2,
   &__content-top3 {
     margin-top: civictheme-space();
     margin-bottom: civictheme-space();
+  }
+
+  &__content-top2 {
+    @include civictheme-typography('text-regular');
   }
 
   &__top {

@@ -72,6 +72,12 @@
 
   &.civictheme-theme-light {
     #{$root}__has-dropdown {
+      @include civictheme-icon-collapsible($civictheme-link-light-color);
+
+      &:hover {
+        @include civictheme-icon-collapsible($civictheme-link-light-hover-color);
+      }
+
       .civictheme-menu__sub-menu__wrapper--level-1 {
         background-color: $civictheme-secondary-navigation-light-sub-menu-background-color;
       }
@@ -80,6 +86,12 @@
 
   &.civictheme-theme-dark {
     #{$root}__has-dropdown {
+      @include civictheme-icon-collapsible($civictheme-link-dark-color);
+
+      &:hover {
+        @include civictheme-icon-collapsible($civictheme-link-dark-hover-color);
+      }
+
       .civictheme-menu__sub-menu__wrapper--level-1 {
         background-color: $civictheme-secondary-navigation-dark-sub-menu-background-color;
       }

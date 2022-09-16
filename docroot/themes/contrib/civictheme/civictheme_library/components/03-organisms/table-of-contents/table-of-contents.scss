@@ -80,7 +80,7 @@
       background-color: $civictheme-table-of-contents-light-link-background-color;
 
       &::before {
-        background-color: $civictheme-table-of-contents-light-link-strip-background-color;
+        background-color: $civictheme-table-of-contents-light-link-stripe-background-color;
       }
 
       &:hover,
@@ -90,7 +90,7 @@
         color: $civictheme-table-of-contents-light-link-hover-color;
 
         &::before {
-          background-color: $civictheme-table-of-contents-light-link-hover-strip-background-color;
+          background-color: $civictheme-table-of-contents-light-link-hover-stripe-background-color;
         }
       }
 
@@ -111,7 +111,7 @@
       background-color: $civictheme-table-of-contents-dark-link-background-color;
 
       &::before {
-        background-color: $civictheme-table-of-contents-dark-link-strip-background-color;
+        background-color: $civictheme-table-of-contents-dark-link-stripe-background-color;
       }
 
       &:hover,
@@ -121,7 +121,7 @@
         color: $civictheme-table-of-contents-dark-link-hover-color;
 
         &::before {
-          background-color: $civictheme-table-of-contents-dark-link-hover-strip-background-color;
+          background-color: $civictheme-table-of-contents-dark-link-hover-stripe-background-color;
         }
       }
 
