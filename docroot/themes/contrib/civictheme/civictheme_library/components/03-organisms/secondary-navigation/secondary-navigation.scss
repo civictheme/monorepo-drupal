@@ -71,85 +71,17 @@
   }
 
   &.civictheme-theme-light {
-    #{$root}__menu {
-      .civictheme-menu__item {
-        .civictheme-link {
-          background: $civictheme-secondary-navigation-light-menu-item-background-color;
-          color: $civictheme-secondary-navigation-light-menu-item-color;
-
-          &:hover {
-            background: $civictheme-secondary-navigation-light-menu-item-hover-background-color;
-            color: $civictheme-secondary-navigation-light-menu-item-hover-color;
-          }
-
-          &:active {
-            background: $civictheme-secondary-navigation-light-menu-item-active-background-color;
-            color: $civictheme-secondary-navigation-light-menu-item-active-color;
-          }
-        }
-      }
-    }
-
     #{$root}__has-dropdown {
       .civictheme-menu__sub-menu__wrapper--level-1 {
         background-color: $civictheme-secondary-navigation-light-sub-menu-background-color;
-
-        .civictheme-link {
-          background: $civictheme-secondary-navigation-light-sub-menu-item-background-color;
-          color: $civictheme-secondary-navigation-light-sub-menu-item-color;
-
-          &:hover {
-            background: $civictheme-secondary-navigation-light-sub-menu-item-hover-background-color;
-            color: $civictheme-secondary-navigation-light-sub-menu-item-hover-color;
-          }
-
-          &:active {
-            background: $civictheme-secondary-navigation-light-sub-menu-item-active-background-color;
-            color: $civictheme-secondary-navigation-light-sub-menu-item-active-color;
-          }
-        }
       }
     }
   }
 
   &.civictheme-theme-dark {
-    #{$root}__menu {
-      .civictheme-menu__item {
-        .civictheme-link {
-          background: $civictheme-secondary-navigation-dark-menu-item-background-color;
-          color: $civictheme-secondary-navigation-dark-menu-item-color;
-
-          &:hover {
-            background: $civictheme-secondary-navigation-dark-menu-item-hover-background-color;
-            color: $civictheme-secondary-navigation-dark-menu-item-hover-color;
-          }
-
-          &:active {
-            background: $civictheme-secondary-navigation-dark-menu-item-active-background-color;
-            color: $civictheme-secondary-navigation-dark-menu-item-active-color;
-          }
-        }
-      }
-    }
-
     #{$root}__has-dropdown {
       .civictheme-menu__sub-menu__wrapper--level-1 {
         background-color: $civictheme-secondary-navigation-dark-sub-menu-background-color;
-
-        .civictheme-link {
-          background: $civictheme-secondary-navigation-dark-sub-menu-item-background-color;
-          color: $civictheme-secondary-navigation-dark-sub-menu-item-color;
-
-          &:hover {
-            background: $civictheme-secondary-navigation-dark-sub-menu-item-hover-background-color;
-            color: $civictheme-secondary-navigation-dark-sub-menu-item-hover-color;
-          }
-
-          &:active {
-            background: $civictheme-secondary-navigation-dark-sub-menu-item-active-background-color;
-            color: $civictheme-secondary-navigation-dark-sub-menu-item-active-color;
-          }
-        }
       }
     }
   }

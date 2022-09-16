@@ -130,11 +130,8 @@
           display: block;
           border-radius: $civictheme-border-radius;
           padding: 0;
-
-          &:hover {
-            padding-left: civictheme-space();
-            padding-right: civictheme-space();
-          }
+          padding-left: civictheme-space();
+          padding-right: civictheme-space();
         }
 
         &.civictheme-menu__item--active-trail {
