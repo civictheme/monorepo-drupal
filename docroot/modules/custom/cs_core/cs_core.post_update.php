@@ -130,7 +130,7 @@ function cs_core_post_update_place_listing_example_blocks_into_regions() {
   }
 
   $block_ids = [
-    'civictheme_automated_list_example_spage_one_filter_single_select_exp',
+    'civictheme_automated_list_examples_page_one_filter_single_select_exp',
     'civictheme_automated_list_examples_page_multiple_filters_exp',
     'civictheme_automated_list_examples_page_one_filter_multi_select_exp',
   ];
