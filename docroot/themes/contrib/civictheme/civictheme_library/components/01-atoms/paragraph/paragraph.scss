@@ -1,10 +1,10 @@
 //
-// Body Copy component.
+// Paragraph component.
 //
 
 @use 'sass:map';
 
-.civictheme-body-copy {
+.civictheme-paragraph {
   $root: &;
   $sizes: ( 'extra-large', 'large', 'regular', 'small' );
 
@@ -14,7 +14,7 @@
   @include civictheme-content();
 
   @each $size in $sizes {
-    &.civictheme-body-copy--#{$size} {
+    &.civictheme-paragraph--#{$size} {
       @if map.get(_civictheme-typography-all(), 'text-#{$size}') != null {
         @include civictheme-typography('text-#{$size}');
       }
