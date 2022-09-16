@@ -33,6 +33,7 @@ Feature: Tests the Task card paragraph
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-column-count select.required" element
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_column_count]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]']" element
+    And I scroll to an element with id "edit-field-c-n-components-wrapper"
     And I press the "field_c_n_components_0_subform_field_c_p_cards_civictheme_task_card_add_more" button
     And I wait for AJAX to finish
     And I should see an "input[name='field_c_p_icon-media-library-open-button-field_c_n_components-0-subform-field_c_p_cards-0-subform']" element
