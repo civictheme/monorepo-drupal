@@ -130,7 +130,7 @@ Feature: View of Page content with Listing component
       | field_c_p_list_limit      | 14      |
     When I visit "civictheme_page" "Page Listing component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
-    And I should see 14 ".civictheme-card-container__card" elements
+    And I should see 2 ".civictheme-card-container__card" elements
     And I should not see an ".civictheme-listing__results-below .civictheme-pager" element
 
   @api @testmode
@@ -228,3 +228,26 @@ Feature: View of Page content with Listing component
     And I see field "Title"
     And should see an "input[name='title']" element
     And should not see an "input[name='title'].required" element
+
+
+  @api @testmode
+  Scenario: CivicTheme listing page with pagination works as expected
+    Given I am an anonymous user
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_listing" paragraph:
+      | field_c_p_list_show_filters | 0                                            |
+      | field_c_p_list_limit_type | unlimited |
+      | field_c_p_list_limit      | 2         |
+    When I visit "civictheme_page" "Page Listing component"
+    Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    And I should see 2 ".civictheme-card-container__card" elements
+    And I should see an ".civictheme-listing__results-below .civictheme-pager" element
+    And I should not see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see "Previous" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
+    And I should see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
+    And I click "2"
+    And I should see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
+    And I click "Last"
+    And I should not see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see "Next" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element

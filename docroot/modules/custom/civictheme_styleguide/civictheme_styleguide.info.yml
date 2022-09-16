@@ -1,0 +1,7 @@
+name: CivicTheme style guide
+type: module
+description: Style guide module integration
+core_version_requirement: ^8 || ^9
+package: civictheme
+dependencies:
+  - styleguide:styleguide

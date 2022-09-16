@@ -8,6 +8,7 @@ dependencies:
   - admin_toolbar:admin_toolbar
   - admin_toolbar:admin_toolbar_tools
   - adminimal_admin_toolbar:adminimal_admin_toolbar
+  - civictheme_styleguide:civictheme_styleguide
   - coffee:coffee
   - config_devel:config_devel
   - config_filter:config_filter
@@ -20,7 +21,6 @@ dependencies:
   - stage_file_proxy:stage_file_proxy
   - simple_sitemap:simple_sitemap
   - simple_sitemap:simple_sitemap_views
-  - styleguide:styleguide
   - testmode:testmode
 
 config_devel:
@@ -31,3 +31,4 @@ config_devel:
     - block.block.civictheme_automated_list_examples_page_multiple_filters_exp
     - block.block.civictheme_automated_list_examples_page_one_filter_multi_select_exp
     - views.view.civictheme_test_table
+    - views.view.civictheme_test_table_mini_pager

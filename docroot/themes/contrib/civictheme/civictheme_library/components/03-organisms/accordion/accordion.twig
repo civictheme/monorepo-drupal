@@ -25,14 +25,14 @@
     <div class="container">
       <div class="row">
         {% if title is not empty %}
-          <div class="civictheme-accordion__content-top col-xs-12">
+          <div class="civictheme-accordion__content-top col-xxs-12">
             <div class="civictheme-accordion__title-top">
               {{ title }}
             </div>
           </div>
         {% endif %}
 
-        <div class="civictheme-accordion__inner col-xs-12">
+        <div class="civictheme-accordion__inner col-xxs-12">
           <ul class="civictheme-accordion__list">
             {% for fold in panels %}
               {% if fold.title is not empty or fold.content is not empty %}
