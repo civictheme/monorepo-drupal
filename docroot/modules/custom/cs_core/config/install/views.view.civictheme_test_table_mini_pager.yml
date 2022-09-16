@@ -190,7 +190,7 @@ display:
       display_extenders:
         simple_sitemap_display_extender:
           variants: {  }
-      path: civictheme-no-sidebar/test-table
+      path: civictheme-no-sidebar/test-table-mini-pager
     cache_metadata:
       max-age: -1
       contexts:

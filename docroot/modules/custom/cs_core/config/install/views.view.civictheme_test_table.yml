@@ -77,8 +77,8 @@ display:
           tags:
             next: Next
             previous: Prev
-            first: '« First'
-            last: 'Last »'
+            first: First
+            last: Last
           expose:
             items_per_page: true
             items_per_page_label: 'Items per page'
