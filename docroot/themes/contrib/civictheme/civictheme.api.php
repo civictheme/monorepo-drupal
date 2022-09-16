@@ -18,7 +18,7 @@ use Drupal\views\ViewExecutable;
  * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
  *   The Listing component paragraph.
  */
-function hook_civictheme_listing_view_info_alter(array &$info, Paragraph $paragraph) {
+function hook_civictheme_automated_list_view_info_alter(array &$info, Paragraph $paragraph) {
   // Change the view name and block based on the conditions set in the
   // listing paragraph.
   if (civictheme_get_field_value($paragraph, 'field_c_p_content_type') == 'event') {
@@ -38,7 +38,7 @@ function hook_civictheme_listing_view_info_alter(array &$info, Paragraph $paragr
  * @param array $settings
  *   The preprocess settings of the current view.
  */
-function hook_civictheme_listing_preprocess_view_alter(array &$settings, ViewExecutable &$view) {
+function hook_civictheme_automated_list_preprocess_view_alter(array &$settings, ViewExecutable &$view) {
   if ($view->id() === 'civictheme_view_examples') {
     $settings['theme'] = CIVICTHEME_THEME_DARK;
     $settings['with_background'] = TRUE;

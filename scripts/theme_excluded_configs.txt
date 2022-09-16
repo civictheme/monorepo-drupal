@@ -10,9 +10,9 @@ block.block.civictheme_footer_menu_1
 block.block.civictheme_footer_menu_2
 block.block.civictheme_footer_menu_3
 block.block.civictheme_footer_menu_4
-block.block.civictheme_listing_example_spage_one_filter_single_select_exp
-block.block.civictheme_listing_examples_page_multiple_filters_exp
-block.block.civictheme_listing_examples_page_one_filter_multi_select_exp
+block.block.civictheme_automated_list_example_spage_one_filter_single_select_exp
+block.block.civictheme_automated_list_examples_page_multiple_filters_exp
+block.block.civictheme_automated_list_examples_page_one_filter_multi_select_exp
 block.block.civictheme_mobilenavigation
 block.block.civictheme_primarynavigation_menu
 block.block.civictheme_search
@@ -144,8 +144,8 @@ user.settings
 views.settings
 views.view.archive
 views.view.block_content
-views.view.civictheme_listing_examples
-views.view.civictheme_listing_test
+views.view.civictheme_automated_list_examples
+views.view.civictheme_automated_list_test
 views.view.civictheme_test
 views.view.content
 views.view.content_recent

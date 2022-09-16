@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_list_item_view_as
+    - paragraphs.paragraphs_type.civictheme_automated_list
+  module:
+    - options
+id: paragraph.civictheme_automated_list.field_c_p_list_item_view_as
+field_name: field_c_p_list_item_view_as
+entity_type: paragraph
+bundle: civictheme_automated_list
+label: 'Display items as'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: civictheme_promo_card
+default_value_callback: ''
+settings: {  }
+field_type: list_string
