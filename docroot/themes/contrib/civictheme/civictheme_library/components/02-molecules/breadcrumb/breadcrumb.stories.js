@@ -1,12 +1,12 @@
 // phpcs:ignoreFile
 import {
-  boolean, number, radios,
+  boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import CivicThemeBreadcrumb from './breadcrumb.twig';
 import { randomLinks } from '../../00-base/base.stories';
 
 export default {
-  title: 'Organisms/Breadcrumb',
+  title: 'Molecules/Breadcrumb',
 };
 
 export const Breadcrumb = (knobTab) => {
@@ -22,9 +22,9 @@ export const Breadcrumb = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    active_is_link: boolean('Active is link', false, generalKnobTab),
+    active_is_link: boolean('Active is a link', false, generalKnobTab),
     links: randomLinks(number(
-      'Number of links',
+      'Count of links',
       3,
       {
         range: true,
@@ -44,6 +44,8 @@ export const Breadcrumb = (knobTab) => {
       },
       generalKnobTab,
     ) - 6),
+    attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: text('Additional classes', '', generalKnobTab),
   };
 
   return CivicThemeBreadcrumb({

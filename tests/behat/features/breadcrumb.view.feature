@@ -23,4 +23,4 @@ Feature: Tests the CivicTheme breadcrumb
         | edit-path-0-alias	    | /test-breadcrumb-parent/breadcrumb-test |
     And I press "Save"
     When I visit "/test-breadcrumb-parent/breadcrumb-test"
-    Then I should see the link "[TEST] Page breadcrumb parent test" with "/test-breadcrumb-parent" in 'nav.civictheme-breadcrumb li.civictheme-breadcrumb__links--link.mobile-only'
+    Then I should see the link "[TEST] Page breadcrumb parent test" with "/test-breadcrumb-parent" in 'nav.civictheme-breadcrumb .civictheme-item-list.mobile-only li.civictheme-item-list__list__item'
