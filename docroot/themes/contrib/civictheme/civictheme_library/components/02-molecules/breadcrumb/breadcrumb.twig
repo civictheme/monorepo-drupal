@@ -40,6 +40,7 @@
       {% endset %}
       {% if loop.index == links_count - 1 %}
         {% set parent = {
+          theme: theme,
           icon: 'left-arrow',
           icon_placement: 'before',
           text: link.text,
