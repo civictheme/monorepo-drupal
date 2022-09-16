@@ -338,6 +338,7 @@ $civictheme-table-dark-caption-color: civictheme-color('primary', 1) !default;
 // Link.
 //
 $civictheme-link-light-color: civictheme-color('primary') !default;
+// @todo - blue by default, and white on hover means if the background it white, the link is not readable on hover.
 $civictheme-link-light-hover-color: civictheme-color('neutral', 1) !default;
 $civictheme-link-light-hover-background-color: civictheme-color('primary') !default;
 $civictheme-link-dark-color: civictheme-color('secondary') !default;

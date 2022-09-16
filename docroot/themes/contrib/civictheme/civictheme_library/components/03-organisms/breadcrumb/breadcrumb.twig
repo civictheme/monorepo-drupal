@@ -40,6 +40,7 @@
                 attributes: loop.index == links_count ? 'aria-current="location"' : '',
               } only %}
               {% if (loop.index < links_count) %}
+                {# @todo - I don't think this symbol exists. #}
                 {% include '@base/icon/icon.twig' with {
                   symbol: 'arrows_rightarrow',
                 } only %}

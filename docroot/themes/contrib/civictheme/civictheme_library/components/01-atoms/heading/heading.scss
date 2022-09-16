@@ -15,6 +15,7 @@
         }
 
         &:hover {
+          // @todo - the heading style changes on hover, even though it's not an interactive element - is this correct?
           background-color: $civictheme-heading-light-hover-background-color;
           color: $civictheme-heading-light-hover-color;
         }

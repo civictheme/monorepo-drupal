@@ -37,6 +37,7 @@
 
   &.civictheme-theme-dark {
     .civictheme-button--link {
+      // @todo - it seems colours aren't correctly being applied to icons within social links. They need a fill of white. This may be an issue elsewhere as well.
       @include civictheme-link-colors($civictheme-social-links-dark-color, $civictheme-social-links-dark-hover-color, $civictheme-social-links-dark-visited-color, $civictheme-social-links-dark-active-color, $civictheme-social-links-dark-focus-color);
     }
   }

@@ -133,6 +133,8 @@
         }
 
         .civictheme-menu__item__link-trigger[data-collapsible-trigger] {
+          // @todo - This should probably have a :focus { @include civictheme-outline(); } as well.
+          // @todo - Having some visual feedback when the trigger is hovered upon would make it easier to distinguish if a click is going to the link, or is going to expand the submenu.
           &::after {
             @include civictheme-icon-fill-color($civictheme-side-navigation-light-link-expanded-icon-color);
           }

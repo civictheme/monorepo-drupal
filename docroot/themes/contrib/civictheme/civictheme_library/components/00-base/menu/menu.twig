@@ -66,6 +66,7 @@
         } only %}
 
         {% if is_collapsible and item.below %}
+          {# @todo - Would it make more sense to have this as a <button aria-expanded="false"> #}
           <a href="#" class="civictheme-menu__item__link-trigger" data-collapsible-trigger title="Expand {{ item.title }} menu"></a>
         {% endif %}
 
