@@ -651,22 +651,6 @@ $civictheme-next-steps-dark-icon-color: civictheme-color-dark('heading') !defaul
 $civictheme-next-steps-dark-stripe-color: civictheme-color-dark('highlight') !default;
 
 //
-// Progress indicator.
-//
-$civictheme-progress-indicator-light-active-background-color: civictheme-color-light('body') !default;
-$civictheme-progress-indicator-light-background-color: transparent !default;
-$civictheme-progress-indicator-light-border-color: civictheme-color-light('border-light') !default;
-$civictheme-progress-indicator-light-color: civictheme-color-light('body') !default;
-$civictheme-progress-indicator-light-icon-color: civictheme-color-light('body') !default;
-$civictheme-progress-indicator-dark-active-background-color: civictheme-color-dark('body') !default;
-$civictheme-progress-indicator-light-active-border-color: $civictheme-progress-indicator-light-icon-color !default;
-$civictheme-progress-indicator-dark-background-color: transparent !default;
-$civictheme-progress-indicator-dark-border-color: civictheme-color-dark('border-dark') !default;
-$civictheme-progress-indicator-dark-color: civictheme-color-dark('body') !default;
-$civictheme-progress-indicator-dark-icon-color: civictheme-color-dark('body') !default;
-$civictheme-progress-indicator-dark-active-border-color: $civictheme-progress-indicator-dark-icon-color !default;
-
-//
 // Promo.
 //
 $civictheme-promo-space-vertical: civictheme-space(6) !default;
