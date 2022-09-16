@@ -15,7 +15,7 @@
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="layout-container {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+<div class="{{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
   <a id="top"></a>
 
   {% block header %}
