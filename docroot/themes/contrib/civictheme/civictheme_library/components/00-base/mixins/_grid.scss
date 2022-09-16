@@ -208,7 +208,8 @@
   // Support super-narrow screens as well.
   $width: map.get($civictheme-grid-offsets, xs) * 2;
 
-  max-width: calc(100% - #{$width});
+  // Use vw instead of % so it calculates on viewport and not parent container.
+  max-width: calc(100vw - #{$width});
 
   // Set width for container at each breakpoint accounting for offsets at this
   // breakpoint.
