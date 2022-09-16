@@ -74,7 +74,8 @@
       }
 
       &:hover,
-      &:focus {
+      &:focus,
+      &:active {
         background-color: $civictheme-table-of-contents-light-link-hover-background-color;
         border-color: $civictheme-table-of-contents-light-link-hover-border-color;
 
@@ -107,7 +108,8 @@
       }
 
       &:hover,
-      &:focus {
+      &:focus,
+      &:active {
         background-color: $civictheme-table-of-contents-dark-link-hover-background-color;
         border-color: $civictheme-table-of-contents-dark-link-hover-border-color;
 

@@ -438,6 +438,17 @@ function civictheme_theme_options() {
 }
 
 /**
+ * Type options suitable for FormAPI.
+ */
+function civictheme_type_options() {
+  return [
+    'default' => 'Default',
+    'inline' => 'Inline',
+    'stacked' => 'Stacked',
+  ];
+}
+
+/**
  * Convert multi-line strings to a list of strings.
  *
  * @param string $string

@@ -20,7 +20,7 @@
     <button class="civictheme-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %} data-tooltip-button data-tooltip-position="{{ position }}">
       {%- include '@base/icon/icon.twig' with {
         symbol: icon|default('information-mark'),
-        size: icon_size|default('regular'),
+        size: icon_size|default('large'),
       } only -%}
     </button>
 
