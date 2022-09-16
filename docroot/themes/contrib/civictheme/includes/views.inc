@@ -23,19 +23,6 @@ function _civictheme_preprocess_page__views(&$variables) {
 }
 
 /**
- * Implements template_preprocess_views_mini_pager().
- */
-function civictheme_preprocess_views_mini_pager(&$variables) {
-  if (isset($variables['items']['current'])) {
-    $variables['items']['pages'] = [
-      $variables['items']['current'] => [
-        'href' => '#',
-      ],
-    ];
-  }
-}
-
-/**
  * Implements hook_preprocess_HOOK().
  */
 function civictheme_preprocess_views_exposed_form(&$variables) {
@@ -160,6 +147,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   // deleted, or rearranged.
   $tags = $view->display_handler->getCacheMetadata()->getCacheTags();
   $form['#cache']['tags'] = Cache::mergeTags($view->getCacheTags(), $tags);
+
 }
 
 /**
@@ -224,6 +212,19 @@ function civictheme_preprocess_views_view(&$variables) {
   $view = &$variables['view'];
 
   $is_page_load = isset($view->civictheme_listing_entity);
+
+  // Attach view to pager for processing.
+  // Mini and full pagers have different theme implementations
+  // and so we need to pass the view on different properties to be
+  // accessible in the preprocess functions.
+  if (!empty($variables['pager'])) {
+    if ($view->getPager()->getPluginId() === 'mini') {
+      $variables['pager']['#view'] = $view;
+    }
+    else {
+      $variables['pager']['#attributes']['#view'] = $view;
+    }
+  }
 
   if ($is_page_load) {
     _civictheme_listing_preprocess_view($view->civictheme_listing_entity, $view);

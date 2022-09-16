@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   padding: civictheme-space(3);
+  width: 100%;
 
   @include civictheme-breakpoint-upto('m') {
     flex-wrap: wrap;
@@ -17,19 +18,25 @@
   }
 
   &__items_per_page {
+    position: relative;
     display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100%;
 
-    label {
-      display: inline-block;
-      white-space: nowrap;
+    @include civictheme-breakpoint('m') {
+      width: auto;
     }
 
-    .civictheme-select {
+    .civictheme-field-label {
+      align-self: center;
+      margin-bottom: 0;
+    }
+
+    .civictheme-select--pager {
       min-width: auto;
-      max-width: civictheme-space(15);
+      max-width: rem(80px);
       margin-left: civictheme-space();
+      padding: 0 civictheme-space(2) 0 civictheme-space(2);
     }
 
     @include civictheme-breakpoint-upto('m') {
@@ -42,7 +49,7 @@
     margin: 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
 
@@ -51,28 +58,38 @@
     }
   }
 
-  #{$root}__item {
-    margin-right: civictheme-space();
-    min-width: civictheme-space(3);
+  #{$root}__item--ellipsis {
+    padding: 0 civictheme-space();
+    text-align: center;
+  }
+
+  #{$root}__item--first,
+  #{$root}__item--previous {
+    padding: 0 civictheme-space(1) 0 0;
+
+    @include civictheme-breakpoint('m') {
+      padding: 0 civictheme-space(4) 0 0;
+    }
+  }
+  #{$root}__item--next,
+  #{$root}__item--last {
+    padding: 0 0 0 civictheme-space(1);
+
+    @include civictheme-breakpoint('m') {
+      padding: 0 0 0 civictheme-space(4);
+    }
   }
 
   #{$root}__link {
-    min-width: civictheme-space(3);
+    padding: 0 civictheme-space();
     display: block;
     text-align: center;
     text-decoration-color: transparent;
+    white-space: nowrap;
 
     &:hover {
       background: transparent;
     }
-
-    &--active {
-      text-decoration: underline;
-    }
-  }
-
-  .civictheme-directional-link {
-    padding: 0 civictheme-space();
   }
 
   &.civictheme-theme-light {
@@ -88,7 +105,6 @@
 
       &--active {
         text-decoration-color: $civictheme-pagination-light-link-active-border-color;
-        color: $civictheme-pagination-light-link-hover-color;
       }
     }
   }
@@ -106,7 +122,6 @@
 
       &--active {
         text-decoration-color: $civictheme-pagination-dark-link-active-border-color;
-        color: $civictheme-pagination-dark-link-hover-color;
       }
     }
   }

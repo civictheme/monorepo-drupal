@@ -1,4 +1,4 @@
-@civictheme @civictheme_table
+@civictheme @civictheme_table @testmode
 Feature: Tests the Table
 
   Ensure that Table is rendering correctly.
@@ -19,10 +19,6 @@ Feature: Tests the Table
       | [TEST] Page 3    | 1      |
       | [TEST] Page 4    | 1      |
       | [TEST] Page 5    | 1      |
-      | [TEST] Page 6    | 1      |
-      | [TEST] Page 7    | 1      |
-      | [TEST] Page 8    | 1      |
-      | [TEST] Page 9    | 1      |
 
     When I visit "civictheme-no-sidebar/test-table"
     Then I should see the text "Civictheme test table"

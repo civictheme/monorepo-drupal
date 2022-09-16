@@ -71,6 +71,8 @@ export const Slider = () => {
     slides,
     previous_label: text('Previous Label', 'Previous', generalKnobTab),
     next_label: text('Next Label', 'Next', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   return CivicThemeSlider({
