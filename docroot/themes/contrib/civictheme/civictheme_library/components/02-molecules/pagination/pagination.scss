@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   padding: civictheme-space(3);
+  width: 100%;
 
   @include civictheme-breakpoint-upto('m') {
     flex-wrap: wrap;
@@ -22,12 +23,16 @@
     justify-content: center;
     width: 100%;
 
+    @include civictheme-breakpoint('m') {
+      width: auto
+    }
+
     .civictheme-field-label {
       align-self: center;
       margin-bottom: 0;
     }
 
-    .civictheme-select {
+    .civictheme-select--pager {
       min-width: auto;
       max-width: rem(80px);
       margin-left: civictheme-space();

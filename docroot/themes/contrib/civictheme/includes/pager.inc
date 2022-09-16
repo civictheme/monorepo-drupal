@@ -13,13 +13,10 @@
 function civictheme_preprocess_pager(&$variables) {
   /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
   $pager_manager = \Drupal::service('pager.manager');
-
   $element = $variables['pager']['#element'] ?? NULL;
   if ($element === NULL) {
     return;
   }
-
-  $pager = $pager_manager->getPager($element);
 
   // Set theme from civic listing component settings.
   if (isset($variables['pager']['#attributes']['#civictheme_theme'])) {
@@ -27,8 +24,14 @@ function civictheme_preprocess_pager(&$variables) {
     unset($variables['pager']['#attributes']['#civictheme_theme']);
   }
 
+  $pager = $pager_manager->getPager($element);
   if (!$pager) {
     return;
+  }
+  $view = $variables['attributes']['#view'] ?? NULL;
+  if ($view) {
+    unset($variables['attributes']['#view']);
+    _civictheme_preprocess_items_per_page($variables, $view, $pager);
   }
 
   $variables['total_pages'] = $pager->getTotalPages();
@@ -52,4 +55,68 @@ function civictheme_preprocess_pager(&$variables) {
 
   // Add CSS class for ajax pagination.
   $variables['pager_items_modifier_class'] = 'js-pager__items';
+}
+
+/**
+ * Implements template_preprocess_views_mini_pager().
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_preprocess_views_mini_pager(&$variables) {
+  if (isset($variables['items']['current'])) {
+    $variables['items']['pages'] = [
+      $variables['items']['current'] => [
+        'href' => '#',
+      ],
+    ];
+  }
+
+  /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
+  $pager_manager = \Drupal::service('pager.manager');
+  $element = $variables['element'] ?? NULL;
+  if ($element === NULL) {
+    return;
+  }
+
+  $pager = $pager_manager->getPager($element);
+  if (!$pager) {
+    return;
+  }
+
+  $variables['total_pages'] = $pager->getTotalPages();
+  $variables['current'] = $variables['current'] ?? $pager->getCurrentPage() + 1;
+
+  $view = $variables['view'];
+  if ($view) {
+    unset($variables['view']);
+    _civictheme_preprocess_items_per_page($variables, $view, $pager);
+  }
+}
+
+/**
+ * Helper to preprocess items_per_page in pagination component.
+ */
+function _civictheme_preprocess_items_per_page(&$variables, $view, $pager) {
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view_pager = $view->getPager();
+  if (!empty($view_pager->options['expose']['items_per_page']) && $view_pager->options['expose']['items_per_page'] === TRUE) {
+    $options = $view_pager->options;
+    $variables['items_per_page_label'] = $options['expose']['items_per_page_label'];
+    $current_items_per_page = (int) $pager->getLimit();
+    unset($variables['attributes']['#view']);
+    $exposed_form = $view->display_handler->getPlugin('exposed_form');
+    $exposed_widgets = $exposed_form->renderExposedForm();
+    $items_per_page = [];
+    $items_per_page_options = explode(',', $view_pager->options['expose']['items_per_page_options']);
+    foreach ($items_per_page_options as $value) {
+      $items_per_page[] = [
+        'type' => 'option',
+        'label' => $value,
+        'value' => (int) $value,
+        'selected' => (int) $value === $current_items_per_page,
+      ];
+    }
+    $variables['items_per_page_options'] = $items_per_page;
+    $variables['items_per_page_attributes'] = 'name="items_per_page" form="' . $exposed_widgets['#id'] . '"';
+  }
 }

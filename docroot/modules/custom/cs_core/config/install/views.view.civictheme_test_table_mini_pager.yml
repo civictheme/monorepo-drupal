@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - user
-id: civictheme_test_table
-label: 'Civictheme test table'
+id: civictheme_test_table_mini_pager
+label: 'Civictheme test table with mini pager'
 module: views
 description: ''
 tag: CivicTheme
@@ -68,7 +68,7 @@ display:
           separator: ', '
           field_api_classes: false
       pager:
-        type: full
+        type: mini
         options:
           offset: 0
           items_per_page: 5
@@ -77,8 +77,6 @@ display:
           tags:
             next: Next
             previous: Prev
-            first: '« First'
-            last: 'Last »'
           expose:
             items_per_page: true
             items_per_page_label: 'Items per page'
@@ -87,7 +85,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          quantity: 9
       exposed_form:
         type: basic
         options:
