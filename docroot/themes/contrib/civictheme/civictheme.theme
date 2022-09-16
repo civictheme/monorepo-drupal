@@ -45,6 +45,7 @@ require_once 'includes/primary_navigation.inc';
 require_once 'includes/promo.inc';
 require_once 'includes/publication_card.inc';
 require_once 'includes/quick_links.inc';
+require_once 'includes/quote.inc';
 require_once 'includes/search.inc';
 require_once 'includes/secondary_navigation.inc';
 require_once 'includes/service_card.inc';

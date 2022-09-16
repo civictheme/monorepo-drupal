@@ -396,6 +396,10 @@ config_devel:
     - field.field.paragraph.civictheme_quick_links.field_c_p_links
     - field.field.paragraph.civictheme_quick_links.field_c_p_theme
     - field.field.paragraph.civictheme_quick_links.field_c_p_title
+    - field.field.paragraph.civictheme_quote.field_c_p_author
+    - field.field.paragraph.civictheme_quote.field_c_p_content
+    - field.field.paragraph.civictheme_quote.field_c_p_theme
+    - field.field.paragraph.civictheme_quote.field_c_p_space
     - field.field.paragraph.civictheme_service_card.field_c_p_links
     - field.field.paragraph.civictheme_service_card.field_c_p_theme
     - field.field.paragraph.civictheme_service_card.field_c_p_title
@@ -480,6 +484,7 @@ config_devel:
     - field.storage.node.field_c_n_thumbnail
     - field.storage.node.field_c_n_topics
     - field.storage.paragraph.field_c_p_address
+    - field.storage.paragraph.field_c_p_author
     - field.storage.paragraph.field_c_p_attachments
     - field.storage.paragraph.field_c_p_attributes
     - field.storage.paragraph.field_c_p_background
