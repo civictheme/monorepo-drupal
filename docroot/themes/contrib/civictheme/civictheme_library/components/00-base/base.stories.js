@@ -123,7 +123,7 @@ export const demoVideos = () => [
 
 export const demoVideoPoster = () => './assets/videos/demo_poster.png';
 
-export const demoIcon = () => './assets/icons/Brands/Dropbox.svg';
+export const demoIcon = () => './assets/icons/dropbox.svg';
 
 export const formElement = (inputType, options, theme, rand, itr) => {
   const isCheckboxOrRadio = inputType === 'checkbox' || inputType === 'radio';

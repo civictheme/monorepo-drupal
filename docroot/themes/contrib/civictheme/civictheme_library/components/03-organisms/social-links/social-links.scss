@@ -14,11 +14,20 @@
   }
 
   .civictheme-button--link {
-    border-radius: rem(100px);
-    padding: civictheme-space();
+    border: 1px solid transparent;
+    padding: civictheme-space(1.375);
     display: block;
 
+    @include civictheme-breakpoint('m') {
+      padding: civictheme-space(1.625);
+    }
+
     .civictheme-button__icon {
+      display: block;
+    }
+
+    .civictheme-icon {
+      fill: currentColor;
       display: block;
     }
   }
@@ -26,6 +35,7 @@
   &--with-border {
     .civictheme-button--link {
       border: 1px solid currentcolor;
+      border-radius: rem(100px);
     }
   }
 

@@ -16,28 +16,28 @@ export const SocialLinks = (knobTab) => {
 
   const items = [
     {
-      symbol: 'brands_facebook',
+      symbol: 'facebook',
       url: 'https://www.facebook.com',
       title: 'Facebook',
     },
     {
-      symbol: 'brands_twitter',
+      symbol: 'twitter',
       url: 'https://www.facebook.com',
       title: 'Twitter',
     },
     {
-      symbol: 'brands_linkedin',
+      symbol: 'linkedin',
       url: 'https://www.facebook.com',
       title: 'LinkedIn',
     },
     {
       url: 'https://www.dropbox.com',
-      text: `<img class="civictheme-button__icon" width=24 height=24 src="${demoIcon()}"/>`,
+      text: `<img class="civictheme-button__icon" width=20 height=20 src="${demoIcon()}"/>`,
       title: 'Icon with inline image',
     },
     {
       url: 'https://www.youtube.com',
-      text: CivicThemeIcon({ symbol: 'brands_youtube', size: 'regular' }),
+      text: CivicThemeIcon({ symbol: 'youtube', size: 'small' }),
       title: 'Icon with inline SVG',
     },
   ];
