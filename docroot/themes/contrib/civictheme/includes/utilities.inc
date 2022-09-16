@@ -481,7 +481,7 @@ function civictheme_array_to_multiline($array, $delimiter = PHP_EOL) {
 }
 
 /**
- * Get the nid that the listing block is embedded in.
+ * Get the nid that the Automated list block is embedded in.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */

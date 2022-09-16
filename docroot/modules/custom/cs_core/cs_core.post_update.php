@@ -94,8 +94,8 @@ function cs_core_post_update_update_side_navigation_block() {
 function cs_core_post_update_update_testmode_settings() {
   $config = \Drupal::service('config.factory')->getEditable('testmode.settings');
   $views_list = $config->get('views_node', []);
-  $views_list[] = 'civictheme_listing_examples';
-  $views_list[] = 'civictheme_listing_test';
+  $views_list[] = 'civictheme_automated_list_examples';
+  $views_list[] = 'civictheme_automated_list_test';
   $config->set('views_node', $views_list)->save();
 }
 
@@ -130,9 +130,9 @@ function cs_core_post_update_place_listing_example_blocks_into_regions() {
   }
 
   $block_ids = [
-    'civictheme_listing_example_spage_one_filter_single_select_exp',
-    'civictheme_listing_examples_page_multiple_filters_exp',
-    'civictheme_listing_examples_page_one_filter_multi_select_exp',
+    'civictheme_automated_list_example_spage_one_filter_single_select_exp',
+    'civictheme_automated_list_examples_page_multiple_filters_exp',
+    'civictheme_automated_list_examples_page_one_filter_multi_select_exp',
   ];
 
   foreach ($block_ids as $block_id) {
