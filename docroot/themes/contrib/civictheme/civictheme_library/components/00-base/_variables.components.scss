@@ -928,12 +928,11 @@ $civictheme-banner-dark-background-color: civictheme-color('primary', 5) !defaul
 //
 // Breadcrumb.
 //
-$civictheme-breadcrumb-light-color: civictheme-color('neutral', 7) !default;
-$civictheme-breadcrumb-light-hover-color: civictheme-color('neutral', 2) !default;
-$civictheme-breadcrumb-light-icon-color: civictheme-color('neutral', 5) !default;
-$civictheme-breadcrumb-dark-color: civictheme-color('neutral', 2) !default;
-$civictheme-breadcrumb-dark-hover-color: civictheme-color('primary', 5) !default;
-$civictheme-breadcrumb-dark-icon-color: civictheme-color('neutral', 5) !default;
+$civictheme-breadcrumb-light-icon-color: civictheme-color('neutral', 7) !default;
+$civictheme-breadcrumb-light-active-color: $civictheme-breadcrumb-light-icon-color !default;
+$civictheme-breadcrumb-dark-icon-color: color.mix(civictheme-color('neutral', 1), civictheme-color('secondary'), 85%) !default;
+$civictheme-breadcrumb-dark-active-color: $civictheme-breadcrumb-dark-icon-color !default;
+$civictheme-breadcrumb-delimiter-icon: url("data:image/svg+xml,%3Csvg fill='' width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.8297 11.29L10.5897 7.05C10.4967 6.95627 10.3861 6.88188 10.2643 6.83111C10.1424 6.78034 10.0117 6.7542 9.8797 6.7542C9.74769 6.7542 9.61698 6.78034 9.49512 6.83111C9.37326 6.88188 9.26266 6.95627 9.1697 7.05C8.98345 7.23736 8.87891 7.49082 8.87891 7.755C8.87891 8.01919 8.98345 8.27264 9.1697 8.46L12.7097 12L9.1697 15.54C8.98345 15.7274 8.87891 15.9808 8.87891 16.245C8.87891 16.5092 8.98345 16.7626 9.1697 16.95C9.26314 17.0427 9.37395 17.116 9.49579 17.1658C9.61763 17.2155 9.74809 17.2408 9.8797 17.24C10.0113 17.2408 10.1418 17.2155 10.2636 17.1658C10.3854 17.116 10.4963 17.0427 10.5897 16.95L14.8297 12.71C14.9234 12.617 14.9978 12.5064 15.0486 12.3846C15.0994 12.2627 15.1255 12.132 15.1255 12C15.1255 11.868 15.0994 11.7373 15.0486 11.6154C14.9978 11.4936 14.9234 11.383 14.8297 11.29Z' /%3E%3C/svg%3E%0A") !default;
 
 //
 // Callout.
