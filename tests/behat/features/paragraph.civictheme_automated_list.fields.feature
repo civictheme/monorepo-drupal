@@ -1,4 +1,4 @@
-@civictheme @paragraph @civictheme_automated_list
+@civictheme @paragraph @civictheme_automated_list @wip
 Feature: Tests the Listing paragraph
 
   Ensure that Listing paragraph exists and has the expected fields.
@@ -7,7 +7,7 @@ Feature: Tests the Listing paragraph
   Scenario: Paragraph type appears in the paragraph types page
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type"
-    Then I should see the text "Listing" in the "civictheme_automated_list" row
+    Then I should see the text "Automated list" in the "civictheme_automated_list" row
 
   @api
   Scenario: Listing paragraph exists with fields.
@@ -45,8 +45,8 @@ Feature: Tests the Listing paragraph
 
     And I see the text "Content type"
     And should see a "input#edit-field-c-n-topics-0-target-id" element
-    And should not see a "input#edit-field-c-n-components-0-subform-field-c-p-listing-content-type--xPcCPqBVt2U--wrapper.required" element
-    And should not see a "input#edit-field-c-n-components-0-subform-field-c-p-listing-content-type--xPcCPqBVt2U--wrapper[disabled]" element
+    And should not see a "input#edit-field-c-n-components-0-subform-field-c-p-list-content-type--xPcCPqBVt2U--wrapper.required" element
+    And should not see a "input#edit-field-c-n-components-0-subform-field-c-p-list-content-type--xPcCPqBVt2U--wrapper[disabled]" element
 
     And I click on "[data-drupal-selector=edit-field-c-n-components-widget-0-subform-group-metadata] summary" element
     And I wait 1 second

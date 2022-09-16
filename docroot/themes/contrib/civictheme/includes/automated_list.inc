@@ -110,8 +110,8 @@ function _civictheme_automated_list_element(Paragraph $paragraph) {
  */
 function _civictheme_automated_list_get_view_info($paragraph) {
   $info = [
-    'view_name' => civictheme_automated_list_DEFAULT_VIEW_NAME,
-    'display_name' => civictheme_automated_list_DEFAULT_VIEW_DISPLAY_NAME,
+    'view_name' => CIVICTHEME_AUTOMATED_LIST_DEFAULT_VIEW_NAME,
+    'display_name' => CIVICTHEME_AUTOMATED_LIST_DEFAULT_VIEW_DISPLAY_NAME,
   ];
 
   if (!empty($paragraph)) {
@@ -179,9 +179,9 @@ function _civictheme_automated_list_view_alter($view) {
   $view_header = $view->display_handler->getOption('header');
 
   // Show exact number of items.
-  if ($listing_limit_type == civictheme_automated_list_LIMIT_TYPE_LIMITED) {
+  if ($listing_limit_type == CIVICTHEME_AUTOMATED_LIST_LIMIT_TYPE_LIMITED) {
     // Prevent endless lists by using a fallback limit if a limit is 0.
-    $listing_limit = $listing_limit > 0 ? $listing_limit : civictheme_automated_list_LIMIT_FALLBACK;
+    $listing_limit = $listing_limit > 0 ? $listing_limit : CIVICTHEME_AUTOMATED_LIST_LIMIT_FALLBACK;
 
     // Changing pager type to 'some' and setting 'items_per_page'.
     $view_pager = $view->display_handler->getOption('pager');
@@ -195,7 +195,7 @@ function _civictheme_automated_list_view_alter($view) {
     }
     $view->display_handler->setOption('header', $view_header);
   }
-  elseif ($listing_limit_type == civictheme_automated_list_LIMIT_TYPE_UNLIMITED) {
+  elseif ($listing_limit_type == CIVICTHEME_AUTOMATED_LIST_LIMIT_TYPE_UNLIMITED) {
     if ($listing_items_per_page == 0) {
       // Show pager and default number of items.
       // This is default view display state, so no change is required.

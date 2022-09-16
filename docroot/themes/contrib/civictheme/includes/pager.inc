@@ -8,6 +8,7 @@
 /**
  * Implements template_preprocess_pager().
  *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_pager(&$variables) {

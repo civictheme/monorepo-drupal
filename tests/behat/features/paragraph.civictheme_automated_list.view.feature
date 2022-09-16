@@ -1,4 +1,4 @@
-@civictheme @paragraph @civictheme_automated_list
+@civictheme @paragraph @civictheme_automated_list @wip
 Feature: View of Page content with Listing component
 
   Ensure that Page content can be viewed correctly with Listing component.
@@ -13,7 +13,7 @@ Feature: View of Page content with Listing component
 
     And "civictheme_page" content:
       | title                  | created                | status | field_c_n_topics                               |
-      | Page Listing component |                        | 1      |                                                |
+      | Page Automated list component |                        | 1      |                                                |
       | [TEST] Page 1          | [relative:-1 minutes]  | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 |
       | [TEST] Page 2          | [relative:-2 minutes]  | 1      | [TEST] Topic 1, [TEST] Topic 2, [TEST] Topic 3 |
       | [TEST] Page 3          | [relative:-3 minutes]  | 1      | [TEST] Topic 1                                 |
@@ -33,11 +33,11 @@ Feature: View of Page content with Listing component
   @api @testmode
   Scenario: Listing, defaults
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_automated_list" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
       | field_c_p_list_content_type | civictheme_page |
 
-    When I visit "civictheme_page" "Page Listing component"
+    When I visit "civictheme_page" "Page Automated list component"
 
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
     And I should see 12 ".civictheme-card-container__card" elements
@@ -48,7 +48,7 @@ Feature: View of Page content with Listing component
   @api @testmode
   Scenario: Listing, custom values
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_automated_list" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
       | field_c_p_list_content_type | civictheme_page                              |
       | field_c_p_list_topic        |                                              |
@@ -68,7 +68,7 @@ Feature: View of Page content with Listing component
       | field_c_p_list_item_view_as | civictheme_promo_card                        |
       | field_c_p_list_item_theme   | dark                                         |
 
-    When I visit "civictheme_page" "Page Listing component"
+    When I visit "civictheme_page" "Page Automated list component"
     Then I should see the text "[TEST] Listing component title"
     And I should see the link "Link above" with "https://example.com/above" in ".civictheme-listing__header-link-above"
     And I should see the link "Link below" with "https://example.com/below" in ".civictheme-listing__link-below"
@@ -88,11 +88,11 @@ Feature: View of Page content with Listing component
   @api @testmode
   Scenario: Listing, unlimited
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_automated_list" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
       | field_c_p_list_limit_type | unlimited |
       | field_c_p_list_limit      | 0         |
-    When I visit "civictheme_page" "Page Listing component"
+    When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
     And I should see 12 ".civictheme-card-container__card" elements
     And I should see an ".civictheme-listing__results-below .civictheme-pager" element
@@ -100,11 +100,11 @@ Feature: View of Page content with Listing component
   @api @testmode
   Scenario: Listing, unlimited with limit
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_automated_list" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
       | field_c_p_list_limit_type | unlimited |
       | field_c_p_list_limit      | 6         |
-    When I visit "civictheme_page" "Page Listing component"
+    When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
     And I should see 6 ".civictheme-card-container__card" elements
     And I should see an ".civictheme-listing__results-below .civictheme-pager" element
@@ -112,11 +112,11 @@ Feature: View of Page content with Listing component
   @api @testmode
   Scenario: Listing, unlimited with limit
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_automated_list" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
       | field_c_p_list_limit_type | limited |
       | field_c_p_list_limit      | 5       |
-    When I visit "civictheme_page" "Page Listing component"
+    When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
     And I should see 5 ".civictheme-card-container__card" elements
     And I should not see an ".civictheme-listing__results-below .civictheme-pager" element
@@ -124,22 +124,22 @@ Feature: View of Page content with Listing component
   @api @testmode
   Scenario: Listing, limited with limit more than page
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_automated_list" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
       | field_c_p_list_limit_type | limited |
       | field_c_p_list_limit      | 14      |
-    When I visit "civictheme_page" "Page Listing component"
+    When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
-    And I should see 2 ".civictheme-card-container__card" elements
+    And I should see 14 ".civictheme-card-container__card" elements
     And I should not see an ".civictheme-listing__results-below .civictheme-pager" element
 
   @api @testmode
   Scenario: Listing, topics
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_automated_list" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
       | field_c_p_list_topics | [TEST] Topic 1, [TEST] Topic 2 |
-    When I visit "civictheme_page" "Page Listing component"
+    When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
     And I should see 6 ".civictheme-card-container__card" elements
     And I should not see an ".civictheme-listing__results-below .civictheme-pager" element
@@ -147,10 +147,10 @@ Feature: View of Page content with Listing component
   @api @testmode
   Scenario: Listing, exposed filters
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_automated_list" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
       | field_c_p_list_show_filters | 1 |
-    When I visit "civictheme_page" "Page Listing component"
+    When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
     And I should see 12 ".civictheme-card-container__card" elements
     And I should see an ".civictheme-listing__results-below .civictheme-pager" element
@@ -160,12 +160,12 @@ Feature: View of Page content with Listing component
   @api @javascript
   Scenario: Listing, exposed filters, filtering
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_automated_list" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
       | field_c_p_list_show_filters | 1                  |
       | field_c_p_list_filters_exp  | type, topic, title |
 
-    When I visit "civictheme_page" "Page Listing component"
+    When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
     And I should see 12 ".civictheme-card-container__card" elements
     And I should see an ".civictheme-listing__results-below .civictheme-pager" element
@@ -178,7 +178,7 @@ Feature: View of Page content with Listing component
     And I wait 1 second
     And I wait for AJAX to finish
 
-    And I press the "edit-submit-civictheme-listing" button
+    And I press the "edit-submit-civictheme-automated-list" button
     And I should see 4 ".civictheme-card-container__card" elements
 
     And I press the "Clear all" button
@@ -194,13 +194,13 @@ Feature: View of Page content with Listing component
       | [TEST] Page 16 | [relative:-5 days] | 1      |
       | [TEST] Page 17 | [relative:-5 days] | 1      |
 
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_automated_list" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       # Selection.
       | field_c_p_list_limit_type   | unlimited |
       | field_c_p_list_limit        | 6         |
       | field_c_p_list_show_filters | 1         |
       | field_c_p_list_filters_exp  | title     |
-    When I visit "civictheme_page" "Page Listing component"
+    When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
     And I should see 6 ".civictheme-card-container__card" elements
     And I should see an ".civictheme-listing__results-below .civictheme-pager" element
@@ -214,13 +214,13 @@ Feature: View of Page content with Listing component
       """
     And I press "Save field settings"
 
-    And I edit civictheme_page "Page Listing component"
+    And I edit civictheme_page "Page Automated list component"
     And I press "field_c_n_components_0_edit"
-    When I select "Test Listing" from "edit-field-c-n-components-0-subform-field-c-p-listing-type"
+    When I select "Test Listing" from "edit-field-c-n-components-0-subform-field-c-p-list-type"
 
     And I press "Save"
 
-    When I visit "civictheme_page" "Page Listing component"
+    When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
     And I should see 2 ".civictheme-card-container__card" elements
     And I should not see an ".civictheme-listing__results-below .civictheme-pager" element
@@ -233,11 +233,11 @@ Feature: View of Page content with Listing component
   @api @testmode
   Scenario: CivicTheme listing page with pagination works as expected
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Listing component" has "civictheme_listing" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
       | field_c_p_list_show_filters | 0                                            |
       | field_c_p_list_limit_type | unlimited |
       | field_c_p_list_limit      | 2         |
-    When I visit "civictheme_page" "Page Listing component"
+    When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
     And I should see 2 ".civictheme-card-container__card" elements
     And I should see an ".civictheme-listing__results-below .civictheme-pager" element
