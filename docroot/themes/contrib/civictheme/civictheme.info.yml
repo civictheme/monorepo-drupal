@@ -595,8 +595,6 @@ config_devel:
     - user.role.civictheme_site_administrator
     - views.view.civictheme_alerts
     - views.view.civictheme_automated_list
-    - views.view.civictheme_test_table
-    - views.view.civictheme_test_table_mini_pager
     - webform.webform.civictheme_enquiry
   optional:
     - core.entity_view_mode.node.teaser
