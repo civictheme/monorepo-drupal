@@ -838,16 +838,6 @@ $civictheme-pagination-dark-link-hover-color: civictheme-color('neutral', 1) !de
 $civictheme-pagination-dark-link-active-border-color: civictheme-color('neutral', 1) !default;
 
 //
-// Skip link.
-//
-$civictheme-skip-link-light-color: civictheme-color('primary') !default;
-$civictheme-skip-link-light-background-color: civictheme-color('neutral', 1) !default;
-$civictheme-skip-link-light-hover-color: civictheme-color('neutral', 1) !default;
-$civictheme-skip-link-dark-color: civictheme-color('secondary') !default;
-$civictheme-skip-link-dark-background-color: civictheme-color('primary', 4) !default;
-$civictheme-skip-link-dark-hover-color: civictheme-color('primary', 5) !default;
-
-//
 // Tooltip.
 //
 $civictheme-tooltip-width: rem(468px) !default;
@@ -1351,6 +1341,16 @@ $civictheme-table-of-contents-dark-link-hover-border-color: transparent !default
 $civictheme-table-of-contents-dark-link-strip-background-color: civictheme-color('primary', 3) !default;
 $civictheme-table-of-contents-dark-link-strip-hover-background-color: civictheme-color('secondary') !default;
 $civictheme-table-of-contents-dark-active-background-color: civictheme-color('primary', 3) !default;
+
+//
+// Skip link.
+//
+$civictheme-skip-link-light-color: civictheme-color('primary') !default;
+$civictheme-skip-link-light-background-color: civictheme-color('neutral', 1) !default;
+$civictheme-skip-link-light-hover-color: civictheme-color('neutral', 1) !default;
+$civictheme-skip-link-dark-color: civictheme-color('secondary') !default;
+$civictheme-skip-link-dark-background-color: civictheme-color('primary', 4) !default;
+$civictheme-skip-link-dark-hover-color: civictheme-color('primary', 5) !default;
 
 //
 // Slider.
