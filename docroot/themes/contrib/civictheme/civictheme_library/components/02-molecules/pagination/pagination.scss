@@ -49,7 +49,7 @@
     margin: 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
 
@@ -85,6 +85,7 @@
     display: block;
     text-align: center;
     text-decoration-color: transparent;
+    white-space: nowrap;
 
     &:hover {
       background: transparent;
