@@ -63,6 +63,8 @@ function civictheme_preprocess_pager(&$variables) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_preprocess_views_mini_pager(&$variables) {
+  /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
+  $pager_manager = \Drupal::service('pager.manager');
   if (isset($variables['items']['current'])) {
     $variables['items']['pages'] = [
       $variables['items']['current'] => [
@@ -71,8 +73,6 @@ function civictheme_preprocess_views_mini_pager(&$variables) {
     ];
   }
 
-  /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
-  $pager_manager = \Drupal::service('pager.manager');
   $element = $variables['element'] ?? NULL;
   if ($element === NULL) {
     return;

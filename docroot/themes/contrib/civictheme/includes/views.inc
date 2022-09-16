@@ -104,7 +104,6 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
       in_array($form_element_key, $filter_form_keys)
       && is_array($listing_filters)
       && !in_array($form_element_key, $listing_filters)
-      && $form_element_key === 'items_per_page'
     ) {
       $form[$form_element_key]['#access'] = FALSE;
       continue;
@@ -149,9 +148,6 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   $tags = $view->display_handler->getCacheMetadata()->getCacheTags();
   $form['#cache']['tags'] = Cache::mergeTags($view->getCacheTags(), $tags);
 
-  if (!empty($form['items_per_page'])) {
-    unset($form['items_per_page']);
-  }
 }
 
 /**
