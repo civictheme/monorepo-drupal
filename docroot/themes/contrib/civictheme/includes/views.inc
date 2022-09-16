@@ -67,8 +67,8 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
  * Alter exposed views form to render filters.
  *
  * Since Automated list component uses Views view, view exposed form is rendered
- * for Automated list component and standalone views. Filters component properties
- * are applied within view exposed form for both cases.
+ * for Automated list component and standalone views. Filters component
+ * properties are applied within view exposed form for both cases.
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
@@ -78,9 +78,10 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
 
   $filter_form_keys = _civictheme_get_views_exposed_form_elements_keys($form);
 
-  // Retrieve theme from Automated list settings (if this is rendered in the context
-  // of a listing) or use default theme if this rendered as a standalone view.
-  $theme = $view->civictheme_automated_list['theme'] ?? civictheme_automated_list_DEFAULT_THEME;
+  // Retrieve theme from Automated list settings (if this is rendered in the
+  // context of an automated list) or use default theme if this rendered as a
+  // standalone view.
+  $theme = $view->civictheme_automated_list['theme'] ?? CIVICTHEME_AUTOMATED_LIST_DEFAULT_THEME;
 
   // Retrieve exposed filter settings.
   $listing_filters = NULL;
@@ -284,7 +285,7 @@ function civictheme_preprocess_views_view(&$variables) {
 }
 
 /**
- * Adds preprocessing data to view to provide to Automated list child components.
+ * Adds preprocessing data to Automated list child components.
  */
 function _civictheme_automated_list_preprocess_view($paragraph, ViewExecutable &$view) {
   $settings = [];
