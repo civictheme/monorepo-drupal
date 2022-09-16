@@ -83,7 +83,7 @@ function cs_core_post_update_update_side_navigation_block() {
   $block->setVisibilityConfig('request_path', [
     'id' => 'request_path',
     'negate' => TRUE,
-    'pages' => "\n\r/civictheme-no-sidebar/*",
+    'pages' => "/civictheme-no-sidebar/*\n\r/admin/appearance/styleguide/*",
   ]);
   $block->save();
 }
