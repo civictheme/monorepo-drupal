@@ -10,7 +10,7 @@
   padding: civictheme-space(2) 0;
 
   &__link {
-    @include civictheme-typography('text-regular');
+    @include civictheme-typography('label-regular');
 
     // Make button appear as a Primary Navigation item.
     // @see civictheme-primary-navigation.scss
@@ -35,7 +35,7 @@
       border-bottom-color: $civictheme-search-light-menu-item-border-color;
 
       &:hover {
-        color: $civictheme-search-light-color;
+        color: $civictheme-search-light-hover-color;
         border-bottom-color: $civictheme-search-light-menu-item-hover-border-color;
       }
 
@@ -52,7 +52,7 @@
       border-bottom-color: $civictheme-search-dark-menu-item-border-color;
 
       &:hover {
-        color: $civictheme-search-dark-color;
+        color: $civictheme-search-dark-hover-color;
         border-bottom-color: $civictheme-search-dark-menu-item-hover-border-color;
       }
 

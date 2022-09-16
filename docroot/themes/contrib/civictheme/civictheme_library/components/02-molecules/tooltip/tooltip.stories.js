@@ -1,5 +1,6 @@
 // phpcs:ignoreFile
 import { text, radios, select } from '@storybook/addon-knobs';
+import merge from 'deepmerge';
 import CivicThemeTooltip from './tooltip.twig';
 import './tooltip';
 
@@ -15,10 +16,12 @@ export default {
 export const Tooltip = () => {
   const generalKnobTab = 'General';
 
-  const sizes = [...new Set([
-    ...SCSS_VARIABLES['civictheme-icon-sizes-default'],
-    ...SCSS_VARIABLES['civictheme-icon-sizes'],
-  ])];
+  const { icons } = ICONS;
+  const defaultIcon = icons.indexOf('userinterface_informationmark');
+
+  const defaultSizes = SCSS_VARIABLES['civictheme-icon-sizes-default'];
+  const customSizes = SCSS_VARIABLES['civictheme-icon-sizes'];
+  const sizes = Object.keys(merge(defaultSizes, customSizes));
 
   const generalKnobs = {
     theme: radios(

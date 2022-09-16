@@ -19,7 +19,8 @@ function CivicDropdownFilterSearchable(el) {
   this.fieldset = this.el.querySelector('[data-dropdown-filter-fieldset]');
   if (this.fieldset !== null) {
     this.items = this.fieldset.querySelectorAll('[data-dropdown-filter-item]');
-    // Add a search box to the dropdown filter if there are more options than the threshold.
+    // Add a search box to the dropdown filter if there are more options than
+    // the threshold.
     if (this.items.length >= this.searchBoxThreshold) {
       this.init();
     }

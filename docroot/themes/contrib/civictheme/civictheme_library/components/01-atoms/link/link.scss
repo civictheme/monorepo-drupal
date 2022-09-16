@@ -6,10 +6,10 @@
 // Mixins.
 //
 @mixin civictheme-link-base() {
-  text-decoration: none;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-  padding: 3px 0 2px;
+  text-decoration: underline;
+  text-decoration-thickness: rem(1px);
+  text-underline-offset: civictheme-space(0.375);
+  padding: civictheme-space(0.375) 0 civictheme-space(0.25);
 
   &:active {
     text-decoration: underline;
@@ -24,12 +24,27 @@
     margin-right: rem(4px);
   }
 
+  &.civictheme-link--external {
+    position: relative;
+    padding-right: civictheme-icon-size-dimension('regular', 'm', 'width');
+
+    &::after {
+      @include civictheme-icon-inline($civictheme-link-icon-external);
+
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
   &,
   &.civictheme-theme-light {
     color: $civictheme-link-light-color;
 
     &:focus {
       @include civictheme-outline();
+
+      border-radius: $civictheme-link-border-radius;
     }
 
     &:hover {
@@ -46,15 +61,18 @@
 
     &:focus {
       @include civictheme-outline(true);
+
+      border-radius: $civictheme-link-border-radius;
     }
 
     &:hover {
+      background-color: $civictheme-link-dark-hover-background-color;
       color: $civictheme-link-dark-hover-color;
     }
   }
 
   &:visited {
-    @include civictheme-link-visited ();
+    @include civictheme-link-visited();
   }
 }
 
@@ -63,6 +81,7 @@
     color: $civictheme-link-light-visited-color;
 
     &:hover {
+      background-color: $civictheme-link-light-visited-hover-background-color;
       color: $civictheme-link-light-visited-hover-color;
     }
   }
@@ -71,6 +90,7 @@
     color: $civictheme-link-dark-visited-color;
 
     &:hover {
+      background-color: $civictheme-link-dark-visited-hover-background-color;
       color: $civictheme-link-dark-visited-hover-color;
     }
   }

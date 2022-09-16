@@ -1,4 +1,6 @@
 // phpcs:ignoreFile
+import merge from 'deepmerge';
+
 export default {
   title: 'Base/Fonts',
   parameters: {
@@ -7,10 +9,9 @@ export default {
 };
 
 export const Fonts = () => {
-  const fonts = [...new Set([
-    ...SCSS_VARIABLES['civictheme-fonts-default'],
-    ...SCSS_VARIABLES['civictheme-fonts'],
-  ])];
+  const defaultValues = SCSS_VARIABLES['civictheme-fonts-default'];
+  const customValues = SCSS_VARIABLES['civictheme-fonts'];
+  const fonts = Object.keys(merge(defaultValues, customValues));
 
   const types = {
     Regular: 'regular',

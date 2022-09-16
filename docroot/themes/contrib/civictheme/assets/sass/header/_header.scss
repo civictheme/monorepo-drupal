@@ -5,16 +5,18 @@
 @import 'components/00-base/variables';
 
 .toolbar-tray-open.toolbar-fixed {
-    .civictheme-header {
-      :target {
-        &::before {
-          @include civictheme-breakpoint($civictheme-header-desktop-menu-breakpoint) {
-            content: '';
-            display: block;
-            height: $civictheme-header-sticky-scroll-offset;
-            margin: -$civictheme-header-sticky-scroll-offset 0 0;
-          }
+  $toolbar-sticky-header-height: 100px;
+
+  .civictheme-header {
+    :target {
+      &::before {
+        @include civictheme-breakpoint($civictheme-header-desktop-menu-breakpoint) {
+          content: '';
+          display: block;
+          height: $toolbar-sticky-header-height;
+          margin: -$toolbar-sticky-header-height 0 0;
         }
       }
     }
+  }
 }

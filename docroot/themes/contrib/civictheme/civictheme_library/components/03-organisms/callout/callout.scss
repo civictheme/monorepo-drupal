@@ -19,7 +19,6 @@
 
   &--wrapper {
     border-radius: $civictheme-callout-border-radius;
-    border-left: rem(6px) solid transparent;
     display: flex;
     flex-direction: column;
     padding: civictheme-space(3) civictheme-space(3);
@@ -32,6 +31,8 @@
     @include civictheme-breakpoint(m) {
       padding: civictheme-space(3) civictheme-space(5) civictheme-space(4) civictheme-space(3);
     }
+
+    @include civictheme-highlight-stripe($civictheme-callout-stripe-width, $civictheme-callout-border-radius, 0);
   }
 
   &__summary {
@@ -74,11 +75,10 @@
   }
 
   &.civictheme-theme-light {
-
     #{$root}--wrapper {
-      border-left-color: $civictheme-callout-light-border-color;
+      @include civictheme-highlight-stripe-color($civictheme-callout-light-stripe-border-color);
+
       background-color: $civictheme-callout-light-background-color;
-      color: $civictheme-callout-light-color;
     }
 
     .civictheme-callout {
@@ -93,11 +93,10 @@
   }
 
   &.civictheme-theme-dark {
-
     #{$root}--wrapper {
-      border-left-color: $civictheme-callout-dark-border-color;
+      @include civictheme-highlight-stripe-color($civictheme-callout-dark-stripe-border-color);
+
       background-color: $civictheme-callout-dark-background-color;
-      color: $civictheme-callout-dark-color;
     }
 
     .civictheme-callout {

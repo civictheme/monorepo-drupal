@@ -3,8 +3,8 @@
  * Large filter component.
  */
 function CivicLargeFilter(el) {
-  // Use "data-civictheme-alerts"'s attribute value to identify if this component was
-  // already initialised.
+  // Use "data-civictheme-alerts"'s attribute value to identify if this
+  // component was already initialised.
   if (el.getAttribute('data-civictheme-large-filter') === 'true') {
     return;
   }
@@ -329,7 +329,8 @@ CivicLargeFilter.prototype.redrawSelected = function () {
  * Pluralize.
  * Return the plural version based on count.
  * @param {string} pluralJSON
- *   A URL encoded JSON string in the format { "1": "Item", "default": "Items" }.
+ *   A URL encoded JSON string in the format
+ *   { "1": "Item", "default": "Items" }.
  * @param {number} count
  *   The counter used retrieve the plural.
  */

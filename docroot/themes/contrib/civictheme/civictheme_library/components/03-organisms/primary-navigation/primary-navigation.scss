@@ -44,12 +44,15 @@
           display: block;
           padding: civictheme-space(2);
 
+          @include civictheme-typography('label-regular');
+
           // Accommodate for the trigger.
           text-decoration: none;
 
           &::after {
             right: civictheme-space();
-            margin-top: 3px;
+            margin-top: -1 * rem(3px);
+            top: civictheme-space(2);
           }
         }
 
@@ -130,11 +133,8 @@
           display: block;
           border-radius: $civictheme-border-radius;
           padding: 0;
-
-          &:hover {
-            padding-left: civictheme-space();
-            padding-right: civictheme-space();
-          }
+          padding-left: civictheme-space();
+          padding-right: civictheme-space();
         }
 
         &.civictheme-menu__item--active-trail {
@@ -197,9 +197,13 @@
           }
 
           &[data-collapsible] {
+            @include civictheme-icon-collapsible($civictheme-primary-navigation-light-color);
+
             border-bottom-color: $civictheme-primary-navigation-light-border-color;
 
             &:hover {
+              @include civictheme-icon-collapsible($civictheme-primary-navigation-light-hover-color);
+
               background-color: $civictheme-primary-navigation-light-menu-item-hover-background-color;
               border-bottom-color: $civictheme-primary-navigation-light-menu-item-hover-border-color;
             }
@@ -314,9 +318,13 @@
           }
 
           &[data-collapsible] {
+            @include civictheme-icon-collapsible($civictheme-primary-navigation-dark-color);
+
             border-bottom-color: $civictheme-primary-navigation-dark-border-color;
 
             &:hover {
+              @include civictheme-icon-collapsible($civictheme-primary-navigation-dark-hover-color);
+
               background-color: $civictheme-primary-navigation-dark-menu-item-hover-background-color;
               border-bottom-color: $civictheme-primary-navigation-dark-menu-item-hover-border-color;
             }
@@ -371,7 +379,7 @@
 
         .civictheme-menu__item--level-1 {
           > .civictheme-link {
-            color: $civictheme-primary-navigation-dark-sub-menu-item-heading-hover-color;
+            color: $civictheme-primary-navigation-dark-sub-menu-item-heading-color;
 
             &:hover {
               color: $civictheme-primary-navigation-dark-sub-menu-item-heading-hover-color;
