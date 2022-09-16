@@ -8,6 +8,7 @@
 /**
  * Implements template_preprocess_pager().
  *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
@@ -19,7 +20,7 @@ function civictheme_preprocess_pager(&$variables) {
     return;
   }
 
-  // Set theme from civic listing component settings.
+  // Set theme from CivicTheme Automated list component settings.
   if (isset($variables['pager']['#attributes']['#civictheme_theme'])) {
     $variables['theme'] = $variables['pager']['#attributes']['#civictheme_theme'];
     unset($variables['pager']['#attributes']['#civictheme_theme']);

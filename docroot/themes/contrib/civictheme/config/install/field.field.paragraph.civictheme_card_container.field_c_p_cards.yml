@@ -71,8 +71,8 @@ settings:
       civictheme_iframe:
         weight: -49
         enabled: false
-      civictheme_listing:
-        weight: -48
+      civictheme_automated_list:
+        weight: 44
         enabled: false
       civictheme_map:
         weight: -47

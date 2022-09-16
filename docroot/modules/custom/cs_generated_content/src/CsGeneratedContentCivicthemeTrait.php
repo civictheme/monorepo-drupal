@@ -40,23 +40,23 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
-   * Default listing view name.
+   * Default Automated list view name.
    */
-  public static function civicthemeListingType() {
-    return 'civictheme_listing__block1';
+  public static function civicthemeAutomatedListType() {
+    return 'civictheme_automated_list__block1';
   }
 
   /**
    * Limited type name.
    */
-  public static function civicthemeListingLimitTypeLimited() {
+  public static function civicthemeAutomatedListLimitTypeLimited() {
     return 'limited';
   }
 
   /**
    * Unlimited type name.
    */
-  public static function civicthemeListingLimitTypeUnlimited() {
+  public static function civicthemeAutomatedListLimitTypeUnlimited() {
     return 'unlimited';
   }
 
@@ -548,28 +548,28 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
-   * Attach Listing paragraph to a node.
+   * Attach Automated list paragraph to a node.
    */
-  public static function civicthemeParagraphListingAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphAutomatedListAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
 
     $defaults = [
-      'listing_type' => static::civicthemeListingType(),
-      'listing_content_type' => static::civicthemePageContentType(),
-      'listing_item_view_as' => static::civicthemePromoCardType(),
-      'listing_filters_exp' => FALSE,
-      'listing_item_theme' => static::civicthemeThemeLight(),
-      'listing_limit' => 0,
-      'listing_limit_type' => self::civicthemeListingLimitTypeUnlimited(),
-      'listing_link_above' => NULL,
-      'listing_link_below' => NULL,
-      'listing_show_filters' => FALSE,
-      'listing_site_sections' => NULL,
+      'automated_list_type' => static::civicthemeAutomatedListType(),
+      'automated_list_content_type' => static::civicthemePageContentType(),
+      'automated_list_item_view_as' => static::civicthemePromoCardType(),
+      'automated_list_filters_exp' => FALSE,
+      'automated_list_item_theme' => static::civicthemeThemeLight(),
+      'automated_list_limit' => 0,
+      'automated_list_limit_type' => self::civicthemeAutomatedListLimitTypeUnlimited(),
+      'automated_list_link_above' => NULL,
+      'automated_list_link_below' => NULL,
+      'automated_list_show_filters' => FALSE,
+      'automated_list_site_sections' => NULL,
       'theme' => static::civicthemeThemeLight(),
       'title' => NULL,
-      'listing_topics' => NULL,
+      'automated_list_topics' => NULL,
       'space' => static::civicthemeSpaceTypeNone(),
     ];
 
@@ -579,18 +579,18 @@ trait CsGeneratedContentCivicthemeTrait {
       return NULL;
     }
 
-    if ($options['listing_limit_type'] == static::civicthemeListingLimitTypeLimited()) {
-      $options['listing_limit'] = $options['listing_limit'] ?? rand(9, 20);
+    if ($options['automated_list_limit_type'] == static::civicthemeAutomatedListLimitTypeLimited()) {
+      $options['automated_list_limit'] = $options['automated_list_limit'] ?? rand(9, 20);
     }
     else {
-      $options['listing_limit'] = $options['listing_limit'] ?? 0;
+      $options['automated_list_limit'] = $options['automated_list_limit'] ?? 0;
     }
 
-    if ($options['listing_show_filters']) {
-      $options['listing_filters_exp'] = $options['listing_filters_exp'] ?? [];
+    if ($options['automated_list_show_filters']) {
+      $options['automated_list_filters_exp'] = $options['automated_list_filters_exp'] ?? [];
     }
 
-    $paragraph = self::civicthemeParagraphAttach('civictheme_listing', $node, $field_name, $options);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_automated_list', $node, $field_name, $options);
 
     if (empty($paragraph)) {
       return;

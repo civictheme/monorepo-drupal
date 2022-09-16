@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_space
+    - paragraphs.paragraphs_type.civictheme_automated_list
+  module:
+    - options
+id: paragraph.civictheme_automated_list.field_c_p_space
+field_name: field_c_p_space
+entity_type: paragraph
+bundle: civictheme_automated_list
+label: 'With space'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

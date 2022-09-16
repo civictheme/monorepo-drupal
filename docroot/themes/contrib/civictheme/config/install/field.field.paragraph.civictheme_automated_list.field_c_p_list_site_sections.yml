@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_list_site_sections
+    - paragraphs.paragraphs_type.civictheme_automated_list
+    - taxonomy.vocabulary.civictheme_site_sections
+id: paragraph.civictheme_automated_list.field_c_p_list_site_sections
+field_name: field_c_p_list_site_sections
+entity_type: paragraph
+bundle: civictheme_automated_list
+label: 'Site sections'
+description: 'Select <em>Site section</em> terms to refine the returned results by.<br/>Result with <em>any</em> of the specified terms will be returned.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      civictheme_site_sections: civictheme_site_sections
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

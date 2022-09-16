@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_list_limit
+    - paragraphs.paragraphs_type.civictheme_automated_list
+id: paragraph.civictheme_automated_list.field_c_p_list_limit
+field_name: field_c_p_list_limit
+entity_type: paragraph
+bundle: civictheme_automated_list
+label: Limit
+description: 'Number of items to display if <em>Limit type</em> is <em>Limited</em> or items per page if <em>Limit type</em> is <em>Unlimited</em>.<br/>Use <code>0</code> to show all items.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 12
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
