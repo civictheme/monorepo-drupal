@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_c_p_list_limit_type
+    - paragraphs.paragraphs_type.civictheme_automated_list
+  module:
+    - options
+id: paragraph.civictheme_automated_list.field_c_p_list_limit_type
+field_name: field_c_p_list_limit_type
+entity_type: paragraph
+bundle: civictheme_automated_list
+label: 'Limit type'
+description: 'Use <em>Unlimited</em> to show all results split into pages or <em>Limited</em> to reduce number of results to a specified <em>Limit</em>.'
+required: true
+translatable: false
+default_value:
+  -
+    value: unlimited
+default_value_callback: ''
+settings: {  }
+field_type: list_string

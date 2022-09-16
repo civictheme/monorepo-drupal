@@ -89,7 +89,7 @@ settings:
       civictheme_content:
         weight: 6
         enabled: false
-      civictheme_listing:
+      civictheme_automated_list:
         weight: 44
         enabled: false
       civictheme_map:

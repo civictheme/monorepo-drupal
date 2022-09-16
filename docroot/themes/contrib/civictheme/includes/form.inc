@@ -394,11 +394,11 @@ function _civictheme_get_theme_from_attributes(&$variables) {
  * Implements hook_preprocess_form().
  */
 function civictheme_preprocess_form(&$variables) {
-  if (isset($variables['element']['#attributes']['civictheme_listing'])) {
-    unset($variables['element']['#attributes']['civictheme_listing']);
+  if (isset($variables['element']['#attributes']['civictheme_automated_list'])) {
+    unset($variables['element']['#attributes']['civictheme_automated_list']);
   }
-  if (isset($variables['attributes']['civictheme_listing'])) {
-    unset($variables['attributes']['civictheme_listing']);
+  if (isset($variables['attributes']['civictheme_automated_list'])) {
+    unset($variables['attributes']['civictheme_automated_list']);
   }
 }
 
