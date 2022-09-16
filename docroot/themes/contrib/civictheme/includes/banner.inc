@@ -43,8 +43,7 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
     $variables['background_image'] = civictheme_media_get_url_from_field($entity, 'field_c_b_background_image');
 
     if (civictheme_field_has_value($entity, 'field_c_b_blend_mode')) {
-      $blend_mode = civictheme_get_field_value($entity, 'field_c_b_blend_mode', TRUE);
-      $variables['background_image_blend_mode'] = $blend_mode;
+      $variables['background_image_blend_mode'] = civictheme_get_field_value($entity, 'field_c_b_blend_mode', TRUE);
     }
   }
 
@@ -212,8 +211,7 @@ function _civictheme_preprocess_civictheme_banner_background_image(&$variables, 
   if ($background_image !== NULL) {
     $variables['background_image'] = civictheme_media_get_url($background_image);
     if (civictheme_field_has_value($node, 'field_c_n_blend_mode')) {
-      $blend_mode = civictheme_get_field_value($node, 'field_c_n_blend_mode', TRUE);
-      $variables['background_image_blend_mode'] = $blend_mode;
+      $variables['background_image_blend_mode'] = civictheme_get_field_value($node, 'field_c_n_blend_mode', TRUE);
     }
   }
 }
