@@ -29,7 +29,9 @@
           theme: theme,
           attributes: loop.index == links_count ? 'aria-current="location"' : '',
           modifier_class: 'civictheme-breadcrumb__links__link',
-        } | merge(link) %}
+          text: link.text,
+          url: link.url,
+        } %}
         {% if not active_is_link and (loop.index == links_count) %}
           <span aria-current="location">{{ link.text }}</span>
         {% else %}
@@ -37,7 +39,12 @@
         {% endif %}
       {% endset %}
       {% if loop.index == links_count - 1 %}
-        {% set parent = { icon: 'left-arrow', icon_placement: 'before' } | merge(link) %}
+        {% set parent = {
+          icon: 'left-arrow',
+          icon_placement: 'before',
+          text: link.text,
+          url: link.url,
+        } %}
       {% endif %}
       {% set link_items = link_items|merge([ link_item ]) %}
     {% endfor %}
