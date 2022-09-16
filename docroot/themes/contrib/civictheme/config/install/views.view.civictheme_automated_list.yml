@@ -12,7 +12,7 @@ dependencies:
 id: civictheme_automated_list
 label: Listing
 module: views
-description: 'Default view used in the Listing component.'
+description: 'Default view used in the Automated list component.'
 tag: CivicTheme
 base_table: node_field_data
 base_field: nid

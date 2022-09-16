@@ -66,8 +66,8 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
 /**
  * Alter exposed views form to render filters.
  *
- * Since Listing component uses Views view, view exposed form is rendered
- * for Listing component and standalone views. Filters component properties
+ * Since Automated list component uses Views view, view exposed form is rendered
+ * for Automated list component and standalone views. Filters component properties
  * are applied within view exposed form for both cases.
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
@@ -78,7 +78,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
 
   $filter_form_keys = _civictheme_get_views_exposed_form_elements_keys($form);
 
-  // Retrieve theme from listing settings (if this is rendered in the context
+  // Retrieve theme from Automated list settings (if this is rendered in the context
   // of a listing) or use default theme if this rendered as a standalone view.
   $theme = $view->civictheme_automated_list['theme'] ?? civictheme_automated_list_DEFAULT_THEME;
 
@@ -99,7 +99,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   // components.
   $form_element_keys = Element::children($form);
   foreach ($form_element_keys as $form_element_key) {
-    // Hide listing filter if it is not in a list of selected filters.
+    // Hide Automated list filter if it is not in a list of selected filters.
     if (
       in_array($form_element_key, $filter_form_keys)
       && is_array($listing_filters)
@@ -238,7 +238,7 @@ function civictheme_preprocess_views_view(&$variables) {
   $is_view_page = $route_parameters->get('view_id') !== NULL;
   $is_view_component = isset($variables['view']->civictheme_automated_list);
 
-  // Adds component theme settings to view / listing template.
+  // Adds component theme settings to view / Automated list template.
   if ($is_view_component) {
     $variables += $variables['view']->civictheme_automated_list;
 
@@ -284,7 +284,7 @@ function civictheme_preprocess_views_view(&$variables) {
 }
 
 /**
- * Adds preprocessing data to view to provide to listing child components.
+ * Adds preprocessing data to view to provide to Automated list child components.
  */
 function _civictheme_automated_list_preprocess_view($paragraph, ViewExecutable &$view) {
   $settings = [];
@@ -360,7 +360,7 @@ function civictheme_preprocess_views_view_grid(&$variables) {
 }
 
 /**
- * Gets the Listing paragraph from route.
+ * Gets the Automated list paragraph from route.
  *
  * @return \Drupal\paragraphs\Entity\Paragraph|null
  *   First Listing paragraph from the node in route or NULL if no listing

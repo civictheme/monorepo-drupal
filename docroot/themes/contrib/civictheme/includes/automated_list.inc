@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Listing paragraph component.
+ * Automated list paragraph component.
  */
 
 use Drupal\Component\Utility\Html;
@@ -19,14 +19,14 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(&$variables)
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  // Get the listing element.
-  $variables['listing'] = _civictheme_automated_list_element($paragraph);
+  // Get the automated list element.
+  $variables['automated_list'] = _civictheme_automated_list_element($paragraph);
 
   $attributes = [];
   $attributes['id'] = Html::getUniqueId('listing-' . $paragraph->id());
-  if (!empty($variables['listing']['view_id'])) {
-    $attributes['data-view'] = Html::cleanCssIdentifier($variables['listing']['#view_name']);
-    $attributes['data-view-display'] = Html::cleanCssIdentifier($variables['listing']['#display_name']);
+  if (!empty($variables['automated_list']['view_id'])) {
+    $attributes['data-view'] = Html::cleanCssIdentifier($variables['automated_list']['#view_name']);
+    $attributes['data-view-display'] = Html::cleanCssIdentifier($variables['automated_list']['#display_name']);
   }
 
   $variables['attributes'] = $variables['attributes'] ?? [];
@@ -38,19 +38,19 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(&$variables)
   $variables['view_as'] = civictheme_get_field_value($paragraph, 'field_c_p_list_item_view_as');
   $variables['limit'] = civictheme_get_field_value($paragraph, 'field_c_p_list_limit');
 
-  // Propagate listing theme settings to the view filters.
+  // Propagate Automated list theme settings to the view filters.
   // @todo Possibly move these into _civictheme_automated_list_element().
-  $form_elements = Element::children($variables['listing']['view']['#view']->exposed_widgets);
+  $form_elements = Element::children($variables['automated_list']['view']['#view']->exposed_widgets);
   foreach ($form_elements as $form_element) {
-    $variables['listing']['view']['#view']->exposed_widgets[$form_element]['#civictheme_theme'] = $variables['theme'];
+    $variables['automated_list']['view']['#view']->exposed_widgets[$form_element]['#civictheme_theme'] = $variables['theme'];
   }
 }
 
 /**
- * Render Listing paragraph.
+ * Render Automated list paragraph.
  *
  * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
- *   The paragraph containing Listing component configurations.
+ *   The paragraph containing Automated list component configurations.
  *
  * @return array
  *   The render array for view and exposed form.
@@ -64,14 +64,14 @@ function _civictheme_automated_list_element(Paragraph $paragraph) {
 
   $view = Views::getView($info['view_name']);
   if (!$view) {
-    \Drupal::logger('civictheme')->error(sprintf('Unable to set Listing view "%s".', $info['view_name']));
+    \Drupal::logger('civictheme')->error(sprintf('Unable to set Automated list view "%s".', $info['view_name']));
 
     // Do not render this element if the display does not exist.
     return NULL;
   }
 
   if (!$view->setDisplay($info['display_name'])) {
-    \Drupal::logger('civictheme')->error(sprintf('Unable to set Listing view display "%s" for view "%s".', $info['display_name'], $info['view_name']));
+    \Drupal::logger('civictheme')->error(sprintf('Unable to set Automated list view display "%s" for view "%s".', $info['display_name'], $info['view_name']));
 
     // Do not render this element if the display does not exist.
     return NULL;
@@ -94,7 +94,7 @@ function _civictheme_automated_list_element(Paragraph $paragraph) {
 }
 
 /**
- * Get the Listing view name and display name.
+ * Get the Automated list view name and display name.
  *
  * @param object|null $paragraph
  *   Configuration paragraph object.
@@ -127,7 +127,7 @@ function _civictheme_automated_list_get_view_info($paragraph) {
 }
 
 /**
- * Loads and alters Listing view.
+ * Loads and alters Automated list view.
  *
  * Please, do not optimise conditions in this function - the code is organised
  * this way on purpose to ease readability and debugging.

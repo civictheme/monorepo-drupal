@@ -21,7 +21,7 @@ directory.
 
 CivicTheme provides Views integration.
 
-### CivicTheme Listing component
+### CivicTheme Automated list component
 
 Listing component allows editors to build lists of contents and place them
 anywhere on the page as a component.
