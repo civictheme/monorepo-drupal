@@ -11,6 +11,7 @@
  * - previous_label: [string] Text for previous button.
  * - next_label: [string] Text for next button.
  * - vertical_space: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -20,10 +21,10 @@
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if slides is not empty %}
-  <div class="civictheme-slider {{ modifier_class }}">
+  <div class="civictheme-slider {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xxs-12">
           <div class="civictheme-slider__container" data-component-civictheme-slider>
             {% block top_controls %}
               {% if title is not empty or link is not empty %}
