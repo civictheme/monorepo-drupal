@@ -26,18 +26,13 @@ export const SocialLinks = (knobTab) => {
       title: 'Twitter',
     },
     {
-      symbol: 'linkedin',
-      url: 'https://www.facebook.com',
-      title: 'LinkedIn',
-    },
-    {
       url: 'https://www.dropbox.com',
       text: `<img class="civictheme-button__icon" width=20 height=20 src="${demoIcon()}"/>`,
       title: 'Icon with inline image',
     },
     {
-      url: 'https://www.youtube.com',
-      text: CivicThemeIcon({ symbol: 'youtube', size: 'small' }),
+      url: 'https://www.linkedin.com',
+      text: CivicThemeIcon({ symbol: 'linkedin', size: 'small' }),
       title: 'Icon with inline SVG',
     },
   ];
@@ -55,6 +50,7 @@ export const SocialLinks = (knobTab) => {
     items: boolean('With items', true, generalKnobTab) ? items : null,
     with_border: boolean('With border', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeSocialLinks({
