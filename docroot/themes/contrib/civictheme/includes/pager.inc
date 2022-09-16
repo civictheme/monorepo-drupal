@@ -42,7 +42,7 @@ function civictheme_preprocess_pager(&$variables) {
       3 => 'next',
     ];
     foreach ($controls as $tag_key => $control) {
-      if (!isset($variables['items'][$control])) {
+      if (!isset($variables['items'][$control]) && !empty($variables['pager']['#tags'][$tag_key])) {
         $variables['items'][$control] = [
           'text' => $variables['pager']['#tags'][$tag_key],
         ];
