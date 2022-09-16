@@ -24,3 +24,15 @@
     }
   }
 }
+
+@mixin civictheme-icon-inline($content, $size: 'regular') {
+  content: '';
+  background-color: currentcolor;
+  display: inline-block;
+  width: civictheme-icon-size-dimension($size, 'm', 'width');
+  height: civictheme-icon-size-dimension($size, 'm', 'height');
+  mask: $content no-repeat 50% 50%;
+  -webkit-mask: $content no-repeat 50% 50%;
+  mask-size: cover;
+  -webkit-mask-size: cover;
+}

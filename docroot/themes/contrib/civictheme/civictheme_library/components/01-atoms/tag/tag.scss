@@ -29,6 +29,7 @@
 
   &.civictheme-theme-light {
     background-color: $civictheme-tag-light-background-color;
+    border-color: $civictheme-tag-light-border-color;
     color: $civictheme-tag-light-color;
 
     @include civictheme-icon-fill-color($civictheme-tag-light-color);
@@ -52,6 +53,7 @@
 
   &.civictheme-theme-dark {
     background-color: $civictheme-tag-dark-background-color;
+    border-color: $civictheme-tag-dark-border-color;
     color: $civictheme-tag-dark-color;
 
     @include civictheme-icon-fill-color($civictheme-tag-dark-color);

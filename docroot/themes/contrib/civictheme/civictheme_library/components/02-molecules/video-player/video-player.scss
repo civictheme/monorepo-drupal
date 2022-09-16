@@ -2,18 +2,25 @@
 // Video component.
 //
 
+@use 'sass:math';
+
 .civictheme-video-player {
   $root: &;
 
   &__wrapper {
     position: relative;
-    padding-bottom: $civictheme-video-padding-bottom;
+    padding-bottom: math.div($civictheme-video-ratio-height, $civictheme-video-ratio-width) * 100%;
     padding-top: civictheme-space(3);
     height: 0;
     overflow: hidden;
 
-    iframe {
+    iframe,
+    video {
       position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
   }
 
@@ -24,34 +31,6 @@
     @include civictheme-breakpoint(m) {
       margin-top: civictheme-space(3);
     }
-
-    .civictheme-link {
-      @include civictheme-typography('text-regular');
-
-      @include breakpoint(xxs) {
-        font-family: civictheme-font('secondary');
-      }
-
-      @include breakpoint(m) {
-        font-family: civictheme-font('secondary');
-      }
-
-      &.civictheme-theme-light {
-        color: $civictheme-video-light-link-color;
-
-        &:hover {
-          color: $civictheme-video-light-link-hover-color;
-        }
-      }
-
-      &.civictheme-theme-dark {
-        color: $civictheme-video-dark-link-color;
-
-        &:hover {
-          color: $civictheme-video-dark-link-hover-color;
-        }
-      }
-    }
   }
 
   &__links__transcript {
@@ -59,19 +38,6 @@
 
     @include civictheme-breakpoint(m) {
       padding-right: civictheme-space(3);
-    }
-  }
-
-  &__links__transcript,
-  &__links__share {
-    & .civictheme-video__action-icon {
-      #{$root}.civictheme-theme-light & {
-        fill: $civictheme-video-light-icon-color;
-      }
-
-      #{$root}.civictheme-theme-dark & {
-        fill: $civictheme-video-dark-icon-color;
-      }
     }
   }
 

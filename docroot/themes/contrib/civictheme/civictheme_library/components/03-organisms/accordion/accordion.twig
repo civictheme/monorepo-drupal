@@ -37,7 +37,7 @@
             {% for fold in panels %}
               {% if fold.title is not empty or fold.content is not empty %}
                 {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
-                <li class="civictheme-accordion__list-item" data-collapsible {{ is_expanded ? '' : 'data-collapsible-collapsed' }} data-collapsible-duration="500" data-collapsible-trigger-no-icon>
+                <li class="civictheme-accordion__list-item" data-collapsible {{ is_expanded ? '' : 'data-collapsible-collapsed' }} data-collapsible-duration="250" data-collapsible-trigger-no-icon>
                   <div class="civictheme-accordion__header">
                     <button class="civictheme-accordion__header__button" data-collapsible-trigger="" aria-expanded="{{ is_expanded ? 'true' : 'false' }}">
                       {% if fold.title is not empty %}

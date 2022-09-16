@@ -94,6 +94,8 @@
     }
 
     #{$root}__image-wrapper {
+      @include civictheme-image-fit();
+
       height: $civictheme-publication-card-large-image-height-mobile;
       width: $civictheme-publication-card-large-image-width-mobile;
 

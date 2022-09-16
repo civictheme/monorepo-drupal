@@ -2,47 +2,6 @@
 // Attachment component.
 //
 
-@mixin civictheme-card-heading-state() {
-  & {
-    border-bottom: 0;
-    padding: 0;
-    text-decoration: underline;
-
-    &:hover {
-      background-color: unset;
-      padding: 0;
-    }
-
-    &:active {
-      text-underline: none;
-    }
-  }
-
-  &.civictheme-theme-light {
-    color: $civictheme-attachment-light-heading-color;
-
-    &:hover {
-      color: $civictheme-attachment-light-heading-hover-color;
-    }
-
-    &:active {
-      color: $civictheme-attachment-light-heading-active-color;
-    }
-  }
-
-  &.civictheme-theme-dark {
-    color: $civictheme-attachment-dark-heading-color;
-
-    &:hover {
-      color: $civictheme-attachment-dark-heading-hover-color;
-    }
-
-    &:active {
-      color: $civictheme-attachment-dark-heading-active-color;
-    }
-  }
-}
-
 .civictheme-attachment {
   display: flex;
   flex-wrap: wrap;
@@ -154,8 +113,6 @@
     }
 
     font-weight: 600;
-
-    @include civictheme-card-heading-state();
   }
 
   &.civictheme-theme-light {

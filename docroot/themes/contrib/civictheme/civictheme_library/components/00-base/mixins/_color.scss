@@ -10,14 +10,14 @@
 //
 // Retrieve light theme color.
 //
-@function civictheme-color-light($name, $arg2: false) {
+@function civictheme-color-light($name) {
   @return _civictheme-color($name, 'light');
 }
 
 //
 // Retrieve dark theme color.
 //
-@function civictheme-color-dark($name, $arg2: false) {
+@function civictheme-color-dark($name) {
   @return _civictheme-color($name, 'dark');
 }
 
