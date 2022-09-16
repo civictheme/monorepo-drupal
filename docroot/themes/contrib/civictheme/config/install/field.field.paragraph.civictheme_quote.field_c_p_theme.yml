@@ -12,7 +12,7 @@ entity_type: paragraph
 bundle: civictheme_quote
 label: Theme
 description: ''
-required: false
+required: true
 translatable: true
 default_value:
   -

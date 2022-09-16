@@ -14,7 +14,7 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
  * @SuppressWarnings(PHPMD)
  */
 function _civictheme_styleguide_component_quote() {
-  $generator = \Drupal::service('styleguide.generator');
+  $items = [];
 
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
@@ -26,7 +26,7 @@ function _civictheme_styleguide_component_quote() {
         [
           'type' => 'civictheme_quote',
           'content' => $helper::staticPlainParagraph(),
-          'author' => $helper::staticName(3)
+          'author' => $helper::staticName(3),
         ],
       ],
     ],

@@ -5,8 +5,6 @@
  * CivicTheme Quote paragraph component.
  */
 
-use Drupal\paragraphs\Entity\Paragraph;
-
 /**
  * Implements template_preprocess_paragraph().
  *
