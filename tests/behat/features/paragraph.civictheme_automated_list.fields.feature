@@ -28,7 +28,7 @@ Feature: Tests the Listing paragraph
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_list_topics" in the "Topics" row
     And I should see the text "field_c_p_space" in the "With space" row
-    And I should see the text "field_c_p_list_type" in the "Listing type" row
+    And I should see the text "field_c_p_list_type" in the "Automated list type" row
 
   @api @javascript
   Scenario: Listing paragraph fields
