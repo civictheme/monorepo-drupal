@@ -6,5 +6,6 @@
 //
 // stylelint-disable scss/dollar-variable-pattern
 
-// Example to override component's variable.
-$civictheme-button-light-primary-hover-background-color: civictheme-color-light('brand2');
+// Example to override component's variable - Back to Top should have a
+// 'custom1' colour background.
+$civictheme-back-to-top-light-background-color: civictheme-color-light('custom1');
