@@ -1,4 +1,4 @@
-@civictheme @paragraph @civictheme_automated_list @wip
+@civictheme @paragraph @civictheme_automated_list
 Feature: Tests the Listing paragraph
 
   Ensure that Listing paragraph exists and has the expected fields.

@@ -40,7 +40,7 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
-   * Default automated_list view name.
+   * Default Automated list view name.
    */
   public static function civicthemeAutomatedListType() {
     return 'civictheme_automated_list__block1';
@@ -548,7 +548,7 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
-   * Attach automated_list paragraph to a node.
+   * Attach Automated list paragraph to a node.
    */
   public static function civicthemeParagraphAutomatedListAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {

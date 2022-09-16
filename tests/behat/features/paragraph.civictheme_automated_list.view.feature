@@ -1,4 +1,4 @@
-@civictheme @paragraph @civictheme_automated_list @wip
+@civictheme @paragraph @civictheme_automated_list
 Feature: View of Page content with Listing component
 
   Ensure that Page content can be viewed correctly with Listing component.
