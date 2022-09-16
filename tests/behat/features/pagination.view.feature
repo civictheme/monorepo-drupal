@@ -51,6 +51,8 @@ Feature: Tests the pagination element
     And I should not see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
     And I should see "Prev" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
     And I should see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see a ".civictheme-pager .civictheme-pager__item--ellipsis-next" element
+    And I should not see a ".civictheme-pager .civictheme-pager__item--ellipsis-previous" element
     And I click "2"
     And I should see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
     And I should see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
@@ -59,6 +61,8 @@ Feature: Tests the pagination element
     And I should see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
     And I should see "Next" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
     And I should see "Items per page" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-pager__items_per_page" element
+    And I should not see a ".civictheme-pager .civictheme-pager__item--ellipsis-next" element
+    And I should see a ".civictheme-pager .civictheme-pager__item--ellipsis-previous" element
     And select "items_per_page" should have an option "5"
     And select "items_per_page" should have an option "10"
     And select "items_per_page" should have an option "25"
@@ -82,7 +86,11 @@ Feature: Tests the pagination element
     And I should see "Prev" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
     And I should see "1" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-pager__link.civictheme-pager__link--active" element
     And I should not see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see a ".civictheme-pager .civictheme-pager__item--ellipsis-next" element
+    And I should not see a ".civictheme-pager .civictheme-pager__item--ellipsis-previous" element
     And I click "Next"
+    And I should see a ".civictheme-pager .civictheme-pager__item--ellipsis-next" element
+    And I should see a ".civictheme-pager .civictheme-pager__item--ellipsis-previous" element
     And I should not see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
     And I should not see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
     And I should see "2" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-pager__link.civictheme-pager__link--active" element

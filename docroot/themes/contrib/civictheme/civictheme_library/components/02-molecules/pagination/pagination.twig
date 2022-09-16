@@ -18,6 +18,9 @@
  *   - value: [string] Option value.
  *   - selected: [string] Flag whether option is selected.
  * - items_per_page_attributes: attributes for select element.
+ * - ellipses: [object] Boolean flags for whether to print ellipses.
+ *   - previous: [boolean] show ellipsis before item links
+ *   - next: [boolean] show ellipsis after item links
  */
 #}
 
@@ -83,7 +86,7 @@
 
       {# Add an ellipsis if there are further previous pages. #}
       {% if ellipses.previous %}
-        <li class="civictheme-pager__item civictheme-pager__item--ellipsis" role="presentation">
+        <li class="civictheme-pager__item civictheme-pager__item--ellipsis civictheme-pager__item--ellipsis-previous" role="presentation">
           &hellip;
         </li>
       {% endif %}
@@ -110,7 +113,7 @@
 
       {# Add an ellipsis if there are further next pages. #}
       {% if ellipses.next %}
-        <li class="civictheme-pager__item civictheme-pager__item--ellipsis  hide-xxs show-l" role="presentation">
+        <li class="civictheme-pager__item civictheme-pager__item--ellipsis civictheme-pager__item--ellipsis-next" role="presentation">
           &hellip;
         </li>
       {% endif %}

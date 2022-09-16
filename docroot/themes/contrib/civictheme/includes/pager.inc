@@ -31,7 +31,7 @@ function civictheme_preprocess_pager(&$variables) {
   $view = $variables['attributes']['#view'] ?? NULL;
   if ($view) {
     unset($variables['attributes']['#view']);
-    _civictheme_preprocess_items_per_page($variables, $view, $pager);
+    _civictheme_preprocess_pager__items_per_page($variables, $view, $pager);
   }
 
   $variables['total_pages'] = $pager->getTotalPages();
@@ -89,14 +89,16 @@ function civictheme_preprocess_views_mini_pager(&$variables) {
   $view = $variables['view'];
   if ($view) {
     unset($variables['view']);
-    _civictheme_preprocess_items_per_page($variables, $view, $pager);
+    _civictheme_preprocess_pager__items_per_page($variables, $view, $pager);
   }
+
+  _civictheme_preprocess_mini_pager__ellipsis($variables);
 }
 
 /**
  * Helper to preprocess items_per_page in pagination component.
  */
-function _civictheme_preprocess_items_per_page(&$variables, $view, $pager) {
+function _civictheme_preprocess_pager__items_per_page(&$variables, $view, $pager) {
   /** @var \Drupal\views\ViewExecutable $view */
   $view_pager = $view->getPager();
   if (!empty($view_pager->options['expose']['items_per_page']) && $view_pager->options['expose']['items_per_page'] === TRUE) {
@@ -118,5 +120,18 @@ function _civictheme_preprocess_items_per_page(&$variables, $view, $pager) {
     }
     $variables['items_per_page_options'] = $items_per_page;
     $variables['items_per_page_attributes'] = 'name="items_per_page" form="' . $exposed_widgets['#id'] . '"';
+  }
+}
+
+/**
+ * Helper to process ellipsis for mini pager.
+ */
+function _civictheme_preprocess_mini_pager__ellipsis(&$variables) {
+  if ($variables['items']['current'] > 1) {
+    $variables['ellipses']['previous'] = TRUE;
+  }
+
+  if ($variables['items']['current'] < $variables['total_pages']) {
+    $variables['ellipses']['next'] = TRUE;
   }
 }
