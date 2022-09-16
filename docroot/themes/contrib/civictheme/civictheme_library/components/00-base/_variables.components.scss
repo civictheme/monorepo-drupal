@@ -830,8 +830,8 @@ $civictheme-next-steps-dark-stripe-color: civictheme-color('neutral', 8) !defaul
 //
 $civictheme-pagination-light-background-color: civictheme-color('neutral', 3) !default;
 $civictheme-pagination-light-link-color: civictheme-color('primary') !default;
-$civictheme-pagination-light-link-hover-color: civictheme-color('primary', 3) !default;
-$civictheme-pagination-light-link-active-border-color: civictheme-color('primary', 3) !default;
+$civictheme-pagination-light-link-hover-color: civictheme-color('neutral', 7) !default;
+$civictheme-pagination-light-link-active-border-color: civictheme-color('neutral', 7) !default;
 $civictheme-pagination-dark-background-color: civictheme-color('primary', 3) !default;
 $civictheme-pagination-dark-link-color: civictheme-color('secondary') !default;
 $civictheme-pagination-dark-link-hover-color: civictheme-color('neutral', 1) !default;
@@ -850,9 +850,10 @@ $civictheme-skip-link-dark-hover-color: civictheme-color('primary', 5) !default;
 //
 // Tooltip.
 //
-$civictheme-tooltip-width: rem(230px) !default;
-$civictheme-tooltip-triangle-width: civictheme-space(4) !default;
-$civictheme-tooltip-triangle-height: civictheme-space(2) !default;
+$civictheme-tooltip-width: rem(468px) !default;
+$civictheme-tooltip-width-m: rem(327px) !default;
+$civictheme-tooltip-triangle-width: civictheme-space(3.2) !default;
+$civictheme-tooltip-triangle-height: civictheme-space(2.6) !default;
 $civictheme-tooltip-description-border-radius: rem(8px) !default;
 $civictheme-tooltip-z-index: 99 !default;
 $civictheme-tooltip-light-icon-color: civictheme-color('primary') !default;
@@ -1344,7 +1345,7 @@ $civictheme-table-of-contents-light-active-border-color: civictheme-color('neutr
 $civictheme-table-of-contents-dark-title-color: civictheme-color('neutral', 1) !default;
 $civictheme-table-of-contents-dark-link-color: civictheme-color('neutral', 1) !default;
 $civictheme-table-of-contents-dark-link-border-color: transparent !default;
-$civictheme-table-of-contents-dark-link-hover-background-color: transparent !default;
+$civictheme-table-of-contents-dark-link-hover-background-color: civictheme-color('primary', 3);
 $civictheme-table-of-contents-dark-link-hover-border-color: transparent !default;
 $civictheme-table-of-contents-dark-link-strip-background-color: civictheme-color('primary', 3) !default;
 $civictheme-table-of-contents-dark-link-strip-hover-background-color: civictheme-color('secondary') !default;
@@ -1437,6 +1438,7 @@ $civictheme-webform-dark-wrapper-background-color: civictheme-color('primary', 4
 //
 // Quote.
 //
+$civictheme-quote-border-radius: civictheme-space(0.25) !default;
 $civictheme-quote-border-width: civictheme-space(0.75) !default;
 $civictheme-quote-space-vertical: civictheme-space(6) !default;
 $civictheme-quote-light-heading-color: civictheme-color('neutral', 7) !default;
@@ -1445,8 +1447,8 @@ $civictheme-quote-light-author-color: civictheme-color('neutral', 7) !default;
 $civictheme-quote-light-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-quote-light-border-color: civictheme-color('neutral', 7) !default;
 $civictheme-quote-dark-heading-color: civictheme-color('neutral', 1) !default;
-$civictheme-quote-dark-body-color: civictheme-color('neutral', 4) !default;
-$civictheme-quote-dark-author-color: civictheme-color('neutral', 2) !default;
+$civictheme-quote-dark-body-color: civictheme-color('neutral', 2) !default;
+$civictheme-quote-dark-author-color: civictheme-color('neutral', 1) !default;
 $civictheme-quote-dark-background-color: civictheme-color('primary', 4) !default;
 $civictheme-quote-dark-border-color: civictheme-color('primary') !default;
 
@@ -1454,7 +1456,7 @@ $civictheme-quote-dark-border-color: civictheme-color('primary') !default;
 // Popover.
 //
 $civictheme-popover-width: rem(280px) !default;
-$civictheme-popover-description-border-radius: rem(8px) !default;
+$civictheme-popover-description-border-radius: $civictheme-border-radius !default;
 $civictheme-popover-z-index: 99 !default;
 $civictheme-tooltip-light-trigger-color: civictheme-color('neutral', 7) !default;
 $civictheme-popover-light-content-color: civictheme-color('neutral', 7) !default;

@@ -11,7 +11,7 @@
   &::before {
     content: '';
     width: civictheme-space();
-    border-radius: $civictheme-border-radius;
+    border-radius: $civictheme-quote-border-radius;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -44,6 +44,11 @@
 
     @include civictheme-breakpoint('m') {
       font-weight: 600;
+    }
+
+    &::before {
+      content: '-';
+      margin-right: rem(4px);
     }
   }
 

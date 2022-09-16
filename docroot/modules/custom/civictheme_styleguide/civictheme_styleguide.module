@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Style guide module integration.
+ */
+
+use Drupal\civictheme_styleguide\Styleguide;
+
+/**
+ * Implements hook_styleguide().
+ */
+function civictheme_styleguide_alter(&$items) {
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(Styleguide::class)
+    ->alter($items);
+}
+
+/**
+ * Implements hook_preprocess_styleguide_links().
+ */
+function civictheme_styleguide_preprocess_styleguide_links(&$variables) {
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(Styleguide::class)
+    ->preprocessLinks($variables);
+}
+
+/**
+ * Implements hook_preprocess_styleguide_item().
+ */
+function civictheme_styleguide_preprocess_styleguide_item(&$variables) {
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(Styleguide::class)
+    ->preprocessItem($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function civictheme_styleguide_preprocess_page(&$variables) {
+  $variables['page']['content_contained'] = FALSE;
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function civictheme_styleguide_preprocess(&$variables, $hook, &$info) {
+  if ($hook === 'styleguide_header' || $hook === 'styleguide_item' ||  $hook === 'styleguide_links') {
+    $path = \Drupal::service('extension.path.resolver')->getPath('module', 'civictheme_styleguide');
+    $info['theme path'] = $path;
+    $info['path'] = $path . '/templates';
+  }
+}

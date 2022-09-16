@@ -27,6 +27,7 @@ function CivicPopover(el) {
 
   this.el = el;
   this.el.setAttribute('data-popover', 'true');
+  this.el.setAttribute('aria-live', 'polite');
   this.button = trigger;
   this.content = content;
 
@@ -140,9 +141,11 @@ CivicPopover.prototype.togglePopover = function (e) {
  * Show event handler.
  */
 CivicPopover.prototype.showPopover = function (e) {
-  e.stopPropagation();
-  e.preventDefault();
-  e.stopImmediatePropagation();
+  if (e.target) {
+    e.stopPropagation();
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
 
   const popover = this.findPopover(e.target || e);
   if (popover) {
@@ -155,9 +158,11 @@ CivicPopover.prototype.showPopover = function (e) {
  * Hide Event handler.
  */
 CivicPopover.prototype.hidePopover = function (e) {
-  e.stopPropagation();
-  e.preventDefault();
-  e.stopImmediatePropagation();
+  if (e.target) {
+    e.stopPropagation();
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
 
   const popover = this.findPopover(e.target || e);
   if (popover) {
