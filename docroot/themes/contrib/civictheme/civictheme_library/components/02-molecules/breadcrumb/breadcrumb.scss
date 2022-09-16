@@ -106,12 +106,12 @@
               color: $civictheme-link-light-hover-color;
             }
           }
+        }
+      }
 
-          &.mobile-only {
-            .civictheme-icon {
-              color: $civictheme-link-light-color;
-            }
-          }
+      &.mobile-only {
+        .civictheme-icon {
+          color: currentcolor;
         }
       }
     }
@@ -139,12 +139,12 @@
               color: $civictheme-link-dark-hover-color;
             }
           }
+        }
+      }
 
-          &.mobile-only {
-            .civictheme-icon {
-              color: $civictheme-link-dark-color;
-            }
-          }
+      &.mobile-only {
+        .civictheme-icon {
+          color: currentcolor;
         }
       }
     }

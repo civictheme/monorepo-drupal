@@ -37,16 +37,13 @@
         {% endif %}
       {% endset %}
       {% if loop.index == links_count - 1 %}
-        {% set parent = link %}
+        {% set parent = { icon: 'left-arrow', icon_placement: 'before' } | merge(link) %}
       {% endif %}
       {% set link_items = link_items|merge([ link_item ]) %}
     {% endfor %}
 
     {% if parent %}
       {% set parent_link_item %}
-        {% include '@base/icon/icon.twig' with {
-          symbol: 'left-arrow',
-        } only %}
         {% include '@atoms/link/link.twig' with parent only %}
       {% endset %}
       {% include '@base/item-list/item-list.twig' with {
