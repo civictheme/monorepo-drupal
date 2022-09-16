@@ -126,19 +126,21 @@
           @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-child-background-color, $civictheme-side-navigation-light-link-child-border-color, $civictheme-side-navigation-light-link-child-color, $civictheme-side-navigation-light-link-child-stripe-color);
 
           &:hover,
-          &:focus,
-          &:visited {
+          &:focus {
             @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-child-hover-background-color, $civictheme-side-navigation-light-link-child-hover-border-color, $civictheme-side-navigation-light-link-child-hover-color, $civictheme-side-navigation-light-link-child-hover-stripe-color);
           }
         }
 
         &.civictheme-menu__item--active-trail {
           > .civictheme-menu__item__link {
-            @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-child-active-background-color, $civictheme-side-navigation-light-link-child-active-border-color, $civictheme-side-navigation-light-link-child-active-color, $civictheme-side-navigation-light-link-child-active-stripe-color);
+            &,
+            &:active,
+            &:visited {
+              @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-child-active-background-color, $civictheme-side-navigation-light-link-child-active-border-color, $civictheme-side-navigation-light-link-child-active-color, $civictheme-side-navigation-light-link-child-active-stripe-color);
+            }
 
             &:hover,
-            &:focus,
-            &:visited {
+            &:focus {
               @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-child-hover-background-color, $civictheme-side-navigation-light-link-child-hover-border-color, $civictheme-side-navigation-light-link-child-hover-color, $civictheme-side-navigation-light-link-child-hover-stripe-color);
             }
           }
@@ -149,19 +151,21 @@
             @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-parent-background-color, $civictheme-side-navigation-light-link-parent-border-color, $civictheme-side-navigation-light-link-parent-color, $civictheme-side-navigation-light-link-parent-stripe-color);
 
             &:hover,
-            &:focus,
-            &:visited {
+            &:focus {
               @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-parent-hover-background-color, $civictheme-side-navigation-light-link-parent-hover-border-color, $civictheme-side-navigation-light-link-parent-hover-color, $civictheme-side-navigation-light-link-parent-hover-stripe-color);
             }
           }
 
           &.civictheme-menu__item--active-trail {
             > .civictheme-menu__item__link {
-              @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-parent-active-background-color, $civictheme-side-navigation-light-link-parent-active-border-color, $civictheme-side-navigation-light-link-parent-active-color, $civictheme-side-navigation-light-link-parent-active-stripe-color);
+              &,
+              &:active,
+              &:visited {
+                @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-parent-active-background-color, $civictheme-side-navigation-light-link-parent-active-border-color, $civictheme-side-navigation-light-link-parent-active-color, $civictheme-side-navigation-light-link-parent-active-stripe-color);
+              }
 
               &:hover,
-              &:focus,
-              &:visited {
+              &:focus {
                 @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-parent-hover-background-color, $civictheme-side-navigation-light-link-parent-hover-border-color, $civictheme-side-navigation-light-link-parent-hover-color, $civictheme-side-navigation-light-link-parent-hover-stripe-color);
               }
             }
@@ -186,19 +190,21 @@
           @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-child-background-color, $civictheme-side-navigation-dark-link-child-border-color, $civictheme-side-navigation-dark-link-child-color, $civictheme-side-navigation-dark-link-child-stripe-color);
 
           &:hover,
-          &:focus,
-          &:visited {
+          &:focus {
             @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-child-hover-background-color, $civictheme-side-navigation-dark-link-child-hover-border-color, $civictheme-side-navigation-dark-link-child-hover-color, $civictheme-side-navigation-dark-link-child-hover-stripe-color);
           }
         }
 
         &.civictheme-menu__item--active-trail {
           > .civictheme-menu__item__link {
-            @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-child-active-background-color, $civictheme-side-navigation-dark-link-child-active-border-color, $civictheme-side-navigation-dark-link-child-active-color, $civictheme-side-navigation-dark-link-child-active-stripe-color);
+            &,
+            &:active,
+            &:visited {
+              @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-child-active-background-color, $civictheme-side-navigation-dark-link-child-active-border-color, $civictheme-side-navigation-dark-link-child-active-color, $civictheme-side-navigation-dark-link-child-active-stripe-color);
+            }
 
             &:hover,
-            &:focus,
-            &:visited {
+            &:focus {
               @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-child-hover-background-color, $civictheme-side-navigation-dark-link-child-hover-border-color, $civictheme-side-navigation-dark-link-child-hover-color, $civictheme-side-navigation-dark-link-child-hover-stripe-color);
             }
           }
@@ -209,19 +215,21 @@
             @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-parent-background-color, $civictheme-side-navigation-dark-link-parent-border-color, $civictheme-side-navigation-dark-link-parent-color, $civictheme-side-navigation-dark-link-parent-stripe-color);
 
             &:hover,
-            &:focus,
-            &:visited {
+            &:focus {
               @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-parent-hover-background-color, $civictheme-side-navigation-dark-link-parent-hover-border-color, $civictheme-side-navigation-dark-link-parent-hover-color, $civictheme-side-navigation-dark-link-parent-hover-stripe-color);
             }
           }
 
           &.civictheme-menu__item--active-trail {
             > .civictheme-menu__item__link {
-              @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-parent-active-background-color, $civictheme-side-navigation-dark-link-parent-active-border-color, $civictheme-side-navigation-dark-link-parent-active-color, $civictheme-side-navigation-dark-link-parent-active-stripe-color);
+              &,
+              &:active,
+              &:visited {
+                @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-parent-active-background-color, $civictheme-side-navigation-dark-link-parent-active-border-color, $civictheme-side-navigation-dark-link-parent-active-color, $civictheme-side-navigation-dark-link-parent-active-stripe-color);
+              }
 
               &:hover,
-              &:focus,
-              &:visited {
+              &:focus {
                 @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-parent-hover-background-color, $civictheme-side-navigation-dark-link-parent-hover-border-color, $civictheme-side-navigation-dark-link-parent-hover-color, $civictheme-side-navigation-dark-link-parent-hover-stripe-color);
               }
             }

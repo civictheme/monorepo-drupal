@@ -1034,7 +1034,7 @@ $civictheme-side-navigation-light-link-parent-background-color: civictheme-color
 $civictheme-side-navigation-light-link-parent-border-color: civictheme-color-light('border-light') !default;
 $civictheme-side-navigation-light-link-parent-color: civictheme-color-light('heading') !default;
 $civictheme-side-navigation-light-link-parent-stripe-color: civictheme-color-light('border-light') !default;
-$civictheme-side-navigation-light-link-parent-hover-background-color: $civictheme-side-navigation-light-link-parent-background-color !default;
+$civictheme-side-navigation-light-link-parent-hover-background-color: civictheme-color-light('background-dark') !default;
 $civictheme-side-navigation-light-link-parent-hover-border-color: $civictheme-side-navigation-light-link-parent-border-color !default;
 $civictheme-side-navigation-light-link-parent-hover-color: $civictheme-side-navigation-light-link-parent-color !default;
 $civictheme-side-navigation-light-link-parent-hover-stripe-color: civictheme-color-light('highlight') !default;
@@ -1046,7 +1046,7 @@ $civictheme-side-navigation-light-link-child-background-color: $civictheme-side-
 $civictheme-side-navigation-light-link-child-border-color: $civictheme-side-navigation-light-link-parent-border-color !default;
 $civictheme-side-navigation-light-link-child-color: $civictheme-side-navigation-light-link-parent-color !default;
 $civictheme-side-navigation-light-link-child-stripe-color: $civictheme-side-navigation-light-link-parent-stripe-color !default;
-$civictheme-side-navigation-light-link-child-hover-background-color: civictheme-color-light('background-dark') !default;
+$civictheme-side-navigation-light-link-child-hover-background-color: $civictheme-side-navigation-light-link-parent-hover-background-color !default;
 $civictheme-side-navigation-light-link-child-hover-border-color: $civictheme-side-navigation-light-link-child-border-color !default;
 $civictheme-side-navigation-light-link-child-hover-color: $civictheme-side-navigation-light-link-child-color !default;
 $civictheme-side-navigation-light-link-child-hover-stripe-color: civictheme-color-light('highlight') !default;
@@ -1060,7 +1060,7 @@ $civictheme-side-navigation-dark-link-parent-background-color: civictheme-color-
 $civictheme-side-navigation-dark-link-parent-border-color: civictheme-color-dark('border-light') !default;
 $civictheme-side-navigation-dark-link-parent-color: civictheme-color-dark('heading') !default;
 $civictheme-side-navigation-dark-link-parent-stripe-color: civictheme-color-dark('border-light') !default;
-$civictheme-side-navigation-dark-link-parent-hover-background-color: $civictheme-side-navigation-dark-link-parent-background-color !default;
+$civictheme-side-navigation-dark-link-parent-hover-background-color: civictheme-color-dark('background-dark') !default;
 $civictheme-side-navigation-dark-link-parent-hover-border-color: $civictheme-side-navigation-dark-link-parent-border-color !default;
 $civictheme-side-navigation-dark-link-parent-hover-color: $civictheme-side-navigation-dark-link-parent-color !default;
 $civictheme-side-navigation-dark-link-parent-hover-stripe-color: civictheme-color-dark('highlight') !default;
@@ -1072,7 +1072,7 @@ $civictheme-side-navigation-dark-link-child-background-color: $civictheme-side-n
 $civictheme-side-navigation-dark-link-child-border-color: $civictheme-side-navigation-dark-link-parent-border-color !default;
 $civictheme-side-navigation-dark-link-child-color: $civictheme-side-navigation-dark-link-parent-color !default;
 $civictheme-side-navigation-dark-link-child-stripe-color: $civictheme-side-navigation-dark-link-parent-stripe-color !default;
-$civictheme-side-navigation-dark-link-child-hover-background-color: civictheme-color-dark('background-dark') !default;
+$civictheme-side-navigation-dark-link-child-hover-background-color: $civictheme-side-navigation-dark-link-parent-hover-background-color !default;
 $civictheme-side-navigation-dark-link-child-hover-border-color: $civictheme-side-navigation-dark-link-child-border-color !default;
 $civictheme-side-navigation-dark-link-child-hover-color: $civictheme-side-navigation-dark-link-child-color !default;
 $civictheme-side-navigation-dark-link-child-hover-stripe-color: civictheme-color-dark('highlight') !default;
