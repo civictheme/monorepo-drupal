@@ -1,20 +1,20 @@
 //
-// Listing component.
+// list component.
 //
 
-.civictheme-listing {
+.civictheme-list {
   $root: &;
 
-  &.civictheme-listing--vertical-space-top {
-    @include civictheme-component-with-vertical-space(top, $civictheme-listing-space-vertical);
+  &.civictheme-list--vertical-space-top {
+    @include civictheme-component-with-vertical-space(top, $civictheme-list-space-vertical);
   }
 
-  &.civictheme-listing--vertical-space-bottom {
-    @include civictheme-component-with-vertical-space(bottom, $civictheme-listing-space-vertical);
+  &.civictheme-list--vertical-space-bottom {
+    @include civictheme-component-with-vertical-space(bottom, $civictheme-list-space-vertical);
   }
 
-  &.civictheme-listing--vertical-space-both {
-    @include civictheme-component-with-vertical-space(both, $civictheme-listing-space-vertical);
+  &.civictheme-list--vertical-space-both {
+    @include civictheme-component-with-vertical-space(both, $civictheme-list-space-vertical);
   }
 
   &__header {
@@ -77,30 +77,30 @@
     #{$root}__pager,
     #{$root}__empty-results,
     #{$root}__results-below {
-      padding-left: $civictheme-listing-space-horizontal;
-      padding-right: $civictheme-listing-space-horizontal;
+      padding-left: $civictheme-list-space-horizontal;
+      padding-right: $civictheme-list-space-horizontal;
     }
   }
 
   &.civictheme-theme-light {
     &#{$root}__header {
-      color: $civictheme-listing-light-color;
+      color: $civictheme-list-light-color;
     }
     &#{$root}--with-background {
-      background-color: $civictheme-listing-light-background-color;
+      background-color: $civictheme-list-light-background-color;
       #{$root}__results-below {
-        background-color: $civictheme-listing-light-background-color;
+        background-color: $civictheme-list-light-background-color;
       }
     }
   }
 
   &.civictheme-theme-dark {
-    color: $civictheme-listing-dark-color;
+    color: $civictheme-list-dark-color;
     &#{$root}--with-background {
-      background-color: $civictheme-listing-dark-background-color;
-      color: $civictheme-listing-with-background-dark-color;
+      background-color: $civictheme-list-dark-background-color;
+      color: $civictheme-list-with-background-dark-color;
       #{$root}__results-below {
-        background-color: $civictheme-listing-dark-background-color;
+        background-color: $civictheme-list-dark-background-color;
       }
     }
   }
