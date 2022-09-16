@@ -1362,13 +1362,13 @@ $civictheme-slider-progress-indicator-border-radius: $civictheme-border-radius !
 $civictheme-slider-light-background-color: civictheme-color('neutral', 1) !default;
 $civictheme-slider-light-wrapper-background-color: civictheme-color('neutral', 2) !default;
 $civictheme-slider-light-title-color: civictheme-color('neutral', 8) !default;
-$civictheme-slider-light-progress-indicator-background-color: civictheme-color('neutral', 2) !default;
-$civictheme-slider-light-progress-indicator-color: civictheme-color('neutral', 6) !default;
-$civictheme-slider-dark-background-color: civictheme-color('primary', 4) !default;
+$civictheme-slider-light-progress-indicator-background-color: civictheme-color('primary') !default;
+$civictheme-slider-light-progress-indicator-color: civictheme-color('neutral', 1) !default;
+$civictheme-slider-dark-background-color: civictheme-color('primary') !default;
 $civictheme-slider-dark-wrapper-background-color: civictheme-color('primary', 4) !default;
 $civictheme-slider-dark-title-color: civictheme-color('neutral', 1) !default;
-$civictheme-slider-dark-progress-indicator-background-color: civictheme-color('primary', 5) !default;
-$civictheme-slider-dark-progress-indicator-color: civictheme-color('neutral', 2) !default;
+$civictheme-slider-dark-progress-indicator-background-color: civictheme-color('secondary') !default;
+$civictheme-slider-dark-progress-indicator-color: civictheme-color('neutral', 8) !default;
 
 //
 // Slide.
