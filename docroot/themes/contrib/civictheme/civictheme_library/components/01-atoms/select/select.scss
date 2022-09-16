@@ -15,7 +15,7 @@
   &.civictheme-theme-light {
     color: $civictheme-select-light-color;
     background-color: $civictheme-select-light-background-color;
-    border-color: $civictheme-input-light-error-border-color;
+    border-color: $civictheme-input-light-border-color;
 
     &:hover {
       box-shadow: 0 0 0 1px $civictheme-select-light-hover-border-color;
@@ -46,7 +46,7 @@
   &.civictheme-theme-dark {
     color: $civictheme-select-dark-color;
     background-color: $civictheme-select-dark-background-color;
-    border-color: $civictheme-input-dark-error-border-color;
+    border-color: $civictheme-input-dark-border-color;
 
     &:hover {
       border-color: $civictheme-select-dark-hover-border-color;

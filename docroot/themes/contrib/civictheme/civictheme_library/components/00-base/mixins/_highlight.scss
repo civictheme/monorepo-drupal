@@ -1,0 +1,39 @@
+//
+// Highlight mixins.
+//
+
+//
+// Add highlight stripe to an element.
+//
+@mixin civictheme-highlight-stripe($width, $border-radius, $border-width: rem(1px), $position: 'left') {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: -$border-width;
+    bottom: -$border-width;
+    left: -$border-width;
+    width: $width + $border-width;
+
+    @if $position == 'left' {
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+    }
+    @else {
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+
+    @if $civictheme-animation-enabled {
+      transition: width 0.25s;
+    }
+  }
+}
+
+@mixin civictheme-highlight-stripe-color($color) {
+  &::before {
+    background-color: $color;
+  }
+}

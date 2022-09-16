@@ -54,6 +54,7 @@
       {% if date %}
         {% include '@atoms/tag/tag.twig' with {
           theme: theme,
+          is_alt: true,
           text: date,
           icon: 'business_calendar',
           icon_placement: 'before',
@@ -109,7 +110,6 @@
                 {% include '@atoms/tag/tag.twig' with {
                   theme: theme,
                   text: tag,
-                  is_alt: true,
                 } only %}
               {% endfor %}
             </div>

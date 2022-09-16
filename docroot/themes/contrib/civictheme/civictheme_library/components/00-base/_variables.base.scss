@@ -400,7 +400,11 @@ $civictheme-flyout-zindex: 1000 !default;
 //
 
 // Border radius.
-$civictheme-border-radius: math.div($civictheme-space, 2) !default;
+$civictheme-border-radius: rem(4px) !default;
 
 // Theme-based background colors for components.
 $civictheme-background-blend-mode: soft-light;
+
+// Enable CSS animations.
+$civictheme-animation-enabled: true;
+$civictheme-animation-duration: 0.25s;

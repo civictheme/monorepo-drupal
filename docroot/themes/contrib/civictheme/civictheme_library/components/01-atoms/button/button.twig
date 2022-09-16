@@ -29,9 +29,9 @@
 
 {% set kind = kind in ['button', 'link', 'reset', 'submit', 'checkbox', 'radio'] ? kind : 'button' %}
 {% set type = type in ['primary', 'secondary', 'tertiary', 'chip'] ? type : null %}
-{% set size = size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? size : 'regular' %}
+{% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
-{% set icon_size = icon_size in ['regular', 'small', 'extra-small'] ? icon_size : 'regular' %}
+{% set icon_size = icon_size in ['large', 'regular', 'small'] ? icon_size : 'regular' %}
 {% set component_name = type == 'chip' ? 'chip' : 'button' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set type_class = type ? 'civictheme-button--%s'|format(type) : '' %}
@@ -69,7 +69,7 @@
     {{ button_text }}<span class="civictheme-button__external">
     {% include '@atoms/icon/icon.twig' with {
       symbol: 'arrows_upperrightarrow',
-      size: icon_size,
+      size: size,
     } only %}
     </span>
   {% else %}
@@ -82,7 +82,7 @@
     {{ button_text }}<span class="civictheme-button__dismiss" data-button-dismiss>
     {% include '@atoms/icon/icon.twig' with {
       symbol: 'userinterface_cancel',
-      size: icon_size,
+      size: size,
     } only %}
     </span>
   {% else %}

@@ -68,6 +68,7 @@ $civictheme-mobile-navigation-spacing: civictheme-space(2);
       border-left-width: 1px;
       border-left-style: solid;
       padding: $civictheme-mobile-navigation-spacing;
+      border-radius: 0;
 
       .civictheme-icon {
         width: civictheme-icon-size-dimension('regular', 'm', 'width');
@@ -106,6 +107,7 @@ $civictheme-mobile-navigation-spacing: civictheme-space(2);
       border-left-width: 1px;
       border-left-style: solid;
       padding: math.div($civictheme-mobile-navigation-spacing, 2);
+      border-radius: 0;
 
       .civictheme-icon {
         width: civictheme-icon-size-dimension('small', 'm', 'width');
@@ -254,24 +256,5 @@ $civictheme-mobile-navigation-spacing: civictheme-space(2);
 
   [data-flyout-close-all-trigger] {
     float: none;
-    border-radius: rem(100px);
-    padding: civictheme-space(0.5) civictheme-space();
-
-    @include civictheme-typography-ruleset(($civictheme-font-base-size * 0.875, civictheme-icon-size-dimension('small', 'xxs', 'height'), 400, 'primary', 0));
-
-    .civictheme-icon {
-      width: civictheme-icon-size-dimension('small', 'xxs', 'width');
-      height: civictheme-icon-size-dimension('small', 'xxs', 'height');
-    }
-
-    &.civictheme-theme-light {
-      background-color: $civictheme-mobile-navigation-light-close-all-trigger-background-color;
-      color: $civictheme-mobile-navigation-light-close-all-trigger-color;
-    }
-
-    &.civictheme-theme-dark {
-      background-color: $civictheme-mobile-navigation-dark-close-all-trigger-background-color;
-      color: $civictheme-mobile-navigation-dark-close-all-trigger-color;
-    }
   }
 }

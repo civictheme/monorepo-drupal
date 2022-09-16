@@ -134,20 +134,6 @@
       }
     }
 
-    .civictheme-link,
-    .civictheme-button--link {
-      background-color: transparent;
-      color: $civictheme-footer-light-link-color;
-
-      &:hover {
-        color: $civictheme-footer-light-link-hover-color;
-      }
-
-      &:focus {
-        outline-color: $civictheme-footer-light-outline-color;
-      }
-    }
-
     [data-collapsible='true'] {
       border-top: solid rem(1px) $civictheme-footer-light-collapsible-border-color;
     }
@@ -166,20 +152,6 @@
     #{$root}__middle {
       @include civictheme-breakpoint('m') {
         border-color: $civictheme-footer-dark-border-color;
-      }
-    }
-
-    .civictheme-link,
-    .civictheme-button--link {
-      background-color: transparent;
-      color: $civictheme-footer-dark-link-color;
-
-      &:hover {
-        color: $civictheme-footer-dark-link-hover-color;
-      }
-
-      &:focus {
-        outline-color: $civictheme-footer-dark-outline-color;
       }
     }
 
