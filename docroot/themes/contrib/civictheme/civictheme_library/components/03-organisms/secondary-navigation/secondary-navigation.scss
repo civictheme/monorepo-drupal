@@ -30,6 +30,7 @@
       .civictheme-link {
         @include civictheme-typography('text-regular');
 
+        display: block;
         text-decoration: none;
       }
 
@@ -74,8 +75,10 @@
     #{$root}__has-dropdown {
       @include civictheme-icon-collapsible($civictheme-link-light-color);
 
-      &:hover {
-        @include civictheme-icon-collapsible($civictheme-link-light-hover-color);
+      .civictheme-menu__item__link {
+        &:hover {
+          @include civictheme-icon-collapsible($civictheme-link-light-hover-color, true);
+        }
       }
 
       .civictheme-menu__sub-menu__wrapper--level-1 {
@@ -88,8 +91,10 @@
     #{$root}__has-dropdown {
       @include civictheme-icon-collapsible($civictheme-link-dark-color);
 
-      &:hover {
-        @include civictheme-icon-collapsible($civictheme-link-dark-hover-color);
+      .civictheme-menu__item__link {
+        &:hover {
+          @include civictheme-icon-collapsible($civictheme-link-dark-hover-color, true);
+        }
       }
 
       .civictheme-menu__sub-menu__wrapper--level-1 {
