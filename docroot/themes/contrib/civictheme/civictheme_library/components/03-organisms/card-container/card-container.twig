@@ -23,7 +23,7 @@
 
 {% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-card-container--vertical-space-%s'|format(vertical_space) : '' %}
 {% set with_background_class = with_background ? 'civictheme-card-container--with-background' : '' %}
-{% set column_class = 'col-xs-12 col-m-%s'|format(12 / column_count|default(1)) %}
+{% set column_class = 'col-xxs-12 col-m-%s'|format(12 / column_count|default(1)) %}
 {% set fill_width_class = fill_width ? 'civictheme-card-container--fill-width' : '' %}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s %s'|format(theme_class, fill_width_class, vertical_space_class, with_background_class, modifier_class|default('')) %}
