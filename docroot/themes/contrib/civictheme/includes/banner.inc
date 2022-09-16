@@ -44,7 +44,7 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
 
     if (civictheme_field_has_value($entity, 'field_c_b_blend_mode')) {
       $blend_mode = civictheme_get_field_value($entity, 'field_c_b_blend_mode', TRUE);
-      $variables['blend_mode'] = 'civictheme-background--' . $blend_mode;
+      $variables['background_image_blend_mode'] = $blend_mode;
     }
   }
 
@@ -213,7 +213,7 @@ function _civictheme_preprocess_civictheme_banner_background_image(&$variables, 
     $variables['background_image'] = civictheme_media_get_url($background_image);
     if (civictheme_field_has_value($node, 'field_c_n_blend_mode')) {
       $blend_mode = civictheme_get_field_value($node, 'field_c_n_blend_mode', TRUE);
-      $variables['blend_mode'] = 'civictheme-background--' . $blend_mode;
+      $variables['background_image_blend_mode'] = $blend_mode;
     }
   }
 }

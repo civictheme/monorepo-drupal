@@ -30,7 +30,7 @@
 {% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty or section is not empty or title is not empty or content_middle is not empty or content is not empty or content_below is not empty or content_bottom is not empty %}
   <div class="civictheme-banner {{ modifier_class }}">
     <div class="civictheme-banner__wrapper">
-      <div class="civictheme-banner__wrapper__inner {{ blend_mode }}" {% if background_image %}style="background-image: url('{{ background_image }} ')"{% endif %}>
+      <div class="civictheme-banner__wrapper__inner" {% if background_image %}style="background-image: url('{{ background_image }} '); {% if background_image_blend_mode %}background-blend-mode: {{ background_image_blend_mode }};{% endif %}"{% endif %}>
         <div class="container">
 
           {% if content_top1 is not empty %}
