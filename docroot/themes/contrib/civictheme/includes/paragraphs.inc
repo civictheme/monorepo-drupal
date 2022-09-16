@@ -51,15 +51,11 @@ function _civictheme_preprocess_paragraph(&$variables) {
   // Set theme for all paragraphs.
   $variables['theme'] = civictheme_get_field_theme_value($variables['paragraph']);
 
-  // Set content for all paragraphs.
-  if (!empty($variables['content']['field_c_p_content'])) {
-    $variables['content'] = \Drupal::service('renderer')->render($variables['content']['field_c_p_content']);
-  }
-
   // Generic Drupal classes from paragraph template files.
   _civictheme_preprocess_paragraph_classes($variables);
 
   // Global paragraph fields.
+  _civictheme_preprocess_paragraph__field__content($variables);
   _civictheme_preprocess_paragraph__field__title($variables);
   _civictheme_preprocess_paragraph__field__summary($variables);
   _civictheme_preprocess_paragraph__field__space($variables);
@@ -90,6 +86,17 @@ function _civictheme_preprocess_paragraph__field__summary(&$variables) {
   $paragraph = $variables['paragraph'];
   if (civictheme_field_has_value($paragraph, 'field_c_p_summary')) {
     $variables['summary'] = text_summary(civictheme_get_field_value($paragraph, 'field_c_p_summary'), NULL, 100);
+  }
+}
+
+/**
+ * Pre-process content for CivicTheme paragraphs.
+ */
+function _civictheme_preprocess_paragraph__field__content(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  if (civictheme_field_has_value($paragraph, 'field_c_p_content')) {
+    $variables['content'] = civictheme_get_field_value($paragraph, 'field_c_p_content', TRUE);
   }
 }
 
