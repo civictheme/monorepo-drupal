@@ -3,9 +3,104 @@
 //
 
 .civictheme-logo {
+  $root: &;
+
   line-height: 0;
 
   img {
-    width: 100%;
+    flex: 1;
+    max-width: $civictheme-logo-image-width-mobile;
+    max-height: $civictheme-logo-image-height-mobile;
+
+    @include civictheme-breakpoint('m') {
+      max-width: $civictheme-logo-image-width-desktop;
+      max-height: $civictheme-logo-image-height-desktop;
+    }
+  }
+
+  #{$root}--hr {
+    height: inherit;
+    margin: civictheme-space();
+  }
+
+  &.civictheme-theme-light {
+
+    #{$root}-type-inline {
+      &,
+      a {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+      }
+      #{$root}--hr {
+        border-left: 1px solid $civictheme-logo-light-stripe-color;
+      }
+
+      &#{$root}-dual {
+        &,
+        a {
+          align-items: unset;
+        }
+
+        img {
+          max-width: $civictheme-logo-image-width-mobile * 0.5;
+
+          @include civictheme-breakpoint('m') {
+            max-width: $civictheme-logo-image-width-desktop * 0.5;
+          }
+        }
+      }
+    }
+    #{$root}-type-stacked {
+      &,
+      a {
+        display: inline-block;
+      }
+      #{$root}--hr {
+        border: 1px solid $civictheme-logo-light-stripe-color;
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+
+    #{$root}-type-inline {
+      &,
+      a {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+      }
+
+      #{$root}--hr {
+        border-left: 1px solid $civictheme-logo-dark-stripe-color;
+      }
+
+      &#{$root}-dual {
+        &,
+        a {
+          align-items: unset;
+        }
+
+        img {
+          max-width: $civictheme-logo-image-width-mobile * 0.5;
+
+          @include civictheme-breakpoint('m') {
+            max-width: $civictheme-logo-image-width-desktop * 0.5;
+          }
+        }
+      }
+    }
+    #{$root}-type-stacked {
+      &,
+      a {
+        display: inline-block;
+      }
+      #{$root}--hr {
+        border: 1px solid $civictheme-logo-dark-stripe-color;
+      }
+    }
   }
 }

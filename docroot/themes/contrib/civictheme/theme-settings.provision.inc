@@ -859,14 +859,19 @@ function civictheme_provision__theme_settings() {
     'dark',
   ];
   $breakpoints = ['desktop', 'mobile'];
+  $logo_types = ['primary', 'secondary'];
   foreach ($themes as $theme) {
-    foreach ($breakpoints as $breakpoint) {
-      $components['logo']["image_{$theme}_{$breakpoint}"] = "$theme_path/dist/assets/logos/{$theme_name}_logo_{$theme}_{$breakpoint}.png";
+    foreach ($logo_types as $logo_type) {
+      foreach ($breakpoints as $breakpoint) {
+        $components['logo']["image_{$logo_type}_{$theme}_{$breakpoint}"] = "$theme_path/dist/assets/logos/{$theme_name}_logo_{$logo_type}_{$theme}_{$breakpoint}.png";
+      }
     }
   }
   $components['logo']['image_alt'] = 'CivicTheme demo logo';
   $components['header']['theme'] = 'light';
+  $components['header']['type'] = 'default';
   $components['footer']['theme'] = 'dark';
+  $components['footer']['type'] = 'default';
 
   $config = \Drupal::service('config.factory')->getEditable("$theme_name.settings");
 

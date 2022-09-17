@@ -254,4 +254,56 @@ class Styleguide {
     return $paragraph;
   }
 
+  /**
+   * Render a entity.
+   */
+  public static function renderEntity($entity_type, $entity, $do_render = FALSE) {
+    $view_builder = \Drupal::entityTypeManager()->getViewBuilder($entity_type);
+    $pre_render = $view_builder->build($view_builder->view($entity));
+
+    return $do_render ? (string) \Drupal::service('renderer')->render($pre_render) : $pre_render;
+  }
+
+  /**
+   * Create entity from options.
+   */
+  public static function entityFromOptions($entity_type, $bundle, $options, $save = FALSE) {
+    $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
+
+    if (!$storage) {
+      return NULL;
+    }
+
+    $entity = $storage->create([
+      'bundle' => $bundle,
+    ]);
+
+    // Attaching all fields to paragraph.
+    foreach ($options as $field_name => $value) {
+      $field_name = static::getFieldPrefix($entity_type) . $field_name;
+      if ($entity->hasField($field_name)) {
+        $entity->{$field_name} = $value;
+      }
+    }
+
+    if ($save) {
+      $entity->save();
+    }
+
+    return $entity;
+  }
+
+  /**
+   * Get field prefix.
+   */
+  private static function getFieldPrefix($entity_tyoe) {
+    $prefix = [
+      'media' => 'field_c_m_',
+      'paragraph' => 'field_c_p_',
+      'node' => 'field_c_n_',
+    ];
+
+    return $prefix[$entity_tyoe] ?? '';
+  }
+
 }

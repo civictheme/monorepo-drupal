@@ -5,7 +5,7 @@ import { getSlots } from '../../00-base/base.stories';
 import getMenuLinks from '../../00-base/menu/menu.utils';
 
 export default {
-  title: 'Organisms/Navigation/Mobile Navigation',
+  title: 'Organisms/Mobile Navigation',
   parameters: {
     layout: 'fullscreen',
   },
@@ -15,9 +15,6 @@ export const MobileNavigation = () => {
   const generalKnobTab = 'Menu';
   const topMenuKnobTab = 'Top menu';
   const bottomMenuKnobTab = 'Bottom menu';
-
-  const { icons } = ICONS;
-  const defaultIcon = icons.indexOf('content_justifyalignment');
 
   const generalKnobs = {
     theme: radios(
@@ -39,7 +36,7 @@ export const MobileNavigation = () => {
       generalKnobTab,
     ),
     trigger_text: text('Trigger Text', 'Menu', generalKnobTab),
-    trigger_icon: select('Trigger Icon', icons, defaultIcon !== -1 ? icons[defaultIcon] : icons[0], generalKnobTab),
+    trigger_icon: select('Trigger Icon', Object.values(ICONS), Object.values(ICONS)[0], generalKnobTab),
     top_menu: getMenuLinks(topMenuKnobTab, 'Top '),
     bottom_menu: getMenuLinks(bottomMenuKnobTab, 'Bottom '),
   };

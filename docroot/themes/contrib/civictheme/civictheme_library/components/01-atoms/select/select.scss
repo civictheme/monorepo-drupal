@@ -7,15 +7,44 @@
 
   @include civictheme-typography('text-regular');
 
-  display: block;
-  font-weight: 600;
-  margin: 0 auto 0.5rem;
-  padding: civictheme-space(1.5) civictheme-space(3) civictheme-space(1.5) civictheme-space(2);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: rem(300px);
+  height: rem(46px);
+  padding: 0.5em 3.5em 0.5em 1em;
+  box-sizing: border-box;
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -webkit-appearance: none;
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -moz-appearance: none;
+  appearance: none;
+  background-position: calc(100% - 0.5rem), 100% 0;
+  background-size: 1.5em 1.5em;
+  background-repeat: no-repeat;
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 50%;
+  }
+
+  &[multiple] {
+    height: inherit;
+  }
+
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+  }
+
+  &:-webkit-scrollbar {
+    background-color: transparent;
+  }
 
   &.civictheme-theme-light {
-    color: $civictheme-select-light-color;
     background-color: $civictheme-select-light-background-color;
     border-color: $civictheme-input-light-border-color;
+    color: $civictheme-select-light-color;
 
     &:hover {
       box-shadow: 0 0 0 1px $civictheme-select-light-hover-border-color;
@@ -32,21 +61,24 @@
       box-shadow: 0 0 0 1px $civictheme-select-light-error-border-color;
     }
 
-    &.civictheme-input--success {
-      border-color: $civictheme-select-light-success-border-color;
-      box-shadow: 0 0 0 1px $civictheme-select-light-success-border-color;
+    &:-internal-list-box {
+      option {
+        &:checked {
+          background-color: $civictheme-select-light-option-background-color;
+          color: inherit;
+        }
+      }
     }
 
-    &.disabled {
-      pointer-events: none;
-      opacity: 50%;
+    &[multiple] {
+      background: none;
     }
   }
 
   &.civictheme-theme-dark {
-    color: $civictheme-select-dark-color;
     background-color: $civictheme-select-dark-background-color;
     border-color: $civictheme-input-dark-border-color;
+    color: $civictheme-select-dark-color;
 
     &:hover {
       border-color: $civictheme-select-dark-hover-border-color;
@@ -65,15 +97,17 @@
       box-shadow: 0 0 0 1px $civictheme-select-dark-error-border-color;
     }
 
-    &:valid,
-    &.civictheme-input--success {
-      border-color: $civictheme-select-dark-success-border-color;
-      box-shadow: 0 0 0 1px $civictheme-select-dark-success-border-color;
+    &:-internal-list-box {
+      option {
+        &:checked {
+          background-color: $civictheme-select-dark-option-background-color;
+          color: inherit;
+        }
+      }
     }
 
-    &.disabled {
-      pointer-events: none;
-      opacity: 50%;
+    &[multiple] {
+      background: none;
     }
   }
 }

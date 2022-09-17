@@ -24,12 +24,16 @@ export const Button = (knobTab) => {
       'light',
       generalKnobTab,
     ),
+    text: text(
+      'Text',
+      'Button text',
+      generalKnobTab,
+    ),
     type: radios(
       'Type', {
         Primary: 'primary',
         Secondary: 'secondary',
         Tertiary: 'tertiary',
-        Chip: 'chip',
         None: '',
       },
       'primary',
@@ -51,9 +55,6 @@ export const Button = (knobTab) => {
         Link: 'link',
         Reset: 'reset',
         Submit: 'submit',
-        Checkbox: 'checkbox',
-        Radio: 'radio',
-        None: '',
       },
       'button',
       generalKnobTab,
@@ -65,23 +66,16 @@ export const Button = (knobTab) => {
     generalKnobs.is_new_window = boolean('Open in a new window', false, generalKnobTab);
   }
 
-  generalKnobs.text = text('Text', 'Button text', generalKnobTab);
-  generalKnobs.title = text('Title', 'Button Title', generalKnobTab);
-  generalKnobs.id = text('ID attribute', 'id123', generalKnobTab);
-  generalKnobs.name = text('Name attribute', 'mybutton', generalKnobTab);
-  generalKnobs.is_raw_text = boolean('Allow HTML in text', false, generalKnobTab);
-  generalKnobs.is_external = boolean('Is external', false, generalKnobTab);
   generalKnobs.is_disabled = boolean('Disabled', false, generalKnobTab);
-  generalKnobs.is_dismissible = boolean('Dismissible', false, generalKnobTab);
-  generalKnobs.is_selected = boolean('Selected', false, generalKnobTab);
-  generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
+  generalKnobs.is_external = boolean('Is external', false, generalKnobTab);
+  generalKnobs.is_raw_text = boolean('Allow HTML in text', false, generalKnobTab);
   generalKnobs.attributes = text('Additional attributes', '', generalKnobTab);
+  generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
 
   const iconKnobTab = 'Icon';
-  const { icons } = ICONS;
   const withIcon = boolean('With icon', false, iconKnobTab);
   const iconKnobs = {
-    icon: withIcon ? select('Icon', icons, icons[0], iconKnobTab) : null,
+    icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
     icon_placement: withIcon ? radios(
       'Position',
       {

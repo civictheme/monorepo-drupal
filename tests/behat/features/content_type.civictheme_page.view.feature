@@ -281,10 +281,10 @@ Feature: View of Page content type
 
     When I visit "civictheme_page" "[TEST] Page with sidebar"
     And I should see the text "[TEST] Page with sidebar"
-    And I should see an "aside.civictheme-content__sidebar" element
+    And I should see an "aside.civictheme-layout__sidebar" element
     When I visit "civictheme_page" "[TEST] Page without sidebar"
     And I should see the text "[TEST] Page without sidebar"
-    And I should not see an "aside.civictheme-content__sidebar" element
+    And I should not see an "aside.civictheme-layout__sidebar" element
 
   @api @breadcrumb
   Scenario: CivicTheme page content type page breadcrumb theme can be overridden

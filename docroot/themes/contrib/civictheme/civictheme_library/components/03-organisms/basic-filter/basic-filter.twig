@@ -1,0 +1,44 @@
+{#
+/**
+* @file
+* Basic Filter component.
+*
+* Variables:
+* - theme: [string] Theme: light, dark.
+* - items: [array] Filter links:
+*   - text: [string] Link text.
+*   - url: [string] URL.
+* - is_multiple: [boolean] Allow to select multiple filter values.
+* - modifier_class: [string] Additional classes.
+*/
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<div class="civictheme-basic-filter {{ modifier_class }}" data-component-name="civictheme-basic-filter">
+  <div class="container">
+    <div class="row">
+      <div class="col-xxs-12">
+        <div class="civictheme-basic-filter__list">
+          {% block filters %}
+            {% for item in items %}
+              {% if item.text is not empty %}
+                <div class="civictheme-basic-filter__list--row">
+                  {% include '@atoms/chip/chip.twig' with {
+                    theme: theme,
+                    kind: is_multiple ? 'checkbox': 'radio',
+                    size: 'small',
+                    content: item.text,
+                    name: is_multiple ? 'basic-filter-' ~ loop.index : 'basic-filter',
+                    id: 'chip-' ~ loop.index,
+                  } only %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

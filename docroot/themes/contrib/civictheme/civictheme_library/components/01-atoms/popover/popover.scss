@@ -1,0 +1,72 @@
+//
+// Tooltip component.
+//
+
+@use 'sass:math';
+
+[data-popover] {
+  $root: &;
+
+  display: inline-block;
+  position: relative;
+
+  [data-popover-trigger] {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    position: relative;
+    background-color: transparent;
+    padding: 0;
+
+    &:focus {
+      @include civictheme-outline(true);
+    }
+  }
+
+  [data-popover-content] {
+    @include civictheme-elevation(4);
+
+    display: flex;
+    align-items: center;
+    border-radius: $civictheme-popover-description-border-radius;
+    border: solid 1px transparent;
+    box-sizing: border-box;
+    position: absolute;
+    min-width: $civictheme-popover-width;
+    min-height: rem(100px);
+    z-index: $civictheme-popover-z-index;
+    padding: civictheme-space(2);
+
+    @include civictheme-breakpoint('m') {
+      padding: civictheme-space(3);
+    }
+  }
+
+  &:not([data-popover-visible]) {
+    [data-popover-content] {
+      @include civictheme-visually-hidden();
+    }
+  }
+
+  &.civictheme-theme-light {
+    [data-popover-trigger] {
+      color: $civictheme-tooltip-light-trigger-color;
+    }
+
+    [data-popover-content] {
+      background-color: $civictheme-popover-light-content-background-color;
+      border-color: $civictheme-popover-light-content-border-color;
+    }
+  }
+
+  &.civictheme-theme-dark {
+    [data-popover-trigger] {
+      color: $civictheme-tooltip-dark-trigger-color;
+    }
+
+    [data-popover-content] {
+      background-color: $civictheme-popover-dark-content-background-color;
+      border-color: $civictheme-popover-dark-content-border-color;
+    }
+  }
+}

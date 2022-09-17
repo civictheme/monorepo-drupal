@@ -10,8 +10,8 @@
  * - width: [string] Width of the iframe.
  * - height: [string] Height of the video.
  * - transcript_link: [object] Video transcript link.
- * - share_link: [object] Video share link.
  * - oembed: [string] oEmbed provided iframe container.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -32,7 +32,7 @@
             has_controls: true,
           } only %}
         {% elseif embedded_source is not empty %}
-          {% set attributes = 'allowfullscreen data-chromatic="ignore"' %}
+          {% set attributes = '%s %s'|format('allowfullscreen data-chromatic="ignore"', attributes|default('')) %}
           {% if title is not empty %}
             {% set attributes = attributes ~ 'title="' ~ title ~ '"' %}
           {% endif %}
@@ -55,34 +55,14 @@
             {% include '@atoms/button/button.twig' with {
               kind: 'link',
               theme: theme,
-              type: 'primary',
+              type: 'tertiary',
               text: transcript_link.text,
               title: transcript_link.title,
               url: transcript_link.url,
               is_new_window: transcript_link.is_new_window,
               is_external: transcript_link.is_external,
               attributes: transcript_link.attributes,
-              icon: 'designtools_eye',
-              icon_placement: 'before',
-              size: 'small',
-              icon_size: 'small',
-            } only %}
-          </div>
-        {% endif %}
-
-        {% if share_link.url is defined and share_link.url is not empty %}
-          <div class="civictheme-video-player__links__share">
-            {% include '@atoms/button/button.twig' with {
-              kind: 'link',
-              theme: theme,
-              type: 'secondary',
-              text: share_link.text,
-              title: share_link.title,
-              url: share_link.url,
-              is_new_window: share_link.is_new_window,
-              is_external: share_link.is_external,
-              attributes: share_link.attributes,
-              icon: 'userinterface_share',
+              icon: 'eye',
               icon_placement: 'before',
               size: 'small',
               icon_size: 'small',

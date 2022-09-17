@@ -7,6 +7,10 @@
 
   margin-bottom: civictheme-space(2);
 
+  &--disabled {
+    opacity: 50%;
+  }
+
   &__label {
     display: block;
     margin-bottom: civictheme-space();
@@ -53,11 +57,8 @@
   }
 
   &.civictheme-theme-light {
-    color: $civictheme-input-light-color;
-
     #{$root}__element {
       border-color: $civictheme-input-light-border-color;
-      color: $civictheme-input-light-color;
       background-color: $civictheme-input-light-background-color;
 
       &:hover {
@@ -70,79 +71,6 @@
         outline: $civictheme-input-light-focus-outline-color;
         border-color: $civictheme-input-light-focus-border-color;
         box-shadow: 0 0 0 1px $civictheme-input-light-focus-border-color;
-      }
-    }
-  }
-
-  &.civictheme-theme-dark {
-    color: $civictheme-input-dark-color;
-
-    #{$root}__element {
-      background-color: $civictheme-input-dark-background-color;
-      color: $civictheme-input-dark-color;
-      border-color: $civictheme-input-dark-border-color;
-
-      &:hover {
-        box-shadow: 0 0 0 1px $civictheme-input-dark-border-color;
-      }
-
-      &:focus {
-        color: $civictheme-input-dark-focus-color;
-        background-color: $civictheme-input-dark-focus-background-color;
-        outline: $civictheme-input-dark-focus-outline-color;
-        border-color: $civictheme-input-dark-focus-border-color;
-        box-shadow: 0 0 0 1px $civictheme-input-dark-focus-border-color;
-      }
-    }
-
-    #{$root}__state {
-      svg {
-        fill: $civictheme-input-dark-focus-color;
-      }
-    }
-  }
-
-  &.disabled,
-  &--disabled {
-    &.civictheme-theme-light {
-      #{$root}__element {
-        pointer-events: none;
-        opacity: 50%;
-      }
-    }
-
-    &.civictheme-theme-dark {
-      #{$root}__element {
-        pointer-events: none;
-        opacity: 50%;
-      }
-    }
-  }
-
-  &.error,
-  &--error {
-    #{$root}__element {
-      border-color: $civictheme-input-error-border-color !important;
-      box-shadow: 0 0 0 1px $civictheme-input-error-border-color !important;
-    }
-
-    #{$root}__state {
-      svg {
-        fill: $civictheme-input-error-icon-color;
-      }
-    }
-  }
-
-  &.success,
-  &--success {
-    #{$root}__element {
-      border-color: $civictheme-input-success-border-color !important;
-      box-shadow: 0 0 0 1px $civictheme-input-success-border-color;
-    }
-
-    #{$root}__state {
-      svg {
-        fill: $civictheme-input-success-icon-color;
       }
     }
   }

@@ -50,14 +50,14 @@
             {% if url is not empty %}
               <span>
                 {% if is_external %}
-                  {% include '@atoms/icon/icon.twig' with {
-                    symbol: 'arrows_upperrightarrow',
+                  {% include '@base/icon/icon.twig' with {
+                    symbol: 'upper-right-arrow',
                     color: 'primary',
                     modifier_class: 'civictheme-subject-card__icon--external'
                   } only %}
                 {% else %}
-                  {% include '@atoms/icon/icon.twig' with {
-                    symbol: 'arrows_rightarrow_3',
+                  {% include '@base/icon/icon.twig' with {
+                    symbol: 'upper-right-arrow',
                     color: 'primary',
                     modifier_class: 'civictheme-subject-card__icon--arrow',
                   } only %}

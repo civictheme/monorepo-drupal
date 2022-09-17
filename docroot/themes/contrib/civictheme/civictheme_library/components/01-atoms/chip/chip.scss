@@ -1,0 +1,131 @@
+//
+// Mixins.
+//
+
+//
+// Classes.
+//
+
+.civictheme-chip {
+  $root: &;
+
+  cursor: pointer;
+  border: $civictheme-button-border-width solid transparent;
+  border-radius: civictheme-space(6);
+
+  @include civictheme-link-decoration(false, false, false, false);
+
+  $map: (
+    'chip': (
+      'light': (
+        'normal': (
+          'color': $civictheme-chip-light-color,
+          'background-color': $civictheme-chip-light-background-color,
+          'border-color': $civictheme-chip-light-border-color,
+          'outline-color': false,
+        ),
+        'hover': (
+          'color': $civictheme-chip-light-hover-color,
+          'background-color': $civictheme-chip-light-hover-background-color,
+          'border-color': $civictheme-chip-light-hover-border-color,
+          'outline-color': false,
+        ),
+        'visited': (
+          'color': $civictheme-chip-light-visited-color,
+          'background-color': $civictheme-chip-light-visited-background-color,
+          'border-color': $civictheme-chip-light-visited-border-color,
+          'outline-color': false,
+        ),
+        'active': (
+          'color': $civictheme-chip-light-active-color,
+          'background-color': $civictheme-chip-light-active-background-color,
+          'border-color': $civictheme-chip-light-active-border-color,
+          'outline-color': false,
+        ),
+        'focus': (
+          'color': $civictheme-chip-light-focus-color,
+          'background-color': $civictheme-chip-light-focus-background-color,
+          'border-color': $civictheme-chip-light-focus-border-color,
+          'outline-color': $civictheme-chip-light-focus-outline-color,
+        ),
+        'dismiss': (
+          'fill': $civictheme-chip-light-dismiss-color,
+          'fill-selected': $civictheme-chip-light-selected-color,
+        ),
+        'selected': (
+          'color': $civictheme-chip-light-selected-color,
+          'background-color': $civictheme-chip-light-selected-background-color,
+          'border-color': $civictheme-chip-light-selected-border-color,
+        ),
+      ),
+      'dark': (
+        'normal': (
+          'color': $civictheme-chip-dark-color,
+          'background-color': $civictheme-chip-dark-background-color,
+          'border-color': $civictheme-chip-dark-border-color,
+          'outline-color': false,
+        ),
+        'hover': (
+          'color': $civictheme-chip-dark-hover-color,
+          'background-color': $civictheme-chip-dark-hover-background-color,
+          'border-color': $civictheme-chip-dark-hover-border-color,
+          'outline-color': false,
+        ),
+        'visited': (
+          'color': $civictheme-chip-dark-visited-color,
+          'background-color': $civictheme-chip-dark-visited-background-color,
+          'border-color': $civictheme-chip-dark-visited-border-color,
+          'outline-color': false,
+        ),
+        'active': (
+          'color': $civictheme-chip-dark-active-color,
+          'background-color': $civictheme-chip-dark-active-background-color,
+          'border-color': $civictheme-chip-dark-active-border-color,
+          'outline-color': false,
+        ),
+        'focus': (
+          'color': $civictheme-chip-dark-focus-color,
+          'background-color': $civictheme-chip-dark-focus-background-color,
+          'border-color': $civictheme-chip-dark-focus-border-color,
+          'outline-color': $civictheme-chip-dark-focus-outline-color,
+        ),
+        'dismiss': (
+          'fill': $civictheme-chip-dark-dismiss-color,
+          'fill-selected': $civictheme-chip-dark-selected-color
+        ),
+        'selected': (
+          'color': $civictheme-chip-dark-selected-color,
+          'background-color': $civictheme-chip-dark-selected-background-color,
+          'border-color': $civictheme-chip-dark-selected-border-color,
+        ),
+      )
+    ),
+  );
+
+  @include civictheme-button-type('chip', $map);
+
+  // Size.
+  &--large {
+    @include civictheme-button-size('large');
+
+    &__dismiss {
+      margin-left: civictheme-space(3);
+    }
+  }
+
+  &--regular {
+    @include civictheme-button-size('regular');
+
+    &__dismiss {
+      margin-left: civictheme-space(3);
+    }
+  }
+
+  &--small {
+    @include civictheme-button-size('small');
+
+    &__dismiss {
+      margin-left: civictheme-space(2);
+    }
+  }
+}

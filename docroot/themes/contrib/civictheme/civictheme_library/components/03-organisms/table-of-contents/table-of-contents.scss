@@ -5,7 +5,8 @@
 .civictheme-table-of-contents {
   $root: &;
 
-  width: $civictheme-table-of-contents-width;
+  width: max-content;
+  max-width: $civictheme-table-of-contents-width;
 
   &--position-before,
   &--position-prepend {
@@ -18,7 +19,7 @@
   }
 
   &__title {
-    @include civictheme-typography('heading-5');
+    @include civictheme-typography('heading-4');
 
     margin-top: 0;
     margin-bottom: civictheme-space(3);
@@ -84,7 +85,8 @@
       }
 
       &:hover,
-      &:focus {
+      &:focus,
+      &:active {
         background-color: $civictheme-table-of-contents-light-link-hover-background-color;
         border-color: $civictheme-table-of-contents-light-link-hover-border-color;
         color: $civictheme-table-of-contents-light-link-hover-color;
@@ -115,7 +117,8 @@
       }
 
       &:hover,
-      &:focus {
+      &:focus,
+      &:active {
         background-color: $civictheme-table-of-contents-dark-link-hover-background-color;
         border-color: $civictheme-table-of-contents-dark-link-hover-border-color;
         color: $civictheme-table-of-contents-dark-link-hover-color;

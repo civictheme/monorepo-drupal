@@ -24,7 +24,7 @@ Feature: Tests the CivicTheme Component block
     And I should see an "input[value='Add Callout']" element
     And I should see an "input[value='Add Content']" element
     And I should see an "input[value='Add iFrame']" element
-    And I should see an "input[value='Add Listing']" element
+    And I should see an "input[value='Add Automated list']" element
     And I should see an "input[value='Add Map']" element
     And I should see an "input[value='Add Promo']" element
     And I should see an "input[value='Add Slider']" element

@@ -27,7 +27,7 @@
   <div class="civictheme-attachment {{ modifier_class }}">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xxs-12">
           <div class="civictheme-attachment__content">
             {% block content_top %}
               {% if content_top is not empty %}
@@ -61,7 +61,7 @@
                   {% if link.text is not empty %}
                     <li class="civictheme-attachment__links--link">
                       <span>
-                        {% include '@atoms/icon/icon.twig' with {
+                        {% include '@base/icon/icon.twig' with {
                           symbol: link.icon ? link.icon : 'fileandfolders_document',
                         } only %}
                       </span>

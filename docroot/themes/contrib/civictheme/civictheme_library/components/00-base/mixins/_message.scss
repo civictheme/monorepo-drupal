@@ -1,0 +1,11 @@
+//
+// Message mixins.
+//
+
+//
+// Compile all field message types into a single map.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _civictheme-message-types-all() {
+  @return map.merge($civictheme-message-types-default, $civictheme-message-types);
+}

@@ -6,7 +6,7 @@
 
 .story-fonts-wrapper {
   $all-fonts: _civictheme-fonts-all();
-  $font-size: 3em;
+  $font-size: rem(45px);
 
   @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--regular') using($key, $value, $index) {
     font-family: civictheme-font($key);
@@ -22,7 +22,7 @@
   @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--bold') using($key, $value, $index) {
     font-family: civictheme-font($key);
     font-size: $font-size;
-    font-weight: bold;
+    font-weight: 700;
   }
 
   @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--bold-italic') using($key, $value, $index) {
@@ -32,15 +32,15 @@
     font-weight: bold;
   }
 
-  @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--thin-300') using($key, $value, $index) {
+  @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--thin') using($key, $value, $index) {
     font-family: civictheme-font($key);
     font-size: $font-size;
-    font-weight: 300;
+    font-weight: 100;
   }
 
-  @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--bold-700') using($key, $value, $index) {
+  @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--extra-bold') using($key, $value, $index) {
     font-family: civictheme-font($key);
     font-size: $font-size;
-    font-weight: 700;
+    font-weight: 800;
   }
 }

@@ -1,5 +1,7 @@
 // phpcs:ignoreFile
 
+import CivicThemeTypography from './typography.stories.twig';
+
 const merge = require('deepmerge');
 
 export default {
@@ -20,5 +22,7 @@ export const Typography = () => {
     html += `</div>`;
   }
 
-  return html;
+  return CivicThemeTypography({
+    html,
+  });
 };

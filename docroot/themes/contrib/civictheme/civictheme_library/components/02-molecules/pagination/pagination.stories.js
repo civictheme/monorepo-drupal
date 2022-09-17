@@ -13,7 +13,7 @@ export const Pagination = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const pageCount = number(
-    'Number of pages',
+    'Count of pages',
     5,
     {
       range: true,
@@ -41,25 +41,38 @@ export const Pagination = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    heading_id: text('Heading Id', 'civictheme-pager-demo', generalKnobTab),
-    items: {
+    active_is_link: boolean('Active is a link', true, generalKnobTab),
+    items: pageCount > 0 ? {
       previous: {
-        text: 'Previous',
         href: randomUrl(),
       },
       pages,
       next: {
-        text: 'Next',
         href: randomUrl(),
       },
-    },
+    } : null,
+    heading_id: text('Heading Id', 'civictheme-pager-demo', generalKnobTab),
     ellipses: boolean('With ellipses', true, generalKnobTab) ? {
       previous: 0,
       next: 1,
     } : false,
+    items_per_page_options: boolean('With items per page', true, generalKnobTab) ? [
+      {
+        type: 'option', label: 10, value: 10, selected: false,
+      },
+      {
+        type: 'option', label: 20, value: 20, selected: true,
+      },
+      {
+        type: 'option', label: 50, value: 50, selected: false,
+      },
+      {
+        type: 'option', label: 100, value: 100, selected: false,
+      },
+    ] : null,
     current: number(
       'Current page',
-      Math.floor(pageCount / 2),
+      Math.max(1, Math.floor(pageCount / 2)),
       {
         range: true,
         min: 1,
@@ -68,7 +81,9 @@ export const Pagination = (knobTab) => {
       },
       generalKnobTab,
     ),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    total_pages: pageCount,
+    attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: text('Additional classes', '', generalKnobTab),
   };
 
   return CivicThemePagination({

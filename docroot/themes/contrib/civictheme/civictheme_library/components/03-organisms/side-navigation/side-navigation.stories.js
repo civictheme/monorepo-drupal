@@ -5,7 +5,7 @@ import CivicThemeSideNavigation from './side-navigation.twig';
 import getMenuLinks from '../../00-base/menu/menu.utils';
 
 export default {
-  title: 'Organisms/Navigation/Side Navigation',
+  title: 'Organisms/Side Navigation',
   parameters: {
     layout: 'centered',
   },

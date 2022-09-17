@@ -1,0 +1,20 @@
+//
+// Field description component.
+//
+
+.civictheme-field-description {
+  $root: &;
+
+  display: block;
+  margin-bottom: civictheme-space();
+
+  @include civictheme-typography('text-regular');
+
+  &.civictheme-theme-light {
+    color: $civictheme-field-description-light-color;
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-field-description-dark-color;
+  }
+}

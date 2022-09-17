@@ -1,0 +1,35 @@
+//
+// Item List component.
+//
+
+@import '../mixins/reset';
+
+.civictheme-item-list {
+  $root: &;
+
+  #{$root}__list {
+    @include civictheme-reset-box-model();
+
+    list-style: none;
+  }
+
+  &--horizontal {
+    #{$root}__list {
+      display: flex;
+    }
+
+    #{$root}__list__item {
+      margin-right: civictheme-space(2);
+    }
+  }
+
+  &--vertical {
+    #{$root}__list {
+      display: inline-block;
+    }
+
+    #{$root}__list__item {
+      margin-bottom: civictheme-space(2);
+    }
+  }
+}

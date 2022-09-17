@@ -21,21 +21,21 @@ directory.
 
 CivicTheme provides Views integration.
 
-### CivicTheme Listing component
+### CivicTheme Automated list component
 
 Listing component allows editors to build lists of contents and place them
 anywhere on the page as a component.
 
-This is achieved by providing a `civictheme_listing` paragraph with field values
+This is achieved by providing a `civictheme_automated_list` paragraph with field values
 passed to a preprocessing function that is mapped to a pre-configured
-`civictheme_listing` view.
+`civictheme_automated_list` view.
 
 The view provides configurations via paragraph to a view allowing content type
 restrictions, show / hide pagination, altering the number of items and filter
 configuration options.
 
-It is possible to replace the default `civictheme_listing` view with a more custom
-one required for a specific site via `hook_civictheme_listing_view_name_alter()` (see
+It is possible to replace the default `civictheme_automated_list` view with a more custom
+one required for a specific site via `hook_civictheme_automated_list_view_name_alter()` (see
 [civictheme.api.php](../civictheme.api.php) for details).
 
 CivicTheme also provides support for filters in an exposed form. For views with only

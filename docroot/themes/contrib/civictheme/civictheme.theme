@@ -30,7 +30,7 @@ require_once 'includes/html.inc';
 require_once 'includes/iframe.inc';
 require_once 'includes/image.inc';
 require_once 'includes/link.inc';
-require_once 'includes/listing.inc';
+require_once 'includes/automated_list.inc';
 require_once 'includes/local_tasks.inc';
 require_once 'includes/map.inc';
 require_once 'includes/media.inc';
@@ -45,12 +45,14 @@ require_once 'includes/primary_navigation.inc';
 require_once 'includes/promo.inc';
 require_once 'includes/publication_card.inc';
 require_once 'includes/quick_links.inc';
+require_once 'includes/quote.inc';
 require_once 'includes/search.inc';
 require_once 'includes/secondary_navigation.inc';
 require_once 'includes/service_card.inc';
 require_once 'includes/slider.inc';
 require_once 'includes/social_links.inc';
 require_once 'includes/system_branding.inc';
+require_once 'includes/table.inc';
 require_once 'includes/views.inc';
 
 /**

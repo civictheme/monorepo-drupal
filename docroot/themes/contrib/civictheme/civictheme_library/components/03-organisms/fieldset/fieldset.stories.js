@@ -43,5 +43,5 @@ export const Fieldset = () => {
     children: randomFormElements(numOfElements, theme, true).join(''),
   });
 
-  return `<div class="container"><div class="row"><div class="col-xs-12">${html}</div></div></div>`;
+  return `<div class="container"><div class="row"><div class="col-xxs-12">${html}</div></div></div>`;
 };

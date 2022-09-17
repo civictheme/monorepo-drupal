@@ -1,0 +1,12 @@
+//
+// Reset mixins.
+//
+
+//
+// Reset the box model dimensions.
+//
+@mixin civictheme-reset-box-model() {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}

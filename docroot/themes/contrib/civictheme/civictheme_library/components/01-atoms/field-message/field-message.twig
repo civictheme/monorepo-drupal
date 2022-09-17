@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Field message component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - type: [string] Message type: error, info, warning, success.
+ * - content: [string] The description's content.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set type = type|default('information') %}
+{% set type_class = 'civictheme-field-message--%s'|format(type|default('information')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
+{% set icons = {
+  information: 'information-mark',
+  warning: 'exclamation-mark-1',
+  error: 'close-outline',
+  success: 'approve',
+} %}
+
+{% if content is not empty -%}
+  <div class="civictheme-field-message {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% if icons[type] is defined %}
+      {% include "@base/icon/icon.twig" with {
+        symbol: icons[type],
+        size: 'small',
+      } only %}
+    {% endif %}
+    {% if content is not empty %}{{ content }}{% endif %}
+  </div>
+{%- endif %}

@@ -1,0 +1,46 @@
+//
+// Back to Top component.
+//
+
+.civictheme-back-to-top {
+  $root: &;
+
+  @include civictheme-print-hide();
+
+  position: fixed;
+  right: $civictheme-back-to-top-space-right;
+  bottom: $civictheme-back-to-top-space-bottom;
+
+  &[data-scrollspy='true'] {
+    display: none;
+
+    &.civictheme-scrollspy-scrolled {
+      display: block;
+    }
+  }
+
+  .civictheme-button {
+    &,
+    &:focus,
+    &:active,
+    &:visited,
+    &:hover {
+      border-radius: rem(100px);
+      padding: civictheme-space();
+      background-color: $civictheme-back-to-top-background-color;
+      border-color: $civictheme-back-to-top-background-color;
+      color: $civictheme-back-to-top-color;
+      outline-color: $civictheme-back-to-top-outline-color;
+    }
+
+    &__icon {
+      &:focus {
+        outline-style: unset;
+      }
+    }
+
+    .civictheme-icon {
+      fill: $civictheme-back-to-top-color;
+    }
+  }
+}

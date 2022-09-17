@@ -1,0 +1,87 @@
+{#
+/**
+ * @file
+ * Callout component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content_top: [string] Content slot.
+ * - content_bottom: [string] Content slot.
+ * - title: [string] Title text.
+ * - summary: [string] Summary text.
+ * - links: [array] Array of link objects containing:
+ *   - text: [string] Link text.
+ *   - url: [string] Link URL.
+ *   - type: [string] Link type.
+ *   - size: [string] Link size.
+ * - vertical_space: [string] With top, bottom or both vertical spaces.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-callout--vertical-space-%s'|format(vertical_space) : '' %}
+{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
+
+<div class="civictheme-callout {{ modifier_class }}">
+  <div class="container">
+    <div class="row">
+      <div class="col-xxs-12">
+        <div class="civictheme-callout--wrapper">
+          {% block content_top %}
+            {% if content_top is not empty %}
+              <div class="civictheme-callout__content-top">
+                {{ content_top }}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block content %}
+            {% if title is not empty or summary is not empty %}
+              <div class="civictheme-callout__text">
+                {% if title is not empty %}
+                  <div class="civictheme-callout__title">
+                    {{ title }}
+                  </div>
+                {% endif %}
+
+                {% if summary is not empty %}
+                  <div class="civictheme-callout__summary">
+                    {{ summary }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block links %}
+            <div class="civictheme-callout__links">
+              {% for link in links %}
+                {% if link.url is not empty %}
+                  {% include '@atoms/button/button.twig' with {
+                    theme: theme,
+                    kind: 'link',
+                    type: link.type,
+                    size: link.size,
+                    text: link.text,
+                    url: link.url,
+                    icon: link.text ? '' : 'upper-right-arrow',
+                    is_external: link.is_external,
+                  } only %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endblock %}
+
+          {% block content_bottom %}
+            {% if content_bottom is not empty %}
+              <div class="civictheme-callout__content-bottom">
+                {{ content_bottom }}
+              </div>
+            {% endif %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -83,16 +83,16 @@
   }
 
   $map: (
-    'status': (
+    'information': (
       'light': (
-        'color': $civictheme-alert-light-status-color,
-        'background-color': $civictheme-alert-light-status-background-color,
-        'icon-color': $civictheme-alert-light-status-icon-color,
+        'color': $civictheme-alert-light-information-color,
+        'background-color': $civictheme-alert-light-information-background-color,
+        'icon-color': $civictheme-alert-light-information-icon-color,
       ),
       'dark': (
-        'color': $civictheme-alert-dark-status-color,
-        'background-color': $civictheme-alert-dark-status-background-color,
-        'icon-color': $civictheme-alert-dark-status-icon-color,
+        'color': $civictheme-alert-dark-information-color,
+        'background-color': $civictheme-alert-dark-information-background-color,
+        'icon-color': $civictheme-alert-dark-information-icon-color,
       )
     ),
     'warning': (

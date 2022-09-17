@@ -6,11 +6,11 @@ dependencies:
     - field.storage.block_content.field_c_b_components
     - paragraphs.paragraphs_type.civictheme_accordion
     - paragraphs.paragraphs_type.civictheme_attachment
+    - paragraphs.paragraphs_type.civictheme_automated_list
     - paragraphs.paragraphs_type.civictheme_callout
     - paragraphs.paragraphs_type.civictheme_card_container
     - paragraphs.paragraphs_type.civictheme_content
     - paragraphs.paragraphs_type.civictheme_iframe
-    - paragraphs.paragraphs_type.civictheme_listing
     - paragraphs.paragraphs_type.civictheme_map
     - paragraphs.paragraphs_type.civictheme_next_step
     - paragraphs.paragraphs_type.civictheme_promo
@@ -45,7 +45,7 @@ settings:
       civictheme_map: civictheme_map
       civictheme_promo: civictheme_promo
       civictheme_iframe: civictheme_iframe
-      civictheme_listing: civictheme_listing
+      civictheme_automated_list: civictheme_automated_list
       civictheme_webform: civictheme_webform
     target_bundles_drag_drop:
       civictheme_accordion:
@@ -96,7 +96,7 @@ settings:
       civictheme_iframe:
         enabled: true
         weight: 45
-      civictheme_listing:
+      civictheme_automated_list:
         enabled: true
         weight: 46
       civictheme_map:

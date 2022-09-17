@@ -1,0 +1,107 @@
+//
+// list component.
+//
+
+.civictheme-list {
+  $root: &;
+
+  &.civictheme-list--vertical-space-top {
+    @include civictheme-component-with-vertical-space(top, $civictheme-list-space-vertical);
+  }
+
+  &.civictheme-list--vertical-space-bottom {
+    @include civictheme-component-with-vertical-space(bottom, $civictheme-list-space-vertical);
+  }
+
+  &.civictheme-list--vertical-space-both {
+    @include civictheme-component-with-vertical-space(both, $civictheme-list-space-vertical);
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: civictheme-space(3);
+
+    @include civictheme-breakpoint('m') {
+      flex-direction: row;
+    }
+  }
+
+  &__header-title {
+    @include civictheme-breakpoint('m') {
+      margin-right: auto;
+    }
+  }
+
+  &__header-link-above {
+    @include civictheme-typography('label-regular');
+
+    @include civictheme-breakpoint('m') {
+      align-self: center;
+      margin-left: auto;
+    }
+  }
+
+  &__filters {
+    margin-bottom: civictheme-space(5);
+  }
+
+  &__pager {
+    display: flex;
+    margin: 0 auto;
+  }
+
+  &__emptyresults {
+    padding: civictheme-space(6) 0;
+  }
+
+  &__results-below {
+    padding: civictheme-space(3) 0 civictheme-space(10);
+  }
+
+  &__link-below {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__empty-results,
+  &__feed_icons {
+    @include civictheme-content();
+
+    padding: civictheme-space(6) 0;
+  }
+
+  &--with-background {
+    #{$root}__header,
+    #{$root}__filters,
+    #{$root}__pager,
+    #{$root}__empty-results,
+    #{$root}__results-below {
+      padding-left: $civictheme-list-space-horizontal;
+      padding-right: $civictheme-list-space-horizontal;
+    }
+  }
+
+  &.civictheme-theme-light {
+    &#{$root}__header {
+      color: $civictheme-list-light-color;
+    }
+    &#{$root}--with-background {
+      background-color: $civictheme-list-light-background-color;
+      #{$root}__results-below {
+        background-color: $civictheme-list-light-background-color;
+      }
+    }
+  }
+
+  &.civictheme-theme-dark {
+    color: $civictheme-list-dark-color;
+    &#{$root}--with-background {
+      background-color: $civictheme-list-dark-background-color;
+      color: $civictheme-list-dark-with-background-color;
+      #{$root}__results-below {
+        background-color: $civictheme-list-dark-background-color;
+      }
+    }
+  }
+}

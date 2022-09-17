@@ -1,0 +1,70 @@
+//
+// Icon component.
+//
+
+@use 'sass:map';
+
+@mixin civictheme-icon-symbol($symbol) {
+  content: '';
+  display: inline-block;
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -webkit-mask-image: url('../assets/icons/' + $symbol + '.svg');
+  mask-image: url('../assets/icons/' + $symbol + '.svg');
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -webkit-mask-position: center;
+  mask-position: center;
+  background-color: currentcolor;
+}
+
+.civictheme-icon {
+  vertical-align: sub;
+
+  // @todo Review this.
+  @include civictheme-icon-size('regular');
+
+  @each $symbol, $values in _civictheme-icon-symbols-all() {
+    &--#{$symbol} {
+      @include civictheme-icon-symbol($symbol);
+    }
+  }
+
+  // Generate size classes for all pre-set sizes.
+  @each $size, $values in _civictheme-icon-sizes-all() {
+    &--size-#{$size} {
+      @include civictheme-icon-size($size);
+    }
+  }
+
+  @each $symbol, $values in _civictheme-icon-symbols-all() {
+    &--#{$symbol} {
+      &--after {
+        @each $size, $values in _civictheme-icon-sizes-all() {
+          &--#{$size} {
+            &::after {
+              @include civictheme-icon-symbol($symbol);
+              @include civictheme-icon-size($size);
+
+              vertical-align: sub;
+            }
+          }
+        }
+      }
+
+      &--before {
+        @each $size, $values in _civictheme-icon-sizes-all() {
+          &--#{$size} {
+            &::before {
+              @include civictheme-icon-symbol($symbol);
+              @include civictheme-icon-size($size);
+
+              vertical-align: sub;
+            }
+          }
+        }
+      }
+    }
+  }
+}

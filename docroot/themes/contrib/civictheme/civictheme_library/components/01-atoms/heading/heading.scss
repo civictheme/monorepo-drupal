@@ -6,6 +6,14 @@
   h#{$level} {
     &.civictheme-heading {
       @include civictheme-typography('heading-#{$level}');
+
+      &.civictheme-theme-light {
+        color: $civictheme-heading-light-color;
+      }
+
+      &.civictheme-theme-dark {
+        color: $civictheme-heading-dark-color;
+      }
     }
   }
 }

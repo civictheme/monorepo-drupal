@@ -12,6 +12,7 @@ use Drupal\node\NodeInterface;
  * Pre-process for Programmatic Block - Banner block.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  */
 function _civictheme_preprocess_block__civictheme_banner(&$variables) {
   if ($variables['base_plugin_id'] != 'block_content') {
@@ -40,6 +41,10 @@ function _civictheme_preprocess_block__civictheme_banner(&$variables) {
 
   if (civictheme_field_has_value($entity, 'field_c_b_background_image')) {
     $variables['background_image'] = civictheme_media_get_url_from_field($entity, 'field_c_b_background_image');
+
+    if (civictheme_field_has_value($entity, 'field_c_b_blend_mode')) {
+      $variables['background_image_blend_mode'] = civictheme_get_field_value($entity, 'field_c_b_blend_mode', TRUE);
+    }
   }
 
   _civictheme_preprocess_civictheme_banner_title($variables);
@@ -198,11 +203,16 @@ function _civictheme_preprocess_civictheme_banner_last_updated(&$variables, $nod
 
 /**
  * Preprocess banner background image.
+ *
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_preprocess_civictheme_banner_background_image(&$variables, $node) {
   $background_image = civictheme_get_field_value($node, 'field_c_n_banner_background', TRUE);
   if ($background_image !== NULL) {
     $variables['background_image'] = civictheme_media_get_url($background_image);
+    if (civictheme_field_has_value($node, 'field_c_n_blend_mode')) {
+      $variables['background_image_blend_mode'] = civictheme_get_field_value($node, 'field_c_n_blend_mode', TRUE);
+    }
   }
 }
 
