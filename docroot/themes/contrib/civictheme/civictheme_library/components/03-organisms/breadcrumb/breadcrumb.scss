@@ -30,10 +30,6 @@
 
         @include civictheme-breakpoint-upto('m') {
           display: flex;
-
-          .civictheme-link {
-            border: none;
-          }
         }
       }
     }
@@ -50,36 +46,14 @@
   }
 
   &.civictheme-theme-light {
-    color: $civictheme-breadcrumb-light-color;
-
     .civictheme-icon {
-      fill: $civictheme-breadcrumb-light-icon-color;
-    }
-
-    .civictheme-link {
-      color: $civictheme-breadcrumb-light-color;
-      text-decoration-color: $civictheme-breadcrumb-light-color;
-
-      &:hover {
-        color: $civictheme-breadcrumb-light-hover-color;
-      }
+      fill: $civictheme-breadcrumb-light-divider-color;
     }
   }
 
   &.civictheme-theme-dark {
-    color: $civictheme-breadcrumb-dark-color;
-
     .civictheme-icon {
-      fill: $civictheme-breadcrumb-dark-icon-color;
-    }
-
-    .civictheme-link {
-      color: $civictheme-breadcrumb-dark-color;
-      text-decoration-color: $civictheme-breadcrumb-dark-color;
-
-      &:hover {
-        color: $civictheme-breadcrumb-dark-hover-color;
-      }
+      fill: $civictheme-breadcrumb-dark-divider-color;
     }
   }
 }

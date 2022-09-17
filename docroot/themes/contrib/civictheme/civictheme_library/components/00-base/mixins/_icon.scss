@@ -97,3 +97,23 @@
     }
   }
 }
+
+//
+// Fill icon for Collapsible.
+//
+@mixin civictheme-icon-collapsible($color, $self: false) {
+  @if $self {
+    &[data-collapsible-trigger] {
+      &::after {
+        content: civictheme-color-svg-fill($civictheme-collapsible-icon, $color);
+      }
+    }
+  }
+  @else {
+    [data-collapsible-trigger] {
+      &::after {
+        content: civictheme-color-svg-fill($civictheme-collapsible-icon, $color);
+      }
+    }
+  }
+}

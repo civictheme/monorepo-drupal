@@ -36,6 +36,7 @@
 
     &#{$root}--is-alt {
       background-color: $civictheme-tag-light-alt-background-color;
+      border-color: $civictheme-tag-light-alt-border-color;
       color: $civictheme-tag-light-alt-color;
 
       #{$root}__link {
@@ -59,6 +60,7 @@
 
     &#{$root}--is-alt {
       background-color: $civictheme-tag-dark-alt-background-color;
+      border-color: $civictheme-tag-dark-alt-border-color;
       color: $civictheme-tag-dark-alt-color;
 
       #{$root}__link {

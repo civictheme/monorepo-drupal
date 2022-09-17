@@ -19,25 +19,25 @@
           'color': $civictheme-button-light-primary-color,
           'background-color': $civictheme-button-light-primary-background-color,
           'border-color': $civictheme-button-light-primary-border-color,
-          'outline-color': $civictheme-button-light-primary-outline-color,
+          'outline-color': false,
         ),
         'hover': (
           'color': $civictheme-button-light-primary-hover-color,
           'background-color': $civictheme-button-light-primary-hover-background-color,
           'border-color': $civictheme-button-light-primary-hover-border-color,
-          'outline-color': $civictheme-button-light-primary-hover-outline-color,
+          'outline-color': false,
         ),
         'visited': (
           'color': $civictheme-button-light-primary-visited-color,
           'background-color': $civictheme-button-light-primary-visited-background-color,
           'border-color': $civictheme-button-light-primary-visited-border-color,
-          'outline-color': $civictheme-button-light-primary-visited-outline-color,
+          'outline-color': false,
         ),
         'active': (
           'color': $civictheme-button-light-primary-active-color,
           'background-color': $civictheme-button-light-primary-active-background-color,
           'border-color': $civictheme-button-light-primary-active-border-color,
-          'outline-color': $civictheme-button-light-primary-active-outline-color,
+          'outline-color': false,
         ),
         'focus': (
           'color': $civictheme-button-light-primary-focus-color,
@@ -45,55 +45,37 @@
           'border-color': $civictheme-button-light-primary-focus-border-color,
           'outline-color': $civictheme-button-light-primary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-primary-disabled-color,
-          'background-color': $civictheme-button-light-primary-disabled-background-color,
-          'border-color': $civictheme-button-light-primary-disabled-border-color,
-          'outline-color': $civictheme-button-light-primary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-light-primary-dismiss-color,
-        ),
       ),
       'dark': (
         'normal': (
           'color': $civictheme-button-dark-primary-color,
           'background-color': $civictheme-button-dark-primary-background-color,
           'border-color': $civictheme-button-dark-primary-border-color,
-          'outline-color': $civictheme-button-dark-primary-outline-color,
+          'outline-color': false,
         ),
         'hover': (
           'color': $civictheme-button-dark-primary-hover-color,
           'background-color': $civictheme-button-dark-primary-hover-background-color,
           'border-color': $civictheme-button-dark-primary-hover-border-color,
-          'outline-color': $civictheme-button-dark-primary-hover-outline-color,
+          'outline-color': false,
         ),
         'visited': (
           'color': $civictheme-button-dark-primary-visited-color,
           'background-color': $civictheme-button-dark-primary-visited-background-color,
           'border-color': $civictheme-button-dark-primary-visited-border-color,
-          'outline-color': $civictheme-button-dark-primary-visited-outline-color,
+          'outline-color': false,
         ),
         'active': (
           'color': $civictheme-button-dark-primary-active-color,
           'background-color': $civictheme-button-dark-primary-active-background-color,
           'border-color': $civictheme-button-dark-primary-active-border-color,
-          'outline-color': $civictheme-button-dark-primary-active-outline-color,
+          'outline-color': false,
         ),
         'focus': (
           'color': $civictheme-button-dark-primary-focus-color,
           'background-color': $civictheme-button-dark-primary-focus-background-color,
           'border-color': $civictheme-button-dark-primary-focus-border-color,
           'outline-color': $civictheme-button-dark-primary-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-primary-disabled-color,
-          'background-color': $civictheme-button-dark-primary-disabled-background-color,
-          'border-color': $civictheme-button-dark-primary-disabled-border-color,
-          'outline-color': $civictheme-button-dark-primary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-dark-primary-dismiss-color,
         ),
       )
     ),
@@ -103,25 +85,25 @@
           'color': $civictheme-button-light-secondary-color,
           'background-color': $civictheme-button-light-secondary-background-color,
           'border-color': $civictheme-button-light-secondary-border-color,
-          'outline-color': $civictheme-button-light-secondary-outline-color,
+          'outline-color': false,
         ),
         'hover': (
           'color': $civictheme-button-light-secondary-hover-color,
           'background-color': $civictheme-button-light-secondary-hover-background-color,
           'border-color': $civictheme-button-light-secondary-hover-border-color,
-          'outline-color': $civictheme-button-light-secondary-hover-outline-color,
+          'outline-color': false,
         ),
         'visited': (
           'color': $civictheme-button-light-secondary-visited-color,
           'background-color': $civictheme-button-light-secondary-visited-background-color,
           'border-color': $civictheme-button-light-secondary-visited-border-color,
-          'outline-color': $civictheme-button-light-secondary-visited-outline-color,
+          'outline-color': false,
         ),
         'active': (
           'color': $civictheme-button-light-secondary-active-color,
           'background-color': $civictheme-button-light-secondary-active-background-color,
           'border-color': $civictheme-button-light-secondary-active-border-color,
-          'outline-color': $civictheme-button-light-secondary-active-outline-color,
+          'outline-color': false,
         ),
         'focus': (
           'color': $civictheme-button-light-secondary-focus-color,
@@ -129,55 +111,37 @@
           'border-color': $civictheme-button-light-secondary-focus-border-color,
           'outline-color': $civictheme-button-light-secondary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-secondary-disabled-color,
-          'background-color': $civictheme-button-light-secondary-disabled-background-color,
-          'border-color': $civictheme-button-light-secondary-disabled-border-color,
-          'outline-color': $civictheme-button-light-secondary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-light-secondary-dismiss-color,
-        ),
       ),
       'dark': (
         'normal': (
           'color': $civictheme-button-dark-secondary-color,
           'background-color': $civictheme-button-dark-secondary-background-color,
           'border-color': $civictheme-button-dark-secondary-border-color,
-          'outline-color': $civictheme-button-dark-secondary-outline-color,
+          'outline-color': false,
         ),
         'hover': (
           'color': $civictheme-button-dark-secondary-hover-color,
           'background-color': $civictheme-button-dark-secondary-hover-background-color,
           'border-color': $civictheme-button-dark-secondary-hover-border-color,
-          'outline-color': $civictheme-button-dark-secondary-hover-outline-color,
+          'outline-color': false,
         ),
         'visited': (
           'color': $civictheme-button-dark-secondary-visited-color,
           'background-color': $civictheme-button-dark-secondary-visited-background-color,
           'border-color': $civictheme-button-dark-secondary-visited-border-color,
-          'outline-color': $civictheme-button-dark-secondary-visited-outline-color,
+          'outline-color': false,
         ),
         'active': (
           'color': $civictheme-button-dark-secondary-active-color,
           'background-color': $civictheme-button-dark-secondary-active-background-color,
           'border-color': $civictheme-button-dark-secondary-active-border-color,
-          'outline-color': $civictheme-button-dark-secondary-active-outline-color,
+          'outline-color': false,
         ),
         'focus': (
           'color': $civictheme-button-dark-secondary-focus-color,
           'background-color': $civictheme-button-dark-secondary-focus-background-color,
           'border-color': $civictheme-button-dark-secondary-focus-border-color,
           'outline-color': $civictheme-button-dark-secondary-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-secondary-disabled-color,
-          'background-color': $civictheme-button-dark-secondary-disabled-background-color,
-          'border-color': $civictheme-button-dark-secondary-disabled-border-color,
-          'outline-color': $civictheme-button-dark-secondary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-dark-secondary-dismiss-color,
         ),
       )
     ),
@@ -187,25 +151,25 @@
           'color': $civictheme-button-light-tertiary-color,
           'background-color': $civictheme-button-light-tertiary-background-color,
           'border-color': $civictheme-button-light-tertiary-border-color,
-          'outline-color': $civictheme-button-light-tertiary-outline-color,
+          'outline-color': false,
         ),
         'hover': (
           'color': $civictheme-button-light-tertiary-hover-color,
           'background-color': $civictheme-button-light-tertiary-hover-background-color,
           'border-color': $civictheme-button-light-tertiary-hover-border-color,
-          'outline-color': $civictheme-button-light-tertiary-hover-outline-color,
+          'outline-color': false,
         ),
         'visited': (
           'color': $civictheme-button-light-tertiary-visited-color,
           'background-color': $civictheme-button-light-tertiary-visited-background-color,
           'border-color': $civictheme-button-light-tertiary-visited-border-color,
-          'outline-color': $civictheme-button-light-tertiary-visited-outline-color,
+          'outline-color': false,
         ),
         'active': (
           'color': $civictheme-button-light-tertiary-active-color,
           'background-color': $civictheme-button-light-tertiary-active-background-color,
           'border-color': $civictheme-button-light-tertiary-active-border-color,
-          'outline-color': $civictheme-button-light-tertiary-active-outline-color,
+          'outline-color': false,
         ),
         'focus': (
           'color': $civictheme-button-light-tertiary-focus-color,
@@ -213,55 +177,37 @@
           'border-color': $civictheme-button-light-tertiary-focus-border-color,
           'outline-color': $civictheme-button-light-tertiary-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-tertiary-disabled-color,
-          'background-color': $civictheme-button-light-tertiary-disabled-background-color,
-          'border-color': $civictheme-button-light-tertiary-disabled-border-color,
-          'outline-color': $civictheme-button-light-tertiary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-light-tertiary-dismiss-color,
-        ),
       ),
       'dark': (
         'normal': (
           'color': $civictheme-button-dark-tertiary-color,
           'background-color': $civictheme-button-dark-tertiary-background-color,
           'border-color': $civictheme-button-dark-tertiary-border-color,
-          'outline-color': $civictheme-button-dark-tertiary-outline-color,
+          'outline-color': false,
         ),
         'hover': (
           'color': $civictheme-button-dark-tertiary-hover-color,
           'background-color': $civictheme-button-dark-tertiary-hover-background-color,
           'border-color': $civictheme-button-dark-tertiary-hover-border-color,
-          'outline-color': $civictheme-button-dark-tertiary-hover-outline-color,
+          'outline-color': false,
         ),
         'visited': (
           'color': $civictheme-button-dark-tertiary-visited-color,
           'background-color': $civictheme-button-dark-tertiary-visited-background-color,
           'border-color': $civictheme-button-dark-tertiary-visited-border-color,
-          'outline-color': $civictheme-button-dark-tertiary-visited-outline-color,
+          'outline-color': false,
         ),
         'active': (
           'color': $civictheme-button-dark-tertiary-active-color,
           'background-color': $civictheme-button-dark-tertiary-active-background-color,
           'border-color': $civictheme-button-dark-tertiary-active-border-color,
-          'outline-color': $civictheme-button-dark-tertiary-active-outline-color,
+          'outline-color': false,
         ),
         'focus': (
           'color': $civictheme-button-dark-tertiary-focus-color,
           'background-color': $civictheme-button-dark-tertiary-focus-background-color,
           'border-color': $civictheme-button-dark-tertiary-focus-border-color,
           'outline-color': $civictheme-button-dark-tertiary-focus-outline-color,
-        ),
-        'disabled': (
-          'color': $civictheme-button-dark-tertiary-disabled-color,
-          'background-color': $civictheme-button-dark-tertiary-disabled-background-color,
-          'border-color': $civictheme-button-dark-tertiary-disabled-border-color,
-          'outline-color': $civictheme-button-dark-tertiary-disabled-outline-color,
-        ),
-        'dismiss': (
-          'fill': $civictheme-button-dark-tertiary-dismiss-color,
         ),
       )
     ),
@@ -271,25 +217,25 @@
           'color': $civictheme-button-light-chip-color,
           'background-color': $civictheme-button-light-chip-background-color,
           'border-color': $civictheme-button-light-chip-border-color,
-          'outline-color': $civictheme-button-light-chip-outline-color,
+          'outline-color': false,
         ),
         'hover': (
           'color': $civictheme-button-light-chip-hover-color,
           'background-color': $civictheme-button-light-chip-hover-background-color,
           'border-color': $civictheme-button-light-chip-hover-border-color,
-          'outline-color': $civictheme-button-light-chip-hover-outline-color,
+          'outline-color': false,
         ),
         'visited': (
           'color': $civictheme-button-light-chip-visited-color,
           'background-color': $civictheme-button-light-chip-visited-background-color,
           'border-color': $civictheme-button-light-chip-visited-border-color,
-          'outline-color': $civictheme-button-light-chip-visited-outline-color,
+          'outline-color': false,
         ),
         'active': (
           'color': $civictheme-button-light-chip-active-color,
           'background-color': $civictheme-button-light-chip-active-background-color,
           'border-color': $civictheme-button-light-chip-active-border-color,
-          'outline-color': $civictheme-button-light-chip-active-outline-color,
+          'outline-color': false,
         ),
         'focus': (
           'color': $civictheme-button-light-chip-focus-color,
@@ -297,19 +243,14 @@
           'border-color': $civictheme-button-light-chip-focus-border-color,
           'outline-color': $civictheme-button-light-chip-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-light-chip-disabled-color,
-          'background-color': $civictheme-button-light-chip-disabled-background-color,
-          'border-color': $civictheme-button-light-chip-disabled-border-color,
-          'outline-color': $civictheme-button-light-chip-disabled-outline-color,
-        ),
         'dismiss': (
           'fill': $civictheme-button-light-chip-dismiss-color,
           'fill-selected': $civictheme-button-light-chip-selected-color,
         ),
         'selected': (
           'color': $civictheme-button-light-chip-selected-color,
-          'background-color': $civictheme-button-light-chip-selected-background-color
+          'background-color': $civictheme-button-light-chip-selected-background-color,
+          'border-color': $civictheme-button-light-chip-selected-border-color,
         ),
       ),
       'dark': (
@@ -317,25 +258,25 @@
           'color': $civictheme-button-dark-chip-color,
           'background-color': $civictheme-button-dark-chip-background-color,
           'border-color': $civictheme-button-dark-chip-border-color,
-          'outline-color': $civictheme-button-dark-chip-outline-color,
+          'outline-color': false,
         ),
         'hover': (
           'color': $civictheme-button-dark-chip-hover-color,
           'background-color': $civictheme-button-dark-chip-hover-background-color,
           'border-color': $civictheme-button-dark-chip-hover-border-color,
-          'outline-color': $civictheme-button-dark-chip-hover-outline-color,
+          'outline-color': false,
         ),
         'visited': (
           'color': $civictheme-button-dark-chip-visited-color,
           'background-color': $civictheme-button-dark-chip-visited-background-color,
           'border-color': $civictheme-button-dark-chip-visited-border-color,
-          'outline-color': $civictheme-button-dark-chip-visited-outline-color,
+          'outline-color': false,
         ),
         'active': (
           'color': $civictheme-button-dark-chip-active-color,
           'background-color': $civictheme-button-dark-chip-active-background-color,
           'border-color': $civictheme-button-dark-chip-active-border-color,
-          'outline-color': $civictheme-button-dark-chip-active-outline-color,
+          'outline-color': false,
         ),
         'focus': (
           'color': $civictheme-button-dark-chip-focus-color,
@@ -343,19 +284,14 @@
           'border-color': $civictheme-button-dark-chip-focus-border-color,
           'outline-color': $civictheme-button-dark-chip-focus-outline-color,
         ),
-        'disabled': (
-          'color': $civictheme-button-dark-chip-disabled-color,
-          'background-color': $civictheme-button-dark-chip-disabled-background-color,
-          'border-color': $civictheme-button-dark-chip-disabled-border-color,
-          'outline-color': $civictheme-button-dark-chip-disabled-outline-color,
-        ),
         'dismiss': (
           'fill': $civictheme-button-dark-chip-dismiss-color,
           'fill-selected': $civictheme-button-dark-chip-selected-color
         ),
         'selected': (
           'color': $civictheme-button-dark-chip-selected-color,
-          'background-color': $civictheme-button-dark-chip-selected-background-color
+          'background-color': $civictheme-button-dark-chip-selected-background-color,
+          'border-color': $civictheme-button-dark-chip-selected-border-color,
         ),
       )
     ),
@@ -368,18 +304,24 @@
 
   display: inline-block;
   text-decoration: none;
-  outline-style: solid;
   outline-offset: $civictheme-button-outline-offset;
   outline-width: $civictheme-button-outline-width;
+
+  @if $civictheme-animation-enabled {
+    transition: all $civictheme-animation-duration ease;
+  }
 
   &:focus,
   &:hover,
   &:active {
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   &[disabled] {
     text-decoration: none;
+    pointer-events: none;
+    user-select: none;
+    opacity: 50%;
   }
 
   .civictheme-icon {
@@ -429,28 +371,6 @@
             @include _civictheme-button-print-rules($type-kind-values);
           }
         }
-        @else if $type-kind == 'disabled' {
-          &:disabled,
-          &[disabled],
-          &:disabled:active,
-          &:disabled:focus,
-          &:disabled:focus:hover,
-          &:disabled:focus:active,
-          &:disabled:focus:hover:active,
-          &[disabled]:active,
-          &[disabled]:focus,
-          &[disabled].focus,
-          &[disabled]:focus:hover,
-          &[disabled].focus:hover,
-          &[disabled]:focus:active,
-          &[disabled].focus:active,
-          &[disabled]:focus:hover:active,
-          &[disabled].focus:hover:active {
-            @include _civictheme-button-print-rules($type-kind-values);
-
-            cursor: inherit;
-          }
-        }
         @else if $type-kind == 'dismiss' {
           &.civictheme-button--dismiss {
             padding-right: civictheme-space(2);
@@ -483,42 +403,52 @@
 }
 
 @mixin _civictheme-button-print-rules($rules) {
-  color: map.get($rules, 'color');
-  background-color: map.get($rules, 'background-color');
-  border-color: map.get($rules, 'border-color');
-  outline-color: map.get($rules, 'outline-color');
+  $map: (
+    'background-color',
+    'border-color',
+    'color',
+    'outline-color',
+  );
+
+  @each $property in $map {
+    $value: map.get($rules, $property);
+
+    @if $value {
+      #{$property}: $value;
+    }
+  }
+
+  @if map.get($rules, 'outline-color') {
+    outline-style: solid;
+  }
 }
 
-@mixin civictheme-button-size($size) {
+@mixin civictheme-button-size($size, $with-padding: true) {
   // stylelint-disable-next-line scss/dollar-variable-pattern
-  $sizes: ('extra-large', 'large', 'regular', 'small', 'extra-small');
+  $sizes: ('large', 'regular', 'small');
 
-  @if $size == 'extra-large' {
-    @include civictheme-typography('label-#{$size}');
+  @if $size == 'large' {
+    @include civictheme-typography('label-extra-large');
 
-    padding: civictheme-space(3) civictheme-space(6);
-  }
-  @else if $size == 'large' {
-    @include civictheme-typography('label-#{$size}');
-
-    padding: civictheme-space(2) civictheme-space(5);
+    @if $with-padding {
+      padding: civictheme-space(2) civictheme-space(5);
+    }
   }
   @else if $size == 'regular' {
-    @include civictheme-typography('label-#{$size}');
+    @include civictheme-typography('label-regular');
 
-    padding: civictheme-space(2) civictheme-space(5);
+    @if $with-padding {
+      padding: civictheme-space(2) civictheme-space(5);
+    }
   }
   @else if $size == 'small' {
-    @include civictheme-typography('label-#{$size}');
+    @include civictheme-typography('label-small');
 
-    padding: civictheme-space() civictheme-space(3);
     border-width: math.div($civictheme-button-border-width, 2);
-  }
-  @else if $size == 'extra-small' {
-    @include civictheme-typography('label-#{$size}');
 
-    padding: civictheme-space(0.5) civictheme-space(1.5);
-    border-width: math.div($civictheme-button-border-width, 2);
+    @if $with-padding {
+      padding: civictheme-space() civictheme-space(3);
+    }
   }
   @else {
     @error '"#{$size}" is not one of allowed #{$sizes}.';
@@ -538,7 +468,6 @@
 
   @include civictheme-button-size('regular');
 
-  // Type.
   &--primary {
     @include civictheme-button-type('primary');
   }
@@ -547,8 +476,39 @@
     @include civictheme-button-type('secondary');
   }
 
+  // Type.
   &--tertiary {
     @include civictheme-button-type('tertiary');
+
+    &:focus,
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
+
+    &--large {
+      @include civictheme-button-size('large', false);
+
+      &__dismiss {
+        margin-left: civictheme-space(3);
+      }
+    }
+
+    &--regular {
+      @include civictheme-button-size('regular', false);
+
+      &__dismiss {
+        margin-left: civictheme-space(3);
+      }
+    }
+
+    &--small {
+      @include civictheme-button-size('small', false);
+
+      &__dismiss {
+        margin-left: civictheme-space(2);
+      }
+    }
   }
 
   &--chip {
@@ -556,43 +516,39 @@
   }
 
   // Size.
-  &--extra-large {
-    @include civictheme-button-size('extra-large');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space(4);
-    }
-  }
-
   &--large {
     @include civictheme-button-size('large');
 
-    #{$root}__dismiss {
+    &__dismiss {
       margin-left: civictheme-space(3);
+    }
+
+    &#{$root}--tertiary {
+      padding: 0;
     }
   }
 
   &--regular {
     @include civictheme-button-size('regular');
 
-    #{$root}__dismiss {
+    &__dismiss {
       margin-left: civictheme-space(3);
+    }
+
+    &#{$root}--tertiary {
+      padding: 0;
     }
   }
 
   &--small {
     @include civictheme-button-size('small');
 
-    #{$root}__dismiss {
+    &__dismiss {
       margin-left: civictheme-space(2);
     }
-  }
 
-  &--extra-small {
-    @include civictheme-button-size('extra-small');
-
-    #{$root}__dismiss {
-      margin-left: civictheme-space();
+    &#{$root}--tertiary {
+      padding: 0;
     }
   }
 }

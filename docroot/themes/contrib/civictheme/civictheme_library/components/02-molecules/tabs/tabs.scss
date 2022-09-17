@@ -19,15 +19,17 @@
 
     .civictheme-link {
       margin-bottom: -1px;
+      outline-offset: -3px;
       display: block;
 
       @include civictheme-link-decoration(false, false, false, false);
 
       padding: civictheme-space(1) civictheme-space(2);
       border-radius: $civictheme-tabs-link-border-radius $civictheme-tabs-link-border-radius 0 0;
+      border: solid 1px;
 
-      &.selected {
-        border: solid 1px;
+      @include civictheme-breakpoint('m') {
+        padding: civictheme-space(2.875);
       }
     }
   }
@@ -47,15 +49,6 @@
   &.civictheme-theme-light {
     #{$root}__links {
       border-bottom-color: $civictheme-tabs-light-links-border-color;
-
-      .civictheme-link {
-        &.selected {
-          color: $civictheme-tabs-light-links-selected-color;
-          border-color: $civictheme-tabs-light-links-selected-border-color $civictheme-tabs-light-links-selected-border-color $civictheme-tabs-light-panel-background-color;
-
-          @include civictheme-link-backgrounds(transparent);
-        }
-      }
     }
 
     #{$root}__panels {
@@ -68,15 +61,6 @@
   &.civictheme-theme-dark {
     #{$root}__links {
       border-bottom-color: $civictheme-tabs-dark-links-border-color;
-
-      .civictheme-link {
-        &.selected {
-          color: $civictheme-tabs-dark-links-selected-color;
-          border-color: $civictheme-tabs-dark-links-selected-border-color $civictheme-tabs-dark-links-selected-border-color $civictheme-tabs-dark-panel-background-color;
-
-          @include civictheme-link-backgrounds(transparent);
-        }
-      }
     }
 
     #{$root}__panels {

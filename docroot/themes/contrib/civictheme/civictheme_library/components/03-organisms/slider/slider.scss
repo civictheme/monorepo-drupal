@@ -156,6 +156,11 @@
   $root: &;
 
   position: absolute;
+  height: $civictheme-slide-mobile-height;
+
+  @include civictheme-breakpoint('l') {
+    height: $civictheme-slide-desktop-height;
+  }
 
   @include civictheme-breakpoint('l') {
     display: flex;
@@ -254,16 +259,7 @@
       width: rem(500px);
     }
 
-    img {
-      display: block;
-      width: 100%;
-      object-fit: cover;
-      height: civictheme-space() * 26;
-
-      @include civictheme-breakpoint('l') {
-        height: 100%;
-      }
-    }
+    @include civictheme-image-fit();
   }
 
   &.civictheme-theme-light {

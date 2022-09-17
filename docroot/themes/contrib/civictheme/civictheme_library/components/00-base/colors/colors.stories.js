@@ -1,85 +1,126 @@
 // phpcs:ignoreFile
+
+import CivicThemeColors from './colors.stories.twig';
+import { getThemes } from '../base.stories';
+
 export default {
   title: 'Base/Colors',
 };
 
+function getColourMap(name) {
+  const map = {};
+
+  map.default = SCSS_VARIABLES[`civictheme-${name}-default`] || {};
+  map.custom = SCSS_VARIABLES[`civictheme-${name}`];
+
+  // Normalise colors as they may not be provided.
+  if (!Object.prototype.hasOwnProperty.call(map.default, 'light') || !Object.prototype.hasOwnProperty.call(map.default, 'dark')) {
+    map.default = {
+      light: {},
+      dark: {},
+    };
+  }
+
+  if (!Object.prototype.hasOwnProperty.call(map.custom, 'light') || !Object.prototype.hasOwnProperty.call(map.custom, 'dark')) {
+    map.custom = {
+      light: {},
+      dark: {},
+    };
+  }
+
+  for (const theme in getThemes()) {
+    map.custom[theme] = Object.keys(map.custom[theme]).filter((n) => Object.keys(map.default[theme]).indexOf(n) === -1)
+      .reduce((obj2, key) => {
+        if (key in map.custom[theme]) {
+          obj2[key] = map.custom[theme][key];
+        }
+        return obj2;
+      }, {});
+  }
+
+  return map;
+}
+
 export const Colors = () => {
-  const vars = { ...SCSS_VARIABLES };
+  const sectionMap = {
+    'Brand colors': {
+      Standard: [
+        'brand1',
+        'brand2',
+        'brand3',
+      ],
+    },
+    'Palette colors': {
+      Typography: [
+        'heading',
+        'body',
+      ],
+      Backgrounds: [
+        'background-light',
+        'background',
+        'background-dark',
+      ],
+      Borders: [
+        'border-light',
+        'border',
+        'border-dark',
+      ],
+      Interaction: [
+        'interaction-text',
+        'interaction-background',
+        'interaction-hover-text',
+        'interaction-hover-background',
+        'interaction-focus',
+      ],
+      Highlight: [
+        'highlight',
+      ],
+      Status: [
+        'information',
+        'warning',
+        'error',
+        'success',
+      ],
+      Custom: [],
+    },
+  };
 
-  const types = {};
+  const brandMap = getColourMap('colors-brands');
+  const paletteMap = getColourMap('colors');
 
-  const csvFileName = { ...CSV_VARIABLES_FILENAME };
+  const colorMap = {
+    'Brand colors': brandMap,
+    'Palette colors': paletteMap,
+  };
 
-  // Standard colors.
-  types['civictheme-colors-default'] = 'Standard colors';
+  const sections = {};
 
-  // Generate unique color variant groups to generate types from group names.
-  const colorsVariants = vars['civictheme-colors-variants'].concat(vars['civictheme-colors-variants-default'].filter((item) => vars['civictheme-colors-variants'].indexOf(item) < 0));
-  const colorsVariantGroups = {};
-  for (const i in colorsVariants) {
-    const groupName = colorsVariants[i].match(/(.*)-variant/)[1] || null;
-    if (groupName) {
-      if (!Object.prototype.hasOwnProperty.call(colorsVariantGroups, groupName)) {
-        colorsVariantGroups[groupName] = [];
+  for (const theme in getThemes()) {
+    for (const sectionTitle in sectionMap) {
+      for (const sectionName in sectionMap[sectionTitle]) {
+        sections[theme] = sections[theme] || {};
+        sections[theme][sectionTitle] = sections[theme][sectionTitle] || {};
+
+        if (sectionName === 'Custom') {
+          if (Object.keys(colorMap[sectionTitle].custom[theme]).length > 0) {
+            sections[theme][sectionTitle][sectionName] = sections[theme][sectionTitle][sectionName] || {};
+            sections[theme][sectionTitle][sectionName] = colorMap[sectionTitle].custom[theme];
+          }
+        } else {
+          const colorNames = sectionMap[sectionTitle][sectionName];
+          for (let i = 0; i < colorNames.length; i++) {
+            sections[theme][sectionTitle][sectionName] = sections[theme][sectionTitle][sectionName] || {};
+            sections[theme][sectionTitle][sectionName][colorNames[i]] = colorMap[sectionTitle].default[theme][colorNames[i]];
+          }
+        }
       }
-      colorsVariantGroups[groupName].push(colorsVariants[i]);
     }
   }
-  for (const name in colorsVariantGroups) {
-    types[`civictheme-colors-variants-default-${name}`] = `${name.charAt(0).toUpperCase() + name.slice(1)} color variants`;
-    vars[`civictheme-colors-variants-default-${name}`] = colorsVariantGroups[name].sort((a, b) => a.localeCompare(b, navigator.languages[0] || navigator.language, {
-      numeric: true,
-      sensitivity: 'base',
-    }));
-  }
 
-  // Custom colors without overrides of standard colors.
-  types['civictheme-colors'] = 'Custom colors';
-  vars['civictheme-colors'] = vars['civictheme-colors'].filter((n) => vars['civictheme-colors-default'].indexOf(n) === -1);
+  const colorMapFile = { ...CSV_VARIABLES_FILENAME };
 
-  // Shades.
-  types['civictheme-colors-tints'] = 'Generated Tints';
-  types['civictheme-colors-shades'] = 'Generated Shades';
-  types['civictheme-colors-tones'] = 'Generated Tones';
-
-  vars['civictheme-colors-tints'] = [];
-  vars['civictheme-colors-shades'] = [];
-  vars['civictheme-colors-tones'] = [];
-  for (let i = 0; i <= 100; i += 10) {
-    vars['civictheme-colors-tints'].push(`tint-${i}`);
-    vars['civictheme-colors-shades'].push(`shade-${i}`);
-    vars['civictheme-colors-tones'].push(`tone-${i}`);
-  }
-
-  let html = '';
-  if (Object.values(csvFileName.name)) {
-    html += `<div class="example-container__csv"><a href="../dist/${csvFileName.name}" target="_blank" download>Download color map CSV</a></div>`;
-  }
-
-  let variantDocsShown = false;
-  let autogeneratedDocsShown = false;
-  for (const name in types) {
-    if (Object.values(vars[name]).length > 0) {
-      if (name.includes('variant') && !variantDocsShown) {
-        html += '<div class="docs-container">Color variants is a customizable set of colors, mapped to automatically generated color tints, shades or tones by default.<br/>These can be easily re-mapped to custom values, if required.</div>';
-        variantDocsShown = true;
-      }
-
-      if (name.includes('tints') && !autogeneratedDocsShown) {
-        html += '<div class="docs-container">Color tint, shades and tones are automatically generated derivatives from the Primary color.</div>';
-        autogeneratedDocsShown = true;
-      }
-
-      html += `<div class="example-container">`;
-      html += `<div class="example-container__title">${types[name]}</div>`;
-      html += `<div class="example-container__content story-colors-wrapper story-wrapper-size--large">`;
-      for (const i in Object.values(vars[name])) {
-        html += `<div class="example-container__content story-color--${vars[name][i]}"></div>`;
-      }
-      html += `</div>`;
-      html += `</div>`;
-    }
-  }
-
-  return html;
+  return CivicThemeColors({
+    sections,
+    color_map_link: `../dist/${colorMapFile.name}`,
+  });
 };

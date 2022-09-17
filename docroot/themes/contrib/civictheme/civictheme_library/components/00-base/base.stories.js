@@ -14,6 +14,11 @@ import Label from '../01-atoms/label/label.twig';
 import DropdownFilter
   from '../02-molecules/dropdown-filter/dropdown-filter.twig';
 
+export const getThemes = () => ({
+  light: 'Light',
+  dark: 'Dark',
+});
+
 export const getSlots = (names) => {
   const showSlots = boolean('Show story-slots', false, 'Slots');
   const obj = {};
@@ -99,7 +104,6 @@ export const demoImage = (idx) => {
     './assets/images/demo1.jpg',
     './assets/images/demo2.jpg',
     './assets/images/demo3.jpg',
-    './assets/images/demo4.jpg',
   ];
 
   idx = idx || Math.floor(Math.random() * images.length);
@@ -168,7 +172,10 @@ export const formElement = (inputType, options, theme, rand, itr) => {
       formElementOptions.children.push(Checkbox(inputOptions));
       break;
     case 'select':
-      formElementOptions.children.push(Select({ ...inputOptions, options: inputOptions.value }));
+      formElementOptions.children.push(Select({
+        ...inputOptions,
+        options: inputOptions.value,
+      }));
       break;
     default:
       formElementOptions.children.push(Input(inputOptions));

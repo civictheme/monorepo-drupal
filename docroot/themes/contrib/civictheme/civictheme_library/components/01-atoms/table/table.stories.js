@@ -24,40 +24,42 @@ export const Table = (knobTab) => {
     'Footer 4',
   ];
 
-  const rows = [
-    [
-      "<a class='civictheme-link' href='#' title='Row 1 with link'>Row 4 with link</a>",
-      'Description summary on odd row with space',
-      'Another column',
-      'One more column column',
-    ],
-    [
-      "<a class='civictheme-link' href='#' title='Row 2 with link'>Row 4 with link</a>",
-      'Description summary on even row',
-      'Another column',
-      'One more column column',
-    ],
-    [
-      "<a class='civictheme-link' href='#' title='Row 3 with link'>Row 4 with link</a>",
-      'Description summary on odd row with space',
-      'Another column',
-      'One more column column',
-    ],
-    [
-      "<a class='civictheme-link' href='#' title='Row 4 with link'>Row 4 with link</a>",
-      'Description summary on even row',
-      'Another column',
-      'One more column column',
-    ],
-    [
-      'Row 5 without a link',
-      'Description summary on odd row with space',
-      'Another column',
-      'One more column column',
-    ],
-  ];
+  const getRows = function (theme) {
+    return [
+      [
+        `<a class="civictheme-link civictheme-theme-${theme}" href="#" title="Row 1 with link">Row 1 with link</a>`,
+        'Description summary on odd row with space',
+        'Another column',
+        'One more column column',
+      ],
+      [
+        `<a class="civictheme-link civictheme-theme-${theme}" href="#" title="Row 1 with link">Row 2 with link</a>`,
+        'Description summary on even row',
+        'Another column',
+        'One more column column',
+      ],
+      [
+        `<a class="civictheme-link civictheme-theme-${theme}" href="#" title="Row 1 with link">Row 3 with link</a>`,
+        'Description summary on odd row with space',
+        'Another column',
+        'One more column column',
+      ],
+      [
+        `<a class="civictheme-link civictheme-theme-${theme}" href="#" title="Row 1 with link">Row 5 with link</a>`,
+        'Description summary on even row',
+        'Another column',
+        'One more column column',
+      ],
+      [
+        'Row 5 without a link',
+        'Description summary on odd row with space',
+        'Another column',
+        'One more column column',
+      ],
+    ];
+  };
 
-  return CivicThemeTable({
+  const generalKnobs = {
     theme: radios(
       'Theme',
       {
@@ -68,7 +70,7 @@ export const Table = (knobTab) => {
       generalKnobTab,
     ),
     header: boolean('With header', true, generalKnobTab) ? header : [],
-    rows: boolean('With rows', true, generalKnobTab) ? rows : [],
+    rows: boolean('With rows', true, generalKnobTab) ? true : null,
     footer: boolean('With footer', true, generalKnobTab) ? footer : [],
     caption: text('Caption', 'Table caption Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.', generalKnobTab),
     caption_position: radios(
@@ -82,5 +84,13 @@ export const Table = (knobTab) => {
     ),
     is_striped: boolean('Striped', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+  };
+
+  if (generalKnobs.rows) {
+    generalKnobs.rows = getRows(generalKnobs.theme);
+  }
+
+  return CivicThemeTable({
+    ...generalKnobs,
   });
 };

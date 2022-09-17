@@ -116,6 +116,8 @@
 
     #{$root}__location {
       color: $civictheme-event-card-light-location-color;
+
+      @include civictheme-typography('label-regular');
     }
 
     #{$root}__summary {

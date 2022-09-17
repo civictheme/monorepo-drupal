@@ -8,6 +8,7 @@ dependencies:
   - admin_toolbar:admin_toolbar
   - admin_toolbar:admin_toolbar_tools
   - adminimal_admin_toolbar:adminimal_admin_toolbar
+  - civictheme_styleguide:civictheme_styleguide
   - coffee:coffee
   - config_devel:config_devel
   - config_filter:config_filter

@@ -3,7 +3,8 @@
  * @file
  * Password Indicator component.
  *
- * Provides a password indicator component to help users comply with a site's password policy.
+ * Provides a password indicator component to help users comply with a site's
+ * password policy.
  */
 function CivicPasswordIndicator(el) {
   // Ensure element hasn't already been processed.

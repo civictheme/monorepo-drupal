@@ -2,47 +2,6 @@
 // Attachment component.
 //
 
-@mixin civictheme-card-heading-state() {
-  & {
-    border-bottom: 0;
-    padding: 0;
-    text-decoration: underline;
-
-    &:hover {
-      background-color: unset;
-      padding: 0;
-    }
-
-    &:active {
-      text-underline: none;
-    }
-  }
-
-  &.civictheme-theme-light {
-    color: $civictheme-attachment-light-heading-color;
-
-    &:hover {
-      color: $civictheme-attachment-light-heading-hover-color;
-    }
-
-    &:active {
-      color: $civictheme-attachment-light-heading-active-color;
-    }
-  }
-
-  &.civictheme-theme-dark {
-    color: $civictheme-attachment-dark-heading-color;
-
-    &:hover {
-      color: $civictheme-attachment-dark-heading-hover-color;
-    }
-
-    &:active {
-      color: $civictheme-attachment-dark-heading-active-color;
-    }
-  }
-}
-
 .civictheme-attachment {
   display: flex;
   flex-wrap: wrap;
@@ -93,7 +52,6 @@
     flex: 1;
     color: $civictheme-attachment-light-color;
     border-radius: $civictheme-attachment-border-radius;
-    border: solid 1px $civictheme-attachment-light-border-color;
 
     @include civictheme-breakpoint('m') {
       padding: civictheme-space(4);
@@ -155,8 +113,6 @@
     }
 
     font-weight: 600;
-
-    @include civictheme-card-heading-state();
   }
 
   &.civictheme-theme-light {
@@ -169,6 +125,7 @@
     .civictheme-attachment {
       &__content {
         background-color: $civictheme-attachment-light-background-color;
+        border: solid 1px $civictheme-attachment-light-border-color;
       }
 
       &__title {
@@ -203,6 +160,7 @@
     .civictheme-attachment {
       &__content {
         color: $civictheme-attachment-dark-color;
+        border: solid 1px $civictheme-attachment-dark-border-color;
       }
 
       &__title {

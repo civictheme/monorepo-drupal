@@ -37,11 +37,9 @@ export const Button = (knobTab) => {
     ),
     size: radios(
       'Size', {
-        'Extra Large': 'extra-large',
         Large: 'large',
         Regular: 'regular',
         Small: 'small',
-        'Extra Small': 'extra-small',
         None: '',
       },
       'regular',
@@ -95,9 +93,9 @@ export const Button = (knobTab) => {
     ) : null,
     icon_size: withIcon ? radios(
       'Icon Size', {
+        Large: 'large',
         Regular: 'regular',
         Small: 'small',
-        'Extra Small': 'extra-small',
         None: '',
       },
       'regular',

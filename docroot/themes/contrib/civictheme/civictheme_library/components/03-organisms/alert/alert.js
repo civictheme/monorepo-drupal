@@ -8,8 +8,8 @@
  * - data-alert-endpoint: Alert REST configurable API endpoint.
  */
 function CivicAlert(el) {
-  // Use "data-civictheme-alerts"'s attribute value to identify if this component was
-  // already initialised.
+  // Use "data-civictheme-alerts"'s attribute value to identify if this
+  // component was already initialised.
   if (el.getAttribute('data-civictheme-alerts') === 'true' || this.container) {
     return;
   }

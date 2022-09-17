@@ -15,31 +15,38 @@
   &.civictheme-theme-light {
     color: $civictheme-select-light-color;
     background-color: $civictheme-select-light-background-color;
+    border-color: $civictheme-input-light-border-color;
 
     &:hover {
       box-shadow: 0 0 0 1px $civictheme-select-light-hover-border-color;
     }
 
+    &:focus {
+      border-color: $civictheme-select-light-focus-border-color;
+      box-shadow: 0 0 0 1px $civictheme-select-light-focus-border-color;
+    }
+
     &.error,
     &.civictheme-input--error {
-      border-color: $civictheme-input-light-error-border-color;
-      box-shadow: 0 0 0 1px $civictheme-input-light-error-border-color;
+      border-color: $civictheme-select-light-error-border-color;
+      box-shadow: 0 0 0 1px $civictheme-select-light-error-border-color;
     }
 
     &.civictheme-input--success {
-      border-color: $civictheme-select-light-border-success-color;
-      box-shadow: 0 0 0 1px $civictheme-select-light-border-success-color;
+      border-color: $civictheme-select-light-success-border-color;
+      box-shadow: 0 0 0 1px $civictheme-select-light-success-border-color;
     }
 
     &.disabled {
-      color: $civictheme-select-light-disabled-color;
+      pointer-events: none;
+      opacity: 50%;
     }
   }
 
   &.civictheme-theme-dark {
     color: $civictheme-select-dark-color;
     background-color: $civictheme-select-dark-background-color;
-    border-color: $civictheme-input-dark-error-border-color;
+    border-color: $civictheme-input-dark-border-color;
 
     &:hover {
       border-color: $civictheme-select-dark-hover-border-color;
@@ -54,20 +61,19 @@
     &:invalid,
     &.error,
     &.civictheme-input--error {
-      border-color: $civictheme-select-dark-border-error-color;
-      box-shadow: 0 0 0 1px $civictheme-select-dark-border-error-color;
+      border-color: $civictheme-select-dark-error-border-color;
+      box-shadow: 0 0 0 1px $civictheme-select-dark-error-border-color;
     }
 
     &:valid,
     &.civictheme-input--success {
-      border-color: $civictheme-select-dark-border-success-color;
-      box-shadow: 0 0 0 1px $civictheme-select-dark-border-success-color;
+      border-color: $civictheme-select-dark-success-border-color;
+      box-shadow: 0 0 0 1px $civictheme-select-dark-success-border-color;
     }
 
     &.disabled {
-      border-color: $civictheme-select-dark-disabled-color;
-      color: $civictheme-select-dark-disabled-color;
-      background-color: $civictheme-select-dark-disabled-background-color;
+      pointer-events: none;
+      opacity: 50%;
     }
   }
 }
