@@ -76,6 +76,28 @@ $civictheme-outline-offset: 0 !default;
 $civictheme-outline: 0.1875rem solid civictheme-color('outline') !default;
 $civictheme-outline-accent: 0.1875rem solid civictheme-color('secondary') !default;
 
+//
+// Item grid.
+//
+$civictheme-item-grid-space-vertical: civictheme-space(10) !default;
+$civictheme-item-grid-space-horizontal: civictheme-space(7) !default;
+$civictheme-item-grid-light-color: civictheme-color('neutral', 7) !default;
+$civictheme-item-grid-light-background-color: civictheme-color('neutral', 2) !default;
+$civictheme-item-grid-light-wrapper-background-color: civictheme-color('neutral', 2) !default;
+$civictheme-item-grid-light-heading-color: civictheme-color('neutral', 7) !default;
+$civictheme-item-grid-light-heading-hover-color: civictheme-color('neutral', 1) !default;
+$civictheme-item-grid-light-heading-title-color: civictheme-color('neutral', 7) !default;
+$civictheme-item-grid-light-footer-link-color: civictheme-color('neutral', 7) !default;
+$civictheme-item-grid-light-footer-link-hover-color: civictheme-color('neutral', 1) !default;
+$civictheme-item-grid-dark-color: civictheme-color('neutral', 1) !default;
+$civictheme-item-grid-dark-background-color: civictheme-color('primary', 5) !default;
+$civictheme-item-grid-dark-wrapper-background-color: civictheme-color('primary', 4) !default;
+$civictheme-item-grid-dark-heading-color: civictheme-color('neutral', 1) !default;
+$civictheme-item-grid-dark-heading-hover-color: civictheme-color('primary', 5) !default;
+$civictheme-item-grid-dark-heading-title-color: civictheme-color('neutral', 1) !default;
+$civictheme-item-grid-dark-footer-link-color: civictheme-color('neutral', 1) !default;
+$civictheme-item-grid-dark-footer-link-hover-color: civictheme-color('primary', 5) !default;
+
 ////////////////////////////////////////////////////////////////////////////////
 //                                 ATOMS                                      //
 ////////////////////////////////////////////////////////////////////////////////
