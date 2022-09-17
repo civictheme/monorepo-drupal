@@ -209,6 +209,7 @@ config_devel:
     - core.entity_view_display.paragraph.civictheme_promo_card_ref.default
     - core.entity_view_display.paragraph.civictheme_publication_card.default
     - core.entity_view_display.paragraph.civictheme_quick_links.default
+    - core.entity_view_display.paragraph.civictheme_quote.default
     - core.entity_view_display.paragraph.civictheme_service_card.default
     - core.entity_view_display.paragraph.civictheme_slider.default
     - core.entity_view_display.paragraph.civictheme_slider_slide.default

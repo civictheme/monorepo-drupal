@@ -26,7 +26,7 @@ function _civictheme_styleguide_component_quote() {
         [
           'type' => 'civictheme_quote',
           'content' => [
-            "value"  =>  $helper::staticHtmlParagraph(),
+            "value"  => $helper::staticHtmlParagraph(),
             "format" => "civictheme_rich_text",
           ],
           'author' => $helper::staticName(3),
@@ -39,7 +39,7 @@ function _civictheme_styleguide_component_quote() {
         [
           'type' => 'civictheme_quote',
           'content' => [
-            "value"  =>  $helper::staticHtmlParagraph(),
+            "value"  => $helper::staticHtmlParagraph(),
             "format" => "civictheme_rich_text",
           ],
           'author' => $helper::staticName(),
@@ -53,7 +53,7 @@ function _civictheme_styleguide_component_quote() {
         [
           'type' => 'civictheme_quote',
           'content' => [
-            "value"  =>  $helper::staticHtmlParagraph(),
+            "value"  => $helper::staticHtmlParagraph(),
             "format" => "civictheme_rich_text",
           ],
           'author' => $helper::staticName(),
@@ -67,7 +67,7 @@ function _civictheme_styleguide_component_quote() {
         [
           'type' => 'civictheme_quote',
           'content' => [
-            "value"  =>  $helper::staticHtmlParagraph(),
+            "value"  => $helper::staticHtmlParagraph(),
             "format" => "civictheme_rich_text",
           ],
           'theme' => $helper::civicthemeThemeLight(),
@@ -81,7 +81,7 @@ function _civictheme_styleguide_component_quote() {
         [
           'type' => 'civictheme_quote',
           'content' => [
-            "value"  =>  $helper::staticHtmlParagraph(),
+            "value"  => $helper::staticHtmlParagraph(),
             "format" => "civictheme_rich_text",
           ],
           'theme' => $helper::civicthemeThemeDark(),
@@ -95,7 +95,7 @@ function _civictheme_styleguide_component_quote() {
         [
           'type' => 'civictheme_quote',
           'content' => [
-            "value"  =>  $helper::staticHtmlParagraph(),
+            "value"  => $helper::staticHtmlParagraph(),
             "format" => "civictheme_rich_text",
           ],
           'author' => $helper::staticName(),
@@ -110,7 +110,7 @@ function _civictheme_styleguide_component_quote() {
         [
           'type' => 'civictheme_quote',
           'content' => [
-            "value"  =>  $helper::staticHtmlParagraph(),
+            "value"  => $helper::staticHtmlParagraph(),
             "format" => "civictheme_rich_text",
           ],
           'author' => $helper::staticName(),
