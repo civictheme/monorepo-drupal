@@ -7,8 +7,11 @@ import {
   demoImage,
   dropDownFilter,
   formElement,
-  randomUrl,
+  randomText,
+  getSlots,
 } from '../../00-base/base.stories';
+
+import { Pagination } from '../../02-molecules/pagination/pagination.stories';
 
 import CivicThemeLargeFilter from '../large-filter/large-filter.twig';
 import CivicThemeBasicFilter from '../basic-filter/basic-filter.twig';
@@ -19,6 +22,7 @@ import NavigationCard from '../../02-molecules/navigation-card/navigation-card.t
 
 import CivicThemePagination from '../../02-molecules/pagination/pagination.twig';
 import CivicThemeList from './list.twig';
+
 
 export default {
   title: 'Organisms/List',
@@ -42,6 +46,7 @@ export const List = (knobTab) => {
   const generalKnobs = {
     theme,
     title: text('Title', '', generalKnobTab),
+    content: text('Content', randomText(), generalKnobTab),
   };
 
   const showFilters = boolean('Show filters', true, generalKnobTab);
@@ -209,30 +214,7 @@ export const List = (knobTab) => {
 
   // Build pagination.
   if (showPager) {
-    const pageCount = 5;
-    const pages = {};
-    for (let i = 0; i < pageCount; i++) {
-      pages[i + 1] = {
-        href: randomUrl(),
-      };
-    }
-    generalKnobs.pager = CivicThemePagination({
-      theme,
-      heading_id: 'civictheme-listing-demo',
-      items: {
-        previous: {
-          text: 'Previous',
-          href: randomUrl(),
-        },
-        pages,
-        next: {
-          text: 'Next',
-          href: randomUrl(),
-        },
-      },
-      ellipses: true,
-      current: 1,
-    });
+    generalKnobs.pager = Pagination('Pager');
   }
 
   // Build results / rows.
@@ -283,5 +265,17 @@ export const List = (knobTab) => {
   return CivicThemeList({
     theme,
     ...generalKnobs,
+    ...getSlots([
+      'title',
+      'link_above',
+      'content',
+      'filters',
+      'rows_header',
+      'rows',
+      'empty',
+      'pager',
+      'link_below',
+      'footer',
+    ]),
   });
 };

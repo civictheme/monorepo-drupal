@@ -4,13 +4,10 @@
  * CivicTheme theme implementation for views to display rows in a grid.
  */
 #}
-{% include '@organisms/card-container/card-container.twig' with {
+{% include '@base/item-grid/item-grid.twig' with {
   title: title,
   column_count: options.columns,
   fill_width: false,
-  cards: rows,
+  items: rows,
   modifier_class: modifier_class,
-  theme: theme,
-  vertical_space: vertical_space,
-  with_background: with_background
 } only %}
