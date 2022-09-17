@@ -11,7 +11,7 @@ import {
 } from '../../00-base/base.stories';
 
 import CivicThemeGroupFilter from '../group-filter/group-filter.twig';
-import CivicThemeBasicFilter from '../basic-filter/basic-filter.twig';
+import CivicThemeBasicFilter from '../single-filter/single-filter.twig';
 
 import CivicThemeCardContainer from '../card-container/card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
@@ -187,7 +187,7 @@ export const List = (knobTab) => {
         with_background: withBackground,
       });
     } else {
-      generalKnobs.filters = CivicThemeBasicFilter({
+      generalKnobs.filters = CivicThemeSingleFilter({
         theme,
         is_multiple: false,
         items: filters,

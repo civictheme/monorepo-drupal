@@ -176,14 +176,14 @@ function _civictheme_preprocess_civictheme_filter_form_element_alter(&$variables
       $variables['attributes'] = new Attribute($variables['#attributes']);
     }
   }
-  elseif (isset($element['#attributes']['#civictheme-basic-filter'])) {
+  elseif (isset($element['#attributes']['#civictheme-single-filter'])) {
     $variables['text'] = $element['#title'] ?? '';
     $variables['is_multiple'] = $element['#type'] === 'checkbox';
     $variables['id'] = $element['#attributes']['id'];
     $variables['name'] = $element['#attributes']['name'];
     unset($element['#attributes']['name']);
     unset($element['#attributes']['id']);
-    unset($element['#attributes']['#civictheme-basic-filter']);
+    unset($element['#attributes']['#civictheme-single-filter']);
     if (!empty($element['#attributes']['checked'])) {
       $variables['is_selected'] = TRUE;
     }

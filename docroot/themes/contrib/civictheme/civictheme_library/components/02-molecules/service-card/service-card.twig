@@ -42,7 +42,7 @@
           {% for link in links %}
             {% if link.text is not empty %}
               <li class="civictheme-service-card__link__item">
-                {% include '@atoms/link/link.twig' with {
+                {% include '@atoms/content-link/content-link.twig' with {
                   theme: theme,
                   text: link.text,
                   url: link.url,

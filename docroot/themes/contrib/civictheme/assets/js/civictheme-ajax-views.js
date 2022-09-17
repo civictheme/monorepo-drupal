@@ -18,7 +18,7 @@ Drupal.behaviors.civictheme_ajax_views = {
       if ($filter.length > 0) {
         isAutosubmit = typeof $filter.attr('data-group-filter-auto-submit') !== 'undefined' && $filter.attr('data-group-filter-auto-submit') === 'true';
       } else {
-        $filter = $form.find('[data-component-name="civictheme-basic-filter"]');
+        $filter = $form.find('[data-component-name="civictheme-single-filter"]');
         isAutosubmit = $filter.length > 0;
       }
       if (isAutosubmit === true) {

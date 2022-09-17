@@ -87,7 +87,9 @@
           border-color: map.get($values, 'border-color');
 
           .civictheme-icon {
-            background-color: map.get($values, 'icon-color');
+            @if $theme == 'light' {
+              background-color: map.get($values, 'icon-color');
+            }
           }
         }
       }
