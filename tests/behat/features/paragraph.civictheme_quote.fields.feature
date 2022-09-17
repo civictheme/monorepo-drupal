@@ -34,6 +34,7 @@ Feature: Tests the Quote paragraph
     And I fill in "Title" with "[TEST] Page fields"
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
+    And I wait 1 second
     And I press the "field_c_n_components_civictheme_quote_add_more" button
     And I wait for AJAX to finish
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_content][0][value]']" element
