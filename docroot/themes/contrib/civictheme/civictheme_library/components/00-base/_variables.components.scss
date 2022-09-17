@@ -259,10 +259,10 @@ $civictheme-field-description-dark-color: civictheme-color('neutral', 1) !defaul
 // Field message.
 //
 $civictheme-field-message-light-color: civictheme-color('neutral', 7) !default;
-$civictheme-field-message-light-information-background-color: civictheme-color-tint(civictheme-color('information'), 90) !default;
-$civictheme-field-message-light-warning-background-color: civictheme-color-tint(civictheme-color('warning'), 90) !default;
-$civictheme-field-message-light-error-background-color: civictheme-color-tint(civictheme-color('error'), 90) !default;
-$civictheme-field-message-light-success-background-color: civictheme-color-tint(civictheme-color('success'), 90) !default;
+$civictheme-field-message-light-information-background-color: civictheme-color-tint(90, civictheme-color('information')) !default;
+$civictheme-field-message-light-warning-background-color: civictheme-color-tint(90, civictheme-color('warning')) !default;
+$civictheme-field-message-light-error-background-color: civictheme-color-tint(90, civictheme-color('error')) !default;
+$civictheme-field-message-light-success-background-color: civictheme-color-tint(90, civictheme-color('success')) !default;
 $civictheme-field-message-light-information-border-color: civictheme-color('information') !default;
 $civictheme-field-message-light-warning-border-color: civictheme-color('warning') !default;
 $civictheme-field-message-light-error-border-color: civictheme-color('error') !default;
@@ -891,10 +891,10 @@ $civictheme-alert-information-light-color: civictheme-color('neutral', 1) !defau
 $civictheme-alert-warning-light-color: civictheme-color('neutral', 1) !default;
 $civictheme-alert-error-light-color: civictheme-color('neutral', 1) !default;
 $civictheme-alert-success-light-color: civictheme-color('neutral', 1) !default;
-$civictheme-alert-information-light-background-color: civictheme-color-tint(civictheme-color('information'), 90) !default;
-$civictheme-alert-warning-light-background-color: civictheme-color-tint(civictheme-color('warning'), 90) !default;
-$civictheme-alert-error-light-background-color: civictheme-color-tint(civictheme-color('error'), 90) !default;
-$civictheme-alert-success-light-background-color: civictheme-color-tint(civictheme-color('success'), 90) !default;
+$civictheme-alert-information-light-background-color: civictheme-color-tint(90, civictheme-color('information')) !default;
+$civictheme-alert-warning-light-background-color: civictheme-color-tint(90, civictheme-color('warning')) !default;
+$civictheme-alert-error-light-background-color: civictheme-color-tint(90, civictheme-color('error')) !default;
+$civictheme-alert-success-light-background-color: civictheme-color-tint(90, civictheme-color('success')) !default;
 $civictheme-alert-information-light-icon-color: $civictheme-alert-information-light-color !default;
 $civictheme-alert-warning-light-icon-color: $civictheme-alert-warning-light-color !default;
 $civictheme-alert-error-light-icon-color: $civictheme-alert-error-light-color !default;
@@ -1088,10 +1088,10 @@ $civictheme-message-information-light-color: civictheme-color('neutral', 7) !def
 $civictheme-message-warning-light-color: civictheme-color('neutral', 7) !default;
 $civictheme-message-error-light-color: civictheme-color('neutral', 7) !default;
 $civictheme-message-success-light-color: civictheme-color('neutral', 7) !default;
-$civictheme-message-information-light-background-color: civictheme-color-tint(civictheme-color('information'), 90) !default;
-$civictheme-message-warning-light-background-color: civictheme-color-tint(civictheme-color('warning'), 90) !default;
-$civictheme-message-error-light-background-color: civictheme-color-tint(civictheme-color('error'), 90) !default;
-$civictheme-message-success-light-background-color: civictheme-color-tint(civictheme-color('success'), 90) !default;
+$civictheme-message-information-light-background-color: civictheme-color-tint(90, civictheme-color('information')) !default;
+$civictheme-message-warning-light-background-color: civictheme-color-tint(90, civictheme-color('warning')) !default;
+$civictheme-message-error-light-background-color: civictheme-color-tint(90, civictheme-color('error')) !default;
+$civictheme-message-success-light-background-color: civictheme-color-tint(90, civictheme-color('success')) !default;
 $civictheme-message-information-light-icon-color: civictheme-color('information') !default;
 $civictheme-message-warning-light-icon-color: civictheme-color('warning') !default;
 $civictheme-message-error-light-icon-color: civictheme-color('error') !default;
