@@ -881,13 +881,13 @@ $civictheme-password-indicator-dark-weak-color: civictheme-color-dark('error') !
 $civictheme-footer-logo-desktop-width: 190px !default;
 $civictheme-footer-logo-mobile-width: 190px !default;
 $civictheme-footer-light-background-color: civictheme-color-light('background') !default;
-$civictheme-footer-light-border-color: civictheme-color-light('border') !default;
-$civictheme-footer-light-collapsible-border-color: civictheme-color-light('border') !default;
+$civictheme-footer-light-border-color: civictheme-color-light('border-light') !default;
 $civictheme-footer-light-color: civictheme-color-light('body') !default;
+$civictheme-footer-light-collapsible-border-color: civictheme-color-light('border-light') !default;
 $civictheme-footer-dark-background-color: civictheme-color-dark('background') !default;
-$civictheme-footer-dark-border-color: civictheme-color-dark('interaction-background') !default;
-$civictheme-footer-dark-collapsible-border-color: civictheme-color-dark('interaction-background') !default;
+$civictheme-footer-dark-border-color: civictheme-color-dark('border') !default;
 $civictheme-footer-dark-color: civictheme-color-dark('body') !default;
+$civictheme-footer-dark-collapsible-border-color: civictheme-color-dark('border') !default;
 
 //
 // Header.
