@@ -8,80 +8,89 @@
 // Mixins.
 //
 
-@mixin civictheme-message-type() {
-  $message-types: (
+.civictheme-field-message {
+  $root: &;
+
+  display: block;
+  border-radius: $civictheme-field-message-border-radius;
+  padding: civictheme-space();
+  border-width: rem(1px);
+  border-style: solid;
+
+  @include civictheme-typography('text-regular');
+
+  $map: (
     'status': (
       'light': (
+        'color': $civictheme-field-message-light-status-color,
         'background-color': $civictheme-field-message-light-status-background-color,
         'border-color': $civictheme-field-message-light-status-border-color,
+        'icon-color': $civictheme-field-message-light-status-icon-color,
       ),
       'dark': (
+        'color': $civictheme-field-message-dark-status-color,
         'background-color': $civictheme-field-message-dark-status-background-color,
         'border-color': $civictheme-field-message-dark-status-border-color,
-      ),
+        'icon-color': $civictheme-field-message-dark-status-icon-color,
+      )
     ),
     'warning': (
       'light': (
+        'color': $civictheme-field-message-light-warning-color,
         'background-color': $civictheme-field-message-light-warning-background-color,
         'border-color': $civictheme-field-message-light-warning-border-color,
+        'icon-color': $civictheme-field-message-light-warning-icon-color,
       ),
       'dark': (
+        'color': $civictheme-field-message-dark-warning-color,
         'background-color': $civictheme-field-message-dark-warning-background-color,
         'border-color': $civictheme-field-message-dark-warning-border-color,
-      ),
+        'icon-color': $civictheme-field-message-dark-warning-icon-color,
+      )
     ),
     'error': (
       'light': (
+        'color': $civictheme-field-message-light-error-color,
         'background-color': $civictheme-field-message-light-error-background-color,
         'border-color': $civictheme-field-message-light-error-border-color,
+        'icon-color': $civictheme-field-message-light-error-icon-color,
       ),
       'dark': (
+        'color': $civictheme-field-message-dark-error-color,
         'background-color': $civictheme-field-message-dark-error-background-color,
         'border-color': $civictheme-field-message-dark-error-border-color,
-      ),
+        'icon-color': $civictheme-field-message-dark-error-icon-color,
+      )
     ),
     'success': (
       'light': (
+        'color': $civictheme-field-message-light-success-color,
         'background-color': $civictheme-field-message-light-success-background-color,
         'border-color': $civictheme-field-message-light-success-border-color,
+        'icon-color': $civictheme-field-message-light-success-icon-color,
       ),
       'dark': (
+        'color': $civictheme-field-message-dark-success-color,
         'background-color': $civictheme-field-message-dark-success-background-color,
         'border-color': $civictheme-field-message-dark-success-border-color,
-      ),
+        'icon-color': $civictheme-field-message-dark-success-icon-color,
+      )
     ),
   );
 
-  @each $type, $themes in $message-types {
-    &--#{$type} {
-      @each $theme, $values in $themes {
+  @each $type, $type-map in $map {
+    &#{$root}--#{$type} {
+      @each $theme, $values in $type-map {
         &.civictheme-theme-#{$theme} {
           background-color: map.get($values, 'background-color');
-          border: 1px solid map.get($values, 'border-color');
+          color: map.get($values, 'color');
+          border-color: map.get($values, 'border-color');
 
-          @if $theme == 'light' {
-            color: $civictheme-field-message-light-color;
-
-            .civictheme-icon {
-              background-color: map.get($values, 'border-color');
-            }
-          }
-          @else if $theme == 'dark' {
-            color: $civictheme-field-message-dark-color;
+          .civictheme-icon {
+            background-color: map.get($values, 'icon-color');
           }
         }
       }
     }
   }
-}
-
-.civictheme-field-message {
-  $root: &;
-
-  display: block;
-  border-radius: $civictheme-border-radius;
-  padding: civictheme-space(0.5);
-
-  @include civictheme-typography('text-regular');
-  @include civictheme-message-type();
 }

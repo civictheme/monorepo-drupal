@@ -33,7 +33,7 @@ export const FieldMessage = (knobTab) => {
       'error',
       generalKnobTab,
     ),
-    content: text('Content', 'Field message content.', generalKnobTab),
+    content: text('Content', 'Field message content', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };
