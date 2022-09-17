@@ -24,6 +24,8 @@ function civictheme_theme_suggestions_paragraph_alter(array &$suggestions, array
 
 /**
  * Generic setter of global variables for paragraphs as card renders.
+ *
+ * @todo Add a @see tag with the template file used by this hook.
  */
 function _civictheme_preprocess_paragraph__civictheme_card(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -46,6 +48,10 @@ function _civictheme_preprocess_paragraph__civictheme_card(&$variables) {
 
 /**
  * Global paragraph preprocessor calls.
+ *
+ * @see civictheme_preprocess_paragraph()
+ *
+ * @todo Update other functions with a PHPDoc see tag as above.
  */
 function _civictheme_preprocess_paragraph(&$variables) {
   // Set theme for all paragraphs.
@@ -71,6 +77,8 @@ function _civictheme_preprocess_paragraph(&$variables) {
 /**
  * Pre-process drupal generic paragraph classes.
  *
+ * @see _civictheme_preprocess_paragraph()
+ *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_preprocess_paragraph_classes(&$variables) {
@@ -84,6 +92,9 @@ function _civictheme_preprocess_paragraph_classes(&$variables) {
 
 /**
  * Pre-process summary for CivicTheme paragraphs.
+ *
+ * @see _civictheme_preprocess_paragraph()
+ * @todo Add PHPDoc linking to the main hook in all functions.
  */
 function _civictheme_preprocess_paragraph__field__summary(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -97,7 +108,7 @@ function _civictheme_preprocess_paragraph__field__summary(&$variables) {
  * Pre-process title for CivicTheme paragraphs.
  */
 function _civictheme_preprocess_paragraph__field__title(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
   $paragraph = $variables['paragraph'];
   if (civictheme_field_has_value($paragraph, 'field_c_p_title')) {
     $variables['title'] = civictheme_get_field_value($paragraph, 'field_c_p_title');
@@ -108,7 +119,7 @@ function _civictheme_preprocess_paragraph__field__title(&$variables) {
  * Pre-process "With space" for CivicTheme paragraphs.
  */
 function _civictheme_preprocess_paragraph__field__space(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
   $paragraph = $variables['paragraph'];
   if (civictheme_field_has_value($paragraph, 'field_c_p_space')) {
     $variables['vertical_space'] = civictheme_get_field_value($paragraph, 'field_c_p_space');
@@ -119,7 +130,7 @@ function _civictheme_preprocess_paragraph__field__space(&$variables) {
  * Pre-process "with background" for CivicTheme paragraphs.
  */
 function _civictheme_preprocess_paragraph__field__background(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
   $paragraph = $variables['paragraph'];
   if (civictheme_get_field_value($paragraph, 'field_c_p_background')) {
     $component_name = str_replace('_', '-', $paragraph->getType());
@@ -134,7 +145,7 @@ function _civictheme_preprocess_paragraph__field__background(&$variables) {
  * Pre-process icon for CivicTheme cards.
  */
 function _civictheme_preprocess_paragraph__card__icon(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
   $paragraph = $variables['paragraph'];
   $media = civictheme_get_field_value($paragraph, 'field_c_p_icon', TRUE);
   if ($media) {
@@ -146,7 +157,7 @@ function _civictheme_preprocess_paragraph__card__icon(&$variables) {
  * Pre-process Icon for CivicTheme Paragraphs.
  */
 function _civictheme_preprocess_paragraph__card__image(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
   $paragraph = $variables['paragraph'];
   $media = civictheme_get_field_value($paragraph, 'field_c_p_image', TRUE);
   if ($media) {
@@ -159,6 +170,7 @@ function _civictheme_preprocess_paragraph__card__image(&$variables) {
  */
 function _civictheme_get_card_types() {
   // @todo extend to allow for child theme - implement as theme setting.
+  // @todo either theme settings or function call _THEME_NAME_get_card_types().
   return [
     'civictheme_card_container',
     'civictheme_event_card_ref',

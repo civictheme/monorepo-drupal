@@ -7,6 +7,8 @@
 
 /**
  * Preprocess for footer menu block.
+ *
+ * @see civictheme_preprocess_block()
  */
 function _civictheme_preprocess_block__civictheme_footer_menu(&$variables) {
   if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'menu_block') {
@@ -14,7 +16,7 @@ function _civictheme_preprocess_block__civictheme_footer_menu(&$variables) {
   }
 
   $menu_name = strtr($variables['elements']['#derivative_plugin_id'], '-', '_');
-  if ($menu_name == 'civictheme_footer') {
+  if ($menu_name === 'civictheme_footer') {
     // Set menu theme as per footer theme.
     $variables['theme'] = theme_get_setting('components.footer.theme') ?? CIVICTHEME_FOOTER_THEME_DEFAULT;
     $variables['items'] = $variables['content']['#items'] ?? [];

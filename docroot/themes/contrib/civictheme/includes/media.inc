@@ -19,7 +19,7 @@ function civictheme_preprocess_media__civictheme_image(&$variables) {
 
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
-  /** @var \Drupal\file\Entity\File|null $image_file */
+  /** @var \Drupal\file\FileInterface|null $image_file */
   $image_file = civictheme_get_field_referenced_entities($media, 'field_c_m_image', TRUE);
   if ($image_file) {
     /** @var \Drupal\Core\Image\ImageInterface $image */
@@ -61,6 +61,10 @@ function civictheme_preprocess_media__civictheme_video(&$variables) {
 
 /**
  * Implements hook_preprocess__HOOK().
+ *
+ * @todo what's the deal with those warning suppression? They are everywhere.
+ * PHPMD.StaticAccess only applies to '\Drupal::' call in class member methods.
+ * Static methods and functions can call the service helper without any warning.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.MissingImport)
@@ -118,6 +122,8 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
     $share_attributes->setAttribute('aria-label', t('Share this video @label', [
       '@label' => $media->label(),
     ]));
+    // @todo calling '->first()->' without checking for the value can result in
+    // null pointer exception.
     $variables['share_link'] = [
       'text' => !empty($media->get('field_c_m_share_link')->first()->get('title')->getValue()) ? $media->get('field_c_m_share_link')->first()->get('title')->getValue() : t('Share this video'),
       'is_external' => $media->get('field_c_m_share_link')->first()->isExternal(),
@@ -158,7 +164,7 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
  */
 function _civictheme_preprocess_media__civictheme_video_transcript(&$variables) {
   // Show transcript on the media landing page.
-  if ($variables['view_mode'] == 'full') {
+  if ($variables['view_mode'] === 'full') {
     if (!empty($variables['content']['field_c_m_transcript'])) {
       $variables['content'] = \Drupal::service('renderer')->render($variables['content']['field_c_m_transcript']);
     }

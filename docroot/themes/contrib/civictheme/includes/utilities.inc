@@ -1,5 +1,9 @@
 <?php
 
+use Drupal\block_content\Entity\BlockContent;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\node\Entity\Node;
+
 /**
  * @file
  * Theme utility functions.
@@ -10,16 +14,19 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
-use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 
 /**
  * Load node or the node revision if the route is a node revision.
  *
+ * @param array $variables
+ * @return \Drupal\node\NodeInterface|null
+ *   The node.
+ *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_load_node_or_revision($variables) {
+function civictheme_load_node_or_revision($variables) : ?NodeInterface {
   $node = $variables['node'] ?? NULL;
 
   if (is_numeric($node)) {
@@ -47,36 +54,37 @@ function civictheme_load_node_or_revision($variables) {
  * @param string $image_style
  *   Name of image style to apply.
  *
- * @return array
+ * @return array|bool
  *   Image array or false if not available.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function civictheme_media_image_process_variables(MediaInterface $media, $image_style = NULL) {
-  if ($media instanceof Media) {
-    $fid = $media->getSource()->getSourceFieldValue($media);
-    $config = $media->getSource()->getConfiguration();
-    $image_entity = $media->get($config['source_field'])->first()->getValue();
+function civictheme_media_image_process_variables(MediaInterface $media, $image_style = NULL) : array|bool {
+  $fid = $media->getSource()->getSourceFieldValue($media);
+  $config = $media->getSource()->getConfiguration();
+  // @TODO Null pointer exception may occur here.
+  $image_entity = $media->get($config['source_field'])->first()->getValue();
 
-    $file = File::load($fid);
-    if ($file) {
-      $image_src = $file->createFileUrl();
-      if (!empty($image_style)) {
-        $style = ImageStyle::load($image_style);
-        if (!empty($style)) {
-          $path = $file->get('uri')->getString();
-          $image_src = $style->buildUrl($path);
-        }
+  $file = File::load($fid);
+  if ($file) {
+    $image_src = $file->createFileUrl();
+    if (!empty($image_style)) {
+      $style = ImageStyle::load($image_style);
+      if (!empty($style)) {
+        $path = $file->get('uri')->getString();
+        $image_src = $style->buildUrl($path);
       }
-      // @todo fix image style generation from static content.
-      $image = [];
-      $image['src'] = $image_src;
-      $image['alt'] = !empty($image_entity['alt']) ? $image_entity['alt'] : NULL;
-      $image['title'] = !empty($image_entity['title']) ? $image_entity['title'] : NULL;
-
-      return $image;
     }
+    // @todo fix image style generation from static content.
+    $image = [];
+    $image['src'] = $image_src;
+    $image['alt'] = !empty($image_entity['alt']) ? $image_entity['alt'] : NULL;
+    $image['title'] = !empty($image_entity['title']) ? $image_entity['title'] : NULL;
+
+    return $image;
   }
+
+  return FALSE;
 }
 
 /**
@@ -87,7 +95,7 @@ function civictheme_media_image_process_variables(MediaInterface $media, $image_
  * @param string $field_name
  *   The field name that has media.
  *
- * @return string
+ * @return string|bool
  *   Image URL or FALSE if not available.
  */
 function civictheme_media_get_url_from_field(EntityInterface $entity, $field_name) {
@@ -129,7 +137,7 @@ function civictheme_media_get_url(MediaInterface $media) {
  * @param array $css_classes
  *   Array of CSS classes to add.
  *
- * @return string
+ * @return string|bool
  *   Loaded SVG or FALSE if unable to load SVG.
  */
 function civictheme_embed_svg($url, array $css_classes = []) {
@@ -160,7 +168,8 @@ function civictheme_parse_attributes($string) {
   $attributes = [];
 
   if (preg_match_all('/\s*(?:([a-z0-9-]+)\s*=\s*"([^"]*)")|(?:\s+([a-z0-9-]+)(?=\s*|>|\s+[a-z0-9]+))/i', $string, $matches)) {
-    for ($i = 0; $i < count($matches[0]); $i++) {
+    $count = count($matches[0]);
+    for ($i = 0; $i < $count; $i++) {
       if ($matches[3][$i]) {
         $attributes[$matches[3][$i]] = NULL;
         continue;
@@ -410,16 +419,17 @@ function civictheme_get_field_theme_value(FieldableEntityInterface $entity, $def
     return $default;
   }
 
+  // @TODO it's better to check for the interface instead.
   switch (get_class($entity)) {
-    case 'Drupal\paragraphs\Entity\Paragraph':
+    case Paragraph::class:
       $field_name = 'field_c_p_theme';
       break;
 
-    case 'Drupal\node\Entity\Node':
+    case Node::class:
       $field_name = 'field_c_n_banner_theme';
       break;
 
-    case 'Drupal\block_content\Entity\BlockContent':
+    case BlockContent::class:
       $field_name = 'field_c_b_theme';
       break;
   }
@@ -441,6 +451,7 @@ function civictheme_theme_options() {
  * Type options suitable for FormAPI.
  */
 function civictheme_type_options() {
+  // @TODO do we need to use t() here?
   return [
     'default' => 'Default',
     'inline' => 'Inline',
@@ -451,13 +462,13 @@ function civictheme_type_options() {
 /**
  * Convert multi-line strings to a list of strings.
  *
- * @param string $string
+ * @param array|string $string
  *   The string to be processed.
  *
  * @return array
  *   A list of strings.
  */
-function civictheme_multiline_to_array($string) {
+function civictheme_multiline_to_array(array|string $string) {
   $lines = is_array($string) ? $string : explode("\n", str_replace("\r\n", "\n", $string));
 
   return array_values(array_filter(array_map('trim', $lines)));
@@ -483,9 +494,13 @@ function civictheme_array_to_multiline($array, $delimiter = PHP_EOL) {
 /**
  * Get the nid that the listing block is embedded in.
  *
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function _civictheme_get_node_id_from_form_state($form_state) {
+  // @TODO check for the existence of nid in the array first.
   $nid = $form_state->getUserInput()['nid'] ?? NULL;
   $nid = is_numeric($nid) ? $nid : NULL;
   if (!$nid) {

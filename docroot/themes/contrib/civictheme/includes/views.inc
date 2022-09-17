@@ -9,6 +9,7 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -42,6 +43,7 @@ function civictheme_preprocess_views_exposed_form(&$variables) {
   $variables['filter_title'] = t('Filter search results by:');
   $variables['large_filter'] = $variables['form']['#is_large_filter'] ?? FALSE;
 
+  // @todo add some explanation about what these lines do.
   $is_view_component = isset($variables['attributes']['civictheme_listing']);
   if ($is_view_component) {
     $variables += $variables['attributes']['civictheme_listing'];
@@ -149,6 +151,9 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
     $form['actions']['submit']['#attributes']['class'][] = 'hide-xxs';
     $form['actions']['#attributes']['class'][] = 'hide-xxs';
 
+    // @todo how can we be sure that the exposed form we are altering here does
+    // not have an existing 'nid' element? And do we need the new nid element
+    // on the exposed form of all kinds of view?
     // Attach node ID to allow access to the paragraph settings.
     $form['nid'] = [
       '#type' => 'hidden',
@@ -187,6 +192,8 @@ function _civictheme_get_views_exposed_form_elements_keys($form) {
 
 /**
  * Alter form elements to work within Large and Basic filters.
+ *
+ * @see _civictheme_filter_views_exposed_form_alter()
  */
 function _civictheme_filter_views_exposed_form_alter__process_elements(&$element, $form, $is_large_filter) {
   $valid_process_element_types = ['select', 'radios', 'checkboxes'];
@@ -284,8 +291,10 @@ function civictheme_preprocess_views_view(&$variables) {
 
 /**
  * Adds preprocessing data to view to provide to listing child components.
+ *
+ * @todo objects are always passed as references. No need to use '&'.
  */
-function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) {
+function _civictheme_listing_preprocess_view($paragraph, ViewExecutable $view) {
   $settings = [];
 
   if ($paragraph !== NULL) {
@@ -378,10 +387,10 @@ function _civictheme_get_listing_paragraph_from_route() {
     }
   }
 
-  if ($node && $node->bundle() == 'civictheme_page') {
+  if (($node instanceOf NodeInterface)  && $node->bundle() === 'civictheme_page') {
     $components = civictheme_get_field_referenced_entities($node, 'field_c_n_components');
     foreach ($components as $component) {
-      if ($component->getType() == 'civictheme_listing') {
+      if ($component->getType() === 'civictheme_listing') {
         return $component;
       }
     }

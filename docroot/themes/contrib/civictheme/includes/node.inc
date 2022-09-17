@@ -45,6 +45,10 @@ function _civictheme_preprocess_node(&$variables) {
 
 /**
  * Pre-process Full view mode of nodes.
+ *
+ * @see civictheme_preprocess_node()
+ *
+ * @todo Update other functions with a PHPDoc see tag as above.
  */
 function _civictheme_preprocess_node__full(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -90,7 +94,7 @@ function _civictheme_preprocess_node__civictheme_alert__full(&$variables) {
  * Generic page pre-process for all view mode of nodes.
  */
 function _civictheme_preprocess_page__node(&$variables) {
-  /** @var \Drupal\node\Entity\Node $node */
+  /** @var \Drupal\node\NodeInterface $node */
   $node = civictheme_load_node_or_revision($variables);
 
   if (!$node) {

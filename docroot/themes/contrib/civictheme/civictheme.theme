@@ -56,8 +56,11 @@ require_once 'includes/views.inc';
 
 /**
  * Return CivicTheme version.
+ *
+ * @return string|null
+ *   The version.
  */
-function civictheme_get_version() {
+function civictheme_get_version() : ?string {
   $version = NULL;
 
   /** @var \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list */
@@ -134,7 +137,7 @@ function civictheme_theme() {
  */
 function civictheme_theme_suggestions_block_alter(array &$suggestions, array $variables) {
   // Add theme suggestions to all blocks whose bundle starts with 'civictheme_'.
-  if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'block_content') {
+  if (!empty($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] === 'block_content') {
     $entity = $variables['elements']['content']['#block_content'];
     if (strpos($entity->bundle(), 'civictheme_') === 0) {
       $suggestions[] = 'block__' . $entity->bundle() . '__default';
@@ -161,6 +164,7 @@ function civictheme_theme_suggestions_radios_alter(array &$suggestions, array $v
  */
 function civictheme_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $type = NULL) {
   _civictheme_theme_suggestions__civictheme_filter($suggestions, $variables, 'form_element');
+  // @TODO: check the below line as the function accepts 2 params only.
   _civictheme_theme_suggestions__civictheme_basic_filter($suggestions, $variables, 'form_element');
 }
 
