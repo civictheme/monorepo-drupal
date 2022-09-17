@@ -24,8 +24,6 @@
   }
 
   &__description {
-    $triangle-width-half: math.div($civictheme-tooltip-triangle-width, 2);
-
     @include civictheme-typography('label-small');
     @include civictheme-elevation(2);
 

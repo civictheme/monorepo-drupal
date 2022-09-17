@@ -5,18 +5,11 @@
 .civictheme-quote {
   $root: &;
 
+  @include civictheme-reset-box-model();
+  @include civictheme-highlight-stripe($civictheme-quote-border-width, 0, 0);
+
   position: relative;
   padding-left: civictheme-space(2);
-
-  &::before {
-    content: '';
-    width: civictheme-space();
-    border-radius: $civictheme-quote-border-radius;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    top: 0;
-  }
 
   &#{$root}--vertical-space-top {
     @include civictheme-component-with-vertical-space(top, $civictheme-quote-space-vertical, $is_padding: false);
@@ -40,15 +33,10 @@
     @include civictheme-typography('label-extra-small');
 
     padding: 0 civictheme-space(3) civictheme-space(3);
-    font-weight: 600;
-
-    @include civictheme-breakpoint('m') {
-      font-weight: 600;
-    }
 
     &::before {
       content: '-';
-      margin-right: rem(4px);
+      margin-right: civictheme-space(0.5);
     }
   }
 
@@ -56,9 +44,7 @@
     background-color: $civictheme-quote-light-background-color;
     color: $civictheme-quote-light-body-color;
 
-    &::before {
-      background-color: $civictheme-quote-light-border-color;
-    }
+    @include civictheme-highlight-stripe-color($civictheme-quote-light-border-color);
 
     #{$root}__author {
       color: $civictheme-quote-light-author-color;
@@ -69,9 +55,7 @@
     background-color: $civictheme-quote-dark-background-color;
     color: $civictheme-quote-dark-body-color;
 
-    &::before {
-      background-color: $civictheme-quote-dark-border-color;
-    }
+    @include civictheme-highlight-stripe-color($civictheme-quote-dark-border-color);
 
     #{$root}__author {
       color: $civictheme-quote-dark-author-color;

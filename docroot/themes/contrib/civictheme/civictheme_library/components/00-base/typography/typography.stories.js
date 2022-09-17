@@ -1,7 +1,8 @@
 // phpcs:ignoreFile
 
-const merge = require('deepmerge');
 import CivicThemeTypography from './typography.stories.twig';
+
+const merge = require('deepmerge');
 
 export default {
   title: 'Base/Typography',

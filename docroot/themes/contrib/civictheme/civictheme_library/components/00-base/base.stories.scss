@@ -59,6 +59,25 @@
   }
 }
 
+.story-placeholder {
+  $_color: grey;
+
+  width: 100%;
+  display: block;
+  background-color: color.adjust($_color, $alpha: -0.7);
+  padding: 1em;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  border: dotted 1px $_color;
+  color: color.adjust($_color, -25%);
+
+  .civictheme-theme-dark & {
+    background-color: color.adjust($_color, $alpha: -0.7);
+    border: dotted 1px $_color;
+    color: color.adjust($_color, 25%);
+  }
+}
+
 .story-slot--image_over {
   position: absolute;
   top: 4em;

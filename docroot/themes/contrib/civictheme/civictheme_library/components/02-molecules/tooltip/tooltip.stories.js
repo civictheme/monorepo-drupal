@@ -5,6 +5,7 @@ import CivicThemeTooltip from './tooltip.twig';
 import './tooltip';
 
 import '../../00-base/collapsible/collapsible';
+import { randomText } from '../../00-base/base.stories';
 
 export default {
   title: 'Molecules/Tooltip',
@@ -15,9 +16,6 @@ export default {
 
 export const Tooltip = () => {
   const generalKnobTab = 'General';
-
-  const { icons } = ICONS;
-  const defaultIcon = icons.indexOf('userinterface_informationmark');
 
   const defaultSizes = SCSS_VARIABLES['civictheme-icon-sizes-default'];
   const customSizes = SCSS_VARIABLES['civictheme-icon-sizes'];
@@ -48,7 +46,7 @@ export const Tooltip = () => {
     icon: select('Icon', Object.values(ICONS), 'information-mark', generalKnobTab),
     icon_size: radios('Icon size', sizes, sizes[2], generalKnobTab),
     title: text('Title', 'Toggle tooltip display', generalKnobTab),
-    content: text('Content', 'Vivamus suscipit tortor eget felis porttitor volutpat. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.', generalKnobTab),
+    content: text('Content', randomText(), generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };

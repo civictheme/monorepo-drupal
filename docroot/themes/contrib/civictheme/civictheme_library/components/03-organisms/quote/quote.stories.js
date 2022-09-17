@@ -4,6 +4,9 @@ import CivicThemeQuote from './quote.twig';
 
 export default {
   title: 'Organisms/Quote',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const Quote = (knobTab) => {
