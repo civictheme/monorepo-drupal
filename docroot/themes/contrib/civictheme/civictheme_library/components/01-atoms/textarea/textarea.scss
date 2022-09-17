@@ -13,7 +13,7 @@
   border-radius: $civictheme-input-border-radius;
   min-width: rem(300px);
 
-  &.disabled {
+  &:disabled {
     pointer-events: none;
     opacity: 50%;
   }
@@ -33,7 +33,6 @@
     }
 
     &:invalid,
-    &.error,
     &.civictheme-input--error {
       border-color: $civictheme-input-light-error-border-color;
       box-shadow: 0 0 0 1px $civictheme-input-light-error-border-color;
@@ -43,10 +42,8 @@
   &.civictheme-theme-dark {
     color: $civictheme-input-dark-color;
     background-color: $civictheme-input-dark-background-color;
-    border-color: $civictheme-input-dark-border-color;
 
     &:hover {
-      border-color: $civictheme-input-dark-hover-border-color;
       box-shadow: 0 0 0 1px $civictheme-input-dark-hover-border-color;
     }
 
@@ -57,7 +54,6 @@
     }
 
     &:invalid,
-    &.error,
     &.civictheme-input--error {
       border-color: $civictheme-input-dark-error-border-color;
       box-shadow: 0 0 0 1px $civictheme-input-dark-error-border-color;

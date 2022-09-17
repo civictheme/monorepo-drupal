@@ -380,33 +380,27 @@ $civictheme-tag-dark-tertiary-color: civictheme-color-dark('interaction-backgrou
 //
 // Input.
 //
-$civictheme-input-light-color: civictheme-color('neutral', 7) !default;
 $civictheme-input-border-radius: math.div($civictheme-border-radius, 1) !default;
-$civictheme-input-light-background-color: civictheme-color('neutral', 1) !default;
-$civictheme-input-light-border-color: civictheme-color('neutral', 6) !default;
-$civictheme-input-light-hover-border-color: civictheme-color('neutral', 6) !default;
-$civictheme-input-light-focus-background-color: civictheme-color('neutral', 1) !default;
-$civictheme-input-light-focus-color: civictheme-color('neutral', 7) !default;
-$civictheme-input-light-focus-outline-color: civictheme-color('neutral', 7) !default;
-$civictheme-input-light-focus-border-color: civictheme-color('neutral', 7) !default;
-$civictheme-input-light-disabled-color: civictheme-color('neutral', 5) !default;
-$civictheme-input-light-disabled-background-color: civictheme-color('neutral', 3) !default;
-$civictheme-input-light-error-border-color: civictheme-color('error') !default;
-$civictheme-input-light-success-border-color: civictheme-color('success') !default;
-$civictheme-input-dark-background-color: civictheme-color('primary', 5) !default;
-$civictheme-input-dark-color: civictheme-color('neutral', 3) !default;
-$civictheme-input-dark-border-color: civictheme-color('neutral', 5) !default;
-$civictheme-input-dark-hover-border-color: civictheme-color('neutral', 3) !default;
-$civictheme-input-dark-focus-background-color: civictheme-color('primary', 4) !default;
-$civictheme-input-dark-error-border-color: civictheme-color('error') !default;
-$civictheme-input-dark-error-icon-color: civictheme-color('error') !default;
-$civictheme-input-dark-success-border-color: civictheme-color('success') !default;
-$civictheme-input-dark-success-icon-color: civictheme-color('success') !default;
-$civictheme-input-dark-focus-color: civictheme-color('neutral', 1) !default;
-$civictheme-input-dark-focus-outline-color: civictheme-color('neutral', 1) !default;
-$civictheme-input-dark-focus-border-color: civictheme-color('neutral', 1) !default;
-$civictheme-input-dark-disabled-color: civictheme-color('neutral', 3) !default;
-$civictheme-input-dark-disabled-background-color: civictheme-color('primary', 4) !default;
+$civictheme-input-light-background-color: civictheme-color-light('background-light') !default;
+$civictheme-input-light-border-color: civictheme-color-light('border-light') !default;
+$civictheme-input-light-color: civictheme-color-light('body') !default;
+$civictheme-input-light-hover-border-color: civictheme-color-light('interaction-background') !default;
+$civictheme-input-light-focus-background-color: civictheme-color-light('background-light') !default;
+$civictheme-input-light-focus-color: civictheme-color-light('body') !default;
+$civictheme-input-light-focus-outline-color: civictheme-color-light('interaction-focus') !default;
+$civictheme-input-light-focus-border-color: civictheme-color-light('border') !default;
+$civictheme-input-light-error-border-color: civictheme-color-light('error') !default;
+$civictheme-input-light-success-border-color: civictheme-color-light('success') !default;
+$civictheme-input-dark-background-color: civictheme-color-dark('background-light') !default;
+$civictheme-input-dark-border-color: civictheme-color-dark('border-light') !default;
+$civictheme-input-dark-color: civictheme-color-dark('body') !default;
+$civictheme-input-dark-hover-border-color: civictheme-color-dark('interaction-background') !default;
+$civictheme-input-dark-focus-background-color: civictheme-color-dark('background-light') !default;
+$civictheme-input-dark-focus-color: civictheme-color-dark('body') !default;
+$civictheme-input-dark-focus-outline-color: civictheme-color-dark('interaction-focus') !default;
+$civictheme-input-dark-focus-border-color: civictheme-color-dark('border') !default;
+$civictheme-input-dark-error-border-color: civictheme-color-dark('error') !default;
+$civictheme-input-dark-success-border-color: civictheme-color-dark('success') !default;
 
 //
 // Radio.
