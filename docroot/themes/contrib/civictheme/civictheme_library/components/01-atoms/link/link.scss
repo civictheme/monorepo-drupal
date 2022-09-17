@@ -50,13 +50,14 @@
   &.civictheme-theme-light {
     @include civictheme-link-colors(
       $civictheme-link-light-color,
-        $civictheme-link-light-hover-color,
-        $civictheme-link-light-visited-color,
-        $civictheme-link-light-active-color,
+      $civictheme-link-light-hover-color,
+      $civictheme-link-light-visited-color,
+      $civictheme-link-light-active-color,
     );
 
     &:focus {
       @include civictheme-outline();
+      @include civictheme-outline-border();
     }
 
     .civictheme-link__external-icon {
@@ -67,13 +68,14 @@
   &.civictheme-theme-dark {
     @include civictheme-link-colors(
       $civictheme-link-dark-color,
-        $civictheme-link-dark-hover-color,
-        $civictheme-link-dark-visited-color,
-        $civictheme-link-dark-active-color,
+      $civictheme-link-dark-hover-color,
+      $civictheme-link-dark-visited-color,
+      $civictheme-link-dark-active-color,
     );
 
     &:focus {
       @include civictheme-outline();
+      @include civictheme-outline-border();
     }
 
     .civictheme-link__external-icon {

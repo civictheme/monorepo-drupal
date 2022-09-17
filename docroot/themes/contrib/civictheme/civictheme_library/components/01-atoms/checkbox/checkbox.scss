@@ -189,7 +189,7 @@
       &:focus {
         & + .civictheme-checkbox__state {
           &::before {
-            @include civictheme-outline();
+            @include civictheme-outline(true);
 
             background-color: $civictheme-checkbox-dark-selected-background-color;
             border-color: $civictheme-checkbox-dark-selected-background-color;

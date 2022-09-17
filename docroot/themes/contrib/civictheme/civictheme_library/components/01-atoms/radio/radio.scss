@@ -9,6 +9,10 @@
   display: flex;
   align-items: center;
 
+  &--disabled {
+    opacity: 50%;
+  }
+
   .civictheme-radio__element {
     position: absolute;
     // stylelint-disable-next-line alpha-value-notation
@@ -65,10 +69,6 @@
   &.civictheme-theme-light {
     #{$root}__label {
       color: $civictheme-radio-label-light-color;
-
-      &--disabled {
-        color: $civictheme-radio-label-disabled-light-color;
-      }
     }
 
     #{$root}__element {
@@ -117,29 +117,9 @@
           }
         }
       }
-
-      &:disabled {
-        & + .civictheme-radio__state {
-          &::before {
-            cursor: default;
-            color: $civictheme-input-light-disabled-color;
-            background-color: $civictheme-input-light-disabled-background-color;
-            border-color: $civictheme-input-light-disabled-color;
-          }
-        }
-
-        &:checked + .civictheme-radio__state {
-          &::before {
-            color: $civictheme-input-light-disabled-color;
-            border-color: $civictheme-input-light-disabled-background-color;
-            background-color: $civictheme-input-light-disabled-color;
-          }
-        }
-      }
     }
 
-    &.success,
-    &.civictheme-input--success {
+    &.civictheme-radio--success {
       #{$root}__element {
         &:checked + .civictheme-radio__state {
           &::before {
@@ -150,8 +130,7 @@
       }
     }
 
-    &.error,
-    &.civictheme-input--error {
+    &.civictheme-radio--error {
       #{$root}__element {
         & + .civictheme-radio__state {
           &::before {
@@ -174,25 +153,12 @@
   &.civictheme-theme-dark {
     #{$root}__label {
       color: $civictheme-radio-label-dark-color;
-
-      &--disabled {
-        color: $civictheme-radio-label-disabled-dark-color;
-      }
     }
 
     #{$root}__element {
       & + .civictheme-radio__state {
         &::before {
           border-color: $civictheme-radio-dark-border-color;
-          background-color: $civictheme-radio-dark-background-color;
-        }
-      }
-
-      &:hover {
-        & + .civictheme-radio__state {
-          &::before {
-            box-shadow: 0 0 0 1px $civictheme-radio-dark-border-color;
-          }
         }
       }
 
@@ -209,11 +175,19 @@
       &:focus {
         & + .civictheme-radio__state {
           &::before {
-            @include civictheme-outline();
+            @include civictheme-outline(true);
 
             background-color: $civictheme-radio-dark-selected-background-color;
             border-color: $civictheme-radio-dark-selected-background-color;
             box-shadow: inset 0 0 0 3px $civictheme-radio-dark-check-color;
+          }
+        }
+      }
+
+      &:hover {
+        & + .civictheme-radio__state {
+          &::before {
+            box-shadow: 0 0 0 1px $civictheme-radio-dark-border-color;
           }
         }
       }
@@ -223,32 +197,13 @@
           &::before {
             background-color: $civictheme-radio-dark-selected-background-color;
             border-color: $civictheme-radio-dark-selected-background-color;
-            box-shadow: inset 0 0 0 3px $civictheme-radio-dark-background-color;
-          }
-        }
-      }
-
-      &:disabled {
-        & + .civictheme-radio__state {
-          &::before {
-            color: $civictheme-input-dark-disabled-color;
-            border-color: $civictheme-radio-dark-disabled-border-color;
-            background-color: $civictheme-input-dark-disabled-background-color;
-          }
-        }
-
-        &:checked + .civictheme-radio__state {
-          &::before {
-            color: $civictheme-input-dark-disabled-color;
-            border-color: $civictheme-radio-dark-disabled-border-color;
-            background-color: $civictheme-input-dark-disabled-color;
+            box-shadow: inset 0 0 0 3px $civictheme-radio-dark-check-color;
           }
         }
       }
     }
 
-    &.success,
-    &.civictheme-input--success {
+    &.civictheme-radio--success {
       #{$root}__element {
         &:checked + .civictheme-radio__state {
           &::before {
@@ -259,8 +214,7 @@
       }
     }
 
-    &.error,
-    &.civictheme-input--error {
+    &.civictheme-radio--error {
       #{$root}__element {
         & + .civictheme-radio__state {
           &::before {

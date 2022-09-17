@@ -9,7 +9,6 @@
   outline-offset: $civictheme-outline-offset;
   outline-width: $civictheme-outline-width;
   outline-style: solid;
-  border-radius: $civictheme-outline-border-radius;
 
   @if $is_dark {
     outline-color: $civictheme-outline-dark;
@@ -17,4 +16,8 @@
   @else {
     outline-color: $civictheme-outline-light;
   }
+}
+
+@mixin civictheme-outline-border() {
+  border-radius: $civictheme-outline-border-radius;
 }

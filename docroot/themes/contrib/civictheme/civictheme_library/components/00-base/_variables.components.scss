@@ -326,12 +326,10 @@ $civictheme-link-light-color: civictheme-color-light('interaction-background') !
 $civictheme-link-light-hover-color: civictheme-color-light('interaction-hover-background') !default;
 $civictheme-link-light-visited-color: $civictheme-link-light-color !default;
 $civictheme-link-light-active-color: civictheme-color-light('body') !default;
-$civictheme-link-light-focus-outline-color: civictheme-color-light('interaction-focus') !default;
 $civictheme-link-dark-color: civictheme-color-dark('interaction-background') !default;
 $civictheme-link-dark-hover-color: civictheme-color-dark('interaction-hover-background') !default;
 $civictheme-link-dark-visited-color: $civictheme-link-dark-color !default;
 $civictheme-link-dark-active-color: civictheme-color-dark('body') !default;
-$civictheme-link-dark-focus-outline-color: civictheme-color-dark('interaction-focus') !default;
 
 //
 // Content Link.
@@ -414,20 +412,16 @@ $civictheme-input-dark-disabled-background-color: civictheme-color('primary', 4)
 // Radio.
 //
 $civictheme-radio-border-radius: 50% !default;
-$civictheme-radio-label-light-color: civictheme-color('neutral', 8) !default;
-$civictheme-radio-label-disabled-light-color: civictheme-color('neutral', 6) !default;
-$civictheme-radio-light-border-color: civictheme-color('primary', 5) !default;
-$civictheme-radio-light-selected-background-color: civictheme-color('primary') !default;
-$civictheme-radio-light-active-background-color: civictheme-color('neutral', 8) !default;
-$civictheme-radio-light-check-color: civictheme-color('neutral', 1) !default;
-$civictheme-radio-dark-border-color: civictheme-color('neutral', 5) !default;
-$civictheme-radio-dark-disabled-border-color: civictheme-color('primary', 2) !default;
-$civictheme-radio-dark-background-color: civictheme-color('primary', 4) !default;
-$civictheme-radio-dark-selected-background-color: civictheme-color('secondary') !default;
-$civictheme-radio-dark-active-background-color: civictheme-color('neutral', 1) !default;
-$civictheme-radio-dark-check-color: civictheme-color('neutral', 7) !default;
-$civictheme-radio-label-dark-color: civictheme-color('neutral', 1) !default;
-$civictheme-radio-label-disabled-dark-color: civictheme-color('primary', 2) !default;
+$civictheme-radio-label-light-color: civictheme-color-light('body') !default;
+$civictheme-radio-light-border-color: civictheme-color-light('border-light') !default;
+$civictheme-radio-light-selected-background-color: civictheme-color-light('interaction-background') !default;
+$civictheme-radio-light-active-background-color: civictheme-color-light('body') !default;
+$civictheme-radio-light-check-color: civictheme-color-light('interaction-text') !default;
+$civictheme-radio-label-dark-color: civictheme-color-dark('body') !default;
+$civictheme-radio-dark-border-color: civictheme-color-dark('border-dark') !default;
+$civictheme-radio-dark-selected-background-color: civictheme-color-dark('interaction-background') !default;
+$civictheme-radio-dark-active-background-color: civictheme-color-dark('body') !default;
+$civictheme-radio-dark-check-color: civictheme-color-dark('interaction-text') !default;
 
 //
 // Checkbox.
@@ -439,7 +433,6 @@ $civictheme-checkbox-light-border-color: civictheme-color-light('border-light') 
 $civictheme-checkbox-light-selected-background-color: civictheme-color-light('interaction-background') !default;
 $civictheme-checkbox-light-active-background-color: civictheme-color-light('body') !default;
 $civictheme-checkbox-light-check-color: civictheme-color-light('interaction-text') !default;
-
 $civictheme-checkbox-label-dark-color: civictheme-color-dark('body') !default;
 $civictheme-checkbox-dark-border-color: civictheme-color-dark('border-dark') !default;
 $civictheme-checkbox-dark-selected-background-color: civictheme-color-dark('interaction-background') !default;
