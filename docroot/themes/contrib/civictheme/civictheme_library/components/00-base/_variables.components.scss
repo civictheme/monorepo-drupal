@@ -1084,10 +1084,10 @@ $civictheme-list-dark-background-color: civictheme-color('primary', 4) !default;
 // Message.
 //
 $civictheme-message-border-radius: $civictheme-border-radius !default;
-$civictheme-message-information-light-color: civictheme-color('neutral', 7) !default;
-$civictheme-message-warning-light-color: civictheme-color('neutral', 7) !default;
-$civictheme-message-error-light-color: civictheme-color('neutral', 7) !default;
-$civictheme-message-success-light-color: civictheme-color('neutral', 7) !default;
+$civictheme-message-information-light-color: civictheme-color('neutral', 8) !default;
+$civictheme-message-warning-light-color: civictheme-color('neutral', 8) !default;
+$civictheme-message-error-light-color: civictheme-color('neutral', 8) !default;
+$civictheme-message-success-light-color: civictheme-color('neutral', 8) !default;
 $civictheme-message-information-light-background-color: civictheme-color-tint(90, civictheme-color('information')) !default;
 $civictheme-message-warning-light-background-color: civictheme-color-tint(90, civictheme-color('warning')) !default;
 $civictheme-message-error-light-background-color: civictheme-color-tint(90, civictheme-color('error')) !default;
@@ -1100,14 +1100,14 @@ $civictheme-message-information-light-border-color: civictheme-color('informatio
 $civictheme-message-warning-light-border-color: civictheme-color('warning') !default;
 $civictheme-message-error-light-border-color: civictheme-color('error') !default;
 $civictheme-message-success-light-border-color: civictheme-color('success') !default;
-$civictheme-message-information-dark-color: civictheme-color('neutral', 7) !default;
-$civictheme-message-warning-dark-color: civictheme-color('neutral', 7) !default;
-$civictheme-message-error-dark-color: civictheme-color('neutral', 7) !default;
-$civictheme-message-success-dark-color: civictheme-color('neutral', 7) !default;
-$civictheme-message-information-dark-background-color: civictheme-color('information') !default;
-$civictheme-message-warning-dark-background-color: civictheme-color('warning') !default;
-$civictheme-message-error-dark-background-color: civictheme-color('error') !default;
-$civictheme-message-success-dark-background-color: civictheme-color('success') !default;
+$civictheme-message-information-dark-color: civictheme-color('neutral', 1) !default;
+$civictheme-message-warning-dark-color: civictheme-color('neutral', 1) !default;
+$civictheme-message-error-dark-color: civictheme-color('neutral', 1) !default;
+$civictheme-message-success-dark-color: civictheme-color('neutral', 1) !default;
+$civictheme-message-information-dark-background-color: civictheme-color-tint(30, civictheme-color('information')) !default;
+$civictheme-message-warning-dark-background-color: civictheme-color-tint(30, civictheme-color('warning')) !default;
+$civictheme-message-error-dark-background-color: civictheme-color-tint(30, civictheme-color('error')) !default;
+$civictheme-message-success-dark-background-color: civictheme-color-tint(30, civictheme-color('success')) !default;
 $civictheme-message-information-dark-icon-color: civictheme-color('information') !default;
 $civictheme-message-warning-dark-icon-color: civictheme-color('warning') !default;
 $civictheme-message-error-dark-icon-color: civictheme-color('error') !default;
