@@ -1184,10 +1184,10 @@ $civictheme-social-links-light-hover-color: civictheme-color-light('interaction-
 $civictheme-social-links-light-focus-color: $civictheme-social-links-light-hover-color;
 $civictheme-social-links-light-active-color: $civictheme-social-links-light-hover-color;
 $civictheme-social-links-light-visited-color: $civictheme-social-links-light-color;
-$civictheme-social-links-dark-color: civictheme-color-dark('body') !default;
+$civictheme-social-links-dark-color: civictheme-color-dark('interaction-background') !default;
 $civictheme-social-links-dark-hover-color: civictheme-color-dark('interaction-background') !default;
-$civictheme-social-links-dark-active-color: $civictheme-social-links-dark-hover-color;
 $civictheme-social-links-dark-focus-color: $civictheme-social-links-dark-hover-color;
+$civictheme-social-links-dark-active-color: $civictheme-social-links-dark-hover-color;
 $civictheme-social-links-dark-visited-color: $civictheme-social-links-dark-color;
 
 //
