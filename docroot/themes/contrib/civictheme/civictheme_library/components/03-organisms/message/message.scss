@@ -13,7 +13,7 @@
   border-radius: $civictheme-message-border-radius;
   border-left: solid rem(6px) transparent;
   box-sizing: border-box;
-  padding: civictheme-space(3) civictheme-space(3) civictheme-space(3) civictheme-space(2);
+  padding: civictheme-space(3) civictheme-space(3) civictheme-space(3) civictheme-space(1);
   margin: civictheme-space(3) 0;
   width: 100%;
 
@@ -108,7 +108,9 @@
 
           #{$root}__icon {
             .civictheme-icon {
-              fill: map.get($values, 'icon-color');
+              @if $theme == 'light' {
+                background-color: map.get($values, 'icon-color');
+              }
             }
           }
         }
