@@ -19,10 +19,7 @@ import CivicThemeBasicFilter from '../basic-filter/basic-filter.twig';
 import CivicThemeCardContainer from '../card-container/card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
 import NavigationCard from '../../02-molecules/navigation-card/navigation-card.twig';
-
-import CivicThemePagination from '../../02-molecules/pagination/pagination.twig';
 import CivicThemeList from './list.twig';
-
 
 export default {
   title: 'Organisms/List',
