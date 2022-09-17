@@ -3,6 +3,9 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civictheme_automated_list.field_c_p_background
+    - field.field.paragraph.civictheme_automated_list.field_c_p_column_count
+    - field.field.paragraph.civictheme_automated_list.field_c_p_content
+    - field.field.paragraph.civictheme_automated_list.field_c_p_fill_width
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_content_type
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_filters_exp
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_item_theme
@@ -22,6 +25,7 @@ dependencies:
   module:
     - link
     - options
+    - text
 id: paragraph.civictheme_automated_list.default
 targetEntityType: paragraph
 bundle: civictheme_automated_list
@@ -36,6 +40,30 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 5
+    region: content
+  field_c_p_column_count:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 17
+    region: content
+  field_c_p_content:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  field_c_p_fill_width:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 18
     region: content
   field_c_p_list_content_type:
     type: list_default

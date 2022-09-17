@@ -14,21 +14,24 @@ Feature: Tests the Listing paragraph
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civictheme_automated_list/fields"
     And I should see the text "field_c_p_background" in the "Background" row
+    And I should see the text "field_c_p_column_count" in the "Column count" row
+    And I should see the text "field_c_p_content" in the "Content" row
     And I should see the text "field_c_p_list_content_type" in the "Content type" row
     And I should see the text "field_c_p_list_item_view_as" in the "Display items as" row
     And I should see the text "field_c_p_list_filters_exp" in the "Exposed filters" row
+    And I should see the text "field_c_p_fill_width" in the "Fill width in the last row" row
     And I should see the text "field_c_p_list_item_theme" in the "Item theme" row
     And I should see the text "field_c_p_list_limit" in the "Limit" row
     And I should see the text "field_c_p_list_limit_type" in the "Limit type" row
-    And I should see the text "field_c_p_list_link_above" in the "Read more above" row
-    And I should see the text "field_c_p_list_link_below" in the "Read more below" row
+    And I should see the text "field_c_p_list_link_above" in the "Link above" row
+    And I should see the text "field_c_p_list_link_below" in the "Link below" row
     And I should see the text "field_c_p_list_show_filters" in the "Show filters" row
     And I should see the text "field_c_p_list_site_sections" in the "Site sections" row
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_list_topics" in the "Topics" row
     And I should see the text "field_c_p_space" in the "With space" row
-    And I should see the text "field_c_p_list_type" in the "Automated list type" row
+    And I should see the text "field_c_p_list_type" in the "List type" row
 
   @api @javascript
   Scenario: Listing paragraph fields
@@ -41,7 +44,7 @@ Feature: Tests the Listing paragraph
     And I press the "field_c_n_components_civictheme_automated_list_add_more" button
     And I wait for AJAX to finish
 
-    And I see the text "Selection"
+    And I see the text "Content"
 
     And I see the text "Content type"
     And should see a "input#edit-field-c-n-topics-0-target-id" element
@@ -97,7 +100,12 @@ Feature: Tests the Listing paragraph
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]]'].required" element
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]'][disabled]" element
 
-    And I see the text "Read more above"
+    And I see the text "Content"
+    And should see a "textarea[name='field_c_n_components[0][subform][field_c_p_content][0][value]']" element
+    And should not see a "textarea[name='field_c_n_components[0][subform][field_c_p_content][0][value]'].required" element
+    And should not see a "textarea[name='field_c_n_components[0][subform][field_c_p_content][0][value]'][disabled]" element
+
+    And I see the text "Link above"
     And should see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][uri]']" element
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][uri]'].required" element
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][uri]'][disabled]" element
@@ -106,7 +114,7 @@ Feature: Tests the Listing paragraph
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][title]'].required" element
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_above][0][title]'][disabled]" element
 
-    And I see the text "Read more below"
+    And I see the text "Link below"
     And should see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_below][0][uri]']" element
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_below][0][uri]'].required" element
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_list_link_below][0][uri]'][disabled]" element
@@ -134,6 +142,16 @@ Feature: Tests the Listing paragraph
     And should see a "input[name='field_c_n_components[0][subform][field_c_p_background][value]']" element
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_background][value]'].required" element
     And should not see a "input[name='field_c_n_components[0][subform][field_c_p_background][value]'][disabled]" element
+
+    And I see the text "Column count"
+    And should see a "select[name='field_c_n_components[0][subform][field_c_p_column_count]']" element
+    And should see a "select[name='field_c_n_components[0][subform][field_c_p_column_count]'].required" element
+    And should not see a "select[name='field_c_n_components[0][subform][field_c_p_column_count]'][disabled]" element
+
+    And I see the text "Fill width in the last row"
+    And should see a "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]']" element
+    And should not see a "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]'].required" element
+    And should not see a "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]'][disabled]" element
 
     And I see the text "Display items as"
     And should see a "select[name='field_c_n_components[0][subform][field_c_p_list_item_view_as]']" element
