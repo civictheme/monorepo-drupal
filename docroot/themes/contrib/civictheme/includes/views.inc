@@ -27,7 +27,7 @@ function _civictheme_preprocess_page__views(&$variables) {
  */
 function civictheme_preprocess_views_exposed_form(&$variables) {
   $variables['filter_title'] = t('Filter search results by:');
-  $variables['large_filter'] = $variables['form']['#is_large_filter'] ?? FALSE;
+  $variables['group_filter'] = $variables['form']['#is_large_filter'] ?? FALSE;
 
   $is_view_component = isset($variables['attributes']['civictheme_automated_list']);
   if ($is_view_component) {
@@ -115,7 +115,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   }
 
   $form['#attributes']['data-civictheme-filter'] = '';
-  $form['#attributes']['data-civictheme-filter-type'] = $listing_use_large_filter ? 'large' : 'basic';
+  $form['#attributes']['data-civictheme-filter-type'] = $listing_use_large_filter ? 'group' : 'basic';
   $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $listing_use_large_filter ? 500 : 0;
 
   // Made preprocessors know that we are using a large filter.
@@ -196,7 +196,7 @@ function _civictheme_filter_views_exposed_form_alter__process_elements(&$element
     $filter_key = !$is_large_filter && in_array($element['#type'] ?? NULL, [
       'radios',
       'checkboxes',
-    ]) ? '#civictheme-basic-filter' : '#civictheme-large-filter';
+    ]) ? '#civictheme-basic-filter' : '#civictheme-group-filter';
     $element[$filter_key] = $form['#id'];
     $element['#attributes'][$filter_key] = $form['#id'];
   }

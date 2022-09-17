@@ -10,7 +10,7 @@ import {
   randomUrl,
 } from '../../00-base/base.stories';
 
-import CivicThemeLargeFilter from '../large-filter/large-filter.twig';
+import CivicThemeGroupFilter from '../group-filter/group-filter.twig';
 import CivicThemeBasicFilter from '../basic-filter/basic-filter.twig';
 
 import CivicThemeCardContainer from '../card-container/card-container.twig';
@@ -178,7 +178,7 @@ export const List = (knobTab) => {
     }
 
     if (filterType === 'large') {
-      generalKnobs.filters = CivicThemeLargeFilter({
+      generalKnobs.filters = CivicThemeGroupFilter({
         theme,
         filter_title: 'Filter search results by:',
         tags_title: 'Selected filters:',
