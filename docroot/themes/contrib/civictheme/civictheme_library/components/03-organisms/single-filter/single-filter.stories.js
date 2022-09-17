@@ -1,7 +1,7 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 
-import CivicThemeBasicFilter from './basic-filter.twig';
+import CivicThemeSingleFilter from './single-filter.twig';
 
 export default {
   title: 'Organisms/Single Filter',
@@ -38,7 +38,7 @@ export const SingleFilter = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  return CivicThemeBasicFilter({
+  return CivicThemeSingleFilter({
     ...generalKnobs,
   });
 };

@@ -196,7 +196,7 @@ function _civictheme_filter_views_exposed_form_alter__process_elements(&$element
     $filter_key = !$is_large_filter && in_array($element['#type'] ?? NULL, [
       'radios',
       'checkboxes',
-    ]) ? '#civictheme-basic-filter' : '#civictheme-large-filter';
+    ]) ? '#civictheme-single-filter' : '#civictheme-large-filter';
     $element[$filter_key] = $form['#id'];
     $element['#attributes'][$filter_key] = $form['#id'];
   }

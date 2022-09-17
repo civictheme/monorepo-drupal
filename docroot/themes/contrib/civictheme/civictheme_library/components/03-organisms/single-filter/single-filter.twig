@@ -16,21 +16,22 @@
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civictheme-basic-filter {{ modifier_class }}" data-component-name="civictheme-basic-filter">
+<div class="civictheme-single-filter {{ modifier_class }}" data-component-name="civictheme-single-filter">
   <div class="container">
     <div class="row">
       <div class="col-xxs-12">
-        <div class="civictheme-basic-filter__list">
+        <div class="civictheme-single-filter__list">
           {% block filters %}
             {% for item in items %}
               {% if item.text is not empty %}
-                <div class="civictheme-basic-filter__list--row">
+                <div class="civictheme-single-filter__list--row">
                   {% include '@atoms/chip/chip.twig' with {
                     theme: theme,
-                    kind: is_multiple ? 'checkbox': 'radio',
+                    is_multiple: is_multiple,
+                    kind: 'input',
                     size: 'small',
                     content: item.text,
-                    name: is_multiple ? 'basic-filter-' ~ loop.index : 'basic-filter',
+                    name: is_multiple ? 'single-filter-' ~ loop.index : 'single-filter',
                     id: 'chip-' ~ loop.index,
                   } only %}
                 </div>
