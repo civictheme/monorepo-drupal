@@ -93,10 +93,9 @@ $civictheme-button-light-primary-visited-color: $civictheme-button-light-primary
 $civictheme-button-light-primary-active-background-color: $civictheme-button-light-primary-hover-background-color !default;
 $civictheme-button-light-primary-active-border-color: $civictheme-button-light-primary-hover-border-color !default;
 $civictheme-button-light-primary-active-color: $civictheme-button-light-primary-hover-color !default;
-$civictheme-button-light-primary-active-outline-color: civictheme-color-light('interaction-focus') !default;
-$civictheme-button-light-primary-focus-background-color: $civictheme-button-light-primary-active-background-color !default;
-$civictheme-button-light-primary-focus-border-color: $civictheme-button-light-primary-active-border-color !default;
-$civictheme-button-light-primary-focus-color: $civictheme-button-light-primary-active-color !default;
+$civictheme-button-light-primary-focus-background-color: false !default;
+$civictheme-button-light-primary-focus-border-color: false !default;
+$civictheme-button-light-primary-focus-color: false !default;
 $civictheme-button-light-primary-focus-outline-color: civictheme-color-light('interaction-focus') !default;
 $civictheme-button-dark-primary-background-color: civictheme-color-dark('interaction-background') !default;
 $civictheme-button-dark-primary-border-color: $civictheme-button-dark-primary-background-color !default;
@@ -110,10 +109,9 @@ $civictheme-button-dark-primary-visited-color: $civictheme-button-dark-primary-c
 $civictheme-button-dark-primary-active-background-color: $civictheme-button-dark-primary-hover-background-color !default;
 $civictheme-button-dark-primary-active-border-color: $civictheme-button-dark-primary-hover-border-color !default;
 $civictheme-button-dark-primary-active-color: $civictheme-button-dark-primary-hover-color !default;
-$civictheme-button-dark-primary-active-outline-color: civictheme-color-dark('interaction-focus') !default;
-$civictheme-button-dark-primary-focus-background-color: $civictheme-button-dark-primary-active-background-color !default;
-$civictheme-button-dark-primary-focus-border-color: $civictheme-button-dark-primary-active-border-color !default;
-$civictheme-button-dark-primary-focus-color: $civictheme-button-dark-primary-active-color !default;
+$civictheme-button-dark-primary-focus-background-color: false !default;
+$civictheme-button-dark-primary-focus-border-color: false !default;
+$civictheme-button-dark-primary-focus-color: false !default;
 $civictheme-button-dark-primary-focus-outline-color: civictheme-color-dark('interaction-focus') !default;
 
 // Secondary button.
@@ -129,10 +127,9 @@ $civictheme-button-light-secondary-visited-color: $civictheme-button-light-secon
 $civictheme-button-light-secondary-active-background-color: $civictheme-button-light-secondary-hover-background-color !default;
 $civictheme-button-light-secondary-active-border-color: $civictheme-button-light-secondary-hover-border-color !default;
 $civictheme-button-light-secondary-active-color: $civictheme-button-light-secondary-hover-color !default;
-$civictheme-button-light-secondary-active-outline-color: civictheme-color-light('interaction-focus') !default;
-$civictheme-button-light-secondary-focus-background-color: $civictheme-button-light-secondary-active-background-color !default;
-$civictheme-button-light-secondary-focus-border-color: $civictheme-button-light-secondary-active-border-color !default;
-$civictheme-button-light-secondary-focus-color: $civictheme-button-light-secondary-active-color !default;
+$civictheme-button-light-secondary-focus-background-color: false !default;
+$civictheme-button-light-secondary-focus-border-color: false !default;
+$civictheme-button-light-secondary-focus-color: false !default;
 $civictheme-button-light-secondary-focus-outline-color: civictheme-color-light('interaction-focus') !default;
 $civictheme-button-dark-secondary-background-color: transparent !default;
 $civictheme-button-dark-secondary-border-color: civictheme-color-dark('interaction-background') !default;
@@ -146,10 +143,9 @@ $civictheme-button-dark-secondary-visited-color: $civictheme-button-dark-seconda
 $civictheme-button-dark-secondary-active-background-color: $civictheme-button-dark-secondary-hover-background-color !default;
 $civictheme-button-dark-secondary-active-border-color: $civictheme-button-dark-secondary-hover-border-color !default;
 $civictheme-button-dark-secondary-active-color: $civictheme-button-dark-secondary-hover-color !default;
-$civictheme-button-dark-secondary-active-outline-color: civictheme-color-dark('interaction-focus') !default;
-$civictheme-button-dark-secondary-focus-background-color: $civictheme-button-dark-secondary-active-background-color !default;
-$civictheme-button-dark-secondary-focus-border-color: $civictheme-button-dark-secondary-active-border-color !default;
-$civictheme-button-dark-secondary-focus-color: $civictheme-button-dark-secondary-active-color !default;
+$civictheme-button-dark-secondary-focus-background-color: false !default;
+$civictheme-button-dark-secondary-focus-border-color: false !default;
+$civictheme-button-dark-secondary-focus-color: false !default;
 $civictheme-button-dark-secondary-focus-outline-color: civictheme-color-dark('interaction-focus') !default;
 
 // Tertiary button.
@@ -165,10 +161,9 @@ $civictheme-button-light-tertiary-visited-color: $civictheme-button-light-tertia
 $civictheme-button-light-tertiary-active-background-color: $civictheme-button-light-tertiary-hover-background-color !default;
 $civictheme-button-light-tertiary-active-border-color: $civictheme-button-light-tertiary-hover-border-color !default;
 $civictheme-button-light-tertiary-active-color: $civictheme-button-light-tertiary-hover-color !default;
-$civictheme-button-light-tertiary-active-outline-color: civictheme-color-light('interaction-focus') !default;
-$civictheme-button-light-tertiary-focus-background-color: $civictheme-button-light-tertiary-active-background-color !default;
-$civictheme-button-light-tertiary-focus-border-color: $civictheme-button-light-tertiary-active-border-color !default;
-$civictheme-button-light-tertiary-focus-color: $civictheme-button-light-tertiary-active-color !default;
+$civictheme-button-light-tertiary-focus-background-color: false !default;
+$civictheme-button-light-tertiary-focus-border-color: false !default;
+$civictheme-button-light-tertiary-focus-color: false !default;
 $civictheme-button-light-tertiary-focus-outline-color: civictheme-color-light('interaction-focus') !default;
 $civictheme-button-dark-tertiary-background-color: transparent !default;
 $civictheme-button-dark-tertiary-border-color: $civictheme-button-dark-tertiary-background-color !default;
@@ -182,10 +177,9 @@ $civictheme-button-dark-tertiary-visited-color: $civictheme-button-dark-tertiary
 $civictheme-button-dark-tertiary-active-background-color: $civictheme-button-dark-tertiary-hover-background-color !default;
 $civictheme-button-dark-tertiary-active-border-color: $civictheme-button-dark-tertiary-hover-border-color !default;
 $civictheme-button-dark-tertiary-active-color: $civictheme-button-dark-tertiary-hover-color !default;
-$civictheme-button-dark-tertiary-active-outline-color: civictheme-color-dark('interaction-focus') !default;
-$civictheme-button-dark-tertiary-focus-background-color: $civictheme-button-dark-tertiary-active-background-color !default;
-$civictheme-button-dark-tertiary-focus-border-color: $civictheme-button-dark-tertiary-active-border-color !default;
-$civictheme-button-dark-tertiary-focus-color: $civictheme-button-dark-tertiary-active-color !default;
+$civictheme-button-dark-tertiary-focus-background-color: false !default;
+$civictheme-button-dark-tertiary-focus-border-color: false !default;
+$civictheme-button-dark-tertiary-focus-color: false !default;
 $civictheme-button-dark-tertiary-focus-outline-color: civictheme-color-dark('interaction-focus') !default;
 
 // Chip button.
@@ -202,14 +196,13 @@ $civictheme-button-light-chip-selected-color: $civictheme-button-light-chip-colo
 $civictheme-button-light-chip-active-background-color: $civictheme-button-light-chip-hover-background-color !default;
 $civictheme-button-light-chip-active-border-color: $civictheme-button-light-chip-hover-border-color !default;
 $civictheme-button-light-chip-active-color: $civictheme-button-light-chip-hover-color !default;
-$civictheme-button-light-chip-active-outline-color: transparent !default;
-$civictheme-button-light-chip-focus-background-color: $civictheme-button-light-chip-active-background-color !default;
-$civictheme-button-light-chip-focus-border-color: $civictheme-button-light-chip-active-border-color !default;
-$civictheme-button-light-chip-focus-color: $civictheme-button-light-chip-active-color !default;
-$civictheme-button-light-chip-focus-outline-color: civictheme-color-light('interaction-focus') !default;
 $civictheme-button-light-chip-visited-background-color: $civictheme-button-light-chip-background-color !default;
 $civictheme-button-light-chip-visited-border-color: $civictheme-button-light-chip-border-color !default;
 $civictheme-button-light-chip-visited-color: $civictheme-button-light-chip-color !default;
+$civictheme-button-light-chip-focus-background-color: false !default;
+$civictheme-button-light-chip-focus-border-color: false !default;
+$civictheme-button-light-chip-focus-color: false !default;
+$civictheme-button-light-chip-focus-outline-color: civictheme-color-light('interaction-focus') !default;
 $civictheme-button-dark-chip-background-color: transparent !default;
 $civictheme-button-dark-chip-border-color: civictheme-color-dark('interaction-background') !default;
 $civictheme-button-dark-chip-color: civictheme-color-dark('interaction-background') !default;
@@ -223,14 +216,13 @@ $civictheme-button-dark-chip-selected-color: $civictheme-button-dark-chip-color 
 $civictheme-button-dark-chip-active-background-color: $civictheme-button-dark-chip-hover-background-color !default;
 $civictheme-button-dark-chip-active-border-color: $civictheme-button-dark-chip-hover-border-color !default;
 $civictheme-button-dark-chip-active-color: $civictheme-button-dark-chip-hover-color !default;
-$civictheme-button-dark-chip-active-outline-color: transparent !default;
-$civictheme-button-dark-chip-focus-background-color: $civictheme-button-dark-chip-active-background-color !default;
-$civictheme-button-dark-chip-focus-border-color: $civictheme-button-dark-chip-active-border-color !default;
-$civictheme-button-dark-chip-focus-color: $civictheme-button-dark-chip-active-color !default;
-$civictheme-button-dark-chip-focus-outline-color: civictheme-color-dark('interaction-focus') !default;
 $civictheme-button-dark-chip-visited-background-color: $civictheme-button-dark-chip-background-color !default;
 $civictheme-button-dark-chip-visited-border-color: $civictheme-button-dark-chip-border-color !default;
 $civictheme-button-dark-chip-visited-color: $civictheme-button-dark-chip-color !default;
+$civictheme-button-dark-chip-focus-background-color: false !default;
+$civictheme-button-dark-chip-focus-border-color: false !default;
+$civictheme-button-dark-chip-focus-color: false !default;
+$civictheme-button-dark-chip-focus-outline-color: civictheme-color-dark('interaction-focus') !default;
 
 //
 // Iframe.
