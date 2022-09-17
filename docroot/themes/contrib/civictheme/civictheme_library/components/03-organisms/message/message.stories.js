@@ -22,12 +22,12 @@ export const Message = (knobTab) => {
     type: radios(
       'Type',
       {
-        Status: 'status',
+        Information: 'information',
         Error: 'error',
         Warning: 'warning',
         Success: 'success',
       },
-      'status',
+      'information',
       generalKnobTab,
     ),
     title: text('Title', 'The information on this page is currently being updated.', generalKnobTab),

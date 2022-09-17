@@ -23,6 +23,7 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_topics
     - node.type.civictheme_page
   module:
+    - content_moderation
     - datetime
     - field_group
     - media_library

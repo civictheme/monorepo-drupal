@@ -2,7 +2,7 @@
 import CivicThemeBackToTop from './back-to-top.twig';
 
 export default {
-  title: 'Molecules/Back To Top',
+  title: 'Organisms/Back To Top',
   parameters: {
     layout: 'centered',
   },

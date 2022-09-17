@@ -9,7 +9,7 @@ import Input from '../01-atoms/input/input.twig';
 import Select from '../01-atoms/select/select.twig';
 import Checkbox from '../01-atoms/checkbox/checkbox.twig';
 import Radio from '../01-atoms/radio/radio.twig';
-import FormElement from '../03-organisms/form-element/form-element.twig';
+import FormElement from '../02-molecules/form-element/form-element.twig';
 import FieldLabel from '../01-atoms/field-label/field-label.twig';
 import DropdownFilter
   from '../02-molecules/dropdown-filter/dropdown-filter.twig';

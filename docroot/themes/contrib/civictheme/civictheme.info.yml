@@ -144,6 +144,7 @@ config_devel:
     - core.entity_form_display.paragraph.civictheme_promo_card_ref.default
     - core.entity_form_display.paragraph.civictheme_publication_card.default
     - core.entity_form_display.paragraph.civictheme_quick_links.default
+    - core.entity_form_display.paragraph.civictheme_quote.default
     - core.entity_form_display.paragraph.civictheme_service_card.default
     - core.entity_form_display.paragraph.civictheme_slider.default
     - core.entity_form_display.paragraph.civictheme_slider_slide.default
@@ -208,6 +209,7 @@ config_devel:
     - core.entity_view_display.paragraph.civictheme_promo_card_ref.default
     - core.entity_view_display.paragraph.civictheme_publication_card.default
     - core.entity_view_display.paragraph.civictheme_quick_links.default
+    - core.entity_view_display.paragraph.civictheme_quote.default
     - core.entity_view_display.paragraph.civictheme_service_card.default
     - core.entity_view_display.paragraph.civictheme_slider.default
     - core.entity_view_display.paragraph.civictheme_slider_slide.default
@@ -399,6 +401,10 @@ config_devel:
     - field.field.paragraph.civictheme_quick_links.field_c_p_links
     - field.field.paragraph.civictheme_quick_links.field_c_p_theme
     - field.field.paragraph.civictheme_quick_links.field_c_p_title
+    - field.field.paragraph.civictheme_quote.field_c_p_author
+    - field.field.paragraph.civictheme_quote.field_c_p_content
+    - field.field.paragraph.civictheme_quote.field_c_p_space
+    - field.field.paragraph.civictheme_quote.field_c_p_theme
     - field.field.paragraph.civictheme_service_card.field_c_p_links
     - field.field.paragraph.civictheme_service_card.field_c_p_theme
     - field.field.paragraph.civictheme_service_card.field_c_p_title
@@ -485,6 +491,7 @@ config_devel:
     - field.storage.paragraph.field_c_p_address
     - field.storage.paragraph.field_c_p_attachments
     - field.storage.paragraph.field_c_p_attributes
+    - field.storage.paragraph.field_c_p_author
     - field.storage.paragraph.field_c_p_background
     - field.storage.paragraph.field_c_p_cards
     - field.storage.paragraph.field_c_p_column_count
@@ -569,6 +576,7 @@ config_devel:
     - paragraphs.paragraphs_type.civictheme_promo_card_ref
     - paragraphs.paragraphs_type.civictheme_publication_card
     - paragraphs.paragraphs_type.civictheme_quick_links
+    - paragraphs.paragraphs_type.civictheme_quote
     - paragraphs.paragraphs_type.civictheme_service_card
     - paragraphs.paragraphs_type.civictheme_slider
     - paragraphs.paragraphs_type.civictheme_slider_slide

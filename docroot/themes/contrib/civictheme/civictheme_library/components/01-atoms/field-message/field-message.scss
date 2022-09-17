@@ -20,18 +20,18 @@
   @include civictheme-typography('text-regular');
 
   $map: (
-    'status': (
+    'information': (
       'light': (
-        'color': $civictheme-field-message-light-status-color,
-        'background-color': $civictheme-field-message-light-status-background-color,
-        'border-color': $civictheme-field-message-light-status-border-color,
-        'icon-color': $civictheme-field-message-light-status-icon-color,
+        'color': $civictheme-field-message-light-information-color,
+        'background-color': $civictheme-field-message-light-information-background-color,
+        'border-color': $civictheme-field-message-light-information-border-color,
+        'icon-color': $civictheme-field-message-light-information-icon-color,
       ),
       'dark': (
-        'color': $civictheme-field-message-dark-status-color,
-        'background-color': $civictheme-field-message-dark-status-background-color,
-        'border-color': $civictheme-field-message-dark-status-border-color,
-        'icon-color': $civictheme-field-message-dark-status-icon-color,
+        'color': $civictheme-field-message-dark-information-color,
+        'background-color': $civictheme-field-message-dark-information-background-color,
+        'border-color': $civictheme-field-message-dark-information-border-color,
+        'icon-color': $civictheme-field-message-dark-information-icon-color,
       )
     ),
     'warning': (

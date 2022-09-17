@@ -1,9 +1,9 @@
 // phpcs:ignoreFile
 export default {
-  title: 'Base/Space',
+  title: 'Base/Spacing',
 };
 
-export const Space = () => `<div class="story-space-wrapper">
+export const Spacing = () => `<div class="story-space-wrapper">
   <div class="story-space--10">
     <div class="story-space--9">
       <div class="story-space--8">
