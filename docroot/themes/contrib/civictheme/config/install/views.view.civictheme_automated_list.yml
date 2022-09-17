@@ -10,7 +10,7 @@ dependencies:
     - taxonomy
     - user
 id: civictheme_automated_list
-label: Automated list
+label: 'Automated list'
 module: views
 description: 'Default view used in the Automated list component.'
 tag: CivicTheme
