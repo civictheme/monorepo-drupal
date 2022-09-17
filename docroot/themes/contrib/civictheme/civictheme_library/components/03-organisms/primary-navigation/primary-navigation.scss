@@ -132,9 +132,7 @@
           text-decoration: none;
           display: block;
           border-radius: $civictheme-border-radius;
-          padding: 0;
-          padding-left: civictheme-space();
-          padding-right: civictheme-space();
+          padding: civictheme-space();
         }
 
         &.civictheme-menu__item--active-trail {
