@@ -69,12 +69,12 @@
   text-align: center;
   font-family: 'Courier New', monospace;
   border: dotted 1px $_color;
-  color: color.adjust($_color, -25%);
+  color: color.adjust($_color, $alpha: -0.25);
 
   .civictheme-theme-dark & {
     background-color: color.adjust($_color, $alpha: -0.7);
     border: dotted 1px $_color;
-    color: color.adjust($_color, 25%);
+    color: color.adjust($_color, $alpha: 0.25);
   }
 }
 

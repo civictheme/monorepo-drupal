@@ -38,6 +38,16 @@ export const Chip = (knobTab) => {
   const generalKnobs = {
     theme: () => theme,
     kind: () => kind,
+    size: radios(
+      'Size', {
+        Large: 'large',
+        Regular: 'regular',
+        Small: 'small',
+        None: '',
+      },
+      'regular',
+      generalKnobTab,
+    ),
     content: text('Chip label', 'Chip label', generalKnobTab),
     is_dismissible: (kind === 'default') ? boolean('Dismissible', false, generalKnobTab) : null,
     is_multiple: (kind === 'input') ? boolean('Is multiple', false, generalKnobTab) : null,

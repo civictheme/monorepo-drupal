@@ -190,28 +190,46 @@ $civictheme-button-dark-tertiary-focus-outline-color: civictheme-color-dark('int
 //
 // Chip.
 //
-$civictheme-chip-border-width: civictheme-space(0.25) !default;
-$civictheme-chip-outline-width: civictheme-space(0.375) !default;
-$civictheme-chip-outline-offset: civictheme-space(0.25) !default;
-$civictheme-chip-light-color: civictheme-color('primary') !default;
-$civictheme-chip-light-background-color: civictheme-color('neutral', 1) !default;
-$civictheme-chip-light-border-color: civictheme-color('primary') !default;
-$civictheme-chip-light-hover-color: civictheme-color('neutral', 1) !default;
-$civictheme-chip-light-hover-background-color: civictheme-color('primary', 5) !default;
-$civictheme-chip-light-hover-border-color: civictheme-color('primary', 5) !default;
-$civictheme-chip-light-active-color: $civictheme-chip-light-hover-background-color !default;
-$civictheme-chip-light-active-background-color: $civictheme-chip-light-hover-color !default;
-$civictheme-chip-light-active-border-color: $civictheme-chip-light-hover-background-color !default;
-$civictheme-chip-light-active-outline-color: civictheme-color('outline') !default;
-$civictheme-chip-dark-color: civictheme-color('secondary') !default;
-$civictheme-chip-dark-background-color: civictheme-color('primary', 5) !default;
-$civictheme-chip-dark-border-color: civictheme-color('secondary') !default;
-$civictheme-chip-dark-hover-color: civictheme-color('primary', 4) !default;
-$civictheme-chip-dark-hover-background-color: $civictheme-chip-dark-color !default;
-$civictheme-chip-dark-hover-border-color: $civictheme-chip-dark-color !default;
-$civictheme-chip-dark-active-color: civictheme-color('neutral', 1) !default;
-$civictheme-chip-dark-active-background-color: civictheme-color('primary', 4) !default;
-$civictheme-chip-dark-active-outline-color: civictheme-color('outline') !default;
+$civictheme-chip-light-background-color: transparent !default;
+$civictheme-chip-light-border-color: civictheme-color-light('interaction-background') !default;
+$civictheme-chip-light-color: civictheme-color-light('interaction-background') !default;
+$civictheme-chip-light-dismiss-color: civictheme-color-light('interaction-background') !default;
+$civictheme-chip-light-hover-background-color: civictheme-color-light('interaction-hover-background') !default;
+$civictheme-chip-light-hover-border-color: civictheme-color-light('interaction-hover-background') !default;
+$civictheme-chip-light-hover-color: civictheme-color-light('interaction-hover-text') !default;
+$civictheme-chip-light-selected-background-color: $civictheme-chip-light-background-color !default;
+$civictheme-chip-light-selected-border-color: $civictheme-chip-light-border-color !default;
+$civictheme-chip-light-selected-color: $civictheme-chip-light-color !default;
+$civictheme-chip-light-active-background-color: $civictheme-chip-light-hover-background-color !default;
+$civictheme-chip-light-active-border-color: $civictheme-chip-light-hover-border-color !default;
+$civictheme-chip-light-active-color: $civictheme-chip-light-hover-color !default;
+$civictheme-chip-light-visited-background-color: $civictheme-chip-light-background-color !default;
+$civictheme-chip-light-visited-border-color: $civictheme-chip-light-border-color !default;
+$civictheme-chip-light-visited-color: $civictheme-chip-light-color !default;
+$civictheme-chip-light-focus-background-color: false !default;
+$civictheme-chip-light-focus-border-color: false !default;
+$civictheme-chip-light-focus-color: false !default;
+$civictheme-chip-light-focus-outline-color: civictheme-color-light('interaction-focus') !default;
+$civictheme-chip-dark-background-color: transparent !default;
+$civictheme-chip-dark-border-color: civictheme-color-dark('interaction-background') !default;
+$civictheme-chip-dark-color: civictheme-color-dark('interaction-background') !default;
+$civictheme-chip-dark-dismiss-color: civictheme-color-dark('interaction-background') !default;
+$civictheme-chip-dark-hover-background-color: civictheme-color-dark('interaction-hover-background') !default;
+$civictheme-chip-dark-hover-border-color: civictheme-color-dark('interaction-hover-background') !default;
+$civictheme-chip-dark-hover-color: civictheme-color-dark('interaction-hover-text') !default;
+$civictheme-chip-dark-selected-background-color: $civictheme-chip-dark-background-color !default;
+$civictheme-chip-dark-selected-border-color: $civictheme-chip-dark-border-color !default;
+$civictheme-chip-dark-selected-color: $civictheme-chip-dark-color !default;
+$civictheme-chip-dark-active-background-color: $civictheme-chip-dark-hover-background-color !default;
+$civictheme-chip-dark-active-border-color: $civictheme-chip-dark-hover-border-color !default;
+$civictheme-chip-dark-active-color: $civictheme-chip-dark-hover-color !default;
+$civictheme-chip-dark-visited-background-color: $civictheme-chip-dark-background-color !default;
+$civictheme-chip-dark-visited-border-color: $civictheme-chip-dark-border-color !default;
+$civictheme-chip-dark-visited-color: $civictheme-chip-dark-color !default;
+$civictheme-chip-dark-focus-background-color: false !default;
+$civictheme-chip-dark-focus-border-color: false !default;
+$civictheme-chip-dark-focus-color: false !default;
+$civictheme-chip-dark-focus-outline-color: civictheme-color-dark('interaction-focus') !default;
 
 //
 // Field description.
