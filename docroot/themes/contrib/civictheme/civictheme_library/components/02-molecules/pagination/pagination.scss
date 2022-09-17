@@ -15,6 +15,7 @@
   @include civictheme-breakpoint-upto('m') {
     flex-wrap: wrap;
     justify-content: center;
+    width: auto;
   }
 
   &__items_per_page {

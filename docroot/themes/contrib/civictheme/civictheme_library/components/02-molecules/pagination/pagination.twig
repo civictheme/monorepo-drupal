@@ -85,15 +85,16 @@
         } only %}
       </li>
 
-      {# Add an ellipsis if there are further previous pages. #}
-      {% if ellipses.previous %}
-        <li class="civictheme-pager__item civictheme-pager__item--ellipsis civictheme-pager__item--ellipsis-previous" role="presentation">
-          &hellip;
-        </li>
-      {% endif %}
-
       {# Generate pager. #}
       {% for key, item in items.pages %}
+        {% if loop.last %}
+          {# Add an ellipsis if there are further next pages. #}
+          {% if ellipses.next %}
+            <li class="civictheme-pager__item civictheme-pager__item--ellipsis civictheme-pager__item--ellipsis-next" role="presentation">
+              &hellip;
+            </li>
+          {% endif %}
+        {% endif %}
         <li class="civictheme-pager__item {{ current == key ? ' civictheme-pager__item--active' : 'hide-xxs show-l' }}">
           {% if current == key %}
             {% set attributes = 'title="Current page"' %}
@@ -110,14 +111,15 @@
             modifier_class: 'civictheme-pager__link ' ~ (current == key ? 'civictheme-pager__link--active' : ''),
           } only %}
         </li>
+        {% if loop.first %}
+          {# Add an ellipsis if there are further previous pages. #}
+          {% if ellipses.previous %}
+            <li class="civictheme-pager__item civictheme-pager__item--ellipsis civictheme-pager__item--ellipsis-previous" role="presentation">
+              &hellip;
+            </li>
+          {% endif %}
+        {% endif %}
       {% endfor %}
-
-      {# Add an ellipsis if there are further next pages. #}
-      {% if ellipses.next %}
-        <li class="civictheme-pager__item civictheme-pager__item--ellipsis civictheme-pager__item--ellipsis-next" role="presentation">
-          &hellip;
-        </li>
-      {% endif %}
 
       {# Print next item if we are not on the last page. #}
       <li class="civictheme-pager__item civictheme-pager__item--next">
