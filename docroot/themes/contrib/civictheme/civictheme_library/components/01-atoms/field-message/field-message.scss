@@ -10,14 +10,14 @@
 
 @mixin civictheme-message-type() {
   $message-types: (
-    'status': (
+    'information': (
       'light': (
-        'background-color': $civictheme-field-message-light-status-background-color,
-        'border-color': $civictheme-field-message-light-status-border-color,
+        'background-color': $civictheme-field-message-light-information-background-color,
+        'border-color': $civictheme-field-message-light-information-border-color,
       ),
       'dark': (
-        'background-color': $civictheme-field-message-dark-status-background-color,
-        'border-color': $civictheme-field-message-dark-status-border-color,
+        'background-color': $civictheme-field-message-dark-information-background-color,
+        'border-color': $civictheme-field-message-dark-information-border-color,
       ),
     ),
     'warning': (

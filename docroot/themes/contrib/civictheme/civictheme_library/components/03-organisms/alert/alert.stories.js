@@ -26,12 +26,12 @@ export const Alert = (knobTab) => {
     type: radios(
       'Type',
       {
-        Status: 'status',
+        Information: 'information',
         Error: 'error',
         Warning: 'warning',
         Success: 'success',
       },
-      'status',
+      'information',
       generalKnobTab,
     ),
     title: text('Title', 'Site information', generalKnobTab),

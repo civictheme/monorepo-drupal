@@ -6,7 +6,7 @@ Feature: CivicTheme alert rendering
   Background:
     Given civictheme_alert content:
       | nid    | title                                        | status | field_c_n_alert_type | field_c_n_alert_page_visibility | field_c_n_body                              |
-      | 999991 | [TEST] Test alert title Homepage only        | 1      | status               | /                               | [TEST] Test alert body Homepage only        |
+      | 999991 | [TEST] Test alert title Homepage only        | 1      | information          | /                               | [TEST] Test alert body Homepage only        |
       | 999992 | [TEST] Test alert title all pages            | 1      | error                |                                 | [TEST] Test alert body all pages            |
       | 999993 | [TEST] Test dismissing alert title all pages | 1      | error                |                                 | [TEST] Test dismissing alert body all pages |
 

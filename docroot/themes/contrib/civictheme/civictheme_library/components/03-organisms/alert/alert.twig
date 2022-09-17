@@ -15,12 +15,12 @@
 #}
 
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set type = type|default('status') %}
-{% set type_class = 'civictheme-alert--%s'|format(type|default('status')) %}
+{% set type = type|default('information') %}
+{% set type_class = 'civictheme-alert--%s'|format(type|default('information')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
 
 {% set icons = {
-  status: 'information-mark',
+  information: 'information-mark',
   warning: 'exclamation-mark-1',
   error: 'close-outline',
   success: 'approve',

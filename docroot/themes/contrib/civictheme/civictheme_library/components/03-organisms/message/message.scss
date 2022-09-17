@@ -40,18 +40,18 @@
   // SASS does not allow variables interpolation, so we are creating a local
   // map to easily generate rules.
   $map: (
-    'status': (
+    'information': (
       'light': (
-        'color': $civictheme-message-status-light-color,
-        'background-color': $civictheme-message-status-light-background-color,
-        'border-color': $civictheme-message-status-light-border-color,
-        'icon-color': $civictheme-message-status-light-icon-color,
+        'color': $civictheme-message-information-light-color,
+        'background-color': $civictheme-message-information-light-background-color,
+        'border-color': $civictheme-message-information-light-border-color,
+        'icon-color': $civictheme-message-information-light-icon-color,
       ),
       'dark': (
-        'color': $civictheme-message-status-dark-color,
-        'background-color': $civictheme-message-status-dark-background-color,
-        'border-color': $civictheme-message-status-dark-border-color,
-        'icon-color': $civictheme-message-status-dark-icon-color,
+        'color': $civictheme-message-information-dark-color,
+        'background-color': $civictheme-message-information-dark-background-color,
+        'border-color': $civictheme-message-information-dark-border-color,
+        'icon-color': $civictheme-message-information-dark-icon-color,
       )
     ),
     'warning': (
