@@ -5,7 +5,7 @@ import { getSlots, randomLinks } from '../../00-base/base.stories';
 import CivicThemeServiceCard from './service-card.twig';
 
 export default {
-  title: 'Molecules/Card/Service Card',
+  title: 'Molecules/Service Card',
   parameters: {
     layout: 'centered',
   },
