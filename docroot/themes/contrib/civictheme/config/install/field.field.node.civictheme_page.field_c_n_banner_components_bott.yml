@@ -5,11 +5,11 @@ dependencies:
     - field.storage.node.field_c_n_banner_components_bott
     - node.type.civictheme_page
     - paragraphs.paragraphs_type.civictheme_accordion
+    - paragraphs.paragraphs_type.civictheme_automated_list
     - paragraphs.paragraphs_type.civictheme_callout
     - paragraphs.paragraphs_type.civictheme_card_container
     - paragraphs.paragraphs_type.civictheme_content
     - paragraphs.paragraphs_type.civictheme_iframe
-    - paragraphs.paragraphs_type.civictheme_automated_list
     - paragraphs.paragraphs_type.civictheme_map
     - paragraphs.paragraphs_type.civictheme_promo
     - paragraphs.paragraphs_type.civictheme_slider

@@ -27,7 +27,7 @@ config_devel:
   install:
     - views.view.civictheme_automated_list_examples
     - views.view.civictheme_automated_list_test
-    - block.block.civictheme_automated_list_example_spage_one_filter_single_select_exp
+    - block.block.civictheme_automated_list_examples_page_one_filter_single_select_exp
     - block.block.civictheme_automated_list_examples_page_multiple_filters_exp
     - block.block.civictheme_automated_list_examples_page_one_filter_multi_select_exp
     - views.view.civictheme_test_table

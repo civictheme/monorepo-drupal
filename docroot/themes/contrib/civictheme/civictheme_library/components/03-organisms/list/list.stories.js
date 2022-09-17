@@ -18,16 +18,16 @@ import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
 import NavigationCard from '../../02-molecules/navigation-card/navigation-card.twig';
 
 import CivicThemePagination from '../../02-molecules/pagination/pagination.twig';
-import CivicThemeListing from './listing.twig';
+import CivicThemeList from './list.twig';
 
 export default {
-  title: 'Organisms/Listing',
+  title: 'Organisms/List',
   parameters: {
     layout: 'fullscreen',
   },
 };
 
-export const Listing = (knobTab) => {
+export const List = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
   const theme = radios(
     'Theme',
@@ -280,7 +280,7 @@ export const Listing = (knobTab) => {
     });
   }
 
-  return CivicThemeListing({
+  return CivicThemeList({
     theme,
     ...generalKnobs,
   });

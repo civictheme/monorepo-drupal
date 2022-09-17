@@ -1,9 +1,9 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemeBodyCopy from './body-copy.twig';
+import CivicThemeParagraph from './paragraph.twig';
 
 export default {
-  title: 'Atoms/Body Copy',
+  title: 'Atoms/Paragraph',
   parameters: {
     layout: 'centered',
     knobs: {
@@ -12,7 +12,7 @@ export default {
   },
 };
 
-export const BodyCopy = (knobTab) => {
+export const Paragraph = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -42,7 +42,7 @@ export const BodyCopy = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicThemeBodyCopy({
+  return CivicThemeParagraph({
     ...generalKnobs,
   });
 };

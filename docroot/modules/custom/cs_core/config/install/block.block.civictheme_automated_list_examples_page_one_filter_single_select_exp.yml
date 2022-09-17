@@ -8,7 +8,7 @@ dependencies:
     - views
   theme:
     - civictheme
-id: civictheme_automated_list_example_spage_one_filter_single_select_exp
+id: civictheme_automated_list_examples_page_one_filter_single_select_exp
 theme: civictheme
 region: content
 weight: -11

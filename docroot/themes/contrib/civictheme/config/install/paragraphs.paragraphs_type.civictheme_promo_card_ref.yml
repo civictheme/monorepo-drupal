@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: civictheme_promo_card_ref
-label: 'Reference promo card'
+label: 'Promo reference card'
 icon_uuid: null
 icon_default: null
 description: ''

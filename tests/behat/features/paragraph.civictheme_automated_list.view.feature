@@ -39,11 +39,11 @@ Feature: View of Page content with Listing component
 
     When I visit "civictheme_page" "Page Automated list component"
 
-    Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    Then I should see an ".civictheme-list .civictheme-card-container__cards" element
     And I should see 12 ".civictheme-card-container__card" elements
-    And I should see an ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see an ".civictheme-list__results-below .civictheme-pager" element
 
-    And I should not see an ".civictheme-listing__filters .views-exposed-form" element
+    And I should not see an ".civictheme-list__filters .views-exposed-form" element
 
   @api @testmode
   Scenario: Listing, custom values
@@ -70,20 +70,20 @@ Feature: View of Page content with Listing component
 
     When I visit "civictheme_page" "Page Automated list component"
     Then I should see the text "[TEST] Listing component title"
-    And I should see the link "Link above" with "https://example.com/above" in ".civictheme-listing__header-link-above"
-    And I should see the link "Link below" with "https://example.com/below" in ".civictheme-listing__link-below"
+    And I should see the link "Link above" with "https://example.com/above" in ".civictheme-list__header-link-above"
+    And I should see the link "Link below" with "https://example.com/below" in ".civictheme-list__link-below"
 
-    And I should see an ".civictheme-listing" element
-    And I should see an ".civictheme-listing.civictheme-theme-dark" element
-    And I should see an ".civictheme-listing.civictheme-listing--with-background" element
-    And I should see an ".civictheme-listing.civictheme-listing--vertical-space-bottom" element
-    And I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    And I should see an ".civictheme-list" element
+    And I should see an ".civictheme-list.civictheme-theme-dark" element
+    And I should see an ".civictheme-list.civictheme-list--with-background" element
+    And I should see an ".civictheme-list.civictheme-list--vertical-space-bottom" element
+    And I should see an ".civictheme-list .civictheme-card-container__cards" element
 
     And I should see 12 ".civictheme-card-container__card" elements
     And I should see 12 ".civictheme-card-container__card .civictheme-promo-card.civictheme-theme-dark" elements
-    And I should see an ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see an ".civictheme-list__results-below .civictheme-pager" element
 
-    And I should not see an ".civictheme-listing__filters .views-exposed-form" element
+    And I should not see an ".civictheme-list__filters .views-exposed-form" element
 
   @api @testmode
   Scenario: Listing, unlimited
@@ -93,9 +93,9 @@ Feature: View of Page content with Listing component
       | field_c_p_list_limit_type | unlimited |
       | field_c_p_list_limit      | 0         |
     When I visit "civictheme_page" "Page Automated list component"
-    Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    Then I should see an ".civictheme-list .civictheme-card-container__cards" element
     And I should see 12 ".civictheme-card-container__card" elements
-    And I should see an ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see an ".civictheme-list__results-below .civictheme-pager" element
 
   @api @testmode
   Scenario: Listing, unlimited with limit
@@ -105,9 +105,9 @@ Feature: View of Page content with Listing component
       | field_c_p_list_limit_type | unlimited |
       | field_c_p_list_limit      | 6         |
     When I visit "civictheme_page" "Page Automated list component"
-    Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    Then I should see an ".civictheme-list .civictheme-card-container__cards" element
     And I should see 6 ".civictheme-card-container__card" elements
-    And I should see an ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see an ".civictheme-list__results-below .civictheme-pager" element
 
   @api @testmode
   Scenario: Listing, unlimited with limit
@@ -117,9 +117,9 @@ Feature: View of Page content with Listing component
       | field_c_p_list_limit_type | limited |
       | field_c_p_list_limit      | 5       |
     When I visit "civictheme_page" "Page Automated list component"
-    Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    Then I should see an ".civictheme-list .civictheme-card-container__cards" element
     And I should see 5 ".civictheme-card-container__card" elements
-    And I should not see an ".civictheme-listing__results-below .civictheme-pager" element
+    And I should not see an ".civictheme-list__results-below .civictheme-pager" element
 
   @api @testmode
   Scenario: Listing, limited with limit more than page
@@ -129,9 +129,9 @@ Feature: View of Page content with Listing component
       | field_c_p_list_limit_type | limited |
       | field_c_p_list_limit      | 14      |
     When I visit "civictheme_page" "Page Automated list component"
-    Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    Then I should see an ".civictheme-list .civictheme-card-container__cards" element
     And I should see 14 ".civictheme-card-container__card" elements
-    And I should not see an ".civictheme-listing__results-below .civictheme-pager" element
+    And I should not see an ".civictheme-list__results-below .civictheme-pager" element
 
   @api @testmode
   Scenario: Listing, topics
@@ -140,9 +140,9 @@ Feature: View of Page content with Listing component
       # Selection.
       | field_c_p_list_topics | [TEST] Topic 1, [TEST] Topic 2 |
     When I visit "civictheme_page" "Page Automated list component"
-    Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    Then I should see an ".civictheme-list .civictheme-card-container__cards" element
     And I should see 6 ".civictheme-card-container__card" elements
-    And I should not see an ".civictheme-listing__results-below .civictheme-pager" element
+    And I should not see an ".civictheme-list__results-below .civictheme-pager" element
 
   @api @testmode
   Scenario: Listing, exposed filters
@@ -151,11 +151,11 @@ Feature: View of Page content with Listing component
       # Selection.
       | field_c_p_list_show_filters | 1 |
     When I visit "civictheme_page" "Page Automated list component"
-    Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    Then I should see an ".civictheme-list .civictheme-card-container__cards" element
     And I should see 12 ".civictheme-card-container__card" elements
-    And I should see an ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see an ".civictheme-list__results-below .civictheme-pager" element
 
-    And I should see an ".civictheme-listing__filters .views-exposed-form" element
+    And I should see an ".civictheme-list__filters .views-exposed-form" element
 
   @api @javascript
   Scenario: Listing, exposed filters, filtering
@@ -166,11 +166,11 @@ Feature: View of Page content with Listing component
       | field_c_p_list_filters_exp  | type, topic, title |
 
     When I visit "civictheme_page" "Page Automated list component"
-    Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    Then I should see an ".civictheme-list .civictheme-card-container__cards" element
     And I should see 12 ".civictheme-card-container__card" elements
-    And I should see an ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see an ".civictheme-list__results-below .civictheme-pager" element
 
-    And I should see an ".civictheme-listing__filters .views-exposed-form" element
+    And I should see an ".civictheme-list__filters .views-exposed-form" element
 
     And I press the "Topics" button
     And I check the box "[TEST] Topic 2"
@@ -201,9 +201,9 @@ Feature: View of Page content with Listing component
       | field_c_p_list_show_filters | 1         |
       | field_c_p_list_filters_exp  | title     |
     When I visit "civictheme_page" "Page Automated list component"
-    Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    Then I should see an ".civictheme-list .civictheme-card-container__cards" element
     And I should see 6 ".civictheme-card-container__card" elements
-    And I should see an ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see an ".civictheme-list__results-below .civictheme-pager" element
 
     And I am logged in as a user with the "Administrator" role
     And I go to "admin/structure/paragraphs_type/civictheme_automated_list/fields/paragraph.civictheme_automated_list.field_c_p_list_type/storage"
@@ -221,9 +221,9 @@ Feature: View of Page content with Listing component
     And I press "Save"
 
     When I visit "civictheme_page" "Page Automated list component"
-    Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    Then I should see an ".civictheme-list .civictheme-card-container__cards" element
     And I should see 2 ".civictheme-card-container__card" elements
-    And I should not see an ".civictheme-listing__results-below .civictheme-pager" element
+    And I should not see an ".civictheme-list__results-below .civictheme-pager" element
 
     And I see field "Title"
     And should see an "input[name='title']" element
@@ -238,16 +238,16 @@ Feature: View of Page content with Listing component
       | field_c_p_list_limit_type | unlimited |
       | field_c_p_list_limit      | 2         |
     When I visit "civictheme_page" "Page Automated list component"
-    Then I should see an ".civictheme-listing .civictheme-card-container__cards" element
+    Then I should see an ".civictheme-list .civictheme-card-container__cards" element
     And I should see 2 ".civictheme-card-container__card" elements
-    And I should see an ".civictheme-listing__results-below .civictheme-pager" element
-    And I should not see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
-    And I should see "Previous" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
-    And I should see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see an ".civictheme-list__results-below .civictheme-pager" element
+    And I should not see "First" in the ".civictheme-list__results-below .civictheme-pager" element
+    And I should see "Previous" in the ".civictheme-list__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
+    And I should see "Last" in the ".civictheme-list__results-below .civictheme-pager" element
     And I click "2"
-    And I should see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
-    And I should see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see "Last" in the ".civictheme-list__results-below .civictheme-pager" element
+    And I should see "First" in the ".civictheme-list__results-below .civictheme-pager" element
     And I click "Last"
-    And I should not see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
-    And I should see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
-    And I should see "Next" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
+    And I should not see "Last" in the ".civictheme-list__results-below .civictheme-pager" element
+    And I should see "First" in the ".civictheme-list__results-below .civictheme-pager" element
+    And I should see "Next" in the ".civictheme-list__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element

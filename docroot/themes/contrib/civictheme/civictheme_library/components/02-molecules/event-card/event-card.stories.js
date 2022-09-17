@@ -12,7 +12,7 @@ import {
 import CivicThemeEventCard from './event-card.twig';
 
 export default {
-  title: 'Molecules/Card/Event Card',
+  title: 'Molecules/Event Card',
   parameters: {
     layout: 'centered',
   },

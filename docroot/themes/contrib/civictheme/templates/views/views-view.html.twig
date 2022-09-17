@@ -4,11 +4,11 @@
  * CivicTheme theme implementation for main view template.
  */
 #}
-{% extends '@organisms/listing/listing.twig' %}
+{% extends '@organisms/list/list.twig' %}
 
 {% block footer %}
   {% if attachment_after is defined and attachment_after is not empty %}
-    <div class="civictheme-listing__attachment_after">
+    <div class="civictheme-list__attachment_after">
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
@@ -20,7 +20,7 @@
   {% endif %}
 
   {% if more is defined and more is not empty %}
-    <div class="civictheme-listing__more">
+    <div class="civictheme-list__more">
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
@@ -32,13 +32,13 @@
   {% endif %}
 
   {% if footer %}
-    <footer class="civictheme-listing__footer">
+    <footer class="civictheme-list__footer">
       {{ footer }}
     </footer>
   {% endif %}
 
   {% if feed_icons is defined and feed_icons is not empty %}
-    <div class="civictheme-listing__feed_icons">
+    <div class="civictheme-list__feed_icons">
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
