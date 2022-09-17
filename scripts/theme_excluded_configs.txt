@@ -147,6 +147,8 @@ views.view.block_content
 views.view.civictheme_automated_list_examples
 views.view.civictheme_automated_list_test
 views.view.civictheme_test
+views.view.civictheme_test_table
+views.view.civictheme_test_table_mini_pager
 views.view.content
 views.view.content_recent
 views.view.cs_generated_content_list

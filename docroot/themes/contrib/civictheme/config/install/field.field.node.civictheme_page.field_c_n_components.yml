@@ -14,6 +14,7 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_map
     - paragraphs.paragraphs_type.civictheme_next_step
     - paragraphs.paragraphs_type.civictheme_promo
+    - paragraphs.paragraphs_type.civictheme_quote
     - paragraphs.paragraphs_type.civictheme_slider
     - paragraphs.paragraphs_type.civictheme_webform
   module:
@@ -41,6 +42,7 @@ settings:
       civictheme_iframe: civictheme_iframe
       civictheme_map: civictheme_map
       civictheme_next_step: civictheme_next_step
+      civictheme_quote: civictheme_quote
       civictheme_promo: civictheme_promo
       civictheme_slider: civictheme_slider
       civictheme_webform: civictheme_webform
@@ -103,6 +105,9 @@ settings:
       civictheme_quick_links:
         weight: -33
         enabled: false
+      civictheme_quote:
+        weight: -49
+        enabled: true
       civictheme_service_card:
         weight: -40
         enabled: false
