@@ -11,7 +11,7 @@ import {
 } from '../../00-base/base.stories';
 
 import CivicThemeLargeFilter from '../large-filter/large-filter.twig';
-import CivicThemeBasicFilter from '../../02-molecules/basic-filter/basic-filter.twig';
+import CivicThemeBasicFilter from '../basic-filter/basic-filter.twig';
 
 import CivicThemeCardContainer from '../card-container/card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';

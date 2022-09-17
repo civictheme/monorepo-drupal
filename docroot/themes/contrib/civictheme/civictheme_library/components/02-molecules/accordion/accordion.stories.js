@@ -7,7 +7,7 @@ import CivicThemeAccordion from './accordion.twig';
 import '../../00-base/collapsible/collapsible';
 
 export default {
-  title: 'Organisms/Accordion',
+  title: 'Molecules/Accordion',
   parameters: {
     layout: 'centered',
   },
