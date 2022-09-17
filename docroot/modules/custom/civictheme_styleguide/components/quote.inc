@@ -25,7 +25,10 @@ function _civictheme_styleguide_component_quote() {
       'components' => [
         [
           'type' => 'civictheme_quote',
-          'content' => $helper::staticPlainParagraph(),
+          'content' => [
+            "value"  =>  $helper::staticHtmlParagraph(),
+            "format" => "civictheme_rich_text",
+          ],
           'author' => $helper::staticName(3),
         ],
       ],
@@ -35,7 +38,10 @@ function _civictheme_styleguide_component_quote() {
       'components' => [
         [
           'type' => 'civictheme_quote',
-          'content' => $helper::staticPlainParagraph(),
+          'content' => [
+            "value"  =>  $helper::staticHtmlParagraph(),
+            "format" => "civictheme_rich_text",
+          ],
           'author' => $helper::staticName(),
           'theme' => $helper::civicthemeThemeLight(),
         ],
@@ -46,7 +52,10 @@ function _civictheme_styleguide_component_quote() {
       'components' => [
         [
           'type' => 'civictheme_quote',
-          'content' => $helper::staticPlainParagraph(),
+          'content' => [
+            "value"  =>  $helper::staticHtmlParagraph(),
+            "format" => "civictheme_rich_text",
+          ],
           'author' => $helper::staticName(),
           'theme' => $helper::civicthemeThemeDark(),
         ],
@@ -57,7 +66,10 @@ function _civictheme_styleguide_component_quote() {
       'components' => [
         [
           'type' => 'civictheme_quote',
-          'content' => $helper::staticPlainParagraph(),
+          'content' => [
+            "value"  =>  $helper::staticHtmlParagraph(),
+            "format" => "civictheme_rich_text",
+          ],
           'theme' => $helper::civicthemeThemeLight(),
           'space' => $helper::civicthemeSpaceTypeBoth(),
         ],
@@ -68,7 +80,10 @@ function _civictheme_styleguide_component_quote() {
       'components' => [
         [
           'type' => 'civictheme_quote',
-          'content' => $helper::staticPlainParagraph(),
+          'content' => [
+            "value"  =>  $helper::staticHtmlParagraph(),
+            "format" => "civictheme_rich_text",
+          ],
           'theme' => $helper::civicthemeThemeDark(),
           'space' => $helper::civicthemeSpaceTypeBoth(),
         ],
@@ -79,7 +94,10 @@ function _civictheme_styleguide_component_quote() {
       'components' => [
         [
           'type' => 'civictheme_quote',
-          'content' => $helper::staticPlainParagraph(),
+          'content' => [
+            "value"  =>  $helper::staticHtmlParagraph(),
+            "format" => "civictheme_rich_text",
+          ],
           'author' => $helper::staticName(),
           'theme' => $helper::civicthemeThemeLight(),
           'space' => $helper::civicthemeSpaceTypeBoth(),
@@ -91,7 +109,10 @@ function _civictheme_styleguide_component_quote() {
       'components' => [
         [
           'type' => 'civictheme_quote',
-          'content' => $helper::staticPlainParagraph(),
+          'content' => [
+            "value"  =>  $helper::staticHtmlParagraph(),
+            "format" => "civictheme_rich_text",
+          ],
           'author' => $helper::staticName(),
           'theme' => $helper::civicthemeThemeDark(),
           'space' => $helper::civicthemeSpaceTypeBoth(),
