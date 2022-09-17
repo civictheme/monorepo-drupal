@@ -4,7 +4,7 @@ import { demoImage, getSlots, randomUrl } from '../../00-base/base.stories';
 import CivicThemeSubjectCard from './subject-card.twig';
 
 export default {
-  title: 'Molecules/Card/Subject Card',
+  title: 'Molecules/Subject Card',
   parameters: {
     layout: 'centered',
   },
