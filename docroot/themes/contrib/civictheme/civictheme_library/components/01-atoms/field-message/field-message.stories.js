@@ -26,7 +26,7 @@ export const FieldMessage = (knobTab) => {
       'Type',
       {
         Error: 'error',
-        Information: 'status',
+        Information: 'information',
         Warning: 'warning',
         Success: 'success',
       },
