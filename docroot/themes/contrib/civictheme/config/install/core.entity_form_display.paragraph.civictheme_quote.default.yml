@@ -1,0 +1,47 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_quote.field_c_p_author
+    - field.field.paragraph.civictheme_quote.field_c_p_content
+    - field.field.paragraph.civictheme_quote.field_c_p_space
+    - field.field.paragraph.civictheme_quote.field_c_p_theme
+    - paragraphs.paragraphs_type.civictheme_quote
+  module:
+    - text
+id: paragraph.civictheme_quote.default
+targetEntityType: paragraph
+bundle: civictheme_quote
+mode: default
+content:
+  field_c_p_author:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_c_p_content:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_c_p_space:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_c_p_theme:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
