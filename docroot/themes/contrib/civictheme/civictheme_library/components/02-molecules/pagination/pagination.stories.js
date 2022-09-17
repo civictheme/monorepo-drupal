@@ -12,6 +12,17 @@ export default {
 export const Pagination = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
+  const theme = radios(
+    'Theme',
+    {
+      Light: 'light',
+      Dark: 'dark',
+    },
+    'light',
+    generalKnobTab,
+  );
+  const activeIsLink = boolean('Active is a link', true, generalKnobTab);
+
   const pageCount = number(
     'Count of pages',
     5,
@@ -24,24 +35,62 @@ export const Pagination = (knobTab) => {
     generalKnobTab,
   );
 
+  const current = number(
+    'Current page',
+    Math.max(1, Math.floor(pageCount / 2)),
+    {
+      range: true,
+      min: 1,
+      max: pageCount,
+      step: 1,
+    },
+    generalKnobTab,
+  );
+  const ellipses = boolean('With ellipses', true, generalKnobTab)
+    ? pageCount >= 1
+      ? current > 1
+        ? current < pageCount
+          ? {
+            previous: 1,
+            next: 1,
+          }
+          : {
+            previous: 1,
+            next: 0,
+          }
+        : current <= pageCount
+          ? {
+            previous: 0,
+            next: 1,
+          }
+          : {
+            previous: 1,
+            next: 1,
+          }
+      : false
+    : false;
+
   const pages = {};
+  const pagerMiddle = Math.ceil(pageCount / 2);
+  const pagerFirst = current - pagerMiddle + 1;
+  const pagerLast = current + pageCount - pagerMiddle;
   for (let i = 0; i < pageCount; i++) {
-    pages[i + 1] = {
-      href: randomUrl(),
-    };
+    if (ellipses) {
+      if (i === 0 || (i > pagerFirst && i < pagerLast) || i === (pageCount - 1)) {
+        pages[i + 1] = {
+          href: randomUrl(),
+        };
+      }
+    } else {
+      pages[i + 1] = {
+        href: randomUrl(),
+      };
+    }
   }
 
   const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    active_is_link: boolean('Active is a link', true, generalKnobTab),
+    theme,
+    active_is_link: activeIsLink,
     items: pageCount > 0 ? {
       previous: {
         href: randomUrl(),
@@ -52,10 +101,7 @@ export const Pagination = (knobTab) => {
       },
     } : null,
     heading_id: text('Heading Id', 'civictheme-pager-demo', generalKnobTab),
-    ellipses: boolean('With ellipses', true, generalKnobTab) ? {
-      previous: 0,
-      next: 1,
-    } : false,
+    ellipses,
     items_per_page_options: boolean('With items per page', true, generalKnobTab) ? [
       {
         type: 'option', label: 10, value: 10, selected: false,
@@ -70,18 +116,8 @@ export const Pagination = (knobTab) => {
         type: 'option', label: 100, value: 100, selected: false,
       },
     ] : null,
-    current: number(
-      'Current page',
-      Math.max(1, Math.floor(pageCount / 2)),
-      {
-        range: true,
-        min: 1,
-        max: pageCount,
-        step: 1,
-      },
-      generalKnobTab,
-    ),
     total_pages: pageCount,
+    current,
     attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
   };
