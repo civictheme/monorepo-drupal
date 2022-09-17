@@ -24,8 +24,7 @@
   }
 
   [data-popover-content] {
-    @include civictheme-typography('text-regular');
-    @include civictheme-elevation(2);
+    @include civictheme-elevation(4);
 
     display: flex;
     align-items: center;
@@ -55,7 +54,6 @@
     }
 
     [data-popover-content] {
-      color: $civictheme-popover-light-content-color;
       background-color: $civictheme-popover-light-content-background-color;
       border-color: $civictheme-popover-light-content-border-color;
     }
@@ -67,7 +65,6 @@
     }
 
     [data-popover-content] {
-      color: $civictheme-popover-dark-content-color;
       background-color: $civictheme-popover-dark-content-background-color;
       border-color: $civictheme-popover-dark-content-border-color;
     }

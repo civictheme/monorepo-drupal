@@ -108,27 +108,7 @@
     }
 
     #{$root}__header-title {
-      color: $civictheme-card-container-light-heading-title-color;
-    }
-
-    #{$root}__header-link {
-      .civictheme-link {
-        color: $civictheme-card-container-light-heading-color;
-
-        &:hover {
-          color: $civictheme-card-container-light-heading-hover-color;
-        }
-      }
-    }
-
-    #{$root}__footer-link {
-      .civictheme-link {
-        color: $civictheme-card-container-light-footer-link-color;
-
-        &:hover {
-          color: $civictheme-card-container-light-footer-link-hover-color;
-        }
-      }
+      color: $civictheme-card-container-light-header-title-color;
     }
   }
 
@@ -146,27 +126,7 @@
     }
 
     #{$root}__header-title {
-      color: $civictheme-card-container-dark-heading-title-color;
-    }
-
-    #{$root}__header-link {
-      .civictheme-link {
-        color: $civictheme-card-container-dark-heading-color;
-
-        &:hover {
-          color: $civictheme-card-container-dark-heading-hover-color;
-        }
-      }
-    }
-
-    #{$root}__footer-link {
-      .civictheme-link {
-        color: $civictheme-card-container-dark-footer-link-color;
-
-        &:hover {
-          color: $civictheme-card-container-dark-footer-link-hover-color;
-        }
-      }
+      color: $civictheme-card-container-dark-header-title-color;
     }
   }
 }

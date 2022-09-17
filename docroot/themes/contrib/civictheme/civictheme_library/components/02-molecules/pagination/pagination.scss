@@ -86,43 +86,5 @@
     text-align: center;
     text-decoration-color: transparent;
     white-space: nowrap;
-
-    &:hover {
-      background: transparent;
-    }
-  }
-
-  &.civictheme-theme-light {
-    color: $civictheme-pagination-light-link-color;
-    background-color: $civictheme-pagination-light-background-color;
-
-    #{$root}__link {
-      @include civictheme-link-colors($civictheme-pagination-light-link-color, $civictheme-pagination-light-link-hover-color, $active: $civictheme-pagination-light-link-active-border-color);
-
-      &:hover {
-        color: $civictheme-pagination-light-link-hover-color;
-      }
-
-      &--active {
-        text-decoration-color: $civictheme-pagination-light-link-active-border-color;
-      }
-    }
-  }
-
-  &.civictheme-theme-dark {
-    color: $civictheme-pagination-dark-link-color;
-    background-color: $civictheme-pagination-dark-background-color;
-
-    #{$root}__link {
-      @include civictheme-link-colors($civictheme-pagination-dark-link-color, $civictheme-pagination-dark-link-hover-color, $active: $civictheme-pagination-dark-link-active-border-color);
-
-      &:hover {
-        color: $civictheme-pagination-dark-link-hover-color;
-      }
-
-      &--active {
-        text-decoration-color: $civictheme-pagination-dark-link-active-border-color;
-      }
-    }
   }
 }

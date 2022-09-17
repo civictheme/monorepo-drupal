@@ -18,11 +18,11 @@
   }
 
   &.civictheme-theme-light {
-    color: $civictheme-figure-caption-light-color;
+    color: $civictheme-figure-light-caption-color;
   }
 
   &.civictheme-theme-dark {
-    color: $civictheme-figure-caption-dark-color;
+    color: $civictheme-figure-dark-caption-color;
   }
 
   &__caption {
@@ -30,11 +30,11 @@
 
     .civictheme-icon {
       #{$root}.civictheme-theme-light & {
-        fill: $civictheme-figure-caption-icon-light-color;
+        fill: $civictheme-figure-light-caption-icon-color;
       }
 
       #{$root}.civictheme-theme-dark & {
-        fill: $civictheme-figure-caption-icon-dark-color;
+        fill: $civictheme-figure-dark-caption-icon-color;
       }
     }
   }

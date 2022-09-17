@@ -13,12 +13,6 @@
   min-width: rem(300px);
   height: rem(46px);
   padding: 0.5em 3.5em 0.5em 1em;
-
-  // reset
-  // stylelint-disable-next-line property-no-vendor-prefix
-  -webkit-box-sizing: border-box;
-  // stylelint-disable-next-line property-no-vendor-prefix
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   // stylelint-disable-next-line property-no-vendor-prefix
   -webkit-appearance: none;
@@ -48,21 +42,19 @@
   }
 
   &.civictheme-theme-light {
-    color: $civictheme-select-light-color;
     background-color: $civictheme-select-light-background-color;
-    background-image: $civictheme-select-light-dropdown-icon;
+    border-color: $civictheme-input-light-border-color;
+    color: $civictheme-select-light-color;
 
     &:hover {
       box-shadow: 0 0 0 1px $civictheme-select-light-hover-border-color;
     }
 
-    &:active,
     &:focus {
       border-color: $civictheme-select-light-focus-border-color;
       box-shadow: 0 0 0 1px $civictheme-select-light-focus-border-color;
     }
 
-    &:invalid,
     &.error,
     &.civictheme-input--error {
       border-color: $civictheme-select-light-error-border-color;
@@ -84,17 +76,15 @@
   }
 
   &.civictheme-theme-dark {
-    color: $civictheme-select-dark-color;
     background-color: $civictheme-select-dark-background-color;
-    border-color: $civictheme-select-dark-border-color;
-    background-image: $civictheme-select-dark-dropdown-icon;
+    border-color: $civictheme-input-dark-border-color;
+    color: $civictheme-select-dark-color;
 
     &:hover {
       border-color: $civictheme-select-dark-hover-border-color;
       box-shadow: 0 0 0 1px $civictheme-select-dark-hover-border-color;
     }
 
-    &:active,
     &:focus {
       border-color: $civictheme-select-dark-focus-border-color;
       box-shadow: 0 0 0 1px $civictheme-select-dark-focus-border-color;
@@ -105,7 +95,6 @@
     &.civictheme-input--error {
       border-color: $civictheme-select-dark-error-border-color;
       box-shadow: 0 0 0 1px $civictheme-select-dark-error-border-color;
-      background-color: $civictheme-select-dark-error-background-color;
     }
 
     &:-internal-list-box {

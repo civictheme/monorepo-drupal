@@ -9,13 +9,15 @@
   @include civictheme-background();
 
   &__top {
-    padding-top: civictheme-space(4);
-    padding-bottom: civictheme-space(2);
+    .row {
+      padding-top: civictheme-space(4);
+      padding-bottom: civictheme-space(2);
 
-    @include civictheme-breakpoint(m) {
-      padding-top: civictheme-space(5);
-      padding-bottom: civictheme-space(5);
-      border-bottom: solid rem(1px) transparent;
+      @include civictheme-breakpoint(m) {
+        padding-top: civictheme-space(5);
+        padding-bottom: civictheme-space(5);
+        border-bottom: solid rem(1px) transparent;
+      }
     }
   }
 
@@ -123,28 +125,18 @@
     color: $civictheme-footer-light-color;
 
     #{$root}__top {
-      @include civictheme-breakpoint('m') {
-        border-color: $civictheme-footer-light-border-color;
+      .row {
+        @include civictheme-breakpoint('m') {
+          border-color: $civictheme-footer-light-border-color;
+        }
       }
     }
 
     #{$root}__middle {
-      @include civictheme-breakpoint('m') {
-        border-color: $civictheme-footer-light-border-color;
-      }
-    }
-
-    .civictheme-link,
-    .civictheme-button--link {
-      background-color: transparent;
-      color: $civictheme-footer-light-link-color;
-
-      &:hover {
-        color: $civictheme-footer-light-link-hover-color;
-      }
-
-      &:focus {
-        outline-color: $civictheme-footer-light-outline-color;
+      .row {
+        @include civictheme-breakpoint('m') {
+          border-color: $civictheme-footer-light-border-color;
+        }
       }
     }
 
@@ -158,28 +150,18 @@
     color: $civictheme-footer-dark-color;
 
     #{$root}__top {
-      @include civictheme-breakpoint('m') {
-        border-color: $civictheme-footer-dark-border-color;
+      .row {
+        @include civictheme-breakpoint('m') {
+          border-color: $civictheme-footer-dark-border-color;
+        }
       }
     }
 
     #{$root}__middle {
-      @include civictheme-breakpoint('m') {
-        border-color: $civictheme-footer-dark-border-color;
-      }
-    }
-
-    .civictheme-link,
-    .civictheme-button--link {
-      background-color: transparent;
-      color: $civictheme-footer-dark-link-color;
-
-      &:hover {
-        color: $civictheme-footer-dark-link-hover-color;
-      }
-
-      &:focus {
-        outline-color: $civictheme-footer-dark-outline-color;
+      .row {
+        @include civictheme-breakpoint('m') {
+          border-color: $civictheme-footer-dark-border-color;
+        }
       }
     }
 

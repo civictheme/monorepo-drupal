@@ -14,6 +14,11 @@ import FieldLabel from '../01-atoms/field-label/field-label.twig';
 import DropdownFilter
   from '../02-molecules/dropdown-filter/dropdown-filter.twig';
 
+export const getThemes = () => ({
+  light: 'Light',
+  dark: 'Dark',
+});
+
 export const getSlots = (names) => {
   const showSlots = boolean('Show story-slots', false, 'Slots');
   const obj = {};
@@ -166,7 +171,10 @@ export const formElement = (inputType, options, theme, rand, itr) => {
       formElementOptions.children.push(Checkbox(inputOptions));
       break;
     case 'select':
-      formElementOptions.children.push(Select({ ...inputOptions, options: inputOptions.value }));
+      formElementOptions.children.push(Select({
+        ...inputOptions,
+        options: inputOptions.value,
+      }));
       break;
     default:
       formElementOptions.children.push(Input(inputOptions));

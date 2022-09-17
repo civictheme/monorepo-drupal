@@ -98,7 +98,7 @@
     color: $civictheme-list-dark-color;
     &#{$root}--with-background {
       background-color: $civictheme-list-dark-background-color;
-      color: $civictheme-list-with-background-dark-color;
+      color: $civictheme-list-dark-with-background-color;
       #{$root}__results-below {
         background-color: $civictheme-list-dark-background-color;
       }

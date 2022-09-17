@@ -34,18 +34,6 @@
     @include civictheme-breakpoint-upto(s) {
       display: block;
     }
-
-    .civictheme-link {
-      @include civictheme-typography('text-regular');
-
-      @include breakpoint(xss) {
-        font-family: civictheme-font('secondary');
-      }
-
-      @include breakpoint(m) {
-        font-family: civictheme-font('secondary');
-      }
-    }
   }
 
   &__view_link {
@@ -64,18 +52,6 @@
       padding-left: $civictheme-map-space-horizontal;
       padding-right: $civictheme-map-space-horizontal;
     }
-
-    #{&root}__links {
-      .civictheme-link {
-        &.civictheme-theme-light {
-          color: $civictheme-map-light-link-color;
-
-          &:hover {
-            color: $civictheme-map-light-link-hover-color;
-          }
-        }
-      }
-    }
   }
 
   &.civictheme-theme-dark {
@@ -85,18 +61,6 @@
       background-color: $civictheme-map-dark-wrapper-background-color;
       padding-left: $civictheme-map-space-horizontal;
       padding-right: $civictheme-map-space-horizontal;
-    }
-
-    #{&root}__links {
-      .civictheme-link {
-        &.civictheme-theme-dark {
-          color: $civictheme-map-dark-link-color;
-
-          &:hover {
-            color: $civictheme-map-dark-link-hover-color;
-          }
-        }
-      }
     }
   }
 }

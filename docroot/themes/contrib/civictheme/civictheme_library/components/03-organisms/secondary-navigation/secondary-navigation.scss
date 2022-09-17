@@ -30,6 +30,7 @@
       .civictheme-link {
         @include civictheme-typography('text-regular');
 
+        display: block;
         text-decoration: none;
       }
 
@@ -71,85 +72,33 @@
   }
 
   &.civictheme-theme-light {
-    #{$root}__menu {
-      .civictheme-menu__item {
-        .civictheme-link {
-          background: $civictheme-secondary-navigation-light-menu-item-background-color;
-          color: $civictheme-secondary-navigation-light-menu-item-color;
+    #{$root}__has-dropdown {
+      @include civictheme-icon-collapsible($civictheme-link-light-color);
 
-          &:hover {
-            background: $civictheme-secondary-navigation-light-menu-item-hover-background-color;
-            color: $civictheme-secondary-navigation-light-menu-item-hover-color;
-          }
-
-          &:active {
-            background: $civictheme-secondary-navigation-light-menu-item-active-background-color;
-            color: $civictheme-secondary-navigation-light-menu-item-active-color;
-          }
+      .civictheme-menu__item__link {
+        &:hover {
+          @include civictheme-icon-collapsible($civictheme-link-light-hover-color, true);
         }
       }
-    }
 
-    #{$root}__has-dropdown {
       .civictheme-menu__sub-menu__wrapper--level-1 {
         background-color: $civictheme-secondary-navigation-light-sub-menu-background-color;
-
-        .civictheme-link {
-          background: $civictheme-secondary-navigation-light-sub-menu-item-background-color;
-          color: $civictheme-secondary-navigation-light-sub-menu-item-color;
-
-          &:hover {
-            background: $civictheme-secondary-navigation-light-sub-menu-item-hover-background-color;
-            color: $civictheme-secondary-navigation-light-sub-menu-item-hover-color;
-          }
-
-          &:active {
-            background: $civictheme-secondary-navigation-light-sub-menu-item-active-background-color;
-            color: $civictheme-secondary-navigation-light-sub-menu-item-active-color;
-          }
-        }
       }
     }
   }
 
   &.civictheme-theme-dark {
-    #{$root}__menu {
-      .civictheme-menu__item {
-        .civictheme-link {
-          background: $civictheme-secondary-navigation-dark-menu-item-background-color;
-          color: $civictheme-secondary-navigation-dark-menu-item-color;
+    #{$root}__has-dropdown {
+      @include civictheme-icon-collapsible($civictheme-link-dark-color);
 
-          &:hover {
-            background: $civictheme-secondary-navigation-dark-menu-item-hover-background-color;
-            color: $civictheme-secondary-navigation-dark-menu-item-hover-color;
-          }
-
-          &:active {
-            background: $civictheme-secondary-navigation-dark-menu-item-active-background-color;
-            color: $civictheme-secondary-navigation-dark-menu-item-active-color;
-          }
+      .civictheme-menu__item__link {
+        &:hover {
+          @include civictheme-icon-collapsible($civictheme-link-dark-hover-color, true);
         }
       }
-    }
 
-    #{$root}__has-dropdown {
       .civictheme-menu__sub-menu__wrapper--level-1 {
         background-color: $civictheme-secondary-navigation-dark-sub-menu-background-color;
-
-        .civictheme-link {
-          background: $civictheme-secondary-navigation-dark-sub-menu-item-background-color;
-          color: $civictheme-secondary-navigation-dark-sub-menu-item-color;
-
-          &:hover {
-            background: $civictheme-secondary-navigation-dark-sub-menu-item-hover-background-color;
-            color: $civictheme-secondary-navigation-dark-sub-menu-item-hover-color;
-          }
-
-          &:active {
-            background: $civictheme-secondary-navigation-dark-sub-menu-item-active-background-color;
-            color: $civictheme-secondary-navigation-dark-sub-menu-item-active-color;
-          }
-        }
       }
     }
   }

@@ -97,6 +97,20 @@
     }
   }
 
+  @mixin _civictheme-side-navigation-print-menu-item($background-color, $border-color, $color, $stripe-color) {
+    background-color: $background-color;
+    border-color: $border-color;
+    color: $color;
+
+    &::before {
+      background-color: $stripe-color;
+    }
+
+    &:focus {
+      @include civictheme-outline();
+    }
+  }
+
   &.civictheme-theme-light {
     #{$root}__title {
       color: $civictheme-side-navigation-light-title-color;
@@ -104,59 +118,57 @@
 
     #{$root}__menu {
       .civictheme-menu__item {
-        .civictheme-menu__item__link {
-          color: $civictheme-side-navigation-light-link-color;
-          border-color: $civictheme-side-navigation-light-link-border-color;
-          background-color: $civictheme-side-navigation-light-link-background-color;
+        .civictheme-menu__item__link-trigger {
+          @include civictheme-icon-collapsible($civictheme-side-navigation-light-link-expanded-icon-color, true);
+        }
 
-          &::before {
-            background-color: $civictheme-side-navigation-light-link-strip-background-color;
-          }
+        .civictheme-menu__item__link {
+          @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-child-background-color, $civictheme-side-navigation-light-link-child-border-color, $civictheme-side-navigation-light-link-child-color, $civictheme-side-navigation-light-link-child-stripe-color);
 
           &:hover,
           &:focus {
-            background-color: $civictheme-side-navigation-light-link-hover-background-color;
-            border-color: $civictheme-side-navigation-light-link-hover-border-color;
+            @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-child-hover-background-color, $civictheme-side-navigation-light-link-child-hover-border-color, $civictheme-side-navigation-light-link-child-hover-color, $civictheme-side-navigation-light-link-child-hover-stripe-color);
+          }
+        }
 
-            &::before {
-              background-color: $civictheme-side-navigation-light-link-strip-hover-background-color;
+        &.civictheme-menu__item--active-trail {
+          > .civictheme-menu__item__link {
+            &,
+            &:active,
+            &:visited {
+              @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-child-active-background-color, $civictheme-side-navigation-light-link-child-active-border-color, $civictheme-side-navigation-light-link-child-active-color, $civictheme-side-navigation-light-link-child-active-stripe-color);
+            }
+
+            &:hover,
+            &:focus {
+              @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-child-hover-background-color, $civictheme-side-navigation-light-link-child-hover-border-color, $civictheme-side-navigation-light-link-child-hover-color, $civictheme-side-navigation-light-link-child-hover-stripe-color);
+            }
+          }
+        }
+
+        &.civictheme-menu__item--level-0 {
+          > .civictheme-menu__item__link {
+            @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-parent-background-color, $civictheme-side-navigation-light-link-parent-border-color, $civictheme-side-navigation-light-link-parent-color, $civictheme-side-navigation-light-link-parent-stripe-color);
+
+            &:hover,
+            &:focus {
+              @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-parent-hover-background-color, $civictheme-side-navigation-light-link-parent-hover-border-color, $civictheme-side-navigation-light-link-parent-hover-color, $civictheme-side-navigation-light-link-parent-hover-stripe-color);
             }
           }
 
-          &:active {
-            border-color: $civictheme-side-navigation-light-active-border-color;
-          }
+          &.civictheme-menu__item--active-trail {
+            > .civictheme-menu__item__link {
+              &,
+              &:active,
+              &:visited {
+                @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-parent-active-background-color, $civictheme-side-navigation-light-link-parent-active-border-color, $civictheme-side-navigation-light-link-parent-active-color, $civictheme-side-navigation-light-link-parent-active-stripe-color);
+              }
 
-          &:focus {
-            @include civictheme-outline();
-          }
-        }
-
-        .civictheme-menu__item__link-trigger[data-collapsible-trigger] {
-          &::after {
-            @include civictheme-icon-fill-color($civictheme-side-navigation-light-link-expanded-icon-color);
-          }
-        }
-      }
-
-      .civictheme-menu__item--active-trail {
-        > .civictheme-menu__item__link {
-          &::before {
-            background-color: $civictheme-side-navigation-light-active-trail-link-strip-border-color;
-          }
-        }
-
-        .civictheme-menu__item__link {
-          color: $civictheme-side-navigation-light-active-trail-link-color;
-          background-color: $civictheme-side-navigation-light-active-trail-link-background-color;
-          border-color: $civictheme-side-navigation-light-active-trail-link-border-color;
-        }
-
-        &:not(.civictheme-menu__item--level-0) {
-          .civictheme-menu__item__link {
-            color: $civictheme-side-navigation-light-active-trail-child-link-color;
-            background-color: $civictheme-side-navigation-light-active-trail-child-link-background-color;
-            border-color: $civictheme-side-navigation-light-active-trail-child-link-border-color;
+              &:hover,
+              &:focus {
+                @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-light-link-parent-hover-background-color, $civictheme-side-navigation-light-link-parent-hover-border-color, $civictheme-side-navigation-light-link-parent-hover-color, $civictheme-side-navigation-light-link-parent-hover-stripe-color);
+              }
+            }
           }
         }
       }
@@ -170,59 +182,57 @@
 
     #{$root}__menu {
       .civictheme-menu__item {
-        .civictheme-menu__item__link {
-          color: $civictheme-side-navigation-dark-link-color;
-          border-color: $civictheme-side-navigation-dark-link-border-color;
-          background-color: $civictheme-side-navigation-dark-link-background-color;
+        .civictheme-menu__item__link-trigger {
+          @include civictheme-icon-collapsible($civictheme-side-navigation-dark-link-expanded-icon-color, true);
+        }
 
-          &::before {
-            background-color: $civictheme-side-navigation-dark-link-strip-background-color;
-          }
+        .civictheme-menu__item__link {
+          @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-child-background-color, $civictheme-side-navigation-dark-link-child-border-color, $civictheme-side-navigation-dark-link-child-color, $civictheme-side-navigation-dark-link-child-stripe-color);
 
           &:hover,
           &:focus {
-            background-color: $civictheme-side-navigation-dark-link-hover-background-color;
-            border-color: $civictheme-side-navigation-dark-link-hover-border-color;
+            @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-child-hover-background-color, $civictheme-side-navigation-dark-link-child-hover-border-color, $civictheme-side-navigation-dark-link-child-hover-color, $civictheme-side-navigation-dark-link-child-hover-stripe-color);
+          }
+        }
 
-            &::before {
-              background-color: $civictheme-side-navigation-dark-link-strip-hover-background-color;
+        &.civictheme-menu__item--active-trail {
+          > .civictheme-menu__item__link {
+            &,
+            &:active,
+            &:visited {
+              @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-child-active-background-color, $civictheme-side-navigation-dark-link-child-active-border-color, $civictheme-side-navigation-dark-link-child-active-color, $civictheme-side-navigation-dark-link-child-active-stripe-color);
+            }
+
+            &:hover,
+            &:focus {
+              @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-child-hover-background-color, $civictheme-side-navigation-dark-link-child-hover-border-color, $civictheme-side-navigation-dark-link-child-hover-color, $civictheme-side-navigation-dark-link-child-hover-stripe-color);
+            }
+          }
+        }
+
+        &.civictheme-menu__item--level-0 {
+          > .civictheme-menu__item__link {
+            @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-parent-background-color, $civictheme-side-navigation-dark-link-parent-border-color, $civictheme-side-navigation-dark-link-parent-color, $civictheme-side-navigation-dark-link-parent-stripe-color);
+
+            &:hover,
+            &:focus {
+              @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-parent-hover-background-color, $civictheme-side-navigation-dark-link-parent-hover-border-color, $civictheme-side-navigation-dark-link-parent-hover-color, $civictheme-side-navigation-dark-link-parent-hover-stripe-color);
             }
           }
 
-          &:active {
-            border-color: $civictheme-side-navigation-dark-active-border-color;
-          }
+          &.civictheme-menu__item--active-trail {
+            > .civictheme-menu__item__link {
+              &,
+              &:active,
+              &:visited {
+                @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-parent-active-background-color, $civictheme-side-navigation-dark-link-parent-active-border-color, $civictheme-side-navigation-dark-link-parent-active-color, $civictheme-side-navigation-dark-link-parent-active-stripe-color);
+              }
 
-          &:focus {
-            @include civictheme-outline();
-          }
-        }
-
-        .civictheme-menu__item__link-trigger[data-collapsible-trigger] {
-          &::after {
-            @include civictheme-icon-fill-color($civictheme-side-navigation-dark-link-expanded-icon-color);
-          }
-        }
-      }
-
-      .civictheme-menu__item--active-trail {
-        > .civictheme-menu__item__link {
-          &::before {
-            background-color: $civictheme-side-navigation-dark-active-trail-link-strip-border-color;
-          }
-        }
-
-        .civictheme-menu__item__link {
-          color: $civictheme-side-navigation-dark-active-trail-link-color;
-          background-color: $civictheme-side-navigation-dark-active-trail-link-background-color;
-          border-color: $civictheme-side-navigation-dark-active-trail-link-border-color;
-        }
-
-        &:not(.civictheme-menu__item--level-0) {
-          .civictheme-menu__item__link {
-            color: $civictheme-side-navigation-dark-active-trail-child-link-color;
-            background-color: $civictheme-side-navigation-dark-active-trail-child-link-background-color;
-            border-color: $civictheme-side-navigation-dark-active-trail-child-link-border-color;
+              &:hover,
+              &:focus {
+                @include _civictheme-side-navigation-print-menu-item($civictheme-side-navigation-dark-link-parent-hover-background-color, $civictheme-side-navigation-dark-link-parent-hover-border-color, $civictheme-side-navigation-dark-link-parent-hover-color, $civictheme-side-navigation-dark-link-parent-hover-stripe-color);
+              }
+            }
           }
         }
       }

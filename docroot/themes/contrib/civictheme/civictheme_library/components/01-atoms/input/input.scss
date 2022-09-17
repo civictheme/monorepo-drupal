@@ -7,6 +7,10 @@
 
   margin-bottom: civictheme-space(2);
 
+  &--disabled {
+    opacity: 50%;
+  }
+
   &__label {
     display: block;
     margin-bottom: civictheme-space();
@@ -67,79 +71,6 @@
         outline: $civictheme-input-light-focus-outline-color;
         border-color: $civictheme-input-light-focus-border-color;
         box-shadow: 0 0 0 1px $civictheme-input-light-focus-border-color;
-      }
-    }
-  }
-
-  &.civictheme-theme-dark {
-    color: $civictheme-input-dark-color;
-
-    #{$root}__element {
-      background-color: $civictheme-input-dark-background-color;
-      color: $civictheme-input-dark-color;
-      border-color: $civictheme-input-dark-border-color;
-
-      &:hover {
-        box-shadow: 0 0 0 1px $civictheme-input-dark-border-color;
-      }
-
-      &:focus {
-        color: $civictheme-input-dark-focus-color;
-        background-color: $civictheme-input-dark-focus-background-color;
-        outline: $civictheme-input-dark-focus-outline-color;
-        border-color: $civictheme-input-dark-focus-border-color;
-        box-shadow: 0 0 0 1px $civictheme-input-dark-focus-border-color;
-      }
-    }
-
-    #{$root}__state {
-      svg {
-        fill: $civictheme-input-dark-focus-color;
-      }
-    }
-  }
-
-  &.disabled,
-  &--disabled {
-    &.civictheme-theme-light {
-      #{$root}__element {
-        color: $civictheme-input-light-disabled-color;
-        background-color: $civictheme-input-light-disabled-background-color;
-      }
-    }
-
-    &.civictheme-theme-dark {
-      #{$root}__element {
-        color: $civictheme-input-dark-disabled-color;
-        background-color: $civictheme-input-dark-disabled-background-color;
-      }
-    }
-  }
-
-  &.error,
-  &--error {
-    #{$root}__element {
-      border-color: $civictheme-input-dark-error-border-color !important;
-      box-shadow: 0 0 0 1px $civictheme-input-dark-error-border-color !important;
-    }
-
-    #{$root}__state {
-      svg {
-        fill: $civictheme-input-dark-error-icon-color;
-      }
-    }
-  }
-
-  &.success,
-  &--success {
-    #{$root}__element {
-      border-color: $civictheme-input-dark-success-border-color !important;
-      box-shadow: 0 0 0 1px $civictheme-input-dark-success-border-color;
-    }
-
-    #{$root}__state {
-      svg {
-        fill: $civictheme-input-dark-success-icon-color;
       }
     }
   }

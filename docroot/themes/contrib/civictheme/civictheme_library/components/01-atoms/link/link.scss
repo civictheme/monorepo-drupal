@@ -5,15 +5,24 @@
 //
 // Mixins.
 //
-@mixin civictheme-link-base() {
-  text-decoration: none;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-  padding: 3px 0 2px;
 
-  &:active {
-    text-decoration: underline;
-  }
+@mixin civictheme-icon-inline($content) {
+  content: $content;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: rem(24px);
+  height: rem(24px);
+  fill: currentcolor;
+  vertical-align: -webkit-baseline-middle;
+}
+
+@mixin civictheme-link-base() {
+  @include civictheme-link-decoration(false, true, false, false);
+  @include civictheme-typography('label-regular');
+
+  text-decoration-thickness: rem(1px);
+  text-underline-offset: civictheme-space(0.375);
+  padding: civictheme-space(0.375) 0 civictheme-space(0.25);
 
   &[disabled] {
     pointer-events: none;
@@ -24,16 +33,31 @@
     margin-right: rem(4px);
   }
 
+  &.civictheme-link--external {
+    position: relative;
+    padding-right: civictheme-icon-size-dimension('regular', 'm', 'width');
+
+    &::after {
+      @include civictheme-icon-inline($civictheme-link-icon-external);
+
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
   &,
   &.civictheme-theme-light {
-    color: $civictheme-link-light-color;
+    @include civictheme-link-colors(
+      $civictheme-link-light-color,
+      $civictheme-link-light-hover-color,
+      $civictheme-link-light-visited-color,
+      $civictheme-link-light-active-color,
+    );
 
     &:focus {
       @include civictheme-outline();
-    }
-
-    &:hover {
-      color: $civictheme-link-light-hover-color;
+      @include civictheme-outline-border();
     }
 
     .civictheme-link__external-icon {
@@ -42,48 +66,22 @@
   }
 
   &.civictheme-theme-dark {
-    color: $civictheme-link-dark-color;
+    @include civictheme-link-colors(
+      $civictheme-link-dark-color,
+      $civictheme-link-dark-hover-color,
+      $civictheme-link-dark-visited-color,
+      $civictheme-link-dark-active-color,
+    );
 
     &:focus {
-      @include civictheme-outline(true);
+      @include civictheme-outline();
+      @include civictheme-outline-border();
     }
 
-    &:hover {
-      color: $civictheme-link-dark-hover-color;
+    .civictheme-link__external-icon {
+      vertical-align: middle;
     }
   }
-
-  &:visited {
-    @include civictheme-link-visited ();
-  }
-}
-
-@mixin civictheme-link-visited() {
-  &.civictheme-theme-light {
-    color: $civictheme-link-light-visited-color;
-
-    &:hover {
-      color: $civictheme-link-light-visited-hover-color;
-    }
-  }
-
-  &.civictheme-theme-dark {
-    color: $civictheme-link-dark-visited-color;
-
-    &:hover {
-      color: $civictheme-link-dark-visited-hover-color;
-    }
-  }
-}
-
-@mixin civictheme-icon-inline($content) {
-  content: $content;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  width: rem(24px);
-  height: rem(24px);
-  fill: currentcolor;
-  vertical-align: -webkit-baseline-middle;
 }
 
 //

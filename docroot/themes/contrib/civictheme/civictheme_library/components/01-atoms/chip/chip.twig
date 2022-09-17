@@ -6,6 +6,7 @@
  * Variables:
  * - theme: [string] Theme: light, dark.
  * - kind: [string] Chip kind: default, input.
+ * - size: [string] Chip size: large, regular, small.
  * - content: [string] Chip text.
  * - name: [string] Name attribute.
  * - is_disabled: [boolean] Disabled or not.
@@ -18,11 +19,13 @@
 #}
 {% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
 {% set kind = kind in ['default', 'input'] ? kind : 'default' %}
+{% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
 {% set kind_class = kind ? 'civictheme-chip--%s'|format(kind) : '' %}
+{% set size_class = 'civictheme-chip--%s'|format(size) %}
 {% set multiple_class = is_multiple ? 'civictheme-chip--multiple' : '' %}
 {% set dismiss_class =  is_dismissible ? 'civictheme-chip--dismiss' : '' %}
 {% set selected_class =  is_selected ? 'active' : '' %}
-{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, kind_class, selected_class, multiple_class, dismiss_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, kind_class, size_class, selected_class, multiple_class, dismiss_class, modifier_class|default('')) %}
 
 {% set chip_content %}
   {% if is_dismissible or (kind == 'input' and is_multiple) %}

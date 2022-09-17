@@ -5,7 +5,12 @@
  */
 
 import {
-  randomString, getRandomInt, demoImage, randomText, randomUrl, getRandomBool,
+  demoImage,
+  getRandomBool,
+  getRandomInt,
+  randomString,
+  randomText,
+  randomUrl,
 } from '../../00-base/base.stories';
 import Slide from './slide.twig';
 import Tag from '../../01-atoms/tag/tag.twig';
@@ -39,7 +44,7 @@ export const randomButtonsComponent = (count, theme) => {
 export const randomSlidesComponent = (count, theme, rand, template) => {
   const slides = [];
 
-  const inverseTheme = theme === 'dark' ? 'light' : 'dark';
+  const inverseTheme = theme === 'dark' ? 'dark' : 'light';
 
   for (let i = 0; i < count; i++) {
     const contentTop = template && template.content_top ? template.content_top : randomTagsComponent(getRandomInt(0, 4), theme).join(' ');
