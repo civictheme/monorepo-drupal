@@ -22,7 +22,8 @@
 .civictheme-icon {
   vertical-align: sub;
 
-  @include civictheme-icon-size($civictheme-icon-size);
+  // @todo Review this.
+  @include civictheme-icon-size('regular');
 
   @each $symbol, $values in _civictheme-icon-symbols-all() {
     &--#{$symbol} {
