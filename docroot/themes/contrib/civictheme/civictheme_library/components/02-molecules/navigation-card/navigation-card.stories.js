@@ -12,7 +12,7 @@ import {
 } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecules/Card/Navigation Card',
+  title: 'Molecules/Navigation Card',
   parameters: {
     layout: 'centered',
   },

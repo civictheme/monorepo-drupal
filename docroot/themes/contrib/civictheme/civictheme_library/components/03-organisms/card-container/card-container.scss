@@ -86,7 +86,7 @@
     margin-bottom: civictheme-space(3);
   }
 
-  &--listing {
+  &--list {
     #{$root}__header-title {
       @include civictheme-typography('heading-5');
 
