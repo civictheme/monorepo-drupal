@@ -11,7 +11,7 @@
  */
 #}
 
-{% set type_class = 'civictheme-type-%s'|format(type|default('horizontal')) %}
+{% set type_class = 'civictheme-item-list--%s'|format(type|default('horizontal')) %}
 {% set modifier_class = '%s %s'|format(type_class, modifier_class|default('')) %}
 
 {% if items %}

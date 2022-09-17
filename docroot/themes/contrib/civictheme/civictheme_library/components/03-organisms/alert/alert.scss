@@ -143,7 +143,9 @@
           #{$root}__dismiss-button,
           #{$root}__icon {
             .civictheme-icon {
-              fill: map.get($values, 'icon-color');
+              @if $theme == 'light' {
+                background-color: map.get($values, 'icon-color');
+              }
             }
           }
         }
