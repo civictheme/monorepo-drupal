@@ -44,23 +44,23 @@ Feature: Tests the pagination element
 
     When I visit "civictheme-no-sidebar/test-table"
     Then I should see the text "Civictheme test table"
-    Then I should see an ".civictheme-listing table.civictheme-table" element
-    And I should see 5 ".civictheme-listing table.civictheme-table tbody tr" elements
+    Then I should see an ".civictheme-list table.civictheme-table" element
+    And I should see 5 ".civictheme-list table.civictheme-table tbody tr" elements
     # Ensure full pager is rendered correctly and links are working as expected.
-    And I should see an ".civictheme-listing__results-below .civictheme-pager" element
-    And I should not see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
-    And I should see "Prev" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
-    And I should see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see an ".civictheme-list__results-below .civictheme-pager" element
+    And I should not see "First" in the ".civictheme-list__results-below .civictheme-pager" element
+    And I should see "Prev" in the ".civictheme-list__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
+    And I should see "Last" in the ".civictheme-list__results-below .civictheme-pager" element
     And I should see a ".civictheme-pager .civictheme-pager__item--ellipsis-next" element
     And I should not see a ".civictheme-pager .civictheme-pager__item--ellipsis-previous" element
     And I click "2"
-    And I should see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
-    And I should see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
+    And I should see "Last" in the ".civictheme-list__results-below .civictheme-pager" element
+    And I should see "First" in the ".civictheme-list__results-below .civictheme-pager" element
     And I click "Last"
-    And I should not see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
-    And I should see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
-    And I should see "Next" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
-    And I should see "Items per page" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-pager__items_per_page" element
+    And I should not see "Last" in the ".civictheme-list__results-below .civictheme-pager" element
+    And I should see "First" in the ".civictheme-list__results-below .civictheme-pager" element
+    And I should see "Next" in the ".civictheme-list__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
+    And I should see "Items per page" in the ".civictheme-list__results-below .civictheme-pager .civictheme-pager__items_per_page" element
     And I should not see a ".civictheme-pager .civictheme-pager__item--ellipsis-next" element
     And I should see a ".civictheme-pager .civictheme-pager__item--ellipsis-previous" element
     And select "items_per_page" should have an option "5"
@@ -70,8 +70,8 @@ Feature: Tests the pagination element
     And the option "5" from select "items_per_page" is selected
     And I select "25" from "items_per_page"
     And I press "Apply"
-    And I should see an ".civictheme-listing table.civictheme-table" element
-    And I should see 25 ".civictheme-listing table.civictheme-table tbody tr" elements
+    And I should see an ".civictheme-list table.civictheme-table" element
+    And I should see 25 ".civictheme-list table.civictheme-table tbody tr" elements
     And the option "25" from select "items_per_page" is selected
 
   @api
@@ -79,25 +79,25 @@ Feature: Tests the pagination element
 
     When I visit "civictheme-no-sidebar/test-table-mini-pager"
     Then I should see the text "Civictheme test table"
-    Then I should see an ".civictheme-listing table.civictheme-table" element
-    And I should see 5 ".civictheme-listing table.civictheme-table tbody tr" elements
-    And I should see an ".civictheme-listing__results-below .civictheme-pager" element
-    And I should not see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
-    And I should see "Prev" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
-    And I should see "1" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-pager__link.civictheme-pager__link--active" element
-    And I should not see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
+    Then I should see an ".civictheme-list table.civictheme-table" element
+    And I should see 5 ".civictheme-list table.civictheme-table tbody tr" elements
+    And I should see an ".civictheme-list__results-below .civictheme-pager" element
+    And I should not see "First" in the ".civictheme-list__results-below .civictheme-pager" element
+    And I should see "Prev" in the ".civictheme-list__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
+    And I should see "1" in the ".civictheme-list__results-below .civictheme-pager .civictheme-pager__link.civictheme-pager__link--active" element
+    And I should not see "Last" in the ".civictheme-list__results-below .civictheme-pager" element
     And I should see a ".civictheme-pager .civictheme-pager__item--ellipsis-next" element
     And I should not see a ".civictheme-pager .civictheme-pager__item--ellipsis-previous" element
     And I click "Next"
     And I should see a ".civictheme-pager .civictheme-pager__item--ellipsis-next" element
     And I should see a ".civictheme-pager .civictheme-pager__item--ellipsis-previous" element
-    And I should not see "Last" in the ".civictheme-listing__results-below .civictheme-pager" element
-    And I should not see "First" in the ".civictheme-listing__results-below .civictheme-pager" element
-    And I should see "2" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-pager__link.civictheme-pager__link--active" element
+    And I should not see "Last" in the ".civictheme-list__results-below .civictheme-pager" element
+    And I should not see "First" in the ".civictheme-list__results-below .civictheme-pager" element
+    And I should see "2" in the ".civictheme-list__results-below .civictheme-pager .civictheme-pager__link.civictheme-pager__link--active" element
     And I click "Prev"
-    And I should see "Prev" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
-    And I should see "1" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-pager__link.civictheme-pager__link--active" element
-    And I should see "Items per page" in the ".civictheme-listing__results-below .civictheme-pager .civictheme-pager__items_per_page" element
+    And I should see "Prev" in the ".civictheme-list__results-below .civictheme-pager .civictheme-input--disabled.civictheme-pager__link" element
+    And I should see "1" in the ".civictheme-list__results-below .civictheme-pager .civictheme-pager__link.civictheme-pager__link--active" element
+    And I should see "Items per page" in the ".civictheme-list__results-below .civictheme-pager .civictheme-pager__items_per_page" element
     And select "items_per_page" should have an option "5"
     And select "items_per_page" should have an option "10"
     And select "items_per_page" should have an option "25"
@@ -105,6 +105,6 @@ Feature: Tests the pagination element
     And the option "5" from select "items_per_page" is selected
     And I select "25" from "items_per_page"
     And I press "Apply"
-    And I should see an ".civictheme-listing table.civictheme-table" element
-    And I should see 25 ".civictheme-listing table.civictheme-table tbody tr" elements
+    And I should see an ".civictheme-list table.civictheme-table" element
+    And I should see 25 ".civictheme-list table.civictheme-table tbody tr" elements
     And the option "25" from select "items_per_page" is selected
