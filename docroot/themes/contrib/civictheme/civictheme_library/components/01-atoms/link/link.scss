@@ -5,15 +5,24 @@
 //
 // Mixins.
 //
+
+@mixin civictheme-icon-inline($content) {
+  content: $content;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: rem(24px);
+  height: rem(24px);
+  fill: currentcolor;
+  vertical-align: -webkit-baseline-middle;
+}
+
 @mixin civictheme-link-base() {
-  text-decoration: underline;
+  @include civictheme-link-decoration(false, true, false, false);
+  @include civictheme-typography('label-regular');
+
   text-decoration-thickness: rem(1px);
   text-underline-offset: civictheme-space(0.375);
   padding: civictheme-space(0.375) 0 civictheme-space(0.25);
-
-  &:active {
-    text-decoration: underline;
-  }
 
   &[disabled] {
     pointer-events: none;
@@ -39,16 +48,15 @@
 
   &,
   &.civictheme-theme-light {
-    color: $civictheme-link-light-color;
+    @include civictheme-link-colors(
+      $civictheme-link-light-color,
+        $civictheme-link-light-hover-color,
+        $civictheme-link-light-visited-color,
+        $civictheme-link-light-active-color,
+    );
 
     &:focus {
       @include civictheme-outline();
-
-      border-radius: $civictheme-link-border-radius;
-    }
-
-    &:hover {
-      color: $civictheme-link-light-hover-color;
     }
 
     .civictheme-link__external-icon {
@@ -57,53 +65,21 @@
   }
 
   &.civictheme-theme-dark {
-    color: $civictheme-link-dark-color;
+    @include civictheme-link-colors(
+      $civictheme-link-dark-color,
+        $civictheme-link-dark-hover-color,
+        $civictheme-link-dark-visited-color,
+        $civictheme-link-dark-active-color,
+    );
 
     &:focus {
-      @include civictheme-outline(true);
-
-      border-radius: $civictheme-link-border-radius;
+      @include civictheme-outline();
     }
 
-    &:hover {
-      background-color: $civictheme-link-dark-hover-background-color;
-      color: $civictheme-link-dark-hover-color;
+    .civictheme-link__external-icon {
+      vertical-align: middle;
     }
   }
-
-  &:visited {
-    @include civictheme-link-visited();
-  }
-}
-
-@mixin civictheme-link-visited() {
-  &.civictheme-theme-light {
-    color: $civictheme-link-light-visited-color;
-
-    &:hover {
-      background-color: $civictheme-link-light-visited-hover-background-color;
-      color: $civictheme-link-light-visited-hover-color;
-    }
-  }
-
-  &.civictheme-theme-dark {
-    color: $civictheme-link-dark-visited-color;
-
-    &:hover {
-      background-color: $civictheme-link-dark-visited-hover-background-color;
-      color: $civictheme-link-dark-visited-hover-color;
-    }
-  }
-}
-
-@mixin civictheme-icon-inline($content) {
-  content: $content;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  width: rem(24px);
-  height: rem(24px);
-  fill: currentcolor;
-  vertical-align: -webkit-baseline-middle;
 }
 
 //

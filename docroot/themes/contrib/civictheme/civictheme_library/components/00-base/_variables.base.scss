@@ -466,3 +466,8 @@ $civictheme-background-blend-mode: soft-light;
 // Enable CSS animations.
 $civictheme-animation-enabled: true;
 $civictheme-animation-duration: 0.25s;
+
+// Outline.
+$civictheme-outline-offset: 0 !default;
+$civictheme-outline-width: rem(3px);
+$civictheme-outline-border-radius: $civictheme-border-radius;
