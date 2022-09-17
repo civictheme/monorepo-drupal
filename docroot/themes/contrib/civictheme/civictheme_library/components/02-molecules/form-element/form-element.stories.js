@@ -6,7 +6,7 @@ import Select from '../../01-atoms/select/select.twig';
 import CivicThemeFieldLabel from '../../01-atoms/field-label/field-label.twig';
 
 export default {
-  title: 'Organisms/Form/Form Element',
+  title: 'Molecules/Form Element',
 };
 
 export const FormElement = () => {

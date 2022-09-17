@@ -9,13 +9,13 @@ import DropdownFilter from '../../02-molecules/dropdown-filter/dropdown-filter.t
 import CivicThemeLargeFilter from './large-filter.twig';
 
 export default {
-  title: 'Organisms/Form',
+  title: 'Organisms/Group Filter',
   parameters: {
     layout: 'fullscreen',
   },
 };
 
-export const LargeFilter = () => {
+export const GroupFilter = () => {
   const generalKnobTab = 'General';
   const breakpoint = '>=m';
   const theme = radios(

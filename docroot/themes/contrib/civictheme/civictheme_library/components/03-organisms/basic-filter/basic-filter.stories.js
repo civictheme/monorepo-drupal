@@ -4,13 +4,13 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeBasicFilter from './basic-filter.twig';
 
 export default {
-  title: 'Molecules/Filter/Basic Filter',
+  title: 'Organisms/Single Filter',
   parameters: {
     layout: 'centered',
   },
 };
 
-export const BasicFilter = (knobTab) => {
+export const SingleFilter = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -29,10 +29,10 @@ export const BasicFilter = (knobTab) => {
         text: text('Text', 'Basic filter 1', generalKnobTab),
       },
       {
-        text: text('Text', 'Basic filter 2', generalKnobTab),
+        text: text('Text2', 'Basic filter 2', generalKnobTab),
       },
       {
-        text: text('Text', 'Basic filter 3', generalKnobTab),
+        text: text('Text3', 'Basic filter 3', generalKnobTab),
       },
     ] : null,
     modifier_class: text('Additional class', '', generalKnobTab),
