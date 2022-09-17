@@ -39,12 +39,27 @@
   {% endfor %}
 {% endif %}
 
-{% if panels is not empty or links is not empty %}
-  <div class="civictheme-tabs {{ modifier_class }}" {{ attributes }}>
-    {% include '@molecules/link-list/link-list.twig' with {
+{% set items = [] %}
+{% for k, link in links %}
+  {%- set link %}
+    {% include '@atoms/link/link.twig' with {
       theme: theme,
-      links: links,
-      is_inline: true,
+      text: link.text,
+      url: link.url,
+      is_new_window: link.is_new_window is defined ? link.is_new_window : false,
+      is_external: link.is_external is defined ? link.is_external : false,
+      modifier_class: link.modifier_class ? link.modifier_class : false,
+      attributes: link.attributes ? link.attributes : false,
+    } only %}
+  {% endset -%}
+  {% set items = items|merge([link]) %}
+{% endfor %}
+
+{% if panels is not empty or items is not empty %}
+  <div class="civictheme-tabs {{ modifier_class }}" {{ attributes }}>
+    {% include '@base/item-list/item-list.twig' with {
+      theme: theme,
+      items: items,
       modifier_class: 'civictheme-tabs__links',
     } only %}
 
