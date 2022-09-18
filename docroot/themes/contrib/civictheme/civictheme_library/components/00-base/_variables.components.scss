@@ -325,10 +325,10 @@ $ct-field-message-dark-warning-icon-color: ct-color-dark('warning') !default;
 //
 // Field label.
 //
-$ct-field-label-light-color: ct-color-light('heading') !default;
-$ct-field-label-light-required-color: ct-color-light('error') !default;
-$ct-field-label-dark-color: ct-color-dark('heading') !default;
-$ct-field-label-dark-required-color: ct-color-dark('error') !default;
+$ct-label-light-color: ct-color-light('heading') !default;
+$ct-label-light-required-color: ct-color-light('error') !default;
+$ct-label-dark-color: ct-color-dark('heading') !default;
+$ct-label-dark-required-color: ct-color-dark('error') !default;
 
 //
 // Select.
@@ -460,7 +460,6 @@ $ct-popover-dark-content-border-color: ct-color-dark('border-light') !default;
 //
 $ct-video-ratio-width: 16 !default;
 $ct-video-ratio-height: 9 !default;
-
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               MOLECULES                                    //
