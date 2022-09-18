@@ -18,34 +18,12 @@ function _civictheme_styleguide_component_video_player() {
   $helper = CsGeneratedContentHelper::getInstance();
   $variations = [
     [
-      'title' => 'Video Player component, Light',
+      'title' => 'Video Player component, without Transcript',
       'components' => [
         [
           'type' => 'civictheme_video',
           'name' => $helper::staticName(6),
           'transcript_link' => $helper::randomUrl(),
-          'video_file' => $helper::staticFile('mp4'),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Video Player component, Dark',
-      'components' => [
-        [
-          'type' => 'civictheme_video',
-          'name' => $helper::staticName(8),
-          'transcript_link' => $helper::randomUrl(),
-          'transcript' => $helper::staticSentence(2),
-          'video_file' => $helper::staticFile('mp4'),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Video Player component, without Transcript, Dark',
-      'components' => [
-        [
-          'type' => 'civictheme_video',
-          'name' => $helper::staticName(8),
           'video_file' => $helper::staticFile('mp4'),
         ],
       ],
