@@ -8,10 +8,10 @@
   $root: &;
 
   position: relative;
-  padding: ct-space(2);
+  padding: ct-spacing(2);
 
   @include ct-breakpoint('m') {
-    padding: ct-space(3);
+    padding: ct-spacing(3);
   }
 
   @include ct-typography('label-small');
@@ -29,16 +29,16 @@
     align-items: center;
 
     @include ct-breakpoint-upto('m') {
-      margin-bottom: ct-space();
+      margin-bottom: ct-spacing();
     }
   }
 
   #{$root}__icon {
     width: rem(24px);
-    margin-right: ct-space();
+    margin-right: ct-spacing();
 
     @include ct-breakpoint('m') {
-      margin-right: ct-space(2);
+      margin-right: ct-spacing(2);
     }
   }
 
@@ -58,10 +58,10 @@
 
   #{$root}__dismiss-button {
     cursor: pointer;
-    margin-left: ct-space(3);
+    margin-left: ct-spacing(3);
     position: absolute;
-    top: ct-space(2);
-    right: ct-space(2);
+    top: ct-spacing(2);
+    right: ct-spacing(2);
     background-color: transparent;
     padding: 0;
 

@@ -27,13 +27,13 @@
   }
 
   #{$root}__content {
-    padding: ct-space(3);
+    padding: ct-spacing(3);
   }
 
   #{$root}__title {
     @include ct-typography('heading-5');
 
-    margin-bottom: ct-space(2);
+    margin-bottom: ct-spacing(2);
   }
 
   #{$root}__title-link {
@@ -46,13 +46,13 @@
   }
 
   #{$root}__icon {
-    margin-bottom: ct-space(2);
+    margin-bottom: ct-spacing(2);
   }
 
   #{$root}__summary {
     @include ct-typography('text-regular');
 
-    padding-right: ct-space(3);
+    padding-right: ct-spacing(3);
   }
 
   &#{$root}--large {
@@ -97,7 +97,7 @@
   &#{$root}--image-as-icon {
     #{$root}__image-wrapper {
       max-width: rem(48px);
-      padding: ct-space(3);
+      padding: ct-spacing(3);
       padding-bottom: 0;
     }
   }

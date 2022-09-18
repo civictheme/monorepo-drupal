@@ -5,7 +5,7 @@
 .ct-service-card {
   $root: &;
 
-  border-top-width: ct-space(0.75);
+  border-top-width: ct-spacing(0.75);
   border-top-style: solid;
   border-radius: $ct-service-card-border-radius;
   text-align: center;
@@ -14,10 +14,10 @@
   @include ct-elevation(3);
 
   #{$root}__content {
-    padding: ct-space(3) 0 ct-space(3) 0;
+    padding: ct-spacing(3) 0 ct-spacing(3) 0;
 
     @include ct-breakpoint(m) {
-      padding: ct-space(4) 0 ct-space(4) 0;
+      padding: ct-spacing(4) 0 ct-spacing(4) 0;
     }
   }
 
@@ -25,17 +25,17 @@
     @include ct-typography('heading-4');
 
     margin: 0;
-    padding: 0 ct-space(4);
+    padding: 0 ct-spacing(4);
   }
 
   #{$root}__links {
     list-style: none;
     margin-bottom: 0;
-    padding: 0 ct-space(3);
+    padding: 0 ct-spacing(3);
   }
 
   #{$root}__link__item {
-    margin-bottom: ct-space(2);
+    margin-bottom: ct-spacing(2);
 
     @include ct-typography('text-large');
 

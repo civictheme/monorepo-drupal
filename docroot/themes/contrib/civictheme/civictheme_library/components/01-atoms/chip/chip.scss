@@ -11,7 +11,7 @@
 
   cursor: pointer;
   border: $ct-button-border-width solid transparent;
-  border-radius: ct-space(6);
+  border-radius: ct-spacing(6);
 
   @include ct-link-decoration(false, false, false, false);
 
@@ -109,7 +109,7 @@
     @include ct-button-size('large');
 
     &__dismiss {
-      margin-left: ct-space(3);
+      margin-left: ct-spacing(3);
     }
   }
 
@@ -117,7 +117,7 @@
     @include ct-button-size('regular');
 
     &__dismiss {
-      margin-left: ct-space(3);
+      margin-left: ct-spacing(3);
     }
   }
 
@@ -125,7 +125,7 @@
     @include ct-button-size('small');
 
     &__dismiss {
-      margin-left: ct-space(2);
+      margin-left: ct-spacing(2);
     }
   }
 }

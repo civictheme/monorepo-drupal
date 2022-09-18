@@ -5,15 +5,15 @@ box.
 
 ## Spacing
 
-Spacing (such as margin or padding) can be applied using the `ct-space()`
+Spacing (such as margin or padding) can be applied using the `ct-spacing()`
 function.
 
 Spaces are defined in `$ct-spacing` list variable.
 
 ```scss
 div {
-  padding: ct-space(1) ct-space(2);
-  margin-bottom: ct-space(2);
+  padding: ct-spacing(1) ct-spacing(2);
+  margin-bottom: ct-spacing(2);
 }
 ```
 

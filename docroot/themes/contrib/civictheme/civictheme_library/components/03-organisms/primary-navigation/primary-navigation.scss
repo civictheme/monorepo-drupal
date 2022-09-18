@@ -42,7 +42,7 @@
 
         > .ct-link {
           display: block;
-          padding: ct-space(2);
+          padding: ct-spacing(2);
 
           @include ct-typography('label-regular');
 
@@ -50,16 +50,16 @@
           text-decoration: none;
 
           &::after {
-            right: ct-space();
+            right: ct-spacing();
             margin-top: -1 * rem(3px);
-            top: ct-space(2);
+            top: ct-spacing(2);
           }
         }
 
         // Accommodate extra spacing for dropdown icon.
         &#{$root}__has-dropdown {
           > .ct-link {
-            padding-right: ct-icon-size-dimension('regular', $ct-collapsible-icon-size, 'width') + ct-space();
+            padding-right: ct-icon-size-dimension('regular', $ct-collapsible-icon-size, 'width') + ct-spacing();
           }
         }
       }
@@ -86,7 +86,7 @@
       margin: 0;
       margin-top: $ct-primary-navigation-dropdown-top-offset;
       z-index: $ct-primary-navigation-dropdown-zindex;
-      box-shadow: 0 ct-space(2) ct-space(4) rgba(0, 0, 0, 20%);
+      box-shadow: 0 ct-spacing(2) ct-spacing(4) rgba(0, 0, 0, 20%);
 
       // Submenu.
       .ct-menu__sub-menu {
@@ -99,13 +99,13 @@
 
           @include ct-container();
 
-          margin-bottom: ct-space(4);
+          margin-bottom: ct-spacing(4);
         }
       }
 
       .ct-menu__item--level-1 {
         padding: 0;
-        margin: ct-space(4) 0 0;
+        margin: ct-spacing(4) 0 0;
         flex-basis: math.div(100%, $ct-primary-navigation-dropdown-cols);
 
         > .ct-link {
@@ -116,7 +116,7 @@
       }
 
       .ct-menu__sub-menu__wrapper--level-2 {
-        margin-top: ct-space(4);
+        margin-top: ct-spacing(4);
       }
 
       .ct-menu__item--level-2,
@@ -124,7 +124,7 @@
       .ct-menu__item--level-4,
       .ct-menu__item--level-5 {
         width: 100%;
-        margin-bottom: ct-space();
+        margin-bottom: ct-spacing();
 
         > .ct-link {
           @include ct-typography('label-regular');
@@ -132,15 +132,15 @@
           text-decoration: none;
           display: block;
           border-radius: $ct-border-radius;
-          padding: ct-space();
+          padding: ct-spacing();
         }
 
         &.ct-menu__item--active-trail {
           > .ct-link {
             background-color: ct-color('primary', 5);
             color: ct-color('neutral', 1);
-            padding-left: ct-space();
-            padding-right: ct-space();
+            padding-left: ct-spacing();
+            padding-right: ct-spacing();
           }
         }
       }

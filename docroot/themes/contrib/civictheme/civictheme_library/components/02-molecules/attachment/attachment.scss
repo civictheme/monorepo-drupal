@@ -48,13 +48,13 @@
   &__content {
     @include ct-typography('text-regular');
 
-    padding: ct-space(3);
+    padding: ct-spacing(3);
     flex: 1;
     color: $ct-attachment-light-color;
     border-radius: $ct-attachment-border-radius;
 
     @include ct-breakpoint('m') {
-      padding: ct-space(4);
+      padding: ct-spacing(4);
     }
   }
 
@@ -68,7 +68,7 @@
 
   &__links {
     list-style: none;
-    margin: ct-space(2) 0 0 0;
+    margin: ct-spacing(2) 0 0 0;
     padding: 0;
 
     &--link {
@@ -76,11 +76,11 @@
       margin-bottom: rem(4px);
 
       @include ct-breakpoint('m') {
-        margin-bottom: ct-space();
+        margin-bottom: ct-spacing();
       }
 
       svg {
-        margin-right: ct-space();
+        margin-right: ct-spacing();
       }
 
       &:last-child {
@@ -94,11 +94,11 @@
   }
 
   &__icon {
-    padding: ct-space(3) ct-space(3) ct-space(3) 0;
-    width: ct-space(3);
+    padding: ct-spacing(3) ct-spacing(3) ct-spacing(3) 0;
+    width: ct-spacing(3);
 
     @include ct-breakpoint('m') {
-      padding-top: ct-space(4);
+      padding-top: ct-spacing(4);
     }
   }
 
@@ -106,10 +106,10 @@
     flex: none;
     order: 0;
     flex-grow: 0;
-    margin: ct-space() 0;
+    margin: ct-spacing() 0;
 
     @include ct-breakpoint(m) {
-      margin: ct-space() ct-space() 0 0;
+      margin: ct-spacing() ct-spacing() 0 0;
     }
 
     font-weight: 600;

@@ -7,8 +7,8 @@
 
   &__content-top2,
   &__content-top3 {
-    margin-top: ct-space();
-    margin-bottom: ct-space();
+    margin-top: ct-spacing();
+    margin-bottom: ct-spacing();
   }
 
   &__content-top2 {
@@ -20,10 +20,10 @@
   }
 
   &__logo {
-    padding: ct-space() 0;
+    padding: ct-spacing() 0;
 
     @include ct-breakpoint($ct-header-desktop-menu-breakpoint) {
-      padding: ct-space(3) 0;
+      padding: ct-spacing(3) 0;
     }
   }
 

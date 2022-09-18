@@ -35,10 +35,10 @@
     min-width: $ct-popover-width;
     min-height: rem(100px);
     z-index: $ct-popover-z-index;
-    padding: ct-space(2);
+    padding: ct-spacing(2);
 
     @include ct-breakpoint('m') {
-      padding: ct-space(3);
+      padding: ct-spacing(3);
     }
   }
 

@@ -11,7 +11,7 @@
     position: relative;
     border-radius: $ct-subject-card-border-radius;
     box-sizing: border-box;
-    padding: ct-space(3) ct-space(2);
+    padding: ct-spacing(3) ct-spacing(2);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -27,7 +27,7 @@
     }
 
     @include ct-breakpoint('m') {
-      padding: ct-space(4) ct-space(3);
+      padding: ct-spacing(4) ct-spacing(3);
       min-height: $ct-subject-card-image-height-desktop;
       min-width: $ct-subject-card-image-width-desktop;
     }
@@ -47,7 +47,7 @@
   &__title {
     @include ct-typography('heading-5');
 
-    margin-bottom: ct-space(2);
+    margin-bottom: ct-spacing(2);
     z-index: 1;
   }
 

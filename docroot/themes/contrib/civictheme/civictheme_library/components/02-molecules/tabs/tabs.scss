@@ -5,7 +5,7 @@
 .ct-tabs {
   $root: &;
 
-  margin-top: ct-space(2);
+  margin-top: ct-spacing(2);
 
   @include ct-typography('label-regular');
 
@@ -24,18 +24,18 @@
 
       @include ct-link-decoration(false, false, false, false);
 
-      padding: ct-space(1) ct-space(2);
+      padding: ct-spacing(1) ct-spacing(2);
       border-radius: $ct-tabs-link-border-radius $ct-tabs-link-border-radius 0 0;
       border: solid 1px;
 
       @include ct-breakpoint('m') {
-        padding: ct-space(2.875);
+        padding: ct-spacing(2.875);
       }
     }
   }
 
   .ct-tabs__panels {
-    margin-top: ct-space(3);
+    margin-top: ct-spacing(3);
   }
 
   .ct-tabs__panels__panel {

@@ -9,7 +9,7 @@
   $root: &;
 
   display: block;
-  margin-bottom: ct-space();
+  margin-bottom: ct-spacing();
 
   @include ct-typography('label-regular');
 

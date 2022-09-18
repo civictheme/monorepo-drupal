@@ -25,12 +25,12 @@
     display: block;
     position: relative;
     border-radius: $ct-next-steps-border-radius;
-    border-left-width: ct-space(0.75);
+    border-left-width: ct-spacing(0.75);
     border-left-style: solid;
-    padding: ct-space(3) ct-space(3);
+    padding: ct-spacing(3) ct-spacing(3);
 
     @include ct-breakpoint(m) {
-      padding: ct-space(3) ct-space(5) ct-space(4) ct-space(3);
+      padding: ct-spacing(3) ct-spacing(5) ct-spacing(4) ct-spacing(3);
     }
   }
 
@@ -39,18 +39,18 @@
   }
 
   &__summary {
-    margin-top: ct-space(2);
+    margin-top: ct-spacing(2);
 
     @include ct-typography('text-regular');
   }
 
   &__read-more {
     position: absolute;
-    top: ct-space(3);
-    right: ct-space(2);
+    top: ct-spacing(3);
+    right: ct-spacing(2);
 
     @include ct-breakpoint(m) {
-      right: ct-space(4);
+      right: ct-spacing(4);
     }
   }
 

@@ -6,7 +6,7 @@
 
 @use 'sass:math';
 
-$ct-mobile-navigation-spacing: ct-space(2);
+$ct-mobile-navigation-spacing: ct-spacing(2);
 
 .ct-mobile-navigation {
   $root: &;
@@ -56,7 +56,7 @@ $ct-mobile-navigation-spacing: ct-space(2);
 
       .ct-link {
         width: 100%;
-        padding: ct-space(2);
+        padding: ct-spacing(2);
 
         @include ct-typography('label-large');
         @include ct-link-decoration(false, false, false, false);
@@ -91,7 +91,7 @@ $ct-mobile-navigation-spacing: ct-space(2);
 
       .ct-link {
         width: 100%;
-        padding: ct-space(2);
+        padding: ct-spacing(2);
 
         @include ct-link-decoration(false, false, false, false);
         @include ct-typography('label-regular');
@@ -130,7 +130,7 @@ $ct-mobile-navigation-spacing: ct-space(2);
 
       .ct-icon {
         display: block;
-        margin-bottom: ct-space();
+        margin-bottom: ct-spacing();
       }
     }
   }

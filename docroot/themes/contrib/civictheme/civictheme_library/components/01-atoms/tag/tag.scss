@@ -15,13 +15,13 @@
 
   &--icon-before {
     .ct-icon {
-      margin-right: ct-space(0.25);
+      margin-right: ct-spacing(0.25);
     }
   }
 
   &--icon-after {
     .ct-icon {
-      margin-left: ct-space(0.25);
+      margin-left: ct-spacing(0.25);
     }
   }
 
@@ -34,7 +34,7 @@
       background-color: $ct-tag-light-primary-background-color;
       border-color: $ct-tag-light-primary-border-color;
       color: $ct-tag-light-primary-color;
-      padding: ct-space(0.5) ct-space();
+      padding: ct-spacing(0.5) ct-spacing();
 
       @include ct-icon-fill-color($ct-tag-light-primary-color);
     }
@@ -43,7 +43,7 @@
       background-color: $ct-tag-light-secondary-background-color;
       border-color: $ct-tag-light-secondary-border-color;
       color: $ct-tag-light-secondary-color;
-      padding: ct-space(0.5) ct-space();
+      padding: ct-spacing(0.5) ct-spacing();
 
       @include ct-icon-fill-color($ct-tag-light-secondary-color);
     }
@@ -62,7 +62,7 @@
       background-color: $ct-tag-dark-primary-background-color;
       border-color: $ct-tag-dark-primary-border-color;
       color: $ct-tag-dark-primary-color;
-      padding: ct-space(0.5) ct-space();
+      padding: ct-spacing(0.5) ct-spacing();
 
       @include ct-icon-fill-color($ct-tag-dark-primary-color);
     }
@@ -71,7 +71,7 @@
       background-color: $ct-tag-dark-secondary-background-color;
       border-color: $ct-tag-dark-secondary-border-color;
       color: $ct-tag-dark-secondary-color;
-      padding: ct-space(0.5) ct-space();
+      padding: ct-spacing(0.5) ct-spacing();
 
       @include ct-icon-fill-color($ct-tag-dark-secondary-color);
     }

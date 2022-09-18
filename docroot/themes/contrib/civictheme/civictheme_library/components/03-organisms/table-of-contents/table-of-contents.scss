@@ -10,19 +10,19 @@
 
   &--position-before,
   &--position-prepend {
-    margin-bottom: ct-space(4);
+    margin-bottom: ct-spacing(4);
   }
 
   &--position-after,
   &--position-append {
-    margin-top: ct-space(4);
+    margin-top: ct-spacing(4);
   }
 
   &__title {
     @include ct-typography('heading-4');
 
     margin-top: 0;
-    margin-bottom: ct-space(3);
+    margin-bottom: ct-spacing(3);
   }
 
   &__links {
@@ -36,7 +36,7 @@
 
     display: block;
     position: relative;
-    padding: ct-space() ct-space(2) ct-space() ct-space(2.5);
+    padding: ct-spacing() ct-spacing(2) ct-spacing() ct-spacing(2.5);
     border-top-width: 1px;
     border-bottom-width: 0;
     border-style: solid;

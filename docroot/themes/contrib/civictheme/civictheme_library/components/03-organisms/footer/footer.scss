@@ -10,12 +10,12 @@
 
   &__top {
     .row {
-      padding-top: ct-space(4);
-      padding-bottom: ct-space(2);
+      padding-top: ct-spacing(4);
+      padding-bottom: ct-spacing(2);
 
       @include ct-breakpoint(m) {
-        padding-top: ct-space(5);
-        padding-bottom: ct-space(5);
+        padding-top: ct-spacing(5);
+        padding-bottom: ct-spacing(5);
         border-bottom: solid rem(1px) transparent;
       }
     }
@@ -27,18 +27,18 @@
 
   &__top__content-top2 {
     @include ct-breakpoint-upto(m) {
-      margin-top: ct-space(3);
+      margin-top: ct-spacing(3);
     }
   }
 
   &__middle {
     .row {
-      padding-top: ct-space(2);
-      padding-bottom: ct-space(2);
+      padding-top: ct-spacing(2);
+      padding-bottom: ct-spacing(2);
 
       @include ct-breakpoint(m) {
-        padding-top: ct-space(5);
-        padding-bottom: ct-space(5);
+        padding-top: ct-spacing(5);
+        padding-bottom: ct-spacing(5);
         border-bottom: solid rem(1px) transparent;
       }
     }
@@ -61,12 +61,12 @@
   }
 
   &__bottom {
-    padding-top: ct-space(2);
-    padding-bottom: ct-space(4);
+    padding-top: ct-spacing(2);
+    padding-bottom: ct-spacing(4);
 
     @include ct-breakpoint(m) {
-      padding-top: ct-space(5);
-      padding-bottom: ct-space(5);
+      padding-top: ct-spacing(5);
+      padding-bottom: ct-spacing(5);
     }
   }
 
@@ -76,7 +76,7 @@
 
   &__bottom__content-bottom2 {
     @include ct-breakpoint-upto(m) {
-      margin-top: ct-space(3);
+      margin-top: ct-spacing(3);
     }
   }
 
@@ -102,7 +102,7 @@
 
   .ct-navigation {
     @include ct-breakpoint-upto(m) {
-      margin-bottom: ct-space(3);
+      margin-bottom: ct-spacing(3);
     }
   }
 
@@ -110,13 +110,13 @@
     margin-bottom: 0;
 
     [data-collapsible-trigger] {
-      padding: ct-space(2) ct-space();
+      padding: ct-spacing(2) ct-spacing();
       margin-bottom: 0;
     }
 
     [data-collapsible-panel] {
-      padding-left: ct-space();
-      padding-right: ct-space();
+      padding-left: ct-spacing();
+      padding-right: ct-spacing();
     }
   }
 

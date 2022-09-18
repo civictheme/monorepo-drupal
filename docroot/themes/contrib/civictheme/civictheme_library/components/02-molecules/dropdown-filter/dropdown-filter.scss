@@ -12,7 +12,7 @@
     &#{$root}--right {
       #{$root}__filter-options {
         left: auto;
-        right: -(ct-space(3));
+        right: -(ct-spacing(3));
       }
     }
 
@@ -25,21 +25,21 @@
     }
 
     #{$root}__filter-options {
-      margin-top: ct-space(2);
-      min-width: ct-space() * 35;
+      margin-top: ct-spacing(2);
+      min-width: ct-spacing() * 35;
       position: absolute;
-      left: -(ct-space(3));
+      left: -(ct-spacing(3));
       z-index: $ct-dropdown-filter-zindex;
     }
 
     #{$root}__filter-options-wrapper {
       @include ct-elevation(2);
 
-      padding: ct-space(2);
+      padding: ct-spacing(2);
       border-radius: $ct-border-radius;
       border-style: solid;
       border-width: 1px;
-      max-height: ct-space() * 35;
+      max-height: ct-spacing() * 35;
       overflow: auto;
     }
   }
@@ -57,8 +57,8 @@
     display: block;
     width: 100%;
     text-align: left;
-    padding-top: ct-space(2);
-    padding-bottom: ct-space(2);
+    padding-top: ct-spacing(2);
+    padding-bottom: ct-spacing(2);
 
     &:focus {
       @include ct-outline();
@@ -70,8 +70,8 @@
   }
 
   &__filter-options-wrapper {
-    padding-top: ct-space(3);
-    padding-bottom: ct-space(3);
+    padding-top: ct-spacing(3);
+    padding-bottom: ct-spacing(3);
   }
 
   &__fieldset {
@@ -81,14 +81,14 @@
       legend {
         @include ct-typography('label-regular');
 
-        margin-bottom: ct-space(4);
+        margin-bottom: ct-spacing(4);
       }
     }
   }
 
   &[data-dropdown-filter-searchable] {
     legend {
-      margin-bottom: ct-space(2);
+      margin-bottom: ct-spacing(2);
     }
 
     [data-dropdown-filter-search-item--hidden] {
@@ -101,10 +101,10 @@
 
     #{$root}__search.ct-input {
       position: relative;
-      margin-bottom: ct-space(2);
+      margin-bottom: ct-spacing(2);
 
       input {
-        padding-left: ct-space(5);
+        padding-left: ct-spacing(5);
       }
 
       &::after {
@@ -115,7 +115,7 @@
         display: block;
         position: absolute;
         bottom: rem(12px);
-        left: ct-space();
+        left: ct-spacing();
       }
 
       label {

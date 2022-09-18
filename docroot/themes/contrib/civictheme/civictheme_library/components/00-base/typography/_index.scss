@@ -30,7 +30,7 @@ blockquote {
   margin: 0;
   margin-top: $ct-basic-content-vertical-spacing;
   margin-bottom: $ct-basic-content-vertical-spacing;
-  padding: ct-space(2) ct-space(3);
+  padding: ct-spacing(2) ct-spacing(3);
 
   &::before {
     content: '';

@@ -18,12 +18,12 @@
   }
 
   &__upper-control-panel {
-    margin-bottom: ct-space(3);
+    margin-bottom: ct-spacing(3);
 
     @include ct-breakpoint('m') {
       display: flex;
       align-items: center;
-      margin-bottom: ct-space(4);
+      margin-bottom: ct-spacing(4);
     }
   }
 
@@ -31,7 +31,7 @@
     @include ct-typography('heading-3');
 
     & + #{$root}__link {
-      margin-top: ct-space(3);
+      margin-top: ct-spacing(3);
 
       @include ct-breakpoint('m') {
         margin-top: 0;
@@ -64,7 +64,7 @@
   }
 
   &__lower-control-panel {
-    margin-top: ct-space(2);
+    margin-top: ct-spacing(2);
 
     @include ct-breakpoint('m') {
       display: flex;
@@ -81,14 +81,14 @@
     }
 
     .ct-button {
-      padding-left: ct-space(2);
-      padding-right: ct-space(2);
-      width: calc(50% - #{ct-space()});
+      padding-left: ct-spacing(2);
+      padding-right: ct-spacing(2);
+      width: calc(50% - #{ct-spacing()});
 
       @include ct-breakpoint('m') {
         width: auto;
         min-width: rem(160px);
-        margin-right: ct-space(2);
+        margin-right: ct-spacing(2);
       }
     }
   }
@@ -98,7 +98,7 @@
 
     display: block;
     margin-left: auto;
-    margin-top: ct-space(2);
+    margin-top: ct-spacing(2);
     text-align: center;
 
     @include ct-breakpoint('m') {
@@ -109,7 +109,7 @@
 
   &__progress-indicator {
     border-radius: $ct-slider-progress-indicator-border-radius;
-    padding: ct-space() ct-space(2);
+    padding: ct-spacing() ct-spacing(2);
     display: inline-block;
   }
 
@@ -178,20 +178,20 @@
   }
 
   &__content-top {
-    margin-bottom: ct-space(3);
+    margin-bottom: ct-spacing(3);
 
     @include ct-breakpoint('l') {
-      margin-bottom: ct-space(4);
+      margin-bottom: ct-spacing(4);
     }
   }
 
   &__title {
     @include ct-typography('heading-2');
 
-    margin-bottom: ct-space(3);
+    margin-bottom: ct-spacing(3);
 
     @include ct-breakpoint('l') {
-      margin-bottom: ct-space(2);
+      margin-bottom: ct-spacing(2);
     }
   }
 
@@ -211,34 +211,34 @@
   &__summary {
     @include ct-typography('text-regular');
 
-    margin-bottom: ct-space(4);
+    margin-bottom: ct-spacing(4);
 
     @include ct-breakpoint('l') {
-      margin-bottom: ct-space(5);
+      margin-bottom: ct-spacing(5);
     }
   }
 
   &__links {
-    margin-bottom: ct-space(4);
+    margin-bottom: ct-spacing(4);
 
     @include ct-breakpoint('l') {
-      margin-bottom: ct-space(5);
+      margin-bottom: ct-spacing(5);
     }
 
     .ct-button {
-      margin: 0 ct-space() ct-space() 0;
+      margin: 0 ct-spacing() ct-spacing() 0;
     }
   }
 
   &__content {
     box-sizing: border-box;
     flex-grow: 1;
-    padding: ct-space(4) ct-space(3);
+    padding: ct-spacing(4) ct-spacing(3);
     display: flex;
     align-items: center;
 
     @include ct-breakpoint('l') {
-      padding: (ct-space() * 13) ct-space(10);
+      padding: (ct-spacing() * 13) ct-spacing(10);
     }
   }
 

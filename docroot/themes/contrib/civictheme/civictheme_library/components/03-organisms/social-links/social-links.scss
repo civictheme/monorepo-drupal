@@ -6,7 +6,7 @@
   display: flex;
 
   &__item {
-    margin-right: ct-space(2);
+    margin-right: ct-spacing(2);
 
     &:last-child {
       margin-right: 0;
@@ -15,11 +15,11 @@
 
   .ct-button--link {
     border: 1px solid transparent;
-    padding: ct-space(1.375);
+    padding: ct-spacing(1.375);
     display: block;
 
     @include ct-breakpoint('m') {
-      padding: ct-space(1.625);
+      padding: ct-spacing(1.625);
     }
 
     .ct-button__icon {

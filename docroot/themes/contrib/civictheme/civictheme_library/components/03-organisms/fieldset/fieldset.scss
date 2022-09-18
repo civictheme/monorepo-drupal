@@ -4,7 +4,7 @@
 
 .ct-fieldset {
   border: none;
-  padding: ct-space(2) 0;
+  padding: ct-spacing(2) 0;
 
   legend {
     @include ct-typography('heading-3');
@@ -19,7 +19,7 @@
   }
 
   .description {
-    margin-bottom: ct-space(2);
+    margin-bottom: ct-spacing(2);
   }
 
   .ct-label {

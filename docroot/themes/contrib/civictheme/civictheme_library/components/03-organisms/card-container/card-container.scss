@@ -26,13 +26,13 @@
 
   &__card {
     display: flex;
-    margin-bottom: ct-space(3);
+    margin-bottom: ct-spacing(3);
   }
 
   &__header {
     display: flex;
     flex-direction: column;
-    margin-bottom: ct-space(3);
+    margin-bottom: ct-spacing(3);
 
     @include ct-breakpoint('m') {
       flex-direction: row;
@@ -72,7 +72,7 @@
   &__footer-link {
     @include ct-typography('label-regular');
 
-    margin-top: ct-space(4);
+    margin-top: ct-spacing(4);
 
     @include ct-breakpoint('m') {
       align-self: center;
@@ -83,14 +83,14 @@
   &__description {
     @include ct-typography('text-regular');
 
-    margin-bottom: ct-space(3);
+    margin-bottom: ct-spacing(3);
   }
 
   &--list {
     #{$root}__header-title {
       @include ct-typography('heading-5');
 
-      padding: ct-space(3) 0 ct-space();
+      padding: ct-spacing(3) 0 ct-spacing();
     }
   }
 

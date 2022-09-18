@@ -8,7 +8,7 @@
   &__title {
     @include ct-typography('heading-5');
 
-    margin-bottom: ct-space(2);
+    margin-bottom: ct-spacing(2);
   }
 
   &__menu {
@@ -22,12 +22,12 @@
     }
 
     .ct-menu__sub-menu {
-      margin-top: ct-space(2);
+      margin-top: ct-spacing(2);
     }
 
     .ct-menu__item {
-      margin-bottom: ct-space(2);
-      margin-left: ct-space(2);
+      margin-bottom: ct-spacing(2);
+      margin-left: ct-spacing(2);
     }
 
     &.ct-menu > .ct-menu__item {

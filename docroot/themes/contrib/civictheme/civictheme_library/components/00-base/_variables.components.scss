@@ -272,8 +272,8 @@ $ct-field-message-dark-warning-icon-color: ct-color-dark('warning') !default;
 //
 // Iframe.
 //
-$ct-iframe-space-horizontal: ct-space(7) !default;
-$ct-iframe-space-vertical: ct-space(7) !default;
+$ct-iframe-space-horizontal: ct-spacing(7) !default;
+$ct-iframe-space-vertical: ct-spacing(7) !default;
 $ct-iframe-light-background-color: ct-color-light('background-light') !default;
 $ct-iframe-dark-background-color: ct-color-dark('background-light') !default;
 
@@ -450,8 +450,8 @@ $ct-select-dark-option-background-color: $ct-select-dark-background-color !defau
 // Attachment.
 //
 $ct-attachment-border-radius: $ct-border-radius !default;
-$ct-attachment-space-horizontal: ct-space(7) !default;
-$ct-attachment-space-vertical: ct-space(10) !default;
+$ct-attachment-space-horizontal: ct-spacing(7) !default;
+$ct-attachment-space-vertical: ct-spacing(10) !default;
 $ct-attachment-light-background-color: ct-color-light('background-light') !default;
 $ct-attachment-light-border-color: ct-color-light('border-light') !default;
 $ct-attachment-light-color: ct-color-light('body') !default;
@@ -472,8 +472,8 @@ $ct-attachment-dark-wrapper-background-color: ct-color-dark('background') !defau
 //
 // Back to top.
 //
-$ct-back-to-top-space-bottom: ct-space(8) !default;
-$ct-back-to-top-space-right: ct-space(1) !default;
+$ct-back-to-top-space-bottom: ct-spacing(8) !default;
+$ct-back-to-top-space-right: ct-spacing(1) !default;
 $ct-back-to-top-background-color: ct-color-light('interaction-background') !default;
 $ct-back-to-top-color: ct-color-light('interaction-text') !default;
 $ct-back-to-top-outline-color: transparent !default;
@@ -484,8 +484,8 @@ $ct-back-to-top-outline-color: transparent !default;
 $ct-basic-content-blockquote-border-radius: $ct-border-radius !default;
 $ct-basic-content-list-marker-margin: 1rem !default;
 $ct-basic-content-list-marker-width: 1.75rem !default;
-$ct-basic-content-space-horizontal: ct-space(7) !default;
-$ct-basic-content-space-vertical: ct-space(8) !default;
+$ct-basic-content-space-horizontal: ct-spacing(7) !default;
+$ct-basic-content-space-vertical: ct-spacing(8) !default;
 $ct-basic-content-vertical-spacing: 1.5rem !default;
 $ct-basic-content-light-base-color: ct-color-light('body') !default;
 $ct-basic-content-light-blockquote-block: ct-color-light('body') !default;
@@ -690,8 +690,8 @@ $ct-logo-dark-stripe-color: ct-color-light('border-light') !default;
 // Map.
 //
 $ct-map-padding-bottom: 56.25% !default;
-$ct-map-space-horizontal: ct-space(7) !default;
-$ct-map-space-vertical: ct-space(6) !default;
+$ct-map-space-horizontal: ct-spacing(7) !default;
+$ct-map-space-vertical: ct-spacing(6) !default;
 $ct-map-light-background-color: transparent !default;
 $ct-map-light-wrapper-background-color: ct-color-light('background') !default;
 $ct-map-dark-background-color: transparent !default;
@@ -701,7 +701,7 @@ $ct-map-dark-wrapper-background-color: ct-color-dark('background') !default;
 // Next steps.
 //
 $ct-next-steps-border-radius: $ct-border-radius !default;
-$ct-next-steps-space-vertical: ct-space(6) !default;
+$ct-next-steps-space-vertical: ct-spacing(6) !default;
 $ct-next-steps-light-active-color: ct-color-light('body') !default;
 $ct-next-steps-light-background-color: ct-color-light('background-light') !default;
 $ct-next-steps-light-color: ct-color-light('body') !default;
@@ -720,7 +720,7 @@ $ct-next-steps-dark-stripe-color: ct-color-dark('highlight') !default;
 //
 // Promo.
 //
-$ct-promo-space-vertical: ct-space(6) !default;
+$ct-promo-space-vertical: ct-spacing(6) !default;
 $ct-promo-light-background-color: ct-color-light('background-light') !default;
 $ct-promo-light-body-color: ct-color-light('body') !default;
 $ct-promo-light-heading-color: ct-color-light('heading') !default;
@@ -743,8 +743,8 @@ $ct-tooltip-description-border-radius: $ct-border-radius !default;
 // @todo Review these weird values.
 $ct-tooltip-width: rem(468px) !default;
 $ct-tooltip-width-m: rem(327px) !default;
-$ct-tooltip-triangle-width: ct-space(3.2) !default;
-$ct-tooltip-triangle-height: ct-space(2.6) !default;
+$ct-tooltip-triangle-width: ct-spacing(3.2) !default;
+$ct-tooltip-triangle-height: ct-spacing(2.6) !default;
 $ct-tooltip-z-index: 99 !default;
 $ct-tooltip-light-description-background-color: ct-color-light('interaction-background') !default;
 $ct-tooltip-light-description-color: ct-color-light('interaction-text') !default;
@@ -770,8 +770,8 @@ $ct-accordion-button-border-radius: $ct-border-radius !default;
 $ct-accordion-header-border-radius: $ct-border-radius !default;
 $ct-accordion-item-border-radius: $ct-border-radius !default;
 $ct-accordion-stripe-width: rem(6px);
-$ct-accordion-space-horizontal: ct-space(7) !default;
-$ct-accordion-space-vertical: ct-space(8) !default;
+$ct-accordion-space-horizontal: ct-spacing(7) !default;
+$ct-accordion-space-vertical: ct-spacing(8) !default;
 $ct-accordion-light-background-color: ct-color-light('background-light') !default;
 $ct-accordion-light-border-color: ct-color-light('border-light') !default;
 $ct-accordion-light-color: ct-color-light('body') !default;
@@ -825,8 +825,8 @@ $ct-alert-dark-warning-icon-color: $ct-alert-dark-warning-color !default;
 //
 // Banner.
 //
-$ct-banner-decorative-desktop-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-space(11)}), 0% 100%) !default;
-$ct-banner-decorative-mobile-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-space(5)}), 0% 100%) !default;
+$ct-banner-decorative-desktop-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(11)}), 0% 100%) !default;
+$ct-banner-decorative-mobile-clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - #{ct-spacing(5)}), 0% 100%) !default;
 $ct-banner-featured-image-clip-path: polygon(13% 10%, 100% 0, 100% 100%, 0% 100%) !default;
 $ct-banner-light-background-color: ct-color-light('background') !default;
 $ct-banner-light-color: ct-color-light('body') !default;
@@ -843,7 +843,7 @@ $ct-breadcrumb-dark-divider-color: ct-color-dark('body') !default;
 // Callout.
 //
 $ct-callout-border-radius: $ct-border-radius !default;
-$ct-callout-space-vertical: ct-space(6) !default;
+$ct-callout-space-vertical: ct-spacing(6) !default;
 $ct-callout-stripe-width: rem(6px);
 $ct-callout-light-background-color: ct-color-light('background') !default;
 $ct-callout-light-heading-color: ct-color-light('heading') !default;
@@ -857,8 +857,8 @@ $ct-callout-dark-stripe-border-color: ct-color-dark('highlight') !default;
 //
 // Card container.
 //
-$ct-card-container-space-horizontal: ct-space(7) !default;
-$ct-card-container-space-vertical: ct-space(10) !default;
+$ct-card-container-space-horizontal: ct-spacing(7) !default;
+$ct-card-container-space-vertical: ct-spacing(10) !default;
 $ct-card-container-light-background-color: ct-color-light('background') !default;
 $ct-card-container-light-color: ct-color-light('body') !default;
 $ct-card-container-light-header-title-color: ct-color-light('heading') !default;
@@ -871,7 +871,7 @@ $ct-card-container-dark-wrapper-background-color: ct-color-dark('background') !d
 //
 // Layout.
 //
-$ct-layout-space-vertical: ct-space(8) !default;
+$ct-layout-space-vertical: ct-spacing(8) !default;
 $ct-layout-light-background-color: inherit !default;
 $ct-layout-dark-background-color: inherit !default;
 
@@ -959,8 +959,8 @@ $ct-header-dark-top-color: ct-color-dark('body') !default;
 //
 // Listing.
 //
-$ct-list-space-horizontal: ct-space(7) !default;
-$ct-list-space-vertical: ct-space(10) !default;
+$ct-list-space-horizontal: ct-spacing(7) !default;
+$ct-list-space-vertical: ct-spacing(10) !default;
 $ct-list-light-background-color: ct-color-light('background') !default;
 $ct-list-light-color: ct-color-light('body') !default;
 $ct-list-dark-background-color: ct-color-dark('background') !default;
@@ -1013,10 +1013,10 @@ $ct-primary-navigation-breakpoint: $ct-header-desktop-menu-breakpoint !default;
 $ct-primary-navigation-dropdown-cols: 4 !default;
 
 // Top offset for the dropdown from the bottom of the trigger.
-$ct-primary-navigation-dropdown-top-offset: ct-space(2) !default;
+$ct-primary-navigation-dropdown-top-offset: ct-spacing(2) !default;
 
 // Gutter size between columns.
-$ct-primary-navigation-dropdown-column-gutter: ct-space(4) !default;
+$ct-primary-navigation-dropdown-column-gutter: ct-spacing(4) !default;
 $ct-primary-navigation-dropdown-zindex: 10 !default;
 $ct-primary-navigation-light-border-color: ct-color-light('interaction-background') !default;
 $ct-primary-navigation-light-color: ct-color-light('interaction-background') !default;
@@ -1069,7 +1069,7 @@ $ct-primary-navigation-dark-sub-menu-item-active-color: ct-color-dark('backgroun
 // Top offset for the dropdown from the bottom of the trigger.
 $ct-secondary-navigation-breakpoint: $ct-header-desktop-menu-breakpoint !default;
 $ct-secondary-navigation-dropdown-border-radius: $ct-border-radius !default;
-$ct-secondary-navigation-dropdown-top-offset: ct-space() !default;
+$ct-secondary-navigation-dropdown-top-offset: ct-spacing() !default;
 $ct-secondary-navigation-dropdown-zindex: 11 !default;
 $ct-secondary-navigation-light-menu-item-active-background-color: none !default;
 $ct-secondary-navigation-light-sub-menu-background-color: ct-color-light('background-light') !default;
@@ -1079,7 +1079,7 @@ $ct-secondary-navigation-dark-sub-menu-background-color: ct-color-dark('backgrou
 // Navigation/Side navigation.
 //
 $ct-side-navigation-link-active-border-radius: math.div($ct-border-radius, 2) !default;
-$ct-side-navigation-space-vertical: ct-space(6) !default;
+$ct-side-navigation-space-vertical: ct-spacing(6) !default;
 $ct-side-navigation-light-title-color: ct-color-light('heading') !default;
 $ct-side-navigation-light-link-expanded-icon-color: ct-color-light('heading') !default;
 $ct-side-navigation-light-link-parent-background-color: ct-color-light('background-light') !default;
@@ -1203,8 +1203,8 @@ $ct-table-of-contents-dark-title-color: ct-color-dark('heading') !default;
 //
 $ct-slider-border-radius: $ct-border-radius !default;
 $ct-slider-progress-indicator-border-radius: $ct-border-radius !default;
-$ct-slider-space-horizontal: ct-space(7) !default;
-$ct-slider-space-vertical: ct-space(10) !default;
+$ct-slider-space-horizontal: ct-spacing(7) !default;
+$ct-slider-space-vertical: ct-spacing(10) !default;
 $ct-slider-light-background-color: ct-color-light('background') !default;
 $ct-slider-light-progress-indicator-background-color: ct-color-light('background') !default;
 $ct-slider-light-progress-indicator-color: ct-color-light('body') !default;
@@ -1260,8 +1260,8 @@ $ct-tabs-dark-panel-color: $ct-tabs-dark-links-color !default;
 //
 // Webform.
 //
-$ct-webform-space-horizontal: ct-space(7) !default;
-$ct-webform-space-vertical: ct-space(10) !default;
+$ct-webform-space-horizontal: ct-spacing(7) !default;
+$ct-webform-space-vertical: ct-spacing(10) !default;
 $ct-webform-light-background-color: ct-color-light('background') !default;
 $ct-webform-light-color: ct-color-light('body') !default;
 $ct-webform-light-wrapper-background-color: ct-color-light('background') !default;
@@ -1272,8 +1272,8 @@ $ct-webform-dark-wrapper-background-color: ct-color-dark('background') !default;
 //
 // Quote.
 //
-$ct-quote-border-width: ct-space(0.75) !default;
-$ct-quote-space-vertical: ct-space(6) !default;
+$ct-quote-border-width: ct-spacing(0.75) !default;
+$ct-quote-space-vertical: ct-spacing(6) !default;
 $ct-quote-light-background-color: ct-color-light('background-light') !default;
 $ct-quote-light-border-color: ct-color-light('highlight') !default;
 $ct-quote-light-body-color: ct-color-light('body') !default;

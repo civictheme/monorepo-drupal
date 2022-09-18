@@ -19,7 +19,7 @@
     position: relative;
     height: 0;
     overflow: hidden;
-    padding: 0 ct-space() $ct-map-padding-bottom ct-space();
+    padding: 0 ct-spacing() $ct-map-padding-bottom ct-spacing();
 
     iframe {
       position: absolute;
@@ -28,8 +28,8 @@
 
   &__links {
     display: flex;
-    margin-top: ct-space(4);
-    padding: 0 ct-space();
+    margin-top: ct-spacing(4);
+    padding: 0 ct-spacing();
 
     @include ct-breakpoint-upto(s) {
       display: block;
@@ -37,10 +37,10 @@
   }
 
   &__view_link {
-    padding-right: ct-space(2);
+    padding-right: ct-spacing(2);
 
     @include ct-breakpoint(m) {
-      padding-right: ct-space(3);
+      padding-right: ct-spacing(3);
     }
   }
 

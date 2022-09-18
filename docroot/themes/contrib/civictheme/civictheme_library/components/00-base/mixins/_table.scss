@@ -53,10 +53,10 @@
             display: table-cell;
             height: 100%;
             width: 30%;
-            max-width: ct-space(12);
+            max-width: ct-spacing(12);
             flex-shrink: 0;
             vertical-align: middle;
-            padding-right: ct-space(2);
+            padding-right: ct-spacing(2);
 
             @include ct-typography('label-regular');
           }
@@ -73,22 +73,22 @@
   tr {
     th,
     td {
-      padding: ct-space(1.5) ct-space();
+      padding: ct-spacing(1.5) ct-spacing();
 
       @include ct-breakpoint($ct-table-breakpoint) {
-        padding: ct-space(1.5) ct-space(3);
+        padding: ct-spacing(1.5) ct-spacing(3);
       }
     }
   }
 
   caption {
     text-align: left;
-    padding: ct-space(1.5) 0;
+    padding: ct-spacing(1.5) 0;
 
     @include ct-typography('label-large');
 
     @include ct-breakpoint($ct-table-breakpoint) {
-      padding: ct-space(1.5) 0;
+      padding: ct-spacing(1.5) 0;
     }
   }
 

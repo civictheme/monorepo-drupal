@@ -23,13 +23,13 @@
     @include ct-typography('heading-5');
 
     margin-top: 0;
-    margin-bottom: ct-space(2);
+    margin-bottom: ct-spacing(2);
   }
 
   @for $i from 0 through 10 {
     .ct-menu--level-#{$i} {
       .ct-menu__item__link {
-        padding-left: ($i + 1) * ct-space(2);
+        padding-left: ($i + 1) * ct-spacing(2);
       }
     }
   }
@@ -57,7 +57,7 @@
 
       display: block;
       position: relative;
-      padding: ct-space() ct-space(2) ct-space() ct-space(2.5);
+      padding: ct-spacing() ct-spacing(2) ct-spacing() ct-spacing(2.5);
       border-bottom-width: 1px;
       border-bottom-style: solid;
       text-decoration: none;
@@ -86,13 +86,13 @@
       position: absolute;
       top: 0;
       right: 0;
-      width: ct-space(3);
-      height: ct-space(3);
-      padding: ct-space() ct-space(0.25);
+      width: ct-spacing(3);
+      height: ct-spacing(3);
+      padding: ct-spacing() ct-spacing(0.25);
       z-index: 1;
 
       @include ct-breakpoint('m') {
-        padding: ct-space(1.25) ct-space(0.25);
+        padding: ct-spacing(1.25) ct-spacing(0.25);
       }
     }
   }

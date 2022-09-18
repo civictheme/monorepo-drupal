@@ -9,7 +9,7 @@
 
   display: flex;
   align-items: center;
-  padding: ct-space(3);
+  padding: ct-spacing(3);
   width: 100%;
 
   @include ct-breakpoint-upto('m') {
@@ -36,12 +36,12 @@
     .ct-select--pager {
       min-width: auto;
       max-width: rem(80px);
-      margin-left: ct-space();
-      padding: 0 ct-space(2) 0 ct-space(2);
+      margin-left: ct-spacing();
+      padding: 0 ct-spacing(2) 0 ct-spacing(2);
     }
 
     @include ct-breakpoint-upto('m') {
-      margin-bottom: ct-space(2);
+      margin-bottom: ct-spacing(2);
     }
   }
 
@@ -60,29 +60,29 @@
   }
 
   #{$root}__item--ellipsis {
-    padding: 0 ct-space();
+    padding: 0 ct-spacing();
     text-align: center;
   }
 
   #{$root}__item--first,
   #{$root}__item--previous {
-    padding: 0 ct-space(1) 0 0;
+    padding: 0 ct-spacing(1) 0 0;
 
     @include ct-breakpoint('m') {
-      padding: 0 ct-space(4) 0 0;
+      padding: 0 ct-spacing(4) 0 0;
     }
   }
   #{$root}__item--next,
   #{$root}__item--last {
-    padding: 0 0 0 ct-space(1);
+    padding: 0 0 0 ct-spacing(1);
 
     @include ct-breakpoint('m') {
-      padding: 0 0 0 ct-space(4);
+      padding: 0 0 0 ct-spacing(4);
     }
   }
 
   #{$root}__link {
-    padding: 0 ct-space();
+    padding: 0 ct-spacing();
     display: block;
     text-align: center;
     text-decoration-color: transparent;

@@ -18,10 +18,10 @@
   }
 
   &__inner {
-    padding: ct-space(3) 0;
+    padding: ct-spacing(3) 0;
 
     @include ct-breakpoint(m) {
-      padding: ct-space(7) 0;
+      padding: ct-spacing(7) 0;
       display: flex;
       align-items: center;
     }
@@ -30,7 +30,7 @@
   &__title {
     @include ct-typography('heading-4');
 
-    margin-bottom: ct-space(1);
+    margin-bottom: ct-spacing(1);
   }
 
   &__content {
@@ -53,12 +53,12 @@
   &__first-container {
     @include ct-breakpoint(m) {
       flex-grow: 1;
-      padding-right: ct-space(5);
+      padding-right: ct-spacing(5);
     }
   }
 
   &__second-container {
-    margin-top: ct-space(3);
+    margin-top: ct-spacing(3);
 
     @include ct-breakpoint(m) {
       margin-top: 0;

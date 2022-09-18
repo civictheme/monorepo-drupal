@@ -11,7 +11,7 @@
 // Mixin to create a color box with specific dimensions.
 //
 @mixin ct-stories-color-box($key, $value, $width: 100px, $height: 100px) {
-  margin: 0 ct-space(2) ct-space(2) 0;
+  margin: 0 ct-spacing(2) ct-spacing(2) 0;
   position: relative;
   width: $width;
 
@@ -35,7 +35,7 @@
     @include ct-typography('label-small');
 
     text-align: center;
-    margin: ct-space() 0;
+    margin: ct-spacing() 0;
 
     &::after {
       $content: string.to-upper-case(#{$value});

@@ -9,7 +9,7 @@
   @include ct-highlight-stripe($ct-quote-border-width, 0, 0);
 
   position: relative;
-  padding-left: ct-space(2);
+  padding-left: ct-spacing(2);
 
   &#{$root}--vertical-space-top {
     @include ct-component-with-vertical-space(top, $ct-quote-space-vertical, $is_padding: false);
@@ -32,11 +32,11 @@
   &__author {
     @include ct-typography('label-extra-small');
 
-    padding: 0 ct-space(3) ct-space(3);
+    padding: 0 ct-spacing(3) ct-spacing(3);
 
     &::before {
       content: '-';
-      margin-right: ct-space(0.5);
+      margin-right: ct-spacing(0.5);
     }
   }
 

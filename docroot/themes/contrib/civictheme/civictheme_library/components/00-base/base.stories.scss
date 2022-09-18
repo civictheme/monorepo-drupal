@@ -8,7 +8,7 @@
 // Set default styles for the Storybook viewport.
 #root {
   font-family: sans-serif;
-  padding: ct-space(2);
+  padding: ct-spacing(2);
 
   // Only apply wrappers used directly in preview, but not within other
   // components.
@@ -88,13 +88,13 @@
 .example-container {
   $root: &;
 
-  margin-bottom: ct-space(4);
+  margin-bottom: ct-spacing(4);
 
   #{$root}__title {
     @include ct-typography('label-large');
 
     border-bottom: solid 1px;
-    margin-bottom: ct-space(2);
+    margin-bottom: ct-spacing(2);
 
     code {
       text-transform: lowercase;
@@ -107,15 +107,15 @@
   #{$root}__subtitle {
     @include ct-typography('label-regular');
 
-    margin-bottom: ct-space(1);
+    margin-bottom: ct-spacing(1);
   }
 
   #{$root}__content {
-    margin-bottom: ct-space(4);
+    margin-bottom: ct-spacing(4);
   }
 
   #{$root}__subcontent {
-    margin-bottom: ct-space(4);
+    margin-bottom: ct-spacing(4);
   }
 
   &#{$root}--columns {
@@ -125,7 +125,7 @@
   &#{$root}--columns--2 {
     #{$root}__column {
       width: 50%;
-      padding: ct-space(2);
+      padding: ct-spacing(2);
     }
   }
 
@@ -166,12 +166,12 @@
   $root: &;
 
   border: solid 1px #ccc;
-  padding: ct-space(4);
-  margin: ct-space(4) auto;
+  padding: ct-spacing(4);
+  margin: ct-spacing(4) auto;
   max-width: 60%;
 
   &--large {
-    margin: ct-space(8) auto;
+    margin: ct-spacing(8) auto;
     max-width: 60%;
     min-width: 600px;
   }
@@ -185,6 +185,6 @@
   }
 
   #{$root}__content {
-    margin-bottom: ct-space(4);
+    margin-bottom: ct-spacing(4);
   }
 }

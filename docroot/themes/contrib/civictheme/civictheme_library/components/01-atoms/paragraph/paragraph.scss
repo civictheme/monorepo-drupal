@@ -9,7 +9,7 @@
   $sizes: ( 'extra-large', 'large', 'regular', 'small' );
 
   display: block;
-  margin-bottom: ct-space();
+  margin-bottom: ct-spacing();
 
   @include ct-content();
 

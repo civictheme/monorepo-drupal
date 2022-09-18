@@ -10,7 +10,7 @@
   &__wrapper {
     position: relative;
     padding-bottom: math.div($ct-video-ratio-height, $ct-video-ratio-width) * 100%;
-    padding-top: ct-space(3);
+    padding-top: ct-spacing(3);
     height: 0;
     overflow: hidden;
 
@@ -26,18 +26,18 @@
 
   &__links {
     display: flex;
-    margin-top: ct-space(4);
+    margin-top: ct-spacing(4);
 
     @include ct-breakpoint(m) {
-      margin-top: ct-space(3);
+      margin-top: ct-spacing(3);
     }
   }
 
   &__links__transcript {
-    padding-right: ct-space(2);
+    padding-right: ct-spacing(2);
 
     @include ct-breakpoint(m) {
-      padding-right: ct-space(3);
+      padding-right: ct-spacing(3);
     }
   }
 

@@ -92,7 +92,7 @@
 
     [data-tooltip-close] {
       margin-left: auto;
-      padding: ct-space() ct-space(2) ct-space() ct-space();
+      padding: ct-spacing() ct-spacing(2) ct-spacing() ct-spacing();
       align-self: start;
       cursor: pointer;
     }
@@ -128,7 +128,7 @@
   }
 
   &__description__inner {
-    padding: ct-space(3);
+    padding: ct-spacing(3);
   }
 
   &.ct-theme-light {

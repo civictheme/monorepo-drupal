@@ -21,7 +21,7 @@
     border-radius: $ct-callout-border-radius;
     display: flex;
     flex-direction: column;
-    padding: ct-space(3) ct-space(3);
+    padding: ct-spacing(3) ct-spacing(3);
     align-items: flex-start;
     flex: none;
     order: 1;
@@ -29,7 +29,7 @@
     margin: 0;
 
     @include ct-breakpoint(m) {
-      padding: ct-space(3) ct-space(5) ct-space(4) ct-space(3);
+      padding: ct-spacing(3) ct-spacing(5) ct-spacing(4) ct-spacing(3);
     }
 
     @include ct-highlight-stripe($ct-callout-stripe-width, $ct-callout-border-radius, 0);
@@ -38,7 +38,7 @@
   &__summary {
     @include ct-typography('text-regular');
 
-    margin-top: ct-space(2);
+    margin-top: ct-spacing(2);
   }
 
   &__title {
@@ -60,16 +60,16 @@
       flex: none;
       order: 0;
       flex-grow: 0;
-      margin: ct-space() 0;
+      margin: ct-spacing() 0;
 
       @include ct-breakpoint(m) {
-        margin: ct-space() ct-space() 0 0;
+        margin: ct-spacing() ct-spacing() 0 0;
       }
     }
 
     &:last-child {
       @include ct-breakpoint(m) {
-        margin: ct-space() 0 0 0;
+        margin: ct-spacing() 0 0 0;
       }
     }
   }

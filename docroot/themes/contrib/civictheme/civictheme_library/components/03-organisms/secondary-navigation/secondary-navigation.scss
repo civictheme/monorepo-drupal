@@ -36,7 +36,7 @@
 
       // Links - level 0.
       &--level-0 {
-        margin-right: ct-space(2);
+        margin-right: ct-spacing(2);
 
         &:last-child {
           margin-right: 0;
@@ -62,10 +62,10 @@
       @include ct-elevation(4);
 
       .ct-menu__sub-menu {
-        margin-left: ct-space(2);
+        margin-left: ct-spacing(2);
 
         &.ct-menu--level-1 {
-          margin: ct-space(2);
+          margin: ct-spacing(2);
         }
       }
     }

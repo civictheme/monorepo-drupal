@@ -9,7 +9,7 @@
 
   display: block;
   margin: 0 auto 0.5rem;
-  padding: ct-space(1.25) ct-space(2);
+  padding: ct-spacing(1.25) ct-spacing(2);
   border-radius: $ct-input-border-radius;
 
   &.disabled {

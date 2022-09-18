@@ -11,14 +11,14 @@
   div {
     position: relative;
     width: 100%;
-    min-height: ct-space();
+    min-height: ct-spacing();
     box-sizing: border-box;
   }
 
   $spaces: ();
 
   @for $index from 1 through 11 {
-    $spaces: list.append($spaces, ct-space($index));
+    $spaces: list.append($spaces, ct-spacing($index));
   }
 
   @include ct-generate-class-variations-from-map($spaces, 'story-space') using($name, $value, $index) {

@@ -17,60 +17,60 @@
   h1 {
     @include ct-typography('heading-1');
 
-    margin-bottom: ct-space(3);
+    margin-bottom: ct-spacing(3);
 
     @include ct-breakpoint('m') {
-      margin-bottom: ct-space(4);
+      margin-bottom: ct-spacing(4);
     }
   }
 
   h2 {
     @include ct-typography('heading-2');
 
-    margin-bottom: ct-space(3);
+    margin-bottom: ct-spacing(3);
 
     @include ct-breakpoint('m') {
-      margin-bottom: ct-space(4);
+      margin-bottom: ct-spacing(4);
     }
   }
 
   h3 {
     @include ct-typography('heading-3');
 
-    margin-bottom: ct-space(2);
+    margin-bottom: ct-spacing(2);
 
     @include ct-breakpoint('m') {
-      margin-bottom: ct-space(3);
+      margin-bottom: ct-spacing(3);
     }
   }
 
   h4 {
     @include ct-typography('heading-4');
 
-    margin-bottom: ct-space(2);
+    margin-bottom: ct-spacing(2);
 
     @include ct-breakpoint('m') {
-      margin-bottom: ct-space(3);
+      margin-bottom: ct-spacing(3);
     }
   }
 
   h5 {
     @include ct-typography('heading-5');
 
-    margin-bottom: ct-space();
+    margin-bottom: ct-spacing();
 
     @include ct-breakpoint('m') {
-      margin-bottom: ct-space(2);
+      margin-bottom: ct-spacing(2);
     }
   }
 
   h6 {
     @include ct-typography('heading-6');
 
-    margin-bottom: ct-space();
+    margin-bottom: ct-spacing();
 
     @include ct-breakpoint('m') {
-      margin-bottom: ct-space(2);
+      margin-bottom: ct-spacing(2);
     }
   }
 
@@ -90,7 +90,7 @@
     margin: 0;
     margin-top: $ct-basic-content-vertical-spacing;
     margin-bottom: $ct-basic-content-vertical-spacing;
-    padding: ct-space(2) ct-space(3);
+    padding: ct-spacing(2) ct-spacing(3);
 
     &::before {
       content: '';

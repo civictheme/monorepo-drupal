@@ -5,7 +5,7 @@
 .ct-input {
   $root: &;
 
-  margin-bottom: ct-space(2);
+  margin-bottom: ct-spacing(2);
 
   &--disabled {
     opacity: 50%;
@@ -13,14 +13,14 @@
 
   &__label {
     display: block;
-    margin-bottom: ct-space();
+    margin-bottom: ct-spacing();
   }
 
   &__element {
     border: rem(1px) solid;
     border-radius: $ct-input-border-radius;
     box-sizing: border-box;
-    padding: ct-space(1.5) ct-space(5) ct-space(1.5) ct-space(2);
+    padding: ct-spacing(1.5) ct-spacing(5) ct-spacing(1.5) ct-spacing(2);
     width: 100%;
 
     &::placeholder {
@@ -47,11 +47,11 @@
 
   &__state {
     position: relative;
-    margin-left: - ct-space(4);
+    margin-left: - ct-spacing(4);
 
     svg {
-      width: ct-space(2);
-      height: ct-space(2);
+      width: ct-spacing(2);
+      height: ct-spacing(2);
       vertical-align: middle;
     }
   }

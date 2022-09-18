@@ -303,14 +303,14 @@
     @include ct-typography('label-extra-large');
 
     @if $with-padding {
-      padding: ct-space(2) ct-space(5);
+      padding: ct-spacing(2) ct-spacing(5);
     }
   }
   @else if $size == 'regular' {
     @include ct-typography('label-regular');
 
     @if $with-padding {
-      padding: ct-space(2) ct-space(5);
+      padding: ct-spacing(2) ct-spacing(5);
     }
   }
   @else if $size == 'small' {
@@ -319,7 +319,7 @@
     border-width: math.div($ct-button-border-width, 2);
 
     @if $with-padding {
-      padding: ct-space() ct-space(3);
+      padding: ct-spacing() ct-spacing(3);
     }
   }
   @else {
@@ -383,7 +383,7 @@
       @include ct-button-size('large', false);
 
       &__dismiss {
-        margin-left: ct-space(3);
+        margin-left: ct-spacing(3);
       }
     }
 
@@ -391,7 +391,7 @@
       @include ct-button-size('regular', false);
 
       &__dismiss {
-        margin-left: ct-space(3);
+        margin-left: ct-spacing(3);
       }
     }
 
@@ -399,7 +399,7 @@
       @include ct-button-size('small', false);
 
       &__dismiss {
-        margin-left: ct-space(2);
+        margin-left: ct-spacing(2);
       }
     }
   }

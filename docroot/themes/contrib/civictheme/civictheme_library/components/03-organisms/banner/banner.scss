@@ -14,12 +14,12 @@
   #{$root}__wrapper__inner {
     @include ct-background();
 
-    padding-top: ct-space(12);
-    padding-bottom: ct-space(15);
+    padding-top: ct-spacing(12);
+    padding-bottom: ct-spacing(15);
 
     @include ct-print() {
-      padding-top: ct-space(2);
-      padding-bottom: ct-space(3);
+      padding-top: ct-spacing(2);
+      padding-bottom: ct-spacing(3);
     }
   }
 
@@ -33,12 +33,12 @@
     }
 
     #{$root}__content-below {
-      margin-top: -(ct-space(2));
+      margin-top: -(ct-spacing(2));
     }
   }
 
   #{$root}__content-below {
-    margin-top: ct-space(2);
+    margin-top: ct-spacing(2);
   }
 
   #{$root}__featured-image {
@@ -55,8 +55,8 @@
     @include ct-breakpoint('m') {
       display: block;
       position: absolute;
-      bottom: ct-space(4);
-      top: ct-space(12);
+      bottom: ct-spacing(4);
+      top: ct-spacing(12);
       right: 0;
 
       & * {

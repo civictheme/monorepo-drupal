@@ -26,7 +26,7 @@
     &:visited,
     &:hover {
       border-radius: rem(100px);
-      padding: ct-space();
+      padding: ct-spacing();
       background-color: $ct-back-to-top-background-color;
       border-color: $ct-back-to-top-background-color;
       color: $ct-back-to-top-color;

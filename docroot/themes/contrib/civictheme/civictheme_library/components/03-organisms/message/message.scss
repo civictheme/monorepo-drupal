@@ -13,15 +13,15 @@
   border-radius: $ct-message-border-radius;
   border-left: solid rem(6px) transparent;
   box-sizing: border-box;
-  padding: ct-space(3) ct-space(3) ct-space(3) ct-space(1);
-  margin: ct-space(3) 0;
+  padding: ct-spacing(3) ct-spacing(3) ct-spacing(3) ct-spacing(1);
+  margin: ct-spacing(3) 0;
   width: 100%;
 
   @include ct-typography('text-regular');
 
   #{$root}__icon {
     width: rem(26px);
-    margin-right: ct-space(2);
+    margin-right: ct-spacing(2);
   }
 
   .ct-icon {
@@ -34,7 +34,7 @@
   }
 
   #{$root}__summary {
-    margin-top: ct-space();
+    margin-top: ct-spacing();
   }
 
   // SASS does not allow variables interpolation, so we are creating a local

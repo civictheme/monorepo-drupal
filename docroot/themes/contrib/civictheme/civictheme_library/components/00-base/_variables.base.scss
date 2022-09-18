@@ -123,9 +123,9 @@ $ct-colors-default: (
 // Spacing.
 //
 // Do not use these directly.
-// Use @include ct-space() function instead.
+// Use @include ct-spacing() function instead.
 //
-$ct-space: 0.5rem !default;
+$ct-spacing: 0.5rem !default;
 
 //
 // Breakpoints.
@@ -429,10 +429,10 @@ $ct-icon-symbols-default: (
 // Elevations.
 //
 $ct-elevations: (
-  0 2px ct-space(1) rgba(0, 0, 0, 20%),
-  0 ct-space(0.5) ct-space(2) rgba(0, 0, 0, 20%),
-  0 ct-space(1) ct-space(4) rgba(0, 0, 0, 20%),
-  0 ct-space(2) ct-space(8) rgba(0, 0, 0, 20%),
+  0 2px ct-spacing(1) rgba(0, 0, 0, 20%),
+  0 ct-spacing(0.5) ct-spacing(2) rgba(0, 0, 0, 20%),
+  0 ct-spacing(1) ct-spacing(4) rgba(0, 0, 0, 20%),
+  0 ct-spacing(2) ct-spacing(8) rgba(0, 0, 0, 20%),
 ) !default;
 
 //

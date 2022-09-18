@@ -21,8 +21,8 @@
   @include ct-typography('label-regular');
 
   text-decoration-thickness: rem(1px);
-  text-underline-offset: ct-space(0.375);
-  padding: ct-space(0.375) 0 ct-space(0.25);
+  text-underline-offset: ct-spacing(0.375);
+  padding: ct-spacing(0.375) 0 ct-spacing(0.25);
 
   &[disabled] {
     pointer-events: none;

@@ -20,7 +20,7 @@
   &__header {
     display: flex;
     flex-direction: column;
-    margin-bottom: ct-space(3);
+    margin-bottom: ct-spacing(3);
 
     @include ct-breakpoint('m') {
       flex-direction: row;
@@ -43,7 +43,7 @@
   }
 
   &__filters {
-    margin-bottom: ct-space(5);
+    margin-bottom: ct-spacing(5);
   }
 
   &__pager {
@@ -52,11 +52,11 @@
   }
 
   &__emptyresults {
-    padding: ct-space(6) 0;
+    padding: ct-spacing(6) 0;
   }
 
   &__results-below {
-    padding: ct-space(3) 0 ct-space(10);
+    padding: ct-spacing(3) 0 ct-spacing(10);
   }
 
   &__link-below {
@@ -68,7 +68,7 @@
   &__feed_icons {
     @include ct-content();
 
-    padding: ct-space(6) 0;
+    padding: ct-spacing(6) 0;
   }
 
   &--with-background {

@@ -31,7 +31,7 @@
     position: relative;
     border: 1px solid;
     border-radius: $ct-accordion-item-border-radius;
-    margin-bottom: ct-space(2);
+    margin-bottom: ct-spacing(2);
 
     @include ct-highlight-stripe($ct-accordion-stripe-width, $ct-accordion-item-border-radius);
   }
@@ -57,7 +57,7 @@
       @include ct-typography('heading-6');
 
       width: 100%;
-      padding: ct-space(3);
+      padding: ct-spacing(3);
       border-radius: $ct-accordion-button-border-radius;
       margin: 0;
       border: none;
@@ -101,7 +101,7 @@
 
     &--inner {
       opacity: 0%;
-      padding: 0 ct-space(3) ct-space(3);
+      padding: 0 ct-spacing(3) ct-spacing(3);
 
       @if $ct-animation-enabled {
         transition: opacity 0.5s;

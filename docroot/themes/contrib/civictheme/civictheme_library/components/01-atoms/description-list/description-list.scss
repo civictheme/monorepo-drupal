@@ -18,7 +18,7 @@
     flex-wrap: nowrap;
 
     #{$root}--inline & {
-      margin-right: ct-space(2);
+      margin-right: ct-spacing(2);
     }
 
     &:last-child {
@@ -36,12 +36,12 @@
     &::after {
       #{$root}--inline & {
         content: '•';
-        margin-left: ct-space(2);
+        margin-left: ct-spacing(2);
       }
     }
 
     &__term {
-      margin-right: ct-space();
+      margin-right: ct-spacing();
 
       &::after {
         content: ':';

@@ -5,7 +5,7 @@
 .ct-form-element {
   @include ct-typography('text-regular');
 
-  margin-bottom: ct-space(2);
+  margin-bottom: ct-spacing(2);
   width: 100%;
 
   &:last-child {
@@ -24,7 +24,7 @@
 
     .ct-form-element__description,
     label {
-      padding-left: ct-space(5);
+      padding-left: ct-spacing(5);
     }
 
     .ct-form-element__description {
@@ -32,7 +32,7 @@
     }
 
     label {
-      margin: ct-space(0.5) 0;
+      margin: ct-spacing(0.5) 0;
     }
   }
 
@@ -40,7 +40,7 @@
   &--submit {
     display: inline-block;
     width: auto;
-    margin-left: ct-space(2);
+    margin-left: ct-spacing(2);
 
     &:first-child {
       margin-left: 0;
@@ -48,8 +48,8 @@
   }
 
   .ct-message {
-    padding: ct-space();
-    margin-bottom: ct-space();
+    padding: ct-spacing();
+    margin-bottom: ct-spacing();
     display: inline-flex;
     align-items: center;
     border: none;
@@ -68,12 +68,12 @@
 
     .ct-message__icon {
       width: rem(18px);
-      margin-right: ct-space();
+      margin-right: ct-spacing();
     }
   }
 
   &__description {
-    margin-bottom: ct-space(1);
+    margin-bottom: ct-spacing(1);
 
     @include ct-typography('text-small');
   }
