@@ -17,21 +17,21 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set with_background_class = with_background ? 'civictheme-list--with-background' : '' %}
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-list--vertical-space-%s'|format(vertical_space) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set with_background_class = with_background ? 'ct-list--with-background' : '' %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-list--vertical-space-%s'|format(vertical_space) : '' %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, modifier_class|default(''), with_background_class, vertical_space_class)  %}
 
-<div class="civictheme-list {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-  <div class="civictheme-list__container">
+<div class="ct-list {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-list__container">
 
     {% block header %}
       {% if title is not empty or link_above is not empty %}
-        <div class="civictheme-list__header">
+        <div class="ct-list__header">
 
           {% block title %}
             {% if title -%}
-              <div class="civictheme-list__header-title">
+              <div class="ct-list__header-title">
                 {% include '@atoms/heading/heading.twig' with {
                   content: title,
                   level: 2,
@@ -42,7 +42,7 @@
 
           {% block link_above %}
             {% if link_above %}
-              <div class="civictheme-list__header-link-above">
+              <div class="ct-list__header-link-above">
                 {% include '@atoms/link/link.twig' with {
                   theme: theme,
                   text: link_above.text,
@@ -63,7 +63,7 @@
 
       {% block filters %}
         {% if filters -%}
-          <div class="civictheme-list__filters">
+          <div class="ct-list__filters">
             {{ filters }}
           </div>
         {% endif %}
@@ -71,7 +71,7 @@
 
       {% block rows_header %}
         {% if rows_header -%}
-          <header class="civictheme-list__rows-header" tabindex="0">
+          <header class="ct-list__rows-header" tabindex="0">
             <div class="container">
               <div class="row">
                 <div class="col-xxs-12">
@@ -85,7 +85,7 @@
 
       {% block rows %}
         {% if rows -%}
-          <div class="civictheme--List__body">
+          <div class="ct--List__body">
             {{ rows }}
           </div>
         {% endif %}
@@ -93,7 +93,7 @@
 
       {% block empty %}
         {% if rows is not defined or rows is empty -%}
-          <div class="civictheme-list__empty-results">
+          <div class="ct-list__empty-results">
             <div class="container">
               <div class="row">
                 <div class="col-xxs-12">
@@ -107,11 +107,11 @@
 
       {% block rows_below %}
         {% if pager is defined and pager is not empty %}
-          <div class="civictheme-list__results-below">
+          <div class="ct-list__results-below">
             <div class="container">
               <div class="row">
                 {% block pager %}
-                  <div class="civictheme-list__pager">
+                  <div class="ct-list__pager">
                     {{ pager }}
                   </div>
                 {% endblock %}
@@ -121,7 +121,7 @@
         {% endif %}
 
         {% if link_below %}
-          <div class="civictheme-list__link-below">
+          <div class="ct-list__link-below">
             {% include '@atoms/button/button.twig' with {
               theme: theme,
               type: 'primary',
@@ -138,7 +138,7 @@
 
       {% block footer %}
         {% if footer is not empty -%}
-          <footer class="civictheme-list__footer">
+          <footer class="ct-list__footer">
             {{ footer }}
           </footer>
         {% endif %}

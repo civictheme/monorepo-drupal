@@ -23,16 +23,16 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set size = size|default('large') %}
-{% set size_class = size == 'large'?'civictheme-navigation-card--large' : 'civictheme-navigation-card--small' %}
-{% set image_as_icon_class = image_as_icon ? 'civictheme-navigation-card--image-as-icon' : '' %}
+{% set size_class = size == 'large'?'ct-navigation-card--large' : 'ct-navigation-card--small' %}
+{% set image_as_icon_class = image_as_icon ? 'ct-navigation-card--image-as-icon' : '' %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, size_class, image_as_icon_class, modifier_class|default('')) %}
 
-<div class="civictheme-navigation-card {{ modifier_class }}">
+<div class="ct-navigation-card {{ modifier_class }}">
   {% block image %}
     {% if image.src is not empty %}
-      <div class="civictheme-navigation-card__image-wrapper">
+      <div class="ct-navigation-card__image-wrapper">
         {% include '@atoms/image/image.twig' with {
           theme: theme,
           src: image.src,
@@ -41,7 +41,7 @@
 
         {% block image_over %}
           {% if image_over %}
-            <div class="civictheme-navigation-card__image-over">
+            <div class="ct-navigation-card__image-over">
               {{ image_over }}
             </div>
           {% endif %}
@@ -50,22 +50,22 @@
     {% endif %}
   {% endblock %}
 
-  <div class="civictheme-navigation-card__content">
+  <div class="ct-navigation-card__content">
     {% block content_top %}
       {% if content_top %}
-        <div class="civictheme-navigation-card__content-top">
+        <div class="ct-navigation-card__content-top">
           {{ content_top }}
         </div>
       {% endif %}
     {% endblock %}
     {% block icon %}
       {% if icon %}
-        <div class="civictheme-navigation-card__icon">
+        <div class="ct-navigation-card__icon">
           {% include '@base/icon/icon.twig' with {
             symbol: icon,
             size: 'large',
             color: 'primary',
-            modifier_class: 'civictheme-navigation-card__icon',
+            modifier_class: 'ct-navigation-card__icon',
           } only %}
         </div>
       {% endif %}
@@ -73,9 +73,9 @@
 
     {% block title %}
       {% if title is not empty %}
-        <div class="civictheme-navigation-card__title">
+        <div class="ct-navigation-card__title">
           {% if url is not empty %}
-          <a class="civictheme-navigation-card__title-link" href="{{ url }}" {% if is_external %}title="Open in a new tab" target="_blank"{% endif %}>
+          <a class="ct-navigation-card__title-link" href="{{ url }}" {% if is_external %}title="Open in a new tab" target="_blank"{% endif %}>
           {% endif %}
             {{ title }}
             {% if url is not empty %}
@@ -84,13 +84,13 @@
                   {% include '@base/icon/icon.twig' with {
                     symbol: 'upper-right-arrow',
                     color: 'primary',
-                    modifier_class: 'civictheme-navigation-card__icon--external'
+                    modifier_class: 'ct-navigation-card__icon--external'
                   } only %}
                 {% else %}
                   {% include '@base/icon/icon.twig' with {
                     symbol: 'upper-right-arrow',
                     color: 'primary',
-                    modifier_class: 'civictheme-navigation-card__icon--arrow',
+                    modifier_class: 'ct-navigation-card__icon--arrow',
                   } only %}
                 {% endif %}
               </span>
@@ -104,7 +104,7 @@
 
     {% block content_middle %}
       {% if content_middle is not empty %}
-        <div class="civictheme-navigation-card__content-middle">
+        <div class="ct-navigation-card__content-middle">
           {{ content_middle }}
         </div>
       {% endif %}
@@ -112,7 +112,7 @@
 
     {% block summary %}
       {% if summary is not empty %}
-        <div class="civictheme-navigation-card__summary">
+        <div class="ct-navigation-card__summary">
           {{ summary }}
         </div>
       {% endif %}
@@ -120,7 +120,7 @@
 
     {% block content_bottom %}
       {% if content_bottom is not empty %}
-        <div class="civictheme-navigation-card__content-bottom">
+        <div class="ct-navigation-card__content-bottom">
           {{ content_bottom }}
         </div>
       {% endif %}

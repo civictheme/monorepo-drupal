@@ -22,19 +22,19 @@ Feature: View of Page content with map component
 
     When I visit "civictheme_page" "[TEST] Page map test"
     And I wait 10 seconds
-    And I should see an "div.civictheme-map" element
-    And I should see an "div.civictheme-map.civictheme-theme-light" element
-    And I should see an "div.civictheme-map.civictheme-map--vertical-space-both" element
-    And I should not see an "div.civictheme-map.civictheme-theme-dark" element
-    And I should not see an "div.civictheme-map--with-background" element
-    And I should see an "div.civictheme-map__canvas" element
-    And I should see an "iframe.civictheme-iframe.civictheme-theme-light" element
-    And I should see an "div.civictheme-map__links" element
-    And I should see an "div.civictheme-map__view_link" element
-    And I should see an "div.civictheme-map__share_link" element
+    And I should see an "div.ct-map" element
+    And I should see an "div.ct-map.ct-theme-light" element
+    And I should see an "div.ct-map.ct-map--vertical-space-both" element
+    And I should not see an "div.ct-map.ct-theme-dark" element
+    And I should not see an "div.ct-map--with-background" element
+    And I should see an "div.ct-map__canvas" element
+    And I should see an "iframe.ct-iframe.ct-theme-light" element
+    And I should see an "div.ct-map__links" element
+    And I should see an "div.ct-map__view_link" element
+    And I should see an "div.ct-map__share_link" element
     And I should see the text "Australia"
-    Then I should see the link "View in Google Maps" with "https://maps.google.com/maps?q=Australia" in 'div.civictheme-map__links'
-    Then I should see the link "Share this Location" with "https://goo.gl/maps/XsNx2XM21y41UQ7P7" in 'div.civictheme-map__links'
+    Then I should see the link "View in Google Maps" with "https://maps.google.com/maps?q=Australia" in 'div.ct-map__links'
+    Then I should see the link "Share this Location" with "https://goo.gl/maps/XsNx2XM21y41UQ7P7" in 'div.ct-map__links'
 
   @api @javascript
   Scenario: CivicTheme page content type page can be viewed by anonymous with map dark with background
@@ -49,15 +49,15 @@ Feature: View of Page content with map component
 
     When I visit "civictheme_page" "[TEST] Page map test"
     And I wait 10 seconds
-    And I should see an "div.civictheme-map" element
-    And I should see an "div.civictheme-map.civictheme-theme-dark" element
-    And I should not see an "div.civictheme-map.civictheme-theme-light" element
-    And I should see an "div.civictheme-map--with-background" element
-    And I should see an "div.civictheme-map__canvas" element
-    And I should see an "iframe.civictheme-iframe" element
-    And I should see an "div.civictheme-map__links" element
-    And I should see an "div.civictheme-map__view_link" element
-    And I should see an "div.civictheme-map__share_link" element
+    And I should see an "div.ct-map" element
+    And I should see an "div.ct-map.ct-theme-dark" element
+    And I should not see an "div.ct-map.ct-theme-light" element
+    And I should see an "div.ct-map--with-background" element
+    And I should see an "div.ct-map__canvas" element
+    And I should see an "iframe.ct-iframe" element
+    And I should see an "div.ct-map__links" element
+    And I should see an "div.ct-map__view_link" element
+    And I should see an "div.ct-map__share_link" element
     And I should see the text "Australia"
-    Then I should see the link "View in Google Maps" with "https://maps.google.com/maps?q=Australia" in 'div.civictheme-map__links'
-    Then I should see the link "Share this Location" with "https://goo.gl/maps/XsNx2XM21y41UQ7P7" in 'div.civictheme-map__links'
+    Then I should see the link "View in Google Maps" with "https://maps.google.com/maps?q=Australia" in 'div.ct-map__links'
+    Then I should see the link "Share this Location" with "https://goo.gl/maps/XsNx2XM21y41UQ7P7" in 'div.ct-map__links'

@@ -19,19 +19,19 @@
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-attachment--vertical-space-%s'|format(vertical_space) : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-attachment--vertical-space-%s'|format(vertical_space) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if links is not empty %}
-  <div class="civictheme-attachment {{ modifier_class }}">
+  <div class="ct-attachment {{ modifier_class }}">
     <div class="container">
       <div class="row">
         <div class="col-xxs-12">
-          <div class="civictheme-attachment__content">
+          <div class="ct-attachment__content">
             {% block content_top %}
               {% if content_top is not empty %}
-                <div class="civictheme-attachment__content-top">
+                <div class="ct-attachment__content-top">
                   {{ content_top }}
                 </div>
               {% endif %}
@@ -39,15 +39,15 @@
 
             {% block content %}
               {% if title is not empty or summary is not empty %}
-                <div class="civictheme-attachment__text">
+                <div class="ct-attachment__text">
                   {% if title is not empty %}
-                    <div class="civictheme-attachment__title">
+                    <div class="ct-attachment__title">
                       {{ title }}
                     </div>
                   {% endif %}
 
                   {% if summary is not empty %}
-                    <div class="civictheme-attachment__summary">
+                    <div class="ct-attachment__summary">
                       {{ summary }}
                     </div>
                   {% endif %}
@@ -56,10 +56,10 @@
             {% endblock %}
 
             {% block links %}
-              <ul class="civictheme-attachment__links">
+              <ul class="ct-attachment__links">
                 {% for link in links %}
                   {% if link.text is not empty %}
-                    <li class="civictheme-attachment__links--link">
+                    <li class="ct-attachment__links--link">
                       <span>
                         {% include '@base/icon/icon.twig' with {
                           symbol: link.icon ? link.icon : 'fileandfolders_document',
@@ -71,11 +71,11 @@
                           text: link.text,
                           title: 'Download %s'|format(link.url|split('.')|last),
                           url: link.url,
-                          modifier_class: 'civictheme-link--attachment'
+                          modifier_class: 'ct-link--attachment'
                         } only %}
 
                         {% if link.last_updated is not empty %}
-                          <div class="civictheme-attachment__links--last-updated">
+                          <div class="ct-attachment__links--last-updated">
                             LAST UPDATED: {{ link.last_updated }}
                           </div>
                         {% endif %}
@@ -88,7 +88,7 @@
 
             {% block content_bottom %}
               {% if content_bottom is not empty %}
-                <div class="civictheme-attachment__content-bottom">
+                <div class="ct-attachment__content-bottom">
                   {{ content_bottom }}
                 </div>
               {% endif %}

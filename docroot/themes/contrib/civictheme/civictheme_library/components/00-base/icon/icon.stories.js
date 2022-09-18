@@ -14,8 +14,8 @@ export const Icon = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const sizes = [...new Set([
-    ...SCSS_VARIABLES['civictheme-icon-sizes-default'],
-    ...SCSS_VARIABLES['civictheme-icon-sizes'],
+    ...SCSS_VARIABLES['ct-icon-sizes-default'],
+    ...SCSS_VARIABLES['ct-icon-sizes'],
   ])];
 
   return CivicThemeIcon({

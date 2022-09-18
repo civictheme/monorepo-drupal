@@ -34,7 +34,7 @@
     "max-line-length": null,
     "no-descending-specificity": null,
     "scss/at-mixin-argumentless-call-parentheses": "always",
-    "scss/at-mixin-pattern": "^_?civictheme-[a-z0-9\\-]+$",
+    "scss/at-mixin-pattern": "^_?ct-[a-z0-9\\-]+$",
     "scss/at-else-closing-brace-newline-after": null,
     "scss/at-else-closing-brace-space-after": null,
     "scss/at-else-empty-line-before": "never",
@@ -43,7 +43,7 @@
     "scss/at-if-no-null": null,
     "scss/comment-no-empty": null,
     "scss/comment-no-loud": true,
-    "scss/dollar-variable-pattern": ["^(root|_?civictheme-.+)", {"ignore": "local"}],
+    "scss/dollar-variable-pattern": ["^(root|_?ct-.+)", {"ignore": "local"}],
     "scss/at-function-parentheses-space-before": "never",
     "selector-class-pattern": null,
     "string-quotes": "single"

@@ -107,7 +107,7 @@ export const TableOfContents = (knobTab) => {
 
     const attributesStr = Object.keys(attributes).map((key) => (attributes[key] !== '' ? `${key}="${attributes[key]}"` : '')).join(' ');
 
-    wrappers.push(`<div class="civictheme-basic-content civictheme-basic-content-${i + 1} civictheme-theme-${attributes['data-table-of-contents-theme']} ${modifierClass}" ${attributesStr} ${attributesAdditional}>${html}</div>`);
+    wrappers.push(`<div class="ct-basic-content ct-basic-content-${i + 1} ct-theme-${attributes['data-table-of-contents-theme']} ${modifierClass}" ${attributesStr} ${attributesAdditional}>${html}</div>`);
   }
 
   return wrappers.join(' ');

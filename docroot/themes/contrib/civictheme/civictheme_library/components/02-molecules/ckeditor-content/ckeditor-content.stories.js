@@ -35,9 +35,9 @@ export const CKEditorContent = () => {
   // Paragraphs.
   html += `
     <p>Text without a class sed aute in sed consequat veniam excepteur minim mollit.</p>
-    <p class="civictheme-text-large">Large text sed aute in sed consequat veniam excepteur minim mollit.</p>
-    <p class="civictheme-text-regular">Regular text veniam reprehenderit velit ea veniam occaecat magna est sed duis quis elit occaecat dolore ut enim est do in dolor non elit aliquip commodo aliquip sint veniam ullamco adipisicing tempor ad.</p>
-    <p class="civictheme-text-small">Small text <span>duis sunt velit.</span><span>Ea eu non.</span></p>
+    <p class="ct-text-large">Large text sed aute in sed consequat veniam excepteur minim mollit.</p>
+    <p class="ct-text-regular">Regular text veniam reprehenderit velit ea veniam occaecat magna est sed duis quis elit occaecat dolore ut enim est do in dolor non elit aliquip commodo aliquip sint veniam ullamco adipisicing tempor ad.</p>
+    <p class="ct-text-small">Small text <span>duis sunt velit.</span><span>Ea eu non.</span></p>
     <p>In mollit in minim ut non ${CivicThemeContentLink({
     theme: 'light',
     text: 'commodo dolore',

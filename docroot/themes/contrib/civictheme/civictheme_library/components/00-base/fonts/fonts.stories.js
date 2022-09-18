@@ -9,8 +9,8 @@ export default {
 };
 
 export const Fonts = () => {
-  const defaultValues = SCSS_VARIABLES['civictheme-fonts-default'];
-  const customValues = SCSS_VARIABLES['civictheme-fonts'];
+  const defaultValues = SCSS_VARIABLES['ct-fonts-default'];
+  const customValues = SCSS_VARIABLES['ct-fonts'];
   const fonts = Object.keys(merge(defaultValues, customValues));
 
   const types = {

@@ -84,7 +84,7 @@ function CivicCollapsible(el) {
   this.isGroupsEnabled = true;
   this.groupEnabledBreakpoint = this.el.getAttribute('data-collapsible-group-enabled-breakpoint');
   if (this.groupEnabledBreakpoint) {
-    window.addEventListener('civictheme-responsive', (evt) => {
+    window.addEventListener('ct-responsive', (evt) => {
       const evaluationResult = evt.detail.evaluate(this.groupEnabledBreakpoint, () => {
         // Is within breakpoint.
         this.isGroupsEnabled = true;
@@ -543,7 +543,7 @@ document.querySelectorAll('[data-collapsible]').forEach((el) => {
   // Delay initialisation if should be responsive.
   const breakpointExpr = el.getAttribute('data-responsive');
   if (breakpointExpr) {
-    window.addEventListener('civictheme-responsive', (evt) => {
+    window.addEventListener('ct-responsive', (evt) => {
       evt.detail.evaluate(breakpointExpr, CivicCollapsible, el);
     }, false);
     return;

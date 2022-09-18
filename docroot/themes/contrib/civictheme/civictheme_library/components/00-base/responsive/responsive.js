@@ -3,7 +3,7 @@
  * @file
  * Responsive component.
  *
- * Emits a 'civictheme-responsive' event on breakpoint change allowing
+ * Emits a 'ct-responsive' event on breakpoint change allowing
  * components to delay initialisation by providing 'data-responsive' attribute
  * with an operator and breakpoint name.
  *
@@ -91,7 +91,7 @@ CivicResponsive.prototype.mediaQueryChange = function (breakpoint, evt) {
     return;
   }
   // Fire a custom event that other components can subscribe to.
-  window.dispatchEvent(new CustomEvent('civictheme-responsive', {
+  window.dispatchEvent(new CustomEvent('ct-responsive', {
     bubbles: true,
     detail: {
       breakpoint,
@@ -170,7 +170,7 @@ CivicResponsive.prototype.matchExpr = function (breakpointExpr, breakpoint) {
 };
 
 if (document.querySelectorAll('[data-responsive]').length) {
-  // CivicResponsive needs to run after all civictheme-responisve
+  // CivicResponsive needs to run after all ct-responisve
   // event listeners have been added.
   // Delay the execution until after other components have been initialized.
   // Using setTimeout as an interim solution because:

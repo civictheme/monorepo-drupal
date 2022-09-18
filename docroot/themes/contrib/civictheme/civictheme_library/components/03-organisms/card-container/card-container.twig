@@ -21,29 +21,29 @@
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-card-container--vertical-space-%s'|format(vertical_space) : '' %}
-{% set with_background_class = with_background ? 'civictheme-card-container--with-background' : '' %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-card-container--vertical-space-%s'|format(vertical_space) : '' %}
+{% set with_background_class = with_background ? 'ct-card-container--with-background' : '' %}
 {% set column_class = 'col-xxs-12 col-m-%s'|format(12 / column_count|default(1)) %}
-{% set fill_width_class = fill_width ? 'civictheme-card-container--fill-width' : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set fill_width_class = fill_width ? 'ct-card-container--fill-width' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s %s'|format(theme_class, fill_width_class, vertical_space_class, with_background_class, modifier_class|default('')) %}
 
 {% if title is not empty or cards is not empty or content_top is not empty or content_bottom is not empty %}
-  <div class="civictheme-card-container {{ modifier_class }}" aria-live="polite">
+  <div class="ct-card-container {{ modifier_class }}" aria-live="polite">
     <div class="container">
       <div class="row">
         <div class="col-xxs-12">
           {% block title %}
             {% if title is not empty or (header_link_url is not empty and header_link_text is not empty) %}
-              <div class="civictheme-card-container__header">
+              <div class="ct-card-container__header">
                 {% if title is not empty %}
-                  <div class="civictheme-card-container__header-title">
+                  <div class="ct-card-container__header-title">
                     {{ title }}
                   </div>
                 {% endif %}
 
                 {% if header_link_url is not empty and header_link_text is not empty %}
-                  <div class="civictheme-card-container__header-link">
+                  <div class="ct-card-container__header-link">
                     {% include '@atoms/button/button.twig' with {
                       theme: theme,
                       kind: 'link',
@@ -61,7 +61,7 @@
 
           {% block description %}
             {% if description is not empty %}
-              <div class="civictheme-card-container__description">
+              <div class="ct-card-container__description">
                 {{ description }}
               </div>
             {% endif %}
@@ -69,7 +69,7 @@
 
           {% block content_top %}
             {% if content_top is not empty %}
-              <div class="civictheme-card-container__content-top">
+              <div class="ct-card-container__content-top">
                 {{ content_top }}
               </div>
             {% endif %}
@@ -77,11 +77,11 @@
 
           {% block card_container %}
             {% if cards is not empty %}
-              <div class="civictheme-card-container__cards">
+              <div class="ct-card-container__cards">
                 <div class="row">
                   {% for card in cards %}
                     {% if card is not empty %}
-                      <div class="civictheme-card-container__card {{ column_class }}">
+                      <div class="ct-card-container__card {{ column_class }}">
                         {{ card }}
                       </div>
                     {% endif %}
@@ -93,9 +93,9 @@
 
           {% block footer_link %}
             {% if footer_link_url is not empty and footer_link_text is not empty %}
-              <div class="civictheme-card-container__footer">
-                <div class="civictheme-card-container__footer-link">
-                  <div class="civictheme-card-container__header-link">
+              <div class="ct-card-container__footer">
+                <div class="ct-card-container__footer-link">
+                  <div class="ct-card-container__header-link">
                     {% include '@atoms/button/button.twig' with {
                       theme: theme,
                       kind: 'link',
@@ -113,7 +113,7 @@
 
           {% block content_bottom %}
             {% if content_bottom is not empty %}
-              <div class="civictheme-card-container__content-bottom">
+              <div class="ct-card-container__content-bottom">
                 {{ content_bottom }}
               </div>
             {% endif %}

@@ -29,7 +29,7 @@ function CivicDropdownFilterSearchable(el) {
   if (this.el.hasAttribute('data-responsive')) {
     this.isDesktop = null;
     const swapBreakpoint = this.el.getAttribute('data-dropdown-filter-inline-change-breakpoint');
-    window.addEventListener('civictheme-responsive', (evt) => {
+    window.addEventListener('ct-responsive', (evt) => {
       let isBreakpoint = false;
       const evaluationResult = evt.detail.evaluate(swapBreakpoint, () => {
         // Is within breakpoint.
@@ -41,7 +41,7 @@ function CivicDropdownFilterSearchable(el) {
       }
       if (isBreakpoint !== this.isDesktop) {
         this.isDesktop = isBreakpoint;
-        this.el.classList.toggle('civictheme-dropdown-filter--inline', !this.isDesktop);
+        this.el.classList.toggle('ct-dropdown-filter--inline', !this.isDesktop);
       }
     }, false);
   }
@@ -62,8 +62,8 @@ CivicDropdownFilterSearchable.prototype.init = function () {
 CivicDropdownFilterSearchable.prototype.createSearchElement = function () {
   // Create the search box container.
   const search = document.createElement('div');
-  const themeClass = this.el.getAttribute('class').includes('civictheme-theme-light') ? 'civictheme-theme-light' : 'civictheme-theme-dark';
-  search.classList.add('civictheme-dropdown-filter__search', 'civictheme-input', themeClass);
+  const themeClass = this.el.getAttribute('class').includes('ct-theme-light') ? 'ct-theme-light' : 'ct-theme-dark';
+  search.classList.add('ct-dropdown-filter__search', 'ct-input', themeClass);
 
   const searchFieldName = this.generateSearchFieldName();
   // Create the filter search input and add it to the dropdown filter.
@@ -71,12 +71,12 @@ CivicDropdownFilterSearchable.prototype.createSearchElement = function () {
   if (this.labelText) {
     searchLabel = document.createElement('label');
     searchLabel.setAttribute('for', searchFieldName);
-    searchLabel.classList.add('civictheme-label', themeClass);
+    searchLabel.classList.add('ct-label', themeClass);
     searchLabel.innerHTML = this.labelText;
   }
 
   const searchInput = document.createElement('input');
-  searchInput.classList.add('civictheme-dropdown-filter__search__input', 'civictheme-input__element', 'civictheme-input--default', 'civictheme-input--text', themeClass);
+  searchInput.classList.add('ct-dropdown-filter__search__input', 'ct-input__element', 'ct-input--default', 'ct-input--text', themeClass);
   searchInput.setAttribute('value', '');
   searchInput.setAttribute('type', 'text');
   // Attribute - data-group-filter-ignore - is used by large filter to ignore
@@ -144,6 +144,6 @@ CivicDropdownFilterSearchable.prototype.hideItem = function (item) {
   item.removeAttribute('data-dropdown-filter-search-item--visible');
 };
 
-document.querySelectorAll('[data-component-name="civictheme-dropdown-filter"]').forEach((dropdownFilter) => {
+document.querySelectorAll('[data-component-name="ct-dropdown-filter"]').forEach((dropdownFilter) => {
   new CivicDropdownFilterSearchable(dropdownFilter);
 });

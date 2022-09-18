@@ -5,8 +5,8 @@ Feature: Check that content linkit feature works correctly
 
   Background:
     Given managed file:
-      | filename       | uri                                     | path           |
-      | test_pdf.pdf   | public://civictheme_test/test_pdf.pdf   | test_pdf.pdf   |
+      | filename     | uri                                   | path         |
+      | test_pdf.pdf | public://civictheme_test/test_pdf.pdf | test_pdf.pdf |
 
     And "civictheme_document" media:
       | name                | field_c_m_document |
@@ -42,7 +42,7 @@ Feature: Check that content linkit feature works correctly
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Page linkit render"
-    And I should see an ".civictheme-basic-content a[title='TEST Page Linkit'].civictheme-link" element
+    And I should see an ".ct-basic-content a[title='TEST Page Linkit'].ct-link" element
 
   @api @javascript
   Scenario: Check if linkit can lookup for Event Content.
@@ -66,7 +66,7 @@ Feature: Check that content linkit feature works correctly
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Event linkit render"
-    And I should see an ".civictheme-basic-content a[title='TEST Event Linkit'].civictheme-link" element
+    And I should see an ".ct-basic-content a[title='TEST Event Linkit'].ct-link" element
 
 
   @api @javascript
@@ -91,4 +91,4 @@ Feature: Check that content linkit feature works correctly
     And I press "Save"
 
     When I visit "civictheme_page" "TEST Document Media linkit render"
-    And I should see an ".civictheme-basic-content a[title='TEST CivicTheme PDF'].civictheme-link" element
+    And I should see an ".ct-basic-content a[title='TEST CivicTheme PDF'].ct-link" element

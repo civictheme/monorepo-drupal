@@ -13,16 +13,16 @@
   */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civictheme-mobile-navigation {{ modifier_class }}" data-flyout data-flyout-direction="right">
-  <div data-flyout-panel class="civictheme-mobile-navigation__panel">
+<div class="ct-mobile-navigation {{ modifier_class }}" data-flyout data-flyout-direction="right">
+  <div data-flyout-panel class="ct-mobile-navigation__panel">
     {% include '@organisms/mobile-navigation/mobile-navigation-close.twig' %}
 
     {% block content_top %}
       {% if content_top is not empty %}
-        <div class="civictheme-mobile-navigation__content_top">
+        <div class="ct-mobile-navigation__content_top">
           {{ content_top }}
         </div>
       {% endif %}
@@ -30,11 +30,11 @@
 
     {% block top_menu %}
       {% if top_menu is not empty %}
-        <div class="civictheme-mobile-navigation__top-menu-wrapper">
+        <div class="ct-mobile-navigation__top-menu-wrapper">
           {% include '@organisms/mobile-navigation/mobile-navigation-menu.twig' with {
             theme: theme,
             items: top_menu,
-            modifier_class: 'civictheme-mobile-navigation__top-menu',
+            modifier_class: 'ct-mobile-navigation__top-menu',
           } only %}
         </div>
       {% endif %}
@@ -42,11 +42,11 @@
 
     {% block bottom_menu %}
       {% if bottom_menu is not empty %}
-        <div class="civictheme-mobile-navigation__bottom-menu-wrapper">
+        <div class="ct-mobile-navigation__bottom-menu-wrapper">
           {% include '@organisms/mobile-navigation/mobile-navigation-menu.twig' with {
             theme: theme,
             items: bottom_menu,
-            modifier_class: 'civictheme-mobile-navigation__bottom-menu',
+            modifier_class: 'ct-mobile-navigation__bottom-menu',
           } only %}
         </div>
       {% endif %}
@@ -54,7 +54,7 @@
 
     {% block content_bottom %}
       {% if content_bottom is not empty %}
-        <div class="civictheme-mobile-navigation__content_bottom">
+        <div class="ct-mobile-navigation__content_bottom">
           {{ content_bottom }}
         </div>
       {% endif %}

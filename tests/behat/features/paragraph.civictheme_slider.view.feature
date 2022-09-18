@@ -47,16 +47,16 @@ Feature: View of Page content with slider component
     When I visit "civictheme_page" "[TEST] Page slider test"
     And I wait 5 second
     And I should see the text "[TEST] slider"
-    And I should see an "div.civictheme-slider" element
-    And I should see an "div.civictheme-slider.civictheme-theme-light" element
-    And I should see an "div.civictheme-slider.civictheme-slider--vertical-space-both" element
-    And I should not see an "div.civictheme-slider.civictheme-theme-dark" element
-    And I should see an "div.civictheme-slider__container" element
-    Then I should see the link "[TEST] slider link" with "https://example.com/sliderlink1" in 'div.civictheme-slider__link'
-    And I should see an "div.civictheme-slider__slides" element
+    And I should see an "div.ct-slider" element
+    And I should see an "div.ct-slider.ct-theme-light" element
+    And I should see an "div.ct-slider.ct-slider--vertical-space-both" element
+    And I should not see an "div.ct-slider.ct-theme-dark" element
+    And I should see an "div.ct-slider__container" element
+    Then I should see the link "[TEST] slider link" with "https://example.com/sliderlink1" in 'div.ct-slider__link'
+    And I should see an "div.ct-slider__slides" element
     Then I should see the text "[TEST] slide 1"
-    And I should see the link "[TEST] link 1" with "https://example.com/link1" in 'div.civictheme-slide__links'
-    And I should see an "div.civictheme-slider__controls" element
+    And I should see the link "[TEST] link 1" with "https://example.com/link1" in 'div.ct-slide__links'
+    And I should see an "div.ct-slider__controls" element
     And I should see the button "Previous"
     And I should see the button "Next"
     And I should see the text "Slide 1 of 2"
@@ -65,4 +65,4 @@ Feature: View of Page content with slider component
     Then I should see the text "[TEST] slide 2"
     And I should see the link "[TEST] link 2" with "https://example.com/link2"
     And I should see the text "Slide 2 of 2"
-    And I should see an "div.civictheme-slider__steps" element
+    And I should see an "div.ct-slider__steps" element

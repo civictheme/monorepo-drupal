@@ -12,9 +12,9 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set type = type|default('information') %}
-{% set type_class = 'civictheme-field-message--%s'|format(type|default('information')) %}
+{% set type_class = 'ct-field-message--%s'|format(type|default('information')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
 {% set icons = {
   information: 'information-mark',
@@ -24,7 +24,7 @@
 } %}
 
 {% if content is not empty -%}
-  <div class="civictheme-field-message {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-field-message {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% if icons[type] is defined %}
       {% include "@base/icon/icon.twig" with {
         symbol: icons[type],

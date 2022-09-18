@@ -15,16 +15,16 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set disabled_class = disabled ? 'civictheme-checkbox--disabled' : '' %}
-{% set required_class = required ? 'civictheme-checkbox--required' : '' %}
-{% set error_class = has_error ? 'civictheme-checkbox--error' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set disabled_class = disabled ? 'ct-checkbox--disabled' : '' %}
+{% set required_class = required ? 'ct-checkbox--required' : '' %}
+{% set error_class = has_error ? 'ct-checkbox--error' : '' %}
 {% set modifier_class = '%s %s %s %s %s'|format(theme_class, disabled_class, required_class, error_class, modifier_class|default('')) %}
 
-<div class="civictheme-checkbox {{ modifier_class|trim }}">
-  <input class="civictheme-checkbox__element" type="checkbox" value="{{ value }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
-  <span class="civictheme-checkbox__state"></span>
+<div class="ct-checkbox {{ modifier_class|trim }}">
+  <input class="ct-checkbox__element" type="checkbox" value="{{ value }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
+  <span class="ct-checkbox__state"></span>
   {% if content is not empty %}
-    <label class="civictheme-checkbox__label{{ disabled ? ' civictheme-checkbox__label--disabled' }}">{{ content }}</label>
+    <label class="ct-checkbox__label{{ disabled ? ' ct-checkbox__label--disabled' }}">{{ content }}</label>
   {% endif %}
 </div>

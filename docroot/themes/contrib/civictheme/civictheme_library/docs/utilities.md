@@ -5,15 +5,15 @@ box.
 
 ## Spacing
 
-Spacing (such as margin or padding) can be applied using the `civictheme-space()`
+Spacing (such as margin or padding) can be applied using the `ct-space()`
 function.
 
-Spaces are defined in `$civictheme-spacing` list variable.
+Spaces are defined in `$ct-spacing` list variable.
 
 ```scss
 div {
-  padding: civictheme-space(1) civictheme-space(2);
-  margin-bottom: civictheme-space(2);
+  padding: ct-space(1) ct-space(2);
+  margin-bottom: ct-space(2);
 }
 ```
 

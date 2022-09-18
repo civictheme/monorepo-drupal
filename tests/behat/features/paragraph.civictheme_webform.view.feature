@@ -18,7 +18,7 @@ Feature: View of Page content with webform component
       | field_c_p_background | 0       |
 
     When I visit "civictheme_page" "[TEST] Page Webform test"
-    And I should see an "div.civictheme-webform" element
-    And I should see an "div.civictheme-webform.civictheme-theme-light" element
-    And I should see an "div.civictheme-webform.civictheme-webform--vertical-space-both" element
-    And I should not see an "div.civictheme-webform.civictheme-theme-dark" element
+    And I should see an "div.ct-webform" element
+    And I should see an "div.ct-webform.ct-theme-light" element
+    And I should see an "div.ct-webform.ct-webform--vertical-space-both" element
+    And I should not see an "div.ct-webform.ct-theme-dark" element

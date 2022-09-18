@@ -114,7 +114,7 @@ export const GroupFilter = () => {
       is_inline: true,
       inline_change_breakpoint: breakpoint,
       type: 'select',
-      modifier_class: 'civictheme-dropdown-filter--right',
+      modifier_class: 'ct-dropdown-filter--right',
       options: [
         formElement('select', {
           value: [

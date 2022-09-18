@@ -99,7 +99,7 @@ CivicTooltip.prototype.tooltipHide = function (e) {
  * Find button element.
  */
 CivicTooltip.prototype.findTooltip = function (el) {
-  if (el.classList.contains('civictheme-tooltip')) {
+  if (el.classList.contains('ct-tooltip')) {
     return el;
   }
   return el.closest('.ct-tooltip');

@@ -218,7 +218,7 @@ export const List = (knobTab) => {
     }
     generalKnobs.pager = CivicThemePagination({
       theme,
-      heading_id: 'civictheme-listing-demo',
+      heading_id: 'ct-listing-demo',
       items: {
         previous: {
           text: 'Previous',

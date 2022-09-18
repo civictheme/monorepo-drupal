@@ -2,7 +2,7 @@
 /**
  * Alert component.
  *
- * Attaches to markup with 'data-component-name="civictheme-alerts"' attribute.
+ * Attaches to markup with 'data-component-name="ct-alerts"' attribute.
  *
  * Available attributes:
  * - data-alert-endpoint: Alert REST configurable API endpoint.
@@ -122,7 +122,7 @@ CivicAlert.prototype.isValidResponse = function (item) {
  * Get the cookie name.
  */
 CivicAlert.prototype.getCookieName = function () {
-  return 'civictheme-alert-hide';
+  return 'ct-alert-hide';
 };
 
 /**
@@ -223,7 +223,7 @@ CivicAlert.prototype.setDismissListeners = function () {
     .forEach((el) => {
       el.addEventListener('click', (event) => {
         event.stopPropagation();
-        const parent = this.getParentElement(event.currentTarget, '[data-component-name="civictheme-alert"]');
+        const parent = this.getParentElement(event.currentTarget, '[data-component-name="ct-alert"]');
         this.dismiss(parent);
       });
     });
@@ -234,7 +234,7 @@ CivicAlert.prototype.setDismissListeners = function () {
  */
 CivicAlert.prototype.dismiss = function (element) {
   if (element !== null) {
-    const parent = this.getParentElement(element, '[data-component-name="civictheme-alerts"]');
+    const parent = this.getParentElement(element, '[data-component-name="ct-alerts"]');
     if (parent) {
       parent.removeChild(element);
     }
@@ -268,6 +268,6 @@ CivicAlert.prototype.urlPath = function () {
 /**
  * Initialise component.
  */
-document.querySelectorAll('[data-component-name="civictheme-alerts"]').forEach((el) => {
+document.querySelectorAll('[data-component-name="ct-alerts"]').forEach((el) => {
   new CivicAlert(el);
 });

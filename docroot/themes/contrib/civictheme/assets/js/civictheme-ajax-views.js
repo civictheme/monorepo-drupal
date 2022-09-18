@@ -13,12 +13,12 @@ Drupal.behaviors.civictheme_ajax_views = {
     let debounce;
     // Button submit handler for both large and basic filter types.
     const buttonSubmitHandler = () => {
-      let $filter = $form.find('[data-component-name="civictheme-group-filter"]');
+      let $filter = $form.find('[data-component-name="ct-group-filter"]');
       let isAutosubmit;
       if ($filter.length > 0) {
         isAutosubmit = typeof $filter.attr('data-group-filter-auto-submit') !== 'undefined' && $filter.attr('data-group-filter-auto-submit') === 'true';
       } else {
-        $filter = $form.find('[data-component-name="civictheme-single-filter"]');
+        $filter = $form.find('[data-component-name="ct-single-filter"]');
         isAutosubmit = $filter.length > 0;
       }
       if (isAutosubmit === true) {
@@ -45,7 +45,7 @@ Drupal.behaviors.civictheme_ajax_views = {
         // Attach reload of view results in with redrawing of filters for
         // ajax forms.
         $form
-          .find('[data-component-name="civictheme-group-filter"]')
+          .find('[data-component-name="ct-group-filter"]')
           // Custom event from civictheme large filter.
           .on('civicthemeLargeFilterChange', buttonSubmitHandler);
         // Stop clear filter function from submitting form.
@@ -61,7 +61,7 @@ Drupal.behaviors.civictheme_ajax_views = {
         // Other than this rely on clicking apply button to update view
         // results.
         $form
-          .find('[data-component-name="civictheme-group-filter"]')
+          .find('[data-component-name="ct-group-filter"]')
           // Custom event from civictheme large filter.
           .on('civicthemeLargeFilterChange', () => {
             // CivicTheme large filter redraws selected filters on each change in

@@ -12,7 +12,7 @@
     {% include '@molecules/logo/logo.twig' with {
       'theme': theme == 'light' ? 'dark' : 'light',
       'logos': logos,
-      'modifier_class': 'civictheme-footer__logo',
+      'modifier_class': 'ct-footer__logo',
       'type': type ?? 'default',
     } only %}
   {% endset %}
@@ -57,7 +57,7 @@
       items: links2,
       title: 'About us',
       attributes: 'data-collapsible data-collapsible-collapsed data-responsive="<m"',
-      modifier_class: 'civictheme-navigation__collapsible'
+      modifier_class: 'ct-navigation__collapsible'
     } only %}
   {% endset %}
   {% set content_middle3 %}
@@ -80,7 +80,7 @@
 
 {% if show_acknowledgement %}
   {% set content_bottom1 %}
-    <div class="civictheme-footer__acknowledgement civictheme-text-regular">
+    <div class="ct-footer__acknowledgement ct-text-regular">
       We acknowledge the traditional owners of the country throughout
       Australia
       and their continuing connection to land, sea and community. We pay our
@@ -90,7 +90,7 @@
 
   {%- block content_bottom1 %}
     <div class="col-xxs-12 col-m-7">
-      <div class="civictheme-footer__bottom__content-bottom1">
+      <div class="ct-footer__bottom__content-bottom1">
         {{- content_bottom1 -}}
       </div>
     </div>
@@ -99,14 +99,14 @@
 
 {% if show_copyright %}
   {% set content_bottom2 %}
-    <div class="copyright civictheme-text-regular">
+    <div class="copyright ct-text-regular">
       ©Commonwealth of Australia
     </div>
   {% endset %}
 
   {%- block content_bottom2 %}
     <div class="col-xxs-12 col-m-5">
-      <div class="civictheme-footer__bottom__content-bottom2">
+      <div class="ct-footer__bottom__content-bottom2">
         {{- content_bottom2 -}}
       </div>
     </div>

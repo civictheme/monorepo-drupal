@@ -26,9 +26,9 @@ function CivicScrollspy(el) {
  */
 CivicScrollspy.prototype.scrollEvent = function () {
   if (window.scrollY > this.offset) {
-    this.el.classList.add('civictheme-scrollspy-scrolled');
+    this.el.classList.add('ct-scrollspy-scrolled');
   } else {
-    this.el.classList.remove('civictheme-scrollspy-scrolled');
+    this.el.classList.remove('ct-scrollspy-scrolled');
   }
 };
 

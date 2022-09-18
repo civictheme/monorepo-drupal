@@ -16,27 +16,27 @@ atomic namespaces.
 
 components:
   namespaces:
-    civictheme-base:
+    ct-base:
       - components/00-base
     base:
       - components/00-base
-    civictheme-atoms:
+    ct-atoms:
       - components/01-atoms
     atoms:
       - components/01-atoms
-    civictheme-molecules:
+    ct-molecules:
       - components/02-molecules
     molecules:
       - components/02-molecules
-    civictheme-organisms:
+    ct-organisms:
       - components/03-organisms
     organisms:
       - components/03-organisms
-    civictheme-templates:
+    ct-templates:
       - components/04-templates
     templates:
       - components/04-templates
-    civictheme-pages:
+    ct-pages:
       - components/05-pages
     pages:
       - components/05-pages
@@ -68,6 +68,6 @@ components:
 
 ```
 
-The CivicTheme namespaces (`civictheme-base`, `civictheme-atoms`, `civictheme-molecules` etc.) are
+The CivicTheme namespaces (`ct-base`, `ct-atoms`, `ct-molecules` etc.) are
 used to provide access to the unaltered CivicTheme namespaces so the original civictheme
 component can be extended and then overridden by a sub-theme.

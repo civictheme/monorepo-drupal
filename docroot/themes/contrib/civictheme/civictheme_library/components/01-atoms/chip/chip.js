@@ -106,7 +106,7 @@ CivicChip.prototype.dismissClickEvent = function (e) {
  * Find chip element.
  */
 CivicChip.prototype.findChip = function (el) {
-  if (el.classList.contains('civictheme-chip')) {
+  if (el.classList.contains('ct-chip')) {
     return el;
   }
   return el.closest('.ct-chip');

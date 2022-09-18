@@ -26,6 +26,6 @@ these are used by CivicTheme theme in the default templates.
 ## Troubleshooting icons
 
 If you are experiencing a missing icon in your drupal webpage and the SVG tag is
-not being rendered ie `div.civictheme-icon` does not have any inner SVG element -
+not being rendered ie `div.ct-icon` does not have any inner SVG element -
 this is caused by the icon svg missing from your child theme. Follow the above
 process to include it.

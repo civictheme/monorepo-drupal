@@ -97,7 +97,7 @@ CivicButton.prototype.dismissClickEvent = function (e) {
  * Find button element.
  */
 CivicButton.prototype.findButton = function (el) {
-  if (el.classList.contains('civictheme-button')) {
+  if (el.classList.contains('ct-button')) {
     return el;
   }
   return el.closest('.ct-button');

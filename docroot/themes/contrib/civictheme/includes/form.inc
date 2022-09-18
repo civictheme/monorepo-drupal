@@ -156,18 +156,18 @@ function _civictheme_filter_views_exposed_form_alter__modify_element_callbacks(&
  */
 function _civictheme_preprocess_civictheme_filter_form_element_alter(&$variables) {
   $element = $variables['element'];
-  if (isset($element['#civictheme-group-filter'])) {
+  if (isset($element['#ct-group-filter'])) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
     $variables['options_title'] = $element['#description'] ?? '';
     $variables['is_inline'] = FALSE;
     $variables['inline_change_breakpoint'] = '>=m';
-    $variables['filter_group'] = $element['#civictheme-group-filter'];
+    $variables['filter_group'] = $element['#ct-group-filter'];
     if (isset($variables['description'])) {
       unset($variables['description']);
     }
   }
-  elseif (isset($element['#attributes']['#civictheme-group-filter'])) {
+  elseif (isset($element['#attributes']['#ct-group-filter'])) {
     if (
       isset($element['#type'])
       && in_array($element['#type'], ['radio', 'checkbox'])
@@ -176,14 +176,14 @@ function _civictheme_preprocess_civictheme_filter_form_element_alter(&$variables
       $variables['attributes'] = new Attribute($variables['#attributes']);
     }
   }
-  elseif (isset($element['#attributes']['#civictheme-single-filter'])) {
+  elseif (isset($element['#attributes']['#ct-single-filter'])) {
     $variables['text'] = $element['#title'] ?? '';
     $variables['is_multiple'] = $element['#type'] === 'checkbox';
     $variables['id'] = $element['#attributes']['id'];
     $variables['name'] = $element['#attributes']['name'];
     unset($element['#attributes']['name']);
     unset($element['#attributes']['id']);
-    unset($element['#attributes']['#civictheme-single-filter']);
+    unset($element['#attributes']['#ct-single-filter']);
     if (!empty($element['#attributes']['checked'])) {
       $variables['is_selected'] = TRUE;
     }
@@ -309,13 +309,13 @@ function _civictheme_preprocess_composite_form_elements(&$variables) {
     $variables['element'][$form_element]['#civictheme_theme'] = $variables['theme'] ?? NULL;
   }
 
-  if (isset($element['#civictheme-group-filter'])) {
+  if (isset($element['#ct-group-filter'])) {
     $variables['type'] = $element['#type'];
     $variables['filter_text'] = $element['#title'];
     $variables['options_title'] = $element['#description'] ?? '';
     $variables['is_inline'] = FALSE;
     $variables['inline_change_breakpoint'] = '>=m';
-    $variables['filter_group'] = $element['#civictheme-group-filter'];
+    $variables['filter_group'] = $element['#ct-group-filter'];
     $variables['#attributes']['data-dropdown-filter-fieldset'] = '';
     if (!empty($variables['attributes'])) {
       $variables['#attributes'] += $variables['attributes'];

@@ -98,17 +98,17 @@ CivicTableOfContents.prototype.findLinks = function (anchorSelector, scopeSelect
 };
 
 CivicTableOfContents.prototype.renderTitle = function (title) {
-  return `<div class="civictheme-table-of-contents__title">${title}</div>`;
+  return `<div class="ct-table-of-contents__title">${title}</div>`;
 };
 
 CivicTableOfContents.prototype.renderLinks = function (links) {
   let html = '';
 
-  html += `<ul class="civictheme-table-of-contents__links">`;
+  html += `<ul class="ct-table-of-contents__links">`;
   for (const i in links) {
     html += `
-      <li class="civictheme-table-of-contents__link-item">
-        <a class="civictheme-table-of-contents__link" href="${links[i].url}">${links[i].title}</a>
+      <li class="ct-table-of-contents__link-item">
+        <a class="ct-table-of-contents__link" href="${links[i].url}">${links[i].title}</a>
       </li>
     `;
   }
@@ -118,7 +118,7 @@ CivicTableOfContents.prototype.renderLinks = function (links) {
 };
 
 CivicTableOfContents.prototype.renderContainer = function (html, theme, position) {
-  return `<div class="civictheme-table-of-contents civictheme-theme-${theme} civictheme-table-of-contents--position-${position}">${html}</div>`;
+  return `<div class="ct-table-of-contents ct-theme-${theme} ct-table-of-contents--position-${position}">${html}</div>`;
 };
 
 CivicTableOfContents.prototype.place = function (el, position, html) {
