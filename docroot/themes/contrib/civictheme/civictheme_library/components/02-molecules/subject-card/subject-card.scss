@@ -10,7 +10,6 @@
   &__image-wrapper {
     position: relative;
     border-radius: $ct-subject-card-border-radius;
-    box-sizing: border-box;
     padding: ct-spacing(3) ct-spacing(2);
     display: flex;
     flex-direction: column;
