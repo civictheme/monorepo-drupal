@@ -311,7 +311,7 @@ function _civictheme_automated_list_preprocess_view($paragraph, ViewExecutable &
       'theme' => civictheme_get_field_theme_value($paragraph),
       'content' => civictheme_get_field_value($paragraph, 'field_c_p_content'),
       'card_theme' => civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme'),
-      'rows_header' => $variable['title'] ?? $view->header['result']->render(),
+      'rows_header' => isset($view->header['result']) ? $view->header['result']->render() : NULL,
       'link_above' => $link_above_data,
       'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
       'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,
