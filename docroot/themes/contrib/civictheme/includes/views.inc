@@ -115,7 +115,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   }
 
   $form['#attributes']['data-ct-filter'] = '';
-  $form['#attributes']['data-ct-filter-type'] = $listing_use_large_filter ? 'group' : 'basic';
+  $form['#attributes']['data-ct-filter-type'] = $listing_use_large_filter ? 'group' : 'single';
   $form['#attributes']['data-ct-filter-ajax-submit-timeout'] = $listing_use_large_filter ? 500 : 0;
 
   // Made preprocessors know that we are using a large filter.
@@ -261,6 +261,7 @@ function civictheme_preprocess_views_view(&$variables) {
   // Header is displayed within card container.
   if ($view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     unset($variables['header']);
+    $variables['rows_header'] = $view->header['result']->render();
   }
 
   // Adding template required classes in for civictheme component.
@@ -309,7 +310,9 @@ function _civictheme_automated_list_preprocess_view($paragraph, ViewExecutable &
 
     $settings = [
       'theme' => civictheme_get_field_theme_value($paragraph),
+      'content' => civictheme_get_field_value($paragraph, 'field_c_p_content'),
       'card_theme' => civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme'),
+      'rows_header' => isset($view->header['result']) ? $view->header['result']->render() : NULL,
       'link_above' => $link_above_data,
       'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
       'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,

@@ -35,6 +35,7 @@
                 {% include '@atoms/heading/heading.twig' with {
                   content: title,
                   level: 2,
+                  theme: theme,
                 } only %}
               </div>
             {% endif %}
@@ -55,6 +56,20 @@
             {% endif %}
           {% endblock %}
 
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block content %}
+      {% if content %}
+        <div class="civictheme-list__content">
+          <div class="container">
+            <div class="row">
+              <div class="col-xxs-12">
+                {{ content }}
+              </div>
+            </div>
+          </div>
         </div>
       {% endif %}
     {% endblock %}
