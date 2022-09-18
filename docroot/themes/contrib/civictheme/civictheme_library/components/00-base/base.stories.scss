@@ -170,10 +170,17 @@
   margin: ct-spacing(4) auto;
   max-width: 60%;
 
+  &--small {
+    max-width: map.get($ct-breakpoints, 'xs');
+  }
+
+  &--medium {
+    max-width: map.get($ct-breakpoints, 's');
+  }
+
   &--large {
     margin: ct-spacing(8) auto;
-    max-width: 60%;
-    min-width: 600px;
+    min-width: map.get($ct-breakpoints, 'xxl');
   }
 
   &--content-centered {
