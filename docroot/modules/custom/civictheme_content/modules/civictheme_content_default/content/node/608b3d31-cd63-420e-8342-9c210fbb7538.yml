@@ -81,11 +81,6 @@ default:
               uri: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3180.133312047585!2d142.45657321627007!3d-37.14952950410098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ace0ebd1eeef337%3A0x4daac7dbcd11e07c!2sThe%20Balconies!5e0!3m2!1sen!2sau!4v1644358453836!5m2!1sen!2sau'
               title: ''
               options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'https://goo.gl/maps/hDrtKEt6rRFqj3jbA'
-              title: ''
-              options: {  }
           field_c_p_theme:
             -
               value: dark

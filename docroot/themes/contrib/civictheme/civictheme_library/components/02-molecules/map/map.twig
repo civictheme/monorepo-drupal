@@ -8,7 +8,6 @@
  * - url: [string] URL for the google map iframe.
  * - address: [string] Optional address.
  * - view_link: [string] View link.
- * - share_link: [string] Share Link.
  * - vertical_space: [string] With top, bottom or both vertical spaces.
  * - modifier_class: [string] Additional classes.
  */
@@ -51,23 +50,6 @@
                   is_new_window: true,
                   is_external: true,
                   icon: 'locationandmaps_map',
-                  icon_placement: 'before',
-                } only %}
-              </div>
-            {% endif %}
-
-            {% if share_link is not empty %}
-              <div class="ct-map__share_link">
-                {% set share_text = share_text|trim ~ 'Share this Location' %}
-                {% include '@atoms/button/button.twig' with {
-                  kind: 'link',
-                  theme: theme,
-                  type: 'secondary',
-                  text: share_text,
-                  url: share_link,
-                  is_new_window: true,
-                  is_external: true,
-                  icon: 'userinterface_share',
                   icon_placement: 'before',
                 } only %}
               </div>

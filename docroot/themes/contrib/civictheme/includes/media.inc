@@ -113,7 +113,6 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
 
-
   $transcript_attributes = new Attribute();
   $transcript_attributes->setAttribute('aria-label', t('View transcript @label', [
     '@label' => $media->label(),
