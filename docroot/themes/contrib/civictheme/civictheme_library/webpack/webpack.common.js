@@ -46,12 +46,12 @@ module.exports = {
     },
   },
   output: {
-    filename: (pathData) => (pathData.chunk.name === 'main' ? 'ct.js' : 'civictheme-[name].js'),
+    filename: (pathData) => (pathData.chunk.name === 'main' ? 'civictheme.js' : 'civictheme-[name].js'),
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: ({ chunk }) => (chunk.name === 'main' ? 'ct.css' : `civictheme.${chunk.name}.css`),
+      filename: ({ chunk }) => (chunk.name === 'main' ? 'civictheme.css' : `civictheme.${chunk.name}.css`),
     }),
     new CleanWebpackPlugin({
       dry: false,
