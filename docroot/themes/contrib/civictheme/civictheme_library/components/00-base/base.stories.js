@@ -9,7 +9,8 @@ import CivicThemeInput from '../01-atoms/input/input.twig';
 import CivicThemeSelect from '../01-atoms/select/select.twig';
 import CivicThemeCheckbox from '../01-atoms/checkbox/checkbox.twig';
 import CivicThemeRadio from '../01-atoms/radio/radio.twig';
-import CivicThemeFormElement from '../02-molecules/form-element/form-element.twig';
+import CivicThemeFormElement
+  from '../02-molecules/form-element/form-element.twig';
 import CivicThemeFieldLabel from '../01-atoms/field-label/field-label.twig';
 import CivicThemeDropdownFilter
   from '../02-molecules/dropdown-filter/dropdown-filter.twig';
@@ -46,6 +47,8 @@ export const randomText = (words) => {
 
   return lorem.generateWords(words);
 };
+
+export const placeholder = (content = 'Content placeholder') => `<div class="story-placeholder">${content}</div>`;
 
 export const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
