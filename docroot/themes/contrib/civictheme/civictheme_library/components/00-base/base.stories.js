@@ -269,3 +269,9 @@ export const generateItems = (count, content) => {
   }
   return items;
 };
+
+export const objectFromArray = (array) => {
+  const obj = {};
+  array.forEach((item) => { obj[item] = item; });
+  return obj;
+};

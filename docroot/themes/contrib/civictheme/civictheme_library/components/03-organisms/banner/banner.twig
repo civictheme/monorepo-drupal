@@ -19,6 +19,8 @@
  * - featured_image: [object] Featured image object:
  *   - src: [string] Source.
  *   - alt: [string] Alt text.
+ * - background_image: [string] URL to a background image.
+ * - background_image_blend_mode: [string] Type of the backgeound image blending. Defaults to 'normal'.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -30,7 +32,10 @@
 {% if content_top1 is not empty or content_top2 is not empty or content_top3 is not empty or section is not empty or title is not empty or content_middle is not empty or content is not empty or content_below is not empty or content_bottom is not empty %}
   <div class="ct-banner {{ modifier_class }}">
     <div class="ct-banner__wrapper">
-      <div class="ct-banner__wrapper__inner" {% if background_image %}style="background-image: url('{{ background_image }} '); {% if background_image_blend_mode %}background-blend-mode: {{ background_image_blend_mode }};{% endif %}"{% endif %}>
+      <div
+        class="ct-banner__wrapper__inner {% if background_image_blend_mode %}ct-background--{{ background_image_blend_mode|default('normal') }}{% endif %}"
+        {% if background_image %}style="background-image: url('{{ background_image }}');"{% endif %}
+      >
         <div class="container">
 
           {% if content_top1 is not empty %}
@@ -102,6 +107,7 @@
                 <div class="{{ featured_image is not empty ? 'col-xxs-12 col-m-6':'col-xxs-12 col-m-8' }}">
                   <div class="ct-banner__title">
                     {% include '@atoms/heading/heading.twig' with {
+                      theme: theme,
                       content: title,
                       level: 1,
                     } only %}

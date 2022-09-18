@@ -460,8 +460,25 @@ $ct-flyout-zindex: 1000 !default;
 // Border radius.
 $ct-border-radius: rem(4px) !default;
 
-// Theme-based background colors for components.
-$ct-background-blend-mode: soft-light;
+// Background blend modes.
+$ct-background-blend-modes: (
+  normal,
+  color,
+  color-burn,
+  color-dodge,
+  darken,
+  difference,
+  exclusion,
+  hard-light,
+  hue,
+  lighten,
+  luminosity,
+  multiply,
+  overlay,
+  saturation,
+  screen,
+  soft-light,
+);
 
 // Enable CSS animations.
 $ct-animation-enabled: true;
