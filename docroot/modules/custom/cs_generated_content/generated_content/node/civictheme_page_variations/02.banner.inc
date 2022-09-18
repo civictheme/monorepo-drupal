@@ -14,17 +14,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
-  /**
-   * Light Theme banner with breadcrumb, with background, with featured image, Content component, Accordion component below banner
-   * Dark Light featured banner without breadcrumb, without background, without featured image, Card container component, Callout component below banner
-   * Light Dark banner with breadcrumb, with background, with featured image, iFrame component, Card container component below banner
-   * Dark Light featured banner without breadcrumb, without background, without featured image, Map component, iFrame component below banner
-   * Light Dark banner with breadcrumb, with background, with featured image, Slider component, Automated list component below banner
-   * Dark Light featured banner without breadcrumb, without background, without featured image, Search component, Map component below banner
-   * Light Dark banner with breadcrumb, with background, with featured image, Promo component below banner
-   * Dark Light featured banner without breadcrumb, without background, without featured image, Slider component below banner
-   * Light Dark banner with breadcrumb, with background, with featured image, Webform component below banner
-   */
   $variations = [
     // Page, Banner.
     [
@@ -80,8 +69,9 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
               'theme' => $helper::civicthemeThemeLight(),
             ],
           ],
-        ],
-        'banner_components_bott' => [
+        ]
+      ],
+      'banner_components_bott' => [
           [
             'type' => 'callout',
             'title' => $helper::staticSentence(3),
@@ -98,7 +88,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
             ],
           ],
         ],
-      ],
     ],
     [
       'title' => 'Light banner with breadcrumb, with background, with featured image, iFrame component, Card container component below banner',
