@@ -13,7 +13,7 @@ import {
 import CivicThemeGroupFilter from '../../02-molecules/group-filter/group-filter.twig';
 import CivicThemeSingleFilter from '../../02-molecules/single-filter/single-filter.twig';
 
-import CivicThemeCardContainer from '../card-container/card-container.twig';
+import CivicThemeItemGrid from '../../00-base/item-grid/item-grid.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
 import NavigationCard from '../../02-molecules/navigation-card/navigation-card.twig';
 
@@ -271,9 +271,9 @@ export const List = (knobTab) => {
       cards.push(Card(cardsProps));
     }
 
-    generalKnobs.rows = CivicThemeCardContainer({
+    generalKnobs.rows = CivicThemeItemGrid({
       theme,
-      cards,
+      items: cards,
       column_count: viewItemAs === 'promo' ? 3 : 2,
       fill_width: false,
       with_background: withBackground,
