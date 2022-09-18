@@ -4,7 +4,7 @@
  * Tooltip component.
  */
 
-function CivicTooltip(el) {
+function CivicThemeTooltip(el) {
   if (el.getAttribute('data-tooltip') === 'true') {
     return;
   }
@@ -69,7 +69,7 @@ function CivicTooltip(el) {
 /**
  * Show event handler.
  */
-CivicTooltip.prototype.tooltipShow = function (e) {
+CivicThemeTooltip.prototype.tooltipShow = function (e) {
   e.stopPropagation();
   e.preventDefault();
   e.stopImmediatePropagation();
@@ -84,7 +84,7 @@ CivicTooltip.prototype.tooltipShow = function (e) {
 /**
  * Hide event handler.
  */
-CivicTooltip.prototype.tooltipHide = function (e) {
+CivicThemeTooltip.prototype.tooltipHide = function (e) {
   e.stopPropagation();
   e.preventDefault();
   e.stopImmediatePropagation();
@@ -98,7 +98,7 @@ CivicTooltip.prototype.tooltipHide = function (e) {
 /**
  * Find button element.
  */
-CivicTooltip.prototype.findTooltip = function (el) {
+CivicThemeTooltip.prototype.findTooltip = function (el) {
   if (el.classList.contains('ct-tooltip')) {
     return el;
   }
@@ -108,7 +108,7 @@ CivicTooltip.prototype.findTooltip = function (el) {
 /**
  * Destroy an instance.
  */
-CivicTooltip.prototype.destroy = function (el) {
+CivicThemeTooltip.prototype.destroy = function (el) {
   if (el.getAttribute('data-tooltip') !== 'true' || !this.el) {
     return;
   }
@@ -141,5 +141,5 @@ CivicTooltip.prototype.destroy = function (el) {
 };
 
 document.querySelectorAll('.ct-tooltip').forEach((el) => {
-  new CivicTooltip(el);
+  new CivicThemeTooltip(el);
 });

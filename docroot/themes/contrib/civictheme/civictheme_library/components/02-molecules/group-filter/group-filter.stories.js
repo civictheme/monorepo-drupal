@@ -3,9 +3,9 @@ import {
   radios, number, text, boolean,
 } from '@storybook/addon-knobs';
 
-import { dropDownFilter, formElement } from '../../00-base/base.stories';
+import { randomDropdownFilter, randomFormElement } from '../../00-base/base.stories';
 
-import DropdownFilter from '../dropdown-filter/dropdown-filter.twig';
+import CivicThemeDropdownFilter from '../dropdown-filter/dropdown-filter.twig';
 import CivicThemeGroupFilter from './group-filter.twig';
 
 export default {
@@ -48,7 +48,7 @@ export const GroupFilter = () => {
 
   if (boolean('Show example filters', true, generalKnobTab)) {
     // Example checkbox dropdown.
-    filters.push(DropdownFilter({
+    filters.push(CivicThemeDropdownFilter({
       theme,
       filter_text: 'Checkboxes',
       filter_group: filterGroup,
@@ -57,21 +57,21 @@ export const GroupFilter = () => {
       options_title: 'Type of items',
       type: 'checkbox',
       options: [
-        formElement('checkbox', { value: true }, theme, false, count++),
-        formElement('checkbox', { value: true }, theme, false, count++),
-        formElement('checkbox', { value: true }, theme, false, count++),
-        formElement('checkbox', { value: false }, theme, false, count++),
-        formElement('checkbox', { value: false }, theme, false, count++),
-        formElement('checkbox', { value: false }, theme, false, count++),
-        formElement('checkbox', { value: false }, theme, false, count++),
-        formElement('checkbox', { value: false }, theme, false, count++),
-        formElement('checkbox', { value: false }, theme, false, count++),
-        formElement('checkbox', { value: false }, theme, false, count++),
+        randomFormElement('checkbox', { value: true }, theme, false, count++),
+        randomFormElement('checkbox', { value: true }, theme, false, count++),
+        randomFormElement('checkbox', { value: true }, theme, false, count++),
+        randomFormElement('checkbox', { value: false }, theme, false, count++),
+        randomFormElement('checkbox', { value: false }, theme, false, count++),
+        randomFormElement('checkbox', { value: false }, theme, false, count++),
+        randomFormElement('checkbox', { value: false }, theme, false, count++),
+        randomFormElement('checkbox', { value: false }, theme, false, count++),
+        randomFormElement('checkbox', { value: false }, theme, false, count++),
+        randomFormElement('checkbox', { value: false }, theme, false, count++),
       ].join(''),
     }));
 
     // Example date dropdown.
-    filters.push(DropdownFilter({
+    filters.push(CivicThemeDropdownFilter({
       theme,
       filter_text: 'Dates',
       filter_group: filterGroup,
@@ -79,8 +79,8 @@ export const GroupFilter = () => {
       inline_change_breakpoint: breakpoint,
       type: 'date',
       options: [
-        formElement('date', { value: '' }, theme, false, count++),
-        formElement('date', { value: '' }, theme, false, count++),
+        randomFormElement('date', { value: '' }, theme, false, count++),
+        randomFormElement('date', { value: '' }, theme, false, count++),
       ].join(''),
     }));
   }
@@ -101,13 +101,13 @@ export const GroupFilter = () => {
   if (filterNumber > 0) {
     for (let i = 0; i < filterNumber; i++) {
       const inputType = ['radio', 'checkbox', 'date'][Math.round(Math.random() * 2)];
-      filters.push(dropDownFilter(inputType, 4, theme, true, count++));
+      filters.push(randomDropdownFilter(inputType, 4, theme, true, count++));
     }
   }
 
   // Sort by example.
   if (boolean('Show sort by', true, generalKnobTab)) {
-    filters.push(DropdownFilter({
+    filters.push(randomDropdownFilter({
       theme,
       filter_text: 'Sort by',
       filter_group: filterGroup,
@@ -116,7 +116,7 @@ export const GroupFilter = () => {
       type: 'select',
       modifier_class: 'ct-dropdown-filter--right',
       options: [
-        formElement('select', {
+        randomFormElement('select', {
           value: [
             { type: 'option', value: 'relevant', label: 'Relevant' },
             { type: 'option', value: 'a-z', label: 'A-Z' },

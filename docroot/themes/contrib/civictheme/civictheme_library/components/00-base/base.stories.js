@@ -5,13 +5,13 @@
 
 import { boolean } from '@storybook/addon-knobs';
 import { LoremIpsum } from 'lorem-ipsum';
-import Input from '../01-atoms/input/input.twig';
-import Select from '../01-atoms/select/select.twig';
-import Checkbox from '../01-atoms/checkbox/checkbox.twig';
-import Radio from '../01-atoms/radio/radio.twig';
-import FormElement from '../02-molecules/form-element/form-element.twig';
-import FieldLabel from '../01-atoms/field-label/field-label.twig';
-import DropdownFilter
+import CivicThemeInput from '../01-atoms/input/input.twig';
+import CivicThemeSelect from '../01-atoms/select/select.twig';
+import CivicThemeCheckbox from '../01-atoms/checkbox/checkbox.twig';
+import CivicThemeRadio from '../01-atoms/radio/radio.twig';
+import CivicThemeFormElement from '../02-molecules/form-element/form-element.twig';
+import CivicThemeFieldLabel from '../01-atoms/field-label/field-label.twig';
+import CivicThemeDropdownFilter
   from '../02-molecules/dropdown-filter/dropdown-filter.twig';
 
 export const getThemes = () => ({
@@ -130,13 +130,13 @@ export const demoVideoPoster = () => './assets/videos/demo_poster.png';
 
 export const demoIcon = () => './assets/icons/megaphone.svg';
 
-export const formElement = (inputType, options, theme, rand, itr) => {
+export const randomFormElement = (inputType, options, theme, rand, itr) => {
   const isCheckboxOrRadio = inputType === 'checkbox' || inputType === 'radio';
 
   const formElementOptions = {
     theme,
     type: inputType,
-    label: FieldLabel({
+    label: CivicThemeFieldLabel({
       theme,
       content: options.title ? options.title : `Input title ${itr + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
       attributes: `for="form-element-${itr}"`,
@@ -165,22 +165,22 @@ export const formElement = (inputType, options, theme, rand, itr) => {
 
   switch (inputType) {
     case 'radio':
-      formElementOptions.children.push(Radio(inputOptions));
+      formElementOptions.children.push(CivicThemeRadio(inputOptions));
       break;
     case 'checkbox':
-      formElementOptions.children.push(Checkbox(inputOptions));
+      formElementOptions.children.push(CivicThemeCheckbox(inputOptions));
       break;
     case 'select':
-      formElementOptions.children.push(Select({
+      formElementOptions.children.push(CivicThemeSelect({
         ...inputOptions,
         options: inputOptions.value,
       }));
       break;
     default:
-      formElementOptions.children.push(Input(inputOptions));
+      formElementOptions.children.push(CivicThemeInput(inputOptions));
   }
 
-  return FormElement(formElementOptions);
+  return CivicThemeFormElement(formElementOptions);
 };
 
 export const randomFormElements = (count, theme, rand) => {
@@ -203,7 +203,7 @@ export const randomFormElements = (count, theme, rand) => {
     const inputType = inputTypes[Math.floor(Math.random() * inputTypes.length)];
     const required = [Math.floor(Math.random() * requiredOptions.length)];
 
-    formElements.push(formElement(
+    formElements.push(randomFormElement(
       inputType,
       {
         required,
@@ -217,7 +217,7 @@ export const randomFormElements = (count, theme, rand) => {
   return formElements;
 };
 
-export const dropDownFilter = (filterType, numOfOptions, theme, rand, itr) => {
+export const randomDropdownFilter = (filterType, numOfOptions, theme, rand, itr) => {
   const filterOptions = {
     filter_text: `Filter text ${itr + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
     filter_group: 'filter_group',
@@ -233,10 +233,10 @@ export const dropDownFilter = (filterType, numOfOptions, theme, rand, itr) => {
       value: randomString(getRandomInt(1, 8)),
     };
     options.attributes += filterType === 'radio' ? ` name="test_${itr}"` : ` name="${randomString(getRandomInt(3, 8))}"`;
-    children.push(formElement(filterType, options, theme, true, count++));
+    children.push(randomFormElement(filterType, options, theme, true, count++));
   }
 
-  return DropdownFilter({
+  return CivicThemeDropdownFilter({
     theme,
     ...filterOptions,
     type: filterType,

@@ -16,7 +16,7 @@
  * - data-table-of-contents-title (optional): The title of TOC.
  */
 
-function CivicTableOfContents(el) {
+function CivicThemeTableOfContents(el) {
   // Check if current target is already initialised.
   if (el.hasAttribute('data-table-of-contents-initialised')) {
     return;
@@ -43,7 +43,7 @@ function CivicTableOfContents(el) {
   this.target.setAttribute('data-table-of-contents-initialised', 'true');
 }
 
-CivicTableOfContents.prototype.init = function () {
+CivicThemeTableOfContents.prototype.init = function () {
   let html = '';
 
   const links = this.findLinks(this.anchorSelector, this.anchorScopeSelector);
@@ -63,7 +63,7 @@ CivicTableOfContents.prototype.init = function () {
   this.place(this.target, this.position, html);
 };
 
-CivicTableOfContents.prototype.findLinks = function (anchorSelector, scopeSelector) {
+CivicThemeTableOfContents.prototype.findLinks = function (anchorSelector, scopeSelector) {
   const links = [];
 
   // Fins links within provided scope selector.
@@ -97,11 +97,11 @@ CivicTableOfContents.prototype.findLinks = function (anchorSelector, scopeSelect
   return links;
 };
 
-CivicTableOfContents.prototype.renderTitle = function (title) {
+CivicThemeTableOfContents.prototype.renderTitle = function (title) {
   return `<div class="ct-table-of-contents__title">${title}</div>`;
 };
 
-CivicTableOfContents.prototype.renderLinks = function (links) {
+CivicThemeTableOfContents.prototype.renderLinks = function (links) {
   let html = '';
 
   html += `<ul class="ct-table-of-contents__links">`;
@@ -117,11 +117,11 @@ CivicTableOfContents.prototype.renderLinks = function (links) {
   return html;
 };
 
-CivicTableOfContents.prototype.renderContainer = function (html, theme, position) {
+CivicThemeTableOfContents.prototype.renderContainer = function (html, theme, position) {
   return `<div class="ct-table-of-contents ct-theme-${theme} ct-table-of-contents--position-${position}">${html}</div>`;
 };
 
-CivicTableOfContents.prototype.place = function (el, position, html) {
+CivicThemeTableOfContents.prototype.place = function (el, position, html) {
   const positionMap = {
     before: 'beforebegin',
     after: 'afterend',
@@ -132,7 +132,7 @@ CivicTableOfContents.prototype.place = function (el, position, html) {
   el.insertAdjacentHTML(positionMap[position], html);
 };
 
-CivicTableOfContents.prototype.makeAnchorId = function (str) {
+CivicThemeTableOfContents.prototype.makeAnchorId = function (str) {
   return str.toLowerCase()
     .replace(/(&\w+?;)/gim, ' ')
     .replace(/[_.~"<>%|'!*();:@&=+$,/?%#[\]{}\n`^\\]/gim, '')
@@ -141,5 +141,5 @@ CivicTableOfContents.prototype.makeAnchorId = function (str) {
 };
 
 document.querySelectorAll('[data-table-of-contents-position]').forEach((el) => {
-  new CivicTableOfContents(el);
+  new CivicThemeTableOfContents(el);
 });

@@ -3,7 +3,7 @@
  * @file
  * Tabs component.
  */
-function CivicTabs(el, selectedIndex) {
+function CivicThemeTabs(el, selectedIndex) {
   if (!el) {
     return;
   }
@@ -22,7 +22,7 @@ function CivicTabs(el, selectedIndex) {
   this.init(selectedIndex);
 }
 
-CivicTabs.prototype.init = function () {
+CivicThemeTabs.prototype.init = function () {
   this.expandedTabs = new Array(this.panels.length);
   this.clickListener = this.clickEvent.bind(this);
 
@@ -38,13 +38,13 @@ CivicTabs.prototype.init = function () {
   this.links[selected].click();
 };
 
-CivicTabs.prototype.clickEvent = function (e) {
+CivicThemeTabs.prototype.clickEvent = function (e) {
   e.preventDefault();
 
   this.setSelected(e.currentTarget);
 };
 
-CivicTabs.prototype.setSelected = function (current) {
+CivicThemeTabs.prototype.setSelected = function (current) {
   for (let i = 0; i < this.panels.length; i++) {
     const currentLink = this.links[i];
     if (currentLink === current) {
@@ -61,7 +61,7 @@ CivicTabs.prototype.setSelected = function (current) {
   }
 };
 
-CivicTabs.prototype.destroy = function () {
+CivicThemeTabs.prototype.destroy = function () {
   for (let i = 0; i < this.panels.length; i++) {
     this.links[i].removeAttribute('aria-selected');
     this.links[i].classList.remove('selected');
@@ -73,5 +73,5 @@ CivicTabs.prototype.destroy = function () {
 };
 
 document.querySelectorAll('.ct-tabs').forEach((tabs) => {
-  new CivicTabs(tabs);
+  new CivicThemeTabs(tabs);
 });

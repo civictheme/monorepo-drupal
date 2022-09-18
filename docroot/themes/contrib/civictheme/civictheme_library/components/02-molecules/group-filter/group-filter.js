@@ -2,7 +2,7 @@
 /**
  * Group filter component.
  */
-function CivicGroupFilter(el) {
+function CivicThemeGroupFilter(el) {
   // Use "data-ct-alerts"'s attribute value to identify if this
   // component was already initialised.
   if (el.getAttribute('data-ct-group-filter') === 'true') {
@@ -83,7 +83,7 @@ function CivicGroupFilter(el) {
 /**
  * CivicTheme Group Filter Initialisation.
  */
-CivicGroupFilter.prototype.init = function () {
+CivicThemeGroupFilter.prototype.init = function () {
   // Add listeners.
   this.filterElement.addEventListener('change', this.filterElementChangeEvent.bind(this));
   this.tagElement.addEventListener('click', this.tagElementChangeEvent.bind(this));
@@ -137,7 +137,7 @@ CivicGroupFilter.prototype.init = function () {
  * Position tags.
  * Mobile will show tags above the filters, desktop will show below.
  */
-CivicGroupFilter.prototype.updateTagContainerPosition = function () {
+CivicThemeGroupFilter.prototype.updateTagContainerPosition = function () {
   const tagsContainerSelector = this.isDesktop ? '[data-group-filter-tags-container]' : '[data-group-filter-mobile-tags-container]';
   this.el.querySelector(tagsContainerSelector).appendChild(this.tagElement);
 
@@ -161,7 +161,7 @@ CivicGroupFilter.prototype.updateTagContainerPosition = function () {
  * Remember current form state.
  * 'data-flyout-open-trigger' on button will handle opening flyout.
  */
-CivicGroupFilter.prototype.mobileOpenElementClickEvent = function (e) {
+CivicThemeGroupFilter.prototype.mobileOpenElementClickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
   this.revertState = JSON.stringify(this.state);
@@ -172,7 +172,7 @@ CivicGroupFilter.prototype.mobileOpenElementClickEvent = function (e) {
  * Revert form state to remembered state.
  * 'data-group-filter-mobile-cancel' on button will handle closing flyout.
  */
-CivicGroupFilter.prototype.mobileCancelElementClickEvent = function (e) {
+CivicThemeGroupFilter.prototype.mobileCancelElementClickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
   if (this.revertState) {
@@ -184,7 +184,7 @@ CivicGroupFilter.prototype.mobileCancelElementClickEvent = function (e) {
 /**
  * Form filter change event listener.
  */
-CivicGroupFilter.prototype.filterElementChangeEvent = function (e) {
+CivicThemeGroupFilter.prototype.filterElementChangeEvent = function (e) {
   const element = e.target;
   if (this.isSelectableField(element)) {
     const type = this.getElementType(element);
@@ -203,7 +203,7 @@ CivicGroupFilter.prototype.filterElementChangeEvent = function (e) {
 /**
  * Filter chips click event listener.
  */
-CivicGroupFilter.prototype.tagElementChangeEvent = function (e) {
+CivicThemeGroupFilter.prototype.tagElementChangeEvent = function (e) {
   if (e.target.nodeName === 'BUTTON') {
     const key = e.target.dataset.id;
     const { type } = this.state[key];
@@ -214,7 +214,7 @@ CivicGroupFilter.prototype.tagElementChangeEvent = function (e) {
 /**
  * Clear state from all selected filters.
  */
-CivicGroupFilter.prototype.clearElementClickEvent = function () {
+CivicThemeGroupFilter.prototype.clearElementClickEvent = function () {
   Object.keys(this.state).forEach((key) => {
     const { type } = this.state[key];
     this.updateState(key, this.state[key].id, this.fieldTypes[type].emptyValue, type, false);
@@ -223,14 +223,14 @@ CivicGroupFilter.prototype.clearElementClickEvent = function () {
   this.el.dispatchEvent(new CustomEvent('civicthemeGroupFilterClearAll'));
 };
 
-CivicGroupFilter.prototype.isSelectableField = function (element) {
+CivicThemeGroupFilter.prototype.isSelectableField = function (element) {
   return !element.hasAttribute('data-group-filter-ignore');
 };
 
 /**
  * Update state of civictheme group filter.
  */
-CivicGroupFilter.prototype.updateState = function (key, id, value, type, redraw) {
+CivicThemeGroupFilter.prototype.updateState = function (key, id, value, type, redraw) {
   this.state[key] = { id, type, value };
   if (redraw) {
     this.redraw();
@@ -240,7 +240,7 @@ CivicGroupFilter.prototype.updateState = function (key, id, value, type, redraw)
 /**
  * Gets the filter form element type.
  */
-CivicGroupFilter.prototype.getElementType = function (el) {
+CivicThemeGroupFilter.prototype.getElementType = function (el) {
   let returnType = null;
   if (el) {
     const tag = el.nodeName.toLowerCase();
@@ -252,7 +252,7 @@ CivicGroupFilter.prototype.getElementType = function (el) {
 /**
  * Redraw civictheme group filter on event or initialisation.
  */
-CivicGroupFilter.prototype.redraw = function (changeEvent = true) {
+CivicThemeGroupFilter.prototype.redraw = function (changeEvent = true) {
   this.redrawFilters();
   this.redrawSelected();
   this.redrawClearButton();
@@ -264,7 +264,7 @@ CivicGroupFilter.prototype.redraw = function (changeEvent = true) {
 /**
  * Redraw civictheme group filters.
  */
-CivicGroupFilter.prototype.redrawFilters = function () {
+CivicThemeGroupFilter.prototype.redrawFilters = function () {
   Object.keys(this.state).forEach((key) => {
     const entry = this.state[key];
     const el = document.getElementById(entry.id);
@@ -280,7 +280,7 @@ CivicGroupFilter.prototype.redrawFilters = function () {
 /**
  * Renders filter html component.
  */
-CivicGroupFilter.prototype.renderHTMLFilterItem = function (key, label, type, theme) {
+CivicThemeGroupFilter.prototype.renderHTMLFilterItem = function (key, label, type, theme) {
   // Return a chip button template, wrapped in a list item.
   if (type !== 'input_radio') {
     return `
@@ -307,7 +307,7 @@ CivicGroupFilter.prototype.renderHTMLFilterItem = function (key, label, type, th
 /**
  * Redraw selected filters.
  */
-CivicGroupFilter.prototype.redrawSelected = function () {
+CivicThemeGroupFilter.prototype.redrawSelected = function () {
   let html = '';
   let count = 0;
   Object.keys(this.state).forEach((key) => {
@@ -334,7 +334,7 @@ CivicGroupFilter.prototype.redrawSelected = function () {
  * @param {number} count
  *   The counter used retrieve the plural.
  */
-CivicGroupFilter.prototype.pluralize = function (pluralJSON, count) {
+CivicThemeGroupFilter.prototype.pluralize = function (pluralJSON, count) {
   const obj = JSON.parse(decodeURIComponent(pluralJSON));
   let puralStr = '';
   if (obj[count]) {
@@ -348,7 +348,7 @@ CivicGroupFilter.prototype.pluralize = function (pluralJSON, count) {
 /**
  * Redraw clear button.
  */
-CivicGroupFilter.prototype.redrawClearButton = function () {
+CivicThemeGroupFilter.prototype.redrawClearButton = function () {
   // Hide button if no elements set.
   let showTagPanel = false;
   Object.keys(this.state).forEach((key) => {
@@ -363,7 +363,7 @@ CivicGroupFilter.prototype.redrawClearButton = function () {
 /**
  * Custom event allowing other JS libraries to operate on filter events.
  */
-CivicGroupFilter.prototype.dispatchChangeEvent = function () {
+CivicThemeGroupFilter.prototype.dispatchChangeEvent = function () {
   if (!this.initialisedState) {
     return;
   }
@@ -371,5 +371,5 @@ CivicGroupFilter.prototype.dispatchChangeEvent = function () {
 };
 
 document.querySelectorAll('[data-component-name="ct-group-filter"]').forEach((el) => {
-  new CivicGroupFilter(el);
+  new CivicThemeGroupFilter(el);
 });

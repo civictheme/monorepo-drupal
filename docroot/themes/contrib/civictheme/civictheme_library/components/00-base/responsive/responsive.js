@@ -11,7 +11,7 @@
  * delay its initialisation to happen only when current screen size is equal
  * or more than medium ('m') breakpoint.
  */
-function CivicResponsive() {
+function CivicThemeResponsive() {
   const queries = this.getMediaQueries();
   for (const breakpoint in queries) {
     const query = queries[breakpoint];
@@ -39,7 +39,7 @@ function CivicResponsive() {
 /**
  * Breakpoints map.
  */
-CivicResponsive.prototype.breakpoints = {
+CivicThemeResponsive.prototype.breakpoints = {
   xxs: '0px',
   xs: '368px',
   s: '576px',
@@ -55,7 +55,7 @@ CivicResponsive.prototype.breakpoints = {
  * @return object
  *   Keys are breakpoint names, and values a media queries.
  */
-CivicResponsive.prototype.getMediaQueries = function () {
+CivicThemeResponsive.prototype.getMediaQueries = function () {
   const queries = {};
 
   const firstBp = Object.keys(this.breakpoints)[0];
@@ -86,7 +86,7 @@ CivicResponsive.prototype.getMediaQueries = function () {
  * @param {Event} evt
  *   The media query change event.
  */
-CivicResponsive.prototype.mediaQueryChange = function (breakpoint, evt) {
+CivicThemeResponsive.prototype.mediaQueryChange = function (breakpoint, evt) {
   if (!evt.matches) {
     return;
   }
@@ -95,7 +95,7 @@ CivicResponsive.prototype.mediaQueryChange = function (breakpoint, evt) {
     bubbles: true,
     detail: {
       breakpoint,
-      evaluate: CivicResponsive.prototype.evaluate,
+      evaluate: CivicThemeResponsive.prototype.evaluate,
     },
   }));
 };
@@ -113,8 +113,8 @@ CivicResponsive.prototype.mediaQueryChange = function (breakpoint, evt) {
  * @return {*}
  *   Attached object or false if expression did not match.
  */
-CivicResponsive.prototype.evaluate = function (breakpointExpr, func, el) {
-  if (CivicResponsive.prototype.matchExpr(breakpointExpr, this.breakpoint)) {
+CivicThemeResponsive.prototype.evaluate = function (breakpointExpr, func, el) {
+  if (CivicThemeResponsive.prototype.matchExpr(breakpointExpr, this.breakpoint)) {
     // eslint-disable-next-line new-cap
     return new func(el);
   }
@@ -133,7 +133,7 @@ CivicResponsive.prototype.evaluate = function (breakpointExpr, func, el) {
  * @param {string} breakpointExpr
  *   The breakpoint expression. E.g. '>=m', '<s' etc.
  *   Supported operators are: <, >, =, >=, <=, <>. Defaults to '>='.
- *   Breakpoint names are matched to the CivicResponsive.prototype.breakpoints.
+ *   Breakpoint names are matched to the CivicThemeResponsive.prototype.breakpoints.
  *
  * @param {string} breakpoint
  *   Currently active breakpoint.
@@ -141,8 +141,8 @@ CivicResponsive.prototype.evaluate = function (breakpointExpr, func, el) {
  * @return {boolean}
  *   True if expression matches current breakppint, false otherwise.
  */
-CivicResponsive.prototype.matchExpr = function (breakpointExpr, breakpoint) {
-  const names = Object.keys(CivicResponsive.prototype.breakpoints);
+CivicThemeResponsive.prototype.matchExpr = function (breakpointExpr, breakpoint) {
+  const names = Object.keys(CivicThemeResponsive.prototype.breakpoints);
   // Parse breakpoint expression into name and operator.
   const regex = `^(<|>|=|>=|<=|<>)?(${names.join('|')})$`;
   const matches = breakpointExpr.match(new RegExp(regex, 'i'));
@@ -170,7 +170,7 @@ CivicResponsive.prototype.matchExpr = function (breakpointExpr, breakpoint) {
 };
 
 if (document.querySelectorAll('[data-responsive]').length) {
-  // CivicResponsive needs to run after all ct-responisve
+  // CivicThemeResponsive needs to run after all ct-responisve
   // event listeners have been added.
   // Delay the execution until after other components have been initialized.
   // Using setTimeout as an interim solution because:
@@ -181,6 +181,6 @@ if (document.querySelectorAll('[data-responsive]').length) {
   setTimeout(() => {
     // Init if there is at least a single component with data-responsive
     // attribute on the page.
-    new CivicResponsive();
+    new CivicThemeResponsive();
   }, 10);
 }

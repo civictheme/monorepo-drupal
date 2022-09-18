@@ -3,7 +3,7 @@
  * @file
  * Button component.
  */
-function CivicButton(el) {
+function CivicThemeButton(el) {
   if (el.getAttribute('data-button') === 'true') {
     return;
   }
@@ -24,7 +24,7 @@ function CivicButton(el) {
 /**
  * Click event handler.
  */
-CivicButton.prototype.clickEvent = function (e) {
+CivicThemeButton.prototype.clickEvent = function (e) {
   if (/input/i.test(e.target.tagName)) {
     let isChecked = false;
     const input = e.target;
@@ -49,7 +49,7 @@ CivicButton.prototype.clickEvent = function (e) {
 /**
  * Set the checked value.
  */
-CivicButton.prototype.setChecked = function (input, check) {
+CivicThemeButton.prototype.setChecked = function (input, check) {
   const button = this.findButton(input);
   if (button && !button.hasAttribute('disabled')) {
     if (check) {
@@ -65,7 +65,7 @@ CivicButton.prototype.setChecked = function (input, check) {
 /**
  * Focusin event handler.
  */
-CivicButton.prototype.focusinEvent = function (e) {
+CivicThemeButton.prototype.focusinEvent = function (e) {
   const button = this.findButton(e.target);
   if (button && !button.hasAttribute('disabled')) {
     button.classList.add('focus');
@@ -75,7 +75,7 @@ CivicButton.prototype.focusinEvent = function (e) {
 /**
  * Focusout event handler.
  */
-CivicButton.prototype.focusoutEvent = function (e) {
+CivicThemeButton.prototype.focusoutEvent = function (e) {
   const button = this.findButton(e.target);
   if (button) {
     button.classList.remove('focus');
@@ -85,7 +85,7 @@ CivicButton.prototype.focusoutEvent = function (e) {
 /**
  * Click event handler for dismiss button.
  */
-CivicButton.prototype.dismissClickEvent = function (e) {
+CivicThemeButton.prototype.dismissClickEvent = function (e) {
   const button = this.findButton(e.target);
   if (button) {
     button.remove();
@@ -96,7 +96,7 @@ CivicButton.prototype.dismissClickEvent = function (e) {
 /**
  * Find button element.
  */
-CivicButton.prototype.findButton = function (el) {
+CivicThemeButton.prototype.findButton = function (el) {
   if (el.classList.contains('ct-button')) {
     return el;
   }
@@ -104,5 +104,5 @@ CivicButton.prototype.findButton = function (el) {
 };
 
 document.querySelectorAll('.ct-button').forEach((el) => {
-  new CivicButton(el);
+  new CivicThemeButton(el);
 });

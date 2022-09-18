@@ -12,7 +12,7 @@
  * - data-popover-visible - indicate that a popover is visible.
  */
 
-function CivicPopover(el) {
+function CivicThemePopover(el) {
   if (el.getAttribute('data-popover') === 'true' || this.el) {
     return;
   }
@@ -77,21 +77,21 @@ function CivicPopover(el) {
 /**
  * Get trigger element.
  */
-CivicPopover.prototype.getTrigger = function (el) {
+CivicThemePopover.prototype.getTrigger = function (el) {
   return el.querySelector('[data-popover-button]') || el.firstElementChild || null;
 };
 
 /**
  * Get content element.
  */
-CivicPopover.prototype.getContent = function (el) {
+CivicThemePopover.prototype.getContent = function (el) {
   return el.querySelector('[data-popver-content]') || this.getTrigger(el).nextElementSibling || null;
 };
 
 /**
  * Destroy an instance.
  */
-CivicPopover.prototype.destroy = function (el) {
+CivicThemePopover.prototype.destroy = function (el) {
   if (el.getAttribute('data-popover') !== 'true' || !this.el) {
     return;
   }
@@ -124,7 +124,7 @@ CivicPopover.prototype.destroy = function (el) {
 /**
  * Toggle event handler.
  */
-CivicPopover.prototype.togglePopover = function (e) {
+CivicThemePopover.prototype.togglePopover = function (e) {
   e.stopPropagation();
   e.preventDefault();
   e.stopImmediatePropagation();
@@ -140,7 +140,7 @@ CivicPopover.prototype.togglePopover = function (e) {
 /**
  * Show event handler.
  */
-CivicPopover.prototype.showPopover = function (e) {
+CivicThemePopover.prototype.showPopover = function (e) {
   if (e.target) {
     e.stopPropagation();
     e.preventDefault();
@@ -157,7 +157,7 @@ CivicPopover.prototype.showPopover = function (e) {
 /**
  * Hide Event handler.
  */
-CivicPopover.prototype.hidePopover = function (e) {
+CivicThemePopover.prototype.hidePopover = function (e) {
   if (e.target) {
     e.stopPropagation();
     e.preventDefault();
@@ -173,7 +173,7 @@ CivicPopover.prototype.hidePopover = function (e) {
 /**
  * Find button element.
  */
-CivicPopover.prototype.findPopover = function (el) {
+CivicThemePopover.prototype.findPopover = function (el) {
   if (el.hasAttribute('data-popover')) {
     return el;
   }
@@ -181,5 +181,5 @@ CivicPopover.prototype.findPopover = function (el) {
 };
 
 document.querySelectorAll('[data-popover]').forEach((el) => {
-  new CivicPopover(el);
+  new CivicThemePopover(el);
 });

@@ -14,7 +14,7 @@
  * - data-collapsible-group-enabled-breakpoint - enable grouping at breakpoint.
  *   Needs 'data-responsive' attribute.
  */
-function CivicCollapsible(el) {
+function CivicThemeCollapsible(el) {
   // Use "data-collapsible"'s attribute value to identify if this component was
   // already initialised.
   if (el.getAttribute('data-collapsible') === 'true' || this.el) {
@@ -45,7 +45,7 @@ function CivicCollapsible(el) {
   this.trigger.addEventListener('keydown', this.keydownEvent.bind(this.trigger));
   this.trigger.addEventListener('focusout', this.focusoutEvent.bind(this));
   this.panel.addEventListener('click', (e) => e.stopPropagation());
-  // @todo - These lines have been disabled as they break the CivicLargeFilter
+  // @todo - These lines have been disabled as they break the CivicThemeLargeFilter
   // dropdowns.
   // this.panel.addEventListener('focusout', this.focusoutEvent.bind(this));
   // this.panel.addEventListener('focusin', this.focusinEvent.bind(this));
@@ -77,8 +77,8 @@ function CivicCollapsible(el) {
   });
 
   // Attach global keydown event listener to allow closing all collapsibles.
-  document.addEventListener('keydown', CivicCollapsible.prototype.keydownEvent);
-  document.addEventListener('click', CivicCollapsible.prototype.collapseAllGroups);
+  document.addEventListener('keydown', CivicThemeCollapsible.prototype.keydownEvent);
+  document.addEventListener('click', CivicThemeCollapsible.prototype.collapseAllGroups);
 
   // Responsive Collapsible Group.
   this.isGroupsEnabled = true;
@@ -103,7 +103,7 @@ function CivicCollapsible(el) {
 /**
  * Destroy an instance.
  */
-CivicCollapsible.prototype.destroy = function (el) {
+CivicThemeCollapsible.prototype.destroy = function (el) {
   if (el.getAttribute('data-collapsible') !== 'true' || !this.el) {
     return;
   }
@@ -143,7 +143,7 @@ CivicCollapsible.prototype.destroy = function (el) {
 /**
  * Click event handler.
  */
-CivicCollapsible.prototype.clickEvent = function (e) {
+CivicThemeCollapsible.prototype.clickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
   e.stopImmediatePropagation();
@@ -162,7 +162,7 @@ CivicCollapsible.prototype.clickEvent = function (e) {
 /**
  * Focusin event handler.
  */
-CivicCollapsible.prototype.focusinEvent = function (e) {
+CivicThemeCollapsible.prototype.focusinEvent = function (e) {
   const focusable = this.findFocusable(e.relatedTarget, e.target);
   if (focusable) {
     focusable.focus();
@@ -172,7 +172,7 @@ CivicCollapsible.prototype.focusinEvent = function (e) {
 /**
  * Focusout event handler.
  */
-CivicCollapsible.prototype.focusoutEvent = function (e) {
+CivicThemeCollapsible.prototype.focusoutEvent = function (e) {
   // Close when trigger or panel leaves a focus, but only for grouped ones.
   if (
     e.relatedTarget
@@ -188,7 +188,7 @@ CivicCollapsible.prototype.focusoutEvent = function (e) {
 /**
  * React on pressed keys.
  */
-CivicCollapsible.prototype.keydownEvent = function (e) {
+CivicThemeCollapsible.prototype.keydownEvent = function (e) {
   if (!/(32|27|38|40)/.test(e.which) || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select|object/i.test(e.target.tagName)) {
     return;
   }
@@ -198,7 +198,7 @@ CivicCollapsible.prototype.keydownEvent = function (e) {
 
   // ESC.
   if (e.which === 27) {
-    CivicCollapsible.prototype.collapseAllGroups();
+    CivicThemeCollapsible.prototype.collapseAllGroups();
     return;
   }
 
@@ -224,7 +224,7 @@ CivicCollapsible.prototype.keydownEvent = function (e) {
 /**
  * Close "other" instances in the group.
  */
-CivicCollapsible.prototype.closeGroup = function (group) {
+CivicThemeCollapsible.prototype.closeGroup = function (group) {
   if (this.isGroupsEnabled) {
     const currentEl = this.el;
     // eslint-disable-next-line prefer-template
@@ -239,7 +239,7 @@ CivicCollapsible.prototype.closeGroup = function (group) {
 /**
  * Close all grouped instances on the page.
  */
-CivicCollapsible.prototype.collapseAllGroups = function () {
+CivicThemeCollapsible.prototype.collapseAllGroups = function () {
   document.querySelectorAll('[data-collapsible-group]').forEach((el) => {
     el.dispatchEvent(new CustomEvent('civictheme.collapsible.collapse', { bubbles: true, detail: { closeAll: true } }));
   });
@@ -251,7 +251,7 @@ CivicCollapsible.prototype.collapseAllGroups = function () {
  * @param {boolean} animate
  *   Flag to collapse with animation.
  */
-CivicCollapsible.prototype.collapse = function (animate, evt) {
+CivicThemeCollapsible.prototype.collapse = function (animate, evt) {
   const t = this;
 
   if (this.isCollapsed(t.el)) {
@@ -318,7 +318,7 @@ CivicCollapsible.prototype.collapse = function (animate, evt) {
  * @param {boolean} animate
  *   Flag to expand with animation.
  */
-CivicCollapsible.prototype.expand = function (animate) {
+CivicThemeCollapsible.prototype.expand = function (animate) {
   const t = this;
 
   if (!this.isCollapsed(t.el)) {
@@ -371,28 +371,28 @@ CivicCollapsible.prototype.expand = function (animate) {
 /**
  * Check if the collapsible is collapsed.
  */
-CivicCollapsible.prototype.isCollapsed = function (el) {
+CivicThemeCollapsible.prototype.isCollapsed = function (el) {
   return el.hasAttribute('data-collapsible-collapsed');
 };
 
 /**
  * Get trigger element.
  */
-CivicCollapsible.prototype.getTrigger = function (el) {
+CivicThemeCollapsible.prototype.getTrigger = function (el) {
   return el.querySelector('[data-collapsible-trigger]') || el.firstElementChild || null;
 };
 
 /**
  * Get panel element.
  */
-CivicCollapsible.prototype.getPanel = function (el) {
+CivicThemeCollapsible.prototype.getPanel = function (el) {
   return el.querySelector('[data-collapsible-panel]') || this.getTrigger(el).nextElementSibling || null;
 };
 
 /**
  * Find next or previous element in the DOM, based on elements position.
  */
-CivicCollapsible.prototype.findFocusable = function (el, nextEl) {
+CivicThemeCollapsible.prototype.findFocusable = function (el, nextEl) {
   const documentElements = Array.from(document.querySelectorAll('*'));
   // Decide the direction of tabbing based on the position of the elements in
   // DOM.
@@ -406,7 +406,7 @@ CivicCollapsible.prototype.findFocusable = function (el, nextEl) {
 /**
  * Find next focusable element in DOM.
  */
-CivicCollapsible.prototype.findNextFocusable = function (el) {
+CivicThemeCollapsible.prototype.findNextFocusable = function (el) {
   const focusable = this.allFocusable();
 
   for (let i = 0; i < focusable.length; i++) {
@@ -421,7 +421,7 @@ CivicCollapsible.prototype.findNextFocusable = function (el) {
 /**
  * Find previous focusable element in DOM.
  */
-CivicCollapsible.prototype.findPreviousFocusable = function (el) {
+CivicThemeCollapsible.prototype.findPreviousFocusable = function (el) {
   const focusable = this.allFocusable();
 
   for (let i = 0; i < focusable.length; i++) {
@@ -436,7 +436,7 @@ CivicCollapsible.prototype.findPreviousFocusable = function (el) {
 /**
  * Get all focusable elements.
  */
-CivicCollapsible.prototype.allFocusable = function () {
+CivicThemeCollapsible.prototype.allFocusable = function () {
   const focusable = [];
 
   // Limit a set of supported focusable elements.
@@ -453,7 +453,7 @@ CivicCollapsible.prototype.allFocusable = function () {
 /**
  * Check if the element is focusable.
  */
-CivicCollapsible.prototype.isFocusable = function (element) {
+CivicThemeCollapsible.prototype.isFocusable = function (element) {
   const nodeName = element.nodeName.toLowerCase();
   const tabIndex = element.getAttribute('tabindex');
   const isTabIndexNaN = Number.isNaN(tabIndex);
@@ -544,10 +544,10 @@ document.querySelectorAll('[data-collapsible]').forEach((el) => {
   const breakpointExpr = el.getAttribute('data-responsive');
   if (breakpointExpr) {
     window.addEventListener('ct-responsive', (evt) => {
-      evt.detail.evaluate(breakpointExpr, CivicCollapsible, el);
+      evt.detail.evaluate(breakpointExpr, CivicThemeCollapsible, el);
     }, false);
     return;
   }
 
-  new CivicCollapsible(el);
+  new CivicThemeCollapsible(el);
 });

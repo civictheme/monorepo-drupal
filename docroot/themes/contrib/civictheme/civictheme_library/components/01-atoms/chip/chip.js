@@ -4,7 +4,7 @@
  * Chip component.
  */
 
-function CivicChip(el) {
+function CivicThemeChip(el) {
   if (el.getAttribute('data-chip') === 'true') {
     return;
   }
@@ -25,7 +25,7 @@ function CivicChip(el) {
 /**
  * Click event handler.
  */
-CivicChip.prototype.clickEvent = function (e) {
+CivicThemeChip.prototype.clickEvent = function (e) {
   if (/input/i.test(e.target.tagName)) {
     let isChecked = false;
     const input = e.target;
@@ -55,7 +55,7 @@ CivicChip.prototype.clickEvent = function (e) {
 /**
  * Set the checked value.
  */
-CivicChip.prototype.setChecked = function (input, check) {
+CivicThemeChip.prototype.setChecked = function (input, check) {
   const chip = this.findChip(input);
   if (chip && !chip.hasAttribute('disabled')) {
     if (check) {
@@ -71,7 +71,7 @@ CivicChip.prototype.setChecked = function (input, check) {
 /**
  * Focusin event handler.
  */
-CivicChip.prototype.focusinEvent = function (e) {
+CivicThemeChip.prototype.focusinEvent = function (e) {
   const chip = this.findChip(e.target);
   if (chip && !chip.hasAttribute('disabled')) {
     chip.classList.add('focus');
@@ -81,7 +81,7 @@ CivicChip.prototype.focusinEvent = function (e) {
 /**
  * Focusout event handler.
  */
-CivicChip.prototype.focusoutEvent = function (e) {
+CivicThemeChip.prototype.focusoutEvent = function (e) {
   const chip = this.findChip(e.target);
   if (chip) {
     chip.classList.remove('focus');
@@ -91,7 +91,7 @@ CivicChip.prototype.focusoutEvent = function (e) {
 /**
  * Click event handler for dismiss chip.
  */
-CivicChip.prototype.dismissClickEvent = function (e) {
+CivicThemeChip.prototype.dismissClickEvent = function (e) {
   const chip = this.findChip(e.target);
   if (chip) {
     const input = chip.getElementsByTagName('input');
@@ -105,7 +105,7 @@ CivicChip.prototype.dismissClickEvent = function (e) {
 /**
  * Find chip element.
  */
-CivicChip.prototype.findChip = function (el) {
+CivicThemeChip.prototype.findChip = function (el) {
   if (el.classList.contains('ct-chip')) {
     return el;
   }
@@ -113,5 +113,5 @@ CivicChip.prototype.findChip = function (el) {
 };
 
 document.querySelectorAll('.ct-chip').forEach((el) => {
-  new CivicChip(el);
+  new CivicThemeChip(el);
 });

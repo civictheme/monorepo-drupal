@@ -10,7 +10,7 @@
  * Also, provides a trigger to close a single (currently opened) panel and
  * another trigger to close all open panels.
  */
-function CivicFlyout(el) {
+function CivicThemeFlyout(el) {
   if (el.getAttribute('data-flyout') === 'true' || this.el) {
     return;
   }
@@ -66,7 +66,7 @@ function CivicFlyout(el) {
 /**
  * Find open trigger for the given flyout among provided triggers.
  */
-CivicFlyout.prototype.findOpenTrigger = function (triggers, el) {
+CivicThemeFlyout.prototype.findOpenTrigger = function (triggers, el) {
   // Find a trigger for the current flyout.
   for (const i in triggers) {
     if (Object.prototype.hasOwnProperty.call(triggers, i)) {
@@ -90,7 +90,7 @@ CivicFlyout.prototype.findOpenTrigger = function (triggers, el) {
 /**
  * Click event handler to toggle flyout state.
  */
-CivicFlyout.prototype.clickEvent = function (e) {
+CivicThemeFlyout.prototype.clickEvent = function (e) {
   e.stopPropagation();
   if (e.target.hasAttribute('data-flyout-trigger-allow-default') !== true) {
     e.preventDefault();
@@ -102,7 +102,7 @@ CivicFlyout.prototype.clickEvent = function (e) {
 /**
  * Event handler to close all flyout components.
  */
-CivicFlyout.prototype.closeAllTriggerClickEvent = function (e) {
+CivicThemeFlyout.prototype.closeAllTriggerClickEvent = function (e) {
   e.stopPropagation();
   if (e.target.hasAttribute('data-flyout-trigger-allow-default') !== true) {
     e.preventDefault();
@@ -128,7 +128,7 @@ CivicFlyout.prototype.closeAllTriggerClickEvent = function (e) {
 /**
  * Expand flyout.
  */
-CivicFlyout.prototype.expand = function () {
+CivicThemeFlyout.prototype.expand = function () {
   this.el.expanded = true;
   this.openTrigger.setAttribute('aria-expanded', true);
   this.panel.style.visibility = 'visible';
@@ -142,7 +142,7 @@ CivicFlyout.prototype.expand = function () {
 /**
  * Collapse flyout.
  */
-CivicFlyout.prototype.collapse = function () {
+CivicThemeFlyout.prototype.collapse = function () {
   this.el.expanded = false;
   this.openTrigger.setAttribute('aria-expanded', false);
   this.el.removeAttribute('data-flyout-expanded');
@@ -153,8 +153,8 @@ CivicFlyout.prototype.collapse = function () {
   }, this.duration);
 };
 
-// Initialize CivicFlyout on every element.
+// Initialize CivicThemeFlyout on every element.
 document.querySelectorAll('[data-flyout]').forEach((flyout) => {
   // eslint-disable-next-line no-new
-  new CivicFlyout(flyout);
+  new CivicThemeFlyout(flyout);
 });

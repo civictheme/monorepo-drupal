@@ -120,7 +120,7 @@ function collect_variables($content) {
  */
 function filter_variables($vars) {
   $vars = array_filter($vars, function ($k) {
-    return strpos($k, '--civictheme') === 0;
+    return strpos($k, '--ct') === 0;
   }, ARRAY_FILTER_USE_KEY);
 
   return $vars;
@@ -140,7 +140,7 @@ function parse_variables(array $vars) {
 
   foreach ($vars as $name => $value) {
     try {
-      $parsed = parse_variable_name($name, 'civictheme');
+      $parsed = parse_variable_name($name, 'ct');
     }
     catch (\Exception $e) {
       // Ignore all variables with incorrectly parsed names.

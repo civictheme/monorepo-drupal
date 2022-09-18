@@ -7,7 +7,7 @@
  * Available attributes:
  * - data-alert-endpoint: Alert REST configurable API endpoint.
  */
-function CivicAlert(el) {
+function CivicThemeAlert(el) {
   // Use "data-ct-alerts"'s attribute value to identify if this
   // component was already initialised.
   if (el.getAttribute('data-ct-alerts') === 'true' || this.container) {
@@ -27,7 +27,7 @@ function CivicAlert(el) {
 /**
  * Gets alerts from endpoint.
  */
-CivicAlert.prototype.getAll = function () {
+CivicThemeAlert.prototype.getAll = function () {
   const { endpoint } = this;
   const request = new XMLHttpRequest();
   request.open('get', endpoint);
@@ -49,7 +49,7 @@ CivicAlert.prototype.getAll = function () {
 /**
  * Filters out alerts not to show ie dismissed, page-specific alerts.
  */
-CivicAlert.prototype.filter = function (response) {
+CivicThemeAlert.prototype.filter = function (response) {
   let html = '';
 
   if (response.length) {
@@ -80,7 +80,7 @@ CivicAlert.prototype.filter = function (response) {
 /**
  * Checks whether an alert is to be shown on a specified page.
  */
-CivicAlert.prototype.isVisible = function (visibilityString) {
+CivicThemeAlert.prototype.isVisible = function (visibilityString) {
   if ((typeof visibilityString === 'undefined') || visibilityString === false || visibilityString === '') {
     return true;
   }
@@ -114,21 +114,21 @@ CivicAlert.prototype.isVisible = function (visibilityString) {
 /**
  * Check if response object is valid.
  */
-CivicAlert.prototype.isValidResponse = function (item) {
+CivicThemeAlert.prototype.isValidResponse = function (item) {
   return typeof item === 'object' && 'id' in item && 'message' in item && 'visibility' in item;
 };
 
 /**
  * Get the cookie name.
  */
-CivicAlert.prototype.getCookieName = function () {
+CivicThemeAlert.prototype.getCookieName = function () {
   return 'ct-alert-hide';
 };
 
 /**
  * Check if cookie has value.
  */
-CivicAlert.prototype.hasCookieValue = function (id, message) {
+CivicThemeAlert.prototype.hasCookieValue = function (id, message) {
   const cookie = this.getCookie();
   return id in cookie && cookie[id] === this.hashString(this.removeHtml(message));
 };
@@ -136,7 +136,7 @@ CivicAlert.prototype.hasCookieValue = function (id, message) {
 /**
  * Sets an cookie value.
  */
-CivicAlert.prototype.setCookieValue = function (id, message) {
+CivicThemeAlert.prototype.setCookieValue = function (id, message) {
   const cookie = this.getCookie();
   cookie[id] = this.hashString(this.removeHtml(message));
   this.setCookie(cookie);
@@ -145,7 +145,7 @@ CivicAlert.prototype.setCookieValue = function (id, message) {
 /**
  * Get cookie value.
  */
-CivicAlert.prototype.getCookie = function () {
+CivicThemeAlert.prototype.getCookie = function () {
   let cookie = {};
 
   const values = document.cookie.split(';').filter((item) => item.trim().startsWith(`${this.getCookieName()}=`));
@@ -170,14 +170,14 @@ CivicAlert.prototype.getCookie = function () {
 /**
  * Set a cookie.
  */
-CivicAlert.prototype.setCookie = function (value) {
+CivicThemeAlert.prototype.setCookie = function (value) {
   document.cookie = `${this.getCookieName()}=${JSON.stringify(value)}; SameSite=Strict; Path=/`;
 };
 
 /**
  * Simple HTML remover.
  */
-CivicAlert.prototype.removeHtml = function (string) {
+CivicThemeAlert.prototype.removeHtml = function (string) {
   return string
     .replace(/(\r\n|\n|\r)/g, '')
     .replace(/\s/g, '')
@@ -188,7 +188,7 @@ CivicAlert.prototype.removeHtml = function (string) {
 /**
  * Hash string.
  */
-CivicAlert.prototype.hashString = function (string) {
+CivicThemeAlert.prototype.hashString = function (string) {
   let hash = 0;
   let i;
   let
@@ -207,7 +207,7 @@ CivicAlert.prototype.hashString = function (string) {
 /**
  * Insert alerts into container.
  */
-CivicAlert.prototype.insert = function (html) {
+CivicThemeAlert.prototype.insert = function (html) {
   // Build the alert.
   this.container.insertAdjacentHTML('afterbegin', html);
   this.setDismissListeners();
@@ -216,7 +216,7 @@ CivicAlert.prototype.insert = function (html) {
 /**
  * Sets dismiss listeners to alerts.
  */
-CivicAlert.prototype.setDismissListeners = function () {
+CivicThemeAlert.prototype.setDismissListeners = function () {
   // Process the Close button of each alert.
   document
     .querySelectorAll('[data-alert-dismiss-trigger]')
@@ -232,7 +232,7 @@ CivicAlert.prototype.setDismissListeners = function () {
 /**
  * Dismisses an alert and adds cookie to dismiss for session.
  */
-CivicAlert.prototype.dismiss = function (element) {
+CivicThemeAlert.prototype.dismiss = function (element) {
   if (element !== null) {
     const parent = this.getParentElement(element, '[data-component-name="ct-alerts"]');
     if (parent) {
@@ -248,7 +248,7 @@ CivicAlert.prototype.dismiss = function (element) {
 /**
  * Get a parent element matching a selector.
  */
-CivicAlert.prototype.getParentElement = function (element, selector) {
+CivicThemeAlert.prototype.getParentElement = function (element, selector) {
   while (element !== null && !element.matches(selector)) {
     element = element.parentNode;
   }
@@ -261,7 +261,7 @@ CivicAlert.prototype.getParentElement = function (element, selector) {
  * 'data-test-path' attribute is used for testing of this component within
  * Storybook.
  */
-CivicAlert.prototype.urlPath = function () {
+CivicThemeAlert.prototype.urlPath = function () {
   return this.container.getAttribute('data-test-path') || window.location.pathname;
 };
 
@@ -269,5 +269,5 @@ CivicAlert.prototype.urlPath = function () {
  * Initialise component.
  */
 document.querySelectorAll('[data-component-name="ct-alerts"]').forEach((el) => {
-  new CivicAlert(el);
+  new CivicThemeAlert(el);
 });

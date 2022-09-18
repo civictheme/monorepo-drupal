@@ -4,7 +4,7 @@ import CivicThemeNavigation from './navigation.twig';
 import getMenuLinks from '../../00-base/menu/menu.utils';
 
 export default {
-  title: 'Organisms/Navigation/Navigation',
+  title: 'Organisms/Navigation',
   parameters: {
     layout: 'centered',
   },
