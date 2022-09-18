@@ -26,27 +26,24 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Map component, 3 on page, View link, Share link',
+      'title' => 'Demo Page, Map component, 3 on page, View link',
       'components' => [
         [
           'type' => 'map',
           'embed_url' => $helper::randomUrl(),
           'address' => $helper::staticSentence(3),
-          'share_link' => $helper::randomUrl(),
           'view_link' => $helper::randomUrl(),
         ],
         [
           'type' => 'map',
           'embed_url' => $helper::randomUrl(),
           'address' => $helper::staticSentence(3),
-          'share_link' => $helper::randomUrl(),
           'view_link' => $helper::randomUrl(),
         ],
         [
           'type' => 'map',
           'embed_url' => $helper::randomUrl(),
           'address' => $helper::staticSentence(3),
-          'share_link' => $helper::randomUrl(),
           'view_link' => $helper::randomUrl(),
         ],
       ],

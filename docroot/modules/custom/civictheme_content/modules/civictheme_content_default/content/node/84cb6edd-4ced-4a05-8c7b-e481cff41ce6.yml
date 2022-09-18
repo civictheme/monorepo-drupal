@@ -78,11 +78,6 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'https://goo.gl/maps/XsNx2XM21y41UQ7P7'
-              title: ''
-              options: {  }
           field_c_p_theme:
             -
               value: light
@@ -121,11 +116,6 @@ default:
           field_c_p_embed_url:
             -
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
-              title: ''
-              options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'https://goo.gl/maps/XsNx2XM21y41UQ7P7'
               title: ''
               options: {  }
           field_c_p_theme:

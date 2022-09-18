@@ -1736,11 +1736,6 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'http://example.com'
-              title: ''
-              options: {  }
           field_c_p_space:
             -
               value: both
@@ -1784,11 +1779,6 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'http://example.com'
-              title: ''
-              options: {  }
           field_c_p_theme:
             -
               value: light
@@ -1829,11 +1819,6 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'http://example.com'
-              title: ''
-              options: {  }
           field_c_p_theme:
             -
               value: light
@@ -1872,11 +1857,6 @@ default:
           field_c_p_embed_url:
             -
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
-              title: ''
-              options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'http://example.com'
               title: ''
               options: {  }
           field_c_p_space:
@@ -1922,11 +1902,6 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'http://example.com'
-              title: ''
-              options: {  }
           field_c_p_theme:
             -
               value: dark
@@ -1965,11 +1940,6 @@ default:
           field_c_p_embed_url:
             -
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
-              title: ''
-              options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'http://example.com'
               title: ''
               options: {  }
           field_c_p_theme:

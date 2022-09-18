@@ -73,11 +73,6 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_share_link:
-            -
-              uri: 'http://www.gmail.com'
-              title: Gmail
-              options: {  }
           field_c_p_theme:
             -
               value: light

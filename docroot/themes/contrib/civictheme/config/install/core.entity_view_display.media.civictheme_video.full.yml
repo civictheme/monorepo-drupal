@@ -3,35 +3,41 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.full
-    - field.field.media.civictheme_video.field_c_m_share_link
     - field.field.media.civictheme_video.field_c_m_transcript
     - field.field.media.civictheme_video.field_c_m_transcript_link
     - field.field.media.civictheme_video.field_c_m_video_file
     - media.type.civictheme_video
   module:
+    - file
     - layout_builder
     - text
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: media.civictheme_video.full
 targetEntityType: media
 bundle: civictheme_video
 mode: full
 content:
   field_c_m_transcript:
-    weight: 0
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 1
+    region: content
+  field_c_m_video_file:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
   created: true
-  field_c_m_share_link: true
   field_c_m_transcript_link: true
-  field_c_m_video_file: true
   name: true
   thumbnail: true
   uid: true
