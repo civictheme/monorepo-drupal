@@ -1,4 +1,4 @@
-@civictheme @civictheme_page @civictheme_accordion
+@civictheme @civictheme_page @civictheme_accordion @skipped
 Feature: View of Page content with Accordion component
 
   Ensure that Page content can be viewed correctly with Accordion component.

@@ -1,4 +1,4 @@
-@civictheme @civictheme_page @civictheme_attachment
+@civictheme @civictheme_page @civictheme_attachment @skipped
 Feature: View of Page content
 
   Ensure that Page content can be viewed correctly with attachment component.
