@@ -22,7 +22,6 @@
 .ct-icon {
   vertical-align: sub;
 
-  // @todo Review this.
   @include ct-icon-size('regular');
 
   @each $symbol, $values in _ct-icon-symbols-all() {

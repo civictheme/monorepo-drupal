@@ -1,6 +1,7 @@
 // phpcs:ignoreFile
-import { radios, select, text } from '@storybook/addon-knobs';
+import { radios, select } from '@storybook/addon-knobs';
 
+import merge from 'deepmerge';
 import CivicThemeIcon from './icon.twig';
 
 export default {
@@ -13,14 +14,12 @@ export default {
 export const Icon = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
-  const sizes = [...new Set([
-    ...SCSS_VARIABLES['ct-icon-sizes-default'],
-    ...SCSS_VARIABLES['ct-icon-sizes'],
-  ])];
+  const defaultSizes = SCSS_VARIABLES['ct-icon-sizes-default'];
+  const customSizes = SCSS_VARIABLES['ct-icon-sizes'];
+  const sizes = Object.keys(merge(defaultSizes, customSizes));
 
   return CivicThemeIcon({
-    symbol: select('Symbol', Object.values(ICONS), Object.values(ICONS)[0], generalKnobTab),
-    size: radios('Size', sizes, sizes[2], generalKnobTab),
-    alt: text('Icon alt text', 'Alternative text', generalKnobTab),
+    symbol: select('Symbol', ICONS, ICONS[0], generalKnobTab),
+    size: radios('Size', sizes, sizes[0], generalKnobTab),
   });
 };
