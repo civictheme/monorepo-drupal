@@ -50,7 +50,7 @@
   background-color: color.adjust(purple, $alpha: -0.7);
   padding: 1em;
   text-align: center;
-  font-family: 'Courier New', monospace;
+  font-family: sans-serif;
   border: dotted 1px purple;
 
   .ct-theme-dark & {
@@ -67,14 +67,14 @@
   background-color: color.adjust($_color, $alpha: -0.7);
   padding: 1em;
   text-align: center;
-  font-family: 'Courier New', monospace;
+  font-family: sans-serif;
   border: dotted 1px $_color;
-  color: color.adjust($_color, $alpha: -0.25);
+  color: color.adjust($_color, $alpha: -0.1);
 
   .ct-theme-dark & {
     background-color: color.adjust($_color, $alpha: -0.7);
     border: dotted 1px $_color;
-    color: color.adjust($_color, $alpha: 0.25);
+    color: color.adjust($_color, $alpha: 0.1);
   }
 }
 

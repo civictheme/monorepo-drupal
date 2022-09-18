@@ -2,6 +2,7 @@
 import { number, radios, text } from '@storybook/addon-knobs';
 
 import CivicThemeItemList from './item-list.twig';
+import {generateItems, placeholder} from "../base.stories";
 
 export default {
   title: 'Base/Item List',
@@ -12,14 +13,6 @@ export default {
 
 export const ItemList = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-
-  const generateItems = (count) => {
-    const items = [];
-    for (let i = 0; i < count; i++) {
-      items.push(`Item ${i + 1}`);
-    }
-    return items;
-  };
 
   const generalKnobs = {
     type: radios(
@@ -41,7 +34,7 @@ export const ItemList = (knobTab) => {
         step: 1,
       },
       generalKnobTab,
-    )),
+    ), placeholder()),
     attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
