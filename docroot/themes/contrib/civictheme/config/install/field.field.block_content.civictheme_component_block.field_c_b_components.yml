@@ -61,7 +61,7 @@ settings:
       civictheme_callout:
         weight: -21
         enabled: true
-      civictheme_card_container:
+      civictheme_manual_list:
         weight: -20
         enabled: true
       civictheme_content:
