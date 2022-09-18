@@ -5,7 +5,7 @@
 //
 // Fit image into parent object.
 //
-@mixin civictheme-image-fit($self: false) {
+@mixin ct-image-fit($self: false) {
   @if $self {
     height: 100%;
     width: 100%;

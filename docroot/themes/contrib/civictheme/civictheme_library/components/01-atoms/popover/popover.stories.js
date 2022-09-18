@@ -2,6 +2,7 @@
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemePopover from './popover.stories.twig';
 import './popover';
+import { placeholder } from '../../00-base/base.stories';
 
 export default {
   title: 'Atoms/Popover',
@@ -23,7 +24,7 @@ export const Popover = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    content: boolean('With content', true, generalKnobTab) ? 'Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Sed porttitor lectus nibh.' : '',
+    content: boolean('With content', true, generalKnobTab) ? placeholder() : '',
     trigger_event: radios(
       'Trigger event',
       {

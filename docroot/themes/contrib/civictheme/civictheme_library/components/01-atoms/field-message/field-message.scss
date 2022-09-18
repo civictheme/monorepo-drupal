@@ -8,72 +8,72 @@
 // Mixins.
 //
 
-.civictheme-field-message {
+.ct-field-message {
   $root: &;
 
   display: block;
-  border-radius: $civictheme-field-message-border-radius;
-  padding: civictheme-space();
+  border-radius: $ct-field-message-border-radius;
+  padding: ct-spacing();
   border-width: rem(1px);
   border-style: solid;
 
-  @include civictheme-typography('text-regular');
+  @include ct-typography('text-regular');
 
   $map: (
     'information': (
       'light': (
-        'color': $civictheme-field-message-light-information-color,
-        'background-color': $civictheme-field-message-light-information-background-color,
-        'border-color': $civictheme-field-message-light-information-border-color,
-        'icon-color': $civictheme-field-message-light-information-icon-color,
+        'color': $ct-field-message-light-information-color,
+        'background-color': $ct-field-message-light-information-background-color,
+        'border-color': $ct-field-message-light-information-border-color,
+        'icon-color': $ct-field-message-light-information-icon-color,
       ),
       'dark': (
-        'color': $civictheme-field-message-dark-information-color,
-        'background-color': $civictheme-field-message-dark-information-background-color,
-        'border-color': $civictheme-field-message-dark-information-border-color,
-        'icon-color': $civictheme-field-message-dark-information-icon-color,
+        'color': $ct-field-message-dark-information-color,
+        'background-color': $ct-field-message-dark-information-background-color,
+        'border-color': $ct-field-message-dark-information-border-color,
+        'icon-color': $ct-field-message-dark-information-icon-color,
       )
     ),
     'warning': (
       'light': (
-        'color': $civictheme-field-message-light-warning-color,
-        'background-color': $civictheme-field-message-light-warning-background-color,
-        'border-color': $civictheme-field-message-light-warning-border-color,
-        'icon-color': $civictheme-field-message-light-warning-icon-color,
+        'color': $ct-field-message-light-warning-color,
+        'background-color': $ct-field-message-light-warning-background-color,
+        'border-color': $ct-field-message-light-warning-border-color,
+        'icon-color': $ct-field-message-light-warning-icon-color,
       ),
       'dark': (
-        'color': $civictheme-field-message-dark-warning-color,
-        'background-color': $civictheme-field-message-dark-warning-background-color,
-        'border-color': $civictheme-field-message-dark-warning-border-color,
-        'icon-color': $civictheme-field-message-dark-warning-icon-color,
+        'color': $ct-field-message-dark-warning-color,
+        'background-color': $ct-field-message-dark-warning-background-color,
+        'border-color': $ct-field-message-dark-warning-border-color,
+        'icon-color': $ct-field-message-dark-warning-icon-color,
       )
     ),
     'error': (
       'light': (
-        'color': $civictheme-field-message-light-error-color,
-        'background-color': $civictheme-field-message-light-error-background-color,
-        'border-color': $civictheme-field-message-light-error-border-color,
-        'icon-color': $civictheme-field-message-light-error-icon-color,
+        'color': $ct-field-message-light-error-color,
+        'background-color': $ct-field-message-light-error-background-color,
+        'border-color': $ct-field-message-light-error-border-color,
+        'icon-color': $ct-field-message-light-error-icon-color,
       ),
       'dark': (
-        'color': $civictheme-field-message-dark-error-color,
-        'background-color': $civictheme-field-message-dark-error-background-color,
-        'border-color': $civictheme-field-message-dark-error-border-color,
-        'icon-color': $civictheme-field-message-dark-error-icon-color,
+        'color': $ct-field-message-dark-error-color,
+        'background-color': $ct-field-message-dark-error-background-color,
+        'border-color': $ct-field-message-dark-error-border-color,
+        'icon-color': $ct-field-message-dark-error-icon-color,
       )
     ),
     'success': (
       'light': (
-        'color': $civictheme-field-message-light-success-color,
-        'background-color': $civictheme-field-message-light-success-background-color,
-        'border-color': $civictheme-field-message-light-success-border-color,
-        'icon-color': $civictheme-field-message-light-success-icon-color,
+        'color': $ct-field-message-light-success-color,
+        'background-color': $ct-field-message-light-success-background-color,
+        'border-color': $ct-field-message-light-success-border-color,
+        'icon-color': $ct-field-message-light-success-icon-color,
       ),
       'dark': (
-        'color': $civictheme-field-message-dark-success-color,
-        'background-color': $civictheme-field-message-dark-success-background-color,
-        'border-color': $civictheme-field-message-dark-success-border-color,
-        'icon-color': $civictheme-field-message-dark-success-icon-color,
+        'color': $ct-field-message-dark-success-color,
+        'background-color': $ct-field-message-dark-success-background-color,
+        'border-color': $ct-field-message-dark-success-border-color,
+        'icon-color': $ct-field-message-dark-success-icon-color,
       )
     ),
   );
@@ -81,12 +81,12 @@
   @each $type, $type-map in $map {
     &#{$root}--#{$type} {
       @each $theme, $values in $type-map {
-        &.civictheme-theme-#{$theme} {
+        &.ct-theme-#{$theme} {
           background-color: map.get($values, 'background-color');
           color: map.get($values, 'color');
           border-color: map.get($values, 'border-color');
 
-          .civictheme-icon {
+          .ct-icon {
             @if $theme == 'light' {
               background-color: map.get($values, 'icon-color');
             }

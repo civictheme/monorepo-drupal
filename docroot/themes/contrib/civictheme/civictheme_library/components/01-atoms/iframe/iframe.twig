@@ -13,8 +13,8 @@
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-iframe--vertical-space-%s'|format(vertical_space) : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-iframe--vertical-space-%s'|format(vertical_space) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
-<iframe class="civictheme-iframe {{ modifier_class }}" {% if url %}src="{{ url }}"{% endif %} {% if width %}width="{{ width }}"{% endif %} {% if height %}height="{{ height }}"{% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}></iframe>
+<iframe class="ct-iframe {{ modifier_class }}" {% if url %}src="{{ url }}"{% endif %} {% if width %}width="{{ width }}"{% endif %} {% if height %}height="{{ height }}"{% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}></iframe>

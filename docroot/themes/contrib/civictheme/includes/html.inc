@@ -20,7 +20,7 @@ function _civictheme_preprocess_html(&$variables) {
     $site_section = civictheme_get_field_value($node, 'field_c_n_site_section', TRUE) ?? FALSE;
 
     if ($site_section) {
-      $variables['attributes']['class'][] = 'civictheme-site-section-' . Html::cleanCssIdentifier(strtolower($site_section->getName()));
+      $variables['attributes']['class'][] = 'ct-site-section-' . Html::cleanCssIdentifier(strtolower($site_section->getName()));
     }
   }
 }

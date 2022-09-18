@@ -6,25 +6,25 @@ Drupal.behaviors.civictheme_ajax_views = {
   // eslint-disable-next-line no-unused-vars
   attach: function attach(context, settings) {
     // eslint-disable-next-line no-undef
-    const $form = jQuery('[data-civictheme-filter]', context).once('civicthemeAjaxView');
+    const $form = jQuery('[data-ct-filter]', context).once('civicthemeAjaxView');
     if ($form.length === 0) {
       return;
     }
     let debounce;
     // Button submit handler for both group and single filter types.
     const buttonSubmitHandler = () => {
-      let $filter = $form.find('[data-component-name="civictheme-group-filter"]');
+      let $filter = $form.find('[data-component-name="ct-group-filter"]');
       let isAutosubmit;
       if ($filter.length > 0) {
         isAutosubmit = typeof $filter.attr('data-group-filter-auto-submit') !== 'undefined' && $filter.attr('data-group-filter-auto-submit') === 'true';
       } else {
-        $filter = $form.find('[data-component-name="civictheme-single-filter"]');
+        $filter = $form.find('[data-component-name="ct-single-filter"]');
         isAutosubmit = $filter.length > 0;
       }
       if (isAutosubmit === true) {
         // We do not want to submit on every click, we want user to be able
         // to select several checkboxes or radio buttons without submitting.
-        const timeout = $form.attr('data-civictheme-filter-ajax-submit-timeout') !== null ? Number($form.attr('data-civictheme-filter-ajax-submit-timeout')) : 500;
+        const timeout = $form.attr('data-ct-filter-ajax-submit-timeout') !== null ? Number($form.attr('data-ct-filter-ajax-submit-timeout')) : 500;
         if (timeout > 0) {
           if (typeof debounce !== 'undefined') {
             clearTimeout(debounce);
@@ -38,15 +38,15 @@ Drupal.behaviors.civictheme_ajax_views = {
         }
       }
     };
-    const filterType = $form.attr('data-civictheme-filter-type');
-    const ajaxForm = $form.attr('data-civictheme-filter-ajax') === 'true';
+    const filterType = $form.attr('data-ct-filter-type');
+    const ajaxForm = $form.attr('data-ct-filter-ajax') === 'true';
     if (filterType === 'group') {
       if (ajaxForm) {
         // Attach reload of view results in with redrawing of filters for
         // ajax forms.
         $form
-          .find('[data-component-name="civictheme-group-filter"]')
-          // Custom event from civictheme group filter.
+          .find('[data-component-name="ct-group-filter"]')
+          // Custom event from civictheme large filter.
           .on('civicthemeGroupFilterChange', buttonSubmitHandler);
         // Stop clear filter function from submitting form.
         $form
@@ -61,10 +61,10 @@ Drupal.behaviors.civictheme_ajax_views = {
         // Other than this rely on clicking apply button to update view
         // results.
         $form
-          .find('[data-component-name="civictheme-group-filter"]')
-          // Custom event from civictheme group filter.
+          .find('[data-component-name="ct-group-filter"]')
+          // Custom event from civictheme large filter.
           .on('civicthemeGroupFilterChange', () => {
-            // CivicTheme group filter redraws selected filters on each change in
+            // CivicTheme large filter redraws selected filters on each change in
             // the dropdown, when it redraws them we wish to re-add the button
             // submit handler to them so dismissing a filter chip reloads the
             // page.

@@ -88,7 +88,7 @@ module.exports = {
             options: {
               // Inject path to assets so that it does not have to be provided
               // in variables.base.scss
-              additionalData: "$civictheme-assets-directory: './assets/';",
+              additionalData: "$ct-assets-directory: './assets/';",
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),

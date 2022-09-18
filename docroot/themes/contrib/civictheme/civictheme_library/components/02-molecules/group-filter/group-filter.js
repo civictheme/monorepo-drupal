@@ -2,10 +2,10 @@
 /**
  * Group filter component.
  */
-function CivicGroupFilter(el) {
-  // Use "data-civictheme-alerts"'s attribute value to identify if this
+function CivicThemeGroupFilter(el) {
+  // Use "data-ct-alerts"'s attribute value to identify if this
   // component was already initialised.
-  if (el.getAttribute('data-civictheme-group-filter') === 'true') {
+  if (el.getAttribute('data-ct-group-filter') === 'true') {
     return;
   }
 
@@ -33,7 +33,7 @@ function CivicGroupFilter(el) {
       getValue: (element) => element.checked,
       getId: (element) => element.id,
       getKey: (element) => element.id,
-      getLabel: (element) => element.closest('.civictheme-form-element').querySelector('label').innerText,
+      getLabel: (element) => element.closest('.ct-form-element').querySelector('label').innerText,
     },
     input_date: {
       emptyValue: '',
@@ -41,7 +41,7 @@ function CivicGroupFilter(el) {
       getValue: (element) => element.value,
       getId: (element) => element.id,
       getKey: (element) => element.id,
-      getLabel: (element) => `${element.closest('.civictheme-form-element').querySelector('label').innerText} - ${element.value}`,
+      getLabel: (element) => `${element.closest('.ct-form-element').querySelector('label').innerText} - ${element.value}`,
     },
     input_text: {
       emptyValue: '',
@@ -49,7 +49,7 @@ function CivicGroupFilter(el) {
       getValue: (element) => element.value,
       getId: (element) => element.id,
       getKey: (element) => element.id,
-      getLabel: (element) => `${element.closest('.civictheme-form-element').querySelector('label').innerText} - ${element.value}`,
+      getLabel: (element) => `${element.closest('.ct-form-element').querySelector('label').innerText} - ${element.value}`,
     },
     input_radio: {
       emptyValue: false,
@@ -61,7 +61,7 @@ function CivicGroupFilter(el) {
       },
       getId: (element) => element.id,
       getKey: (element) => element.name,
-      getLabel: (element) => element.closest('.civictheme-form-element').querySelector('label').innerText,
+      getLabel: (element) => element.closest('.ct-form-element').querySelector('label').innerText,
     },
     select: {
       emptyValue: '',
@@ -70,7 +70,7 @@ function CivicGroupFilter(el) {
       getId: (element) => element.id,
       getKey: (element) => element.id,
       getLabel: (element) => {
-        const label = element.closest('.civictheme-form-element').querySelector('label').innerText;
+        const label = element.closest('.ct-form-element').querySelector('label').innerText;
         const value = element.value ? element.querySelector(`option[value="${element.value}"]`).innerText : '';
         return `${label} - ${value}`;
       },
@@ -83,7 +83,7 @@ function CivicGroupFilter(el) {
 /**
  * CivicTheme Group Filter Initialisation.
  */
-CivicGroupFilter.prototype.init = function () {
+CivicThemeGroupFilter.prototype.init = function () {
   // Add listeners.
   this.filterElement.addEventListener('change', this.filterElementChangeEvent.bind(this));
   this.tagElement.addEventListener('click', this.tagElementChangeEvent.bind(this));
@@ -111,7 +111,7 @@ CivicGroupFilter.prototype.init = function () {
   // Mobile support.
   const desktopBreakpoint = this.el.getAttribute('data-group-filter-desktop-breakpoint');
   if (desktopBreakpoint) {
-    window.addEventListener('civictheme-responsive', (evt) => {
+    window.addEventListener('ct-responsive', (evt) => {
       let isBreakpoint = false;
       const evaluationResult = evt.detail.evaluate(desktopBreakpoint, () => {
         // Is within breakpoint.
@@ -130,14 +130,14 @@ CivicGroupFilter.prototype.init = function () {
   this.redraw(false);
   this.initialisedState = true;
 
-  this.el.setAttribute('data-civictheme-group-filter', 'true');
+  this.el.setAttribute('data-ct-group-filter', 'true');
 };
 
 /**
  * Position tags.
  * Mobile will show tags above the filters, desktop will show below.
  */
-CivicGroupFilter.prototype.updateTagContainerPosition = function () {
+CivicThemeGroupFilter.prototype.updateTagContainerPosition = function () {
   const tagsContainerSelector = this.isDesktop ? '[data-group-filter-tags-container]' : '[data-group-filter-mobile-tags-container]';
   this.el.querySelector(tagsContainerSelector).appendChild(this.tagElement);
 
@@ -161,7 +161,7 @@ CivicGroupFilter.prototype.updateTagContainerPosition = function () {
  * Remember current form state.
  * 'data-flyout-open-trigger' on button will handle opening flyout.
  */
-CivicGroupFilter.prototype.mobileOpenElementClickEvent = function (e) {
+CivicThemeGroupFilter.prototype.mobileOpenElementClickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
   this.revertState = JSON.stringify(this.state);
@@ -172,7 +172,7 @@ CivicGroupFilter.prototype.mobileOpenElementClickEvent = function (e) {
  * Revert form state to remembered state.
  * 'data-group-filter-mobile-cancel' on button will handle closing flyout.
  */
-CivicGroupFilter.prototype.mobileCancelElementClickEvent = function (e) {
+CivicThemeGroupFilter.prototype.mobileCancelElementClickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
   if (this.revertState) {
@@ -184,7 +184,7 @@ CivicGroupFilter.prototype.mobileCancelElementClickEvent = function (e) {
 /**
  * Form filter change event listener.
  */
-CivicGroupFilter.prototype.filterElementChangeEvent = function (e) {
+CivicThemeGroupFilter.prototype.filterElementChangeEvent = function (e) {
   const element = e.target;
   if (this.isSelectableField(element)) {
     const type = this.getElementType(element);
@@ -203,7 +203,7 @@ CivicGroupFilter.prototype.filterElementChangeEvent = function (e) {
 /**
  * Filter chips click event listener.
  */
-CivicGroupFilter.prototype.tagElementChangeEvent = function (e) {
+CivicThemeGroupFilter.prototype.tagElementChangeEvent = function (e) {
   if (e.target.nodeName === 'BUTTON') {
     const key = e.target.dataset.id;
     const { type } = this.state[key];
@@ -214,7 +214,7 @@ CivicGroupFilter.prototype.tagElementChangeEvent = function (e) {
 /**
  * Clear state from all selected filters.
  */
-CivicGroupFilter.prototype.clearElementClickEvent = function () {
+CivicThemeGroupFilter.prototype.clearElementClickEvent = function () {
   Object.keys(this.state).forEach((key) => {
     const { type } = this.state[key];
     this.updateState(key, this.state[key].id, this.fieldTypes[type].emptyValue, type, false);
@@ -223,14 +223,14 @@ CivicGroupFilter.prototype.clearElementClickEvent = function () {
   this.el.dispatchEvent(new CustomEvent('civicthemeGroupFilterClearAll'));
 };
 
-CivicGroupFilter.prototype.isSelectableField = function (element) {
+CivicThemeGroupFilter.prototype.isSelectableField = function (element) {
   return !element.hasAttribute('data-group-filter-ignore');
 };
 
 /**
  * Update state of civictheme group filter.
  */
-CivicGroupFilter.prototype.updateState = function (key, id, value, type, redraw) {
+CivicThemeGroupFilter.prototype.updateState = function (key, id, value, type, redraw) {
   this.state[key] = { id, type, value };
   if (redraw) {
     this.redraw();
@@ -240,7 +240,7 @@ CivicGroupFilter.prototype.updateState = function (key, id, value, type, redraw)
 /**
  * Gets the filter form element type.
  */
-CivicGroupFilter.prototype.getElementType = function (el) {
+CivicThemeGroupFilter.prototype.getElementType = function (el) {
   let returnType = null;
   if (el) {
     const tag = el.nodeName.toLowerCase();
@@ -252,7 +252,7 @@ CivicGroupFilter.prototype.getElementType = function (el) {
 /**
  * Redraw civictheme group filter on event or initialisation.
  */
-CivicGroupFilter.prototype.redraw = function (changeEvent = true) {
+CivicThemeGroupFilter.prototype.redraw = function (changeEvent = true) {
   this.redrawFilters();
   this.redrawSelected();
   this.redrawClearButton();
@@ -264,7 +264,7 @@ CivicGroupFilter.prototype.redraw = function (changeEvent = true) {
 /**
  * Redraw civictheme group filters.
  */
-CivicGroupFilter.prototype.redrawFilters = function () {
+CivicThemeGroupFilter.prototype.redrawFilters = function () {
   Object.keys(this.state).forEach((key) => {
     const entry = this.state[key];
     const el = document.getElementById(entry.id);
@@ -280,15 +280,15 @@ CivicGroupFilter.prototype.redrawFilters = function () {
 /**
  * Renders filter html component.
  */
-CivicGroupFilter.prototype.renderHTMLFilterItem = function (key, label, type, theme) {
+CivicThemeGroupFilter.prototype.renderHTMLFilterItem = function (key, label, type, theme) {
   // Return a chip button template, wrapped in a list item.
   if (type !== 'input_radio') {
     return `
-    <li class="civictheme-group-filter__tag">
-      <button class="civictheme-chip civictheme-theme-${theme} civictheme-chip--chip civictheme-chip--small civictheme-chip--dismiss" data-component-name="chip" data-id="${key}">
+    <li class="ct-group-filter__tag">
+      <button class="ct-chip ct-theme-${theme} ct-chip--chip ct-chip--small ct-chip--dismiss" data-component-name="chip" data-id="${key}">
         ${label}
-        <span class="civictheme-button__dismiss" data-button-dismiss>
-          <svg xmlns="http://www.w3.org/2000/svg" class="civictheme-icon  civictheme-icon--size-extra-small " width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.4099 11.9999L17.7099 7.70994C17.8982 7.52164 18.004 7.26624 18.004 6.99994C18.004 6.73364 17.8982 6.47825 17.7099 6.28994C17.5216 6.10164 17.2662 5.99585 16.9999 5.99585C16.7336 5.99585 16.4782 6.10164 16.2899 6.28994L11.9999 10.5899L7.70994 6.28994C7.52164 6.10164 7.26624 5.99585 6.99994 5.99585C6.73364 5.99585 6.47824 6.10164 6.28994 6.28994C6.10164 6.47825 5.99585 6.73364 5.99585 6.99994C5.99585 7.26624 6.10164 7.52164 6.28994 7.70994L10.5899 11.9999L6.28994 16.2899C6.19621 16.3829 6.12182 16.4935 6.07105 16.6154C6.02028 16.7372 5.99414 16.8679 5.99414 16.9999C5.99414 17.132 6.02028 17.2627 6.07105 17.3845C6.12182 17.5064 6.19621 17.617 6.28994 17.7099C6.3829 17.8037 6.4935 17.8781 6.61536 17.9288C6.73722 17.9796 6.86793 18.0057 6.99994 18.0057C7.13195 18.0057 7.26266 17.9796 7.38452 17.9288C7.50638 17.8781 7.61698 17.8037 7.70994 17.7099L11.9999 13.4099L16.2899 17.7099C16.3829 17.8037 16.4935 17.8781 16.6154 17.9288C16.7372 17.9796 16.8679 18.0057 16.9999 18.0057C17.132 18.0057 17.2627 17.9796 17.3845 17.9288C17.5064 17.8781 17.617 17.8037 17.7099 17.7099C17.8037 17.617 17.8781 17.5064 17.9288 17.3845C17.9796 17.2627 18.0057 17.132 18.0057 16.9999C18.0057 16.8679 17.9796 16.7372 17.9288 16.6154C17.8781 16.4935 17.8037 16.3829 17.7099 16.2899L13.4099 11.9999Z"></path></svg>
+        <span class="ct-button__dismiss" data-button-dismiss>
+          <svg xmlns="http://www.w3.org/2000/svg" class="ct-icon  ct-icon--size-extra-small " width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.4099 11.9999L17.7099 7.70994C17.8982 7.52164 18.004 7.26624 18.004 6.99994C18.004 6.73364 17.8982 6.47825 17.7099 6.28994C17.5216 6.10164 17.2662 5.99585 16.9999 5.99585C16.7336 5.99585 16.4782 6.10164 16.2899 6.28994L11.9999 10.5899L7.70994 6.28994C7.52164 6.10164 7.26624 5.99585 6.99994 5.99585C6.73364 5.99585 6.47824 6.10164 6.28994 6.28994C6.10164 6.47825 5.99585 6.73364 5.99585 6.99994C5.99585 7.26624 6.10164 7.52164 6.28994 7.70994L10.5899 11.9999L6.28994 16.2899C6.19621 16.3829 6.12182 16.4935 6.07105 16.6154C6.02028 16.7372 5.99414 16.8679 5.99414 16.9999C5.99414 17.132 6.02028 17.2627 6.07105 17.3845C6.12182 17.5064 6.19621 17.617 6.28994 17.7099C6.3829 17.8037 6.4935 17.8781 6.61536 17.9288C6.73722 17.9796 6.86793 18.0057 6.99994 18.0057C7.13195 18.0057 7.26266 17.9796 7.38452 17.9288C7.50638 17.8781 7.61698 17.8037 7.70994 17.7099L11.9999 13.4099L16.2899 17.7099C16.3829 17.8037 16.4935 17.8781 16.6154 17.9288C16.7372 17.9796 16.8679 18.0057 16.9999 18.0057C17.132 18.0057 17.2627 17.9796 17.3845 17.9288C17.5064 17.8781 17.617 17.8037 17.7099 17.7099C17.8037 17.617 17.8781 17.5064 17.9288 17.3845C17.9796 17.2627 18.0057 17.132 18.0057 16.9999C18.0057 16.8679 17.9796 16.7372 17.9288 16.6154C17.8781 16.4935 17.8037 16.3829 17.7099 16.2899L13.4099 11.9999Z"></path></svg>
         </span>
       </button>
     </li>
@@ -296,8 +296,8 @@ CivicGroupFilter.prototype.renderHTMLFilterItem = function (key, label, type, th
   }
   // Radio filters are rendered as non-dismissible elements.
   return `
-    <li class="civictheme-group-filter__tag">
-      <button class="civictheme-chip civictheme-theme-${theme} civictheme-chip--chip civictheme-chip--small" data-component-name="chip" data-id="${key}">
+    <li class="ct-group-filter__tag">
+      <button class="ct-chip ct-theme-${theme} ct-chip--chip ct-chip--small" data-component-name="chip" data-id="${key}">
         ${label}
       </button>
     </li>
@@ -307,7 +307,7 @@ CivicGroupFilter.prototype.renderHTMLFilterItem = function (key, label, type, th
 /**
  * Redraw selected filters.
  */
-CivicGroupFilter.prototype.redrawSelected = function () {
+CivicThemeGroupFilter.prototype.redrawSelected = function () {
   let html = '';
   let count = 0;
   Object.keys(this.state).forEach((key) => {
@@ -320,9 +320,9 @@ CivicGroupFilter.prototype.redrawSelected = function () {
       html += this.renderHTMLFilterItem(key, label, entry.type, theme);
     }
   });
-  this.mobileToggleDisplay.classList.toggle('civictheme-group-filter__mobile-toggle-display--hidden', (count === 0));
+  this.mobileToggleDisplay.classList.toggle('ct-group-filter__mobile-toggle-display--hidden', (count === 0));
   this.mobileToggleDisplay.innerHTML = `${count} ${this.pluralize(this.mobileToggleSuffix, count)}`;
-  this.tagElement.innerHTML = `<ul class="civictheme-group-filter__tags-list">${html}</ul>`;
+  this.tagElement.innerHTML = `<ul class="ct-group-filter__tags-list">${html}</ul>`;
 };
 
 /**
@@ -334,7 +334,7 @@ CivicGroupFilter.prototype.redrawSelected = function () {
  * @param {number} count
  *   The counter used retrieve the plural.
  */
-CivicGroupFilter.prototype.pluralize = function (pluralJSON, count) {
+CivicThemeGroupFilter.prototype.pluralize = function (pluralJSON, count) {
   const obj = JSON.parse(decodeURIComponent(pluralJSON));
   let puralStr = '';
   if (obj[count]) {
@@ -348,7 +348,7 @@ CivicGroupFilter.prototype.pluralize = function (pluralJSON, count) {
 /**
  * Redraw clear button.
  */
-CivicGroupFilter.prototype.redrawClearButton = function () {
+CivicThemeGroupFilter.prototype.redrawClearButton = function () {
   // Hide button if no elements set.
   let showTagPanel = false;
   Object.keys(this.state).forEach((key) => {
@@ -356,20 +356,20 @@ CivicGroupFilter.prototype.redrawClearButton = function () {
       showTagPanel = true;
     }
   });
-  this.selectedFiltersElement.classList.toggle('civictheme-group-filter__selected-filters--hidden', !showTagPanel);
-  this.mobileSelectedFiltersElement.classList.toggle('civictheme-group-filter__selected-filters--hidden', !showTagPanel);
+  this.selectedFiltersElement.classList.toggle('ct-group-filter__selected-filters--hidden', !showTagPanel);
+  this.mobileSelectedFiltersElement.classList.toggle('ct-group-filter__selected-filters--hidden', !showTagPanel);
 };
 
 /**
  * Custom event allowing other JS libraries to operate on filter events.
  */
-CivicGroupFilter.prototype.dispatchChangeEvent = function () {
+CivicThemeGroupFilter.prototype.dispatchChangeEvent = function () {
   if (!this.initialisedState) {
     return;
   }
   this.el.dispatchEvent(new CustomEvent('civicthemeGroupFilterChange'));
 };
 
-document.querySelectorAll('[data-component-name="civictheme-group-filter"]').forEach((el) => {
-  new CivicGroupFilter(el);
+document.querySelectorAll('[data-component-name="ct-group-filter"]').forEach((el) => {
+  new CivicThemeGroupFilter(el);
 });

@@ -39,8 +39,8 @@ Feature: CivicTheme listing renders on views pages with filters
     When I go to "civictheme-no-sidebar/listing-no-filter"
     Then the response status code should be 200
 
-    And I should not see a ".civictheme-single-filter" element
-    And I should not see a ".civictheme-group-filter" element
+    And I should not see a ".ct-single-filter" element
+    And I should not see a ".ct-group-filter" element
 
     And I should see the text "[TEST] Page 1"
     And I should see the text "[TEST] Page 2"
@@ -62,7 +62,7 @@ Feature: CivicTheme listing renders on views pages with filters
     And I should not see the text "[TEST] Page 15"
 
     # Pager should be visible.
-    And I should see a ".civictheme-pager" element
+    And I should see a ".ct-pager" element
 
   @api @testmode
   Scenario Outline: Listing example - Filters
@@ -95,16 +95,16 @@ Feature: CivicTheme listing renders on views pages with filters
     And I should not see the text "[TEST] Page 15"
 
     # Pager should be visible.
-    And I should see a ".civictheme-pager" element
+    And I should see a ".ct-pager" element
 
     Examples:
-      | path                                                                 | filter_element           |
-      | civictheme-no-sidebar/listing-one-filter-single-select               | .civictheme-single-filter |
-      | civictheme-no-sidebar/listing-one-filter-single-select-exposed-block | .civictheme-single-filter |
-      | civictheme-no-sidebar/listing-one-filter-multi-select                | .civictheme-single-filter |
-      | civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block  | .civictheme-single-filter |
-      | civictheme-no-sidebar/listing-multiple-filters                       | .civictheme-group-filter |
-      | civictheme-no-sidebar/listing-multiple-filters-exposed-block         | .civictheme-group-filter |
+      | path                                                                 | filter_element   |
+      | civictheme-no-sidebar/listing-one-filter-single-select               | .ct-single-filter |
+      | civictheme-no-sidebar/listing-one-filter-single-select-exposed-block | .ct-single-filter |
+      | civictheme-no-sidebar/listing-one-filter-multi-select                | .ct-single-filter |
+      | civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block  | .ct-single-filter |
+      | civictheme-no-sidebar/listing-multiple-filters                       | .ct-group-filter |
+      | civictheme-no-sidebar/listing-multiple-filters-exposed-block         | .ct-group-filter |
 
   @api @testmode
   Scenario Outline: Listing example - One filter - Single

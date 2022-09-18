@@ -14,17 +14,17 @@
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-map--vertical-space-%s'|format(vertical_space) : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-map--vertical-space-%s'|format(vertical_space) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if url is not empty %}
-  <div class="civictheme-map {{ modifier_class }}">
+  <div class="ct-map {{ modifier_class }}">
     <div class="container">
       <div class="row">
         <div class="col-xxs-12">
           {% block map %}
-            <div class="civictheme-map__canvas">
+            <div class="ct-map__canvas">
               {% set attributes = 'allowfullscreen data-chromatic="ignore"' %}
               {% if address is not empty %}
                 {% set attributes = atributes ~ 'title="' ~ address ~ '"' %}
@@ -32,15 +32,15 @@
               {% include '@atoms/iframe/iframe.twig' with {
                 url: url,
                 attributes: attributes,
-                modifier_class: 'civictheme-video__action-icon',
+                modifier_class: 'ct-video__action-icon',
               } only %}
             </div>
           {% endblock %}
 
           {% block links %}
-            <div class="civictheme-map__links">
+            <div class="ct-map__links">
             {% if view_link is not empty %}
-              <div class="civictheme-map__view_link">
+              <div class="ct-map__view_link">
                 {% set view_text = view_text|trim ~ 'View in Google Maps' %}
                 {% include '@atoms/button/button.twig' with {
                   kind: 'link',
@@ -57,7 +57,7 @@
             {% endif %}
 
             {% if share_link is not empty %}
-              <div class="civictheme-map__share_link">
+              <div class="ct-map__share_link">
                 {% set share_text = share_text|trim ~ 'Share this Location' %}
                 {% include '@atoms/button/button.twig' with {
                   kind: 'link',

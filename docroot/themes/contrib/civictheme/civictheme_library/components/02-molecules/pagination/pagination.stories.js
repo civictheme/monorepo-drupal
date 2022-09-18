@@ -100,7 +100,7 @@ export const Pagination = (knobTab) => {
         href: randomUrl(),
       },
     } : null,
-    heading_id: text('Heading Id', 'civictheme-pager-demo', generalKnobTab),
+    heading_id: text('Heading Id', 'ct-pager-demo', generalKnobTab),
     ellipses,
     items_per_page_options: boolean('With items per page', true, generalKnobTab) ? [
       {

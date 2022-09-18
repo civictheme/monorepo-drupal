@@ -11,10 +11,10 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civictheme-search {{ modifier_class }}">
+<div class="ct-search {{ modifier_class }}">
   {% include '@atoms/button/button.twig' with {
     theme: theme|default('light'),
     kind: 'link',
@@ -22,6 +22,6 @@
     url: url,
     icon: 'userinterface_magnifier',
     icon_placement: 'after',
-    modifier_class: 'civictheme-search__link'
+    modifier_class: 'ct-search__link'
   } only %}
 </div>

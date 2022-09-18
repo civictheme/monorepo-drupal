@@ -27,25 +27,25 @@ export const Table = (knobTab) => {
   const getRows = function (theme) {
     return [
       [
-        `<a class="civictheme-link civictheme-theme-${theme}" href="#" title="Row 1 with link">Row 1 with link</a>`,
+        `<a class="ct-link ct-theme-${theme}" href="#" title="Row 1 with link">Row 1 with link</a>`,
         'Description summary on odd row with space',
         'Another column',
         'One more column column',
       ],
       [
-        `<a class="civictheme-link civictheme-theme-${theme}" href="#" title="Row 1 with link">Row 2 with link</a>`,
+        `<a class="ct-link ct-theme-${theme}" href="#" title="Row 1 with link">Row 2 with link</a>`,
         'Description summary on even row',
         'Another column',
         'One more column column',
       ],
       [
-        `<a class="civictheme-link civictheme-theme-${theme}" href="#" title="Row 1 with link">Row 3 with link</a>`,
+        `<a class="ct-link ct-theme-${theme}" href="#" title="Row 1 with link">Row 3 with link</a>`,
         'Description summary on odd row with space',
         'Another column',
         'One more column column',
       ],
       [
-        `<a class="civictheme-link civictheme-theme-${theme}" href="#" title="Row 1 with link">Row 5 with link</a>`,
+        `<a class="ct-link ct-theme-${theme}" href="#" title="Row 1 with link">Row 5 with link</a>`,
         'Description summary on even row',
         'Another column',
         'One more column column',

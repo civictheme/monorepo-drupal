@@ -2,7 +2,7 @@
 // Item grid component.
 //
 
-.civictheme-item-grid {
+.ct-item-grid {
   $root: &;
 
   &--fill-width {
@@ -14,7 +14,7 @@
 
   &__item {
     display: flex;
-    margin-bottom: civictheme-space(3);
+    margin-bottom: ct-spacing(3);
   }
 
   &__items {

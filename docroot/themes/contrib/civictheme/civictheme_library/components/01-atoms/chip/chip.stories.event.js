@@ -8,6 +8,6 @@ function customAlert() {
   alert('Chip dismiss event'); // eslint-disable-line no-alert
 }
 
-document.querySelectorAll('.civictheme-chip').forEach((el) => {
-  el.addEventListener('civictheme.chip.dismiss', customAlert);
+document.querySelectorAll('.ct-chip').forEach((el) => {
+  el.addEventListener('ct.chip.dismiss', customAlert);
 });

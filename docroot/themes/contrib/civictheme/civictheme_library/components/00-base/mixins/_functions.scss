@@ -11,7 +11,7 @@
 //
 // @see https://gist.github.com/agorilla/9df052eb1e15d8aea446
 //
-@function civictheme-map-get-next($map, $key, $fallback: false, $return: value) {
+@function ct-map-get-next($map, $key, $fallback: false, $return: value) {
   // Check if map is valid.
   @if type-of($map) == map {
     // Check if key exists in map.
@@ -64,17 +64,17 @@
 //
 // Replace $search with $replace in $string.
 //
-@function civictheme-str-replace($string, $search, $replace: '') {
+@function ct-str-replace($string, $search, $replace: '') {
   $index: string.index($string, $search);
 
   @if $index {
-    @return string.slice($string, 1, $index - 1) + $replace + civictheme-str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+    @return string.slice($string, 1, $index - 1) + $replace + ct-str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
   }
 
   @return $string;
 }
 
-@function civictheme-string-last-index($string, $needle) {
+@function ct-string-last-index($string, $needle) {
   $index: string.index($string, $needle);
   $result: $index;
 
@@ -89,7 +89,7 @@
   @return $result;
 }
 
-@function civictheme-string-is-quoted($string) {
+@function ct-string-is-quoted($string) {
   @if type-of($string) != string {
     @return false;
   }
@@ -97,7 +97,7 @@
   @return "#{$string#{''}}" != $string;
 }
 
-@function civictheme-unquote($value) {
+@function ct-unquote($value) {
   @if type-of($value) != string {
     @return $value;
   }
@@ -105,7 +105,7 @@
   @return string.unquote($value);
 }
 
-@function civictheme-string-split($string, $separator) {
+@function ct-string-split($string, $separator) {
   $result: ();
   $index: string.index($string, $separator);
 

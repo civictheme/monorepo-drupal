@@ -5,7 +5,7 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if content %}
@@ -14,7 +14,7 @@
       TRIGGER ({{ trigger_event }} me)
     </button>
     <div data-popover-content>
-      <div class="story-placeholder">Content placeholder</div>
+      {{ content }}
     </div>
   </div>
 {% endif %}

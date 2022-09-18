@@ -67,16 +67,16 @@ Feature: Tests the Event Card paragraph
 
     When I visit "civictheme_page" "[TEST] Page - Event cards test"
     And I should see the text "[TEST] Event card container"
-    Then I should see the link "View all events" with "https://example.com" in 'div.civictheme-card-container'
-    And I should see an "div.civictheme-event-card" element
-    And I should see 1 "div.civictheme-card-container" elements
-    And I should see 4 "div.civictheme-event-card" elements
-    And I should see 2 "div.civictheme-event-card.civictheme-theme-light" elements
-    And I should see 2 "div.civictheme-event-card.civictheme-theme-dark" elements
-    And I should see 4 "div.civictheme-event-card__content" elements
-    And I should see 4 "div.civictheme-event-card__title" elements
-    And I should see 4 "div.civictheme-event-card__summary" elements
-    And I should see 3 "div.civictheme-event-card__tags .civictheme-tag" elements
+    Then I should see the link "View all events" with "https://example.com" in 'div.ct-card-container'
+    And I should see an "div.ct-event-card" element
+    And I should see 1 "div.ct-card-container" elements
+    And I should see 4 "div.ct-event-card" elements
+    And I should see 2 "div.ct-event-card.ct-theme-light" elements
+    And I should see 2 "div.ct-event-card.ct-theme-dark" elements
+    And I should see 4 "div.ct-event-card__content" elements
+    And I should see 4 "div.ct-event-card__title" elements
+    And I should see 4 "div.ct-event-card__summary" elements
+    And I should see 3 "div.ct-event-card__tags .ct-tag" elements
     And I should see the text "Event card title 1"
     And I should see the text "Event card title 2"
     And I should see the text "Event card title 3"

@@ -4,19 +4,19 @@
 
 @use 'sass:map';
 
-@each $name in map.keys(_civictheme-typography-all()) {
-  .civictheme-#{$name} {
-    @include civictheme-typography($name);
+@each $name in map.keys(_ct-typography-all()) {
+  .ct-#{$name} {
+    @include ct-typography($name);
   }
 }
 
 div {
-  @include civictheme-typography('text-regular');
+  @include ct-typography('text-regular');
 }
 
 p {
-  margin-top: $civictheme-basic-content-vertical-spacing;
-  margin-bottom: $civictheme-basic-content-vertical-spacing;
+  margin-top: $ct-basic-content-vertical-spacing;
+  margin-bottom: $ct-basic-content-vertical-spacing;
 
   &:first-child {
     margin-top: 0;
@@ -24,13 +24,13 @@ p {
 }
 
 blockquote {
-  @include civictheme-typography('quote');
+  @include ct-typography('quote');
 
   position: relative;
   margin: 0;
-  margin-top: $civictheme-basic-content-vertical-spacing;
-  margin-bottom: $civictheme-basic-content-vertical-spacing;
-  padding: civictheme-space(2) civictheme-space(3);
+  margin-top: $ct-basic-content-vertical-spacing;
+  margin-bottom: $ct-basic-content-vertical-spacing;
+  padding: ct-spacing(2) ct-spacing(3);
 
   &::before {
     content: '';
@@ -40,6 +40,6 @@ blockquote {
     top: 0;
     bottom: 0;
     left: 0;
-    border-radius: $civictheme-basic-content-blockquote-border-radius;
+    border-radius: $ct-basic-content-blockquote-border-radius;
   }
 }

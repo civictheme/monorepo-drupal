@@ -11,7 +11,7 @@ import {
   boolean, number, radios, select, text,
 } from '@storybook/addon-knobs';
 
-import CivicNavigationCard from './navigation-card.twig';
+import CivicThemeNavigationCard from './navigation-card.twig';
 import {
   demoImage,
   getSlots,
@@ -77,7 +77,7 @@ export const NavigationCard = (knobTab) => {
     icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
   };
 
-  const html = CivicNavigationCard({
+  const html = CivicThemeNavigationCard({
     ...generalKnobs,
     ...iconKnobs,
     ...getSlots([

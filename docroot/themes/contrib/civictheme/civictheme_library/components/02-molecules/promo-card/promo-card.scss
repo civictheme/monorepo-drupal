@@ -4,11 +4,11 @@
 
 @use 'sass:map';
 
-.civictheme-promo-card {
+.ct-promo-card {
   $root: &;
 
   position: relative;
-  border-radius: $civictheme-promo-card-border-radius;
+  border-radius: $ct-promo-card-border-radius;
 
   // Promo image from "spilling" over the border radius.
   overflow: hidden;
@@ -16,71 +16,71 @@
   display: flex;
   flex-direction: column;
 
-  @include civictheme-elevation(3);
+  @include ct-elevation(3);
 
   &:focus-within {
-    @include civictheme-outline();
+    @include ct-outline();
   }
 
   &#{$root}--no-image {
-    border-top-width: civictheme-space(0.75);
+    border-top-width: ct-spacing(0.75);
     border-top-style: solid;
   }
 
   #{$root}__image-wrapper {
-    @include civictheme-image-fit();
+    @include ct-image-fit();
 
     position: relative;
-    height: $civictheme-promo-card-image-height-mobile;
-    width: $civictheme-promo-card-image-width-mobile;
+    height: $ct-promo-card-image-height-mobile;
+    width: $ct-promo-card-image-width-mobile;
 
-    @include civictheme-breakpoint('m') {
-      height: $civictheme-promo-card-image-height-desktop;
-      width: $civictheme-promo-card-image-width-desktop;
+    @include ct-breakpoint('m') {
+      height: $ct-promo-card-image-height-desktop;
+      width: $ct-promo-card-image-width-desktop;
     }
   }
 
   #{$root}__content {
-    padding: civictheme-space(3);
+    padding: ct-spacing(3);
     display: flex;
     flex-direction: column;
     flex: 1;
   }
 
   #{$root}__date {
-    @include civictheme-typography('label-regular');
+    @include ct-typography('label-regular');
 
-    margin-bottom: civictheme-space(2);
+    margin-bottom: ct-spacing(2);
   }
 
   #{$root}__title {
-    @include civictheme-typography('heading-4');
+    @include ct-typography('heading-4');
 
-    margin-bottom: civictheme-space(2);
+    margin-bottom: ct-spacing(2);
   }
 
   #{$root}__title-link {
-    @include civictheme-link-decoration ();
-    @include civictheme-link-no-outline ();
-    @include civictheme-link-cover-parent ();
+    @include ct-link-decoration ();
+    @include ct-link-no-outline ();
+    @include ct-link-cover-parent ();
   }
 
   #{$root}__location {
-    @include civictheme-typography('text-regular');
+    @include ct-typography('text-regular');
 
     font-weight: 600;
-    margin-bottom: civictheme-space(2);
+    margin-bottom: ct-spacing(2);
   }
 
   #{$root}__summary {
-    @include civictheme-typography('text-regular');
+    @include ct-typography('text-regular');
   }
 
   #{$root}__bottom-wrapper {
     display: flex;
     justify-content: space-between;
     margin-top: auto;
-    padding-top: civictheme-space(3);
+    padding-top: ct-spacing(3);
   }
 
   #{$root}__tags {
@@ -88,77 +88,77 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-right: auto;
-    margin-top: -1 * civictheme-space(0.5);
+    margin-top: -1 * ct-spacing(0.5);
 
-    .civictheme-tag {
-      margin-top: civictheme-space(0.5);
-      margin-right: civictheme-space(0.5);
+    .ct-tag {
+      margin-top: ct-spacing(0.5);
+      margin-right: ct-spacing(0.5);
     }
   }
 
-  &.civictheme-theme-light {
-    background-color: $civictheme-promo-card-light-background-color;
+  &.ct-theme-light {
+    background-color: $ct-promo-card-light-background-color;
 
     &:focus {
-      @include civictheme-outline(false);
+      @include ct-outline(false);
     }
 
     &#{$root}--no-image {
-      border-top-color: $civictheme-promo-card-light-border-top-color;
+      border-top-color: $ct-promo-card-light-border-top-color;
     }
 
     #{$root}__date {
-      color: $civictheme-promo-card-light-date-color;
-      background-color: $civictheme-promo-card-light-date-background-color;
+      color: $ct-promo-card-light-date-color;
+      background-color: $ct-promo-card-light-date-background-color;
     }
 
     #{$root}__title {
-      color: $civictheme-promo-card-light-heading-color;
+      color: $ct-promo-card-light-heading-color;
     }
 
     #{$root}__title-link {
-      @include civictheme-link-colors($civictheme-promo-card-light-heading-color, $civictheme-promo-card-light-heading-hover-color, $active: $civictheme-promo-card-light-heading-active-color);
+      @include ct-link-colors($ct-promo-card-light-heading-color, $ct-promo-card-light-heading-hover-color, $active: $ct-promo-card-light-heading-active-color);
     }
 
     #{$root}__summary {
-      color: $civictheme-promo-card-light-summary-color;
+      color: $ct-promo-card-light-summary-color;
     }
 
     #{$root}__icon--arrow {
-      @include civictheme-icon-fill-color($civictheme-promo-card-light-icon-arrow-color);
+      @include ct-icon-fill-color($ct-promo-card-light-icon-arrow-color);
     }
   }
 
-  &.civictheme-theme-dark {
-    background-color: $civictheme-promo-card-dark-background-color;
+  &.ct-theme-dark {
+    background-color: $ct-promo-card-dark-background-color;
 
     &:focus {
-      @include civictheme-outline(true);
+      @include ct-outline(true);
     }
 
     &#{$root}--no-image {
-      border-top-color: $civictheme-promo-card-dark-border-top-color;
+      border-top-color: $ct-promo-card-dark-border-top-color;
     }
 
     #{$root}__date {
-      color: $civictheme-promo-card-dark-date-color;
-      background-color: $civictheme-promo-card-dark-date-background-color;
+      color: $ct-promo-card-dark-date-color;
+      background-color: $ct-promo-card-dark-date-background-color;
     }
 
     #{$root}__title {
-      color: $civictheme-promo-card-dark-heading-color;
+      color: $ct-promo-card-dark-heading-color;
     }
 
     #{$root}__title-link {
-      @include civictheme-link-colors($civictheme-promo-card-dark-heading-color, $civictheme-promo-card-dark-heading-hover-color, $active: $civictheme-promo-card-dark-heading-active-color);
+      @include ct-link-colors($ct-promo-card-dark-heading-color, $ct-promo-card-dark-heading-hover-color, $active: $ct-promo-card-dark-heading-active-color);
     }
 
     #{$root}__summary {
-      color: $civictheme-promo-card-dark-summary-color;
+      color: $ct-promo-card-dark-summary-color;
     }
 
     #{$root}__icon--arrow {
-      @include civictheme-icon-fill-color($civictheme-promo-card-dark-icon-arrow-color, true);
+      @include ct-icon-fill-color($ct-promo-card-dark-icon-arrow-color, true);
     }
   }
 }

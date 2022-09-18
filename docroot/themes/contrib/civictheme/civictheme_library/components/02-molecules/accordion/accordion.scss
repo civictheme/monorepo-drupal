@@ -2,19 +2,19 @@
 // Accordion component.
 //
 
-.civictheme-accordion {
+.ct-accordion {
   $root: &;
 
-  &.civictheme-accordion--vertical-space-top {
-    @include civictheme-component-with-vertical-space(top, $civictheme-accordion-space-vertical);
+  &.ct-accordion--vertical-space-top {
+    @include ct-component-with-vertical-space(top, $ct-accordion-space-vertical);
   }
 
-  &.civictheme-accordion--vertical-space-bottom {
-    @include civictheme-component-with-vertical-space(bottom, $civictheme-accordion-space-vertical);
+  &.ct-accordion--vertical-space-bottom {
+    @include ct-component-with-vertical-space(bottom, $ct-accordion-space-vertical);
   }
 
-  &.civictheme-accordion--vertical-space-both {
-    @include civictheme-component-with-vertical-space(both, $civictheme-accordion-space-vertical);
+  &.ct-accordion--vertical-space-both {
+    @include ct-component-with-vertical-space(both, $ct-accordion-space-vertical);
   }
 
   &__inner {
@@ -30,17 +30,17 @@
   &__list-item {
     position: relative;
     border: 1px solid;
-    border-radius: $civictheme-accordion-item-border-radius;
-    margin-bottom: civictheme-space(2);
+    border-radius: $ct-accordion-item-border-radius;
+    margin-bottom: ct-spacing(2);
 
-    @include civictheme-highlight-stripe($civictheme-accordion-stripe-width, $civictheme-accordion-item-border-radius);
+    @include ct-highlight-stripe($ct-accordion-stripe-width, $ct-accordion-item-border-radius);
   }
 
   &__header {
     display: block;
     margin: 0;
-    border-top-left-radius: $civictheme-accordion-header-border-radius;
-    border-top-right-radius: $civictheme-accordion-header-border-radius;
+    border-top-left-radius: $ct-accordion-header-border-radius;
+    border-top-right-radius: $ct-accordion-header-border-radius;
 
     // @todo Fix transition to use data-collapsible-collapsed.
     &__button[aria-expanded='true'] {
@@ -54,11 +54,11 @@
     }
 
     &__button {
-      @include civictheme-typography('heading-6');
+      @include ct-typography('heading-6');
 
       width: 100%;
-      padding: civictheme-space(3);
-      border-radius: $civictheme-accordion-button-border-radius;
+      padding: ct-spacing(3);
+      border-radius: $ct-accordion-button-border-radius;
       margin: 0;
       border: none;
       cursor: pointer;
@@ -69,7 +69,7 @@
       svg {
         margin-left: auto;
 
-        @if $civictheme-animation-enabled {
+        @if $ct-animation-enabled {
           transition: transform 0.5s;
         }
       }
@@ -83,11 +83,11 @@
     visibility: hidden;
     height: 0;
 
-    @if $civictheme-animation-enabled {
+    @if $ct-animation-enabled {
       transition: height 0.5s, visibility 0.5s;
     }
 
-    @include civictheme-typography('text-regular');
+    @include ct-typography('text-regular');
 
     &[aria-hidden='false'] {
       height: auto;
@@ -101,69 +101,69 @@
 
     &--inner {
       opacity: 0%;
-      padding: 0 civictheme-space(3) civictheme-space(3);
+      padding: 0 ct-spacing(3) ct-spacing(3);
 
-      @if $civictheme-animation-enabled {
+      @if $ct-animation-enabled {
         transition: opacity 0.5s;
       }
 
-      @include civictheme-print() {
+      @include ct-print() {
         opacity: 100%;
       }
     }
   }
 
-  &.civictheme-theme-light {
-    color: $civictheme-accordion-light-color;
+  &.ct-theme-light {
+    color: $ct-accordion-light-color;
 
-    &.civictheme-accordion--with-background {
-      background-color: $civictheme-accordion-light-wrapper-background-color;
-      padding-left: $civictheme-accordion-space-horizontal;
-      padding-right: $civictheme-accordion-space-horizontal;
+    &.ct-accordion--with-background {
+      background-color: $ct-accordion-light-wrapper-background-color;
+      padding-left: $ct-accordion-space-horizontal;
+      padding-right: $ct-accordion-space-horizontal;
     }
 
     #{$root}__header__button {
-      background-color: $civictheme-accordion-light-button-background-color;
-      color: $civictheme-accordion-light-button-color;
+      background-color: $ct-accordion-light-button-background-color;
+      color: $ct-accordion-light-button-color;
 
       svg {
-        fill: $civictheme-accordion-light-icon-color;
+        fill: $ct-accordion-light-icon-color;
       }
     }
 
     #{$root}__list-item {
-      border-color: $civictheme-accordion-light-border-color;
-      border-left-color: $civictheme-accordion-light-stripe-border-color;
-      background-color: $civictheme-accordion-light-background-color;
+      border-color: $ct-accordion-light-border-color;
+      border-left-color: $ct-accordion-light-stripe-border-color;
+      background-color: $ct-accordion-light-background-color;
 
-      @include civictheme-highlight-stripe-color($civictheme-accordion-light-stripe-border-color);
+      @include ct-highlight-stripe-color($ct-accordion-light-stripe-border-color);
     }
   }
 
-  &.civictheme-theme-dark {
-    color: $civictheme-accordion-dark-color;
+  &.ct-theme-dark {
+    color: $ct-accordion-dark-color;
 
-    &.civictheme-accordion--with-background {
-      background-color: $civictheme-accordion-dark-wrapper-background-color;
-      padding-left: $civictheme-accordion-space-horizontal;
-      padding-right: $civictheme-accordion-space-horizontal;
+    &.ct-accordion--with-background {
+      background-color: $ct-accordion-dark-wrapper-background-color;
+      padding-left: $ct-accordion-space-horizontal;
+      padding-right: $ct-accordion-space-horizontal;
     }
 
     #{$root}__header__button {
-      background-color: $civictheme-accordion-dark-button-background-color;
-      color: $civictheme-accordion-dark-button-color;
+      background-color: $ct-accordion-dark-button-background-color;
+      color: $ct-accordion-dark-button-color;
 
       svg {
-        fill: $civictheme-accordion-dark-icon-color;
+        fill: $ct-accordion-dark-icon-color;
       }
     }
 
     #{$root}__list-item {
-      border-color: $civictheme-accordion-dark-border-color;
-      border-left-color: $civictheme-accordion-dark-stripe-border-color;
-      background-color: $civictheme-accordion-dark-background-color;
+      border-color: $ct-accordion-dark-border-color;
+      border-left-color: $ct-accordion-dark-stripe-border-color;
+      background-color: $ct-accordion-dark-background-color;
 
-      @include civictheme-highlight-stripe-color($civictheme-accordion-dark-stripe-border-color);
+      @include ct-highlight-stripe-color($ct-accordion-dark-stripe-border-color);
     }
   }
 }

@@ -16,18 +16,18 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set type_class =  type is not empty ? 'civictheme-form-element--%s'|format(type) : '' %}
-{% set name_class = name is not empty ?  'civictheme-form-element--%s'|format(name) : '' %}
-{% set label_class = label_display not in ['after', 'before'] ? 'civictheme-form-element--no-label' : 'civictheme-form-element--label--%s'|format(title_display) %}
-{% set description_class = description_position not in ['after', 'before'] ? 'civictheme-form-element--no-description' : 'civictheme-form-element--label--%s'|format(description_position) %}
-{% set disabled_class =  disabled == 'disabled' ? 'civictheme-form-element--form-disabled' : '' %}
-{% set error_class =  errors is not empty ? 'civictheme-form-element--error' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set type_class =  type is not empty ? 'ct-form-element--%s'|format(type) : '' %}
+{% set name_class = name is not empty ?  'ct-form-element--%s'|format(name) : '' %}
+{% set label_class = label_display not in ['after', 'before'] ? 'ct-form-element--no-label' : 'ct-form-element--label--%s'|format(title_display) %}
+{% set description_class = description_position not in ['after', 'before'] ? 'ct-form-element--no-description' : 'ct-form-element--label--%s'|format(description_position) %}
+{% set disabled_class =  disabled == 'disabled' ? 'ct-form-element--form-disabled' : '' %}
+{% set error_class =  errors is not empty ? 'ct-form-element--error' : '' %}
 {% set modifier_class = '%s %s %s %s %s %s %s %s'|format(theme_class, type_class, name_class, label_class, description_class, disabled_class, error_class, modifier_class|default('')) %}
 
 {% set description_modifier_class = '%s %s'|format(description_visibility_class|default(''), description_display_class|default('')) %}
 
-<div class="civictheme-form-element {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+<div class="ct-form-element {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
   {% if label is not empty and label_display in ['before', 'invisible'] %}
     {{ label }}
   {% endif %}
@@ -37,7 +37,7 @@
   {% endif %}
 
   {% if  description.content is not empty and description_position == 'before' %}
-    <div class="civictheme-form-element__description {{ description_modifier_class }}" {% if description.attributes is not empty %}{{ description.attributes }}{% endif %}>
+    <div class="ct-form-element__description {{ description_modifier_class }}" {% if description.attributes is not empty %}{{ description.attributes }}{% endif %}>
       {{ description.content }}
     </div>
   {% endif %}
@@ -55,7 +55,7 @@
   {% endif %}
 
   {% if description.content is not empty and description_position in ['after', 'invisible'] %}
-    <div class="civictheme-form-element__description {{ description_modifier_class }}" {{ description.attributes }}>
+    <div class="ct-form-element__description {{ description_modifier_class }}" {{ description.attributes }}>
       {{ description.content }}
     </div>
   {% endif %}

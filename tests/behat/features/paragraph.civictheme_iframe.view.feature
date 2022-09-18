@@ -20,11 +20,11 @@ Feature: View of Page content with iframe component
       | field_c_p_url        | http://nginx:8080 |
 
     When I visit "civictheme_page" "[TEST] Page iframe test"
-    And I should see an "iframe.civictheme-iframe" element
-    And I should see an "iframe.civictheme-iframe.civictheme-theme-light" element
-    And I should not see an "iframe.civictheme-iframe.civictheme-theme-dark" element
-    And I should see an "iframe.civictheme-iframe.civictheme-iframe--vertical-space-both" element
-    And I should not see an "iframe.civictheme-iframe--with-background" element
+    And I should see an "iframe.ct-iframe" element
+    And I should see an "iframe.ct-iframe.ct-theme-light" element
+    And I should not see an "iframe.ct-iframe.ct-theme-dark" element
+    And I should see an "iframe.ct-iframe.ct-iframe--vertical-space-both" element
+    And I should not see an "iframe.ct-iframe--with-background" element
 
   @api @javascript
   Scenario: CivicTheme page content type page can be viewed by anonymous with iframe dark with background
@@ -38,8 +38,8 @@ Feature: View of Page content with iframe component
       | field_c_p_url        | http://nginx:8080 |
 
     When I visit "civictheme_page" "[TEST] Page iframe test"
-    And I should see an "iframe.civictheme-iframe" element
-    And I should see an "iframe.civictheme-iframe.civictheme-theme-dark" element
-    And I should not see an "iframe.civictheme-iframe.civictheme-theme-light" element
-    And I should see an "iframe.civictheme-iframe.civictheme-iframe--vertical-space-both" element
-    And I should see an "iframe.civictheme-iframe--with-background" element
+    And I should see an "iframe.ct-iframe" element
+    And I should see an "iframe.ct-iframe.ct-theme-dark" element
+    And I should not see an "iframe.ct-iframe.ct-theme-light" element
+    And I should see an "iframe.ct-iframe.ct-iframe--vertical-space-both" element
+    And I should see an "iframe.ct-iframe--with-background" element

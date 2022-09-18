@@ -19,18 +19,18 @@
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-callout--vertical-space-%s'|format(vertical_space) : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-callout--vertical-space-%s'|format(vertical_space) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
-<div class="civictheme-callout {{ modifier_class }}">
+<div class="ct-callout {{ modifier_class }}">
   <div class="container">
     <div class="row">
       <div class="col-xxs-12">
-        <div class="civictheme-callout--wrapper">
+        <div class="ct-callout--wrapper">
           {% block content_top %}
             {% if content_top is not empty %}
-              <div class="civictheme-callout__content-top">
+              <div class="ct-callout__content-top">
                 {{ content_top }}
               </div>
             {% endif %}
@@ -38,15 +38,15 @@
 
           {% block content %}
             {% if title is not empty or summary is not empty %}
-              <div class="civictheme-callout__text">
+              <div class="ct-callout__text">
                 {% if title is not empty %}
-                  <div class="civictheme-callout__title">
+                  <div class="ct-callout__title">
                     {{ title }}
                   </div>
                 {% endif %}
 
                 {% if summary is not empty %}
-                  <div class="civictheme-callout__summary">
+                  <div class="ct-callout__summary">
                     {{ summary }}
                   </div>
                 {% endif %}
@@ -55,7 +55,7 @@
           {% endblock %}
 
           {% block links %}
-            <div class="civictheme-callout__links">
+            <div class="ct-callout__links">
               {% for link in links %}
                 {% if link.url is not empty %}
                   {% include '@atoms/button/button.twig' with {
@@ -75,7 +75,7 @@
 
           {% block content_bottom %}
             {% if content_bottom is not empty %}
-              <div class="civictheme-callout__content-bottom">
+              <div class="ct-callout__content-bottom">
                 {{ content_bottom }}
               </div>
             {% endif %}

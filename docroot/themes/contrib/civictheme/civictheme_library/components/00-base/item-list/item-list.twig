@@ -11,16 +11,16 @@
  */
 #}
 
-{% set type_class = 'civictheme-item-list--%s'|format(type|default('horizontal')) %}
+{% set type_class = 'ct-item-list--%s'|format(type|default('horizontal')) %}
 {% set modifier_class = '%s %s'|format(type_class, modifier_class|default('')) %}
 
 {% if items %}
-  <div class="civictheme-item-list {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-item-list {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
     {% block items %}
-      <ul class="civictheme-item-list__list">
+      <ul class="ct-item-list__list">
         {% for item in items %}
           {% if item is not empty %}
-            <li class="civictheme-item-list__list__item">
+            <li class="ct-item-list__list__item">
               {{ item }}
             </li>
           {% endif %}

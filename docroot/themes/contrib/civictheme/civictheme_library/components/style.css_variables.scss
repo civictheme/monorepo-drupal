@@ -4,7 +4,7 @@
 html {
   @each $name, $value in meta.module-variables('variables') {
     // Only filter by CivicTheme variables.
-    @if str-index($name, 'civictheme-') {
+    @if str-index($name, 'ct-') {
       // Only filter by variable names related to color.
       @if str-index($name, 'color') {
         // Only filter by color or string variables.

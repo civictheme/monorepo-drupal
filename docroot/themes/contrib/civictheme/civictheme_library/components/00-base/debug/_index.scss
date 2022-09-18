@@ -2,14 +2,14 @@
 // Debug helpers.
 //
 
-.civictheme-block-debug {
-  @include civictheme-block-debug();
+.ct-block-debug {
+  @include ct-block-debug();
 }
 
-.civictheme-breakpoint-debug {
-  @each $bp, $value in $civictheme-breakpoints {
+.ct-breakpoint-debug {
+  @each $bp, $value in $ct-breakpoints {
     &::before {
-      @include civictheme-breakpoint($bp) {
+      @include ct-breakpoint($bp) {
         content: '#{$bp}: >=#{$value}';
         position: fixed;
         bottom: 0;

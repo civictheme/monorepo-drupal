@@ -12,20 +12,20 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if content %}
-  <div class="civictheme-tooltip {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="tooltip">
-    <button class="civictheme-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %} data-tooltip-button data-tooltip-position="{{ position }}">
+  <div class="ct-tooltip {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="tooltip">
+    <button class="ct-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %} data-tooltip-button data-tooltip-position="{{ position }}">
       {%- include '@base/icon/icon.twig' with {
         symbol: icon|default('information-mark'),
         size: icon_size|default('large'),
       } only -%}
     </button>
 
-    <div class="civictheme-tooltip__description" data-tooltip-content>
-      <div class="civictheme-tooltip__description__inner">
+    <div class="ct-tooltip__description" data-tooltip-content>
+      <div class="ct-tooltip__description__inner">
         {{ content }}
       </div>
       <div data-tooltip-close>
@@ -35,7 +35,7 @@
         } only -%}
       </div>
 
-      <div class="civictheme-tooltip__arrow" data-tooltip-arrow></div>
+      <div class="ct-tooltip__arrow" data-tooltip-arrow></div>
     </div>
   </div>
 {% endif %}

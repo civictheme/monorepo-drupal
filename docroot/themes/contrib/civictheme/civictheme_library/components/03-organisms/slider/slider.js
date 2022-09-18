@@ -2,13 +2,13 @@
 /**
  * Slider component.
  */
-function CivicSlider(el) {
+function CivicThemeSlider(el) {
   this.el = el;
 
   this.init();
 }
 
-CivicSlider.prototype.refresh = function () {
+CivicThemeSlider.prototype.refresh = function () {
   // Set slide width based on panel width.
   const panelWidth = window.getComputedStyle(this.elSliderPanel).width;
   this.elSlides.forEach((slide) => {
@@ -48,14 +48,14 @@ CivicSlider.prototype.refresh = function () {
   this.elSliderPanel.style.height = largestHeightPx;
 };
 
-CivicSlider.prototype.init = function () {
+CivicThemeSlider.prototype.init = function () {
   // Get elements
-  this.elSliderPanel = this.el.querySelector('[data-component-civictheme-slider-panel]');
-  this.elSliderRail = this.el.querySelector('[data-component-civictheme-slider-rail]');
-  this.elPrev = this.el.querySelector('[data-component-civictheme-slider-previous]');
-  this.elNext = this.el.querySelector('[data-component-civictheme-slider-next]');
-  this.elSlides = this.el.querySelectorAll('[data-component-civictheme-slider-slide]');
-  this.elProgressIndicator = this.el.querySelector('[data-component-civictheme-slider-progress]');
+  this.elSliderPanel = this.el.querySelector('[data-component-ct-slider-panel]');
+  this.elSliderRail = this.el.querySelector('[data-component-ct-slider-rail]');
+  this.elPrev = this.el.querySelector('[data-component-ct-slider-previous]');
+  this.elNext = this.el.querySelector('[data-component-ct-slider-next]');
+  this.elSlides = this.el.querySelectorAll('[data-component-ct-slider-slide]');
+  this.elProgressIndicator = this.el.querySelector('[data-component-ct-slider-progress]');
 
   // Set events.
   this.previousClickEvent = this.previousClick.bind(this);
@@ -75,33 +75,33 @@ CivicSlider.prototype.init = function () {
   this.refresh();
 };
 
-CivicSlider.prototype.enableSlideInteraction = function () {
+CivicThemeSlider.prototype.enableSlideInteraction = function () {
   this.elSliderRail.querySelectorAll('a').forEach((link) => {
     link.removeAttribute('tabindex');
   });
 };
 
-CivicSlider.prototype.disableSlideInteraction = function () {
+CivicThemeSlider.prototype.disableSlideInteraction = function () {
   this.elSliderRail.querySelectorAll('a').forEach((link) => {
     link.setAttribute('tabindex', '-1');
   });
 };
 
-CivicSlider.prototype.showAllSlides = function () {
+CivicThemeSlider.prototype.showAllSlides = function () {
   this.elSlides.forEach((slide) => {
-    slide.classList.remove('civictheme-slide--hidden');
+    slide.classList.remove('ct-slide--hidden');
   });
 };
 
-CivicSlider.prototype.hideAllSlidesExceptCurrent = function () {
+CivicThemeSlider.prototype.hideAllSlidesExceptCurrent = function () {
   this.elSlides.forEach((slide, idx) => {
     if (idx !== this.currentSlide) {
-      slide.classList.add('civictheme-slide--hidden');
+      slide.classList.add('ct-slide--hidden');
     }
   });
 };
 
-CivicSlider.prototype.updateDisplaySlide = function () {
+CivicThemeSlider.prototype.updateDisplaySlide = function () {
   const duration = parseFloat(window.getComputedStyle(this.elSliderRail).transitionDuration) * 1000;
 
   this.disableSlideInteraction();
@@ -115,7 +115,7 @@ CivicSlider.prototype.updateDisplaySlide = function () {
   }, duration);
 };
 
-CivicSlider.prototype.updateButtonState = function () {
+CivicThemeSlider.prototype.updateButtonState = function () {
   this.elPrev.disabled = (this.currentSlide === 0);
   if (this.elPrev.disabled) {
     this.elPrev.classList.remove('focus');
@@ -128,7 +128,7 @@ CivicSlider.prototype.updateButtonState = function () {
   }
 };
 
-CivicSlider.prototype.previousClick = function () {
+CivicThemeSlider.prototype.previousClick = function () {
   this.currentSlide--;
   this.currentSlide = this.currentSlide < 0 ? 0 : this.currentSlide;
   this.elSliderRail.style.left = `${this.currentSlide * -100}%`;
@@ -137,7 +137,7 @@ CivicSlider.prototype.previousClick = function () {
   this.updateButtonState();
 };
 
-CivicSlider.prototype.nextClick = function () {
+CivicThemeSlider.prototype.nextClick = function () {
   this.currentSlide++;
   const total = this.totalSlides - 1;
   this.currentSlide = this.currentSlide > total ? total : this.currentSlide;
@@ -147,10 +147,10 @@ CivicSlider.prototype.nextClick = function () {
   this.updateButtonState();
 };
 
-CivicSlider.prototype.updateProgress = function () {
+CivicThemeSlider.prototype.updateProgress = function () {
   this.elProgressIndicator.innerHTML = `Slide ${this.currentSlide + 1} of ${this.totalSlides}`;
 };
 
-document.querySelectorAll('[data-component-civictheme-slider]').forEach((slider) => {
-  new CivicSlider(slider);
+document.querySelectorAll('[data-component-ct-slider]').forEach((slider) => {
+  new CivicThemeSlider(slider);
 });

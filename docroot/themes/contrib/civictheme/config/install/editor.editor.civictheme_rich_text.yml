@@ -60,7 +60,7 @@ settings:
     language:
       language_list: un
     stylescombo:
-      styles: "a.civictheme-button.civictheme-theme-light.civictheme-button--primary.civictheme-button--regular|Button - primary regular\r\na.civictheme-button.civictheme-theme-light.civictheme-button--secondary.civictheme-button--regular|Button - secondary regular\r\na.civictheme-button.civictheme-theme-light.civictheme-button--secondary.civictheme-button--large|Button - primary large\r\na.civictheme-button.civictheme-theme-light.civictheme-button--secondary.civictheme-button--large|Button - secondary large\r\np.civictheme-text-large|Lead paragraph\r\np.civictheme-text-small|Small\r\ntable.civictheme-theme-light.civictheme-table|Table\r\ntable.civictheme-theme-light.civictheme-table.civictheme-table--striped|Table striped rows"
+      styles: "a.ct-button.ct-theme-light.ct-button--primary.ct-button--regular|Button - primary regular\r\na.ct-button.ct-theme-light.ct-button--secondary.ct-button--regular|Button - secondary regular\r\na.ct-button.ct-theme-light.ct-button--secondary.ct-button--large|Button - primary large\r\na.ct-button.ct-theme-light.ct-button--secondary.ct-button--large|Button - secondary large\r\np.ct-text-large|Lead paragraph\r\np.ct-text-small|Small\r\ntable.ct-theme-light.ct-table|Table\r\ntable.ct-theme-light.ct-table.ct-table--striped|Table striped rows"
 image_upload:
   status: false
   scheme: public

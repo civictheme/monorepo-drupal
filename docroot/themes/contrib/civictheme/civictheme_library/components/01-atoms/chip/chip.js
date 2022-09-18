@@ -4,7 +4,7 @@
  * Chip component.
  */
 
-function CivicChip(el) {
+function CivicThemeChip(el) {
   if (el.getAttribute('data-chip') === 'true') {
     return;
   }
@@ -25,7 +25,7 @@ function CivicChip(el) {
 /**
  * Click event handler.
  */
-CivicChip.prototype.clickEvent = function (e) {
+CivicThemeChip.prototype.clickEvent = function (e) {
   if (/input/i.test(e.target.tagName)) {
     let isChecked = false;
     const input = e.target;
@@ -47,7 +47,7 @@ CivicChip.prototype.clickEvent = function (e) {
 
     if (isChecked) {
       // Dispatch custom event when click on input label.
-      this.el.dispatchEvent(new CustomEvent('civictheme.chip.dismiss', { bubbles: true }));
+      this.el.dispatchEvent(new CustomEvent('ct.chip.dismiss', { bubbles: true }));
     }
   }
 };
@@ -55,7 +55,7 @@ CivicChip.prototype.clickEvent = function (e) {
 /**
  * Set the checked value.
  */
-CivicChip.prototype.setChecked = function (input, check) {
+CivicThemeChip.prototype.setChecked = function (input, check) {
   const chip = this.findChip(input);
   if (chip && !chip.hasAttribute('disabled')) {
     if (check) {
@@ -71,7 +71,7 @@ CivicChip.prototype.setChecked = function (input, check) {
 /**
  * Focusin event handler.
  */
-CivicChip.prototype.focusinEvent = function (e) {
+CivicThemeChip.prototype.focusinEvent = function (e) {
   const chip = this.findChip(e.target);
   if (chip && !chip.hasAttribute('disabled')) {
     chip.classList.add('focus');
@@ -81,7 +81,7 @@ CivicChip.prototype.focusinEvent = function (e) {
 /**
  * Focusout event handler.
  */
-CivicChip.prototype.focusoutEvent = function (e) {
+CivicThemeChip.prototype.focusoutEvent = function (e) {
   const chip = this.findChip(e.target);
   if (chip) {
     chip.classList.remove('focus');
@@ -91,13 +91,13 @@ CivicChip.prototype.focusoutEvent = function (e) {
 /**
  * Click event handler for dismiss chip.
  */
-CivicChip.prototype.dismissClickEvent = function (e) {
+CivicThemeChip.prototype.dismissClickEvent = function (e) {
   const chip = this.findChip(e.target);
   if (chip) {
     const input = chip.getElementsByTagName('input');
     if (input.length <= 0) {
       chip.remove();
-      this.el.dispatchEvent(new CustomEvent('civictheme.chip.dismiss', { bubbles: true }));
+      this.el.dispatchEvent(new CustomEvent('ct.chip.dismiss', { bubbles: true }));
     }
   }
 };
@@ -105,13 +105,13 @@ CivicChip.prototype.dismissClickEvent = function (e) {
 /**
  * Find chip element.
  */
-CivicChip.prototype.findChip = function (el) {
-  if (el.classList.contains('civictheme-chip')) {
+CivicThemeChip.prototype.findChip = function (el) {
+  if (el.classList.contains('ct-chip')) {
     return el;
   }
-  return el.closest('.civictheme-chip');
+  return el.closest('.ct-chip');
 };
 
-document.querySelectorAll('.civictheme-chip').forEach((el) => {
-  new CivicChip(el);
+document.querySelectorAll('.ct-chip').forEach((el) => {
+  new CivicThemeChip(el);
 });

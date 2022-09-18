@@ -17,8 +17,8 @@ export default {
 export const Tooltip = () => {
   const generalKnobTab = 'General';
 
-  const defaultSizes = SCSS_VARIABLES['civictheme-icon-sizes-default'];
-  const customSizes = SCSS_VARIABLES['civictheme-icon-sizes'];
+  const defaultSizes = SCSS_VARIABLES['ct-icon-sizes-default'];
+  const customSizes = SCSS_VARIABLES['ct-icon-sizes'];
   const sizes = Object.keys(merge(defaultSizes, customSizes));
 
   const generalKnobs = {

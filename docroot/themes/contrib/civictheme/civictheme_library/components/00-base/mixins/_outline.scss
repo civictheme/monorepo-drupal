@@ -5,19 +5,19 @@
 //
 // Set element outline.
 //
-@mixin civictheme-outline($is_dark: false) {
-  outline-offset: $civictheme-outline-offset;
-  outline-width: $civictheme-outline-width;
+@mixin ct-outline($is_dark: false) {
+  outline-offset: $ct-outline-offset;
+  outline-width: $ct-outline-width;
   outline-style: solid;
 
   @if $is_dark {
-    outline-color: $civictheme-outline-dark;
+    outline-color: $ct-outline-dark;
   }
   @else {
-    outline-color: $civictheme-outline-light;
+    outline-color: $ct-outline-light;
   }
 }
 
-@mixin civictheme-outline-border() {
-  border-radius: $civictheme-outline-border-radius;
+@mixin ct-outline-border() {
+  border-radius: $ct-outline-border-radius;
 }

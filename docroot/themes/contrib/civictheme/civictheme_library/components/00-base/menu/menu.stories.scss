@@ -2,8 +2,8 @@
 // Menu component stories.
 //
 
-.civictheme-menu__item--active-trail {
-  > .civictheme-menu__item__link {
+.ct-menu__item--active-trail {
+  > .ct-menu__item__link {
     &::after {
       content: ' (A)';
     }

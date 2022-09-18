@@ -2,20 +2,20 @@
 // Footer component.
 //
 
-.civictheme-footer {
+.ct-footer {
   $root: &;
 
-  @include civictheme-print-hide();
-  @include civictheme-background();
+  @include ct-print-hide();
+  @include ct-background();
 
   &__top {
     .row {
-      padding-top: civictheme-space(4);
-      padding-bottom: civictheme-space(2);
+      padding-top: ct-spacing(4);
+      padding-bottom: ct-spacing(2);
 
-      @include civictheme-breakpoint(m) {
-        padding-top: civictheme-space(5);
-        padding-bottom: civictheme-space(5);
+      @include ct-breakpoint(m) {
+        padding-top: ct-spacing(5);
+        padding-bottom: ct-spacing(5);
         border-bottom: solid rem(1px) transparent;
       }
     }
@@ -26,19 +26,19 @@
   }
 
   &__top__content-top2 {
-    @include civictheme-breakpoint-upto(m) {
-      margin-top: civictheme-space(3);
+    @include ct-breakpoint-upto(m) {
+      margin-top: ct-spacing(3);
     }
   }
 
   &__middle {
     .row {
-      padding-top: civictheme-space(2);
-      padding-bottom: civictheme-space(2);
+      padding-top: ct-spacing(2);
+      padding-bottom: ct-spacing(2);
 
-      @include civictheme-breakpoint(m) {
-        padding-top: civictheme-space(5);
-        padding-bottom: civictheme-space(5);
+      @include ct-breakpoint(m) {
+        padding-top: ct-spacing(5);
+        padding-bottom: ct-spacing(5);
         border-bottom: solid rem(1px) transparent;
       }
     }
@@ -61,12 +61,12 @@
   }
 
   &__bottom {
-    padding-top: civictheme-space(2);
-    padding-bottom: civictheme-space(4);
+    padding-top: ct-spacing(2);
+    padding-bottom: ct-spacing(4);
 
-    @include civictheme-breakpoint(m) {
-      padding-top: civictheme-space(5);
-      padding-bottom: civictheme-space(5);
+    @include ct-breakpoint(m) {
+      padding-top: ct-spacing(5);
+      padding-bottom: ct-spacing(5);
     }
   }
 
@@ -75,34 +75,34 @@
   }
 
   &__bottom__content-bottom2 {
-    @include civictheme-breakpoint-upto(m) {
-      margin-top: civictheme-space(3);
+    @include ct-breakpoint-upto(m) {
+      margin-top: ct-spacing(3);
     }
   }
 
-  .civictheme-logo {
-    max-width: rem($civictheme-footer-logo-mobile-width);
+  .ct-logo {
+    max-width: rem($ct-footer-logo-mobile-width);
 
-    @include civictheme-breakpoint('m') {
-      max-width: rem($civictheme-footer-logo-desktop-width);
+    @include ct-breakpoint('m') {
+      max-width: rem($ct-footer-logo-desktop-width);
     }
   }
 
   .copyright {
-    @include civictheme-breakpoint('m') {
+    @include ct-breakpoint('m') {
       text-align: right;
     }
   }
 
-  .civictheme-social-links {
-    @include civictheme-breakpoint('m') {
+  .ct-social-links {
+    @include ct-breakpoint('m') {
       justify-content: flex-end;
     }
   }
 
-  .civictheme-navigation {
-    @include civictheme-breakpoint-upto(m) {
-      margin-bottom: civictheme-space(3);
+  .ct-navigation {
+    @include ct-breakpoint-upto(m) {
+      margin-bottom: ct-spacing(3);
     }
   }
 
@@ -110,63 +110,63 @@
     margin-bottom: 0;
 
     [data-collapsible-trigger] {
-      padding: civictheme-space(2) civictheme-space();
+      padding: ct-spacing(2) ct-spacing();
       margin-bottom: 0;
     }
 
     [data-collapsible-panel] {
-      padding-left: civictheme-space();
-      padding-right: civictheme-space();
+      padding-left: ct-spacing();
+      padding-right: ct-spacing();
     }
   }
 
-  &.civictheme-theme-light {
-    background-color: $civictheme-footer-light-background-color;
-    color: $civictheme-footer-light-color;
+  &.ct-theme-light {
+    background-color: $ct-footer-light-background-color;
+    color: $ct-footer-light-color;
 
     #{$root}__top {
       .row {
-        @include civictheme-breakpoint('m') {
-          border-color: $civictheme-footer-light-border-color;
+        @include ct-breakpoint('m') {
+          border-color: $ct-footer-light-border-color;
         }
       }
     }
 
     #{$root}__middle {
       .row {
-        @include civictheme-breakpoint('m') {
-          border-color: $civictheme-footer-light-border-color;
+        @include ct-breakpoint('m') {
+          border-color: $ct-footer-light-border-color;
         }
       }
     }
 
     [data-collapsible='true'] {
-      border-top: solid rem(1px) $civictheme-footer-light-collapsible-border-color;
+      border-top: solid rem(1px) $ct-footer-light-collapsible-border-color;
     }
   }
 
-  &.civictheme-theme-dark {
-    background-color: $civictheme-footer-dark-background-color;
-    color: $civictheme-footer-dark-color;
+  &.ct-theme-dark {
+    background-color: $ct-footer-dark-background-color;
+    color: $ct-footer-dark-color;
 
     #{$root}__top {
       .row {
-        @include civictheme-breakpoint('m') {
-          border-color: $civictheme-footer-dark-border-color;
+        @include ct-breakpoint('m') {
+          border-color: $ct-footer-dark-border-color;
         }
       }
     }
 
     #{$root}__middle {
       .row {
-        @include civictheme-breakpoint('m') {
-          border-color: $civictheme-footer-dark-border-color;
+        @include ct-breakpoint('m') {
+          border-color: $ct-footer-dark-border-color;
         }
       }
     }
 
     [data-collapsible='true'] {
-      border-top: solid rem(1px) $civictheme-footer-dark-collapsible-border-color;
+      border-top: solid rem(1px) $ct-footer-dark-collapsible-border-color;
     }
   }
 }

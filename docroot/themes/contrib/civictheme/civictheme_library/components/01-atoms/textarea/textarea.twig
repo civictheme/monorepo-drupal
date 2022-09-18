@@ -14,11 +14,11 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set disabled_class = disabled ? 'civictheme-input--disabled disabled' : '' %}
-{% set required_class = required ? 'civictheme-input--required required' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set disabled_class = disabled ? 'ct-input--disabled disabled' : '' %}
+{% set required_class = required ? 'ct-input--required required' : '' %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, required_class, modifier_class|default('')) %}
 
 {% set rows = rows|default(5) %}
 
-<textarea class="civictheme-textarea civictheme-input__element {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} rows="{{ rows }}">{{ value }}</textarea>
+<textarea class="ct-textarea ct-input__element {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} rows="{{ rows }}">{{ value }}</textarea>
