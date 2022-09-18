@@ -258,3 +258,22 @@ export const randomOptions = (numOfOptions, optionType = 'option') => {
   }
   return options;
 };
+
+export const getBlendModes = () => ({
+  Color: 'color',
+  'Color burn': 'color-burn',
+  'Color dodge': 'color-dodge',
+  Darken: 'darken',
+  Difference: 'difference',
+  Exclusion: 'exclusion',
+  'Hard light': 'hard-light',
+  Hue: 'hue',
+  Lighten: 'lighten',
+  Luminosity: 'luminosity',
+  Multiply: 'multiply',
+  Normal: 'normal',
+  Overlay: 'overlay',
+  Saturation: 'saturation',
+  Screen: 'screen',
+  'Soft light': 'soft-light',
+});

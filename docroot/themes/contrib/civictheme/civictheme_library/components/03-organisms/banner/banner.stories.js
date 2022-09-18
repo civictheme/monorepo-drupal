@@ -2,7 +2,7 @@
 import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
-import { demoImage, getSlots } from '../../00-base/base.stories';
+import { demoImage, getSlots, getBlendModes } from '../../00-base/base.stories';
 import CivicThemeBannerExample from './banner.stories.twig';
 
 export default {
@@ -29,6 +29,7 @@ export const Banner = (knobTab) => {
     theme,
     title: text('Title', 'Providing visually engaging digital experiences', generalKnobTab),
     background_image: BACKGROUNDS[select('Background', Object.keys(BACKGROUNDS), Object.keys(BACKGROUNDS)[0], generalKnobTab)],
+    background_image_blend_mode: select('Blend mode', getBlendModes(), 'normal', generalKnobTab),
     featured_image: boolean('With featured image', true, generalKnobTab) ? {
       src: demoImage(),
       alt: 'Featured image alt text',
