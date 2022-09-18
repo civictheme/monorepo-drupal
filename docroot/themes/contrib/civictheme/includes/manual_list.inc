@@ -6,8 +6,6 @@
  */
 
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Render\Element;
-use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Implements template_preprocess_paragraph().
