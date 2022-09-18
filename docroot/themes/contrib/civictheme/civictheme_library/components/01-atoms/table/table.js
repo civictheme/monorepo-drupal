@@ -54,7 +54,7 @@ CivicTable.prototype.addTheadColumnTitles = function () {
   });
 };
 
-document.querySelectorAll('.civictheme-basic-content table, .civictheme-table').forEach((table) => {
+document.querySelectorAll('.ct-basic-content table, .ct-table').forEach((table) => {
   // eslint-disable-next-line no-new
   new CivicTable(table);
 });

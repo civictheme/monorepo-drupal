@@ -90,7 +90,7 @@ export const TableOfContents = (knobTab) => {
       ),
       'data-table-of-contents-title': text('Title', 'On this page', tocKnobTab),
       'data-table-of-contents-anchor-selector': text('Anchor selector', 'h3', tocKnobTab),
-      'data-table-of-contents-anchor-scope-selector': text('Anchor scope selector', `.civictheme-basic-content-${i + 1}`, tocKnobTab),
+      'data-table-of-contents-anchor-scope-selector': text('Anchor scope selector', `.ct-basic-content-${i + 1}`, tocKnobTab),
       'data-table-of-contents-position': radios('Position', {
         Before: 'before',
         After: 'after',

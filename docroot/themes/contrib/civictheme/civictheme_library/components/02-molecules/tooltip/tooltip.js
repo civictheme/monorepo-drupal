@@ -102,7 +102,7 @@ CivicTooltip.prototype.findTooltip = function (el) {
   if (el.classList.contains('civictheme-tooltip')) {
     return el;
   }
-  return el.closest('.civictheme-tooltip');
+  return el.closest('.ct-tooltip');
 };
 
 /**
@@ -140,6 +140,6 @@ CivicTooltip.prototype.destroy = function (el) {
   delete this.position;
 };
 
-document.querySelectorAll('.civictheme-tooltip').forEach((el) => {
+document.querySelectorAll('.ct-tooltip').forEach((el) => {
   new CivicTooltip(el);
 });

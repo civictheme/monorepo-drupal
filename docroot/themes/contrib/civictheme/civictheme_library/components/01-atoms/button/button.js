@@ -100,9 +100,9 @@ CivicButton.prototype.findButton = function (el) {
   if (el.classList.contains('civictheme-button')) {
     return el;
   }
-  return el.closest('.civictheme-button');
+  return el.closest('.ct-button');
 };
 
-document.querySelectorAll('.civictheme-button').forEach((el) => {
+document.querySelectorAll('.ct-button').forEach((el) => {
   new CivicButton(el);
 });

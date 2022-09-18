@@ -3,7 +3,7 @@
  * @file
  * Scrollspy component.
  *
- * Adds '.civictheme-scrollspy-scrolled' class to an element whose
+ * Adds '.ct-scrollspy-scrolled' class to an element whose
  * data-scrollspy-offset attribute's value is more than a vertical window
  * scroll.
  */

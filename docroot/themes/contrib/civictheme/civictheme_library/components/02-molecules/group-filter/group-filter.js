@@ -33,7 +33,7 @@ function CivicGroupFilter(el) {
       getValue: (element) => element.checked,
       getId: (element) => element.id,
       getKey: (element) => element.id,
-      getLabel: (element) => element.closest('.civictheme-form-element').querySelector('label').innerText,
+      getLabel: (element) => element.closest('.ct-form-element').querySelector('label').innerText,
     },
     input_date: {
       emptyValue: '',
@@ -41,7 +41,7 @@ function CivicGroupFilter(el) {
       getValue: (element) => element.value,
       getId: (element) => element.id,
       getKey: (element) => element.id,
-      getLabel: (element) => `${element.closest('.civictheme-form-element').querySelector('label').innerText} - ${element.value}`,
+      getLabel: (element) => `${element.closest('.ct-form-element').querySelector('label').innerText} - ${element.value}`,
     },
     input_text: {
       emptyValue: '',
@@ -49,7 +49,7 @@ function CivicGroupFilter(el) {
       getValue: (element) => element.value,
       getId: (element) => element.id,
       getKey: (element) => element.id,
-      getLabel: (element) => `${element.closest('.civictheme-form-element').querySelector('label').innerText} - ${element.value}`,
+      getLabel: (element) => `${element.closest('.ct-form-element').querySelector('label').innerText} - ${element.value}`,
     },
     input_radio: {
       emptyValue: false,
@@ -61,7 +61,7 @@ function CivicGroupFilter(el) {
       },
       getId: (element) => element.id,
       getKey: (element) => element.name,
-      getLabel: (element) => element.closest('.civictheme-form-element').querySelector('label').innerText,
+      getLabel: (element) => element.closest('.ct-form-element').querySelector('label').innerText,
     },
     select: {
       emptyValue: '',
@@ -70,7 +70,7 @@ function CivicGroupFilter(el) {
       getId: (element) => element.id,
       getKey: (element) => element.id,
       getLabel: (element) => {
-        const label = element.closest('.civictheme-form-element').querySelector('label').innerText;
+        const label = element.closest('.ct-form-element').querySelector('label').innerText;
         const value = element.value ? element.querySelector(`option[value="${element.value}"]`).innerText : '';
         return `${label} - ${value}`;
       },

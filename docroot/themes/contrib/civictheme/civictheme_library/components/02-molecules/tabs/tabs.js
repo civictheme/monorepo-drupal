@@ -9,8 +9,8 @@ function CivicTabs(el, selectedIndex) {
   }
 
   this.el = el;
-  this.links = this.el.querySelectorAll('.civictheme-tabs__links .civictheme-link');
-  this.panels = this.el.querySelectorAll('.civictheme-tabs__panels__panel');
+  this.links = this.el.querySelectorAll('.ct-tabs__links .ct-link');
+  this.panels = this.el.querySelectorAll('.ct-tabs__panels__panel');
 
   if (this.links.length === 0
     || this.panels.length === 0
@@ -72,6 +72,6 @@ CivicTabs.prototype.destroy = function () {
   }
 };
 
-document.querySelectorAll('.civictheme-tabs').forEach((tabs) => {
+document.querySelectorAll('.ct-tabs').forEach((tabs) => {
   new CivicTabs(tabs);
 });

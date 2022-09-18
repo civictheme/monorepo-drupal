@@ -109,9 +109,9 @@ CivicChip.prototype.findChip = function (el) {
   if (el.classList.contains('civictheme-chip')) {
     return el;
   }
-  return el.closest('.civictheme-chip');
+  return el.closest('.ct-chip');
 };
 
-document.querySelectorAll('.civictheme-chip').forEach((el) => {
+document.querySelectorAll('.ct-chip').forEach((el) => {
   new CivicChip(el);
 });
