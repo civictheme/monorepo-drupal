@@ -4,7 +4,6 @@ dependencies:
   config:
     - core.entity_view_mode.media.full
     - field.field.media.civictheme_remote_video.field_c_m_oembed_video
-    - field.field.media.civictheme_remote_video.field_c_m_share_link
     - field.field.media.civictheme_remote_video.field_c_m_transcript
     - field.field.media.civictheme_remote_video.field_c_m_transcript_link
     - media.type.civictheme_remote_video
@@ -13,24 +12,23 @@ dependencies:
     - text
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: media.civictheme_remote_video.full
 targetEntityType: media
 bundle: civictheme_remote_video
 mode: full
 content:
   field_c_m_transcript:
-    weight: 0
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 0
     region: content
 hidden:
   created: true
   field_c_m_oembed_video: true
-  field_c_m_share_link: true
   field_c_m_transcript_link: true
   name: true
   thumbnail: true

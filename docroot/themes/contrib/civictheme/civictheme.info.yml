@@ -246,10 +246,8 @@ config_devel:
     - field.field.media.civictheme_image.field_c_m_caption
     - field.field.media.civictheme_image.field_c_m_image
     - field.field.media.civictheme_remote_video.field_c_m_oembed_video
-    - field.field.media.civictheme_remote_video.field_c_m_share_link
     - field.field.media.civictheme_remote_video.field_c_m_transcript
     - field.field.media.civictheme_remote_video.field_c_m_transcript_link
-    - field.field.media.civictheme_video.field_c_m_share_link
     - field.field.media.civictheme_video.field_c_m_transcript
     - field.field.media.civictheme_video.field_c_m_transcript_link
     - field.field.media.civictheme_video.field_c_m_video_file
@@ -458,7 +456,6 @@ config_devel:
     - field.storage.media.field_c_m_icon
     - field.storage.media.field_c_m_image
     - field.storage.media.field_c_m_oembed_video
-    - field.storage.media.field_c_m_share_link
     - field.storage.media.field_c_m_transcript
     - field.storage.media.field_c_m_transcript_link
     - field.storage.media.field_c_m_video_file
