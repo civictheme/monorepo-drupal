@@ -1,24 +1,6 @@
 // phpcs:ignoreFile
 require('twig');
 
-const storyOrder = [
-  'Base',
-  [
-    'Colors',
-    'Background',
-    'Elevation',
-    'Fonts',
-    'Grid',
-    'Icon',
-    'Item Grid',
-    'Item List',
-    'Spacing',
-    'Collapsible',
-    'Responsive',
-  ],
-  '*',
-];
-
 export const parameters = {
   a11y: {
     element: '#root',
@@ -28,7 +10,7 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: storyOrder,
+      order: ['Base', ['Colors', '*', 'Collapsible', 'Responsive'], '*'],
     },
   },
   backgrounds: {
