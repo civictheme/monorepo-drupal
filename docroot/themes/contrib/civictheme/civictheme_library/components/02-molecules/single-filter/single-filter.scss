@@ -10,10 +10,10 @@
     flex-wrap: wrap;
 
     &--row {
-      margin: ct-spacing(2) ct-spacing();
+      margin: ct-space(2) ct-space();
 
       @include ct-breakpoint('m') {
-        margin: ct-spacing(5) ct-spacing();
+        margin: ct-space(5) ct-space();
       }
     }
   }
