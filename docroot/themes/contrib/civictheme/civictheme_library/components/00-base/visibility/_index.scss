@@ -2,8 +2,8 @@
 // Visibility component.
 //
 
-@each $breakpoint, $value in $civictheme-breakpoints {
-  @if $breakpoint == $civictheme-visibility-lowest-breakpoint {
+@each $breakpoint, $value in $ct-breakpoints {
+  @if $breakpoint == $ct-visibility-lowest-breakpoint {
     .show-#{$breakpoint} {
       display: block !important;
     }
@@ -17,7 +17,7 @@
     }
   }
   @else {
-    @include civictheme-breakpoint($breakpoint) {
+    @include ct-breakpoint($breakpoint) {
       .show-#{$breakpoint} {
         display: block !important;
       }
@@ -37,6 +37,6 @@
   }
 }
 
-.civictheme-visually-hidden {
-  @include civictheme-visually-hidden();
+.ct-visually-hidden {
+  @include ct-visually-hidden();
 }

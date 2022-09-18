@@ -2,28 +2,28 @@
 // Header component.
 //
 
-.civictheme-header {
+.ct-header {
   $root: &;
 
   &__content-top2,
   &__content-top3 {
-    margin-top: civictheme-space();
-    margin-bottom: civictheme-space();
+    margin-top: ct-spacing();
+    margin-bottom: ct-spacing();
   }
 
   &__content-top2 {
-    @include civictheme-typography('text-regular');
+    @include ct-typography('text-regular');
   }
 
   &__top {
-    @include civictheme-print-hide();
+    @include ct-print-hide();
   }
 
   &__logo {
-    padding: civictheme-space() 0;
+    padding: ct-spacing() 0;
 
-    @include civictheme-breakpoint($civictheme-header-desktop-menu-breakpoint) {
-      padding: civictheme-space(3) 0;
+    @include ct-breakpoint($ct-header-desktop-menu-breakpoint) {
+      padding: ct-spacing(3) 0;
     }
   }
 
@@ -32,7 +32,7 @@
   }
 
   &__content-middle1 {
-    @include civictheme-print-hide();
+    @include ct-print-hide();
   }
 
   &__content-middle2 {
@@ -42,55 +42,55 @@
   }
 
   &__content-middle3 {
-    @include civictheme-print-hide();
+    @include ct-print-hide();
 
     height: 100%;
     position: relative;
 
-    @include civictheme-breakpoint($civictheme-header-desktop-menu-breakpoint) {
+    @include ct-breakpoint($ct-header-desktop-menu-breakpoint) {
       position: static;
       display: flex;
       justify-content: flex-end;
     }
   }
 
-  .civictheme-logo {
-    width: rem($civictheme-header-logo-mobile-width);
+  .ct-logo {
+    width: rem($ct-header-logo-mobile-width);
 
-    @include civictheme-breakpoint($civictheme-header-desktop-menu-breakpoint) {
+    @include ct-breakpoint($ct-header-desktop-menu-breakpoint) {
       width: auto;
-      max-width: rem($civictheme-header-logo-desktop-width);
+      max-width: rem($ct-header-logo-desktop-width);
     }
   }
 
-  .civictheme-mobile-navigation__trigger {
+  .ct-mobile-navigation__trigger {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 0;
   }
 
-  &.civictheme-theme-light {
+  &.ct-theme-light {
     #{$root}__top {
-      background-color: $civictheme-header-light-top-background-color;
-      color: $civictheme-header-light-top-color;
+      background-color: $ct-header-light-top-background-color;
+      color: $ct-header-light-top-color;
     }
 
     #{$root}__middle {
-      background-color: $civictheme-header-light-middle-background-color;
-      border-color: $civictheme-header-light-middle-border-color;
+      background-color: $ct-header-light-middle-background-color;
+      border-color: $ct-header-light-middle-border-color;
     }
   }
 
-  &.civictheme-theme-dark {
+  &.ct-theme-dark {
     #{$root}__top {
-      background-color: $civictheme-header-dark-top-background-color;
-      color: $civictheme-header-dark-top-color;
+      background-color: $ct-header-dark-top-background-color;
+      color: $ct-header-dark-top-color;
     }
 
     #{$root}__middle {
-      background-color: $civictheme-header-dark-middle-background-color;
-      border-color: $civictheme-header-dark-middle-border-color;
+      background-color: $ct-header-dark-middle-background-color;
+      border-color: $ct-header-dark-middle-border-color;
     }
   }
 }

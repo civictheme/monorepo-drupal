@@ -18,8 +18,8 @@
 #}
 
 {% set type = type in ['default', 'inline', 'stacked'] ? type : 'default' %}
-{% set type_class = 'civictheme-logo-type-%s'|format(type|default('default')) %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set type_class = 'ct-logo-type-%s'|format(type|default('default')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if logos is not empty %}
@@ -39,11 +39,11 @@
 {% if logos is not empty %}
   {% for visibility_type, logo_values in logos %}
     {% set visibility_class = visibility_type == 'mobile' ? 'show-xxs hide-m' : 'hide-xxs show-m' %}
-    {% set logo_class = logo_values|length > 1 ? 'civictheme-logo-dual' : '' %}
-    <div class="civictheme-logo {{ visibility_class }} {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% set logo_class = logo_values|length > 1 ? 'ct-logo-dual' : '' %}
+    <div class="ct-logo {{ visibility_class }} {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
       <div class="{{ type_class }} {{ logo_class }}">
       {% if url is not empty %}
-        <a class="civictheme-logo__url" href="{{ url }}" title="{{ title|default('Click to go to the homepage') }}">
+        <a class="ct-logo__url" href="{{ url }}" title="{{ title|default('Click to go to the homepage') }}">
       {% endif %}
       {% for logo_type, logo in logo_values %}
         {% set display_logo = TRUE %}
@@ -60,7 +60,7 @@
           } only %}
         {% endif %}
         {% if loop.first and display_logo and logo_values|length > 1 %}
-          <hr class="civictheme-logo--hr">
+          <hr class="ct-logo--hr">
         {% endif %}
       {% endfor %}
       {% if url is not empty %}

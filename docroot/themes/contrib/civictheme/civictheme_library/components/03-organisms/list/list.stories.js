@@ -5,13 +5,13 @@ import {
 
 import {
   demoImage,
-  dropDownFilter,
-  formElement,
+  randomDropdownFilter,
+  randomFormElement,
   randomUrl,
 } from '../../00-base/base.stories';
 
-import CivicThemeLargeFilter from '../large-filter/large-filter.twig';
-import CivicThemeSingleFilter from '../single-filter/single-filter.twig';
+import CivicThemeGroupFilter from '../../02-molecules/group-filter/group-filter.twig';
+import CivicThemeSingleFilter from '../../02-molecules/single-filter/single-filter.twig';
 
 import CivicThemeCardContainer from '../card-container/card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
@@ -168,7 +168,7 @@ export const List = (knobTab) => {
       for (let i = 0; i < filterCount; i++) {
         if (filterType === 'large') {
           const inputType = ['radio', 'checkbox'][Math.round(Math.random() * 2)];
-          filters.push(dropDownFilter(inputType, 4, theme, true, count++));
+          filters.push(randomDropdownFilter(inputType, 4, theme, true, count++));
         } else {
           filters.push({
             text: basicFilterTitles[i % 3],
@@ -178,7 +178,7 @@ export const List = (knobTab) => {
     }
 
     if (filterType === 'large') {
-      generalKnobs.filters = CivicThemeLargeFilter({
+      generalKnobs.filters = CivicThemeGroupFilter({
         theme,
         filter_title: 'Filter search results by:',
         tags_title: 'Selected filters:',
@@ -204,7 +204,7 @@ export const List = (knobTab) => {
       attributes: 'name="test"',
       form_element_attributes: 'data-dropdown-filter-item',
     };
-    children.push(formElement('radio', options, theme, false, i));
+    children.push(randomFormElement('radio', options, theme, false, i));
   }
 
   // Build pagination.
@@ -218,7 +218,7 @@ export const List = (knobTab) => {
     }
     generalKnobs.pager = CivicThemePagination({
       theme,
-      heading_id: 'civictheme-listing-demo',
+      heading_id: 'ct-listing-demo',
       items: {
         previous: {
           text: 'Previous',

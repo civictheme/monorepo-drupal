@@ -34,7 +34,7 @@ function _civictheme_preprocess_node(&$variables) {
     $toc_attributes['data-table-of-contents-position'] = 'prepend';
     $toc_attributes['data-table-of-contents-anchor-selector'] = 'h2';
     $toc_attributes['data-table-of-contents-title'] = t('On this page');
-    $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.civictheme-layout__main';
+    $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.ct-layout__main';
     $toc_attributes = new Attribute($toc_attributes);
 
     array_unshift($variables['content'], [

@@ -2,86 +2,86 @@
 // Tag component.
 //
 
-.civictheme-tag {
+.ct-tag {
   $root: &;
 
-  border-radius: $civictheme-tag-border-radius;
+  border-radius: $ct-tag-border-radius;
   border-style: solid;
-  border-width: $civictheme-tag-border-width;
+  border-width: $ct-tag-border-width;
   display: inline-block;
 
-  @include civictheme-typography('label-small');
-  @include civictheme-link-no-decoration();
+  @include ct-typography('label-small');
+  @include ct-link-no-decoration();
 
   &--icon-before {
-    .civictheme-icon {
-      margin-right: civictheme-space(0.25);
+    .ct-icon {
+      margin-right: ct-spacing(0.25);
     }
   }
 
   &--icon-after {
-    .civictheme-icon {
-      margin-left: civictheme-space(0.25);
+    .ct-icon {
+      margin-left: ct-spacing(0.25);
     }
   }
 
-  .civictheme-icon {
+  .ct-icon {
     vertical-align: text-bottom;
   }
 
-  &.civictheme-theme-light {
+  &.ct-theme-light {
     &#{$root}--primary {
-      background-color: $civictheme-tag-light-primary-background-color;
-      border-color: $civictheme-tag-light-primary-border-color;
-      color: $civictheme-tag-light-primary-color;
-      padding: civictheme-space(0.5) civictheme-space();
+      background-color: $ct-tag-light-primary-background-color;
+      border-color: $ct-tag-light-primary-border-color;
+      color: $ct-tag-light-primary-color;
+      padding: ct-spacing(0.5) ct-spacing();
 
-      @include civictheme-icon-fill-color($civictheme-tag-light-primary-color);
+      @include ct-icon-fill-color($ct-tag-light-primary-color);
     }
 
     &#{$root}--secondary {
-      background-color: $civictheme-tag-light-secondary-background-color;
-      border-color: $civictheme-tag-light-secondary-border-color;
-      color: $civictheme-tag-light-secondary-color;
-      padding: civictheme-space(0.5) civictheme-space();
+      background-color: $ct-tag-light-secondary-background-color;
+      border-color: $ct-tag-light-secondary-border-color;
+      color: $ct-tag-light-secondary-color;
+      padding: ct-spacing(0.5) ct-spacing();
 
-      @include civictheme-icon-fill-color($civictheme-tag-light-secondary-color);
+      @include ct-icon-fill-color($ct-tag-light-secondary-color);
     }
 
     &#{$root}--tertiary {
-      background-color: $civictheme-tag-light-tertiary-background-color;
-      border-color: $civictheme-tag-light-tertiary-border-color;
-      color: $civictheme-tag-light-tertiary-color;
+      background-color: $ct-tag-light-tertiary-background-color;
+      border-color: $ct-tag-light-tertiary-border-color;
+      color: $ct-tag-light-tertiary-color;
 
-      @include civictheme-icon-fill-color($civictheme-tag-light-tertiary-color);
+      @include ct-icon-fill-color($ct-tag-light-tertiary-color);
     }
   }
 
-  &.civictheme-theme-dark {
+  &.ct-theme-dark {
     &#{$root}--primary {
-      background-color: $civictheme-tag-dark-primary-background-color;
-      border-color: $civictheme-tag-dark-primary-border-color;
-      color: $civictheme-tag-dark-primary-color;
-      padding: civictheme-space(0.5) civictheme-space();
+      background-color: $ct-tag-dark-primary-background-color;
+      border-color: $ct-tag-dark-primary-border-color;
+      color: $ct-tag-dark-primary-color;
+      padding: ct-spacing(0.5) ct-spacing();
 
-      @include civictheme-icon-fill-color($civictheme-tag-dark-primary-color);
+      @include ct-icon-fill-color($ct-tag-dark-primary-color);
     }
 
     &#{$root}--secondary {
-      background-color: $civictheme-tag-dark-secondary-background-color;
-      border-color: $civictheme-tag-dark-secondary-border-color;
-      color: $civictheme-tag-dark-secondary-color;
-      padding: civictheme-space(0.5) civictheme-space();
+      background-color: $ct-tag-dark-secondary-background-color;
+      border-color: $ct-tag-dark-secondary-border-color;
+      color: $ct-tag-dark-secondary-color;
+      padding: ct-spacing(0.5) ct-spacing();
 
-      @include civictheme-icon-fill-color($civictheme-tag-dark-secondary-color);
+      @include ct-icon-fill-color($ct-tag-dark-secondary-color);
     }
 
     &#{$root}--tertiary {
-      background-color: $civictheme-tag-dark-tertiary-background-color;
-      border-color: $civictheme-tag-dark-tertiary-border-color;
-      color: $civictheme-tag-dark-tertiary-color;
+      background-color: $ct-tag-dark-tertiary-background-color;
+      border-color: $ct-tag-dark-tertiary-border-color;
+      color: $ct-tag-dark-tertiary-color;
 
-      @include civictheme-icon-fill-color($civictheme-tag-dark-tertiary-color);
+      @include ct-icon-fill-color($ct-tag-dark-tertiary-color);
     }
   }
 }

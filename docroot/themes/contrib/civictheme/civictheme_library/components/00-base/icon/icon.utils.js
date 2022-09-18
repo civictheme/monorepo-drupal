@@ -13,11 +13,13 @@ function getIconPaths() {
   const iconPaths = [];
   const iconFiles = fs.readdirSync(basePath);
   const EXTENSION = '.svg';
+
   iconFiles.forEach((file) => {
     if (pathUtil.extname(file).toLowerCase() === EXTENSION) {
       iconPaths.push(`${basePath}/${file}`);
     }
   });
+
   return iconPaths;
 }
 

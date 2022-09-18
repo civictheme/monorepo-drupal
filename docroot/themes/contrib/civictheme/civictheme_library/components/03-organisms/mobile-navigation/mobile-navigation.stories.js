@@ -36,7 +36,7 @@ export const MobileNavigation = () => {
       generalKnobTab,
     ),
     trigger_text: text('Trigger Text', 'Menu', generalKnobTab),
-    trigger_icon: select('Trigger Icon', Object.values(ICONS), Object.values(ICONS)[0], generalKnobTab),
+    trigger_icon: select('Trigger Icon', Object.values(ICONS), 'bars', generalKnobTab),
     top_menu: getMenuLinks(topMenuKnobTab, 'Top '),
     bottom_menu: getMenuLinks(bottomMenuKnobTab, 'Bottom '),
   };

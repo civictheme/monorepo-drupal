@@ -2,10 +2,10 @@
 // Select component.
 //
 
-.civictheme-select {
+.ct-select {
   $root: &;
 
-  @include civictheme-typography('text-regular');
+  @include ct-typography('text-regular');
 
   display: flex;
   flex-direction: row;
@@ -41,30 +41,30 @@
     background-color: transparent;
   }
 
-  &.civictheme-theme-light {
-    background-color: $civictheme-select-light-background-color;
-    border-color: $civictheme-input-light-border-color;
-    color: $civictheme-select-light-color;
+  &.ct-theme-light {
+    background-color: $ct-select-light-background-color;
+    border-color: $ct-input-light-border-color;
+    color: $ct-select-light-color;
 
     &:hover {
-      box-shadow: 0 0 0 1px $civictheme-select-light-hover-border-color;
+      box-shadow: 0 0 0 1px $ct-select-light-hover-border-color;
     }
 
     &:focus {
-      border-color: $civictheme-select-light-focus-border-color;
-      box-shadow: 0 0 0 1px $civictheme-select-light-focus-border-color;
+      border-color: $ct-select-light-focus-border-color;
+      box-shadow: 0 0 0 1px $ct-select-light-focus-border-color;
     }
 
     &.error,
-    &.civictheme-input--error {
-      border-color: $civictheme-select-light-error-border-color;
-      box-shadow: 0 0 0 1px $civictheme-select-light-error-border-color;
+    &.ct-input--error {
+      border-color: $ct-select-light-error-border-color;
+      box-shadow: 0 0 0 1px $ct-select-light-error-border-color;
     }
 
     &:-internal-list-box {
       option {
         &:checked {
-          background-color: $civictheme-select-light-option-background-color;
+          background-color: $ct-select-light-option-background-color;
           color: inherit;
         }
       }
@@ -75,32 +75,32 @@
     }
   }
 
-  &.civictheme-theme-dark {
-    background-color: $civictheme-select-dark-background-color;
-    border-color: $civictheme-input-dark-border-color;
-    color: $civictheme-select-dark-color;
+  &.ct-theme-dark {
+    background-color: $ct-select-dark-background-color;
+    border-color: $ct-input-dark-border-color;
+    color: $ct-select-dark-color;
 
     &:hover {
-      border-color: $civictheme-select-dark-hover-border-color;
-      box-shadow: 0 0 0 1px $civictheme-select-dark-hover-border-color;
+      border-color: $ct-select-dark-hover-border-color;
+      box-shadow: 0 0 0 1px $ct-select-dark-hover-border-color;
     }
 
     &:focus {
-      border-color: $civictheme-select-dark-focus-border-color;
-      box-shadow: 0 0 0 1px $civictheme-select-dark-focus-border-color;
+      border-color: $ct-select-dark-focus-border-color;
+      box-shadow: 0 0 0 1px $ct-select-dark-focus-border-color;
     }
 
     &:invalid,
     &.error,
-    &.civictheme-input--error {
-      border-color: $civictheme-select-dark-error-border-color;
-      box-shadow: 0 0 0 1px $civictheme-select-dark-error-border-color;
+    &.ct-input--error {
+      border-color: $ct-select-dark-error-border-color;
+      box-shadow: 0 0 0 1px $ct-select-dark-error-border-color;
     }
 
     &:-internal-list-box {
       option {
         &:checked {
-          background-color: $civictheme-select-dark-option-background-color;
+          background-color: $ct-select-dark-option-background-color;
           color: inherit;
         }
       }

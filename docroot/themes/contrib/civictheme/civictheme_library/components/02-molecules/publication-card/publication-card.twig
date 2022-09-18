@@ -21,15 +21,15 @@
   */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set size = size|default('large') %}
-{% set size_class = size == 'large'?'civictheme-publication-card--large' : 'civictheme-publication-card--small' %}
+{% set size_class = size == 'large'?'ct-publication-card--large' : 'ct-publication-card--small' %}
 {% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
 
-<div class="civictheme-publication-card {{ modifier_class }}">
+<div class="ct-publication-card {{ modifier_class }}">
   {% block image %}
     {% if image.src is not empty %}
-      <div class="civictheme-publication-card__image-wrapper">
+      <div class="ct-publication-card__image-wrapper">
         {% include '@atoms/image/image.twig' with {
           theme: theme,
           src: image.src,
@@ -38,7 +38,7 @@
 
         {% block image_over %}
           {% if image_over is not empty %}
-            <div class="civictheme-publication-card__image-over">
+            <div class="ct-publication-card__image-over">
               {{ image_over }}
             </div>
           {% endif %}
@@ -47,17 +47,17 @@
     {% endif %}
   {% endblock %}
 
-  <div class="civictheme-publication-card__content">
+  <div class="ct-publication-card__content">
     {% block content_top %}
       {% if content_top is not empty %}
-        <div class="civictheme-publication-card__content-top">
+        <div class="ct-publication-card__content-top">
           {{ content_top }}
         </div>
       {% endif %}
     {% endblock %}
 
     {% if icon is not empty %}
-      <div class="civictheme-publication-card__icon">
+      <div class="ct-publication-card__icon">
         {% include '@base/icon/icon.twig' with {
           symbol: icon,
           size: 'large',
@@ -68,9 +68,9 @@
 
     {% block title %}
       {% if title is not empty %}
-        <div class="civictheme-publication-card__title">
+        <div class="ct-publication-card__title">
           {% if url is not empty %}
-          <a class="civictheme-publication-card__title-link" href="{{ url }}">
+          <a class="ct-publication-card__title-link" href="{{ url }}">
           {% endif %}
             {{ title }}
             {% if link is not empty %}
@@ -78,7 +78,7 @@
                 {% include '@base/icon/icon.twig' with {
                   symbol: 'arrows_download',
                   color: 'primary',
-                  modifier_class: 'civictheme-publication-card__icon--download',
+                  modifier_class: 'ct-publication-card__icon--download',
                 } only %}
               </span>
             {% endif %}
@@ -91,7 +91,7 @@
 
     {% block content_middle %}
       {% if content_middle is not empty %}
-        <div class="civictheme-publication-card__content-middle">
+        <div class="ct-publication-card__content-middle">
           {{ content_middle }}
         </div>
       {% endif %}
@@ -99,7 +99,7 @@
 
     {% block summary %}
       {% if summary is not empty %}
-        <div class="civictheme-publication-card__summary">
+        <div class="ct-publication-card__summary">
           {{ summary }}
         </div>
       {% endif %}
@@ -107,13 +107,13 @@
 
     {% block link %}
       {% if link is not empty %}
-        <div class="civictheme-publication-card__attachment-link">
+        <div class="ct-publication-card__attachment-link">
           {% include '@atoms/link/link.twig' with {
             theme: theme,
             text: link.text,
             title: 'Download %s'|format(link.url|split('.')|last),
             url: link.url,
-            modifier_class: 'civictheme-link--attachment'
+            modifier_class: 'ct-link--attachment'
           } only %}
         </div>
       {% endif %}
@@ -121,7 +121,7 @@
 
     {% block content_bottom %}
       {% if content_bottom is not empty %}
-        <div class="civictheme-publication-card__content-bottom">
+        <div class="ct-publication-card__content-bottom">
           {{ content_bottom }}
         </div>
       {% endif %}

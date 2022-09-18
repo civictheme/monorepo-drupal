@@ -100,10 +100,10 @@ Feature: Check that components settings are available in theme settings
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
-    And I should see the ".civictheme-header .civictheme-logo .civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
-    And I should see the ".civictheme-header .civictheme-logo .civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
-    And I should see the "div.civictheme-logo .civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
-    And I should see the "div.civictheme-logo .civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
+    And I should see the ".ct-header .ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
+    And I should see the ".ct-header .ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
+    And I should see the "div.ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
+    And I should see the "div.ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
 
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with static assets
@@ -117,10 +117,10 @@ Feature: Check that components settings are available in theme settings
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
-    And I should see the "div.civictheme-logo img.civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
-    And I should see the "div.civictheme-logo img.civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
-    And I should see the "div.civictheme-logo img.civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
-    And I should see the "div.civictheme-logo img.civictheme-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
+    And I should see the "div.ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
+    And I should see the "div.ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
+    And I should see the "div.ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
+    And I should see the "div.ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
 
   @api
   Scenario: The CivicTheme theme settings verify failed custom logo configuration with static assets
@@ -148,7 +148,7 @@ Feature: Check that components settings are available in theme settings
     And I select the radio button "Default" with the id "edit-components-footer-type-default"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
-  
+
   @api
   Scenario: The CivicTheme theme settings External Links comnponent validation works.
     Given I am logged in as a user with the "Site Administrator" role

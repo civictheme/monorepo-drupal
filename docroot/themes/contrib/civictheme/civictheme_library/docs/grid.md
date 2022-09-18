@@ -47,7 +47,7 @@ The system is adapted from the [SASS flexbox grid](http://sassflexboxgrid.com/).
 Breakpoints are defined as:
 
 ```scss
-$civictheme-breakpoints: (
+$ct-breakpoints: (
   'xs': 368px,
   's': 576px,
   'm': 768px,
@@ -57,18 +57,18 @@ $civictheme-breakpoints: (
 );
 ```
 
-And can be used with the `civictheme-breakpoint()` mixin.
+And can be used with the `ct-breakpoint()` mixin.
 
 ```scss
 div {
   // Shared rules.
-  @include civictheme-breakpoint(s) {
+  @include ct-breakpoint(s) {
     // Mobile-and-up Small rules.
   }
-  @include civictheme-breakpoint(m) {
+  @include ct-breakpoint(m) {
     // Mobile-and-up Medium rules.
   }
-  @include civictheme-breakpoint(xl) {
+  @include ct-breakpoint(xl) {
     // Mobile-and-up Extra large rules.
   }
 }
@@ -83,7 +83,7 @@ has been omitted to avoid over-complicating breakpoint logic and readability.
 ## Containers and rows
 
 Containers are used to contain and center content to a max-width per breakpoint.
-These are set via the `$civictheme-breakpoints` map.
+These are set via the `$ct-breakpoints` map.
 
 If no container is set then columns spread full-width - this is utilised in
 CivicTheme Page without sidebar where we have full-width components and constraining

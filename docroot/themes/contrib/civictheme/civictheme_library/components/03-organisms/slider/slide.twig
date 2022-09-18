@@ -18,14 +18,14 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set image_position_class = 'civictheme-slide--image-position-%s'|format(image_position|default('right')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set image_position_class = 'ct-slide--image-position-%s'|format(image_position|default('right')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, image_position_class, modifier_class|default('')) %}
 
-<div class="civictheme-slide {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+<div class="ct-slide {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
   {% block image %}
     {% if image is not empty %}
-      <div class="civictheme-slide__image">
+      <div class="ct-slide__image">
         {% include '@atoms/image/image.twig' with {
           theme: theme,
           src: image.src,
@@ -35,11 +35,11 @@
     {% endif %}
   {% endblock %}
 
-  <div class="civictheme-slide__content">
-    <div class="civictheme-slide__content-inner">
+  <div class="ct-slide__content">
+    <div class="ct-slide__content-inner">
       {% block content_top %}
         {% if content_top is not empty %}
-          <div class="civictheme-slide__content-top" tabindex="0">
+          <div class="ct-slide__content-top" tabindex="0">
             {{ content_top }}
           </div>
         {% endif %}
@@ -47,9 +47,9 @@
 
       {% block content %}
         {% if title is not empty %}
-          <div class="civictheme-slide__title" tabindex="0">
+          <div class="ct-slide__title" tabindex="0">
             {% if url is not empty %}
-            <a class="civictheme-slide__title-link" href="{{ url }}">
+            <a class="ct-slide__title-link" href="{{ url }}">
             {% endif %}
               {{ title }}
             {% if url is not empty %}
@@ -58,19 +58,19 @@
           </div>
         {% endif %}
         {% if summary is not empty %}
-          <div class="civictheme-slide__summary" tabindex="0">{{ summary|raw }}</div>
+          <div class="ct-slide__summary" tabindex="0">{{ summary|raw }}</div>
         {% endif %}
       {% endblock %}
 
       {% block links %}
         {% if links is not empty %}
-          <div class="civictheme-slide__links">{{ links }}</div>
+          <div class="ct-slide__links">{{ links }}</div>
         {% endif %}
       {% endblock %}
 
       {% block content_bottom %}
         {% if content_bottom is not empty %}
-          <div class="civictheme-slide__content-bottom">
+          <div class="ct-slide__content-bottom">
             {{ content_bottom }}
           </div>
         {% endif %}

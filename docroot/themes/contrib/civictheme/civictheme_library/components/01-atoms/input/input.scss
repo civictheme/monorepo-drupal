@@ -2,10 +2,10 @@
 // Input component.
 //
 
-.civictheme-input {
+.ct-input {
   $root: &;
 
-  margin-bottom: civictheme-space(2);
+  margin-bottom: ct-spacing(2);
 
   &--disabled {
     opacity: 50%;
@@ -13,18 +13,18 @@
 
   &__label {
     display: block;
-    margin-bottom: civictheme-space();
+    margin-bottom: ct-spacing();
   }
 
   &__element {
     border: rem(1px) solid;
-    border-radius: $civictheme-input-border-radius;
+    border-radius: $ct-input-border-radius;
     box-sizing: border-box;
-    padding: civictheme-space(1.5) civictheme-space(5) civictheme-space(1.5) civictheme-space(2);
+    padding: ct-spacing(1.5) ct-spacing(5) ct-spacing(1.5) ct-spacing(2);
     width: 100%;
 
     &::placeholder {
-      @include civictheme-typography('text-regular');
+      @include ct-typography('text-regular');
     }
   }
 
@@ -47,30 +47,30 @@
 
   &__state {
     position: relative;
-    margin-left: - civictheme-space(4);
+    margin-left: - ct-spacing(4);
 
     svg {
-      width: civictheme-space(2);
-      height: civictheme-space(2);
+      width: ct-spacing(2);
+      height: ct-spacing(2);
       vertical-align: middle;
     }
   }
 
-  &.civictheme-theme-light {
+  &.ct-theme-light {
     #{$root}__element {
-      border-color: $civictheme-input-light-border-color;
-      background-color: $civictheme-input-light-background-color;
+      border-color: $ct-input-light-border-color;
+      background-color: $ct-input-light-background-color;
 
       &:hover {
-        box-shadow: 0 0 0 1px $civictheme-input-light-border-color;
+        box-shadow: 0 0 0 1px $ct-input-light-border-color;
       }
 
       &:focus {
-        background-color: $civictheme-input-light-focus-background-color;
-        color: $civictheme-input-light-focus-color;
-        outline: $civictheme-input-light-focus-outline-color;
-        border-color: $civictheme-input-light-focus-border-color;
-        box-shadow: 0 0 0 1px $civictheme-input-light-focus-border-color;
+        background-color: $ct-input-light-focus-background-color;
+        color: $ct-input-light-focus-color;
+        outline: $ct-input-light-focus-outline-color;
+        border-color: $ct-input-light-focus-border-color;
+        box-shadow: 0 0 0 1px $ct-input-light-focus-border-color;
       }
     }
   }

@@ -2,48 +2,48 @@
 // Layout component.
 //
 
-.civictheme-layout {
+.ct-layout {
   $root: &;
 
-  &.civictheme-layout--vertical-space-top {
+  &.ct-layout--vertical-space-top {
     #{$root}__inner {
-      @include civictheme-component-with-vertical-space(top, $civictheme-layout-space-vertical, $is_padding: false);
+      @include ct-component-with-vertical-space(top, $ct-layout-space-vertical, $is_padding: false);
     }
   }
 
-  &.civictheme-layout--vertical-space-bottom {
+  &.ct-layout--vertical-space-bottom {
     #{$root}__inner {
-      @include civictheme-component-with-vertical-space(bottom, $civictheme-layout-space-vertical, $is_padding: false);
+      @include ct-component-with-vertical-space(bottom, $ct-layout-space-vertical, $is_padding: false);
     }
   }
 
-  &.civictheme-layout--vertical-space-both {
+  &.ct-layout--vertical-space-both {
     #{$root}__inner {
-      @include civictheme-component-with-vertical-space(both, $civictheme-layout-space-vertical, $is_padding: false);
+      @include ct-component-with-vertical-space(both, $ct-layout-space-vertical, $is_padding: false);
     }
   }
 
   &__sidebar {
-    @include civictheme-print-hide();
+    @include ct-print-hide();
   }
 
   &__main {
-    @include civictheme-print() {
+    @include ct-print() {
       flex-basis: 100% !important;
       max-width: 100%;
       margin-left: 0;
     }
   }
 
-  &.civictheme-theme-light {
+  &.ct-theme-light {
     #{$root}__inner {
-      background: $civictheme-layout-light-background-color;
+      background: $ct-layout-light-background-color;
     }
   }
 
-  &.civictheme-theme-dark {
+  &.ct-theme-dark {
     #{$root}__inner {
-      background: $civictheme-layout-dark-background-color;
+      background: $ct-layout-dark-background-color;
     }
   }
 }

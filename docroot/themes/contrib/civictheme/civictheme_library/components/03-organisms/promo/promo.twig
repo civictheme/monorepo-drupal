@@ -18,29 +18,29 @@
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-promo--vertical-space-%s'|format(vertical_space) : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-promo--vertical-space-%s'|format(vertical_space) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if title is not empty or content is not empty %}
-  <div class="civictheme-promo {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif%}>
+  <div class="ct-promo {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif%}>
     <div class="container">
       <div class="row">
         <div class="col-xxs-12">
-          <div class="civictheme-promo__inner">
+          <div class="ct-promo__inner">
             {% block content %}
               {% block column_one %}
-                <div class="civictheme-promo__first-container">
+                <div class="ct-promo__first-container">
                   {% if title %}
-                    <div class="civictheme-promo__title">{{ title }}</div>
+                    <div class="ct-promo__title">{{ title }}</div>
                   {% endif %}
                   {% if content %}
-                    <div class="civictheme-promo__content">{{ content }}</div>
+                    <div class="ct-promo__content">{{ content }}</div>
                   {% endif %}
                 </div>
               {% endblock %}
               {% block column_two %}
-                <div class="civictheme-promo__second-container">
+                <div class="ct-promo__second-container">
                   {% if link %}
                     {% include '@atoms/button/button.twig' with {
                       theme: theme,
@@ -51,7 +51,7 @@
                       url: link.url,
                       is_new_window: link.is_new_window is defined ? link.is_new_window : false,
                       is_external: link.is_external is defined ? link.is_external : false,
-                      modifier_class: 'civictheme-promo__button',
+                      modifier_class: 'ct-promo__button',
                     } only %}
                   {% endif %}
                 </div>

@@ -18,7 +18,7 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if sources is not empty %}
@@ -48,7 +48,7 @@
     {% set attributes = attributes ~ 'height="' ~ height ~ '"' %}
   {% endif %}
 
-  <video class="civictheme-video {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <video class="ct-video {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% for source in sources %}
       <source src="{{ source.url }}" type="{{ source.type }}"/>
     {% endfor %}

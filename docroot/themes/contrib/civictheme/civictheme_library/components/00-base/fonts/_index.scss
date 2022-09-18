@@ -7,7 +7,7 @@
 @use 'sass:map';
 @use 'sass:string';
 
-$all-fonts: _civictheme-fonts-all();
+$all-fonts: _ct-fonts-all();
 
 @each $font-map-name, $font-map in $all-fonts {
   @if not (map.has-key($font-map, 'family')) {
@@ -48,11 +48,11 @@ $all-fonts: _civictheme-fonts-all();
 
     @each $path in $uri {
       @if string.index($path, 'http') == 1 {
-        @include civictheme-font-url-import($path);
+        @include ct-font-url-import($path);
       }
       @else {
         // Extract format from file extension.
-        $format: string.slice($path, civictheme-string-last-index($path, '.') + 1);
+        $format: string.slice($path, ct-string-last-index($path, '.') + 1);
 
         // Handle special case for EOT and IE.
         @if $format == 'eot' {
@@ -70,14 +70,14 @@ $all-fonts: _civictheme-fonts-all();
       // Extract font name from the defined family as it may contain fallbacks.
       // Note that font-family name is ignored for @import'ed fonts since they
       // do not use @font-face.
-      $font-names: civictheme-string-split(map.get($font-map, 'family'), ',');
+      $font-names: ct-string-split(map.get($font-map, 'family'), ',');
 
       @if list.length($font-names) == 0 {
         @error "Font #{$font-map-name} 'family' value must have at least one name.";
       }
 
       $font-family: list.nth($font-names, 1);
-      $font-family: civictheme-unquote($font-family);
+      $font-family: ct-unquote($font-family);
 
       @font-face {
         font-family: $font-family;
@@ -94,7 +94,7 @@ $all-fonts: _civictheme-fonts-all();
 
         @if map.get($type-map, 'weight') != null {
           $weight: map.get($type-map, 'weight');
-          $weight: civictheme-unquote($weight);
+          $weight: ct-unquote($weight);
 
           font-weight: $weight;
         }
@@ -103,7 +103,7 @@ $all-fonts: _civictheme-fonts-all();
   }
 }
 
-@if $civictheme-font-smoothing-enable {
+@if $ct-font-smoothing-enable {
   html {
     text-rendering: optimizelegibility;
     -moz-osx-font-smoothing: grayscale;

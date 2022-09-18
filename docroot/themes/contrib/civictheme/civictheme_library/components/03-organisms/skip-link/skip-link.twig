@@ -12,18 +12,18 @@
 #}
 
 {% set text = text|default('Skip to main content') %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if text is not empty %}
-  <div class="civictheme-skip-link {{ modifier_class }}">
+  <div class="ct-skip-link {{ modifier_class }}">
     {% include '@atoms/content-link/content-link.twig' with {
       theme: theme,
       text: text,
       url: url,
       title: text,
       hidden_text: text,
-      modifier_class: 'civictheme-skip-link__link civictheme-visually-hidden civictheme-focusable',
+      modifier_class: 'ct-skip-link__link ct-visually-hidden ct-focusable',
     } only %}
   </div>
 {% endif %}

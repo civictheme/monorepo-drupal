@@ -10,35 +10,35 @@
 //
 // Retrieve light theme color.
 //
-@function civictheme-color-light($name) {
-  @return _civictheme-color($name, 'light');
+@function ct-color-light($name) {
+  @return _ct-color($name, 'light');
 }
 
 //
 // Retrieve dark theme color.
 //
-@function civictheme-color-dark($name) {
-  @return _civictheme-color($name, 'dark');
+@function ct-color-dark($name) {
+  @return _ct-color($name, 'dark');
 }
 
 //
 // Color shade. Do not use on components directly - map to a color variant instead.
 //
-@function civictheme-color-shade($color, $number) {
+@function ct-color-shade($color, $number) {
   @return color.mix(black, $color, math.percentage(math.div($number, 100)));
 }
 
 //
 // Color tint. Do not use on components directly - map to a color variant instead.
 //
-@function civictheme-color-tint($color, $number) {
+@function ct-color-tint($color, $number) {
   @return color.mix(white, $color, math.percentage(math.div($number, 100)));
 }
 
 //
 // Color tone. Do not use on components directly - map to a color variant instead.
 //
-@function civictheme-color-tone($base, $color) {
+@function ct-color-tone($base, $color) {
   $neutral: color.adjust(color.adjust($base, $saturation: -20%), $lightness: -1 * math.max(color.lightness($base) - 5%, 0%));
 
   @return color.mix($neutral, white, math.percentage(math.div($color, 100)));
@@ -47,7 +47,7 @@
 //
 // Encode color to be suitable for embedding.
 //
-@function civictheme-color-encode($string) {
+@function ct-color-encode($string) {
   @if type-of($string) == 'color' and string.index(#{$string}, '#') == 1 {
     $hex: string.slice(color.ie-hex-str($string), 4);
     $string: string.unquote('#{$hex}');
@@ -61,20 +61,20 @@
 //
 // String to fill SVG with color.
 //
-@function civictheme-color-svg-fill($svg, $color) {
-  @return civictheme-str-replace($svg, "fill=''", "fill='#{civictheme-color-encode($color)}'");
+@function ct-color-svg-fill($svg, $color) {
+  @return ct-str-replace($svg, "fill=''", "fill='#{ct-color-encode($color)}'");
 }
 
 //
 // Get a color from the pre-defined list of colors.
 //
 // stylelint-disable-next-line scss/at-function-pattern
-@function _civictheme-color($name, $theme) {
+@function _ct-color($name, $theme) {
   @if $theme != 'light' and $theme != 'dark' {
     @error '"#{$theme}" is not an available theme.';
   }
 
-  $colors: map.deep-merge(_civictheme-colors(), _civictheme-colors-brands());
+  $colors: map.deep-merge(_ct-colors(), _ct-colors-brands());
   $color: map.get(map.get($colors, $theme), $name);
 
   @if $color == null {
@@ -90,17 +90,17 @@
 // Do not use directly.
 //
 // stylelint-disable-next-line scss/at-function-pattern
-@function _civictheme-colors() {
-  $civictheme-colors-default: (
+@function _ct-colors() {
+  $ct-colors-default: (
     'light': (),
     'dark': ()
   ) !default;
-  $civictheme-colors: (
+  $ct-colors: (
     'light': (),
     'dark': ()
   ) !default;
 
-  @return map.deep-merge($civictheme-colors-default, $civictheme-colors);
+  @return map.deep-merge($ct-colors-default, $ct-colors);
 }
 
 //
@@ -109,11 +109,11 @@
 // Do not use directly.
 //
 // stylelint-disable-next-line scss/at-function-pattern
-@function _civictheme-colors-brands() {
-  $civictheme-colors-brands: (
+@function _ct-colors-brands() {
+  $ct-colors-brands: (
     'light': (),
     'dark': ()
   ) !default;
 
-  @return $civictheme-colors-brands;
+  @return $ct-colors-brands;
 }

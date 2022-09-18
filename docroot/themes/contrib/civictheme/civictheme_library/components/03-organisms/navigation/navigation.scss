@@ -2,35 +2,35 @@
 // Navigation component.
 //
 
-.civictheme-navigation {
-  @include civictheme-typography('text-regular');
+.ct-navigation {
+  @include ct-typography('text-regular');
 
   &__title {
-    @include civictheme-typography('heading-5');
+    @include ct-typography('heading-5');
 
-    margin-bottom: civictheme-space(2);
+    margin-bottom: ct-spacing(2);
   }
 
   &__menu {
-    &.civictheme-menu,
-    .civictheme-menu {
-      @include civictheme-print-hide();
+    &.ct-menu,
+    .ct-menu {
+      @include ct-print-hide();
 
       list-style: none;
       padding: 0;
       margin: 0;
     }
 
-    .civictheme-menu__sub-menu {
-      margin-top: civictheme-space(2);
+    .ct-menu__sub-menu {
+      margin-top: ct-spacing(2);
     }
 
-    .civictheme-menu__item {
-      margin-bottom: civictheme-space(2);
-      margin-left: civictheme-space(2);
+    .ct-menu__item {
+      margin-bottom: ct-spacing(2);
+      margin-left: ct-spacing(2);
     }
 
-    &.civictheme-menu > .civictheme-menu__item {
+    &.ct-menu > .ct-menu__item {
       margin-left: 0;
     }
   }

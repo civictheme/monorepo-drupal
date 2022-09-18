@@ -19,16 +19,16 @@ Feature: View of Page content with Next steps component
       | field_c_p_link    | 0: [TEST] link 1 - 1: https://example.com/link1 |
 
     When I visit "civictheme_page" "[TEST] Page Next steps test"
-    And I should see an "a.civictheme-next-steps" element
-    And I should see an "a.civictheme-next-steps.civictheme-theme-light" element
-    And I should not see an "a.civictheme-next-steps.civictheme-theme-dark" element
-    And I should see an "a.civictheme-next-steps.civictheme-next-steps--vertical-space-both" element
-    And I should see an "div.civictheme-next-steps__content" element
-    And I should see an "div.civictheme-next-steps__text" element
+    And I should see an "a.ct-next-steps" element
+    And I should see an "a.ct-next-steps.ct-theme-light" element
+    And I should not see an "a.ct-next-steps.ct-theme-dark" element
+    And I should see an "a.ct-next-steps.ct-next-steps--vertical-space-both" element
+    And I should see an "div.ct-next-steps__content" element
+    And I should see an "div.ct-next-steps__text" element
     And I should see the text "[TEST] Next steps title"
-    And I should see an "div.civictheme-next-steps__title" element
-    And I should see an "div.civictheme-next-steps__summary" element
-    And I should see an "div.civictheme-next-steps__icon.civictheme-next-steps__read-more" element
+    And I should see an "div.ct-next-steps__title" element
+    And I should see an "div.ct-next-steps__summary" element
+    And I should see an "div.ct-next-steps__icon.ct-next-steps__read-more" element
 
   @api
   Scenario: CivicTheme page content type page can be viewed by anonymous with next_step dark without space
@@ -41,13 +41,13 @@ Feature: View of Page content with Next steps component
       | field_c_p_link    | 0: [TEST] link 1 - 1: https://example.com/link1 |
 
     When I visit "civictheme_page" "[TEST] Page Next steps test"
-    And I should see an "a.civictheme-next-steps" element
-    And I should not see an "a.civictheme-next-steps.civictheme-theme-light" element
-    And I should see an "a.civictheme-next-steps.civictheme-theme-dark" element
-    And I should not see an "a.civictheme-next-steps.civictheme-next-steps--vertical-space-both" element
-    And I should see an "div.civictheme-next-steps__content" element
-    And I should see an "div.civictheme-next-steps__text" element
+    And I should see an "a.ct-next-steps" element
+    And I should not see an "a.ct-next-steps.ct-theme-light" element
+    And I should see an "a.ct-next-steps.ct-theme-dark" element
+    And I should not see an "a.ct-next-steps.ct-next-steps--vertical-space-both" element
+    And I should see an "div.ct-next-steps__content" element
+    And I should see an "div.ct-next-steps__text" element
     And I should see the text "[TEST] Next steps title"
-    And I should see an "div.civictheme-next-steps__title" element
-    And I should see an "div.civictheme-next-steps__summary" element
-    And I should see an "div.civictheme-next-steps__icon.civictheme-next-steps__read-more" element
+    And I should see an "div.ct-next-steps__title" element
+    And I should see an "div.ct-next-steps__summary" element
+    And I should see an "div.ct-next-steps__icon.ct-next-steps__read-more" element

@@ -5,34 +5,34 @@
 @use 'sass:map';
 
 .row {
-  @include civictheme-row($civictheme-grid-gutters);
+  @include ct-row($ct-grid-gutters);
 
   &.reverse {
-    @include civictheme-row-reverse();
+    @include ct-row-reverse();
   }
 
   &.natural-height {
-    @include civictheme-row-natural-height();
+    @include ct-row-natural-height();
   }
 
   &.flex-column {
-    @include civictheme-row-flex-column();
+    @include ct-row-flex-column();
   }
 }
 
 .col {
   // Make columns at the lowest breakpoint to act as a single column per row.
-  @include _civictheme-grid-col($civictheme-grid-lowest-breakpoint, $civictheme-grid-columns);
+  @include _ct-grid-col($ct-grid-lowest-breakpoint, $ct-grid-columns);
 
-  $next-bp: civictheme-map-get-next($civictheme-breakpoints, $civictheme-grid-lowest-breakpoint, map.get($civictheme-breakpoints, 'xxs'), key);
+  $next-bp: ct-map-get-next($ct-breakpoints, $ct-grid-lowest-breakpoint, map.get($ct-breakpoints, 'xxs'), key);
 
   // Spawn columns to fit into as single row for larger breakpoints.
-  @include civictheme-breakpoint($next-bp) {
-    @include _civictheme-grid-col();
+  @include ct-breakpoint($next-bp) {
+    @include _ct-grid-col();
   }
 
   &.reverse {
-    @include civictheme-col-reverse();
+    @include ct-col-reverse();
   }
 }
 
@@ -65,28 +65,28 @@
 }
 
 // Generate column classes.
-@each $breakpoint, $value in $civictheme-breakpoints {
-  @if $breakpoint == $civictheme-grid-lowest-breakpoint {
-    @include _civictheme-col-factory($breakpoint);
+@each $breakpoint, $value in $ct-breakpoints {
+  @if $breakpoint == $ct-grid-lowest-breakpoint {
+    @include _ct-col-factory($breakpoint);
   }
   @else {
-    @include civictheme-breakpoint($breakpoint) {
-      @include _civictheme-col-factory($breakpoint);
+    @include ct-breakpoint($breakpoint) {
+      @include _ct-col-factory($breakpoint);
     }
   }
 }
 
 // Container class should wrap every row.
 .container {
-  @include civictheme-container();
+  @include ct-container();
 }
 
 //
 // Max width container class to limit the width of the fluid containers at max width.
 //
 .container-max-width {
-  @include civictheme-breakpoint(xxl) {
-    width: $civictheme-grid-max-width;
+  @include ct-breakpoint(xxl) {
+    width: $ct-grid-max-width;
     margin: 0 auto;
   }
 }
@@ -95,9 +95,9 @@
 // Offset container class to add offset on small screens.
 //
 .container-offset-xs {
-  @include civictheme-breakpoint-upto(m) {
-    padding-left: map.get($civictheme-grid-offsets, 'xxs');
-    padding-right: map.get($civictheme-grid-offsets, 'xxs');
+  @include ct-breakpoint-upto(m) {
+    padding-left: map.get($ct-grid-offsets, 'xxs');
+    padding-right: map.get($ct-grid-offsets, 'xxs');
     width: auto;
   }
 }
@@ -111,29 +111,29 @@
   padding: 0;
 }
 
-.civictheme-justify-content-start {
+.ct-justify-content-start {
   display: flex;
   justify-content: flex-start;
 }
 
-.civictheme-justify-content-center {
+.ct-justify-content-center {
   display: flex;
   justify-content: center;
 }
 
-.civictheme-justify-content-end {
+.ct-justify-content-end {
   display: flex;
   justify-content: flex-end;
 }
 
-.civictheme-text-align-left {
+.ct-text-align-left {
   text-align: left;
 }
 
-.civictheme-text-align-center {
+.ct-text-align-center {
   text-align: center;
 }
 
-.civictheme-text-align-right {
+.ct-text-align-right {
   text-align: right;
 }

@@ -5,10 +5,10 @@ typography mixins and variables.
 
 ## Fonts
 
-The default font-families are defined in a map `$civictheme-fonts-default`:
+The default font-families are defined in a map `$ct-fonts-default`:
 
 ```scss
-$civictheme-fonts-default: (
+$ct-fonts-default: (
   'primary': (
     'family': '"Lexend", sans-serif',
     'types': (
@@ -21,60 +21,60 @@ $civictheme-fonts-default: (
 );
 ```
 
-This map can be extended using `$civictheme-fonts` map (fonts can be stored with
+This map can be extended using `$ct-fonts` map (fonts can be stored with
 the library or linked to a remote location):
 
 ```scss
-$civictheme-fonts: (
+$ct-fonts: (
   'tertiary': (
     'family': 'Roboto, sans-serif',
     'types': (
       (
         'uri': (
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Regular.ttf',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Regular.woff',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Regular.eot',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Regular.ttf',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Regular.woff',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Regular.eot',
         ),
       ),
       (
         'italic': true,
         'uri': (
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Italic.ttf',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Italic.woff',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Italic.eot',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Italic.ttf',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Italic.woff',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Italic.eot',
         ),
       ),
       (
         'weight': 'bold',
         'uri': (
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Bold.ttf',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Bold.woff',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Bold.eot',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Bold.ttf',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Bold.woff',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Bold.eot',
         ),
       ),
       (
         'italic': true,
         'weight': 'bold',
         'uri': (
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-BoldItalic.ttf',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-BoldItalic.woff',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-BoldItalic.eot',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-BoldItalic.ttf',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-BoldItalic.woff',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-BoldItalic.eot',
         ),
       ),
       (
         'weight': 300,
         'uri': (
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Thin.ttf',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Thin.woff',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Thin.eot',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Thin.ttf',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Thin.woff',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Thin.eot',
         ),
       ),
       (
         'weight': 700,
         'uri': (
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Black.ttf',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Black.woff',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Black.eot',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Black.ttf',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Black.woff',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Black.eot',
         ),
       ),
     ),
@@ -85,37 +85,37 @@ $civictheme-fonts: (
 
 ### Defining typography
 
-The default typography is set in a map `$civictheme-typography-default`:
+The default typography is set in a map `$ct-typography-default`:
 
 ```scss
-$civictheme-typography-default: (
+$ct-typography-default: (
   // Headings.
   'heading-1': (
-    'xxs': ($civictheme-font-base-size * 2, $civictheme-font-base-line-height * 2.5, 700, 'primary', -0.6px),
-    'm': ($civictheme-font-base-size * 3, $civictheme-font-base-line-height * 3.75, 700, 'primary', -1px)
+    'xxs': ($ct-font-base-size * 2, $ct-font-base-line-height * 2.5, 700, 'primary', -0.6px),
+    'm': ($ct-font-base-size * 3, $ct-font-base-line-height * 3.75, 700, 'primary', -1px)
   ),
   // ...
 );
 ```
 
-This can be extended using `$civictheme-typography` map:
+This can be extended using `$ct-typography` map:
 
 ```scss
-$civictheme-typography: (
+$ct-typography: (
   'body-extra-large': (
-    'xxs': ($civictheme-font-base-size * 2, $civictheme-font-base-line-height * 2.5, 700, 'primary', -0.6px),
-    'm': ($civictheme-font-base-size * 3, $civictheme-font-base-line-height * 3.75, 700, 'primary', -1px)
+    'xxs': ($ct-font-base-size * 2, $ct-font-base-line-height * 2.5, 700, 'primary', -0.6px),
+    'm': ($ct-font-base-size * 3, $ct-font-base-line-height * 3.75, 700, 'primary', -1px)
   ),
 );
 ```
 
 ## Using typography
 
-Typography can be set for elements using the `civictheme-typography()` mixin
+Typography can be set for elements using the `ct-typography()` mixin
 with a pre-defined mapping:
 
 ```scss
 h1 {
-  @include civictheme-typography('heading-l');
+  @include ct-typography('heading-l');
 }
 ```

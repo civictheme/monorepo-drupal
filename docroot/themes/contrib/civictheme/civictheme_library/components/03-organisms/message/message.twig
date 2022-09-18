@@ -11,9 +11,9 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set type = type|default('information') %}
-{% set type_class = 'civictheme-message--%s messages--%s'|format(type, type) %}
+{% set type_class = 'ct-message--%s messages--%s'|format(type, type) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
 
 {% set icons = {
@@ -23,23 +23,23 @@
   success: 'approve',
 } %}
 
-<div class="civictheme-message messages {{ modifier_class }}" role="{% if type == 'error' %}error{% else %}contentinfo{% endif %}" aria-label="{{ type }}" {% if type == 'error' %}aria-live="polite"{% endif %}>
+<div class="ct-message messages {{ modifier_class }}" role="{% if type == 'error' %}error{% else %}contentinfo{% endif %}" aria-label="{{ type }}" {% if type == 'error' %}aria-live="polite"{% endif %}>
   {% if icons[type] is defined %}
-    <div class="civictheme-message__icon">
+    <div class="ct-message__icon">
       {% include "@base/icon/icon.twig" with {
         symbol: icons[type],
-        modifier_class: "%s civictheme-icon--%s"|format(theme_class, type)
+        modifier_class: "%s ct-icon--%s"|format(theme_class, type)
       } only %}
     </div>
   {% endif %}
 
-  <div class="civictheme-message__content">
+  <div class="ct-message__content">
     {% if title %}
-      <div class="civictheme-message__title">{{ title }}</div>
+      <div class="ct-message__title">{{ title }}</div>
     {% endif %}
 
     {% if description %}
-      <div class="civictheme-message__summary">{{ description|striptags('<strong>,<a>,<pre>,<ul>,<ol>,<li>')|raw }}</div>
+      <div class="ct-message__summary">{{ description|striptags('<strong>,<a>,<pre>,<ul>,<ol>,<li>')|raw }}</div>
     {% endif %}
   </div>
 </div>

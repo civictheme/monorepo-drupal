@@ -6,20 +6,20 @@ import {
   number,
 } from '@storybook/addon-knobs';
 
-import { formElement } from '../../00-base/base.stories';
+import { randomFormElement } from '../../00-base/base.stories';
 
-import DropdownFilter from './dropdown-filter.twig';
+import CivicThemeDropdownFilter from './dropdown-filter.twig';
 
 import './dropdown-filter';
 
 export default {
-  title: 'Molecules/Filter',
+  title: 'Molecules/Dropdown Filter',
   parameters: {
     layout: 'centered',
   },
 };
 
-export const DropDownFilter = (knobTab) => {
+export const DropdownFilter = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const theme = radios(
@@ -62,7 +62,7 @@ export const DropDownFilter = (knobTab) => {
       attributes: (type === 'radio') ? 'name="test"' : '',
       form_element_attributes: 'data-dropdown-filter-item',
     };
-    children.push(formElement(type, options, theme, false, i));
+    children.push(randomFormElement(type, options, theme, false, i));
   }
 
   const generalKnobs = {
@@ -83,7 +83,7 @@ export const DropDownFilter = (knobTab) => {
     search_label_text: text('Search label text', 'Filter by keyword', generalKnobTab),
   };
 
-  return DropdownFilter({
+  return CivicThemeDropdownFilter({
     ...generalKnobs,
     attributes: 'id="dropdown-filter" data-dropdown-filter-fieldset',
   });

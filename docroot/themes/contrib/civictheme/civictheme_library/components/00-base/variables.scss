@@ -25,7 +25,7 @@
 // path to the own statically-generated directory while generating assets for
 // distributions may require a full path to the site root).
 //
-$civictheme-assets-directory: './assets/' !default;
+$ct-assets-directory: './assets/' !default;
 
 // stylelint-disable scss/at-import-partial-extension
 // Import overrides for base variables.

@@ -14,9 +14,9 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set type = type|default('information') %}
-{% set type_class = 'civictheme-alert--%s'|format(type|default('information')) %}
+{% set type_class = 'ct-alert--%s'|format(type|default('information')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
 
 {% set icons = {
@@ -27,26 +27,26 @@
 } %}
 
 {% if description is not empty %}
-  <div class="civictheme-alert {{ modifier_class }}" data-alert-id="{{ id }}" data-alert-type="{{ type }}" data-component-name="civictheme-alert" role="alert">
+  <div class="ct-alert {{ modifier_class }}" data-alert-id="{{ id }}" data-alert-type="{{ type }}" data-component-name="ct-alert" role="alert">
     <div class="container">
       <div class="row">
-        <div class="civictheme-alert__title col-xxs-12 col-m-3">
+        <div class="ct-alert__title col-xxs-12 col-m-3">
           {% if icons[type] is defined %}
-            <span class="civictheme-alert__icon">
+            <span class="ct-alert__icon">
               {% include "@base/icon/icon.twig" with {
                 symbol: icons[type],
-                modifier_class: "%s civictheme-icon--%s"|format(theme_class, type)
+                modifier_class: "%s ct-icon--%s"|format(theme_class, type)
               } only %}
             </span>
           {% endif %}
           {{ title|raw }}
         </div>
-        <div class="civictheme-alert__summary col-xxs-12 col-m-9">
+        <div class="ct-alert__summary col-xxs-12 col-m-9">
           {{ description|raw }}
           {% include "@atoms/button/button.twig" with {
             kind: 'button',
             theme: theme,
-            modifier_class: 'civictheme-alert__dismiss-button',
+            modifier_class: 'ct-alert__dismiss-button',
             text: '',
             icon: 'userinterface_cancel',
             attributes: 'id=dismiss-alert-' ~ id ~ ' data-alert-dismiss-trigger title="close ' ~ type ~ ' alert"'

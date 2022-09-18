@@ -27,7 +27,7 @@ function _civictheme_preprocess_page__views(&$variables) {
  */
 function civictheme_preprocess_views_exposed_form(&$variables) {
   $variables['filter_title'] = t('Filter search results by:');
-  $variables['large_filter'] = $variables['form']['#is_large_filter'] ?? FALSE;
+  $variables['group_filter'] = $variables['form']['#is_large_filter'] ?? FALSE;
 
   $is_view_component = isset($variables['attributes']['civictheme_automated_list']);
   if ($is_view_component) {
@@ -114,23 +114,23 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
     _civictheme_filter_views_exposed_form_alter__process_elements($form[$form_element_key], $form, $listing_use_large_filter);
   }
 
-  $form['#attributes']['data-civictheme-filter'] = '';
-  $form['#attributes']['data-civictheme-filter-type'] = $listing_use_large_filter ? 'large' : 'basic';
-  $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $listing_use_large_filter ? 500 : 0;
+  $form['#attributes']['data-ct-filter'] = '';
+  $form['#attributes']['data-ct-filter-type'] = $listing_use_large_filter ? 'group' : 'basic';
+  $form['#attributes']['data-ct-filter-ajax-submit-timeout'] = $listing_use_large_filter ? 500 : 0;
 
   // Made preprocessors know that we are using a large filter.
   // @todo Revisit this as we should not be passing custom values like this.
   $form['#is_large_filter'] = $listing_use_large_filter;
 
   $form['actions']['submit']['#attributes']['class'] = [
-    'civictheme-button--secondary',
-    'civictheme-button--small',
+    'ct-button--secondary',
+    'ct-button--small',
   ];
 
   // Ajax exposed view forms hides submit button to have auto-load.
   $ajax_filter = $form_state->get('view')->ajaxEnabled();
   if ($ajax_filter) {
-    $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
+    $form['#attributes']['data-ct-filter-ajax'] = $ajax_filter ? 'true' : 'false';
 
     $form_state->get('view')->setAjaxEnabled(TRUE);
 
@@ -196,7 +196,7 @@ function _civictheme_filter_views_exposed_form_alter__process_elements(&$element
     $filter_key = !$is_large_filter && in_array($element['#type'] ?? NULL, [
       'radios',
       'checkboxes',
-    ]) ? '#civictheme-single-filter' : '#civictheme-large-filter';
+    ]) ? '#ct-single-filter' : '#ct-group-filter';
     $element[$filter_key] = $form['#id'];
     $element['#attributes'][$filter_key] = $form['#id'];
   }
@@ -335,7 +335,7 @@ function _civictheme_automated_list_preprocess_view($paragraph, ViewExecutable &
 function civictheme_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'] ?? NULL;
 
-  $variables['modifier_class'] = 'civictheme-card-container--listing';
+  $variables['modifier_class'] = 'ct-card-container--listing';
   // On Grid view title should be added to card container.
   if ($view && $view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     $variables['title'] = $view->header['result']->render();

@@ -13,7 +13,7 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 {% set menu_id = menu_id|default('secondary-navigation') %}
 
@@ -21,7 +21,7 @@
 
   {% if title %}
     {% block title %}
-      <div class="civictheme-navigation__title">
+      <div class="ct-navigation__title">
         {{ title }}
       </div>
     {% endblock %}
@@ -32,18 +32,18 @@
       {# Item attributes to convert them into a collapsible element. #}
       {% set item_attributes = 'data-collapsible data-collapsible-collapsed data-collapsible-group=' ~ menu_id %}
       {# Item classes to style dynamically. #}
-      {% set item_modifier_class = 'civictheme-secondary-navigation__has-dropdown' %}
+      {% set item_modifier_class = 'ct-secondary-navigation__has-dropdown' %}
       {# Update item with attributes and classes. #}
       {% set new_item = items[key]|merge({'attributes': item_attributes, 'modifier_class': item_modifier_class }) %}
       {% set items = items|merge({(key): new_item}) %}
     {% endif %}
   {% endfor %}
 
-  <div class="civictheme-secondary-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-secondary-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
     {% include '@base/menu/menu.twig' with {
       theme: theme,
       items: items,
-      modifier_class: 'civictheme-secondary-navigation__menu',
+      modifier_class: 'ct-secondary-navigation__menu',
     } only %}
   </div>
 {% endif %}

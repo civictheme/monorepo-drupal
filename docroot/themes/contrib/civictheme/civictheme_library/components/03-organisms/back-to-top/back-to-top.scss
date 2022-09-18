@@ -2,35 +2,35 @@
 // Back to Top component.
 //
 
-.civictheme-back-to-top {
+.ct-back-to-top {
   $root: &;
 
-  @include civictheme-print-hide();
+  @include ct-print-hide();
 
   position: fixed;
-  right: $civictheme-back-to-top-space-right;
-  bottom: $civictheme-back-to-top-space-bottom;
+  right: $ct-back-to-top-space-right;
+  bottom: $ct-back-to-top-space-bottom;
 
   &[data-scrollspy='true'] {
     display: none;
 
-    &.civictheme-scrollspy-scrolled {
+    &.ct-scrollspy-scrolled {
       display: block;
     }
   }
 
-  .civictheme-button {
+  .ct-button {
     &,
     &:focus,
     &:active,
     &:visited,
     &:hover {
       border-radius: rem(100px);
-      padding: civictheme-space();
-      background-color: $civictheme-back-to-top-background-color;
-      border-color: $civictheme-back-to-top-background-color;
-      color: $civictheme-back-to-top-color;
-      outline-color: $civictheme-back-to-top-outline-color;
+      padding: ct-spacing();
+      background-color: $ct-back-to-top-background-color;
+      border-color: $ct-back-to-top-background-color;
+      color: $ct-back-to-top-color;
+      outline-color: $ct-back-to-top-outline-color;
     }
 
     &__icon {
@@ -39,8 +39,8 @@
       }
     }
 
-    .civictheme-icon {
-      fill: $civictheme-back-to-top-color;
+    .ct-icon {
+      fill: $ct-back-to-top-color;
     }
   }
 }

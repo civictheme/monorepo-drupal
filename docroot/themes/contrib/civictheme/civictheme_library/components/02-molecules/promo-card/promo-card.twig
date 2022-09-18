@@ -19,15 +19,15 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set type_class = image is empty ? 'civictheme-promo-card--no-image' : '' %}
-{% set image_over_class = image_over ? 'civictheme-promo-card--image-over' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set type_class = image is empty ? 'ct-promo-card--no-image' : '' %}
+{% set image_over_class = image_over ? 'ct-promo-card--image-over' : '' %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, type_class, image_over_class, modifier_class|default('')) %}
 
-<div class="civictheme-promo-card {{ modifier_class }}">
+<div class="ct-promo-card {{ modifier_class }}">
   {% block image %}
     {% if image.src is not empty or image_over is not empty %}
-      <div class="civictheme-promo-card__image-wrapper">
+      <div class="ct-promo-card__image-wrapper">
         {% include '@atoms/image/image.twig' with {
           theme: theme,
           src: image.src,
@@ -36,7 +36,7 @@
 
         {% block image_over %}
           {% if image_over is not empty %}
-            <div class="civictheme-promo-card__image-over">
+            <div class="ct-promo-card__image-over">
               {{ image_over }}
             </div>
           {% endif %}
@@ -46,10 +46,10 @@
   {% endblock %}
 
   {% block content %}
-    <div class="civictheme-promo-card__content">
+    <div class="ct-promo-card__content">
       {% block content_top %}
         {% if content_top is not empty %}
-          <div class="civictheme-promo-card__content_top">
+          <div class="ct-promo-card__content_top">
             {{ content_top }}
           </div>
         {% endif %}
@@ -57,7 +57,7 @@
 
       {% block date %}
         {% if date is not empty %}
-          <div class="civictheme-promo-card__date">
+          <div class="ct-promo-card__date">
             {{ date }}
           </div>
         {% endif %}
@@ -65,9 +65,9 @@
 
       {% block title %}
         {% if title is not empty %}
-          <div class="civictheme-promo-card__title">
+          <div class="ct-promo-card__title">
             {% if url is not empty %}
-            <a class="civictheme-promo-card__title-link" href="{{ url }}" {% if is_external %}title="Opens in new tab" target="_blank"{% endif %}>
+            <a class="ct-promo-card__title-link" href="{{ url }}" {% if is_external %}title="Opens in new tab" target="_blank"{% endif %}>
             {% endif %}
               {{ title }}
             {% if url is not empty %}
@@ -79,7 +79,7 @@
 
       {% block content_middle %}
         {% if content_middle is not empty %}
-          <div class="civictheme-promo-card__content_middle">
+          <div class="ct-promo-card__content_middle">
             {{ content_middle }}
           </div>
         {% endif %}
@@ -87,7 +87,7 @@
 
       {% block summary %}
         {% if summary is not empty %}
-          <div class="civictheme-promo-card__summary">
+          <div class="ct-promo-card__summary">
             {{ summary|raw }}
           </div>
         {% endif %}
@@ -95,9 +95,9 @@
 
       {% block content_bottom_1 %}
         {% if tags or url %}
-          <div class="civictheme-promo-card__bottom-wrapper">
+          <div class="ct-promo-card__bottom-wrapper">
             {% if tags %}
-              <div class="civictheme-promo-card__tags">
+              <div class="ct-promo-card__tags">
                 {% for tag in tags %}
                   {% include '@atoms/tag/tag.twig' with {
                     theme: theme,
@@ -111,13 +111,13 @@
                 {% include '@base/icon/icon.twig' with {
                   symbol: 'upper-right-arrow',
                   color: 'primary',
-                  modifier_class: 'civictheme-navigation-card__icon--external'
+                  modifier_class: 'ct-navigation-card__icon--external'
                 } only %}
               {% else %}
                 {% include '@base/icon/icon.twig' with {
                   symbol: 'right-arrow-2',
                   color: 'primary',
-                  modifier_class: 'civictheme-navigation-card__icon--arrow',
+                  modifier_class: 'ct-navigation-card__icon--arrow',
                 } only %}
               {% endif %}
             {% endif %}
@@ -127,7 +127,7 @@
 
       {% block content_bottom_2 %}
         {% if content_bottom is not empty %}
-          <div class="civictheme-promo-card__content-bottom">
+          <div class="ct-promo-card__content-bottom">
             {{ content_bottom }}
           </div>
         {% endif %}

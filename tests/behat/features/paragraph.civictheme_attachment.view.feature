@@ -1,4 +1,4 @@
-@civictheme @civictheme_page @civictheme_attachment
+@civictheme @civictheme_page @civictheme_attachment @skipped
 Feature: View of Page content
 
   Ensure that Page content can be viewed correctly with attachment component.
@@ -39,15 +39,15 @@ Feature: View of Page content
       | field_c_p_attachments | [TEST] CivicTheme PDF   |
 
     When I visit "civictheme_page" "[TEST] Page attachment test"
-    And I should see an "div.civictheme-attachment" element
-    And I should not see an "div.civictheme-attachment.civictheme-content--with-background" element
-    And I should see an "div.civictheme-attachment.civictheme-theme-light" element
-    And I should see an "div.civictheme-attachment__content" element
-    And I should see an "div.civictheme-attachment__text" element
-    And I should see an "div.civictheme-attachment__title" element
-    And I should see an "div.civictheme-attachment__summary" element
-    And I should see an "ul.civictheme-attachment__links" element
-    And I should see an "a.civictheme-link--attachment" element
+    And I should see an "div.ct-attachment" element
+    And I should not see an "div.ct-attachment.ct-content--with-background" element
+    And I should see an "div.ct-attachment.ct-theme-light" element
+    And I should see an "div.ct-attachment__content" element
+    And I should see an "div.ct-attachment__text" element
+    And I should see an "div.ct-attachment__title" element
+    And I should see an "div.ct-attachment__summary" element
+    And I should see an "ul.ct-attachment__links" element
+    And I should see an "a.ct-link--attachment" element
     And I should see the text "[TEST] attachment"
     And I should see the text "Summary text"
 
@@ -64,14 +64,14 @@ Feature: View of Page content
       | field_c_p_attachments | [TEST] CivicTheme PDF   |
 
     When I visit "civictheme_page" "[TEST] Page attachment test"
-    And I should see an "div.civictheme-attachment" element
-    And I should see an "div.civictheme-attachment.civictheme-attachment--with-background" element
-    And I should see an "div.civictheme-attachment.civictheme-theme-dark" element
-    And I should see an "div.civictheme-attachment__content" element
-    And I should see an "div.civictheme-attachment__text" element
-    And I should see an "div.civictheme-attachment__title" element
-    And I should see an "div.civictheme-attachment__summary" element
-    And I should see an "ul.civictheme-attachment__links" element
-    And I should see an "a.civictheme-link--attachment" element
+    And I should see an "div.ct-attachment" element
+    And I should see an "div.ct-attachment.ct-attachment--with-background" element
+    And I should see an "div.ct-attachment.ct-theme-dark" element
+    And I should see an "div.ct-attachment__content" element
+    And I should see an "div.ct-attachment__text" element
+    And I should see an "div.ct-attachment__title" element
+    And I should see an "div.ct-attachment__summary" element
+    And I should see an "ul.ct-attachment__links" element
+    And I should see an "a.ct-link--attachment" element
     And I should see the text "[TEST] attachment"
     And I should see the text "Summary text"

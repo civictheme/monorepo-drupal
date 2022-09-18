@@ -13,17 +13,17 @@
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-quote--vertical-space-%s'|format(vertical_space) : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-quote--vertical-space-%s'|format(vertical_space) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if content is not empty %}
-  <figure class="civictheme-quote {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif%}>
-    <blockquote class="civictheme-quote__content">
+  <figure class="ct-quote {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif%}>
+    <blockquote class="ct-quote__content">
       {{ content }}
     </blockquote>
     {%- if author %}
-      <figcaption class="civictheme-quote__author">{{ author }}</figcaption>
+      <figcaption class="ct-quote__author">{{ author }}</figcaption>
     {% endif  -%}
   </figure>
 {% endif %}

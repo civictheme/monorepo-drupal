@@ -104,7 +104,7 @@ module.exports = {
             options: {
               // Inject path to assets so that it does not have to be provided
               // in variables.base.scss
-              additionalData: "$civictheme-assets-directory: '/themes/custom/civictheme_starter_kit/dist/assets/';",
+              additionalData: "$ct-assets-directory: '/themes/custom/civictheme_starter_kit/dist/assets/';",
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),
@@ -159,12 +159,12 @@ module.exports = {
       '@organisms': path.resolve(__dirname, '../components_combined/03-organisms'),
       '@templates': path.resolve(__dirname, '../components_combined/04-templates'),
       '@pages': path.resolve(__dirname, '../components_combined/05-pages'),
-      '@civictheme-base': path.resolve(__dirname, '../.components-civictheme/00-base'),
-      '@civictheme-atoms': path.resolve(__dirname, '../.components-civictheme/01-atoms'),
-      '@civictheme-molecules': path.resolve(__dirname, '../.components-civictheme/02-molecules'),
-      '@civictheme-organisms': path.resolve(__dirname, '../.components-civictheme/03-organisms'),
-      '@civictheme-templates': path.resolve(__dirname, '../.components-civictheme/04-templates'),
-      '@civictheme-pages': path.resolve(__dirname, '../.components-civictheme/05-pages'),
+      '@ct-base': path.resolve(__dirname, '../.components-civictheme/00-base'),
+      '@ct-atoms': path.resolve(__dirname, '../.components-civictheme/01-atoms'),
+      '@ct-molecules': path.resolve(__dirname, '../.components-civictheme/02-molecules'),
+      '@ct-organisms': path.resolve(__dirname, '../.components-civictheme/03-organisms'),
+      '@ct-templates': path.resolve(__dirname, '../.components-civictheme/04-templates'),
+      '@ct-pages': path.resolve(__dirname, '../.components-civictheme/05-pages'),
     },
   },
   stats: {

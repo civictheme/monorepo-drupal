@@ -10,15 +10,15 @@
 @import 'components_combined/00-base/variables';
 
 .block-local-tasks-block {
-  .civictheme-link-list--local-tasks {
-    padding: civictheme-space(4) 0 civictheme-space(4);
+  .ct-link-list--local-tasks {
+    padding: ct-spacing(4) 0 ct-spacing(4);
 
-    &.civictheme-theme-light {
-      background-color: civictheme-color('secondary');
+    &.ct-theme-light {
+      background-color: ct-color('secondary');
     }
 
-    &.civictheme-theme-dark {
-      background-color: civictheme-color('primary', 5);
+    &.ct-theme-dark {
+      background-color: ct-color('primary', 5);
     }
   }
 }

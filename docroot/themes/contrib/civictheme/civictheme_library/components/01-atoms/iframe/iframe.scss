@@ -2,7 +2,7 @@
 // Iframe component.
 //
 
-.civictheme-iframe {
+.ct-iframe {
   $root: &;
 
   border: 0;
@@ -15,31 +15,31 @@
     height: 100%;
   }
 
-  &.civictheme-iframe--vertical-space-top {
-    @include civictheme-component-with-vertical-space(top, $civictheme-iframe-space-vertical);
+  &.ct-iframe--vertical-space-top {
+    @include ct-component-with-vertical-space(top, $ct-iframe-space-vertical);
   }
 
-  &.civictheme-iframe--vertical-space-bottom {
-    @include civictheme-component-with-vertical-space(bottom, $civictheme-iframe-space-vertical);
+  &.ct-iframe--vertical-space-bottom {
+    @include ct-component-with-vertical-space(bottom, $ct-iframe-space-vertical);
   }
 
-  &.civictheme-iframe--vertical-space-both {
-    @include civictheme-component-with-vertical-space(both, $civictheme-iframe-space-vertical);
+  &.ct-iframe--vertical-space-both {
+    @include ct-component-with-vertical-space(both, $ct-iframe-space-vertical);
   }
 
-  &.civictheme-theme-light {
-    &.civictheme-iframe--with-background {
-      background-color: $civictheme-iframe-light-background-color;
-      padding-left: $civictheme-iframe-space-horizontal;
-      padding-right: $civictheme-iframe-space-horizontal;
+  &.ct-theme-light {
+    &.ct-iframe--with-background {
+      background-color: $ct-iframe-light-background-color;
+      padding-left: $ct-iframe-space-horizontal;
+      padding-right: $ct-iframe-space-horizontal;
     }
   }
 
-  &.civictheme-theme-dark {
-    &.civictheme-iframe--with-background {
-      background-color: $civictheme-iframe-dark-background-color;
-      padding-left: $civictheme-iframe-space-horizontal;
-      padding-right: $civictheme-iframe-space-horizontal;
+  &.ct-theme-dark {
+    &.ct-iframe--with-background {
+      background-color: $ct-iframe-dark-background-color;
+      padding-left: $ct-iframe-space-horizontal;
+      padding-right: $ct-iframe-space-horizontal;
     }
   }
 }
