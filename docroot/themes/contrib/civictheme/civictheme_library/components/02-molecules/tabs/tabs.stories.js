@@ -4,7 +4,7 @@ import {
 } from '@storybook/addon-knobs';
 import CivicThemeTabs from './tabs.twig';
 import './tabs';
-import { randomText, randomUrl } from '../../00-base/base.stories';
+import { placeholder, randomText, randomUrl } from '../../00-base/base.stories';
 
 export default {
   title: 'Molecules/Tabs',
@@ -41,21 +41,17 @@ export const Tabs = (knobTab) => {
   };
 
   let panelKnobs = {};
-  let panelsKnobTab = '';
 
   if (generalKnobs.with_panels) {
     // Use panels.
     const panels = [];
-    let itr = 1;
-    while (itr <= generalKnobs.tabs_count) {
-      panelsKnobTab = `Panel ${itr}`;
+
+    for (let i = 1; i <= generalKnobs.tabs_count; i++) {
       panels.push({
-        id: `tab-${itr}`,
-        title: text(`Panel ${itr} title `, `Panel ${itr}`, panelsKnobTab),
-        content: text(`Panel ${itr} content`, `Panel ${itr} content ${randomText()}`, panelsKnobTab),
-        is_selected: boolean(`Selected ${itr} panel`, false, panelsKnobTab),
+        id: `tab-${i}`,
+        title: `Panel ${i} title `,
+        content: placeholder(`Panel ${i} content ${randomText()}`),
       });
-      itr += 1;
     }
 
     panelKnobs = {
@@ -63,20 +59,17 @@ export const Tabs = (knobTab) => {
     };
   } else {
     // Use tabs.
-    const tabs = [];
-    let itr = 1;
-    while (itr <= generalKnobs.tabs_count) {
-      panelsKnobTab = `Tab ${itr}`;
-      tabs.push({
-        text: text(`Tab ${itr} title `, `Tab ${itr}`, panelsKnobTab),
-        url: text(`Tab ${itr} URL`, randomUrl(), panelsKnobTab),
-        modifier_class: itr === 1 ? 'selected' : '',
+    const links = [];
+    for (let i = 1; i <= generalKnobs.tabs_count; i++) {
+      links.push({
+        text: `Tab ${i} title `,
+        url: randomUrl(),
+        modifier_class: i === 1 ? 'ct-tabs__tab--selected' : '',
       });
-      itr += 1;
     }
 
     panelKnobs = {
-      tabs,
+      links,
     };
   }
 

@@ -5,7 +5,7 @@ import './flyout';
 import CivicThemeFlyout from './flyout.stories.twig';
 
 export default {
-  title: 'Base/Flyout',
+  title: 'Base/Utilities/Flyout',
   parameters: {
     layout: 'centered',
   },

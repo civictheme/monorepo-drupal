@@ -44,9 +44,9 @@
 
 {% if content|trim is not empty %}
   {% if kind == 'input' and is_multiple %}
-    <label class="ct-chip {{ modifier_class }}" data-component-name="chip"><input type="checkbox" {% if is_selected %} checked="checked" {% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ chip_content|trim }}</label>
+    <label class="ct-chip {{ modifier_class }}" data-component-name="chip"><input type="checkbox" {% if is_selected %} checked="checked" {% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ chip_content }}</label>
   {% elseif kind == 'input' %}
-    <label class="ct-chip {{ modifier_class }}" data-component-name="chip"><input type="radio" {% if is_selected %} checked="checked" {% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ chip_content|trim }}</label>
+    <label class="ct-chip {{ modifier_class }}" data-component-name="chip"><input type="radio" {% if is_selected %} checked="checked" {% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}>{{ chip_content }}</label>
   {% else %}
     <span class="ct-chip {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="chip">{{ chip_content }}</span>
   {% endif %}

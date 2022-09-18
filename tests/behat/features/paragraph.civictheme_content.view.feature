@@ -1,4 +1,4 @@
-@civictheme @civictheme_page @civictheme_content @skipped
+@civictheme @civictheme_page @civictheme_content
 Feature: View of Page content
 
   Ensure that Page content can be viewed correctly with contnet component.

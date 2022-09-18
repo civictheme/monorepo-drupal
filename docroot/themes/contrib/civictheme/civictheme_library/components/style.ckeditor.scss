@@ -4,9 +4,9 @@
 // stylelint-disable scss/at-import-partial-extension
 
 // Need to add variables outside of scoping class to avoid compilation errors for variables with !global flags.
-@import '~normalize.css';
+@import '00-base/reset/reset';
 @import '00-base/variables';
-@import '00-base/**/!(*.stories|variables|_variables.*).scss';
+@import '00-base/**/!(*.stories|variables|_variables.*|reset).scss';
 
 // stylelint-disable no-invalid-position-at-import-rule
 .cke_editable {

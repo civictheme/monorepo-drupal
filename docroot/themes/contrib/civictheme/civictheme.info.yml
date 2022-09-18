@@ -246,10 +246,8 @@ config_devel:
     - field.field.media.civictheme_image.field_c_m_caption
     - field.field.media.civictheme_image.field_c_m_image
     - field.field.media.civictheme_remote_video.field_c_m_oembed_video
-    - field.field.media.civictheme_remote_video.field_c_m_share_link
     - field.field.media.civictheme_remote_video.field_c_m_transcript
     - field.field.media.civictheme_remote_video.field_c_m_transcript_link
-    - field.field.media.civictheme_video.field_c_m_share_link
     - field.field.media.civictheme_video.field_c_m_transcript
     - field.field.media.civictheme_video.field_c_m_transcript_link
     - field.field.media.civictheme_video.field_c_m_video_file
@@ -360,7 +358,6 @@ config_devel:
     - field.field.paragraph.civictheme_map.field_c_p_address
     - field.field.paragraph.civictheme_map.field_c_p_background
     - field.field.paragraph.civictheme_map.field_c_p_embed_url
-    - field.field.paragraph.civictheme_map.field_c_p_share_link
     - field.field.paragraph.civictheme_map.field_c_p_space
     - field.field.paragraph.civictheme_map.field_c_p_theme
     - field.field.paragraph.civictheme_map.field_c_p_view_link
@@ -458,7 +455,6 @@ config_devel:
     - field.storage.media.field_c_m_icon
     - field.storage.media.field_c_m_image
     - field.storage.media.field_c_m_oembed_video
-    - field.storage.media.field_c_m_share_link
     - field.storage.media.field_c_m_transcript
     - field.storage.media.field_c_m_transcript_link
     - field.storage.media.field_c_m_video_file
@@ -526,7 +522,6 @@ config_devel:
     - field.storage.paragraph.field_c_p_location
     - field.storage.paragraph.field_c_p_panels
     - field.storage.paragraph.field_c_p_reference
-    - field.storage.paragraph.field_c_p_share_link
     - field.storage.paragraph.field_c_p_size
     - field.storage.paragraph.field_c_p_slides
     - field.storage.paragraph.field_c_p_space

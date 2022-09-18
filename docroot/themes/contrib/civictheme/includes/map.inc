@@ -15,7 +15,6 @@ function civictheme_preprocess_paragraph__civictheme_map(&$variables) {
   $variables['url'] = $link_embed_url->getUrl()->toString();
   $variables['address'] = civictheme_get_field_value($paragraph, 'field_c_p_address');
   $link_list = [
-    'share_link' => 'field_c_p_share_link',
     'view_link' => 'field_c_p_view_link',
   ];
   foreach ($link_list as $key => $field_name) {

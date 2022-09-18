@@ -123,6 +123,10 @@ function _civictheme_preprocess_paragraph__field__background(&$variables) {
   $paragraph = $variables['paragraph'];
   if (civictheme_get_field_value($paragraph, 'field_c_p_background')) {
     $component_name = str_replace('_', '-', $paragraph->getType());
+    // Components are namespaced `civictheme_<COMPONENT_NAME>`
+    // Front-end are namespaced `ct-attachment--with-background` so need to
+    // convert to front-end naming guide.
+    $component_name = str_replace('civictheme', 'ct', $component_name);
     if (!array_key_exists('modifier_class', $variables)) {
       $variables['modifier_class'] = '';
     }

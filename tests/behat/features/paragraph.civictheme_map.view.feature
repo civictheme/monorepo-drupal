@@ -17,8 +17,6 @@ Feature: View of Page content with map component
       | field_c_p_space      | both                                                                                              |
       | field_c_p_background | 0                                                                                                 |
       | field_c_p_embed_url  | 0: [TEST] link 1 - 1: https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed |
-      | field_c_p_share_link | 0: [TEST] link 1 - 1: https://goo.gl/maps/XsNx2XM21y41UQ7P7                                       |
-      | field_c_p_view_link  | 0: [TEST] link 1 - 1: https://maps.google.com/maps?q=Australia                                    |
 
     When I visit "civictheme_page" "[TEST] Page map test"
     And I wait 10 seconds
@@ -31,10 +29,8 @@ Feature: View of Page content with map component
     And I should see an "iframe.ct-iframe.ct-theme-light" element
     And I should see an "div.ct-map__links" element
     And I should see an "div.ct-map__view_link" element
-    And I should see an "div.ct-map__share_link" element
     And I should see the text "Australia"
     Then I should see the link "View in Google Maps" with "https://maps.google.com/maps?q=Australia" in 'div.ct-map__links'
-    Then I should see the link "Share this Location" with "https://goo.gl/maps/XsNx2XM21y41UQ7P7" in 'div.ct-map__links'
 
   @api @javascript
   Scenario: CivicTheme page content type page can be viewed by anonymous with map dark with background
@@ -44,7 +40,6 @@ Feature: View of Page content with map component
       | field_c_p_theme      | dark                                                                                              |
       | field_c_p_background | 1                                                                                                 |
       | field_c_p_embed_url  | 0: [TEST] link 1 - 1: https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed |
-      | field_c_p_share_link | 0: [TEST] link 1 - 1: https://goo.gl/maps/XsNx2XM21y41UQ7P7                                       |
       | field_c_p_view_link  | 0: [TEST] link 1 - 1: https://maps.google.com/maps?q=Australia                                    |
 
     When I visit "civictheme_page" "[TEST] Page map test"
@@ -57,7 +52,5 @@ Feature: View of Page content with map component
     And I should see an "iframe.ct-iframe" element
     And I should see an "div.ct-map__links" element
     And I should see an "div.ct-map__view_link" element
-    And I should see an "div.ct-map__share_link" element
     And I should see the text "Australia"
     Then I should see the link "View in Google Maps" with "https://maps.google.com/maps?q=Australia" in 'div.ct-map__links'
-    Then I should see the link "Share this Location" with "https://goo.gl/maps/XsNx2XM21y41UQ7P7" in 'div.ct-map__links'

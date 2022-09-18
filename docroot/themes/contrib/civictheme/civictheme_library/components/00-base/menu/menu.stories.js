@@ -4,13 +4,13 @@ import CivicThemeMenu from './menu.twig';
 import getMenuLinks from './menu.utils';
 
 export default {
-  title: 'Base/Menu',
+  title: 'Base/Utilities/Menu Generator',
   parameters: {
     layout: 'centered',
   },
 };
 
-export const Menu = (knobTab) => {
+export const MenuGenerator = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {

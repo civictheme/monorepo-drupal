@@ -6,7 +6,7 @@ import CivicThemeLink from './link.twig';
 import { randomUrl } from '../../00-base/base.stories';
 
 export default {
-  title: 'Atoms/Link',
+  title: 'Atoms/Content/Link',
   parameters: {
     layout: 'centered',
   },

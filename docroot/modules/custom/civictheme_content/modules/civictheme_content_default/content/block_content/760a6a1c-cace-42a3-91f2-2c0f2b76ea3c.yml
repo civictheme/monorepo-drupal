@@ -45,11 +45,6 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_share_link:
-            -
-              uri: 'internal:/'
-              title: Homepage
-              options: {  }
           field_c_p_theme:
             -
               value: light
