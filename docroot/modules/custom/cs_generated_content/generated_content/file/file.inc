@@ -40,6 +40,7 @@ function cs_generated_content_generated_content_create_file_file() {
       GeneratedContentAssetGenerator::ASSET_TYPE_JPG,
       GeneratedContentAssetGenerator::ASSET_TYPE_SVG,
       GeneratedContentAssetGenerator::ASSET_TYPE_PDF,
+      GeneratedContentAssetGenerator::ASSET_TYPE_MP4,
     ],
   ];
 
