@@ -83,6 +83,7 @@
   }
 
   &.ct-theme-light {
+    &#{$root}__content,
     &#{$root}__header {
       color: $ct-list-light-color;
     }
