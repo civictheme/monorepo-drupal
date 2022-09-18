@@ -194,9 +194,9 @@ function output_csv(array $vars, $stream = 'php://output') {
  * Examples of variables:
  *
  * @code
- * civictheme-[component]-[theme]-[?subcomponent]-[?state]-[rule]
- * --civictheme-collapsible-light-background-color
- * --civictheme-button-light-primary-active-background-color
+ * ct-[component]-[theme]-[?subcomponent]-[?state]-[rule]
+ * --ct-collapsible-light-background-color
+ * --ct-button-light-primary-active-background-color
  * @endcode
  *
  * @param string $name

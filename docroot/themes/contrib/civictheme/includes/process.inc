@@ -37,10 +37,10 @@ function civictheme_process_html_content($html, $options = []) {
     // default theme light in order to be updated with the correct component
     // set theme.
     // Example: Button style dropdown classes are:
-    // .civictheme-button.civictheme-theme-light.civictheme-button--primary.civictheme-button--regular
+    // .ct-button.ct-theme-light.ct-button--primary.ct-button--regular
     // if the component is dark we str_replace the theme class and replace.
     // @todo We may need to implement this in a different way.
-    $html = str_replace('civictheme-theme-light', 'civictheme-theme-' . $options['theme'], $html);
+    $html = str_replace('ct-theme-light', 'ct-theme-' . $options['theme'], $html);
   }
 
   return $html;

@@ -123,8 +123,8 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   $form['#is_large_filter'] = $listing_use_large_filter;
 
   $form['actions']['submit']['#attributes']['class'] = [
-    'civictheme-button--secondary',
-    'civictheme-button--small',
+    'ct-button--secondary',
+    'ct-button--small',
   ];
 
   // Ajax exposed view forms hides submit button to have auto-load.
@@ -335,7 +335,7 @@ function _civictheme_automated_list_preprocess_view($paragraph, ViewExecutable &
 function civictheme_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'] ?? NULL;
 
-  $variables['modifier_class'] = 'civictheme-card-container--listing';
+  $variables['modifier_class'] = 'ct-card-container--listing';
   // On Grid view title should be added to card container.
   if ($view && $view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     $variables['title'] = $view->header['result']->render();

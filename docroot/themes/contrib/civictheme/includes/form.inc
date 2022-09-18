@@ -466,10 +466,10 @@ function _civictheme_form_alter_non_form_elements__link(&$element) {
   if (!empty($element['#attributes']['class']) && in_array('button', $element['#attributes']['class'])) {
     $element_theme = _civictheme_get_theme_from_element($element);
     $element['#attributes']['class'] = array_merge($element['#attributes']['class'], [
-      'civictheme-button',
-      'civictheme-button--regular',
-      'civictheme-button--secondary',
-      'civictheme-theme-' . $element_theme,
+      'ct-button',
+      'ct-button--regular',
+      'ct-button--secondary',
+      'ct-theme-' . $element_theme,
     ]);
   }
 }

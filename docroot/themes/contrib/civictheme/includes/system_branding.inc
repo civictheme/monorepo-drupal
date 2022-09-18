@@ -47,7 +47,7 @@ function civictheme_preprocess_block__system_branding_block(&$variables) {
     $logo_type = $is_footer_region ? theme_get_setting("components.footer.type") : theme_get_setting("components.header.type");
     $variables['type'] = $logo_type ?? 'default';
 
-    $variables['modifier_class'] = $is_footer_region ? 'civictheme-footer__logo' : 'civictheme-header__logo';
+    $variables['modifier_class'] = $is_footer_region ? 'ct-footer__logo' : 'ct-header__logo';
 
     $alt = theme_get_setting('components.logo.image_alt') ?? t('CivicTheme logo');
 

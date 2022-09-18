@@ -196,7 +196,7 @@ function _civictheme_preprocess_civictheme_banner_last_updated(&$variables, $nod
     $variables['content_middle'][] = [
       '#theme' => 'civictheme_basic_content',
       '#component_theme' => $variables['theme'] ?? NULL,
-      '#content' => '<p class="civictheme-banner__last_updated">Last updated: ' . $final_date . '<p>',
+      '#content' => '<p class="ct-banner__last_updated">Last updated: ' . $final_date . '<p>',
     ];
   }
 }

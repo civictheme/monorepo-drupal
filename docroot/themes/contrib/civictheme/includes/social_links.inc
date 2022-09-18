@@ -38,8 +38,8 @@ function _civictheme_preprocess_block__civictheme_social_links(&$variables) {
     if (isset($item['image'])) {
       // Embed SVG as HTML content by passing as text.
       $item['text'] = civictheme_embed_svg($item['image']['src'], [
-        'civictheme-icon',
-        'civictheme-icon--size-' . $item['size'],
+        'ct-icon',
+        'ct-icon--size-' . $item['size'],
       ]);
     }
     $items[] = $item;
