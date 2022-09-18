@@ -15,7 +15,7 @@ function _civictheme_theme_suggestions__civictheme_filter(array &$suggestions, a
 
   $type = $type ?? $variables['element']['#type'];
 
-  if (!empty($variables['element']['#civictheme-large-filter'])) {
+  if (!empty($variables['element']['#civictheme-group-filter'])) {
     $suggestions[] = $type . '__civictheme_dropdown_filter';
   }
   elseif (!empty($variables['element']['#civictheme-single-filter'])) {

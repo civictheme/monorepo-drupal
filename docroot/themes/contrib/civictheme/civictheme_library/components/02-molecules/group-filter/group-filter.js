@@ -1,27 +1,27 @@
 // phpcs:ignoreFile
 /**
- * Large filter component.
+ * Group filter component.
  */
-function CivicLargeFilter(el) {
+function CivicGroupFilter(el) {
   // Use "data-civictheme-alerts"'s attribute value to identify if this
   // component was already initialised.
-  if (el.getAttribute('data-civictheme-large-filter') === 'true') {
+  if (el.getAttribute('data-civictheme-group-filter') === 'true') {
     return;
   }
 
   this.el = el;
 
-  this.tagElement = this.el.querySelector('[data-large-filter-tags]');
-  this.filterElement = this.el.querySelector('[data-large-filter-filters]');
-  this.filterComponent = this.el.querySelector('[data-large-filter-element]');
-  this.clearAllButton = this.el.querySelector('[data-large-filter-clear]');
-  this.selectedFiltersElement = this.el.querySelector('[data-large-filter-selected-filters]');
-  this.mobileSelectedFiltersElement = this.el.querySelector('[data-large-filter-mobile-selected-filters]');
-  this.mobileOpenButton = this.el.querySelector('[data-large-filter-mobile-toggle]');
-  this.mobileCancelButton = this.el.querySelector('[data-large-filter-mobile-cancel]');
-  this.mobileOverlay = this.el.querySelector('[data-large-filter-mobile-overlay]');
-  this.mobileToggleDisplay = this.el.querySelector('[data-large-filter-mobile-toggle-display]');
-  this.mobileToggleSuffix = this.mobileToggleDisplay.getAttribute('data-large-filter-mobile-toggle-display-suffix');
+  this.tagElement = this.el.querySelector('[data-group-filter-tags]');
+  this.filterElement = this.el.querySelector('[data-group-filter-filters]');
+  this.filterComponent = this.el.querySelector('[data-group-filter-element]');
+  this.clearAllButton = this.el.querySelector('[data-group-filter-clear]');
+  this.selectedFiltersElement = this.el.querySelector('[data-group-filter-selected-filters]');
+  this.mobileSelectedFiltersElement = this.el.querySelector('[data-group-filter-mobile-selected-filters]');
+  this.mobileOpenButton = this.el.querySelector('[data-group-filter-mobile-toggle]');
+  this.mobileCancelButton = this.el.querySelector('[data-group-filter-mobile-cancel]');
+  this.mobileOverlay = this.el.querySelector('[data-group-filter-mobile-overlay]');
+  this.mobileToggleDisplay = this.el.querySelector('[data-group-filter-mobile-toggle-display]');
+  this.mobileToggleSuffix = this.mobileToggleDisplay.getAttribute('data-group-filter-mobile-toggle-display-suffix');
   this.state = {};
   this.revertState = null;
   this.initialisedState = false;
@@ -81,9 +81,9 @@ function CivicLargeFilter(el) {
 }
 
 /**
- * CivicTheme Large Filter Initialisation.
+ * CivicTheme Group Filter Initialisation.
  */
-CivicLargeFilter.prototype.init = function () {
+CivicGroupFilter.prototype.init = function () {
   // Add listeners.
   this.filterElement.addEventListener('change', this.filterElementChangeEvent.bind(this));
   this.tagElement.addEventListener('click', this.tagElementChangeEvent.bind(this));
@@ -109,7 +109,7 @@ CivicLargeFilter.prototype.init = function () {
   });
 
   // Mobile support.
-  const desktopBreakpoint = this.el.getAttribute('data-large-filter-desktop-breakpoint');
+  const desktopBreakpoint = this.el.getAttribute('data-group-filter-desktop-breakpoint');
   if (desktopBreakpoint) {
     window.addEventListener('civictheme-responsive', (evt) => {
       let isBreakpoint = false;
@@ -130,30 +130,30 @@ CivicLargeFilter.prototype.init = function () {
   this.redraw(false);
   this.initialisedState = true;
 
-  this.el.setAttribute('data-civictheme-large-filter', 'true');
+  this.el.setAttribute('data-civictheme-group-filter', 'true');
 };
 
 /**
  * Position tags.
  * Mobile will show tags above the filters, desktop will show below.
  */
-CivicLargeFilter.prototype.updateTagContainerPosition = function () {
-  const tagsContainerSelector = this.isDesktop ? '[data-large-filter-tags-container]' : '[data-large-filter-mobile-tags-container]';
+CivicGroupFilter.prototype.updateTagContainerPosition = function () {
+  const tagsContainerSelector = this.isDesktop ? '[data-group-filter-tags-container]' : '[data-group-filter-mobile-tags-container]';
   this.el.querySelector(tagsContainerSelector).appendChild(this.tagElement);
 
-  const btnContainerSelector = this.isDesktop ? '[data-large-filter-clear-container]' : '[data-large-filter-mobile-clear-container]';
+  const btnContainerSelector = this.isDesktop ? '[data-group-filter-clear-container]' : '[data-group-filter-mobile-clear-container]';
   this.el.querySelector(btnContainerSelector).appendChild(this.clearAllButton);
 
-  const elementContainer = this.isDesktop ? '[data-large-filter-desktop-container]' : '[data-large-filter-mobile-container]';
+  const elementContainer = this.isDesktop ? '[data-group-filter-desktop-container]' : '[data-group-filter-mobile-container]';
   this.el.querySelector(elementContainer).appendChild(this.filterComponent);
-  const event = new CustomEvent('civicthemeLargeFilterMobileLayoutUpdated', {
+  const event = new CustomEvent('civicthemeGroupFilterMobileLayoutUpdated', {
     detail: {
       isDesktop: this.isDesktop,
     },
   });
   this.el.dispatchEvent(event);
   // Enable / Disable auto-submit on mobile.
-  this.el.setAttribute('data-large-filter-auto-submit', this.isDesktop);
+  this.el.setAttribute('data-group-filter-auto-submit', this.isDesktop);
 };
 
 /**
@@ -161,7 +161,7 @@ CivicLargeFilter.prototype.updateTagContainerPosition = function () {
  * Remember current form state.
  * 'data-flyout-open-trigger' on button will handle opening flyout.
  */
-CivicLargeFilter.prototype.mobileOpenElementClickEvent = function (e) {
+CivicGroupFilter.prototype.mobileOpenElementClickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
   this.revertState = JSON.stringify(this.state);
@@ -170,9 +170,9 @@ CivicLargeFilter.prototype.mobileOpenElementClickEvent = function (e) {
 /**
  * Mobile cancel handler.
  * Revert form state to remembered state.
- * 'data-large-filter-mobile-cancel' on button will handle closing flyout.
+ * 'data-group-filter-mobile-cancel' on button will handle closing flyout.
  */
-CivicLargeFilter.prototype.mobileCancelElementClickEvent = function (e) {
+CivicGroupFilter.prototype.mobileCancelElementClickEvent = function (e) {
   e.stopPropagation();
   e.preventDefault();
   if (this.revertState) {
@@ -184,7 +184,7 @@ CivicLargeFilter.prototype.mobileCancelElementClickEvent = function (e) {
 /**
  * Form filter change event listener.
  */
-CivicLargeFilter.prototype.filterElementChangeEvent = function (e) {
+CivicGroupFilter.prototype.filterElementChangeEvent = function (e) {
   const element = e.target;
   if (this.isSelectableField(element)) {
     const type = this.getElementType(element);
@@ -203,7 +203,7 @@ CivicLargeFilter.prototype.filterElementChangeEvent = function (e) {
 /**
  * Filter chips click event listener.
  */
-CivicLargeFilter.prototype.tagElementChangeEvent = function (e) {
+CivicGroupFilter.prototype.tagElementChangeEvent = function (e) {
   if (e.target.nodeName === 'BUTTON') {
     const key = e.target.dataset.id;
     const { type } = this.state[key];
@@ -214,23 +214,23 @@ CivicLargeFilter.prototype.tagElementChangeEvent = function (e) {
 /**
  * Clear state from all selected filters.
  */
-CivicLargeFilter.prototype.clearElementClickEvent = function () {
+CivicGroupFilter.prototype.clearElementClickEvent = function () {
   Object.keys(this.state).forEach((key) => {
     const { type } = this.state[key];
     this.updateState(key, this.state[key].id, this.fieldTypes[type].emptyValue, type, false);
   });
   this.redraw();
-  this.el.dispatchEvent(new CustomEvent('civicthemeLargeFilterClearAll'));
+  this.el.dispatchEvent(new CustomEvent('civicthemeGroupFilterClearAll'));
 };
 
-CivicLargeFilter.prototype.isSelectableField = function (element) {
-  return !element.hasAttribute('data-large-filter-ignore');
+CivicGroupFilter.prototype.isSelectableField = function (element) {
+  return !element.hasAttribute('data-group-filter-ignore');
 };
 
 /**
- * Update state of civictheme large filter.
+ * Update state of civictheme group filter.
  */
-CivicLargeFilter.prototype.updateState = function (key, id, value, type, redraw) {
+CivicGroupFilter.prototype.updateState = function (key, id, value, type, redraw) {
   this.state[key] = { id, type, value };
   if (redraw) {
     this.redraw();
@@ -240,7 +240,7 @@ CivicLargeFilter.prototype.updateState = function (key, id, value, type, redraw)
 /**
  * Gets the filter form element type.
  */
-CivicLargeFilter.prototype.getElementType = function (el) {
+CivicGroupFilter.prototype.getElementType = function (el) {
   let returnType = null;
   if (el) {
     const tag = el.nodeName.toLowerCase();
@@ -250,9 +250,9 @@ CivicLargeFilter.prototype.getElementType = function (el) {
 };
 
 /**
- * Redraw civictheme large filter on event or initialisation.
+ * Redraw civictheme group filter on event or initialisation.
  */
-CivicLargeFilter.prototype.redraw = function (changeEvent = true) {
+CivicGroupFilter.prototype.redraw = function (changeEvent = true) {
   this.redrawFilters();
   this.redrawSelected();
   this.redrawClearButton();
@@ -262,9 +262,9 @@ CivicLargeFilter.prototype.redraw = function (changeEvent = true) {
 };
 
 /**
- * Redraw civictheme large filters.
+ * Redraw civictheme group filters.
  */
-CivicLargeFilter.prototype.redrawFilters = function () {
+CivicGroupFilter.prototype.redrawFilters = function () {
   Object.keys(this.state).forEach((key) => {
     const entry = this.state[key];
     const el = document.getElementById(entry.id);
@@ -280,11 +280,11 @@ CivicLargeFilter.prototype.redrawFilters = function () {
 /**
  * Renders filter html component.
  */
-CivicLargeFilter.prototype.renderHTMLFilterItem = function (key, label, type, theme) {
+CivicGroupFilter.prototype.renderHTMLFilterItem = function (key, label, type, theme) {
   // Return a chip button template, wrapped in a list item.
   if (type !== 'input_radio') {
     return `
-    <li class="civictheme-large-filter__tag">
+    <li class="civictheme-group-filter__tag">
       <button class="civictheme-chip civictheme-theme-${theme} civictheme-chip--chip civictheme-chip--small civictheme-chip--dismiss" data-component-name="chip" data-id="${key}">
         ${label}
         <span class="civictheme-button__dismiss" data-button-dismiss>
@@ -296,7 +296,7 @@ CivicLargeFilter.prototype.renderHTMLFilterItem = function (key, label, type, th
   }
   // Radio filters are rendered as non-dismissible elements.
   return `
-    <li class="civictheme-large-filter__tag">
+    <li class="civictheme-group-filter__tag">
       <button class="civictheme-chip civictheme-theme-${theme} civictheme-chip--chip civictheme-chip--small" data-component-name="chip" data-id="${key}">
         ${label}
       </button>
@@ -307,7 +307,7 @@ CivicLargeFilter.prototype.renderHTMLFilterItem = function (key, label, type, th
 /**
  * Redraw selected filters.
  */
-CivicLargeFilter.prototype.redrawSelected = function () {
+CivicGroupFilter.prototype.redrawSelected = function () {
   let html = '';
   let count = 0;
   Object.keys(this.state).forEach((key) => {
@@ -316,13 +316,13 @@ CivicLargeFilter.prototype.redrawSelected = function () {
       count++;
       const el = document.getElementById(entry.id);
       const label = this.fieldTypes[entry.type].getLabel(el);
-      const theme = this.el.dataset.largeFilterTheme;
+      const theme = this.el.dataset.groupFilterTheme;
       html += this.renderHTMLFilterItem(key, label, entry.type, theme);
     }
   });
-  this.mobileToggleDisplay.classList.toggle('civictheme-large-filter__mobile-toggle-display--hidden', (count === 0));
+  this.mobileToggleDisplay.classList.toggle('civictheme-group-filter__mobile-toggle-display--hidden', (count === 0));
   this.mobileToggleDisplay.innerHTML = `${count} ${this.pluralize(this.mobileToggleSuffix, count)}`;
-  this.tagElement.innerHTML = `<ul class="civictheme-large-filter__tags-list">${html}</ul>`;
+  this.tagElement.innerHTML = `<ul class="civictheme-group-filter__tags-list">${html}</ul>`;
 };
 
 /**
@@ -334,7 +334,7 @@ CivicLargeFilter.prototype.redrawSelected = function () {
  * @param {number} count
  *   The counter used retrieve the plural.
  */
-CivicLargeFilter.prototype.pluralize = function (pluralJSON, count) {
+CivicGroupFilter.prototype.pluralize = function (pluralJSON, count) {
   const obj = JSON.parse(decodeURIComponent(pluralJSON));
   let puralStr = '';
   if (obj[count]) {
@@ -348,7 +348,7 @@ CivicLargeFilter.prototype.pluralize = function (pluralJSON, count) {
 /**
  * Redraw clear button.
  */
-CivicLargeFilter.prototype.redrawClearButton = function () {
+CivicGroupFilter.prototype.redrawClearButton = function () {
   // Hide button if no elements set.
   let showTagPanel = false;
   Object.keys(this.state).forEach((key) => {
@@ -356,20 +356,20 @@ CivicLargeFilter.prototype.redrawClearButton = function () {
       showTagPanel = true;
     }
   });
-  this.selectedFiltersElement.classList.toggle('civictheme-large-filter__selected-filters--hidden', !showTagPanel);
-  this.mobileSelectedFiltersElement.classList.toggle('civictheme-large-filter__selected-filters--hidden', !showTagPanel);
+  this.selectedFiltersElement.classList.toggle('civictheme-group-filter__selected-filters--hidden', !showTagPanel);
+  this.mobileSelectedFiltersElement.classList.toggle('civictheme-group-filter__selected-filters--hidden', !showTagPanel);
 };
 
 /**
  * Custom event allowing other JS libraries to operate on filter events.
  */
-CivicLargeFilter.prototype.dispatchChangeEvent = function () {
+CivicGroupFilter.prototype.dispatchChangeEvent = function () {
   if (!this.initialisedState) {
     return;
   }
-  this.el.dispatchEvent(new CustomEvent('civicthemeLargeFilterChange'));
+  this.el.dispatchEvent(new CustomEvent('civicthemeGroupFilterChange'));
 };
 
-document.querySelectorAll('[data-component-name="civictheme-large-filter"]').forEach((el) => {
-  new CivicLargeFilter(el);
+document.querySelectorAll('[data-component-name="civictheme-group-filter"]').forEach((el) => {
+  new CivicGroupFilter(el);
 });

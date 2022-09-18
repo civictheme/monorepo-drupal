@@ -5,11 +5,11 @@ import {
 
 import { dropDownFilter, formElement } from '../../00-base/base.stories';
 
-import DropdownFilter from '../../02-molecules/dropdown-filter/dropdown-filter.twig';
-import CivicThemeLargeFilter from './large-filter.twig';
+import DropdownFilter from '../dropdown-filter/dropdown-filter.twig';
+import CivicThemeGroupFilter from './group-filter.twig';
 
 export default {
-  title: 'Organisms/Group Filter',
+  title: 'Molecules/Group Filter',
   parameters: {
     layout: 'fullscreen',
   },
@@ -122,13 +122,13 @@ export const GroupFilter = () => {
             { type: 'option', value: 'a-z', label: 'A-Z' },
             { type: 'option', value: 'z-a', label: 'Z-A' },
           ],
-          attributes: 'data-large-filter-ignore',
+          attributes: 'data-group-filter-ignore',
         }, theme, false, count++),
       ],
     }));
   }
 
-  return CivicThemeLargeFilter({
+  return CivicThemeGroupFilter({
     ...generalKnobs,
     with_background: withBackground,
     filters: filters.join(''),
