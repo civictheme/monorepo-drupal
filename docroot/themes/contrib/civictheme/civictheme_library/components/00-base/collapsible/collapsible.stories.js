@@ -5,7 +5,7 @@ import CivicThemeCollapsible from './collapsible.stories.twig';
 import './collapsible';
 
 export default {
-  title: 'Base/Collapsible',
+  title: 'Base/Utilities/Collapsible',
 };
 
 export const Collapsible = (knobTab) => {
@@ -21,5 +21,5 @@ export const Collapsible = (knobTab) => {
     generalKnobTab,
   });
 
-  return `<div class="story-wrapper--centered-both story-wrapper-size--medium">${html}</div>`;
+  return `<div class="story-wrapper--centered story-wrapper-size--medium">${html}</div>`;
 };

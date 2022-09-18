@@ -17,6 +17,30 @@ addDecorator((storyFn) => {
 // Setup twig support.
 setupTwig(Twig);
 
+const storyOrder = [
+  'Base',
+  [
+    'Colors',
+    'Fonts',
+    'Typography',
+    'Spacing',
+    'Background',
+    'Icon',
+    'Elevation',
+    'Layout',
+    'Utilities',
+  ],
+  'Atoms',
+  [
+    'Button',
+    'Chip',
+    'Content',
+    'Forms',
+    '*',
+  ],
+  '*',
+];
+
 export const parameters = {
   a11y: {
     element: '#root',
@@ -27,7 +51,7 @@ export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   options: {
     storySort: {
-      order: ['Base', ['Colors', '*', 'Collapsible', 'Responsive'], '*'],
+      order: storyOrder,
     },
   },
   backgrounds: {

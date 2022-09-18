@@ -59,6 +59,13 @@
   }
 }
 
+.story-slot--image_over {
+  position: absolute;
+  top: 4em;
+  left: 0;
+  right: 0;
+}
+
 .story-placeholder {
   $_color: grey;
 
@@ -76,13 +83,6 @@
     border: dotted 1px $_color;
     color: color.adjust($_color, $alpha: 0.1);
   }
-}
-
-.story-slot--image_over {
-  position: absolute;
-  top: 4em;
-  left: 0;
-  right: 0;
 }
 
 .example-container {
@@ -162,7 +162,7 @@
   }
 }
 
-.doct-container {
+.docs-container {
   $root: &;
 
   border: solid 1px #ccc;

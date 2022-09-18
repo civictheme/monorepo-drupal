@@ -7,7 +7,7 @@ import CivicThemeLayoutSingleColumnContained
 import { getSlots, placeholder } from '../base.stories';
 
 export default {
-  title: 'Base/Layout',
+  title: 'Base/Layout/Layout',
   parameters: {
     layout: 'fullscreen',
   },

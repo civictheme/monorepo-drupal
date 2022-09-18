@@ -28,7 +28,7 @@ export const Video = (knobTab) => {
       generalKnobTab,
     ),
     has_controls: boolean('Has controls', true, generalKnobTab),
-    poster: boolean('Has poster', true, generalKnobTab) ? demoVideoPoster() : null,
+    poster: boolean('Has poster', false, generalKnobTab) ? demoVideoPoster() : null,
     width: text('Width', '', generalKnobTab),
     height: text('Height', '', generalKnobTab),
     fallback_text: text('Fallback text', 'Your browser doesn\'t support HTML5 video tag.', generalKnobTab),
