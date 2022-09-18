@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 export default {
-  title: 'Base/Grid',
+  title: 'Base/Layout/Grid',
   parameters: {
     layout: 'fullscreen',
   },

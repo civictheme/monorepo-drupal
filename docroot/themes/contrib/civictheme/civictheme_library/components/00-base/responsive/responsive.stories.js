@@ -4,7 +4,7 @@ import './responsive';
 import '../collapsible/collapsible';
 
 export default {
-  title: 'Base/Responsive',
+  title: 'Base/Utilities/Responsive',
 };
 
 export const Responsive = () => {

@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeCheckbox from './checkbox.twig';
 
 export default {
-  title: 'Atoms/Checkbox',
+  title: 'Atoms/Forms/Checkbox',
   parameters: {
     layout: 'centered',
   },

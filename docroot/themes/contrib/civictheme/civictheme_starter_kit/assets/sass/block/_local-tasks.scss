@@ -14,11 +14,11 @@
     padding: ct-spacing(4) 0 ct-spacing(4);
 
     &.ct-theme-light {
-      background-color: ct-color('secondary');
+      background-color: ct-color-light('background');
     }
 
     &.ct-theme-dark {
-      background-color: ct-color('primary', 5);
+      background-color: ct-color-dark('background');
     }
   }
 }
