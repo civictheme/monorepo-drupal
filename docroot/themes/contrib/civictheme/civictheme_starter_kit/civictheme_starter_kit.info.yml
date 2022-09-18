@@ -39,8 +39,8 @@ libraries-override:
     js:
       dist/civictheme.js: dist/scripts.js
 
-ckeditor_stylesheets:
-  - dist/styles.ckeditor.css
+editor_stylesheets:
+  - dist/styles.editor.css
 
 components:
   namespaces:

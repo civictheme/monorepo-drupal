@@ -10,7 +10,7 @@ import {
 import CivicThemeVideoPlayer from '../video-player/video-player.twig';
 
 export default {
-  title: 'Molecules/Content/CKEditor Content',
+  title: 'Molecules/Content/Editor Content',
   parameters: {
     layout: 'fullscreen',
     knobs: {
@@ -19,7 +19,7 @@ export default {
   },
 };
 
-export const CKEditorContent = () => {
+export const EditorContent = () => {
   let html = '';
 
   // Headings.

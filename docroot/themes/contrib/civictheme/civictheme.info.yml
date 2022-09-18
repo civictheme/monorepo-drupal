@@ -79,8 +79,8 @@ components:
     pages:
       - components/05-pages
 
-ckeditor_stylesheets:
-  - dist/civictheme.ckeditor.css
+editor_stylesheets:
+  - dist/civictheme.editor.css
 
 #;< DEVELOPMENT
 # Configuration shipped with this theme.
