@@ -133,7 +133,8 @@ CivicThemeResponsive.prototype.evaluate = function (breakpointExpr, func, el) {
  * @param {string} breakpointExpr
  *   The breakpoint expression. E.g. '>=m', '<s' etc.
  *   Supported operators are: <, >, =, >=, <=, <>. Defaults to '>='.
- *   Breakpoint names are matched to the CivicThemeResponsive.prototype.breakpoints.
+ *   Breakpoint names are matched to the
+ *   CivicThemeResponsive.prototype.breakpoints.
  *
  * @param {string} breakpoint
  *   Currently active breakpoint.
