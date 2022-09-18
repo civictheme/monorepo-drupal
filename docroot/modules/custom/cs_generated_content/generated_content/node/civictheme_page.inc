@@ -153,8 +153,7 @@ function _cs_generated_content_create_node_civictheme_page__variation_to_fields(
       // Extract component type.
       $component_type = $variation['banner_components'][$i]['type'];
       // Remove component type and passthrough properties.
-      $variation_case = $variation['banner_components'][$i];
-      $component_options = array_diff_key($variation_case, ['type' => TRUE]);
+      $component_options = array_diff_key($variation['banner_components'][$i], ['type' => TRUE]);
       $helper::civicthemeComponentAttach($node, 'field_c_n_banner_components', $component_type, $component_options);
     }
   }
