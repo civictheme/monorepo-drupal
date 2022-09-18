@@ -89,7 +89,7 @@ CivicThemeButton.prototype.dismissClickEvent = function (e) {
   const button = this.findButton(e.target);
   if (button) {
     button.remove();
-    this.el.dispatchEvent(new CustomEvent('civictheme.button.dismiss', { bubbles: true }));
+    this.el.dispatchEvent(new CustomEvent('ct.button.dismiss', { bubbles: true }));
   }
 };
 

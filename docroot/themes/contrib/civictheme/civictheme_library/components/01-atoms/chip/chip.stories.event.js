@@ -9,5 +9,5 @@ function customAlert() {
 }
 
 document.querySelectorAll('.ct-chip').forEach((el) => {
-  el.addEventListener('civictheme.chip.dismiss', customAlert);
+  el.addEventListener('ct.chip.dismiss', customAlert);
 });

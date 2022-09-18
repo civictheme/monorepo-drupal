@@ -47,7 +47,7 @@ CivicThemeChip.prototype.clickEvent = function (e) {
 
     if (isChecked) {
       // Dispatch custom event when click on input label.
-      this.el.dispatchEvent(new CustomEvent('civictheme.chip.dismiss', { bubbles: true }));
+      this.el.dispatchEvent(new CustomEvent('ct.chip.dismiss', { bubbles: true }));
     }
   }
 };
@@ -97,7 +97,7 @@ CivicThemeChip.prototype.dismissClickEvent = function (e) {
     const input = chip.getElementsByTagName('input');
     if (input.length <= 0) {
       chip.remove();
-      this.el.dispatchEvent(new CustomEvent('civictheme.chip.dismiss', { bubbles: true }));
+      this.el.dispatchEvent(new CustomEvent('ct.chip.dismiss', { bubbles: true }));
     }
   }
 };

@@ -56,7 +56,7 @@ function CivicThemeCollapsible(el) {
     this.collapse();
   }
 
-  this.el.addEventListener('civictheme.collapsible.collapse', (evt) => {
+  this.el.addEventListener('ct.collapsible.collapse', (evt) => {
     // For some cases (like group collapse) - the animation should be disabled.
     const animate = (evt.detail && evt.detail.animate);
     const isCloseAllEvent = (evt.detail && evt.detail.closeAll);
@@ -65,15 +65,15 @@ function CivicThemeCollapsible(el) {
     }
   });
 
-  this.el.addEventListener('civictheme.collapsible.expand', () => {
+  this.el.addEventListener('ct.collapsible.expand', () => {
     this.expand(true);
   });
 
-  this.el.addEventListener('civictheme.collapsible.toggle', () => {
+  this.el.addEventListener('ct.collapsible.toggle', () => {
     if (this.isCollapsed(this.el)) {
-      this.el.dispatchEvent(new CustomEvent('civictheme.collapsible.expand', { bubbles: true }));
+      this.el.dispatchEvent(new CustomEvent('ct.collapsible.expand', { bubbles: true }));
     } else {
-      this.el.dispatchEvent(new CustomEvent('civictheme.collapsible.collapse', { bubbles: true, detail: { animate: true } }));
+      this.el.dispatchEvent(new CustomEvent('ct.collapsible.collapse', { bubbles: true, detail: { animate: true } }));
     }
   });
 
@@ -154,9 +154,9 @@ CivicThemeCollapsible.prototype.clickEvent = function (e) {
   }
 
   if (this.collapsed) {
-    this.el.dispatchEvent(new CustomEvent('civictheme.collapsible.expand', { bubbles: true }));
+    this.el.dispatchEvent(new CustomEvent('ct.collapsible.expand', { bubbles: true }));
   } else {
-    this.el.dispatchEvent(new CustomEvent('civictheme.collapsible.collapse', { bubbles: true, detail: { animate: true } }));
+    this.el.dispatchEvent(new CustomEvent('ct.collapsible.collapse', { bubbles: true, detail: { animate: true } }));
   }
 };
 
@@ -182,7 +182,7 @@ CivicThemeCollapsible.prototype.focusoutEvent = function (e) {
     && this.group
     && this.isGroupsEnabled
   ) {
-    e.target.dispatchEvent(new CustomEvent('civictheme.collapsible.collapse', { bubbles: true }));
+    e.target.dispatchEvent(new CustomEvent('ct.collapsible.collapse', { bubbles: true }));
   }
 };
 
@@ -206,18 +206,18 @@ CivicThemeCollapsible.prototype.keydownEvent = function (e) {
   if (this !== document) {
     // Up.
     if (e.which === 38 && !e.shiftKey) {
-      this.dispatchEvent(new CustomEvent('civictheme.collapsible.collapse', { bubbles: true, detail: { animate: true } }));
+      this.dispatchEvent(new CustomEvent('ct.collapsible.collapse', { bubbles: true, detail: { animate: true } }));
       return;
     }
 
     // Down.
     if (e.which === 40 && !e.shiftKey) {
-      this.dispatchEvent(new CustomEvent('civictheme.collapsible.expand', { bubbles: true }));
+      this.dispatchEvent(new CustomEvent('ct.collapsible.expand', { bubbles: true }));
     }
 
     // Space.
     if (e.which === 32) {
-      this.dispatchEvent(new CustomEvent('civictheme.collapsible.toggle', { bubbles: true }));
+      this.dispatchEvent(new CustomEvent('ct.collapsible.toggle', { bubbles: true }));
     }
   }
 };
@@ -231,7 +231,7 @@ CivicThemeCollapsible.prototype.closeGroup = function (group) {
     // eslint-disable-next-line prefer-template
     document.querySelectorAll('[data-collapsible-group=' + group + ']:not([data-collapsible-collapsed])').forEach((el) => {
       if (el !== currentEl) {
-        el.dispatchEvent(new CustomEvent('civictheme.collapsible.collapse', { bubbles: true }));
+        el.dispatchEvent(new CustomEvent('ct.collapsible.collapse', { bubbles: true }));
       }
     });
   }
@@ -242,7 +242,7 @@ CivicThemeCollapsible.prototype.closeGroup = function (group) {
  */
 CivicThemeCollapsible.prototype.collapseAllGroups = function () {
   document.querySelectorAll('[data-collapsible-group]').forEach((el) => {
-    el.dispatchEvent(new CustomEvent('civictheme.collapsible.collapse', { bubbles: true, detail: { closeAll: true } }));
+    el.dispatchEvent(new CustomEvent('ct.collapsible.collapse', { bubbles: true, detail: { closeAll: true } }));
   });
 };
 
