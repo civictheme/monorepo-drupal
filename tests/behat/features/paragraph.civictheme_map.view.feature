@@ -1,4 +1,4 @@
-@civictheme @paragraph @civictheme_map @skipped
+@civictheme @paragraph @civictheme_map
 Feature: View of Page content with map component
 
   Ensure that Page content can be viewed correctly with map component.

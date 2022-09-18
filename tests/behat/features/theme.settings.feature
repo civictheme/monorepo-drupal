@@ -134,7 +134,7 @@ Feature: Check that components settings are available in theme settings
     And I press "Save configuration"
     Then I should see the text "5 errors have been found"
 
-  @api @skipped
+  @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with image upload
     Given I am logged in as a user with the "Site Administrator" role
     And I visit "/admin/appearance/settings/civictheme_demo"
