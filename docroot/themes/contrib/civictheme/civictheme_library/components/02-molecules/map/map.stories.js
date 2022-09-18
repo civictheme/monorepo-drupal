@@ -4,7 +4,7 @@ import { randomUrl } from '../../00-base/base.stories';
 import CivicThemeMap from './map.twig';
 
 export default {
-  title: 'Molecules/Map',
+  title: 'Molecules/Content/Map',
   parameters: {
     layout: 'fullscreen',
   },

@@ -4,7 +4,7 @@ import CivicThemeNextSteps from './next-steps.twig';
 import { randomUrl } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecules/Next Steps',
+  title: 'Molecules/Content/Next Steps',
 };
 
 export const NextSteps = (knobTab) => {

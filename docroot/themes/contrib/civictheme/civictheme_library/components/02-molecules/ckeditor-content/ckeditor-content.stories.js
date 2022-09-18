@@ -10,7 +10,7 @@ import {
 import CivicThemeVideoPlayer from '../video-player/video-player.twig';
 
 export default {
-  title: 'Molecules/CKEditor Content',
+  title: 'Molecules/Content/CKEditor Content',
   parameters: {
     layout: 'fullscreen',
     knobs: {
