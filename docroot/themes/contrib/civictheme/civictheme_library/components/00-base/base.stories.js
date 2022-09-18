@@ -261,3 +261,11 @@ export const randomOptions = (numOfOptions, optionType = 'option') => {
   }
   return options;
 };
+
+export const generateItems = (count, content) => {
+  const items = [];
+  for (let i = 1; i <= count; i++) {
+    items.push(content);
+  }
+  return items;
+};

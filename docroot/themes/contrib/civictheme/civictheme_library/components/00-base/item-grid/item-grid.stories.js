@@ -3,6 +3,7 @@ import {
   boolean, number, text,
 } from '@storybook/addon-knobs';
 import CivicThemeItemGrid from './item-grid.twig';
+import { generateItems, placeholder } from '../base.stories';
 
 export default {
   title: 'Base/Item Grid',
@@ -24,30 +25,21 @@ export const ItemGrid = (knobTab) => {
       generalKnobTab,
     ),
     fill_width: boolean('Fill width', false, generalKnobTab),
+    items: generateItems(number(
+      'Number of items',
+      4,
+      {
+        range: true,
+        min: 0,
+        max: 7,
+        step: 1,
+      },
+      generalKnobTab,
+    ), placeholder()),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  const itemsKnobTab = 'Items';
-
-  const itemsCount = number(
-    'Number of items',
-    4,
-    {
-      range: true,
-      min: 0,
-      max: 7,
-      step: 1,
-    },
-    itemsKnobTab,
-  );
-
-  const items = [];
-  for (let itr = 0; itr < itemsCount; itr += 1) {
-    items.push(`<div class="story-slot">Block Placeholder</div>`);
-  }
-
   return CivicThemeItemGrid({
     ...generalKnobs,
-    items,
   });
 };
