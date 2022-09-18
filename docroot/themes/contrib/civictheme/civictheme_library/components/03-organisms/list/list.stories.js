@@ -49,10 +49,10 @@ export const List = (knobTab) => {
   const filterType = radios(
     'Filter type',
     {
-      Large: 'large',
-      Basic: 'basic',
+      Group: 'group',
+      Single: 'single',
     },
-    'large',
+    'group',
     generalKnobTab,
   );
 
@@ -166,7 +166,7 @@ export const List = (knobTab) => {
 
     if (filterCount > 0) {
       for (let i = 0; i < filterCount; i++) {
-        if (filterType === 'large') {
+        if (filterType === 'group') {
           const inputType = ['radio', 'checkbox'][Math.round(Math.random() * 2)];
           filters.push(randomDropdownFilter(inputType, 4, theme, true, count++));
         } else {
@@ -177,7 +177,7 @@ export const List = (knobTab) => {
       }
     }
 
-    if (filterType === 'large') {
+    if (filterType === 'geoup') {
       generalKnobs.filters = CivicThemeGroupFilter({
         theme,
         filter_title: 'Filter search results by:',
