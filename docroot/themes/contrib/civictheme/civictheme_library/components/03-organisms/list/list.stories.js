@@ -10,8 +10,8 @@ import {
   randomUrl,
 } from '../../00-base/base.stories';
 
-import CivicThemeLargeFilter from '../large-filter/large-filter.twig';
-import CivicThemeSingleFilter from '../single-filter/single-filter.twig';
+import CivicThemeGroupFilter from '../../02-molecules/group-filter/group-filter.twig';
+import CivicThemeSingleFilter from '../../02-molecules/single-filter/single-filter.twig';
 
 import CivicThemeCardContainer from '../card-container/card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
@@ -178,7 +178,7 @@ export const List = (knobTab) => {
     }
 
     if (filterType === 'large') {
-      generalKnobs.filters = CivicThemeLargeFilter({
+      generalKnobs.filters = CivicThemeGroupFilter({
         theme,
         filter_title: 'Filter search results by:',
         tags_title: 'Selected filters:',

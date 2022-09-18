@@ -11,9 +11,9 @@
   #}
   {{ q }}
 {% endif %}
-{# Large filter is printed if there is more than 1 exposed filter in the view #}
-{% if large_filter %}
-  {% include '@organisms/large-filter/large-filter.twig' with {
+{# Group filter is printed if there is more than 1 exposed filter in the view #}
+{% if group_filter %}
+  {% include '@molecules/group-filter/group-filter.twig' with {
     filter_title: filter_title,
     desktop_breakpoint: '>=m',
     filters: form,

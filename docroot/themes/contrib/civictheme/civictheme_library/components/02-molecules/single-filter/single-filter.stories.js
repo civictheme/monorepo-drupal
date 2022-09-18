@@ -4,7 +4,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeSingleFilter from './single-filter.twig';
 
 export default {
-  title: 'Organisms/Single Filter',
+  title: 'Molecules/Single Filter',
   parameters: {
     layout: 'centered',
   },
