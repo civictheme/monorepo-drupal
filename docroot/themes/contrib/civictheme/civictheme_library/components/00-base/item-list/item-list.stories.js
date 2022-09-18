@@ -2,7 +2,7 @@
 import { number, radios, text } from '@storybook/addon-knobs';
 
 import CivicThemeItemList from './item-list.twig';
-import {generateItems, placeholder} from "../base.stories";
+import { generateItems, placeholder } from '../base.stories';
 
 export default {
   title: 'Base/Item List',
