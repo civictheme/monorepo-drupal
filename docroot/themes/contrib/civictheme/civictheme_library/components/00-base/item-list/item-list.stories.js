@@ -5,7 +5,7 @@ import CivicThemeItemList from './item-list.twig';
 import { generateItems, placeholder } from '../base.stories';
 
 export default {
-  title: 'Base/Item List',
+  title: 'Base/Layout/Item List',
   parameters: {
     layout: 'centered',
   },

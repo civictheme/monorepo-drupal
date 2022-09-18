@@ -8,11 +8,11 @@
   }
 
   &__mobile-overlay {
-    padding-bottom: ct-space(5);
+    padding-bottom: ct-spacing(5);
   }
 
   &__mobile-container {
-    padding-bottom: ct-space();
+    padding-bottom: ct-spacing();
   }
 
   &__mobile-toggle-display {
@@ -20,10 +20,9 @@
 
     text-align: center;
     width: 100%;
-    padding: ct-space() ct-space(3);
+    padding: ct-spacing() ct-spacing(3);
     border: 1px solid transparent;
     border-top: 0;
-    box-sizing: border-box;
 
     &--hidden {
       display: none;
@@ -54,11 +53,11 @@
     margin: 0;
     border: none;
     width: 100%;
-    padding: ct-space(2) 0;
+    padding: ct-spacing(2) 0;
 
     @include ct-breakpoint($ct-group-filter-breakpoint) {
       display: inline-flex;
-      padding: ct-space(3) 0;
+      padding: ct-spacing(3) 0;
     }
 
     & > legend {
@@ -67,7 +66,7 @@
       @include ct-breakpoint($ct-group-filter-breakpoint) {
         display: block;
         float: left;
-        margin-right: ct-space(5);
+        margin-right: ct-spacing(5);
       }
     }
 
@@ -75,7 +74,7 @@
       border-bottom: 1px solid transparent;
 
       @include ct-breakpoint($ct-group-filter-breakpoint) {
-        margin-right: ct-space(3);
+        margin-right: ct-spacing(3);
         border-bottom: 0;
       }
 
@@ -96,7 +95,7 @@
       display: flex;
       align-items: flex-start;
       flex-wrap: nowrap;
-      padding: ct-space(3) 0;
+      padding: ct-spacing(3) 0;
       width: 100%;
     }
 
@@ -109,16 +108,16 @@
     @include ct-typography('label-regular');
 
     white-space: nowrap;
-    margin-top: ct-space(2);
+    margin-top: ct-spacing(2);
   }
 
   &__tags {
-    margin-left: ct-space(2);
+    margin-left: ct-spacing(2);
     width: 100%;
 
     #{$root}__mobile-tags & {
       margin-left: 0;
-      padding-top: ct-space(2);
+      padding-top: ct-spacing(2);
     }
   }
 
@@ -129,9 +128,9 @@
   }
 
   &__tag {
-    margin-right: ct-space();
-    margin-top: ct-space();
-    margin-bottom: ct-space();
+    margin-right: ct-spacing();
+    margin-top: ct-spacing();
+    margin-bottom: ct-spacing();
     display: inline-block;
   }
 
@@ -142,7 +141,7 @@
   &__clear-all {
     @include ct-typography('label-regular');
 
-    margin-top: ct-space(2);
+    margin-top: ct-spacing(2);
     border: 0;
     padding: 0;
     cursor: pointer;
@@ -164,7 +163,7 @@
 
   &__clear-all-label {
     pointer-events: none;
-    margin-right: ct-space(0.5);
+    margin-right: ct-spacing(0.5);
   }
 
   &.ct-theme-light {

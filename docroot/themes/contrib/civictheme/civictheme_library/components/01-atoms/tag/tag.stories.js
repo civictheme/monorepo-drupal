@@ -9,7 +9,7 @@ import {
 import CivicThemeTag from './tag.twig';
 
 export default {
-  title: 'Atoms/Tag',
+  title: 'Atoms/Content/Tag',
   parameters: {
     layout: 'centered',
   },
