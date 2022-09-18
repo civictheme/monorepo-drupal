@@ -1,4 +1,4 @@
-@civictheme @civictheme_alert @skipped
+@civictheme @civictheme_alert
 Feature: CivicTheme alert rendering
 
   Ensure that alerts are shown correctly.
