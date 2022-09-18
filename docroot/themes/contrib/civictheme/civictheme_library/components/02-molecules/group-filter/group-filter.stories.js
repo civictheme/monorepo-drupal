@@ -5,11 +5,11 @@ import {
 
 import { dropDownFilter, formElement } from '../../00-base/base.stories';
 
-import DropdownFilter from '../../02-molecules/dropdown-filter/dropdown-filter.twig';
+import DropdownFilter from '../dropdown-filter/dropdown-filter.twig';
 import CivicThemeGroupFilter from './group-filter.twig';
 
 export default {
-  title: 'Organisms/Group Filter',
+  title: 'Molecules/Group Filter',
   parameters: {
     layout: 'fullscreen',
   },

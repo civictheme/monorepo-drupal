@@ -10,8 +10,8 @@ import {
   randomUrl,
 } from '../../00-base/base.stories';
 
-import CivicThemeGroupFilter from '../group-filter/group-filter.twig';
-import CivicThemeBasicFilter from '../single-filter/single-filter.twig';
+import CivicThemeGroupFilter from '../../02-molecules/group-filter/group-filter.twig';
+import CivicThemeSingleFilter from '../../02-molecules/single-filter/single-filter.twig';
 
 import CivicThemeCardContainer from '../card-container/card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
