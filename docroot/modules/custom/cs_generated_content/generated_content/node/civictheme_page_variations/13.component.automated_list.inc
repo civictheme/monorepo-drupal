@@ -41,7 +41,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Automated List component, Light single filter light navigation cards, no title top link with top space, with pagination',
+      'title' => 'Demo Page, Automated List component, Light single filter light navigation cards, no title, content, top link with top space, with pagination',
       'components' => [
         [
           'type' => 'automated_list',
@@ -49,6 +49,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'list_content_type' => $helper::civicthemePageContentType(),
           'theme' => $helper::civicthemeThemeLight(),
           'title' => NULL,
+          'content' => $helper::staticHtmlParagraph(),
           'list_show_filters' => TRUE,
           'list_filters_exp' => $helper::civicThemeExposeSingleFilter(),
           'list_item_theme' => $helper::civicthemeThemeLight(),
@@ -75,6 +76,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'list_content_type' => $helper::civicthemePageContentType(),
           'list_view_as' => $helper::civicthemePromoCardType(),
           'list_limit_type' => $helper::civicthemeAutomatedListLimitTypeLimited(),
+          'content' => $helper::staticHtmlParagraph(),
           'list_item_theme' => $helper::civicthemeThemeDark(),
           'list_link_below' => [
             'uri' => $helper::randomUrl() . '/below',
@@ -97,6 +99,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           'list_view_as' => $helper::civicthemePromoCardType(),
           'list_limit_type' => $helper::civicthemeAutomatedListLimitTypeLimited(),
           'list_item_theme' => $helper::civicthemeThemeLight(),
+          'content' => $helper::staticHtmlParagraph(),
           'list_link_top' => [
             'uri' => $helper::randomUrl() . '/below',
             'title' => 'Below ' . $helper::staticSentence(2),
