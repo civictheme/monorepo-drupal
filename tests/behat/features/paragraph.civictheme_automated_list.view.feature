@@ -235,7 +235,7 @@ Feature: View of Page content with Listing component
       | field_c_p_list_limit        | 2         |
     When I visit "civictheme_page" "Page Automated list component"
     Then I should see an ".ct-list .ct-item-grid__items" element
-    And I should see 2 ".ct-grid__item" elements
+    And I should see 2 ".ct-item-grid__item" elements
     And I should see an ".ct-list__results-below .ct-pager" element
     And I should not see "First" in the ".ct-list__results-below .ct-pager" element
     And I should see "Previous" in the ".ct-list__results-below .ct-pager .ct-input--disabled.ct-pager__link" element
