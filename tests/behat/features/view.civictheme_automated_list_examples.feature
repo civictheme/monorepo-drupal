@@ -39,8 +39,8 @@ Feature: CivicTheme listing renders on views pages with filters
     When I go to "civictheme-no-sidebar/listing-no-filter"
     Then the response status code should be 200
 
-    And I should not see a ".civictheme-basic-filter" element
-    And I should not see a ".civictheme-large-filter" element
+    And I should not see a ".civictheme-single-filter" element
+    And I should not see a ".civictheme-group-filter" element
 
     And I should see the text "[TEST] Page 1"
     And I should see the text "[TEST] Page 2"
@@ -99,12 +99,12 @@ Feature: CivicTheme listing renders on views pages with filters
 
     Examples:
       | path                                                                 | filter_element           |
-      | civictheme-no-sidebar/listing-one-filter-single-select               | .civictheme-basic-filter |
-      | civictheme-no-sidebar/listing-one-filter-single-select-exposed-block | .civictheme-basic-filter |
-      | civictheme-no-sidebar/listing-one-filter-multi-select                | .civictheme-basic-filter |
-      | civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block  | .civictheme-basic-filter |
-      | civictheme-no-sidebar/listing-multiple-filters                       | .civictheme-large-filter |
-      | civictheme-no-sidebar/listing-multiple-filters-exposed-block         | .civictheme-large-filter |
+      | civictheme-no-sidebar/listing-one-filter-single-select               | .civictheme-single-filter |
+      | civictheme-no-sidebar/listing-one-filter-single-select-exposed-block | .civictheme-single-filter |
+      | civictheme-no-sidebar/listing-one-filter-multi-select                | .civictheme-single-filter |
+      | civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block  | .civictheme-single-filter |
+      | civictheme-no-sidebar/listing-multiple-filters                       | .civictheme-group-filter |
+      | civictheme-no-sidebar/listing-multiple-filters-exposed-block         | .civictheme-group-filter |
 
   @api @testmode
   Scenario Outline: Listing example - One filter - Single
