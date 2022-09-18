@@ -39,7 +39,9 @@
   {% endfor %}
 {% endif %}
 
-{% set items = [] %}
+{{ dump(links) }}
+
+{% set link_items = [] %}
 {% for k, link in links %}
   {%- set link %}
     {% include '@atoms/link/link.twig' with {
@@ -48,18 +50,17 @@
       url: link.url,
       is_new_window: link.is_new_window is defined ? link.is_new_window : false,
       is_external: link.is_external is defined ? link.is_external : false,
-      modifier_class: link.modifier_class ? link.modifier_class : false,
-      attributes: link.attributes ? link.attributes : false,
+      modifier_class: link.modifier_class ? link.modifier_class : '',
+      attributes: 'data-tabs-tab ' ~ (link.attributes ? link.attributes : ''),
     } only %}
   {% endset -%}
-  {% set items = items|merge([link]) %}
+  {% set link_items = link_items|merge([link]) %}
 {% endfor %}
 
-{% if panels is not empty or items is not empty %}
-  <div class="ct-tabs {{ modifier_class }}" {{ attributes }}>
+{% if panels is not empty or link_items is not empty %}
+  <div class="ct-tabs {{ modifier_class }}" data-tabs-panel {% if attributes is not empty %}{{ attributes }}{% endif %}>
     {% include '@base/item-list/item-list.twig' with {
-      theme: theme,
-      items: items,
+      items: link_items,
       modifier_class: 'ct-tabs__links',
     } only %}
 
@@ -67,7 +68,7 @@
       <div class="ct-tabs__panels">
         {% for k, panel in panels %}
           {% if panel.content is not empty %}
-            <div class="ct-tabs__panels__panel {{ panel.is_selected ? 'selected' : '' }}" id="{{ panel.id }}" role="tabpanel" aria-labelledby="{{ links[k].link_id }}">
+            <div class="ct-tabs__panels__panel {{ panel.is_selected ? 'selected' : '' }}" data-tabs-panel id="{{ panel.id }}" role="tabpanel" aria-labelledby="{{ links[k].link_id }}">
               {{ panel.content }}
             </div>
           {% endif %}

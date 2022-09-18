@@ -1246,16 +1246,20 @@ $ct-social-links-dark-visited-color: $ct-social-links-dark-color;
 // Tabs.
 //
 $ct-tabs-link-border-radius: $ct-border-radius * 2 !default;
-$ct-tabs-light-links-border-color: ct-color-light('border') !default;
-$ct-tabs-light-links-color: ct-color-light('background') !default;
+$ct-tabs-light-links-stripe-border-color: ct-color-light('border-light');
+$ct-tabs-light-links-background-color: ct-color-light('background') !default;
+$ct-tabs-light-links-border-color: $ct-tabs-light-links-background-color !default;
+$ct-tabs-light-links-active-background-color: ct-color-light('background-light') !default;
+$ct-tabs-light-links-active-border-color: ct-color-light('border-light') !default;
 $ct-tabs-light-panel-background-color: ct-color-light('background') !default;
 $ct-tabs-light-panel-border-color: ct-color-light('border') !default;
-$ct-tabs-light-panel-color: $ct-tabs-light-links-color !default;
-$ct-tabs-dark-links-border-color: ct-color-dark('border') !default;
-$ct-tabs-dark-links-color: ct-color-dark('background') !default;
-$ct-tabs-dark-panel-background-color: ct-color-dark('interaction-background') !default;
+$ct-tabs-dark-links-stripe-border-color: ct-color-dark('border-light');
+$ct-tabs-dark-links-background-color: ct-color-dark('background') !default;
+$ct-tabs-dark-links-border-color: $ct-tabs-light-links-background-color !default;
+$ct-tabs-dark-links-active-background-color: ct-color-dark('background-light') !default;
+$ct-tabs-dark-links-active-border-color: ct-color-dark('border-light') !default;
+$ct-tabs-dark-panel-background-color: ct-color-dark('background') !default;
 $ct-tabs-dark-panel-border-color: ct-color-dark('border') !default;
-$ct-tabs-dark-panel-color: $ct-tabs-dark-links-color !default;
 
 //
 // Webform.
