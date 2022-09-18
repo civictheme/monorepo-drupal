@@ -6,20 +6,20 @@
 //
 // @code
 //
-// @include civictheme-print(s) {
+// @include ct-print(s) {
 //   width: 50%;
 // }
 //
 // @endcode
 //
-@mixin civictheme-print() {
+@mixin ct-print() {
   @media print {
     @content;
   }
 }
 
 // Shorthand to hide elements for print.
-@mixin civictheme-print-hide() {
+@mixin ct-print-hide() {
   @media print {
     display: none;
   }

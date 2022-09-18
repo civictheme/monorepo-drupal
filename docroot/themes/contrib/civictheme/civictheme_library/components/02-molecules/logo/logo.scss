@@ -2,28 +2,28 @@
 // Logo component.
 //
 
-.civictheme-logo {
+.ct-logo {
   $root: &;
 
   line-height: 0;
 
   img {
     flex: 1;
-    max-width: $civictheme-logo-image-width-mobile;
-    max-height: $civictheme-logo-image-height-mobile;
+    max-width: $ct-logo-image-width-mobile;
+    max-height: $ct-logo-image-height-mobile;
 
-    @include civictheme-breakpoint('m') {
-      max-width: $civictheme-logo-image-width-desktop;
-      max-height: $civictheme-logo-image-height-desktop;
+    @include ct-breakpoint('m') {
+      max-width: $ct-logo-image-width-desktop;
+      max-height: $ct-logo-image-height-desktop;
     }
   }
 
   #{$root}--hr {
     height: inherit;
-    margin: civictheme-space();
+    margin: ct-spacing();
   }
 
-  &.civictheme-theme-light {
+  &.ct-theme-light {
 
     #{$root}-type-inline {
       &,
@@ -34,7 +34,7 @@
         align-items: center;
       }
       #{$root}--hr {
-        border-left: 1px solid $civictheme-logo-light-stripe-color;
+        border-left: 1px solid $ct-logo-light-stripe-color;
       }
 
       &#{$root}-dual {
@@ -44,10 +44,10 @@
         }
 
         img {
-          max-width: $civictheme-logo-image-width-mobile * 0.5;
+          max-width: $ct-logo-image-width-mobile * 0.5;
 
-          @include civictheme-breakpoint('m') {
-            max-width: $civictheme-logo-image-width-desktop * 0.5;
+          @include ct-breakpoint('m') {
+            max-width: $ct-logo-image-width-desktop * 0.5;
           }
         }
       }
@@ -58,12 +58,12 @@
         display: inline-block;
       }
       #{$root}--hr {
-        border: 1px solid $civictheme-logo-light-stripe-color;
+        border: 1px solid $ct-logo-light-stripe-color;
       }
     }
   }
 
-  &.civictheme-theme-dark {
+  &.ct-theme-dark {
 
     #{$root}-type-inline {
       &,
@@ -75,7 +75,7 @@
       }
 
       #{$root}--hr {
-        border-left: 1px solid $civictheme-logo-dark-stripe-color;
+        border-left: 1px solid $ct-logo-dark-stripe-color;
       }
 
       &#{$root}-dual {
@@ -85,10 +85,10 @@
         }
 
         img {
-          max-width: $civictheme-logo-image-width-mobile * 0.5;
+          max-width: $ct-logo-image-width-mobile * 0.5;
 
-          @include civictheme-breakpoint('m') {
-            max-width: $civictheme-logo-image-width-desktop * 0.5;
+          @include ct-breakpoint('m') {
+            max-width: $ct-logo-image-width-desktop * 0.5;
           }
         }
       }
@@ -99,7 +99,7 @@
         display: inline-block;
       }
       #{$root}--hr {
-        border: 1px solid $civictheme-logo-dark-stripe-color;
+        border: 1px solid $ct-logo-dark-stripe-color;
       }
     }
   }

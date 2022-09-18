@@ -4,7 +4,7 @@
 
 @use 'sass:map';
 
-@mixin civictheme-icon-symbol($symbol) {
+@mixin ct-icon-symbol($symbol) {
   content: '';
   display: inline-block;
   // stylelint-disable-next-line property-no-vendor-prefix
@@ -19,33 +19,32 @@
   background-color: currentcolor;
 }
 
-.civictheme-icon {
+.ct-icon {
   vertical-align: sub;
 
-  // @todo Review this.
-  @include civictheme-icon-size('regular');
+  @include ct-icon-size('regular');
 
-  @each $symbol, $values in _civictheme-icon-symbols-all() {
+  @each $symbol, $values in _ct-icon-symbols-all() {
     &--#{$symbol} {
-      @include civictheme-icon-symbol($symbol);
+      @include ct-icon-symbol($symbol);
     }
   }
 
   // Generate size classes for all pre-set sizes.
-  @each $size, $values in _civictheme-icon-sizes-all() {
+  @each $size, $values in _ct-icon-sizes-all() {
     &--size-#{$size} {
-      @include civictheme-icon-size($size);
+      @include ct-icon-size($size);
     }
   }
 
-  @each $symbol, $values in _civictheme-icon-symbols-all() {
+  @each $symbol, $values in _ct-icon-symbols-all() {
     &--#{$symbol} {
       &--after {
-        @each $size, $values in _civictheme-icon-sizes-all() {
+        @each $size, $values in _ct-icon-sizes-all() {
           &--#{$size} {
             &::after {
-              @include civictheme-icon-symbol($symbol);
-              @include civictheme-icon-size($size);
+              @include ct-icon-symbol($symbol);
+              @include ct-icon-size($size);
 
               vertical-align: sub;
             }
@@ -54,11 +53,11 @@
       }
 
       &--before {
-        @each $size, $values in _civictheme-icon-sizes-all() {
+        @each $size, $values in _ct-icon-sizes-all() {
           &--#{$size} {
             &::before {
-              @include civictheme-icon-symbol($symbol);
-              @include civictheme-icon-size($size);
+              @include ct-icon-symbol($symbol);
+              @include ct-icon-size($size);
 
               vertical-align: sub;
             }

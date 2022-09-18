@@ -5,7 +5,7 @@
 //
 // Add highlight stripe to an element.
 //
-@mixin civictheme-highlight-stripe($width, $border-radius, $border-width: rem(1px), $position: 'left') {
+@mixin ct-highlight-stripe($width, $border-radius, $border-width: rem(1px), $position: 'left') {
   position: relative;
 
   &::before {
@@ -26,13 +26,13 @@
       border-bottom-right-radius: $border-radius;
     }
 
-    @if $civictheme-animation-enabled {
+    @if $ct-animation-enabled {
       transition: width 0.25s;
     }
   }
 }
 
-@mixin civictheme-highlight-stripe-color($color) {
+@mixin ct-highlight-stripe-color($color) {
   &::before {
     background-color: $color;
   }

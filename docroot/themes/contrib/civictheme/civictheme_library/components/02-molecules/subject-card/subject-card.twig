@@ -14,15 +14,15 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set type_class = image is empty ? 'civictheme-subject-card--no-image' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set type_class = image is empty ? 'ct-subject-card--no-image' : '' %}
 {% set modifier_class = '%s %s'|format(theme_class, type_class, modifier_class|default('')) %}
 
-<div class="civictheme-subject-card {{ modifier_class }}">
-  <div class="civictheme-subject-card__image-wrapper">
+<div class="ct-subject-card {{ modifier_class }}">
+  <div class="ct-subject-card__image-wrapper">
     {% block image %}
       {% if image.src is not empty %}
-        <div class="civictheme-subject-card__image">
+        <div class="ct-subject-card__image">
           {% include '@atoms/image/image.twig' with {
             theme: theme,
             src: image.src,
@@ -34,7 +34,7 @@
 
     {% block image_over %}
       {% if image_over is not empty %}
-        <div class="civictheme-subject-card__image-over">
+        <div class="ct-subject-card__image-over">
           {{ image_over }}
         </div>
       {% endif %}
@@ -42,9 +42,9 @@
 
     {% block title %}
       {% if title is not empty %}
-        <div class="civictheme-subject-card__title">
+        <div class="ct-subject-card__title">
           {% if url is not empty %}
-          <a class="civictheme-subject-card__title-link" href="{{ url }}">
+          <a class="ct-subject-card__title-link" href="{{ url }}">
           {% endif %}
             {{ title }}
             {% if url is not empty %}
@@ -53,13 +53,13 @@
                   {% include '@base/icon/icon.twig' with {
                     symbol: 'upper-right-arrow',
                     color: 'primary',
-                    modifier_class: 'civictheme-subject-card__icon--external'
+                    modifier_class: 'ct-subject-card__icon--external'
                   } only %}
                 {% else %}
                   {% include '@base/icon/icon.twig' with {
                     symbol: 'upper-right-arrow',
                     color: 'primary',
-                    modifier_class: 'civictheme-subject-card__icon--arrow',
+                    modifier_class: 'ct-subject-card__icon--arrow',
                   } only %}
                 {% endif %}
               </span>

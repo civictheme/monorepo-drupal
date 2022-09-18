@@ -1,5 +1,6 @@
 // phpcs:ignoreFile
-import { select } from '@storybook/addon-knobs';
+import { color, select } from '@storybook/addon-knobs';
+import { objectFromArray } from '../base.stories';
 
 export default {
   title: 'Base/Background',
@@ -11,29 +12,15 @@ export default {
 export const Background = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
-  const bg = select('Background', Object.keys(BACKGROUNDS), Object.keys(BACKGROUNDS)[0], generalKnobTab);
+  const bgImageUrl = select('Background', Object.keys(BACKGROUNDS), Object.keys(BACKGROUNDS)[0], generalKnobTab);
+  const bgColor = color('Background color', '#003a4f', generalKnobTab);
+
   const blendMode = select(
-    'Blend mode', {
-      Color: 'color',
-      'Color burn': 'color-burn',
-      'Color dodge': 'color-dodge',
-      Darken: 'darken',
-      Difference: 'difference',
-      Exclusion: 'exclusion',
-      'Hard light': 'hard-light',
-      Hue: 'hue',
-      Lighten: 'lighten',
-      Luminosity: 'luminosity',
-      Multiply: 'multiply',
-      Normal: 'normal',
-      Overlay: 'overlay',
-      Saturation: 'saturation',
-      Screen: 'screen',
-      'Soft light': 'soft-light',
-    },
-    'normal',
+    'Blend mode',
+    objectFromArray(SCSS_VARIABLES['ct-background-blend-modes']),
+    SCSS_VARIABLES['ct-background-blend-modes'][0],
     generalKnobTab,
   );
 
-  return `<div class="story-background-wrapper story-wrapper-size--large" style="background-image: url('${BACKGROUNDS[bg]}'); background-blend-mode: ${blendMode};"></div>`;
+  return `<div class="story-background-wrapper story-wrapper-size--large ct-background ct-background--${blendMode}" style="background-image: url('${BACKGROUNDS[bgImageUrl]}'); background-color: ${bgColor}"></div>`;
 };

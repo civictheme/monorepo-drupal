@@ -2,7 +2,7 @@
 // Figure component.
 //
 
-.civictheme-figure {
+.ct-figure {
   $root: &;
 
   margin: 0;
@@ -12,29 +12,29 @@
   margin-inline-start: 0;
   margin-inline-end: 0;
 
-  .civictheme-image {
-    border-radius: $civictheme-figure-border-radius;
+  .ct-image {
+    border-radius: $ct-figure-border-radius;
     object-fit: contain;
   }
 
-  &.civictheme-theme-light {
-    color: $civictheme-figure-light-caption-color;
+  &.ct-theme-light {
+    color: $ct-figure-light-caption-color;
   }
 
-  &.civictheme-theme-dark {
-    color: $civictheme-figure-dark-caption-color;
+  &.ct-theme-dark {
+    color: $ct-figure-dark-caption-color;
   }
 
   &__caption {
-    @include civictheme-typography('label-small');
+    @include ct-typography('label-small');
 
-    .civictheme-icon {
-      #{$root}.civictheme-theme-light & {
-        fill: $civictheme-figure-light-caption-icon-color;
+    .ct-icon {
+      #{$root}.ct-theme-light & {
+        fill: $ct-figure-light-caption-icon-color;
       }
 
-      #{$root}.civictheme-theme-dark & {
-        fill: $civictheme-figure-dark-caption-icon-color;
+      #{$root}.ct-theme-dark & {
+        fill: $ct-figure-dark-caption-icon-color;
       }
     }
   }

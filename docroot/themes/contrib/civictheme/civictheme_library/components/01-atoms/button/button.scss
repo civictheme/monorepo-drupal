@@ -9,7 +9,7 @@
 // Mixins.
 //
 
-@mixin civictheme-button-type($type, $map: false) {
+@mixin ct-button-type($type, $map: false) {
   @if type-of($map) != 'map' {
     // SASS does not allow variables interpolation, so we are creating a local
     // map to easily generate rules.
@@ -17,198 +17,198 @@
       'primary': (
         'light': (
           'normal': (
-            'color': $civictheme-button-light-primary-color,
-            'background-color': $civictheme-button-light-primary-background-color,
-            'border-color': $civictheme-button-light-primary-border-color,
+            'color': $ct-button-light-primary-color,
+            'background-color': $ct-button-light-primary-background-color,
+            'border-color': $ct-button-light-primary-border-color,
             'outline-color': false,
           ),
           'hover': (
-            'color': $civictheme-button-light-primary-hover-color,
-            'background-color': $civictheme-button-light-primary-hover-background-color,
-            'border-color': $civictheme-button-light-primary-hover-border-color,
+            'color': $ct-button-light-primary-hover-color,
+            'background-color': $ct-button-light-primary-hover-background-color,
+            'border-color': $ct-button-light-primary-hover-border-color,
             'outline-color': false,
           ),
           'visited': (
-            'color': $civictheme-button-light-primary-visited-color,
-            'background-color': $civictheme-button-light-primary-visited-background-color,
-            'border-color': $civictheme-button-light-primary-visited-border-color,
+            'color': $ct-button-light-primary-visited-color,
+            'background-color': $ct-button-light-primary-visited-background-color,
+            'border-color': $ct-button-light-primary-visited-border-color,
             'outline-color': false,
           ),
           'active': (
-            'color': $civictheme-button-light-primary-active-color,
-            'background-color': $civictheme-button-light-primary-active-background-color,
-            'border-color': $civictheme-button-light-primary-active-border-color,
+            'color': $ct-button-light-primary-active-color,
+            'background-color': $ct-button-light-primary-active-background-color,
+            'border-color': $ct-button-light-primary-active-border-color,
             'outline-color': false,
           ),
           'focus': (
-            'color': $civictheme-button-light-primary-focus-color,
-            'background-color': $civictheme-button-light-primary-focus-background-color,
-            'border-color': $civictheme-button-light-primary-focus-border-color,
-            'outline-color': $civictheme-button-light-primary-focus-outline-color,
+            'color': $ct-button-light-primary-focus-color,
+            'background-color': $ct-button-light-primary-focus-background-color,
+            'border-color': $ct-button-light-primary-focus-border-color,
+            'outline-color': $ct-button-light-primary-focus-outline-color,
           ),
         ),
         'dark': (
           'normal': (
-            'color': $civictheme-button-dark-primary-color,
-            'background-color': $civictheme-button-dark-primary-background-color,
-            'border-color': $civictheme-button-dark-primary-border-color,
+            'color': $ct-button-dark-primary-color,
+            'background-color': $ct-button-dark-primary-background-color,
+            'border-color': $ct-button-dark-primary-border-color,
             'outline-color': false,
           ),
           'hover': (
-            'color': $civictheme-button-dark-primary-hover-color,
-            'background-color': $civictheme-button-dark-primary-hover-background-color,
-            'border-color': $civictheme-button-dark-primary-hover-border-color,
+            'color': $ct-button-dark-primary-hover-color,
+            'background-color': $ct-button-dark-primary-hover-background-color,
+            'border-color': $ct-button-dark-primary-hover-border-color,
             'outline-color': false,
           ),
           'visited': (
-            'color': $civictheme-button-dark-primary-visited-color,
-            'background-color': $civictheme-button-dark-primary-visited-background-color,
-            'border-color': $civictheme-button-dark-primary-visited-border-color,
+            'color': $ct-button-dark-primary-visited-color,
+            'background-color': $ct-button-dark-primary-visited-background-color,
+            'border-color': $ct-button-dark-primary-visited-border-color,
             'outline-color': false,
           ),
           'active': (
-            'color': $civictheme-button-dark-primary-active-color,
-            'background-color': $civictheme-button-dark-primary-active-background-color,
-            'border-color': $civictheme-button-dark-primary-active-border-color,
+            'color': $ct-button-dark-primary-active-color,
+            'background-color': $ct-button-dark-primary-active-background-color,
+            'border-color': $ct-button-dark-primary-active-border-color,
             'outline-color': false,
           ),
           'focus': (
-            'color': $civictheme-button-dark-primary-focus-color,
-            'background-color': $civictheme-button-dark-primary-focus-background-color,
-            'border-color': $civictheme-button-dark-primary-focus-border-color,
-            'outline-color': $civictheme-button-dark-primary-focus-outline-color,
+            'color': $ct-button-dark-primary-focus-color,
+            'background-color': $ct-button-dark-primary-focus-background-color,
+            'border-color': $ct-button-dark-primary-focus-border-color,
+            'outline-color': $ct-button-dark-primary-focus-outline-color,
           ),
         )
       ),
       'secondary': (
         'light': (
           'normal': (
-            'color': $civictheme-button-light-secondary-color,
-            'background-color': $civictheme-button-light-secondary-background-color,
-            'border-color': $civictheme-button-light-secondary-border-color,
+            'color': $ct-button-light-secondary-color,
+            'background-color': $ct-button-light-secondary-background-color,
+            'border-color': $ct-button-light-secondary-border-color,
             'outline-color': false,
           ),
           'hover': (
-            'color': $civictheme-button-light-secondary-hover-color,
-            'background-color': $civictheme-button-light-secondary-hover-background-color,
-            'border-color': $civictheme-button-light-secondary-hover-border-color,
+            'color': $ct-button-light-secondary-hover-color,
+            'background-color': $ct-button-light-secondary-hover-background-color,
+            'border-color': $ct-button-light-secondary-hover-border-color,
             'outline-color': false,
           ),
           'visited': (
-            'color': $civictheme-button-light-secondary-visited-color,
-            'background-color': $civictheme-button-light-secondary-visited-background-color,
-            'border-color': $civictheme-button-light-secondary-visited-border-color,
+            'color': $ct-button-light-secondary-visited-color,
+            'background-color': $ct-button-light-secondary-visited-background-color,
+            'border-color': $ct-button-light-secondary-visited-border-color,
             'outline-color': false,
           ),
           'active': (
-            'color': $civictheme-button-light-secondary-active-color,
-            'background-color': $civictheme-button-light-secondary-active-background-color,
-            'border-color': $civictheme-button-light-secondary-active-border-color,
+            'color': $ct-button-light-secondary-active-color,
+            'background-color': $ct-button-light-secondary-active-background-color,
+            'border-color': $ct-button-light-secondary-active-border-color,
             'outline-color': false,
           ),
           'focus': (
-            'color': $civictheme-button-light-secondary-focus-color,
-            'background-color': $civictheme-button-light-secondary-focus-background-color,
-            'border-color': $civictheme-button-light-secondary-focus-border-color,
-            'outline-color': $civictheme-button-light-secondary-focus-outline-color,
+            'color': $ct-button-light-secondary-focus-color,
+            'background-color': $ct-button-light-secondary-focus-background-color,
+            'border-color': $ct-button-light-secondary-focus-border-color,
+            'outline-color': $ct-button-light-secondary-focus-outline-color,
           ),
         ),
         'dark': (
           'normal': (
-            'color': $civictheme-button-dark-secondary-color,
-            'background-color': $civictheme-button-dark-secondary-background-color,
-            'border-color': $civictheme-button-dark-secondary-border-color,
+            'color': $ct-button-dark-secondary-color,
+            'background-color': $ct-button-dark-secondary-background-color,
+            'border-color': $ct-button-dark-secondary-border-color,
             'outline-color': false,
           ),
           'hover': (
-            'color': $civictheme-button-dark-secondary-hover-color,
-            'background-color': $civictheme-button-dark-secondary-hover-background-color,
-            'border-color': $civictheme-button-dark-secondary-hover-border-color,
+            'color': $ct-button-dark-secondary-hover-color,
+            'background-color': $ct-button-dark-secondary-hover-background-color,
+            'border-color': $ct-button-dark-secondary-hover-border-color,
             'outline-color': false,
           ),
           'visited': (
-            'color': $civictheme-button-dark-secondary-visited-color,
-            'background-color': $civictheme-button-dark-secondary-visited-background-color,
-            'border-color': $civictheme-button-dark-secondary-visited-border-color,
+            'color': $ct-button-dark-secondary-visited-color,
+            'background-color': $ct-button-dark-secondary-visited-background-color,
+            'border-color': $ct-button-dark-secondary-visited-border-color,
             'outline-color': false,
           ),
           'active': (
-            'color': $civictheme-button-dark-secondary-active-color,
-            'background-color': $civictheme-button-dark-secondary-active-background-color,
-            'border-color': $civictheme-button-dark-secondary-active-border-color,
+            'color': $ct-button-dark-secondary-active-color,
+            'background-color': $ct-button-dark-secondary-active-background-color,
+            'border-color': $ct-button-dark-secondary-active-border-color,
             'outline-color': false,
           ),
           'focus': (
-            'color': $civictheme-button-dark-secondary-focus-color,
-            'background-color': $civictheme-button-dark-secondary-focus-background-color,
-            'border-color': $civictheme-button-dark-secondary-focus-border-color,
-            'outline-color': $civictheme-button-dark-secondary-focus-outline-color,
+            'color': $ct-button-dark-secondary-focus-color,
+            'background-color': $ct-button-dark-secondary-focus-background-color,
+            'border-color': $ct-button-dark-secondary-focus-border-color,
+            'outline-color': $ct-button-dark-secondary-focus-outline-color,
           ),
         )
       ),
       'tertiary': (
         'light': (
           'normal': (
-            'color': $civictheme-button-light-tertiary-color,
-            'background-color': $civictheme-button-light-tertiary-background-color,
-            'border-color': $civictheme-button-light-tertiary-border-color,
+            'color': $ct-button-light-tertiary-color,
+            'background-color': $ct-button-light-tertiary-background-color,
+            'border-color': $ct-button-light-tertiary-border-color,
             'outline-color': false,
           ),
           'hover': (
-            'color': $civictheme-button-light-tertiary-hover-color,
-            'background-color': $civictheme-button-light-tertiary-hover-background-color,
-            'border-color': $civictheme-button-light-tertiary-hover-border-color,
+            'color': $ct-button-light-tertiary-hover-color,
+            'background-color': $ct-button-light-tertiary-hover-background-color,
+            'border-color': $ct-button-light-tertiary-hover-border-color,
             'outline-color': false,
           ),
           'visited': (
-            'color': $civictheme-button-light-tertiary-visited-color,
-            'background-color': $civictheme-button-light-tertiary-visited-background-color,
-            'border-color': $civictheme-button-light-tertiary-visited-border-color,
+            'color': $ct-button-light-tertiary-visited-color,
+            'background-color': $ct-button-light-tertiary-visited-background-color,
+            'border-color': $ct-button-light-tertiary-visited-border-color,
             'outline-color': false,
           ),
           'active': (
-            'color': $civictheme-button-light-tertiary-active-color,
-            'background-color': $civictheme-button-light-tertiary-active-background-color,
-            'border-color': $civictheme-button-light-tertiary-active-border-color,
+            'color': $ct-button-light-tertiary-active-color,
+            'background-color': $ct-button-light-tertiary-active-background-color,
+            'border-color': $ct-button-light-tertiary-active-border-color,
             'outline-color': false,
           ),
           'focus': (
-            'color': $civictheme-button-light-tertiary-focus-color,
-            'background-color': $civictheme-button-light-tertiary-focus-background-color,
-            'border-color': $civictheme-button-light-tertiary-focus-border-color,
-            'outline-color': $civictheme-button-light-tertiary-focus-outline-color,
+            'color': $ct-button-light-tertiary-focus-color,
+            'background-color': $ct-button-light-tertiary-focus-background-color,
+            'border-color': $ct-button-light-tertiary-focus-border-color,
+            'outline-color': $ct-button-light-tertiary-focus-outline-color,
           ),
         ),
         'dark': (
           'normal': (
-            'color': $civictheme-button-dark-tertiary-color,
-            'background-color': $civictheme-button-dark-tertiary-background-color,
-            'border-color': $civictheme-button-dark-tertiary-border-color,
+            'color': $ct-button-dark-tertiary-color,
+            'background-color': $ct-button-dark-tertiary-background-color,
+            'border-color': $ct-button-dark-tertiary-border-color,
             'outline-color': false,
           ),
           'hover': (
-            'color': $civictheme-button-dark-tertiary-hover-color,
-            'background-color': $civictheme-button-dark-tertiary-hover-background-color,
-            'border-color': $civictheme-button-dark-tertiary-hover-border-color,
+            'color': $ct-button-dark-tertiary-hover-color,
+            'background-color': $ct-button-dark-tertiary-hover-background-color,
+            'border-color': $ct-button-dark-tertiary-hover-border-color,
             'outline-color': false,
           ),
           'visited': (
-            'color': $civictheme-button-dark-tertiary-visited-color,
-            'background-color': $civictheme-button-dark-tertiary-visited-background-color,
-            'border-color': $civictheme-button-dark-tertiary-visited-border-color,
+            'color': $ct-button-dark-tertiary-visited-color,
+            'background-color': $ct-button-dark-tertiary-visited-background-color,
+            'border-color': $ct-button-dark-tertiary-visited-border-color,
             'outline-color': false,
           ),
           'active': (
-            'color': $civictheme-button-dark-tertiary-active-color,
-            'background-color': $civictheme-button-dark-tertiary-active-background-color,
-            'border-color': $civictheme-button-dark-tertiary-active-border-color,
+            'color': $ct-button-dark-tertiary-active-color,
+            'background-color': $ct-button-dark-tertiary-active-background-color,
+            'border-color': $ct-button-dark-tertiary-active-border-color,
             'outline-color': false,
           ),
           'focus': (
-            'color': $civictheme-button-dark-tertiary-focus-color,
-            'background-color': $civictheme-button-dark-tertiary-focus-background-color,
-            'border-color': $civictheme-button-dark-tertiary-focus-border-color,
-            'outline-color': $civictheme-button-dark-tertiary-focus-outline-color,
+            'color': $ct-button-dark-tertiary-focus-color,
+            'background-color': $ct-button-dark-tertiary-focus-background-color,
+            'border-color': $ct-button-dark-tertiary-focus-border-color,
+            'outline-color': $ct-button-dark-tertiary-focus-outline-color,
           ),
         )
       ),
@@ -223,11 +223,11 @@
 
   display: inline-block;
   text-decoration: none;
-  outline-offset: $civictheme-button-outline-offset;
-  outline-width: $civictheme-button-outline-width;
+  outline-offset: $ct-button-outline-offset;
+  outline-width: $ct-button-outline-width;
 
-  @if $civictheme-animation-enabled {
-    transition: all $civictheme-animation-duration ease;
+  @if $ct-animation-enabled {
+    transition: all $ct-animation-duration ease;
   }
 
   &:focus,
@@ -243,31 +243,31 @@
     opacity: 50%;
   }
 
-  .civictheme-icon {
+  .ct-icon {
     vertical-align: middle;
   }
 
   input {
-    @include civictheme-visually-hidden();
+    @include ct-visually-hidden();
   }
 
   $map-per-type: map.get($map, $type);
 
   @each $theme, $type-kinds in $map-per-type {
-    &.civictheme-theme-#{$theme} {
+    &.ct-theme-#{$theme} {
       @each $type-kind, $type-kind-values in $type-kinds {
         @if $type-kind == 'normal' {
-          @include _civictheme-button-print-rules($type-kind-values);
+          @include _ct-button-print-rules($type-kind-values);
         }
         @else if $type-kind == 'hover' {
           &:hover {
-            @include _civictheme-button-print-rules($type-kind-values);
+            @include _ct-button-print-rules($type-kind-values);
           }
         }
         @else if $type-kind == 'active' {
           &:active,
           &.active {
-            @include _civictheme-button-print-rules($type-kind-values);
+            @include _ct-button-print-rules($type-kind-values);
           }
         }
         @else if $type-kind == 'focus' {
@@ -279,7 +279,7 @@
           &.focus:active,
           &:focus:hover:active,
           &.focus:hover:active {
-            @include _civictheme-button-print-rules($type-kind-values);
+            @include _ct-button-print-rules($type-kind-values);
           }
         }
         @else if $type-kind == 'selected' {
@@ -287,7 +287,7 @@
           &.selected:hover,
           &.selected:active,
           &.selected:hover:active {
-            @include _civictheme-button-print-rules($type-kind-values);
+            @include _ct-button-print-rules($type-kind-values);
           }
         }
       }
@@ -295,31 +295,31 @@
   }
 }
 
-@mixin civictheme-button-size($size, $with-padding: true) {
+@mixin ct-button-size($size, $with-padding: true) {
   // stylelint-disable-next-line scss/dollar-variable-pattern
   $sizes: ('large', 'regular', 'small');
 
   @if $size == 'large' {
-    @include civictheme-typography('label-extra-large');
+    @include ct-typography('label-extra-large');
 
     @if $with-padding {
-      padding: civictheme-space(2) civictheme-space(5);
+      padding: ct-spacing(2) ct-spacing(5);
     }
   }
   @else if $size == 'regular' {
-    @include civictheme-typography('label-regular');
+    @include ct-typography('label-regular');
 
     @if $with-padding {
-      padding: civictheme-space(2) civictheme-space(5);
+      padding: ct-spacing(2) ct-spacing(5);
     }
   }
   @else if $size == 'small' {
-    @include civictheme-typography('label-small');
+    @include ct-typography('label-small');
 
-    border-width: math.div($civictheme-button-border-width, 2);
+    border-width: math.div($ct-button-border-width, 2);
 
     @if $with-padding {
-      padding: civictheme-space() civictheme-space(3);
+      padding: ct-spacing() ct-spacing(3);
     }
   }
   @else {
@@ -327,7 +327,7 @@
   }
 }
 
-@mixin _civictheme-button-print-rules($rules) {
+@mixin _ct-button-print-rules($rules) {
   $map: (
     'background-color',
     'border-color',
@@ -352,26 +352,26 @@
 // Classes.
 //
 
-.civictheme-button {
+.ct-button {
   $root: &;
 
   cursor: pointer;
-  border: $civictheme-button-border-width solid transparent;
-  border-radius: $civictheme-button-border-radius;
+  border: $ct-button-border-width solid transparent;
+  border-radius: $ct-button-border-radius;
 
-  @include civictheme-button-size('regular');
+  @include ct-button-size('regular');
 
   &--primary {
-    @include civictheme-button-type('primary');
+    @include ct-button-type('primary');
   }
 
   &--secondary {
-    @include civictheme-button-type('secondary');
+    @include ct-button-type('secondary');
   }
 
   // Type.
   &--tertiary {
-    @include civictheme-button-type('tertiary');
+    @include ct-button-type('tertiary');
 
     &:focus,
     &:hover,
@@ -380,33 +380,33 @@
     }
 
     &--large {
-      @include civictheme-button-size('large', false);
+      @include ct-button-size('large', false);
 
       &__dismiss {
-        margin-left: civictheme-space(3);
+        margin-left: ct-spacing(3);
       }
     }
 
     &--regular {
-      @include civictheme-button-size('regular', false);
+      @include ct-button-size('regular', false);
 
       &__dismiss {
-        margin-left: civictheme-space(3);
+        margin-left: ct-spacing(3);
       }
     }
 
     &--small {
-      @include civictheme-button-size('small', false);
+      @include ct-button-size('small', false);
 
       &__dismiss {
-        margin-left: civictheme-space(2);
+        margin-left: ct-spacing(2);
       }
     }
   }
 
   // Size.
   &--large {
-    @include civictheme-button-size('large');
+    @include ct-button-size('large');
 
     &#{$root}--tertiary {
       padding: 0;
@@ -414,7 +414,7 @@
   }
 
   &--regular {
-    @include civictheme-button-size('regular');
+    @include ct-button-size('regular');
 
     &#{$root}--tertiary {
       padding: 0;
@@ -422,7 +422,7 @@
   }
 
   &--small {
-    @include civictheme-button-size('small');
+    @include ct-button-size('small');
 
     &#{$root}--tertiary {
       padding: 0;

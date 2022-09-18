@@ -12,14 +12,14 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if items is not empty %}
-  <div class="civictheme-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
     {% if title is not empty %}
       {% block title %}
-        <div class="civictheme-navigation__title">
+        <div class="ct-navigation__title">
           {{ title }}
         </div>
       {% endblock %}
@@ -28,7 +28,7 @@
     {% include '@base/menu/menu.twig' with {
       theme: theme,
       items: items,
-      modifier_class: 'civictheme-navigation__menu',
+      modifier_class: 'ct-navigation__menu',
     } only %}
 
   </div>

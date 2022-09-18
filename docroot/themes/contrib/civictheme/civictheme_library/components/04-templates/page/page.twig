@@ -12,7 +12,7 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 <div class="{{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>

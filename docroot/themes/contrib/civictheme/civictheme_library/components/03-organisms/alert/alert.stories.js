@@ -87,7 +87,7 @@ export const AlertApi = () => {
   }
 
   button('Clear cookie', () => {
-    document.cookie = 'civictheme-alert-hide=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'ct-alert-hide=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   });
 
   let docs = '';
@@ -96,5 +96,5 @@ export const AlertApi = () => {
   docs += 'Dismissed alerts will be revealed if their content was updated. Change payload to "Updated" to see dismissed alerts appear again.<br/><br/>';
   docs += 'Press "Clear cookie" button to clear alert dismissal settings.';
 
-  return `<div data-component-name="civictheme-alerts" data-alert-endpoint="${endpoint}" data-test-path="/"></div><div class="docs-container docs-container--large"><div class="docs-container__content">${docs}</div></div>`;
+  return `<div data-component-name="ct-alerts" data-alert-endpoint="${endpoint}" data-test-path="/"></div><div class="docs-container docs-container--large"><div class="docs-container__content">${docs}</div></div>`;
 };

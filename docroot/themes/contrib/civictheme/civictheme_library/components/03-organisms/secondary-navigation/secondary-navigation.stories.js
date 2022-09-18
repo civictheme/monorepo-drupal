@@ -4,7 +4,7 @@ import CivicThemeSecondaryNavigation from './secondary-navigation.twig';
 import getMenuLinks from '../../00-base/menu/menu.utils';
 
 export default {
-  title: 'Organisms/Navigation/Secondary Navigation',
+  title: 'Organisms/Secondary Navigation',
   parameters: {
     layout: 'centered',
   },

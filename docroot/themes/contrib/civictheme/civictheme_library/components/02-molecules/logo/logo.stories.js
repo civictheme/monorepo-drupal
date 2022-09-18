@@ -28,7 +28,7 @@ export const Logo = (knobTab) => {
     url: text('Link', randomUrl(), generalKnobTab),
     title: text('Title', 'Logo title', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: `civictheme-logo-example story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
+    modifier_class: `ct-logo-example story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
   };
 
   generalKnobs.logos = generalKnobs.with_secondary_image ? {

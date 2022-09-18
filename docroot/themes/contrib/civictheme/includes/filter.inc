@@ -15,10 +15,10 @@ function _civictheme_theme_suggestions__civictheme_filter(array &$suggestions, a
 
   $type = $type ?? $variables['element']['#type'];
 
-  if (!empty($variables['element']['#civictheme-group-filter'])) {
+  if (!empty($variables['element']['#ct-group-filter'])) {
     $suggestions[] = $type . '__civictheme_dropdown_filter';
   }
-  elseif (!empty($variables['element']['#civictheme-single-filter'])) {
+  elseif (!empty($variables['element']['#ct-single-filter'])) {
     $suggestions[] = $type . '__civictheme_single_filter';
   }
 }
@@ -30,7 +30,7 @@ function _civictheme_theme_suggestions__civictheme_single_filter(array &$suggest
   // For civictheme basic filter both radios / checkboxes and checkbox / radio
   // require custom templates.
   if (in_array($variables['element']['#type'], ['radio', 'checkbox'])
-    && isset($variables['element']['#attributes']['#civictheme-single-filter'])) {
+    && isset($variables['element']['#attributes']['#ct-single-filter'])) {
     $suggestions[] = 'form_element__civictheme_filter_chip';
   }
 }

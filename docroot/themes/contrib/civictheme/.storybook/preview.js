@@ -27,7 +27,7 @@ export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   options: {
     storySort: {
-      order: ['Base', ['*', 'Collapsible', 'Responsive'], '*'],
+      order: ['Base', ['Colors', '*', 'Collapsible', 'Responsive'], '*'],
     },
   },
   backgrounds: {

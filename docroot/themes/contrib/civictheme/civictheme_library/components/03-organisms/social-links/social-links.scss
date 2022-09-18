@@ -2,52 +2,52 @@
 // Social Links component.
 //
 
-.civictheme-social-links {
+.ct-social-links {
   display: flex;
 
   &__item {
-    margin-right: civictheme-space(2);
+    margin-right: ct-spacing(2);
 
     &:last-child {
       margin-right: 0;
     }
   }
 
-  .civictheme-button--link {
+  .ct-button--link {
     border: 1px solid transparent;
-    padding: civictheme-space(1.375);
+    padding: ct-spacing(1.375);
     display: block;
 
-    @include civictheme-breakpoint('m') {
-      padding: civictheme-space(1.625);
+    @include ct-breakpoint('m') {
+      padding: ct-spacing(1.625);
     }
 
-    .civictheme-button__icon {
+    .ct-button__icon {
       display: block;
     }
 
-    .civictheme-icon {
+    .ct-icon {
       fill: currentcolor;
       display: block;
     }
   }
 
   &--with-border {
-    .civictheme-button--link {
+    .ct-button--link {
       border: 1px solid currentcolor;
       border-radius: rem(100px);
     }
   }
 
-  &.civictheme-theme-light {
-    .civictheme-button--link {
-      @include civictheme-link-colors($civictheme-social-links-light-color, $civictheme-social-links-light-hover-color, $civictheme-social-links-light-visited-color, $civictheme-social-links-light-active-color, $civictheme-social-links-light-focus-color);
+  &.ct-theme-light {
+    .ct-button--link {
+      @include ct-link-colors($ct-social-links-light-color, $ct-social-links-light-hover-color, $ct-social-links-light-visited-color, $ct-social-links-light-active-color, $ct-social-links-light-focus-color);
     }
   }
 
-  &.civictheme-theme-dark {
-    .civictheme-button--link {
-      @include civictheme-link-colors($civictheme-social-links-dark-color, $civictheme-social-links-dark-hover-color, $civictheme-social-links-dark-visited-color, $civictheme-social-links-dark-active-color, $civictheme-social-links-dark-focus-color);
+  &.ct-theme-dark {
+    .ct-button--link {
+      @include ct-link-colors($ct-social-links-dark-color, $ct-social-links-dark-hover-color, $ct-social-links-dark-visited-color, $ct-social-links-dark-active-color, $ct-social-links-dark-focus-color);
     }
   }
 }

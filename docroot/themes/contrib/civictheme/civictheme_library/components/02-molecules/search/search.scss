@@ -2,63 +2,63 @@
 // Search component.
 //
 
-.civictheme-search {
+.ct-search {
   $root: &;
 
-  @include civictheme-print-hide();
+  @include ct-print-hide();
 
-  padding: civictheme-space(2) 0;
+  padding: ct-spacing(2) 0;
 
   &__link {
-    @include civictheme-typography('label-regular');
+    @include ct-typography('label-regular');
 
     // Make button appear as a Primary Navigation item.
-    // @see civictheme-primary-navigation.scss
+    // @see ct-primary-navigation.scss
     display: flex;
     align-items: center;
     text-decoration: none;
-    padding: civictheme-space(2);
+    padding: ct-spacing(2);
     border-bottom: solid 4px;
 
-    .civictheme-button__icon {
-      margin-left: civictheme-space(0.5);
+    .ct-button__icon {
+      margin-left: ct-spacing(0.5);
 
-      .civictheme-icon {
+      .ct-icon {
         vertical-align: middle;
       }
     }
   }
 
-  &.civictheme-theme-light {
+  &.ct-theme-light {
     #{$root}__link {
-      color: $civictheme-search-light-color;
-      border-bottom-color: $civictheme-search-light-menu-item-border-color;
+      color: $ct-search-light-color;
+      border-bottom-color: $ct-search-light-menu-item-border-color;
 
       &:hover {
-        color: $civictheme-search-light-hover-color;
-        border-bottom-color: $civictheme-search-light-menu-item-hover-border-color;
+        color: $ct-search-light-hover-color;
+        border-bottom-color: $ct-search-light-menu-item-hover-border-color;
       }
 
       &:active {
-        color: $civictheme-search-light-active-color;
-        border-bottom-color: $civictheme-search-light-menu-item-active-border-color;
+        color: $ct-search-light-active-color;
+        border-bottom-color: $ct-search-light-menu-item-active-border-color;
       }
     }
   }
 
-  &.civictheme-theme-dark {
+  &.ct-theme-dark {
     #{$root}__link {
-      color: $civictheme-search-dark-color;
-      border-bottom-color: $civictheme-search-dark-menu-item-border-color;
+      color: $ct-search-dark-color;
+      border-bottom-color: $ct-search-dark-menu-item-border-color;
 
       &:hover {
-        color: $civictheme-search-dark-hover-color;
-        border-bottom-color: $civictheme-search-dark-menu-item-hover-border-color;
+        color: $ct-search-dark-hover-color;
+        border-bottom-color: $ct-search-dark-menu-item-hover-border-color;
       }
 
       &:active {
-        color: $civictheme-search-dark-active-color;
-        border-bottom-color: $civictheme-search-dark-menu-item-active-border-color;
+        color: $ct-search-dark-active-color;
+        border-bottom-color: $ct-search-dark-menu-item-active-border-color;
       }
     }
   }

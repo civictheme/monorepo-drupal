@@ -19,46 +19,46 @@ per-component colours (level 3).
 CivicTheme provides default colours and colour variants that can be _extended_
 and/or _replaced_ as needed.
 
-CivicTheme default colours are set in `$civictheme-default-colors` located in
+CivicTheme default colours are set in `$ct-default-colors` located in
 [_variables.base.scss](../components/00-base/_variables.base.scss)
 
 ```scss
-$civictheme-default-colors: (
+$ct-default-colors: (
   'primary': #00698F,
   'secondary': #61DAFF,
   // ...
 );
 ```
 
-These colours can be overridden or extended via `$civictheme-colors` variable:
+These colours can be overridden or extended via `$ct-colors` variable:
 
 ```scss
-$civictheme-colors: (
+$ct-colors: (
   'primary': red,
   'secondary': green,
   // ...
 );
 ```
 
-CivicTheme default colourvariants are set in `$civictheme-colors-variants-default`
+CivicTheme default colourvariants are set in `$ct-colors-variants-default`
 located in [_variables.base.scss](../components/00-base/_variables.base.scss).
 Note that colour variants have defaults set to tints, shades and tones of the
 standard colours.
 
 ```scss
 // Default CivicTheme colors palette.
-$civictheme-colors-variants-default: (
-  'primary-variant1': civictheme-color-tint(90, civictheme-color('primary')),
-  'primary-variant2': civictheme-color-shade(15, civictheme-color('primary')),
+$ct-colors-variants-default: (
+  'primary-variant1': ct-color-tint(90, ct-color('primary')),
+  'primary-variant2': ct-color-shade(15, ct-color('primary')),
   // ...
 );
 ```
 
-These colour variants can be overridden or extended via `$civictheme-colors-variants`
+These colour variants can be overridden or extended via `$ct-colors-variants`
 variable:
 
 ```scss
-$civictheme-colors-variants: (
+$ct-colors-variants: (
   // Override palette colors variant.
   'primary-variant1': lime,
   // Define custom colors variant.
@@ -70,9 +70,9 @@ Standard colours and colour variants are mapped to component element colours:
 
 ```scss
 // Using a third primary variant colour for Card heading color.
-$civictheme-promo-card-light-heading-color: civictheme-color('primary', 3) !default;
+$ct-promo-card-light-heading-color: ct-color('primary', 3) !default;
 
-.civictheme-card__heading {
-  color: $civictheme-promo-card-light-heading-color;
+.ct-card__heading {
+  color: $ct-promo-card-light-heading-color;
 }
 ```

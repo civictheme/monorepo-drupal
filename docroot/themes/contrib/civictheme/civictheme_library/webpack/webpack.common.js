@@ -46,12 +46,12 @@ module.exports = {
     },
   },
   output: {
-    filename: (pathData) => (pathData.chunk.name === 'main' ? 'civictheme.js' : 'civictheme-[name].js'),
+    filename: (pathData) => (pathData.chunk.name === 'main' ? 'ct.js' : 'civictheme-[name].js'),
     path: path.resolve(__dirname, '../dist'),
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: ({ chunk }) => (chunk.name === 'main' ? 'civictheme.css' : `civictheme.${chunk.name}.css`),
+      filename: ({ chunk }) => (chunk.name === 'main' ? 'ct.css' : `civictheme.${chunk.name}.css`),
     }),
     new CleanWebpackPlugin({
       dry: false,
@@ -88,7 +88,7 @@ module.exports = {
             options: {
               // Inject path to assets so that it does not have to be provided
               // in variables.base.scss
-              additionalData: "$civictheme-assets-directory: './assets/';",
+              additionalData: "$ct-assets-directory: './assets/';",
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),

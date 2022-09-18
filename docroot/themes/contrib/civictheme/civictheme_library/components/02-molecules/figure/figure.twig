@@ -15,11 +15,11 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if src is not empty %}
-  <figure class="civictheme-figure {{ modifier_class }}">
+  <figure class="ct-figure {{ modifier_class }}">
     {% include '@atoms/image/image.twig' with {
       theme: theme,
       src: src,
@@ -29,7 +29,7 @@
     } %}
 
     {% if caption is not empty %}
-      <figcaption class="civictheme-figure__caption">
+      <figcaption class="ct-figure__caption">
         {% include '@base/icon/icon.twig' with {
           symbol: 'multimedia_image_3',
           color: 'neutral_60',

@@ -2,20 +2,20 @@
 // Skip Link component.
 //
 
-.civictheme-skip-link {
+.ct-skip-link {
   $root: &;
 
   &__link {
     display: inline-block;
-    margin: civictheme-space(2) civictheme-space(3);
-    padding: civictheme-space();
+    margin: ct-spacing(2) ct-spacing(3);
+    padding: ct-spacing();
   }
 
-  &.civictheme-theme-light {
-    background-color: $civictheme-skip-link-light-background-color;
+  &.ct-theme-light {
+    background-color: $ct-skip-link-light-background-color;
   }
 
-  &.civictheme-theme-dark {
-    background-color: $civictheme-skip-link-dark-background-color;
+  &.ct-theme-dark {
+    background-color: $ct-skip-link-dark-background-color;
   }
 }

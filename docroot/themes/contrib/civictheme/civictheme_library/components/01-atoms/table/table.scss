@@ -2,16 +2,16 @@
 // Table component.
 //
 
-.civictheme-table {
+.ct-table {
   $root: &;
 
-  @include civictheme-table();
+  @include ct-table();
 
-  &.civictheme-theme-light {
-    @include civictheme-table-light();
+  &.ct-theme-light {
+    @include ct-table-light();
   }
 
-  &.civictheme-theme-dark {
-    @include civictheme-table-dark();
+  &.ct-theme-dark {
+    @include ct-table-dark();
   }
 }

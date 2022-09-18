@@ -2,7 +2,7 @@
 // Table mixins.
 //
 
-@mixin civictheme-table() {
+@mixin ct-table() {
   $root: &;
 
   width: 100%;
@@ -12,12 +12,12 @@
   text-align: left;
   vertical-align: middle;
 
-  @include civictheme-typography('text-regular');
+  @include ct-typography('text-regular');
 
-  @include civictheme-breakpoint-upto($civictheme-table-breakpoint) {
+  @include ct-breakpoint-upto($ct-table-breakpoint) {
     thead,
     tfoot {
-      @include civictheme-visually-hidden();
+      @include ct-visually-hidden();
     }
 
     tbody {
@@ -53,12 +53,12 @@
             display: table-cell;
             height: 100%;
             width: 30%;
-            max-width: civictheme-space(12);
+            max-width: ct-spacing(12);
             flex-shrink: 0;
             vertical-align: middle;
-            padding-right: civictheme-space(2);
+            padding-right: ct-spacing(2);
 
-            @include civictheme-typography('label-regular');
+            @include ct-typography('label-regular');
           }
         }
       }
@@ -67,28 +67,28 @@
 
   thead,
   tfoot {
-    @include civictheme-typography('label-regular');
+    @include ct-typography('label-regular');
   }
 
   tr {
     th,
     td {
-      padding: civictheme-space(1.5) civictheme-space();
+      padding: ct-spacing(1.5) ct-spacing();
 
-      @include civictheme-breakpoint($civictheme-table-breakpoint) {
-        padding: civictheme-space(1.5) civictheme-space(3);
+      @include ct-breakpoint($ct-table-breakpoint) {
+        padding: ct-spacing(1.5) ct-spacing(3);
       }
     }
   }
 
   caption {
     text-align: left;
-    padding: civictheme-space(1.5) 0;
+    padding: ct-spacing(1.5) 0;
 
-    @include civictheme-typography('label-large');
+    @include ct-typography('label-large');
 
-    @include civictheme-breakpoint($civictheme-table-breakpoint) {
-      padding: civictheme-space(1.5) 0;
+    @include ct-breakpoint($ct-table-breakpoint) {
+      padding: ct-spacing(1.5) 0;
     }
   }
 
@@ -96,131 +96,131 @@
     caption-side: bottom;
 
     caption {
-      @include civictheme-typography('text-regular');
+      @include ct-typography('text-regular');
     }
   }
 }
 
-@mixin civictheme-table-light() {
-  color: $civictheme-table-light-color;
-  background-color: $civictheme-table-light-background-color;
+@mixin ct-table-light() {
+  color: $ct-table-light-color;
+  background-color: $ct-table-light-background-color;
 
   thead {
-    color: $civictheme-table-light-header-color;
+    color: $ct-table-light-header-color;
 
-    @include civictheme-breakpoint($civictheme-table-breakpoint) {
-      border-bottom: solid 1px $civictheme-table-light-header-border-color;
+    @include ct-breakpoint($ct-table-breakpoint) {
+      border-bottom: solid 1px $ct-table-light-header-border-color;
     }
 
     tr {
       &:last-child {
-        border-bottom: solid 2px $civictheme-table-light-header-border-color;
+        border-bottom: solid 2px $ct-table-light-header-border-color;
       }
     }
   }
 
   tfoot {
-    color: $civictheme-table-light-footer-color;
+    color: $ct-table-light-footer-color;
 
-    @include civictheme-breakpoint($civictheme-table-breakpoint) {
-      border-top: solid 1px $civictheme-table-light-footer-border-color;
+    @include ct-breakpoint($ct-table-breakpoint) {
+      border-top: solid 1px $ct-table-light-footer-border-color;
     }
 
     tr {
       &:last-child {
-        border-top: solid 2px $civictheme-table-light-footer-border-color;
+        border-top: solid 2px $ct-table-light-footer-border-color;
       }
     }
   }
 
   tbody {
     tr {
-      border-bottom: solid 1px $civictheme-table-light-border-color;
+      border-bottom: solid 1px $ct-table-light-border-color;
     }
   }
 
   caption {
-    color: $civictheme-table-light-caption-color;
+    color: $ct-table-light-caption-color;
   }
 
-  &.civictheme-table--striped {
+  &.ct-table--striped {
     tbody {
       tr:nth-child(odd) {
-        background: $civictheme-table-light-row-odd-background-color;
+        background: $ct-table-light-row-odd-background-color;
 
         td {
-          color: $civictheme-table-light-row-odd-color;
+          color: $ct-table-light-row-odd-color;
         }
       }
 
       tr:nth-child(even) {
-        background: $civictheme-table-light-row-even-background-color;
+        background: $ct-table-light-row-even-background-color;
 
         td {
-          color: $civictheme-table-light-row-even-color;
+          color: $ct-table-light-row-even-color;
         }
       }
     }
   }
 }
 
-@mixin civictheme-table-dark() {
-  color: $civictheme-table-dark-color;
-  background-color: $civictheme-table-dark-background-color;
+@mixin ct-table-dark() {
+  color: $ct-table-dark-color;
+  background-color: $ct-table-dark-background-color;
 
   thead {
-    color: $civictheme-table-dark-header-color;
+    color: $ct-table-dark-header-color;
 
-    @include civictheme-breakpoint($civictheme-table-breakpoint) {
-      border-bottom: solid 1px $civictheme-table-dark-header-border-color;
+    @include ct-breakpoint($ct-table-breakpoint) {
+      border-bottom: solid 1px $ct-table-dark-header-border-color;
     }
 
     tr {
       &:last-child {
-        border-bottom: solid 2px $civictheme-table-dark-header-border-color;
+        border-bottom: solid 2px $ct-table-dark-header-border-color;
       }
     }
   }
 
   tfoot {
-    color: $civictheme-table-dark-footer-color;
+    color: $ct-table-dark-footer-color;
 
-    @include civictheme-breakpoint($civictheme-table-breakpoint) {
-      border-top: solid 1px $civictheme-table-dark-footer-border-color;
+    @include ct-breakpoint($ct-table-breakpoint) {
+      border-top: solid 1px $ct-table-dark-footer-border-color;
     }
 
     tr {
       &:last-child {
-        border-top: solid 2px $civictheme-table-dark-footer-border-color;
+        border-top: solid 2px $ct-table-dark-footer-border-color;
       }
     }
   }
 
   tbody {
     tr {
-      border-bottom: solid 1px $civictheme-table-dark-border-color;
+      border-bottom: solid 1px $ct-table-dark-border-color;
     }
   }
 
   caption {
-    color: $civictheme-table-dark-caption-color;
+    color: $ct-table-dark-caption-color;
   }
 
-  &.civictheme-table--striped {
+  &.ct-table--striped {
     tbody {
       tr:nth-child(odd) {
-        background: $civictheme-table-dark-row-odd-background-color;
+        background: $ct-table-dark-row-odd-background-color;
 
         td {
-          color: $civictheme-table-dark-row-odd-color;
+          color: $ct-table-dark-row-odd-color;
         }
       }
 
       tr:nth-child(even) {
-        background: $civictheme-table-dark-row-even-background-color;
+        background: $ct-table-dark-row-even-background-color;
 
         td {
-          color: $civictheme-table-dark-row-even-color;
+          color: $ct-table-dark-row-even-color;
         }
       }
     }

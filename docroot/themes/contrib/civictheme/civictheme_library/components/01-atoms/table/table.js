@@ -3,7 +3,7 @@
  * @file
  * Table component.
  */
-function CivicTable(el) {
+function CivicThemeTable(el) {
   if (!el) {
     return;
   }
@@ -14,7 +14,7 @@ function CivicTable(el) {
 }
 
 // eslint-disable-next-line func-names
-CivicTable.prototype.init = function () {
+CivicThemeTable.prototype.init = function () {
   if (this.el.getAttribute('data-table') === 'true') {
     return;
   }
@@ -26,15 +26,15 @@ CivicTable.prototype.init = function () {
 
 // Add data-title attributes to cells for display on mobile.
 // TODO: Add titles to cells in rows with row-scoped th cells.
-// CivicTable.prototype.addRowScopedTitles.
+// CivicThemeTable.prototype.addRowScopedTitles.
 // TODO: Add titles to cells in columns with col-scoped th cells.
-// CivicTable.prototype.addColScopedTitles.
-CivicTable.prototype.addTitles = function () {
+// CivicThemeTable.prototype.addColScopedTitles.
+CivicThemeTable.prototype.addTitles = function () {
   this.addTheadColumnTitles();
 };
 
 // eslint-disable-next-line func-names
-CivicTable.prototype.addTheadColumnTitles = function () {
+CivicThemeTable.prototype.addTheadColumnTitles = function () {
   // Determine whether column titles can be added via thead.
   const theadRows = this.el.querySelectorAll('thead tr');
   const tbodyRows = this.el.querySelectorAll('tbody tr');
@@ -54,7 +54,7 @@ CivicTable.prototype.addTheadColumnTitles = function () {
   });
 };
 
-document.querySelectorAll('.civictheme-basic-content table, .civictheme-table').forEach((table) => {
+document.querySelectorAll('.ct-basic-content table, .ct-table').forEach((table) => {
   // eslint-disable-next-line no-new
-  new CivicTable(table);
+  new CivicThemeTable(table);
 });

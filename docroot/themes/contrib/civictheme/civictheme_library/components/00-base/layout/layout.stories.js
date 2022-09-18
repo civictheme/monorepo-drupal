@@ -4,7 +4,7 @@ import CivicThemeLayout from './layout.twig';
 import CivicThemeLayoutSingleColumn from './content-layout--single-column.twig';
 import CivicThemeLayoutSingleColumnContained
   from './content-layout--single-column-contained.twig';
-import { getSlots, randomText } from '../base.stories';
+import { getSlots, placeholder } from '../base.stories';
 
 export default {
   title: 'Base/Layout',
@@ -26,8 +26,8 @@ export const Layout = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    content: boolean('Show content', true, generalKnobTab) ? `<strong>Content text</strong> ${randomText(30)}` : '',
-    sidebar: boolean('Show sidebar', false, generalKnobTab) ? `<strong>Sidebar text</strong> ${randomText(20)}` : '',
+    content: boolean('Show content', true, generalKnobTab) ? placeholder('Content placeholder') : '',
+    sidebar: boolean('Show sidebar', false, generalKnobTab) ? placeholder('Sidebar placeholder') : '',
     is_contained: boolean('Is contained', false, generalKnobTab),
     layout: radios(
       'Layout',

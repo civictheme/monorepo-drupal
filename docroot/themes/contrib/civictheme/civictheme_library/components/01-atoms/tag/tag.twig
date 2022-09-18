@@ -17,13 +17,13 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set type = type in ['primary', 'secondary', 'tertiary'] ? type : 'primary' %}
-{% set type_class = 'civictheme-tag--%s'|format(type) %}
-{% set icon_class = icon is not empty ? 'civictheme-tag--with-icon' : '' %}
-{% set icon_placement_class = icon ? 'civictheme-tag--icon-%s'|format(icon_placement|default('before')) : '' %}
+{% set type_class = 'ct-tag--%s'|format(type) %}
+{% set icon_class = icon is not empty ? 'ct-tag--with-icon' : '' %}
+{% set icon_placement_class = icon ? 'ct-tag--icon-%s'|format(icon_placement|default('before')) : '' %}
 {% set icon_size = icon_size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? icon_size : 'small' %}
-{% set is_external = is_external ? 'civictheme-tag--external civictheme-icon--upper-right-arrow--after--' ~ icon_size : '' %}
+{% set is_external = is_external ? 'ct-tag--external ct-icon--upper-right-arrow--after--' ~ icon_size : '' %}
 {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, type_class, icon_class, icon_placement_class, is_external, modifier_class|default('')) %}
 
 {% set tag = url is not empty ? 'a' : 'span' %}
@@ -43,13 +43,13 @@
 
 {% if is_new_window %}
   {% set text %}
-    {{ text }}<span class="civictheme-visually-hidden">Opens in a new tab/window</span>
+    {{ text }}<span class="ct-visually-hidden">Opens in a new tab/window</span>
   {% endset %}
 {% endif %}
 
 {% if text|trim is not empty %}
   <{{ tag }}
-    class="civictheme-tag {{ modifier_class }}"
+    class="ct-tag {{ modifier_class }}"
     {% if url is not empty %}
       href="{{ url }}"
     {% endif%}

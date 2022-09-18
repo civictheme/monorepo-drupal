@@ -15,16 +15,16 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set disabled_class = disabled ? 'civictheme-radio--disabled' : '' %}
-{% set required_class = required ? 'civictheme-radio--required' : '' %}
-{% set error_class = has_error ? 'civictheme-radio--error' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set disabled_class = disabled ? 'ct-radio--disabled' : '' %}
+{% set required_class = required ? 'ct-radio--required' : '' %}
+{% set error_class = has_error ? 'ct-radio--error' : '' %}
 {% set modifier_class = '%s %s %s %s %s'|format(theme_class, disabled_class, required_class, error_class, modifier_class|default('')) %}
 
-<div class="civictheme-radio {{ modifier_class|trim }}">
-  <input class="civictheme-radio__element" type="radio" value="{{ value }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
-  <span class="civictheme-radio__state"></span>
+<div class="ct-radio {{ modifier_class|trim }}">
+  <input class="ct-radio__element" type="radio" value="{{ value }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
+  <span class="ct-radio__state"></span>
   {% if content is not empty %}
-    <label class="civictheme-radio__label{{ disabled ? ' civictheme-radio__label--disabled' }}">{{ content }}</label>
+    <label class="ct-radio__label{{ disabled ? ' ct-radio__label--disabled' }}">{{ content }}</label>
   {% endif %}
 </div>

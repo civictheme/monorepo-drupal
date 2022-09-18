@@ -16,7 +16,7 @@ function _civictheme_preprocess_block__content(&$variables) {
   switch ($variables['elements']['#configuration']['label']) {
     case 'Copyright':
       $variables['attributes']['class'][] = 'copyright';
-      $variables['attributes']['class'][] = 'civictheme-text-regular';
+      $variables['attributes']['class'][] = 'ct-text-regular';
       break;
   }
 }

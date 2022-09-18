@@ -7,11 +7,11 @@
 //
 // Convert a pixel value into a rem value.
 //
-// Exception case where we are not prefixing a function with `civictheme-` for brevity.
+// Exception case where we are not prefixing a function with `ct-` for brevity.
 //
 @function rem($pxval, $base: null) {
   @if $base == null {
-    $base: $civictheme-font-base-size;
+    $base: $ct-font-base-size;
   }
 
   $pxbase: $base;

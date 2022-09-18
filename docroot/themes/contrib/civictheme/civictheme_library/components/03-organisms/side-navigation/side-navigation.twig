@@ -13,15 +13,15 @@
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-map--vertical-space-%s'|format(vertical_space) : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-map--vertical-space-%s'|format(vertical_space) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if items is not empty %}
-  <div class="civictheme-side-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-side-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
     {% if title %}
       {% block title %}
-        <div class="civictheme-side-navigation__title">
+        <div class="ct-side-navigation__title">
           {{ title }}
         </div>
       {% endblock %}
@@ -29,7 +29,7 @@
     {% include '@base/menu/menu.twig' with {
       theme: theme,
       items: items,
-      modifier_class: 'civictheme-side-navigation__menu',
+      modifier_class: 'ct-side-navigation__menu',
       is_collapsible: true,
     } only %}
   </div>

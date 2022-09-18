@@ -13,12 +13,12 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set size_class = 'civictheme-paragraph--%s'|format(size|default('regular')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set size_class = 'ct-paragraph--%s'|format(size|default('regular')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
 
 {% if content is not empty -%}
-  <div class="civictheme-paragraph {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-paragraph {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% if allow_html %}
       {{ content }}
     {% else %}
