@@ -19,6 +19,7 @@ require_once 'includes/breadcrumb.inc';
 require_once 'includes/callout.inc';
 require_once 'includes/card_container.inc';
 require_once 'includes/event_card.inc';
+require_once 'includes/manual_list.inc';
 require_once 'includes/navigation_card.inc';
 require_once 'includes/promo_card.inc';
 require_once 'includes/subject_card.inc';

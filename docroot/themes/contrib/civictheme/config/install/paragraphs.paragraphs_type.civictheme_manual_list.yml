@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: civictheme_card_container
-label: 'Card container'
+id: civictheme_manual_list
+label: 'Manual List'
 icon_uuid: null
 icon_default: null
 description: ''

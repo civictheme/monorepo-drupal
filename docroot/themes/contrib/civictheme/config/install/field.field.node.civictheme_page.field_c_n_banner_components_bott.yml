@@ -7,7 +7,6 @@ dependencies:
     - paragraphs.paragraphs_type.civictheme_accordion
     - paragraphs.paragraphs_type.civictheme_automated_list
     - paragraphs.paragraphs_type.civictheme_callout
-    - paragraphs.paragraphs_type.civictheme_card_container
     - paragraphs.paragraphs_type.civictheme_content
     - paragraphs.paragraphs_type.civictheme_iframe
     - paragraphs.paragraphs_type.civictheme_map
@@ -33,7 +32,6 @@ settings:
       civictheme_content: civictheme_content
       civictheme_accordion: civictheme_accordion
       civictheme_callout: civictheme_callout
-      civictheme_card_container: civictheme_card_container
       civictheme_iframe: civictheme_iframe
       civictheme_automated_list: civictheme_automated_list
       civictheme_map: civictheme_map
@@ -51,6 +49,9 @@ settings:
       civictheme_attachment:
         weight: -48
         enabled: false
+      civictheme_automated_list:
+        weight: -54
+        enabled: true
       civictheme_callout:
         weight: -57
         enabled: true
@@ -68,9 +69,6 @@ settings:
         enabled: false
       civictheme_iframe:
         weight: -55
-        enabled: true
-      civictheme_automated_list:
-        weight: -54
         enabled: true
       civictheme_map:
         weight: -53
