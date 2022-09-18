@@ -2,19 +2,19 @@
 // Field description component.
 //
 
-.civictheme-field-description {
+.ct-field-description {
   $root: &;
 
   display: block;
-  margin-bottom: civictheme-space();
+  margin-bottom: ct-space();
 
-  @include civictheme-typography('text-regular');
+  @include ct-typography('text-regular');
 
-  &.civictheme-theme-light {
-    color: $civictheme-field-description-light-color;
+  &.ct-theme-light {
+    color: $ct-field-description-light-color;
   }
 
-  &.civictheme-theme-dark {
-    color: $civictheme-field-description-dark-color;
+  &.ct-theme-dark {
+    color: $ct-field-description-dark-color;
   }
 }

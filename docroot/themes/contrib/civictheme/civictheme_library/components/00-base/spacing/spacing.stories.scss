@@ -11,17 +11,17 @@
   div {
     position: relative;
     width: 100%;
-    min-height: civictheme-space();
+    min-height: ct-space();
     box-sizing: border-box;
   }
 
   $spaces: ();
 
   @for $index from 1 through 11 {
-    $spaces: list.append($spaces, civictheme-space($index));
+    $spaces: list.append($spaces, ct-space($index));
   }
 
-  @include civictheme-generate-class-variations-from-map($spaces, 'story-space') using($name, $value, $index) {
+  @include ct-generate-class-variations-from-map($spaces, 'story-space') using($name, $value, $index) {
     padding: $value 0 0 $value;
 
     $transparency: if($index % 2 == 0, 25%, 50%);

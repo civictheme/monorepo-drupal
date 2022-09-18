@@ -4,28 +4,28 @@
 
 @use 'sass:map';
 
-.civictheme-paragraph {
+.ct-paragraph {
   $root: &;
   $sizes: ( 'extra-large', 'large', 'regular', 'small' );
 
   display: block;
-  margin-bottom: civictheme-space();
+  margin-bottom: ct-space();
 
-  @include civictheme-content();
+  @include ct-content();
 
   @each $size in $sizes {
-    &.civictheme-paragraph--#{$size} {
-      @if map.get(_civictheme-typography-all(), 'text-#{$size}') != null {
-        @include civictheme-typography('text-#{$size}');
+    &.ct-paragraph--#{$size} {
+      @if map.get(_ct-typography-all(), 'text-#{$size}') != null {
+        @include ct-typography('text-#{$size}');
       }
     }
   }
 
-  &.civictheme-theme-light {
-    @include civictheme-content-light();
+  &.ct-theme-light {
+    @include ct-content-light();
   }
 
-  &.civictheme-theme-dark {
-    @include civictheme-content-dark();
+  &.ct-theme-dark {
+    @include ct-content-dark();
   }
 }

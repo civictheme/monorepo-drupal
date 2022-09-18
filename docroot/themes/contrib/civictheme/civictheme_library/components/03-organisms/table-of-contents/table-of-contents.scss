@@ -2,27 +2,27 @@
 // Table of Contents component.
 //
 
-.civictheme-table-of-contents {
+.ct-table-of-contents {
   $root: &;
 
   width: max-content;
-  max-width: $civictheme-table-of-contents-width;
+  max-width: $ct-table-of-contents-width;
 
   &--position-before,
   &--position-prepend {
-    margin-bottom: civictheme-space(4);
+    margin-bottom: ct-space(4);
   }
 
   &--position-after,
   &--position-append {
-    margin-top: civictheme-space(4);
+    margin-top: ct-space(4);
   }
 
   &__title {
-    @include civictheme-typography('heading-4');
+    @include ct-typography('heading-4');
 
     margin-top: 0;
-    margin-bottom: civictheme-space(3);
+    margin-bottom: ct-space(3);
   }
 
   &__links {
@@ -32,11 +32,11 @@
   }
 
   &__link {
-    @include civictheme-typography('text-small');
+    @include ct-typography('text-small');
 
     display: block;
     position: relative;
-    padding: civictheme-space() civictheme-space(2) civictheme-space() civictheme-space(2.5);
+    padding: ct-space() ct-space(2) ct-space() ct-space(2.5);
     border-top-width: 1px;
     border-bottom-width: 0;
     border-style: solid;
@@ -54,7 +54,7 @@
 
     &:active {
       outline: 0 !important;
-      border-radius: 0 $civictheme-table-of-contents-link-active-border-radius $civictheme-table-of-contents-link-active-border-radius 0;
+      border-radius: 0 $ct-table-of-contents-link-active-border-radius $ct-table-of-contents-link-active-border-radius 0;
     }
 
     &:focus {
@@ -70,66 +70,66 @@
     }
   }
 
-  &.civictheme-theme-light {
+  &.ct-theme-light {
     #{$root}__title {
-      color: $civictheme-table-of-contents-light-title-color;
+      color: $ct-table-of-contents-light-title-color;
     }
 
     #{$root}__link {
-      color: $civictheme-table-of-contents-light-link-color;
-      border-color: $civictheme-table-of-contents-light-link-border-color;
-      background-color: $civictheme-table-of-contents-light-link-background-color;
+      color: $ct-table-of-contents-light-link-color;
+      border-color: $ct-table-of-contents-light-link-border-color;
+      background-color: $ct-table-of-contents-light-link-background-color;
 
       &::before {
-        background-color: $civictheme-table-of-contents-light-link-stripe-background-color;
+        background-color: $ct-table-of-contents-light-link-stripe-background-color;
       }
 
       &:hover,
       &:focus,
       &:active {
-        background-color: $civictheme-table-of-contents-light-link-hover-background-color;
-        border-color: $civictheme-table-of-contents-light-link-hover-border-color;
-        color: $civictheme-table-of-contents-light-link-hover-color;
+        background-color: $ct-table-of-contents-light-link-hover-background-color;
+        border-color: $ct-table-of-contents-light-link-hover-border-color;
+        color: $ct-table-of-contents-light-link-hover-color;
 
         &::before {
-          background-color: $civictheme-table-of-contents-light-link-hover-stripe-background-color;
+          background-color: $ct-table-of-contents-light-link-hover-stripe-background-color;
         }
       }
 
       &:focus {
-        @include civictheme-outline();
+        @include ct-outline();
       }
     }
   }
 
-  &.civictheme-theme-dark {
+  &.ct-theme-dark {
     #{$root}__title {
-      color: $civictheme-table-of-contents-dark-title-color;
+      color: $ct-table-of-contents-dark-title-color;
     }
 
     #{$root}__link {
-      color: $civictheme-table-of-contents-dark-link-color;
-      border-color: $civictheme-table-of-contents-dark-link-border-color;
-      background-color: $civictheme-table-of-contents-dark-link-background-color;
+      color: $ct-table-of-contents-dark-link-color;
+      border-color: $ct-table-of-contents-dark-link-border-color;
+      background-color: $ct-table-of-contents-dark-link-background-color;
 
       &::before {
-        background-color: $civictheme-table-of-contents-dark-link-stripe-background-color;
+        background-color: $ct-table-of-contents-dark-link-stripe-background-color;
       }
 
       &:hover,
       &:focus,
       &:active {
-        background-color: $civictheme-table-of-contents-dark-link-hover-background-color;
-        border-color: $civictheme-table-of-contents-dark-link-hover-border-color;
-        color: $civictheme-table-of-contents-dark-link-hover-color;
+        background-color: $ct-table-of-contents-dark-link-hover-background-color;
+        border-color: $ct-table-of-contents-dark-link-hover-border-color;
+        color: $ct-table-of-contents-dark-link-hover-color;
 
         &::before {
-          background-color: $civictheme-table-of-contents-dark-link-hover-stripe-background-color;
+          background-color: $ct-table-of-contents-dark-link-hover-stripe-background-color;
         }
       }
 
       &:focus {
-        @include civictheme-outline();
+        @include ct-outline();
       }
     }
   }

@@ -5,7 +5,7 @@
 //
 // Make element visually hidden but readable by screen readers.
 //
-@mixin civictheme-visually-hidden() {
+@mixin ct-visually-hidden() {
   position: absolute !important;
   clip: rect(1px, 1px, 1px, 1px);
   overflow: hidden;
@@ -13,7 +13,7 @@
   width: 1px;
   word-wrap: normal;
 
-  &.civictheme-focusable {
+  &.ct-focusable {
     &:active,
     &:focus,
     &:hover {

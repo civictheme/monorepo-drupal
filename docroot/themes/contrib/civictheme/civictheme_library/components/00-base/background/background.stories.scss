@@ -3,7 +3,7 @@
 //
 
 .story-background-wrapper {
-  @include civictheme-background();
+  @include ct-background();
 
   position: absolute;
   left: 0;

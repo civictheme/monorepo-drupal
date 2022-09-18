@@ -4,11 +4,11 @@
 
 @import '../mixins/reset';
 
-.civictheme-item-list {
+.ct-item-list {
   $root: &;
 
   #{$root}__list {
-    @include civictheme-reset-box-model();
+    @include ct-reset-box-model();
 
     list-style: none;
   }
@@ -19,7 +19,7 @@
     }
 
     #{$root}__list__item {
-      margin-right: civictheme-space(2);
+      margin-right: ct-space(2);
     }
   }
 
@@ -29,7 +29,7 @@
     }
 
     #{$root}__list__item {
-      margin-bottom: civictheme-space(2);
+      margin-bottom: ct-space(2);
     }
   }
 }

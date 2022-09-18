@@ -2,38 +2,38 @@
 // Basic Content component.
 //
 
-.civictheme-basic-content {
-  @include civictheme-content();
+.ct-basic-content {
+  @include ct-content();
 
-  &.civictheme-content--vertical-space-top {
-    @include civictheme-component-with-vertical-space(top, $civictheme-basic-content-space-vertical);
+  &.ct-content--vertical-space-top {
+    @include ct-component-with-vertical-space(top, $ct-basic-content-space-vertical);
   }
 
-  &.civictheme-content--vertical-space-bottom {
-    @include civictheme-component-with-vertical-space(bottom, $civictheme-basic-content-space-vertical);
+  &.ct-content--vertical-space-bottom {
+    @include ct-component-with-vertical-space(bottom, $ct-basic-content-space-vertical);
   }
 
-  &.civictheme-content--vertical-space-both {
-    @include civictheme-component-with-vertical-space(both, $civictheme-basic-content-space-vertical);
+  &.ct-content--vertical-space-both {
+    @include ct-component-with-vertical-space(both, $ct-basic-content-space-vertical);
   }
 
-  &.civictheme-theme-light {
-    @include civictheme-content-light();
+  &.ct-theme-light {
+    @include ct-content-light();
 
-    &.civictheme-content--with-background {
-      background-color: $civictheme-basic-content-light-wrapper-background-color;
-      padding-left: $civictheme-basic-content-space-horizontal;
-      padding-right: $civictheme-basic-content-space-horizontal;
+    &.ct-content--with-background {
+      background-color: $ct-basic-content-light-wrapper-background-color;
+      padding-left: $ct-basic-content-space-horizontal;
+      padding-right: $ct-basic-content-space-horizontal;
     }
   }
 
-  &.civictheme-theme-dark {
-    @include civictheme-content-dark();
+  &.ct-theme-dark {
+    @include ct-content-dark();
 
-    &.civictheme-content--with-background {
-      background-color: $civictheme-basic-content-dark-wrapper-background-color;
-      padding-left: $civictheme-basic-content-space-horizontal;
-      padding-right: $civictheme-basic-content-space-horizontal;
+    &.ct-content--with-background {
+      background-color: $ct-basic-content-dark-wrapper-background-color;
+      padding-left: $ct-basic-content-space-horizontal;
+      padding-right: $ct-basic-content-space-horizontal;
     }
   }
 }

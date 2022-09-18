@@ -2,7 +2,7 @@
 // Banner component.
 //
 
-.civictheme-banner {
+.ct-banner {
   $root: &;
 
   position: relative;
@@ -12,37 +12,37 @@
   }
 
   #{$root}__wrapper__inner {
-    @include civictheme-background();
+    @include ct-background();
 
-    padding-top: civictheme-space(12);
-    padding-bottom: civictheme-space(15);
+    padding-top: ct-space(12);
+    padding-bottom: ct-space(15);
 
-    @include civictheme-print() {
-      padding-top: civictheme-space(2);
-      padding-bottom: civictheme-space(3);
+    @include ct-print() {
+      padding-top: ct-space(2);
+      padding-bottom: ct-space(3);
     }
   }
 
   &#{$root}--decorative {
     #{$root}__wrapper__inner {
-      clip-path: $civictheme-banner-decorative-mobile-clip-path;
+      clip-path: $ct-banner-decorative-mobile-clip-path;
 
-      @include civictheme-breakpoint(m) {
-        clip-path: $civictheme-banner-decorative-desktop-clip-path;
+      @include ct-breakpoint(m) {
+        clip-path: $ct-banner-decorative-desktop-clip-path;
       }
     }
 
     #{$root}__content-below {
-      margin-top: -(civictheme-space(2));
+      margin-top: -(ct-space(2));
     }
   }
 
   #{$root}__content-below {
-    margin-top: civictheme-space(2);
+    margin-top: ct-space(2);
   }
 
   #{$root}__featured-image {
-    clip-path: $civictheme-banner-featured-image-clip-path;
+    clip-path: $ct-banner-featured-image-clip-path;
     display: none;
     max-width: 50%;
 
@@ -52,11 +52,11 @@
       height: 100%;
     }
 
-    @include civictheme-breakpoint('m') {
+    @include ct-breakpoint('m') {
       display: block;
       position: absolute;
-      bottom: civictheme-space(4);
-      top: civictheme-space(12);
+      bottom: ct-space(4);
+      top: ct-space(12);
       right: 0;
 
       & * {
@@ -65,17 +65,17 @@
     }
   }
 
-  &.civictheme-theme-light {
+  &.ct-theme-light {
     #{$root}__wrapper__inner {
-      background-color: $civictheme-banner-light-background-color;
-      color: $civictheme-banner-light-color;
+      background-color: $ct-banner-light-background-color;
+      color: $ct-banner-light-color;
     }
   }
 
-  &.civictheme-theme-dark {
+  &.ct-theme-dark {
     #{$root}__wrapper__inner {
-      background-color: $civictheme-banner-dark-background-color;
-      color: $civictheme-banner-dark-color;
+      background-color: $ct-banner-dark-background-color;
+      color: $ct-banner-dark-color;
     }
   }
 }

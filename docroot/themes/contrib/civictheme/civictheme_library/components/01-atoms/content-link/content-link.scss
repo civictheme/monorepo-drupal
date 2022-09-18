@@ -5,7 +5,7 @@
 //
 // Mixins.
 //
-@mixin civictheme-content-link-base() {
+@mixin ct-content-link-base() {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
@@ -16,63 +16,63 @@
     padding: 3px 0 4px;
   }
 
-  .civictheme-content-link__link-icon {
+  .ct-content-link__link-icon {
     margin-right: rem(4px);
   }
 
   &,
-  &.civictheme-theme-light {
-    color: $civictheme-content-link-light-color;
+  &.ct-theme-light {
+    color: $ct-content-link-light-color;
 
     &:focus {
-      @include civictheme-outline();
+      @include ct-outline();
     }
 
     &:hover {
-      background-color: $civictheme-content-link-light-hover-background-color;
-      color: $civictheme-content-link-light-hover-color;
+      background-color: $ct-content-link-light-hover-background-color;
+      color: $ct-content-link-light-hover-color;
     }
   }
 
-  &.civictheme-theme-dark {
-    color: $civictheme-content-link-dark-color;
+  &.ct-theme-dark {
+    color: $ct-content-link-dark-color;
 
     &:focus {
-      @include civictheme-outline(true);
+      @include ct-outline(true);
     }
 
     &:hover {
-      background-color: $civictheme-content-link-dark-hover-background-color;
-      color: $civictheme-content-link-dark-hover-color;
+      background-color: $ct-content-link-dark-hover-background-color;
+      color: $ct-content-link-dark-hover-color;
     }
   }
 
   &:visited {
-    @include civictheme-content-link-visited ();
+    @include ct-content-link-visited ();
   }
 }
 
-@mixin civictheme-content-link-visited() {
-  &.civictheme-theme-light {
-    color: $civictheme-content-link-light-visited-color;
+@mixin ct-content-link-visited() {
+  &.ct-theme-light {
+    color: $ct-content-link-light-visited-color;
 
     &:hover {
-      border-color: $civictheme-content-link-light-visited-hover-border-color;
-      color: $civictheme-content-link-light-visited-hover-color;
+      border-color: $ct-content-link-light-visited-hover-border-color;
+      color: $ct-content-link-light-visited-hover-color;
     }
   }
 
-  &.civictheme-theme-dark {
-    color: $civictheme-content-link-dark-visited-color;
+  &.ct-theme-dark {
+    color: $ct-content-link-dark-visited-color;
 
     &:hover {
-      border-color: $civictheme-content-link-dark-visited-hover-border-color;
-      color: $civictheme-content-link-dark-visited-hover-color;
+      border-color: $ct-content-link-dark-visited-hover-border-color;
+      color: $ct-content-link-dark-visited-hover-color;
     }
   }
 }
 
-@mixin civictheme-icon-inline($content) {
+@mixin ct-icon-inline($content) {
   content: $content;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -86,6 +86,6 @@
 // Classes.
 //
 
-.civictheme-content-link {
-  @include civictheme-content-link-base();
+.ct-content-link {
+  @include ct-content-link-base();
 }

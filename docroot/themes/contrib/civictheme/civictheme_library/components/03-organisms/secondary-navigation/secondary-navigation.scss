@@ -2,33 +2,33 @@
 // Secondary Navigation component.
 //
 
-.civictheme-secondary-navigation {
+.ct-secondary-navigation {
   $root: &;
 
-  @include civictheme-print-hide();
+  @include ct-print-hide();
 
   display: none;
 
-  @include civictheme-breakpoint($civictheme-secondary-navigation-breakpoint) {
+  @include ct-breakpoint($ct-secondary-navigation-breakpoint) {
     display: flex;
   }
 
   &__menu {
-    &.civictheme-menu,
-    .civictheme-menu {
+    &.ct-menu,
+    .ct-menu {
       list-style: none;
       padding: 0;
       margin: 0;
     }
 
     // First-level items to be displayed inline.
-    &.civictheme-menu--level-0 {
+    &.ct-menu--level-0 {
       display: flex;
     }
 
-    .civictheme-menu__item {
-      .civictheme-link {
-        @include civictheme-typography('text-regular');
+    .ct-menu__item {
+      .ct-link {
+        @include ct-typography('text-regular');
 
         display: block;
         text-decoration: none;
@@ -36,14 +36,14 @@
 
       // Links - level 0.
       &--level-0 {
-        margin-right: civictheme-space(2);
+        margin-right: ct-space(2);
 
         &:last-child {
           margin-right: 0;
         }
       }
 
-      > .civictheme-link {
+      > .ct-link {
         &::after {
           margin-top: 3px;
         }
@@ -52,53 +52,53 @@
   }
 
   &__has-dropdown {
-    .civictheme-menu__sub-menu__wrapper--level-1 {
+    .ct-menu__sub-menu__wrapper--level-1 {
       position: absolute;
-      z-index: $civictheme-secondary-navigation-dropdown-zindex;
-      margin-top: $civictheme-secondary-navigation-dropdown-top-offset;
-      border-bottom-left-radius: $civictheme-secondary-navigation-dropdown-border-radius;
-      border-bottom-right-radius: $civictheme-secondary-navigation-dropdown-border-radius;
+      z-index: $ct-secondary-navigation-dropdown-zindex;
+      margin-top: $ct-secondary-navigation-dropdown-top-offset;
+      border-bottom-left-radius: $ct-secondary-navigation-dropdown-border-radius;
+      border-bottom-right-radius: $ct-secondary-navigation-dropdown-border-radius;
 
-      @include civictheme-elevation(4);
+      @include ct-elevation(4);
 
-      .civictheme-menu__sub-menu {
-        margin-left: civictheme-space(2);
+      .ct-menu__sub-menu {
+        margin-left: ct-space(2);
 
-        &.civictheme-menu--level-1 {
-          margin: civictheme-space(2);
+        &.ct-menu--level-1 {
+          margin: ct-space(2);
         }
       }
     }
   }
 
-  &.civictheme-theme-light {
+  &.ct-theme-light {
     #{$root}__has-dropdown {
-      @include civictheme-icon-collapsible($civictheme-link-light-color);
+      @include ct-icon-collapsible($ct-link-light-color);
 
-      .civictheme-menu__item__link {
+      .ct-menu__item__link {
         &:hover {
-          @include civictheme-icon-collapsible($civictheme-link-light-hover-color, true);
+          @include ct-icon-collapsible($ct-link-light-hover-color, true);
         }
       }
 
-      .civictheme-menu__sub-menu__wrapper--level-1 {
-        background-color: $civictheme-secondary-navigation-light-sub-menu-background-color;
+      .ct-menu__sub-menu__wrapper--level-1 {
+        background-color: $ct-secondary-navigation-light-sub-menu-background-color;
       }
     }
   }
 
-  &.civictheme-theme-dark {
+  &.ct-theme-dark {
     #{$root}__has-dropdown {
-      @include civictheme-icon-collapsible($civictheme-link-dark-color);
+      @include ct-icon-collapsible($ct-link-dark-color);
 
-      .civictheme-menu__item__link {
+      .ct-menu__item__link {
         &:hover {
-          @include civictheme-icon-collapsible($civictheme-link-dark-hover-color, true);
+          @include ct-icon-collapsible($ct-link-dark-hover-color, true);
         }
       }
 
-      .civictheme-menu__sub-menu__wrapper--level-1 {
-        background-color: $civictheme-secondary-navigation-dark-sub-menu-background-color;
+      .ct-menu__sub-menu__wrapper--level-1 {
+        background-color: $ct-secondary-navigation-dark-sub-menu-background-color;
       }
     }
   }

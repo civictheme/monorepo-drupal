@@ -2,32 +2,32 @@
 // Fieldset component.
 //
 
-.civictheme-fieldset {
+.ct-fieldset {
   border: none;
-  padding: civictheme-space(2) 0;
+  padding: ct-space(2) 0;
 
   legend {
-    @include civictheme-typography('heading-3');
+    @include ct-typography('heading-3');
 
     margin-bottom: 0;
   }
 
-  &.civictheme-form-element--fieldset-radio {
+  &.ct-form-element--fieldset-radio {
     legend {
-      @include civictheme-typography('label-regular');
+      @include ct-typography('label-regular');
     }
   }
 
   .description {
-    margin-bottom: civictheme-space(2);
+    margin-bottom: ct-space(2);
   }
 
-  .civictheme-label {
+  .ct-label {
     &--required::after {
-      color: $civictheme-fieldset-required-color;
+      color: $ct-fieldset-required-color;
       content: ' (Required)';
 
-      @include civictheme-typography('label-small');
+      @include ct-typography('label-small');
     }
   }
 }

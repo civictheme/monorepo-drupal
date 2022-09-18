@@ -2,10 +2,10 @@
 // Breadcrumb component.
 //
 
-.civictheme-breadcrumb {
+.ct-breadcrumb {
   $root: &;
 
-  @include civictheme-typography('label-small');
+  @include ct-typography('label-small');
 
   &__links {
     list-style: none;
@@ -17,18 +17,18 @@
     padding: 0;
 
     &--link {
-      margin-right: civictheme-space();
+      margin-right: ct-space();
       display: flex;
       align-items: center;
 
-      @include civictheme-breakpoint-upto('m') {
+      @include ct-breakpoint-upto('m') {
         display: none;
       }
 
       &.mobile-only {
         display: none;
 
-        @include civictheme-breakpoint-upto('m') {
+        @include ct-breakpoint-upto('m') {
           display: flex;
         }
       }
@@ -37,14 +37,14 @@
     &.mobile-only {
       display: none;
 
-      @include civictheme-breakpoint-upto('m') {
+      @include ct-breakpoint-upto('m') {
         display: flex;
       }
     }
   }
 
-  .civictheme-link {
-    @include civictheme-typography('label-small');
+  .ct-link {
+    @include ct-typography('label-small');
 
     padding: 0;
 
@@ -53,15 +53,15 @@
     }
   }
 
-  &.civictheme-theme-light {
-    .civictheme-icon {
-      fill: $civictheme-breadcrumb-light-divider-color;
+  &.ct-theme-light {
+    .ct-icon {
+      fill: $ct-breadcrumb-light-divider-color;
     }
   }
 
-  &.civictheme-theme-dark {
-    .civictheme-icon {
-      fill: $civictheme-breadcrumb-dark-divider-color;
+  &.ct-theme-dark {
+    .ct-icon {
+      fill: $ct-breadcrumb-dark-divider-color;
     }
   }
 }

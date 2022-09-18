@@ -2,7 +2,7 @@
 // Basic Filter component.
 //
 
-.civictheme-single-filter {
+.ct-single-filter {
   $root: &;
 
   &__list {
@@ -10,10 +10,10 @@
     flex-wrap: wrap;
 
     &--row {
-      margin: civictheme-space(2) civictheme-space();
+      margin: ct-space(2) ct-space();
 
-      @include civictheme-breakpoint('m') {
-        margin: civictheme-space(5) civictheme-space();
+      @include ct-breakpoint('m') {
+        margin: ct-space(5) ct-space();
       }
     }
   }

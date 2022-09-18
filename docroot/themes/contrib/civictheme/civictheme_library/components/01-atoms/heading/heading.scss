@@ -4,15 +4,15 @@
 
 @for $level from 1 through 6 {
   h#{$level} {
-    &.civictheme-heading {
-      @include civictheme-typography('heading-#{$level}');
+    &.ct-heading {
+      @include ct-typography('heading-#{$level}');
 
-      &.civictheme-theme-light {
-        color: $civictheme-heading-light-color;
+      &.ct-theme-light {
+        color: $ct-heading-light-color;
       }
 
-      &.civictheme-theme-dark {
-        color: $civictheme-heading-dark-color;
+      &.ct-theme-dark {
+        color: $ct-heading-dark-color;
       }
     }
   }

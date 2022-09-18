@@ -5,41 +5,41 @@
 @use 'sass:string';
 
 .story-fonts-wrapper {
-  $all-fonts: _civictheme-fonts-all();
+  $all-fonts: _ct-fonts-all();
   $font-size: rem(45px);
 
-  @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--regular') using($key, $value, $index) {
-    font-family: civictheme-font($key);
+  @include ct-generate-class-variations-from-map($all-fonts, 'story-font--regular') using($key, $value, $index) {
+    font-family: ct-font($key);
     font-size: $font-size;
   }
 
-  @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--italic') using($key, $value, $index) {
-    font-family: civictheme-font($key);
+  @include ct-generate-class-variations-from-map($all-fonts, 'story-font--italic') using($key, $value, $index) {
+    font-family: ct-font($key);
     font-size: $font-size;
     font-style: italic;
   }
 
-  @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--bold') using($key, $value, $index) {
-    font-family: civictheme-font($key);
+  @include ct-generate-class-variations-from-map($all-fonts, 'story-font--bold') using($key, $value, $index) {
+    font-family: ct-font($key);
     font-size: $font-size;
     font-weight: 700;
   }
 
-  @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--bold-italic') using($key, $value, $index) {
-    font-family: civictheme-font($key);
+  @include ct-generate-class-variations-from-map($all-fonts, 'story-font--bold-italic') using($key, $value, $index) {
+    font-family: ct-font($key);
     font-size: $font-size;
     font-style: italic;
     font-weight: bold;
   }
 
-  @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--thin') using($key, $value, $index) {
-    font-family: civictheme-font($key);
+  @include ct-generate-class-variations-from-map($all-fonts, 'story-font--thin') using($key, $value, $index) {
+    font-family: ct-font($key);
     font-size: $font-size;
     font-weight: 100;
   }
 
-  @include civictheme-generate-class-variations-from-map($all-fonts, 'story-font--extra-bold') using($key, $value, $index) {
-    font-family: civictheme-font($key);
+  @include ct-generate-class-variations-from-map($all-fonts, 'story-font--extra-bold') using($key, $value, $index) {
+    font-family: ct-font($key);
     font-size: $font-size;
     font-weight: 800;
   }

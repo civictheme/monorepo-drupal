@@ -10,16 +10,16 @@
 //
 // @code
 //
-// @include civictheme-typography('heading-1');
+// @include ct-typography('heading-1');
 //
 // @endcode
 //
-@mixin civictheme-typography($name) {
+@mixin ct-typography($name) {
   @if type-of($name) != string {
     @error 'Only scalar names can be used as a typography preset.';
   }
 
-  @include civictheme-typography-ruleset($name);
+  @include ct-typography-ruleset($name);
 }
 
 //
@@ -27,22 +27,22 @@
 //
 // @code
 //
-// @include civictheme-typography('heading-1');
+// @include ct-typography('heading-1');
 // or
-// @include civictheme-typography((24px, 1.2em, 400));
+// @include ct-typography((24px, 1.2em, 400));
 // or
-// @include civictheme-typography((
+// @include ct-typography((
 //   'xs': (16px, 1.5em, 400),
 //   'l': (24px, 1.2em, 600)
 // ));
 //
 // @endcode
 //
-// Try using @include civictheme-typography() mixin instead to keep custom
+// Try using @include ct-typography() mixin instead to keep custom
 // typography to the minimum.
 //
-@mixin civictheme-typography-ruleset($ruleset) {
-  $all-typographies: _civictheme-typography-all();
+@mixin ct-typography-ruleset($ruleset) {
+  $all-typographies: _ct-typography-all();
 
   // Ruleset is a name of the preset - print preset.
   @if type-of($ruleset) == string {
@@ -55,7 +55,7 @@
 
   // Ruleset is a list of rule - print rules.
   @if type-of($ruleset) == list {
-    @include _civictheme-typography-print-rules($ruleset);
+    @include _ct-typography-print-rules($ruleset);
   }
 
   // Ruleset is a full ruleset definition - print all rules with breakpoints.
@@ -65,8 +65,8 @@
     @each $breakpoint in $breakpoints {
       $breakpoint-rules: map.get($ruleset, $breakpoint);
 
-      @include civictheme-breakpoint($breakpoint) {
-        @include _civictheme-typography-print-rules($breakpoint-rules);
+      @include ct-breakpoint($breakpoint) {
+        @include _ct-typography-print-rules($breakpoint-rules);
       }
     }
   }
@@ -76,20 +76,20 @@
 // Compile all typographies into a single map.
 //
 // Do not use directly.
-// Use @include civictheme-typography() mixin instead.
+// Use @include ct-typography() mixin instead.
 //
 // stylelint-disable-next-line scss/at-function-pattern
-@function _civictheme-typography-all() {
-  @return map.merge($civictheme-typography-default, $civictheme-typography);
+@function _ct-typography-all() {
+  @return map.merge($ct-typography-default, $ct-typography);
 }
 
 //
 // Print typography rules.
 //
 // Do not use directly.
-// Use @include civictheme-typography() mixin instead.
+// Use @include ct-typography() mixin instead.
 //
-@mixin _civictheme-typography-print-rules($rules) {
+@mixin _ct-typography-print-rules($rules) {
   $font-size: list.nth($rules, 1);
   $line-height: list.nth($rules, 2);
   $font-weight: 'default';
@@ -113,7 +113,7 @@
   letter-spacing: $letter-spacing;
 
   @if $font-name != 'none' {
-    font-family: civictheme-font($font-name);
+    font-family: ct-font($font-name);
   }
 
   @if $font-weight != 'default' {

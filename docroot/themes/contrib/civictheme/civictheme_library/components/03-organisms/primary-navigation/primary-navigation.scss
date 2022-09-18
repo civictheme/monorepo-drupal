@@ -6,60 +6,60 @@
 @use 'sass:map';
 @use 'sass:math';
 
-.civictheme-primary-navigation {
+.ct-primary-navigation {
   $root: &;
 
-  @include civictheme-print-hide();
+  @include ct-print-hide();
 
   align-items: center;
   height: 100%;
   display: none;
 
-  @include civictheme-breakpoint($civictheme-primary-navigation-breakpoint) {
+  @include ct-breakpoint($ct-primary-navigation-breakpoint) {
     display: flex;
   }
 
   &__menu {
     // Reset all menu styles.
-    &.civictheme-menu,
-    .civictheme-menu {
+    &.ct-menu,
+    .ct-menu {
       list-style: none;
       padding: 0;
       margin: 0;
     }
 
-    &.civictheme-menu--level-0 {
+    &.ct-menu--level-0 {
       // First-level items to be displayed inline.
       display: flex;
-      padding-top: $civictheme-primary-navigation-dropdown-top-offset;
-      padding-bottom: $civictheme-primary-navigation-dropdown-top-offset;
+      padding-top: $ct-primary-navigation-dropdown-top-offset;
+      padding-bottom: $ct-primary-navigation-dropdown-top-offset;
     }
 
-    .civictheme-menu__item {
+    .ct-menu__item {
       // Links - level 0.
       &--level-0 {
         border-bottom: solid 4px;
 
-        > .civictheme-link {
+        > .ct-link {
           display: block;
-          padding: civictheme-space(2);
+          padding: ct-space(2);
 
-          @include civictheme-typography('label-regular');
+          @include ct-typography('label-regular');
 
           // Accommodate for the trigger.
           text-decoration: none;
 
           &::after {
-            right: civictheme-space();
+            right: ct-space();
             margin-top: -1 * rem(3px);
-            top: civictheme-space(2);
+            top: ct-space(2);
           }
         }
 
         // Accommodate extra spacing for dropdown icon.
         &#{$root}__has-dropdown {
-          > .civictheme-link {
-            padding-right: civictheme-icon-size-dimension('regular', $civictheme-collapsible-icon-size, 'width') + civictheme-space();
+          > .ct-link {
+            padding-right: ct-icon-size-dimension('regular', $ct-collapsible-icon-size, 'width') + ct-space();
           }
         }
       }
@@ -71,76 +71,76 @@
     // Since 'data-collapsible-panel' is not added through a menu structure, we
     // need to imitate the initially collapsed panel behaviour.
     &[data-collapsible-collapsed] {
-      > .civictheme-menu__sub-menu__wrapper {
+      > .ct-menu__sub-menu__wrapper {
         height: 0;
         overflow: hidden;
       }
     }
 
     // Dropdown (submenu) wrapper.
-    .civictheme-menu__sub-menu__wrapper--level-1 {
+    .ct-menu__sub-menu__wrapper--level-1 {
       position: absolute;
       left: 0;
       right: 0;
       padding: 0;
       margin: 0;
-      margin-top: $civictheme-primary-navigation-dropdown-top-offset;
-      z-index: $civictheme-primary-navigation-dropdown-zindex;
-      box-shadow: 0 civictheme-space(2) civictheme-space(4) rgba(0, 0, 0, 20%);
+      margin-top: $ct-primary-navigation-dropdown-top-offset;
+      z-index: $ct-primary-navigation-dropdown-zindex;
+      box-shadow: 0 ct-space(2) ct-space(4) rgba(0, 0, 0, 20%);
 
       // Submenu.
-      .civictheme-menu__sub-menu {
-        &.civictheme-menu--level-1 {
+      .ct-menu__sub-menu {
+        &.ct-menu--level-1 {
           padding: 0;
           margin: 0 auto;
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
 
-          @include civictheme-container();
+          @include ct-container();
 
-          margin-bottom: civictheme-space(4);
+          margin-bottom: ct-space(4);
         }
       }
 
-      .civictheme-menu__item--level-1 {
+      .ct-menu__item--level-1 {
         padding: 0;
-        margin: civictheme-space(4) 0 0;
-        flex-basis: math.div(100%, $civictheme-primary-navigation-dropdown-cols);
+        margin: ct-space(4) 0 0;
+        flex-basis: math.div(100%, $ct-primary-navigation-dropdown-cols);
 
-        > .civictheme-link {
-          @include civictheme-typography('heading-5');
+        > .ct-link {
+          @include ct-typography('heading-5');
 
           text-decoration: none;
         }
       }
 
-      .civictheme-menu__sub-menu__wrapper--level-2 {
-        margin-top: civictheme-space(4);
+      .ct-menu__sub-menu__wrapper--level-2 {
+        margin-top: ct-space(4);
       }
 
-      .civictheme-menu__item--level-2,
-      .civictheme-menu__item--level-3,
-      .civictheme-menu__item--level-4,
-      .civictheme-menu__item--level-5 {
+      .ct-menu__item--level-2,
+      .ct-menu__item--level-3,
+      .ct-menu__item--level-4,
+      .ct-menu__item--level-5 {
         width: 100%;
-        margin-bottom: civictheme-space();
+        margin-bottom: ct-space();
 
-        > .civictheme-link {
-          @include civictheme-typography('label-regular');
+        > .ct-link {
+          @include ct-typography('label-regular');
 
           text-decoration: none;
           display: block;
-          border-radius: $civictheme-border-radius;
-          padding: civictheme-space();
+          border-radius: $ct-border-radius;
+          padding: ct-space();
         }
 
-        &.civictheme-menu__item--active-trail {
-          > .civictheme-link {
-            background-color: civictheme-color('primary', 5);
-            color: civictheme-color('neutral', 1);
-            padding-left: civictheme-space();
-            padding-right: civictheme-space();
+        &.ct-menu__item--active-trail {
+          > .ct-link {
+            background-color: ct-color('primary', 5);
+            color: ct-color('neutral', 1);
+            padding-left: ct-space();
+            padding-right: ct-space();
           }
         }
       }
@@ -149,8 +149,8 @@
 
   // Fill column width if there are less columns than expected.
   &__dropdown-columns--fill {
-    .civictheme-menu__sub-menu__wrapper--level-1 {
-      .civictheme-menu__item--level-1 {
+    .ct-menu__sub-menu__wrapper--level-1 {
+      .ct-menu__item--level-1 {
         flex: 1;
       }
     }
@@ -158,81 +158,81 @@
 
   // Allow to override column width based on the explicitly set columns number
   // class.
-  @for $i from 1 through $civictheme-primary-navigation-dropdown-cols * 2 {
+  @for $i from 1 through $ct-primary-navigation-dropdown-cols * 2 {
     &__dropdown-columns--#{$i} {
-      .civictheme-menu__sub-menu__wrapper--level-1 {
-        .civictheme-menu--level-1 {
+      .ct-menu__sub-menu__wrapper--level-1 {
+        .ct-menu--level-1 {
           // @todo: Implement gutters using :nth() to make the last gutter
           // in the row collapse. Note that for "fill column width" option
           // this already works automatically.
-          column-gap: $civictheme-primary-navigation-dropdown-column-gutter;
+          column-gap: $ct-primary-navigation-dropdown-column-gutter;
         }
 
-        .civictheme-menu__item--level-1 {
+        .ct-menu__item--level-1 {
           $basis: math.div(100%, $i);
 
-          flex-basis: calc(#{$basis} - #{$civictheme-primary-navigation-dropdown-column-gutter});
+          flex-basis: calc(#{$basis} - #{$ct-primary-navigation-dropdown-column-gutter});
         }
       }
     }
   }
 
-  &.civictheme-theme-light {
+  &.ct-theme-light {
     #{$root}__menu {
-      .civictheme-menu__item {
+      .ct-menu__item {
         // Links - level 0.
         &--level-0 {
-          border-bottom-color: $civictheme-primary-navigation-light-menu-item-border-color;
+          border-bottom-color: $ct-primary-navigation-light-menu-item-border-color;
 
           &:hover {
-            background-color: $civictheme-primary-navigation-light-menu-item-hover-background-color;
-            border-bottom-color: $civictheme-primary-navigation-light-menu-item-hover-border-color;
+            background-color: $ct-primary-navigation-light-menu-item-hover-background-color;
+            border-bottom-color: $ct-primary-navigation-light-menu-item-hover-border-color;
           }
 
           &:active {
-            background-color: $civictheme-primary-navigation-light-menu-item-active-background-color;
-            border-bottom-color: $civictheme-primary-navigation-light-menu-item-active-border-color;
+            background-color: $ct-primary-navigation-light-menu-item-active-background-color;
+            border-bottom-color: $ct-primary-navigation-light-menu-item-active-border-color;
           }
 
           &[data-collapsible] {
-            @include civictheme-icon-collapsible($civictheme-primary-navigation-light-color);
+            @include ct-icon-collapsible($ct-primary-navigation-light-color);
 
-            border-bottom-color: $civictheme-primary-navigation-light-border-color;
+            border-bottom-color: $ct-primary-navigation-light-border-color;
 
             &:hover {
-              @include civictheme-icon-collapsible($civictheme-primary-navigation-light-hover-color);
+              @include ct-icon-collapsible($ct-primary-navigation-light-hover-color);
 
-              background-color: $civictheme-primary-navigation-light-menu-item-hover-background-color;
-              border-bottom-color: $civictheme-primary-navigation-light-menu-item-hover-border-color;
+              background-color: $ct-primary-navigation-light-menu-item-hover-background-color;
+              border-bottom-color: $ct-primary-navigation-light-menu-item-hover-border-color;
             }
 
             &:active {
-              background-color: $civictheme-primary-navigation-light-menu-item-active-background-color;
-              border-bottom-color: $civictheme-primary-navigation-light-menu-item-active-border-color;
+              background-color: $ct-primary-navigation-light-menu-item-active-background-color;
+              border-bottom-color: $ct-primary-navigation-light-menu-item-active-border-color;
             }
           }
 
           &[data-collapsible-collapsed] {
-            border-bottom-color: $civictheme-primary-navigation-light-menu-item-border-color;
+            border-bottom-color: $ct-primary-navigation-light-menu-item-border-color;
           }
 
-          &.civictheme-menu__item--active-trail {
-            border-bottom-color: $civictheme-primary-navigation-light-border-color;
+          &.ct-menu__item--active-trail {
+            border-bottom-color: $ct-primary-navigation-light-border-color;
           }
 
-          > .civictheme-link {
-            background-color: $civictheme-primary-navigation-light-menu-item-background-color;
-            color: $civictheme-primary-navigation-light-color;
+          > .ct-link {
+            background-color: $ct-primary-navigation-light-menu-item-background-color;
+            color: $ct-primary-navigation-light-color;
 
             &:hover {
-              color: $civictheme-primary-navigation-light-hover-color;
-              background-color: $civictheme-primary-navigation-light-menu-item-hover-background-color;
+              color: $ct-primary-navigation-light-hover-color;
+              background-color: $ct-primary-navigation-light-menu-item-hover-background-color;
             }
 
             &[aria-expanded='true'],
             &:active {
-              color: $civictheme-primary-navigation-light-active-color;
-              background-color: $civictheme-primary-navigation-light-menu-item-active-background-color;
+              color: $ct-primary-navigation-light-active-color;
+              background-color: $ct-primary-navigation-light-menu-item-active-background-color;
             }
           }
         }
@@ -240,11 +240,11 @@
     }
 
     #{$root}__has-dropdown {
-      .civictheme-menu__sub-menu__wrapper--level-1 {
-        background-color: $civictheme-primary-navigation-light-sub-menu-background-color;
+      .ct-menu__sub-menu__wrapper--level-1 {
+        background-color: $ct-primary-navigation-light-sub-menu-background-color;
 
         // Reset some styles for all links in the dropdown.
-        .civictheme-link {
+        .ct-link {
           background: none;
 
           &:hover,
@@ -254,43 +254,43 @@
           }
         }
 
-        .civictheme-menu__item--level-1 {
-          > .civictheme-link {
-            color: $civictheme-primary-navigation-light-sub-menu-item-heading-color;
+        .ct-menu__item--level-1 {
+          > .ct-link {
+            color: $ct-primary-navigation-light-sub-menu-item-heading-color;
 
             &:hover {
-              color: $civictheme-primary-navigation-light-sub-menu-item-heading-hover-color;
+              color: $ct-primary-navigation-light-sub-menu-item-heading-hover-color;
             }
 
             &:active {
-              color: $civictheme-primary-navigation-light-sub-menu-item-heading-active-color;
+              color: $ct-primary-navigation-light-sub-menu-item-heading-active-color;
             }
           }
         }
 
-        .civictheme-menu__item--level-2,
-        .civictheme-menu__item--level-3,
-        .civictheme-menu__item--level-4,
-        .civictheme-menu__item--level-5 {
-          > .civictheme-link {
-            color: $civictheme-primary-navigation-light-sub-menu-item-color;
-            background-color: $civictheme-primary-navigation-light-sub-menu-item-background-color;
+        .ct-menu__item--level-2,
+        .ct-menu__item--level-3,
+        .ct-menu__item--level-4,
+        .ct-menu__item--level-5 {
+          > .ct-link {
+            color: $ct-primary-navigation-light-sub-menu-item-color;
+            background-color: $ct-primary-navigation-light-sub-menu-item-background-color;
 
             &:hover {
-              color: $civictheme-primary-navigation-light-sub-menu-item-hover-color;
-              background-color: $civictheme-primary-navigation-light-sub-menu-item-hover-background-color;
+              color: $ct-primary-navigation-light-sub-menu-item-hover-color;
+              background-color: $ct-primary-navigation-light-sub-menu-item-hover-background-color;
             }
 
             &:active {
-              color: $civictheme-primary-navigation-light-sub-menu-item-active-color;
-              background-color: $civictheme-primary-navigation-light-sub-menu-item-active-background-color;
+              color: $ct-primary-navigation-light-sub-menu-item-active-color;
+              background-color: $ct-primary-navigation-light-sub-menu-item-active-background-color;
             }
           }
 
-          &.civictheme-menu__item--active-trail {
-            > .civictheme-link {
-              background-color: $civictheme-primary-navigation-light-menu-item-active-trail-background-color;
-              color: $civictheme-primary-navigation-light-menu-item-active-trail-color;
+          &.ct-menu__item--active-trail {
+            > .ct-link {
+              background-color: $ct-primary-navigation-light-menu-item-active-trail-background-color;
+              color: $ct-primary-navigation-light-menu-item-active-trail-color;
             }
           }
         }
@@ -298,62 +298,62 @@
     }
   }
 
-  &.civictheme-theme-dark {
+  &.ct-theme-dark {
     #{$root}__menu {
-      .civictheme-menu__item {
+      .ct-menu__item {
         // Links - level 0.
         &--level-0 {
-          border-bottom-color: $civictheme-primary-navigation-dark-menu-item-border-color;
+          border-bottom-color: $ct-primary-navigation-dark-menu-item-border-color;
 
           &:hover {
-            background-color: $civictheme-primary-navigation-dark-menu-item-hover-background-color;
-            border-bottom-color: $civictheme-primary-navigation-dark-menu-item-hover-border-color;
+            background-color: $ct-primary-navigation-dark-menu-item-hover-background-color;
+            border-bottom-color: $ct-primary-navigation-dark-menu-item-hover-border-color;
           }
 
           &:active {
-            background-color: $civictheme-primary-navigation-dark-menu-item-active-background-color;
-            border-bottom-color: $civictheme-primary-navigation-dark-menu-item-active-border-color;
+            background-color: $ct-primary-navigation-dark-menu-item-active-background-color;
+            border-bottom-color: $ct-primary-navigation-dark-menu-item-active-border-color;
           }
 
           &[data-collapsible] {
-            @include civictheme-icon-collapsible($civictheme-primary-navigation-dark-color);
+            @include ct-icon-collapsible($ct-primary-navigation-dark-color);
 
-            border-bottom-color: $civictheme-primary-navigation-dark-border-color;
+            border-bottom-color: $ct-primary-navigation-dark-border-color;
 
             &:hover {
-              @include civictheme-icon-collapsible($civictheme-primary-navigation-dark-hover-color);
+              @include ct-icon-collapsible($ct-primary-navigation-dark-hover-color);
 
-              background-color: $civictheme-primary-navigation-dark-menu-item-hover-background-color;
-              border-bottom-color: $civictheme-primary-navigation-dark-menu-item-hover-border-color;
+              background-color: $ct-primary-navigation-dark-menu-item-hover-background-color;
+              border-bottom-color: $ct-primary-navigation-dark-menu-item-hover-border-color;
             }
 
             &:active {
-              background-color: $civictheme-primary-navigation-dark-menu-item-active-background-color;
-              border-bottom-color: $civictheme-primary-navigation-dark-menu-item-active-border-color;
+              background-color: $ct-primary-navigation-dark-menu-item-active-background-color;
+              border-bottom-color: $ct-primary-navigation-dark-menu-item-active-border-color;
             }
           }
 
           &[data-collapsible-collapsed] {
-            border-bottom-color: $civictheme-primary-navigation-dark-menu-item-border-color;
+            border-bottom-color: $ct-primary-navigation-dark-menu-item-border-color;
           }
 
-          &.civictheme-menu__item--active-trail {
-            border-bottom-color: $civictheme-primary-navigation-dark-border-color;
+          &.ct-menu__item--active-trail {
+            border-bottom-color: $ct-primary-navigation-dark-border-color;
           }
 
-          > .civictheme-link {
-            background-color: $civictheme-primary-navigation-dark-menu-item-background-color;
-            color: $civictheme-primary-navigation-dark-color;
+          > .ct-link {
+            background-color: $ct-primary-navigation-dark-menu-item-background-color;
+            color: $ct-primary-navigation-dark-color;
 
             &:hover {
-              color: $civictheme-primary-navigation-dark-hover-color;
-              background-color: $civictheme-primary-navigation-dark-menu-item-hover-background-color;
+              color: $ct-primary-navigation-dark-hover-color;
+              background-color: $ct-primary-navigation-dark-menu-item-hover-background-color;
             }
 
             &[aria-expanded='true'],
             &:active {
-              color: $civictheme-primary-navigation-dark-active-color;
-              background-color: $civictheme-primary-navigation-dark-menu-item-active-background-color;
+              color: $ct-primary-navigation-dark-active-color;
+              background-color: $ct-primary-navigation-dark-menu-item-active-background-color;
             }
           }
         }
@@ -361,11 +361,11 @@
     }
 
     #{$root}__has-dropdown {
-      .civictheme-menu__sub-menu__wrapper--level-1 {
-        background-color: $civictheme-primary-navigation-dark-sub-menu-background-color;
+      .ct-menu__sub-menu__wrapper--level-1 {
+        background-color: $ct-primary-navigation-dark-sub-menu-background-color;
 
         // Reset some styles for all links in the dropdown.
-        .civictheme-link {
+        .ct-link {
           background: none;
 
           &:hover,
@@ -375,43 +375,43 @@
           }
         }
 
-        .civictheme-menu__item--level-1 {
-          > .civictheme-link {
-            color: $civictheme-primary-navigation-dark-sub-menu-item-heading-color;
+        .ct-menu__item--level-1 {
+          > .ct-link {
+            color: $ct-primary-navigation-dark-sub-menu-item-heading-color;
 
             &:hover {
-              color: $civictheme-primary-navigation-dark-sub-menu-item-heading-hover-color;
+              color: $ct-primary-navigation-dark-sub-menu-item-heading-hover-color;
             }
 
             &:active {
-              color: $civictheme-primary-navigation-dark-sub-menu-item-heading-active-color;
+              color: $ct-primary-navigation-dark-sub-menu-item-heading-active-color;
             }
           }
         }
 
-        .civictheme-menu__item--level-2,
-        .civictheme-menu__item--level-3,
-        .civictheme-menu__item--level-4,
-        .civictheme-menu__item--level-5 {
-          > .civictheme-link {
-            color: $civictheme-primary-navigation-dark-sub-menu-item-color;
-            background-color: $civictheme-primary-navigation-dark-sub-menu-item-background-color;
+        .ct-menu__item--level-2,
+        .ct-menu__item--level-3,
+        .ct-menu__item--level-4,
+        .ct-menu__item--level-5 {
+          > .ct-link {
+            color: $ct-primary-navigation-dark-sub-menu-item-color;
+            background-color: $ct-primary-navigation-dark-sub-menu-item-background-color;
 
             &:hover {
-              color: $civictheme-primary-navigation-dark-sub-menu-item-hover-color;
-              background-color: $civictheme-primary-navigation-dark-sub-menu-item-hover-background-color;
+              color: $ct-primary-navigation-dark-sub-menu-item-hover-color;
+              background-color: $ct-primary-navigation-dark-sub-menu-item-hover-background-color;
             }
 
             &:active {
-              color: $civictheme-primary-navigation-dark-sub-menu-item-active-color;
-              background-color: $civictheme-primary-navigation-dark-sub-menu-item-active-background-color;
+              color: $ct-primary-navigation-dark-sub-menu-item-active-color;
+              background-color: $ct-primary-navigation-dark-sub-menu-item-active-background-color;
             }
           }
 
-          &.civictheme-menu__item--active-trail {
-            > .civictheme-link {
-              background-color: $civictheme-primary-navigation-dark-menu-item-active-trail-background-color;
-              color: $civictheme-primary-navigation-dark-menu-item-active-trail-color;
+          &.ct-menu__item--active-trail {
+            > .ct-link {
+              background-color: $ct-primary-navigation-dark-menu-item-active-trail-background-color;
+              color: $ct-primary-navigation-dark-menu-item-active-trail-color;
             }
           }
         }

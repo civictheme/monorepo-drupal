@@ -12,13 +12,13 @@
 
   &:not([data-collapsible-trigger-no-icon]) {
     [data-collapsible-trigger] {
-      padding-right: civictheme-icon-size-dimension('regular', $civictheme-collapsible-icon-size, 'width');
+      padding-right: ct-icon-size-dimension('regular', $ct-collapsible-icon-size, 'width');
       position: relative;
 
       &::after {
-        @include civictheme-icon-size('regular');
+        @include ct-icon-size('regular');
 
-        content: $civictheme-collapsible-icon;
+        content: $ct-collapsible-icon;
         position: absolute;
         right: 0;
         transform: rotate(-180deg);
@@ -62,26 +62,26 @@
       height: 0;
       overflow: hidden;
 
-      @include civictheme-print() {
+      @include ct-print() {
         height: auto;
         visibility: visible;
       }
     }
   }
 
-  &.civictheme-theme-light {
-    color: $civictheme-collapsible-light-color;
+  &.ct-theme-light {
+    color: $ct-collapsible-light-color;
 
     &:not([data-collapsible-trigger-no-icon]) {
-      @include civictheme-icon-collapsible($civictheme-collapsible-light-icon-color);
+      @include ct-icon-collapsible($ct-collapsible-light-icon-color);
     }
   }
 
-  &.civictheme-theme-dark {
-    color: $civictheme-collapsible-dark-color;
+  &.ct-theme-dark {
+    color: $ct-collapsible-dark-color;
 
     &:not([data-collapsible-trigger-no-icon]) {
-      @include civictheme-icon-collapsible($civictheme-collapsible-dark-icon-color);
+      @include ct-icon-collapsible($ct-collapsible-dark-icon-color);
     }
   }
 }

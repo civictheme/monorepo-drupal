@@ -3,17 +3,17 @@
 //
 
 .example-container__page-content {
-  &.example-civictheme-mobile-navigation {
+  &.example-ct-mobile-navigation {
     // Override hiding of mobile trigger and a menu for this component
     // storybook. It will still be hidden in other components (i.e. header).
-    .civictheme-mobile-navigation {
-      @include civictheme-breakpoint($civictheme-mobile-navigation-breakpoint) {
+    .ct-mobile-navigation {
+      @include ct-breakpoint($ct-mobile-navigation-breakpoint) {
         display: block;
       }
     }
 
-    .civictheme-mobile-navigation__trigger {
-      @include civictheme-breakpoint($civictheme-mobile-navigation-breakpoint) {
+    .ct-mobile-navigation__trigger {
+      @include ct-breakpoint($ct-mobile-navigation-breakpoint) {
         display: inline;
       }
     }

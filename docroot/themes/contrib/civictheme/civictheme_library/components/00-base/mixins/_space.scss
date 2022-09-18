@@ -8,18 +8,18 @@
 //
 // Get a spacing value from the pre-defined list of spacings.
 //
-@function civictheme-space($multiplier: 1) {
+@function ct-space($multiplier: 1) {
   @if type-of($multiplier) != number {
     @error '"#{$multiplier}" is not a valid number!';
   }
 
-  @return $civictheme-space * $multiplier;
+  @return $ct-space * $multiplier;
 }
 
 //
 // Set vertical space as padding or margin for a component.
 //
-@mixin civictheme-component-with-vertical-space($type, $top, $bottom: $top, $is_padding: true) {
+@mixin ct-component-with-vertical-space($type, $top, $bottom: $top, $is_padding: true) {
   $types: top, bottom, both;
 
   @if not list.index($type, $type) {
@@ -34,7 +34,7 @@
       margin-top: math.div($top, 2);
     }
 
-    @include civictheme-breakpoint(m) {
+    @include ct-breakpoint(m) {
       @if $is_padding {
         padding-top: $top;
       }
@@ -52,7 +52,7 @@
       margin-bottom: math.div($bottom, 2);
     }
 
-    @include civictheme-breakpoint(m) {
+    @include ct-breakpoint(m) {
       @if $is_padding {
         padding-bottom: $bottom;
       }

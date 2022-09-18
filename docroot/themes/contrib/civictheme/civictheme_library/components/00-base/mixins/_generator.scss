@@ -5,7 +5,7 @@
 //
 // Generate classes variations from provided map with optional prefix.
 //
-@mixin civictheme-generate-class-variations-from-map($map, $prefix: false) {
+@mixin ct-generate-class-variations-from-map($map, $prefix: false) {
   $index: 0;
 
   @each $key, $value in $map {

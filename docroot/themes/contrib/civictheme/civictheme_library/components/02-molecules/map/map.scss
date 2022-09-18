@@ -2,24 +2,24 @@
 // Map component.
 //
 
-.civictheme-map {
-  &.civictheme-map--vertical-space-top {
-    @include civictheme-component-with-vertical-space(top, $civictheme-map-space-vertical);
+.ct-map {
+  &.ct-map--vertical-space-top {
+    @include ct-component-with-vertical-space(top, $ct-map-space-vertical);
   }
 
-  &.civictheme-map--vertical-space-bottom {
-    @include civictheme-component-with-vertical-space(bottom, $civictheme-map-space-vertical);
+  &.ct-map--vertical-space-bottom {
+    @include ct-component-with-vertical-space(bottom, $ct-map-space-vertical);
   }
 
-  &.civictheme-map--vertical-space-both {
-    @include civictheme-component-with-vertical-space(both, $civictheme-map-space-vertical);
+  &.ct-map--vertical-space-both {
+    @include ct-component-with-vertical-space(both, $ct-map-space-vertical);
   }
 
   &__canvas {
     position: relative;
     height: 0;
     overflow: hidden;
-    padding: 0 civictheme-space() $civictheme-map-padding-bottom civictheme-space();
+    padding: 0 ct-space() $ct-map-padding-bottom ct-space();
 
     iframe {
       position: absolute;
@@ -28,39 +28,39 @@
 
   &__links {
     display: flex;
-    margin-top: civictheme-space(4);
-    padding: 0 civictheme-space();
+    margin-top: ct-space(4);
+    padding: 0 ct-space();
 
-    @include civictheme-breakpoint-upto(s) {
+    @include ct-breakpoint-upto(s) {
       display: block;
     }
   }
 
   &__view_link {
-    padding-right: civictheme-space(2);
+    padding-right: ct-space(2);
 
-    @include civictheme-breakpoint(m) {
-      padding-right: civictheme-space(3);
+    @include ct-breakpoint(m) {
+      padding-right: ct-space(3);
     }
   }
 
-  &.civictheme-theme-light {
-    background-color: $civictheme-map-light-background-color;
+  &.ct-theme-light {
+    background-color: $ct-map-light-background-color;
 
-    &.civictheme-map--with-background {
-      background-color: $civictheme-map-light-wrapper-background-color;
-      padding-left: $civictheme-map-space-horizontal;
-      padding-right: $civictheme-map-space-horizontal;
+    &.ct-map--with-background {
+      background-color: $ct-map-light-wrapper-background-color;
+      padding-left: $ct-map-space-horizontal;
+      padding-right: $ct-map-space-horizontal;
     }
   }
 
-  &.civictheme-theme-dark {
-    background-color: $civictheme-map-dark-background-color;
+  &.ct-theme-dark {
+    background-color: $ct-map-dark-background-color;
 
-    &.civictheme-map--with-background {
-      background-color: $civictheme-map-dark-wrapper-background-color;
-      padding-left: $civictheme-map-space-horizontal;
-      padding-right: $civictheme-map-space-horizontal;
+    &.ct-map--with-background {
+      background-color: $ct-map-dark-wrapper-background-color;
+      padding-left: $ct-map-space-horizontal;
+      padding-right: $ct-map-space-horizontal;
     }
   }
 }
