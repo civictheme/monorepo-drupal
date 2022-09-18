@@ -13,7 +13,6 @@
 @use 'sass:map';
 
 @mixin ct-row($gutters: $ct-grid-gutters) {
-  box-sizing: border-box;
   margin: 0 auto;
   display: flex;
   flex: 0 1 auto;
@@ -72,7 +71,6 @@
       @warn 'Column number must be greater than 0 and less than or equal to total number of columns in the grid (#{$ct-grid-columns})';
     }
     @else {
-      box-sizing: border-box;
       flex-basis: math.div(100%, $ct-grid-columns) * $col-number;
       max-width: math.div(100%, $ct-grid-columns) * $col-number;
 
@@ -83,7 +81,6 @@
   // If no col number is passed then arg is set to "auto" by default
   // "auto" mode fills the horizontal space with evenly sized containers
   @else if $col-number == 'auto' {
-    box-sizing: border-box;
     flex-grow: 1;
     flex-basis: 0;
     max-width: 100%;
@@ -125,7 +122,6 @@
 //
 @mixin _ct-col-factory($thisPrefix) {
   .col-#{$thisPrefix} {
-    box-sizing: border-box;
     flex-grow: 1;
     flex-basis: 0;
     max-width: 100%;
@@ -135,7 +131,6 @@
 
   @for $i from 1 through $ct-grid-columns {
     .col-#{$thisPrefix}-#{$i} {
-      box-sizing: border-box;
       flex-basis: math.div(100%, $ct-grid-columns) * $i;
       max-width: math.div(100%, $ct-grid-columns) * $i;
 

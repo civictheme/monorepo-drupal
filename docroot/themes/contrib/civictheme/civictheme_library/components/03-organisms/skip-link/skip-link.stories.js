@@ -4,7 +4,7 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeSkipLink from './skip-link.twig';
 
 export default {
-  title: 'Organisms/Skip Link',
+  title: 'Organisms/Navigation/Skip Link',
   parameters: {
     layout: 'fullscreen',
   },

@@ -4,7 +4,7 @@ import CivicThemeTable from './table.twig';
 import './table';
 
 export default {
-  title: 'Atoms/Table',
+  title: 'Atoms/Content/Table',
 };
 
 export const Table = (knobTab) => {

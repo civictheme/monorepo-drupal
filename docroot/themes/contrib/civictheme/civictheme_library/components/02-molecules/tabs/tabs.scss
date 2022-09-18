@@ -7,8 +7,6 @@
 
   margin-top: ct-spacing(2);
 
-  @include ct-typography('label-regular');
-
   #{$root}__links {
     border-bottom-style: solid;
     border-bottom-width: 1px;
@@ -18,18 +16,18 @@
     }
 
     .ct-link {
+      @include ct-typography('label-regular');
+      @include ct-link-decoration(false, false, false, false);
+
       margin-bottom: -1px;
       outline-offset: -3px;
       display: block;
-
-      @include ct-link-decoration(false, false, false, false);
-
       padding: ct-spacing(1) ct-spacing(2);
       border-radius: $ct-tabs-link-border-radius $ct-tabs-link-border-radius 0 0;
       border: solid 1px;
 
       @include ct-breakpoint('m') {
-        padding: ct-spacing(2.875);
+        padding: ct-spacing(1.5) ct-spacing(2);
       }
     }
   }
@@ -41,18 +39,29 @@
   .ct-tabs__panels__panel {
     display: none;
 
-    &.selected {
+    &.ct-tabs__panel--selected {
       display: block;
     }
   }
 
   &.ct-theme-light {
     #{$root}__links {
-      border-bottom-color: $ct-tabs-light-links-border-color;
+      border-bottom-color: $ct-tabs-light-links-stripe-border-color;
+    }
+
+    .ct-link {
+      background-color: $ct-tabs-light-links-background-color;
+      border-color: $ct-tabs-light-links-border-color;
+      border-bottom-color: $ct-tabs-light-links-stripe-border-color;
+
+      &#{$root}__tab--selected {
+        background-color: $ct-tabs-light-links-active-background-color;
+        border-color: $ct-tabs-light-links-active-border-color;
+        border-bottom-color: $ct-tabs-light-links-stripe-border-color;
+      }
     }
 
     #{$root}__panels {
-      color: $ct-tabs-light-panel-color;
       background-color: $ct-tabs-light-panel-background-color;
       border-color: $ct-tabs-light-panel-border-color;
     }
@@ -60,11 +69,22 @@
 
   &.ct-theme-dark {
     #{$root}__links {
-      border-bottom-color: $ct-tabs-dark-links-border-color;
+      border-bottom-color: $ct-tabs-dark-links-stripe-border-color;
+    }
+
+    .ct-link {
+      background-color: $ct-tabs-dark-links-background-color;
+      border-color: $ct-tabs-dark-links-border-color;
+      border-bottom-color: $ct-tabs-dark-links-stripe-border-color;
+
+      &#{$root}__tab--selected {
+        background-color: $ct-tabs-dark-links-active-background-color;
+        border-color: $ct-tabs-dark-links-active-border-color;
+        border-bottom-color: $ct-tabs-dark-links-stripe-border-color;
+      }
     }
 
     #{$root}__panels {
-      color: $ct-tabs-dark-panel-color;
       background-color: $ct-tabs-dark-panel-background-color;
       border-color: $ct-tabs-dark-panel-border-color;
     }

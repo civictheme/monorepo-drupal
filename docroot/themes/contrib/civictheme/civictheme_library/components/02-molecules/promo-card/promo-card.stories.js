@@ -12,7 +12,7 @@ import {
 import CivicThemePromoCard from './promo-card.twig';
 
 export default {
-  title: 'Molecules/Promo Card',
+  title: 'Molecules/Cards/Promo Card',
   parameters: {
     layout: 'centered',
   },

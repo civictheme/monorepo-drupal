@@ -12,7 +12,7 @@ import {
 } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecules/Publication Card',
+  title: 'Molecules/Cards/Publication Card',
   parameters: {
     layout: 'centered',
   },
