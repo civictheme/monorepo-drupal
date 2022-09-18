@@ -5,7 +5,7 @@ import CivicThemeCollapsible from './collapsible.stories.twig';
 import './collapsible';
 
 export default {
-  title: 'Base/Collapsible',
+  title: 'Base/Utilities/Collapsible',
 };
 
 export const Collapsible = (knobTab) => {

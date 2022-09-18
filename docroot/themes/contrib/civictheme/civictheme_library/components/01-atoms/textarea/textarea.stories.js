@@ -5,7 +5,7 @@ import {
 import CivicThemeTextarea from './textarea.twig';
 
 export default {
-  title: 'Atoms/Textarea',
+  title: 'Atoms/Forms/Textarea',
   parameters: {
     layout: 'centered',
   },

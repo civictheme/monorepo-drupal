@@ -2,7 +2,7 @@
 import './scrollspy';
 
 export default {
-  title: 'Base/Scrollspy',
+  title: 'Base/Utilities/Scrollspy',
 };
 
 export const Scrollspy = () => `

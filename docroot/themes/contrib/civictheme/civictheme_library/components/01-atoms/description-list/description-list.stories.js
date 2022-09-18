@@ -5,7 +5,7 @@ import {
 import CivicThemeDescriptionList from './description-list.twig';
 
 export default {
-  title: 'Atoms/Description List',
+  title: 'Atoms/Content/Description List',
   parameters: {
     layout: 'centered',
   },
