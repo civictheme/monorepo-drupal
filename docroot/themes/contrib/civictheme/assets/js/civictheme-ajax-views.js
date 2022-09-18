@@ -6,7 +6,7 @@ Drupal.behaviors.civictheme_ajax_views = {
   // eslint-disable-next-line no-unused-vars
   attach: function attach(context, settings) {
     // eslint-disable-next-line no-undef
-    const $form = jQuery('[data-civictheme-filter]', context).once('civicthemeAjaxView');
+    const $form = jQuery('[data-ct-filter]', context).once('civicthemeAjaxView');
     if ($form.length === 0) {
       return;
     }
@@ -24,7 +24,7 @@ Drupal.behaviors.civictheme_ajax_views = {
       if (isAutosubmit === true) {
         // We do not want to submit on every click, we want user to be able
         // to select several checkboxes or radio buttons without submitting.
-        const timeout = $form.attr('data-civictheme-filter-ajax-submit-timeout') !== null ? Number($form.attr('data-civictheme-filter-ajax-submit-timeout')) : 500;
+        const timeout = $form.attr('data-ct-filter-ajax-submit-timeout') !== null ? Number($form.attr('data-ct-filter-ajax-submit-timeout')) : 500;
         if (timeout > 0) {
           if (typeof debounce !== 'undefined') {
             clearTimeout(debounce);
@@ -38,8 +38,8 @@ Drupal.behaviors.civictheme_ajax_views = {
         }
       }
     };
-    const filterType = $form.attr('data-civictheme-filter-type');
-    const ajaxForm = $form.attr('data-civictheme-filter-ajax') === 'true';
+    const filterType = $form.attr('data-ct-filter-type');
+    const ajaxForm = $form.attr('data-ct-filter-ajax') === 'true';
     if (filterType === 'large') {
       if (ajaxForm) {
         // Attach reload of view results in with redrawing of filters for

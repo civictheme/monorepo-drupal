@@ -114,9 +114,9 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
     _civictheme_filter_views_exposed_form_alter__process_elements($form[$form_element_key], $form, $listing_use_large_filter);
   }
 
-  $form['#attributes']['data-civictheme-filter'] = '';
-  $form['#attributes']['data-civictheme-filter-type'] = $listing_use_large_filter ? 'group' : 'basic';
-  $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $listing_use_large_filter ? 500 : 0;
+  $form['#attributes']['data-ct-filter'] = '';
+  $form['#attributes']['data-ct-filter-type'] = $listing_use_large_filter ? 'group' : 'basic';
+  $form['#attributes']['data-ct-filter-ajax-submit-timeout'] = $listing_use_large_filter ? 500 : 0;
 
   // Made preprocessors know that we are using a large filter.
   // @todo Revisit this as we should not be passing custom values like this.
@@ -130,7 +130,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   // Ajax exposed view forms hides submit button to have auto-load.
   $ajax_filter = $form_state->get('view')->ajaxEnabled();
   if ($ajax_filter) {
-    $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
+    $form['#attributes']['data-ct-filter-ajax'] = $ajax_filter ? 'true' : 'false';
 
     $form_state->get('view')->setAjaxEnabled(TRUE);
 

@@ -3,9 +3,9 @@
  * Group filter component.
  */
 function CivicGroupFilter(el) {
-  // Use "data-civictheme-alerts"'s attribute value to identify if this
+  // Use "data-ct-alerts"'s attribute value to identify if this
   // component was already initialised.
-  if (el.getAttribute('data-civictheme-group-filter') === 'true') {
+  if (el.getAttribute('data-ct-group-filter') === 'true') {
     return;
   }
 
@@ -130,7 +130,7 @@ CivicGroupFilter.prototype.init = function () {
   this.redraw(false);
   this.initialisedState = true;
 
-  this.el.setAttribute('data-civictheme-group-filter', 'true');
+  this.el.setAttribute('data-ct-group-filter', 'true');
 };
 
 /**
