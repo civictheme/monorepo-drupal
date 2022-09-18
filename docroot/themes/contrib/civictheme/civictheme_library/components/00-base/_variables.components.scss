@@ -1219,8 +1219,8 @@ $ct-slider-dark-wrapper-background-color: ct-color-dark('background') !default;
 //
 // Slide.
 //
-$ct-slide-desktop-height: rem(560px);
-$ct-slide-mobile-height: rem(280px);
+$ct-slide-desktop-height: rem(560px) !default;
+$ct-slide-mobile-height: rem(280px) !default;
 $ct-slide-light-background-color: ct-color-light('background') !default;
 $ct-slide-light-summary-color: ct-color-light('body') !default;
 $ct-slide-light-title-color: ct-color-light('heading') !default;
@@ -1233,14 +1233,14 @@ $ct-slide-dark-title-color: ct-color-dark('heading') !default;
 //
 $ct-social-links-light-color: ct-color-light('interaction-background') !default;
 $ct-social-links-light-hover-color: ct-color-light('interaction-background') !default;
-$ct-social-links-light-focus-color: $ct-social-links-light-hover-color;
-$ct-social-links-light-active-color: $ct-social-links-light-hover-color;
-$ct-social-links-light-visited-color: $ct-social-links-light-color;
+$ct-social-links-light-focus-color: $ct-social-links-light-hover-color !default;
+$ct-social-links-light-active-color: $ct-social-links-light-hover-color !default;
+$ct-social-links-light-visited-color: $ct-social-links-light-color !default;
 $ct-social-links-dark-color: ct-color-dark('interaction-background') !default;
 $ct-social-links-dark-hover-color: ct-color-dark('interaction-background') !default;
-$ct-social-links-dark-focus-color: $ct-social-links-dark-hover-color;
-$ct-social-links-dark-active-color: $ct-social-links-dark-hover-color;
-$ct-social-links-dark-visited-color: $ct-social-links-dark-color;
+$ct-social-links-dark-focus-color: $ct-social-links-dark-hover-color !default;
+$ct-social-links-dark-active-color: $ct-social-links-dark-hover-color !default;
+$ct-social-links-dark-visited-color: $ct-social-links-dark-color !default;
 
 //
 // Tabs.
