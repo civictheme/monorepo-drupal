@@ -21,7 +21,7 @@ Feature: Tests the Subject card paragraph
   @api
   Scenario: Subject card paragraph field_c_p_cards fields settings.
     Given I am logged in as a user with the "Administrator" role
-    When I go to "admin/structure/paragraphs_type/civictheme_card_container/fields/paragraph.civictheme_card_container.field_c_p_cards"
+    When I go to "admin/structure/paragraphs_type/civictheme_manual_list/fields/paragraph.civictheme_manual_list.field_c_p_cards"
     And the "Label" field should contain "Cards"
     Then the option "Default" from select "Reference method" is selected
     Then the "Include the selected below" checkbox should be checked
@@ -35,7 +35,7 @@ Feature: Tests the Subject card paragraph
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
-    And I press the "field_c_n_components_civictheme_card_container_add_more" button
+    And I press the "field_c_n_components_civictheme_manual_list_add_more" button
     And I wait for AJAX to finish
     And the option "Light" from select "Theme" is selected
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element

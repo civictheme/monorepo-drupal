@@ -24,12 +24,12 @@ Feature: Tests the Event Card paragraph
       | [TEST] Topic 3 |
 
     And I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page - Event cards test" has "civictheme_card_container" paragraph:
-      | field_c_p_title        | [TEST] Event card container                 |
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page - Event cards test" has "civictheme_manual_list" paragraph:
+      | field_c_p_title        | [TEST] Event manual list                 |
       | field_c_p_column_count | 4                                           |
-      | field_c_p_header_link  | 0: View all events - 1: https://example.com |
+      | field_c_p_list_link_above  | 0: View all events - 1: https://example.com |
       | field_c_p_fill_width   | 0                                           |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Event card container" has "civictheme_event_card" paragraph:
+    And "field_c_p_cards" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Event manual list" has "civictheme_event_card" paragraph:
       | field_c_p_date     | 2021-04-29                            |
       | field_c_p_image    | [TEST] CivicTheme Image               |
       | field_c_p_link     | 0: Test link - 1: https://example.com |
@@ -38,7 +38,7 @@ Feature: Tests the Event Card paragraph
       | field_c_p_title    | Event card title                      |
       | field_c_p_topic    | [TEST] Topic 1                        |
       | field_c_p_location | [TEST] Location 1                     |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Event card container" has "civictheme_event_card" paragraph:
+    And "field_c_p_cards" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Event manual list" has "civictheme_event_card" paragraph:
       | field_c_p_date     | 2021-04-30                                  |
       | field_c_p_image    | [TEST] CivicTheme Image                     |
       | field_c_p_link     | 0: Test link - 1: https://example.com/card1 |
@@ -47,7 +47,7 @@ Feature: Tests the Event Card paragraph
       | field_c_p_title    | Event card title 1                          |
       | field_c_p_topic    | [TEST] Topic 2                              |
       | field_c_p_location | [TEST] Location 2                           |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Event card container" has "civictheme_event_card" paragraph:
+    And "field_c_p_cards" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Event manual list" has "civictheme_event_card" paragraph:
       | field_c_p_date     | 2022-05-29                                  |
       | field_c_p_image    | [TEST] CivicTheme Image                     |
       | field_c_p_link     | 0: Test link - 1: https://example.com/card2 |
@@ -56,7 +56,7 @@ Feature: Tests the Event Card paragraph
       | field_c_p_title    | Event card title 2                          |
       | field_c_p_topic    | [TEST] Topic 1                              |
       | field_c_p_location | [TEST] Location 3                           |
-    And "field_c_p_cards" in "civictheme_card_container" "paragraph" with "field_c_p_title" of "[TEST] Event card container" has "civictheme_event_card" paragraph:
+    And "field_c_p_cards" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Event manual list" has "civictheme_event_card" paragraph:
       | field_c_p_date     | 2023-06-29                                  |
       | field_c_p_image    | [TEST] CivicTheme Image                     |
       | field_c_p_link     | 0: Test link - 1: https://example.com/card3 |
@@ -66,7 +66,7 @@ Feature: Tests the Event Card paragraph
       | field_c_p_location | [TEST] Location 4                           |
 
     When I visit "civictheme_page" "[TEST] Page - Event cards test"
-    And I should see the text "[TEST] Event card container"
+    And I should see the text "[TEST] Event manual list"
     Then I should see the link "View all events" with "https://example.com" in 'div.ct-card-container'
     And I should see an "div.ct-event-card" element
     And I should see 1 "div.ct-card-container" elements

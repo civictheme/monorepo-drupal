@@ -29,7 +29,7 @@ Feature: Tests the Promo card
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-1 a" element
     And I click on "div.field--name-field-c-n-banner-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
-    And I press the "field_c_n_banner_components_civictheme_card_container_add_more" button
+    And I press the "field_c_n_banner_components_civictheme_manual_list_add_more" button
     And I wait for AJAX to finish
     And I click on "div.field--name-field-c-n-banner-components .field--name-field-c-p-cards .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
@@ -55,7 +55,7 @@ Feature: Tests the Promo card
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish
-    And I press the "field_c_n_components_civictheme_card_container_add_more" button
+    And I press the "field_c_n_components_civictheme_manual_list_add_more" button
     And I wait for AJAX to finish
     And I click on "div.field--name-field-c-n-components .field--name-field-c-p-cards .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait for AJAX to finish

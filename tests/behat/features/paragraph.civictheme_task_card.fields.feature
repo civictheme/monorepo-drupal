@@ -11,7 +11,7 @@ Feature: Tests the Task card paragraph
     And I click on ".field-group-tabs-wrapper .horizontal-tab-button-2 a" element
     And I click on "div.field--name-field-c-n-components .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
-    And I press the "field_c_n_components_civictheme_card_container_add_more" button
+    And I press the "field_c_n_components_civictheme_manual_list_add_more" button
     And I wait for AJAX to finish
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-header-link-0-uri" element
