@@ -115,7 +115,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   }
 
   $form['#attributes']['data-civictheme-filter'] = '';
-  $form['#attributes']['data-civictheme-filter-type'] = $listing_use_large_filter ? 'group' : 'basic';
+  $form['#attributes']['data-civictheme-filter-type'] = $listing_use_large_filter ? 'group' : 'single';
   $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $listing_use_large_filter ? 500 : 0;
 
   // Made preprocessors know that we are using a large filter.
@@ -261,6 +261,7 @@ function civictheme_preprocess_views_view(&$variables) {
   // Header is displayed within card container.
   if ($view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     unset($variables['header']);
+    $variables['rows_header'] = $view->header['result']->render();
   }
 
   // Adding template required classes in for civictheme component.
