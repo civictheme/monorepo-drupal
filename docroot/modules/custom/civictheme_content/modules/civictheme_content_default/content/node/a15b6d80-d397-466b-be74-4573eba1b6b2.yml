@@ -1022,7 +1022,7 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1120,7 +1120,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1215,7 +1215,7 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1310,7 +1310,7 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1408,7 +1408,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1503,7 +1503,7 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
