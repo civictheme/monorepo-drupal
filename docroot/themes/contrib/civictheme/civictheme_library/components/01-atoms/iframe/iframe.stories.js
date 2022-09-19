@@ -25,7 +25,7 @@ export const Iframe = (knobTab) => {
     url: text('URL', 'https://www.openstreetmap.org/export/embed.html?bbox=144.1910129785538%2C-38.33563928918572%2C146.0037571191788%2C-37.37170047141492&amp;layer=mapnik', generalKnobTab),
     width: text('Width', '500', generalKnobTab),
     height: text('Height', '300', generalKnobTab),
-    vertical_space: radios(
+    vertical_spacing: radios(
       'Vertical space',
       {
         None: 'none',

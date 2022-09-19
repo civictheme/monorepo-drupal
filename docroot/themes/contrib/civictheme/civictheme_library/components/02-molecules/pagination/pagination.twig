@@ -11,7 +11,6 @@
  *   - href: [string] Item link.
  * - current: [string] Current page number.
  * - attributes: [string] Additional attributes.
- * - modifier_class: [string] Additional classes.
  * - items_per_page_label: [string] Label for items per page.
  * - items_per_page_options: [array] Array of options (applies to optgroup type):
  *   - type: [string] Option type ('option')
@@ -22,15 +21,21 @@
  * - ellipses: [object] Boolean flags for whether to print ellipses.
  *   - previous: [boolean] show ellipsis before item links
  *   - next: [boolean] show ellipsis after item links
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
+{% set items_per_page_label = items_per_page_label|default('Items per page') %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
-{% set items_per_page_label = items_per_page_label|default('Items per page') %}
 
 {% if items is not empty %}
-  <nav class="ct-pager {{ modifier_class }}" role="navigation" {% if heading_id is not empty %}aria-labelledby="{{ heading_id }}"{% endif %}>
+  <nav
+    class="ct-pager {{ modifier_class }}" role="navigation"
+    {% if heading_id is not empty %}aria-labelledby="{{ heading_id }}"{% endif %}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
     <h4 {% if heading_id is not empty %}id="{{ heading_id }}"{% endif %} class="ct-visually-hidden">{{ 'Pagination' }}</h4>
 
     {% if items_per_page_options is defined and items_per_page_options is not empty %}

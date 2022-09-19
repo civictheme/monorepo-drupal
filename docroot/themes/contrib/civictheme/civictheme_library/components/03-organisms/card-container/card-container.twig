@@ -15,21 +15,21 @@
  * - header_link_url: [string] Heading link URL.
  * - footer_link_text: [string] Footer link text.
  * - footer_link_url: [string] Footer link URL.
- * - vertical_space: [string] With top, bottom or both vertical spaces.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - with_background: [boolean] With background or not.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-card-container--vertical-space-%s'|format(vertical_space) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
 {% set with_background_class = with_background ? 'ct-card-container--with-background' : '' %}
 {% set column_class = 'col-xxs-12 col-m-%s'|format(12 / column_count|default(1)) %}
 {% set fill_width_class = fill_width ? 'ct-card-container--fill-width' : '' %}
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, fill_width_class, vertical_space_class, with_background_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, fill_width_class, vertical_spacing_class, with_background_class, modifier_class|default('')) %}
 
 {% if title is not empty or cards is not empty or content_top is not empty or content_bottom is not empty %}
-  <div class="ct-card-container {{ modifier_class }}" aria-live="polite">
+  <div class="ct-card-container {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %} aria-live="polite">
     <div class="container">
       <div class="row">
         <div class="col-xxs-12">

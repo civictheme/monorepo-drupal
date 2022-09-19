@@ -5,18 +5,6 @@
 .ct-card-container {
   $root: &;
 
-  &.ct-card-container--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-card-container-space-vertical);
-  }
-
-  &.ct-card-container--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-card-container-space-vertical);
-  }
-
-  &.ct-card-container--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-card-container-space-vertical);
-  }
-
   &--fill-width {
     [class*='col-'] {
       max-width: 100%;

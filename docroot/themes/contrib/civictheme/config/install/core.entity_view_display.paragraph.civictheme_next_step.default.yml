@@ -4,7 +4,7 @@ dependencies:
   config:
     - field.field.paragraph.civictheme_next_step.field_c_p_image
     - field.field.paragraph.civictheme_next_step.field_c_p_link
-    - field.field.paragraph.civictheme_next_step.field_c_p_space
+    - field.field.paragraph.civictheme_next_step.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_next_step.field_c_p_summary
     - field.field.paragraph.civictheme_next_step.field_c_p_theme
     - field.field.paragraph.civictheme_next_step.field_c_p_title
@@ -38,7 +38,7 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-  field_c_p_space:
+  field_c_p_vertical_spacing:
     weight: 5
     label: above
     settings: {  }

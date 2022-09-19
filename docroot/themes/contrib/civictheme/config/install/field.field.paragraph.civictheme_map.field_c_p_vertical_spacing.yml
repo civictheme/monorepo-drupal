@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_c_p_space
-    - paragraphs.paragraphs_type.civictheme_promo
+    - field.storage.paragraph.field_c_p_vertical_spacing
+    - paragraphs.paragraphs_type.civictheme_map
   module:
     - options
-id: paragraph.civictheme_promo.field_c_p_space
-field_name: field_c_p_space
+id: paragraph.civictheme_map.field_c_p_vertical_spacing
+field_name: field_c_p_vertical_spacing
 entity_type: paragraph
-bundle: civictheme_promo
+bundle: civictheme_map
 label: 'With space'
 description: ''
 required: false

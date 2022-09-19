@@ -10,18 +10,18 @@
  * - is_new_window: [boolean] Open in a new window.
  * - is_external [boolean] Link is external.
  * - disabled: [boolean] Disabled state.
- * - attributes: [string] Additional attributes.
- * - modifier_class: [string] Additional classes.
  * - icon: [string] Icon name.
  * - icon_placement: [string] Icon position: before, after.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set disabled_class = disabled ? 'ct-input--disabled disabled' : '' %}
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
 {% set icon_size = icon_size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? icon_size : 'small' %}
 {% set is_external = is_external ? 'ct-link--external ct-icon--upper-right-arrow--after--' ~ icon_size : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, is_external, modifier_class|default('')) %}
 
 {% if icon %}
@@ -52,7 +52,13 @@
 {% endif %}
 
 {% if text is not empty %}
-  <a class="ct-link {{ modifier_class }}" {% if url is not empty %}href="{{ url }}"{% endif %} {{ is_new_window ? 'target="_blank"' }} {{ disabled ? 'disabled' }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <a
+    class="ct-link {{ modifier_class }}"
+    {% if url is not empty %}href="{{ url }}"{% endif %}
+    {{ is_new_window ? 'target="_blank"' }}
+    {{ disabled ? 'disabled' }}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
     {{ link_text }}
   </a>
 {% endif %}

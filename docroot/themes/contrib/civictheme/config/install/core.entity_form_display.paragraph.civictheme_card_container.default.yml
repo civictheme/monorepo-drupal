@@ -9,7 +9,7 @@ dependencies:
     - field.field.paragraph.civictheme_card_container.field_c_p_fill_width
     - field.field.paragraph.civictheme_card_container.field_c_p_footer_link
     - field.field.paragraph.civictheme_card_container.field_c_p_header_link
-    - field.field.paragraph.civictheme_card_container.field_c_p_space
+    - field.field.paragraph.civictheme_card_container.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_card_container.field_c_p_theme
     - field.field.paragraph.civictheme_card_container.field_c_p_title
     - paragraphs.paragraphs_type.civictheme_card_container
@@ -84,7 +84,7 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_c_p_space:
+  field_c_p_vertical_spacing:
     weight: 9
     settings: {  }
     third_party_settings: {  }

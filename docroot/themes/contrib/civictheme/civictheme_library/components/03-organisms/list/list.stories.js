@@ -1,23 +1,28 @@
 // phpcs:ignoreFile
 import {
-  boolean, radios, number, text, date,
+  boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';
 
 import {
   demoImage,
   randomDropdownFilter,
   randomFormElement,
+  randomText,
   randomUrl,
 } from '../../00-base/base.stories';
 
-import CivicThemeGroupFilter from '../../02-molecules/group-filter/group-filter.twig';
-import CivicThemeSingleFilter from '../../02-molecules/single-filter/single-filter.twig';
+import CivicThemeGroupFilter
+  from '../../02-molecules/group-filter/group-filter.twig';
+import CivicThemeSingleFilter
+  from '../../02-molecules/single-filter/single-filter.twig';
 
 import CivicThemeCardContainer from '../card-container/card-container.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
-import NavigationCard from '../../02-molecules/navigation-card/navigation-card.twig';
+import NavigationCard
+  from '../../02-molecules/navigation-card/navigation-card.twig';
 
-import CivicThemePagination from '../../02-molecules/pagination/pagination.twig';
+import CivicThemePagination
+  from '../../02-molecules/pagination/pagination.twig';
 import CivicThemeList from './list.twig';
 
 export default {
@@ -121,6 +126,8 @@ export const List = (knobTab) => {
     };
   }
 
+  generalKnobs.content = boolean('With content', false, generalKnobTab) ? randomText() : null;
+
   let filterCount;
   if (showFilters) {
     filterCount = number(
@@ -151,7 +158,7 @@ export const List = (knobTab) => {
   const withBackground = boolean('With background', false, generalKnobTab);
 
   generalKnobs.with_background = withBackground;
-  generalKnobs.vertical_space = verticalSpace;
+  generalKnobs.vertical_spacing = verticalSpace;
   generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
 
   // Build filters.

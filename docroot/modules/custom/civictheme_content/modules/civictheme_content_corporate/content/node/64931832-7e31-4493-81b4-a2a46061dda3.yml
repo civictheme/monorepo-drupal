@@ -129,7 +129,7 @@ default:
           field_c_p_icon:
             -
               entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: bottom
           field_c_p_summary:
@@ -761,7 +761,7 @@ default:
           field_c_p_fill_width:
             -
               value: true
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -985,7 +985,7 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: top
           field_c_p_theme:

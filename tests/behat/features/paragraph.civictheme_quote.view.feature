@@ -15,7 +15,7 @@ Feature: View of Page content with Quote component
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page quote test" has "civictheme_quote" paragraph:
       | field_c_p_theme   | light                                                                                                   |
-      | field_c_p_space   | both                                                                                                    |
+      | field_c_p_vertical_spacing   | both                                                                                                    |
       | field_c_p_content | [TEST] Content text Pellentesque in ipsum id orci porta dapibus. Donec sollicitudin molestie malesuada. |
       | field_c_p_author  | [TEST] Author                                                                                           |
 
@@ -30,7 +30,7 @@ Feature: View of Page content with Quote component
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page quote test 1" has "civictheme_quote" paragraph:
       | field_c_p_theme   | dark                                                                                                    |
-      | field_c_p_space   | both                                                                                                    |
+      | field_c_p_vertical_spacing   | both                                                                                                    |
       | field_c_p_content | [TEST] Content text Pellentesque in ipsum id orci porta dapibus. Donec sollicitudin molestie malesuada. |
       | field_c_p_author  | [TEST] Author                                                                                           |
 
@@ -47,7 +47,7 @@ Feature: View of Page content with Quote component
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page quote test 2" has "civictheme_quote" paragraph:
       | field_c_p_theme   | light                                                                                                   |
-      | field_c_p_space   | both                                                                                                    |
+      | field_c_p_vertical_spacing   | both                                                                                                    |
       | field_c_p_content | [TEST] Content text Pellentesque in ipsum id orci porta dapibus. Donec sollicitudin molestie malesuada. |
 
     When I visit "civictheme_page" "[TEST] Page quote test 2"

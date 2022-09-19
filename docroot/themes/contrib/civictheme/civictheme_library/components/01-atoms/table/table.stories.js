@@ -83,8 +83,8 @@ export const Table = (knobTab) => {
       'before',
       generalKnobTab,
     ),
-    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   if (generalKnobs.rows) {

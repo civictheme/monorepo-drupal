@@ -18,7 +18,7 @@ Feature: Tests the IFrame paragraph
     And I should see the text "field_c_p_height" in the "Height" row
     And I should see the text "field_c_p_attributes" in the "Attributes" row
     And I should see the text "field_c_p_theme" in the "Theme" row
-    And I should see the text "field_c_p_space" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
 
   @api
   Scenario: Page content type field_c_n_components fields settings.

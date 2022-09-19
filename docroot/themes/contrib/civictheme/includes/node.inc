@@ -100,7 +100,7 @@ function _civictheme_preprocess_page__node(&$variables) {
   // Layout determines whether a node is contained and what it's layout is.
   $variables['page']['content_contained'] = FALSE;
 
-  $variables['vertical_space'] = civictheme_get_field_value($node, 'field_c_n_space');
+  $variables['vertical_spacing'] = civictheme_get_field_value($node, 'field_c_n_space');
 
   // Hide sidebar check.
   $variables['hide_sidebar'] = civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ?? FALSE;

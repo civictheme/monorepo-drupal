@@ -38,7 +38,7 @@ export const Layout = (knobTab) => {
       'single_column',
       generalKnobTab,
     ),
-    vertical_space: radios(
+    vertical_spacing: radios(
       'Vertical space',
       {
         None: 'none',

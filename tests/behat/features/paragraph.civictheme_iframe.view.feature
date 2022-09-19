@@ -13,7 +13,7 @@ Feature: View of Page content with iframe component
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page iframe test" has "civictheme_iframe" paragraph:
       | field_c_p_theme      | light             |
-      | field_c_p_space      | both              |
+      | field_c_p_vertical_spacing      | both              |
       | field_c_p_height     | 600               |
       | field_c_p_width      | 400               |
       | field_c_p_background | 0                 |
@@ -31,7 +31,7 @@ Feature: View of Page content with iframe component
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page iframe test" has "civictheme_iframe" paragraph:
       | field_c_p_theme      | dark              |
-      | field_c_p_space      | both              |
+      | field_c_p_vertical_spacing      | both              |
       | field_c_p_height     | 600               |
       | field_c_p_width      | 400               |
       | field_c_p_background | 1                 |

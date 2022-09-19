@@ -16,9 +16,9 @@
  */
 #}
 
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set striped_class = is_striped ? 'ct-table--%s'|format('striped') : '' %}
 {% set caption_position_class = caption_position == 'after' ? 'ct-table--caption-after' : 'ct-table--caption-before' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, caption_position_class, striped_class, modifier_class|default('')) %}
 
 {% if rows is not empty or header is not empty or footer is not empty or caption is not empty%}

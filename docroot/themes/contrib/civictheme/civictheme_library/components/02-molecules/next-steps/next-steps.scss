@@ -9,18 +9,6 @@
   position: relative;
   text-decoration: none;
 
-  &.ct-next-steps--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-next-steps-space-vertical);
-  }
-
-  &.ct-next-steps--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-next-steps-space-vertical);
-  }
-
-  &.ct-next-steps--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-next-steps-space-vertical);
-  }
-
   &__content {
     display: block;
     position: relative;

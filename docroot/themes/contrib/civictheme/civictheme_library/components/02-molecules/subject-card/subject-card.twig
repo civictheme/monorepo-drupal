@@ -10,6 +10,7 @@
  * - title: [string] Card title.
  * - url: [string] Url for link out from Card.
  * - is_external: [boolean] Link is external.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -18,7 +19,7 @@
 {% set type_class = image is empty ? 'ct-subject-card--no-image' : '' %}
 {% set modifier_class = '%s %s'|format(theme_class, type_class, modifier_class|default('')) %}
 
-<div class="ct-subject-card {{ modifier_class }}">
+<div class="ct-subject-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   <div class="ct-subject-card__image-wrapper">
     {% block image %}
       {% if image.src is not empty %}

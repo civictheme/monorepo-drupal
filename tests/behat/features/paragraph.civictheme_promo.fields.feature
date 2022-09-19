@@ -17,7 +17,7 @@ Feature: Tests the Promo paragraph
     And I should see the text "field_c_p_summary" in the "Summary" row
     And I should see the text "field_c_p_link" in the "Link" row
     And I should see the text "field_c_p_theme" in the "Theme" row
-    And I should see the text "field_c_p_space" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
@@ -34,7 +34,7 @@ Feature: Tests the Promo paragraph
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]'].required" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_space]']" element
+    And should see an "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]']" element
     And should not see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]'].required" element
     And should see "The summary field may contain up to 100 characters. Any characters past the 100 character limit will not show for users." in the ".form-item-field-c-n-components-0-subform-field-c-p-summary-0-value" element

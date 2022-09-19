@@ -414,7 +414,7 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: bottom
           field_c_p_theme:
@@ -446,7 +446,7 @@ default:
               uri: 'internal:/'
               title: 'Callout text link '
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: bottom
           field_c_p_summary:

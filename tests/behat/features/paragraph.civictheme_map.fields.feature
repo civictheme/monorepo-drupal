@@ -16,7 +16,7 @@ Feature: Tests the Map paragraph
     And I should see the text "field_c_p_address" in the "Address" row
     And I should see the text "field_c_p_view_link" in the "View link" row
     And I should see the text "field_c_p_theme" in the "Theme" row
-    And I should see the text "field_c_p_space" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
     And I should see the text "field_c_p_embed_url" in the "Embed URL" row
     And I should see the text "field_c_p_background" in the "Background" row
 
@@ -42,7 +42,7 @@ Feature: Tests the Map paragraph
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_address][0][value]'].required" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_space]']" element
+    And should see an "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_embed_url][0][uri]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_embed_url][0][uri]'].required" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_view_link][0][uri]']" element

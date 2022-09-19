@@ -27,7 +27,7 @@ export const Accordion = (knobTab) => {
       generalKnobTab,
     ),
     expand_all: boolean('Expand all', false, generalKnobTab),
-    vertical_space: radios(
+    vertical_spacing: radios(
       'Vertical space',
       {
         None: 'none',
@@ -39,6 +39,7 @@ export const Accordion = (knobTab) => {
       generalKnobTab,
     ),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   // Adding dynamic number of accordion panels.

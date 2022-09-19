@@ -13,6 +13,9 @@ import { getSlots } from '../../00-base/base.stories';
 
 export default {
   title: 'Organisms/Card Container',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const CardContainer = (knobTab) => {
@@ -49,7 +52,7 @@ export const CardContainer = (knobTab) => {
     ),
     fill_width: boolean('Fill width', false, generalKnobTab),
     with_background: boolean('With background', false, generalKnobTab),
-    vertical_space: radios(
+    vertical_spacing: radios(
       'Vertical space',
       {
         None: 'none',
@@ -61,6 +64,7 @@ export const CardContainer = (knobTab) => {
       generalKnobTab,
     ),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   const cardsKnobTab = 'Cards';

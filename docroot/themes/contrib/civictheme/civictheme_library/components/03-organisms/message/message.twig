@@ -11,9 +11,9 @@
  */
 #}
 
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set type = type|default('information') %}
 {% set type_class = 'ct-message--%s messages--%s'|format(type, type) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class | default('')) %}
 
 {% set icons = {
@@ -23,7 +23,13 @@
   success: 'approve',
 } %}
 
-<div class="ct-message messages {{ modifier_class }}" role="{% if type == 'error' %}error{% else %}contentinfo{% endif %}" aria-label="{{ type }}" {% if type == 'error' %}aria-live="polite"{% endif %}>
+<div
+  class="ct-message messages {{ modifier_class }}"
+  role="{% if type == 'error' %}error{% else %}contentinfo{% endif %}"
+  aria-label="{{ type }}"
+  {% if type == 'error' %}aria-live="polite"{% endif %}
+  {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+>
   {% if icons[type] is defined %}
     <div class="ct-message__icon">
       {% include "@base/icon/icon.twig" with {

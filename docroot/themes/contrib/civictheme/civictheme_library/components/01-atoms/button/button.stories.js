@@ -69,8 +69,8 @@ export const Button = (knobTab) => {
   generalKnobs.is_disabled = boolean('Disabled', false, generalKnobTab);
   generalKnobs.is_external = boolean('Is external', false, generalKnobTab);
   generalKnobs.is_raw_text = boolean('Allow HTML in text', false, generalKnobTab);
-  generalKnobs.attributes = text('Additional attributes', '', generalKnobTab);
   generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
+  generalKnobs.attributes = text('Additional attributes', '', generalKnobTab);
 
   const iconKnobTab = 'Icon';
   const withIcon = boolean('With icon', false, iconKnobTab);

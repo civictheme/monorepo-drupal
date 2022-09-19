@@ -5,7 +5,7 @@ dependencies:
     - field.field.paragraph.civictheme_slider.field_c_p_background
     - field.field.paragraph.civictheme_slider.field_c_p_link
     - field.field.paragraph.civictheme_slider.field_c_p_slides
-    - field.field.paragraph.civictheme_slider.field_c_p_space
+    - field.field.paragraph.civictheme_slider.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_slider.field_c_p_theme
     - field.field.paragraph.civictheme_slider.field_c_p_title
     - paragraphs.paragraphs_type.civictheme_slider
@@ -49,7 +49,7 @@ content:
       link: ''
     third_party_settings: {  }
     region: content
-  field_c_p_space:
+  field_c_p_vertical_spacing:
     weight: 4
     label: above
     settings: {  }

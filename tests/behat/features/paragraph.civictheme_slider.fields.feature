@@ -17,7 +17,7 @@ Feature: Tests the Slider paragraph
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_link" in the "Link" row
     And I should see the text "field_c_p_slides" in the "Slides" row
-    And I should see the text "field_c_p_space" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
     And I should see the text "field_c_p_background" in the "Background" row
 
   @api @javascript

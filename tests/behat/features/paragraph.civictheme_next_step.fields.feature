@@ -18,7 +18,7 @@ Feature: Test the Next step paragraph
     And I should see the text "field_c_p_summary" in the "Summary" row
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_title" in the "Title" row
-    And I should see the text "field_c_p_space" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
 
   @api
   Scenario: Node type Page field_c_n_components fields settings.
@@ -50,7 +50,7 @@ Feature: Test the Next step paragraph
     And I wait for AJAX to finish
     And I see field "field_c_n_components[0][subform][field_c_p_theme]"
     And the option "Light" from select "Theme" is selected
-    And I see field "field_c_n_components[0][subform][field_c_p_space]"
+    And I see field "field_c_n_components[0][subform][field_c_p_vertical_spacing]"
     And I see field "Title"
     And I see field "Summary"
     And should see "The summary field may contain up to 100 characters. Any characters past the 100 character limit will not show for users." in the ".form-item-field-c-n-components-0-subform-field-c-p-summary-0-value" element

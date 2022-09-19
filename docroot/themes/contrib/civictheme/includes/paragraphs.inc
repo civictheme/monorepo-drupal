@@ -110,8 +110,8 @@ function _civictheme_preprocess_paragraph__field__title(&$variables) {
 function _civictheme_preprocess_paragraph__field__space(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if (civictheme_field_has_value($paragraph, 'field_c_p_space')) {
-    $variables['vertical_space'] = civictheme_get_field_value($paragraph, 'field_c_p_space');
+  if (civictheme_field_has_value($paragraph, 'field_c_p_vertical_spacing')) {
+    $variables['vertical_spacing'] = civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing');
   }
 }
 

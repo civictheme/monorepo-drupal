@@ -5,18 +5,6 @@
 .ct-list {
   $root: &;
 
-  &.ct-list--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-list-space-vertical);
-  }
-
-  &.ct-list--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-list-space-vertical);
-  }
-
-  &.ct-list--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-list-space-vertical);
-  }
-
   &__header {
     display: flex;
     flex-direction: column;
@@ -87,8 +75,10 @@
     &#{$root}__header {
       color: $ct-list-light-color;
     }
+
     &#{$root}--with-background {
       background-color: $ct-list-light-background-color;
+
       #{$root}__results-below {
         background-color: $ct-list-light-background-color;
       }
@@ -97,9 +87,11 @@
 
   &.ct-theme-dark {
     color: $ct-list-dark-color;
+
     &#{$root}--with-background {
       background-color: $ct-list-dark-background-color;
       color: $ct-list-dark-with-background-color;
+
       #{$root}__results-below {
         background-color: $ct-list-dark-background-color;
       }

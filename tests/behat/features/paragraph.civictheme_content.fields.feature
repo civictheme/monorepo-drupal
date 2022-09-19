@@ -16,7 +16,7 @@ Feature: Tests the Content paragraph
     And I should see the text "field_c_p_content" in the "Content" row
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_background" in the "Background" row
-    And I should see the text "field_c_p_space" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected

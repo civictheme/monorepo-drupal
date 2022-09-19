@@ -11,16 +11,17 @@
  * - rows: [string] Rows content.
  * - empty: [string] Empty results content.
  * - pager: [string] Pager slot.
- * - gooter: [string] Footer slot.
+ * - footer: [string] Footer slot.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set with_background_class = with_background ? 'ct-list--with-background' : '' %}
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-list--vertical-space-%s'|format(vertical_space) : '' %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, modifier_class|default(''), with_background_class, vertical_space_class)  %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, modifier_class|default(''), with_background_class, vertical_spacing_class) %}
 
 <div class="ct-list {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   <div class="ct-list__container">
@@ -32,11 +33,17 @@
           {% block title %}
             {% if title -%}
               <div class="ct-list__header-title">
-                {% include '@atoms/heading/heading.twig' with {
-                  content: title,
-                  level: 2,
-                  theme: theme,
-                } only %}
+                <div class="container">
+                  <div class="row">
+                    <div class="col-xxs-12">
+                      {% include '@atoms/heading/heading.twig' with {
+                        content: title,
+                        level: 2,
+                        theme: theme,
+                      } only %}
+                    </div>
+                  </div>
+                </div>
               </div>
             {% endif %}
           {% endblock %}
@@ -55,18 +62,20 @@
               </div>
             {% endif %}
           {% endblock %}
-
         </div>
       {% endif %}
     {% endblock %}
 
     {% block content %}
       {% if content %}
-        <div class="civictheme-list__content">
+        <div class="ct-list__content">
           <div class="container">
             <div class="row">
               <div class="col-xxs-12">
-                {{ content }}
+                {% include '@atoms/paragraph/paragraph.twig' with {
+                  content: content,
+                  theme: theme,
+                } only %}
               </div>
             </div>
           </div>
@@ -100,7 +109,7 @@
 
       {% block rows %}
         {% if rows -%}
-          <div class="ct--List__body">
+          <div class="ct-list__body">
             {{ rows }}
           </div>
         {% endif %}

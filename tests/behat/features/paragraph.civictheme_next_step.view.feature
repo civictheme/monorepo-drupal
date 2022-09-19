@@ -16,7 +16,7 @@ Feature: View of Page content with Next steps component
       | field_c_p_title   | [TEST] Next steps title                         |
       | field_c_p_theme   | light                                           |
       | field_c_p_summary | Summary text                                    |
-      | field_c_p_space   | both                                            |
+      | field_c_p_vertical_spacing   | both                                            |
       | field_c_p_link    | 0: [TEST] link 1 - 1: https://example.com/link1 |
 
     When I visit "civictheme_page" "[TEST] Page Next steps test"
@@ -39,7 +39,7 @@ Feature: View of Page content with Next steps component
       | field_c_p_title   | [TEST] Next steps title                         |
       | field_c_p_theme   | dark                                            |
       | field_c_p_summary | Summary text                                    |
-      | field_c_p_space   | 0                                               |
+      | field_c_p_vertical_spacing   | 0                                               |
       | field_c_p_link    | 0: [TEST] link 1 - 1: https://example.com/link1 |
 
     When I visit "civictheme_page" "[TEST] Page Next steps test 1"

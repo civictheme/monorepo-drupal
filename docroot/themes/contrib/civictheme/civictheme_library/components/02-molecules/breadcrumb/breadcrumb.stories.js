@@ -44,8 +44,8 @@ export const Breadcrumb = (knobTab) => {
       },
       generalKnobTab,
     ) - 6),
-    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeBreadcrumb({

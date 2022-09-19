@@ -30,7 +30,7 @@ export const Promo = () => {
       is_new_window: boolean('Link opens in new window', true, generalKnobTab),
       is_external: boolean('Link is external', true, generalKnobTab),
     },
-    vertical_space: radios(
+    vertical_spacing: radios(
       'Vertical space',
       {
         None: 'none',

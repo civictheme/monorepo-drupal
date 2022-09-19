@@ -5,18 +5,6 @@
 .ct-slider {
   $root: &;
 
-  &.ct-slider--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-slider-space-vertical);
-  }
-
-  &.ct-slider--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-slider-space-vertical);
-  }
-
-  &.ct-slider--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-slider-space-vertical);
-  }
-
   &__upper-control-panel {
     margin-bottom: ct-spacing(3);
 

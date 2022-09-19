@@ -52,8 +52,8 @@ export const Chip = (knobTab) => {
     is_dismissible: (kind === 'default') ? boolean('Dismissible', false, generalKnobTab) : null,
     is_multiple: (kind === 'input') ? boolean('Is multiple', false, generalKnobTab) : null,
     is_selected: (kind === 'input') ? boolean('Is selected', false, generalKnobTab) : null,
-    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeChip({
