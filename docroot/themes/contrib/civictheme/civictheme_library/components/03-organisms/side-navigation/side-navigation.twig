@@ -18,6 +18,9 @@
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if items is not empty %}
+  {% include '@organisms/skip-link/skip-link.twig' with {
+    url: '#main-content' ,
+  } only %}
   <div class="ct-side-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
     {% if title %}
       {% block title %}
