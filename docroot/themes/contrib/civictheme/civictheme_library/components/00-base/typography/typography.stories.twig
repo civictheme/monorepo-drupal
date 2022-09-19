@@ -5,13 +5,12 @@
  */
 #}
 
-{{ html }}
-
 <div class="example-container">
   <div class="example-container__title">Headings</div>
   <div class="example-container__content">
     {% for i in 1..6 %}
       {% include '@atoms/heading/heading.twig' with {
+        theme: 'none',
         content: 'The quick brown fox jumps over the lazy dog',
         level: i
       } only %}
