@@ -14,14 +14,29 @@
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="ct-search {{ modifier_class }}">
+<div class="ct-search {{ modifier_class }}" data-popover>
   {% include '@atoms/button/button.twig' with {
     theme: theme|default('light'),
     kind: 'link',
     text: text,
-    url: url,
     icon: 'userinterface_magnifier',
     icon_placement: 'after',
-    modifier_class: 'ct-search__link'
+    modifier_class: 'ct-search__link',
+    attributes: 'data-popover-trigger data-popover-trigger-event="click"',
   } only %}
+  <div data-popover-content>
+    <form action="{{url}}">
+      {% include '@atoms/input/input.twig' with {
+        type: 'text',
+        placeholder: "I'm looking for....",
+        name: 'keys',
+      } %}
+      {% include '@atoms/button/button.twig' with {
+        theme: theme|default('light'),
+        kind: 'submit',
+        type: 'primary',
+        text: text,
+      } only %}
+    <form/>
+  </div>
 </div>
