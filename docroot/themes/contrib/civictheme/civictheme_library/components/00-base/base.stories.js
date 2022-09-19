@@ -275,3 +275,11 @@ export const objectFromArray = (array) => {
   array.forEach((item) => { obj[item] = item; });
   return obj;
 };
+
+export const cleanCssIdentifier = function (string) {
+  return string.toLowerCase()
+    .replace(/(&\w+?;)/gim, ' ')
+    .replace(/[_.~"<>%|'!*();:@&=+$,/?%#[\]{}\n`^\\]/gim, '')
+    .replace(/(^\s+)|(\s+$)/gim, '')
+    .replace(/\s+/gm, '-');
+};
