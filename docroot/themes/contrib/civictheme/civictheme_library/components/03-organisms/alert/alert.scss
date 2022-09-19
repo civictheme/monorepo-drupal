@@ -143,9 +143,7 @@
           #{$root}__dismiss-button,
           #{$root}__icon {
             .ct-icon {
-              @if $theme == 'light' {
-                background-color: map.get($values, 'icon-color');
-              }
+              background-color: map.get($values, 'icon-color');
             }
           }
         }
