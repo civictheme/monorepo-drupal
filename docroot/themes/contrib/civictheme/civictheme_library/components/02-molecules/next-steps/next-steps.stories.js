@@ -1,5 +1,5 @@
 // phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
+import { radios, text, boolean } from '@storybook/addon-knobs';
 import CivicThemeNextSteps from './next-steps.twig';
 import { randomUrl } from '../../00-base/base.stories';
 
@@ -23,6 +23,7 @@ export const NextSteps = (knobTab) => {
     title: text('Title', 'Next step title from knob', generalKnobTab),
     summary: text('Summary', 'Short summary explaining why this link is relevant.', generalKnobTab),
     url: text('Link', randomUrl(), generalKnobTab),
+    is_external: boolean('Is external', false, generalKnobTab),
     vertical_space: radios(
       'Vertical space',
       {
@@ -34,6 +35,7 @@ export const NextSteps = (knobTab) => {
       'none',
       generalKnobTab,
     ),
+    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 

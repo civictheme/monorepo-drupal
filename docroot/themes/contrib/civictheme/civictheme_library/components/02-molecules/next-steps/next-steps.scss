@@ -24,14 +24,15 @@
   &__content {
     display: block;
     position: relative;
+    border: 1px solid;
     border-radius: $ct-next-steps-border-radius;
-    border-left-width: ct-spacing(0.75);
-    border-left-style: solid;
     padding: ct-spacing(3) ct-spacing(3);
 
     @include ct-breakpoint(m) {
       padding: ct-spacing(3) ct-spacing(5) ct-spacing(4) ct-spacing(3);
     }
+
+    @include ct-highlight-stripe($ct-next-steps-stripe-width, $ct-next-steps-border-radius, 0);
   }
 
   &__title {
@@ -58,7 +59,8 @@
     #{$root}__content {
       color: $ct-next-steps-light-color;
       background-color: $ct-next-steps-light-background-color;
-      border-left-color: $ct-next-steps-light-stripe-color;
+
+      @include ct-highlight-stripe-color($ct-next-steps-light-stripe-color);
     }
 
     &:focus {
@@ -106,7 +108,8 @@
     #{$root}__content {
       color: $ct-next-steps-dark-color;
       background-color: $ct-next-steps-dark-background-color;
-      border-left-color: $ct-next-steps-dark-stripe-color;
+
+      @include ct-highlight-stripe-color($ct-next-steps-dark-stripe-color);
     }
 
     &:focus {

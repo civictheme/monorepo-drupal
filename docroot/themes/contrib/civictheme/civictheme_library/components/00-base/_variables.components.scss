@@ -773,6 +773,7 @@ $ct-map-dark-wrapper-background-color: ct-color-dark('background') !default;
 // Next steps.
 //
 $ct-next-steps-border-radius: $ct-border-radius !default;
+$ct-next-steps-stripe-width: rem(6px);
 $ct-next-steps-space-vertical: ct-spacing(6) !default;
 $ct-next-steps-light-active-color: ct-color-light('body') !default;
 $ct-next-steps-light-background-color: ct-color-light('background-light') !default;
