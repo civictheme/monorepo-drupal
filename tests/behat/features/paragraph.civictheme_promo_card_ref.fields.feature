@@ -47,11 +47,11 @@ Feature: Tests the Promo reference card paragraph
     And I wait for AJAX to finish
     And the option "Light" from select "Theme" is selected
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-header-link-0-uri" element
+    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-list-link-above-0-uri" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-column-count select.required" element
     And I should see an "select[name='field_c_n_components[0][subform][field_c_p_column_count]']" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]']" element
-    Then I click on "div.field--name-field-c-p-cards .paragraphs-add-wrapper .dropbutton-toggle button" element
+    Then I click on "div.field--name-field-c-p-list-items .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
     And I press the "field_c_n_components_0_subform_field_c_p_list_items_civictheme_promo_card_ref_add_more" button
     And I wait for AJAX to finish
