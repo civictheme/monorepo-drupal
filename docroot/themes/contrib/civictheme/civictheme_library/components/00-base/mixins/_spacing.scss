@@ -1,5 +1,5 @@
 //
-// Spaces mixins.
+// Spacing mixins.
 //
 
 @use 'sass:list';
@@ -17,7 +17,7 @@
 }
 
 //
-// Set vertical space as padding or margin for a component.
+// Set vertical spacing as padding or margin for a component.
 //
 @mixin ct-component-with-vertical-space($type, $top, $bottom: $top, $is_padding: true) {
   $types: top, bottom, both;

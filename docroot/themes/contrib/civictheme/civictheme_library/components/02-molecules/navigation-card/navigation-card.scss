@@ -96,7 +96,7 @@
 
   &#{$root}--image-as-icon {
     #{$root}__image-wrapper {
-      max-width: rem(48px);
+      min-width: ct-particle(6);
       padding: ct-spacing(3);
       padding-bottom: 0;
     }

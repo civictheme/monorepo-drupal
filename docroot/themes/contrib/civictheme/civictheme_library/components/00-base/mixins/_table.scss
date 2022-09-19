@@ -41,7 +41,7 @@
             width: calc(100% - 30px);
             display: block;
             margin: 0 auto;
-            height: 1px;
+            height: ct-particle(0.125);
             position: absolute;
             left: 0;
             right: 0;
@@ -109,12 +109,12 @@
     color: $ct-table-light-header-color;
 
     @include ct-breakpoint($ct-table-breakpoint) {
-      border-bottom: solid 1px $ct-table-light-header-border-color;
+      border-bottom: solid ct-particle(0.125) $ct-table-light-header-border-color;
     }
 
     tr {
       &:last-child {
-        border-bottom: solid 2px $ct-table-light-header-border-color;
+        border-bottom: solid ct-particle(0.25) $ct-table-light-header-border-color;
       }
     }
   }
@@ -123,19 +123,19 @@
     color: $ct-table-light-footer-color;
 
     @include ct-breakpoint($ct-table-breakpoint) {
-      border-top: solid 1px $ct-table-light-footer-border-color;
+      border-top: solid ct-particle(0.125) $ct-table-light-footer-border-color;
     }
 
     tr {
       &:last-child {
-        border-top: solid 2px $ct-table-light-footer-border-color;
+        border-top: solid ct-particle(0.25) $ct-table-light-footer-border-color;
       }
     }
   }
 
   tbody {
     tr {
-      border-bottom: solid 1px $ct-table-light-border-color;
+      border-bottom: solid ct-particle(0.125) $ct-table-light-border-color;
     }
   }
 
@@ -172,12 +172,12 @@
     color: $ct-table-dark-header-color;
 
     @include ct-breakpoint($ct-table-breakpoint) {
-      border-bottom: solid 1px $ct-table-dark-header-border-color;
+      border-bottom: solid ct-particle(0.125) $ct-table-dark-header-border-color;
     }
 
     tr {
       &:last-child {
-        border-bottom: solid 2px $ct-table-dark-header-border-color;
+        border-bottom: solid ct-particle(0.25) $ct-table-dark-header-border-color;
       }
     }
   }
@@ -186,19 +186,19 @@
     color: $ct-table-dark-footer-color;
 
     @include ct-breakpoint($ct-table-breakpoint) {
-      border-top: solid 1px $ct-table-dark-footer-border-color;
+      border-top: solid ct-particle(0.125) $ct-table-dark-footer-border-color;
     }
 
     tr {
       &:last-child {
-        border-top: solid 2px $ct-table-dark-footer-border-color;
+        border-top: solid ct-particle(0.25) $ct-table-dark-footer-border-color;
       }
     }
   }
 
   tbody {
     tr {
-      border-bottom: solid 1px $ct-table-dark-border-color;
+      border-bottom: solid ct-particle(0.125) $ct-table-dark-border-color;
     }
   }
 

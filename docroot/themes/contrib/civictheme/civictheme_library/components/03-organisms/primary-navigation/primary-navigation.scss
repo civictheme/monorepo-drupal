@@ -38,7 +38,7 @@
     .ct-menu__item {
       // Links - level 0.
       &--level-0 {
-        border-bottom: solid 4px;
+        border-bottom: solid ct-particle(0.5);
 
         > .ct-link {
           display: block;
@@ -51,7 +51,7 @@
 
           &::after {
             right: ct-spacing();
-            margin-top: -1 * rem(3px);
+            margin-top: -1 * ct-particle(0.375);
             top: ct-spacing(2);
           }
         }

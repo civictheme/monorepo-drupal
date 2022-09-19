@@ -34,7 +34,7 @@
         align-items: center;
       }
       #{$root}--hr {
-        border-left: 1px solid $ct-logo-light-stripe-color;
+        border-left: ct-particle(0.125) solid $ct-logo-light-stripe-color;
       }
 
       &#{$root}-dual {
@@ -58,7 +58,7 @@
         display: inline-block;
       }
       #{$root}--hr {
-        border: 1px solid $ct-logo-light-stripe-color;
+        border: ct-particle(0.125) solid $ct-logo-light-stripe-color;
       }
     }
   }
@@ -75,7 +75,7 @@
       }
 
       #{$root}--hr {
-        border-left: 1px solid $ct-logo-dark-stripe-color;
+        border-left: ct-particle(0.125) solid $ct-logo-dark-stripe-color;
       }
 
       &#{$root}-dual {
@@ -99,7 +99,7 @@
         display: inline-block;
       }
       #{$root}--hr {
-        border: 1px solid $ct-logo-dark-stripe-color;
+        border: ct-particle(0.125) solid $ct-logo-dark-stripe-color;
       }
     }
   }

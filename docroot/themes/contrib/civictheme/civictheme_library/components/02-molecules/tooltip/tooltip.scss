@@ -31,8 +31,8 @@
     align-items: center;
     border-radius: $ct-tooltip-description-border-radius;
     position: absolute;
-    width: $ct-tooltip-width-m;
-    min-height: rem(134px);
+    width: $ct-tooltip-width-mobile;
+    min-height: math.div($ct-tooltip-width-mobile, 2);
     z-index: $ct-tooltip-z-index;
 
     &[data-popper-placement^='top'] > [data-tooltip-arrow] {

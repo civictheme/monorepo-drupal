@@ -22,20 +22,20 @@
     background-color: $ct-input-light-background-color;
 
     &:hover {
-      box-shadow: 0 0 0 1px $ct-input-light-hover-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-hover-border-color;
     }
 
     &:active,
     &:focus {
       border-color: $ct-input-light-focus-border-color;
-      box-shadow: 0 0 0 1px $ct-input-light-focus-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-focus-border-color;
     }
 
     &:invalid,
     &.error,
     &.ct-input--error {
       border-color: $ct-input-light-error-border-color;
-      box-shadow: 0 0 0 1px $ct-input-light-error-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-error-border-color;
     }
   }
 
@@ -46,20 +46,20 @@
 
     &:hover {
       border-color: $ct-input-dark-hover-border-color;
-      box-shadow: 0 0 0 1px $ct-input-dark-hover-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-dark-hover-border-color;
     }
 
     &:active,
     &:focus {
       border-color: $ct-input-dark-focus-border-color;
-      box-shadow: 0 0 0 1px $ct-input-dark-focus-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-dark-focus-border-color;
     }
 
     &:invalid,
     &.error,
     &.ct-input--error {
       border-color: $ct-input-dark-error-border-color;
-      box-shadow: 0 0 0 1px $ct-input-dark-error-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-dark-error-border-color;
     }
   }
 }

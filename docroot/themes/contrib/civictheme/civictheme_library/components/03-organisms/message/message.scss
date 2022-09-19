@@ -11,7 +11,7 @@
   flex-wrap: nowrap;
   justify-content: stretch;
   border-radius: $ct-message-border-radius;
-  border-left: solid rem(6px) transparent;
+  border-left: solid ct-particle(0.75) transparent;
   padding: ct-spacing(3) ct-spacing(3) ct-spacing(3) ct-spacing(1);
   margin: ct-spacing(3) 0;
   width: 100%;
