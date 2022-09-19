@@ -21,37 +21,37 @@ export const Attachment = (knobTab) => {
       url: 'https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.doc',
       text: 'DOC type document',
       last_updated: date,
-      icon: 'fileandfolders_wordfile',
+      icon: 'download-file',
     },
     {
       url: 'https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.docx',
       text: 'DOCX type document',
       last_updated: date,
-      icon: 'fileandfolders_wordfile',
+      icon: 'download-file',
     },
     {
       url: 'https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf',
       text: 'PDF type document',
       last_updated: date,
-      icon: 'fileandfolders_pdffile',
+      icon: 'download-file',
     },
     {
       url: 'https://file-examples-com.github.io/uploads/2017/08/file_example_PPT_250kB.ppt',
       text: 'PPT type document',
       last_updated: date,
-      icon: 'fileandfolders_clipboard_3',
+      icon: 'download-file',
     },
     {
       url: 'https://file-examples-com.github.io/uploads/2017/02/file_example_XLSX_10.xlsx',
       text: 'XLSX type document',
       last_updated: date,
-      icon: 'fileandfolders_document',
+      icon: 'download-file',
     },
     {
       url: 'https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_10.xls',
       text: 'XLS type document',
       last_updated: date,
-      icon: 'fileandfolders_document',
+      icon: 'download-file',
     },
   ];
 

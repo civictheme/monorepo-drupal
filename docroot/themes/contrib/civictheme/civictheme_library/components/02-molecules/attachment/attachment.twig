@@ -62,11 +62,11 @@
                     <li class="ct-attachment__links--link">
                       <span>
                         {% include '@base/icon/icon.twig' with {
-                          symbol: link.icon ? link.icon : 'fileandfolders_document',
+                          symbol: link.icon ? link.icon : 'download-file',
                         } only %}
                       </span>
                       <div>
-                        {% include '@atoms/link/link.twig' with {
+                        {% include '@atoms/content-link/content-link.twig' with {
                           theme: theme,
                           text: link.text,
                           title: 'Download %s'|format(link.url|split('.')|last),
