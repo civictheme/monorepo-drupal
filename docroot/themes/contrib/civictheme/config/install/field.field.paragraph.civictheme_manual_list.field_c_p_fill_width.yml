@@ -3,15 +3,15 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_c_p_fill_width
-    - paragraphs.paragraphs_type.civictheme_card_container
-id: paragraph.civictheme_card_container.field_c_p_fill_width
+    - paragraphs.paragraphs_type.civictheme_manual_list
+id: paragraph.civictheme_manual_list.field_c_p_fill_width
 field_name: field_c_p_fill_width
 entity_type: paragraph
-bundle: civictheme_card_container
-label: 'Fill width'
+bundle: civictheme_manual_list
+label: 'Fill width in the last row'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value:
   -
     value: 0

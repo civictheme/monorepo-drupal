@@ -12,7 +12,10 @@ settings:
   allowed_values:
     -
       value: civictheme_automated_list__block1
-      label: 'Default Automated list'
+      label: 'Default Listing'
+    -
+      value: civictheme_automated_list_test__block_test_1
+      label: 'Test Listing'
   allowed_values_function: ''
 module: options
 locked: false

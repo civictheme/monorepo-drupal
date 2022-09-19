@@ -1004,7 +1004,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: d277be67-44d1-4399-8c74-2fd7fa2d5f2e
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -1022,7 +1022,7 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1095,14 +1095,14 @@ default:
               value: light
           field_c_p_title:
             -
-              value: 'Card container Light- with bg & spacing '
+              value: 'Manual List Light- with bg & spacing '
     -
       entity:
         _meta:
           version: '1.0'
           entity_type: paragraph
           uuid: 977e5e6d-97cf-4de0-ac95-36feb8564cbb
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -1120,7 +1120,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1190,14 +1190,14 @@ default:
               value: light
           field_c_p_title:
             -
-              value: 'Card container Light - no bg, no spacing'
+              value: 'Manual List Light - no bg, no spacing'
     -
       entity:
         _meta:
           version: '1.0'
           entity_type: paragraph
           uuid: 50d72995-b9fa-4f40-878d-822b5d71a128
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -1215,7 +1215,7 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1285,14 +1285,14 @@ default:
               value: light
           field_c_p_title:
             -
-              value: 'Card container Light - bg & only horizontal spacing'
+              value: 'Manual List Light - bg & only horizontal spacing'
     -
       entity:
         _meta:
           version: '1.0'
           entity_type: paragraph
           uuid: 24e9f4d1-0620-4633-a615-912dda9f0de4
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -1310,7 +1310,7 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1383,14 +1383,14 @@ default:
               value: dark
           field_c_p_title:
             -
-              value: 'Card container Dark - with bg & spacing'
+              value: 'Manual List Dark - with bg & spacing'
     -
       entity:
         _meta:
           version: '1.0'
           entity_type: paragraph
           uuid: efb88167-b6b8-4b90-b6dc-47855c6445f8
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -1408,7 +1408,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1478,14 +1478,14 @@ default:
               value: dark
           field_c_p_title:
             -
-              value: 'Card container Dark - no bg, no spacing'
+              value: 'Manual List Dark - no bg, no spacing'
     -
       entity:
         _meta:
           version: '1.0'
           entity_type: paragraph
           uuid: 2375018c-fb76-49b9-ab2c-bc4f2bc34051
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -1503,7 +1503,7 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1573,7 +1573,7 @@ default:
               value: dark
           field_c_p_title:
             -
-              value: 'Card container Dark - bg & only horizontal spacing'
+              value: 'Manual List Dark - bg & only horizontal spacing'
     -
       entity:
         _meta:

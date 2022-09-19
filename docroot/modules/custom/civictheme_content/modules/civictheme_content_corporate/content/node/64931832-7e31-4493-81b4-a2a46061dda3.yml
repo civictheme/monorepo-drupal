@@ -147,7 +147,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 74088443-c455-4af0-81de-1ad4915d95ef
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -165,7 +165,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -492,7 +492,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: c97f606a-49fd-4485-a365-939dd342fafa
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -510,7 +510,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -701,7 +701,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 095f7d52-8646-4658-b89f-003aad2bf4f8
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -719,7 +719,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -808,7 +808,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 598df69e-95ad-4a8f-9e7c-af5d185ed87d
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -826,7 +826,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:

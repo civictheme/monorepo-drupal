@@ -1,0 +1,287 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_manual_list.field_c_p_background
+    - field.field.paragraph.civictheme_manual_list.field_c_p_column_count
+    - field.field.paragraph.civictheme_manual_list.field_c_p_content
+    - field.field.paragraph.civictheme_manual_list.field_c_p_fill_width
+    - field.field.paragraph.civictheme_manual_list.field_c_p_list_item_theme
+    - field.field.paragraph.civictheme_manual_list.field_c_p_list_item_view_as
+    - field.field.paragraph.civictheme_manual_list.field_c_p_list_items
+    - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_above
+    - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_below
+    - field.field.paragraph.civictheme_manual_list.field_c_p_space
+    - field.field.paragraph.civictheme_manual_list.field_c_p_theme
+    - field.field.paragraph.civictheme_manual_list.field_c_p_title
+    - paragraphs.paragraphs_type.civictheme_manual_list
+  module:
+    - field_group
+    - link
+    - paragraphs
+    - text
+third_party_settings:
+  field_group:
+    group_tabs:
+      children:
+        - group_content
+        - group_fields
+        - group_appearance
+      label: Tabs
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        classes: ''
+        id: ''
+        direction: horizontal
+    group_appearance:
+      children:
+        - field_c_p_theme
+        - field_c_p_space
+        - field_c_p_background
+        - group_columns
+        - group_items
+      label: Appearance
+      region: content
+      parent_name: group_tabs
+      weight: 18
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_fields:
+      children:
+        - field_c_p_title
+        - field_c_p_content
+        - field_c_p_list_link_above
+        - field_c_p_list_link_below
+      label: Fields
+      region: content
+      parent_name: group_tabs
+      weight: 17
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_items:
+      children:
+        - field_c_p_list_item_view_as
+        - field_c_p_list_item_theme
+      label: Items
+      region: content
+      parent_name: group_appearance
+      weight: 50
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
+    group_content:
+      children:
+        - field_c_p_list_type
+        - field_c_p_list_content_type
+        - field_c_p_list_items
+        - group_metadata
+        - group_limit
+        - group_filters
+      label: Content
+      region: content
+      parent_name: group_tabs
+      weight: 15
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_columns:
+      children:
+        - field_c_p_column_count
+        - field_c_p_fill_width
+      label: Columns
+      region: content
+      parent_name: group_appearance
+      weight: 49
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
+id: paragraph.civictheme_manual_list.default
+targetEntityType: paragraph
+bundle: civictheme_manual_list
+mode: default
+content:
+  field_c_p_background:
+    type: boolean_checkbox
+    weight: 48
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_c_p_column_count:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_c_p_content:
+    type: text_textarea
+    weight: 47
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_c_p_fill_width:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_c_p_list_content_type:
+    type: options_buttons
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_c_p_list_filters_exp:
+    type: options_buttons
+    weight: 44
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_c_p_list_item_theme:
+    type: options_select
+    weight: 29
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_c_p_list_item_view_as:
+    type: options_select
+    weight: 28
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_c_p_list_items:
+    type: paragraphs
+    weight: 14
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_c_p_list_limit:
+    type: number
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_c_p_list_limit_type:
+    type: options_buttons
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_c_p_list_link_above:
+    type: link_default
+    weight: 48
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_c_p_list_link_below:
+    type: link_default
+    weight: 49
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_c_p_list_show_filters:
+    type: boolean_checkbox
+    weight: 43
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_c_p_list_site_sections:
+    type: entity_reference_autocomplete
+    weight: 8
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_c_p_list_topics:
+    type: entity_reference_autocomplete
+    weight: 7
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_c_p_list_type:
+    type: options_select
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_c_p_space:
+    type: options_select
+    weight: 47
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_c_p_theme:
+    type: options_select
+    weight: 46
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_c_p_title:
+    type: string_textfield
+    weight: 46
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

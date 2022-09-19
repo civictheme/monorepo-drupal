@@ -3,13 +3,13 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_c_p_theme
-    - paragraphs.paragraphs_type.civictheme_card_container
+    - paragraphs.paragraphs_type.civictheme_manual_list
   module:
     - options
-id: paragraph.civictheme_card_container.field_c_p_theme
+id: paragraph.civictheme_manual_list.field_c_p_theme
 field_name: field_c_p_theme
 entity_type: paragraph
-bundle: civictheme_card_container
+bundle: civictheme_manual_list
 label: Theme
 description: ''
 required: true
