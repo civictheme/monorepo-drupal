@@ -53,7 +53,7 @@
   }
 
   #{$root}__title {
-    @include ct-typography('heading-6');
+    @include ct-typography('heading-5');
 
     margin-bottom: ct-spacing(2);
   }
