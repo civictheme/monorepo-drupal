@@ -5,10 +5,11 @@ Feature: View of Page content with Next steps component
 
   Background:
     Given "civictheme_page" content:
-      | title                       | status |
-      | [TEST] Page Next steps test | 1      |
+      | title                         | status |
+      | [TEST] Page Next steps test   | 1      |
+      | [TEST] Page Next steps test 1 | 1      |
 
-  @api
+  @api @javascript
   Scenario: CivicTheme page content type page can be viewed by anonymous with Next steps light with space
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Next steps test" has "civictheme_next_step" paragraph:
@@ -19,6 +20,7 @@ Feature: View of Page content with Next steps component
       | field_c_p_link    | 0: [TEST] link 1 - 1: https://example.com/link1 |
 
     When I visit "civictheme_page" "[TEST] Page Next steps test"
+    And I scroll to an element with id "main-content"
     And I should see an "a.ct-next-steps" element
     And I should see an "a.ct-next-steps.ct-theme-light" element
     And I should not see an "a.ct-next-steps.ct-theme-dark" element
@@ -30,17 +32,18 @@ Feature: View of Page content with Next steps component
     And I should see an "div.ct-next-steps__summary" element
     And I should see an "div.ct-next-steps__icon.ct-next-steps__read-more" element
 
-  @api
+  @api @javascript
   Scenario: CivicTheme page content type page can be viewed by anonymous with next_step dark without space
     Given I am an anonymous user
-    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Next steps test" has "civictheme_next_step" paragraph:
+    And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Next steps test 1" has "civictheme_next_step" paragraph:
       | field_c_p_title   | [TEST] Next steps title                         |
       | field_c_p_theme   | dark                                            |
       | field_c_p_summary | Summary text                                    |
       | field_c_p_space   | 0                                               |
       | field_c_p_link    | 0: [TEST] link 1 - 1: https://example.com/link1 |
 
-    When I visit "civictheme_page" "[TEST] Page Next steps test"
+    When I visit "civictheme_page" "[TEST] Page Next steps test 1"
+    And I scroll to an element with id "main-content"
     And I should see an "a.ct-next-steps" element
     And I should not see an "a.ct-next-steps.ct-theme-light" element
     And I should see an "a.ct-next-steps.ct-theme-dark" element
