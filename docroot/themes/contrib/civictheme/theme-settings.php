@@ -205,7 +205,7 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
     '#type' => 'checkbox',
     '#title' => t('Open external links in a new window'),
     '#description' => t('Open all external links in a new browser window.'),
-    '#default_value' => theme_get_setting('components.link.new_window'),
+    '#default_value' => theme_get_setting('components.link.external_new_window'),
     '#states' => [
       'visible' => [
         ':input[name="components[link][new_window]"]' => ['checked' => FALSE],
