@@ -75,7 +75,7 @@ Feature: View of Page content with Listing component
     And I should see an ".ct-list" element
     And I should see an ".ct-list.ct-theme-dark" element
     And I should see an ".ct-list.ct-list--with-background" element
-    And I should see an ".ct-list.ct-list--vertical-space-bottom" element
+    And I should see an ".ct-list.ct-vertical-spacing-inset--bottom" element
     And I should see an ".ct-list .ct-item-grid__items" element
 
     And I should see 12 ".ct-item-grid__item" elements

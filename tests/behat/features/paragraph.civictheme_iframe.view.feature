@@ -23,7 +23,7 @@ Feature: View of Page content with iframe component
     And I should see an "iframe.ct-iframe" element
     And I should see an "iframe.ct-iframe.ct-theme-light" element
     And I should not see an "iframe.ct-iframe.ct-theme-dark" element
-    And I should see an "iframe.ct-iframe.ct-iframe--vertical-space-both" element
+    And I should see an "iframe.ct-iframe.ct-vertical-spacing-inset--both" element
     And I should not see an "iframe.ct-iframe--with-background" element
 
   @api @javascript
@@ -41,5 +41,5 @@ Feature: View of Page content with iframe component
     And I should see an "iframe.ct-iframe" element
     And I should see an "iframe.ct-iframe.ct-theme-dark" element
     And I should not see an "iframe.ct-iframe.ct-theme-light" element
-    And I should see an "iframe.ct-iframe.ct-iframe--vertical-space-both" element
+    And I should see an "iframe.ct-iframe.ct-vertical-spacing-inset--both" element
     And I should see an "iframe.ct-iframe--with-background" element

@@ -20,5 +20,5 @@ Feature: View of Page content with webform component
     When I visit "civictheme_page" "[TEST] Page Webform test"
     And I should see an "div.ct-webform" element
     And I should see an "div.ct-webform.ct-theme-light" element
-    And I should see an "div.ct-webform.ct-webform--vertical-space-both" element
+    And I should see an "div.ct-webform.ct-vertical-spacing-inset--both" element
     And I should not see an "div.ct-webform.ct-theme-dark" element

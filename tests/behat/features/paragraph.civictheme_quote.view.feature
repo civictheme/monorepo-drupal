@@ -23,7 +23,7 @@ Feature: View of Page content with Quote component
     And I should see an ".ct-quote" element
     And I should see an ".ct-quote.ct-theme-light" element
     And I should not see an ".ct-quote.ct-theme-dark" element
-    And I should see an ".ct-quote.ct-quote--vertical-space-both" element
+    And I should see an ".ct-quote.ct-vertical-spacing--both" element
 
   @api @javascript
   Scenario: CivicTheme page content type page can be viewed by anonymous with quote dark
@@ -38,7 +38,7 @@ Feature: View of Page content with Quote component
     And I should see an ".ct-quote" element
     And I should see an ".ct-quote.ct-theme-dark" element
     And I should not see an ".ct-quote.ct-theme-light" element
-    And I should see an ".ct-quote.ct-quote--vertical-space-both" element
+    And I should see an ".ct-quote.ct-vertical-spacing--both" element
     And I should see the text "[TEST] Author"
     And I should see an ".ct-quote__author" element
 
@@ -54,5 +54,5 @@ Feature: View of Page content with Quote component
     And I should see an ".ct-quote" element
     And I should see an ".ct-quote.ct-theme-light" element
     And I should not see an ".ct-quote.ct-theme-dark" element
-    And I should see an ".ct-quote.ct-quote--vertical-space-both" element
+    And I should see an ".ct-quote.ct-vertical-spacing--both" element
     And I should not see an ".ct-quote__author" element

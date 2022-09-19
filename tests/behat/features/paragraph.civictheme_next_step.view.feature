@@ -24,7 +24,7 @@ Feature: View of Page content with Next steps component
     And I should see an "a.ct-next-steps" element
     And I should see an "a.ct-next-steps.ct-theme-light" element
     And I should not see an "a.ct-next-steps.ct-theme-dark" element
-    And I should see an "a.ct-next-steps.ct-next-steps--vertical-space-both" element
+    And I should see an "a.ct-next-steps.ct-vertical-spacing-inset--both" element
     And I should see an "div.ct-next-steps__content" element
     And I should see an "div.ct-next-steps__text" element
     And I should see the text "[TEST] Next steps title"
@@ -47,7 +47,7 @@ Feature: View of Page content with Next steps component
     And I should see an "a.ct-next-steps" element
     And I should not see an "a.ct-next-steps.ct-theme-light" element
     And I should see an "a.ct-next-steps.ct-theme-dark" element
-    And I should not see an "a.ct-next-steps.ct-next-steps--vertical-space-both" element
+    And I should not see an "a.ct-next-steps.ct-vertical-spacing-inset--both" element
     And I should see an "div.ct-next-steps__content" element
     And I should see an "div.ct-next-steps__text" element
     And I should see the text "[TEST] Next steps title"

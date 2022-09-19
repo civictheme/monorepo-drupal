@@ -22,7 +22,7 @@ Feature: View of Page content with map component
     And I wait 10 seconds
     And I should see an "div.ct-map" element
     And I should see an "div.ct-map.ct-theme-light" element
-    And I should see an "div.ct-map.ct-map--vertical-space-both" element
+    And I should see an "div.ct-map.ct-vertical-spacing-inset--both" element
     And I should not see an "div.ct-map.ct-theme-dark" element
     And I should not see an "div.ct-map--with-background" element
     And I should see an "div.ct-map__canvas" element
