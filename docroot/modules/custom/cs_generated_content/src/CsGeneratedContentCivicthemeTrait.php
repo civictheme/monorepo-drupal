@@ -690,13 +690,18 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Card container paragraph to a node.
    */
-  public static function civicthemeParagraphCardContainerAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphManualListAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
 
     $defaults = [
       'column_count' => NULL,
+      'theme' => self::civicthemeThemeLight(),
+      'list_item_view_as' => static::civicthemePromoCardType(),
+      'list_item_theme' => self::civicthemeThemeLight(),
+      'list_link_above' => NULL,
+      'list_link_below' => NULL,
     ];
 
     $options += $defaults;
@@ -710,7 +715,7 @@ trait CsGeneratedContentCivicthemeTrait {
       unset($options['cards']);
     }
 
-    $paragraph = self::civicthemeParagraphAttach('civictheme_card_container', $node, $field_name, $options);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_manual_list', $node, $field_name, $options);
 
     if (empty($paragraph)) {
       return;
@@ -722,9 +727,9 @@ trait CsGeneratedContentCivicthemeTrait {
         if (!empty($card_options['type'])) {
           $type = $card_options['type'];
           unset($card_options['type']);
-          $card = self::civicthemeParagraphAttach($type, $paragraph, 'field_c_p_cards', $card_options, TRUE);
+          $card = self::civicthemeParagraphAttach($type, $paragraph, 'field_c_p_list_items', $card_options, TRUE);
           if (!empty($card)) {
-            $paragraph->field_c_p_cards->appendItem($card);
+            $paragraph->field_c_p_list_items->appendItem($card);
           }
         }
       }

@@ -36,7 +36,7 @@ settings:
       civictheme_callout:
         weight: 29
         enabled: false
-      civictheme_card_container:
+      civictheme_manual_list:
         weight: 30
         enabled: false
       civictheme_event_card:

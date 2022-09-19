@@ -91,7 +91,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 16b3d43c-d9b4-42f1-bc91-cf93a9cee94a
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -109,7 +109,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -144,7 +144,7 @@ default:
                       value: light
                   field_c_p_title:
                     -
-                      value: 'components >> Card container >> title'
+                      value: 'components >> Manual List >> title'
           field_c_p_column_count:
             -
               value: 1
@@ -156,7 +156,7 @@ default:
               value: light
           field_c_p_title:
             -
-              value: 'Card container -  Title'
+              value: 'Manual List -  Title'
   field_c_n_hide_sidebar:
     -
       value: false

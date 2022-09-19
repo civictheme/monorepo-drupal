@@ -53,7 +53,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 87da64b8-e32e-4286-827f-219dcbd8b858
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -71,7 +71,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -173,12 +173,12 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_footer_link:
+          field_c_p_list_link_below:
             -
               uri: 'http://example.com'
               title: 'View all'
               options: {  }
-          field_c_p_header_link:
+          field_c_p_list_link_above:
             -
               uri: 'http://example.com'
               title: 'View all'

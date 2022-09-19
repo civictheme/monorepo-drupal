@@ -3,17 +3,17 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_c_p_column_count
-    - paragraphs.paragraphs_type.civictheme_card_container
+    - paragraphs.paragraphs_type.civictheme_manual_list
   module:
     - options
-id: paragraph.civictheme_card_container.field_c_p_column_count
+id: paragraph.civictheme_manual_list.field_c_p_column_count
 field_name: field_c_p_column_count
 entity_type: paragraph
-bundle: civictheme_card_container
+bundle: civictheme_manual_list
 label: 'Column count'
-description: 'Number of columns in the container.'
+description: 'Number of columns in the horizontal row.'
 required: true
-translatable: false
+translatable: true
 default_value:
   -
     value: 4

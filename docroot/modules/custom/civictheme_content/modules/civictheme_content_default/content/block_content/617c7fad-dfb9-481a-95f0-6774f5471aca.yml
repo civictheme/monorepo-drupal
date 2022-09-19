@@ -10,7 +10,7 @@ default:
       value: true
   info:
     -
-      value: 'Demo Block - Card container'
+      value: 'Demo Block - Manual List'
   reusable:
     -
       value: true
@@ -24,7 +24,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: a34be010-15fe-4dee-a817-381a140fbea2
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -60,7 +60,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 473a5cdc-be6a-40e5-b411-15a63cec3764
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -78,7 +78,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:

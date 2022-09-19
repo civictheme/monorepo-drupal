@@ -914,20 +914,6 @@ $ct-banner-dark-background-color: ct-color-dark('background') !default;
 $ct-banner-dark-color: ct-color-dark('body') !default;
 
 //
-// Card container.
-//
-$ct-card-container-space-horizontal: ct-spacing(7) !default;
-$ct-card-container-space-vertical: ct-spacing(10) !default;
-$ct-card-container-light-background-color: ct-color-light('background') !default;
-$ct-card-container-light-color: ct-color-light('body') !default;
-$ct-card-container-light-header-title-color: ct-color-light('heading') !default;
-$ct-card-container-light-wrapper-background-color: ct-color-light('background') !default;
-$ct-card-container-dark-background-color: ct-color-dark('background') !default;
-$ct-card-container-dark-color: ct-color-dark('body') !default;
-$ct-card-container-dark-header-title-color: ct-color-dark('heading') !default;
-$ct-card-container-dark-wrapper-background-color: ct-color-dark('background') !default;
-
-//
 // Layout.
 //
 $ct-layout-space-vertical: ct-spacing(8) !default;

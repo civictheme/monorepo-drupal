@@ -33,7 +33,7 @@ settings:
       civictheme_attachment:
         enabled: true
         weight: 15
-      civictheme_card_container:
+      civictheme_manual_list:
         weight: 18
         enabled: false
       civictheme_event_card_ref:
