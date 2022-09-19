@@ -117,6 +117,14 @@
   }
 
   @if $font-weight != 'default' {
+    // Try to get the weight value from the pre-defined weights or default
+    // to the provided value.
+    $font-weight-value: map.get(_ct-font-weights-all(), $font-weight);
+
+    @if $font-weight-value != null {
+      $font-weight: $font-weight-value;
+    }
+
     font-weight: $font-weight;
   }
 }
