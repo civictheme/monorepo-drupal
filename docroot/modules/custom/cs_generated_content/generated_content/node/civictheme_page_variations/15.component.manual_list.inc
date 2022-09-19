@@ -10,16 +10,16 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
 /**
  * Page, Card container - Content.
  */
-function _cs_generated_content_create_node_civictheme_page__variations__component_card_container() {
+function _cs_generated_content_create_node_civictheme_page__variations__manual_list() {
   /** @var \Drupal\cs_generated_content\CsGeneratedContentHelper $helper */
   $helper = CsGeneratedContentHelper::getInstance();
 
   return [
     [
-      'title' => 'Demo Page, Card container component, Task card',
+      'title' => 'Demo Page, Manual List component, Task card',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -37,10 +37,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Navigation card, Light',
+      'title' => 'Demo Page, Manual List component, Navigation card, Light',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -59,10 +59,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Navigation card, Dark',
+      'title' => 'Demo Page, Manual List component, Navigation card, Dark',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -81,10 +81,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Service card, Dark, Link',
+      'title' => 'Demo Page, Manual List component, Service card, Dark, Link',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -101,10 +101,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Service card, Light, 2 Links',
+      'title' => 'Demo Page, Manual List component, Service card, Light, 2 Links',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -127,10 +127,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Reference promo card, Page, Light',
+      'title' => 'Demo Page, Manual List component, Reference promo card, Page, Light',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -143,10 +143,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Reference promo card, Event, Light',
+      'title' => 'Demo Page, Manual List component, Reference promo card, Event, Light',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -159,10 +159,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Event reference card, Dark',
+      'title' => 'Demo Page, Manual List component, Event reference card, Dark',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -175,10 +175,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Event card, Dark',
+      'title' => 'Demo Page, Manual List component, Event card, Dark',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -200,10 +200,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Navigation reference card, Event, Dark',
+      'title' => 'Demo Page, Manual List component, Navigation reference card, Event, Dark',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -216,10 +216,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Navigation reference card, Page, Light',
+      'title' => 'Demo Page, Manual List component, Navigation reference card, Page, Light',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -232,10 +232,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Promo card, Dark',
+      'title' => 'Demo Page, Manual List component, Promo card, Dark',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -256,10 +256,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Subject card, Dark',
+      'title' => 'Demo Page, Manual List component, Subject card, Dark',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -277,10 +277,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Subject reference card, Page, Dark',
+      'title' => 'Demo Page, Manual List component, Subject reference card, Page, Dark',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -294,10 +294,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Subject reference card, Event, Light',
+      'title' => 'Demo Page, Manual List component, Subject reference card, Event, Light',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -311,10 +311,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Publication card, Image, Light, Small',
+      'title' => 'Demo Page, Manual List component, Publication card, Image, Light, Small',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -331,10 +331,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Publication card, No Image, Dark, Large',
+      'title' => 'Demo Page, Manual List component, Publication card, No Image, Dark, Large',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -350,10 +350,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Full width',
+      'title' => 'Demo Page, Manual List component, Full width',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'fill_width' => TRUE,
           'cards' => [
@@ -368,10 +368,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Column count 2',
+      'title' => 'Demo Page, Manual List component, Column count 2',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => 2,
           'cards' => [
             [
@@ -412,10 +412,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
     ],
 
     [
-      'title' => 'Demo Page, Card container component, Dark, Footer link, Header link',
+      'title' => 'Demo Page, Manual List component, Dark, Link above, Link below',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'cards' => [
             [
               'type' => 'civictheme_event_card',
@@ -434,11 +434,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
           ],
           'column_count' => rand(1, 4),
           'theme' => $helper::civicthemeThemeDark(),
-          'footer_link' => [
+          'list_link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'header_link' => [
+          'list_link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
@@ -446,10 +446,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Light, BG, Title, Description',
+      'title' => 'Demo Page, Manual List component, Light, BG, Title, Description',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'cards' => [
             [
               'type' => 'civictheme_service_card',
@@ -476,10 +476,10 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Card container component, Dark, BG, Title, Description',
+      'title' => 'Demo Page, Manual List component, Dark, BG, Title, Description',
       'components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'cards' => [
             [
               'type' => 'civictheme_navigation_card',

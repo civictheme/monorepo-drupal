@@ -125,7 +125,7 @@
     .ct-attachment {
       &__content {
         background-color: $ct-attachment-light-background-color;
-        border: solid 1px $ct-attachment-light-border-color;
+        border: solid ct-particle(0.125) $ct-attachment-light-border-color;
       }
 
       &__title {
@@ -160,7 +160,7 @@
     .ct-attachment {
       &__content {
         color: $ct-attachment-dark-color;
-        border: solid 1px $ct-attachment-dark-border-color;
+        border: solid ct-particle(0.125) $ct-attachment-dark-border-color;
       }
 
       &__title {

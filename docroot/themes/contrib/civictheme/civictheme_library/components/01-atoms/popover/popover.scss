@@ -29,10 +29,10 @@
     display: flex;
     align-items: center;
     border-radius: $ct-popover-description-border-radius;
-    border: solid 1px transparent;
+    border: solid ct-particle(0.125) transparent;
     position: absolute;
     min-width: $ct-popover-width;
-    min-height: rem(100px);
+    min-height: ct-particle(12);
     z-index: $ct-popover-z-index;
     padding: ct-spacing(2);
 

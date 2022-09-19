@@ -66,9 +66,9 @@
 
   {% set content_below %}
     <div class="ct-banner__content__example">
-      {% include '@organisms/card-container/card-container.twig' with {
+      {% include '@base/item-grid/item-grid.twig' with {
         column_count: 4,
-        cards: [card, card, card, card],
+        items: [card, card, card, card],
       } only %}
     </div>
   {% endset %}

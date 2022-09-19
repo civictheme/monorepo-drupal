@@ -258,7 +258,7 @@ function civictheme_preprocess_views_view(&$variables) {
     }
   }
 
-  // Header is displayed within card container.
+  // Header is displayed within List.
   if ($view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     unset($variables['header']);
     $variables['rows_header'] = $view->header['result']->render();
@@ -339,7 +339,7 @@ function civictheme_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'] ?? NULL;
 
   $variables['modifier_class'] = 'ct-card-container--listing';
-  // On Grid view title should be added to card container.
+  // On Grid view title should be added to list.
   if ($view && $view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     $variables['title'] = $view->header['result']->render();
   }

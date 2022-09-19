@@ -25,8 +25,8 @@
     & + .ct-radio__state {
       &::before {
         content: '';
-        border-radius: $ct-radio-border-radius;
-        border: 1px solid;
+        border-radius: 50%;
+        border: ct-particle(0.125) solid;
         display: block;
         width: rem(24px);
         height: rem(24px);
@@ -52,7 +52,7 @@
     &:hover {
       & + .ct-radio__state {
         &::before {
-          box-shadow: 0 0 0 1px;
+          box-shadow: 0 0 0 ct-particle(0.125);
         }
       }
     }
@@ -83,7 +83,7 @@
           &::before {
             background-color: $ct-radio-light-active-background-color;
             border-color: $ct-radio-light-active-background-color;
-            box-shadow: inset 0 0 0 3px $ct-radio-light-check-color;
+            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-light-check-color;
           }
         }
       }
@@ -95,7 +95,7 @@
 
             background-color: $ct-radio-light-selected-background-color;
             border-color: $ct-radio-light-selected-background-color;
-            box-shadow: inset 0 0 0 3px $ct-radio-light-check-color;
+            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-light-check-color;
           }
         }
       }
@@ -103,7 +103,7 @@
       &:hover {
         & + .ct-radio__state {
           &::before {
-            box-shadow: 0 0 0 1px $ct-radio-light-border-color;
+            box-shadow: 0 0 0 ct-particle(0.125) $ct-radio-light-border-color;
           }
         }
       }
@@ -113,7 +113,7 @@
           &::before {
             background-color: $ct-radio-light-selected-background-color;
             border-color: $ct-radio-light-selected-background-color;
-            box-shadow: inset 0 0 0 3px $ct-radio-light-check-color;
+            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-light-check-color;
           }
         }
       }
@@ -167,7 +167,7 @@
           &::before {
             background-color: $ct-radio-dark-active-background-color;
             border-color: $ct-radio-dark-active-background-color;
-            box-shadow: inset 0 0 0 3px $ct-radio-dark-check-color;
+            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-dark-check-color;
           }
         }
       }
@@ -179,7 +179,7 @@
 
             background-color: $ct-radio-dark-selected-background-color;
             border-color: $ct-radio-dark-selected-background-color;
-            box-shadow: inset 0 0 0 3px $ct-radio-dark-check-color;
+            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-dark-check-color;
           }
         }
       }
@@ -187,7 +187,7 @@
       &:hover {
         & + .ct-radio__state {
           &::before {
-            box-shadow: 0 0 0 1px $ct-radio-dark-border-color;
+            box-shadow: 0 0 0 ct-particle(0.125) $ct-radio-dark-border-color;
           }
         }
       }
@@ -197,7 +197,7 @@
           &::before {
             background-color: $ct-radio-dark-selected-background-color;
             border-color: $ct-radio-dark-selected-background-color;
-            box-shadow: inset 0 0 0 3px $ct-radio-dark-check-color;
+            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-dark-check-color;
           }
         }
       }

@@ -16,7 +16,7 @@
 
   @include ct-typography('label-small');
 
-  border-bottom: 1px solid;
+  border-bottom: ct-particle(0.125) solid;
 
   &:last-child {
     border-bottom: none;
@@ -34,7 +34,7 @@
   }
 
   #{$root}__icon {
-    width: rem(24px);
+    width: ct-particle(3);
     margin-right: ct-spacing();
 
     @include ct-breakpoint('m') {
@@ -43,8 +43,8 @@
   }
 
   .ct-icon {
-    width: rem(24px);
-    height: rem(24px);
+    width: ct-particle(3);
+    height: ct-particle(3);
   }
 
   #{$root}__summary {

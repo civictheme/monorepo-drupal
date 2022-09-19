@@ -9,7 +9,7 @@
 
   #{$root}__links {
     border-bottom-style: solid;
-    border-bottom-width: 1px;
+    border-bottom-width: ct-particle(0.125);
 
     .ct-link-list__list__item {
       margin-right: 0;
@@ -19,12 +19,12 @@
       @include ct-typography('label-regular');
       @include ct-link-decoration(false, false, false, false);
 
-      margin-bottom: -1px;
-      outline-offset: -3px;
+      margin-bottom: -1 * ct-particle(0.125);
+      outline-offset: -1 * ct-particle(0.375);
       display: block;
       padding: ct-spacing(1) ct-spacing(2);
       border-radius: $ct-tabs-link-border-radius $ct-tabs-link-border-radius 0 0;
-      border: solid 1px;
+      border: solid ct-particle(0.125);
 
       @include ct-breakpoint('m') {
         padding: ct-spacing(1.5) ct-spacing(2);
