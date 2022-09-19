@@ -4,8 +4,8 @@ dependencies:
   config:
     - field.field.paragraph.civictheme_content.field_c_p_background
     - field.field.paragraph.civictheme_content.field_c_p_content
-    - field.field.paragraph.civictheme_content.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_content.field_c_p_theme
+    - field.field.paragraph.civictheme_content.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_content
   module:
     - text
@@ -29,14 +29,14 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_c_p_vertical_spacing:
-    weight: 2
+  field_c_p_theme:
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
-  field_c_p_theme:
-    weight: 1
+  field_c_p_vertical_spacing:
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select

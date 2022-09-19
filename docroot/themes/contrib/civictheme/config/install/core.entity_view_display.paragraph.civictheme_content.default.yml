@@ -4,8 +4,8 @@ dependencies:
   config:
     - field.field.paragraph.civictheme_content.field_c_p_background
     - field.field.paragraph.civictheme_content.field_c_p_content
-    - field.field.paragraph.civictheme_content.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_content.field_c_p_theme
+    - field.field.paragraph.civictheme_content.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_content
   module:
     - options
@@ -32,16 +32,16 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-  field_c_p_vertical_spacing:
-    weight: 2
-    label: above
+  field_c_p_theme:
+    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
-  field_c_p_theme:
-    weight: 1
-    label: hidden
+  field_c_p_vertical_spacing:
+    weight: 2
+    label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default

@@ -28,7 +28,7 @@ export const Table = (knobTab) => {
     return [
       [
         `<a class="ct-link ct-theme-${theme}" href="#" title="Row 1 with link">Row 1 with link</a>`,
-        'Description summary on odd row with space',
+        'Description summary on odd row with vertical spacing',
         'Another column',
         'One more column column',
       ],
@@ -40,7 +40,7 @@ export const Table = (knobTab) => {
       ],
       [
         `<a class="ct-link ct-theme-${theme}" href="#" title="Row 1 with link">Row 3 with link</a>`,
-        'Description summary on odd row with space',
+        'Description summary on odd row with vertical spacing',
         'Another column',
         'One more column column',
       ],
@@ -52,7 +52,7 @@ export const Table = (knobTab) => {
       ],
       [
         'Row 5 without a link',
-        'Description summary on odd row with space',
+        'Description summary on odd row with vertical spacing',
         'Another column',
         'One more column column',
       ],

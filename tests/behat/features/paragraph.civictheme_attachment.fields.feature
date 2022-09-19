@@ -19,7 +19,7 @@ Feature: Tests the Attachment
     And I should see the text "field_c_p_attachments" in the "Attachments" row
     And I should see the text "field_c_p_icon" in the "Icon" row
     And I should see the text "field_c_p_image" in the "Image" row
-    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "Vertical spacing" row
     And I should see the text "field_c_p_background" in the "Background" row
 
   @api @javascript

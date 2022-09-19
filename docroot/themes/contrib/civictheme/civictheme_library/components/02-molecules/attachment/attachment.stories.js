@@ -69,7 +69,7 @@ export const Attachment = (knobTab) => {
     summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', generalKnobTab),
     links: boolean('With links', true, generalKnobTab) ? links : null,
     vertical_spacing: radios(
-      'Vertical space',
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',

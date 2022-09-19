@@ -4,8 +4,8 @@ dependencies:
   config:
     - field.field.paragraph.civictheme_quote.field_c_p_author
     - field.field.paragraph.civictheme_quote.field_c_p_content
-    - field.field.paragraph.civictheme_quote.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_quote.field_c_p_theme
+    - field.field.paragraph.civictheme_quote.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_quote
   module:
     - options
@@ -30,18 +30,18 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_c_p_vertical_spacing:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 3
-    region: content
   field_c_p_theme:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_c_p_vertical_spacing:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden: {  }

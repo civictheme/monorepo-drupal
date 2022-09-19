@@ -105,7 +105,7 @@ function _civictheme_preprocess_paragraph__field__title(&$variables) {
 }
 
 /**
- * Pre-process "With space" for CivicTheme paragraphs.
+ * Pre-process "Vertical spacing" for CivicTheme paragraphs.
  */
 function _civictheme_preprocess_paragraph__field__space(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */

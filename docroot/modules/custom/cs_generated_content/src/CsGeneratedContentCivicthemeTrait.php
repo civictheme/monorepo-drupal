@@ -87,40 +87,40 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Spacing - none.
    */
-  public static function civicthemeSpaceTypeNone() {
+  public static function civicthemeVerticalSpacingTypeNone() {
     return '';
   }
 
   /**
    * Spacing - top.
    */
-  public static function civicthemeSpaceTypeTop() {
+  public static function civicthemeVerticalSpacingTypeTop() {
     return 'top';
   }
 
   /**
    * Spacing - bottom.
    */
-  public static function civicthemeSpaceTypeBottom() {
+  public static function civicthemeVerticalSpacingTypeBottom() {
     return 'bottom';
   }
 
   /**
    * Spacing - both.
    */
-  public static function civicthemeSpaceTypeBoth() {
+  public static function civicthemeVerticalSpacingTypeBoth() {
     return 'both';
   }
 
   /**
    * Types of spaces.
    */
-  public static function civicthemeSpaceTypes() {
+  public static function civicthemeVerticalSpacingTypes() {
     return [
-      static:: civicthemeSpaceTypeNone(),
-      static:: civicthemeSpaceTypeTop(),
-      static:: civicthemeSpaceTypeBottom(),
-      static:: civicthemeSpaceTypeBoth(),
+      static:: civicthemeVerticalSpacingTypeNone(),
+      static:: civicthemeVerticalSpacingTypeTop(),
+      static:: civicthemeVerticalSpacingTypeBottom(),
+      static:: civicthemeVerticalSpacingTypeBoth(),
     ];
   }
 
@@ -245,7 +245,7 @@ trait CsGeneratedContentCivicthemeTrait {
     $defaults = [
       'content' => '',
       'theme' => static::civicthemeThemeLight(),
-      'space' => static::civicthemeSpaceTypeTop(),
+      'vertical_spacing' => static::civicthemeVerticalSpacingTypeTop(),
       'background' => FALSE,
     ];
 
@@ -261,8 +261,8 @@ trait CsGeneratedContentCivicthemeTrait {
     }
 
     // Space.
-    if (!empty($options['space'])) {
-      $options['space'] = static::civicthemeValueFromOptions(static::civicthemeSpaceTypes(), $options['space']);
+    if (!empty($options['vertical_spacing'])) {
+      $options['vertical_spacing'] = static::civicthemeValueFromOptions(static::civicthemeVerticalSpacingTypes(), $options['vertical_spacing']);
     }
 
     // Background.
@@ -584,7 +584,7 @@ trait CsGeneratedContentCivicthemeTrait {
       'theme' => static::civicthemeThemeLight(),
       'title' => NULL,
       'list_topics' => NULL,
-      'space' => static::civicthemeSpaceTypeNone(),
+      'vertical_spacing' => static::civicthemeVerticalSpacingTypeNone(),
     ];
 
     $options += $defaults;

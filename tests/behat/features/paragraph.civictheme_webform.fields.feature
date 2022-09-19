@@ -29,7 +29,7 @@ Feature: Tests the webform paragraph
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-webform-0-target-id select.required" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-theme" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-theme select.required" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-space" element
-    And I should not see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-space select.required" element
+    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-vertical-spacing" element
+    And I should not see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-vertical-spacing select.required" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-background-value" element
     And I should not see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-background-value input.required" element

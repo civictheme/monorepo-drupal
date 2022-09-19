@@ -26,7 +26,7 @@ export const Iframe = (knobTab) => {
     width: text('Width', '500', generalKnobTab),
     height: text('Height', '300', generalKnobTab),
     vertical_spacing: radios(
-      'Vertical space',
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',

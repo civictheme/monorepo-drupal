@@ -58,7 +58,7 @@ export const Slider = () => {
       url: randomUrl(),
     } : null,
     vertical_spacing: radios(
-      'Vertical space',
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',

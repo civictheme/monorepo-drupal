@@ -16,7 +16,7 @@ Feature: Tests the Quote paragraph
     And I should see the text "field_c_p_author" in the "Author" row
     And I should see the text "field_c_p_content" in the "Content" row
     And I should see the text "field_c_p_theme" in the "Theme" row
-    And I should see the text "field_c_p_vertical_spacing" in the "Vertical space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "Vertical spacing" row
 
   @api
   Scenario: Page content type field_c_n_components fields settings.

@@ -10,7 +10,7 @@ id: paragraph.civictheme_callout.field_c_p_vertical_spacing
 field_name: field_c_p_vertical_spacing
 entity_type: paragraph
 bundle: civictheme_callout
-label: 'With space'
+label: 'Vertical spacing'
 description: ''
 required: false
 translatable: true

@@ -18,7 +18,7 @@ Feature: Test the Next step paragraph
     And I should see the text "field_c_p_summary" in the "Summary" row
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_title" in the "Title" row
-    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "Vertical spacing" row
 
   @api
   Scenario: Node type Page field_c_n_components fields settings.

@@ -29,7 +29,7 @@ export const Webform = (knobTab) => {
     reference_webform: text('Title', 'Webform title', generalKnobTab),
     with_background: boolean('With background', false, generalKnobTab),
     vertical_spacing: radios(
-      'Vertical space',
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',

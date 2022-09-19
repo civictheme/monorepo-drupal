@@ -3,8 +3,8 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civictheme_webform.field_c_p_background
-    - field.field.paragraph.civictheme_webform.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_webform.field_c_p_theme
+    - field.field.paragraph.civictheme_webform.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_webform.field_c_p_webform
     - paragraphs.paragraphs_type.civictheme_webform
   module:
@@ -25,19 +25,19 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_c_p_vertical_spacing:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 3
-    region: content
   field_c_p_theme:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_c_p_vertical_spacing:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_c_p_webform:
     type: webform_entity_reference_entity_view

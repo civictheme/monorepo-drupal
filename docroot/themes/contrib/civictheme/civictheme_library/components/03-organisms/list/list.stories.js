@@ -144,7 +144,7 @@ export const List = (knobTab) => {
   }
 
   const verticalSpace = radios(
-    'Vertical space',
+    'Vertical spacing',
     {
       None: 'none',
       Top: 'top',

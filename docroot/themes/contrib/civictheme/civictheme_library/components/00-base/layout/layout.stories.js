@@ -39,7 +39,7 @@ export const Layout = (knobTab) => {
       generalKnobTab,
     ),
     vertical_spacing: radios(
-      'Vertical space',
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',

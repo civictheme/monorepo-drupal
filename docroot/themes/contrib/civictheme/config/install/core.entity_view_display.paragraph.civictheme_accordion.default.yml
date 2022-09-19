@@ -5,8 +5,8 @@ dependencies:
     - field.field.paragraph.civictheme_accordion.field_c_p_background
     - field.field.paragraph.civictheme_accordion.field_c_p_expand
     - field.field.paragraph.civictheme_accordion.field_c_p_panels
-    - field.field.paragraph.civictheme_accordion.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_accordion.field_c_p_theme
+    - field.field.paragraph.civictheme_accordion.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_accordion
   module:
     - entity_reference_revisions
@@ -45,18 +45,18 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
-  field_c_p_vertical_spacing:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 4
-    region: content
   field_c_p_theme:
     type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_c_p_vertical_spacing:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
     region: content
 hidden: {  }

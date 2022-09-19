@@ -27,7 +27,7 @@ export const SideNavigation = (knobTab) => {
     title: text('Title', 'Side Navigation title', generalKnobTab),
     items: getMenuLinks('Links'),
     vertical_spacing: radios(
-      'Vertical space',
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',

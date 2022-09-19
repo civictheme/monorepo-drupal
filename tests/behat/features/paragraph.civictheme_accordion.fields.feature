@@ -16,7 +16,7 @@ Feature: Tests the Accordion
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_panels" in the "Panels" row
     And I should see the text "field_c_p_expand" in the "Expand all" row
-    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "Vertical spacing" row
     And I should see the text "field_c_p_background" in the "Background" row
 
   @api @javascript

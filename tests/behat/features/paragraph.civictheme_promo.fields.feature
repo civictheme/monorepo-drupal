@@ -17,7 +17,7 @@ Feature: Tests the Promo paragraph
     And I should see the text "field_c_p_summary" in the "Summary" row
     And I should see the text "field_c_p_link" in the "Link" row
     And I should see the text "field_c_p_theme" in the "Theme" row
-    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "Vertical spacing" row
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected

@@ -6,10 +6,10 @@ dependencies:
     - field.field.paragraph.civictheme_attachment.field_c_p_background
     - field.field.paragraph.civictheme_attachment.field_c_p_icon
     - field.field.paragraph.civictheme_attachment.field_c_p_image
-    - field.field.paragraph.civictheme_attachment.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_attachment.field_c_p_summary
     - field.field.paragraph.civictheme_attachment.field_c_p_theme
     - field.field.paragraph.civictheme_attachment.field_c_p_title
+    - field.field.paragraph.civictheme_attachment.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_attachment
   module:
     - media_library
@@ -46,12 +46,6 @@ content:
     third_party_settings: {  }
     type: media_library_widget
     region: content
-  field_c_p_vertical_spacing:
-    weight: 6
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_c_p_summary:
     weight: 2
     settings:
@@ -73,6 +67,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_c_p_vertical_spacing:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
 hidden:
   created: true

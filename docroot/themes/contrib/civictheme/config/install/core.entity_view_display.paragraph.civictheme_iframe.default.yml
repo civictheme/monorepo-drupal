@@ -5,9 +5,9 @@ dependencies:
     - field.field.paragraph.civictheme_iframe.field_c_p_attributes
     - field.field.paragraph.civictheme_iframe.field_c_p_background
     - field.field.paragraph.civictheme_iframe.field_c_p_height
-    - field.field.paragraph.civictheme_iframe.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_iframe.field_c_p_theme
     - field.field.paragraph.civictheme_iframe.field_c_p_url
+    - field.field.paragraph.civictheme_iframe.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_iframe.field_c_p_width
     - paragraphs.paragraphs_type.civictheme_iframe
   module:
@@ -43,13 +43,6 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_c_p_vertical_spacing:
-    weight: 6
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
   field_c_p_theme:
     weight: 5
     label: above
@@ -64,6 +57,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_c_p_vertical_spacing:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
   field_c_p_width:
     weight: 2

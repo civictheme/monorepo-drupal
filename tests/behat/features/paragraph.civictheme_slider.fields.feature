@@ -17,7 +17,7 @@ Feature: Tests the Slider paragraph
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_link" in the "Link" row
     And I should see the text "field_c_p_slides" in the "Slides" row
-    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "Vertical spacing" row
     And I should see the text "field_c_p_background" in the "Background" row
 
   @api @javascript
@@ -32,7 +32,7 @@ Feature: Tests the Slider paragraph
     And I wait for AJAX to finish
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-theme" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-theme select.required" element
-    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-space" element
+    And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-vertical-spacing" element
     And the option "Light" from select "Theme" is selected
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-title-0-value" element
     And I should see an "div.js-form-item-field-c-n-components-0-subform-field-c-p-background-value" element

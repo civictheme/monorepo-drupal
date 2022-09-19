@@ -27,7 +27,7 @@ export const Map = (knobTab) => {
     address: text('Address', 'Australia', generalKnobTab),
     view_link: text('View Link', randomUrl(), generalKnobTab),
     vertical_spacing: radios(
-      'Vertical space',
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',

@@ -35,7 +35,7 @@ class CivicThemeUtilitiesUnitTest extends CivicThemeUnitTestBase {
       ['a = "b"', ['a' => 'b']],
       // Multiple.
       ['a = "b" c="d"', ['a' => 'b', 'c' => 'd']],
-      // With spaces.
+      // Vertical spacings.
       ['a = "b c d" e="f g"', ['a' => 'b c d', 'e' => 'f g']],
       // Numeric.
       ['a = "b1 c2 d3" e="f4 g5"', ['a' => 'b1 c2 d3', 'e' => 'f4 g5']],

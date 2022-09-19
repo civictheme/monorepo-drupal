@@ -31,7 +31,7 @@ export const Promo = () => {
       is_external: boolean('Link is external', true, generalKnobTab),
     },
     vertical_spacing: radios(
-      'Vertical space',
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',

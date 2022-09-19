@@ -16,7 +16,7 @@ Feature: Tests the Map paragraph
     And I should see the text "field_c_p_address" in the "Address" row
     And I should see the text "field_c_p_view_link" in the "View link" row
     And I should see the text "field_c_p_theme" in the "Theme" row
-    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "Vertical spacing" row
     And I should see the text "field_c_p_embed_url" in the "Embed URL" row
     And I should see the text "field_c_p_background" in the "Background" row
 

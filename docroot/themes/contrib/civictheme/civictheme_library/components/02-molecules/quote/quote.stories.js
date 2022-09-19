@@ -25,7 +25,7 @@ export const Quote = (knobTab) => {
     content: text('Content', 'Quote content', generalKnobTab),
     author: text('Author', 'Quote author', generalKnobTab),
     vertical_spacing: radios(
-      'Vertical space',
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',

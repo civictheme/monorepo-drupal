@@ -62,7 +62,7 @@ Feature: View of Page content with Listing component
       | field_c_p_list_link_below   | 0: Link below - 1: https://example.com/below |
       # Appearance.
       | field_c_p_theme             | dark                                         |
-      | field_c_p_vertical_spacing             | bottom                                       |
+      | field_c_p_vertical_spacing  | bottom                                       |
       | field_c_p_background        | 1                                            |
       | field_c_p_list_item_view_as | civictheme_promo_card                        |
       | field_c_p_list_item_theme   | dark                                         |

@@ -11,9 +11,9 @@ dependencies:
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_items
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_above
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_below
-    - field.field.paragraph.civictheme_manual_list.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_manual_list.field_c_p_theme
     - field.field.paragraph.civictheme_manual_list.field_c_p_title
+    - field.field.paragraph.civictheme_manual_list.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_manual_list
   module:
     - entity_reference_revisions
@@ -106,13 +106,6 @@ content:
     third_party_settings: {  }
     weight: 13
     region: content
-  field_c_p_vertical_spacing:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 3
-    region: content
   field_c_p_theme:
     type: list_default
     label: above
@@ -127,5 +120,12 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_c_p_vertical_spacing:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden: {  }

@@ -3,10 +3,10 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.civictheme_callout.field_c_p_links
-    - field.field.paragraph.civictheme_callout.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_callout.field_c_p_summary
     - field.field.paragraph.civictheme_callout.field_c_p_theme
     - field.field.paragraph.civictheme_callout.field_c_p_title
+    - field.field.paragraph.civictheme_callout.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_callout
   module:
     - link
@@ -27,13 +27,6 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-    region: content
-  field_c_p_vertical_spacing:
-    weight: 4
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
     region: content
   field_c_p_summary:
     weight: 2
@@ -56,5 +49,12 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_c_p_vertical_spacing:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
 hidden: {  }

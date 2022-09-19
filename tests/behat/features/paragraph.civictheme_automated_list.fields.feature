@@ -30,7 +30,7 @@ Feature: Tests the Listing paragraph
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_title" in the "Title" row
     And I should see the text "field_c_p_list_topics" in the "Topics" row
-    And I should see the text "field_c_p_vertical_spacing" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "Vertical spacing" row
     And I should see the text "field_c_p_list_type" in the "List type" row
 
   @api @javascript
@@ -133,7 +133,7 @@ Feature: Tests the Listing paragraph
     And should see a "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
     And should not see a "select[name='field_c_n_components[0][subform][field_c_p_theme]'][disabled]" element
 
-    And I see the text "With space"
+    And I see the text "Vertical spacing"
     And should see a "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element
     And should not see a "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]'].required" element
     And should not see a "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]'][disabled]" element

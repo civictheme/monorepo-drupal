@@ -25,7 +25,7 @@ export const NextSteps = (knobTab) => {
     url: text('Link', randomUrl(), generalKnobTab),
     is_external: boolean('Is external', false, generalKnobTab),
     vertical_spacing: radios(
-      'Vertical space',
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',

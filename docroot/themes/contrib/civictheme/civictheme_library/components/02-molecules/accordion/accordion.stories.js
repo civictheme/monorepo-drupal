@@ -28,7 +28,7 @@ export const Accordion = (knobTab) => {
     ),
     expand_all: boolean('Expand all', false, generalKnobTab),
     vertical_spacing: radios(
-      'Vertical space',
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',
