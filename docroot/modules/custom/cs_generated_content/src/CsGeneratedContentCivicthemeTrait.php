@@ -698,8 +698,10 @@ trait CsGeneratedContentCivicthemeTrait {
     $defaults = [
       'column_count' => NULL,
       'theme' => self::civicthemeThemeLight(),
-      'field_c_p_list_item_view_as' => 'civictheme_promo_card',
-      'field_c_p_list_item_theme' => self::civicthemeThemeLight(),
+      'list_item_view_as' => static::civicthemePromoCardType(),
+      'list_item_theme' => self::civicthemeThemeLight(),
+      'list_link_above' => NULL,
+      'list_link_below' => NULL,
     ];
 
     $options += $defaults;

@@ -412,7 +412,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
     ],
 
     [
-      'title' => 'Demo Page, Manual List component, Dark, Footer link, Header link',
+      'title' => 'Demo Page, Manual List component, Dark, Link above, Link below',
       'components' => [
         [
           'type' => 'manual_list',
@@ -434,11 +434,11 @@ function _cs_generated_content_create_node_civictheme_page__variations__manual_l
           ],
           'column_count' => rand(1, 4),
           'theme' => $helper::civicthemeThemeDark(),
-          'link_below' => [
+          'list_link_below' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
-          'link_above' => [
+          'list_link_above' => [
             'uri' => $helper::randomUrl(),
             'title' => $helper::staticSentence(2),
           ],
