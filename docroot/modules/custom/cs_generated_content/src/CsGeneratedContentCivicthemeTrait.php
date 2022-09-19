@@ -697,6 +697,9 @@ trait CsGeneratedContentCivicthemeTrait {
 
     $defaults = [
       'column_count' => NULL,
+      'theme' => self::civicthemeThemeLight(),
+      'field_c_p_list_item_view_as' => 'civictheme_promo_card',
+      'field_c_p_list_item_theme' => self::civicthemeThemeLight(),
     ];
 
     $options += $defaults;
@@ -724,7 +727,7 @@ trait CsGeneratedContentCivicthemeTrait {
           unset($card_options['type']);
           $card = self::civicthemeParagraphAttach($type, $paragraph, 'field_c_p_list_items', $card_options, TRUE);
           if (!empty($card)) {
-            $paragraph->field_c_p_cards->appendItem($card);
+            $paragraph->field_c_p_list_items->appendItem($card);
           }
         }
       }

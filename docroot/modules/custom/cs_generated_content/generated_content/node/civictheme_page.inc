@@ -12,7 +12,7 @@ use Drupal\cs_generated_content\CsGeneratedContentHelper;
  * Implements hook_generated_content_create_ENTITY_TYPE_BUNDLE_weight().
  */
 function cs_generated_content_generated_content_create_node_civictheme_page_weight() {
-  return 35;
+  return 4;
 }
 
 /**
