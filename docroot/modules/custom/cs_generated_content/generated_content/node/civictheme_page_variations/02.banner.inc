@@ -50,7 +50,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       'banner_hide_breadcrumb' => FALSE,
       'banner_components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -106,7 +106,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       ],
       'banner_components_bott' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
