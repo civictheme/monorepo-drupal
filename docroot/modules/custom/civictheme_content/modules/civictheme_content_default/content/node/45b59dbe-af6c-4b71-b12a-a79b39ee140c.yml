@@ -67,7 +67,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<p>A short, one-sentence vision or mission statement works well here.&nbsp;&nbsp;</p>\r\n\r\n<p><a class=\"civictheme-button civictheme-button--primary civictheme-button--regular civictheme-theme-light\" href=\"/about-us\">Learn about our mission</a></p>\r\n"
+              value: "<p>A short, one-sentence vision or mission statement works well here.&nbsp;&nbsp;</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-us\">Learn about our mission</a></p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
