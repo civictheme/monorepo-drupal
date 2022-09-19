@@ -27,9 +27,9 @@ Feature: Tests the Subject reference card paragraph
     And the "Page" checkbox should be checked
 
   @api
-  Scenario: Card container paragraph field_c_p_cards fields settings.
+  Scenario: Manual List paragraph field_c_p_list_items fields settings.
     Given I am logged in as a user with the "Administrator" role
-    When I go to "admin/structure/paragraphs_type/civictheme_manual_list/fields/paragraph.civictheme_manual_list.field_c_p_cards"
+    When I go to "admin/structure/paragraphs_type/civictheme_manual_list/fields/paragraph.civictheme_manual_list.field_c_p_list_items"
     And the "Label" field should contain "Cards"
     Then the option "Default" from select "Reference method" is selected
     Then the "Include the selected below" checkbox should be checked
@@ -53,7 +53,7 @@ Feature: Tests the Subject reference card paragraph
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_fill_width][value]']" element
     Then I click on "div.field--name-field-c-p-cards .paragraphs-add-wrapper .dropbutton-toggle button" element
     And I wait 1 second
-    And I press the "field_c_n_components_0_subform_field_c_p_cards_civictheme_subject_card_ref_add_more" button
+    And I press the "field_c_n_components_0_subform_field_c_p_list_items_civictheme_subject_card_ref_add_more" button
     And I wait for AJAX to finish
-    And I should see an "select[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_theme]'].required" element
-    And I should see an "input[name='field_c_n_components[0][subform][field_c_p_cards][0][subform][field_c_p_reference][0][target_id]'].required" element
+    And I should see an "select[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_theme]'].required" element
+    And I should see an "input[name='field_c_n_components[0][subform][field_c_p_list_items][0][subform][field_c_p_reference][0][target_id]'].required" element
