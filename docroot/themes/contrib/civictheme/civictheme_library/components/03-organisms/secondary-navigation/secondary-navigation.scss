@@ -45,7 +45,7 @@
 
       > .ct-link {
         &::after {
-          margin-top: 3px;
+          margin-top: ct-particle(0.375);
         }
       }
     }

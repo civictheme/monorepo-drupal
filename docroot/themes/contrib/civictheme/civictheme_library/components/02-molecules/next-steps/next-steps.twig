@@ -10,7 +10,9 @@
  * - title: [string] Title.
  * - summary: [string]  Summary.
  * - url: [string] Link.
+ * - is_external: [boolean] Link is external.
  * - vertical_space: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -20,7 +22,7 @@
 {% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
 
 {% if url is not empty %}
-  <a class="ct-next-steps {{ modifier_class }}" href={{ url }}>
+  <a class="ct-next-steps {{ modifier_class }}" href={{ url }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <div class="container">
       <div class="row">
         <div class="col-xxs-12">
@@ -53,7 +55,7 @@
             {% block icon %}
               <div class="ct-next-steps__icon ct-next-steps__read-more">
                 {% include '@base/icon/icon.twig' with {
-                  symbol: 'upper-right-arrow',
+                  symbol: is_external ? 'upper-right-arrow' : 'right-arrow-2',
                   color: 'primary'
                 } only %}
               </div>

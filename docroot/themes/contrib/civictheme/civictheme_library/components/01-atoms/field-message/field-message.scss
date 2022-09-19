@@ -14,7 +14,7 @@
   display: block;
   border-radius: $ct-field-message-border-radius;
   padding: ct-spacing();
-  border-width: rem(1px);
+  border-width: ct-particle(0.125);
   border-style: solid;
 
   @include ct-typography('text-regular');

@@ -3,7 +3,7 @@
 
   &__mobile-toggle {
     width: 100%;
-    border: 1px solid transparent;
+    border: ct-particle(0.125) solid transparent;
     border-radius: 0;
   }
 
@@ -21,7 +21,7 @@
     text-align: center;
     width: 100%;
     padding: ct-spacing() ct-spacing(3);
-    border: 1px solid transparent;
+    border: ct-particle(0.125) solid transparent;
     border-top: 0;
 
     &--hidden {
@@ -71,7 +71,7 @@
     }
 
     .ct-dropdown-filter {
-      border-bottom: 1px solid transparent;
+      border-bottom: ct-particle(0.125) solid transparent;
 
       @include ct-breakpoint($ct-group-filter-breakpoint) {
         margin-right: ct-spacing(3);
@@ -79,7 +79,7 @@
       }
 
       &:first-of-type {
-        border-top: 1px solid transparent;
+        border-top: ct-particle(0.125) solid transparent;
 
         @include ct-breakpoint($ct-group-filter-breakpoint) {
           border-top: 0;
@@ -173,8 +173,8 @@
     }
 
     @include ct-breakpoint($ct-group-filter-breakpoint) {
-      border-top: 1px solid $ct-group-filter-light-border-color;
-      border-bottom: 1px solid $ct-group-filter-light-border-color;
+      border-top: ct-particle(0.125) solid $ct-group-filter-light-border-color;
+      border-bottom: ct-particle(0.125) solid $ct-group-filter-light-border-color;
     }
 
     #{$root}__mobile-toggle {
@@ -212,7 +212,7 @@
 
     #{$root}__selected-filters {
       @include ct-breakpoint($ct-group-filter-breakpoint) {
-        border-top: 1px solid $ct-group-filter-light-selected-filters-border-color;
+        border-top: ct-particle(0.125) solid $ct-group-filter-light-selected-filters-border-color;
       }
     }
 
@@ -247,8 +247,8 @@
     }
 
     @include ct-breakpoint($ct-group-filter-breakpoint) {
-      border-top: 1px solid $ct-group-filter-dark-border-color;
-      border-bottom: 1px solid $ct-group-filter-dark-border-color;
+      border-top: ct-particle(0.125) solid $ct-group-filter-dark-border-color;
+      border-bottom: ct-particle(0.125) solid $ct-group-filter-dark-border-color;
     }
 
     #{$root}__mobile-toggle {
@@ -286,7 +286,7 @@
 
     #{$root}__selected-filters {
       @include ct-breakpoint($ct-group-filter-breakpoint) {
-        border-top: 1px solid $ct-group-filter-dark-selected-filters-border-color;
+        border-top: ct-particle(0.125) solid $ct-group-filter-dark-selected-filters-border-color;
       }
     }
 

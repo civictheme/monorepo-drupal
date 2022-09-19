@@ -67,11 +67,14 @@
         {% if title is not empty %}
           <div class="ct-promo-card__title">
             {% if url is not empty %}
-            <a class="ct-promo-card__title-link" href="{{ url }}" {% if is_external %}title="Opens in new tab" target="_blank"{% endif %}>
-            {% endif %}
+            {% include '@atoms/link/link.twig' with {
+              theme: theme,
+              text: title,
+              url: url,
+              is_new_window: is_external,
+            } only %}
+            {% else %}
               {{ title }}
-            {% if url is not empty %}
-            </a>
             {% endif %}
           </div>
         {% endif %}

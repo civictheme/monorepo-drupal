@@ -7,17 +7,17 @@
 //
 @mixin ct-content-link-base() {
   text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-  padding: 3px 0 2px;
+  text-decoration-thickness: ct-particle(0.25);
+  text-underline-offset: ct-particle(0.375);
+  padding: ct-spacing(0.375) 0 ct-spacing(0.25);
 
   &:hover {
     text-decoration: none;
-    padding: 3px 0 4px;
+    padding: ct-spacing(0.375) 0 ct-spacing(0.5);
   }
 
   .ct-content-link__link-icon {
-    margin-right: rem(4px);
+    margin-right: ct-spacing(0.5);
   }
 
   &,
@@ -76,8 +76,8 @@
   content: $content;
   overflow-x: hidden;
   overflow-y: hidden;
-  width: rem(24px);
-  height: rem(24px);
+  width: ct-particle(3);
+  height: ct-particle(3);
   fill: currentcolor;
   vertical-align: -webkit-baseline-middle;
 }

@@ -7,7 +7,7 @@
 .story-fonts-wrapper {
   $all-fonts: _ct-font-map-all();
   $all-weights: _ct-font-weights-all();
-  $font-size: rem(45px);
+  $font-size: ct-particle(6);
 
   @each $weightName, $weight in $all-weights {
     $weightName: string.to-lower-case($weightName);

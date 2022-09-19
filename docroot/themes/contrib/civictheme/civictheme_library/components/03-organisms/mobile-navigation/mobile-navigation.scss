@@ -47,7 +47,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
     }
 
     .ct-menu__item {
-      border-bottom-width: 1px;
+      border-bottom-width: ct-particle(0.125);
       border-bottom-style: solid;
       display: flex;
       flex-wrap: nowrap;
@@ -65,7 +65,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
 
     // Subsection arrow.
     #{$root}__open-subsection-trigger {
-      border-left-width: 1px;
+      border-left-width: ct-particle(0.125);
       border-left-style: solid;
       padding: $ct-mobile-navigation-spacing;
       border-radius: 0;
@@ -104,7 +104,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
 
     // Subsection arrow.
     #{$root}__open-subsection-trigger {
-      border-left-width: 1px;
+      border-left-width: ct-particle(0.125);
       border-left-style: solid;
       padding: math.div($ct-mobile-navigation-spacing, 2);
       border-radius: 0;

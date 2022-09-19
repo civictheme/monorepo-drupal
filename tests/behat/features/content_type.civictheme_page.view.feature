@@ -227,7 +227,7 @@ Feature: View of Page content type
     Then I should see the link "Task card title 1" with "https://example.com/card1" in 'div.ct-navigation-card__title'
     And save screenshot
 
-  @api
+  @api @abc
   Scenario: CivicTheme page content type page can be viewed by anonymous with Reference cards
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page Reference cards test" has "civictheme_manual_list" paragraph:
@@ -255,8 +255,8 @@ Feature: View of Page content type
     And I should see 1 "div.ct-subject-card__title" elements
     And I should see 1 "div.ct-navigation-card__title" elements
     And I should see 1 "div.ct-promo-card__content" elements
-    And I should see 3 "div.ct-item-grid__item .ct-theme-light" elements
-    And I should see 1 "div.ct-item-grid__item .ct-theme-dark" elements
+    And I should see 3 "div.ct-item-grid__item > .ct-theme-light" elements
+    And I should see 1 "div.ct-item-grid__item > .ct-theme-dark" elements
     And save screenshot
 
   @api @javascript @smoke
