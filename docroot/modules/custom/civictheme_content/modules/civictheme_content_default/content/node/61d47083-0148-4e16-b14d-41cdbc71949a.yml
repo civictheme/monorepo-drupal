@@ -53,7 +53,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: cf0af2e7-db81-4766-9f7a-4d3f3d4cf4c0
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -145,12 +145,12 @@ default:
           field_c_p_fill_width:
             -
               value: true
-          field_c_p_footer_link:
+          field_c_p_list_link_below:
             -
               uri: 'http://example.com'
               title: 'View all'
               options: {  }
-          field_c_p_header_link:
+          field_c_p_list_link_above:
             -
               uri: 'http://example.com'
               title: 'View all'
@@ -160,7 +160,7 @@ default:
               value: light
           field_c_p_title:
             -
-              value: 'Card container'
+              value: 'Manual List'
   field_c_n_hide_sidebar:
     -
       value: false

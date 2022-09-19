@@ -54,7 +54,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 3234b924-0837-447d-aba6-d8e72a2627fa
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -192,7 +192,7 @@ default:
               value: light
           field_c_p_title:
             -
-              value: 'Card container'
+              value: 'Manual List'
   field_c_n_hide_sidebar:
     -
       value: false

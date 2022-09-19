@@ -52,7 +52,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: b09de9f2-0cb2-4ae9-b424-02f2da6cd0a9
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -121,12 +121,12 @@ default:
           field_c_p_fill_width:
             -
               value: true
-          field_c_p_footer_link:
+          field_c_p_list_link_below:
             -
               uri: 'http://example.com'
               title: 'View all'
               options: {  }
-          field_c_p_header_link:
+          field_c_p_list_link_above:
             -
               uri: 'http://example.com'
               title: 'View all'

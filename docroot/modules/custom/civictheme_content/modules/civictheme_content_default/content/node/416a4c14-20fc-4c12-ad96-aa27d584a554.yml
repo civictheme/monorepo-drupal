@@ -87,7 +87,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: fda796a5-f04a-4ada-9218-5b4f9330d99d
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
