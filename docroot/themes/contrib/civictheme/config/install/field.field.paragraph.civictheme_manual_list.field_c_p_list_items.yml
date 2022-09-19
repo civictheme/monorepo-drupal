@@ -60,7 +60,7 @@ settings:
         weight: 35
         enabled: false
       civictheme_manual_list:
-        weight: 36
+        weight: 41
         enabled: false
       civictheme_content:
         weight: 37
@@ -73,9 +73,6 @@ settings:
         enabled: true
       civictheme_iframe:
         weight: 40
-        enabled: false
-      civictheme_manual_list:
-        weight: 41
         enabled: false
       civictheme_map:
         weight: 42

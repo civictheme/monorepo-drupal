@@ -71,7 +71,7 @@ Feature: View of Page content type
 
     When I visit "civictheme_page" "[TEST] Page Promo cards test"
     And I should see the text "[TEST] Promo manual list"
-    Then I should see the link "View all promo cards" with "https://example.com" in 'div.ct-card-container'
+    Then I should see the link "View all promo cards" with "https://example.com" in 'div.ct-list'
     And I should see an "div.ct-promo-card" element
     And I should see the text "Promo card title"
     And I should see the text "Promo card title 1"
@@ -113,7 +113,7 @@ Feature: View of Page content type
 
     When I visit "civictheme_page" "[TEST] Page Navigation cards test"
     And I should see the text "[TEST] Navigation manual list"
-    Then I should see the link "View all navigation cards" with "https://example.com" in 'div.ct-card-container'
+    Then I should see the link "View all navigation cards" with "https://example.com" in 'div.ct-list'
     And I should see 4 "div.ct-navigation-card" elements
     And I should see 4 ".ct-navigation-card__title" elements
     And I should see 4 ".ct-navigation-card__summary" elements
@@ -147,8 +147,8 @@ Feature: View of Page content type
 
     When I visit "civictheme_page" "[TEST] Page Subject cards test"
     And I should see the text "[TEST] Subject manual list"
-    Then I should see the link "View all Subject cards" with "https://example.com" in 'div.ct-card-container'
-    And I should see 1 "div.ct-card-container" elements
+    Then I should see the link "View all Subject cards" with "https://example.com" in 'div.ct-list'
+    And I should see 1 "div.ct-list" elements
     And I should see 3 "div.ct-subject-card" elements
     And I should see 2 "div.ct-subject-card__image img" elements
     And I should see 3 "div.ct-subject-card__title" elements
@@ -180,8 +180,8 @@ Feature: View of Page content type
 
     When I visit "civictheme_page" "[TEST] Page Service cards test"
     And I should see the text "[TEST] Service manual list"
-    Then I should see the link "View all Service cards" with "https://example.com" in 'div.ct-card-container'
-    And I should see 1 "div.ct-card-container" elements
+    Then I should see the link "View all Service cards" with "https://example.com" in 'div.ct-list'
+    And I should see 1 "div.ct-list" elements
     And I should see 3 "div.ct-service-card" elements
     And I should see 2 "div.ct-service-card.ct-theme-dark" elements
     And I should see 1 "div.ct-service-card.ct-theme-light" elements
@@ -215,8 +215,8 @@ Feature: View of Page content type
 
     When I visit "civictheme_page" "[TEST] Page Tasks cards test"
     And I should see the text "[TEST] Tasks cards container"
-    And I should not see an "div.ct-card-container__link a" element
-    And I should see 1 "div.ct-card-container" elements
+    And I should not see an "div.ct-list__link a" element
+    And I should see 1 "div.ct-list" elements
     And I should see 3 "div.ct-navigation-card--small" elements
     And I should see 3 "div.ct-navigation-card__content" elements
     And I should see 3 "div.ct-navigation-card__title" elements
@@ -249,14 +249,14 @@ Feature: View of Page content type
 
     When I visit "civictheme_page" "[TEST] Page Reference cards test"
     And I should see the text "[TEST] Reference cards container"
-    And I should not see an "div.ct-card-container__link a" element
-    And I should see 1 "div.ct-card-container" elements
+    And I should not see an "div.ct-list__link a" element
+    And I should see 1 "div.ct-list" elements
     And I should see 1 "div.ct-event-card__content" elements
     And I should see 1 "div.ct-subject-card__title" elements
     And I should see 1 "div.ct-navigation-card__title" elements
     And I should see 1 "div.ct-promo-card__content" elements
-    And I should see 3 "div.ct-card-container__card .ct-theme-light" elements
-    And I should see 1 "div.ct-card-container__card .ct-theme-dark" elements
+    And I should see 3 "div.ct-list__card .ct-theme-light" elements
+    And I should see 1 "div.ct-list__card .ct-theme-dark" elements
     And save screenshot
 
   @api @javascript @smoke

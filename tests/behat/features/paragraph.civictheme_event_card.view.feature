@@ -67,9 +67,9 @@ Feature: Tests the Event Card paragraph
 
     When I visit "civictheme_page" "[TEST] Page - Event cards test"
     And I should see the text "[TEST] Event manual list"
-    Then I should see the link "View all events" with "https://example.com" in 'div.ct-card-container'
+    Then I should see the link "View all events" with "https://example.com" in 'div.ct-list'
     And I should see an "div.ct-event-card" element
-    And I should see 1 "div.ct-card-container" elements
+    And I should see 1 "div.ct-list" elements
     And I should see 4 "div.ct-event-card" elements
     And I should see 2 "div.ct-event-card.ct-theme-light" elements
     And I should see 2 "div.ct-event-card.ct-theme-dark" elements

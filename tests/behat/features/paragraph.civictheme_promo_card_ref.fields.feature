@@ -30,7 +30,7 @@ Feature: Tests the Promo reference card paragraph
   Scenario: Manual List paragraph field_c_p_list_items fields settings.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/structure/paragraphs_type/civictheme_manual_list/fields/paragraph.civictheme_manual_list.field_c_p_list_items"
-    And the "Label" field should contain "Cards"
+    And the "Label" field should contain "List items"
     Then the option "Default" from select "Reference method" is selected
     Then the "Include the selected below" checkbox should be checked
     And the "Promo reference card" checkbox should be checked
