@@ -37,10 +37,10 @@ function cs_core_preprocess_html(&$variables) {
   if ($version) {
     $style = <<<HTML
 <style>
-.civictheme-footer__logo {
+.ct-footer__logo {
   position: relative;
 }
-.civictheme-footer__logo::after {
+.ct-footer__logo::after {
   content: 'Version $version';
   bottom: 0;
   display: block;

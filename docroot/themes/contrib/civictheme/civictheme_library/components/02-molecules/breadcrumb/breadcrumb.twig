@@ -23,6 +23,7 @@
 
   <nav class="ct-breadcrumb {{ modifier_class }}" {{ attributes }} aria-label="breadcrumb">
     {% set link_items = [] %}
+
     {% for key, link in links %}
       {% set link_item %}
         {% set link = {
@@ -32,12 +33,26 @@
           text: link.text,
           url: link.url,
         } %}
+
         {% if not active_is_link and (loop.index == links_count) %}
           <span aria-current="location">{{ link.text }}</span>
         {% else %}
           {% include '@atoms/link/link.twig' with link only %}
         {% endif %}
       {% endset %}
+
+      {% set link_items = link_items|merge([ link_item ]) %}
+
+      {% if loop.index < links_count %}
+        {% set link_item %}
+          {% include '@base/icon/icon.twig' with {
+            symbol: 'right-arrow-1',
+            size: 'small',
+          } only %}
+        {% endset %}
+        {% set link_items = link_items|merge([ link_item ]) %}
+      {% endif %}
+
       {% if loop.index == links_count - 1 %}
         {% set parent = {
           theme: theme,
@@ -47,24 +62,25 @@
           url: link.url,
         } %}
       {% endif %}
-      {% set link_items = link_items|merge([ link_item ]) %}
     {% endfor %}
 
     {% if parent %}
       {% set parent_link_item %}
         {% include '@atoms/link/link.twig' with parent only %}
       {% endset %}
+
       {% include '@base/item-list/item-list.twig' with {
         direction: 'horizontal',
         items: [parent_link_item],
-        modifier_class: 'ct-breadcrumb__links mobile-only',
+        modifier_class: 'ct-breadcrumb__links show-xxs-flex hide-l',
       } only %}
     {% endif %}
 
     {% include '@base/item-list/item-list.twig' with {
       direction: 'horizontal',
       items: link_items,
-      modifier_class: 'ct-breadcrumb__links',
+      no_gutter: true,
+      modifier_class: 'ct-breadcrumb__links hide-xxs show-l',
     } only %}
   </nav>
 {% endif %}

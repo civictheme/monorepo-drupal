@@ -5,6 +5,7 @@
  *
  * Variables:
  * - type: [string] Type: horizontal, vertical.
+ * - no_gutter: [boolean] Render without gutters.
  * - items: [array] Items array
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
@@ -12,7 +13,8 @@
 #}
 
 {% set type_class = 'ct-item-list--%s'|format(type|default('horizontal')) %}
-{% set modifier_class = '%s %s'|format(type_class, modifier_class|default('')) %}
+{% set no_gutter_class = no_gutter ? 'ct-item-list--no-gutter' : '' %}
+{% set modifier_class = '%s %s %s'|format(type_class, no_gutter_class, modifier_class|default('')) %}
 
 {% if items %}
   <div class="ct-item-list {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
