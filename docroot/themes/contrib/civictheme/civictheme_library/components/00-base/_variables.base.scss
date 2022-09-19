@@ -254,6 +254,24 @@ $ct-fonts-default: (
 // );
 
 //
+// Font weights.
+//
+
+// These directly correlate with font weight values set in the $ct-fonts-default
+// and $ct-fonts above.
+$ct-font-weights: ();
+$ct-font-weights-default: (
+  'thin': 100,
+  'extralight': 200,
+  'regular': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+  'extrabold': 800,
+  'black': 900,
+);
+
+//
 // Typography.
 //
 
@@ -271,68 +289,68 @@ $ct-typography: () !default;
 $ct-typography-default: (
   // Headings.
   'heading-1': (
-    'xxs': ($ct-font-base-size * 2, $ct-font-base-line-height * 2.5, 700, 'primary', -0.6px),
-    'm': ($ct-font-base-size * 3, $ct-font-base-line-height * 3.75, 700, 'primary', -1px)
+    'xxs': ($ct-font-base-size * 2, $ct-font-base-line-height * 2.5, 'bold', 'primary', -0.6px),
+    'm': ($ct-font-base-size * 3, $ct-font-base-line-height * 3.75, 'bold', 'primary', -1px)
   ),
   'heading-2': (
-    'xxs': ($ct-font-base-size * 1.75, $ct-font-base-line-height * 2.25, 700, 'primary', -0.5px),
-    'm': ($ct-font-base-size * 2.5, $ct-font-base-line-height * 3, 700, 'primary', -0.8px)
+    'xxs': ($ct-font-base-size * 1.75, $ct-font-base-line-height * 2.25, 'bold', 'primary', -0.5px),
+    'm': ($ct-font-base-size * 2.5, $ct-font-base-line-height * 3, 'bold', 'primary', -0.8px)
   ),
   'heading-3': (
-    'xxs': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 2, 700, 'primary', -0.35px),
-    'm': ($ct-font-base-size * 2, $ct-font-base-line-height * 2.5, 700, 'primary', -0.6px)
+    'xxs': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 2, 'bold', 'primary', -0.35px),
+    'm': ($ct-font-base-size * 2, $ct-font-base-line-height * 2.5, 'bold', 'primary', -0.6px)
   ),
   'heading-4': (
-    'xxs': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 700, 'primary', -0.25px),
-    'm': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 2, 700, 'primary', -0.4px)
+    'xxs': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 'bold', 'primary', -0.25px),
+    'm': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 2, 'bold', 'primary', -0.4px)
   ),
   'heading-5': (
-    'xxs': ($ct-font-base-size, $ct-font-base-line-height * 1.375, 700, 'primary', 0),
-    'm': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 700, 'primary', -0.2px)
+    'xxs': ($ct-font-base-size, $ct-font-base-line-height * 1.375, 'bold', 'primary', 0),
+    'm': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 'bold', 'primary', -0.2px)
   ),
-  'heading-6': ($ct-font-base-size, $ct-font-base-line-height * 1.625, 700, 'primary', 0),
+  'heading-6': ($ct-font-base-size, $ct-font-base-line-height * 1.625, 'bold', 'primary', 0),
   // Text.
   'text-extra-large': (
-    'xxs': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 400, 'primary', -0.1px),
-    'm': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 1.5, 400, 'primary', 0)
+    'xxs': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 'regular', 'primary', -0.1px),
+    'm': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 1.5, 'regular', 'primary', 0)
   ),
   'text-large': (
-    'xxs': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.75, 400, 'primary', 0),
-    'm': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 2.125, 400, 'primary', 0)
+    'xxs': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.75, 'regular', 'primary', 0),
+    'm': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 2.125, 'regular', 'primary', 0)
   ),
   'text-regular': (
-    'xxs': ($ct-font-base-size * 0.875, $ct-font-base-line-height * 1.5, 400, 'primary', 0),
-    'm': ($ct-font-base-size, $ct-font-base-line-height * 1.75, 400, 'primary', 0)
+    'xxs': ($ct-font-base-size * 0.875, $ct-font-base-line-height * 1.5, 'regular', 'primary', 0),
+    'm': ($ct-font-base-size, $ct-font-base-line-height * 1.75, 'regular', 'primary', 0)
   ),
   'text-small': (
-    'xxs': ($ct-font-base-size * 0.75, $ct-font-base-line-height * 1.25, 400, 'primary', 0),
-    'm': ($ct-font-base-size * 0.875, $ct-font-base-line-height * 1.5, 400, 'primary', 0),
+    'xxs': ($ct-font-base-size * 0.75, $ct-font-base-line-height * 1.25, 'regular', 'primary', 0),
+    'm': ($ct-font-base-size * 0.875, $ct-font-base-line-height * 1.5, 'regular', 'primary', 0),
   ),
   // Labels.
   'label-extra-large': (
-    'xxs': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 600, 'primary', -0.1px),
-    'm': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 1.5, 600, 'primary', 0)
+    'xxs': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 'semibold', 'primary', -0.1px),
+    'm': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 1.5, 'semibold', 'primary', 0)
   ),
   'label-large': (
-    'xxs': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.5, 600, 'primary', -0.1px),
-    'm': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.5, 600, 'primary', 0)
+    'xxs': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.5, 'semibold', 'primary', -0.1px),
+    'm': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.5, 'semibold', 'primary', 0)
   ),
   'label-regular': (
-    'xxs': ($ct-font-base-size, $ct-font-base-line-height * 1.25, 600, 'primary', -0.1px),
-    'm': ($ct-font-base-size, $ct-font-base-line-height * 1.25, 600, 'primary', -0.1px)
+    'xxs': ($ct-font-base-size, $ct-font-base-line-height * 1.25, 'semibold', 'primary', -0.1px),
+    'm': ($ct-font-base-size, $ct-font-base-line-height * 1.25, 'semibold', 'primary', -0.1px)
   ),
   'label-small': (
-    'xxs': ($ct-font-base-size * 0.75, $ct-font-base-line-height * 1.25, 400, 'primary', -0.1px),
-    'm': ($ct-font-base-size * 0.875, $ct-font-base-line-height * 1.125, 400, 'primary', 0)
+    'xxs': ($ct-font-base-size * 0.75, $ct-font-base-line-height * 1.25, 'regular', 'primary', -0.1px),
+    'm': ($ct-font-base-size * 0.875, $ct-font-base-line-height * 1.125, 'regular', 'primary', 0)
   ),
   'label-extra-small': (
-    'xxs': ($ct-font-base-size * 0.5, $ct-font-base-line-height * 1.25, 400, 'primary', -0.1px),
-    'm': ($ct-font-base-size * 0.75, $ct-font-base-line-height * 1.125, 400, 'primary', 0)
+    'xxs': ($ct-font-base-size * 0.5, $ct-font-base-line-height * 1.25, 'regular', 'primary', -0.1px),
+    'm': ($ct-font-base-size * 0.75, $ct-font-base-line-height * 1.125, 'regular', 'primary', 0)
   ),
   // Special elements.
   'quote': (
-    'xxs': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.815, 400, 'primary', -0.15px),
-    'm': ($ct-font-base-size * 1.5, $ct-font-base-size * 2.5, 400, 'primary', -0.35px)
+    'xxs': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.815, 'regular', 'primary', -0.15px),
+    'm': ($ct-font-base-size * 1.5, $ct-font-base-size * 2.5, 'regular', 'primary', -0.35px)
   ),
 );
 
