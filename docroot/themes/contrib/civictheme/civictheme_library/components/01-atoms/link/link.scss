@@ -17,7 +17,7 @@
 }
 
 @mixin ct-link-base() {
-  @include ct-link-decoration(false, true, false, false);
+  @include ct-link-decoration(false, false, true, false);
   @include ct-typography('label-regular');
 
   text-decoration-thickness: ct-particle(0.125);
