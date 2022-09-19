@@ -3,13 +3,13 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_c_p_title
-    - paragraphs.paragraphs_type.civictheme_card_container
-id: paragraph.civictheme_card_container.field_c_p_title
+    - paragraphs.paragraphs_type.civictheme_manual_list
+id: paragraph.civictheme_manual_list.field_c_p_title
 field_name: field_c_p_title
 entity_type: paragraph
-bundle: civictheme_card_container
+bundle: civictheme_manual_list
 label: Title
-description: ''
+description: 'Title appears above the listing.'
 required: false
 translatable: true
 default_value: {  }

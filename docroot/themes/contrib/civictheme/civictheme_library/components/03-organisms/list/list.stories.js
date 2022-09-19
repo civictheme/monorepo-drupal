@@ -13,7 +13,7 @@ import {
 import CivicThemeGroupFilter from '../../02-molecules/group-filter/group-filter.twig';
 import CivicThemeSingleFilter from '../../02-molecules/single-filter/single-filter.twig';
 
-import CivicThemeCardContainer from '../card-container/card-container.twig';
+import CivicThemeItemGrid from '../../00-base/item-grid/item-grid.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
 import NavigationCard from '../../02-molecules/navigation-card/navigation-card.twig';
 
@@ -49,10 +49,10 @@ export const List = (knobTab) => {
   const filterType = radios(
     'Filter type',
     {
-      Large: 'large',
-      Basic: 'basic',
+      Group: 'group',
+      Single: 'single',
     },
-    'large',
+    'group',
     generalKnobTab,
   );
 
@@ -166,7 +166,7 @@ export const List = (knobTab) => {
 
     if (filterCount > 0) {
       for (let i = 0; i < filterCount; i++) {
-        if (filterType === 'large') {
+        if (filterType === 'group') {
           const inputType = ['radio', 'checkbox'][Math.round(Math.random() * 2)];
           filters.push(randomDropdownFilter(inputType, 4, theme, true, count++));
         } else {
@@ -177,7 +177,7 @@ export const List = (knobTab) => {
       }
     }
 
-    if (filterType === 'large') {
+    if (filterType === 'geoup') {
       generalKnobs.filters = CivicThemeGroupFilter({
         theme,
         filter_title: 'Filter search results by:',
@@ -271,9 +271,9 @@ export const List = (knobTab) => {
       cards.push(Card(cardsProps));
     }
 
-    generalKnobs.rows = CivicThemeCardContainer({
+    generalKnobs.rows = CivicThemeItemGrid({
       theme,
-      cards,
+      items: cards,
       column_count: viewItemAs === 'promo' ? 3 : 2,
       fill_width: false,
       with_background: withBackground,

@@ -50,7 +50,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: efcc3469-8611-48f0-9ca0-c762acdc020a
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -68,7 +68,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:

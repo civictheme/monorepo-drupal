@@ -43,14 +43,14 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       ],
     ],
     [
-      'title' => 'Dark featured banner without breadcrumb, without background, without featured image, Card container component, Callout component below banner',
+      'title' => 'Dark featured banner without breadcrumb, without background, without featured image, Manual List component, Callout component below banner',
       'banner_theme' => $helper::civicthemeThemeDark(),
       'banner_type' => $helper::civicthemeBannerTypeLarge(),
       'content' => _cs_generated_content_create_node_civictheme_page__variations_components_content_default(),
       'banner_hide_breadcrumb' => FALSE,
       'banner_components' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
@@ -90,7 +90,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
         ],
     ],
     [
-      'title' => 'Light banner with breadcrumb, with background, with featured image, iFrame component, Card container component below banner',
+      'title' => 'Light banner with breadcrumb, with background, with featured image, iFrame component, Manual List component below banner',
       'banner_theme' => $helper::civicthemeThemeLight(),
       'banner_type' => $helper::civicthemeBannerTypeDefault(),
       'banner_background' => $helper->staticMediaItem('civictheme_image'),
@@ -106,7 +106,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
       ],
       'banner_components_bott' => [
         [
-          'type' => 'card_container',
+          'type' => 'manual_list',
           'column_count' => rand(1, 4),
           'cards' => [
             [
