@@ -14,7 +14,7 @@
   }
 
   .ct-button--link {
-    border: 1px solid transparent;
+    border: ct-particle(0.125) solid transparent;
     padding: ct-spacing(1.375);
     display: block;
 
@@ -34,8 +34,8 @@
 
   &--with-border {
     .ct-button--link {
-      border: 1px solid currentcolor;
-      border-radius: rem(100px);
+      border: ct-particle(0.125) solid currentcolor;
+      border-radius: ct-particle(12);
     }
   }
 

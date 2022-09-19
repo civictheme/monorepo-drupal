@@ -37,7 +37,7 @@
     display: block;
     position: relative;
     padding: ct-spacing() ct-spacing(2) ct-spacing() ct-spacing(2.5);
-    border-top-width: 1px;
+    border-top-width: ct-particle(0.125);
     border-bottom-width: 0;
     border-style: solid;
     text-decoration: none;
@@ -46,10 +46,10 @@
       content: '';
       display: inline-block;
       position: absolute;
-      top: -1px;
-      bottom: -1px;
-      left: -1px;
-      width: rem(4px);
+      top: -1 * ct-particle(0.125);
+      bottom: -1 * ct-particle(0.125);
+      left: -1 * ct-particle(0.125);
+      width: ct-particle(0.5);
     }
 
     &:active {
@@ -65,7 +65,7 @@
   &__link-item {
     &:last-child {
       #{$root}__link {
-        border-bottom-width: 1px;
+        border-bottom-width: ct-particle(0.125);
       }
     }
   }

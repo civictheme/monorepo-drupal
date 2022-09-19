@@ -34,8 +34,7 @@
     }
 
     .ct-select--pager {
-      min-width: auto;
-      max-width: rem(80px);
+      min-width: ct-particle(10);
       margin-left: ct-spacing();
       padding: 0 ct-spacing(2) 0 ct-spacing(2);
     }

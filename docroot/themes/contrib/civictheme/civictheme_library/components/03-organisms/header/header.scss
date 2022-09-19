@@ -28,7 +28,7 @@
   }
 
   &__middle {
-    border-bottom: solid 1px;
+    border-bottom: solid ct-particle(0.125);
   }
 
   &__content-middle1 {
@@ -55,11 +55,11 @@
   }
 
   .ct-logo {
-    width: rem($ct-header-logo-mobile-width);
+    width: $ct-header-logo-mobile-width;
 
     @include ct-breakpoint($ct-header-desktop-menu-breakpoint) {
       width: auto;
-      max-width: rem($ct-header-logo-desktop-width);
+      max-width: $ct-header-logo-desktop-width;
     }
   }
 

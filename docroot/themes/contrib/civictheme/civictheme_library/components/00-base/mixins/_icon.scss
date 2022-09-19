@@ -42,6 +42,7 @@
   }
 
   @if $value {
+    // @todo Review and replace this to use rem() in source variables.
     @return rem($value);
   }
 

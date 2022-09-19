@@ -94,7 +94,7 @@
 
     &::before {
       content: '';
-      width: rem(6px);
+      width: ct-particle(0.75);
       height: 100%;
       position: absolute;
       top: 0;

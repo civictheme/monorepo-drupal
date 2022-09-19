@@ -87,7 +87,7 @@
 
       @include ct-breakpoint('m') {
         width: auto;
-        min-width: rem(160px);
+        min-width: ct-particle(20);
         margin-right: ct-spacing(2);
       }
     }
@@ -255,7 +255,7 @@
     flex-shrink: 0;
 
     @include ct-breakpoint('l') {
-      width: rem(500px);
+      width: ct-particle(60);
     }
 
     @include ct-image-fit();

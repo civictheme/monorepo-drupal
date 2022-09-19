@@ -10,8 +10,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  min-width: rem(300px);
-  height: rem(46px);
+  min-width: ct-particle(38);
+  height: ct-particle(6);
   padding: 0.5em 3.5em 0.5em 1em;
   // stylelint-disable-next-line property-no-vendor-prefix
   -webkit-appearance: none;
@@ -46,18 +46,18 @@
     color: $ct-select-light-color;
 
     &:hover {
-      box-shadow: 0 0 0 1px $ct-select-light-hover-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-select-light-hover-border-color;
     }
 
     &:focus {
       border-color: $ct-select-light-focus-border-color;
-      box-shadow: 0 0 0 1px $ct-select-light-focus-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-select-light-focus-border-color;
     }
 
     &.error,
     &.ct-input--error {
       border-color: $ct-select-light-error-border-color;
-      box-shadow: 0 0 0 1px $ct-select-light-error-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-select-light-error-border-color;
     }
 
     &:-internal-list-box {
@@ -81,19 +81,19 @@
 
     &:hover {
       border-color: $ct-select-dark-hover-border-color;
-      box-shadow: 0 0 0 1px $ct-select-dark-hover-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-select-dark-hover-border-color;
     }
 
     &:focus {
       border-color: $ct-select-dark-focus-border-color;
-      box-shadow: 0 0 0 1px $ct-select-dark-focus-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-select-dark-focus-border-color;
     }
 
     &:invalid,
     &.error,
     &.ct-input--error {
       border-color: $ct-select-dark-error-border-color;
-      box-shadow: 0 0 0 1px $ct-select-dark-error-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-select-dark-error-border-color;
     }
 
     &:-internal-list-box {

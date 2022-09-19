@@ -17,7 +17,7 @@
   }
 
   &__element {
-    border: rem(1px) solid;
+    border: ct-particle(0.125) solid;
     border-radius: $ct-input-border-radius;
     padding: ct-spacing(1.5) ct-spacing(5) ct-spacing(1.5) ct-spacing(2);
     width: 100%;
@@ -61,7 +61,7 @@
       background-color: $ct-input-light-background-color;
 
       &:hover {
-        box-shadow: 0 0 0 1px $ct-input-light-border-color;
+        box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-border-color;
       }
 
       &:focus {
@@ -69,7 +69,7 @@
         color: $ct-input-light-focus-color;
         outline: $ct-input-light-focus-outline-color;
         border-color: $ct-input-light-focus-border-color;
-        box-shadow: 0 0 0 1px $ct-input-light-focus-border-color;
+        box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-focus-border-color;
       }
     }
   }
