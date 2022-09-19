@@ -54,15 +54,9 @@
   }
 
   #{$root}__title {
-    @include ct-typography('heading-4');
+    @include ct-typography('heading-6');
 
     margin-bottom: ct-spacing(2);
-  }
-
-  #{$root}__title-link {
-    @include ct-link-decoration ();
-    @include ct-link-no-outline ();
-    @include ct-link-cover-parent ();
   }
 
   #{$root}__location {
@@ -116,10 +110,6 @@
       color: $ct-promo-card-light-heading-color;
     }
 
-    #{$root}__title-link {
-      @include ct-link-colors($ct-promo-card-light-heading-color, $ct-promo-card-light-heading-hover-color, $active: $ct-promo-card-light-heading-active-color);
-    }
-
     #{$root}__summary {
       color: $ct-promo-card-light-summary-color;
     }
@@ -147,10 +137,6 @@
 
     #{$root}__title {
       color: $ct-promo-card-dark-heading-color;
-    }
-
-    #{$root}__title-link {
-      @include ct-link-colors($ct-promo-card-dark-heading-color, $ct-promo-card-dark-heading-hover-color, $active: $ct-promo-card-dark-heading-active-color);
     }
 
     #{$root}__summary {
