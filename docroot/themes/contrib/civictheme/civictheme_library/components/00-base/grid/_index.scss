@@ -95,7 +95,7 @@
 // Offset container class to add offset on small screens.
 //
 .container-offset-xs {
-  @include ct-breakpoint-upto(m) {
+  @include ct-breakpoint(m) {
     padding-left: map.get($ct-grid-offsets, 'xxs');
     padding-right: map.get($ct-grid-offsets, 'xxs');
     width: auto;
@@ -122,8 +122,10 @@
 }
 
 .ct-justify-content-end {
-  display: flex;
-  justify-content: flex-end;
+  @include ct-breakpoint(m) {
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
 .ct-text-align-left {
