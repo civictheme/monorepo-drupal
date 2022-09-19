@@ -44,7 +44,7 @@ Feature: View of Page content with Listing component
 
     And I should not see an ".ct-list__filters .views-exposed-form" element
 
-  @api @testmode @abc
+  @api @testmode
   Scenario: Listing, custom values
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:

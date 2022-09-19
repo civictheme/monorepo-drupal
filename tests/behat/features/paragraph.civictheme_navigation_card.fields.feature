@@ -29,7 +29,7 @@ Feature: Tests the Manual List paragraph
     Then the "Include the selected below" checkbox should be checked
     And the "Navigation card" checkbox should be checked
 
-  @api @javascript @abc
+  @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
     Given I am logged in as a user with the "Site Administrator" role
     When I visit "node/add/civictheme_page"
