@@ -66,11 +66,14 @@
       {% if title %}
         <div class="ct-event-card__title">
           {% if url %}
-          <a class="ct-event-card__title-link" href="{{ url }}" {% if is_external %} title="Opens in new tab" target="_blank" {% endif %}>
-            {% endif %}
+            {% include '@atoms/link/link.twig' with {
+              theme: theme,
+              text: title,
+              url: url,
+              is_new_window: is_external,
+            } only %}
+          {% else %}
             {{ title }}
-            {% if url %}
-          </a>
           {% endif %}
         </div>
       {% endif %}

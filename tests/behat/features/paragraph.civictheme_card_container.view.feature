@@ -250,6 +250,6 @@ Feature: View of Page content type with card container component
     And I should see 1 "div.ct-subject-card__title" elements
     And I should see 1 "div.ct-navigation-card__title" elements
     And I should see 1 "div.ct-promo-card__content" elements
-    And I should see 3 "div.ct-card-container__card .ct-theme-light" elements
-    And I should see 1 "div.ct-card-container__card .ct-theme-dark" elements
+    And I should see 3 "div.ct-card-container__card > .ct-theme-light" elements
+    And I should see 1 "div.ct-card-container__card > .ct-theme-dark" elements
     And save screenshot

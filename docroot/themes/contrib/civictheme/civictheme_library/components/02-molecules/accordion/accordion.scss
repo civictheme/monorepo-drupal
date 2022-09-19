@@ -29,7 +29,7 @@
 
   &__list-item {
     position: relative;
-    border: 1px solid;
+    border: ct-particle(0.125) solid;
     border-radius: $ct-accordion-item-border-radius;
     margin-bottom: ct-spacing(2);
 

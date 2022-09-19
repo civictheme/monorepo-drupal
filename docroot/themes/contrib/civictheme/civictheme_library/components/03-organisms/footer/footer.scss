@@ -16,7 +16,7 @@
       @include ct-breakpoint(m) {
         padding-top: ct-spacing(5);
         padding-bottom: ct-spacing(5);
-        border-bottom: solid rem(1px) transparent;
+        border-bottom: solid ct-particle(0.125) transparent;
       }
     }
   }
@@ -39,7 +39,7 @@
       @include ct-breakpoint(m) {
         padding-top: ct-spacing(5);
         padding-bottom: ct-spacing(5);
-        border-bottom: solid rem(1px) transparent;
+        border-bottom: solid ct-particle(0.125) transparent;
       }
     }
   }
@@ -81,10 +81,10 @@
   }
 
   .ct-logo {
-    max-width: rem($ct-footer-logo-mobile-width);
+    max-width: $ct-footer-logo-mobile-width;
 
     @include ct-breakpoint('m') {
-      max-width: rem($ct-footer-logo-desktop-width);
+      max-width: $ct-footer-logo-desktop-width;
     }
   }
 
@@ -141,7 +141,7 @@
     }
 
     [data-collapsible='true'] {
-      border-top: solid rem(1px) $ct-footer-light-collapsible-border-color;
+      border-top: solid ct-particle(0.125) $ct-footer-light-collapsible-border-color;
     }
   }
 
@@ -166,7 +166,7 @@
     }
 
     [data-collapsible='true'] {
-      border-top: solid rem(1px) $ct-footer-dark-collapsible-border-color;
+      border-top: solid ct-particle(0.125) $ct-footer-dark-collapsible-border-color;
     }
   }
 }

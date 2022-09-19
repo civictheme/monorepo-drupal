@@ -5,7 +5,7 @@
 //
 // Add highlight stripe to an element.
 //
-@mixin ct-highlight-stripe($width, $border-radius, $border-width: rem(1px), $position: 'left') {
+@mixin ct-highlight-stripe($width, $border-radius, $border-width: ct-particle(0.125), $position: 'left') {
   position: relative;
 
   &::before {

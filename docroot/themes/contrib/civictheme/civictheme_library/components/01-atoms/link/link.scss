@@ -10,17 +10,17 @@
   content: $content;
   overflow-x: hidden;
   overflow-y: hidden;
-  width: rem(24px);
-  height: rem(24px);
+  width: ct-particle(3);
+  height: ct-particle(3);
   fill: currentcolor;
   vertical-align: -webkit-baseline-middle;
 }
 
 @mixin ct-link-base() {
-  @include ct-link-decoration(false, true, false, false);
+  @include ct-link-decoration(false, false, true, false);
   @include ct-typography('label-regular');
 
-  text-decoration-thickness: rem(1px);
+  text-decoration-thickness: ct-particle(0.125);
   text-underline-offset: ct-spacing(0.375);
   padding: ct-spacing(0.375) 0 ct-spacing(0.25);
 
@@ -30,7 +30,7 @@
   }
 
   .ct-link__link-icon {
-    margin-right: rem(4px);
+    margin-right: ct-particle(0.5);
   }
 
   &.ct-link--external {

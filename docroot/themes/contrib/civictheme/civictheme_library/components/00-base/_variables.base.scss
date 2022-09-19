@@ -13,41 +13,26 @@
 // need to provide component variables in custom themes (e.g., to override
 // heading color in child theme and have it propagate to components).
 //
-// Variables organisation rules:
-// 1. Variables are grouped by their atomic type.
-// 2. For every component, variables are ordered by:
-//    a. generic values
-//    b. light theme
-//    c. dark theme
-// 3. For every light theme variable, there is a dark theme counterpart.
-// 4. Variables named according to the pattern:
-//    $ct-[component]-[theme]-[?subcomponent]-[?state]-[rule]
-//    where:
-//    a. [component] is a hyphen delimited name of the component
-//    b. [theme] is a theme name (light or dark)
-//    c. [subcomponent] is an optional hyphen-delimited name of the subcomponent
-//    d. [state] is a single or multiple hyphen-delimited name of the state
-//    e. [rule] is an exact CSS rule name
-//
-//    Example 1:
-//    $ct-link-light-visited-hover-background
-//    [component]=link
-//    [theme]=light
-//    [state]=hover over visited
-//    [rule]=background-color
-//
-//    Example 2:
-//    $ct-secondary-navigation-light-menu-item-active-background-color
-//    [component]=secondary-navigation
-//    [theme]=light
-//    [subcomponent]=menu-item
-//    [state]=active
-//    [rule]=background-color
 
 @use 'sass:map';
 @use 'sass:math';
 @use 'sass:color';
 @import 'mixins';
+
+//
+// Particle.
+//
+// The most basic unit of measurement.
+// Using pixels to tie to the design grid which is in pixels as well.
+// Depending on the context, most of the values will be using conversion to
+// rem with rem() function.
+//
+// Do not use these directly.
+// Use ct-particle() function instead.
+//
+// Use ct-spacing() function for spacing.
+//
+$ct-particle: 8px !default;
 
 //
 // Assets directory.
@@ -118,76 +103,6 @@ $ct-colors-default: (
     'success': #12b0ae,
   )
 );
-
-//
-// Spacing.
-//
-// Do not use these directly.
-// Use @include ct-spacing() function instead.
-//
-$ct-spacing: 0.5rem !default;
-
-//
-// Breakpoints.
-//
-// The value denotes the "start" of the breakpoint range.
-//
-// Do not use these directly.
-// Use @include ct-breakpoint() mixin instead.
-//
-$ct-breakpoints: (
-  'xxs': 0,
-  'xs': 368px,
-  's': 576px,
-  'm': 768px,
-  'l': 992px,
-  'xl': 1280px,
-  'xxl': 1440px
-) !default;
-
-//
-// Grid.
-//
-
-// Number of grid columns.
-$ct-grid-columns: 12 !default;
-
-// Grid spacing used to calculate gutter spacings. Since the grid is based on
-// pixel values instead of rems (for consistency), the spacing is also based on
-// pixel values.
-$ct-grid-space: 8px !default;
-
-// The lowest breakpoint where column classes should start applying.
-$ct-grid-lowest-breakpoint: 'xxs' !default;
-
-// The width of the fluid container at max width. Used to contain fluid
-// containers on wide screens. Set to 'auto' to keep fluid.
-$ct-grid-max-width: map.get($ct-breakpoints, 'xxl') !default;
-
-// Spacing between columns in a row.
-$ct-grid-gutters: (
-  'xxs': $ct-grid-space * 2,
-  'xs': $ct-grid-space * 2,
-  's': $ct-grid-space * 3
-) !default;
-
-// Side spacing between the edge of the viewport and a start of the grid.
-$ct-grid-offsets: (
-  'xxs': $ct-grid-space * 3,
-  'xs': $ct-grid-space * 3,
-  's': $ct-grid-space * 3,
-  'm': $ct-grid-space * 3,
-  'l': $ct-grid-space * 6,
-  'xl': $ct-grid-space * 6,
-  'xxl': $ct-grid-space * 12,
-) !default;
-
-//
-// Visibility.
-//
-
-// The lowest breakpoint where visibility classes should apply.
-$ct-visibility-lowest-breakpoint: 'xxs' !default;
 
 //
 // Fonts.
@@ -276,7 +191,7 @@ $ct-font-weights-default: (
 //
 
 // Base font size.
-$ct-font-base-size: 16px !default;
+$ct-font-base-size: ct-particle-px(2) !default;
 
 // Base font line height.
 $ct-font-base-line-height: $ct-font-base-size !default;
@@ -358,6 +273,82 @@ $ct-typography-default: (
 $ct-font-smoothing-enable: true !default;
 
 //
+// Spacing.
+//
+// Used to control spacing for elements.
+//
+// Do not use these directly.
+// Use ct-spacing() function instead.
+//
+// Use ct-spacing() function for spacing.
+//
+$ct-spacing: ct-particle() !default;
+
+//
+// Breakpoints.
+//
+// The value denotes the "start" of the breakpoint range.
+//
+// Do not use these directly.
+// Use @include ct-breakpoint() mixin instead.
+//
+// We are not basing these on $ct-particle as these are dimensions of the real
+// screens.
+$ct-breakpoints: (
+  'xxs': 0,
+  'xs': 368px,
+  's': 576px,
+  'm': 768px,
+  'l': 992px,
+  'xl': 1280px,
+  'xxl': 1440px,
+) !default;
+
+//
+// Grid.
+//
+
+// Number of grid columns.
+$ct-grid-columns: 12 !default;
+
+// Grid spacing used to calculate gutter spacings. Since the grid is based on
+// pixel values instead of rems (for consistency), the spacing is also based on
+// pixel values.
+$ct-grid-space: ct-particle-px() !default;
+
+// The lowest breakpoint where column classes should start applying.
+$ct-grid-lowest-breakpoint: 'xxs' !default;
+
+// The width of the fluid container at max width. Used to contain fluid
+// containers on wide screens. Set to 'auto' to keep fluid.
+$ct-grid-max-width: map.get($ct-breakpoints, 'xxl') !default;
+
+// Spacing between columns in a row.
+$ct-grid-gutters: (
+  'xxs': $ct-grid-space * 2,
+  'xs': $ct-grid-space * 2,
+  's': $ct-grid-space * 3
+) !default;
+
+// Side spacing between the edge of the viewport and a start of the grid.
+$ct-grid-offsets: (
+  'xxs': $ct-grid-space * 3,
+  'xs': $ct-grid-space * 3,
+  's': $ct-grid-space * 3,
+  'm': $ct-grid-space * 3,
+  'l': $ct-grid-space * 6,
+  'xl': $ct-grid-space * 6,
+  'xxl': $ct-grid-space * 12,
+) !default;
+
+//
+// Visibility.
+//
+
+// The lowest breakpoint where visibility classes should apply.
+$ct-visibility-lowest-breakpoint: 'xxs' !default;
+
+//
 // Icon size.
 //
 
@@ -368,24 +359,24 @@ $ct-font-smoothing-enable: true !default;
 $ct-icon-sizes: () !default;
 $ct-icon-sizes-default: (
   'extra-large': (
-    'xxs': (48px, 48px),
-    'm': (64px, 64px),
+    'xxs': (ct-particle-px(6), ct-particle-px(6)),
+    'm': (ct-particle-px(8), ct-particle-px(8)),
   ),
   'large': (
-    'xxs': (40px, 40px),
-    'm': (48px, 48px),
+    'xxs': (ct-particle-px(5), ct-particle-px(5)),
+    'm': (ct-particle-px(6), ct-particle-px(6)),
   ),
   'regular': (
-    'xxs': (20px, 20px),
-    'm': (24px, 24px),
+    'xxs': (ct-particle-px(2.5), ct-particle-px(2.5)),
+    'm': (ct-particle-px(3), ct-particle-px(3)),
   ),
   'small': (
-    'xxs': (16px, 16px),
-    'm': (20px, 20px),
+    'xxs': (ct-particle-px(2), ct-particle-px(2)),
+    'm': (ct-particle-px(2.5), ct-particle-px(2.5)),
   ),
   'extra-small': (
-    'xxs': (14px, 14px),
-    'm': (16px, 16px),
+    'xxs': (ct-particle-px(1.75), ct-particle-px(1.75)),
+    'm': (ct-particle-px(2), ct-particle-px(2)),
   )
 );
 
@@ -447,10 +438,10 @@ $ct-icon-symbols-default: (
 // Elevations.
 //
 $ct-elevations: (
-  0 2px ct-spacing(1) rgba(0, 0, 0, 20%),
-  0 ct-spacing(0.5) ct-spacing(2) rgba(0, 0, 0, 20%),
-  0 ct-spacing(1) ct-spacing(4) rgba(0, 0, 0, 20%),
-  0 ct-spacing(2) ct-spacing(8) rgba(0, 0, 0, 20%),
+  0 ct-particle(0.25) ct-particle(1) rgba(0, 0, 0, 20%),
+  0 ct-particle(0.5) ct-particle(2) rgba(0, 0, 0, 20%),
+  0 ct-particle(1) ct-particle(4) rgba(0, 0, 0, 20%),
+  0 ct-particle(2) ct-particle(8) rgba(0, 0, 0, 20%),
 ) !default;
 
 //
@@ -476,7 +467,7 @@ $ct-flyout-zindex: 1000 !default;
 //
 
 // Border radius.
-$ct-border-radius: rem(4px) !default;
+$ct-border-radius: ct-particle(0.5) !default;
 
 // Background blend modes.
 $ct-background-blend-modes: (
@@ -496,13 +487,13 @@ $ct-background-blend-modes: (
   saturation,
   screen,
   soft-light,
-);
+) !default;
 
 // Enable CSS animations.
-$ct-animation-enabled: true;
-$ct-animation-duration: 0.25s;
+$ct-animation-enabled: true !default;
+$ct-animation-duration: 0.25s !default;
 
 // Outline.
 $ct-outline-offset: 0 !default;
-$ct-outline-width: rem(3px);
-$ct-outline-border-radius: $ct-border-radius;
+$ct-outline-width: ct-particle(0.375) !default;
+$ct-outline-border-radius: $ct-border-radius !default;
