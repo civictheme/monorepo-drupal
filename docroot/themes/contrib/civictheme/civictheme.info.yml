@@ -79,7 +79,7 @@ components:
     pages:
       - components/05-pages
 
-editor_stylesheets:
+ckeditor_stylesheets:
   - dist/civictheme.editor.css
 
 #;< DEVELOPMENT
