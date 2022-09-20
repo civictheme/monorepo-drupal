@@ -62,6 +62,11 @@
       border-bottom-style: solid;
       text-decoration: none;
 
+      &:first-child {
+        border-top-width: ct-particle(0.125);
+        border-top-style: solid;
+      }
+
       &::before {
         content: '';
         display: inline-block;
