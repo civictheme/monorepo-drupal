@@ -12,13 +12,13 @@
     max-width: $ct-logo-image-width-mobile;
     max-height: $ct-logo-image-height-mobile;
 
-    @include ct-breakpoint('m') {
+    @include ct-breakpoint($ct-logo-breakpoint) {
       max-width: $ct-logo-image-width-desktop;
       max-height: $ct-logo-image-height-desktop;
     }
   }
 
-  #{$root}--hr {
+  #{$root}__divider {
     height: inherit;
     margin: ct-spacing();
   }
@@ -33,7 +33,8 @@
         flex-wrap: nowrap;
         align-items: center;
       }
-      #{$root}--hr {
+
+      #{$root}__divider {
         border-left: ct-particle(0.125) solid $ct-logo-light-stripe-color;
       }
 
@@ -52,11 +53,13 @@
         }
       }
     }
+
     #{$root}-type-stacked {
       &,
       a {
         display: inline-block;
       }
+
       #{$root}--hr {
         border: ct-particle(0.125) solid $ct-logo-light-stripe-color;
       }
@@ -93,11 +96,13 @@
         }
       }
     }
+
     #{$root}-type-stacked {
       &,
       a {
         display: inline-block;
       }
+
       #{$root}--hr {
         border: ct-particle(0.125) solid $ct-logo-dark-stripe-color;
       }

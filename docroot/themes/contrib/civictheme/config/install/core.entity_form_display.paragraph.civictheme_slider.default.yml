@@ -5,9 +5,9 @@ dependencies:
     - field.field.paragraph.civictheme_slider.field_c_p_background
     - field.field.paragraph.civictheme_slider.field_c_p_link
     - field.field.paragraph.civictheme_slider.field_c_p_slides
-    - field.field.paragraph.civictheme_slider.field_c_p_space
     - field.field.paragraph.civictheme_slider.field_c_p_theme
     - field.field.paragraph.civictheme_slider.field_c_p_title
+    - field.field.paragraph.civictheme_slider.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_slider
   module:
     - link
@@ -44,12 +44,6 @@ content:
       default_paragraph_type: ''
     third_party_settings: {  }
     region: content
-  field_c_p_space:
-    weight: 4
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_c_p_theme:
     weight: 3
     settings: {  }
@@ -63,6 +57,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_c_p_vertical_spacing:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
 hidden:
   created: true

@@ -6,6 +6,9 @@ import CivicThemeWebform from './webform.twig';
 
 export default {
   title: 'Organisms/Webform',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const Webform = (knobTab) => {
@@ -25,8 +28,8 @@ export const Webform = (knobTab) => {
     theme,
     reference_webform: text('Title', 'Webform title', generalKnobTab),
     with_background: boolean('With background', false, generalKnobTab),
-    vertical_space: radios(
-      'Vertical space',
+    vertical_spacing: radios(
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',
@@ -37,6 +40,7 @@ export const Webform = (knobTab) => {
       generalKnobTab,
     ),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeWebform({

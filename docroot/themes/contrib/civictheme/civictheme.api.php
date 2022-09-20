@@ -42,6 +42,6 @@ function hook_civictheme_automated_list_preprocess_view_alter(array &$settings, 
   if ($view->id() === 'civictheme_view_examples') {
     $settings['theme'] = CIVICTHEME_THEME_DARK;
     $settings['with_background'] = TRUE;
-    $settings['vertical_space'] = 'both';
+    $settings['vertical_spacing'] = 'both';
   }
 }

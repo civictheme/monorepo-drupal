@@ -5,24 +5,6 @@
 .ct-layout {
   $root: &;
 
-  &.ct-layout--vertical-space-top {
-    #{$root}__inner {
-      @include ct-component-with-vertical-space(top, $ct-layout-space-vertical, $is_padding: false);
-    }
-  }
-
-  &.ct-layout--vertical-space-bottom {
-    #{$root}__inner {
-      @include ct-component-with-vertical-space(bottom, $ct-layout-space-vertical, $is_padding: false);
-    }
-  }
-
-  &.ct-layout--vertical-space-both {
-    #{$root}__inner {
-      @include ct-component-with-vertical-space(both, $ct-layout-space-vertical, $is_padding: false);
-    }
-  }
-
   &__sidebar {
     @include ct-print-hide();
   }

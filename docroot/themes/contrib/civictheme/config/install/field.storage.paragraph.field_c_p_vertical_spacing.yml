@@ -4,8 +4,8 @@ dependencies:
   module:
     - options
     - paragraphs
-id: paragraph.field_c_p_space
-field_name: field_c_p_space
+id: paragraph.field_c_p_vertical_spacing
+field_name: field_c_p_vertical_spacing
 entity_type: paragraph
 type: list_string
 settings:

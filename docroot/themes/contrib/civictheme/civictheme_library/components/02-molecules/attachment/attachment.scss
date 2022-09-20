@@ -10,18 +10,6 @@
   flex-grow: 1;
   margin: 0;
 
-  &.ct-attachment--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-attachment-space-vertical);
-  }
-
-  &.ct-attachment--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-attachment-space-vertical);
-  }
-
-  &.ct-attachment--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-attachment-space-vertical);
-  }
-
   @include ct-breakpoint(m) {
     flex-direction: row;
     flex-wrap: nowrap;

@@ -27,8 +27,8 @@ export const Heading = (knobTab) => {
       6: '6',
     }, '1', generalKnobTab),
     content: text('Content', 'Heading content', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeHeading({

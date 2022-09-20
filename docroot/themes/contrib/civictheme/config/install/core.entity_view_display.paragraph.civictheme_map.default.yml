@@ -5,8 +5,8 @@ dependencies:
     - field.field.paragraph.civictheme_map.field_c_p_address
     - field.field.paragraph.civictheme_map.field_c_p_background
     - field.field.paragraph.civictheme_map.field_c_p_embed_url
-    - field.field.paragraph.civictheme_map.field_c_p_space
     - field.field.paragraph.civictheme_map.field_c_p_theme
+    - field.field.paragraph.civictheme_map.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_map.field_c_p_view_link
     - paragraphs.paragraphs_type.civictheme_map
   module:
@@ -47,19 +47,19 @@ content:
     third_party_settings: {  }
     weight: 6
     region: content
-  field_c_p_space:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 5
-    region: content
   field_c_p_theme:
     type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_c_p_vertical_spacing:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_c_p_view_link:
     type: link

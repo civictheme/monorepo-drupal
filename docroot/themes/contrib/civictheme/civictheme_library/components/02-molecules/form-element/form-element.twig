@@ -12,6 +12,7 @@
  * - disabled: [boolean] Disabled or not.
  * - errors: [array] Optional array of errors.
  * - description_modifier_class: [string] Additional classes for description.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -27,7 +28,7 @@
 
 {% set description_modifier_class = '%s %s'|format(description_visibility_class|default(''), description_display_class|default('')) %}
 
-<div class="ct-form-element {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+<div class="ct-form-element {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   {% if label is not empty and label_display in ['before', 'invisible'] %}
     {{ label }}
   {% endif %}

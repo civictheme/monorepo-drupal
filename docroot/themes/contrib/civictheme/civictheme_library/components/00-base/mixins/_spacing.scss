@@ -19,7 +19,7 @@
 //
 // Set vertical spacing as padding or margin for a component.
 //
-@mixin ct-component-with-vertical-space($type, $top, $bottom: $top, $is_padding: true) {
+@mixin ct-component-with-vertical-spacing($type, $top, $bottom: $top, $is_padding: true) {
   $types: top, bottom, both;
 
   @if not list.index($type, $type) {
@@ -28,37 +28,30 @@
 
   @if $type == 'top' or $type == 'both' {
     @if $is_padding {
-      padding-top: math.div($top, 2);
+      padding-top: $top;
     }
     @else {
-      margin-top: math.div($top, 2);
-    }
-
-    @include ct-breakpoint(m) {
-      @if $is_padding {
-        padding-top: $top;
-      }
-      @else {
-        margin-top: $top;
-      }
+      margin-top: $top;
     }
   }
 
   @if $type == 'bottom' or $type == 'both' {
     @if $is_padding {
-      padding-bottom: math.div($bottom, 2);
+      padding-bottom: $bottom;
     }
     @else {
-      margin-bottom: math.div($bottom, 2);
+      margin-bottom: $bottom;
     }
+  }
 
-    @include ct-breakpoint(m) {
-      @if $is_padding {
-        padding-bottom: $bottom;
-      }
-      @else {
-        margin-bottom: $bottom;
-      }
+  @if $type == 'none' {
+    @if $is_padding {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    @else {
+      margin-top: 0;
+      margin-bottom: 0;
     }
   }
 }

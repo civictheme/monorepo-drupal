@@ -1,0 +1,29 @@
+//
+// Space component stories.
+//
+
+@use 'sass:map';
+@use 'sass:string';
+
+$ct-spacing-map: (
+  'xxs': (
+    'top': ct-spacing(3),
+    'bottom':ct-spacing(3),
+  ),
+  'l': (
+    'top': ct-spacing(6),
+    'bottom':ct-spacing(6),
+  ),
+);
+
+@each $type in (top, bottom, both, none) {
+  @each $suffix in ('', '-inset') {
+    .ct-vertical-spacing#{$suffix}--#{$type} {
+      @each $breakpoint, $values in $ct-spacing-map {
+        @include ct-breakpoint($breakpoint) {
+          @include ct-component-with-vertical-spacing($type, map.get($values, 'top'), map.get($values, 'bottom'), string.length($suffix) != 0);
+        }
+      }
+    }
+  }
+}

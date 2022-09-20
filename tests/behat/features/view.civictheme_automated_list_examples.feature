@@ -98,13 +98,13 @@ Feature: CivicTheme listing renders on views pages with filters
     And I should see a ".ct-pager" element
 
     Examples:
-      | path                                                                 | filter_element   |
+      | path                                                                 | filter_element    |
       | civictheme-no-sidebar/listing-one-filter-single-select               | .ct-single-filter |
       | civictheme-no-sidebar/listing-one-filter-single-select-exposed-block | .ct-single-filter |
       | civictheme-no-sidebar/listing-one-filter-multi-select                | .ct-single-filter |
       | civictheme-no-sidebar/listing-one-filter-multi-select-exposed-block  | .ct-single-filter |
-      | civictheme-no-sidebar/listing-multiple-filters                       | .ct-group-filter |
-      | civictheme-no-sidebar/listing-multiple-filters-exposed-block         | .ct-group-filter |
+      | civictheme-no-sidebar/listing-multiple-filters                       | .ct-group-filter  |
+      | civictheme-no-sidebar/listing-multiple-filters-exposed-block         | .ct-group-filter  |
 
   @api @testmode
   Scenario Outline: Listing example - One filter - Single

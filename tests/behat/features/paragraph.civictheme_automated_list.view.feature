@@ -62,7 +62,7 @@ Feature: View of Page content with Listing component
       | field_c_p_list_link_below   | 0: Link below - 1: https://example.com/below |
       # Appearance.
       | field_c_p_theme             | dark                                         |
-      | field_c_p_space             | bottom                                       |
+      | field_c_p_vertical_spacing  | bottom                                       |
       | field_c_p_background        | 1                                            |
       | field_c_p_list_item_view_as | civictheme_promo_card                        |
       | field_c_p_list_item_theme   | dark                                         |
@@ -75,7 +75,7 @@ Feature: View of Page content with Listing component
     And I should see an ".ct-list" element
     And I should see an ".ct-list.ct-theme-dark" element
     And I should see an ".ct-list.ct-list--with-background" element
-    And I should see an ".ct-list.ct-list--vertical-space-bottom" element
+    And I should see an ".ct-list.ct-vertical-spacing-inset--bottom" element
     And I should see an ".ct-list .ct-item-grid__items" element
 
     And I should see 12 ".ct-item-grid__item" elements
@@ -155,7 +155,7 @@ Feature: View of Page content with Listing component
 
     And I should see an ".ct-list__filters .views-exposed-form" element
 
-  @api @javascript
+  @api @javascript @skipped
   Scenario: Listing, exposed filters, filtering
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:

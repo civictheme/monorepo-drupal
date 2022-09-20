@@ -40,7 +40,7 @@ function civictheme_starter_kit_civictheme_automated_list_preprocess_view_alter(
     $settings['theme'] = 'light';
     $settings['card_theme'] = 'dark';
     $settings['with_background'] = TRUE;
-    $settings['vertical_space'] = 'bottom';
+    $settings['vertical_spacing'] = 'bottom';
   }
 }
 

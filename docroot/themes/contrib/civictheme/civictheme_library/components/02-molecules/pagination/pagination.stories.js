@@ -118,8 +118,8 @@ export const Pagination = (knobTab) => {
     ] : null,
     total_pages: pageCount,
     current,
-    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemePagination({

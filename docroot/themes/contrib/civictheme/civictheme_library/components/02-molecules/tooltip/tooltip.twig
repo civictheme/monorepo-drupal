@@ -8,6 +8,7 @@
  * - symbol: [string] Symbol to use in the button. Defaults to 'userinterface_informationmark'.
  * - text: [string] Text to display within the popup.
  * - title: [string] Text used within the button title and for screen readers.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -16,7 +17,7 @@
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if content %}
-  <div class="ct-tooltip {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %} data-component-name="tooltip">
+  <div class="ct-tooltip {{ modifier_class }}" data-component-name="tooltip" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <button class="ct-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %} data-tooltip-button data-tooltip-position="{{ position }}">
       {%- include '@base/icon/icon.twig' with {
         symbol: icon|default('information-mark'),

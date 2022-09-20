@@ -31,6 +31,7 @@ export const SubjectCard = (knobTab) => {
       alt: 'Image alt text',
     } : false,
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeSubjectCard({

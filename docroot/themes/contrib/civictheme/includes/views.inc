@@ -316,7 +316,7 @@ function _civictheme_automated_list_preprocess_view($paragraph, ViewExecutable &
       'link_above' => $link_above_data,
       'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
       'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,
-      'vertical_space' => civictheme_get_field_value($paragraph, 'field_c_p_space') ?? '',
+      'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing') ?? '',
       'show_filters' => civictheme_get_field_value($paragraph, 'field_c_p_list_show_filters') ?? FALSE,
       'link_below' => $link_below_data,
       'cache_tags' => $paragraph->getCacheTags(),

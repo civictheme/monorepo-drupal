@@ -10,6 +10,7 @@
  *   - title: [string] Title.
  *   - description: [description] Description.
  *   - modifier_class: [string] Addtional term classes.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -19,7 +20,7 @@
 {% set modifier_class = '%s %s %s'|format(theme_class, display_class, modifier_class|default('')) %}
 
 {% if items %}
-  <dl class="ct-description-list {{ modifier_class }}">
+  <dl class="ct-description-list {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% for item in items %}
       <div class="ct-description-list__item {% if item.modifier_class is not empty %}{{ item.modifier_class }}{% endif %}">
         <dt class="ct-description-list__item__term">{{ item.title }}</dt>

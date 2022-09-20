@@ -38,8 +38,8 @@ export const Textarea = (knobTab) => {
     placeholder: text('Placeholder', 'Placeholder', generalKnobTab),
     required: boolean('Required', false, generalKnobTab),
     disabled: boolean('Disabled', false, generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeTextarea({

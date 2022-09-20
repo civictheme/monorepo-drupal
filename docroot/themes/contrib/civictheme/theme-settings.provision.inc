@@ -742,7 +742,7 @@ function _civictheme_provision__blocks__signup(array $block) {
     'title' => 'Sign up',
   ];
   $paragraph->field_c_p_theme = 'dark';
-  $paragraph->field_c_p_space = 'top';
+  $paragraph->field_c_p_vertical_spacing = 'top';
   $block_content->field_c_b_components->appendItem($paragraph);
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());

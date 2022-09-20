@@ -36,6 +36,7 @@ export const SingleFilter = (knobTab) => {
       },
     ] : null,
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeSingleFilter({

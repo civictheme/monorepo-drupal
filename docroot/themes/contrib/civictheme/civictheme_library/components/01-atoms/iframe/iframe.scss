@@ -15,18 +15,6 @@
     height: 100%;
   }
 
-  &.ct-iframe--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-iframe-space-vertical);
-  }
-
-  &.ct-iframe--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-iframe-space-vertical);
-  }
-
-  &.ct-iframe--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-iframe-space-vertical);
-  }
-
   &.ct-theme-light {
     &.ct-iframe--with-background {
       background-color: $ct-iframe-light-background-color;

@@ -22,7 +22,7 @@
 {% set image_position_class = 'ct-slide--image-position-%s'|format(image_position|default('right')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, image_position_class, modifier_class|default('')) %}
 
-<div class="ct-slide {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+<div class="ct-slide {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   {% block image %}
     {% if image is not empty %}
       <div class="ct-slide__image">

@@ -38,6 +38,8 @@ export const GroupFilter = () => {
     cancel_text: text('Cancel button text', 'Cancel', generalKnobTab),
     apply_text: text('Apply button text', 'Apply', generalKnobTab),
     filter_count_suffix: text('Filter suffixes', '{"1": "filter applied", "default": "filters applied"}', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   const withBackground = boolean('With background', false, generalKnobTab);
