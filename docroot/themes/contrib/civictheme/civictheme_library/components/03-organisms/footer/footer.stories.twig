@@ -21,25 +21,25 @@
 {% if show_social_links %}
   {% set content_top2 %}
     {% include '@organisms/social-links/social-links.twig' with {
-      'theme': theme,
-      'items': [
+      theme: theme,
+      items: [
         {
-          symbol: 'brands_facebook',
+          symbol: 'facebook',
           url: 'https://www.facebook.com',
           title: 'Facebook',
         },
         {
-          symbol: 'brands_twitter',
+          symbol: 'twitter',
           url: 'https://www.facebook.com',
           title: 'Twitter',
         },
         {
-          symbol: 'brands_linkedin',
+          symbol: 'linkedin',
           url: 'https://www.facebook.com',
           title: 'LinkedIn',
         },
       ],
-      'with_border': true,
+      with_border: true,
     } only %}
   {% endset %}
 {% endif %}
