@@ -16,12 +16,11 @@
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 <div class="ct-search {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-  {% include '@atoms/button/button.twig' with {
+  {% include '@atoms/link/link.twig' with {
     theme: theme|default('light'),
-    kind: 'link',
     text: text,
     url: url,
-    icon: 'userinterface_magnifier',
+    icon: 'magnifier',
     icon_placement: 'after',
     modifier_class: 'ct-search__link'
   } only %}

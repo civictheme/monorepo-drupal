@@ -7,18 +7,20 @@
 
   @include ct-print-hide();
 
-  padding: ct-spacing(2) 0;
+  // Make button appear as a "Navigation with Drawer" item.
+  // @see navigation.scss
+  display: flex;
+  align-items: center;
 
   &__link {
     @include ct-typography('label-regular');
 
-    // Make button appear as a Primary Navigation item.
-    // @see ct-primary-navigation.scss
-    display: flex;
-    align-items: center;
     text-decoration: none;
-    padding: ct-spacing(2);
     border-bottom: solid ct-particle(0.5);
+    padding-left: ct-spacing(2);
+    padding-right: ct-spacing(2);
+    padding-top: $ct-primary-navigation-dropdown-top-offset;
+    padding-bottom: $ct-primary-navigation-dropdown-top-offset;
 
     .ct-button__icon {
       margin-left: ct-spacing(0.5);
@@ -30,35 +32,43 @@
   }
 
   &.ct-theme-light {
-    #{$root}__link {
-      color: $ct-search-light-color;
-      border-bottom-color: $ct-search-light-menu-item-border-color;
+    > .ct-link {
+      background-color: $ct-primary-navigation-light-menu-item-background-color;
+      border-bottom-color: $ct-primary-navigation-light-menu-item-border-color;
+      color: $ct-primary-navigation-light-color;
 
       &:hover {
-        color: $ct-search-light-hover-color;
-        border-bottom-color: $ct-search-light-menu-item-hover-border-color;
+        background-color: $ct-primary-navigation-light-menu-item-hover-background-color;
+        border-bottom-color: $ct-primary-navigation-light-menu-item-hover-border-color;
+        color: $ct-primary-navigation-light-hover-color;
       }
 
+      &[aria-expanded='true'],
       &:active {
-        color: $ct-search-light-active-color;
-        border-bottom-color: $ct-search-light-menu-item-active-border-color;
+        background-color: $ct-primary-navigation-light-menu-item-active-background-color;
+        border-bottom-color: $ct-primary-navigation-light-menu-item-active-border-color;
+        color: $ct-primary-navigation-light-active-color;
       }
     }
   }
 
   &.ct-theme-dark {
-    #{$root}__link {
-      color: $ct-search-dark-color;
-      border-bottom-color: $ct-search-dark-menu-item-border-color;
+    > .ct-link {
+      background-color: $ct-primary-navigation-dark-menu-item-background-color;
+      border-bottom-color: $ct-primary-navigation-dark-menu-item-border-color;
+      color: $ct-primary-navigation-dark-color;
 
       &:hover {
-        color: $ct-search-dark-hover-color;
-        border-bottom-color: $ct-search-dark-menu-item-hover-border-color;
+        background-color: $ct-primary-navigation-dark-menu-item-hover-background-color;
+        border-bottom-color: $ct-primary-navigation-dark-menu-item-hover-border-color;
+        color: $ct-primary-navigation-dark-hover-color;
       }
 
+      &[aria-expanded='true'],
       &:active {
-        color: $ct-search-dark-active-color;
-        border-bottom-color: $ct-search-dark-menu-item-active-border-color;
+        background-color: $ct-primary-navigation-dark-menu-item-active-background-color;
+        border-bottom-color: $ct-primary-navigation-dark-menu-item-active-border-color;
+        color: $ct-primary-navigation-dark-active-color;
       }
     }
   }
