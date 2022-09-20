@@ -28,14 +28,14 @@
       {% set link_item %}
         {% set link = {
           theme: theme,
-          attributes: loop.index == links_count ? 'aria-current="location"' : '',
-          modifier_class: 'ct-breadcrumb__links__link',
+          attributes: (loop.index == links_count) ? 'aria-current="location"' : '',
+          modifier_class: (loop.index == links_count) ? 'ct-breadcrumb__links__link ct-breadcrumb__links__link--active' : 'ct-breadcrumb__links__link',
           text: link.text,
           url: link.url,
         } %}
 
         {% if not active_is_link and (loop.index == links_count) %}
-          <span aria-current="location">{{ link.text }}</span>
+          <span class="ct-breadcrumb__links__link ct-breadcrumb__links__link--active" aria-current="location">{{ link.text }}</span>
         {% else %}
           {% include '@atoms/link/link.twig' with link only %}
         {% endif %}
