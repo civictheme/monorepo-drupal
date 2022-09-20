@@ -25,4 +25,6 @@ function civictheme_preprocess_block__civictheme_search(&$variables) {
     $variables['url'] = $link->getUrl()->toString();
     $variables['text'] = $link->get('title')->getString();
   }
+
+  $variables['theme'] = theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT;
 }

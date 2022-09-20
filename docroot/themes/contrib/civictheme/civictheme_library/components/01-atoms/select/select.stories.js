@@ -1,7 +1,7 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeSelect from './select.twig';
-import { randomOptions, getRandomInt } from '../../00-base/base.stories';
+import { randomOptions, randomInt } from '../../00-base/base.stories';
 
 export default {
   title: 'Atoms/Forms/Select',
@@ -12,7 +12,7 @@ export default {
 
 export const Select = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-  const numOfOptions = getRandomInt(3, 5);
+  const numOfOptions = randomInt(3, 5);
 
   const generalKnobs = {
     theme: radios(

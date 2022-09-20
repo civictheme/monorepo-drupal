@@ -44,12 +44,12 @@ function civictheme_preprocess_block__system_branding_block(&$variables) {
     $secondary_mobile_logo = $secondary_mobile_logo ?? '';
 
     // Logo type.
-    $logo_type = $is_footer_region ? theme_get_setting("components.footer.type") : theme_get_setting("components.header.type");
+    $logo_type = $is_footer_region ? theme_get_setting('components.footer.logo_type') : theme_get_setting('components.header.logo_type');
     $variables['type'] = $logo_type ?? 'default';
 
     $variables['modifier_class'] = $is_footer_region ? 'ct-footer__logo' : 'ct-header__logo';
 
-    $alt = theme_get_setting('components.logo.image_alt') ?? t('CivicTheme logo');
+    $alt = theme_get_setting('components.logo.image_alt') ?? '';
 
     if (!empty($primary_desktop_logo)) {
       $variables['logos']['primary']['desktop'] = [

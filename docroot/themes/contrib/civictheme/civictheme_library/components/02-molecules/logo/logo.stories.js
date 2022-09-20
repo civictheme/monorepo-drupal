@@ -10,7 +10,7 @@ export default {
   },
 };
 
-export const Logo = (knobTab) => {
+export const Logo = (knobTab, doRender = true) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -28,7 +28,7 @@ export const Logo = (knobTab) => {
     url: text('Link', randomUrl(), generalKnobTab),
     title: text('Title', 'Logo title', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: `ct-logo-example story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   generalKnobs.logos = generalKnobs.with_secondary_image ? {
@@ -65,9 +65,7 @@ export const Logo = (knobTab) => {
     },
   };
 
-  const html = CivicThemeLogo({
+  return doRender ? CivicThemeLogo({
     ...generalKnobs,
-  });
-
-  return `${html}`;
+  }) : generalKnobs;
 };

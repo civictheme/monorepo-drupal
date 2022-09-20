@@ -240,6 +240,7 @@ function civictheme_preprocess_paragraph(&$variables) {
  */
 function civictheme_preprocess_block(&$variables) {
   _civictheme_preprocess_block__civictheme_banner($variables);
+  _civictheme_preprocess_block__navigation($variables);
   _civictheme_preprocess_block__civictheme_footer_menu($variables);
   _civictheme_preprocess_block__content($variables);
   _civictheme_preprocess_block__civictheme_mobile_navigation($variables);

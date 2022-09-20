@@ -31,9 +31,9 @@ Feature: Open external links in a new tab
     When I go to "/admin/structure/block/add/menu_block:test-new-menu/civictheme_demo?region=footer_top_1"
     And I press "Save"
     Given I visit civictheme_page "[TEST] Page Internal"
-    And I should see the '.ct-secondary-navigation__menu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
-    And I should see the '.ct-primary-navigation__menu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
-    And I should see the '.ct-side-navigation__menu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
+    And I should see the '.ct-secondary-navigation a[href="https://example.com"]' element with the "target" attribute set to '_blank'
+    And I should see the '.ct-primary-navigation a[href="https://example.com"]' element with the "target" attribute set to '_blank'
+    And I should see the '.ct-side-navigation a[href="https://example.com"]' element with the "target" attribute set to '_blank'
     And I should see the '#block-testnewmenu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
 
   @api

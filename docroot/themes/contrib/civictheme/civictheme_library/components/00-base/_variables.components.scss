@@ -38,7 +38,7 @@
 //    [rule]=background-color
 //
 //    Example 2:
-//    $ct-secondary-navigation-light-menu-item-active-background-color
+//    $ct-navigation-light-dropdown-menu-item-active-background-color
 //    [component]=secondary-navigation
 //    [theme]=light
 //    [subcomponent]=menu-item
@@ -735,10 +735,10 @@ $ct-group-filter-dark-selected-filters-title-color: ct-color-dark('background') 
 // Logo.
 //
 $ct-logo-breakpoint: 'm';
-$ct-logo-image-height-mobile: ct-particle(25) !default;
-$ct-logo-image-width-mobile: 100% !default;
-$ct-logo-image-height-desktop: ct-particle(30) !default;
-$ct-logo-image-width-desktop: 100% !default;
+$ct-logo-image-width-min-mobile: ct-particle(25) !default;
+$ct-logo-image-width-max-mobile: ct-particle(30) !default;
+$ct-logo-image-width-min-desktop: ct-particle(25) !default;
+$ct-logo-image-width-max-desktop: ct-particle(30) !default;
 $ct-logo-light-stripe-color: ct-color-light('border-dark') !default;
 $ct-logo-dark-stripe-color: ct-color-light('border-light') !default;
 
@@ -947,8 +947,6 @@ $ct-fieldset-required-color: ct-color-light('error') !default;
 //
 // Footer.
 //
-$ct-footer-logo-desktop-width: ct-particle(25) !default;
-$ct-footer-logo-mobile-width: ct-particle(25) !default;
 $ct-footer-light-background-color: ct-color-light('background') !default;
 $ct-footer-light-border-color: ct-color-light('border-light') !default;
 $ct-footer-light-color: ct-color-light('body') !default;
@@ -962,8 +960,6 @@ $ct-footer-dark-collapsible-border-color: ct-color-dark('border') !default;
 // Header.
 //
 $ct-header-desktop-menu-breakpoint: 'm' !default;
-$ct-header-logo-desktop-width: ct-particle(40) !default;
-$ct-header-logo-mobile-width: ct-particle(16) !default;
 $ct-header-light-middle-background-color: ct-color-light('background-light') !default;
 $ct-header-light-middle-border-color: ct-color-light('border-light') !default;
 $ct-header-light-top-background-color: ct-color-light('background') !default;
@@ -1021,75 +1017,81 @@ $ct-message-dark-warning-color: ct-color-dark('body') !default;
 $ct-message-dark-warning-icon-color: $ct-message-dark-warning-color !default;
 
 //
-// Navigation/Primary navigation.
+// Navigation
 //
-$ct-primary-navigation-breakpoint: $ct-header-desktop-menu-breakpoint !default;
+// Navigation can be rendered in 3 ways: plain, with dropdown and with drawer.
 
-// Maximum number of columns a dropdown may have.
-$ct-primary-navigation-dropdown-cols: 4 !default;
+// Dropdown.
+$ct-navigation-dropdown-zindex: 11 !default;
+$ct-navigation-dropdown-border-radius: $ct-border-radius !default;
 
-// Top offset for the dropdown from the bottom of the trigger.
-$ct-primary-navigation-dropdown-top-offset: ct-spacing(2) !default;
+// Top offset for the drawer from the bottom of the trigger.
+$ct-navigation-dropdown-top-offset: ct-spacing() !default;
 
-// Gutter size between columns.
-$ct-primary-navigation-dropdown-column-gutter: ct-spacing(4) !default;
-$ct-primary-navigation-dropdown-zindex: 10 !default;
-$ct-primary-navigation-light-border-color: ct-color-light('interaction-background') !default;
-$ct-primary-navigation-light-color: ct-color-light('interaction-background') !default;
-$ct-primary-navigation-light-hover-color: ct-color-light('interaction-hover-background') !default;
-$ct-primary-navigation-light-active-color: ct-color-light('interaction-hover-background') !default;
-$ct-primary-navigation-light-menu-item-background-color: transparent !default;
-$ct-primary-navigation-light-menu-item-border-color: transparent !default;
-$ct-primary-navigation-light-menu-item-hover-background-color: transparent !default;
-$ct-primary-navigation-light-menu-item-hover-border-color: ct-color-light('interaction-hover-background') !default;
-$ct-primary-navigation-light-menu-item-active-background-color: transparent !default;
-$ct-primary-navigation-light-menu-item-active-border-color: ct-color-light('highlight') !default;
-$ct-primary-navigation-light-menu-item-active-trail-background-color: ct-color-light('interaction-background') !default;
-$ct-primary-navigation-light-menu-item-active-trail-color: ct-color-light('background') !default;
-$ct-primary-navigation-light-sub-menu-background-color: ct-color-light('background-light') !default;
-$ct-primary-navigation-light-sub-menu-item-background-color: transparent !default;
-$ct-primary-navigation-light-sub-menu-item-heading-color: ct-color-light('heading') !default;
-$ct-primary-navigation-light-sub-menu-item-heading-hover-color: ct-color-light('heading') !default;
-$ct-primary-navigation-light-sub-menu-item-heading-active-color: ct-color-light('heading') !default;
-$ct-primary-navigation-light-sub-menu-item-color: ct-color-light('interaction-background') !default;
-$ct-primary-navigation-light-sub-menu-item-hover-background-color: ct-color-light('interaction-hover-background') !default;
-$ct-primary-navigation-light-sub-menu-item-hover-color: ct-color-light('interaction-hover-text') !default;
-$ct-primary-navigation-light-sub-menu-item-active-background-color: ct-color-light('body') !default;
-$ct-primary-navigation-light-sub-menu-item-active-color: ct-color-light('background') !default;
-$ct-primary-navigation-dark-border-color: ct-color-dark('interaction-background') !default;
-$ct-primary-navigation-dark-color: ct-color-dark('interaction-background') !default;
-$ct-primary-navigation-dark-hover-color: ct-color-dark('interaction-hover-background') !default;
-$ct-primary-navigation-dark-active-color: ct-color-dark('interaction-hover-background') !default;
-$ct-primary-navigation-dark-menu-item-background-color: transparent !default;
-$ct-primary-navigation-dark-menu-item-border-color: transparent !default;
-$ct-primary-navigation-dark-menu-item-hover-background-color: transparent !default;
-$ct-primary-navigation-dark-menu-item-hover-border-color: ct-color-dark('interaction-hover-background') !default;
-$ct-primary-navigation-dark-menu-item-active-background-color: transparent !default;
-$ct-primary-navigation-dark-menu-item-active-border-color: ct-color-dark('highlight') !default;
-$ct-primary-navigation-dark-menu-item-active-trail-background-color: ct-color-dark('interaction-background') !default;
-$ct-primary-navigation-dark-menu-item-active-trail-color: ct-color-dark('background') !default;
-$ct-primary-navigation-dark-sub-menu-background-color: ct-color-dark('background-light') !default;
-$ct-primary-navigation-dark-sub-menu-item-background-color: transparent !default;
-$ct-primary-navigation-dark-sub-menu-item-heading-color: ct-color-dark('heading') !default;
-$ct-primary-navigation-dark-sub-menu-item-heading-hover-color: ct-color-dark('heading') !default;
-$ct-primary-navigation-dark-sub-menu-item-heading-active-color: ct-color-dark('heading') !default;
-$ct-primary-navigation-dark-sub-menu-item-color: ct-color-dark('interaction-background') !default;
-$ct-primary-navigation-dark-sub-menu-item-hover-background-color: ct-color-dark('interaction-hover-background') !default;
-$ct-primary-navigation-dark-sub-menu-item-hover-color: ct-color-dark('interaction-hover-text') !default;
-$ct-primary-navigation-dark-sub-menu-item-active-background-color: ct-color-dark('body') !default;
-$ct-primary-navigation-dark-sub-menu-item-active-color: ct-color-dark('background') !default;
+// Colors.
+$ct-navigation-light-dropdown-sub-menu-background-color: ct-color-light('background-light') !default;
+$ct-navigation-dark-dropdown-sub-menu-background-color: ct-color-dark('background-light') !default;
 
-//
-// Navigation/Secondary navigation.
-//
-// Top offset for the dropdown from the bottom of the trigger.
-$ct-secondary-navigation-breakpoint: $ct-header-desktop-menu-breakpoint !default;
-$ct-secondary-navigation-dropdown-border-radius: $ct-border-radius !default;
-$ct-secondary-navigation-dropdown-top-offset: ct-spacing() !default;
-$ct-secondary-navigation-dropdown-zindex: 11 !default;
-$ct-secondary-navigation-light-menu-item-active-background-color: none !default;
-$ct-secondary-navigation-light-sub-menu-background-color: ct-color-light('background-light') !default;
-$ct-secondary-navigation-dark-sub-menu-background-color: ct-color-dark('background-light') !default;
+// Drawer.
+$ct-navigation-drawer-zindex: 10 !default;
+
+// Maximum number of columns a drawer may have.
+$ct-navigation-drawer-cols: 4 !default;
+
+// Top offset for the drawer from the bottom of the trigger.
+$ct-navigation-drawer-top-offset: ct-spacing(2) !default;
+
+// Gutter size between the drawer columns.
+$ct-navigation-drawer-column-gutter: ct-spacing(4) !default;
+
+// Colors.
+$ct-navigation-light-drawer-border-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-drawer-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-drawer-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-drawer-active-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-drawer-menu-item-background-color: transparent !default;
+$ct-navigation-light-drawer-menu-item-border-color: transparent !default;
+$ct-navigation-light-drawer-menu-item-hover-background-color: transparent !default;
+$ct-navigation-light-drawer-menu-item-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-drawer-menu-item-active-background-color: transparent !default;
+$ct-navigation-light-drawer-menu-item-active-border-color: ct-color-light('highlight') !default;
+$ct-navigation-light-drawer-menu-item-active-trail-background-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-drawer-menu-item-active-trail-color: ct-color-light('background') !default;
+$ct-navigation-light-drawer-sub-menu-background-color: ct-color-light('background-light') !default;
+$ct-navigation-light-drawer-sub-menu-item-background-color: transparent !default;
+$ct-navigation-light-drawer-sub-menu-item-heading-color: ct-color-light('heading') !default;
+$ct-navigation-light-drawer-sub-menu-item-heading-hover-color: ct-color-light('heading') !default;
+$ct-navigation-light-drawer-sub-menu-item-heading-active-color: ct-color-light('heading') !default;
+$ct-navigation-light-drawer-sub-menu-item-color: ct-color-light('interaction-background') !default;
+$ct-navigation-light-drawer-sub-menu-item-hover-background-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-light-drawer-sub-menu-item-hover-color: ct-color-light('interaction-hover-text') !default;
+$ct-navigation-light-drawer-sub-menu-item-active-background-color: ct-color-light('body') !default;
+$ct-navigation-light-drawer-sub-menu-item-active-color: ct-color-light('background') !default;
+$ct-navigation-dark-drawer-border-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-drawer-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-drawer-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-drawer-active-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-drawer-menu-item-background-color: transparent !default;
+$ct-navigation-dark-drawer-menu-item-border-color: transparent !default;
+$ct-navigation-dark-drawer-menu-item-hover-background-color: transparent !default;
+$ct-navigation-dark-drawer-menu-item-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-drawer-menu-item-active-background-color: transparent !default;
+$ct-navigation-dark-drawer-menu-item-active-border-color: ct-color-dark('highlight') !default;
+$ct-navigation-dark-drawer-menu-item-active-trail-background-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-drawer-menu-item-active-trail-color: ct-color-dark('background') !default;
+$ct-navigation-dark-drawer-sub-menu-background-color: ct-color-dark('background-light') !default;
+$ct-navigation-dark-drawer-sub-menu-item-background-color: transparent !default;
+$ct-navigation-dark-drawer-sub-menu-item-heading-color: ct-color-dark('heading') !default;
+$ct-navigation-dark-drawer-sub-menu-item-heading-hover-color: ct-color-dark('heading') !default;
+$ct-navigation-dark-drawer-sub-menu-item-heading-active-color: ct-color-dark('heading') !default;
+$ct-navigation-dark-drawer-sub-menu-item-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-dark-drawer-sub-menu-item-hover-background-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-dark-drawer-sub-menu-item-hover-color: ct-color-dark('interaction-hover-text') !default;
+$ct-navigation-dark-drawer-sub-menu-item-active-background-color: ct-color-dark('body') !default;
+$ct-navigation-dark-drawer-sub-menu-item-active-color: ct-color-dark('background') !default;
+
+// @todo Remove this in favour of inline classes.
+$ct-navigation-breakpoint: $ct-header-desktop-menu-breakpoint !default;
 
 //
 // Navigation/Side navigation.
@@ -1182,22 +1184,6 @@ $ct-promo-light-heading-color: ct-color-light('heading') !default;
 $ct-promo-dark-background-color: ct-color-dark('background-dark') !default;
 $ct-promo-dark-body-color: ct-color-dark('body') !default;
 $ct-promo-dark-heading-color: ct-color-dark('heading') !default;
-
-//
-// Search.
-//
-$ct-search-light-color: $ct-primary-navigation-light-color !default;
-$ct-search-light-hover-color: $ct-primary-navigation-light-hover-color !default;
-$ct-search-light-active-color: $ct-primary-navigation-light-active-color !default;
-$ct-search-light-menu-item-active-border-color: $ct-primary-navigation-light-menu-item-active-border-color !default;
-$ct-search-light-menu-item-border-color: $ct-primary-navigation-light-menu-item-border-color !default;
-$ct-search-light-menu-item-hover-border-color: $ct-primary-navigation-light-menu-item-hover-border-color !default;
-$ct-search-dark-color: $ct-primary-navigation-dark-color !default;
-$ct-search-dark-hover-color: $ct-primary-navigation-dark-hover-color !default;
-$ct-search-dark-active-color: $ct-primary-navigation-dark-active-color !default;
-$ct-search-dark-menu-item-active-border-color: $ct-primary-navigation-dark-menu-item-active-border-color !default;
-$ct-search-dark-menu-item-border-color: $ct-primary-navigation-dark-menu-item-border-color !default;
-$ct-search-dark-menu-item-hover-border-color: $ct-primary-navigation-dark-menu-item-hover-border-color !default;
 
 //
 // Skip link.
