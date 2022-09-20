@@ -101,11 +101,6 @@
       border-top-color: $ct-promo-card-light-border-top-color;
     }
 
-    #{$root}__date {
-      color: $ct-promo-card-light-date-color;
-      background-color: $ct-promo-card-light-date-background-color;
-    }
-
     #{$root}__title {
       color: $ct-promo-card-light-heading-color;
     }
@@ -128,11 +123,6 @@
 
     &#{$root}--no-image {
       border-top-color: $ct-promo-card-dark-border-top-color;
-    }
-
-    #{$root}__date {
-      color: $ct-promo-card-dark-date-color;
-      background-color: $ct-promo-card-dark-date-background-color;
     }
 
     #{$root}__title {

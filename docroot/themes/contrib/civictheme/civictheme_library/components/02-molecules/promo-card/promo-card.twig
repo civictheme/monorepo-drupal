@@ -58,9 +58,14 @@
 
       {% block date %}
         {% if date is not empty %}
-          <div class="ct-promo-card__date">
-            {{ date }}
-          </div>
+          {% include '@atoms/tag/tag.twig' with {
+            theme: theme,
+            type: 'tertiary',
+            content: date,
+            icon: 'calendar-2',
+            icon_placement: 'before',
+            modifier_class: 'ct-promo-card__date'
+          } only %}
         {% endif %}
       {% endblock %}
 
