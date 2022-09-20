@@ -2,18 +2,12 @@
 // Heading component.
 //
 
-@for $level from 1 through 6 {
-  h#{$level} {
-    &.ct-heading {
-      @include ct-typography('heading-#{$level}');
+.ct-heading {
+  &.ct-theme-light {
+    color: $ct-heading-light-color;
+  }
 
-      &.ct-theme-light {
-        color: $ct-heading-light-color;
-      }
-
-      &.ct-theme-dark {
-        color: $ct-heading-dark-color;
-      }
-    }
+  &.ct-theme-dark {
+    color: $ct-heading-dark-color;
   }
 }
