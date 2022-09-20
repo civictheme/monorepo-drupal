@@ -44,10 +44,10 @@ civictheme.settings:
           label: 'Header settings'
           mapping:
             theme:
-              label: 'Header theme'
+              label: 'Theme'
               type: string
-            type:
-              label: 'Header type'
+            logo_type:
+              label: 'Logo type'
               type: string
         navigation:
           type: mapping
@@ -90,10 +90,10 @@ civictheme.settings:
           label: 'Footer settings'
           mapping:
             theme:
-              label: 'Footer theme'
+              label: 'Theme'
               type: string
-            type:
-              label: 'Footer type'
+            logo_type:
+              label: 'Logo type'
               type: string
             background_image:
               label: 'Footer background image'

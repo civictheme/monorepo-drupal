@@ -56,9 +56,17 @@ Feature: Check that components settings are available in theme settings
     And I should see an "input[name='components[logo][image_alt]']" element
     And I should not see an "edit-components-logo-image-alt.required" element
 
-    And I should see the text "Header theme"
+    And I should see the text "Theme"
     And I should see an "input[name='components[header][theme]']" element
     And I should see an "#edit-components-header-theme--wrapper.required" element
+
+    And I should see the text "Theme"
+    And I should see an "input[name='components[footer][theme]']" element
+    And I should see an "#edit-components-footer-theme--wrapper.required" element
+
+    And I see field "Footer background image path"
+    And should see an "input#edit-components-footer-background-image" element
+    And should not see an "input#edit-components-footer-background-image.required" element
 
     And I should see the text "Primary navigation"
     And I should see an "select[name='components[navigation][primary_navigation][dropdown]']" element
@@ -91,18 +99,6 @@ Feature: Check that components settings are available in theme settings
     And I should see the text "Animate"
     And I should see an "input[name='components[navigation][secondary_navigation][is_animated]']" element
     And I should not see an "input[name='components[navigation][secondary_navigation][is_animated]'].required" element
-
-    And I should see the text "Footer theme"
-    And I should see an "input[name='components[footer][theme]']" element
-    And I should see an "#edit-components-footer-theme--wrapper.required" element
-
-    And I see field "Footer background image path"
-    And should see an "input#edit-components-footer-background-image" element
-    And should not see an "input#edit-components-footer-background-image.required" element
-
-    And I should see the text "Header theme"
-    And I should see an "input[name='components[header][theme]']" element
-    And I should see an "#edit-components-header-theme--wrapper.required" element
 
     And I should see the text "Open links in a new window"
     And should see an "input#edit-components-link-new-window" element

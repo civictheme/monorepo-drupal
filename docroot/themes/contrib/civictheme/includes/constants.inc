@@ -41,14 +41,24 @@ define('CIVICTHEME_THEME_DARK_LABEL', 'Dark');
 define('CIVICTHEME_HEADER_THEME_DEFAULT', CIVICTHEME_THEME_LIGHT);
 
 /**
- * Defines header default type.
- */
-define('CIVICTHEME_HEADER_TYPE_DEFAULT', 'default');
-
-/**
  * Defines footer default theme.
  */
 define('CIVICTHEME_FOOTER_THEME_DEFAULT', CIVICTHEME_THEME_DARK);
+
+/**
+ * Defines logo default type.
+ */
+define('CIVICTHEME_LOGO_TYPE_DEFAULT', 'default');
+
+/**
+ * Defines logo default type.
+ */
+define('CIVICTHEME_LOGO_TYPE_INLINE', 'inline');
+
+/**
+ * Defines logo default type.
+ */
+define('CIVICTHEME_LOGO_TYPE_STACKED', 'stacked');
 
 /**
  * Defines footer default type.

@@ -875,9 +875,19 @@ function civictheme_provision__theme_settings() {
   }
   $components['logo']['image_alt'] = 'CivicTheme demo logo';
   $components['header']['theme'] = 'light';
-  $components['header']['type'] = 'default';
+  $components['header']['logo_type'] = 'default';
   $components['footer']['theme'] = 'dark';
-  $components['footer']['type'] = 'default';
+  $components['footer']['logo_type'] = 'default';
+
+  $components['navigation']['primary_navigation']['dropdown'] = 'drawer';
+  $components['navigation']['primary_navigation']['dropdown_columns'] = 4;
+  $components['navigation']['primary_navigation']['dropdown_columns_fill'] = FALSE;
+  $components['navigation']['primary_navigation']['is_animated'] = FALSE;
+
+  $components['navigation']['secondary_navigation']['dropdown'] = 'dropdown';
+  $components['navigation']['secondary_navigation']['dropdown_columns'] = 4;
+  $components['navigation']['secondary_navigation']['dropdown_columns_fill'] = FALSE;
+  $components['navigation']['secondary_navigation']['is_animated'] = FALSE;
 
   $config = \Drupal::service('config.factory')->getEditable("$theme_name.settings");
 
