@@ -5,8 +5,6 @@
  * Paragraph theme alterations.
  */
 
-use Drupal\Component\Utility\Html;
-
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
@@ -35,6 +33,7 @@ function _civictheme_preprocess_paragraph__civictheme_card(&$variables) {
   // Cards that are generated via reference are handled separately.
   if ($paragraph->hasField('field_c_p_reference')) {
     _civictheme_preprocess_paragraph__reference_card($variables);
+
     return;
   }
   // @todo documentation for the field api ie they must have certain fields in
@@ -56,9 +55,6 @@ function _civictheme_preprocess_paragraph(&$variables) {
     $variables['content'] = \Drupal::service('renderer')->render($variables['content']['field_c_p_content']);
   }
 
-  // Generic Drupal classes from paragraph template files.
-  _civictheme_preprocess_paragraph_classes($variables);
-
   // Global paragraph fields.
   _civictheme_preprocess_paragraph__field__title($variables);
   _civictheme_preprocess_paragraph__field__summary($variables);
@@ -66,20 +62,6 @@ function _civictheme_preprocess_paragraph(&$variables) {
   _civictheme_preprocess_paragraph__field__background($variables);
   _civictheme_preprocess_paragraph__civictheme_card($variables);
   _civictheme_preprocess_paragraph__field__webform($variables);
-}
-
-/**
- * Pre-process drupal generic paragraph classes.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function _civictheme_preprocess_paragraph_classes(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $variables['attributes']['class'][] = 'paragraph';
-  $variables['attributes']['class'][] = Html::cleanCssIdentifier('paragraph--type--' . $paragraph->bundle());
-  $variables['attributes']['class'][] = Html::cleanCssIdentifier('paragraph--view-mode--' . $variables['view_mode']);
-  $variables['attributes']['class'][] = !$paragraph->isPublished() ? 'paragraph--unpublished' : '';
 }
 
 /**
