@@ -52,13 +52,13 @@ export const placeholder = (content = 'Content placeholder') => `<div class="sto
 
 export const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
-export const getRandomInt = (min, max) => {
+export const randomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-export const getRandomBool = (skew) => {
+export const randomBool = (skew) => {
   skew = skew || 0.5;
   return Math.random() > skew;
 };
@@ -66,7 +66,7 @@ export const getRandomBool = (skew) => {
 export const randomString = (length) => randomText(length).substring(0, length).trim();
 
 export const randomSentence = (words) => {
-  words = words || getRandomInt(5, 25);
+  words = words || randomInt(5, 25);
   return capitalizeFirstLetter(randomText(words));
 };
 
@@ -81,10 +81,10 @@ export const randomLinks = (count, length, domain) => {
 
   for (let i = 0; i < count; i++) {
     links.push({
-      text: `Link ${i + 1}${length ? ` ${randomString(getRandomInt(1, length))}` : ''}`,
+      text: `Link ${i + 1}${length ? ` ${randomString(randomInt(1, length))}` : ''}`,
       url: randomUrl(domain),
-      is_new_window: getRandomBool(),
-      is_external: getRandomBool(0.8),
+      is_new_window: randomBool(),
+      is_external: randomBool(0.8),
     });
   }
 
@@ -96,7 +96,7 @@ export const randomTags = (count, rand) => {
   rand = rand || false;
 
   for (let i = 0; i < count; i++) {
-    tags.push(`Topic ${i + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`);
+    tags.push(`Topic ${i + 1}${rand ? ` ${randomString(randomInt(2, 5))}` : ''}`);
   }
 
   return tags;
@@ -141,14 +141,14 @@ export const randomFormElement = (inputType, options, theme, rand, itr) => {
     type: inputType,
     label: CivicThemeFieldLabel({
       theme,
-      content: options.title ? options.title : `Input title ${itr + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
+      content: options.title ? options.title : `Input title ${itr + 1}${rand ? ` ${randomString(randomInt(2, 5))}` : ''}`,
       attributes: `for="form-element-${itr}"`,
       required: options.required,
     }),
     label_display: isCheckboxOrRadio ? 'after' : 'before',
     description_position: isCheckboxOrRadio ? 'after' : 'before',
     description: {
-      content: options.description ? `Input description ${itr + 1}${rand ? ` ${randomText(getRandomInt(4, 10))}` : ''}` : '',
+      content: options.description ? `Input description ${itr + 1}${rand ? ` ${randomText(randomInt(4, 10))}` : ''}` : '',
     },
     children: [],
     attributes: options.form_element_attributes,
@@ -163,7 +163,7 @@ export const randomFormElement = (inputType, options, theme, rand, itr) => {
     type: inputType,
     attributes,
     required: options.required,
-    value: typeof options.value !== 'undefined' ? options.value : randomString(getRandomInt(3, 8)),
+    value: typeof options.value !== 'undefined' ? options.value : randomString(randomInt(3, 8)),
   };
 
   switch (inputType) {
@@ -222,7 +222,7 @@ export const randomFormElements = (count, theme, rand) => {
 
 export const randomDropdownFilter = (filterType, numOfOptions, theme, rand, itr) => {
   const filterOptions = {
-    filter_text: `Filter text ${itr + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
+    filter_text: `Filter text ${itr + 1}${rand ? ` ${randomString(randomInt(2, 5))}` : ''}`,
     filter_group: 'filter_group',
     options_title: Math.round(Math.random()) ? 'Options title (optional)' : '',
   };
@@ -233,9 +233,9 @@ export const randomDropdownFilter = (filterType, numOfOptions, theme, rand, itr)
       required: false,
       description: false,
       attributes: '',
-      value: randomString(getRandomInt(1, 8)),
+      value: randomString(randomInt(1, 8)),
     };
-    options.attributes += filterType === 'radio' ? ` name="test_${itr}"` : ` name="${randomString(getRandomInt(3, 8))}"`;
+    options.attributes += filterType === 'radio' ? ` name="test_${itr}"` : ` name="${randomString(randomInt(3, 8))}"`;
     children.push(randomFormElement(filterType, options, theme, true, count++));
   }
 
@@ -253,8 +253,8 @@ export const randomOptions = (numOfOptions, optionType = 'option') => {
     const option = {
       type: optionType,
       selected: false,
-      label: optionType === 'optgroup' ? `Group ${i}` : randomString(getRandomInt(3, 8)),
-      value: randomString(getRandomInt(1, 8)),
+      label: optionType === 'optgroup' ? `Group ${i}` : randomString(randomInt(3, 8)),
+      value: randomString(randomInt(1, 8)),
       options: optionType === 'optgroup' ? randomOptions(numOfOptions) : null,
     };
     options.push(option);

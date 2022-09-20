@@ -21,11 +21,6 @@ function _civictheme_preprocess_block__civictheme_footer_menu(&$variables) {
     $variables['title'] = $variables['configuration']['label_display'] ? $variables['configuration']['label'] : '';
 
     _civictheme_preprocess_menu_items($variables['items']);
-
-    // Make all items collapsible.
-    $variables['attributes']['data-collapsible'] = '';
-    $variables['attributes']['data-collapsible-collapsed'] = '';
-    $variables['attributes']['data-responsive'] = '<m';
   }
 }
 

@@ -6,7 +6,16 @@
 #}
 
 {% if in_sidebar %}
-  {% include '@organisms/side-navigation/side-navigation.twig' %}
+  {% include '@organisms/side-navigation/side-navigation.twig' with {
+    theme,
+    items,
+    modifier_class: 'ct-primary-navigation',
+  } only %}
 {% else %}
-  {% include '@organisms/primary-navigation/primary-navigation.twig' %}
+  {% include '@organisms/navigation/navigation.twig' with {
+    theme,
+    dropdown: 'drawer',
+    items,
+    modifier_class: 'ct-primary-navigation ct-justify-content-end',
+  } only %}
 {% endif %}

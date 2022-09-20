@@ -2,36 +2,564 @@
 // Navigation component.
 //
 
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+
 .ct-navigation {
-  @include ct-typography('text-regular');
+  $root: &;
 
-  &__title {
-    @include ct-typography('heading-5');
-
+  #{$root}__title {
     margin-bottom: ct-spacing(2);
   }
 
-  &__menu {
-    &.ct-menu,
-    .ct-menu {
+  &#{$root}--none {
+    #{$root}__items {
+      #{$root}__menu {
+        &.ct-menu,
+        .ct-menu {
+          @include ct-print-hide();
+
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .ct-menu__sub-menu {
+          margin-top: ct-spacing(2);
+        }
+
+        .ct-menu__item {
+          margin-bottom: ct-spacing(2);
+          margin-left: ct-spacing(2);
+        }
+
+        &.ct-menu > .ct-menu__item {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  &#{$root}--drawer {
+    #{$root}__items {
       @include ct-print-hide();
 
-      list-style: none;
-      padding: 0;
-      margin: 0;
+      align-items: center;
+      height: 100%;
+      display: none;
+
+      @include ct-breakpoint($ct-navigation-breakpoint) {
+        display: flex;
+      }
+
+      #{$root}__menu {
+        // Reset all menu styles.
+        &.ct-menu,
+        .ct-menu {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        &.ct-menu--level-0 {
+          // First-level items to be displayed inline.
+          display: flex;
+          padding-top: $ct-navigation-drawer-top-offset;
+          padding-bottom: $ct-navigation-drawer-top-offset;
+        }
+
+        .ct-menu__item {
+          // Links - level 0.
+          &--level-0 {
+            border-bottom: solid ct-particle(0.5);
+
+            > .ct-link {
+              display: block;
+              padding: ct-spacing(2);
+
+              &::after {
+                right: ct-spacing();
+                margin-top: -1 * ct-particle(0.25);
+                top: ct-spacing(2);
+              }
+            }
+
+            // Accommodate extra spacing for dropdown icon.
+            &#{$root}__has-dropdown {
+              > .ct-link {
+                padding-right: ct-icon-size-dimension('regular', $ct-collapsible-icon-size, 'width') + ct-spacing();
+              }
+            }
+          }
+        }
+      }
+
+      // Menu item with dropdown.
+      #{$root}__has-dropdown {
+        // Since 'data-collapsible-panel' is not added through a menu structure, we
+        // need to imitate the initially collapsed panel behaviour.
+        &[data-collapsible-collapsed] {
+          > .ct-menu__sub-menu__wrapper {
+            height: 0;
+            overflow: hidden;
+          }
+        }
+
+        // Dropdown (submenu) wrapper.
+        .ct-menu__sub-menu__wrapper--level-1 {
+          position: absolute;
+          left: 0;
+          right: 0;
+          padding: 0;
+          margin: 0;
+          margin-top: $ct-navigation-drawer-top-offset;
+          z-index: $ct-navigation-drawer-zindex;
+          box-shadow: 0 ct-spacing(2) ct-spacing(4) rgba(0, 0, 0, 20%);
+
+          // Submenu.
+          .ct-menu__sub-menu {
+            &.ct-menu--level-1 {
+              padding: 0;
+              margin: 0 auto;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+
+              @include ct-container();
+
+              margin-bottom: ct-spacing(4);
+            }
+          }
+
+          .ct-menu__item--level-1 {
+            padding: 0;
+            margin: ct-spacing(4) 0 0;
+            flex-basis: math.div(100%, $ct-navigation-drawer-cols);
+
+            > .ct-link {
+              @include ct-typography('heading-5');
+            }
+          }
+
+          .ct-menu__sub-menu__wrapper--level-2 {
+            margin-top: ct-spacing(4);
+          }
+
+          .ct-menu__item--level-2,
+          .ct-menu__item--level-3,
+          .ct-menu__item--level-4,
+          .ct-menu__item--level-5 {
+            width: 100%;
+            margin-bottom: ct-spacing();
+
+            > .ct-link {
+              display: inline-block;
+              border-radius: $ct-border-radius;
+              padding: ct-spacing();
+            }
+          }
+
+          .ct-menu__item--level-3 {
+            margin-left: 1 * ct-spacing(2);
+          }
+
+          .ct-menu__item--level-4 {
+            margin-left: 2 * ct-spacing(2);
+          }
+
+          .ct-menu__item--level-5 {
+            margin-left: 3 * ct-spacing(2);
+          }
+        }
+      }
+
+      // Fill column width if there are less columns than expected.
+      #{$root}__dropdown-columns--fill {
+        .ct-menu__sub-menu__wrapper--level-1 {
+          .ct-menu__item--level-1 {
+            flex: 1;
+          }
+        }
+      }
+
+      // Allow to override column width based on the explicitly set columns number
+      // class.
+      @for $i from 1 through $ct-navigation-drawer-cols * 2 {
+        &__dropdown-columns--#{$i} {
+          .ct-menu__sub-menu__wrapper--level-1 {
+            .ct-menu--level-1 {
+              // @todo: Implement gutters using :nth() to make the last gutter
+              // in the row collapse. Note that for "fill column width" option
+              // this already works automatically.
+              column-gap: $ct-navigation-drawer-column-gutter;
+            }
+
+            .ct-menu__item--level-1 {
+              $basis: math.div(100%, $i);
+
+              flex-basis: calc(#{$basis} - #{$ct-navigation-drawer-column-gutter});
+            }
+          }
+        }
+      }
     }
 
-    .ct-menu__sub-menu {
-      margin-top: ct-spacing(2);
+    &#{$root}.ct-theme-light {
+      #{$root}__items {
+        #{$root}__menu {
+          .ct-menu__item {
+            // Links - level 0.
+            &--level-0 {
+              border-bottom-color: $ct-navigation-light-drawer-menu-item-border-color;
+
+              &:hover {
+                background-color: $ct-navigation-light-drawer-menu-item-hover-background-color;
+                border-bottom-color: $ct-navigation-light-drawer-menu-item-hover-border-color;
+              }
+
+              &:active {
+                background-color: $ct-navigation-light-drawer-menu-item-active-background-color;
+                border-bottom-color: $ct-navigation-light-drawer-menu-item-active-border-color;
+              }
+
+              &[data-collapsible] {
+                @include ct-icon-collapsible($ct-navigation-light-drawer-color);
+
+                border-bottom-color: $ct-navigation-light-drawer-border-color;
+
+                &:hover {
+                  @include ct-icon-collapsible($ct-navigation-light-drawer-hover-color);
+
+                  background-color: $ct-navigation-light-drawer-menu-item-hover-background-color;
+                  border-bottom-color: $ct-navigation-light-drawer-menu-item-hover-border-color;
+                }
+
+                &:active {
+                  background-color: $ct-navigation-light-drawer-menu-item-active-background-color;
+                  border-bottom-color: $ct-navigation-light-drawer-menu-item-active-border-color;
+                }
+              }
+
+              &[data-collapsible-collapsed] {
+                border-bottom-color: $ct-navigation-light-drawer-menu-item-border-color;
+              }
+
+              &.ct-menu__item--active-trail {
+                border-bottom-color: $ct-navigation-light-drawer-border-color;
+              }
+
+              > .ct-link {
+                background-color: $ct-navigation-light-drawer-menu-item-background-color;
+                color: $ct-navigation-light-drawer-color;
+
+                &:hover {
+                  color: $ct-navigation-light-drawer-hover-color;
+                  background-color: $ct-navigation-light-drawer-menu-item-hover-background-color;
+                }
+
+                &[aria-expanded='true'],
+                &:active {
+                  color: $ct-navigation-light-drawer-active-color;
+                  background-color: $ct-navigation-light-drawer-menu-item-active-background-color;
+                }
+              }
+            }
+          }
+        }
+
+        #{$root}__has-dropdown {
+          .ct-menu__sub-menu__wrapper--level-1 {
+            background-color: $ct-navigation-light-drawer-sub-menu-background-color;
+
+            // Reset some styles for all links in the dropdown.
+            .ct-link {
+              background: none;
+
+              &:hover,
+              &:active,
+              &:focus {
+                background: none;
+              }
+            }
+
+            .ct-menu__item--level-1 {
+              > .ct-link {
+                color: $ct-navigation-light-drawer-sub-menu-item-heading-color;
+
+                &:hover {
+                  color: $ct-navigation-light-drawer-sub-menu-item-heading-hover-color;
+                }
+
+                &:active {
+                  color: $ct-navigation-light-drawer-sub-menu-item-heading-active-color;
+                }
+              }
+            }
+
+            .ct-menu__item--level-2,
+            .ct-menu__item--level-3,
+            .ct-menu__item--level-4,
+            .ct-menu__item--level-5 {
+              > .ct-link {
+                color: $ct-navigation-light-drawer-sub-menu-item-color;
+                background-color: $ct-navigation-light-drawer-sub-menu-item-background-color;
+
+                &:hover {
+                  color: $ct-navigation-light-drawer-sub-menu-item-hover-color;
+                  background-color: $ct-navigation-light-drawer-sub-menu-item-hover-background-color;
+                }
+
+                &:active {
+                  color: $ct-navigation-light-drawer-sub-menu-item-active-color;
+                  background-color: $ct-navigation-light-drawer-sub-menu-item-active-background-color;
+                }
+              }
+
+              &.ct-menu__item--active-trail {
+                > .ct-link {
+                  background-color: $ct-navigation-light-drawer-menu-item-active-trail-background-color;
+                  color: $ct-navigation-light-drawer-menu-item-active-trail-color;
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
-    .ct-menu__item {
-      margin-bottom: ct-spacing(2);
-      margin-left: ct-spacing(2);
+    &#{$root}.ct-theme-dark {
+      #{$root}__items {
+        #{$root}__menu {
+          .ct-menu__item {
+            // Links - level 0.
+            &--level-0 {
+              border-bottom-color: $ct-navigation-dark-drawer-menu-item-border-color;
+
+              &:hover {
+                background-color: $ct-navigation-dark-drawer-menu-item-hover-background-color;
+                border-bottom-color: $ct-navigation-dark-drawer-menu-item-hover-border-color;
+              }
+
+              &:active {
+                background-color: $ct-navigation-dark-drawer-menu-item-active-background-color;
+                border-bottom-color: $ct-navigation-dark-drawer-menu-item-active-border-color;
+              }
+
+              &[data-collapsible] {
+                @include ct-icon-collapsible($ct-navigation-dark-drawer-color);
+
+                border-bottom-color: $ct-navigation-dark-drawer-border-color;
+
+                &:hover {
+                  @include ct-icon-collapsible($ct-navigation-dark-drawer-hover-color);
+
+                  background-color: $ct-navigation-dark-drawer-menu-item-hover-background-color;
+                  border-bottom-color: $ct-navigation-dark-drawer-menu-item-hover-border-color;
+                }
+
+                &:active {
+                  background-color: $ct-navigation-dark-drawer-menu-item-active-background-color;
+                  border-bottom-color: $ct-navigation-dark-drawer-menu-item-active-border-color;
+                }
+              }
+
+              &[data-collapsible-collapsed] {
+                border-bottom-color: $ct-navigation-dark-drawer-menu-item-border-color;
+              }
+
+              &.ct-menu__item--active-trail {
+                border-bottom-color: $ct-navigation-dark-drawer-border-color;
+              }
+
+              > .ct-link {
+                background-color: $ct-navigation-dark-drawer-menu-item-background-color;
+                color: $ct-navigation-dark-drawer-color;
+
+                &:hover {
+                  color: $ct-navigation-dark-drawer-hover-color;
+                  background-color: $ct-navigation-dark-drawer-menu-item-hover-background-color;
+                }
+
+                &[aria-expanded='true'],
+                &:active {
+                  color: $ct-navigation-dark-drawer-active-color;
+                  background-color: $ct-navigation-dark-drawer-menu-item-active-background-color;
+                }
+              }
+            }
+          }
+        }
+
+        #{$root}__has-dropdown {
+          .ct-menu__sub-menu__wrapper--level-1 {
+            background-color: $ct-navigation-dark-drawer-sub-menu-background-color;
+
+            // Reset some styles for all links in the dropdown.
+            .ct-link {
+              background: none;
+
+              &:hover,
+              &:active,
+              &:focus {
+                background: none;
+              }
+            }
+
+            .ct-menu__item--level-1 {
+              > .ct-link {
+                color: $ct-navigation-dark-drawer-sub-menu-item-heading-color;
+
+                &:hover {
+                  color: $ct-navigation-dark-drawer-sub-menu-item-heading-hover-color;
+                }
+
+                &:active {
+                  color: $ct-navigation-dark-drawer-sub-menu-item-heading-active-color;
+                }
+              }
+            }
+
+            .ct-menu__item--level-2,
+            .ct-menu__item--level-3,
+            .ct-menu__item--level-4,
+            .ct-menu__item--level-5 {
+              > .ct-link {
+                color: $ct-navigation-dark-drawer-sub-menu-item-color;
+                background-color: $ct-navigation-dark-drawer-sub-menu-item-background-color;
+
+                &:hover {
+                  color: $ct-navigation-dark-drawer-sub-menu-item-hover-color;
+                  background-color: $ct-navigation-dark-drawer-sub-menu-item-hover-background-color;
+                }
+
+                &:active {
+                  color: $ct-navigation-dark-drawer-sub-menu-item-active-color;
+                  background-color: $ct-navigation-dark-drawer-sub-menu-item-active-background-color;
+                }
+              }
+
+              &.ct-menu__item--active-trail {
+                > .ct-link {
+                  background-color: $ct-navigation-dark-drawer-menu-item-active-trail-background-color;
+                  color: $ct-navigation-dark-drawer-menu-item-active-trail-color;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &#{$root}--dropdown {
+    #{$root}__items {
+      @include ct-print-hide();
+
+      display: none;
+
+      @include ct-breakpoint($ct-navigation-breakpoint) {
+        display: flex;
+      }
+
+      #{$root}__menu {
+        &.ct-menu,
+        .ct-menu {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        // First-level items to be displayed inline.
+        &.ct-menu--level-0 {
+          display: flex;
+        }
+
+        .ct-menu__item {
+          .ct-link {
+            display: block;
+          }
+
+          // Links - level 0.
+          &--level-0 {
+            margin-right: ct-spacing(2);
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+
+          > .ct-link {
+            &::after {
+              right: ct-spacing();
+              margin-top: -1 * ct-particle(0.25);
+            }
+          }
+
+          // Accommodate extra spacing for dropdown icon.
+          &#{$root}__has-dropdown {
+            > .ct-link {
+              padding-right: ct-icon-size-dimension('regular', $ct-collapsible-icon-size, 'width') + ct-spacing();
+            }
+          }
+        }
+      }
+
+      #{$root}__has-dropdown {
+        .ct-menu__sub-menu__wrapper--level-1 {
+          position: absolute;
+          z-index: $ct-navigation-dropdown-zindex;
+          margin-top: $ct-navigation-dropdown-top-offset;
+          border-bottom-left-radius: $ct-navigation-dropdown-border-radius;
+          border-bottom-right-radius: $ct-navigation-dropdown-border-radius;
+
+          @include ct-elevation(4);
+
+          .ct-menu__sub-menu {
+            margin-left: ct-spacing(2);
+
+            &.ct-menu--level-1 {
+              margin: ct-spacing(2);
+            }
+          }
+        }
+      }
     }
 
-    &.ct-menu > .ct-menu__item {
-      margin-left: 0;
+    &#{$root}.ct-theme-light {
+      #{$root}__items {
+        #{$root}__has-dropdown {
+          @include ct-icon-collapsible($ct-link-light-color);
+
+          .ct-menu__item__link {
+            &:hover {
+              @include ct-icon-collapsible($ct-link-light-hover-color, true);
+            }
+          }
+
+          .ct-menu__sub-menu__wrapper--level-1 {
+            background-color: $ct-navigation-light-dropdown-sub-menu-background-color;
+          }
+        }
+      }
+    }
+
+    &#{$root}.ct-theme-dark {
+      #{$root}__items {
+        #{$root}__has-dropdown {
+          @include ct-icon-collapsible($ct-link-dark-color);
+
+          .ct-menu__item__link {
+            &:hover {
+              @include ct-icon-collapsible($ct-link-dark-hover-color, true);
+            }
+          }
+
+          .ct-menu__sub-menu__wrapper--level-1 {
+            background-color: $ct-navigation-dark-dropdown-sub-menu-background-color;
+          }
+        }
+      }
     }
   }
 }
