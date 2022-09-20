@@ -5,7 +5,7 @@ import CivicThemeVideo from './video-player.twig';
 import { demoVideoPoster, demoVideos } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecules/Video Player',
+  title: 'Molecules/Content/Video Player',
 };
 
 export const VideoPlayer = (knobTab) => {

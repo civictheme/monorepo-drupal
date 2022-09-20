@@ -13,7 +13,7 @@ import {
 } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecules/Basic Content',
+  title: 'Molecules/Content/Basic Content',
   parameters: {
     layout: 'fullscreen',
     knobs: {
