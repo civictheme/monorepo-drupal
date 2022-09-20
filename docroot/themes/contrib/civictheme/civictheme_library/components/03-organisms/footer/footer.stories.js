@@ -7,6 +7,7 @@ import CivicThemeFooter from './footer.stories.twig';
 import '../../00-base/responsive/responsive';
 import '../../00-base/collapsible/collapsible';
 import { generateMenuLinks } from '../../00-base/menu/menu.utils';
+import {Logo} from "../../02-molecules/logo/logo.stories";
 
 export default {
   title: 'Organisms/Footer',
@@ -33,18 +34,7 @@ export const Footer = (knobTab) => {
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
-  generalKnobs.logos = boolean('Show Logo', true, generalKnobTab) ? {
-    primary: {
-      mobile: {
-        src: LOGOS[generalKnobs.theme].primary.mobile,
-        alt: 'Primary logo mobile alt text',
-      },
-      desktop: {
-        src: LOGOS[generalKnobs.theme].primary.desktop,
-        alt: 'Primary logo mobile alt text',
-      },
-    },
-  } : null;
+  generalKnobs.logo = boolean('Show logo', true, generalKnobTab) ? Logo('Logo', false) : null;
 
   generalKnobs.show_social_links = boolean('Show social links', true, generalKnobTab);
   generalKnobs.show_middle_links = boolean('Show middle links', true, generalKnobTab);

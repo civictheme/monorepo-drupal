@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
-import { randomUrl } from '../../00-base/base.stories';
+import {boolean, radios, text} from '@storybook/addon-knobs';
+import {randomUrl} from '../../00-base/base.stories';
 import CivicThemeLogo from './logo.twig';
 
 export default {
@@ -10,7 +10,7 @@ export default {
   },
 };
 
-export const Logo = (knobTab) => {
+export const Logo = (knobTab, doRender = true) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -65,9 +65,7 @@ export const Logo = (knobTab) => {
     },
   };
 
-  const html = CivicThemeLogo({
+  return doRender ? CivicThemeLogo({
     ...generalKnobs,
-  });
-
-  return `${html}`;
+  }) : generalKnobs;
 };

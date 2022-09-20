@@ -23,88 +23,73 @@
     margin: ct-spacing();
   }
 
-  &.ct-theme-light {
+  #{$root}-type-inline {
+    &,
+    a {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
 
-    #{$root}-type-inline {
+
+    &#{$root}-dual {
       &,
       a {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
+        align-items: unset;
+      }
+
+      img {
+        max-width: $ct-logo-image-width-mobile * 0.5;
+
+        @include ct-breakpoint('m') {
+          max-width: $ct-logo-image-width-desktop * 0.5;
+        }
       }
 
       #{$root}__divider {
-        border-left: ct-particle(0.125) solid $ct-logo-light-stripe-color;
+        border-left-width: ct-particle(0.125);
+        border-left-style: solid;
       }
+    }
+  }
 
-      &#{$root}-dual {
-        &,
-        a {
-          align-items: unset;
-        }
+  #{$root}-type-stacked {
+    &,
+    a {
+      display: inline-block;
+    }
 
-        img {
-          max-width: $ct-logo-image-width-mobile * 0.5;
+    #{$root}__divider {
+      border-bottom-width: ct-particle(0.125);
+      border-bottom-style: solid;
+    }
+  }
 
-          @include ct-breakpoint('m') {
-            max-width: $ct-logo-image-width-desktop * 0.5;
-          }
-        }
+  &.ct-theme-light {
+    #{$root}-type-inline {
+      #{$root}__divider {
+        border-left-color: $ct-logo-light-stripe-color;
       }
     }
 
     #{$root}-type-stacked {
-      &,
-      a {
-        display: inline-block;
-      }
-
-      #{$root}--hr {
-        border: ct-particle(0.125) solid $ct-logo-light-stripe-color;
+      #{$root}__divider {
+        border-bottom-color: $ct-logo-light-stripe-color;
       }
     }
   }
 
   &.ct-theme-dark {
-
     #{$root}-type-inline {
-      &,
-      a {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
-      }
-
-      #{$root}--hr {
-        border-left: ct-particle(0.125) solid $ct-logo-dark-stripe-color;
-      }
-
-      &#{$root}-dual {
-        &,
-        a {
-          align-items: unset;
-        }
-
-        img {
-          max-width: $ct-logo-image-width-mobile * 0.5;
-
-          @include ct-breakpoint('m') {
-            max-width: $ct-logo-image-width-desktop * 0.5;
-          }
-        }
+      #{$root}__divider {
+        border-left-color: $ct-logo-dark-stripe-color;
       }
     }
 
     #{$root}-type-stacked {
-      &,
-      a {
-        display: inline-block;
-      }
-
-      #{$root}--hr {
-        border: ct-particle(0.125) solid $ct-logo-dark-stripe-color;
+      #{$root}__divider {
+        border-bottom-color: $ct-logo-dark-stripe-color;
       }
     }
   }

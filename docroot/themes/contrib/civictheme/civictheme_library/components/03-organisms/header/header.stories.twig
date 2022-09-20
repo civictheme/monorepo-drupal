@@ -24,14 +24,9 @@
   {% endset %}
 {% endif %}
 
-{% if logos %}
+{% if logo %}
   {% set content_middle2 %}
-    {% include '@molecules/logo/logo.twig' with {
-      'theme': theme == 'light' ? 'dark' : 'light',
-      'logos': logos,
-      'modifier_class': 'ct-header__logo',
-      'type': type ?? 'default',
-    } only %}
+    {% include '@molecules/logo/logo.twig' with logo only %}
   {% endset %}
 {% endif %}
 

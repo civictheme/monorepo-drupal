@@ -80,14 +80,6 @@
     }
   }
 
-  .ct-logo {
-    max-width: $ct-footer-logo-mobile-width;
-
-    @include ct-breakpoint('m') {
-      max-width: $ct-footer-logo-desktop-width;
-    }
-  }
-
   .copyright {
     @include ct-breakpoint('m') {
       text-align: right;

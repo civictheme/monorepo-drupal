@@ -6,6 +6,7 @@ import { getSlots, randomInt, randomSentence } from '../../00-base/base.stories'
 import CivicThemeHeaderExample from './header.stories.twig';
 
 import getMenuLinks from '../../00-base/menu/menu.utils';
+import {Logo} from "../../02-molecules/logo/logo.stories";
 
 export default {
   title: 'Organisms/Header',
@@ -35,18 +36,7 @@ export const Header = (knobTab) => {
     show_content_middle3: boolean('Show middle content', true, generalKnobTab),
   };
 
-  generalKnobs.logos = boolean('Show Logo', true, generalKnobTab) ? {
-    primary: {
-      mobile: {
-        src: LOGOS[generalKnobs.theme].primary.mobile,
-        alt: 'Primary logo mobile alt text',
-      },
-      desktop: {
-        src: LOGOS[generalKnobs.theme].primary.desktop,
-        alt: 'Primary logo mobile alt text',
-      },
-    },
-  } : null;
+  generalKnobs.logo = boolean('Show logo', true, generalKnobTab) ? Logo('Logo', false) : null;
 
   if (generalKnobs.show_content_top3) {
     generalKnobs.secondary_navigation_items = getMenuLinks(secondaryNavigationKnobTab, (itemTitle, itemIndex, itemCurrentLevel, itemIsActiveTrail, itemParents) => `${itemTitle} ${itemParents.join('')}${itemIndex} ${randomSentence(itemCurrentLevel > 1 ? randomInt(2, 5) : randomInt(1, 3))}`);
