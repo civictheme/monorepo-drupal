@@ -178,30 +178,13 @@ function civictheme_parse_attributes($string) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_attributes_to_modifier_class(&$variables) {
-  if (isset($variables['attributes'])) {
+  if (isset($variables['attributes']['class'])) {
     $attributes = new Attribute($variables['attributes']);
-    $classes = civictheme_get_css_class_attributes($attributes);
-    if ($classes) {
-      $variables['modifier_class'] = $classes;
-    }
+    $variables['modifier_class'] = implode(' ', $attributes->getClass()->value());
+    // Remove class from attributes to avoid duplicated 'class' attribute on
+    // the element.
+    unset($variables['attributes']['class']);
   }
-}
-
-/**
- * Get CSS class attributes from Attribute object.
- *
- * @param \Drupal\Core\Template\Attribute $attributes
- *   Attributes object.
- *
- * @return string
- *   Classes as a string.
- */
-function civictheme_get_css_class_attributes(Attribute $attributes) {
-  if ($attributes->hasAttribute('class')) {
-    return implode(' ', $attributes->getClass()->value());
-  }
-
-  return FALSE;
 }
 
 /**
