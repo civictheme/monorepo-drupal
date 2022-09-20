@@ -10,7 +10,9 @@ export default {
   },
 };
 
-export const PrimaryNavigation = () => {
+export const PrimaryNavigation = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
   const generalKnobs = {
     theme: radios(
       'Theme',
@@ -19,11 +21,12 @@ export const PrimaryNavigation = () => {
         Dark: 'dark',
       },
       'light',
+      generalKnobTab,
     ),
-    title: text('Title', 'Navigation title'),
-    items: getMenuLinks(),
-    modifier_class: text('Additional class', ''),
-    attributes: text('Additional attributes', ''),
+    title: text('Title', 'Navigation title', generalKnobTab),
+    items: getMenuLinks('Links'),
+    modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemePrimaryNavigation({
