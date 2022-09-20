@@ -121,17 +121,17 @@ Feature: Check that components settings are available in theme settings
     And I fill in "Logo image for primary in Dark theme for desktop" with "public://civictheme_test/logo_dark_desktop.jpg"
     And I fill in "Logo image for primary in Dark theme for mobile" with "public://civictheme_test/logo_dark_mobile.jpg"
     And I select the radio button "Light" with the id "edit-components-header-theme-light"
-    And I select the radio button "Default" with the id "edit-components-header-type-default"
+    And I select the radio button "Default" with the id "edit-components-header-logo-type-default"
     And I select the radio button "Dark" with the id "edit-components-footer-theme-dark"
-    And I select the radio button "Default" with the id "edit-components-footer-type-default"
+    And I select the radio button "Default" with the id "edit-components-footer-logo-type-default"
     And I fill in "Footer background image path" with "public://civictheme_test/footer_background_image.jpg"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
     And I should see the ".ct-header .ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
     And I should see the ".ct-header .ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
-    And I should see the "div.ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
-    And I should see the "div.ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
+    And I should see the ".ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
+    And I should see the ".ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
 
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with static assets
@@ -145,10 +145,10 @@ Feature: Check that components settings are available in theme settings
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
-    And I should see the "div.ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
-    And I should see the "div.ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
-    And I should see the "div.ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
-    And I should see the "div.ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
 
   @api
   Scenario: The CivicTheme theme settings verify failed custom logo configuration with static assets
@@ -171,9 +171,9 @@ Feature: Check that components settings are available in theme settings
     And I attach the file "test_image_logo_dark_desktop.jpg" to "Upload logo image for primary in Dark theme for desktop"
     And I attach the file "test_image_logo_dark_mobile.jpg" to "Upload logo image for primary in Dark theme for mobile"
     And I select the radio button "Light" with the id "edit-components-header-theme-light"
-    And I select the radio button "Default" with the id "edit-components-header-type-default"
+    And I select the radio button "Default" with the id "edit-components-header-logo-type-default"
     And I select the radio button "Dark" with the id "edit-components-footer-theme-dark"
-    And I select the radio button "Default" with the id "edit-components-footer-type-default"
+    And I select the radio button "Default" with the id "edit-components-footer-logo-type-default"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
 
