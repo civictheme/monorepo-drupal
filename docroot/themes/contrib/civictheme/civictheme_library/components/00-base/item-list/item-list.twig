@@ -17,7 +17,7 @@
 {% set modifier_class = '%s %s %s'|format(type_class, no_gutter_class, modifier_class|default('')) %}
 
 {% if items %}
-  <div class="ct-item-list {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-item-list {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% block items %}
       <ul class="ct-item-list__list">
         {% for item in items %}

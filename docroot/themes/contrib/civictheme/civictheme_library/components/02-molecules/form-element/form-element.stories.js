@@ -66,10 +66,10 @@ export const FormElement = () => {
     description: {
       content: text('Description', 'CivicTheme input description', generalKnobTab),
     },
-    modifier_class: text('Additional class', '', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
     errors: boolean('With error', false, generalKnobTab) ? 'Sample error message' : false,
     required: boolean('Required', false, generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   const states = {

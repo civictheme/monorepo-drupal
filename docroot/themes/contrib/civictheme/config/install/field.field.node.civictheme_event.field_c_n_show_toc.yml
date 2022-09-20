@@ -9,7 +9,7 @@ field_name: field_c_n_show_toc
 entity_type: node
 bundle: civictheme_event
 label: 'Show Table of Contents'
-description: 'Scan the content of the page for <code>h2</code> and <code>h3</code> HTML tags and automatically create a Table of Contents.'
+description: 'Scan the content of the page for <code>h2</code> HTML tags and automatically create a Table of Contents.'
 required: false
 translatable: true
 default_value:

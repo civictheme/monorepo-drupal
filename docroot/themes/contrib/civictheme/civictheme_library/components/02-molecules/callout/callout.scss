@@ -5,18 +5,6 @@
 .ct-callout {
   $root: &;
 
-  &.ct-callout--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-callout-space-vertical);
-  }
-
-  &.ct-callout--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-callout-space-vertical);
-  }
-
-  &.ct-callout--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-callout-space-vertical);
-  }
-
   &--wrapper {
     border-radius: $ct-callout-border-radius;
     display: flex;

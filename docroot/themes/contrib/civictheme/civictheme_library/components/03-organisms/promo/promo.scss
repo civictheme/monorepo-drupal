@@ -5,18 +5,6 @@
 .ct-promo {
   $root: &;
 
-  &.ct-promo--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-promo-space-vertical, $is_padding: false);
-  }
-
-  &.ct-promo--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-promo-space-vertical, $is_padding: false);
-  }
-
-  &.ct-promo--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-promo-space-vertical, $is_padding: false);
-  }
-
   &__inner {
     padding: ct-spacing(3) 0;
 

@@ -13,9 +13,9 @@
  */
 #}
 
+{% set menu_id = menu_id|default('secondary-navigation') %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
-{% set menu_id = menu_id|default('secondary-navigation') %}
 
 {% if items is not empty %}
 
@@ -39,7 +39,7 @@
     {% endif %}
   {% endfor %}
 
-  <div class="ct-secondary-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-secondary-navigation {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% include '@base/menu/menu.twig' with {
       theme: theme,
       items: items,

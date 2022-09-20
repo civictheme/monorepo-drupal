@@ -443,7 +443,7 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: bottom
           field_c_p_theme:
@@ -552,7 +552,7 @@ default:
                   field_c_p_title:
                     -
                       value: 'Glacial movement and climate change'
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -718,7 +718,7 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_space:
+  field_c_n_vertical_spacing:
     -
       value: top
   field_c_n_summary:

@@ -25,6 +25,7 @@ export const Search = (knobTab) => {
     text: text('Text', 'Search', generalKnobTab),
     link: text('Search URL', '/search', generalKnobTab),
     modifier_class: `story-wrapper-size--large ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   const html = CivicThemeSearch({

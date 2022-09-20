@@ -10,18 +10,6 @@
   flex-grow: 1;
   margin: 0;
 
-  &.ct-attachment--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-attachment-space-vertical);
-  }
-
-  &.ct-attachment--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-attachment-space-vertical);
-  }
-
-  &.ct-attachment--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-attachment-space-vertical);
-  }
-
   @include ct-breakpoint(m) {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -50,7 +38,6 @@
 
     padding: ct-spacing(3);
     flex: 1;
-    color: $ct-attachment-light-color;
     border-radius: $ct-attachment-border-radius;
 
     @include ct-breakpoint('m') {
@@ -60,6 +47,8 @@
 
   &__summary {
     margin-top: 16px;
+
+    @include ct-typography('text-small');
   }
 
   &__title {
@@ -86,6 +75,8 @@
       &:last-child {
         margin-bottom: 0;
       }
+
+      @include ct-typography('label-regular');
     }
 
     &--last-updated {
@@ -124,6 +115,7 @@
 
     .ct-attachment {
       &__content {
+        color: $ct-attachment-light-color;
         background-color: $ct-attachment-light-background-color;
         border: solid ct-particle(0.125) $ct-attachment-light-border-color;
       }
@@ -149,8 +141,6 @@
   }
 
   &.ct-theme-dark {
-    background-color: $ct-attachment-dark-background-color;
-
     &.ct-attachment--with-background {
       background-color: $ct-attachment-dark-wrapper-background-color;
       padding-left: $ct-attachment-space-horizontal;
@@ -160,6 +150,7 @@
     .ct-attachment {
       &__content {
         color: $ct-attachment-dark-color;
+        background-color: $ct-attachment-dark-background-color;
         border: solid ct-particle(0.125) $ct-attachment-dark-border-color;
       }
 

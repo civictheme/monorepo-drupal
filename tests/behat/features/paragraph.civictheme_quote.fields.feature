@@ -16,7 +16,7 @@ Feature: Tests the Quote paragraph
     And I should see the text "field_c_p_author" in the "Author" row
     And I should see the text "field_c_p_content" in the "Content" row
     And I should see the text "field_c_p_theme" in the "Theme" row
-    And I should see the text "field_c_p_space" in the "Vertical space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "Vertical spacing" row
 
   @api
   Scenario: Page content type field_c_n_components fields settings.
@@ -42,5 +42,5 @@ Feature: Tests the Quote paragraph
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_author][0][value]']" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_space]']" element
+    And should see an "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element
     And the option "Light" from select "Theme" is selected

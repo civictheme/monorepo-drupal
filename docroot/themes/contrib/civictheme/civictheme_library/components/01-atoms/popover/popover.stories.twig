@@ -2,6 +2,11 @@
 /**
  * @file
  * Popover component story.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
@@ -9,7 +14,7 @@
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if content %}
-  <div class="{{ modifier_class }}" data-popover>
+  <div class="{{ modifier_class }}" data-popover {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <button data-popover-trigger data-popover-trigger-event="{{ trigger_event }}">
       TRIGGER ({{ trigger_event }} me)
     </button>

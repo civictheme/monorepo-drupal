@@ -53,6 +53,7 @@ export const EventCard = (knobTab) => {
       generalKnobTab,
     ), true),
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {

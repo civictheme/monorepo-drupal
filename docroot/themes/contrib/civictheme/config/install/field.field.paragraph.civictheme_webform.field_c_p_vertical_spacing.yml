@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_c_p_space
+    - field.storage.paragraph.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_webform
   module:
     - options
-id: paragraph.civictheme_webform.field_c_p_space
-field_name: field_c_p_space
+id: paragraph.civictheme_webform.field_c_p_vertical_spacing
+field_name: field_c_p_vertical_spacing
 entity_type: paragraph
 bundle: civictheme_webform
-label: 'With space'
+label: 'Vertical spacing'
 description: 'Adds additional vertical spacing to a component'
 required: false
 translatable: true

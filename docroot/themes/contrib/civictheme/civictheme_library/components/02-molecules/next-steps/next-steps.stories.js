@@ -24,8 +24,8 @@ export const NextSteps = (knobTab) => {
     summary: text('Summary', 'Short summary explaining why this link is relevant.', generalKnobTab),
     url: text('Link', randomUrl(), generalKnobTab),
     is_external: boolean('Is external', false, generalKnobTab),
-    vertical_space: radios(
-      'Vertical space',
+    vertical_spacing: radios(
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',

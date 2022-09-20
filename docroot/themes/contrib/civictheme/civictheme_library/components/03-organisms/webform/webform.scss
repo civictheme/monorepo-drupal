@@ -5,18 +5,6 @@
 .ct-webform {
   $root: &;
 
-  &.ct-webform--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-webform-space-vertical);
-  }
-
-  &.ct-webform--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-webform-space-vertical);
-  }
-
-  &.ct-webform--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-webform-space-vertical);
-  }
-
   &.ct-theme-light {
     color: $ct-webform-light-color;
 

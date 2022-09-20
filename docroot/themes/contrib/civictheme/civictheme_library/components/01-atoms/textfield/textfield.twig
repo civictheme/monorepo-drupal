@@ -13,9 +13,17 @@
  */
 #}
 
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set disabled_class = disabled ? 'ct-input--disabled disabled' : '' %}
 {% set required_class = required ? 'ct-input--required required' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, required_class, modifier_class|default('')) %}
 
-<input class="ct-textfield ct-input__element {{ modifier_class }}" type="{{ type }}" value="{{ value }}" {% if attributes %}{{ attributes|raw }}{% endif %} {% if placeholder %} placeholder="{{ placeholder }}" {% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }} />
+<input
+  type="{{ type }}"
+  value="{{ value }}"
+  class="ct-textfield ct-input__element {{ modifier_class }}"
+  {{ disabled ? 'disabled' }}
+  {{ required ? 'required' }}
+  {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+  {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+/>

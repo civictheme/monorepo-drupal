@@ -17,16 +17,17 @@
   * - image: [object] Image data.
   * - url: [string] Card link.
   * - link: Link object containing url, text of the file.
-  * - modifier_class: [string] Additional classes.
+  * - attributes: [string] Additional attributes.
+  * - modifier_class: [string] Additional classes.attributes: text('Additional attributes', '', generalKnobTab),
   */
 #}
 
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set size = size|default('large') %}
 {% set size_class = size == 'large'?'ct-publication-card--large' : 'ct-publication-card--small' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
 
-<div class="ct-publication-card {{ modifier_class }}">
+<div class="ct-publication-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   {% block image %}
     {% if image.src is not empty %}
       <div class="ct-publication-card__image-wrapper">

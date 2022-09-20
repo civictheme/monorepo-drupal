@@ -138,7 +138,7 @@ default:
                   field_c_p_title:
                     -
                       value: 'Accordion Panel Light 2'
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -420,7 +420,7 @@ default:
                   field_c_p_title:
                     -
                       value: 'Accordion Panel Dark 2'
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -642,7 +642,7 @@ default:
           field_c_p_icon:
             -
               entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -762,7 +762,7 @@ default:
           field_c_p_icon:
             -
               entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -878,7 +878,7 @@ default:
               uri: 'https://www.google.com'
               title: Google
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -951,7 +951,7 @@ default:
               uri: 'https://www.google.com'
               title: Google
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -1087,7 +1087,7 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -1375,7 +1375,7 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -1602,7 +1602,7 @@ default:
             -
               value: "<p><strong>Content With Spacing&nbsp;</strong></p>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</p>\r\n"
               format: civictheme_rich_text
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -1667,7 +1667,7 @@ default:
             -
               value: "<p>&nbsp;</p>\r\n\r\n<p><strong>Content With Spacing</strong></p>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</p>\r\n"
               format: civictheme_rich_text
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -1736,7 +1736,7 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -1859,7 +1859,7 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -1971,7 +1971,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -2034,7 +2034,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -2102,7 +2102,7 @@ default:
               uri: 'https://www.google.com'
               title: Google
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -2175,7 +2175,7 @@ default:
               uri: 'https://www.google.com'
               title: Google
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -2284,7 +2284,7 @@ default:
                   field_c_p_title:
                     -
                       value: 'Slider Slide 1'
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -2491,7 +2491,7 @@ default:
                   field_c_p_title:
                     -
                       value: 'Slider Slide 1'
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -2645,6 +2645,6 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_space:
+  field_c_n_vertical_spacing:
     -
       value: both

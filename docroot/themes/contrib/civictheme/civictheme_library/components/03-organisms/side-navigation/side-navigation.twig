@@ -7,21 +7,22 @@
  * - theme: [string] Theme: light, dark.
  * - items: [array] Array of menu items.
  * - title: [string] Navigation title.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - attributes: [string] Additional attributes.
- * - vertical_space: [string] With top, bottom or both vertical spaces.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-map--vertical-space-%s'|format(vertical_space) : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
 
 {% if items is not empty %}
-  {% include '@organisms/skip-link/skip-link.twig' with {
-    url: '#main-content' ,
-  } only %}
-  <div class="ct-side-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-side-navigation {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% include '@organisms/skip-link/skip-link.twig' with {
+      theme: theme,
+      url: '#main-content',
+    } only %}
     {% if title %}
       {% block title %}
         <div class="ct-side-navigation__title">

@@ -437,7 +437,6 @@ $ct-table-dark-row-odd-color: ct-color-dark('body') !default;
 // Iframe.
 //
 $ct-iframe-space-horizontal: ct-spacing(7) !default;
-$ct-iframe-space-vertical: ct-spacing(7) !default;
 $ct-iframe-light-background-color: ct-color-light('background-light') !default;
 $ct-iframe-dark-background-color: ct-color-dark('background-light') !default;
 
@@ -469,7 +468,6 @@ $ct-video-ratio-height: 9 !default;
 //
 $ct-attachment-border-radius: $ct-border-radius !default;
 $ct-attachment-space-horizontal: ct-spacing(7) !default;
-$ct-attachment-space-vertical: ct-spacing(10) !default;
 $ct-attachment-light-background-color: ct-color-light('background-light') !default;
 $ct-attachment-light-border-color: ct-color-light('border-light') !default;
 $ct-attachment-light-color: ct-color-light('body') !default;
@@ -478,7 +476,7 @@ $ct-attachment-light-heading-color: ct-color-light('heading') !default;
 $ct-attachment-light-icon-color: ct-color-light('body') !default;
 $ct-attachment-light-title-color: ct-color-light('body') !default;
 $ct-attachment-light-wrapper-background-color: ct-color-light('background') !default;
-$ct-attachment-dark-background-color: ct-color-dark('background') !default;
+$ct-attachment-dark-background-color: ct-color-dark('background-dark') !default;
 $ct-attachment-dark-border-color: ct-color-dark('border-dark') !default;
 $ct-attachment-dark-color: ct-color-dark('body') !default;
 $ct-attachment-dark-date-color: ct-color-dark('body') !default;
@@ -494,7 +492,6 @@ $ct-basic-content-blockquote-border-radius: $ct-border-radius !default;
 $ct-basic-content-list-marker-margin: ct-particle(2) !default;
 $ct-basic-content-list-marker-width: ct-particle(3.5) !default;
 $ct-basic-content-space-horizontal: ct-spacing(7) !default;
-$ct-basic-content-space-vertical: ct-spacing(8) !default;
 $ct-basic-content-vertical-spacing: 1.5rem !default;
 $ct-basic-content-light-base-color: ct-color-light('body') !default;
 $ct-basic-content-light-blockquote-block: ct-color-light('body') !default;
@@ -529,7 +526,6 @@ $ct-basic-content-dark-wrapper-background-color: ct-color-dark('background') !de
 // Callout.
 //
 $ct-callout-border-radius: $ct-border-radius !default;
-$ct-callout-space-vertical: ct-spacing(6) !default;
 $ct-callout-stripe-width: ct-particle(0.75);
 $ct-callout-light-background-color: ct-color-light('background') !default;
 $ct-callout-light-heading-color: ct-color-light('heading') !default;
@@ -742,6 +738,7 @@ $ct-group-filter-dark-selected-filters-title-color: ct-color-dark('background') 
 //
 // Logo.
 //
+$ct-logo-breakpoint: 'm';
 $ct-logo-image-height-mobile: ct-particle(25) !default;
 $ct-logo-image-width-mobile: 100% !default;
 $ct-logo-image-height-desktop: ct-particle(30) !default;
@@ -754,7 +751,6 @@ $ct-logo-dark-stripe-color: ct-color-light('border-light') !default;
 //
 $ct-map-padding-bottom: 56.25% !default;
 $ct-map-space-horizontal: ct-spacing(7) !default;
-$ct-map-space-vertical: ct-spacing(6) !default;
 $ct-map-light-background-color: transparent !default;
 $ct-map-light-wrapper-background-color: ct-color-light('background') !default;
 $ct-map-dark-background-color: transparent !default;
@@ -765,7 +761,6 @@ $ct-map-dark-wrapper-background-color: ct-color-dark('background') !default;
 //
 $ct-next-steps-border-radius: $ct-border-radius !default;
 $ct-next-steps-stripe-width: rem(6px);
-$ct-next-steps-space-vertical: ct-spacing(6) !default;
 $ct-next-steps-light-active-color: ct-color-light('body') !default;
 $ct-next-steps-light-background-color: ct-color-light('background-light') !default;
 $ct-next-steps-light-color: ct-color-light('body') !default;
@@ -785,7 +780,6 @@ $ct-next-steps-dark-stripe-color: ct-color-dark('highlight') !default;
 // Quote.
 //
 $ct-quote-border-width: ct-particle(0.125) (0.75) !default;
-$ct-quote-space-vertical: ct-spacing(6) !default;
 $ct-quote-light-background-color: ct-color-light('background-light') !default;
 $ct-quote-light-border-color: ct-color-light('highlight') !default;
 $ct-quote-light-body-color: ct-color-light('body') !default;
@@ -842,7 +836,6 @@ $ct-accordion-header-border-radius: $ct-border-radius !default;
 $ct-accordion-item-border-radius: $ct-border-radius !default;
 $ct-accordion-stripe-width: ct-particle(0.75);
 $ct-accordion-space-horizontal: ct-spacing(7) !default;
-$ct-accordion-space-vertical: ct-spacing(8) !default;
 $ct-accordion-light-background-color: ct-color-light('background-light') !default;
 $ct-accordion-light-border-color: ct-color-light('border-light') !default;
 $ct-accordion-light-color: ct-color-light('body') !default;
@@ -879,18 +872,18 @@ $ct-alert-light-success-icon-color: ct-color-light('success') !default;
 $ct-alert-light-warning-background-color: ct-color-tint(ct-color-light('warning'), 90) !default;
 $ct-alert-light-warning-color: ct-color-light('body') !default;
 $ct-alert-light-warning-icon-color: ct-color-light('warning') !default;
-$ct-alert-dark-divider-color: ct-color-light('interaction-background') !default;
+$ct-alert-dark-divider-color: ct-color-dark('interaction-background') !default;
 $ct-alert-dark-error-background-color: ct-color-shade(ct-color-dark('error'), 30) !default;
-$ct-alert-dark-error-color: ct-color-light('body') !default;
+$ct-alert-dark-error-color: ct-color-dark('body') !default;
 $ct-alert-dark-error-icon-color: $ct-alert-dark-error-color !default;
 $ct-alert-dark-information-background-color: ct-color-shade(ct-color-dark('information'), 30) !default;
-$ct-alert-dark-information-color: ct-color-light('body') !default;
+$ct-alert-dark-information-color: ct-color-dark('body') !default;
 $ct-alert-dark-information-icon-color: $ct-alert-dark-information-color !default;
 $ct-alert-dark-success-background-color: ct-color-shade(ct-color-dark('success'), 30) !default;
-$ct-alert-dark-success-color: ct-color-light('body') !default;
+$ct-alert-dark-success-color: ct-color-dark('body') !default;
 $ct-alert-dark-success-icon-color: $ct-alert-dark-success-color !default;
 $ct-alert-dark-warning-background-color: ct-color-shade(ct-color-dark('warning'), 30) !default;
-$ct-alert-dark-warning-color: ct-color-light('body') !default;
+$ct-alert-dark-warning-color: ct-color-dark('body') !default;
 $ct-alert-dark-warning-icon-color: $ct-alert-dark-warning-color !default;
 
 //
@@ -916,7 +909,6 @@ $ct-banner-dark-color: ct-color-dark('body') !default;
 //
 // Layout.
 //
-$ct-layout-space-vertical: ct-spacing(8) !default;
 $ct-layout-light-background-color: inherit !default;
 $ct-layout-dark-background-color: inherit !default;
 
@@ -958,7 +950,6 @@ $ct-header-dark-top-color: ct-color-dark('body') !default;
 // Listing.
 //
 $ct-list-space-horizontal: ct-spacing(7) !default;
-$ct-list-space-vertical: ct-spacing(10) !default;
 $ct-list-light-background-color: ct-color-light('background') !default;
 $ct-list-light-color: ct-color-light('body') !default;
 $ct-list-dark-background-color: ct-color-dark('background') !default;
@@ -1077,7 +1068,6 @@ $ct-secondary-navigation-dark-sub-menu-background-color: ct-color-dark('backgrou
 // Navigation/Side navigation.
 //
 $ct-side-navigation-link-active-border-radius: math.div($ct-border-radius, 2) !default;
-$ct-side-navigation-space-vertical: ct-spacing(6) !default;
 $ct-side-navigation-light-title-color: ct-color-light('heading') !default;
 $ct-side-navigation-light-link-expanded-icon-color: ct-color-light('heading') !default;
 $ct-side-navigation-light-link-parent-background-color: ct-color-light('background-light') !default;
@@ -1107,9 +1097,9 @@ $ct-side-navigation-light-link-child-active-stripe-color: $ct-side-navigation-li
 $ct-side-navigation-dark-title-color: ct-color-dark('heading') !default;
 $ct-side-navigation-dark-link-expanded-icon-color: ct-color-dark('heading') !default;
 $ct-side-navigation-dark-link-parent-background-color: ct-color-dark('background-light') !default;
-$ct-side-navigation-dark-link-parent-border-color: ct-color-dark('border-light') !default;
+$ct-side-navigation-dark-link-parent-border-color: ct-color-dark('interaction-text') !default;
 $ct-side-navigation-dark-link-parent-color: ct-color-dark('heading') !default;
-$ct-side-navigation-dark-link-parent-stripe-color: ct-color-dark('border-light') !default;
+$ct-side-navigation-dark-link-parent-stripe-color: ct-color-dark('interaction-text') !default;
 $ct-side-navigation-dark-link-parent-hover-background-color: ct-color-dark('background-dark') !default;
 $ct-side-navigation-dark-link-parent-hover-border-color: $ct-side-navigation-dark-link-parent-border-color !default;
 $ct-side-navigation-dark-link-parent-hover-color: $ct-side-navigation-dark-link-parent-color !default;
@@ -1159,7 +1149,6 @@ $ct-mobile-navigation-trigger-dark-color: ct-color-dark('background') !default;
 //
 // Promo.
 //
-$ct-promo-space-vertical: ct-spacing(6) !default;
 $ct-promo-light-background-color: ct-color-light('background-light') !default;
 $ct-promo-light-body-color: ct-color-light('body') !default;
 $ct-promo-light-heading-color: ct-color-light('heading') !default;
@@ -1195,7 +1184,6 @@ $ct-skip-link-dark-background-color: ct-color-dark('background') !default;
 $ct-slider-border-radius: $ct-border-radius !default;
 $ct-slider-progress-indicator-border-radius: $ct-border-radius !default;
 $ct-slider-space-horizontal: ct-spacing(7) !default;
-$ct-slider-space-vertical: ct-spacing(10) !default;
 $ct-slider-light-background-color: ct-color-light('background') !default;
 $ct-slider-light-progress-indicator-background-color: ct-color-light('background') !default;
 $ct-slider-light-progress-indicator-color: ct-color-light('body') !default;
@@ -1261,7 +1249,6 @@ $ct-table-of-contents-dark-title-color: ct-color-dark('heading') !default;
 // Webform.
 //
 $ct-webform-space-horizontal: ct-spacing(7) !default;
-$ct-webform-space-vertical: ct-spacing(10) !default;
 $ct-webform-light-background-color: ct-color-light('background') !default;
 $ct-webform-light-color: ct-color-light('body') !default;
 $ct-webform-light-wrapper-background-color: ct-color-light('background') !default;

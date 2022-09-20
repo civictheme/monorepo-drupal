@@ -23,7 +23,7 @@ Feature: Tests the Listing paragraph
     And I should see the text "field_c_p_list_link_below" in the "Link below" row
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_title" in the "Title" row
-    And I should see the text "field_c_p_space" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "Vertical spacing" row
     And I should see the text "field_c_p_list_items" in the "List items" row
 
   @api
@@ -105,10 +105,10 @@ Feature: Tests the Listing paragraph
     And should see a "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
     And should not see a "select[name='field_c_n_components[0][subform][field_c_p_theme]'][disabled]" element
 
-    And I see the text "With space"
-    And should see a "select[name='field_c_n_components[0][subform][field_c_p_space]']" element
-    And should not see a "select[name='field_c_n_components[0][subform][field_c_p_space]'].required" element
-    And should not see a "select[name='field_c_n_components[0][subform][field_c_p_space]'][disabled]" element
+    And I see the text "Vertical spacing"
+    And should see a "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element
+    And should not see a "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]'].required" element
+    And should not see a "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]'][disabled]" element
 
     And I see the text "Background"
     And should see a "input[name='field_c_n_components[0][subform][field_c_p_background][value]']" element

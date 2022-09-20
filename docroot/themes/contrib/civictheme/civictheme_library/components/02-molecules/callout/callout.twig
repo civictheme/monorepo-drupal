@@ -14,16 +14,17 @@
  *   - url: [string] Link URL.
  *   - type: [string] Link type.
  *   - size: [string] Link size.
- * - vertical_space: [string] With top, bottom or both vertical spaces.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-callout--vertical-space-%s'|format(vertical_space) : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
 
-<div class="ct-callout {{ modifier_class }}">
+<div class="ct-callout {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   <div class="container">
     <div class="row">
       <div class="col-xxs-12">

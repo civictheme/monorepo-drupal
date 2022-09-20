@@ -39,19 +39,25 @@
 {% if logos is not empty %}
   {% for visibility_type, logo_values in logos %}
     {% set visibility_class = visibility_type == 'mobile' ? 'show-xxs hide-m' : 'hide-xxs show-m' %}
+
     {% set logo_class = logo_values|length > 1 ? 'ct-logo-dual' : '' %}
+
     <div class="ct-logo {{ visibility_class }} {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
       <div class="{{ type_class }} {{ logo_class }}">
+
       {% if url is not empty %}
         <a class="ct-logo__url" href="{{ url }}" title="{{ title|default('Click to go to the homepage') }}">
       {% endif %}
+
       {% for logo_type, logo in logo_values %}
-        {% set display_logo = TRUE %}
+        {% set display_logo = true %}
+
         {% if logo_type == 'secondary' %}
           {% if type not in ['inline', 'stacked'] %}
-            {% set display_logo = FALSE %}
+            {% set display_logo = false %}
           {% endif %}
         {% endif %}
+
         {% if logo.src is not empty and display_logo %}
           {% include '@atoms/image/image.twig' with {
             theme: theme,
@@ -59,13 +65,16 @@
             alt:  logo.alt,
           } only %}
         {% endif %}
+
         {% if loop.first and display_logo and logo_values|length > 1 %}
-          <hr class="ct-logo--hr">
+          <hr class="ct-logo__divider">
         {% endif %}
       {% endfor %}
+
       {% if url is not empty %}
         </a>
       {% endif %}
+
       </div>
     </div>
   {% endfor %}
