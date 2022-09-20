@@ -119,7 +119,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: true
-          content: '<div class="civictheme-basic-content"><p>No results found.</p></div>'
+          content: '<div class="ct-basic-content"><p>No results found.</p></div>'
           tokenize: false
       sorts:
         created:

@@ -11,7 +11,7 @@
   margin: 0 auto 0.5rem;
   padding: ct-spacing(1.25) ct-spacing(2);
   border-radius: $ct-input-border-radius;
-  min-width: rem(300px);
+  min-width: ct-particle(38);
 
   &:disabled {
     pointer-events: none;
@@ -23,19 +23,19 @@
     background-color: $ct-input-light-background-color;
 
     &:hover {
-      box-shadow: 0 0 0 1px $ct-input-light-hover-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-hover-border-color;
     }
 
     &:active,
     &:focus {
       border-color: $ct-input-light-focus-border-color;
-      box-shadow: 0 0 0 1px $ct-input-light-focus-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-focus-border-color;
     }
 
     &:invalid,
     &.ct-input--error {
       border-color: $ct-input-light-error-border-color;
-      box-shadow: 0 0 0 1px $ct-input-light-error-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-error-border-color;
     }
   }
 
@@ -44,19 +44,19 @@
     background-color: $ct-input-dark-background-color;
 
     &:hover {
-      box-shadow: 0 0 0 1px $ct-input-dark-hover-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-dark-hover-border-color;
     }
 
     &:active,
     &:focus {
       border-color: $ct-input-dark-focus-border-color;
-      box-shadow: 0 0 0 1px $ct-input-dark-focus-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-dark-focus-border-color;
     }
 
     &:invalid,
     &.ct-input--error {
       border-color: $ct-input-dark-error-border-color;
-      box-shadow: 0 0 0 1px $ct-input-dark-error-border-color;
+      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-dark-error-border-color;
     }
   }
 }

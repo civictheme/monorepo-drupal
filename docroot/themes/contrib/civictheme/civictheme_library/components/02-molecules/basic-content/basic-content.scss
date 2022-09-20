@@ -5,18 +5,6 @@
 .ct-basic-content {
   @include ct-content();
 
-  &.ct-content--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-basic-content-space-vertical);
-  }
-
-  &.ct-content--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-basic-content-space-vertical);
-  }
-
-  &.ct-content--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-basic-content-space-vertical);
-  }
-
   &.ct-theme-light {
     @include ct-content-light();
 

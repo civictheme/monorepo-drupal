@@ -58,6 +58,10 @@ function cs_generated_content_generated_content_create_user_user() {
         $user->addRole($role->id());
         $user->activate();
         $user->enforceIsNew();
+        if (!empty(getenv('DRUPAL_CS_GENERATED_CONTENT_USER_PASSWORD'))) {
+          $user->setPassword(getenv('DRUPAL_CS_GENERATED_CONTENT_USER_PASSWORD'));
+        }
+
         try {
           $user->save();
           $users[] = $user;

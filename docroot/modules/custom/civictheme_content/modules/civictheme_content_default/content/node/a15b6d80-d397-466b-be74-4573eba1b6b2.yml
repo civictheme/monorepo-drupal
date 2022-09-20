@@ -138,7 +138,7 @@ default:
                   field_c_p_title:
                     -
                       value: 'Accordion Panel Light 2'
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -420,7 +420,7 @@ default:
                   field_c_p_title:
                     -
                       value: 'Accordion Panel Dark 2'
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -642,7 +642,7 @@ default:
           field_c_p_icon:
             -
               entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -762,7 +762,7 @@ default:
           field_c_p_icon:
             -
               entity: fcd683b6-ea34-4310-aedd-7731ff476cbc
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -878,7 +878,7 @@ default:
               uri: 'https://www.google.com'
               title: Google
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -951,7 +951,7 @@ default:
               uri: 'https://www.google.com'
               title: Google
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -1004,7 +1004,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: d277be67-44d1-4399-8c74-2fd7fa2d5f2e
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -1022,7 +1022,7 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1087,7 +1087,7 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -1095,14 +1095,14 @@ default:
               value: light
           field_c_p_title:
             -
-              value: 'Card container Light- with bg & spacing '
+              value: 'Manual List Light- with bg & spacing '
     -
       entity:
         _meta:
           version: '1.0'
           entity_type: paragraph
           uuid: 977e5e6d-97cf-4de0-ac95-36feb8564cbb
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -1120,7 +1120,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1190,14 +1190,14 @@ default:
               value: light
           field_c_p_title:
             -
-              value: 'Card container Light - no bg, no spacing'
+              value: 'Manual List Light - no bg, no spacing'
     -
       entity:
         _meta:
           version: '1.0'
           entity_type: paragraph
           uuid: 50d72995-b9fa-4f40-878d-822b5d71a128
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -1215,7 +1215,7 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1285,14 +1285,14 @@ default:
               value: light
           field_c_p_title:
             -
-              value: 'Card container Light - bg & only horizontal spacing'
+              value: 'Manual List Light - bg & only horizontal spacing'
     -
       entity:
         _meta:
           version: '1.0'
           entity_type: paragraph
           uuid: 24e9f4d1-0620-4633-a615-912dda9f0de4
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -1310,7 +1310,7 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1375,7 +1375,7 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -1383,14 +1383,14 @@ default:
               value: dark
           field_c_p_title:
             -
-              value: 'Card container Dark - with bg & spacing'
+              value: 'Manual List Dark - with bg & spacing'
     -
       entity:
         _meta:
           version: '1.0'
           entity_type: paragraph
           uuid: efb88167-b6b8-4b90-b6dc-47855c6445f8
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -1408,7 +1408,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1478,14 +1478,14 @@ default:
               value: dark
           field_c_p_title:
             -
-              value: 'Card container Dark - no bg, no spacing'
+              value: 'Manual List Dark - no bg, no spacing'
     -
       entity:
         _meta:
           version: '1.0'
           entity_type: paragraph
           uuid: 2375018c-fb76-49b9-ab2c-bc4f2bc34051
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -1503,7 +1503,7 @@ default:
           field_c_p_background:
             -
               value: true
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -1573,7 +1573,7 @@ default:
               value: dark
           field_c_p_title:
             -
-              value: 'Card container Dark - bg & only horizontal spacing'
+              value: 'Manual List Dark - bg & only horizontal spacing'
     -
       entity:
         _meta:
@@ -1602,7 +1602,7 @@ default:
             -
               value: "<p><strong>Content With Spacing&nbsp;</strong></p>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</p>\r\n"
               format: civictheme_rich_text
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -1667,7 +1667,7 @@ default:
             -
               value: "<p>&nbsp;</p>\r\n\r\n<p><strong>Content With Spacing</strong></p>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</p>\r\n"
               format: civictheme_rich_text
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -1736,12 +1736,7 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'http://example.com'
-              title: ''
-              options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -1784,11 +1779,6 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'http://example.com'
-              title: ''
-              options: {  }
           field_c_p_theme:
             -
               value: light
@@ -1827,11 +1817,6 @@ default:
           field_c_p_embed_url:
             -
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
-              title: ''
-              options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'http://example.com'
               title: ''
               options: {  }
           field_c_p_theme:
@@ -1874,12 +1859,7 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'http://example.com'
-              title: ''
-              options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -1922,11 +1902,6 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'http://example.com'
-              title: ''
-              options: {  }
           field_c_p_theme:
             -
               value: dark
@@ -1967,11 +1942,6 @@ default:
               uri: 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
               title: ''
               options: {  }
-          field_c_p_share_link:
-            -
-              uri: 'http://example.com'
-              title: ''
-              options: {  }
           field_c_p_theme:
             -
               value: dark
@@ -2001,7 +1971,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -2064,7 +2034,7 @@ default:
           revision_translation_affected:
             -
               value: true
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -2132,7 +2102,7 @@ default:
               uri: 'https://www.google.com'
               title: Google
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -2205,7 +2175,7 @@ default:
               uri: 'https://www.google.com'
               title: Google
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_summary:
@@ -2314,7 +2284,7 @@ default:
                   field_c_p_title:
                     -
                       value: 'Slider Slide 1'
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -2521,7 +2491,7 @@ default:
                   field_c_p_title:
                     -
                       value: 'Slider Slide 1'
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: both
           field_c_p_theme:
@@ -2675,6 +2645,6 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_space:
+  field_c_n_vertical_spacing:
     -
       value: both

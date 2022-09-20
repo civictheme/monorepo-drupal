@@ -115,7 +115,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   }
 
   $form['#attributes']['data-ct-filter'] = '';
-  $form['#attributes']['data-ct-filter-type'] = $listing_use_large_filter ? 'group' : 'basic';
+  $form['#attributes']['data-ct-filter-type'] = $listing_use_large_filter ? 'group' : 'single';
   $form['#attributes']['data-ct-filter-ajax-submit-timeout'] = $listing_use_large_filter ? 500 : 0;
 
   // Made preprocessors know that we are using a large filter.
@@ -258,9 +258,10 @@ function civictheme_preprocess_views_view(&$variables) {
     }
   }
 
-  // Header is displayed within card container.
+  // Header is displayed within List.
   if ($view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     unset($variables['header']);
+    $variables['rows_header'] = $view->header['result']->render();
   }
 
   // Adding template required classes in for civictheme component.
@@ -309,11 +310,13 @@ function _civictheme_automated_list_preprocess_view($paragraph, ViewExecutable &
 
     $settings = [
       'theme' => civictheme_get_field_theme_value($paragraph),
+      'content' => civictheme_get_field_value($paragraph, 'field_c_p_content'),
       'card_theme' => civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme'),
+      'rows_header' => isset($view->header['result']) ? $view->header['result']->render() : NULL,
       'link_above' => $link_above_data,
       'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
       'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,
-      'vertical_space' => civictheme_get_field_value($paragraph, 'field_c_p_space') ?? '',
+      'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing') ?? '',
       'show_filters' => civictheme_get_field_value($paragraph, 'field_c_p_list_show_filters') ?? FALSE,
       'link_below' => $link_below_data,
       'cache_tags' => $paragraph->getCacheTags(),
@@ -336,7 +339,7 @@ function civictheme_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'] ?? NULL;
 
   $variables['modifier_class'] = 'ct-card-container--listing';
-  // On Grid view title should be added to card container.
+  // On Grid view title should be added to list.
   if ($view && $view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     $variables['title'] = $view->header['result']->render();
   }

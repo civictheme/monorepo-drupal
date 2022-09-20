@@ -20,7 +20,7 @@ Feature: Fields on CivicTheme Event content type
     And I should see the text "Summary" in the "field_c_n_summary" row
     And I should see the text "Thumbnail" in the "field_c_n_thumbnail" row
     And I should see the text "Topics" in the "field_c_n_topics" row
-    And I should see the text "With space" in the "field_c_n_space" row
+    And I should see the text "Vertical spacing" in the "field_c_n_vertical_spacing" row
 
   @api
   Scenario: CivicTheme Page content type form has the relevant fields
@@ -53,10 +53,10 @@ Feature: Fields on CivicTheme Event content type
     And should not see a "input#edit-field-c-n-thumbnail-open-button.required" element
     And should not see a "input#edit-field-c-n-thumbnail-open-button[disabled]" element
 
-    And I see field "With space"
-    And should see an "select#edit-field-c-n-space" element
-    And should not see a "select#edit-field-c-n-space.required" element
-    And should not see a "select#edit-field-c-n-space[disabled]" element
+    And I see field "Vertical spacing"
+    And should see an "select#edit-field-c-n-vertical-spacing" element
+    And should not see a "select#edit-field-c-n-vertical-spacing.required" element
+    And should not see a "select#edit-field-c-n-vertical-spacing[disabled]" element
 
     And I see field "Hide sidebar"
     And should see an "input#edit-field-c-n-hide-sidebar-value" element

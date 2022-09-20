@@ -30,7 +30,7 @@ settings:
       civictheme_accordion_panel:
         enabled: true
         weight: 7
-      civictheme_card_container:
+      civictheme_manual_list:
         weight: 8
         enabled: false
       civictheme_task_card:

@@ -87,40 +87,40 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Spacing - none.
    */
-  public static function civicthemeSpaceTypeNone() {
+  public static function civicthemeVerticalSpacingTypeNone() {
     return '';
   }
 
   /**
    * Spacing - top.
    */
-  public static function civicthemeSpaceTypeTop() {
+  public static function civicthemeVerticalSpacingTypeTop() {
     return 'top';
   }
 
   /**
    * Spacing - bottom.
    */
-  public static function civicthemeSpaceTypeBottom() {
+  public static function civicthemeVerticalSpacingTypeBottom() {
     return 'bottom';
   }
 
   /**
    * Spacing - both.
    */
-  public static function civicthemeSpaceTypeBoth() {
+  public static function civicthemeVerticalSpacingTypeBoth() {
     return 'both';
   }
 
   /**
    * Types of spaces.
    */
-  public static function civicthemeSpaceTypes() {
+  public static function civicthemeVerticalSpacingTypes() {
     return [
-      static:: civicthemeSpaceTypeNone(),
-      static:: civicthemeSpaceTypeTop(),
-      static:: civicthemeSpaceTypeBottom(),
-      static:: civicthemeSpaceTypeBoth(),
+      static:: civicthemeVerticalSpacingTypeNone(),
+      static:: civicthemeVerticalSpacingTypeTop(),
+      static:: civicthemeVerticalSpacingTypeBottom(),
+      static:: civicthemeVerticalSpacingTypeBoth(),
     ];
   }
 
@@ -203,6 +203,20 @@ trait CsGeneratedContentCivicthemeTrait {
   }
 
   /**
+   * Expose single listing filter type.
+   */
+  public static function civicThemeExposeSingleFilter() {
+    return ['topic'];
+  }
+
+  /**
+   * Expose multiple filter types.
+   */
+  public static function civicThemeExposeMultipleFilters() {
+    return ['topic', 'type', 'title'];
+  }
+
+  /**
    * Static Site sections.
    */
   public static function civicthemeStaticSiteSections($count = NULL) {
@@ -231,7 +245,7 @@ trait CsGeneratedContentCivicthemeTrait {
     $defaults = [
       'content' => '',
       'theme' => static::civicthemeThemeLight(),
-      'space' => static::civicthemeSpaceTypeTop(),
+      'vertical_spacing' => static::civicthemeVerticalSpacingTypeTop(),
       'background' => FALSE,
     ];
 
@@ -247,8 +261,8 @@ trait CsGeneratedContentCivicthemeTrait {
     }
 
     // Space.
-    if (!empty($options['space'])) {
-      $options['space'] = static::civicthemeValueFromOptions(static::civicthemeSpaceTypes(), $options['space']);
+    if (!empty($options['vertical_spacing'])) {
+      $options['vertical_spacing'] = static::civicthemeValueFromOptions(static::civicthemeVerticalSpacingTypes(), $options['vertical_spacing']);
     }
 
     // Background.
@@ -556,21 +570,21 @@ trait CsGeneratedContentCivicthemeTrait {
     }
 
     $defaults = [
-      'automated_list_type' => static::civicthemeAutomatedListType(),
-      'automated_list_content_type' => static::civicthemePageContentType(),
-      'automated_list_item_view_as' => static::civicthemePromoCardType(),
-      'automated_list_filters_exp' => FALSE,
-      'automated_list_item_theme' => static::civicthemeThemeLight(),
-      'automated_list_limit' => 0,
-      'automated_list_limit_type' => self::civicthemeAutomatedListLimitTypeUnlimited(),
-      'automated_list_link_above' => NULL,
-      'automated_list_link_below' => NULL,
-      'automated_list_show_filters' => FALSE,
-      'automated_list_site_sections' => NULL,
+      'list_type' => static::civicthemeAutomatedListType(),
+      'list_content_type' => static::civicthemePageContentType(),
+      'list_item_view_as' => static::civicthemePromoCardType(),
+      'list_filters_exp' => FALSE,
+      'list_item_theme' => static::civicthemeThemeLight(),
+      'list_limit' => 0,
+      'list_limit_type' => self::civicthemeAutomatedListLimitTypeUnlimited(),
+      'list_link_above' => NULL,
+      'list_link_below' => NULL,
+      'list_show_filters' => FALSE,
+      'list_site_sections' => NULL,
       'theme' => static::civicthemeThemeLight(),
       'title' => NULL,
-      'automated_list_topics' => NULL,
-      'space' => static::civicthemeSpaceTypeNone(),
+      'list_topics' => NULL,
+      'vertical_spacing' => static::civicthemeVerticalSpacingTypeNone(),
     ];
 
     $options += $defaults;
@@ -579,15 +593,15 @@ trait CsGeneratedContentCivicthemeTrait {
       return NULL;
     }
 
-    if ($options['automated_list_limit_type'] == static::civicthemeAutomatedListLimitTypeLimited()) {
-      $options['automated_list_limit'] = $options['automated_list_limit'] ?? rand(9, 20);
+    if ($options['list_limit_type'] == static::civicthemeAutomatedListLimitTypeLimited()) {
+      $options['list_limit'] = $options['list_limit'] ?? rand(9, 20);
     }
     else {
-      $options['automated_list_limit'] = $options['automated_list_limit'] ?? 0;
+      $options['list_limit'] = $options['list_limit'] ?? 0;
     }
 
-    if ($options['automated_list_show_filters']) {
-      $options['automated_list_filters_exp'] = $options['automated_list_filters_exp'] ?? [];
+    if ($options['list_show_filters']) {
+      $options['list_filters_exp'] = $options['list_filters_exp'] ?? [];
     }
 
     $paragraph = self::civicthemeParagraphAttach('civictheme_automated_list', $node, $field_name, $options);
@@ -676,13 +690,18 @@ trait CsGeneratedContentCivicthemeTrait {
   /**
    * Attach Card container paragraph to a node.
    */
-  public static function civicthemeParagraphCardContainerAttach($node, $field_name, $options) {
+  public static function civicthemeParagraphManualListAttach($node, $field_name, $options) {
     if (!$node->hasField($field_name)) {
       return;
     }
 
     $defaults = [
       'column_count' => NULL,
+      'theme' => self::civicthemeThemeLight(),
+      'list_item_view_as' => static::civicthemePromoCardType(),
+      'list_item_theme' => self::civicthemeThemeLight(),
+      'list_link_above' => NULL,
+      'list_link_below' => NULL,
     ];
 
     $options += $defaults;
@@ -696,7 +715,7 @@ trait CsGeneratedContentCivicthemeTrait {
       unset($options['cards']);
     }
 
-    $paragraph = self::civicthemeParagraphAttach('civictheme_card_container', $node, $field_name, $options);
+    $paragraph = self::civicthemeParagraphAttach('civictheme_manual_list', $node, $field_name, $options);
 
     if (empty($paragraph)) {
       return;
@@ -708,9 +727,9 @@ trait CsGeneratedContentCivicthemeTrait {
         if (!empty($card_options['type'])) {
           $type = $card_options['type'];
           unset($card_options['type']);
-          $card = self::civicthemeParagraphAttach($type, $paragraph, 'field_c_p_cards', $card_options, TRUE);
+          $card = self::civicthemeParagraphAttach($type, $paragraph, 'field_c_p_list_items', $card_options, TRUE);
           if (!empty($card)) {
-            $paragraph->field_c_p_cards->appendItem($card);
+            $paragraph->field_c_p_list_items->appendItem($card);
           }
         }
       }

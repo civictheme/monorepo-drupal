@@ -37,8 +37,8 @@ export const Tag = (knobTab) => {
       generalKnobTab,
     ),
     content: text('Content', 'Tag content', generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   const iconKnobTab = 'Icon';

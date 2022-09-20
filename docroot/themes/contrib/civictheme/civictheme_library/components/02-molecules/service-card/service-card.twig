@@ -11,6 +11,7 @@
  *   - is_new_window [boolean] Open link in a new window.
  *   - is_external [boolean] Link is external or not.
  * - title: [string] The text of card title.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -18,7 +19,7 @@
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="ct-service-card {{ modifier_class }}">
+<div class="ct-service-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   <div class="ct-service-card__content">
     {% block content_top %}
       {% if content_top is not empty %}

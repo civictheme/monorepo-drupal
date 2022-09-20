@@ -15,13 +15,14 @@
 <div class="ct-single-filter__list--row">
   {% include '@atoms/chip/chip.twig' with {
     theme: theme,
-    kind: is_multiple ? 'checkbox': 'radio',
-    text: text,
+    kind: 'input',
+    content: text,
     size: 'small',
     name: name,
     id: id,
     attributes: attributes,
     is_selected: is_selected,
+    is_multiple: is_multiple,
     modifier_class: modifier_class
   } only %}
 </div>

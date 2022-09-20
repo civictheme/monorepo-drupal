@@ -18,7 +18,7 @@
     align-items: center;
     text-decoration: none;
     padding: ct-spacing(2);
-    border-bottom: solid 4px;
+    border-bottom: solid ct-particle(0.5);
 
     .ct-button__icon {
       margin-left: ct-spacing(0.5);

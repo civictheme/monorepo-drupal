@@ -126,6 +126,7 @@ export const BasicContent = (knobTab) => {
     content: boolean('Content', true, generalKnobTab) ? html : null,
     is_contained: boolean('Contained', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeBasicContent({

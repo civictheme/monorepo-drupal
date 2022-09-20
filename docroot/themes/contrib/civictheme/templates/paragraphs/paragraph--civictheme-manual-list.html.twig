@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * CivicTheme theme implementation for Manual list.
+ */
+#}
+{% extends '@organisms/list/list.twig' %}
+
+{% block rows %}
+  {% if rows -%}
+    <div class="ct--List__body">
+      {% include '@base/item-grid/item-grid.twig' with {
+        title: title,
+        column_count: column_count,
+        fill_width: fill_width,
+        items: rows,
+        modifier_class: modifier_class,
+        theme: theme,
+        vertical_space: vertical_space,
+        with_background: with_background
+      } only %}
+    </div>
+  {% endif %}
+{% endblock %}

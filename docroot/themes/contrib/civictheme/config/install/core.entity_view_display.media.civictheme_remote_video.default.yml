@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - field.field.media.civictheme_remote_video.field_c_m_oembed_video
-    - field.field.media.civictheme_remote_video.field_c_m_share_link
     - field.field.media.civictheme_remote_video.field_c_m_transcript
     - field.field.media.civictheme_remote_video.field_c_m_transcript_link
     - media.type.civictheme_remote_video
@@ -19,33 +18,21 @@ content:
   field_c_m_oembed_video:
     type: oembed
     label: visually_hidden
-    weight: 0
     settings:
       max_width: 0
       max_height: 0
     third_party_settings: {  }
-    region: content
-  field_c_m_share_link:
-    weight: 1
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
+    weight: 0
     region: content
   field_c_m_transcript:
-    weight: 4
+    type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 4
     region: content
   field_c_m_transcript_link:
-    weight: 2
+    type: link
     label: above
     settings:
       trim_length: 80
@@ -54,7 +41,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 2
     region: content
 hidden:
   created: true

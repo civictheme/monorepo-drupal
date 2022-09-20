@@ -5,85 +5,94 @@
  */
 #}
 
-{{ html }}
-
 <div class="example-container">
   <div class="example-container__title">Headings</div>
   <div class="example-container__content">
-    {% for i in 1..6 %}
-      {% include '@atoms/heading/heading.twig' with {
-        content: 'The quick brown fox jumps over the lazy dog',
-        level: i
-      } only %}
+    {% for level in 1..6 %}
+      <h{{ level }}>
+        The quick brown fox jumps over the lazy dog
+      </h{{ level }}>
     {% endfor %}
   </div>
 </div>
 
 <div class="example-container">
   <div class="example-container__title">Text</div>
-    {% for i in ['extra-large', 'large', 'regular', 'small'] %}
-      <div class="example-container__content ct-text-{{ i }}">
-        Pellentesque in ipsum id orci porta dapibus. convallis at tellus Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
-      </div>
-    {% endfor %}
-  </div>
+  {% for type in ['extra-large', 'large', 'regular', 'small'] %}
+    <div class="example-container__content ct-text-{{ type }}">
+      Text - {{ type }}. Pellentesque in ipsum id orci porta dapibus. convallis
+      at tellus Curabitur non nulla sit amet nisl tempus convallis quis ac
+      lectus.
+    </div>
+  {% endfor %}
 </div>
 
 <div class="example-container">
   <div class="example-container__title">Labels</div>
-  {% for i in ['extra-large', 'large', 'regular', 'small', 'extra-small'] %}
-    <div class="example-container__content ct-label-{{ i }}">
-      Label - {{ i }}
+  {% for type in ['extra-large', 'large', 'regular', 'small', 'extra-small'] %}
+    <div class="example-container__content ct-label-{{ type }}">
+      Label - {{ type }}
     </div>
   {% endfor %}
 </div>
-</div>
 
 <div class="example-container">
-  <div class="example-container__title">Paragraph 1</div>
+  <div class="example-container__title">Text styles</div>
   <div class="example-container__content">
-    <p>Pellentesque in ipsum id orci porta dapibus. convallis at tellus Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Pellentesque in ipsum id orci porta dapibus.
+    <p>
+      Nulla quis lorem ut <a href="https://example.com">example link in
+        paragraph</a> libero malesuada feugiat.
     </p>
-    <blockquote>Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Donec rutrum congue leo eget malesuada.</blockquote>
+    <p><strong>Bold: Nulla quis lorem ut libero malesuada feugiat.</strong></p>
+    <p><em>Italic: Nulla quis lorem ut libero malesuada feugiat.</em></p>
+    <p>
+      <span style="text-decoration: underline;">Underline: Nulla quis lorem ut libero malesuada feugiat.</span>
+    </p>
+    <p>
+      <span style="text-decoration: line-through;">Strikethrouh: Nulla quis lorem ut libero malesuada feugiat.</span>
+    </p>
+    <p>Date: 20<sup>th&nbsp;</sup>August 2022</p>
+    <p>H<sub>2</sub>0</p>
   </div>
 </div>
 
 <div class="example-container">
-  <div class="example-container__title">Paragraph 2</div>
+  <div class="example-container__title">Paragraphs</div>
   <div class="example-container__content">
-    <p>Internal links:
-    <ul>
-      <li>{% include '@atoms/link/link.twig' with {
-          text: 'Example link 1',
-          url: '/abc-test-link-1',
-        } only %}</li>
-      <li>{% include '@atoms/link/link.twig' with {
-          text: 'Example link 2',
-          url: '/abc-test-link-2',
-        } only %}</li>
-    </ul>
+    <p>Pellentesque in ipsum id orci porta dapibus. convallis at tellus
+      Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+      Pellentesque in ipsum id orci porta dapibus.
     </p>
-    <p>External links:
-    <ul>
-      <li>{% include '@atoms/link/link.twig' with {
-          text: 'External link 1',
-          url: 'http://example.com/asdf',
-          is_external: true,
-        } only %}</li>
-      <li>{% include '@atoms/link/link.twig' with {
-          text: 'External link 2',
-          url: 'http://example.com/qwer',
-          is_external: true,
-        } only %}</li>
-    </ul>
+    <p>Pellentesque in ipsum id orci porta dapibus. convallis at tellus
+      Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+      Pellentesque in ipsum id orci porta dapibus.
     </p>
+    <p>Pellentesque in ipsum id orci porta dapibus. convallis at tellus
+      Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+      Pellentesque in ipsum id orci porta dapibus.
+    </p>
+  </div>
+</div>
 
-    <p><strong>Bold: Nulla quis lorem ut libero malesuada feugiat.</strong></p>
-    <p><em>Italic: Nulla quis lorem ut libero malesuada feugiat.</em></p>
-    <p><span style="text-decoration: underline;">Underline: Nulla quis lorem ut libero malesuada feugiat.</span></p>
-    <p><span style="text-decoration: line-through;">Strikethrouh: Nulla quis lorem ut libero malesuada feugiat.</span></p>
-    <p>Date: 20<sup>th&nbsp;</sup>August 2022</p>
-    <p>H<sub>2</sub>0</p></p>
+<div class="example-container">
+  <div class="example-container__title">Blockquote</div>
+  <div class="example-container__content">
+    <p>
+      Pellentesque in ipsum id orci porta dapibus. convallis at tellus
+      Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+      Pellentesque in ipsum id orci porta dapibus.
+    </p>
+    <blockquote>
+      Vivamus suscipit tortor eget felis porttitor volutpat.
+      Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+      cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper
+      sit amet ligula. Donec rutrum congue leo eget malesuada.
+    </blockquote>
+    <p>
+      Pellentesque in ipsum id orci porta dapibus. convallis at tellus
+      Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+      Pellentesque in ipsum id orci porta dapibus.
+    </p>
   </div>
 </div>
 
@@ -99,7 +108,8 @@
     </ul>
   </div>
 
-  <div class="example-container__title">Unordered list with sub unordered list</div>
+  <div class="example-container__title">Unordered list with sub unordered list
+  </div>
   <div class="example-container__content">
     <ul>
       <li>List item 1</li>
@@ -122,7 +132,8 @@
     </ul>
   </div>
 
-  <div class="example-container__title">Unordered list with sub ordered list</div>
+  <div class="example-container__title">Unordered list with sub ordered list
+  </div>
   <div class="example-container__content">
     <ul>
       <li>List item 1</li>
@@ -178,11 +189,7 @@
               <li>Ordered list item 5</li>
             </ol>
           </li>
-          <li>Ordered list item 5 - {% include '@atoms/link/link.twig' with {
-              text: 'External link 2',
-              url: 'http://example.com/qwer',
-              is_external: true,
-            } only %}</li>
+          <li>Ordered list item 5</li>
         </ol>
       </li>
       <li>Ordered list item 4</li>
@@ -190,7 +197,8 @@
     </ol>
   </div>
 
-  <div class="example-container__title">Ordered list with sub unordered list</div>
+  <div class="example-container__title">Ordered list with sub unordered list
+  </div>
   <div class="example-container__content">
     <ol>
       <li>Ordered list item 1

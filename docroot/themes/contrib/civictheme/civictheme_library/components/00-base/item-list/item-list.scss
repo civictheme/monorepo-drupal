@@ -21,6 +21,12 @@
     #{$root}__list__item {
       margin-right: ct-spacing(2);
     }
+
+    &#{$root}--no-gutter {
+      #{$root}__list__item {
+        margin-right: 0;
+      }
+    }
   }
 
   &--vertical {
@@ -30,6 +36,12 @@
 
     #{$root}__list__item {
       margin-bottom: ct-spacing(2);
+    }
+
+    &#{$root}--no-gutter {
+      #{$root}__list__item {
+        margin-bottom: 0;
+      }
     }
   }
 }

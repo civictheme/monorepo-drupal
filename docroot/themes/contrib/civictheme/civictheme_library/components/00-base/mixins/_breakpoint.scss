@@ -27,12 +27,16 @@
 //
 // @endcode
 //
-@mixin ct-breakpoint($class) {
-  @if map.get($ct-breakpoints, $class) == null {
-    @error '"#{$class}" is not an available breakpoint. (#{map-keys($ct-breakpoints)})';
+@mixin ct-breakpoint($name) {
+  @if ct-string-is-quoted($name) {
+    $name: ct-unquote($name);
   }
 
-  @include breakpoint(map.get($ct-breakpoints, $class)) {
+  @if map.get($ct-breakpoints, $name) == null {
+    @error '"#{$name}" is not an available breakpoint. (#{map-keys($ct-breakpoints)})';
+  }
+
+  @include breakpoint(map.get($ct-breakpoints, $name)) {
     @content;
   }
 }

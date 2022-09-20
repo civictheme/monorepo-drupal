@@ -5,18 +5,6 @@
 .ct-accordion {
   $root: &;
 
-  &.ct-accordion--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-accordion-space-vertical);
-  }
-
-  &.ct-accordion--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-accordion-space-vertical);
-  }
-
-  &.ct-accordion--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-accordion-space-vertical);
-  }
-
   &__inner {
     display: block;
   }
@@ -29,7 +17,7 @@
 
   &__list-item {
     position: relative;
-    border: 1px solid;
+    border: ct-particle(0.125) solid;
     border-radius: $ct-accordion-item-border-radius;
     margin-bottom: ct-spacing(2);
 

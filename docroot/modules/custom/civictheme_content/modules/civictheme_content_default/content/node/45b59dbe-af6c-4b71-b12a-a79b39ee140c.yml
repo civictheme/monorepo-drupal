@@ -67,7 +67,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<p>A short, one-sentence vision or mission statement works well here.&nbsp;&nbsp;</p>\r\n\r\n<p><a class=\"civictheme-button civictheme-button--primary civictheme-button--regular civictheme-theme-light\" href=\"/about-us\">Learn about our mission</a></p>\r\n"
+              value: "<p>A short, one-sentence vision or mission statement works well here.&nbsp;&nbsp;</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-us\">Learn about our mission</a></p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
@@ -79,7 +79,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 0787b004-028c-4029-bca3-03cfb46a80c1
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -94,7 +94,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -264,7 +264,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 57eca1d1-bb72-4087-9ab6-eb3ac0e51a96
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -279,7 +279,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -414,7 +414,7 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: bottom
           field_c_p_theme:
@@ -446,7 +446,7 @@ default:
               uri: 'internal:/'
               title: 'Callout text link '
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: bottom
           field_c_p_summary:
@@ -467,6 +467,6 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_space:
+  field_c_n_vertical_spacing:
     -
       value: both

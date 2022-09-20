@@ -12,11 +12,16 @@
  */
 #}
 
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set size = size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? size : 'regular' %}
-{% set size_class = 'ct-label--%s'|format(size) %}
+{% set size_class = 'ct-field-label--%s'|format(size) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
 
 {% if content is not empty -%}
-  <label class="ct-label {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>{% if content is not empty %}{{ content }}{% endif %}</label>
+  <label
+    class="ct-label {{ modifier_class }}"
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
+    {{ content }}
+  </label>
 {%- endif %}

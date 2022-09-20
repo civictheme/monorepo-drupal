@@ -124,7 +124,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 1c4f8f87-be91-4a93-82f0-8191389693c4
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -142,7 +142,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -196,7 +196,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: dd0be3d7-2c8b-4e47-b056-4932340e2066
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -214,7 +214,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -439,6 +439,6 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_space:
+  field_c_n_vertical_spacing:
     -
       value: both

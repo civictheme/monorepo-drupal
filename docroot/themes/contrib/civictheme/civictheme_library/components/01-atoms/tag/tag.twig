@@ -17,13 +17,13 @@
  */
 #}
 
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set type = type in ['primary', 'secondary', 'tertiary'] ? type : 'primary' %}
 {% set type_class = 'ct-tag--%s'|format(type) %}
 {% set icon_class = icon is not empty ? 'ct-tag--with-icon' : '' %}
 {% set icon_placement_class = icon ? 'ct-tag--icon-%s'|format(icon_placement|default('before')) : '' %}
 {% set icon_size = icon_size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? icon_size : 'small' %}
 {% set is_external = is_external ? 'ct-tag--external ct-icon--upper-right-arrow--after--' ~ icon_size : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, type_class, icon_class, icon_placement_class, is_external, modifier_class|default('')) %}
 
 {% set tag = url is not empty ? 'a' : 'span' %}
@@ -66,5 +66,5 @@
     {% if attributes is not empty %}
       {{ attributes|raw }}
     {% endif %}
-  >{{ text|trim }}</{{ tag }}>
+  >{{ text }}</{{ tag }}>
 {% endif %}

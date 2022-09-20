@@ -10,16 +10,24 @@
   }
 }
 
-div {
-  @include ct-typography('text-regular');
+@for $level from 1 through 6 {
+  h#{$level} {
+    @include ct-typography('heading-#{$level}');
+  }
 }
 
 p {
+  @include ct-typography('text-regular');
+
   margin-top: $ct-basic-content-vertical-spacing;
   margin-bottom: $ct-basic-content-vertical-spacing;
 
   &:first-child {
     margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -34,7 +42,7 @@ blockquote {
 
   &::before {
     content: '';
-    width: rem(6px);
+    width: ct-particle(0.75);
     height: 100%;
     position: absolute;
     top: 0;

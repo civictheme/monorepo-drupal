@@ -15,16 +15,17 @@
  * - date: [string] Date text.
  * - url: [string] URL for link out from Card
  * - is_external: [boolean] Link is external.
+ * - attributes: [string] Additional attributes.
  * - modifier_class:[string] Additional classes.
  */
 #}
 
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set type_class = image is empty ? 'ct-promo-card--no-image' : '' %}
 {% set image_over_class = image_over ? 'ct-promo-card--image-over' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, type_class, image_over_class, modifier_class|default('')) %}
 
-<div class="ct-promo-card {{ modifier_class }}">
+<div class="ct-promo-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   {% block image %}
     {% if image.src is not empty or image_over is not empty %}
       <div class="ct-promo-card__image-wrapper">
@@ -67,11 +68,14 @@
         {% if title is not empty %}
           <div class="ct-promo-card__title">
             {% if url is not empty %}
-            <a class="ct-promo-card__title-link" href="{{ url }}" {% if is_external %}title="Opens in new tab" target="_blank"{% endif %}>
-            {% endif %}
+            {% include '@atoms/link/link.twig' with {
+              theme: theme,
+              text: title,
+              url: url,
+              is_new_window: is_external,
+            } only %}
+            {% else %}
               {{ title }}
-            {% if url is not empty %}
-            </a>
             {% endif %}
           </div>
         {% endif %}

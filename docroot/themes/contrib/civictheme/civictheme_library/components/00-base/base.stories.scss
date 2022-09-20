@@ -51,11 +51,11 @@
   padding: 1em;
   text-align: center;
   font-family: sans-serif;
-  border: dotted 1px purple;
+  border: dotted ct-particle(0.125) purple;
 
   .ct-theme-dark & {
     background-color: color.adjust(white, $alpha: -0.7);
-    border: dotted 1px purple;
+    border: dotted ct-particle(0.125) purple;
   }
 }
 
@@ -75,12 +75,12 @@
   padding: 1em;
   text-align: center;
   font-family: sans-serif;
-  border: dotted 1px $_color;
+  border: dotted ct-particle(0.125) $_color;
   color: color.adjust($_color, $alpha: -0.1);
 
   .ct-theme-dark & {
     background-color: color.adjust($_color, $alpha: -0.7);
-    border: dotted 1px $_color;
+    border: dotted ct-particle(0.125) $_color;
     color: color.adjust($_color, $alpha: 0.1);
   }
 }
@@ -93,7 +93,7 @@
   #{$root}__title {
     @include ct-typography('label-large');
 
-    border-bottom: solid 1px;
+    border-bottom: solid ct-particle(0.125);
     margin-bottom: ct-spacing(2);
 
     code {
@@ -165,7 +165,7 @@
 .docs-container {
   $root: &;
 
-  border: solid 1px #ccc;
+  border: solid ct-particle(0.125) #ccc;
   padding: ct-spacing(4);
   margin: ct-spacing(4) auto;
   max-width: 60%;

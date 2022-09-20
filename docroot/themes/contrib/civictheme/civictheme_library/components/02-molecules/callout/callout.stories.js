@@ -26,8 +26,8 @@ export const Callout = (knobTab) => {
     ),
     title: text('Title', 'Callout title from knob', generalKnobTab),
     summary: text('Summary', 'Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.', generalKnobTab),
-    vertical_space: radios(
-      'Vertical space',
+    vertical_spacing: radios(
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',
@@ -87,6 +87,7 @@ export const Callout = (knobTab) => {
       },
     ],
     modifier_class: `story-wrapper-size--large ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   const html = CivicThemeCallout(calloutKnobs);

@@ -14,12 +14,13 @@
  * - apply_text: [string] Text for apply button.
  * - filter_count_suffix: [string] JSON formatted suffixes { "1": "Item", "default": "Items" }
  * - desktop_breakpoint: [string] Breakpoint to display desktop (group) view.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set with_background_class = with_background ? 'civictheme-group-filter--with-background' : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set with_background_class = with_background ? 'ct-group-filter--with-background' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, with_background_class, modifier_class|default('')) %}
 
 {% set filter_title = filter_title|default('Filter search results by:') %}
@@ -32,13 +33,14 @@
 
 {% if filters is not empty %}
   <div
-    class="civictheme-group-filter {{ modifier_class }}"
-    data-component-name="civictheme-group-filter"
+    class="ct-group-filter {{ modifier_class }}"
+    data-component-name="ct-group-filter"
     data-group-filter-theme="{{ theme }}"
     {% if desktop_breakpoint %}
       data-responsive
       data-group-filter-desktop-breakpoint="{{ desktop_breakpoint }}"
     {% endif %}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
   >
     {% include "@atoms/button/button.twig" with {
       theme: theme,
@@ -46,17 +48,17 @@
       text: filter_text,
       kind: 'button',
       icon: 'userinterface_filteron',
-      modifier_class: 'civictheme-group-filter__mobile-toggle hide-m',
-      attributes: 'data-group-filter-mobile-toggle data-flyout-open-trigger data-flyout-target=.civictheme-group-filter-flyout data-allow-event-bubble'
+      modifier_class: 'ct-group-filter__mobile-toggle hide-m',
+      attributes: 'data-group-filter-mobile-toggle data-flyout-open-trigger data-flyout-target=.ct-group-filter-flyout data-allow-event-bubble'
     } only %}
     <div
-      class="civictheme-group-filter__mobile-toggle-display civictheme-group-filter__mobile-toggle-display--hidden hide-m"
+      class="ct-group-filter__mobile-toggle-display ct-group-filter__mobile-toggle-display--hidden hide-m"
       data-group-filter-mobile-toggle-display
       data-group-filter-mobile-toggle-display-suffix="{{ filter_count_suffix|url_encode }}"
     ></div>
-    <div class="civictheme-group-filter-flyout hide-m" data-group-filter-mobile-overlay data-flyout data-flyout-direction="right">
-      <div class="civictheme-group-filter__mobile-overlay" data-flyout-panel>
-        <div class="civictheme-mobile-navigation-close">
+    <div class="ct-group-filter-flyout hide-m" data-group-filter-mobile-overlay data-flyout data-flyout-direction="right">
+      <div class="ct-group-filter__mobile-overlay" data-flyout-panel>
+        <div class="ct-mobile-navigation-close">
           {% include '@atoms/button/button.twig' with {
             theme: theme,
             type: 'button',
@@ -65,51 +67,51 @@
             icon: 'userinterface_close',
             icon_placement: 'after',
             attributes: 'data-flyout-close-all-trigger data-group-filter-mobile-cancel',
-            modifier_class: 'civictheme-mobile-navigation-close__button civictheme-group-filter__mobile-cancel',
+            modifier_class: 'ct-mobile-navigation-close__button ct-group-filter__mobile-cancel',
           } only %}
         </div>
         <div class="container">
           <div class="row">
             <div class="col-xxs-12">
-              <div class="civictheme-group-filter__mobile-selected-filters">
-                <h2 class="civictheme-group-filter__mobile-filter-title">{{ filter_title }}</h2>
-                <div class="civictheme-group-filter__selected-filters--hidden" data-group-filter-mobile-selected-filters>
-                  <div class="civictheme-group-filter__mobile-clear-container" data-group-filter-mobile-clear-container></div>
-                  <div class="civictheme-group-filter__mobile-tags" data-group-filter-mobile-tags-container></div>
+              <div class="ct-group-filter__mobile-selected-filters">
+                <h2 class="ct-group-filter__mobile-filter-title">{{ filter_title }}</h2>
+                <div class="ct-group-filter__selected-filters--hidden" data-group-filter-mobile-selected-filters>
+                  <div class="ct-group-filter__mobile-clear-container" data-group-filter-mobile-clear-container></div>
+                  <div class="ct-group-filter__mobile-tags" data-group-filter-mobile-tags-container></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="civictheme-group-filter__mobile-container" data-group-filter-mobile-container></div>
-        <div class="container civictheme-group-filter__mobile-apply-container">
+        <div class="ct-group-filter__mobile-container" data-group-filter-mobile-container></div>
+        <div class="container ct-group-filter__mobile-apply-container">
           {% include "@atoms/button/button.twig" with {
             theme: theme,
             text: apply_text,
             type: 'primary',
             kind: 'button',
-            modifier_class: 'civictheme-group-filter__mobile-apply',
+            modifier_class: 'ct-group-filter__mobile-apply',
             attributes: 'data-flyout-close-all-trigger data-flyout-trigger-allow-default'
           } only %}
         </div>
       </div>
     </div>
-    <div class="civictheme-group-filter__desktop-container" data-group-filter-desktop-container>
+    <div class="ct-group-filter__desktop-container" data-group-filter-desktop-container>
       <div class="container" data-group-filter-element>
         <div class="row">
           <div class="col-xxs-12">
-            <fieldset class="civictheme-group-filter__filters" data-group-filter-filters>
+            <fieldset class="ct-group-filter__filters" data-group-filter-filters>
               <legend class="hide-xxs show-m">{{ filter_title }}</legend>
               {{ filters }}
             </fieldset>
-            <div class="civictheme-group-filter__selected-filters civictheme-group-filter__selected-filters--hidden" data-group-filter-selected-filters>
-              <span id="civictheme-group-filter-tags-title" class="civictheme-group-filter__selected-filters-title">{{ tags_title }}</span>
+            <div class="ct-group-filter__selected-filters ct-group-filter__selected-filters--hidden" data-group-filter-selected-filters>
+              <span id="ct-group-filter-tags-title" class="ct-group-filter__selected-filters-title">{{ tags_title }}</span>
               <div data-group-filter-tags-container>
-                <div class="civictheme-group-filter__tags" aria-labelledby="civictheme-group-filter-tags-title" data-group-filter-tags></div>
+                <div class="ct-group-filter__tags" aria-labelledby="ct-group-filter-tags-title" data-group-filter-tags></div>
               </div>
-              <div class="civictheme-group-filter__clear-container" data-group-filter-clear-container>
-                <button class="civictheme-group-filter__clear-all" data-group-filter-clear>
-                  <span class="civictheme-group-filter__clear-all-label">{{ clear_text }}</span>
+              <div class="ct-group-filter__clear-container" data-group-filter-clear-container>
+                <button class="ct-group-filter__clear-all" data-group-filter-clear>
+                  <span class="ct-group-filter__clear-all-label">{{ clear_text }}</span>
                   {% include '@base/icon/icon.twig' with {
                     symbol: 'userinterface_close_2',
                     color: 'error',

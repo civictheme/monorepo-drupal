@@ -113,20 +113,6 @@ function _civictheme_preprocess_media__civictheme_video_links(&$variables) {
   /** @var \Drupal\media\MediaInterface $media */
   $media = $variables['media'];
 
-  if (civictheme_field_has_value($media, 'field_c_m_share_link')) {
-    $share_attributes = new Attribute();
-    $share_attributes->setAttribute('aria-label', t('Share this video @label', [
-      '@label' => $media->label(),
-    ]));
-    $variables['share_link'] = [
-      'text' => !empty($media->get('field_c_m_share_link')->first()->get('title')->getValue()) ? $media->get('field_c_m_share_link')->first()->get('title')->getValue() : t('Share this video'),
-      'is_external' => $media->get('field_c_m_share_link')->first()->isExternal(),
-      'is_new_window' => $media->get('field_c_m_share_link')->first()->isExternal(),
-      'url' => $media->get('field_c_m_share_link')->first()->getUrl()->toString(),
-      'attributes' => $share_attributes,
-    ];
-  }
-
   $transcript_attributes = new Attribute();
   $transcript_attributes->setAttribute('aria-label', t('View transcript @label', [
     '@label' => $media->label(),

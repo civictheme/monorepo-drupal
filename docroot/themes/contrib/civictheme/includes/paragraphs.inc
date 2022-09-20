@@ -5,8 +5,6 @@
  * Paragraph theme alterations.
  */
 
-use Drupal\Component\Utility\Html;
-
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
@@ -35,6 +33,7 @@ function _civictheme_preprocess_paragraph__civictheme_card(&$variables) {
   // Cards that are generated via reference are handled separately.
   if ($paragraph->hasField('field_c_p_reference')) {
     _civictheme_preprocess_paragraph__reference_card($variables);
+
     return;
   }
   // @todo documentation for the field api ie they must have certain fields in
@@ -56,9 +55,6 @@ function _civictheme_preprocess_paragraph(&$variables) {
     $variables['content'] = \Drupal::service('renderer')->render($variables['content']['field_c_p_content']);
   }
 
-  // Generic Drupal classes from paragraph template files.
-  _civictheme_preprocess_paragraph_classes($variables);
-
   // Global paragraph fields.
   _civictheme_preprocess_paragraph__field__title($variables);
   _civictheme_preprocess_paragraph__field__summary($variables);
@@ -66,20 +62,6 @@ function _civictheme_preprocess_paragraph(&$variables) {
   _civictheme_preprocess_paragraph__field__background($variables);
   _civictheme_preprocess_paragraph__civictheme_card($variables);
   _civictheme_preprocess_paragraph__field__webform($variables);
-}
-
-/**
- * Pre-process drupal generic paragraph classes.
- *
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
-function _civictheme_preprocess_paragraph_classes(&$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $variables['attributes']['class'][] = 'paragraph';
-  $variables['attributes']['class'][] = Html::cleanCssIdentifier('paragraph--type--' . $paragraph->bundle());
-  $variables['attributes']['class'][] = Html::cleanCssIdentifier('paragraph--view-mode--' . $variables['view_mode']);
-  $variables['attributes']['class'][] = !$paragraph->isPublished() ? 'paragraph--unpublished' : '';
 }
 
 /**
@@ -105,13 +87,13 @@ function _civictheme_preprocess_paragraph__field__title(&$variables) {
 }
 
 /**
- * Pre-process "With space" for CivicTheme paragraphs.
+ * Pre-process "Vertical spacing" for CivicTheme paragraphs.
  */
 function _civictheme_preprocess_paragraph__field__space(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  if (civictheme_field_has_value($paragraph, 'field_c_p_space')) {
-    $variables['vertical_space'] = civictheme_get_field_value($paragraph, 'field_c_p_space');
+  if (civictheme_field_has_value($paragraph, 'field_c_p_vertical_spacing')) {
+    $variables['vertical_spacing'] = civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing');
   }
 }
 
@@ -123,6 +105,10 @@ function _civictheme_preprocess_paragraph__field__background(&$variables) {
   $paragraph = $variables['paragraph'];
   if (civictheme_get_field_value($paragraph, 'field_c_p_background')) {
     $component_name = str_replace('_', '-', $paragraph->getType());
+    // Components are namespaced `civictheme_<COMPONENT_NAME>`
+    // Front-end are namespaced `ct-attachment--with-background` so need to
+    // convert to front-end naming guide.
+    $component_name = str_replace('civictheme', 'ct', $component_name);
     if (!array_key_exists('modifier_class', $variables)) {
       $variables['modifier_class'] = '';
     }
@@ -160,7 +146,7 @@ function _civictheme_preprocess_paragraph__card__image(&$variables) {
 function _civictheme_get_card_types() {
   // @todo extend to allow for child theme - implement as theme setting.
   return [
-    'civictheme_card_container',
+    'civictheme_manual_list',
     'civictheme_event_card_ref',
     'civictheme_event_card',
     'civictheme_navigation_card_ref',

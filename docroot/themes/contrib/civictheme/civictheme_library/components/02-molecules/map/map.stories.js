@@ -25,10 +25,9 @@ export const Map = (knobTab) => {
     ),
     url: text('URL', 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed', generalKnobTab),
     address: text('Address', 'Australia', generalKnobTab),
-    share_link: text('Share Link', randomUrl(), generalKnobTab),
     view_link: text('View Link', randomUrl(), generalKnobTab),
-    vertical_space: radios(
-      'Vertical space',
+    vertical_spacing: radios(
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',
@@ -38,6 +37,8 @@ export const Map = (knobTab) => {
       'none',
       generalKnobTab,
     ),
+    modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeMap({

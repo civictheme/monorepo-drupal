@@ -19,7 +19,7 @@
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if src is not empty %}
-  <figure class="ct-figure {{ modifier_class }}">
+  <figure class="ct-figure {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% include '@atoms/image/image.twig' with {
       theme: theme,
       src: src,

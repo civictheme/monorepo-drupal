@@ -17,8 +17,8 @@
  *   - url: [string] Link URL.
  *   - modifier_class: [string] Additional link classes.
  *   - attributes: [string] Additional link attributes.
- * - modifier_class: [string] Additional classes.
  * - attributes: [string] Additional classes.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
@@ -59,6 +59,7 @@
   <div class="ct-tabs {{ modifier_class }}" data-tabs-panel {% if attributes is not empty %}{{ attributes }}{% endif %}>
     {% include '@base/item-list/item-list.twig' with {
       items: link_items,
+      no_gutter: true,
       modifier_class: 'ct-tabs__links',
     } only %}
 

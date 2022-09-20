@@ -3,18 +3,6 @@
 //
 
 .ct-map {
-  &.ct-map--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-map-space-vertical);
-  }
-
-  &.ct-map--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-map-space-vertical);
-  }
-
-  &.ct-map--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-map-space-vertical);
-  }
-
   &__canvas {
     position: relative;
     height: 0;

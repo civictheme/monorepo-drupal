@@ -1,5 +1,7 @@
 // phpcs:ignoreFile
-import { number, radios, text } from '@storybook/addon-knobs';
+import {
+  boolean, number, radios, text,
+} from '@storybook/addon-knobs';
 
 import CivicThemeItemList from './item-list.twig';
 import { generateItems, placeholder } from '../base.stories';
@@ -24,6 +26,7 @@ export const ItemList = (knobTab) => {
       'horizontal',
       generalKnobTab,
     ),
+    no_gutter: boolean('No gutter', false, generalKnobTab),
     items: generateItems(number(
       'Items count',
       5,

@@ -1,23 +1,28 @@
 // phpcs:ignoreFile
 import {
-  boolean, radios, number, text, date,
+  boolean, date, number, radios, text,
 } from '@storybook/addon-knobs';
 
 import {
   demoImage,
   randomDropdownFilter,
   randomFormElement,
+  randomText,
   randomUrl,
 } from '../../00-base/base.stories';
 
-import CivicThemeGroupFilter from '../../02-molecules/group-filter/group-filter.twig';
-import CivicThemeSingleFilter from '../../02-molecules/single-filter/single-filter.twig';
+import CivicThemeGroupFilter
+  from '../../02-molecules/group-filter/group-filter.twig';
+import CivicThemeSingleFilter
+  from '../../02-molecules/single-filter/single-filter.twig';
 
-import CivicThemeCardContainer from '../card-container/card-container.twig';
+import CivicThemeItemGrid from '../../00-base/item-grid/item-grid.twig';
 import PromoCard from '../../02-molecules/promo-card/promo-card.twig';
-import NavigationCard from '../../02-molecules/navigation-card/navigation-card.twig';
+import NavigationCard
+  from '../../02-molecules/navigation-card/navigation-card.twig';
 
-import CivicThemePagination from '../../02-molecules/pagination/pagination.twig';
+import CivicThemePagination
+  from '../../02-molecules/pagination/pagination.twig';
 import CivicThemeList from './list.twig';
 
 export default {
@@ -49,10 +54,10 @@ export const List = (knobTab) => {
   const filterType = radios(
     'Filter type',
     {
-      Large: 'large',
-      Basic: 'basic',
+      Group: 'group',
+      Single: 'single',
     },
-    'large',
+    'group',
     generalKnobTab,
   );
 
@@ -121,6 +126,8 @@ export const List = (knobTab) => {
     };
   }
 
+  generalKnobs.content = boolean('With content', false, generalKnobTab) ? randomText() : null;
+
   let filterCount;
   if (showFilters) {
     filterCount = number(
@@ -137,7 +144,7 @@ export const List = (knobTab) => {
   }
 
   const verticalSpace = radios(
-    'Vertical space',
+    'Vertical spacing',
     {
       None: 'none',
       Top: 'top',
@@ -151,7 +158,7 @@ export const List = (knobTab) => {
   const withBackground = boolean('With background', false, generalKnobTab);
 
   generalKnobs.with_background = withBackground;
-  generalKnobs.vertical_space = verticalSpace;
+  generalKnobs.vertical_spacing = verticalSpace;
   generalKnobs.modifier_class = text('Additional class', '', generalKnobTab);
 
   // Build filters.
@@ -166,7 +173,7 @@ export const List = (knobTab) => {
 
     if (filterCount > 0) {
       for (let i = 0; i < filterCount; i++) {
-        if (filterType === 'large') {
+        if (filterType === 'group') {
           const inputType = ['radio', 'checkbox'][Math.round(Math.random() * 2)];
           filters.push(randomDropdownFilter(inputType, 4, theme, true, count++));
         } else {
@@ -177,7 +184,7 @@ export const List = (knobTab) => {
       }
     }
 
-    if (filterType === 'large') {
+    if (filterType === 'geoup') {
       generalKnobs.filters = CivicThemeGroupFilter({
         theme,
         filter_title: 'Filter search results by:',
@@ -271,9 +278,9 @@ export const List = (knobTab) => {
       cards.push(Card(cardsProps));
     }
 
-    generalKnobs.rows = CivicThemeCardContainer({
+    generalKnobs.rows = CivicThemeItemGrid({
       theme,
-      cards,
+      items: cards,
       column_count: viewItemAs === 'promo' ? 3 : 2,
       fill_width: false,
       with_background: withBackground,

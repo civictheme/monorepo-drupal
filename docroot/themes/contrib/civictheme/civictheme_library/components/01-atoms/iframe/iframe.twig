@@ -7,14 +7,20 @@
  * - url: [string] URL for the iframe src.
  * - width: [integer] Optional width of the iframe.
  * - height: [integer] Optional height of the iframe.
- * - vertical_space: [string] With top, bottom or both vertical spaces.
- * - modifier_class: [string] Additional classes.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-iframe--vertical-space-%s'|format(vertical_space) : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
 
-<iframe class="ct-iframe {{ modifier_class }}" {% if url %}src="{{ url }}"{% endif %} {% if width %}width="{{ width }}"{% endif %} {% if height %}height="{{ height }}"{% endif %} {% if attributes %}{{ attributes|raw }}{% endif %}></iframe>
+<iframe
+  class="ct-iframe {{ modifier_class }}"
+  {% if url %}src="{{ url }}"{% endif %}
+  {% if width %}width="{{ width }}"{% endif %}
+  {% if height %}height="{{ height }}"{% endif %}
+  {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+></iframe>
