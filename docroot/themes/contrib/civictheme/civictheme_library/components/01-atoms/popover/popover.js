@@ -17,7 +17,7 @@ function CivicThemePopover(el) {
     return;
   }
 
-  const trigger = this.getTrigger(el);
+  const trigger = el;
   const content = this.getContent(el);
 
   // Exit early if trigger or content were not found.
@@ -47,20 +47,21 @@ function CivicThemePopover(el) {
     this.button.addEventListener('focusout', this.hidePopover.bind(this));
     this.content.addEventListener('mouseleave', this.hidePopover.bind(this));
 
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', () => {
       // Check if the filter list parent element exist.
-      const isClosest = e.target.closest('[data-popover-visible][data-popover-content]');
-
-      if (!isClosest && el.hasAttribute('data-popover-visible')) {
-        this.hidePopover(el);
-      }
+      const isClosest = this.findPopover(el);
+      document.querySelectorAll('[data-popover-content]').forEach((elClose) => {
+        if (elClose !== isClosest) {
+          this.hidePopover(elClose);
+        }
+      });
     });
   }
 
   if (typeof Popper !== 'undefined') {
     // Pass the button, the Popover, and some options, and Popper will do the
     // magic positioning for you:
-    this.el.popper = window.Popper.createPopper(this.button, this.content, {
+    this.content.popper = window.Popper.createPopper(this.button, this.content, {
       placement: 'auto-start',
       modifiers: [
         {
@@ -75,17 +76,19 @@ function CivicThemePopover(el) {
 }
 
 /**
- * Get trigger element.
+ * Close content element.
  */
-CivicThemePopover.prototype.getTrigger = function (el) {
-  return el.querySelector('[data-popover-button]') || el.firstElementChild || null;
+CivicThemePopover.prototype.closeContent = function () {
+  document.querySelectorAll('[data-popover-content]').forEach((el) => {
+    el.removeAttribute('data-popover-visible');
+  });
 };
 
 /**
  * Get content element.
  */
 CivicThemePopover.prototype.getContent = function (el) {
-  return el.querySelector('[data-popver-content]') || this.getTrigger(el).nextElementSibling || null;
+  return document.querySelector(`[data-popover-id=${el.getAttribute('data-popover-trigger-id')}]`) || el.querySelector('[data-popover-content]') || el.nextElementSibling || null;
 };
 
 /**
@@ -96,7 +99,7 @@ CivicThemePopover.prototype.destroy = function (el) {
     return;
   }
 
-  const trigger = this.getTrigger(el);
+  const trigger = el;
   const content = this.getContent(el);
 
   // Exit early if trigger or content were not found.
@@ -128,11 +131,11 @@ CivicThemePopover.prototype.togglePopover = function (e) {
   e.stopPropagation();
   e.preventDefault();
   e.stopImmediatePropagation();
-
   const popover = this.findPopover(e.target);
   if (popover && popover.hasAttribute('data-popover-visible')) {
     this.hidePopover(e);
   } else {
+    this.closeContent();
     this.showPopover(e);
   }
 };
@@ -149,6 +152,7 @@ CivicThemePopover.prototype.showPopover = function (e) {
 
   const popover = this.findPopover(e.target || e);
   if (popover) {
+    this.closeContent();
     popover.setAttribute('data-popover-visible', '');
     popover.popper.update();
   }
@@ -174,12 +178,10 @@ CivicThemePopover.prototype.hidePopover = function (e) {
  * Find button element.
  */
 CivicThemePopover.prototype.findPopover = function (el) {
-  if (el.hasAttribute('data-popover')) {
-    return el;
-  }
-  return el.closest('[data-popover]');
+  const popover = this.getContent(el);
+  return popover;
 };
 
-document.querySelectorAll('[data-popover]').forEach((el) => {
+document.querySelectorAll('[data-popover-trigger]').forEach((el) => {
   new CivicThemePopover(el);
 });

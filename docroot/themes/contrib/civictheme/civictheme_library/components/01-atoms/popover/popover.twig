@@ -5,29 +5,16 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - trigger_event: [string] Trigger event: click, hover.
- * - trigger_text: [string] Trigger text.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set trigger_event = trigger_event in ['click', 'hover'] ? trigger_event : 'click' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if content %}
-  <div class="ct-popover {{ modifier_class }}" data-popover {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-    {% set trigger_attributes = 'data-popover-trigger data-popover-trigger-event="' ~ trigger_event ~ '"' %}
-    {% include '@atoms/link/link.twig' with {
-      theme: theme,
-      text: trigger_text,
-      attributes: trigger_attributes,
-      icon: icon,
-      icon_placement: icon_placement,
-    } only %}
-    <div data-popover-content>
-      {{ content }}
-    </div>
+  <div class="ct-popover {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %} data-popover data-popover-content data-popover-id="{{data_popover_id}}">
+    {{ content }}
   </div>
 {% endif %}
