@@ -21,37 +21,37 @@ export const Attachment = (knobTab) => {
       url: randomUrl(),
       text: 'DOC type document',
       last_updated: date,
-      icon: 'fileandfolders_wordfile',
+      icon: 'download-file',
     },
     {
       url: randomUrl(),
       text: 'DOCX type document',
       last_updated: date,
-      icon: 'fileandfolders_wordfile',
+      icon: 'download-file',
     },
     {
       url: randomUrl(),
       text: 'PDF type document',
       last_updated: date,
-      icon: 'fileandfolders_pdffile',
+      icon: 'download-file',
     },
     {
       url: randomUrl(),
       text: 'PPT type document',
       last_updated: date,
-      icon: 'fileandfolders_clipboard_3',
+      icon: 'download-file',
     },
     {
       url: randomUrl(),
       text: 'XLSX type document',
       last_updated: date,
-      icon: 'fileandfolders_document',
+      icon: 'download-file',
     },
     {
       url: randomUrl(),
       text: 'XLS type document',
       last_updated: date,
-      icon: 'fileandfolders_document',
+      icon: 'download-file',
     },
   ];
 

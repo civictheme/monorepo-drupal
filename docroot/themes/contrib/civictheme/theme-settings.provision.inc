@@ -666,9 +666,11 @@ function _civictheme_provision__blocks__menu_blocks() {
  *   Data structure of block.
  */
 function _civictheme_provision__blocks__banner(array $block) {
+  $theme_name = \Drupal::config('system.theme')->get('default');
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
-  $block_content->field_c_b_background_image = civictheme_provision_load_media_by_name('civictheme_background_1.png');
+  $block_content->field_c_b_background_image = civictheme_provision_load_media_by_name("{$theme_name}_background_1.png");
   $block_content->field_c_b_theme = 'dark';
+  $block_content->field_c_b_blend_mode = 'soft-light';
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
