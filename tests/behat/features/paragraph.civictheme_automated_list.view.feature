@@ -155,7 +155,7 @@ Feature: View of Page content with Listing component
 
     And I should see an ".ct-list__filters .views-exposed-form" element
 
-  @api @javascript
+  @api @javascript @skipped
   Scenario: Listing, exposed filters, filtering
     Given I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "Page Automated list component" has "civictheme_automated_list" paragraph:
