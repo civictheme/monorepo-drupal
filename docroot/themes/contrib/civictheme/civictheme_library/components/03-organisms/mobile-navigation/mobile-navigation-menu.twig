@@ -77,7 +77,7 @@ Copied as-is from '@base/menu/menu.twig'.
         {% endif %}
 
         {% if item.below %}
-          {{ menus.menu_links_below(item.below, menu_level + 1, classes, theme, is_collapsible, key) }}
+          {{ menus.menu_links_below(item.below, menu_level + 1, classes, item) }}
         {% endif %}
 
       </li>
@@ -100,7 +100,7 @@ Overrides for generation of child links.
   {% include '@atoms/button/button.twig' with {
     theme: theme,
     kind: 'link',
-    icon: 'upper-right-arrow',
+    icon: 'right-arrow-2',
     size: 'regular',
     modifier_class: 'ct-mobile-navigation__open-subsection-trigger',
     attributes: 'data-flyout-open-trigger',
@@ -114,7 +114,7 @@ Overrides for generation of child links.
         {% include '@atoms/button/button.twig' with {
           theme: theme,
           kind: 'link',
-          icon: 'arrows_leftarrow_1',
+          icon: 'left-arrow-outline',
           icon_placement: 'before',
           size: 'regular',
           text: parent_item.title,
