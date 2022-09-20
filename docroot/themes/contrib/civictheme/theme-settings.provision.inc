@@ -944,6 +944,17 @@ function civictheme_provision__simple_sitemap() {
 }
 
 /**
+ * Provision site settings.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_provision__site_settings() {
+  $config = \Drupal::service('config.factory')->getEditable('system.site');
+  $config->set('slogan', 'A design system by Salsa Digital');
+  $config->save();
+}
+
+/**
  * Map of roles and permissions to be granted.
  *
  * This allows to centrally manage additional permissions that may be
