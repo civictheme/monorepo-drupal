@@ -1,0 +1,100 @@
+//
+// Callout component.
+//
+
+.ct-callout {
+  $root: &;
+
+  &--wrapper {
+    border-radius: $ct-callout-border-radius;
+    display: flex;
+    flex-direction: column;
+    padding: ct-spacing(3) ct-spacing(3);
+    align-items: flex-start;
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+    margin: 0;
+
+    @include ct-breakpoint(m) {
+      padding: ct-spacing(3) ct-spacing(5) ct-spacing(4) ct-spacing(3);
+    }
+
+    @include ct-highlight-stripe($ct-callout-stripe-width, $ct-callout-border-radius, 0);
+  }
+
+  &__summary {
+    @include ct-typography('text-regular');
+
+    margin-top: ct-spacing(2);
+  }
+
+  &__title {
+    @include ct-typography('heading-4');
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    flex-wrap: wrap;
+
+    @include ct-breakpoint(m) {
+      flex-direction: row;
+    }
+
+    a {
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+      margin: ct-spacing() 0;
+
+      @include ct-breakpoint(m) {
+        margin: ct-spacing() ct-spacing() 0 0;
+      }
+    }
+
+    &:last-child {
+      @include ct-breakpoint(m) {
+        margin: ct-spacing() 0 0 0;
+      }
+    }
+  }
+
+  &.ct-theme-light {
+    #{$root}--wrapper {
+      @include ct-highlight-stripe-color($ct-callout-light-stripe-border-color);
+
+      background-color: $ct-callout-light-background-color;
+    }
+
+    .ct-callout {
+      &__title {
+        color: $ct-callout-light-heading-color;
+      }
+
+      &__summary {
+        color: $ct-callout-light-summary-color;
+      }
+    }
+  }
+
+  &.ct-theme-dark {
+    #{$root}--wrapper {
+      @include ct-highlight-stripe-color($ct-callout-dark-stripe-border-color);
+
+      background-color: $ct-callout-dark-background-color;
+    }
+
+    .ct-callout {
+      &__title {
+        color: $ct-callout-dark-heading-color;
+      }
+
+      &__summary {
+        color: $ct-callout-dark-summary-color;
+      }
+    }
+  }
+}

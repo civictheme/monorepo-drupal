@@ -71,6 +71,17 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
     '#validate' => ['_civictheme_form_system_theme_settings_provision_validate'],
     '#submit' => ['_civictheme_form_system_theme_settings_provision_submit'],
   ];
+  $form[]['#process'][] = '_civictheme_form_system_theme_settings_alter_provision_process';
+}
+
+/**
+ * Process provision form elements.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_alter_provision_process(&$element, FormStateInterface $form_state, &$complete_form) {
+  $form_state->addCleanValueKey('provision_types');
+  $form_state->addCleanValueKey('provision_clear_cache');
 }
 
 /**
@@ -79,11 +90,6 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
 function _civictheme_form_system_theme_settings_provision_validate(array &$form, FormStateInterface $form_state) {
-  // Do not store any provision settings as they are used only for on-page
-  // actions.
-  $form_state->addCleanValueKey('provision_types');
-  $form_state->addCleanValueKey('provision_clear_cache');
-
   $triggering_element = $form_state->getTriggeringElement();
   $button_name = $triggering_element['#name'] ?? '';
 
@@ -666,9 +672,11 @@ function _civictheme_provision__blocks__menu_blocks() {
  *   Data structure of block.
  */
 function _civictheme_provision__blocks__banner(array $block) {
+  $theme_name = \Drupal::config('system.theme')->get('default');
   $block_content = civictheme_provision_create_block_content($block['type'], $block['name'], $block['uuid']);
-  $block_content->field_c_b_background_image = civictheme_provision_load_media_by_name('civictheme_background_1.png');
+  $block_content->field_c_b_background_image = civictheme_provision_load_media_by_name("{$theme_name}_background_1.png");
   $block_content->field_c_b_theme = 'dark';
+  $block_content->field_c_b_blend_mode = 'soft-light';
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
 }
@@ -740,7 +748,7 @@ function _civictheme_provision__blocks__signup(array $block) {
     'title' => 'Sign up',
   ];
   $paragraph->field_c_p_theme = 'dark';
-  $paragraph->field_c_p_space = 'top';
+  $paragraph->field_c_p_vertical_spacing = 'top';
   $block_content->field_c_b_components->appendItem($paragraph);
   $block_content->save();
   civictheme_provision_place_block($block['name'], $block['region'], $block_content->uuid());
@@ -859,14 +867,29 @@ function civictheme_provision__theme_settings() {
     'dark',
   ];
   $breakpoints = ['desktop', 'mobile'];
+  $logo_types = ['primary', 'secondary'];
   foreach ($themes as $theme) {
-    foreach ($breakpoints as $breakpoint) {
-      $components['logo']["image_{$theme}_{$breakpoint}"] = "$theme_path/dist/assets/logos/{$theme_name}_logo_{$theme}_{$breakpoint}.png";
+    foreach ($logo_types as $logo_type) {
+      foreach ($breakpoints as $breakpoint) {
+        $components['logo']["image_{$logo_type}_{$theme}_{$breakpoint}"] = "$theme_path/dist/assets/logos/{$theme_name}_logo_{$logo_type}_{$theme}_{$breakpoint}.png";
+      }
     }
   }
   $components['logo']['image_alt'] = 'CivicTheme demo logo';
   $components['header']['theme'] = 'light';
+  $components['header']['logo_type'] = 'default';
   $components['footer']['theme'] = 'dark';
+  $components['footer']['logo_type'] = 'default';
+
+  $components['navigation']['primary_navigation']['dropdown'] = 'drawer';
+  $components['navigation']['primary_navigation']['dropdown_columns'] = 4;
+  $components['navigation']['primary_navigation']['dropdown_columns_fill'] = FALSE;
+  $components['navigation']['primary_navigation']['is_animated'] = FALSE;
+
+  $components['navigation']['secondary_navigation']['dropdown'] = 'dropdown';
+  $components['navigation']['secondary_navigation']['dropdown_columns'] = 4;
+  $components['navigation']['secondary_navigation']['dropdown_columns_fill'] = FALSE;
+  $components['navigation']['secondary_navigation']['is_animated'] = FALSE;
 
   $config = \Drupal::service('config.factory')->getEditable("$theme_name.settings");
 
@@ -934,6 +957,17 @@ function civictheme_provision__simple_sitemap() {
   }
 
   \Drupal::service('simple_sitemap.generator')->customLinkManager()->add('/', $settings);
+}
+
+/**
+ * Provision site settings.
+ *
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
+function civictheme_provision__site_settings() {
+  $config = \Drupal::service('config.factory')->getEditable('system.site');
+  $config->set('slogan', 'A design system by Salsa Digital');
+  $config->save();
 }
 
 /**

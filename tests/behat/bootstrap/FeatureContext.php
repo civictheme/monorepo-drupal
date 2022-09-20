@@ -214,4 +214,51 @@ class FeatureContext extends DrupalContext {
     ");
   }
 
+  /**
+   * Assert link with a href does not exist.
+   *
+   * Note that simplified wildcard is supported in "href".
+   *
+   * @code
+   * Then I should not see the link "About us" with "/about-us"
+   * Then I should not see the link "About us" with "/about-us" in ".main-nav"
+   * Then I should not see the link "About us" with "/about*" in ".main-nav"
+   * @endcode
+   *
+   * @Then I should not see the link :text with :href
+   * @Then I should not see the link :text with :href in :locator
+   *
+   * @todo Remove with next behat-steps release.
+   */
+  public function linkAssertTextHrefNotExists($text, $href, $locator = NULL) {
+    /** @var \Behat\Mink\Element\DocumentElement $page */
+    $page = $this->getSession()->getPage();
+
+    if ($locator) {
+      $element = $page->find('css', $locator);
+      if (!$element) {
+        return;
+      }
+    }
+    else {
+      $element = $page;
+    }
+
+    $link = $element->findLink($text);
+    if (!$link) {
+      return;
+    }
+
+    if (!$link->hasAttribute('href')) {
+      return;
+    }
+
+    $pattern = '/' . preg_quote($href, '/') . '/';
+    // Support for simplified wildcard using '*'.
+    $pattern = strpos($href, '*') !== FALSE ? str_replace('\*', '.*', $pattern) : $pattern;
+    if (preg_match($pattern, $link->getAttribute('href'))) {
+      throw new \Exception(sprintf('The link href "%s" matches the specified href "%s" but should not', $link->getAttribute('href'), $href));
+    }
+  }
+
 }

@@ -5,27 +5,40 @@
 //
 // Mixins.
 //
-@mixin civictheme-link-base() {
-  text-decoration: underline;
-  text-decoration-thickness: rem(1px);
-  text-underline-offset: civictheme-space(0.375);
-  padding: civictheme-space(0.375) 0 civictheme-space(0.25);
 
-  &:hover,
-  &:focus {
-    text-decoration: none;
+@mixin ct-icon-inline($content) {
+  content: $content;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: ct-particle(3);
+  height: ct-particle(3);
+  fill: currentcolor;
+  vertical-align: -webkit-baseline-middle;
+}
+
+@mixin ct-link-base() {
+  @include ct-link-decoration(false, false, true, false);
+  @include ct-typography('label-regular');
+
+  text-decoration-thickness: ct-particle(0.125);
+  text-underline-offset: ct-spacing(0.375);
+  padding: ct-spacing(0.375) 0 ct-spacing(0.25);
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 50%;
   }
 
-  .civictheme-link__link-icon {
-    margin-right: rem(4px);
+  .ct-link__link-icon {
+    margin-right: ct-particle(0.5);
   }
 
-  &.civictheme-link--external {
+  &.ct-link--external {
     position: relative;
-    padding-right: civictheme-icon-size-dimension('regular', 'm', 'width');
+    padding-right: ct-icon-size-dimension('regular', 'm', 'width');
 
     &::after {
-      @include civictheme-icon-inline($civictheme-link-icon-external);
+      @include ct-icon-inline($ct-link-icon-external);
 
       position: absolute;
       right: 0;
@@ -34,57 +47,39 @@
   }
 
   &,
-  &.civictheme-theme-light {
-    color: $civictheme-link-light-color;
+  &.ct-theme-light {
+    @include ct-link-colors(
+      $ct-link-light-color,
+      $ct-link-light-hover-color,
+      $ct-link-light-visited-color,
+      $ct-link-light-active-color,
+    );
 
     &:focus {
-      @include civictheme-outline();
-
-      border-radius: $civictheme-link-border-radius;
+      @include ct-outline();
+      @include ct-outline-border();
     }
 
-    &:hover {
-      background-color: $civictheme-link-light-hover-background-color;
-      color: $civictheme-link-light-hover-color;
+    .ct-link__external-icon {
+      vertical-align: middle;
     }
   }
 
-  &.civictheme-theme-dark {
-    color: $civictheme-link-dark-color;
+  &.ct-theme-dark {
+    @include ct-link-colors(
+      $ct-link-dark-color,
+      $ct-link-dark-hover-color,
+      $ct-link-dark-visited-color,
+      $ct-link-dark-active-color,
+    );
 
     &:focus {
-      @include civictheme-outline(true);
-
-      border-radius: $civictheme-link-border-radius;
+      @include ct-outline();
+      @include ct-outline-border();
     }
 
-    &:hover {
-      background-color: $civictheme-link-dark-hover-background-color;
-      color: $civictheme-link-dark-hover-color;
-    }
-  }
-
-  &:visited {
-    @include civictheme-link-visited();
-  }
-}
-
-@mixin civictheme-link-visited() {
-  &.civictheme-theme-light {
-    color: $civictheme-link-light-visited-color;
-
-    &:hover {
-      background-color: $civictheme-link-light-visited-hover-background-color;
-      color: $civictheme-link-light-visited-hover-color;
-    }
-  }
-
-  &.civictheme-theme-dark {
-    color: $civictheme-link-dark-visited-color;
-
-    &:hover {
-      background-color: $civictheme-link-dark-visited-hover-background-color;
-      color: $civictheme-link-dark-visited-hover-color;
+    .ct-link__external-icon {
+      vertical-align: middle;
     }
   }
 }
@@ -93,6 +88,6 @@
 // Classes.
 //
 
-.civictheme-link {
-  @include civictheme-link-base();
+.ct-link {
+  @include ct-link-base();
 }

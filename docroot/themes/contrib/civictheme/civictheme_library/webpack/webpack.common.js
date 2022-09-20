@@ -1,4 +1,5 @@
 // phpcs:ignoreFile
+
 const path = require('path');
 const glob = require('glob');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -19,6 +20,9 @@ module.exports = {
     // Add explicitly imported (S)CSS entries from css.js.
     entries.main.push(path.resolve(__dirname, 'css.js'));
     entries.main.push(path.resolve(__dirname, 'assets.js'));
+
+    // Add libraries.
+    entries.main.push(path.resolve(__dirname, 'libraries.js'));
 
     // Add explicitly css_variables.js.
     entries.variables.push(path.resolve(__dirname, 'css_variables.js'));
@@ -84,7 +88,7 @@ module.exports = {
             options: {
               // Inject path to assets so that it does not have to be provided
               // in variables.base.scss
-              additionalData: "$civictheme-assets-directory: './assets/';",
+              additionalData: "$ct-assets-directory: './assets/';",
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),

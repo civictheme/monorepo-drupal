@@ -1,0 +1,191 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.civictheme_automated_list.field_c_p_background
+    - field.field.paragraph.civictheme_automated_list.field_c_p_column_count
+    - field.field.paragraph.civictheme_automated_list.field_c_p_content
+    - field.field.paragraph.civictheme_automated_list.field_c_p_fill_width
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_content_type
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_filters_exp
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_item_theme
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_item_view_as
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_limit
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_limit_type
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_link_above
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_link_below
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_show_filters
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_site_sections
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_topics
+    - field.field.paragraph.civictheme_automated_list.field_c_p_list_type
+    - field.field.paragraph.civictheme_automated_list.field_c_p_theme
+    - field.field.paragraph.civictheme_automated_list.field_c_p_title
+    - field.field.paragraph.civictheme_automated_list.field_c_p_vertical_spacing
+    - paragraphs.paragraphs_type.civictheme_automated_list
+  module:
+    - link
+    - options
+    - text
+id: paragraph.civictheme_automated_list.default
+targetEntityType: paragraph
+bundle: civictheme_automated_list
+mode: default
+content:
+  field_c_p_background:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_c_p_column_count:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 17
+    region: content
+  field_c_p_content:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  field_c_p_fill_width:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 18
+    region: content
+  field_c_p_list_content_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_c_p_list_filters_exp:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_c_p_list_item_theme:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_c_p_list_item_view_as:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_c_p_list_limit:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_c_p_list_limit_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_c_p_list_link_above:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_c_p_list_link_below:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_c_p_list_show_filters:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_c_p_list_site_sections:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_c_p_list_topics:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_c_p_list_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_c_p_theme:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_c_p_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_c_p_vertical_spacing:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden: {  }

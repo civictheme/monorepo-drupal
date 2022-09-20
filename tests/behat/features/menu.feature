@@ -31,14 +31,14 @@ Feature: Open external links in a new tab
     When I go to "/admin/structure/block/add/menu_block:test-new-menu/civictheme_demo?region=footer_top_1"
     And I press "Save"
     Given I visit civictheme_page "[TEST] Page Internal"
-    And I should see the '.civictheme-secondary-navigation__menu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
-    And I should see the '.civictheme-primary-navigation__menu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
-    And I should see the '.civictheme-side-navigation__menu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
+    And I should see the '.ct-secondary-navigation a[href="https://example.com"]' element with the "target" attribute set to '_blank'
+    And I should see the '.ct-primary-navigation a[href="https://example.com"]' element with the "target" attribute set to '_blank'
+    And I should see the '.ct-side-navigation a[href="https://example.com"]' element with the "target" attribute set to '_blank'
     And I should see the '#block-testnewmenu a[href="https://example.com"]' element with the "target" attribute set to '_blank'
 
   @api
   Scenario: Mobile navigation blocks are provisioned
     Given I am an anonymous user
     When I go to homepage
-    Then I should see an ".civictheme-mobile-navigation__top-menu-wrapper" element
-    Then I should see an ".civictheme-mobile-navigation__bottom-menu-wrapper" element
+    Then I should see an ".ct-mobile-navigation__top-menu-wrapper" element
+    Then I should see an ".ct-mobile-navigation__bottom-menu-wrapper" element

@@ -1,0 +1,77 @@
+{#
+/**
+ * @file
+ * Chip component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - kind: [string] Chip kind: default, input.
+ * - size: [string] Chip size: large, regular, small.
+ * - content: [string] Chip text.
+ * - name: [string] Name attribute.
+ * - is_disabled: [boolean] Disabled or not.
+ * - is_dismissible: [boolean] Can be dismissed or not.
+ * - is_multiple: [boolean] Can be multiple.
+ * - is_selected: [boolean] Is the button selected (for filter chips).
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+{% set kind = kind in ['default', 'input'] ? kind : 'default' %}
+{% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
+{% set kind_class = kind ? 'ct-chip--%s'|format(kind) : '' %}
+{% set size_class = 'ct-chip--%s'|format(size) %}
+{% set multiple_class = is_multiple ? 'ct-chip--multiple' : '' %}
+{% set dismiss_class =  is_dismissible ? 'ct-chip--dismiss' : '' %}
+{% set selected_class =  is_selected ? 'active' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s %s %s %s'|format(theme_class, kind_class, size_class, selected_class, multiple_class, dismiss_class, modifier_class|default('')) %}
+
+{% set chip_content %}
+  {% if is_dismissible or (kind == 'input' and is_multiple) %}
+    {{ content }}
+    <span class="ct-chip__dismiss" data-chip-dismiss>
+      {% include '@base/icon/icon.twig' with {
+        symbol: 'cancel',
+        size: 'small',
+        modifier_class: 'ct-chip__icon ct-chip__icon--dismiss'
+      } only %}
+    </span>
+  {% else %}
+    {{ content }}
+  {% endif %}
+{% endset %}
+
+{% if content|trim is not empty %}
+  {% if kind == 'input' and is_multiple %}
+    <label
+      class="ct-chip {{ modifier_class }}"
+      data-component-name="chip">
+      <input
+        type="checkbox"
+        {% if is_selected %}checked="checked"{% endif %}
+        {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+      >
+      {{ chip_content }}
+    </label>
+  {% elseif kind == 'input' %}
+    <label
+      class="ct-chip {{ modifier_class }}"
+      data-component-name="chip">
+      <input
+        type="radio"
+        {% if is_selected %}checked="checked"{% endif %}
+        {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+      >
+      {{ chip_content }}
+    </label>
+  {% else %}
+    <span
+      class="ct-chip {{ modifier_class }}"
+      data-component-name="chip"
+      {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+    >
+      {{ chip_content }}
+    </span>
+  {% endif %}
+{% endif %}

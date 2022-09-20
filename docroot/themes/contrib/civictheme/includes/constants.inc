@@ -46,6 +46,26 @@ define('CIVICTHEME_HEADER_THEME_DEFAULT', CIVICTHEME_THEME_LIGHT);
 define('CIVICTHEME_FOOTER_THEME_DEFAULT', CIVICTHEME_THEME_DARK);
 
 /**
+ * Defines logo default type.
+ */
+define('CIVICTHEME_LOGO_TYPE_DEFAULT', 'default');
+
+/**
+ * Defines logo default type.
+ */
+define('CIVICTHEME_LOGO_TYPE_INLINE', 'inline');
+
+/**
+ * Defines logo default type.
+ */
+define('CIVICTHEME_LOGO_TYPE_STACKED', 'stacked');
+
+/**
+ * Defines footer default type.
+ */
+define('CIVICTHEME_FOOTER_TYPE_DEFAULT', 'default');
+
+/**
  * Defines 'default' banner style.
  */
 define('CIVICTHEME_BANNER_TYPE_DEFAULT', 'default');
@@ -56,31 +76,46 @@ define('CIVICTHEME_BANNER_TYPE_DEFAULT', 'default');
 define('CIVICTHEME_BANNER_TYPE_LARGE', 'large');
 
 /**
- * Defines Listing default view name.
+ * Defines Automated list default view name.
  */
-define('CIVICTHEME_LISTING_DEFAULT_VIEW_NAME', 'civictheme_listing');
+define('CIVICTHEME_AUTOMATED_LIST_DEFAULT_VIEW_NAME', 'civictheme_automated_list');
 
 /**
- * Defines Listing default view display name.
+ * Defines Automated list default view display name.
  */
-define('CIVICTHEME_LISTING_DEFAULT_VIEW_DISPLAY_NAME', 'block1');
+define('CIVICTHEME_AUTOMATED_LIST_DEFAULT_VIEW_DISPLAY_NAME', 'block1');
 
 /**
- * Defines Listing "limited" limit type.
+ * Defines Automated list "limited" limit type.
  */
-define('CIVICTHEME_LISTING_LIMIT_TYPE_LIMITED', 'limited');
+define('CIVICTHEME_AUTOMATED_LIST_LIMIT_TYPE_LIMITED', 'limited');
 
 /**
- * Defines Listing "unlimited" limit type.
+ * Defines Automated list "unlimited" limit type.
  */
-define('CIVICTHEME_LISTING_LIMIT_TYPE_UNLIMITED', 'unlimited');
+define('CIVICTHEME_AUTOMATED_LIST_LIMIT_TYPE_UNLIMITED', 'unlimited');
 
 /**
- * Defines Listing limit fallback.
+ * Defines Automated list limit fallback.
  */
-define('CIVICTHEME_LISTING_LIMIT_FALLBACK', 12);
+define('CIVICTHEME_AUTOMATED_LIST_LIMIT_FALLBACK', 12);
 
 /**
- * Defines Listing default theme.
+ * Defines Automated list default theme.
  */
-define('CIVICTHEME_LISTING_DEFAULT_THEME', CIVICTHEME_THEME_LIGHT);
+define('CIVICTHEME_AUTOMATED_LIST_DEFAULT_THEME', CIVICTHEME_THEME_LIGHT);
+
+/**
+ * Defines Navigation "none" dropdown type.
+ */
+define('CIVICTHEME_NAVIGATION_DROPDOWN_NONE', 'none');
+
+/**
+ * Defines Navigation "dropdown" dropdown type.
+ */
+define('CIVICTHEME_NAVIGATION_DROPDOWN_DROPDOWN', 'dropdown');
+
+/**
+ * Defines Navigation "drawer" dropdown type.
+ */
+define('CIVICTHEME_NAVIGATION_DROPDOWN_DRAWER', 'drawer');

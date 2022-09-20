@@ -5,13 +5,19 @@
 //
 // Set element outline.
 //
-@mixin civictheme-outline($is_accent: false) {
-  outline-offset: $civictheme-outline-offset;
+@mixin ct-outline($is_dark: false) {
+  outline-offset: $ct-outline-offset;
+  outline-width: $ct-outline-width;
+  outline-style: solid;
 
-  @if $is_accent {
-    outline: $civictheme-outline-dark;
+  @if $is_dark {
+    outline-color: $ct-outline-dark;
   }
   @else {
-    outline: $civictheme-outline-light;
+    outline-color: $ct-outline-light;
   }
+}
+
+@mixin ct-outline-border() {
+  border-radius: $ct-outline-border-radius;
 }

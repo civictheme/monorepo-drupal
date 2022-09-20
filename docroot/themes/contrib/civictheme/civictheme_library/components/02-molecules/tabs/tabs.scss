@@ -2,71 +2,91 @@
 // Tabs component.
 //
 
-.civictheme-tabs {
+.ct-tabs {
   $root: &;
 
-  margin-top: civictheme-space(2);
-
-  @include civictheme-typography('label-regular');
+  margin-top: ct-spacing(2);
 
   #{$root}__links {
     border-bottom-style: solid;
-    border-bottom-width: 1px;
+    border-bottom-width: ct-particle(0.125);
 
-    .civictheme-link-list__list__item {
+    .ct-link-list__list__item {
       margin-right: 0;
     }
 
-    .civictheme-link {
-      margin-bottom: -1px;
-      outline-offset: -3px;
+    .ct-link {
+      @include ct-typography('label-regular');
+      @include ct-link-decoration(false, false, false, false);
+
+      margin-bottom: -1 * ct-particle(0.125);
+      outline-offset: -1 * ct-particle(0.375);
       display: block;
+      padding: ct-spacing(1) ct-spacing(2);
+      border-radius: $ct-tabs-link-border-radius $ct-tabs-link-border-radius 0 0;
+      border: solid ct-particle(0.125);
 
-      @include civictheme-link-decoration(false, false, false, false);
-
-      padding: civictheme-space(1) civictheme-space(2);
-      border-radius: $civictheme-tabs-link-border-radius $civictheme-tabs-link-border-radius 0 0;
-      border: solid 1px;
-
-      @include civictheme-breakpoint('m') {
-        padding: civictheme-space(2.875);
+      @include ct-breakpoint('m') {
+        padding: ct-spacing(1.5) ct-spacing(2);
       }
     }
   }
 
-  .civictheme-tabs__panels {
-    margin-top: civictheme-space(3);
+  .ct-tabs__panels {
+    margin-top: ct-spacing(3);
   }
 
-  .civictheme-tabs__panels__panel {
+  .ct-tabs__panels__panel {
     display: none;
 
-    &.selected {
+    &.ct-tabs__panel--selected {
       display: block;
     }
   }
 
-  &.civictheme-theme-light {
+  &.ct-theme-light {
     #{$root}__links {
-      border-bottom-color: $civictheme-tabs-light-links-border-color;
+      border-bottom-color: $ct-tabs-light-links-stripe-border-color;
+    }
+
+    .ct-link {
+      background-color: $ct-tabs-light-links-background-color;
+      border-color: $ct-tabs-light-links-border-color;
+      border-bottom-color: $ct-tabs-light-links-stripe-border-color;
+
+      &#{$root}__tab--selected {
+        background-color: $ct-tabs-light-links-active-background-color;
+        border-color: $ct-tabs-light-links-active-border-color;
+        border-bottom-color: $ct-tabs-light-links-stripe-border-color;
+      }
     }
 
     #{$root}__panels {
-      color: $civictheme-tabs-light-panel-color;
-      background-color: $civictheme-tabs-light-panel-background-color;
-      border-color: $civictheme-tabs-light-panel-border-color;
+      background-color: $ct-tabs-light-panel-background-color;
+      border-color: $ct-tabs-light-panel-border-color;
     }
   }
 
-  &.civictheme-theme-dark {
+  &.ct-theme-dark {
     #{$root}__links {
-      border-bottom-color: $civictheme-tabs-dark-links-border-color;
+      border-bottom-color: $ct-tabs-dark-links-stripe-border-color;
+    }
+
+    .ct-link {
+      background-color: $ct-tabs-dark-links-background-color;
+      border-color: $ct-tabs-dark-links-border-color;
+      border-bottom-color: $ct-tabs-dark-links-stripe-border-color;
+
+      &#{$root}__tab--selected {
+        background-color: $ct-tabs-dark-links-active-background-color;
+        border-color: $ct-tabs-dark-links-active-border-color;
+        border-bottom-color: $ct-tabs-dark-links-stripe-border-color;
+      }
     }
 
     #{$root}__panels {
-      color: $civictheme-tabs-dark-panel-color;
-      background-color: $civictheme-tabs-dark-panel-background-color;
-      border-color: $civictheme-tabs-dark-panel-border-color;
+      background-color: $ct-tabs-dark-panel-background-color;
+      border-color: $ct-tabs-dark-panel-border-color;
     }
   }
 }

@@ -12,7 +12,7 @@ import {
 import CivicThemePromoCard from './promo-card.twig';
 
 export default {
-  title: 'Molecules/Card/Promo Card',
+  title: 'Molecules/Cards/Promo Card',
   parameters: {
     layout: 'centered',
   },
@@ -52,6 +52,7 @@ export const PromoCard = (knobTab) => {
       generalKnobTab,
     ), true),
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {

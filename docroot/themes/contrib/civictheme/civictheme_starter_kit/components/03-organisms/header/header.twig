@@ -4,12 +4,12 @@
  * Example of extending of the base CivicTheme component.
  */
 #}
-{% extends '@civictheme-organisms/header/header.twig' %}
+{% extends '@ct-organisms/header/header.twig' %}
 
 {# Overriding 'content_middle3' block to add a custom 'my-custom-class' CSS class. #}
 {% block content_middle3 %}
   <div class="col-xxs-8">
-    <div class="civictheme-header__content-middle3 my-custom-class">
+    <div class="ct-header__content-middle3 my-custom-class">
       {{ content_middle3 }}
     </div>
   </div>

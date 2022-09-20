@@ -4,27 +4,26 @@
 
 @use 'sass:map';
 
-.civictheme-message {
+.ct-message {
   $root: &;
 
   display: flex;
   flex-wrap: nowrap;
   justify-content: stretch;
-  border-radius: $civictheme-message-border-radius;
-  border-left: solid rem(6px) transparent;
-  box-sizing: border-box;
-  padding: civictheme-space(3) civictheme-space(3) civictheme-space(3) civictheme-space(2);
-  margin: civictheme-space(3) 0;
+  border-radius: $ct-message-border-radius;
+  border-left: solid ct-particle(0.75) transparent;
+  padding: ct-spacing(3) ct-spacing(3) ct-spacing(3) ct-spacing(1);
+  margin: ct-spacing(3) 0;
   width: 100%;
 
-  @include civictheme-typography('text-regular');
+  @include ct-typography('text-regular');
 
   #{$root}__icon {
     width: rem(26px);
-    margin-right: civictheme-space(2);
+    margin-right: ct-spacing(2);
   }
 
-  .civictheme-icon {
+  .ct-icon {
     width: rem(26px);
     height: rem(26px);
   }
@@ -34,66 +33,66 @@
   }
 
   #{$root}__summary {
-    margin-top: civictheme-space();
+    margin-top: ct-spacing();
   }
 
   // SASS does not allow variables interpolation, so we are creating a local
   // map to easily generate rules.
   $map: (
-    'status': (
+    'information': (
       'light': (
-        'color': $civictheme-message-light-status-color,
-        'background-color': $civictheme-message-light-status-background-color,
-        'border-color': $civictheme-message-light-status-border-color,
-        'icon-color': $civictheme-message-light-status-icon-color,
+        'color': $ct-message-light-information-color,
+        'background-color': $ct-message-light-information-background-color,
+        'border-color': $ct-message-light-information-border-color,
+        'icon-color': $ct-message-light-information-icon-color,
       ),
       'dark': (
-        'color': $civictheme-message-dark-status-color,
-        'background-color': $civictheme-message-dark-status-background-color,
-        'border-color': $civictheme-message-dark-status-border-color,
-        'icon-color': $civictheme-message-dark-status-icon-color,
+        'color': $ct-message-dark-information-color,
+        'background-color': $ct-message-dark-information-background-color,
+        'border-color': $ct-message-dark-information-border-color,
+        'icon-color': $ct-message-dark-information-icon-color,
       )
     ),
     'warning': (
       'light': (
-        'color': $civictheme-message-light-warning-color,
-        'background-color': $civictheme-message-light-warning-background-color,
-        'border-color': $civictheme-message-light-warning-border-color,
-        'icon-color': $civictheme-message-light-warning-icon-color,
+        'color': $ct-message-light-warning-color,
+        'background-color': $ct-message-light-warning-background-color,
+        'border-color': $ct-message-light-warning-border-color,
+        'icon-color': $ct-message-light-warning-icon-color,
       ),
       'dark': (
-        'color': $civictheme-message-dark-warning-color,
-        'background-color': $civictheme-message-dark-warning-background-color,
-        'border-color': $civictheme-message-dark-warning-border-color,
-        'icon-color': $civictheme-message-dark-warning-icon-color,
+        'color': $ct-message-dark-warning-color,
+        'background-color': $ct-message-dark-warning-background-color,
+        'border-color': $ct-message-dark-warning-border-color,
+        'icon-color': $ct-message-dark-warning-icon-color,
       )
     ),
     'error': (
       'light': (
-        'color': $civictheme-message-light-error-color,
-        'background-color': $civictheme-message-light-error-background-color,
-        'border-color': $civictheme-message-light-error-border-color,
-        'icon-color': $civictheme-message-light-error-icon-color,
+        'color': $ct-message-light-error-color,
+        'background-color': $ct-message-light-error-background-color,
+        'border-color': $ct-message-light-error-border-color,
+        'icon-color': $ct-message-light-error-icon-color,
       ),
       'dark': (
-        'color': $civictheme-message-dark-error-color,
-        'background-color': $civictheme-message-dark-error-background-color,
-        'border-color': $civictheme-message-dark-error-border-color,
-        'icon-color': $civictheme-message-dark-error-icon-color,
+        'color': $ct-message-dark-error-color,
+        'background-color': $ct-message-dark-error-background-color,
+        'border-color': $ct-message-dark-error-border-color,
+        'icon-color': $ct-message-dark-error-icon-color,
       )
     ),
     'success': (
       'light': (
-        'color': $civictheme-message-light-success-color,
-        'background-color': $civictheme-message-light-success-background-color,
-        'border-color': $civictheme-message-light-success-border-color,
-        'icon-color': $civictheme-message-light-success-icon-color,
+        'color': $ct-message-light-success-color,
+        'background-color': $ct-message-light-success-background-color,
+        'border-color': $ct-message-light-success-border-color,
+        'icon-color': $ct-message-light-success-icon-color,
       ),
       'dark': (
-        'color': $civictheme-message-dark-success-color,
-        'background-color': $civictheme-message-dark-success-background-color,
-        'border-color': $civictheme-message-dark-success-border-color,
-        'icon-color': $civictheme-message-dark-success-icon-color,
+        'color': $ct-message-dark-success-color,
+        'background-color': $ct-message-dark-success-background-color,
+        'border-color': $ct-message-dark-success-border-color,
+        'icon-color': $ct-message-dark-success-icon-color,
       )
     ),
   );
@@ -101,14 +100,14 @@
   @each $type, $type-map in $map {
     &#{$root}--#{$type} {
       @each $theme, $values in $type-map {
-        &.civictheme-theme-#{$theme} {
+        &.ct-theme-#{$theme} {
           background-color: map.get($values, 'background-color');
           color: map.get($values, 'color');
           border-color: map.get($values, 'border-color');
 
           #{$root}__icon {
-            .civictheme-icon {
-              fill: map.get($values, 'icon-color');
+            .ct-icon {
+              background-color: map.get($values, 'icon-color');
             }
           }
         }

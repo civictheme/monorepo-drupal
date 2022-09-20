@@ -11,7 +11,7 @@
  * It extends Navigation Card component by adding 'tags' property. This template
  * provides support to render this new property.
  *
- * Note the use of the @civictheme-<COMPONENT_TYPE> namespace: it gives access
+ * Note the use of the @ct-<COMPONENT_TYPE> namespace: it gives access
  * to the unmodified CivicTheme component template enabling us to override
  * secions of a component while preserving the other parts of the component to
  * rely on the CivicTheme component implementation. This is useful when only a
@@ -46,7 +46,7 @@
  */
 #}
 
-{% extends '@civictheme-molecules/navigation-card/navigation-card.twig' %}
+{% extends '@ct-molecules/navigation-card/navigation-card.twig' %}
 
 {#
   Twig {% block %} allows to extend a component by overriding only a part of it
@@ -64,7 +64,7 @@
     case in this example).
   #}
   {% if tags %}
-    <div class="civictheme-promo-card__tags">
+    <div class="ct-promo-card__tags">
       {% for tag in tags %}
         {% include '@atoms/tag/tag.twig' with {
           theme: theme,

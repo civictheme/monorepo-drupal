@@ -12,30 +12,29 @@
 @use 'sass:math';
 @use 'sass:map';
 
-@mixin civictheme-row($gutters: $civictheme-grid-gutters) {
-  box-sizing: border-box;
+@mixin ct-row($gutters: $ct-grid-gutters) {
   margin: 0 auto;
   display: flex;
   flex: 0 1 auto;
   flex-direction: row;
   flex-wrap: wrap;
 
-  @include _civictheme-print-all-gutters($gutters, margin, -1);
+  @include _ct-print-all-gutters($gutters, margin, -1);
 }
 
-@mixin civictheme-row-reverse() {
+@mixin ct-row-reverse() {
   flex-direction: row-reverse;
 }
 
-@mixin civictheme-row-natural-height() {
+@mixin ct-row-natural-height() {
   align-items: flex-start;
 }
 
-@mixin civictheme-row-flex-column() {
+@mixin ct-row-flex-column() {
   flex-direction: column;
 }
 
-@mixin civictheme-col-reverse() {
+@mixin ct-col-reverse() {
   flex-direction: column-reverse;
 }
 
@@ -44,15 +43,15 @@
 //
 // Do not use directly.
 //
-@mixin _civictheme-print-all-gutters($gutters: $civictheme-grid-gutters, $rulePrefix: padding, $scale: 1) {
+@mixin _ct-print-all-gutters($gutters: $ct-grid-gutters, $rulePrefix: padding, $scale: 1) {
   @if $gutters {
     @each $bp, $gutter in $gutters {
-      @if $bp == $civictheme-grid-lowest-breakpoint {
+      @if $bp == $ct-grid-lowest-breakpoint {
         #{$rulePrefix}-left: math.div($gutter, 2) * $scale;
         #{$rulePrefix}-right: math.div($gutter, 2) * $scale;
       }
       @else {
-        @include civictheme-breakpoint($bp) {
+        @include ct-breakpoint($bp) {
           #{$rulePrefix}-left: math.div($gutter, 2) * $scale;
           #{$rulePrefix}-right: math.div($gutter, 2) * $scale;
         }
@@ -66,32 +65,30 @@
 //
 // Do not use directly.
 //
-@mixin _civictheme-col-condition($col-number) {
+@mixin _ct-col-condition($col-number) {
   @if type-of($col-number) == number {
-    @if $col-number > $civictheme-grid-columns or $col-number == 0 {
-      @warn 'Column number must be greater than 0 and less than or equal to total number of columns in the grid (#{$civictheme-grid-columns})';
+    @if $col-number > $ct-grid-columns or $col-number == 0 {
+      @warn 'Column number must be greater than 0 and less than or equal to total number of columns in the grid (#{$ct-grid-columns})';
     }
     @else {
-      box-sizing: border-box;
-      flex-basis: math.div(100%, $civictheme-grid-columns) * $col-number;
-      max-width: math.div(100%, $civictheme-grid-columns) * $col-number;
+      flex-basis: math.div(100%, $ct-grid-columns) * $col-number;
+      max-width: math.div(100%, $ct-grid-columns) * $col-number;
 
-      @include _civictheme-print-all-gutters();
+      @include _ct-print-all-gutters();
     }
   }
 
   // If no col number is passed then arg is set to "auto" by default
   // "auto" mode fills the horizontal space with evenly sized containers
   @else if $col-number == 'auto' {
-    box-sizing: border-box;
     flex-grow: 1;
     flex-basis: 0;
     max-width: 100%;
 
-    @include _civictheme-print-all-gutters();
+    @include _ct-print-all-gutters();
   }
   @else {
-    @warn "Column number argument must either be the string 'auto' or a number greater than 0 and less than or equal to total number of columns in the grid (#{$civictheme-grid-columns})";
+    @warn "Column number argument must either be the string 'auto' or a number greater than 0 and less than or equal to total number of columns in the grid (#{$ct-grid-columns})";
   }
 }
 
@@ -100,20 +97,20 @@
 //
 // Do not use directly.
 //
-@mixin _civictheme-grid-col($breakpoint: 'xs', $col-number: 'auto') {
+@mixin _ct-grid-col($breakpoint: 'xs', $col-number: 'auto') {
   // If no breakpoint is passed and a col number is just use the first arg as
   // the col number and act like xs.
   @if type-of($breakpoint) == number {
     $col-number: $breakpoint;
 
-    @include _civictheme-col-condition($col-number);
+    @include _ct-col-condition($col-number);
   }
-  @else if $breakpoint == $civictheme-grid-lowest-breakpoint {
-    @include _civictheme-col-condition($col-number);
+  @else if $breakpoint == $ct-grid-lowest-breakpoint {
+    @include _ct-col-condition($col-number);
   }
   @else {
-    @include civictheme-breakpoint($breakpoint) {
-      @include _civictheme-col-condition($col-number);
+    @include ct-breakpoint($breakpoint) {
+      @include _ct-col-condition($col-number);
     }
   }
 }
@@ -123,27 +120,25 @@
 //
 // Do not use directly.
 //
-@mixin _civictheme-col-factory($thisPrefix) {
+@mixin _ct-col-factory($thisPrefix) {
   .col-#{$thisPrefix} {
-    box-sizing: border-box;
     flex-grow: 1;
     flex-basis: 0;
     max-width: 100%;
 
-    @include _civictheme-print-all-gutters();
+    @include _ct-print-all-gutters();
   }
 
-  @for $i from 1 through $civictheme-grid-columns {
+  @for $i from 1 through $ct-grid-columns {
     .col-#{$thisPrefix}-#{$i} {
-      box-sizing: border-box;
-      flex-basis: math.div(100%, $civictheme-grid-columns) * $i;
-      max-width: math.div(100%, $civictheme-grid-columns) * $i;
+      flex-basis: math.div(100%, $ct-grid-columns) * $i;
+      max-width: math.div(100%, $ct-grid-columns) * $i;
 
-      @include _civictheme-print-all-gutters();
+      @include _ct-print-all-gutters();
     }
 
     .col-#{$thisPrefix}-offset-#{$i} {
-      margin-left: math.div(100%, $civictheme-grid-columns) * $i;
+      margin-left: math.div(100%, $ct-grid-columns) * $i;
     }
   }
 
@@ -195,26 +190,27 @@
 //
 // Offset column.
 //
-@mixin civictheme-col-offset($column_num) {
-  margin-left: math.div(100%, $civictheme-grid-columns) * $column_num;
+@mixin ct-col-offset($column_num) {
+  margin-left: math.div(100%, $ct-grid-columns) * $column_num;
 }
 
 //
 // Container class should wrap every row.
 //
-@mixin civictheme-container() {
+@mixin ct-container() {
   margin: 0 auto;
 
   // Support super-narrow screens as well.
-  $width: map.get($civictheme-grid-offsets, xs) * 2;
+  $width: map.get($ct-grid-offsets, xs) * 2;
 
-  max-width: calc(100% - #{$width});
+  // Use vw instead of % so it calculates on viewport and not parent container.
+  max-width: calc(100vw - #{$width});
 
   // Set width for container at each breakpoint accounting for offsets at this
   // breakpoint.
-  @each $bp, $value in $civictheme-breakpoints {
-    @include civictheme-breakpoint($bp) {
-      max-width: map.get($civictheme-breakpoints, $bp) - (map.get($civictheme-grid-offsets, $bp) * 2);
+  @each $bp, $value in $ct-breakpoints {
+    @include ct-breakpoint($bp) {
+      max-width: map.get($ct-breakpoints, $bp) - (map.get($ct-grid-offsets, $bp) * 2);
     }
   }
 }

@@ -6,13 +6,13 @@
 // This will apply only to 'Demo Button' component.
 //
 
-.civictheme-button {
+.ct-button {
   $root: &;
 
   &--demo {
     #{$root}--large {
       // Increase
-      padding: civictheme-space(2) civictheme-space(5);
+      padding: ct-spacing(2) ct-spacing(5);
     }
   }
 }

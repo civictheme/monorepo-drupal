@@ -12,7 +12,7 @@
 // Example to override existing CivicTheme's palette color and define
 // custom colors, which will automatically appear in Storybook.
 
-$civictheme-colors-brands: (
+$ct-colors-brands: (
   'light': (
     'brand1': #00698f,
     'brand2': #e6e9eb,
@@ -26,7 +26,7 @@ $civictheme-colors-brands: (
 );
 
 // Example to override existing CivicTheme's palette color variants.
-$civictheme-colors: (
+$ct-colors: (
   // Override palette color variant.
   'light': (
     'success': green,
@@ -41,56 +41,56 @@ $civictheme-colors: (
 
 // Example to define 2 custom local fonts which will automatically appear
 // in Storybook.
-$civictheme-fonts: (
+$ct-fonts: (
   'tertiary': (
     'family': 'Roboto, sans-serif',
     'types': (
       (
         'uri': (
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Regular.ttf',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Regular.woff',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Regular.eot',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Regular.ttf',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Regular.woff',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Regular.eot',
         ),
       ),
       (
         'italic': true,
         'uri': (
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Italic.ttf',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Italic.woff',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Italic.eot',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Italic.ttf',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Italic.woff',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Italic.eot',
         ),
       ),
       (
         'weight': 'bold',
         'uri': (
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Bold.ttf',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Bold.woff',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Bold.eot',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Bold.ttf',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Bold.woff',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Bold.eot',
         ),
       ),
       (
         'italic': true,
         'weight': 'bold',
         'uri': (
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-BoldItalic.ttf',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-BoldItalic.woff',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-BoldItalic.eot',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-BoldItalic.ttf',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-BoldItalic.woff',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-BoldItalic.eot',
         ),
       ),
       (
         'weight': 300,
         'uri': (
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Thin.ttf',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Thin.woff',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Thin.eot',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Thin.ttf',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Thin.woff',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Thin.eot',
         ),
       ),
       (
         'weight': 700,
         'uri': (
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Black.ttf',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Black.woff',
-          '#{$civictheme-assets-directory}fonts/Roboto/Roboto-Black.eot',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Black.ttf',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Black.woff',
+          '#{$ct-assets-directory}fonts/Roboto/Roboto-Black.eot',
         ),
       ),
     ),
@@ -100,9 +100,9 @@ $civictheme-fonts: (
     'types': (
       (
         'uri': (
-          '#{$civictheme-assets-directory}fonts/DancingScript/DancingScript-Regular.ttf',
-          '#{$civictheme-assets-directory}fonts/DancingScript/DancingScript-Regular.woff',
-          '#{$civictheme-assets-directory}fonts/DancingScript/DancingScript-Regular.woff2',
+          '#{$ct-assets-directory}fonts/DancingScript/DancingScript-Regular.ttf',
+          '#{$ct-assets-directory}fonts/DancingScript/DancingScript-Regular.woff',
+          '#{$ct-assets-directory}fonts/DancingScript/DancingScript-Regular.woff2',
         ),
       ),
     ),

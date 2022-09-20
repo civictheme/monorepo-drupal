@@ -5,14 +5,13 @@ import CivicThemeVideo from './video-player.twig';
 import { demoVideoPoster, demoVideos } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecules/Video Player',
+  title: 'Molecules/Content/Video Player',
 };
 
 export const VideoPlayer = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
   const sourceKnobTab = 'Source';
   const transcriptLinkKnobTab = 'Transcript Link';
-  const shareLinkKnobTab = 'Share Link';
 
   const generalKnobs = {
     theme: radios(
@@ -33,7 +32,7 @@ export const VideoPlayer = (knobTab) => {
     width: text('Width', '', generalKnobTab),
     height: text('Height', '500', generalKnobTab),
     with_transcript_link: boolean('With Transcript link', true, generalKnobTab),
-    with_share_link: boolean('With Share link', true, generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 
@@ -62,23 +61,9 @@ export const VideoPlayer = (knobTab) => {
     };
   }
 
-  let shareLinkKnobs = {};
-  if (generalKnobs.with_share_link) {
-    shareLinkKnobs = {
-      share_link: {
-        text: text('Text', 'Share this video', shareLinkKnobTab),
-        title: text('Title', 'Share this video in a new window', shareLinkKnobTab),
-        url: text('URL', 'https://example.com', shareLinkKnobTab),
-        is_new_window: boolean('Open in a new window', true, shareLinkKnobTab),
-        is_external: boolean('Is external', true, shareLinkKnobTab),
-      },
-    };
-  }
-
   return CivicThemeVideo({
     ...generalKnobs,
     ...sourceKnobs,
     ...transcriptLinkKnobs,
-    ...shareLinkKnobs,
   });
 };

@@ -10,8 +10,8 @@ export default {
 function getColourMap(name) {
   const map = {};
 
-  map.default = SCSS_VARIABLES[`civictheme-${name}-default`] || {};
-  map.custom = SCSS_VARIABLES[`civictheme-${name}`];
+  map.default = SCSS_VARIABLES[`ct-${name}-default`] || {};
+  map.custom = SCSS_VARIABLES[`ct-${name}`];
 
   // Normalise colors as they may not be provided.
   if (!Object.prototype.hasOwnProperty.call(map.default, 'light') || !Object.prototype.hasOwnProperty.call(map.default, 'dark')) {

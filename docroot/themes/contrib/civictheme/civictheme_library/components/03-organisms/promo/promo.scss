@@ -1,0 +1,77 @@
+//
+// CivicTheme Promo component.
+//
+
+.ct-promo {
+  $root: &;
+
+  &__inner {
+    padding: ct-spacing(3) 0;
+
+    @include ct-breakpoint(m) {
+      padding: ct-spacing(7) 0;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__title {
+    @include ct-typography('heading-4');
+
+    margin-bottom: ct-spacing(1);
+  }
+
+  &__content {
+    @include ct-typography('text-regular');
+
+    margin-left: auto;
+  }
+
+  &__button {
+    width: 100%;
+
+    @include ct-breakpoint(m) {
+      width: auto;
+      white-space: nowrap;
+    }
+  }
+
+  &__first-container {
+    @include ct-breakpoint(m) {
+      flex-grow: 1;
+      padding-right: ct-spacing(5);
+    }
+  }
+
+  &__second-container {
+    margin-top: ct-spacing(3);
+
+    @include ct-breakpoint(m) {
+      margin-top: 0;
+    }
+  }
+
+  &.ct-theme-light {
+    background-color: $ct-promo-light-background-color;
+
+    #{$root}__title {
+      color: $ct-promo-light-heading-color;
+    }
+
+    #{$root}__content {
+      color: $ct-promo-light-body-color;
+    }
+  }
+
+  &.ct-theme-dark {
+    background-color: $ct-promo-dark-background-color;
+
+    #{$root}__title {
+      color: $ct-promo-dark-heading-color;
+    }
+
+    #{$root}__content {
+      color: $ct-promo-dark-body-color;
+    }
+  }
+}

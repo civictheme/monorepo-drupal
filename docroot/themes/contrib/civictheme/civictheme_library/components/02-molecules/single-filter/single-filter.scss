@@ -1,0 +1,20 @@
+//
+// Basic Filter component.
+//
+
+.ct-single-filter {
+  $root: &;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+
+    &--row {
+      margin: ct-spacing(2) ct-spacing();
+
+      @include ct-breakpoint('m') {
+        margin: ct-spacing(5) ct-spacing();
+      }
+    }
+  }
+}

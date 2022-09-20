@@ -4,7 +4,7 @@ import CivicThemeTable from './table.twig';
 import './table';
 
 export default {
-  title: 'Atoms/Table',
+  title: 'Atoms/Content/Table',
 };
 
 export const Table = (knobTab) => {
@@ -27,32 +27,32 @@ export const Table = (knobTab) => {
   const getRows = function (theme) {
     return [
       [
-        `<a class="civictheme-link civictheme-theme-${theme}" href="#" title="Row 1 with link">Row 1 with link</a>`,
-        'Description summary on odd row with space',
+        `<a class="ct-link ct-theme-${theme}" href="#" title="Row 1 with link">Row 1 with link</a>`,
+        'Description summary on odd row with vertical spacing',
         'Another column',
         'One more column column',
       ],
       [
-        `<a class="civictheme-link civictheme-theme-${theme}" href="#" title="Row 1 with link">Row 2 with link</a>`,
+        `<a class="ct-link ct-theme-${theme}" href="#" title="Row 1 with link">Row 2 with link</a>`,
         'Description summary on even row',
         'Another column',
         'One more column column',
       ],
       [
-        `<a class="civictheme-link civictheme-theme-${theme}" href="#" title="Row 1 with link">Row 3 with link</a>`,
-        'Description summary on odd row with space',
+        `<a class="ct-link ct-theme-${theme}" href="#" title="Row 1 with link">Row 3 with link</a>`,
+        'Description summary on odd row with vertical spacing',
         'Another column',
         'One more column column',
       ],
       [
-        `<a class="civictheme-link civictheme-theme-${theme}" href="#" title="Row 1 with link">Row 5 with link</a>`,
+        `<a class="ct-link ct-theme-${theme}" href="#" title="Row 1 with link">Row 5 with link</a>`,
         'Description summary on even row',
         'Another column',
         'One more column column',
       ],
       [
         'Row 5 without a link',
-        'Description summary on odd row with space',
+        'Description summary on odd row with vertical spacing',
         'Another column',
         'One more column column',
       ],
@@ -72,18 +72,19 @@ export const Table = (knobTab) => {
     header: boolean('With header', true, generalKnobTab) ? header : [],
     rows: boolean('With rows', true, generalKnobTab) ? true : null,
     footer: boolean('With footer', true, generalKnobTab) ? footer : [],
-    caption: text('Caption', 'Table caption Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.', generalKnobTab),
+    is_striped: boolean('Striped', true, generalKnobTab),
+    caption: text('Caption content', 'Table caption Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.', generalKnobTab),
     caption_position: radios(
       'Caption position',
       {
         Before: 'before',
         After: 'after',
       },
-      'after',
+      'before',
       generalKnobTab,
     ),
-    is_striped: boolean('Striped', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   if (generalKnobs.rows) {

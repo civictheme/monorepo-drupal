@@ -5,7 +5,7 @@ import {
 import CivicThemeTextarea from './textarea.twig';
 
 export default {
-  title: 'Atoms/Form/Textarea',
+  title: 'Atoms/Forms/Textarea',
   parameters: {
     layout: 'centered',
   },
@@ -24,7 +24,6 @@ export const Textarea = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    text: text('Text', 'Textarea text', generalKnobTab),
     rows: number(
       'Number of rows',
       5,
@@ -36,9 +35,10 @@ export const Textarea = (knobTab) => {
       },
       generalKnobTab,
     ),
+    placeholder: text('Placeholder', 'Placeholder', generalKnobTab),
     required: boolean('Required', false, generalKnobTab),
     disabled: boolean('Disabled', false, generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    modifier_class: text('Additional classes', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 

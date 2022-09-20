@@ -10,22 +10,22 @@
   * - modifier_class: [string] Additional classes.
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 {% set attribute_values = '%s %s'|format('data-flyout-close-all-trigger', attributes|default('')) %}
 {% set button_text = text|default('Close') %}
 
-<div class="civictheme-mobile-navigation-close {{ modifier_class }}">
+<div class="ct-mobile-navigation-close {{ modifier_class }}">
   {% include '@atoms/button/button.twig' with {
     theme: theme,
     type: 'tertiary',
     kind: 'button',
     size: 'small',
     text: button_text,
-    icon: 'userinterface_close',
+    icon: 'close',
     icon_placement: 'after',
     icon_size: 'small',
     attributes: attribute_values,
-    modifier_class: 'civictheme-mobile-navigation-close__button',
+    modifier_class: 'ct-mobile-navigation-close__button',
   } only %}
 </div>

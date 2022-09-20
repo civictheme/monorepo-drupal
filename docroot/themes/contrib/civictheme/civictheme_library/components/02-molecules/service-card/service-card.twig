@@ -11,18 +11,19 @@
  *   - is_new_window [boolean] Open link in a new window.
  *   - is_external [boolean] Link is external or not.
  * - title: [string] The text of card title.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="civictheme-service-card {{ modifier_class }}">
-  <div class="civictheme-service-card__content">
+<div class="ct-service-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-service-card__content">
     {% block content_top %}
       {% if content_top is not empty %}
-        <div class="civictheme-service-card__content-top">
+        <div class="ct-service-card__content-top">
           {{ content_top }}
         </div>
       {% endif %}
@@ -30,7 +31,7 @@
 
     {% block title %}
       {% if title is not empty %}
-        <div class="civictheme-service-card__title">
+        <div class="ct-service-card__title">
           {{ title }}
         </div>
       {% endif %}
@@ -38,10 +39,10 @@
 
     {% block links %}
       {% if links is not empty %}
-        <ul class="civictheme-service-card__links">
+        <ul class="ct-service-card__links">
           {% for link in links %}
             {% if link.text is not empty %}
-              <li class="civictheme-service-card__link__item">
+              <li class="ct-service-card__link__item">
                 {% include '@atoms/link/link.twig' with {
                   theme: theme,
                   text: link.text,
@@ -58,7 +59,7 @@
 
     {% block content_bottom %}
       {% if content_bottom is not empty %}
-        <div class="civictheme-service-card__content-bottom">
+        <div class="ct-service-card__content-bottom">
           {{ content_bottom }}
         </div>
       {% endif %}

@@ -12,19 +12,20 @@
  *   - title: [string] Title to be added to the 'title' attribute.
  *   - size: [string] Icon size.
  * - with_border: [boolean] Whether icons have borders.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set with_border_class = with_border ? 'civictheme-social-links--with-border' : '' %}
+{% set with_border_class = with_border ? 'ct-social-links--with-border' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, with_border_class, modifier_class|default('')) %}
 
 {% if items is not empty %}
-  <div class="civictheme-social-links {{ modifier_class }}">
+  <div class="ct-social-links {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% if items is not empty %}
       {% for item in items %}
-        <div class="civictheme-social-links__item">
+        <div class="ct-social-links__item">
           {% include '@atoms/button/button.twig' with {
             theme: theme,
             kind: 'link',

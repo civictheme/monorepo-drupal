@@ -9,7 +9,7 @@
 
 {% if show_breadcrumb %}
   {% set breadcrumb %}
-    {% include '@organisms/breadcrumb/breadcrumb.twig' with {
+    {% include '@molecules/breadcrumb/breadcrumb.twig' with {
       theme: theme,
       links: [
         { 'text': 'Home', 'url': 'http://example.com'},
@@ -22,11 +22,11 @@
 
 {% if show_content_text %}
   {% set content %}
-    <div class="civictheme-banner__content__example">
-      <div class="civictheme-banner__content__example-last-updated">
+    <div class="ct-banner__content__example">
+      <div class="ct-banner__content__example-last-updated">
         <p>Last updated: 26 Oct 2020</p>
       </div>
-      <div class="civictheme-banner__content__example-summary">
+      <div class="ct-banner__content__example-summary">
         <p>Government grade set of high quality design themes that are
           accessible,
           inclusive and provide a consistent digital experience for your
@@ -43,7 +43,7 @@
 
 {% if show_content_search %}
   {% set content %}
-    <div class="civictheme-banner__content__example">
+    <div class="ct-banner__content__example">
       {% include '@molecules/search/search.twig' with {
         theme: theme,
         placeholder: 'Enter keywords or phrase',
@@ -65,10 +65,10 @@
   {% endset %}
 
   {% set content_below %}
-    <div class="civictheme-banner__content__example">
-      {% include '@organisms/card-container/card-container.twig' with {
+    <div class="ct-banner__content__example">
+      {% include '@base/item-grid/item-grid.twig' with {
         column_count: 4,
-        cards: [card, card, card, card],
+        items: [card, card, card, card],
       } only %}
     </div>
   {% endset %}

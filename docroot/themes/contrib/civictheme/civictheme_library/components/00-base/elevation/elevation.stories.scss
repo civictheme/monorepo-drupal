@@ -8,14 +8,14 @@
   display: flex;
   flex-flow: row wrap;
 
-  @include civictheme-generate-class-variations-from-map($civictheme-elevations, 'story-elevation') using($key, $value, $index) {
-    width: 150px;
-    height: 150px;
-    margin: civictheme-space(6) civictheme-space(10) 100px 0;
-    border-radius: civictheme-space(0.5);
+  @include ct-generate-class-variations-from-map($ct-elevations, 'story-elevation') using($key, $value, $index) {
+    width: ct-particle(20);
+    height: ct-particle(20);
+    margin: ct-spacing(6) ct-spacing(10)  ct-particle(12) 0;
+    border-radius: ct-spacing(0.5);
     position: relative;
     background-color: white;
 
-    @include civictheme-elevation($key);
+    @include ct-elevation($key);
   }
 }

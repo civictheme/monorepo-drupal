@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Link List component.
+ *
+ * Variables:
+ * - type: [string] Type: horizontal, vertical.
+ * - no_gutter: [boolean] Render without gutters.
+ * - items: [array] Items array
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set type_class = 'ct-item-list--%s'|format(type|default('horizontal')) %}
+{% set no_gutter_class = no_gutter ? 'ct-item-list--no-gutter' : '' %}
+{% set modifier_class = '%s %s %s'|format(type_class, no_gutter_class, modifier_class|default('')) %}
+
+{% if items %}
+  <div class="ct-item-list {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% block items %}
+      <ul class="ct-item-list__list">
+        {% for item in items %}
+          {% if item is not empty %}
+            <li class="ct-item-list__list__item">
+              {{ item }}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endblock %}
+  </div>
+{% endif %}

@@ -10,16 +10,17 @@ dependencies:
     - field.field.node.civictheme_page.field_c_n_banner_theme
     - field.field.node.civictheme_page.field_c_n_banner_title
     - field.field.node.civictheme_page.field_c_n_banner_type
+    - field.field.node.civictheme_page.field_c_n_blend_mode
     - field.field.node.civictheme_page.field_c_n_components
     - field.field.node.civictheme_page.field_c_n_custom_last_updated
     - field.field.node.civictheme_page.field_c_n_hide_sidebar
     - field.field.node.civictheme_page.field_c_n_show_last_updated
     - field.field.node.civictheme_page.field_c_n_show_toc
     - field.field.node.civictheme_page.field_c_n_site_section
-    - field.field.node.civictheme_page.field_c_n_space
     - field.field.node.civictheme_page.field_c_n_summary
     - field.field.node.civictheme_page.field_c_n_thumbnail
     - field.field.node.civictheme_page.field_c_n_topics
+    - field.field.node.civictheme_page.field_c_n_vertical_spacing
     - node.type.civictheme_page
   module:
     - datetime
@@ -145,7 +146,7 @@ content:
     third_party_settings: {  }
     weight: 7
     region: content
-  field_c_n_space:
+  field_c_n_vertical_spacing:
     type: list_default
     label: above
     settings: {  }
@@ -159,6 +160,7 @@ hidden:
   field_c_n_banner_featured_image: true
   field_c_n_banner_theme: true
   field_c_n_banner_type: true
+  field_c_n_blend_mode: true
   field_c_n_hide_sidebar: true
   field_c_n_show_toc: true
   field_c_n_summary: true

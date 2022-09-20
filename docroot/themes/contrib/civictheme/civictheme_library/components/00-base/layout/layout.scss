@@ -1,0 +1,31 @@
+//
+// Layout component.
+//
+
+.ct-layout {
+  $root: &;
+
+  &__sidebar {
+    @include ct-print-hide();
+  }
+
+  &__main {
+    @include ct-print() {
+      flex-basis: 100% !important;
+      max-width: 100%;
+      margin-left: 0;
+    }
+  }
+
+  &.ct-theme-light {
+    #{$root}__inner {
+      background: $ct-layout-light-background-color;
+    }
+  }
+
+  &.ct-theme-dark {
+    #{$root}__inner {
+      background: $ct-layout-dark-background-color;
+    }
+  }
+}

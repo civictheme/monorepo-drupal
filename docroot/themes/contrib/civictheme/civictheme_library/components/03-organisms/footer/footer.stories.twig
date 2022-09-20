@@ -7,38 +7,34 @@
 
 {% extends './footer.twig' %}
 
-{% if logos is not empty %}
+{% if logo %}
   {% set content_top1 %}
-    {% include '@molecules/logo/logo.twig' with {
-      'theme': theme == 'light' ? 'dark' : 'light',
-      'logos': logos,
-      'modifier_class': 'civictheme-footer__logo',
-    } only %}
+    {% include '@molecules/logo/logo.twig' with logo only %}
   {% endset %}
 {% endif %}
 
 {% if show_social_links %}
   {% set content_top2 %}
     {% include '@organisms/social-links/social-links.twig' with {
-      'theme': theme,
-      'items': [
+      theme: theme,
+      items: [
         {
-          symbol: 'brands_facebook',
+          symbol: 'facebook',
           url: 'https://www.facebook.com',
           title: 'Facebook',
         },
         {
-          symbol: 'brands_twitter',
+          symbol: 'twitter',
           url: 'https://www.facebook.com',
           title: 'Twitter',
         },
         {
-          symbol: 'brands_linkedin',
+          symbol: 'linkedin',
           url: 'https://www.facebook.com',
           title: 'LinkedIn',
         },
       ],
-      'with_border': true,
+      with_border: true,
     } only %}
   {% endset %}
 {% endif %}
@@ -48,6 +44,7 @@
     {% include '@organisms/navigation/navigation.twig' with {
       theme: theme,
       items: links1,
+      title: 'Services',
     } only %}
   {% endset %}
   {% set content_middle2 %}
@@ -55,8 +52,6 @@
       theme: theme,
       items: links2,
       title: 'About us',
-      attributes: 'data-collapsible data-collapsible-collapsed data-responsive="<m"',
-      modifier_class: 'civictheme-navigation__collapsible'
     } only %}
   {% endset %}
   {% set content_middle3 %}
@@ -64,22 +59,20 @@
       theme: theme,
       items: links3,
       title: 'Help',
-      attributes: 'data-collapsible data-collapsible-collapsed data-responsive="<m"',
     } only %}
   {% endset %}
   {% set content_middle4 %}
     {% include '@organisms/navigation/navigation.twig' with {
       theme: theme,
       items: links4,
-      title: 'Services',
-      attributes: 'data-collapsible data-collapsible-collapsed data-responsive="<m"',
+      title: 'Resources',
     } only %}
   {% endset %}
 {% endif %}
 
 {% if show_acknowledgement %}
   {% set content_bottom1 %}
-    <div class="civictheme-footer__acknowledgement civictheme-text-regular">
+    <div class="ct-footer__acknowledgement ct-text-regular">
       We acknowledge the traditional owners of the country throughout
       Australia
       and their continuing connection to land, sea and community. We pay our
@@ -88,8 +81,8 @@
   {% endset %}
 
   {%- block content_bottom1 %}
-    <div class="col-xs-12 col-m-7">
-      <div class="civictheme-footer__bottom__content-bottom1">
+    <div class="col-xxs-12 col-m-7">
+      <div class="ct-footer__bottom__content-bottom1">
         {{- content_bottom1 -}}
       </div>
     </div>
@@ -98,14 +91,14 @@
 
 {% if show_copyright %}
   {% set content_bottom2 %}
-    <div class="copyright civictheme-text-regular">
+    <div class="copyright ct-text-regular">
       ©Commonwealth of Australia
     </div>
   {% endset %}
 
   {%- block content_bottom2 %}
-    <div class="col-xs-12 col-m-5">
-      <div class="civictheme-footer__bottom__content-bottom2">
+    <div class="col-xxs-12 col-m-5">
+      <div class="ct-footer__bottom__content-bottom2">
         {{- content_bottom2 -}}
       </div>
     </div>

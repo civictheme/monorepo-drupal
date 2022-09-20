@@ -1,27 +1,37 @@
 {#
 /**
  * @file
- * Radio component.
+ * radio component.
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
+ * - content: [string] Input field label.
  * - value: [string] Input field value.
- * - state: [string] Input field state: error, success.
- * - required: [boolean] Required state.
  * - disabled: [boolean] Disabled state.
+ * - required: [boolean] Required state.
+ * - has_error: [boolean] Error state.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set state = state is empty or state == 'none' ? 'default' : state %}
-{% set state_class = 'civictheme-input--%s'|format(state) %}
-{% set disabled_class = disabled ? 'civictheme-input--disabled disabled' : '' %}
-{% set required_class = required ? 'civictheme-input--required required' : '' %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, state_class, disabled_class, required_class, modifier_class|default('')) %}
+{% set disabled_class = disabled ? 'ct-radio--disabled' : '' %}
+{% set required_class = required ? 'ct-radio--required' : '' %}
+{% set error_class = has_error ? 'ct-radio--error' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, disabled_class, required_class, error_class, modifier_class|default('')) %}
 
-<div class="civictheme-radio">
-  <input class="civictheme-radio__element civictheme-input__element {{ modifier_class }}" type="radio" value="{{ value }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %} {{ disabled ? 'disabled' }} {{ required ? 'required' }}/>
-  <span class="civictheme-radio__state"></span>
+<div class="ct-radio {{ modifier_class|trim }}">
+  <input
+    type="radio"
+    class="ct-radio__element"
+    value="{{ value }}"
+    {{ disabled ? 'disabled' }}
+    {{ required ? 'required' }}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  />
+  <span class="ct-radio__state"></span>
+  {% if content is not empty %}
+    <label class="ct-radio__label{{ disabled ? ' ct-radio__label--disabled' }}">{{ content }}</label>
+  {% endif %}
 </div>

@@ -10,24 +10,26 @@
  * - title: [string] Title.
  * - summary: [string]  Summary.
  * - url: [string] Link.
- * - vertical_space: [string] With top, bottom or both vertical spaces.
+ * - is_external: [boolean] Link is external.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-next-steps--vertical-space-%s'|format(vertical_space) : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
 
 {% if url is not empty %}
-  <a class="civictheme-next-steps {{ modifier_class }}" href={{ url }}>
+  <a class="ct-next-steps {{ modifier_class }}" href={{ url }} {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
-          <div class="civictheme-next-steps__content">
+        <div class="col-xxs-12">
+          <div class="ct-next-steps__content">
             {% block content_top %}
               {% if content_top is not empty %}
-                <div class="civictheme-next-steps__content-top">
+                <div class="ct-next-steps__content-top">
                   {{ content_top }}
                 </div>
               {% endif %}
@@ -35,14 +37,14 @@
 
             {% block content %}
               {% if title is not empty or summary is not empty %}
-                <div class="civictheme-next-steps__text">
+                <div class="ct-next-steps__text">
                   {% if title is not empty %}
-                    <div class="civictheme-next-steps__title">
+                    <div class="ct-next-steps__title">
                       {{ title }}
                     </div>
                   {% endif %}
                   {% if summary is not empty %}
-                    <div class="civictheme-next-steps__summary">
+                    <div class="ct-next-steps__summary">
                       {{ summary }}
                     </div>
                   {% endif %}
@@ -51,9 +53,9 @@
             {% endblock %}
 
             {% block icon %}
-              <div class="civictheme-next-steps__icon civictheme-next-steps__read-more">
-                {% include '@atoms/icon/icon.twig' with {
-                  symbol: 'arrows_rightarrow_3',
+              <div class="ct-next-steps__icon ct-next-steps__read-more">
+                {% include '@base/icon/icon.twig' with {
+                  symbol: is_external ? 'upper-right-arrow' : 'right-arrow-2',
                   color: 'primary'
                 } only %}
               </div>
@@ -61,7 +63,7 @@
 
             {% block content_bottom %}
               {% if content_bottom is not empty %}
-                <div class="civictheme-next-steps__content-bottom">
+                <div class="ct-next-steps__content-bottom">
                   {{ content_bottom }}
                 </div>
               {% endif %}

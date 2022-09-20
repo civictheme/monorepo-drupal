@@ -178,30 +178,13 @@ function civictheme_parse_attributes($string) {
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
 function civictheme_attributes_to_modifier_class(&$variables) {
-  if (isset($variables['attributes'])) {
+  if (isset($variables['attributes']['class'])) {
     $attributes = new Attribute($variables['attributes']);
-    $classes = civictheme_get_css_class_attributes($attributes);
-    if ($classes) {
-      $variables['modifier_class'] = $classes;
-    }
+    $variables['modifier_class'] = implode(' ', $attributes->getClass()->value());
+    // Remove class from attributes to avoid duplicated 'class' attribute on
+    // the element.
+    unset($variables['attributes']['class']);
   }
-}
-
-/**
- * Get CSS class attributes from Attribute object.
- *
- * @param \Drupal\Core\Template\Attribute $attributes
- *   Attributes object.
- *
- * @return string
- *   Classes as a string.
- */
-function civictheme_get_css_class_attributes(Attribute $attributes) {
-  if ($attributes->hasAttribute('class')) {
-    return implode(' ', $attributes->getClass()->value());
-  }
-
-  return FALSE;
 }
 
 /**
@@ -438,6 +421,17 @@ function civictheme_theme_options() {
 }
 
 /**
+ * Type options suitable for FormAPI.
+ */
+function civictheme_type_options() {
+  return [
+    'default' => 'Default',
+    'inline' => 'Inline',
+    'stacked' => 'Stacked',
+  ];
+}
+
+/**
  * Convert multi-line strings to a list of strings.
  *
  * @param string $string
@@ -470,7 +464,7 @@ function civictheme_array_to_multiline($array, $delimiter = PHP_EOL) {
 }
 
 /**
- * Get the nid that the listing block is embedded in.
+ * Get the nid that the Automated list block is embedded in.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */

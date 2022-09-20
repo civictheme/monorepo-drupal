@@ -26,17 +26,18 @@ export const Alert = (knobTab) => {
     type: radios(
       'Type',
       {
-        Status: 'status',
+        Information: 'information',
         Error: 'error',
         Warning: 'warning',
         Success: 'success',
       },
-      'status',
+      'information',
       generalKnobTab,
     ),
     title: text('Title', 'Site information', generalKnobTab),
     description: text('Description', 'Alert description filium morte multavit si sine causa, nollem me tamen laudandis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vel elit laoreet, dignissim arcu sit amet, vulputate risus.', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   const numOfAlerts = number(
@@ -87,7 +88,7 @@ export const AlertApi = () => {
   }
 
   button('Clear cookie', () => {
-    document.cookie = 'civictheme-alert-hide=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'ct-alert-hide=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   });
 
   let docs = '';
@@ -96,5 +97,5 @@ export const AlertApi = () => {
   docs += 'Dismissed alerts will be revealed if their content was updated. Change payload to "Updated" to see dismissed alerts appear again.<br/><br/>';
   docs += 'Press "Clear cookie" button to clear alert dismissal settings.';
 
-  return `<div data-component-name="civictheme-alerts" data-alert-endpoint="${endpoint}" data-test-path="/"></div><div class="docs-container docs-container--large"><div class="docs-container__content">${docs}</div></div>`;
+  return `<div data-component-name="ct-alerts" data-alert-endpoint="${endpoint}" data-test-path="/"></div><div class="docs-container docs-container--large"><div class="docs-container__content">${docs}</div></div>`;
 };

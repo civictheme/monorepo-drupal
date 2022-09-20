@@ -4,7 +4,7 @@ import { demoImage, getSlots, randomUrl } from '../../00-base/base.stories';
 import CivicThemeSubjectCard from './subject-card.twig';
 
 export default {
-  title: 'Molecules/Card/Subject Card',
+  title: 'Molecules/Cards/Subject Card',
   parameters: {
     layout: 'centered',
   },
@@ -31,6 +31,7 @@ export const SubjectCard = (knobTab) => {
       alt: 'Image alt text',
     } : false,
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeSubjectCard({

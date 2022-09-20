@@ -1,0 +1,33 @@
+//
+// Fieldset component.
+//
+
+.ct-fieldset {
+  border: none;
+  padding: ct-spacing(2) 0;
+
+  legend {
+    @include ct-typography('heading-3');
+
+    margin-bottom: 0;
+  }
+
+  &.ct-form-element--fieldset-radio {
+    legend {
+      @include ct-typography('label-regular');
+    }
+  }
+
+  .description {
+    margin-bottom: ct-spacing(2);
+  }
+
+  .ct-label {
+    &--required::after {
+      color: $ct-fieldset-required-color;
+      content: ' (Required)';
+
+      @include ct-typography('label-small');
+    }
+  }
+}

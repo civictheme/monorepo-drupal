@@ -19,12 +19,12 @@ Feature: Tests the Table Of Contents
     When I visit civictheme_page "[TEST] Page - toc"
     And wait 5 seconds
     Then I should see a ".table-of-contents-container" element
-    And I should see a visible ".civictheme-table-of-contents__title" element
+    And I should see a visible ".ct-table-of-contents__title" element
     And I should see the text "On this page"
-    And I should see "Test heading 1" in the ".civictheme-table-of-contents__links" element
-    And I should see "Test heading 2" in the ".civictheme-table-of-contents__links" element
-    And I should not see "Test heading 3" in the ".civictheme-table-of-contents__links" element
+    And I should see "Test heading 1" in the ".ct-table-of-contents__links" element
+    And I should see "Test heading 2" in the ".ct-table-of-contents__links" element
+    And I should not see "Test heading 3" in the ".ct-table-of-contents__links" element
 
     When I visit civictheme_page "[TEST] Page - no toc"
     Then I should not see a ".table-of-contents-container" element
-    And I should not see a visible ".civictheme-table-of-contents__title" element
+    And I should not see a visible ".ct-table-of-contents__title" element

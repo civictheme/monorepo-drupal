@@ -23,29 +23,16 @@ function _civictheme_preprocess_page__views(&$variables) {
 }
 
 /**
- * Implements template_preprocess_views_mini_pager().
- */
-function civictheme_preprocess_views_mini_pager(&$variables) {
-  if (isset($variables['items']['current'])) {
-    $variables['items']['pages'] = [
-      $variables['items']['current'] => [
-        'href' => '#',
-      ],
-    ];
-  }
-}
-
-/**
  * Implements hook_preprocess_HOOK().
  */
 function civictheme_preprocess_views_exposed_form(&$variables) {
   $variables['filter_title'] = t('Filter search results by:');
-  $variables['large_filter'] = $variables['form']['#is_large_filter'] ?? FALSE;
+  $variables['group_filter'] = $variables['form']['#is_large_filter'] ?? FALSE;
 
-  $is_view_component = isset($variables['attributes']['civictheme_listing']);
+  $is_view_component = isset($variables['attributes']['civictheme_automated_list']);
   if ($is_view_component) {
-    $variables += $variables['attributes']['civictheme_listing'];
-    unset($variables['attributes']['civictheme_listing']);
+    $variables += $variables['attributes']['civictheme_automated_list'];
+    unset($variables['attributes']['civictheme_automated_list']);
     $variables['theme'] = $variables['theme'] ?? CIVICTHEME_THEME_LIGHT;
     _civictheme_propagate_component_theme_settings($variables['form'], $variables['theme']);
   }
@@ -79,9 +66,9 @@ function civictheme_form_views_exposed_form_alter(&$form, FormStateInterface $fo
 /**
  * Alter exposed views form to render filters.
  *
- * Since Listing component uses Views view, view exposed form is rendered
- * for Listing component and standalone views. Filters component properties
- * are applied within view exposed form for both cases.
+ * Since Automated list component uses Views view, view exposed form is rendered
+ * for Automated list component and standalone views. Filters component
+ * properties are applied within view exposed form for both cases.
  *
  * @SuppressWarnings(PHPMD.CyclomaticComplexity)
  * @SuppressWarnings(PHPMD.StaticAccess)
@@ -91,16 +78,17 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
 
   $filter_form_keys = _civictheme_get_views_exposed_form_elements_keys($form);
 
-  // Retrieve theme from listing settings (if this is rendered in the context
-  // of a listing) or use default theme if this rendered as a standalone view.
-  $theme = $view->civictheme_listing['theme'] ?? CIVICTHEME_LISTING_DEFAULT_THEME;
+  // Retrieve theme from Automated list settings (if this is rendered in the
+  // context of an automated list) or use default theme if this rendered as a
+  // standalone view.
+  $theme = $view->civictheme_automated_list['theme'] ?? CIVICTHEME_AUTOMATED_LIST_DEFAULT_THEME;
 
   // Retrieve exposed filter settings.
   $listing_filters = NULL;
-  if (!empty($view->civictheme_listing_entity)) {
-    $listing_show_filters = civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_show_filters');
+  if (!empty($view->civictheme_automated_list_entity)) {
+    $listing_show_filters = civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_show_filters');
     if ($listing_show_filters) {
-      $listing_filters = explode(', ', civictheme_get_field_value($view->civictheme_listing_entity, 'field_c_p_listing_filters_exp', FALSE, ''));
+      $listing_filters = explode(', ', civictheme_get_field_value($view->civictheme_automated_list_entity, 'field_c_p_list_filters_exp', FALSE, ''));
     }
   }
 
@@ -112,7 +100,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   // components.
   $form_element_keys = Element::children($form);
   foreach ($form_element_keys as $form_element_key) {
-    // Hide listing filter if it is not in a list of selected filters.
+    // Hide Automated list filter if it is not in a list of selected filters.
     if (
       in_array($form_element_key, $filter_form_keys)
       && is_array($listing_filters)
@@ -126,23 +114,23 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
     _civictheme_filter_views_exposed_form_alter__process_elements($form[$form_element_key], $form, $listing_use_large_filter);
   }
 
-  $form['#attributes']['data-civictheme-filter'] = '';
-  $form['#attributes']['data-civictheme-filter-type'] = $listing_use_large_filter ? 'large' : 'basic';
-  $form['#attributes']['data-civictheme-filter-ajax-submit-timeout'] = $listing_use_large_filter ? 500 : 0;
+  $form['#attributes']['data-ct-filter'] = '';
+  $form['#attributes']['data-ct-filter-type'] = $listing_use_large_filter ? 'group' : 'single';
+  $form['#attributes']['data-ct-filter-ajax-submit-timeout'] = $listing_use_large_filter ? 500 : 0;
 
   // Made preprocessors know that we are using a large filter.
   // @todo Revisit this as we should not be passing custom values like this.
   $form['#is_large_filter'] = $listing_use_large_filter;
 
   $form['actions']['submit']['#attributes']['class'] = [
-    'civictheme-button--secondary',
-    'civictheme-button--small',
+    'ct-button--secondary',
+    'ct-button--small',
   ];
 
   // Ajax exposed view forms hides submit button to have auto-load.
   $ajax_filter = $form_state->get('view')->ajaxEnabled();
   if ($ajax_filter) {
-    $form['#attributes']['data-civictheme-filter-ajax'] = $ajax_filter ? 'true' : 'false';
+    $form['#attributes']['data-ct-filter-ajax'] = $ajax_filter ? 'true' : 'false';
 
     $form_state->get('view')->setAjaxEnabled(TRUE);
 
@@ -160,6 +148,7 @@ function _civictheme_filter_views_exposed_form_alter(&$form, FormStateInterface 
   // deleted, or rearranged.
   $tags = $view->display_handler->getCacheMetadata()->getCacheTags();
   $form['#cache']['tags'] = Cache::mergeTags($view->getCacheTags(), $tags);
+
 }
 
 /**
@@ -207,7 +196,7 @@ function _civictheme_filter_views_exposed_form_alter__process_elements(&$element
     $filter_key = !$is_large_filter && in_array($element['#type'] ?? NULL, [
       'radios',
       'checkboxes',
-    ]) ? '#civictheme-basic-filter' : '#civictheme-large-filter';
+    ]) ? '#ct-single-filter' : '#ct-group-filter';
     $element[$filter_key] = $form['#id'];
     $element['#attributes'][$filter_key] = $form['#id'];
   }
@@ -223,42 +212,56 @@ function _civictheme_filter_views_exposed_form_alter__process_elements(&$element
 function civictheme_preprocess_views_view(&$variables) {
   $view = &$variables['view'];
 
-  $is_page_load = isset($view->civictheme_listing_entity);
+  $is_page_load = isset($view->civictheme_automated_list_entity);
+
+  // Attach view to pager for processing.
+  // Mini and full pagers have different theme implementations
+  // and so we need to pass the view on different properties to be
+  // accessible in the preprocess functions.
+  if (!empty($variables['pager'])) {
+    if ($view->getPager()->getPluginId() === 'mini') {
+      $variables['pager']['#view'] = $view;
+    }
+    else {
+      $variables['pager']['#attributes']['#view'] = $view;
+    }
+  }
 
   if ($is_page_load) {
-    _civictheme_listing_preprocess_view($view->civictheme_listing_entity, $view);
+    _civictheme_automated_list_preprocess_view($view->civictheme_automated_list_entity, $view);
   }
   else {
-    $listing_paragraph = _civictheme_get_listing_paragraph_from_route();
-    _civictheme_listing_preprocess_view($listing_paragraph, $view);
+    $listing_paragraph = _civictheme_get_automated_listing_paragraph_from_route();
+    _civictheme_automated_list_preprocess_view($listing_paragraph, $view);
   }
 
   $route_parameters = \Drupal::routeMatch()->getParameters();
   $is_view_page = $route_parameters->get('view_id') !== NULL;
-  $is_view_component = isset($variables['view']->civictheme_listing);
+  $is_view_component = isset($variables['view']->civictheme_automated_list);
 
-  // Adds component theme settings to view / listing template.
+  // Adds component theme settings to view / Automated list template.
   if ($is_view_component) {
-    $variables += $variables['view']->civictheme_listing;
+    $variables += $variables['view']->civictheme_automated_list;
 
     // Override already set title.
-    $variables['title'] = $variables['view']->civictheme_listing['title'] ?? '';
+    $variables['title'] = $variables['view']->civictheme_automated_list['title'] ?? '';
 
     // Render 'exposed' as Filters component.
     if (!empty($variables['exposed'])) {
       $variables['filters'] = $variables['exposed'];
       unset($variables['exposed']);
-      $variables['filters']['#attributes']['civictheme_listing'] = $variables['view']->civictheme_listing;
+      $variables['filters']['#attributes']['civictheme_automated_list'] = $variables['view']->civictheme_automated_list;
     }
 
     if (!empty($variables['pager'])) {
-      $variables['pager']['#attributes']['#civictheme_theme'] = $variables['view']->civictheme_listing['theme'] ?? 'light';
+      $variables['pager']['#attributes']['#civictheme_theme'] = $variables['view']->civictheme_automated_list['theme'] ?? 'light';
     }
   }
 
-  // Header is displayed within card container.
+  // Header is displayed within List.
   if ($view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     unset($variables['header']);
+    $variables['rows_header'] = $view->header['result']->render();
   }
 
   // Adding template required classes in for civictheme component.
@@ -277,19 +280,19 @@ function civictheme_preprocess_views_view(&$variables) {
 
   $variables['modifier_class'] = implode(' ', $variables['modifier_class']);
 
-  if (isset($view->civictheme_listing['show_filters']) && $view->civictheme_listing['show_filters'] === FALSE) {
+  if (isset($view->civictheme_automated_list['show_filters']) && $view->civictheme_automated_list['show_filters'] === FALSE) {
     $variables['filters'] = NULL;
   }
 }
 
 /**
- * Adds preprocessing data to view to provide to listing child components.
+ * Adds preprocessing data to Automated list child components.
  */
-function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) {
+function _civictheme_automated_list_preprocess_view($paragraph, ViewExecutable &$view) {
   $settings = [];
 
   if ($paragraph !== NULL) {
-    $link_above = civictheme_get_field_value($paragraph, 'field_c_p_listing_link_above', TRUE);
+    $link_above = civictheme_get_field_value($paragraph, 'field_c_p_list_link_above', TRUE);
     $link_above_data = $link_above ? [
       'text' => $link_above->get('title')->getString(),
       'is_external' => $link_above->isExternal(),
@@ -297,7 +300,7 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
       'url' => $link_above->getUrl()->toString(),
     ] : [];
 
-    $link_below = civictheme_get_field_value($paragraph, 'field_c_p_listing_link_below', TRUE);
+    $link_below = civictheme_get_field_value($paragraph, 'field_c_p_list_link_below', TRUE);
     $link_below_data = $link_below ? [
       'text' => $link_below->get('title')->getString(),
       'is_external' => $link_below->isExternal(),
@@ -307,22 +310,24 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
 
     $settings = [
       'theme' => civictheme_get_field_theme_value($paragraph),
-      'card_theme' => civictheme_get_field_value($paragraph, 'field_c_p_listing_item_theme'),
+      'content' => civictheme_get_field_value($paragraph, 'field_c_p_content'),
+      'card_theme' => civictheme_get_field_value($paragraph, 'field_c_p_list_item_theme'),
+      'rows_header' => isset($view->header['result']) ? $view->header['result']->render() : NULL,
       'link_above' => $link_above_data,
       'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
       'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,
-      'vertical_space' => civictheme_get_field_value($paragraph, 'field_c_p_space') ?? '',
-      'show_filters' => civictheme_get_field_value($paragraph, 'field_c_p_listing_show_filters') ?? FALSE,
+      'vertical_spacing' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing') ?? '',
+      'show_filters' => civictheme_get_field_value($paragraph, 'field_c_p_list_show_filters') ?? FALSE,
       'link_below' => $link_below_data,
       'cache_tags' => $paragraph->getCacheTags(),
     ];
   }
 
   // Call modules/theme that implement the hook, and let them change the view.
-  \Drupal::moduleHandler()->alter('civictheme_listing_preprocess_view', $settings, $view);
-  \Drupal::service('theme.manager')->alter('civictheme_listing_preprocess_view', $settings, $view);
+  \Drupal::moduleHandler()->alter('civictheme_automated_list_preprocess_view', $settings, $view);
+  \Drupal::service('theme.manager')->alter('civictheme_automated_list_preprocess_view', $settings, $view);
 
-  $view->civictheme_listing = $settings;
+  $view->civictheme_automated_list = $settings;
 }
 
 /**
@@ -333,16 +338,16 @@ function _civictheme_listing_preprocess_view($paragraph, ViewExecutable &$view) 
 function civictheme_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'] ?? NULL;
 
-  $variables['modifier_class'] = 'civictheme-card-container--listing';
-  // On Grid view title should be added to card container.
+  $variables['modifier_class'] = 'ct-card-container--listing';
+  // On Grid view title should be added to list.
   if ($view && $view->getStyle()->getBaseId() === 'grid' && isset($view->header['result'])) {
     $variables['title'] = $view->header['result']->render();
   }
 
   // Adds component theme settings to view / listing template.
-  $is_view_component = isset($variables['view']->civictheme_listing);
+  $is_view_component = isset($variables['view']->civictheme_automated_list);
   if ($is_view_component) {
-    $variables += $variables['view']->civictheme_listing;
+    $variables += $variables['view']->civictheme_automated_list;
   }
 
   if (isset($variables['card_theme'])) {
@@ -351,15 +356,15 @@ function civictheme_preprocess_views_view_grid(&$variables) {
       $variables['rows'][$id]['#cache']['contexts'][] = 'url.path';
       $variables['rows'][$id]['#cache']['contexts'][] = 'url.query_args';
 
-      if (!empty($variables['view']->civictheme_listing['cache_tags'])) {
-        $variables['rows'][$id]['#cache']['tags'] = Cache::mergeTags($variables['view']->civictheme_listing['cache_tags'], $view->getCacheTags());
+      if (!empty($variables['view']->civictheme_automated_list['cache_tags'])) {
+        $variables['rows'][$id]['#cache']['tags'] = Cache::mergeTags($variables['view']->civictheme_automated_list['cache_tags'], $view->getCacheTags());
       }
     }
   }
 }
 
 /**
- * Gets the Listing paragraph from route.
+ * Gets the Automated list paragraph from route.
  *
  * @return \Drupal\paragraphs\Entity\Paragraph|null
  *   First Listing paragraph from the node in route or NULL if no listing
@@ -367,7 +372,7 @@ function civictheme_preprocess_views_view_grid(&$variables) {
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
-function _civictheme_get_listing_paragraph_from_route() {
+function _civictheme_get_automated_listing_paragraph_from_route() {
   $node = \Drupal::routeMatch()->getParameter('node');
 
   // Handling an ajax request: try and get from query parameters.
@@ -381,7 +386,7 @@ function _civictheme_get_listing_paragraph_from_route() {
   if ($node && $node->bundle() == 'civictheme_page') {
     $components = civictheme_get_field_referenced_entities($node, 'field_c_n_components');
     foreach ($components as $component) {
-      if ($component->getType() == 'civictheme_listing') {
+      if ($component->getType() == 'civictheme_automated_list') {
         return $component;
       }
     }

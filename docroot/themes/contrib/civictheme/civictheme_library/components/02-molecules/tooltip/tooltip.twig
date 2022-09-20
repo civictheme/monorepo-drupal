@@ -8,26 +8,35 @@
  * - symbol: [string] Symbol to use in the button. Defaults to 'userinterface_informationmark'.
  * - text: [string] Text to display within the popup.
  * - title: [string] Text used within the button title and for screen readers.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-{% if text %}
-  <div class="civictheme-tooltip {{ modifier_class }}" data-collapsible data-collapsible-collapsed data-collapsible-duration="0" data-collapsible-trigger-no-icon>
-    <button class="civictheme-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %}  aria-expanded="false">
-      {%- include '@atoms/icon/icon.twig' with {
-        symbol: symbol|default('userinterface_informationmark'),
-        size: size|default('regular'),
+{% if content %}
+  <div class="ct-tooltip {{ modifier_class }}" data-component-name="tooltip" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    <button class="ct-tooltip__button" {% if title %}aria-label="{{ title }}" title="{{ title }}"{% endif %} data-tooltip-button data-tooltip-position="{{ position }}">
+      {%- include '@base/icon/icon.twig' with {
+        symbol: icon|default('information-mark'),
+        size: icon_size|default('large'),
       } only -%}
     </button>
 
-    <div class="civictheme-tooltip__description">
-      <div class="civictheme-tooltip__description__inner">
-        {{ text }}
+    <div class="ct-tooltip__description" data-tooltip-content>
+      <div class="ct-tooltip__description__inner">
+        {{ content }}
       </div>
+      <div data-tooltip-close>
+        {%- include '@base/icon/icon.twig' with {
+          symbol: 'cancel',
+          size: regular,
+        } only -%}
+      </div>
+
+      <div class="ct-tooltip__arrow" data-tooltip-arrow></div>
     </div>
   </div>
 {% endif %}

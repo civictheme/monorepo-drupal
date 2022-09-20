@@ -5,9 +5,11 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - logos: [object] Object with 'mobile' and 'desktop' keys:
- *    - src: [string] URL for the logo.
- *    - alt: [string] Image alt text.
+ * - type: [string] Type: default, inline, stacked.
+ * - logos: [object] Object with 'primary' and 'secondary' keys:
+ *    - breakpoint: [object] Object with 'mobile' and 'desktop' keys:
+ *       - src: [string] URL for the logo.
+ *       - alt: [string] Image alt text.
  * - url: [string] Optional URL that wraps the logo.
  * - title: [string] Optional logo title attribute.
  * - attributes: [string] Additional attributes.
@@ -15,26 +17,48 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set type = type in ['default', 'inline', 'stacked'] ? type : 'default' %}
+{% set type_class = 'ct-logo--%s'|format(type|default('default')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class,  modifier_class|default('')) %}
+
+{# {% if logos is not empty %} #}
+{#  {% set processed_logos = {} %} #}
+{#  {% for logo_type, logo_values in logos|reverse %} #}
+{#    {% for visibility_type, logo in logo_values %} #}
+{#      {% if visibility_type in processed_logos|keys %} #}
+{#        {% set processed_logos = processed_logos|merge({(visibility_type): processed_logos[(visibility_type)]|merge({(logo_type): logo})}) %} #}
+{#      {% else %} #}
+{#        {% set processed_logos = processed_logos|merge({(visibility_type): {(logo_type): logo}}) %} #}
+{#      {% endif %} #}
+{#    {% endfor %} #}
+{#  {% endfor %} #}
+{#  {% set logos = processed_logos %} #}
+{# {% endif %} #}
 
 {% if logos is not empty %}
-  {% for type, logo in logos %}
-    {% set visibility_class = type == 'mobile' ? 'show-xxs hide-m' : 'hide-xxs show-m' %}
-    {% if logo.src is not empty %}
-      <div class="civictheme-logo {{ visibility_class }} {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-        {% if url is not empty %}
-        <a class="civictheme-logo__url" href="{{ url }}" title="{{ title|default('Click to go to the homepage') }}">
-        {% endif %}
-          {% include '@atoms/image/image.twig' with {
-            theme: theme,
-            src: logo.src,
-            alt:  logo.alt,
-          } only %}
-        {% if url is not empty %}
-        </a>
-        {% endif %}
-      </div>
+  {% if url is not empty %}
+    <a class="ct-logo {{ modifier_class }}" href="{{ url }}" title="{{ title|default('Click to go to the homepage') }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  {% else %}
+    <div class="ct-logo {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  {% endif %}
+
+  {% for logo_type, logo in logos %}
+    {% if (type == 'default' and logo_type == 'primary') or type != 'default' %}
+      {% for breakpoint, img in logo %}
+        {% include '@atoms/image/image.twig' with {
+          theme: theme,
+          src: img.src,
+          alt: img.alt,
+          modifier_class: 'ct-logo--' ~ logo_type ~ ' ct-logo--' ~ breakpoint,
+        } only %}
+      {% endfor %}
     {% endif %}
   {% endfor %}
+
+  {% if url is not empty %}
+    </a>
+  {% else %}
+    </div>
+  {% endif %}
 {% endif %}

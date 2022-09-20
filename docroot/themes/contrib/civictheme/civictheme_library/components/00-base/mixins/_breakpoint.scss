@@ -15,24 +15,28 @@
 //
 // @code
 //
-// @include civictheme-breakpoint(s) {
+// @include ct-breakpoint(s) {
 //   color: red;
 // }
-// @include civictheme-breakpoint(m) {
+// @include ct-breakpoint(m) {
 //   color: green;
 // }
-// @include civictheme-breakpoint(l) {
+// @include ct-breakpoint(l) {
 //   color: blue;
 // }
 //
 // @endcode
 //
-@mixin civictheme-breakpoint($class) {
-  @if map.get($civictheme-breakpoints, $class) == null {
-    @error '"#{$class}" is not an available breakpoint. (#{map-keys($civictheme-breakpoints)})';
+@mixin ct-breakpoint($name) {
+  @if ct-string-is-quoted($name) {
+    $name: ct-unquote($name);
   }
 
-  @include breakpoint(map.get($civictheme-breakpoints, $class)) {
+  @if map.get($ct-breakpoints, $name) == null {
+    @error '"#{$name}" is not an available breakpoint. (#{map-keys($ct-breakpoints)})';
+  }
+
+  @include breakpoint(map.get($ct-breakpoints, $name)) {
     @content;
   }
 }
@@ -42,24 +46,24 @@
 //
 // @code
 //
-// @include civictheme-breakpoint-upto(s) {
+// @include ct-breakpoint-upto(s) {
 //   color: red;
 // }
-// @include civictheme-breakpoint-upto(m) {
+// @include ct-breakpoint-upto(m) {
 //   color: green;
 // }
-// @include civictheme-breakpoint-upto(l) {
+// @include ct-breakpoint-upto(l) {
 //   color: blue;
 // }
 //
 // @endcode
 //
-@mixin civictheme-breakpoint-upto($class) {
-  @if map.get($civictheme-breakpoints, $class) == null {
-    @error '"#{$class}" is not an available breakpoint. (#{map-keys($civictheme-breakpoints)})';
+@mixin ct-breakpoint-upto($class) {
+  @if map.get($ct-breakpoints, $class) == null {
+    @error '"#{$class}" is not an available breakpoint. (#{map-keys($ct-breakpoints)})';
   }
 
-  @include breakpoint('max-width'  map.get($civictheme-breakpoints, $class) - 1) {
+  @include breakpoint('max-width'  map.get($ct-breakpoints, $class) - 1) {
     @content;
   }
 }

@@ -50,7 +50,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 81870fba-ebc6-4809-a1ad-8a5fb65e4104
-          bundle: civictheme_listing
+          bundle: civictheme_automated_list
           default_langcode: en
         default:
           status:
@@ -68,22 +68,22 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_listing_item_theme:
+          field_c_p_list_item_theme:
             -
               value: light
-          field_c_p_listing_content_type:
+          field_c_p_list_content_type:
             -
               value: civictheme_page
-          field_c_p_listing_limit_type:
+          field_c_p_list_limit_type:
             -
               value: unlimited
-          field_c_p_listing_limit:
+          field_c_p_list_limit:
             -
               value: 9
-          field_c_p_listing_multi_select:
+          field_c_p_list_multi_select:
             -
               value: false
-          field_c_p_listing_show_filters:
+          field_c_p_list_show_filters:
             -
               value: true
           field_c_p_theme:
@@ -92,7 +92,7 @@ default:
           field_c_p_title:
             -
               value: 'listing title'
-          field_c_p_listing_item_view_as:
+          field_c_p_list_item_view_as:
             -
               value: civictheme_promo_card
   field_c_n_hide_sidebar:
@@ -104,6 +104,6 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_space:
+  field_c_n_vertical_spacing:
     -
       value: both

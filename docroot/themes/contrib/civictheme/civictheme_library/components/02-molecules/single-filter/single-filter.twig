@@ -1,0 +1,46 @@
+{#
+/**
+* @file
+* Basic Filter component.
+*
+* Variables:
+* - theme: [string] Theme: light, dark.
+* - items: [array] Filter links:
+*   - text: [string] Link text.
+*   - url: [string] URL.
+* - is_multiple: [boolean] Allow to select multiple filter values.
+* - attributes: [string] Additional attributes.
+* - modifier_class: [string] Additional classes.
+*/
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<div class="ct-single-filter {{ modifier_class }}" data-component-name="ct-single-filter" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <div class="container">
+    <div class="row">
+      <div class="col-xxs-12">
+        <div class="ct-single-filter__list">
+          {% block filters %}
+            {% for item in items %}
+              {% if item.text is not empty %}
+                <div class="ct-single-filter__list--row">
+                  {% include '@atoms/chip/chip.twig' with {
+                    theme: theme,
+                    is_multiple: is_multiple,
+                    kind: 'input',
+                    size: 'small',
+                    content: item.text,
+                    name: is_multiple ? 'single-filter-' ~ loop.index : 'single-filter',
+                    id: 'chip-' ~ loop.index,
+                  } only %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

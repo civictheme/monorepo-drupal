@@ -67,7 +67,7 @@ default:
               value: false
           field_c_p_content:
             -
-              value: "<p>A short, one-sentence vision or mission statement works well here.&nbsp;&nbsp;</p>\r\n\r\n<p><a class=\"civictheme-button civictheme-button--primary civictheme-button--regular civictheme-theme-light\" href=\"/about-us\">Learn about our mission</a></p>\r\n"
+              value: "<p>A short, one-sentence vision or mission statement works well here.&nbsp;&nbsp;</p>\r\n\r\n<p><a class=\"ct-button ct-button--primary ct-button--regular ct-theme-light\" href=\"/about-us\">Learn about our mission</a></p>\r\n"
               format: civictheme_rich_text
           field_c_p_theme:
             -
@@ -79,7 +79,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 0787b004-028c-4029-bca3-03cfb46a80c1
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -94,7 +94,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -216,7 +216,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 17c4bba7-140e-40f1-86fd-6b967620534b
-          bundle: civictheme_listing
+          bundle: civictheme_automated_list
           default_langcode: en
         default:
           status:
@@ -231,31 +231,31 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_listing_item_theme:
+          field_c_p_list_item_theme:
             -
               value: light
-          field_c_p_listing_content_type:
+          field_c_p_list_content_type:
             -
               value: civictheme_page
-          field_c_p_listing_limit_type:
+          field_c_p_list_limit_type:
             -
               value: limited
-          field_c_p_listing_limit:
+          field_c_p_list_limit:
             -
               value: 4
-          field_c_p_listing_multi_select:
+          field_c_p_list_multi_select:
             -
               value: false
-          field_c_p_listing_show_filters:
+          field_c_p_list_show_filters:
             -
               value: false
           field_c_p_theme:
             -
               value: light
-          field_c_p_listing_topics:
+          field_c_p_list_topics:
             -
               entity: dcbc66a3-946d-435b-8ce8-54a680bf3b18
-          field_c_p_listing_item_view_as:
+          field_c_p_list_item_view_as:
             -
               value: civictheme_promo_card
     -
@@ -264,7 +264,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 57eca1d1-bb72-4087-9ab6-eb3ac0e51a96
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -279,7 +279,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -414,7 +414,7 @@ default:
           field_c_p_fill_width:
             -
               value: false
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: bottom
           field_c_p_theme:
@@ -446,7 +446,7 @@ default:
               uri: 'internal:/'
               title: 'Callout text link '
               options: {  }
-          field_c_p_space:
+          field_c_p_vertical_spacing:
             -
               value: bottom
           field_c_p_summary:
@@ -467,6 +467,6 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_space:
+  field_c_n_vertical_spacing:
     -
       value: both

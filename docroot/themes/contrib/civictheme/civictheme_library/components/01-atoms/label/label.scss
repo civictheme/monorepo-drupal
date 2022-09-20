@@ -2,38 +2,50 @@
 // Label component.
 //
 
-.civictheme-label {
+@use 'sass:map';
+@use 'sass:string';
+
+.ct-label {
   $root: &;
 
   display: block;
-  margin-bottom: civictheme-space();
+  margin-bottom: ct-spacing();
 
-  @include civictheme-typography('label-regular');
+  @include ct-typography('label-regular');
 
   &--required {
     &::after {
       content: ' (Required)';
 
-      @include civictheme-typography('label-small');
+      @include ct-typography('label-small');
     }
   }
 
-  &.civictheme-theme-light {
-    color: $civictheme-label-light-color;
-
-    #{$root}--required {
-      &::after {
-        color: $civictheme-label-light-required-color;
+  @each $name in map.keys(_ct-typography-all()) {
+    @if string.index(#{$name}, 'label-') {
+      $size: string.slice(#{$name}, 6, 100);
+      &.ct-label-#{$size} {
+        @include ct-typography($name);
       }
     }
   }
 
-  &.civictheme-theme-dark {
-    color: $civictheme-label-dark-color;
+  &.ct-theme-light {
+    color: $ct-label-light-color;
 
     #{$root}--required {
       &::after {
-        color: $civictheme-label-dark-required-color;
+        color: $ct-label-light-required-color;
+      }
+    }
+  }
+
+  &.ct-theme-dark {
+    color: $ct-label-dark-color;
+
+    #{$root}--required {
+      &::after {
+        color: $ct-label-dark-required-color;
       }
     }
   }

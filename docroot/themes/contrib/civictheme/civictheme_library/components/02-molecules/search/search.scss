@@ -2,63 +2,73 @@
 // Search component.
 //
 
-.civictheme-search {
+.ct-search {
   $root: &;
 
-  @include civictheme-print-hide();
+  @include ct-print-hide();
 
-  padding: civictheme-space(2) 0;
+  // Make button appear as a "Navigation with Drawer" item.
+  // @see navigation.scss
+  display: flex;
+  align-items: center;
 
   &__link {
-    @include civictheme-typography('label-regular');
+    @include ct-typography('label-regular');
 
-    // Make button appear as a Primary Navigation item.
-    // @see civictheme-primary-navigation.scss
-    display: flex;
-    align-items: center;
     text-decoration: none;
-    padding: civictheme-space(2);
-    border-bottom: solid 4px;
+    border-bottom: solid ct-particle(0.5);
+    padding-left: ct-spacing(2);
+    padding-right: ct-spacing(2);
+    padding-top: $ct-navigation-drawer-top-offset;
+    padding-bottom: $ct-navigation-drawer-top-offset;
 
-    .civictheme-button__icon {
-      margin-left: civictheme-space(0.5);
+    .ct-button__icon {
+      margin-left: ct-spacing(0.5);
 
-      .civictheme-icon {
+      .ct-icon {
         vertical-align: middle;
       }
     }
   }
 
-  &.civictheme-theme-light {
-    #{$root}__link {
-      color: $civictheme-search-light-color;
-      border-bottom-color: $civictheme-search-light-menu-item-border-color;
+  &.ct-theme-light {
+    > .ct-link {
+      background-color: $ct-navigation-light-drawer-menu-item-background-color;
+      border-bottom-color: $ct-navigation-light-drawer-menu-item-border-color;
+      color: $ct-navigation-light-drawer-color;
 
       &:hover {
-        color: $civictheme-search-light-hover-color;
-        border-bottom-color: $civictheme-search-light-menu-item-hover-border-color;
+        background-color: $ct-navigation-light-drawer-menu-item-hover-background-color;
+        border-bottom-color: $ct-navigation-light-drawer-menu-item-hover-border-color;
+        color: $ct-navigation-light-drawer-hover-color;
       }
 
+      &[aria-expanded='true'],
       &:active {
-        color: $civictheme-search-light-active-color;
-        border-bottom-color: $civictheme-search-light-menu-item-active-border-color;
+        background-color: $ct-navigation-light-drawer-menu-item-active-background-color;
+        border-bottom-color: $ct-navigation-light-drawer-menu-item-active-border-color;
+        color: $ct-navigation-light-drawer-active-color;
       }
     }
   }
 
-  &.civictheme-theme-dark {
-    #{$root}__link {
-      color: $civictheme-search-dark-color;
-      border-bottom-color: $civictheme-search-dark-menu-item-border-color;
+  &.ct-theme-dark {
+    > .ct-link {
+      background-color: $ct-navigation-dark-drawer-menu-item-background-color;
+      border-bottom-color: $ct-navigation-dark-drawer-menu-item-border-color;
+      color: $ct-navigation-dark-drawer-color;
 
       &:hover {
-        color: $civictheme-search-dark-hover-color;
-        border-bottom-color: $civictheme-search-dark-menu-item-hover-border-color;
+        background-color: $ct-navigation-dark-drawer-menu-item-hover-background-color;
+        border-bottom-color: $ct-navigation-dark-drawer-menu-item-hover-border-color;
+        color: $ct-navigation-dark-drawer-hover-color;
       }
 
+      &[aria-expanded='true'],
       &:active {
-        color: $civictheme-search-dark-active-color;
-        border-bottom-color: $civictheme-search-dark-menu-item-active-border-color;
+        background-color: $ct-navigation-dark-drawer-menu-item-active-background-color;
+        border-bottom-color: $ct-navigation-dark-drawer-menu-item-active-border-color;
+        color: $ct-navigation-dark-drawer-active-color;
       }
     }
   }

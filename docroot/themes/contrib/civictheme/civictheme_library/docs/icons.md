@@ -23,19 +23,9 @@ the required icon. **
 We recommend not deleting any of the default icons found in the starter theme as
 these are used by CivicTheme theme in the default templates.
 
-## Re-generating icons library
-
-Icons library is generated from provided files and stored in `icon_library.generated.twig`
-file to avoid constant re-compilation.
-
-After you have finished including the icons you wish to use in your child theme,
-run the script below to update the contents of `icon_library.generated.twig`:
-
-    npm run generate-icon-library
-
 ## Troubleshooting icons
 
 If you are experiencing a missing icon in your drupal webpage and the SVG tag is
-not being rendered ie `div.civictheme-icon` does not have any inner SVG element -
+not being rendered ie `div.ct-icon` does not have any inner SVG element -
 this is caused by the icon svg missing from your child theme. Follow the above
 process to include it.

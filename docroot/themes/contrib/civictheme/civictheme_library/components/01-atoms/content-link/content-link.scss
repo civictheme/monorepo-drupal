@@ -1,0 +1,91 @@
+//
+// Link component.
+//
+
+//
+// Mixins.
+//
+@mixin ct-content-link-base() {
+  text-decoration: underline;
+  text-decoration-thickness: ct-particle(0.25);
+  text-underline-offset: ct-particle(0.375);
+  padding: ct-spacing(0.375) 0 ct-spacing(0.25);
+
+  &:hover {
+    text-decoration: none;
+    padding: ct-spacing(0.375) 0 ct-spacing(0.5);
+  }
+
+  .ct-content-link__link-icon {
+    margin-right: ct-spacing(0.5);
+  }
+
+  &,
+  &.ct-theme-light {
+    color: $ct-content-link-light-color;
+
+    &:focus {
+      @include ct-outline();
+    }
+
+    &:hover {
+      background-color: $ct-content-link-light-hover-background-color;
+      color: $ct-content-link-light-hover-color;
+    }
+  }
+
+  &.ct-theme-dark {
+    color: $ct-content-link-dark-color;
+
+    &:focus {
+      @include ct-outline(true);
+    }
+
+    &:hover {
+      background-color: $ct-content-link-dark-hover-background-color;
+      color: $ct-content-link-dark-hover-color;
+    }
+  }
+
+  &:visited {
+    @include ct-content-link-visited ();
+  }
+}
+
+@mixin ct-content-link-visited() {
+  &.ct-theme-light {
+    color: $ct-content-link-light-visited-color;
+
+    &:hover {
+      border-color: $ct-content-link-light-visited-hover-border-color;
+      color: $ct-content-link-light-visited-hover-color;
+    }
+  }
+
+  &.ct-theme-dark {
+    color: $ct-content-link-dark-visited-color;
+
+    &:hover {
+      border-color: $ct-content-link-dark-visited-hover-border-color;
+      color: $ct-content-link-dark-visited-hover-color;
+    }
+  }
+}
+
+@mixin ct-icon-inline($content) {
+  content: $content;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: ct-particle(3);
+  height: ct-particle(3);
+  fill: currentcolor;
+  vertical-align: -webkit-baseline-middle;
+}
+
+//
+// Classes.
+//
+
+.ct-content-link {
+  @include ct-content-link-base();
+}

@@ -22,7 +22,7 @@
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% import _self as menus %}
@@ -33,22 +33,22 @@ Copied as-is from '@base/menu/menu.twig'.
 {% macro menu_links(items, menu_level, modifier_class, theme, is_collapsible, parent_key) %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul class="civictheme-menu civictheme-menu--level-{{ menu_level }} {{ modifier_class }} " data-component-name="civictheme-menu" {{ attributes|default('') }}>
+      <ul class="ct-menu ct-menu--level-{{ menu_level }} {{ modifier_class }} " data-component-name="ct-menu" {{ attributes|default('') }}>
     {% else %}
       {% if is_collapsible %}
         {% set collapsible_panel = 'data-collapsible-panel' %}
         {% set aria_hidden = item.in_active_trail ? 'aria-hidden="false"' : 'aria-hidden="true"' %}
       {% endif %}
-      <div class="civictheme-menu__sub-menu__wrapper civictheme-menu__sub-menu__wrapper--level-{{ menu_level }}" {{ collapsible_panel }} {{ aria_hidden }}>
-        <ul class="civictheme-menu civictheme-menu__sub-menu civictheme-menu--level-{{ menu_level }}">
+      <div class="ct-menu__sub-menu__wrapper ct-menu__sub-menu__wrapper--level-{{ menu_level }}" {{ collapsible_panel }} {{ aria_hidden }}>
+        <ul class="ct-menu ct-menu__sub-menu ct-menu--level-{{ menu_level }}">
     {% endif %}
 
     {% for key, item in items %}
       {% set item_classes = [
-        'civictheme-menu__item',
-        'civictheme-menu__item--level-' ~ menu_level,
-        item.below ? 'civictheme-menu__item--has-children' : '',
-        item.in_active_trail ? 'civictheme-menu__item--active-trail' : '',
+        'ct-menu__item',
+        'ct-menu__item--level-' ~ menu_level,
+        item.below ? 'ct-menu__item--has-children' : '',
+        item.in_active_trail ? 'ct-menu__item--active-trail' : '',
         item.modifier_class|default(''),
       ] %}
 
@@ -66,18 +66,18 @@ Copied as-is from '@base/menu/menu.twig'.
           text: item.title,
           title: item.title,
           url: item.url,
-          modifier_class: 'civictheme-menu__item__link',
+          modifier_class: 'ct-menu__item__link',
           attributes: item.link_attributes|default(''),
           is_new_window: item.is_new_window is defined ? item.is_new_window : false,
           is_external: item.is_external is defined ? item.is_external : false,
         } only %}
 
         {% if is_collapsible and item.below %}
-          <a href="#" class="civictheme-menu__item__link-trigger" data-collapsible-trigger title="Expand {{ item.title }} menu"></a>
+          <a href="#" class="ct-menu__item__link-trigger" data-collapsible-trigger title="Expand {{ item.title }} menu"></a>
         {% endif %}
 
         {% if item.below %}
-          {{ menus.menu_links_below(item.below, menu_level + 1, classes, theme, is_collapsible, key) }}
+          {{ menus.menu_links_below(item.below, menu_level + 1, classes, item) }}
         {% endif %}
 
       </li>
@@ -100,9 +100,9 @@ Overrides for generation of child links.
   {% include '@atoms/button/button.twig' with {
     theme: theme,
     kind: 'link',
-    icon: 'arrows_rightarrow_3',
+    icon: 'right-arrow-2',
     size: 'regular',
-    modifier_class: 'civictheme-mobile-navigation__open-subsection-trigger',
+    modifier_class: 'ct-mobile-navigation__open-subsection-trigger',
     attributes: 'data-flyout-open-trigger',
   } only %}
 
@@ -110,11 +110,11 @@ Overrides for generation of child links.
     <div data-flyout-panel>
       {% include '@organisms/mobile-navigation/mobile-navigation-close.twig' %}
 
-      <div class="civictheme-mobile-navigation__close-trigger">
+      <div class="ct-mobile-navigation__close-trigger">
         {% include '@atoms/button/button.twig' with {
           theme: theme,
           kind: 'link',
-          icon: 'arrows_leftarrow_1',
+          icon: 'left-arrow-outline',
           icon_placement: 'before',
           size: 'regular',
           text: parent_item.title,

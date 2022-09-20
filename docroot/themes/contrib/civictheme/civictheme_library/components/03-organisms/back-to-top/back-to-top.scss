@@ -1,0 +1,46 @@
+//
+// Back to Top component.
+//
+
+.ct-back-to-top {
+  $root: &;
+
+  @include ct-print-hide();
+
+  position: fixed;
+  right: $ct-back-to-top-space-right;
+  bottom: $ct-back-to-top-space-bottom;
+
+  &[data-scrollspy='true'] {
+    display: none;
+
+    &.ct-scrollspy-scrolled {
+      display: block;
+    }
+  }
+
+  .ct-button {
+    &,
+    &:focus,
+    &:active,
+    &:visited,
+    &:hover {
+      border-radius: ct-particle(12);
+      padding: ct-spacing();
+      background-color: $ct-back-to-top-background-color;
+      border-color: $ct-back-to-top-background-color;
+      color: $ct-back-to-top-color;
+      outline-color: $ct-back-to-top-outline-color;
+    }
+
+    &__icon {
+      &:focus {
+        outline-style: unset;
+      }
+    }
+
+    .ct-icon {
+      fill: $ct-back-to-top-color;
+    }
+  }
+}

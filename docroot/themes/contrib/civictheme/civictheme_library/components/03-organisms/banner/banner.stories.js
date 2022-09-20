@@ -2,7 +2,7 @@
 import {
   boolean, radios, select, text,
 } from '@storybook/addon-knobs';
-import { demoImage, getSlots } from '../../00-base/base.stories';
+import { demoImage, getSlots, objectFromArray } from '../../00-base/base.stories';
 import CivicThemeBannerExample from './banner.stories.twig';
 
 export default {
@@ -14,6 +14,7 @@ export default {
 
 export const Banner = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+  const bgImageKnobTab = 'Background Image';
 
   const theme = radios(
     'Theme',
@@ -25,19 +26,27 @@ export const Banner = (knobTab) => {
     generalKnobTab,
   );
 
+  const withBgImage = boolean('With background image', true, generalKnobTab);
+
   const generalKnobs = {
     theme,
     title: text('Title', 'Providing visually engaging digital experiences', generalKnobTab),
-    background_image: BACKGROUNDS[select('Background', Object.keys(BACKGROUNDS), Object.keys(BACKGROUNDS)[0], generalKnobTab)],
+    background_image: withBgImage ? BACKGROUNDS[select('Background', Object.keys(BACKGROUNDS), Object.keys(BACKGROUNDS)[0], bgImageKnobTab)] : null,
+    background_image_blend_mode: withBgImage ? select(
+      'Blend mode',
+      objectFromArray(SCSS_VARIABLES['ct-background-blend-modes']),
+      SCSS_VARIABLES['ct-background-blend-modes'][0],
+      bgImageKnobTab,
+    ) : null,
     featured_image: boolean('With featured image', true, generalKnobTab) ? {
       src: demoImage(),
       alt: 'Featured image alt text',
     } : null,
     is_decorative: boolean('Decorative', true, generalKnobTab),
-    show_breadcrumb: boolean('Show breadcrumb', true, generalKnobTab),
-    show_content_text: boolean('Show content text', true, generalKnobTab),
-    show_content_search: boolean('Show content search', false, generalKnobTab),
-    show_content_below: boolean('Show content below', false, generalKnobTab),
+    show_breadcrumb: boolean('With breadcrumb', true, generalKnobTab),
+    show_content_text: boolean('With content text', true, generalKnobTab),
+    show_content_search: boolean('With content search', false, generalKnobTab),
+    show_content_below: boolean('With content below', false, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
   };
 

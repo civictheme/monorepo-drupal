@@ -6,22 +6,23 @@
  * Variables:
  * - reference_webform: [webform] Rendered webform.
  * - theme: [string] Theme: light, dark.
- * - vertical_space: [string] With top, bottom or both vertical spaces.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
  * - with_background: [boolean] With background or not.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-webform--vertical-space-%s'|format(vertical_space) : '' %}
-{% set with_background_class = with_background ? 'civictheme-webform--with-background' : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, vertical_space_class, with_background_class, modifier_class|default('')) %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set with_background_class = with_background ? 'ct-webform--with-background' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, vertical_spacing_class, with_background_class, modifier_class|default('')) %}
 
 {% if reference_webform is not empty %}
-  <div class="civictheme-webform {{ modifier_class }}">
+  <div class="ct-webform {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <div class="container">
       <div class="row">
-        <div class="col-m-12">
+        <div class="col-xxs-12">
           {{ reference_webform }}
         </div>
       </div>

@@ -1,9 +1,9 @@
 // phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
+import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeLabel from './label.twig';
 
 export default {
-  title: 'Atoms/Form/Label',
+  title: 'Atoms/Forms/Label',
   parameters: {
     layout: 'centered',
   },
@@ -22,19 +22,20 @@ export const Label = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    content: text('Content', 'Label text', generalKnobTab),
-    required: boolean('Required', false, generalKnobTab),
-    title_display: radios(
-      'Title display',
-      {
+    size: radios(
+      'Size', {
+        'Extra Large': 'extra-large',
+        Large: 'large',
+        Regular: 'regular',
+        Small: 'small',
+        'Extra Small': 'extra-small',
         None: '',
-        After: 'after',
-        Invisible: 'invisible',
       },
-      'light',
+      'regular',
       generalKnobTab,
     ),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    content: text('Content', 'Label content', generalKnobTab),
+    modifier_class: text('Additional classes', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 

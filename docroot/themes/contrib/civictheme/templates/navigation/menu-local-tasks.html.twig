@@ -10,17 +10,17 @@
  */
 #}
 {% if links.primary %}
-  <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
+  <h2 class="ct-visually-hidden">{{ 'Primary tabs'|t }}</h2>
   {% include '@molecules/tabs/tabs.twig' with {
     links: links.primary,
-    modifier_class: 'civictheme-tabs--local-tasks civictheme-tabs--local-tasks--primary',
+    modifier_class: 'ct-tabs--local-tasks ct-tabs--local-tasks--primary',
   } %}
 {% endif %}
 
 {% if links.secondary %}
-  <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
+  <h2 class="ct-visually-hidden">{{ 'Secondary tabs'|t }}</h2>
   {% include '@molecules/tabs/tabs.twig' with {
     links: links.secondary,
-    modifier_class: 'civictheme-tabs--local-tasks civictheme-tabs--local-tasks--secondary',
+    modifier_class: 'ct-tabs--local-tasks ct-tabs--local-tasks--secondary',
   } %}
 {% endif %}

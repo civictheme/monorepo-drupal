@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Paragraph component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content: [string] The description's content.
+ * - size: [string] Size: extra-large, large, regular, small
+ * - allow_html: [boolean] Allow HTML in text.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set size_class = 'ct-paragraph--%s'|format(size|default('regular')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
+
+{% if content is not empty -%}
+  <div class="ct-paragraph {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    {% if allow_html %}
+      {{ content }}
+    {% else %}
+      {{ content|striptags }}
+    {% endif %}
+  </div>
+{%- endif %}

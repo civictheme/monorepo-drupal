@@ -5,7 +5,7 @@ import CivicThemeFigure from './figure.twig';
 import { demoImage } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecules/Figure',
+  title: 'Molecules/Content/Figure',
   parameters: {
     layout: 'centered',
   },

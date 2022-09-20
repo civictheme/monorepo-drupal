@@ -5,9 +5,9 @@ dependencies:
     - field.field.paragraph.civictheme_iframe.field_c_p_attributes
     - field.field.paragraph.civictheme_iframe.field_c_p_background
     - field.field.paragraph.civictheme_iframe.field_c_p_height
-    - field.field.paragraph.civictheme_iframe.field_c_p_space
     - field.field.paragraph.civictheme_iframe.field_c_p_theme
     - field.field.paragraph.civictheme_iframe.field_c_p_url
+    - field.field.paragraph.civictheme_iframe.field_c_p_vertical_spacing
     - field.field.paragraph.civictheme_iframe.field_c_p_width
     - paragraphs.paragraphs_type.civictheme_iframe
 id: paragraph.civictheme_iframe.default
@@ -38,12 +38,6 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_c_p_space:
-    weight: 4
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_c_p_theme:
     weight: 5
     settings: {  }
@@ -57,6 +51,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_c_p_vertical_spacing:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_c_p_width:
     weight: 1

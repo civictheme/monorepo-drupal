@@ -1,0 +1,31 @@
+//
+// Paragraph component.
+//
+
+@use 'sass:map';
+
+.ct-paragraph {
+  $root: &;
+  $sizes: ( 'extra-large', 'large', 'regular', 'small' );
+
+  display: block;
+  margin-bottom: ct-spacing();
+
+  @include ct-content();
+
+  @each $size in $sizes {
+    &.ct-paragraph--#{$size} {
+      @if map.get(_ct-typography-all(), 'text-#{$size}') != null {
+        @include ct-typography('text-#{$size}');
+      }
+    }
+  }
+
+  &.ct-theme-light {
+    @include ct-content-light();
+  }
+
+  &.ct-theme-dark {
+    @include ct-content-dark();
+  }
+}

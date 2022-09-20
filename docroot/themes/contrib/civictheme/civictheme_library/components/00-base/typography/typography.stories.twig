@@ -1,0 +1,228 @@
+{#
+/**
+ * @file
+ * Typography.
+ */
+#}
+
+<div class="example-container">
+  <div class="example-container__title">Headings</div>
+  <div class="example-container__content">
+    {% for level in 1..6 %}
+      <h{{ level }}>
+        The quick brown fox jumps over the lazy dog
+      </h{{ level }}>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="example-container">
+  <div class="example-container__title">Text</div>
+  {% for type in ['extra-large', 'large', 'regular', 'small'] %}
+    <div class="example-container__content ct-text-{{ type }}">
+      Text - {{ type }}. Pellentesque in ipsum id orci porta dapibus. convallis
+      at tellus Curabitur non nulla sit amet nisl tempus convallis quis ac
+      lectus.
+    </div>
+  {% endfor %}
+</div>
+
+<div class="example-container">
+  <div class="example-container__title">Labels</div>
+  {% for type in ['extra-large', 'large', 'regular', 'small', 'extra-small'] %}
+    <div class="example-container__content ct-label-{{ type }}">
+      Label - {{ type }}
+    </div>
+  {% endfor %}
+</div>
+
+<div class="example-container">
+  <div class="example-container__title">Text styles</div>
+  <div class="example-container__content">
+    <p>
+      Nulla quis lorem ut <a href="https://example.com">example link in
+        paragraph</a> libero malesuada feugiat.
+    </p>
+    <p><strong>Bold: Nulla quis lorem ut libero malesuada feugiat.</strong></p>
+    <p><em>Italic: Nulla quis lorem ut libero malesuada feugiat.</em></p>
+    <p>
+      <span style="text-decoration: underline;">Underline: Nulla quis lorem ut libero malesuada feugiat.</span>
+    </p>
+    <p>
+      <span style="text-decoration: line-through;">Strikethrouh: Nulla quis lorem ut libero malesuada feugiat.</span>
+    </p>
+    <p>Date: 20<sup>th&nbsp;</sup>August 2022</p>
+    <p>H<sub>2</sub>0</p>
+  </div>
+</div>
+
+<div class="example-container">
+  <div class="example-container__title">Paragraphs</div>
+  <div class="example-container__content">
+    <p>Pellentesque in ipsum id orci porta dapibus. convallis at tellus
+      Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+      Pellentesque in ipsum id orci porta dapibus.
+    </p>
+    <p>Pellentesque in ipsum id orci porta dapibus. convallis at tellus
+      Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+      Pellentesque in ipsum id orci porta dapibus.
+    </p>
+    <p>Pellentesque in ipsum id orci porta dapibus. convallis at tellus
+      Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+      Pellentesque in ipsum id orci porta dapibus.
+    </p>
+  </div>
+</div>
+
+<div class="example-container">
+  <div class="example-container__title">Blockquote</div>
+  <div class="example-container__content">
+    <p>
+      Pellentesque in ipsum id orci porta dapibus. convallis at tellus
+      Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+      Pellentesque in ipsum id orci porta dapibus.
+    </p>
+    <blockquote>
+      Vivamus suscipit tortor eget felis porttitor volutpat.
+      Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+      cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper
+      sit amet ligula. Donec rutrum congue leo eget malesuada.
+    </blockquote>
+    <p>
+      Pellentesque in ipsum id orci porta dapibus. convallis at tellus
+      Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+      Pellentesque in ipsum id orci porta dapibus.
+    </p>
+  </div>
+</div>
+
+<div class="example-container">
+  <div class="example-container__title">Unordered list</div>
+  <div class="example-container__content">
+    <ul>
+      <li>List item 1</li>
+      <li>List item 2</li>
+      <li>List item 3</li>
+      <li>List item 4</li>
+      <li>List item 5</li>
+    </ul>
+  </div>
+
+  <div class="example-container__title">Unordered list with sub unordered list
+  </div>
+  <div class="example-container__content">
+    <ul>
+      <li>List item 1</li>
+      <li>List item 2
+        <ul>
+          <li>List item 2</li>
+          <li>List item 3
+            <ul>
+              <li>List item 2</li>
+              <li>List item 3</li>
+              <li>List item 4</li>
+            </ul>
+          </li>
+          <li>List item 4</li>
+        </ul>
+      </li>
+      <li>List item 3</li>
+      <li>List item 4</li>
+      <li>List item 5</li>
+    </ul>
+  </div>
+
+  <div class="example-container__title">Unordered list with sub ordered list
+  </div>
+  <div class="example-container__content">
+    <ul>
+      <li>List item 1</li>
+      <li>List item 2
+        <ol>
+          <li>Ordered List item 2</li>
+          <li>Ordered List item 3
+            <ol>
+              <li>Ordered List item 2</li>
+              <li>Ordered List item 3</li>
+              <li>Ordered List item 4</li>
+            </ol>
+          </li>
+          <li>List item 4</li>
+        </ol>
+      </li>
+      <li>List item 3</li>
+      <li>List item 4</li>
+      <li>List item 5</li>
+    </ul>
+  </div>
+
+  <div class="example-container__title">Ordered list</div>
+  <div class="example-container__content">
+    <ol>
+      <li>Ordered list item 1</li>
+      <li>Ordered list item 2</li>
+      <li>Ordered list item 3</li>
+      <li>Ordered list item 4</li>
+      <li>Ordered list item 5</li>
+    </ol>
+  </div>
+
+  <div class="example-container__title">Ordered list with sub ordered list</div>
+  <div class="example-container__content">
+    <ol>
+      <li>
+        Ordered list item 1
+        <ol>
+          <li>Ordered list item 2</li>
+          <li>Ordered list item 3</li>
+        </ol>
+      </li>
+      <li>Ordered list item 2</li>
+      <li>
+        Ordered list item 3
+        <ol>
+          <li>Ordered list item 3</li>
+          <li>Ordered list item 4
+            <ol>
+              <li>Ordered list item 3</li>
+              <li>Ordered list item 4</li>
+              <li>Ordered list item 5</li>
+            </ol>
+          </li>
+          <li>Ordered list item 5</li>
+        </ol>
+      </li>
+      <li>Ordered list item 4</li>
+      <li>Ordered list item 5</li>
+    </ol>
+  </div>
+
+  <div class="example-container__title">Ordered list with sub unordered list
+  </div>
+  <div class="example-container__content">
+    <ol>
+      <li>Ordered list item 1
+        <ul>
+          <li>Unordered list item 1</li>
+          <li>Unordered list item 2</li>
+        </ul>
+      </li>
+      <li>Ordered list item 2</li>
+      <li>Ordered list item 3
+        <ul>
+          <li>Unordered list item 1</li>
+          <li>Unordered list item 2
+            <ul>
+              <li>Unordered list item 1</li>
+              <li>Unordered list item 2</li>
+              <li>Unordered list item 3</li>
+            </ul>
+          </li>
+          <li>Unordered list item 3</li>
+        </ul>
+      </li>
+      <li>Ordered list item 4</li>
+      <li>Ordered list item 5</li>
+    </ol>
+  </div>
+</div>

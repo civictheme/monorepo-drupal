@@ -5,7 +5,7 @@ import {
 import CivicThemeDescriptionList from './description-list.twig';
 
 export default {
-  title: 'Atoms/Description List',
+  title: 'Atoms/Content/Description List',
   parameters: {
     layout: 'centered',
   },
@@ -47,6 +47,7 @@ export const DescriptionList = (knobTab) => {
     )),
     is_inline: boolean('Inline', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeDescriptionList({

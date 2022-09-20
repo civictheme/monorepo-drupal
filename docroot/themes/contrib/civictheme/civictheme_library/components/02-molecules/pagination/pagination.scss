@@ -2,34 +2,89 @@
 // Pagination component.
 //
 
-.civictheme-pager {
+.ct-pager {
   $root: &;
 
-  @include civictheme-typography('label-regular');
+  @include ct-typography('label-regular');
+
+  display: flex;
+  align-items: center;
+  padding: ct-spacing(3);
+  width: 100%;
+
+  @include ct-breakpoint-upto('m') {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+  }
+
+  &__items_per_page {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    @include ct-breakpoint('m') {
+      width: auto;
+    }
+
+    .ct-label {
+      align-self: center;
+      margin-bottom: 0;
+    }
+
+    .ct-select--pager {
+      min-width: ct-particle(10);
+      margin-left: ct-spacing();
+      padding: 0 ct-spacing(2) 0 ct-spacing(2);
+    }
+
+    @include ct-breakpoint-upto('m') {
+      margin-bottom: ct-spacing(2);
+    }
+  }
 
   #{$root}__items {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
+
+    @include ct-breakpoint('m') {
+      margin-left: auto;
+    }
   }
 
-  #{$root}__item {
-    margin-right: civictheme-space();
+  #{$root}__item--ellipsis {
+    padding: 0 ct-spacing();
+    text-align: center;
+  }
+
+  #{$root}__item--first,
+  #{$root}__item--previous {
+    padding: 0 ct-spacing(1) 0 0;
+
+    @include ct-breakpoint('m') {
+      padding: 0 ct-spacing(4) 0 0;
+    }
+  }
+  #{$root}__item--next,
+  #{$root}__item--last {
+    padding: 0 0 0 ct-spacing(1);
+
+    @include ct-breakpoint('m') {
+      padding: 0 0 0 ct-spacing(4);
+    }
   }
 
   #{$root}__link {
-    padding-left: civictheme-space();
-    padding-right: civictheme-space();
+    padding: 0 ct-spacing();
     display: block;
     text-align: center;
     text-decoration-color: transparent;
-  }
-
-  .civictheme-directional-link {
-    padding: 0 civictheme-space();
+    white-space: nowrap;
   }
 }

@@ -1,0 +1,157 @@
+//
+// Accordion component.
+//
+
+.ct-accordion {
+  $root: &;
+
+  &__inner {
+    display: block;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__list-item {
+    position: relative;
+    border: ct-particle(0.125) solid;
+    border-radius: $ct-accordion-item-border-radius;
+    margin-bottom: ct-spacing(2);
+
+    @include ct-highlight-stripe($ct-accordion-stripe-width, $ct-accordion-item-border-radius);
+  }
+
+  &__header {
+    display: block;
+    margin: 0;
+    border-top-left-radius: $ct-accordion-header-border-radius;
+    border-top-right-radius: $ct-accordion-header-border-radius;
+
+    // @todo Fix transition to use data-collapsible-collapsed.
+    &__button[aria-expanded='true'] {
+      border-bottom: none;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+
+      svg {
+        transform: rotate(-180deg);
+      }
+    }
+
+    &__button {
+      @include ct-typography('heading-6');
+
+      width: 100%;
+      padding: ct-spacing(3);
+      border-radius: $ct-accordion-button-border-radius;
+      margin: 0;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      justify-content: stretch;
+
+      svg {
+        margin-left: auto;
+
+        @if $ct-animation-enabled {
+          transition: transform 0.5s;
+        }
+      }
+    }
+  }
+
+  &__content {
+    $content: &;
+
+    overflow: auto;
+    visibility: hidden;
+    height: 0;
+
+    @if $ct-animation-enabled {
+      transition: height 0.5s, visibility 0.5s;
+    }
+
+    @include ct-typography('text-regular');
+
+    &[aria-hidden='false'] {
+      height: auto;
+      border-top: none;
+      visibility: visible;
+
+      #{$content}--inner {
+        opacity: 100%;
+      }
+    }
+
+    &--inner {
+      opacity: 0%;
+      padding: 0 ct-spacing(3) ct-spacing(3);
+
+      @if $ct-animation-enabled {
+        transition: opacity 0.5s;
+      }
+
+      @include ct-print() {
+        opacity: 100%;
+      }
+    }
+  }
+
+  &.ct-theme-light {
+    color: $ct-accordion-light-color;
+
+    &.ct-accordion--with-background {
+      background-color: $ct-accordion-light-wrapper-background-color;
+      padding-left: $ct-accordion-space-horizontal;
+      padding-right: $ct-accordion-space-horizontal;
+    }
+
+    #{$root}__header__button {
+      background-color: $ct-accordion-light-button-background-color;
+      color: $ct-accordion-light-button-color;
+
+      svg {
+        fill: $ct-accordion-light-icon-color;
+      }
+    }
+
+    #{$root}__list-item {
+      border-color: $ct-accordion-light-border-color;
+      border-left-color: $ct-accordion-light-stripe-border-color;
+      background-color: $ct-accordion-light-background-color;
+
+      @include ct-highlight-stripe-color($ct-accordion-light-stripe-border-color);
+    }
+  }
+
+  &.ct-theme-dark {
+    color: $ct-accordion-dark-color;
+
+    &.ct-accordion--with-background {
+      background-color: $ct-accordion-dark-wrapper-background-color;
+      padding-left: $ct-accordion-space-horizontal;
+      padding-right: $ct-accordion-space-horizontal;
+    }
+
+    #{$root}__header__button {
+      background-color: $ct-accordion-dark-button-background-color;
+      color: $ct-accordion-dark-button-color;
+
+      svg {
+        fill: $ct-accordion-dark-icon-color;
+      }
+    }
+
+    #{$root}__list-item {
+      border-color: $ct-accordion-dark-border-color;
+      border-left-color: $ct-accordion-dark-stripe-border-color;
+      background-color: $ct-accordion-dark-background-color;
+
+      @include ct-highlight-stripe-color($ct-accordion-dark-stripe-border-color);
+    }
+  }
+}

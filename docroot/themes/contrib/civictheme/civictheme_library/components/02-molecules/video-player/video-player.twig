@@ -10,19 +10,19 @@
  * - width: [string] Width of the iframe.
  * - height: [string] Height of the video.
  * - transcript_link: [object] Video transcript link.
- * - share_link: [object] Video share link.
  * - oembed: [string] oEmbed provided iframe container.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if sources is not empty or embedded_source is not empty or raw_source is not empty %}
-  <div class="civictheme-video-player {{ modifier_class }}">
+  <div class="ct-video-player {{ modifier_class }}">
     {% block video %}
-      <div class="civictheme-video-player__wrapper">
+      <div class="ct-video-player__wrapper">
         {% if sources is not empty %}
           {% include '@atoms/video/video.twig' with {
             sources: sources,
@@ -32,7 +32,7 @@
             has_controls: true,
           } only %}
         {% elseif embedded_source is not empty %}
-          {% set attributes = 'allowfullscreen data-chromatic="ignore"' %}
+          {% set attributes = '%s %s'|format('allowfullscreen data-chromatic="ignore"', attributes|default('')) %}
           {% if title is not empty %}
             {% set attributes = attributes ~ 'title="' ~ title ~ '"' %}
           {% endif %}
@@ -49,40 +49,20 @@
     {% endblock %}
 
     {% block links %}
-      <div class="civictheme-video-player__links">
+      <div class="ct-video-player__links">
         {% if transcript_link.url is defined and transcript_link.url is not empty %}
-          <div class="civictheme-video-player__links__transcript">
+          <div class="ct-video-player__links__transcript">
             {% include '@atoms/button/button.twig' with {
               kind: 'link',
               theme: theme,
-              type: 'primary',
+              type: 'tertiary',
               text: transcript_link.text,
               title: transcript_link.title,
               url: transcript_link.url,
               is_new_window: transcript_link.is_new_window,
               is_external: transcript_link.is_external,
               attributes: transcript_link.attributes,
-              icon: 'designtools_eye',
-              icon_placement: 'before',
-              size: 'small',
-              icon_size: 'small',
-            } only %}
-          </div>
-        {% endif %}
-
-        {% if share_link.url is defined and share_link.url is not empty %}
-          <div class="civictheme-video-player__links__share">
-            {% include '@atoms/button/button.twig' with {
-              kind: 'link',
-              theme: theme,
-              type: 'secondary',
-              text: share_link.text,
-              title: share_link.title,
-              url: share_link.url,
-              is_new_window: share_link.is_new_window,
-              is_external: share_link.is_external,
-              attributes: share_link.attributes,
-              icon: 'userinterface_share',
+              icon: 'eye',
               icon_placement: 'before',
               size: 'small',
               icon_size: 'small',

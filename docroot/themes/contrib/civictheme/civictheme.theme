@@ -17,8 +17,8 @@ require_once 'includes/banner.inc';
 require_once 'includes/block_content.inc';
 require_once 'includes/breadcrumb.inc';
 require_once 'includes/callout.inc';
-require_once 'includes/card_container.inc';
 require_once 'includes/event_card.inc';
+require_once 'includes/manual_list.inc';
 require_once 'includes/navigation_card.inc';
 require_once 'includes/promo_card.inc';
 require_once 'includes/subject_card.inc';
@@ -30,7 +30,7 @@ require_once 'includes/html.inc';
 require_once 'includes/iframe.inc';
 require_once 'includes/image.inc';
 require_once 'includes/link.inc';
-require_once 'includes/listing.inc';
+require_once 'includes/automated_list.inc';
 require_once 'includes/local_tasks.inc';
 require_once 'includes/map.inc';
 require_once 'includes/media.inc';
@@ -45,12 +45,14 @@ require_once 'includes/primary_navigation.inc';
 require_once 'includes/promo.inc';
 require_once 'includes/publication_card.inc';
 require_once 'includes/quick_links.inc';
+require_once 'includes/quote.inc';
 require_once 'includes/search.inc';
 require_once 'includes/secondary_navigation.inc';
 require_once 'includes/service_card.inc';
 require_once 'includes/slider.inc';
 require_once 'includes/social_links.inc';
 require_once 'includes/system_branding.inc';
+require_once 'includes/table.inc';
 require_once 'includes/views.inc';
 
 /**
@@ -160,7 +162,7 @@ function civictheme_theme_suggestions_radios_alter(array &$suggestions, array $v
  */
 function civictheme_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $type = NULL) {
   _civictheme_theme_suggestions__civictheme_filter($suggestions, $variables, 'form_element');
-  _civictheme_theme_suggestions__civictheme_basic_filter($suggestions, $variables, 'form_element');
+  _civictheme_theme_suggestions__civictheme_single_filter($suggestions, $variables, 'form_element');
 }
 
 /**
@@ -238,6 +240,7 @@ function civictheme_preprocess_paragraph(&$variables) {
  */
 function civictheme_preprocess_block(&$variables) {
   _civictheme_preprocess_block__civictheme_banner($variables);
+  _civictheme_preprocess_block__navigation($variables);
   _civictheme_preprocess_block__civictheme_footer_menu($variables);
   _civictheme_preprocess_block__content($variables);
   _civictheme_preprocess_block__civictheme_mobile_navigation($variables);

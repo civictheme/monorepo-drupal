@@ -5,9 +5,9 @@ dependencies:
     - field.field.paragraph.civictheme_slider.field_c_p_background
     - field.field.paragraph.civictheme_slider.field_c_p_link
     - field.field.paragraph.civictheme_slider.field_c_p_slides
-    - field.field.paragraph.civictheme_slider.field_c_p_space
     - field.field.paragraph.civictheme_slider.field_c_p_theme
     - field.field.paragraph.civictheme_slider.field_c_p_title
+    - field.field.paragraph.civictheme_slider.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_slider
   module:
     - entity_reference_revisions
@@ -49,13 +49,6 @@ content:
       link: ''
     third_party_settings: {  }
     region: content
-  field_c_p_space:
-    weight: 4
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
   field_c_p_theme:
     weight: 0
     label: above
@@ -70,5 +63,12 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_c_p_vertical_spacing:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
 hidden: {  }

@@ -7,10 +7,10 @@
 .toolbar-tray-open.toolbar-fixed {
   $toolbar-sticky-header-height: 100px;
 
-  .civictheme-header {
+  .ct-header {
     :target {
       &::before {
-        @include civictheme-breakpoint($civictheme-header-desktop-menu-breakpoint) {
+        @include ct-breakpoint($ct-header-desktop-menu-breakpoint) {
           content: '';
           display: block;
           height: $toolbar-sticky-header-height;

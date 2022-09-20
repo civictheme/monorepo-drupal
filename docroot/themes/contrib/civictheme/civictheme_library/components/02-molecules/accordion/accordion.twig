@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Accordion component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - title: [string] Title.
+ * - expand_all: [boolean] Expand all panels or not.
+ * - panels: [array] Array of panels:
+ *   - title: [string] Panel title
+ *   - expanded: [boolean] Panel is expanded or not.
+ *   - content: [string] Panel content.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
+
+{% if panels is not empty %}
+  <div class="ct-accordion {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+    <div class="container">
+      <div class="row">
+        {% if title is not empty %}
+          <div class="ct-accordion__content-top col-xxs-12">
+            <div class="ct-accordion__title-top">
+              {{ title }}
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="ct-accordion__inner col-xxs-12">
+          <ul class="ct-accordion__list">
+            {% for fold in panels %}
+              {% if fold.title is not empty or fold.content is not empty %}
+                {% set is_expanded = (fold.expanded == true) or (expand_all == true) %}
+                <li class="ct-accordion__list-item" data-collapsible {{ is_expanded ? '' : 'data-collapsible-collapsed' }} data-collapsible-duration="250" data-collapsible-trigger-no-icon>
+                  <div class="ct-accordion__header">
+                    <button class="ct-accordion__header__button" data-collapsible-trigger="" aria-expanded="{{ is_expanded ? 'true' : 'false' }}">
+                      {% if fold.title is not empty %}
+                        <span>{{ fold.title }}</span>
+                      {% endif %}
+                      {% include '@base/icon/icon.twig' with {
+                        symbol: 'arrows_downarrow_1'
+                      } only %}
+                    </button>
+                  </div>
+
+                  {% if fold.content is not empty %}
+                    <div class="ct-accordion__content" data-collapsible-panel="" aria-hidden="{{ is_expanded ? 'false' : 'true' }}">
+                      <div class="ct-accordion__content--inner">
+                        {{ fold.content|raw }}
+                      </div>
+                    </div>
+                  {% endif %}
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

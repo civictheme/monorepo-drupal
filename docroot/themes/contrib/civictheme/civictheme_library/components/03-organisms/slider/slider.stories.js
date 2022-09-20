@@ -57,8 +57,8 @@ export const Slider = () => {
       text: 'Slider link',
       url: randomUrl(),
     } : null,
-    vertical_space: radios(
-      'Vertical space',
+    vertical_spacing: radios(
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',
@@ -71,6 +71,8 @@ export const Slider = () => {
     slides,
     previous_label: text('Previous Label', 'Previous', generalKnobTab),
     next_label: text('Next Label', 'Next', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   return CivicThemeSlider({

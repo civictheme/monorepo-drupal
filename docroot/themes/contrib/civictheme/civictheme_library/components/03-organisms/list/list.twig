@@ -1,0 +1,174 @@
+{#
+/**
+ * @file
+ * List component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - title: [string] Title.
+ * - filters: [string] Exposed filters.
+ * - header: [string] Header slot.
+ * - rows: [string] Rows content.
+ * - empty: [string] Empty results content.
+ * - pager: [string] Pager slot.
+ * - footer: [string] Footer slot.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set with_background_class = with_background ? 'ct-list--with-background' : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, modifier_class|default(''), with_background_class, vertical_spacing_class) %}
+
+<div class="ct-list {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-list__container">
+
+    {% block header %}
+      {% if title is not empty or link_above is not empty %}
+        <div class="ct-list__header container">
+
+          {% block title %}
+            {% if title -%}
+              <div class="ct-list__header-title">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-xxs-12">
+                      {% include '@atoms/heading/heading.twig' with {
+                        content: title,
+                        level: 2,
+                        theme: theme,
+                      } only %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block link_above %}
+            {% if link_above %}
+              <div class="ct-list__header-link-above">
+                {% include '@atoms/link/link.twig' with {
+                  theme: theme,
+                  text: link_above.text,
+                  url: link_above.url,
+                  title: link_above.title,
+                  is_new_window: link_above.is_external,
+                  is_external: link_above.is_external,
+                } %}
+              </div>
+            {% endif %}
+          {% endblock %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block content %}
+      {% if content %}
+        <div class="ct-list__content">
+          <div class="container">
+            <div class="row">
+              <div class="col-xxs-12">
+                {% include '@atoms/paragraph/paragraph.twig' with {
+                  content: content,
+                  theme: theme,
+                } only %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block List %}
+
+      {% block filters %}
+        {% if filters -%}
+          <div class="ct-list__filters">
+            {{ filters }}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block rows_header %}
+        {% if rows_header -%}
+          <header class="ct-list__rows-header" tabindex="0">
+            <div class="container">
+              <div class="row">
+                <div class="col-xxs-12">
+                  {{ rows_header }}
+                </div>
+              </div>
+            </div>
+          </header>
+        {% endif %}
+      {% endblock %}
+
+      {% block rows %}
+        {% if rows -%}
+          <div class="ct-list__body">
+            {{ rows }}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block empty %}
+        {% if rows is not defined or rows is empty -%}
+          <div class="ct-list__empty-results">
+            <div class="container">
+              <div class="row">
+                <div class="col-xxs-12">
+                  {{ empty }}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block rows_below %}
+        {% if pager is defined and pager is not empty %}
+          <div class="ct-list__results-below">
+            <div class="container">
+              <div class="row">
+                {% block pager %}
+                  <div class="ct-list__pager">
+                    {{ pager }}
+                  </div>
+                {% endblock %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if link_below %}
+          <div class="ct-list__link-below">
+            {% include '@atoms/button/button.twig' with {
+              theme: theme,
+              type: 'primary',
+              kind: 'link',
+              size: 'large',
+              text: link_below.text,
+              url: link_below.url,
+              is_new_window: link_below.is_external,
+              is_external: link_below.is_external
+            } only %}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+      {% block footer %}
+        {% if footer is not empty -%}
+          <footer class="ct-list__footer">
+            {{ footer }}
+          </footer>
+        {% endif %}
+      {% endblock %}
+
+    {% endblock %}
+
+  </div>
+</div>

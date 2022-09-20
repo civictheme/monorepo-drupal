@@ -9,8 +9,8 @@
 //
 // Get icon size at breakpoint.
 //
-@function civictheme-icon-size-dimension($size, $breakpoint, $dimension) {
-  $all-icon-sizes: _civictheme-icon-sizes-all();
+@function ct-icon-size-dimension($size, $breakpoint, $dimension) {
+  $all-icon-sizes: _ct-icon-sizes-all();
 
   @if map.get($all-icon-sizes, $size) == null {
     @error '"#{$size}" is not an available size.';
@@ -37,11 +37,12 @@
     $value: list.nth($dimensions, 2);
   }
 
-  @if civictheme-string-is-quoted($value) {
+  @if ct-string-is-quoted($value) {
     $value: string.unquote($value);
   }
 
   @if $value {
+    // @todo Review and replace this to use rem() in source variables.
     @return rem($value);
   }
 
@@ -49,23 +50,31 @@
 }
 
 //
+// Compile all icon symbols into a single map.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _ct-icon-symbols-all() {
+  @return map.merge($ct-icon-symbols-default, $ct-icon-symbols);
+}
+
+//
 // Compile all icon sizes into a single map.
 //
 // Do not use directly.
-// Use @include civictheme-icon-size-dimension() function instead.
+// Use @include ct-icon-size-dimension() function instead.
 //
 // stylelint-disable-next-line scss/at-function-pattern
-@function _civictheme-icon-sizes-all() {
-  @return map.merge($civictheme-icon-sizes-default, $civictheme-icon-sizes);
+@function _ct-icon-sizes-all() {
+  @return map.merge($ct-icon-sizes-default, $ct-icon-sizes);
 }
 
 //
 // Include icon width, height for one-to-many breakpoints.
 //
-// @include civictheme-icon-size('regular');
+// @include ct-icon-size('regular');
 //
-@mixin civictheme-icon-size($size) {
-  $all-icon-sizes: _civictheme-icon-sizes-all();
+@mixin ct-icon-size($size) {
+  $all-icon-sizes: _ct-icon-sizes-all();
 
   @if map.get($all-icon-sizes, $size) == null {
     @error '"#{$size}" is not an available size.';
@@ -75,9 +84,12 @@
   $breakpoints: map.keys($size-at-breakpoints);
 
   @each $breakpoint in $breakpoints {
-    @include civictheme-breakpoint($breakpoint) {
-      width: civictheme-icon-size-dimension($size, $breakpoint, 'width');
-      height: civictheme-icon-size-dimension($size, $breakpoint, 'height');
+    @include ct-breakpoint($breakpoint) {
+      width: ct-icon-size-dimension($size, $breakpoint, 'width');
+      height: ct-icon-size-dimension($size, $breakpoint, 'height');
+      // stylelint-disable-next-line property-no-vendor-prefix
+      -webkit-mask-size: ct-icon-size-dimension($size, $breakpoint, 'width'), ct-icon-size-dimension($size, $breakpoint, 'height');
+      mask-size: ct-icon-size-dimension($size, $breakpoint, 'width'), ct-icon-size-dimension($size, $breakpoint, 'height');
     }
   }
 }
@@ -85,14 +97,14 @@
 //
 // Fill icon color.
 //
-@mixin civictheme-icon-fill-color($color, $self: false) {
+@mixin ct-icon-fill-color($color, $self: false) {
   @if $self {
-    &.civictheme-icon {
+    &.ct-icon {
       fill: $color;
     }
   }
   @else {
-    .civictheme-icon {
+    .ct-icon {
       fill: $color;
     }
   }
@@ -101,18 +113,18 @@
 //
 // Fill icon for Collapsible.
 //
-@mixin civictheme-icon-collapsible($color, $self: false) {
+@mixin ct-icon-collapsible($color, $self: false) {
   @if $self {
     &[data-collapsible-trigger] {
       &::after {
-        content: civictheme-color-svg-fill($civictheme-collapsible-icon, $color);
+        content: ct-color-svg-fill($ct-collapsible-icon, $color);
       }
     }
   }
   @else {
     [data-collapsible-trigger] {
       &::after {
-        content: civictheme-color-svg-fill($civictheme-collapsible-icon, $color);
+        content: ct-color-svg-fill($ct-collapsible-icon, $color);
       }
     }
   }

@@ -1,5 +1,4 @@
 // phpcs:ignoreFile
-// @todo This is a placeholder component. It is not finished!
 import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeSideNavigation from './side-navigation.twig';
 import getMenuLinks from '../../00-base/menu/menu.utils';
@@ -26,6 +25,17 @@ export const SideNavigation = (knobTab) => {
     ),
     title: text('Title', 'Side Navigation title', generalKnobTab),
     items: getMenuLinks('Links'),
+    vertical_spacing: radios(
+      'Vertical spacing',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };

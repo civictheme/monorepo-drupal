@@ -12,8 +12,19 @@ export default {
 export const Pagination = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
+  const theme = radios(
+    'Theme',
+    {
+      Light: 'light',
+      Dark: 'dark',
+    },
+    'light',
+    generalKnobTab,
+  );
+  const activeIsLink = boolean('Active is a link', true, generalKnobTab);
+
   const pageCount = number(
-    'Number of pages',
+    'Count of pages',
     5,
     {
       range: true,
@@ -24,51 +35,91 @@ export const Pagination = (knobTab) => {
     generalKnobTab,
   );
 
+  const current = number(
+    'Current page',
+    Math.max(1, Math.floor(pageCount / 2)),
+    {
+      range: true,
+      min: 1,
+      max: pageCount,
+      step: 1,
+    },
+    generalKnobTab,
+  );
+  const ellipses = boolean('With ellipses', true, generalKnobTab)
+    ? pageCount >= 1
+      ? current > 1
+        ? current < pageCount
+          ? {
+            previous: 1,
+            next: 1,
+          }
+          : {
+            previous: 1,
+            next: 0,
+          }
+        : current <= pageCount
+          ? {
+            previous: 0,
+            next: 1,
+          }
+          : {
+            previous: 1,
+            next: 1,
+          }
+      : false
+    : false;
+
   const pages = {};
+  const pagerMiddle = Math.ceil(pageCount / 2);
+  const pagerFirst = current - pagerMiddle + 1;
+  const pagerLast = current + pageCount - pagerMiddle;
   for (let i = 0; i < pageCount; i++) {
-    pages[i + 1] = {
-      href: randomUrl(),
-    };
+    if (ellipses) {
+      if (i === 0 || (i > pagerFirst && i < pagerLast) || i === (pageCount - 1)) {
+        pages[i + 1] = {
+          href: randomUrl(),
+        };
+      }
+    } else {
+      pages[i + 1] = {
+        href: randomUrl(),
+      };
+    }
   }
 
   const generalKnobs = {
-    theme: radios(
-      'Theme',
-      {
-        Light: 'light',
-        Dark: 'dark',
-      },
-      'light',
-      generalKnobTab,
-    ),
-    heading_id: text('Heading Id', 'civictheme-pager-demo', generalKnobTab),
-    items: {
+    theme,
+    active_is_link: activeIsLink,
+    items: pageCount > 0 ? {
       previous: {
-        text: 'Previous',
         href: randomUrl(),
       },
       pages,
       next: {
-        text: 'Next',
         href: randomUrl(),
       },
-    },
-    ellipses: boolean('With ellipses', true, generalKnobTab) ? {
-      previous: 0,
-      next: 1,
-    } : false,
-    current: number(
-      'Current page',
-      Math.floor(pageCount / 2),
+    } : null,
+    heading_id: text('Heading Id', 'ct-pager-demo', generalKnobTab),
+    ellipses,
+    items_per_page_options: boolean('With items per page', true, generalKnobTab) ? [
       {
-        range: true,
-        min: 1,
-        max: pageCount,
-        step: 1,
+        type: 'option', label: 10, value: 10, selected: false,
       },
-      generalKnobTab,
-    ),
-    modifier_class: text('Additional class', '', generalKnobTab),
+      {
+        type: 'option', label: 20, value: 20, selected: true,
+      },
+      {
+        type: 'option', label: 50, value: 50, selected: false,
+      },
+      {
+        type: 'option', label: 100, value: 100, selected: false,
+      },
+    ] : null,
+    total_pages: pageCount,
+    current,
+    modifier_class: text('Additional classes', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemePagination({

@@ -12,7 +12,7 @@ import {
 } from '../../00-base/base.stories';
 
 export default {
-  title: 'Molecules/Card/Navigation Card',
+  title: 'Molecules/Cards/Navigation Card',
   parameters: {
     layout: 'centered',
   },
@@ -60,13 +60,13 @@ export const NavigationCard = (knobTab) => {
       generalKnobTab,
     ), true),
     modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   const iconKnobTab = 'Icon';
-  const { icons } = ICONS;
   const withIcon = boolean('With icon', false, iconKnobTab);
   const iconKnobs = {
-    icon: withIcon ? select('Icon', icons, 'business_calendar', iconKnobTab) : null,
+    icon: withIcon ? select('Icon', Object.values(ICONS), Object.values(ICONS)[0], iconKnobTab) : null,
   };
 
   return CivicThemeNavigationCard({

@@ -56,7 +56,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 963160a4-0bd3-465c-9245-f80b19dab8cc
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -74,7 +74,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -132,7 +132,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 4129b127-79e1-474d-ade8-75996cb5bc5e
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -150,7 +150,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -208,7 +208,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: 1de273af-0dce-490d-a812-5485895eaffe
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -226,7 +226,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -323,7 +323,7 @@ default:
           version: '1.0'
           entity_type: paragraph
           uuid: d80e5912-e4d4-4d7d-811f-e9376b3ad769
-          bundle: civictheme_card_container
+          bundle: civictheme_manual_list
           default_langcode: en
         default:
           status:
@@ -341,7 +341,7 @@ default:
           field_c_p_background:
             -
               value: false
-          field_c_p_cards:
+          field_c_p_list_items:
             -
               entity:
                 _meta:
@@ -441,6 +441,6 @@ default:
   field_c_n_show_toc:
     -
       value: false
-  field_c_n_space:
+  field_c_n_vertical_spacing:
     -
       value: both

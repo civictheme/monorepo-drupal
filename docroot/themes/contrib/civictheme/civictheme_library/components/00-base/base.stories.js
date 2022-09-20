@@ -5,13 +5,14 @@
 
 import { boolean } from '@storybook/addon-knobs';
 import { LoremIpsum } from 'lorem-ipsum';
-import Input from '../01-atoms/input/input.twig';
-import Select from '../01-atoms/select/select.twig';
-import Checkbox from '../01-atoms/checkbox/checkbox.twig';
-import Radio from '../01-atoms/radio/radio.twig';
-import FormElement from '../03-organisms/form-element/form-element.twig';
-import Label from '../01-atoms/label/label.twig';
-import DropdownFilter
+import CivicThemeInput from '../01-atoms/input/input.twig';
+import CivicThemeSelect from '../01-atoms/select/select.twig';
+import CivicThemeCheckbox from '../01-atoms/checkbox/checkbox.twig';
+import CivicThemeRadio from '../01-atoms/radio/radio.twig';
+import CivicThemeFormElement
+  from '../02-molecules/form-element/form-element.twig';
+import CivicThemeLabel from '../01-atoms/label/label.twig';
+import CivicThemeDropdownFilter
   from '../02-molecules/dropdown-filter/dropdown-filter.twig';
 
 export const getThemes = () => ({
@@ -47,15 +48,17 @@ export const randomText = (words) => {
   return lorem.generateWords(words);
 };
 
+export const placeholder = (content = 'Content placeholder') => `<div class="story-placeholder">${content}</div>`;
+
 export const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
-export const getRandomInt = (min, max) => {
+export const randomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-export const getRandomBool = (skew) => {
+export const randomBool = (skew) => {
   skew = skew || 0.5;
   return Math.random() > skew;
 };
@@ -63,7 +66,7 @@ export const getRandomBool = (skew) => {
 export const randomString = (length) => randomText(length).substring(0, length).trim();
 
 export const randomSentence = (words) => {
-  words = words || getRandomInt(5, 25);
+  words = words || randomInt(5, 25);
   return capitalizeFirstLetter(randomText(words));
 };
 
@@ -78,10 +81,10 @@ export const randomLinks = (count, length, domain) => {
 
   for (let i = 0; i < count; i++) {
     links.push({
-      text: `Link ${i + 1}${length ? ` ${randomString(getRandomInt(1, length))}` : ''}`,
+      text: `Link ${i + 1}${length ? ` ${randomString(randomInt(1, length))}` : ''}`,
       url: randomUrl(domain),
-      is_new_window: getRandomBool(),
-      is_external: getRandomBool(0.8),
+      is_new_window: randomBool(),
+      is_external: randomBool(0.8),
     });
   }
 
@@ -93,7 +96,7 @@ export const randomTags = (count, rand) => {
   rand = rand || false;
 
   for (let i = 0; i < count; i++) {
-    tags.push(`Topic ${i + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`);
+    tags.push(`Topic ${i + 1}${rand ? ` ${randomString(randomInt(2, 5))}` : ''}`);
   }
 
   return tags;
@@ -128,25 +131,24 @@ export const demoVideos = () => [
 
 export const demoVideoPoster = () => './assets/videos/demo_poster.png';
 
-export const demoIcon = () => './assets/icons/Brands/Dropbox.svg';
+export const demoIcon = () => './assets/icons/megaphone.svg';
 
-export const formElement = (inputType, options, theme, rand, itr) => {
+export const randomFormElement = (inputType, options, theme, rand, itr) => {
   const isCheckboxOrRadio = inputType === 'checkbox' || inputType === 'radio';
 
   const formElementOptions = {
     theme,
     type: inputType,
-    label: Label({
+    label: CivicThemeLabel({
       theme,
-      content: options.title ? options.title : `Input title ${itr + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
+      content: options.title ? options.title : `Input title ${itr + 1}${rand ? ` ${randomString(randomInt(2, 5))}` : ''}`,
       attributes: `for="form-element-${itr}"`,
-      title_position: isCheckboxOrRadio ? 'after' : 'before',
       required: options.required,
     }),
     label_display: isCheckboxOrRadio ? 'after' : 'before',
     description_position: isCheckboxOrRadio ? 'after' : 'before',
     description: {
-      content: options.description ? `Input description ${itr + 1}${rand ? ` ${randomText(getRandomInt(4, 10))}` : ''}` : '',
+      content: options.description ? `Input description ${itr + 1}${rand ? ` ${randomText(randomInt(4, 10))}` : ''}` : '',
     },
     children: [],
     attributes: options.form_element_attributes,
@@ -161,27 +163,27 @@ export const formElement = (inputType, options, theme, rand, itr) => {
     type: inputType,
     attributes,
     required: options.required,
-    value: typeof options.value !== 'undefined' ? options.value : randomString(getRandomInt(3, 8)),
+    value: typeof options.value !== 'undefined' ? options.value : randomString(randomInt(3, 8)),
   };
 
   switch (inputType) {
     case 'radio':
-      formElementOptions.children.push(Radio(inputOptions));
+      formElementOptions.children.push(CivicThemeRadio(inputOptions));
       break;
     case 'checkbox':
-      formElementOptions.children.push(Checkbox(inputOptions));
+      formElementOptions.children.push(CivicThemeCheckbox(inputOptions));
       break;
     case 'select':
-      formElementOptions.children.push(Select({
+      formElementOptions.children.push(CivicThemeSelect({
         ...inputOptions,
         options: inputOptions.value,
       }));
       break;
     default:
-      formElementOptions.children.push(Input(inputOptions));
+      formElementOptions.children.push(CivicThemeInput(inputOptions));
   }
 
-  return FormElement(formElementOptions);
+  return CivicThemeFormElement(formElementOptions);
 };
 
 export const randomFormElements = (count, theme, rand) => {
@@ -204,7 +206,7 @@ export const randomFormElements = (count, theme, rand) => {
     const inputType = inputTypes[Math.floor(Math.random() * inputTypes.length)];
     const required = [Math.floor(Math.random() * requiredOptions.length)];
 
-    formElements.push(formElement(
+    formElements.push(randomFormElement(
       inputType,
       {
         required,
@@ -218,9 +220,9 @@ export const randomFormElements = (count, theme, rand) => {
   return formElements;
 };
 
-export const dropDownFilter = (filterType, numOfOptions, theme, rand, itr) => {
+export const randomDropdownFilter = (filterType, numOfOptions, theme, rand, itr) => {
   const filterOptions = {
-    filter_text: `Filter text ${itr + 1}${rand ? ` ${randomString(getRandomInt(2, 5))}` : ''}`,
+    filter_text: `Filter text ${itr + 1}${rand ? ` ${randomString(randomInt(2, 5))}` : ''}`,
     filter_group: 'filter_group',
     options_title: Math.round(Math.random()) ? 'Options title (optional)' : '',
   };
@@ -231,16 +233,53 @@ export const dropDownFilter = (filterType, numOfOptions, theme, rand, itr) => {
       required: false,
       description: false,
       attributes: '',
-      value: randomString(getRandomInt(1, 8)),
+      value: randomString(randomInt(1, 8)),
     };
-    options.attributes += filterType === 'radio' ? ` name="test_${itr}"` : ` name="${randomString(getRandomInt(3, 8))}"`;
-    children.push(formElement(filterType, options, theme, true, count++));
+    options.attributes += filterType === 'radio' ? ` name="test_${itr}"` : ` name="${randomString(randomInt(3, 8))}"`;
+    children.push(randomFormElement(filterType, options, theme, true, count++));
   }
 
-  return DropdownFilter({
+  return CivicThemeDropdownFilter({
     theme,
     ...filterOptions,
     type: filterType,
     options: children.join(''),
   });
+};
+
+export const randomOptions = (numOfOptions, optionType = 'option') => {
+  const options = [];
+  for (let i = 1; i <= numOfOptions; i++) {
+    const option = {
+      type: optionType,
+      selected: false,
+      label: optionType === 'optgroup' ? `Group ${i}` : randomString(randomInt(3, 8)),
+      value: randomString(randomInt(1, 8)),
+      options: optionType === 'optgroup' ? randomOptions(numOfOptions) : null,
+    };
+    options.push(option);
+  }
+  return options;
+};
+
+export const generateItems = (count, content) => {
+  const items = [];
+  for (let i = 1; i <= count; i++) {
+    items.push(content);
+  }
+  return items;
+};
+
+export const objectFromArray = (array) => {
+  const obj = {};
+  array.forEach((item) => { obj[item] = item; });
+  return obj;
+};
+
+export const cleanCssIdentifier = function (string) {
+  return string.toLowerCase()
+    .replace(/(&\w+?;)/gim, ' ')
+    .replace(/[_.~"<>%|'!*();:@&=+$,/?%#[\]{}\n`^\\]/gim, '')
+    .replace(/(^\s+)|(\s+$)/gim, '')
+    .replace(/\s+/gm, '-');
 };

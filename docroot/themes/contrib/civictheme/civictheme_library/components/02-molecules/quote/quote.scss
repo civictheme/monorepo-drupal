@@ -1,0 +1,52 @@
+//
+// CivicTheme Quote component.
+//
+
+.ct-quote {
+  $root: &;
+
+  @include ct-reset-box-model();
+  @include ct-highlight-stripe($ct-quote-border-width, 0, 0);
+
+  position: relative;
+  padding-left: ct-spacing(2);
+
+  &__content {
+    @include ct-typography('quote');
+
+    margin-bottom: 0;
+  }
+
+  &__author {
+    @include ct-typography('label-extra-small');
+
+    padding: 0 ct-spacing(3) ct-spacing(3);
+
+    &::before {
+      content: '-';
+      margin-right: ct-spacing(0.5);
+    }
+  }
+
+  &.ct-theme-light {
+    background-color: $ct-quote-light-background-color;
+    color: $ct-quote-light-body-color;
+
+    @include ct-highlight-stripe-color($ct-quote-light-border-color);
+
+    #{$root}__author {
+      color: $ct-quote-light-author-color;
+    }
+  }
+
+  &.ct-theme-dark {
+    background-color: $ct-quote-dark-background-color;
+    color: $ct-quote-dark-body-color;
+
+    @include ct-highlight-stripe-color($ct-quote-dark-border-color);
+
+    #{$root}__author {
+      color: $ct-quote-dark-author-color;
+    }
+  }
+}

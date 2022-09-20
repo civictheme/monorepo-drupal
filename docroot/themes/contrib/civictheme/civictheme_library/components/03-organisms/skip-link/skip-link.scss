@@ -1,0 +1,21 @@
+//
+// Skip Link component.
+//
+
+.ct-skip-link {
+  $root: &;
+
+  &__link {
+    display: inline-block;
+    margin: ct-spacing(2) ct-spacing(3);
+    padding: ct-spacing();
+  }
+
+  &.ct-theme-light {
+    background-color: $ct-skip-link-light-background-color;
+  }
+
+  &.ct-theme-dark {
+    background-color: $ct-skip-link-dark-background-color;
+  }
+}

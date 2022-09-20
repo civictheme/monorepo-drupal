@@ -1,0 +1,88 @@
+//
+// Form Element component.
+//
+
+.ct-form-element {
+  @include ct-typography('text-regular');
+
+  margin-bottom: ct-spacing(2);
+  width: 100%;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &--radio,
+  &--checkbox {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+
+    .ct-input {
+      margin: 0;
+    }
+
+    .ct-form-element__description,
+    label {
+      padding-left: ct-spacing(5);
+    }
+
+    .ct-form-element__description {
+      width: 100%;
+    }
+
+    label {
+      margin: ct-spacing(0.5) 0;
+    }
+  }
+
+  &--button,
+  &--submit {
+    display: inline-block;
+    width: auto;
+    margin-left: ct-spacing(2);
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .ct-message {
+    padding: ct-spacing();
+    margin-bottom: ct-spacing();
+    display: inline-flex;
+    align-items: center;
+    border: none;
+
+    @include ct-typography('label-small');
+
+    &__title {
+      font-weight: 400;
+    }
+
+    .ct-icon {
+      width: rem(18px);
+      height: rem(18px);
+      vertical-align: middle;
+    }
+
+    .ct-message__icon {
+      width: rem(18px);
+      margin-right: ct-spacing();
+    }
+  }
+
+  &__description {
+    margin-bottom: ct-spacing(1);
+
+    @include ct-typography('text-small');
+  }
+
+  &.ct-theme-light {
+    color: $ct-form-element-light-color;
+  }
+
+  &.ct-theme-dark {
+    color: $ct-form-element-dark-color;
+  }
+}

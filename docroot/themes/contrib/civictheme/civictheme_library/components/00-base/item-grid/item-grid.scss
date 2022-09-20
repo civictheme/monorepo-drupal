@@ -1,0 +1,27 @@
+//
+// Item grid component.
+//
+
+.ct-item-grid {
+  $root: &;
+
+  &--fill-width {
+    [class*='col-'] {
+      max-width: 100%;
+      flex-grow: 1;
+    }
+  }
+
+  &__item {
+    display: flex;
+    margin-bottom: ct-spacing(3);
+  }
+
+  &__items {
+    // stylelint-disable-line block-no-empty
+  }
+
+  &--list {
+    // stylelint-disable-line block-no-empty
+  }
+}

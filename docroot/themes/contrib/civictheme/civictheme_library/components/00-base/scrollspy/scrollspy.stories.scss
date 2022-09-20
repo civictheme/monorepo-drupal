@@ -7,7 +7,7 @@
     height: 2000px;
 
     &::before {
-      box-shadow: 0 0 1px 1px #f00 inset;
+      box-shadow: 0 0 ct-particle(0.125) ct-particle(0.125) #f00 inset;
       height: 400px;
       position: absolute;
       top: 0;
@@ -18,7 +18,7 @@
     }
 
     &::after {
-      box-shadow: 0 0 1px 1px #00f inset;
+      box-shadow: 0 0 ct-particle(0.125) ct-particle(0.125) #00f inset;
       height: 600px;
       position: absolute;
       top: 0;
@@ -32,20 +32,20 @@
 
 .example-scrollspy-target1 {
   position: fixed;
-  bottom: 100px;
-  right: 100px;
+  bottom: ct-particle(12);
+  right: ct-particle(12);
 }
 
 .example-scrollspy-target2 {
   position: fixed;
   bottom: 50px;
-  right: 100px;
+  right: ct-particle(12);
 }
 
-.example-scrollspy-target1.civictheme-scrollspy-scrolled {
-  border: solid 1px red;
+.example-scrollspy-target1.ct-scrollspy-scrolled {
+  border: solid ct-particle(0.125) red;
 }
 
-.example-scrollspy-target2.civictheme-scrollspy-scrolled {
-  border: solid 1px blue;
+.example-scrollspy-target2.ct-scrollspy-scrolled {
+  border: solid ct-particle(0.125) blue;
 }

@@ -10,29 +10,30 @@
  * - slides: [string] Slides.
  * - previous_label: [string] Text for previous button.
  * - next_label: [string] Text for next button.
- * - vertical_space: [string] With top, bottom or both vertical spaces.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'civictheme-slider--vertical-space-%s'|format(vertical_space) : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
 
 {% if slides is not empty %}
-  <div class="civictheme-slider {{ modifier_class }}">
+  <div class="ct-slider {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
-          <div class="civictheme-slider__container" data-component-civictheme-slider>
+        <div class="col-xxs-12">
+          <div class="ct-slider__container" data-component-ct-slider>
             {% block top_controls %}
               {% if title is not empty or link is not empty %}
-                <div class="civictheme-slider__upper-control-panel" tabindex="0">
+                <div class="ct-slider__upper-control-panel" tabindex="0">
                   {% if title is not empty %}
-                    <div class="civictheme-slider__title">{{ title }}</div>
+                    <div class="ct-slider__title">{{ title }}</div>
                   {% endif %}
                   {% if link is not empty %}
-                    <div class="civictheme-slider__link">
+                    <div class="ct-slider__link">
                       {% include '@atoms/button/button.twig' with {
                         theme: theme,
                         kind: 'link',
@@ -48,35 +49,35 @@
             {% endblock %}
 
             {% block slides %}
-              <div class="civictheme-slider__slides" data-component-civictheme-slider-panel>
-                <div class="civictheme-slider__slides-inner" data-component-civictheme-slider-rail>
+              <div class="ct-slider__slides" data-component-ct-slider-panel>
+                <div class="ct-slider__slides-inner" data-component-ct-slider-rail>
                   {{ slides }}
                 </div>
               </div>
             {% endblock %}
 
             {% block controls %}
-              <div class="civictheme-slider__lower-control-panel">
-                <div class="civictheme-slider__controls">
+              <div class="ct-slider__lower-control-panel">
+                <div class="ct-slider__controls">
                   {% include '@atoms/button/button.twig' with {
                     theme: theme,
                     text: previous_label|default('Previous'),
                     type: 'secondary',
                     icon: 'arrows_leftarrow_2',
                     icon_placement: 'before',
-                    attributes: 'data-component-civictheme-slider-previous',
+                    attributes: 'data-component-ct-slider-previous',
                   } only %}
                   {% include '@atoms/button/button.twig' with {
                     theme: theme,
                     text: next_label|default('Next'),
                     type: 'secondary',
-                    icon: 'arrows_rightarrow_3',
+                    icon: 'upper-right-arrow',
                     icon_placement: 'after',
-                    attributes: 'data-component-civictheme-slider-next',
+                    attributes: 'data-component-ct-slider-next',
                   } only %}
                 </div>
-                <div class="civictheme-slider__steps" tabindex="0">
-                  <div class="civictheme-slider__progress-indicator" aria-live="polite" data-component-civictheme-slider-progress></div>
+                <div class="ct-slider__steps" tabindex="0">
+                  <div class="ct-slider__progress-indicator" aria-live="polite" data-component-ct-slider-progress></div>
                 </div>
               </div>
             {% endblock %}

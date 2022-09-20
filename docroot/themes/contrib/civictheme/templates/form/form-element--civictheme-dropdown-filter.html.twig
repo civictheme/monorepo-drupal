@@ -14,13 +14,13 @@
 #}
 {% embed '@molecules/dropdown-filter/dropdown-filter.twig' %}
   {% block filter_options %}
-    {% embed '@organisms/fieldset/fieldset.twig' with {
+    {% embed '@atoms/fieldset/fieldset.twig' with {
       legend: options_title is not empty ? options_title : null,
-      modifier_class: 'civictheme-dropdown-filter__fieldset',
+      modifier_class: 'ct-dropdown-filter__fieldset',
 
     } %}
       {% block children %}
-        {% include '@organisms/form-element/form-element.twig' with {
+        {% include '@molecules/form-element/form-element.twig' with {
           description: {
             content: '',
             attributes: ''

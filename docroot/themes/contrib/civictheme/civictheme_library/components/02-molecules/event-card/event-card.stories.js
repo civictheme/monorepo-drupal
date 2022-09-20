@@ -12,7 +12,7 @@ import {
 import CivicThemeEventCard from './event-card.twig';
 
 export default {
-  title: 'Molecules/Card/Event Card',
+  title: 'Molecules/Cards/Event Card',
   parameters: {
     layout: 'centered',
   },
@@ -53,6 +53,7 @@ export const EventCard = (knobTab) => {
       generalKnobTab,
     ), true),
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   generalKnobs.date = new Date(generalKnobs.date).toLocaleDateString('en-uk', {

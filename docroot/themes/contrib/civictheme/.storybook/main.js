@@ -10,17 +10,14 @@ const webpack = require('webpack');
 const path = require('path');
 const custom = require('../webpack/webpack.prod');
 const scssVariables = require('./importer.scss_variables');
-const iconUtils = require('../components/01-atoms/icon/icon.utils');
-const backgroundUtils = require('../components/01-atoms/background/background.utils');
+const iconUtils = require('../components/00-base/icon/icon.utils');
+const backgroundUtils = require('../components/00-base/background/background.utils');
 const logoUtils = require('../components/02-molecules/logo/logo.utils');
 const addonConfig = require('./addon-config').default();
 
 const customPlugin = new webpack.DefinePlugin({
   BACKGROUNDS: JSON.stringify(backgroundUtils.getBackgrounds()),
-  ICONS: JSON.stringify({
-    icons: iconUtils.getIcons(),
-    packs: iconUtils.getIconPacks(),
-  }),
+  ICONS: JSON.stringify(iconUtils.getIcons()),
   LOGOS: JSON.stringify(logoUtils.getLogos()),
   SCSS_VARIABLES: JSON.stringify(scssVariables.getVariables()),
   CSV_VARIABLES_FILENAME: JSON.stringify({ name: 'civictheme.variables.csv' }),
@@ -51,7 +48,7 @@ module.exports = {
     custom.module.rules[1].use[0] = 'style-loader';
 
     // Override assets location for Storybook.
-    custom.module.rules[1].use[2].options.additionalData = "$civictheme-assets-directory: './assets/';";
+    custom.module.rules[1].use[2].options.additionalData = "$ct-assets-directory: './assets/';";
 
     return merge(config, custom);
   },

@@ -34,7 +34,7 @@ function _civictheme_preprocess_node(&$variables) {
     $toc_attributes['data-table-of-contents-position'] = 'prepend';
     $toc_attributes['data-table-of-contents-anchor-selector'] = 'h2';
     $toc_attributes['data-table-of-contents-title'] = t('On this page');
-    $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.civictheme-content__main';
+    $toc_attributes['data-table-of-contents-anchor-scope-selector'] = '.ct-layout__main';
     $toc_attributes = new Attribute($toc_attributes);
 
     array_unshift($variables['content'], [
@@ -100,7 +100,7 @@ function _civictheme_preprocess_page__node(&$variables) {
   // Layout determines whether a node is contained and what it's layout is.
   $variables['page']['content_contained'] = FALSE;
 
-  $variables['vertical_space'] = civictheme_get_field_value($node, 'field_c_n_space');
+  $variables['vertical_spacing'] = civictheme_get_field_value($node, 'field_c_n_vertical_spacing');
 
   // Hide sidebar check.
   $variables['hide_sidebar'] = civictheme_get_field_value($node, 'field_c_n_hide_sidebar') ?? FALSE;

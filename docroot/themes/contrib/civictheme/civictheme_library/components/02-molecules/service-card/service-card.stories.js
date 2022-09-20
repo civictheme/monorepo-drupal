@@ -5,7 +5,7 @@ import { getSlots, randomLinks } from '../../00-base/base.stories';
 import CivicThemeServiceCard from './service-card.twig';
 
 export default {
-  title: 'Molecules/Card/Service Card',
+  title: 'Molecules/Cards/Service Card',
   parameters: {
     layout: 'centered',
   },
@@ -38,6 +38,7 @@ export const ServiceCard = (knobTab) => {
       generalKnobTab,
     ), 10),
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeServiceCard({

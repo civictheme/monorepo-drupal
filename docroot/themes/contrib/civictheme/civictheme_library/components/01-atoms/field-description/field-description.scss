@@ -1,0 +1,20 @@
+//
+// Field description component.
+//
+
+.ct-field-description {
+  $root: &;
+
+  display: block;
+  margin-bottom: ct-spacing();
+
+  @include ct-typography('text-regular');
+
+  &.ct-theme-light {
+    color: $ct-field-description-light-color;
+  }
+
+  &.ct-theme-dark {
+    color: $ct-field-description-dark-color;
+  }
+}

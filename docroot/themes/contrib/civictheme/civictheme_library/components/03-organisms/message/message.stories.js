@@ -22,17 +22,18 @@ export const Message = (knobTab) => {
     type: radios(
       'Type',
       {
-        Status: 'status',
+        Information: 'information',
         Error: 'error',
         Warning: 'warning',
         Success: 'success',
       },
-      'status',
+      'information',
       generalKnobTab,
     ),
     title: text('Title', 'The information on this page is currently being updated.', generalKnobTab),
     description: text('Summary', 'Filium morte multavit si sine causa, nollem me tamen laudandis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vel elit laoreet, dignissim arcu sit amet, vulputate risus.', generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeMessage({

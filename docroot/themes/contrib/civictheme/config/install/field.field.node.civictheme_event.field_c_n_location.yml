@@ -30,7 +30,7 @@ settings:
       civictheme_accordion_panel:
         weight: 16
         enabled: false
-      civictheme_card_container:
+      civictheme_manual_list:
         weight: 17
         enabled: false
       civictheme_event_card_ref:

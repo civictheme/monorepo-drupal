@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Layout component: Single column contained.
+ *
+ * Variables:
+ * - content: [string] The content for this layout.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% if content %}
+  <div class="ct-layout--single-column">
+     <div class="container">
+       <div class="row">
+        {% block content %}
+          <div class="ct-layout__content col-m-12 col-xxs-12 {{ modifier_class }}">
+            {{ content }}
+          </div>
+        {% endblock %}
+       </div>
+     </div>
+  </div>
+{% endif %}

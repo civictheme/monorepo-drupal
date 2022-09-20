@@ -69,44 +69,57 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
   ];
 
   $breakpoints = ['desktop', 'mobile'];
+  $logo_types = ['primary', 'secondary'];
 
   foreach (civictheme_theme_options() as $theme => $theme_label) {
-    foreach ($breakpoints as $breakpoint) {
-      $form['components']['logo']["image_{$theme}_{$breakpoint}_group"] = [
+    foreach ($logo_types as $logo_type) {
+      $form['components']['logo'][$logo_type][$theme] = [
         '#type' => 'fieldset',
-        '#title' => t('Logo @theme @breakpoint', [
+        '#title' => t('Logo @logo_type @theme', [
           '@theme' => $theme_label,
-          '@breakpoint' => $breakpoint,
+          '@logo_type' => $logo_type,
         ]),
-        '#open' => TRUE,
-        '#tree' => FALSE,
+        '#tree' => TRUE,
       ];
+      foreach ($breakpoints as $breakpoint) {
+        $form['components']['logo'][$logo_type][$theme]["image_{$logo_type}_{$theme}_{$breakpoint}_group"] = [
+          '#type' => 'fieldset',
+          '#title' => t('Logo @logo_type @theme @breakpoint', [
+            '@theme' => $theme_label,
+            '@breakpoint' => $breakpoint,
+            '@logo_type' => $logo_type,
+          ]),
+          '#tree' => FALSE,
+        ];
 
-      $form['components']['logo']["image_{$theme}_{$breakpoint}"] = [
-        '#type' => 'textfield',
-        '#title' => t('Logo image in @theme theme for @breakpoint', [
-          '@theme' => $theme_label,
-          '@breakpoint' => $breakpoint,
-        ]),
-        '#description' => _civictheme_path_field_description(theme_get_setting("components.logo.image_{$theme}_{$breakpoint}"), "logo-{$theme}-{$breakpoint}.svg"),
-        '#default_value' => _civictheme_field_friendly_path(theme_get_setting("components.logo.image_{$theme}_{$breakpoint}")),
-        '#group' => "image_{$theme}_{$breakpoint}_group",
-      ];
+        $form['components']['logo'][$logo_type][$theme]["image_{$logo_type}_{$theme}_{$breakpoint}"] = [
+          '#type' => 'textfield',
+          '#title' => t('Logo image for @logo_type in @theme theme for @breakpoint', [
+            '@theme' => $theme_label,
+            '@breakpoint' => $breakpoint,
+            '@logo_type' => $logo_type,
+          ]),
+          '#description' => _civictheme_path_field_description(theme_get_setting("components.logo.image_{$logo_type}_{$theme}_{$breakpoint}"), "logo-{$logo_type}-{$theme}-{$breakpoint}.svg"),
+          '#default_value' => _civictheme_field_friendly_path(theme_get_setting("components.logo.image_{$logo_type}_{$theme}_{$breakpoint}")),
+          '#group' => "image_{$logo_type}_{$theme}_{$breakpoint}_group",
+        ];
 
-      $form['components']['logo']["image_{$theme}_{$breakpoint}_group"]["image_{$theme}_{$breakpoint}_upload"] = [
-        '#type' => 'file',
-        '#title' => t('Upload logo image in @theme theme for @breakpoint', [
-          '@theme' => $theme_label,
-          '@breakpoint' => $breakpoint,
-        ]),
-        '#maxlength' => 40,
-        '#description' => t("If you don't have direct file access to the server, use this field to upload your logo."),
-        '#upload_validators' => [
-          'file_validate_is_image' => [],
-        ],
-        '#tree' => FALSE,
-        '#weight' => 1,
-      ];
+        $form['components']['logo'][$logo_type][$theme]["image_{$logo_type}_{$theme}_{$breakpoint}_group"]["image_{$logo_type}_{$theme}_{$breakpoint}_upload"] = [
+          '#type' => 'file',
+          '#title' => t('Upload logo image for @logo_type in @theme theme for @breakpoint', [
+            '@theme' => $theme_label,
+            '@breakpoint' => $breakpoint,
+            '@logo_type' => $logo_type,
+          ]),
+          '#maxlength' => 40,
+          '#description' => t("If you don't have direct file access to the server, use this field to upload your logo."),
+          '#upload_validators' => [
+            'file_validate_is_image' => [],
+          ],
+          '#tree' => FALSE,
+          '#weight' => 1,
+        ];
+      }
     }
   }
 
@@ -125,12 +138,21 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
   ];
 
   $form['components']['header']['theme'] = [
-    '#title' => t('Header theme'),
-    '#description' => t('Set the theme option for the Header component.'),
+    '#title' => t('Theme'),
+    '#description' => t('Set the Header color theme.'),
     '#type' => 'radios',
     '#required' => TRUE,
     '#options' => civictheme_theme_options(),
     '#default_value' => theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT,
+  ];
+
+  $form['components']['header']['logo_type'] = [
+    '#title' => t('Logo type'),
+    '#description' => t('Logo type to appear in the Header.'),
+    '#type' => 'radios',
+    '#required' => TRUE,
+    '#options' => civictheme_type_options(),
+    '#default_value' => theme_get_setting('components.header.logo_type') ?? CIVICTHEME_LOGO_TYPE_DEFAULT,
   ];
 
   $form['components']['footer'] = [
@@ -141,12 +163,21 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
   ];
 
   $form['components']['footer']['theme'] = [
-    '#title' => t('Footer theme'),
-    '#description' => t('Set the theme option for the Footer component.'),
+    '#title' => t('Theme'),
+    '#description' => t('Set the Footer color theme.'),
     '#type' => 'radios',
     '#required' => TRUE,
     '#options' => civictheme_theme_options(),
     '#default_value' => theme_get_setting('components.footer.theme') ?? CIVICTHEME_FOOTER_THEME_DEFAULT,
+  ];
+
+  $form['components']['footer']['logo_type'] = [
+    '#title' => t('Logo type'),
+    '#description' => t('Logo type to appear in the Footer.'),
+    '#type' => 'radios',
+    '#required' => TRUE,
+    '#options' => civictheme_type_options(),
+    '#default_value' => theme_get_setting('components.footer.logo_type') ?? CIVICTHEME_LOGO_TYPE_DEFAULT,
   ];
 
   $form['components']['footer']['background_image'] = [
@@ -155,6 +186,93 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
     '#description' => _civictheme_path_field_description(theme_get_setting('components.footer.background_image'), 'footer-background.png'),
     '#default_value' => _civictheme_field_friendly_path(theme_get_setting('components.footer.background_image')),
   ];
+
+  $form['components']['navigation'] = [
+    '#type' => 'details',
+    '#title' => t('Navigation'),
+    '#group' => 'components',
+    '#tree' => TRUE,
+  ];
+
+  $navigation_map = [
+    'primary_navigation' => [
+      'title' => t('Primary navigation'),
+      'dropdown' => CIVICTHEME_NAVIGATION_DROPDOWN_DRAWER,
+      'dropdown_columns' => 4,
+      'dropdown_columns_fill' => FALSE,
+      'is_animated' => FALSE,
+    ],
+    'secondary_navigation' => [
+      'title' => t('Secondary navigation'),
+      'dropdown' => CIVICTHEME_NAVIGATION_DROPDOWN_NONE,
+      'dropdown_columns' => 4,
+      'dropdown_columns_fill' => FALSE,
+      'is_animated' => FALSE,
+    ],
+  ];
+
+  foreach ($navigation_map as $navigation_name => $navigation_defaults) {
+    $form['components']['navigation'][$navigation_name] = [
+      '#type' => 'details',
+      '#title' => $navigation_defaults['title'],
+      '#tree' => TRUE,
+      '#open' => TRUE,
+    ];
+
+    $form['components']['navigation'][$navigation_name]['dropdown'] = [
+      '#title' => t('Dropdown type'),
+      '#description' => t('Select how the menu sub-tree items would appear in the menu.'),
+      '#type' => 'select',
+      '#required' => TRUE,
+      '#options' => [
+        'none' => t('None'),
+        'dropdown' => t('Dropdown'),
+        'drawer' => t('Drawer'),
+      ],
+      '#default_value' => theme_get_setting("components.navigation.$navigation_name.dropdown") ?? $navigation_defaults['dropdown'],
+    ];
+
+    $form['components']['navigation'][$navigation_name]['dropdown_columns'] = [
+      '#title' => t('Number of columns in the drawer row'),
+      '#description' => t('Number of menu columns per row. If there are more menus than items per row - they will flow on the next row.'),
+      '#type' => 'number',
+      '#min' => 1,
+      '#max' => 4,
+      '#default_value' => theme_get_setting("components.navigation.$navigation_name.dropdown_columns") ?? $navigation_defaults['dropdown_columns'],
+      '#states' => [
+        'visible' => [
+          ':input[name="components[navigation][' . $navigation_name . '][dropdown]"]' => ['value' => CIVICTHEME_NAVIGATION_DROPDOWN_DRAWER],
+        ],
+      ],
+    ];
+
+    $form['components']['navigation'][$navigation_name]['dropdown_columns_fill'] = [
+      '#title' => t('Fill width of the last drawer column'),
+      '#description' => t('Fill the width of the last column in the drawer. Useful for large menus.'),
+      '#type' => 'checkbox',
+      '#default_value' => theme_get_setting("components.navigation.$navigation_name.dropdown_columns_fill") ?? $navigation_defaults['dropdown_columns_fill'],
+      '#states' => [
+        'visible' => [
+          ':input[name="components[navigation][' . $navigation_name . '][dropdown]"]' => ['value' => CIVICTHEME_NAVIGATION_DROPDOWN_DRAWER],
+        ],
+      ],
+    ];
+
+    $form['components']['navigation'][$navigation_name]['is_animated'] = [
+      '#title' => t('Animate'),
+      '#description' => t('Animate transitions.'),
+      '#type' => 'checkbox',
+      '#default_value' => theme_get_setting("components.navigation.$navigation_name.is_animated") ?? $navigation_defaults['is_animated'],
+      '#states' => [
+        'visible' => [
+          ':input[name="components[navigation][' . $navigation_name . '][dropdown]"]' => [
+            ['value' => CIVICTHEME_NAVIGATION_DROPDOWN_DROPDOWN],
+            ['value' => CIVICTHEME_NAVIGATION_DROPDOWN_DRAWER],
+          ],
+        ],
+      ],
+    ];
+  }
 
   $form['components']['link'] = [
     '#type' => 'details',
@@ -174,7 +292,7 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
     '#type' => 'checkbox',
     '#title' => t('Open external links in a new window'),
     '#description' => t('Open all external links in a new browser window.'),
-    '#default_value' => theme_get_setting('components.link.new_window'),
+    '#default_value' => theme_get_setting('components.link.external_new_window'),
     '#states' => [
       'visible' => [
         ':input[name="components[link][new_window]"]' => ['checked' => FALSE],
@@ -211,28 +329,42 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
  */
 function _civictheme_form_system_theme_settings_logo_validate(array &$form, FormStateInterface $form_state) {
   $breakpoints = ['desktop', 'mobile'];
+  $logo_types = ['primary', 'secondary'];
   foreach (array_keys(civictheme_theme_options()) as $theme) {
-    foreach ($breakpoints as $breakpoint) {
-      $field_name_key = ['components', 'logo', "image_{$theme}_{$breakpoint}"];
-      $path = $form_state->getValue($field_name_key);
+    foreach ($logo_types as $logo_type) {
+      foreach ($breakpoints as $breakpoint) {
+        $field_name_key = [
+          'components',
+          'logo',
+          $logo_type,
+          $theme,
+          "image_{$logo_type}_{$theme}_{$breakpoint}",
+        ];
+        $path = $form_state->getValue($field_name_key);
+        $field_name_processed_key = [
+          'components',
+          'logo',
+          "image_{$logo_type}_{$theme}_{$breakpoint}",
+        ];
 
-      // Check for a new uploaded logo.
-      if (isset($form['components']['logo']["image_{$theme}_{$breakpoint}_group"]["image_{$theme}_{$breakpoint}_upload"])) {
-        $file = _file_save_upload_from_form($form['components']['logo']["image_{$theme}_{$breakpoint}_group"]["image_{$theme}_{$breakpoint}_upload"], $form_state, 0, FileSystemInterface::EXISTS_REPLACE);
-        if ($file) {
-          // Put the temporary file in form_values so we can save it on submit.
-          $form_state->setValue("image_{$theme}_{$breakpoint}_upload", $file);
+        // Check for a new uploaded logo.
+        if (isset($form['components']['logo']["image_{$logo_type}_{$theme}_{$breakpoint}_group"]["image_{$logo_type}_{$theme}_{$breakpoint}_upload"])) {
+          $file = _file_save_upload_from_form($form['components']['logo']["image_{$logo_type}_{$theme}_{$breakpoint}_group"]["image_{$logo_type}_{$theme}_{$breakpoint}_upload"], $form_state, 0, FileSystemInterface::EXISTS_REPLACE);
+          if ($file) {
+            // Put the temp file in form_values so we can save it on submit.
+            $form_state->setValue("image_{$logo_type}_{$theme}_{$breakpoint}_upload", $file);
+          }
         }
-      }
 
-      if (!empty($path)) {
-        $path = _civictheme_form_system_theme_settings_validate_path($path);
-        if ($path) {
-          $path = \Drupal::service('file_url_generator')->generateString($path);
-          $form_state->setValue($field_name_key, ltrim($path, '/'));
-          continue;
+        if (!empty($path)) {
+          $path = _civictheme_form_system_theme_settings_validate_path($path);
+          if ($path) {
+            $path = \Drupal::service('file_url_generator')->generateString($path);
+            $form_state->setValue($field_name_processed_key, ltrim($path, '/'));
+            continue;
+          }
+          $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
         }
-        $form_state->setErrorByName(implode('][', $field_name_key), t('The image path is invalid.'));
       }
     }
   }
@@ -245,35 +377,38 @@ function _civictheme_form_system_theme_settings_logo_validate(array &$form, Form
  */
 function _civictheme_form_system_theme_settings_logo_submit(array &$form, FormStateInterface $form_state) {
   $breakpoints = ['desktop', 'mobile'];
+  $logo_types = ['primary', 'secondary'];
   $values = $form_state->getValues();
   foreach (array_keys(civictheme_theme_options()) as $theme) {
-    foreach ($breakpoints as $breakpoint) {
-      $logo_field_name_key = [
-        'components',
-        'logo',
-        "image_{$theme}_{$breakpoint}",
-      ];
-      $field_name_key = "image_{$theme}_{$breakpoint}_upload";
+    foreach ($logo_types as $logo_type) {
+      foreach ($breakpoints as $breakpoint) {
+        $logo_field_name_key = [
+          'components',
+          'logo',
+          "image_{$logo_type}_{$theme}_{$breakpoint}",
+        ];
+        $field_name_key = "image_{$logo_type}_{$theme}_{$breakpoint}_upload";
 
-      // If the user uploaded a new logo, save it to a permanent location and
-      // use it in place of the provided path.
-      $default_scheme = \Drupal::config('system.file')->get('default_scheme');
-      try {
-        if (!empty($values[$field_name_key])) {
-          $filename = \Drupal::service('file_system')->copy($values[$field_name_key]->getFileUri(), $default_scheme . '://');
-          if (!empty($filename)) {
-            $path = _civictheme_form_system_theme_settings_validate_path($filename);
-            if ($path) {
-              $path = \Drupal::service('file_url_generator')->generateString($path);
-              $form_state->setValue($logo_field_name_key, ltrim($path, '/'));
+        // If the user uploaded a new logo, save it to a permanent location and
+        // use it in place of the provided path.
+        $default_scheme = \Drupal::config('system.file')->get('default_scheme');
+        try {
+          if (!empty($values[$field_name_key])) {
+            $filename = \Drupal::service('file_system')->copy($values[$field_name_key]->getFileUri(), $default_scheme . '://');
+            if (!empty($filename)) {
+              $path = _civictheme_form_system_theme_settings_validate_path($filename);
+              if ($path) {
+                $path = \Drupal::service('file_url_generator')->generateString($path);
+                $form_state->setValue($logo_field_name_key, ltrim($path, '/'));
+              }
             }
           }
         }
+        catch (FileException $e) {
+          // Ignore.
+        }
+        $form_state->unsetValue($field_name_key);
       }
-      catch (FileException $e) {
-        // Ignore.
-      }
-      $form_state->unsetValue($field_name_key);
     }
   }
 }

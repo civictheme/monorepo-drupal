@@ -2,10 +2,94 @@
 // Logo component.
 //
 
-.civictheme-logo {
+.ct-logo {
+  $root: &;
+
   line-height: 0;
 
   img {
-    width: 100%;
+    line-height: 0;
+    flex: 1;
+  }
+
+  #{$root}--mobile {
+    display: block;
+
+    @include ct-breakpoint($ct-logo-breakpoint) {
+      display: none;
+    }
+  }
+
+  #{$root}--desktop {
+    display: block;
+
+    @include ct-breakpoint-upto($ct-logo-breakpoint) {
+      display: none;
+    }
+  }
+
+  &#{$root}--default {
+    padding-top: ct-spacing(2);
+    padding-bottom: ct-spacing(2);
+
+    &#{$root}--secondary {
+      display: none;
+    }
+
+    @include ct-breakpoint($ct-logo-breakpoint) {
+      max-width: $ct-logo-image-width-max-desktop * 2;
+    }
+
+    .ct-image {
+      width: 100%;
+      min-width: $ct-logo-image-width-min-mobile;
+      max-width: $ct-logo-image-width-max-mobile;
+    }
+  }
+
+  &#{$root}--inline {
+    display: flex;
+    align-items: center;
+
+    @include ct-breakpoint($ct-logo-breakpoint) {
+      max-width: $ct-logo-image-width-max-desktop * 2;
+    }
+
+    .ct-image {
+      width: 100%;
+      min-width: $ct-logo-image-width-min-desktop;
+      max-width: $ct-logo-image-width-max-desktop;
+    }
+  }
+
+  &#{$root}--stacked {
+    text-align: center;
+
+    @include ct-breakpoint($ct-logo-breakpoint) {
+      max-width: $ct-logo-image-width-max-desktop * 2;
+    }
+
+    .ct-image {
+      width: 100%;
+      min-width: $ct-logo-image-width-min-desktop;
+      max-width: $ct-logo-image-width-max-desktop;
+    }
+
+    &#{$root}--secondary {
+      border-top-style: solid;
+      border-top-width: ct-particle(0.125);
+    }
+  }
+
+  &.ct-theme-light {
+    &#{$root}--stacked {
+      border-top-color: $ct-logo-light-stripe-color;
+    }
+  }
+
+  &.ct-theme-dark {
+    &#{$root}--stacked {
+      border-top-color: $ct-logo-dark-stripe-color;
+    }
   }
 }

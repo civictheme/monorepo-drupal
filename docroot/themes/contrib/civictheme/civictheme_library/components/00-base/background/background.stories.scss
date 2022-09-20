@@ -1,0 +1,12 @@
+//
+// Background component stories.
+//
+
+.story-background-wrapper {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -11,11 +11,11 @@ module.exports = {
     // Splitting entries into three chunks:
     // main: all styles used in components and drupal theme -> output: civictheme.css
     // variables: CSS variables -> output: civictheme.variables.css
-    // ckeditor: nested styles used in ckeditor -> output: civictheme.ckeditor.css
+    // editor: nested styles used in editor -> output: civictheme.editor.css
     const entries = {
       main: [],
       variables: [],
-      ckeditor: [],
+      editor: [],
     };
 
     // Scan for all JS.
@@ -27,11 +27,14 @@ module.exports = {
     entries.main.push(path.resolve(__dirname, 'theme_css.js'));
     entries.main.push(path.resolve(__dirname, 'assets.js'));
 
+    // Add libraries.
+    entries.main.push(path.resolve(__dirname, 'libraries.js'));
+
     // Add explicitly css_variables.js.
     entries.variables.push(path.resolve(__dirname, 'css_variables.js'));
 
-    // Add explicitly ckeditor.scss
-    entries.ckeditor.push(path.resolve(__dirname, 'ckeditor_css.js'));
+    // Add explicitly editor.scss
+    entries.editor.push(path.resolve(__dirname, 'editor_css.js'));
 
     return entries;
   }(path.resolve(__dirname, '../components/**/!(*.stories|*.component|*.min|*.test|*.script|*.utils).js'))),
@@ -48,10 +51,10 @@ module.exports = {
           name: 'variables',
           chunks: (chunk) => (chunk.name === 'variables'),
         },
-        ckeditor: {
+        editor: {
           test: 'css/mini-extract',
-          name: 'ckeditor',
-          chunks: (chunk) => (chunk.name === 'ckeditor'),
+          name: 'editor',
+          chunks: (chunk) => (chunk.name === 'editor'),
         },
       },
     },
@@ -70,8 +73,8 @@ module.exports = {
       cleanAfterEveryBuildPatterns: [
         '../dist/civictheme-variables.js',
         '../dist/civictheme-variables.js.map',
-        '../dist/civictheme-ckeditor.js',
-        '../dist/civictheme-ckeditor.js.map',
+        '../dist/civictheme-editor.js',
+        '../dist/civictheme-editor.js.map',
       ],
     }),
   ],
@@ -101,7 +104,7 @@ module.exports = {
             options: {
               // Inject path to assets so that it does not have to be provided
               // in variables.base.scss
-              additionalData: "$civictheme-assets-directory: '/themes/contrib/civictheme/dist/assets/';",
+              additionalData: "$ct-assets-directory: '/themes/contrib/civictheme/dist/assets/';",
               sourceMap: true,
               sassOptions: {
                 importer: magicImporter(),

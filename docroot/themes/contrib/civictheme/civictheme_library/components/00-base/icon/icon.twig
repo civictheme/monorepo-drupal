@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Icon component.
+ *
+ * Variables:
+ * - symbol: [string] Icon name as per map.
+ * - size: [string] Icon size.
+ * - modifier_class: [string] Additional classes.
+ * - alt: [string] Alternate text of the image.
+ */
+#}
+
+{% block content %}
+  {% set modifier_class = '%s %s %s'|format((symbol ? 'ct-icon--' ~ symbol : ''),(size ? 'ct-icon--size-' ~ size : ''), modifier_class|default('')) %}
+
+  {% if symbol is defined %}
+    <span class="ct-icon {{ modifier_class }}" {% if alt is defined %}alt="{{ alt }}"{% endif %}></span>
+  {% endif %}
+
+{% endblock %}
