@@ -324,10 +324,10 @@ $ct-field-message-dark-warning-icon-color: ct-color-dark('warning') !default;
 //
 // Field label.
 //
-$ct-field-label-light-color: ct-color-light('heading') !default;
-$ct-field-label-light-required-color: ct-color-light('error') !default;
-$ct-field-label-dark-color: ct-color-dark('heading') !default;
-$ct-field-label-dark-required-color: ct-color-dark('error') !default;
+$ct-label-light-color: ct-color-light('heading') !default;
+$ct-label-light-required-color: ct-color-light('error') !default;
+$ct-label-dark-color: ct-color-dark('heading') !default;
+$ct-label-dark-required-color: ct-color-dark('error') !default;
 
 //
 // Select.
@@ -609,15 +609,11 @@ $ct-promo-card-image-width-desktop: auto !default;
 $ct-promo-card-image-width-mobile: auto !default;
 $ct-promo-card-light-background-color: ct-color-light('background-light') !default;
 $ct-promo-card-light-border-top-color: ct-color-light('highlight') !default;
-$ct-promo-card-light-date-background-color: ct-color-light('background-light') !default;
-$ct-promo-card-light-date-color: ct-color-light('body') !default;
 $ct-promo-card-light-heading-color: ct-color-light('heading') !default;
 $ct-promo-card-light-icon-arrow-color: inherit !default;
 $ct-promo-card-light-summary-color: ct-color-light('body') !default;
 $ct-promo-card-dark-background-color: ct-color-dark('background-dark') !default;
 $ct-promo-card-dark-border-top-color: ct-color-dark('highlight') !default;
-$ct-promo-card-dark-date-background-color: ct-color-dark('background-dark') !default;
-$ct-promo-card-dark-date-color: ct-color-dark('body') !default;
 $ct-promo-card-dark-heading-color: ct-color-dark('heading') !default;
 $ct-promo-card-dark-icon-arrow-color: inherit !default;
 $ct-promo-card-dark-summary-color: ct-color-dark('body') !default;
@@ -790,6 +786,31 @@ $ct-quote-dark-body-color: ct-color-dark('body') !default;
 $ct-quote-dark-author-color: ct-color-dark('heading') !default;
 
 //
+// Table Of Contents.
+//
+$ct-table-of-contents-link-active-border-radius: math.div($ct-border-radius, 2) !default;
+$ct-table-of-contents-max-width: 50% !default;
+$ct-table-of-contents-min-width: 50% !default;
+$ct-table-of-contents-light-link-background-color: ct-color-light('background-light') !default;
+$ct-table-of-contents-light-link-border-color: ct-color-light('border-light') !default;
+$ct-table-of-contents-light-link-color: ct-color-light('heading') !default;
+$ct-table-of-contents-light-link-hover-background-color: ct-color-light('background') !default;
+$ct-table-of-contents-light-link-hover-border-color: ct-color-light('border-light') !default;
+$ct-table-of-contents-light-link-hover-color: $ct-table-of-contents-light-link-color !default;
+$ct-table-of-contents-light-link-stripe-background-color: ct-color-light('border-light') !default;
+$ct-table-of-contents-light-link-hover-stripe-background-color: ct-color-light('highlight') !default;
+$ct-table-of-contents-light-title-color: ct-color-light('heading') !default;
+$ct-table-of-contents-dark-link-background-color: ct-color-dark('background-light') !default;
+$ct-table-of-contents-dark-link-border-color: ct-color-dark('border-light') !default;
+$ct-table-of-contents-dark-link-color: ct-color-dark('heading') !default;
+$ct-table-of-contents-dark-link-hover-background-color: ct-color-dark('background') !default;
+$ct-table-of-contents-dark-link-hover-border-color: ct-color-dark('border-light') !default;
+$ct-table-of-contents-dark-link-hover-color: $ct-table-of-contents-dark-link-color !default;
+$ct-table-of-contents-dark-link-stripe-background-color: ct-color-dark('border-light') !default;
+$ct-table-of-contents-dark-link-hover-stripe-background-color: ct-color-dark('highlight') !default;
+$ct-table-of-contents-dark-title-color: ct-color-dark('heading') !default;
+
+//
 // Tabs.
 //
 $ct-tabs-link-border-radius: $ct-border-radius * 2 !default;
@@ -807,6 +828,12 @@ $ct-tabs-dark-links-active-background-color: ct-color-dark('background-light') !
 $ct-tabs-dark-links-active-border-color: ct-color-dark('border-light') !default;
 $ct-tabs-dark-panel-background-color: ct-color-dark('background') !default;
 $ct-tabs-dark-panel-border-color: ct-color-dark('border') !default;
+
+//
+// Breadcrumb.
+//
+$ct-breadcrumb-light-color: ct-color-light('body') !default;
+$ct-breadcrumb-dark-color: ct-color-dark('body') !default;
 
 //
 // Tooltip.
@@ -1206,30 +1233,6 @@ $ct-social-links-dark-hover-color: ct-color-dark('interaction-background') !defa
 $ct-social-links-dark-focus-color: $ct-social-links-dark-hover-color !default;
 $ct-social-links-dark-active-color: $ct-social-links-dark-hover-color !default;
 $ct-social-links-dark-visited-color: $ct-social-links-dark-color !default;
-
-//
-// Navigation/Table Of Contents.
-//
-$ct-table-of-contents-link-active-border-radius: math.div($ct-border-radius, 2) !default;
-$ct-table-of-contents-width: 50% !default;
-$ct-table-of-contents-light-link-background-color: ct-color-light('background-light') !default;
-$ct-table-of-contents-light-link-border-color: ct-color-light('border-light') !default;
-$ct-table-of-contents-light-link-color: ct-color-light('heading') !default;
-$ct-table-of-contents-light-link-hover-background-color: ct-color-light('background') !default;
-$ct-table-of-contents-light-link-hover-border-color: ct-color-light('border-light') !default;
-$ct-table-of-contents-light-link-hover-color: $ct-table-of-contents-light-link-color !default;
-$ct-table-of-contents-light-link-stripe-background-color: ct-color-light('border-light') !default;
-$ct-table-of-contents-light-link-hover-stripe-background-color: ct-color-light('highlight') !default;
-$ct-table-of-contents-light-title-color: ct-color-light('heading') !default;
-$ct-table-of-contents-dark-link-background-color: ct-color-dark('background-light') !default;
-$ct-table-of-contents-dark-link-border-color: ct-color-dark('border-light') !default;
-$ct-table-of-contents-dark-link-color: ct-color-dark('heading') !default;
-$ct-table-of-contents-dark-link-hover-background-color: ct-color-dark('background') !default;
-$ct-table-of-contents-dark-link-hover-border-color: ct-color-dark('border-light') !default;
-$ct-table-of-contents-dark-link-hover-color: $ct-table-of-contents-dark-link-color !default;
-$ct-table-of-contents-dark-link-stripe-background-color: ct-color-dark('border-light') !default;
-$ct-table-of-contents-dark-link-hover-stripe-background-color: ct-color-dark('highlight') !default;
-$ct-table-of-contents-dark-title-color: ct-color-dark('heading') !default;
 
 //
 // Webform.

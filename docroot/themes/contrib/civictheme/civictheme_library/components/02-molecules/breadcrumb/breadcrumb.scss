@@ -1,0 +1,39 @@
+//
+// Breadcrumb component.
+//
+
+.ct-breadcrumb {
+  $root: &;
+
+  &.ct-theme-light {
+    #{$root}__links {
+      &__link {
+        &--active {
+          @include ct-typography('label-regular');
+
+          color: $ct-breadcrumb-light-color;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  &.ct-theme-dark {
+    #{$root}__links {
+      &__link {
+        &--active {
+          @include ct-typography('label-regular');
+
+          color: $ct-breadcrumb-dark-color;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

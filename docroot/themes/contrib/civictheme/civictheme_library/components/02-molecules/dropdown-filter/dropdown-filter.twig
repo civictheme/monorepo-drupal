@@ -49,7 +49,7 @@
     <div class="ct-dropdown-filter__filter-options" data-collapsible-panel>
       <div class="ct-dropdown-filter__filter-options-wrapper">
         {% block filter_options %}
-          {% include '@organisms/fieldset/fieldset.twig' with {
+          {% include '@atoms/fieldset/fieldset.twig' with {
             legend: options_title is not empty ? options_title : null,
             children: options,
             modifier_class: 'ct-dropdown-filter__fieldset',

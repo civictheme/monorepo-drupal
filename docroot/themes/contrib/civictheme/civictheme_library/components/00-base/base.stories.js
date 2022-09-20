@@ -11,7 +11,7 @@ import CivicThemeCheckbox from '../01-atoms/checkbox/checkbox.twig';
 import CivicThemeRadio from '../01-atoms/radio/radio.twig';
 import CivicThemeFormElement
   from '../02-molecules/form-element/form-element.twig';
-import CivicThemeFieldLabel from '../01-atoms/field-label/field-label.twig';
+import CivicThemeLabel from '../01-atoms/label/label.twig';
 import CivicThemeDropdownFilter
   from '../02-molecules/dropdown-filter/dropdown-filter.twig';
 
@@ -139,7 +139,7 @@ export const randomFormElement = (inputType, options, theme, rand, itr) => {
   const formElementOptions = {
     theme,
     type: inputType,
-    label: CivicThemeFieldLabel({
+    label: CivicThemeLabel({
       theme,
       content: options.title ? options.title : `Input title ${itr + 1}${rand ? ` ${randomString(randomInt(2, 5))}` : ''}`,
       attributes: `for="form-element-${itr}"`,
