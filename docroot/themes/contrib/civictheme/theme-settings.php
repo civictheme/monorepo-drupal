@@ -155,6 +155,93 @@ function _civictheme_form_system_theme_settings_components(&$form, FormStateInte
     '#default_value' => theme_get_setting('components.header.type') ?? CIVICTHEME_HEADER_TYPE_DEFAULT,
   ];
 
+  $form['components']['navigation'] = [
+    '#type' => 'details',
+    '#title' => t('Navigation'),
+    '#group' => 'components',
+    '#tree' => TRUE,
+  ];
+
+  $navigation_map = [
+    'primary_navigation' => [
+      'title' => t('Primary navigation'),
+      'dropdown' => CIVICTHEME_NAVIGATION_DROPDOWN_DRAWER,
+      'dropdown_columns' => 4,
+      'dropdown_columns_fill' => FALSE,
+      'is_animated' => FALSE,
+    ],
+    'secondary_navigation' => [
+      'title' => t('Secondary navigation'),
+      'dropdown' => CIVICTHEME_NAVIGATION_DROPDOWN_NONE,
+      'dropdown_columns' => 4,
+      'dropdown_columns_fill' => FALSE,
+      'is_animated' => FALSE,
+    ],
+  ];
+
+  foreach ($navigation_map as $navigation_name => $navigation_defaults) {
+    $form['components']['navigation'][$navigation_name] = [
+      '#type' => 'details',
+      '#title' => $navigation_defaults['title'],
+      '#tree' => TRUE,
+      '#open' => TRUE,
+    ];
+
+    $form['components']['navigation'][$navigation_name]['dropdown'] = [
+      '#title' => t('Dropdown type'),
+      '#description' => t('Select how the menu sub-tree items would appear in the menu.'),
+      '#type' => 'select',
+      '#required' => TRUE,
+      '#options' => [
+        'none' => t('None'),
+        'dropdown' => t('Dropdown'),
+        'drawer' => t('Drawer'),
+      ],
+      '#default_value' => theme_get_setting("components.navigation.$navigation_name.dropdown") ?? $navigation_defaults['dropdown'],
+    ];
+
+    $form['components']['navigation'][$navigation_name]['dropdown_columns'] = [
+      '#title' => t('Number of columns in the drawer row'),
+      '#description' => t('Number of menu columns per row. If there are more menus than items per row - they will flow on the next row.'),
+      '#type' => 'number',
+      '#min' => 1,
+      '#max' => 4,
+      '#default_value' => theme_get_setting("components.navigation.$navigation_name.dropdown_columns") ?? $navigation_defaults['dropdown_columns'],
+      '#states' => [
+        'visible' => [
+          ':input[name="components[navigation][' . $navigation_name . '][dropdown]"]' => ['value' => CIVICTHEME_NAVIGATION_DROPDOWN_DRAWER],
+        ],
+      ],
+    ];
+
+    $form['components']['navigation'][$navigation_name]['dropdown_columns_fill'] = [
+      '#title' => t('Fill width of the last drawer column'),
+      '#description' => t('Fill the width of the last column in the drawer. Useful for large menus.'),
+      '#type' => 'checkbox',
+      '#default_value' => theme_get_setting("components.navigation.$navigation_name.dropdown_columns_fill") ?? $navigation_defaults['dropdown_columns_fill'],
+      '#states' => [
+        'visible' => [
+          ':input[name="components[navigation][' . $navigation_name . '][dropdown]"]' => ['value' => CIVICTHEME_NAVIGATION_DROPDOWN_DRAWER],
+        ],
+      ],
+    ];
+
+    $form['components']['navigation'][$navigation_name]['is_animated'] = [
+      '#title' => t('Animate'),
+      '#description' => t('Animate transitions.'),
+      '#type' => 'checkbox',
+      '#default_value' => theme_get_setting("components.navigation.$navigation_name.is_animated") ?? $navigation_defaults['is_animated'],
+      '#states' => [
+        'visible' => [
+          ':input[name="components[navigation][' . $navigation_name . '][dropdown]"]' => [
+            ['value' => CIVICTHEME_NAVIGATION_DROPDOWN_DROPDOWN],
+            ['value' => CIVICTHEME_NAVIGATION_DROPDOWN_DRAWER],
+          ],
+        ],
+      ],
+    ];
+  }
+
   $form['components']['footer'] = [
     '#type' => 'details',
     '#title' => t('Footer'),

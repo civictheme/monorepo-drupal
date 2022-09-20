@@ -39,3 +39,27 @@ function _civictheme_preprocess_menu_items(&$items) {
     }
   }
 }
+
+/**
+ * Preprocess for primary navigation menu block.
+ */
+function _civictheme_preprocess_block__navigation(&$variables) {
+  if (isset($variables['elements']['#base_plugin_id']) && $variables['base_plugin_id'] != 'menu_block') {
+    return;
+  }
+
+  $menu_name = strtr($variables['elements']['#derivative_plugin_id'], '-', '_');
+
+  if ($menu_name == 'civictheme_primary_navigation' || $menu_name == 'civictheme_secondary_navigation') {
+    $key = substr($menu_name, strlen('civictheme_'));
+    // Set menu theme as per footer theme.
+    $variables['theme'] = theme_get_setting('components.header.theme') ?? CIVICTHEME_HEADER_THEME_DEFAULT;
+    $variables['items'] = $variables['content']['#items'] ?? [];
+    $variables['dropdown'] = theme_get_setting("components.navigation.$key.dropdown") ?? CIVICTHEME_NAVIGATION_DROPDOWN_DRAWER;
+    $variables['dropdown_columns'] = theme_get_setting("components.navigation.$key.dropdown_columns") ?? FALSE;
+    $variables['dropdown_columns_fill'] = theme_get_setting("components.navigation.$key.dropdown_columns_fill") ?? FALSE;
+    $variables['is_animated'] = theme_get_setting("components.navigation.$key.is_animated") ?? FALSE;
+
+    _civictheme_preprocess_menu_items($variables['items']);
+  }
+}

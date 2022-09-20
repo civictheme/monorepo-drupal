@@ -70,8 +70,8 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
     '#value' => t('Provision content'),
     '#validate' => ['_civictheme_form_system_theme_settings_provision_validate'],
     '#submit' => ['_civictheme_form_system_theme_settings_provision_submit'],
-    '#process'=> ['_civictheme_form_system_theme_settings_alter_provision_process'],
   ];
+  $form[]['#process'][] = '_civictheme_form_system_theme_settings_alter_provision_process';
 }
 
 /**

@@ -94,3 +94,18 @@ define('CIVICTHEME_AUTOMATED_LIST_LIMIT_FALLBACK', 12);
  * Defines Automated list default theme.
  */
 define('CIVICTHEME_AUTOMATED_LIST_DEFAULT_THEME', CIVICTHEME_THEME_LIGHT);
+
+/**
+ * Defines Navigation "none" dropdown type.
+ */
+define('CIVICTHEME_NAVIGATION_DROPDOWN_NONE', 'none');
+
+/**
+ * Defines Navigation "dropdown" dropdown type.
+ */
+define('CIVICTHEME_NAVIGATION_DROPDOWN_DROPDOWN', 'dropdown');
+
+/**
+ * Defines Navigation "drawer" dropdown type.
+ */
+define('CIVICTHEME_NAVIGATION_DROPDOWN_DRAWER', 'drawer');

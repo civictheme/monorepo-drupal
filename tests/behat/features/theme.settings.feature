@@ -60,6 +60,38 @@ Feature: Check that components settings are available in theme settings
     And I should see an "input[name='components[header][theme]']" element
     And I should see an "#edit-components-header-theme--wrapper.required" element
 
+    And I should see the text "Primary navigation"
+    And I should see an "select[name='components[navigation][primary_navigation][dropdown]']" element
+    And I should see an "select[name='components[navigation][primary_navigation][dropdown]'].required" element
+
+    And I should see the text "Number of columns in the drawer row"
+    And I should see an "input[name='components[navigation][primary_navigation][dropdown_columns]']" element
+    And I should not see an "input[name='components[navigation][primary_navigation][dropdown_columns]'].required" element
+
+    And I should see the text "Fill width of the last drawer column"
+    And I should see an "input[name='components[navigation][primary_navigation][dropdown_columns_fill]']" element
+    And I should not see an "input[name='components[navigation][primary_navigation][dropdown_columns_fill]'].required" element
+
+    And I should see the text "Animate"
+    And I should see an "input[name='components[navigation][primary_navigation][is_animated]']" element
+    And I should not see an "input[name='components[navigation][primary_navigation][is_animated]'].required" element
+
+    And I should see the text "Secondary navigation"
+    And I should see an "select[name='components[navigation][secondary_navigation][dropdown]']" element
+    And I should see an "select[name='components[navigation][secondary_navigation][dropdown]'].required" element
+
+    And I should see the text "Number of columns in the drawer row"
+    And I should see an "input[name='components[navigation][secondary_navigation][dropdown_columns]']" element
+    And I should not see an "input[name='components[navigation][secondary_navigation][dropdown_columns]'].required" element
+
+    And I should see the text "Fill width of the last drawer column"
+    And I should see an "input[name='components[navigation][secondary_navigation][dropdown_columns_fill]']" element
+    And I should not see an "input[name='components[navigation][secondary_navigation][dropdown_columns_fill]'].required" element
+
+    And I should see the text "Animate"
+    And I should see an "input[name='components[navigation][secondary_navigation][is_animated]']" element
+    And I should not see an "input[name='components[navigation][secondary_navigation][is_animated]'].required" element
+
     And I should see the text "Footer theme"
     And I should see an "input[name='components[footer][theme]']" element
     And I should see an "#edit-components-footer-theme--wrapper.required" element
@@ -150,7 +182,7 @@ Feature: Check that components settings are available in theme settings
     Then I should see the text "The configuration options have been saved."
 
   @api
-  Scenario: The CivicTheme theme settings External Links comnponent validation works.
+  Scenario: The CivicTheme theme settings External Links component validation works.
     Given I am logged in as a user with the "Site Administrator" role
     And I visit "/admin/appearance/settings/civictheme_demo"
 

@@ -10,6 +10,7 @@
   * - dropdown: [string] One of: none, dropdown, drawer.
   * - dropdown_columns: [integer] Number of columns in the dropdown drawer.
   * - dropdown_columns_fill: [bollean] Fill columns.
+  * - is_animated: [bollean] Use animation for transitions.
   * - menu_id: [string] Optional menu ID used for grouping dropdown items.
   * - attributes: [string] Additional attributes.
   * - modifier_class: [string] Additional classes.
@@ -26,7 +27,7 @@
     {% for key in items|keys %}
       {% if items[key].below %}
         {# Item attributes to convert them into a collapsible element. #}
-        {% set item_attributes = 'data-collapsible data-collapsible-collapsed data-collapsible-group=' ~ menu_id ~ ' ' ~ (is_animated ? 'data-collapsible-duration="250"' : 'data-collapsible-duration="0"') %}
+        {% set item_attributes = 'data-collapsible data-collapsible-collapsed data-collapsible-group=' ~ menu_id ~ ' ' ~ (is_animated ? 'data-collapsible-duration=250' : 'data-collapsible-duration=0') %}
 
         {% if dropdown == 'drawer' %}
           {# Item classes to style dynamically. #}

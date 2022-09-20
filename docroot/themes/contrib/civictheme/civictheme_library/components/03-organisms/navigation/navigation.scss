@@ -460,6 +460,7 @@
 
       @include ct-breakpoint($ct-navigation-breakpoint) {
         display: flex;
+        align-items: center;
       }
 
       #{$root}__menu {
