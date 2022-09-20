@@ -4,10 +4,10 @@ dependencies:
   config:
     - field.field.paragraph.civictheme_next_step.field_c_p_image
     - field.field.paragraph.civictheme_next_step.field_c_p_link
-    - field.field.paragraph.civictheme_next_step.field_c_p_space
     - field.field.paragraph.civictheme_next_step.field_c_p_summary
     - field.field.paragraph.civictheme_next_step.field_c_p_theme
     - field.field.paragraph.civictheme_next_step.field_c_p_title
+    - field.field.paragraph.civictheme_next_step.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_next_step
   module:
     - link
@@ -32,12 +32,6 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_c_p_space:
-    weight: 5
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_c_p_summary:
     weight: 1
     settings:
@@ -59,6 +53,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_c_p_vertical_spacing:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
 hidden:
   created: true

@@ -11,17 +11,18 @@
  *   - title: [string] Panel title
  *   - expanded: [boolean] Panel is expanded or not.
  *   - content: [string] Panel content.
- * - vertical_space: [string] With top, bottom or both vertical spaces.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-accordion--vertical-space-%s'|format(vertical_space) : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
 
 {% if panels is not empty %}
-  <div class="ct-accordion {{ modifier_class }}">
+  <div class="ct-accordion {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     <div class="container">
       <div class="row">
         {% if title is not empty %}

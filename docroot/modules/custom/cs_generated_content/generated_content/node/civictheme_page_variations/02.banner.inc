@@ -186,7 +186,7 @@ function _cs_generated_content_create_node_civictheme_page__variations__banner()
             'uri' => $helper::randomUrl() . '/below',
             'title' => 'Below ' . $helper::staticSentence(2),
           ],
-          'space' => $helper::civicthemeSpaceTypeTop(),
+          'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeTop(),
           'background' => TRUE,
         ],
       ],

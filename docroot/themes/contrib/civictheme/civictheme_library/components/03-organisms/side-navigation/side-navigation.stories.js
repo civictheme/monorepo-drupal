@@ -26,6 +26,17 @@ export const SideNavigation = (knobTab) => {
     ),
     title: text('Title', 'Side Navigation title', generalKnobTab),
     items: getMenuLinks('Links'),
+    vertical_spacing: radios(
+      'Vertical spacing',
+      {
+        None: 'none',
+        Top: 'top',
+        Bottom: 'bottom',
+        Both: 'both',
+      },
+      'none',
+      generalKnobTab,
+    ),
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };

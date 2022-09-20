@@ -55,7 +55,7 @@ function civictheme_preprocess_paragraph__civictheme_manual_list(&$variables) {
     'link_above' => $link_above_data,
     'title' => civictheme_get_field_value($paragraph, 'field_c_p_title') ?? '',
     'with_background' => civictheme_get_field_value($paragraph, 'field_c_p_background') ?? FALSE,
-    'vertical_space' => civictheme_get_field_value($paragraph, 'field_c_p_space') ?? '',
+    'vertical_space' => civictheme_get_field_value($paragraph, 'field_c_p_vertical_spacing') ?? '',
     'column_count' => civictheme_get_field_value($paragraph, 'field_c_p_column_count'),
     'link_below' => $link_below_data,
     'view_as' => $view_as,

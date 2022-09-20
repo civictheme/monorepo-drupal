@@ -26,8 +26,8 @@ export const Checkbox = (knobTab) => {
     required: boolean('Required', false, generalKnobTab),
     disabled: boolean('Disabled', false, generalKnobTab),
     has_error: boolean('Has error', false, generalKnobTab),
-    attributes: text('Additional attributes', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeCheckbox({

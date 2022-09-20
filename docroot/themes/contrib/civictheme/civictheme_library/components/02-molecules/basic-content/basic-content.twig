@@ -7,18 +7,20 @@
  * - theme: [string] Theme: light, dark.
  * - content: [string] Content.
  * - is_contained: [boolean] Contained or not.
+ * - vertical_spacing: [string] With top, bottom or both vertical spaces.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
- * - vertical_space: [string] With top, bottom or both vertical spaces.
  */
 #}
 
-{% set vertical_space_class = vertical_space in ['top', 'bottom', 'both'] ? 'ct-content--vertical-space-%s'|format(vertical_space) : '' %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing) : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, vertical_space_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, vertical_spacing_class, modifier_class|default('')) %}
+
 {% set is_contained = is_contained is not defined or is_contained != false ? true : false %}
 
 {% if content is not empty %}
-  <div class="ct-basic-content {{ modifier_class }}">
+  <div class="ct-basic-content {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% if is_contained %}
       <div class="container">
         <div class="row">

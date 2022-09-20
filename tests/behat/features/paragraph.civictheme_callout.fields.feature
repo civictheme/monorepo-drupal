@@ -17,7 +17,7 @@ Feature: Tests the Callout
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_summary" in the "Summary" row
     And I should see the text "field_c_p_links" in the "Links" row
-    And I should see the text "field_c_p_space" in the "With space" row
+    And I should see the text "field_c_p_vertical_spacing" in the "Vertical spacing" row
 
   @api @javascript
   Scenario: Show relevant fields depending on the 'Content type' selected
@@ -31,7 +31,7 @@ Feature: Tests the Callout
     And I wait for AJAX to finish
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]']" element
     And should see an "select[name='field_c_n_components[0][subform][field_c_p_theme]'].required" element
-    And should see an "select[name='field_c_n_components[0][subform][field_c_p_space]']" element
+    And should see an "select[name='field_c_n_components[0][subform][field_c_p_vertical_spacing]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]']" element
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]'].required" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]']" element

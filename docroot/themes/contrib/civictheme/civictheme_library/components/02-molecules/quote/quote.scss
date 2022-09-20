@@ -11,18 +11,6 @@
   position: relative;
   padding-left: ct-spacing(2);
 
-  &#{$root}--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-quote-space-vertical, $is_padding: false);
-  }
-
-  &#{$root}--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-quote-space-vertical, $is_padding: false);
-  }
-
-  &#{$root}--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-quote-space-vertical, $is_padding: false);
-  }
-
   &__content {
     @include ct-typography('quote');
 

@@ -25,10 +25,10 @@ Feature: Tests the Event Card paragraph
 
     And I am an anonymous user
     And "field_c_n_components" in "civictheme_page" "node" with "title" of "[TEST] Page - Event cards test" has "civictheme_manual_list" paragraph:
-      | field_c_p_title        | [TEST] Event manual list                 |
-      | field_c_p_column_count | 4                                           |
-      | field_c_p_list_link_above  | 0: View all events - 1: https://example.com |
-      | field_c_p_fill_width   | 0                                           |
+      | field_c_p_title           | [TEST] Event manual list                    |
+      | field_c_p_column_count    | 4                                           |
+      | field_c_p_list_link_above | 0: View all events - 1: https://example.com |
+      | field_c_p_fill_width      | 0                                           |
     And "field_c_p_list_items" in "civictheme_manual_list" "paragraph" with "field_c_p_title" of "[TEST] Event manual list" has "civictheme_event_card" paragraph:
       | field_c_p_date     | 2021-04-29                            |
       | field_c_p_image    | [TEST] CivicTheme Image               |

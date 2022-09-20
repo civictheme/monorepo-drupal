@@ -5,20 +5,6 @@
 .ct-side-navigation {
   $root: &;
 
-  @include ct-component-with-vertical-space(bottom, $ct-side-navigation-space-vertical);
-
-  &.ct-side-navigation--vertical-space-top {
-    @include ct-component-with-vertical-space(top, $ct-side-navigation-space-vertical);
-  }
-
-  &.ct-side-navigation--vertical-space-bottom {
-    @include ct-component-with-vertical-space(bottom, $ct-side-navigation-space-vertical);
-  }
-
-  &.ct-side-navigation--vertical-space-both {
-    @include ct-component-with-vertical-space(both, $ct-side-navigation-space-vertical);
-  }
-
   &__title {
     @include ct-typography('heading-5');
 

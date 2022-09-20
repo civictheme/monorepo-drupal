@@ -19,17 +19,18 @@
  * - summary: [string] Summary of the card.
  * - url: [string] Link.
  * - is_external: [boolean] Link is external or not.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set size = size|default('large') %}
 {% set size_class = size == 'large'?'ct-navigation-card--large' : 'ct-navigation-card--small' %}
 {% set image_as_icon_class = image_as_icon ? 'ct-navigation-card--image-as-icon' : '' %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, size_class, image_as_icon_class, modifier_class|default('')) %}
 
-<div class="ct-navigation-card {{ modifier_class }}">
+<div class="ct-navigation-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   {% block image %}
     {% if image.src is not empty %}
       <div class="ct-navigation-card__image-wrapper">

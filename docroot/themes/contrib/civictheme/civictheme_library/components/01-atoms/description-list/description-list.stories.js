@@ -47,6 +47,7 @@ export const DescriptionList = (knobTab) => {
     )),
     is_inline: boolean('Inline', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeDescriptionList({

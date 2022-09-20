@@ -15,7 +15,7 @@
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="{{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+<div class="{{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   <a id="top"></a>
 
   {% block header %}
@@ -58,7 +58,7 @@
       sidebar: sidebar,
       hide_sidebar: hide_sidebar,
       is_contained: content_contained,
-      vertical_space: vertical_space,
+      vertical_spacing: vertical_spacing,
       sidebar_attributes: sidebar_attributes,
       content_attributes: content_attributes,
     } only %}

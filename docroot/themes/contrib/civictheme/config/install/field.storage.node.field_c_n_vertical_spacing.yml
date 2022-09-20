@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - options
-id: node.field_c_n_space
-field_name: field_c_n_space
+id: node.field_c_n_vertical_spacing
+field_name: field_c_n_vertical_spacing
 entity_type: node
 type: list_string
 settings:

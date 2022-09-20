@@ -15,5 +15,10 @@
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if content is not empty -%}
-  <div class="ct-field-description {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>{% if content is not empty %}{{ content }}{% endif %}</div>
+  <div
+    class="ct-field-description {{ modifier_class }}"
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
+    {{ content }}
+  </div>
 {%- endif %}

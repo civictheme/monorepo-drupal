@@ -11,9 +11,9 @@ dependencies:
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_items
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_above
     - field.field.paragraph.civictheme_manual_list.field_c_p_list_link_below
-    - field.field.paragraph.civictheme_manual_list.field_c_p_space
     - field.field.paragraph.civictheme_manual_list.field_c_p_theme
     - field.field.paragraph.civictheme_manual_list.field_c_p_title
+    - field.field.paragraph.civictheme_manual_list.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_manual_list
   module:
     - field_group
@@ -39,7 +39,7 @@ third_party_settings:
     group_appearance:
       children:
         - field_c_p_theme
-        - field_c_p_space
+        - field_c_p_vertical_spacing
         - field_c_p_background
         - group_columns
         - group_items
@@ -262,12 +262,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_c_p_space:
-    type: options_select
-    weight: 47
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_c_p_theme:
     type: options_select
     weight: 46
@@ -281,6 +275,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_c_p_vertical_spacing:
+    type: options_select
+    weight: 47
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden:
   created: true

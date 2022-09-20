@@ -10,6 +10,7 @@
  * - id: [string] ID.
  * - title: [string] Title.
  * - description: [string] Description.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
@@ -27,7 +28,14 @@
 } %}
 
 {% if description is not empty %}
-  <div class="ct-alert {{ modifier_class }}" data-alert-id="{{ id }}" data-alert-type="{{ type }}" data-component-name="ct-alert" role="alert">
+  <div
+    class="ct-alert {{ modifier_class }}"
+    data-alert-id="{{ id }}"
+    data-alert-type="{{ type }}"
+    data-component-name="ct-alert"
+    role="alert"
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >
     <div class="container">
       <div class="row">
         <div class="ct-alert__title col-xxs-12 col-m-3">

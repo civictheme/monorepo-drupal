@@ -14,12 +14,13 @@
  * - apply_text: [string] Text for apply button.
  * - filter_count_suffix: [string] JSON formatted suffixes { "1": "Item", "default": "Items" }
  * - desktop_breakpoint: [string] Breakpoint to display desktop (group) view.
+ * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
 {% set with_background_class = with_background ? 'ct-group-filter--with-background' : '' %}
-{% set theme_class = 'civictheme-theme-%s'|format(theme|default('light')) %}
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, with_background_class, modifier_class|default('')) %}
 
 {% set filter_title = filter_title|default('Filter search results by:') %}
@@ -39,6 +40,7 @@
       data-responsive
       data-group-filter-desktop-breakpoint="{{ desktop_breakpoint }}"
     {% endif %}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
   >
     {% include "@atoms/button/button.twig" with {
       theme: theme,
@@ -56,7 +58,7 @@
     ></div>
     <div class="ct-group-filter-flyout hide-m" data-group-filter-mobile-overlay data-flyout data-flyout-direction="right">
       <div class="ct-group-filter__mobile-overlay" data-flyout-panel>
-        <div class="civictheme-mobile-navigation-close">
+        <div class="ct-mobile-navigation-close">
           {% include '@atoms/button/button.twig' with {
             theme: theme,
             type: 'button',
@@ -65,7 +67,7 @@
             icon: 'userinterface_close',
             icon_placement: 'after',
             attributes: 'data-flyout-close-all-trigger data-group-filter-mobile-cancel',
-            modifier_class: 'civictheme-mobile-navigation-close__button ct-group-filter__mobile-cancel',
+            modifier_class: 'ct-mobile-navigation-close__button ct-group-filter__mobile-cancel',
           } only %}
         </div>
         <div class="container">

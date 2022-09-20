@@ -9,6 +9,7 @@
 *   - text: [string] Link text.
 *   - url: [string] URL.
 * - is_multiple: [boolean] Allow to select multiple filter values.
+* - attributes: [string] Additional attributes.
 * - modifier_class: [string] Additional classes.
 */
 #}
@@ -16,7 +17,7 @@
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
-<div class="ct-single-filter {{ modifier_class }}" data-component-name="ct-single-filter">
+<div class="ct-single-filter {{ modifier_class }}" data-component-name="ct-single-filter" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   <div class="container">
     <div class="row">
       <div class="col-xxs-12">

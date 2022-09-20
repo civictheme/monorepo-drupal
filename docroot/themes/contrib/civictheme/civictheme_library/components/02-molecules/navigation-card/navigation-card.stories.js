@@ -60,6 +60,7 @@ export const NavigationCard = (knobTab) => {
       generalKnobTab,
     ), true),
     modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   const iconKnobTab = 'Icon';

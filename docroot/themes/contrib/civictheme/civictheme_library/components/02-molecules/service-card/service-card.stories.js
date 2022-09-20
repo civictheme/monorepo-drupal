@@ -38,6 +38,7 @@ export const ServiceCard = (knobTab) => {
       generalKnobTab,
     ), 10),
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeServiceCard({

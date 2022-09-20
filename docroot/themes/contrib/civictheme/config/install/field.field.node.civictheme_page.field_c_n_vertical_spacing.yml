@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_c_n_space
+    - field.storage.node.field_c_n_vertical_spacing
     - node.type.civictheme_page
   module:
     - options
-id: node.civictheme_page.field_c_n_space
-field_name: field_c_n_space
+id: node.civictheme_page.field_c_n_vertical_spacing
+field_name: field_c_n_vertical_spacing
 entity_type: node
 bundle: civictheme_page
-label: 'With space'
+label: 'Vertical spacing'
 description: ''
 required: false
 translatable: false

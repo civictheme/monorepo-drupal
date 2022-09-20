@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import { getSlots } from '../../00-base/base.stories';
+import { getSlots, randomUrl } from '../../00-base/base.stories';
 import CivicThemeAttachment from './attachment.twig';
 
 export default {
@@ -18,37 +18,37 @@ export const Attachment = (knobTab) => {
 
   const links = [
     {
-      url: 'https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.doc',
+      url: randomUrl(),
       text: 'DOC type document',
       last_updated: date,
       icon: 'download-file',
     },
     {
-      url: 'https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.docx',
+      url: randomUrl(),
       text: 'DOCX type document',
       last_updated: date,
       icon: 'download-file',
     },
     {
-      url: 'https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf',
+      url: randomUrl(),
       text: 'PDF type document',
       last_updated: date,
       icon: 'download-file',
     },
     {
-      url: 'https://file-examples-com.github.io/uploads/2017/08/file_example_PPT_250kB.ppt',
+      url: randomUrl(),
       text: 'PPT type document',
       last_updated: date,
       icon: 'download-file',
     },
     {
-      url: 'https://file-examples-com.github.io/uploads/2017/02/file_example_XLSX_10.xlsx',
+      url: randomUrl(),
       text: 'XLSX type document',
       last_updated: date,
       icon: 'download-file',
     },
     {
-      url: 'https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_10.xls',
+      url: randomUrl(),
       text: 'XLS type document',
       last_updated: date,
       icon: 'download-file',
@@ -68,8 +68,8 @@ export const Attachment = (knobTab) => {
     title: text('Title', 'Event name which runs across two or three lines', generalKnobTab),
     summary: text('Summary', 'Card summary using body copy which can run across multiple lines. Recommend limiting this summary to three or four lines..', generalKnobTab),
     links: boolean('With links', true, generalKnobTab) ? links : null,
-    vertical_space: radios(
-      'Vertical space',
+    vertical_spacing: radios(
+      'Vertical spacing',
       {
         None: 'none',
         Top: 'top',
@@ -80,6 +80,7 @@ export const Attachment = (knobTab) => {
       generalKnobTab,
     ),
     modifier_class: text('Additional class', '', generalKnobTab),
+    attributes: text('Additional attributes', '', generalKnobTab),
   };
 
   return CivicThemeAttachment({

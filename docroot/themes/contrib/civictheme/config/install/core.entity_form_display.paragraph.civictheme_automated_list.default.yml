@@ -18,9 +18,9 @@ dependencies:
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_site_sections
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_topics
     - field.field.paragraph.civictheme_automated_list.field_c_p_list_type
-    - field.field.paragraph.civictheme_automated_list.field_c_p_space
     - field.field.paragraph.civictheme_automated_list.field_c_p_theme
     - field.field.paragraph.civictheme_automated_list.field_c_p_title
+    - field.field.paragraph.civictheme_automated_list.field_c_p_vertical_spacing
     - paragraphs.paragraphs_type.civictheme_automated_list
   module:
     - field_group
@@ -45,7 +45,7 @@ third_party_settings:
     group_appearance:
       children:
         - field_c_p_theme
-        - field_c_p_space
+        - field_c_p_vertical_spacing
         - field_c_p_background
         - group_columns
         - group_items
@@ -297,12 +297,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_c_p_space:
-    type: options_select
-    weight: 2
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_c_p_theme:
     type: options_select
     weight: 1
@@ -316,6 +310,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_c_p_vertical_spacing:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden:
   created: true

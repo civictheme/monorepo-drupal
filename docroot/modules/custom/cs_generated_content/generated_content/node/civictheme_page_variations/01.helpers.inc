@@ -34,7 +34,7 @@ function _cs_generated_content_create_node_civictheme_page__variations_component
     [
       'type' => 'content',
       'content' => $helper::staticRichText(3),
-      'space' => $helper::civicthemeSpaceTypeNone(),
+      'vertical_spacing' => $helper::civicthemeVerticalSpacingTypeNone(),
     ],
   ];
 }

@@ -16,7 +16,7 @@
 {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
 
 {% if items is not empty %}
-  <div class="ct-navigation {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+  <div class="ct-navigation {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
     {% if title is not empty %}
       {% block title %}
         <div class="ct-navigation__title">
