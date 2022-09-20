@@ -161,7 +161,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
       border-left-color: $ct-mobile-navigation-light-menu-divider-border-color;
 
       .ct-icon {
-        fill: $ct-mobile-navigation-light-subsection-trigger-color;
+        background-color: $ct-mobile-navigation-light-subsection-trigger-color;
       }
     }
 
@@ -170,7 +170,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
         color: $ct-mobile-navigation-light-subsection-heading-color;
 
         .ct-icon {
-          fill: $ct-mobile-navigation-light-subsection-heading-icon-color;
+          background-color: $ct-mobile-navigation-light-subsection-heading-icon-color;
         }
       }
     }
@@ -202,7 +202,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
       border-left-color: $ct-mobile-navigation-dark-menu-divider-border-color;
 
       .ct-icon {
-        fill: $ct-mobile-navigation-dark-subsection-trigger-color;
+        background-color: $ct-mobile-navigation-dark-subsection-trigger-color;
       }
     }
 
@@ -211,7 +211,7 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
         color: $ct-mobile-navigation-dark-subsection-heading-color;
 
         .ct-icon {
-          fill: $ct-mobile-navigation-dark-subsection-heading-icon-color;
+          background-color: $ct-mobile-navigation-dark-subsection-heading-icon-color;
         }
       }
     }

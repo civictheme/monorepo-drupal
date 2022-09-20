@@ -834,6 +834,12 @@ $ct-tabs-dark-panel-background-color: ct-color-dark('background') !default;
 $ct-tabs-dark-panel-border-color: ct-color-dark('border') !default;
 
 //
+// Breadcrumb.
+//
+$ct-breadcrumb-light-color: ct-color-light('body') !default;
+$ct-breadcrumb-dark-color: ct-color-dark('body') !default;
+
+//
 // Tooltip.
 //
 $ct-tooltip-description-border-radius: $ct-border-radius !default;
