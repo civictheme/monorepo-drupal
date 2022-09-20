@@ -8,89 +8,88 @@
   line-height: 0;
 
   img {
+    line-height: 0;
     flex: 1;
-    max-width: $ct-logo-image-width-mobile;
-    max-height: $ct-logo-image-height-mobile;
+  }
+
+  #{$root}--mobile {
+    display: block;
 
     @include ct-breakpoint($ct-logo-breakpoint) {
-      max-width: $ct-logo-image-width-desktop;
-      max-height: $ct-logo-image-height-desktop;
+      display: none;
     }
   }
 
-  #{$root}__divider {
-    height: inherit;
-    margin: ct-spacing();
-  }
+  #{$root}--desktop {
+    display: block;
 
-  #{$root}-type-inline {
-    &,
-    a {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: center;
-    }
-
-
-    &#{$root}-dual {
-      &,
-      a {
-        align-items: unset;
-      }
-
-      img {
-        max-width: $ct-logo-image-width-mobile * 0.5;
-
-        @include ct-breakpoint('m') {
-          max-width: $ct-logo-image-width-desktop * 0.5;
-        }
-      }
-
-      #{$root}__divider {
-        border-left-width: ct-particle(0.125);
-        border-left-style: solid;
-      }
+    @include ct-breakpoint-upto($ct-logo-breakpoint) {
+      display: none;
     }
   }
 
-  #{$root}-type-stacked {
-    &,
-    a {
-      display: inline-block;
+  &#{$root}--default {
+    padding-top: ct-spacing(2);
+    padding-bottom: ct-spacing(2);
+
+    &#{$root}--secondary {
+      display: none;
     }
 
-    #{$root}__divider {
-      border-bottom-width: ct-particle(0.125);
-      border-bottom-style: solid;
+    @include ct-breakpoint($ct-logo-breakpoint) {
+      max-width: $ct-logo-image-width-max-desktop * 2;
+    }
+
+    .ct-image {
+      width: 100%;
+      min-width: $ct-logo-image-width-min-mobile;
+      max-width: $ct-logo-image-width-max-mobile;
+    }
+  }
+
+  &#{$root}--inline {
+    display: flex;
+    align-items: center;
+
+    @include ct-breakpoint($ct-logo-breakpoint) {
+      max-width: $ct-logo-image-width-max-desktop * 2;
+    }
+
+    .ct-image {
+      width: 100%;
+      min-width: $ct-logo-image-width-min-desktop;
+      max-width: $ct-logo-image-width-max-desktop;
+    }
+  }
+
+  &#{$root}--stacked {
+    text-align: center;
+
+    @include ct-breakpoint($ct-logo-breakpoint) {
+      max-width: $ct-logo-image-width-max-desktop * 2;
+    }
+
+    .ct-image {
+      width: 100%;
+      min-width: $ct-logo-image-width-min-desktop;
+      max-width: $ct-logo-image-width-max-desktop;
+    }
+
+    &#{$root}--secondary {
+      border-top-style: solid;
+      border-top-width: ct-particle(0.125);
     }
   }
 
   &.ct-theme-light {
-    #{$root}-type-inline {
-      #{$root}__divider {
-        border-left-color: $ct-logo-light-stripe-color;
-      }
-    }
-
-    #{$root}-type-stacked {
-      #{$root}__divider {
-        border-bottom-color: $ct-logo-light-stripe-color;
-      }
+    &#{$root}--stacked {
+      border-top-color: $ct-logo-light-stripe-color;
     }
   }
 
   &.ct-theme-dark {
-    #{$root}-type-inline {
-      #{$root}__divider {
-        border-left-color: $ct-logo-dark-stripe-color;
-      }
-    }
-
-    #{$root}-type-stacked {
-      #{$root}__divider {
-        border-bottom-color: $ct-logo-dark-stripe-color;
-      }
+    &#{$root}--stacked {
+      border-top-color: $ct-logo-dark-stripe-color;
     }
   }
 }

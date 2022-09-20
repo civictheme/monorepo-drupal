@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
-import {boolean, radios, text} from '@storybook/addon-knobs';
-import {randomUrl} from '../../00-base/base.stories';
+import { boolean, radios, text } from '@storybook/addon-knobs';
+import { randomUrl } from '../../00-base/base.stories';
 import CivicThemeLogo from './logo.twig';
 
 export default {
@@ -28,7 +28,7 @@ export const Logo = (knobTab, doRender = true) => {
     url: text('Link', randomUrl(), generalKnobTab),
     title: text('Title', 'Logo title', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: `ct-logo-example story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
+    modifier_class: text('Additional class', '', generalKnobTab),
   };
 
   generalKnobs.logos = generalKnobs.with_secondary_image ? {

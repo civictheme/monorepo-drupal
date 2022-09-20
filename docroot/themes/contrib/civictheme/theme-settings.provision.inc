@@ -76,6 +76,8 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
 
 /**
  * Process provision form elements.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
 function _civictheme_form_system_theme_settings_alter_provision_process(&$element, FormStateInterface $form_state, &$complete_form) {
   $form_state->addCleanValueKey('provision_types');

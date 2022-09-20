@@ -739,10 +739,10 @@ $ct-group-filter-dark-selected-filters-title-color: ct-color-dark('background') 
 // Logo.
 //
 $ct-logo-breakpoint: 'm';
-$ct-logo-image-height-mobile: ct-particle(25) !default;
-$ct-logo-image-width-mobile: 100% !default;
-$ct-logo-image-height-desktop: ct-particle(30) !default;
-$ct-logo-image-width-desktop: 100% !default;
+$ct-logo-image-width-min-mobile: ct-particle(25) !default;
+$ct-logo-image-width-max-mobile: ct-particle(30) !default;
+$ct-logo-image-width-min-desktop: ct-particle(25) !default;
+$ct-logo-image-width-max-desktop: ct-particle(30) !default;
 $ct-logo-light-stripe-color: ct-color-light('border-dark') !default;
 $ct-logo-dark-stripe-color: ct-color-light('border-light') !default;
 
@@ -920,8 +920,6 @@ $ct-fieldset-required-color: ct-color-light('error') !default;
 //
 // Footer.
 //
-$ct-footer-logo-desktop-width: ct-particle(25) !default;
-$ct-footer-logo-mobile-width: ct-particle(25) !default;
 $ct-footer-light-background-color: ct-color-light('background') !default;
 $ct-footer-light-border-color: ct-color-light('border-light') !default;
 $ct-footer-light-color: ct-color-light('body') !default;
@@ -935,8 +933,6 @@ $ct-footer-dark-collapsible-border-color: ct-color-dark('border') !default;
 // Header.
 //
 $ct-header-desktop-menu-breakpoint: 'm' !default;
-$ct-header-logo-desktop-width: ct-particle(40) !default;
-$ct-header-logo-mobile-width: ct-particle(16) !default;
 $ct-header-light-middle-background-color: ct-color-light('background-light') !default;
 $ct-header-light-middle-border-color: ct-color-light('border-light') !default;
 $ct-header-light-top-background-color: ct-color-light('background') !default;

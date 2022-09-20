@@ -7,7 +7,7 @@ import CivicThemeFooter from './footer.stories.twig';
 import '../../00-base/responsive/responsive';
 import '../../00-base/collapsible/collapsible';
 import { generateMenuLinks } from '../../00-base/menu/menu.utils';
-import {Logo} from "../../02-molecules/logo/logo.stories";
+import { Logo } from '../../02-molecules/logo/logo.stories';
 
 export default {
   title: 'Organisms/Footer',

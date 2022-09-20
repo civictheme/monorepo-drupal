@@ -6,7 +6,7 @@ import { getSlots, randomInt, randomSentence } from '../../00-base/base.stories'
 import CivicThemeHeaderExample from './header.stories.twig';
 
 import getMenuLinks from '../../00-base/menu/menu.utils';
-import {Logo} from "../../02-molecules/logo/logo.stories";
+import { Logo } from '../../02-molecules/logo/logo.stories';
 
 export default {
   title: 'Organisms/Header',
