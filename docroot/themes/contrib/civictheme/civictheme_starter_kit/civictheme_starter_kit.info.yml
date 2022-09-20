@@ -40,7 +40,7 @@ libraries-override:
       dist/civictheme.js: dist/scripts.js
 
 ckeditor_stylesheets:
-  - dist/styles.ckeditor.css
+  - dist/styles.editor.css
 
 components:
   namespaces:
