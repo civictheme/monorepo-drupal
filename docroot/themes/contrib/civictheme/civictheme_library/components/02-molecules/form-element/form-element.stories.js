@@ -3,7 +3,7 @@ import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeFormElement from './form-element.twig';
 import Input from '../../01-atoms/input/input.twig';
 import Select from '../../01-atoms/select/select.twig';
-import CivicThemeFieldLabel from '../../01-atoms/field-label/field-label.twig';
+import CivicThemeLabel from '../../01-atoms/label/label.twig';
 
 export default {
   title: 'Molecules/Form Element',
@@ -186,7 +186,7 @@ export const FormElement = () => {
       }));
   }
 
-  const label = [CivicThemeFieldLabel(labelKnobs)];
+  const label = [CivicThemeLabel(labelKnobs)];
 
   const html = CivicThemeFormElement({
     ...generalKnobs,

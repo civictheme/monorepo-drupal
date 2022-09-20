@@ -5,7 +5,7 @@
 @use 'sass:map';
 @use 'sass:string';
 
-.ct-field-label {
+.ct-label {
   $root: &;
 
   display: block;
@@ -24,28 +24,28 @@
   @each $name in map.keys(_ct-typography-all()) {
     @if string.index(#{$name}, 'label-') {
       $size: string.slice(#{$name}, 6, 100);
-      &.ct-field-label-#{$size} {
+      &.ct-label-#{$size} {
         @include ct-typography($name);
       }
     }
   }
 
   &.ct-theme-light {
-    color: $ct-field-label-light-color;
+    color: $ct-label-light-color;
 
     #{$root}--required {
       &::after {
-        color: $ct-field-label-light-required-color;
+        color: $ct-label-light-required-color;
       }
     }
   }
 
   &.ct-theme-dark {
-    color: $ct-field-label-dark-color;
+    color: $ct-label-dark-color;
 
     #{$root}--required {
       &::after {
-        color: $ct-field-label-dark-required-color;
+        color: $ct-label-dark-required-color;
       }
     }
   }

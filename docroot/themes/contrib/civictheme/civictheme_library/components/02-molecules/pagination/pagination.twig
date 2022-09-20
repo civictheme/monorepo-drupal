@@ -40,7 +40,7 @@
 
     {% if items_per_page_options is defined and items_per_page_options is not empty %}
       <div class="ct-pager__items_per_page">
-        {%- include '@atoms/field-label/field-label.twig' with {
+        {%- include '@atoms/label/label.twig' with {
           content: items_per_page_label
         } -%}
         {%- include '@atoms/select/select.twig' with {
