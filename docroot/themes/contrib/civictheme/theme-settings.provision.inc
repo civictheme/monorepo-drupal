@@ -70,7 +70,16 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
     '#value' => t('Provision content'),
     '#validate' => ['_civictheme_form_system_theme_settings_provision_validate'],
     '#submit' => ['_civictheme_form_system_theme_settings_provision_submit'],
+    '#process'=> ['_civictheme_form_system_theme_settings_alter_provision_process'],
   ];
+}
+
+/**
+ * Process provision form elements.
+ */
+function _civictheme_form_system_theme_settings_alter_provision_process(&$element, FormStateInterface $form_state, &$complete_form) {
+  $form_state->addCleanValueKey('provision_types');
+  $form_state->addCleanValueKey('provision_clear_cache');
 }
 
 /**
@@ -79,11 +88,6 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
 function _civictheme_form_system_theme_settings_provision_validate(array &$form, FormStateInterface $form_state) {
-  // Do not store any provision settings as they are used only for on-page
-  // actions.
-  $form_state->addCleanValueKey('provision_types');
-  $form_state->addCleanValueKey('provision_clear_cache');
-
   $triggering_element = $form_state->getTriggeringElement();
   $button_name = $triggering_element['#name'] ?? '';
 
