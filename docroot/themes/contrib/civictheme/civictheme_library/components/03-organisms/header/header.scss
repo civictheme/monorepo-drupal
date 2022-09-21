@@ -19,14 +19,6 @@
     @include ct-print-hide();
   }
 
-  &__logo {
-    padding: ct-spacing() 0;
-
-    @include ct-breakpoint($ct-header-desktop-menu-breakpoint) {
-      padding: ct-spacing(3) 0;
-    }
-  }
-
   &__middle {
     border-bottom: solid ct-particle(0.125);
   }
@@ -51,15 +43,6 @@
       position: static;
       display: flex;
       justify-content: flex-end;
-    }
-  }
-
-  .ct-logo {
-    width: $ct-header-logo-mobile-width;
-
-    @include ct-breakpoint($ct-header-desktop-menu-breakpoint) {
-      width: auto;
-      max-width: $ct-header-logo-desktop-width;
     }
   }
 

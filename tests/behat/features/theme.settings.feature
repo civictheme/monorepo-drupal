@@ -56,11 +56,11 @@ Feature: Check that components settings are available in theme settings
     And I should see an "input[name='components[logo][image_alt]']" element
     And I should not see an "edit-components-logo-image-alt.required" element
 
-    And I should see the text "Header theme"
+    And I should see the text "Theme"
     And I should see an "input[name='components[header][theme]']" element
     And I should see an "#edit-components-header-theme--wrapper.required" element
 
-    And I should see the text "Footer theme"
+    And I should see the text "Theme"
     And I should see an "input[name='components[footer][theme]']" element
     And I should see an "#edit-components-footer-theme--wrapper.required" element
 
@@ -68,9 +68,37 @@ Feature: Check that components settings are available in theme settings
     And should see an "input#edit-components-footer-background-image" element
     And should not see an "input#edit-components-footer-background-image.required" element
 
-    And I should see the text "Header theme"
-    And I should see an "input[name='components[header][theme]']" element
-    And I should see an "#edit-components-header-theme--wrapper.required" element
+    And I should see the text "Primary navigation"
+    And I should see an "select[name='components[navigation][primary_navigation][dropdown]']" element
+    And I should see an "select[name='components[navigation][primary_navigation][dropdown]'].required" element
+
+    And I should see the text "Number of columns in the drawer row"
+    And I should see an "input[name='components[navigation][primary_navigation][dropdown_columns]']" element
+    And I should not see an "input[name='components[navigation][primary_navigation][dropdown_columns]'].required" element
+
+    And I should see the text "Fill width of the last drawer column"
+    And I should see an "input[name='components[navigation][primary_navigation][dropdown_columns_fill]']" element
+    And I should not see an "input[name='components[navigation][primary_navigation][dropdown_columns_fill]'].required" element
+
+    And I should see the text "Animate"
+    And I should see an "input[name='components[navigation][primary_navigation][is_animated]']" element
+    And I should not see an "input[name='components[navigation][primary_navigation][is_animated]'].required" element
+
+    And I should see the text "Secondary navigation"
+    And I should see an "select[name='components[navigation][secondary_navigation][dropdown]']" element
+    And I should see an "select[name='components[navigation][secondary_navigation][dropdown]'].required" element
+
+    And I should see the text "Number of columns in the drawer row"
+    And I should see an "input[name='components[navigation][secondary_navigation][dropdown_columns]']" element
+    And I should not see an "input[name='components[navigation][secondary_navigation][dropdown_columns]'].required" element
+
+    And I should see the text "Fill width of the last drawer column"
+    And I should see an "input[name='components[navigation][secondary_navigation][dropdown_columns_fill]']" element
+    And I should not see an "input[name='components[navigation][secondary_navigation][dropdown_columns_fill]'].required" element
+
+    And I should see the text "Animate"
+    And I should see an "input[name='components[navigation][secondary_navigation][is_animated]']" element
+    And I should not see an "input[name='components[navigation][secondary_navigation][is_animated]'].required" element
 
     And I should see the text "Open links in a new window"
     And should see an "input#edit-components-link-new-window" element
@@ -93,17 +121,17 @@ Feature: Check that components settings are available in theme settings
     And I fill in "Logo image for primary in Dark theme for desktop" with "public://civictheme_test/logo_dark_desktop.jpg"
     And I fill in "Logo image for primary in Dark theme for mobile" with "public://civictheme_test/logo_dark_mobile.jpg"
     And I select the radio button "Light" with the id "edit-components-header-theme-light"
-    And I select the radio button "Default" with the id "edit-components-header-type-default"
+    And I select the radio button "Default" with the id "edit-components-header-logo-type-default"
     And I select the radio button "Dark" with the id "edit-components-footer-theme-dark"
-    And I select the radio button "Default" with the id "edit-components-footer-type-default"
+    And I select the radio button "Default" with the id "edit-components-footer-logo-type-default"
     And I fill in "Footer background image path" with "public://civictheme_test/footer_background_image.jpg"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
     And I should see the ".ct-header .ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
     And I should see the ".ct-header .ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
-    And I should see the "div.ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
-    And I should see the "div.ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
+    And I should see the ".ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
+    And I should see the ".ct-logo .ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
 
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with static assets
@@ -117,10 +145,10 @@ Feature: Check that components settings are available in theme settings
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
     And I go to the homepage
-    And I should see the "div.ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
-    And I should see the "div.ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
-    And I should see the "div.ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
-    And I should see the "div.ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
+    And I should see the ".ct-logo img.ct-image" element with the "src" attribute set to "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
 
   @api
   Scenario: The CivicTheme theme settings verify failed custom logo configuration with static assets
@@ -143,14 +171,14 @@ Feature: Check that components settings are available in theme settings
     And I attach the file "test_image_logo_dark_desktop.jpg" to "Upload logo image for primary in Dark theme for desktop"
     And I attach the file "test_image_logo_dark_mobile.jpg" to "Upload logo image for primary in Dark theme for mobile"
     And I select the radio button "Light" with the id "edit-components-header-theme-light"
-    And I select the radio button "Default" with the id "edit-components-header-type-default"
+    And I select the radio button "Default" with the id "edit-components-header-logo-type-default"
     And I select the radio button "Dark" with the id "edit-components-footer-theme-dark"
-    And I select the radio button "Default" with the id "edit-components-footer-type-default"
+    And I select the radio button "Default" with the id "edit-components-footer-logo-type-default"
     And I press "Save configuration"
     Then I should see the text "The configuration options have been saved."
 
   @api
-  Scenario: The CivicTheme theme settings External Links comnponent validation works.
+  Scenario: The CivicTheme theme settings External Links component validation works.
     Given I am logged in as a user with the "Site Administrator" role
     And I visit "/admin/appearance/settings/civictheme_demo"
 

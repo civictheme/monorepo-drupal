@@ -2,10 +2,11 @@
 import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
-import { getSlots } from '../../00-base/base.stories';
+import { getSlots, randomInt, randomSentence } from '../../00-base/base.stories';
 import CivicThemeHeaderExample from './header.stories.twig';
 
 import getMenuLinks from '../../00-base/menu/menu.utils';
+import { Logo } from '../../02-molecules/logo/logo.stories';
 
 export default {
   title: 'Organisms/Header',
@@ -16,9 +17,9 @@ export default {
 
 export const Header = (knobTab) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-  const primaryNavigationKnobTab = 'Primary navigation';
   const secondaryNavigationKnobTab = 'Secondary navigation';
-  const SearchLinkKnobTab = 'Search';
+  const primaryNavigationKnobTab = 'Primary navigation';
+  const searchLinkKnobTab = 'Search';
 
   const generalKnobs = {
     theme: radios(
@@ -31,29 +32,18 @@ export const Header = (knobTab) => {
       generalKnobTab,
     ),
     show_content_top2: boolean('Show slogan', true, generalKnobTab),
-    show_content_top3: boolean('Show Secondary Navigation', true, generalKnobTab),
-    show_content_middle3: boolean('Show Primary Navigation', true, generalKnobTab),
+    show_content_top3: boolean('Show top content', true, generalKnobTab),
+    show_content_middle3: boolean('Show middle content', true, generalKnobTab),
   };
 
-  generalKnobs.logos = boolean('Show Logo', true, generalKnobTab) ? {
-    primary: {
-      mobile: {
-        src: LOGOS[generalKnobs.theme].primary.mobile,
-        alt: 'Primary logo mobile alt text',
-      },
-      desktop: {
-        src: LOGOS[generalKnobs.theme].primary.desktop,
-        alt: 'Primary logo mobile alt text',
-      },
-    },
-  } : null;
+  generalKnobs.logo = boolean('Show logo', true, generalKnobTab) ? Logo('Logo', false) : null;
 
   if (generalKnobs.show_content_top3) {
-    generalKnobs.secondary_navigation_items = getMenuLinks(secondaryNavigationKnobTab, 'Secondary ');
+    generalKnobs.secondary_navigation_items = getMenuLinks(secondaryNavigationKnobTab, (itemTitle, itemIndex, itemCurrentLevel, itemIsActiveTrail, itemParents) => `${itemTitle} ${itemParents.join('')}${itemIndex} ${randomSentence(itemCurrentLevel > 1 ? randomInt(2, 5) : randomInt(1, 3))}`);
   }
 
   if (generalKnobs.show_content_middle3) {
-    generalKnobs.primary_navigation_items = getMenuLinks(primaryNavigationKnobTab, 'Primary ');
+    generalKnobs.primary_navigation_items = getMenuLinks(primaryNavigationKnobTab, (itemTitle, itemIndex, itemCurrentLevel, itemIsActiveTrail, itemParents) => `${itemTitle} ${itemParents.join('')}${itemIndex} ${randomSentence(itemCurrentLevel > 1 ? randomInt(2, 5) : randomInt(1, 3))}`);
     generalKnobs.primary_navigation_dropdown_columns = number(
       'Dropdown columns',
       4,
@@ -67,8 +57,8 @@ export const Header = (knobTab) => {
     );
     generalKnobs.primary_navigation_dropdown_columns_fill = boolean('Fill width for missing columns', false, primaryNavigationKnobTab);
     generalKnobs.with_search = boolean('With Search', true, primaryNavigationKnobTab) ? {
-      text: text('Text', 'Search', SearchLinkKnobTab),
-      url: text('Url', '/search', SearchLinkKnobTab),
+      text: text('Text', 'Search', searchLinkKnobTab),
+      url: text('Url', '/search', searchLinkKnobTab),
     } : null;
   }
 

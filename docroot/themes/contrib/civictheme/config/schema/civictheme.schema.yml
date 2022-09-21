@@ -44,20 +44,56 @@ civictheme.settings:
           label: 'Header settings'
           mapping:
             theme:
-              label: 'Header theme'
+              label: 'Theme'
               type: string
-            type:
-              label: 'Header type'
+            logo_type:
+              label: 'Logo type'
               type: string
+        navigation:
+          type: mapping
+          label: 'Navigation settings'
+          mapping:
+            primary_navigation:
+              type: mapping
+              label: 'Primary navigation settings'
+              mapping:
+                dropdown:
+                  label: 'Dropdown type'
+                  type: string
+                dropdown_columns:
+                  label: 'Number of columns in dropdown'
+                  type: boolean
+                dropdown_columns_fill:
+                  label: 'Fill width of the last dropdown row'
+                  type: boolean
+                is_animated:
+                  label: 'Animate transition'
+                  type: boolean
+            secondary_navigation:
+              type: mapping
+              label: 'Primary navigation settings'
+              mapping:
+                dropdown:
+                  label: 'Dropdown type'
+                  type: string
+                dropdown_columns:
+                  label: 'Number of columns in dropdown'
+                  type: boolean
+                dropdown_columns_fill:
+                  label: 'Fill width of the last dropdown row'
+                  type: boolean
+                is_animated:
+                  label: 'Animate transition'
+                  type: boolean
         footer:
           type: mapping
           label: 'Footer settings'
           mapping:
             theme:
-              label: 'Footer theme'
+              label: 'Theme'
               type: string
-            type:
-              label: 'Footer type'
+            logo_type:
+              label: 'Logo type'
               type: string
             background_image:
               label: 'Footer background image'

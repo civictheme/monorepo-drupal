@@ -71,6 +71,17 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
     '#validate' => ['_civictheme_form_system_theme_settings_provision_validate'],
     '#submit' => ['_civictheme_form_system_theme_settings_provision_submit'],
   ];
+  $form[]['#process'][] = '_civictheme_form_system_theme_settings_alter_provision_process';
+}
+
+/**
+ * Process provision form elements.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_alter_provision_process(&$element, FormStateInterface $form_state, &$complete_form) {
+  $form_state->addCleanValueKey('provision_types');
+  $form_state->addCleanValueKey('provision_clear_cache');
 }
 
 /**
@@ -79,11 +90,6 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  */
 function _civictheme_form_system_theme_settings_provision_validate(array &$form, FormStateInterface $form_state) {
-  // Do not store any provision settings as they are used only for on-page
-  // actions.
-  $form_state->addCleanValueKey('provision_types');
-  $form_state->addCleanValueKey('provision_clear_cache');
-
   $triggering_element = $form_state->getTriggeringElement();
   $button_name = $triggering_element['#name'] ?? '';
 
@@ -871,9 +877,19 @@ function civictheme_provision__theme_settings() {
   }
   $components['logo']['image_alt'] = 'CivicTheme demo logo';
   $components['header']['theme'] = 'light';
-  $components['header']['type'] = 'default';
+  $components['header']['logo_type'] = 'default';
   $components['footer']['theme'] = 'dark';
-  $components['footer']['type'] = 'default';
+  $components['footer']['logo_type'] = 'default';
+
+  $components['navigation']['primary_navigation']['dropdown'] = 'drawer';
+  $components['navigation']['primary_navigation']['dropdown_columns'] = 4;
+  $components['navigation']['primary_navigation']['dropdown_columns_fill'] = FALSE;
+  $components['navigation']['primary_navigation']['is_animated'] = FALSE;
+
+  $components['navigation']['secondary_navigation']['dropdown'] = 'dropdown';
+  $components['navigation']['secondary_navigation']['dropdown_columns'] = 4;
+  $components['navigation']['secondary_navigation']['dropdown_columns_fill'] = FALSE;
+  $components['navigation']['secondary_navigation']['is_animated'] = FALSE;
 
   $config = \Drupal::service('config.factory')->getEditable("$theme_name.settings");
 

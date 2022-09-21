@@ -1,7 +1,8 @@
 // phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeNavigation from './navigation.twig';
 import getMenuLinks from '../../00-base/menu/menu.utils';
+import { randomInt, randomSentence } from '../../00-base/base.stories';
 
 export default {
   title: 'Organisms/Navigation/Navigation',
@@ -24,7 +25,18 @@ export const Navigation = (knobTab) => {
       generalKnobTab,
     ),
     title: text('Title', 'Navigation title', generalKnobTab),
-    items: getMenuLinks('Links'),
+    dropdown: radios(
+      'Dropdown',
+      {
+        None: 'none',
+        Dropdown: 'dropdown',
+        Drawer: 'drawer',
+      },
+      'none',
+      generalKnobTab,
+    ),
+    items: getMenuLinks('Links', (itemTitle, itemIndex, itemCurrentLevel, itemIsActiveTrail, itemParents) => `${itemTitle} ${itemParents.join('')}${itemIndex} ${randomSentence(itemCurrentLevel > 1 ? randomInt(2, 5) : randomInt(1, 3))}`),
+    is_animated: boolean('Animated', true, generalKnobTab),
     modifier_class: text('Additional class', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };

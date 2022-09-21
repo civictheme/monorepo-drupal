@@ -6,8 +6,8 @@
 
 import {
   demoImage,
-  getRandomBool,
-  getRandomInt,
+  randomBool,
+  randomInt,
   randomString,
   randomText,
   randomUrl,
@@ -21,7 +21,7 @@ export const randomTagsComponent = (count, theme) => {
   for (let i = 0; i < count; i++) {
     tags.push(Tag({
       theme,
-      text: randomString(getRandomInt(3, 8)),
+      text: randomString(randomInt(3, 8)),
     }));
   }
   return tags;
@@ -33,8 +33,8 @@ export const randomButtonsComponent = (count, theme) => {
     tags.push(Button({
       theme,
       kind: 'link',
-      text: randomString(getRandomInt(3, 8)),
-      type: ['primary', 'secondary', 'tertiary'][getRandomInt(0, 2)],
+      text: randomString(randomInt(3, 8)),
+      type: ['primary', 'secondary', 'tertiary'][randomInt(0, 2)],
       url: randomUrl(),
     }));
   }
@@ -47,13 +47,13 @@ export const randomSlidesComponent = (count, theme, rand, template) => {
   const inverseTheme = theme === 'dark' ? 'dark' : 'light';
 
   for (let i = 0; i < count; i++) {
-    const contentTop = template && template.content_top ? template.content_top : randomTagsComponent(getRandomInt(0, 4), theme).join(' ');
+    const contentTop = template && template.content_top ? template.content_top : randomTagsComponent(randomInt(0, 4), theme).join(' ');
     const imagePosition = template && template.image_position ? template.image_position : 'right';
-    const title = template && template.title ? template.title : `Title ${i + 1}${rand ? ` ${randomString(getRandomInt(5, 30))}` : ''}`;
-    const randURL = getRandomBool() ? randomUrl() : null;
+    const title = template && template.title ? template.title : `Title ${i + 1}${rand ? ` ${randomString(randomInt(5, 30))}` : ''}`;
+    const randURL = randomBool() ? randomUrl() : null;
     const url = template && template.url ? template.url : randURL;
-    const summary = template && template.summary ? template.summary : `Summary ${i + 1}${rand ? ` ${randomString(getRandomInt(5, 250))}` : ''}`;
-    const links = template && template.links ? template.links : randomButtonsComponent(getRandomInt(0, 4), inverseTheme).join('');
+    const summary = template && template.summary ? template.summary : `Summary ${i + 1}${rand ? ` ${randomString(randomInt(5, 250))}` : ''}`;
+    const links = template && template.links ? template.links : randomButtonsComponent(randomInt(0, 4), inverseTheme).join('');
     const image = template && template.image ? template.image : {
       src: demoImage(),
       alt: randomText(4),
