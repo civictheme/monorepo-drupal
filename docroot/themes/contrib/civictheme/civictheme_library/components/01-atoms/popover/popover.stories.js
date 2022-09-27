@@ -1,5 +1,7 @@
 // phpcs:ignoreFile
-import { boolean, radios, text } from '@storybook/addon-knobs';
+import {
+  radios, text, number,
+} from '@storybook/addon-knobs';
 import CivicThemePopover from './popover.stories.twig';
 import './popover';
 import { placeholder } from '../../00-base/base.stories';
@@ -24,7 +26,18 @@ export const Popover = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    content: boolean('With content', true, generalKnobTab) ? placeholder() : '',
+    num_of_popovers: number(
+      'Number of popoves',
+      3,
+      {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      generalKnobTab,
+    ),
+    trigger_text: text('Trigger text', 'Trigger me', generalKnobTab),
     trigger_event: radios(
       'Trigger event',
       {
@@ -37,6 +50,10 @@ export const Popover = (knobTab) => {
     modifier_class: text('Additional classes', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };
+  generalKnobs.contents = [];
+  for (let i = 0; i < generalKnobs.num_of_popovers; i++) {
+    generalKnobs.contents.push(placeholder());
+  }
 
   return CivicThemePopover({
     ...generalKnobs,

@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Popover component story.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+{% if content %}
+  <div class="ct-popover {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %} data-popover data-popover-content data-popover-id="{{data_popover_id}}">
+    {{ content }}
+  </div>
+{% endif %}

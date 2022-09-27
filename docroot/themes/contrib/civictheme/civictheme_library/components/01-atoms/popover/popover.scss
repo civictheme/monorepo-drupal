@@ -7,10 +7,7 @@
 [data-popover] {
   $root: &;
 
-  display: inline-block;
-  position: relative;
-
-  [data-popover-trigger] {
+  &[data-popover-trigger] {
     appearance: none;
     border: 0;
     cursor: pointer;
@@ -23,7 +20,7 @@
     }
   }
 
-  [data-popover-content] {
+  &[data-popover-content] {
     @include ct-elevation(4);
 
     display: flex;
@@ -41,31 +38,23 @@
     }
   }
 
-  &:not([data-popover-visible]) {
-    [data-popover-content] {
+  &.ct-popover {
+    &:not([data-popover-visible]) {
       @include ct-visually-hidden();
     }
-  }
 
-  &.ct-theme-light {
-    [data-popover-trigger] {
-      color: $ct-tooltip-light-trigger-color;
+    &.ct-theme-light {
+      &[data-popover-content] {
+        background-color: $ct-popover-light-content-background-color;
+        border-color: $ct-popover-light-content-border-color;
+      }
     }
 
-    [data-popover-content] {
-      background-color: $ct-popover-light-content-background-color;
-      border-color: $ct-popover-light-content-border-color;
-    }
-  }
-
-  &.ct-theme-dark {
-    [data-popover-trigger] {
-      color: $ct-tooltip-dark-trigger-color;
-    }
-
-    [data-popover-content] {
-      background-color: $ct-popover-dark-content-background-color;
-      border-color: $ct-popover-dark-content-border-color;
+    &.ct-theme-dark {
+      &[data-popover-content] {
+        background-color: $ct-popover-dark-content-background-color;
+        border-color: $ct-popover-dark-content-border-color;
+      }
     }
   }
 }
