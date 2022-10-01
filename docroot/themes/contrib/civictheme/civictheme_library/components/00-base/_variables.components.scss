@@ -227,61 +227,16 @@ $ct-chip-dark-focus-color: false !default;
 $ct-chip-dark-focus-outline-color: ct-color-dark('interaction-focus') !default;
 
 //
-// Input.
-//
-$ct-input-border-radius: $ct-border-radius, 1 !default;
-$ct-input-light-background-color: ct-color-light('background-light') !default;
-$ct-input-light-border-color: ct-color-light('border-light') !default;
-$ct-input-light-color: ct-color-light('body') !default;
-$ct-input-light-hover-border-color: ct-color-light('interaction-background') !default;
-$ct-input-light-focus-background-color: ct-color-light('background-light') !default;
-$ct-input-light-focus-color: ct-color-light('body') !default;
-$ct-input-light-focus-outline-color: ct-color-light('interaction-focus') !default;
-$ct-input-light-focus-border-color: ct-color-light('border') !default;
-$ct-input-light-error-border-color: ct-color-light('error') !default;
-$ct-input-light-success-border-color: ct-color-light('success') !default;
-$ct-input-dark-background-color: ct-color-dark('background-light') !default;
-$ct-input-dark-border-color: ct-color-dark('border-light') !default;
-$ct-input-dark-color: ct-color-dark('body') !default;
-$ct-input-dark-hover-border-color: ct-color-dark('interaction-background') !default;
-$ct-input-dark-focus-border-color: ct-color-dark('border') !default;
-$ct-input-dark-error-border-color: ct-color-dark('error') !default;
-$ct-input-dark-success-border-color: ct-color-dark('success') !default;
-
-//
 // Radio.
 //
-$ct-radio-light-control-radius: ct-particle(3) !default;
-$ct-radio-light-control-background-color: ct-color-light('interaction-text') !default;
-$ct-radio-light-control-color: ct-color-light('interaction-background') !default;
-$ct-radio-light-control-hover-background-color: ct-color-light('interaction-hover-text') !default;
-$ct-radio-light-control-hover-color: ct-color-light('interaction-hover-background') !default;
-$ct-radio-light-control-invalid-background-color: $ct-radio-light-control-background-color !default;
-$ct-radio-light-control-invalid-color: ct-color-light('error') !default;
-$ct-radio-light-label-color: ct-color-light('body') !default;
-$ct-radio-dark-control-background-color: ct-color-dark('interaction-text') !default;
-$ct-radio-dark-control-color: ct-color-dark('interaction-background') !default;
-$ct-radio-dark-control-hover-background-color: ct-color-dark('interaction-hover-text') !default;
-$ct-radio-dark-control-hover-color: ct-color-dark('interaction-hover-background') !default;
-$ct-radio-dark-control-invalid-background-color: $ct-radio-dark-control-background-color !default;
-$ct-radio-dark-control-invalid-color: ct-color-dark('error') !default;
-$ct-radio-dark-label-color: ct-color-dark('body') !default;
+$ct-radio-radius: ct-particle(3) !default;
 
 //
 // Checkbox.
 //
-$ct-checkbox-border-radius: math.div($ct-border-radius, 2) !default;
-$ct-checkbox-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='' title='approvetick' width='22' height='22' viewBox='0 0 24 24' aria-hidden='true'%3E%3Cpath d='M18.7104 7.20998C18.6175 7.11625 18.5069 7.04186 18.385 6.99109C18.2632 6.94032 18.1324 6.91418 18.0004 6.91418C17.8684 6.91418 17.7377 6.94032 17.6159 6.99109C17.494 7.04186 17.3834 7.11625 17.2904 7.20998L9.84044 14.67L6.71044 11.53C6.61392 11.4367 6.49998 11.3634 6.37512 11.3142C6.25026 11.265 6.11694 11.2409 5.98276 11.2432C5.84858 11.2455 5.71617 11.2743 5.59309 11.3278C5.47001 11.3812 5.35868 11.4585 5.26544 11.555C5.1722 11.6515 5.09889 11.7654 5.04968 11.8903C5.00048 12.0152 4.97635 12.1485 4.97867 12.2827C4.98099 12.4168 5.00972 12.5493 5.06321 12.6723C5.1167 12.7954 5.19392 12.9067 5.29044 13L9.13044 16.84C9.2234 16.9337 9.334 17.0081 9.45586 17.0589C9.57772 17.1096 9.70843 17.1358 9.84044 17.1358C9.97245 17.1358 10.1032 17.1096 10.225 17.0589C10.3469 17.0081 10.4575 16.9337 10.5504 16.84L18.7104 8.67998C18.8119 8.58634 18.893 8.47269 18.9484 8.34619C19.0038 8.21969 19.0324 8.08308 19.0324 7.94498C19.0324 7.80688 19.0038 7.67028 18.9484 7.54378C18.893 7.41728 18.8119 7.30363 18.7104 7.20998Z'%3E%3C/path%3E%3C/svg%3E") !default;
-$ct-checkbox-label-light-color: ct-color-light('body') !default;
-$ct-checkbox-light-border-color: ct-color-light('border-light') !default;
-$ct-checkbox-light-selected-background-color: ct-color-light('interaction-background') !default;
-$ct-checkbox-light-active-background-color: ct-color-light('body') !default;
-$ct-checkbox-light-check-color: ct-color-light('interaction-text') !default;
-$ct-checkbox-label-dark-color: ct-color-dark('body') !default;
-$ct-checkbox-dark-border-color: ct-color-dark('border-dark') !default;
-$ct-checkbox-dark-selected-background-color: ct-color-dark('interaction-background') !default;
-$ct-checkbox-dark-active-background-color: ct-color-dark('body') !default;
-$ct-checkbox-dark-check-color: ct-color-dark('interaction-text') !default;
+$ct-checkbox-check: url("data:image/svg+xml,%3Csvg stroke='' stroke-width='1px' width='14' height='14' viewBox='0 0 14 10' fill='' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.08556 9.91168C3.97589 9.86599 3.87635 9.79904 3.79268 9.71468L0.264683 6.18668C0.0952092 6.01721 0 5.78735 0 5.54768C0 5.30801 0.0952092 5.07816 0.264683 4.90868C0.434156 4.73921 0.664011 4.644 0.903683 4.644C1.14335 4.644 1.37321 4.73921 1.54268 4.90868L4.43168 7.80668L11.9647 0.264682C12.1342 0.0952088 12.364 0 12.6037 0C12.8434 0 13.0732 0.0952088 13.2427 0.264682C13.4122 0.434155 13.5074 0.664011 13.5074 0.903682C13.5074 1.14335 13.4122 1.37321 13.2427 1.54268L5.07068 9.71468C4.98702 9.79904 4.88748 9.86599 4.7778 9.91168C4.66813 9.95737 4.55049 9.9809 4.43168 9.9809C4.31287 9.9809 4.19524 9.95737 4.08556 9.91168Z' /%3E%3C/svg%3E") !default;
+$ct-checkbox-width: ct-particle(3) !default;
+$ct-checkbox-height: $ct-checkbox-width !default;
 
 //
 // Field description.
@@ -333,22 +288,6 @@ $ct-label-light-color: ct-color-light('heading') !default;
 $ct-label-light-required-color: ct-color-light('error') !default;
 $ct-label-dark-color: ct-color-dark('heading') !default;
 $ct-label-dark-required-color: ct-color-dark('error') !default;
-
-//
-// Select.
-//
-$ct-select-light-background-color: ct-color-light('background-light') !default;
-$ct-select-light-color: ct-color-light('body') !default;
-$ct-select-light-hover-border-color: ct-color-light('border-light') !default;
-$ct-select-light-focus-border-color: ct-color-light('interaction-background') !default;
-$ct-select-light-error-border-color: ct-color-light('error') !default;
-$ct-select-light-option-background-color: $ct-select-light-background-color !default;
-$ct-select-dark-background-color: ct-color-dark('background-light') !default;
-$ct-select-dark-color: ct-color-dark('body') !default;
-$ct-select-dark-hover-border-color: ct-color-dark('border-light') !default;
-$ct-select-dark-focus-border-color: ct-color-dark('interaction-background') !default;
-$ct-select-dark-error-border-color: ct-color-dark('error') !default;
-$ct-select-dark-option-background-color: $ct-select-dark-background-color !default;
 
 //
 // Content Link.
@@ -455,6 +394,30 @@ $ct-popover-light-content-background-color: ct-color-light('background-light') !
 $ct-popover-light-content-border-color: ct-color-light('border-light') !default;
 $ct-popover-dark-content-background-color: ct-color-dark('background-light') !default;
 $ct-popover-dark-content-border-color: ct-color-dark('border-light') !default;
+
+//
+// Form control.
+//
+$ct-form-control-border-radius: $ct-border-radius !default;
+$ct-form-control-light-background-color: ct-color-light('interaction-text') !default;
+$ct-form-control-light-border-color: ct-color-light('interaction-background') !default;
+$ct-form-control-light-color: ct-color-light('body') !default;
+$ct-form-control-light-hover-background-color: ct-color-light('interaction-hover-text') !default;
+$ct-form-control-light-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-form-control-light-hover-border-color: ct-color-light('interaction-hover-background') !default;
+$ct-form-control-light-hover-color: $ct-form-control-light-color !default;
+$ct-form-control-light-invalid-background-color: $ct-form-control-light-background-color !default;
+$ct-form-control-light-invalid-border-color: ct-color-light('error') !default;
+$ct-form-control-light-invalid-color: $ct-form-control-light-color !default;
+$ct-form-control-dark-background-color: ct-color-dark('interaction-text') !default;
+$ct-form-control-dark-border-color: ct-color-dark('interaction-background') !default;
+$ct-form-control-dark-color: ct-color-dark('body') !default;
+$ct-form-control-dark-hover-background-color: ct-color-dark('interaction-hover-text') !default;
+$ct-form-control-dark-hover-border-color: ct-color-dark('interaction-hover-background') !default;
+$ct-form-control-dark-hover-color: $ct-form-control-dark-color !default;
+$ct-form-control-dark-invalid-background-color: $ct-form-control-dark-background-color !default;
+$ct-form-control-dark-invalid-border-color: ct-color-dark('error') !default;
+$ct-form-control-dark-invalid-color: $ct-form-control-dark-color !default;
 
 //
 // Video

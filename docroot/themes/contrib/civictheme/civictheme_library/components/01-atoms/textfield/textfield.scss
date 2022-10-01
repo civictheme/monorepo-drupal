@@ -5,61 +5,33 @@
 .ct-textfield {
   $root: &;
 
-  @include ct-typography('text-regular');
+  @include ct-form-element();
 
-  display: block;
-  margin: 0 auto 0.5rem;
-  padding: ct-spacing(1.25) ct-spacing(2);
-  border-radius: $ct-input-border-radius;
-
-  &.disabled {
-    pointer-events: none;
-    opacity: 50%;
+  &#{$root}__control {
+    @include ct-form-control();
   }
 
   &.ct-theme-light {
-    color: $ct-input-light-color;
-    background-color: $ct-input-light-background-color;
-
-    &:hover {
-      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-hover-border-color;
+    &#{$root}__control {
+      @include ct-form-control-colors('light');
     }
 
-    &:active,
-    &:focus {
-      border-color: $ct-input-light-focus-border-color;
-      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-focus-border-color;
-    }
-
-    &:invalid,
-    &.error,
-    &.ct-input--error {
-      border-color: $ct-input-light-error-border-color;
-      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-light-error-border-color;
+    &#{$root}--invalid {
+      &#{$root}__control {
+        @include ct-form-control-colors('light', 'invalid');
+      }
     }
   }
 
   &.ct-theme-dark {
-    color: $ct-input-dark-color;
-    background-color: $ct-input-dark-background-color;
-    border-color: $ct-input-dark-border-color;
-
-    &:hover {
-      border-color: $ct-input-dark-hover-border-color;
-      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-dark-hover-border-color;
+    &#{$root}__control {
+      @include ct-form-control-colors('dark');
     }
 
-    &:active,
-    &:focus {
-      border-color: $ct-input-dark-focus-border-color;
-      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-dark-focus-border-color;
-    }
-
-    &:invalid,
-    &.error,
-    &.ct-input--error {
-      border-color: $ct-input-dark-error-border-color;
-      box-shadow: 0 0 0 ct-particle(0.125) $ct-input-dark-error-border-color;
+    &#{$root}--invalid {
+      &#{$root}__control {
+        @include ct-form-control-colors('dark', 'invalid');
+      }
     }
   }
 }

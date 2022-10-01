@@ -22,7 +22,7 @@ export const Radio = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    content: text('Content', 'Radio label', generalKnobTab),
+    content: text('Content', 'Control label', generalKnobTab),
     is_checked: boolean('Checked', false, generalKnobTab),
     is_invalid: boolean('Invalid', false, generalKnobTab),
     is_disabled: boolean('Disabled', false, generalKnobTab),

@@ -1,0 +1,16 @@
+//
+// Functions to work with conditions.
+//
+
+//
+// Polyfill for ternary if operator.
+//
+@function ct-if($condition, $true-statement, $false-statement) {
+  $output: $false-statement;
+
+  @if $condition {
+    $output: $true-statement;
+  }
+
+  @return $output;
+}

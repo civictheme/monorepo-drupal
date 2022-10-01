@@ -6,9 +6,9 @@
  * Variables:
  * - theme: [string] Theme: light, dark.
  * - content: [string] Label content.
- * - is_checked: [boolean] Denote if the component is checked.
- * - is_invalid: [boolean] Denote if the component is invalid.
- * - is_disabled: [boolean] Denote if the component is disabled.
+ * - is_checked: [boolean] Denote if the control is checked.
+ * - is_invalid: [boolean] Denote if the control is invalid.
+ * - is_disabled: [boolean] Denote if the control is disabled.
  * - name: [string] DOM name.
  * - value: [string] DOM value.
  * - id: [string] DOM id.
@@ -19,7 +19,7 @@
 
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set disabled_class = is_disabled ? 'ct-radio--disabled' : '' %}
-{% set error_class = is_invalid ? 'ct-radio--error' : '' %}
+{% set error_class = is_invalid ? 'ct-radio--invalid' : '' %}
 {% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, error_class, modifier_class|default(''))|trim %}
 
 {% if name is not empty %}

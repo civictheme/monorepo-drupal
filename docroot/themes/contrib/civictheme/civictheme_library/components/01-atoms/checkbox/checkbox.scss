@@ -2,251 +2,111 @@
 // Checkbox component.
 //
 
+@use 'sass:math';
+
 .ct-checkbox {
-  $root: &;
+  $_control-width: $ct-checkbox-width;
+  $_control-height: $ct-checkbox-height;
 
-  position: absolute;
-  display: flex;
-  align-items: center;
-
-  &--disabled {
-    opacity: 50%;
+  // Helper to set the color of the checked element.
+  // stylelint-disable-next-line scss/at-mixin-pattern
+  @mixin _control-checked($color) {
+    &::before {
+      content: ct-color-svg-fill($ct-checkbox-check, $color);
+    }
   }
 
-  .ct-checkbox__control {
-    position: absolute;
-    // stylelint-disable-next-line alpha-value-notation
-    opacity: 0;
-    width: ct-particle(3.25);
-    height: ct-particle(3.25);
-    z-index: 1;
-    cursor: pointer;
+  $root: &;
 
-    & + .ct-checkbox__state {
-      &::before {
-        content: '';
-        border-radius: $ct-checkbox-border-radius;
-        border: ct-particle(0.125) solid;
-        display: block;
-        width: ct-particle(3) - rem(2px);
-        height: ct-particle(3) - rem(2px);
-        position: relative;
-        margin-right: ct-spacing();
-        vertical-align: middle;
-        cursor: pointer;
-        text-align: center;
-      }
+  @include ct-form-element();
 
-      &::after {
-        position: absolute;
-        top: ct-particle(0.25);
-        left: ct-particle(0.25);
-        display: inline-block;
-        width: ct-particle(3) - rem(2px);
-        height: ct-particle(3) - rem(2px);
-        content: '';
-      }
+  display: grid;
+  grid-template-columns: $_control-width auto;
+  gap: ct-particle(1.5);
+
+  #{$root}__control {
+    @include ct-form-control(false, false);
+    @include ct-form-control-no-appearance();
+
+    display: grid;
+    height: $_control-height;
+    place-content: center;
+    width: $_control-width;
+
+    // Adjust vertical position to be visually centered within the vertical
+    // middle of the label based on the line height.
+    transform: translateY(math.div($_control-height - ct-typography-rule('text-regular', 'line-height', 'm'), 2) + $ct-form-control-border-width * 2);
+
+    &::before {
+      content: '';
+      width: math.div(math.floor(math.div($_control-width - 2 * 1.6 * math.max($ct-form-control-border-width, $ct-form-control-hover-border-width), 2) * 100) * 2, 100);
+      height: math.div(math.floor(math.div($_control-height - 2 * 1.6 * math.max($ct-form-control-border-width, $ct-form-control-hover-border-width), 2) * 100) * 2, 100);
+      transform: scale(0);
+      cursor: pointer;
     }
 
-    &:checked {
-      & + .ct-checkbox__state {
-        &::before {
-          width: ct-particle(3) - rem(2px);
-          height: ct-particle(3) - rem(2px);
-          border-width: ct-particle(0.25);
-        }
-      }
-    }
-
-    &:focus,
-    &:hover {
-      & + .ct-checkbox__state {
-        &::before {
-          box-shadow: 0 0 0 ct-particle(0.125);
-        }
-      }
-    }
-
-    &:disabled {
-      pointer-events: none;
+    &:checked::before {
+      transform: scale(1);
     }
   }
 
   #{$root}__label {
-    @include ct-typography('text-regular');
+    &[for] {
+      cursor: pointer;
+    }
   }
 
   &.ct-theme-light {
-    #{$root}__label {
-      color: $ct-checkbox-label-light-color;
-    }
-
     #{$root}__control {
-      & + .ct-checkbox__state {
-        &::before {
-          border-color: $ct-checkbox-light-border-color;
-        }
-      }
-
-      &:active {
-        & + .ct-checkbox__state {
-          &::before {
-            background-color: $ct-checkbox-light-active-background-color;
-            border-color: $ct-checkbox-light-active-background-color;
-            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-checkbox-light-check-color;
-          }
-        }
-      }
-
-      &:focus {
-        & + .ct-checkbox__state {
-          &::before {
-            @include ct-outline-light();
-
-            background-color: $ct-checkbox-light-selected-background-color;
-            border-color: $ct-checkbox-light-selected-background-color;
-            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-checkbox-light-check-color;
-          }
-        }
-      }
-
-      &:hover {
-        & + .ct-checkbox__state {
-          &::before {
-            box-shadow: 0 0 0 ct-particle(0.125) $ct-checkbox-light-border-color;
-          }
-        }
-      }
+      @include ct-form-control-colors('light');
 
       &:checked {
-        & + .ct-checkbox__state {
-          &::before {
-            background-color: $ct-checkbox-light-selected-background-color;
-            border-color: $ct-checkbox-light-selected-background-color;
-            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-checkbox-light-check-color;
-          }
+        @include _control-checked($ct-form-control-light-border-color);
+      }
 
-          &::after {
-            content: ct-color-svg-fill($ct-checkbox-check, $ct-checkbox-light-check-color);
-          }
-        }
+      &:checked:hover {
+        @include _control-checked($ct-form-control-light-hover-border-color);
       }
     }
 
-    &.ct-checkbox--success {
+    &#{$root}--invalid {
       #{$root}__control {
-        &:checked + .ct-checkbox__state {
-          &::before {
-            border-color: $ct-input-light-success-border-color;
-            background-color: $ct-input-light-success-border-color;
-          }
-        }
-      }
-    }
-
-    &.ct-checkbox--error {
-      #{$root}__control {
-        & + .ct-checkbox__state {
-          &::before {
-            border-color: $ct-input-light-error-border-color;
-          }
-        }
+        @include ct-form-control-colors('light', 'invalid');
 
         &:checked {
-          & + .ct-checkbox__state {
-            &::before {
-              border-color: $ct-input-light-error-border-color;
-              background-color: $ct-input-light-error-border-color;
-            }
-          }
+          @include _control-checked($ct-form-control-light-invalid-border-color);
+        }
+
+        &:checked:hover {
+          @include _control-checked($ct-form-control-light-invalid-border-color);
         }
       }
     }
   }
 
   &.ct-theme-dark {
-    #{$root}__label {
-      color: $ct-checkbox-label-dark-color;
-    }
-
     #{$root}__control {
-      & + .ct-checkbox__state {
-        &::before {
-          border-color: $ct-checkbox-dark-border-color;
-        }
-      }
-
-      &:active {
-        & + .ct-checkbox__state {
-          &::before {
-            background-color: $ct-checkbox-dark-active-background-color;
-            border-color: $ct-checkbox-dark-active-background-color;
-            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-checkbox-dark-check-color;
-          }
-        }
-      }
-
-      &:focus {
-        & + .ct-checkbox__state {
-          &::before {
-            @include ct-outline-dark();
-
-            background-color: $ct-checkbox-dark-selected-background-color;
-            border-color: $ct-checkbox-dark-selected-background-color;
-            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-checkbox-dark-check-color;
-          }
-        }
-      }
-
-      &:hover {
-        & + .ct-checkbox__state {
-          &::before {
-            box-shadow: 0 0 0 ct-particle(0.125) $ct-checkbox-dark-border-color;
-          }
-        }
-      }
+      @include ct-form-control-colors('dark');
 
       &:checked {
-        & + .ct-checkbox__state {
-          &::before {
-            background-color: $ct-checkbox-dark-selected-background-color;
-            border-color: $ct-checkbox-dark-selected-background-color;
-            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-checkbox-dark-check-color;
-          }
+        @include _control-checked($ct-form-control-dark-border-color);
+      }
 
-          &::after {
-            content: ct-color-svg-fill($ct-checkbox-check, $ct-checkbox-dark-check-color);
-          }
-        }
+      &:checked:hover {
+        @include _control-checked($ct-form-control-dark-hover-border-color);
       }
     }
 
-    &.ct-checkbox--success {
+    &#{$root}--invalid {
       #{$root}__control {
-        &:checked + .ct-checkbox__state {
-          &::before {
-            border-color: $ct-input-dark-success-border-color;
-            background-color: $ct-input-dark-success-border-color;
-          }
-        }
-      }
-    }
-
-    &.ct-checkbox--error {
-      #{$root}__control {
-        & + .ct-checkbox__state {
-          &::before {
-            border-color: $ct-input-dark-error-border-color;
-          }
-        }
+        @include ct-form-control-colors('dark', 'invalid');
 
         &:checked {
-          & + .ct-checkbox__state {
-            &::before {
-              border-color: $ct-input-dark-error-border-color;
-              background-color: $ct-input-dark-error-border-color;
-            }
-          }
+          @include _control-checked($ct-form-control-dark-invalid-border-color);
+        }
+
+        &:checked:hover {
+          @include _control-checked($ct-form-control-dark-invalid-border-color);
         }
       }
     }

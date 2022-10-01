@@ -5,30 +5,12 @@
 @use 'sass:math';
 
 .ct-radio {
-  $_control-width: $ct-radio-light-control-radius;
-  $_control-height: $ct-radio-light-control-radius;
-  $_control-border-width: math.div(math.div($_control-width, 3), 4);
-  $_control-border-hover-width: $_control-border-width * 1.5;
+  $_control-width: $ct-radio-radius;
+  $_control-height: $ct-radio-radius;
 
+  // Helper to set the color of the checked element.
   // stylelint-disable-next-line scss/at-mixin-pattern
-  @mixin _control-default($color,$background-color,  $width: false) {
-    background-color: $background-color;
-    border-color: $color;
-
-    @if $width {
-      border-width: $width;
-    }
-  }
-
-  // stylelint-disable-next-line scss/at-mixin-pattern
-  @mixin _control-checked($color, $background-color, $width: false) {
-    background-color: $background-color;
-    border-color: $color;
-
-    @if $width {
-      border-width: $width;
-    }
-
+  @mixin _control-checked($color) {
     &::before {
       box-shadow: inset $_control-width $_control-height $color;
     }
@@ -36,22 +18,17 @@
 
   $root: &;
 
+  @include ct-form-element();
+
   display: grid;
   grid-template-columns: $_control-width auto;
   gap: ct-particle(1.5);
 
-  @include ct-typography('text-regular');
-
-  &--disabled {
-    @include ct-form-control-disabled();
-  }
-
   #{$root}__control {
+    @include ct-form-control(false, false);
     @include ct-form-control-no-appearance();
 
     border-radius: 50%;
-    border-style: solid;
-    cursor: pointer;
     display: grid;
     height: $_control-height;
     place-content: center;
@@ -59,19 +36,28 @@
 
     // Adjust vertical position to be visually centered within the vertical
     // middle of the label based on the line height.
-    transform: translateY(math.div($_control-height - ct-typography-rule('text-regular', 'line-height', 'm'), 2) + $_control-border-width * 2);
+    transform: translateY(math.div($_control-height - ct-typography-rule('text-regular', 'line-height', 'm'), 2) + $ct-form-control-border-width * 2);
 
     &::before {
       content: '';
-      width: math.div(math.floor(math.div($_control-width - 2 * 1.6 * math.max($_control-border-width, $_control-border-hover-width), 2) * 100) * 2, 100);
-      height: math.div(math.floor(math.div($_control-height - 2 * 1.6 * math.max($_control-border-width, $_control-border-hover-width), 2) * 100) * 2, 100);
+      width: math.div(math.floor(math.div($_control-width - 2 * 1.6 * math.max($ct-form-control-border-width, $ct-form-control-hover-border-width), 2) * 100) * 2, 100);
+      height: math.div(math.floor(math.div($_control-height - 2 * 1.6 * math.max($ct-form-control-border-width, $ct-form-control-hover-border-width), 2) * 100) * 2, 100);
       border-radius: 50%;
       transform: scale(0);
       cursor: pointer;
+      box-shadow: inset $_control-width $_control-height currentcolor;
+    }
+
+    &:checked {
+      border-radius: 50%;
     }
 
     &:checked::before {
       transform: scale(1);
+    }
+
+    &:focus {
+      border-radius: 50%;
     }
   }
 
@@ -83,45 +69,27 @@
 
   &.ct-theme-light {
     #{$root}__control {
-      @include _control-default($ct-radio-light-control-color, $ct-radio-light-control-background-color, $_control-border-width);
-
-      &:hover {
-        @include _control-default($ct-radio-light-control-hover-color, $ct-radio-light-control-hover-background-color, $_control-border-hover-width);
-      }
+      @include ct-form-control-colors('light');
 
       &:checked {
-        @include _control-checked($ct-radio-light-control-color, $ct-radio-light-control-background-color, $_control-border-width);
+        @include _control-checked($ct-form-control-light-border-color);
       }
 
       &:checked:hover {
-        @include _control-checked($ct-radio-light-control-hover-color, $ct-radio-light-control-hover-background-color, $_control-border-hover-width);
-      }
-
-      &:focus {
-        @include ct-outline-light();
-
-        border-radius: 50%;
+        @include _control-checked($ct-form-control-light-hover-border-color);
       }
     }
 
-    #{$root}__label {
-      color: $ct-radio-light-label-color;
-    }
-
-    &#{$root}--error {
+    &#{$root}--invalid {
       #{$root}__control {
-        @include _control-default($ct-radio-light-control-invalid-color, $ct-radio-light-control-invalid-background-color);
-
-        &:hover {
-          @include _control-default($ct-radio-light-control-invalid-color, $ct-radio-light-control-invalid-background-color);
-        }
+        @include ct-form-control-colors('light', 'invalid');
 
         &:checked {
-          @include _control-checked($ct-radio-light-control-invalid-color, $ct-radio-light-control-invalid-background-color);
+          @include _control-checked($ct-form-control-light-invalid-border-color);
         }
 
         &:checked:hover {
-          @include _control-checked($ct-radio-light-control-invalid-color, $ct-radio-light-control-invalid-background-color);
+          @include _control-checked($ct-form-control-light-invalid-border-color);
         }
       }
     }
@@ -129,45 +97,27 @@
 
   &.ct-theme-dark {
     #{$root}__control {
-      @include _control-default($ct-radio-dark-control-color, $ct-radio-dark-control-background-color, $_control-border-width);
-
-      &:hover {
-        @include _control-default($ct-radio-dark-control-hover-color, $ct-radio-dark-control-hover-background-color, $_control-border-hover-width);
-      }
+      @include ct-form-control-colors('dark');
 
       &:checked {
-        @include _control-checked($ct-radio-dark-control-color, $ct-radio-dark-control-background-color, $_control-border-width);
+        @include _control-checked($ct-form-control-dark-border-color);
       }
 
       &:checked:hover {
-        @include _control-checked($ct-radio-dark-control-hover-color, $ct-radio-dark-control-hover-background-color, $_control-border-hover-width);
-      }
-
-      &:focus {
-        @include ct-outline-dark();
-
-        border-radius: 50%;
+        @include _control-checked($ct-form-control-dark-hover-border-color);
       }
     }
 
-    #{$root}__label {
-      color: $ct-radio-dark-label-color;
-    }
-
-    &#{$root}--error {
+    &#{$root}--invalid {
       #{$root}__control {
-        @include _control-default($ct-radio-dark-control-invalid-color, $ct-radio-dark-control-invalid-background-color);
-
-        &:hover {
-          @include _control-default($ct-radio-dark-control-invalid-color, $ct-radio-dark-control-invalid-background-color);
-        }
+        @include ct-form-control-colors('dark', 'invalid');
 
         &:checked {
-          @include _control-checked($ct-radio-dark-control-invalid-color, $ct-radio-dark-control-invalid-background-color);
+          @include _control-checked($ct-form-control-dark-invalid-border-color);
         }
 
         &:checked:hover {
-          @include _control-checked($ct-radio-dark-control-invalid-color, $ct-radio-dark-control-invalid-background-color);
+          @include _control-checked($ct-form-control-dark-invalid-border-color);
         }
       }
     }

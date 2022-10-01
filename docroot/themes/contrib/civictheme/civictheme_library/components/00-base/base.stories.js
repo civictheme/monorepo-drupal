@@ -5,7 +5,7 @@
 
 import { boolean } from '@storybook/addon-knobs';
 import { LoremIpsum } from 'lorem-ipsum';
-import CivicThemeInput from '../01-atoms/input/input.twig';
+import CivicThemeTextfield from '../01-atoms/textfield/textfield.twig';
 import CivicThemeSelect from '../01-atoms/select/select.twig';
 import CivicThemeCheckbox from '../01-atoms/checkbox/checkbox.twig';
 import CivicThemeRadio from '../01-atoms/radio/radio.twig';
@@ -180,7 +180,7 @@ export const randomFormElement = (inputType, options, theme, rand, itr) => {
       }));
       break;
     default:
-      formElementOptions.children.push(CivicThemeInput(inputOptions));
+      formElementOptions.children.push(CivicThemeTextfield(inputOptions));
   }
 
   return CivicThemeFormElement(formElementOptions);
@@ -247,7 +247,19 @@ export const randomDropdownFilter = (filterType, numOfOptions, theme, rand, itr)
   });
 };
 
-export const randomOptions = (numOfOptions, optionType = 'option') => {
+export const randomInputItems = (count) => {
+  const items = [];
+  for (let i = 1; i <= count; i++) {
+    const item = {
+      label: randomString(randomInt(3, 8)),
+      value: randomString(randomInt(1, 8)),
+    };
+    items.push(item);
+  }
+  return items;
+};
+
+export const randomSelectOptions = (numOfOptions, optionType = 'option') => {
   const options = [];
   for (let i = 1; i <= numOfOptions; i++) {
     const option = {
@@ -255,7 +267,7 @@ export const randomOptions = (numOfOptions, optionType = 'option') => {
       selected: false,
       label: optionType === 'optgroup' ? `Group ${i}` : randomString(randomInt(3, 8)),
       value: randomString(randomInt(1, 8)),
-      options: optionType === 'optgroup' ? randomOptions(numOfOptions) : null,
+      options: optionType === 'optgroup' ? randomSelectOptions(numOfOptions) : null,
     };
     options.push(option);
   }

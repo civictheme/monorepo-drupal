@@ -1,29 +1,37 @@
 {#
 /**
- * @file
- * Textfield component.
- *
- * Variables:
- * - theme: [string] Theme: light, dark.
- * - placeholder: [string] Placeholder text.
- * - disabled: [boolean] Disabled or not.
- * - required: [boolean] Required or not.
- * - attributes: [string] Additional attributes.
- * - modifier_class: [string] Additional classes.
- */
+* @file
+* Textfield component.
+*
+* Variables:
+* - theme: [string] Theme: light, dark.
+* - placeholder: [string] Placeholder text.
+* - is_required: [boolean] Denote if the control is required.
+* - is_invalid: [boolean] Denote if the control is invalid.
+* - is_disabled: [boolean] Denote if the control is disabled.
+* - name: [string] DOM name.
+* - value: [string] DOM value.
+* - id: [string] DOM id.
+* - attributes: [string] Additional attributes.
+* - modifier_class: [string] Additional classes.
+*/
 #}
 
-{% set disabled_class = disabled ? 'ct-input--disabled disabled' : '' %}
-{% set required_class = required ? 'ct-input--required required' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, required_class, modifier_class|default('')) %}
+{% set disabled_class = is_disabled ? 'ct-textfield--disabled' : '' %}
+{% set invalid_class = is_invalid ? 'ct-textfield--invalid' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, invalid_class, modifier_class|default(''))|trim %}
 
-<input
-  type="{{ type }}"
-  value="{{ value }}"
-  class="ct-textfield ct-input__control {{ modifier_class }}"
-  {{ disabled ? 'disabled' }}
-  {{ required ? 'required' }}
-  {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
-  {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
-/>
+{% if name is not empty %}
+  <input
+    type="text"
+    class="ct-textfield ct-textfield__control {{ modifier_class }}"
+    name="{{ name }}"
+    {% if value %}value="{{ value }}"{% endif %}
+    {% if id %}id="{{ id }}"{% endif %}
+    {{ is_disabled ? 'disabled' }}
+    {{ is_required ? 'required' }}
+    {% if placeholder is not empty %}placeholder="{{ placeholder }}"{% endif %}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  />
+{% endif %}

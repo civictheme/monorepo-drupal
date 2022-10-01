@@ -62,7 +62,10 @@
 // String to fill SVG with color.
 //
 @function ct-color-svg-fill($svg, $color) {
-  @return ct-str-replace($svg, "fill=''", "fill='#{ct-color-encode($color)}'");
+  $svg: ct-str-replace($svg, "fill=''", "fill='#{ct-color-encode($color)}'");
+  $svg: ct-str-replace($svg, "stroke=''", "stroke='#{ct-color-encode($color)}'");
+
+  @return $svg;
 }
 
 //

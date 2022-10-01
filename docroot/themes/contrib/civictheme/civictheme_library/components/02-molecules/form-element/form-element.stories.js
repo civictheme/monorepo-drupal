@@ -1,7 +1,7 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeFormElement from './form-element.twig';
-import Input from '../../01-atoms/input/input.twig';
+import Textfield from '../../01-atoms/textfield/textfield.twig';
 import Select from '../../01-atoms/select/select.twig';
 import CivicThemeLabel from '../../01-atoms/label/label.twig';
 
@@ -160,14 +160,14 @@ export const FormElement = () => {
 
   switch (inputType) {
     case 'radio':
-      children.push(Input({
+      children.push(Textfield({
         type: inputType,
         ...radioKnobs,
       }));
       break;
 
     case 'checkbox':
-      children.push(Input({
+      children.push(Textfield({
         type: inputType,
         ...checkboxKnobs,
       }));
@@ -180,7 +180,7 @@ export const FormElement = () => {
       break;
 
     default:
-      children.push(Input({
+      children.push(Textfield({
         type: inputType,
         ...inputKnobs,
       }));

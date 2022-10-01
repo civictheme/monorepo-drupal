@@ -1,33 +1,37 @@
 {#
 /**
- * @file
- * Textarea component.
- *
- * Variables:
- * - theme: [string] Theme: light, dark.
- * - placeholder: [string] Placeholder text.
- * - disabled: [boolean] Disabled or not.
- * - required: [boolean] Required or not.
- * - rows: [integer] Optional number of rows.
- * - attributes: [string] Additional attributes.
- * - modifier_class: [string] Additional classes.
- */
+* @file
+* Textarea component.
+*
+* Variables:
+* - theme: [string] Theme: light, dark.
+* - rows: [integer] Optional number of rows.
+* - placeholder: [string] Placeholder text.
+* - is_required: [boolean] Denote if the control is required.
+* - is_invalid: [boolean] Denote if the control is invalid.
+* - is_disabled: [boolean] Denote if the control is disabled.
+* - name: [string] DOM name.
+* - value: [string] DOM value.
+* - id: [string] DOM id.
+* - attributes: [string] Additional attributes.
+* - modifier_class: [string] Additional classes.
+*/
 #}
 
-{% set disabled_class = disabled ? 'ct-input--disabled disabled' : '' %}
-{% set required_class = required ? 'ct-input--required required' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, required_class, modifier_class|default('')) %}
+{% set disabled_class = is_disabled ? 'ct-form-control--disabled' : '' %}
+{% set error_class = is_invalid ? 'ct-form-control--invalid' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, error_class, modifier_class|default(''))|trim %}
 
-{% set rows = rows|default(5) %}
-
-<textarea
-  class="ct-textarea ct-input__control {{ modifier_class }}"
-  rows="{{ rows }}"
-  {{ disabled ? 'disabled' }}
-  {{ required ? 'required' }}
-  {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
-  {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
->
-  {{ value }}
-</textarea>
+{% if name is not empty %}
+  <textarea
+    type="text"
+    class="ct-textarea ct-form-control ct-textarea__control {{ modifier_class }}"
+    name="{{ name }}"
+    {% if id %}id="{{ id }}"{% endif %}
+    {{ is_disabled ? 'disabled' }}
+    {{ is_required ? 'required' }}
+    {% if placeholder is not empty %}placeholder="{{ placeholder }}"{% endif %}
+    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+  >{% if value %}{{ value }}{% endif %}</textarea>
+{% endif %}

@@ -1,7 +1,7 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeSelect from './select.twig';
-import { randomOptions, randomInt } from '../../00-base/base.stories';
+import { randomSelectOptions, randomInt } from '../../00-base/base.stories';
 
 export default {
   title: 'Atoms/Form control/Select',
@@ -24,13 +24,16 @@ export const Select = (knobTab) => {
       'light',
       generalKnobTab,
     ),
+    options: boolean('With options', true, generalKnobTab) ? randomSelectOptions(numOfOptions, (boolean('Options have groups', false, generalKnobTab) ? 'optgroup' : 'option')) : [],
     is_multiple: boolean('Is multiple', false, generalKnobTab),
-    options: boolean('With options', true, generalKnobTab) ? randomOptions(numOfOptions, (boolean('Options have groups', false, generalKnobTab) ? 'optgroup' : 'option')) : [],
-    required: boolean('Required', false, generalKnobTab),
-    disabled: boolean('Disabled', false, generalKnobTab),
-    has_error: boolean('Has error', false, generalKnobTab),
+    is_required: boolean('Required', false, generalKnobTab),
+    is_invalid: boolean('Invalid', false, generalKnobTab),
+    is_disabled: boolean('Disabled', false, generalKnobTab),
+    name: text('Name', 'control-name', generalKnobTab),
+    value: text('Value', '', generalKnobTab),
+    id: text('ID', 'control-id', generalKnobTab),
+    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
   };
 
   return CivicThemeSelect({

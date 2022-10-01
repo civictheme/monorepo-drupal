@@ -1,0 +1,15 @@
+//
+// Border mixins.
+//
+
+//
+// Create an inset border on the element.
+//
+@mixin ct-border-inset($color: false, $width: ct-particle(0.125)) {
+  @if $color {
+    box-shadow: inset 0 0 0 $width $color;
+  }
+  @else {
+    box-shadow: inset 0 0 0 $width;
+  }
+}

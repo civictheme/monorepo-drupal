@@ -466,9 +466,6 @@ $ct-flyout-zindex: 1000 !default;
 // Misc Variables.
 //
 
-// Border radius.
-$ct-border-radius: ct-particle(0.5) !default;
-
 // Background blend modes.
 $ct-background-blend-modes: (
   normal,
@@ -489,11 +486,19 @@ $ct-background-blend-modes: (
   soft-light,
 ) !default;
 
+// Border radius.
+$ct-border-radius: ct-particle(0.5) !default;
+
+// Form controls.
+$ct-form-control-border-radius: $ct-border-radius;
+$ct-form-control-border-width: ct-particle(0.25);
+$ct-form-control-hover-border-width: $ct-form-control-border-width * 1.5;
+
+// Outline.
+$ct-outline-style: solid;
+$ct-outline-width: ct-particle(0.25) !default;
+$ct-outline-offset: ct-particle(0.25) !default;
+
 // Enable CSS animations.
 $ct-animation-enabled: true !default;
 $ct-animation-duration: 0.25s !default;
-
-// Outline.
-$ct-outline-offset: ct-particle(0.25) !default;
-$ct-outline-width: ct-particle(0.375) !default;
-$ct-outline-border-radius: $ct-border-radius !default;

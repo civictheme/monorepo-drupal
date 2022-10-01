@@ -2,12 +2,127 @@
 // Form mixins.
 //
 
+// Form control component consists of "element" (the whole thing) and
+// "control" (the actual control that takes user input).
 //
-// Add 'disabled' styles to a form control.
+// Element can be the same DOM element as control (textfield, textarea, select
+// etc) or it can be a wrapping DOM element with control being sitting within
+// it (radio, checkbox etc).
 //
-@mixin ct-form-control-disabled() {
-  opacity: 40%;
-  pointer-events: none;
+// For the first case, both ct-form-element() and ct-form-control() should be
+// applied to the component DOM element.
+//
+// For the second case, ct-form-element() should be applied to the wrapping
+// component DOM element and ct-form-control() should be applied to the control
+// DOM element.
+
+//
+// Generic form element styles.
+//
+// These styles are not colour-specific and are responsible for the consistent
+// look and feel of a form element.
+//
+@mixin ct-form-element($width: 100%, $is_padded: true) {
+  @include ct-typography('text-regular');
+
+  &--disabled {
+    opacity: 40%;
+    pointer-events: none;
+  }
+}
+
+//
+// Generic form control styles.
+//
+// These styles are not colour-specific and are responsible for the consistent
+// look and feel of a form control.
+//
+@mixin ct-form-control($width: 100%, $is-padded: true) {
+  border: $ct-form-control-border-width solid currentcolor;
+  cursor: pointer;
+
+  @if $width {
+    width: $width;
+  }
+
+  @if $is-padded {
+    padding: ct-particle(0.5) ct-particle(1);
+  }
+
+  @if $ct-form-control-border-radius != 0 {
+    border-radius: $ct-form-control-border-radius;
+  }
+
+  &:hover {
+    @include ct-border-inset(currentColor, $ct-form-control-hover-border-width - $ct-form-control-border-width);
+  }
+
+  &:focus {
+    @include ct-outline();
+  }
+
+  &::placeholder {
+    opacity: 40%;
+  }
+}
+
+//
+// Print form control colors.
+//
+@mixin ct-form-control-colors($theme, $states: ('default', 'hover', 'focus')) {
+  @if type-of($states) != 'list' {
+    $types: ($states);
+  }
+
+  @each $state in $states {
+    @if $state == 'default' {
+      & {
+        @include _ct-form-control-print-rules(
+          ct-if($theme == 'light', $ct-form-control-light-color, $ct-form-control-dark-color),
+          ct-if($theme == 'light', $ct-form-control-light-background-color, $ct-form-control-dark-background-color),
+          ct-if($theme == 'light', $ct-form-control-light-border-color, $ct-form-control-dark-border-color),
+        );
+      }
+    }
+    @else if $state == 'hover' {
+      &:hover {
+        @include _ct-form-control-print-rules(
+          ct-if($theme == 'light', $ct-form-control-light-hover-color, $ct-form-control-dark-hover-color),
+          ct-if($theme == 'light', $ct-form-control-light-hover-background-color, $ct-form-control-dark-hover-background-color),
+          ct-if($theme == 'light', $ct-form-control-light-hover-border-color, $ct-form-control-dark-hover-border-color),
+        );
+        @include ct-border-inset(
+          ct-if($theme == 'light', $ct-form-control-light-hover-border-color, $ct-form-control-dark-hover-border-color),
+        );
+      }
+    }
+    @else if $state == 'focus' {
+      @if $theme == 'light' {
+        @include ct-outline-dark();
+      }
+      @else {
+        @include ct-outline-light();
+      }
+    }
+    @else if $state == 'invalid' {
+      @include _ct-form-control-print-rules(
+        ct-if($theme == 'light', $ct-form-control-light-invalid-color, $ct-form-control-dark-invalid-color),
+        ct-if($theme == 'light', $ct-form-control-light-invalid-background-color, $ct-form-control-dark-invalid-background-color),
+        ct-if($theme == 'light', $ct-form-control-light-invalid-border-color, $ct-form-control-dark-invalid-border-color),
+      );
+
+      &:hover {
+        @include _ct-form-control-print-rules(
+          ct-if($theme == 'light', $ct-form-control-light-invalid-color, $ct-form-control-dark-invalid-color),
+          ct-if($theme == 'light', $ct-form-control-light-invalid-background-color, $ct-form-control-dark-invalid-background-color),
+          ct-if($theme == 'light', $ct-form-control-light-invalid-border-color, $ct-form-control-dark-invalid-border-color),
+        );
+        @include ct-border-inset(
+          ct-if($theme == 'light', $ct-form-control-light-invalid-border-color, $ct-form-control-dark-invalid-border-color),
+        );
+      }
+    }
+  }
 }
 
 //
@@ -18,4 +133,28 @@
 
   // Not removed via appearance.
   margin: 0;
+}
+
+//
+// Print form control rules.
+//
+// Do not use directly.
+//
+// stylelint-disable-next-line scss/at-mixin-pattern
+@mixin _ct-form-control-print-rules($color, $background-color, $border-color, $border-width: false) {
+  @if $background-color {
+    background-color: $background-color;
+  }
+
+  @if $border-color {
+    border-color: $border-color;
+  }
+
+  @if $color {
+    color: $color;
+  }
+
+  @if $border-width {
+    border-width: $border-width;
+  }
 }

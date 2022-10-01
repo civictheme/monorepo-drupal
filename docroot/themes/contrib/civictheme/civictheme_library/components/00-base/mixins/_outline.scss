@@ -7,17 +7,19 @@
 //
 // Should be used on all interactive elements.
 //
-@mixin ct-outline-light($width: $ct-outline-width, $offset: $ct-outline-offset, $radius: $ct-outline-border-radius) {
-  @include _ct-outline(false, $width, $offset, $radius);
+@mixin ct-outline-light($width: $ct-outline-width, $offset: $ct-outline-offset) {
+  @include ct-outline($width, $offset);
+
+  outline-color: $ct-outline-light;
 }
 
 //
 // Set element outline.
 //
-// Should be used on all interactive elements.
-//
-@mixin ct-outline-dark($width: $ct-outline-width, $offset: $ct-outline-offset, $radius: $ct-outline-border-radius) {
-  @include _ct-outline(true, $width, $offset, $radius);
+@mixin ct-outline-dark($width: $ct-outline-width, $offset: $ct-outline-offset) {
+  @include ct-outline($width, $offset);
+
+  outline-color: $ct-outline-dark;
 }
 
 //
@@ -26,19 +28,12 @@
 // Do not use directly.
 // Use ct-outline-light() and ct-outline-dark() instead.
 //
-@mixin _ct-outline($is_dark: false, $width: $ct-outline-width, $offset: $ct-outline-offset, $radius: $ct-outline-border-radius) {
-  border-radius: $radius;
-  outline-offset: $offset;
+@mixin ct-outline($style: $ct-outline-style, $width: $ct-outline-width, $offset: $ct-outline-offset) {
   outline-width: $width;
-  outline-style: solid;
+  outline-style: $style;
+  outline-color: invert;
+  outline-offset: $offset;
   transition: none;
-
-  @if $is_dark {
-    outline-color: $ct-outline-dark;
-  }
-  @else {
-    outline-color: $ct-outline-light;
-  }
 }
 
 //
