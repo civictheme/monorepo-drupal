@@ -2,233 +2,172 @@
 // Radio component.
 //
 
+@use 'sass:math';
+
 .ct-radio {
-  $root: &;
+  $_control-width: $ct-radio-light-control-radius;
+  $_control-height: $ct-radio-light-control-radius;
+  $_control-border-width: math.div(math.div($_control-width, 3), 4);
+  $_control-border-hover-width: $_control-border-width * 1.5;
 
-  position: absolute;
-  display: flex;
-  align-items: center;
+  // stylelint-disable-next-line scss/at-mixin-pattern
+  @mixin _control-default($color,$background-color,  $width: false) {
+    background-color: $background-color;
+    border-color: $color;
 
-  &--disabled {
-    opacity: 50%;
+    @if $width {
+      border-width: $width;
+    }
   }
 
-  .ct-radio__element {
-    position: absolute;
-    // stylelint-disable-next-line alpha-value-notation
-    opacity: 0;
-    width: rem(26px);
-    height: rem(26px);
-    z-index: 1;
+  // stylelint-disable-next-line scss/at-mixin-pattern
+  @mixin _control-checked($color, $background-color, $width: false) {
+    background-color: $background-color;
+    border-color: $color;
+
+    @if $width {
+      border-width: $width;
+    }
+
+    &::before {
+      box-shadow: inset $_control-width $_control-height $color;
+    }
+  }
+
+  $root: &;
+
+  display: grid;
+  grid-template-columns: $_control-width auto;
+  gap: ct-particle(1.5);
+
+  @include ct-typography('text-regular');
+
+  &--disabled {
+    @include ct-form-control-disabled();
+  }
+
+  #{$root}__control {
+    @include ct-form-control-no-appearance();
+
+    border-radius: 50%;
+    border-style: solid;
     cursor: pointer;
+    display: grid;
+    height: $_control-height;
+    place-content: center;
+    width: $_control-width;
 
-    & + .ct-radio__state {
-      &::before {
-        content: '';
-        border-radius: 50%;
-        border: ct-particle(0.125) solid;
-        display: block;
-        width: rem(24px);
-        height: rem(24px);
-        position: relative;
-        margin-right: ct-spacing();
-        vertical-align: middle;
-        cursor: pointer;
-        text-align: center;
-      }
+    // Adjust vertical position to be visually centered within the vertical
+    // middle of the label based on the line height.
+    transform: translateY(math.div($_control-height - ct-typography-rule('text-regular', 'line-height', 'm'), 2) + $_control-border-width * 2);
+
+    &::before {
+      content: '';
+      width: math.div(math.floor(math.div($_control-width - 2 * 1.6 * math.max($_control-border-width, $_control-border-hover-width), 2) * 100) * 2, 100);
+      height: math.div(math.floor(math.div($_control-height - 2 * 1.6 * math.max($_control-border-width, $_control-border-hover-width), 2) * 100) * 2, 100);
+      border-radius: 50%;
+      transform: scale(0);
+      cursor: pointer;
     }
 
-    &:checked {
-      & + .ct-radio__state {
-        &::before {
-          width: rem(22px);
-          height: rem(22px);
-          border-width: 2px;
-        }
-      }
-    }
-
-    &:focus,
-    &:hover {
-      & + .ct-radio__state {
-        &::before {
-          box-shadow: 0 0 0 ct-particle(0.125);
-        }
-      }
-    }
-
-    &:disabled {
-      pointer-events: none;
+    &:checked::before {
+      transform: scale(1);
     }
   }
 
   #{$root}__label {
-    @include ct-typography('text-regular');
+    &[for] {
+      cursor: pointer;
+    }
   }
 
   &.ct-theme-light {
-    #{$root}__label {
-      color: $ct-radio-label-light-color;
-    }
-
-    #{$root}__element {
-      & + .ct-radio__state {
-        &::before {
-          border-color: $ct-radio-light-border-color;
-        }
-      }
-
-      &:active {
-        & + .ct-radio__state {
-          &::before {
-            background-color: $ct-radio-light-active-background-color;
-            border-color: $ct-radio-light-active-background-color;
-            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-light-check-color;
-          }
-        }
-      }
-
-      &:focus {
-        & + .ct-radio__state {
-          &::before {
-            @include ct-outline();
-
-            background-color: $ct-radio-light-selected-background-color;
-            border-color: $ct-radio-light-selected-background-color;
-            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-light-check-color;
-          }
-        }
-      }
+    #{$root}__control {
+      @include _control-default($ct-radio-light-control-color, $ct-radio-light-control-background-color, $_control-border-width);
 
       &:hover {
-        & + .ct-radio__state {
-          &::before {
-            box-shadow: 0 0 0 ct-particle(0.125) $ct-radio-light-border-color;
-          }
-        }
+        @include _control-default($ct-radio-light-control-hover-color, $ct-radio-light-control-hover-background-color, $_control-border-hover-width);
       }
 
       &:checked {
-        & + .ct-radio__state {
-          &::before {
-            background-color: $ct-radio-light-selected-background-color;
-            border-color: $ct-radio-light-selected-background-color;
-            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-light-check-color;
-          }
-        }
+        @include _control-checked($ct-radio-light-control-color, $ct-radio-light-control-background-color, $_control-border-width);
+      }
+
+      &:checked:hover {
+        @include _control-checked($ct-radio-light-control-hover-color, $ct-radio-light-control-hover-background-color, $_control-border-hover-width);
+      }
+
+      &:focus {
+        @include ct-outline-light();
+
+        border-radius: 50%;
       }
     }
 
-    &.ct-radio--success {
-      #{$root}__element {
-        &:checked + .ct-radio__state {
-          &::before {
-            border-color: $ct-input-light-success-border-color;
-            background-color: $ct-input-light-success-border-color;
-          }
-        }
-      }
+    #{$root}__label {
+      color: $ct-radio-light-label-color;
     }
 
-    &.ct-radio--error {
-      #{$root}__element {
-        & + .ct-radio__state {
-          &::before {
-            border-color: $ct-input-light-error-border-color;
-          }
+    &#{$root}--error {
+      #{$root}__control {
+        @include _control-default($ct-radio-light-control-invalid-color, $ct-radio-light-control-invalid-background-color);
+
+        &:hover {
+          @include _control-default($ct-radio-light-control-invalid-color, $ct-radio-light-control-invalid-background-color);
         }
 
         &:checked {
-          & + .ct-radio__state {
-            &::before {
-              border-color: $ct-input-light-error-border-color;
-              background-color: $ct-input-light-error-border-color;
-            }
-          }
+          @include _control-checked($ct-radio-light-control-invalid-color, $ct-radio-light-control-invalid-background-color);
+        }
+
+        &:checked:hover {
+          @include _control-checked($ct-radio-light-control-invalid-color, $ct-radio-light-control-invalid-background-color);
         }
       }
     }
   }
 
   &.ct-theme-dark {
-    #{$root}__label {
-      color: $ct-radio-label-dark-color;
-    }
-
-    #{$root}__element {
-      & + .ct-radio__state {
-        &::before {
-          border-color: $ct-radio-dark-border-color;
-        }
-      }
-
-      &:active {
-        & + .ct-radio__state {
-          &::before {
-            background-color: $ct-radio-dark-active-background-color;
-            border-color: $ct-radio-dark-active-background-color;
-            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-dark-check-color;
-          }
-        }
-      }
-
-      &:focus {
-        & + .ct-radio__state {
-          &::before {
-            @include ct-outline(true);
-
-            background-color: $ct-radio-dark-selected-background-color;
-            border-color: $ct-radio-dark-selected-background-color;
-            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-dark-check-color;
-          }
-        }
-      }
+    #{$root}__control {
+      @include _control-default($ct-radio-dark-control-color, $ct-radio-dark-control-background-color, $_control-border-width);
 
       &:hover {
-        & + .ct-radio__state {
-          &::before {
-            box-shadow: 0 0 0 ct-particle(0.125) $ct-radio-dark-border-color;
-          }
-        }
+        @include _control-default($ct-radio-dark-control-hover-color, $ct-radio-dark-control-hover-background-color, $_control-border-hover-width);
       }
 
       &:checked {
-        & + .ct-radio__state {
-          &::before {
-            background-color: $ct-radio-dark-selected-background-color;
-            border-color: $ct-radio-dark-selected-background-color;
-            box-shadow: inset 0 0 0 ct-particle(0.375) $ct-radio-dark-check-color;
-          }
-        }
+        @include _control-checked($ct-radio-dark-control-color, $ct-radio-dark-control-background-color, $_control-border-width);
+      }
+
+      &:checked:hover {
+        @include _control-checked($ct-radio-dark-control-hover-color, $ct-radio-dark-control-hover-background-color, $_control-border-hover-width);
+      }
+
+      &:focus {
+        @include ct-outline-dark();
+
+        border-radius: 50%;
       }
     }
 
-    &.ct-radio--success {
-      #{$root}__element {
-        &:checked + .ct-radio__state {
-          &::before {
-            border-color: $ct-input-dark-success-border-color;
-            background-color: $ct-input-dark-success-border-color;
-          }
-        }
-      }
+    #{$root}__label {
+      color: $ct-radio-dark-label-color;
     }
 
-    &.ct-radio--error {
-      #{$root}__element {
-        & + .ct-radio__state {
-          &::before {
-            border-color: $ct-input-dark-error-border-color;
-          }
+    &#{$root}--error {
+      #{$root}__control {
+        @include _control-default($ct-radio-dark-control-invalid-color, $ct-radio-dark-control-invalid-background-color);
+
+        &:hover {
+          @include _control-default($ct-radio-dark-control-invalid-color, $ct-radio-dark-control-invalid-background-color);
         }
 
         &:checked {
-          & + .ct-radio__state {
-            &::before {
-              border-color: $ct-input-dark-error-border-color;
-              background-color: $ct-input-dark-error-border-color;
-            }
-          }
+          @include _control-checked($ct-radio-dark-control-invalid-color, $ct-radio-dark-control-invalid-background-color);
+        }
+
+        &:checked:hover {
+          @include _control-checked($ct-radio-dark-control-invalid-color, $ct-radio-dark-control-invalid-background-color);
         }
       }
     }

@@ -1,37 +1,41 @@
 {#
 /**
  * @file
- * radio component.
+ * Radio component.
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - content: [string] Input field label.
- * - value: [string] Input field value.
- * - disabled: [boolean] Disabled state.
- * - required: [boolean] Required state.
- * - has_error: [boolean] Error state.
+ * - content: [string] Label content.
+ * - is_checked: [boolean] Denote if the component is checked.
+ * - is_invalid: [boolean] Denote if the component is invalid.
+ * - is_disabled: [boolean] Denote if the component is disabled.
+ * - name: [string] DOM name.
+ * - value: [string] DOM value.
+ * - id: [string] DOM id.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
-{% set disabled_class = disabled ? 'ct-radio--disabled' : '' %}
-{% set required_class = required ? 'ct-radio--required' : '' %}
-{% set error_class = has_error ? 'ct-radio--error' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, disabled_class, required_class, error_class, modifier_class|default('')) %}
+{% set disabled_class = is_disabled ? 'ct-radio--disabled' : '' %}
+{% set error_class = is_invalid ? 'ct-radio--error' : '' %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, error_class, modifier_class|default(''))|trim %}
 
-<div class="ct-radio {{ modifier_class|trim }}">
-  <input
-    type="radio"
-    class="ct-radio__element"
-    value="{{ value }}"
-    {{ disabled ? 'disabled' }}
-    {{ required ? 'required' }}
-    {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
-  />
-  <span class="ct-radio__state"></span>
-  {% if content is not empty %}
-    <label class="ct-radio__label{{ disabled ? ' ct-radio__label--disabled' }}">{{ content }}</label>
-  {% endif %}
-</div>
+{% if name is not empty %}
+  <div class="ct-radio {{ modifier_class }}">
+    <input
+      type="radio"
+      class="ct-radio__control"
+      name="{{ name }}"
+      {% if value %}value="{{ value }}"{% endif %}
+      {% if id %}id="{{ id }}"{% endif %}
+      {{ is_checked ? 'checked' }}
+      {{ is_disabled ? 'disabled' }}
+      {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
+    />
+    {% if content is not empty %}
+      <label class="ct-radio__label" {% if id %}for="{{ id }}"{% endif %}>{{ content }}</label>
+    {% endif %}
+  </div>
+{% endif %}

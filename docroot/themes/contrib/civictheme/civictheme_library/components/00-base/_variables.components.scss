@@ -251,16 +251,21 @@ $ct-input-dark-success-border-color: ct-color-dark('success') !default;
 //
 // Radio.
 //
-$ct-radio-label-light-color: ct-color-light('body') !default;
-$ct-radio-light-border-color: ct-color-light('border-light') !default;
-$ct-radio-light-selected-background-color: ct-color-light('interaction-background') !default;
-$ct-radio-light-active-background-color: ct-color-light('body') !default;
-$ct-radio-light-check-color: ct-color-light('interaction-text') !default;
-$ct-radio-label-dark-color: ct-color-dark('body') !default;
-$ct-radio-dark-border-color: ct-color-dark('border-dark') !default;
-$ct-radio-dark-selected-background-color: ct-color-dark('interaction-background') !default;
-$ct-radio-dark-active-background-color: ct-color-dark('body') !default;
-$ct-radio-dark-check-color: ct-color-dark('interaction-text') !default;
+$ct-radio-light-control-radius: ct-particle(3) !default;
+$ct-radio-light-control-background-color: ct-color-light('interaction-text') !default;
+$ct-radio-light-control-color: ct-color-light('interaction-background') !default;
+$ct-radio-light-control-hover-background-color: ct-color-light('interaction-hover-text') !default;
+$ct-radio-light-control-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-radio-light-control-invalid-background-color: $ct-radio-light-control-background-color !default;
+$ct-radio-light-control-invalid-color: ct-color-light('error') !default;
+$ct-radio-light-label-color: ct-color-light('body') !default;
+$ct-radio-dark-control-background-color: ct-color-dark('interaction-text') !default;
+$ct-radio-dark-control-color: ct-color-dark('interaction-background') !default;
+$ct-radio-dark-control-hover-background-color: ct-color-dark('interaction-hover-text') !default;
+$ct-radio-dark-control-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-radio-dark-control-invalid-background-color: $ct-radio-dark-control-background-color !default;
+$ct-radio-dark-control-invalid-color: ct-color-dark('error') !default;
+$ct-radio-dark-label-color: ct-color-dark('body') !default;
 
 //
 // Checkbox.
