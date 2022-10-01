@@ -22,7 +22,7 @@
 {% set rows = rows|default(5) %}
 
 <textarea
-  class="ct-textarea ct-input__element {{ modifier_class }}"
+  class="ct-textarea ct-input__control {{ modifier_class }}"
   rows="{{ rows }}"
   {{ disabled ? 'disabled' }}
   {{ required ? 'required' }}

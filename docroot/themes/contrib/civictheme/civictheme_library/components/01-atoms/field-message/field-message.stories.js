@@ -3,7 +3,7 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeFieldMessage from './field-message.twig';
 
 export default {
-  title: 'Atoms/Forms/Field Message',
+  title: 'Atoms/Form control/Field Message',
   parameters: {
     layout: 'centered',
   },

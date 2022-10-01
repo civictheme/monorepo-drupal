@@ -13,7 +13,7 @@
     opacity: 50%;
   }
 
-  .ct-checkbox__element {
+  .ct-checkbox__control {
     position: absolute;
     // stylelint-disable-next-line alpha-value-notation
     opacity: 0;
@@ -81,7 +81,7 @@
       color: $ct-checkbox-label-light-color;
     }
 
-    #{$root}__element {
+    #{$root}__control {
       & + .ct-checkbox__state {
         &::before {
           border-color: $ct-checkbox-light-border-color;
@@ -134,7 +134,7 @@
     }
 
     &.ct-checkbox--success {
-      #{$root}__element {
+      #{$root}__control {
         &:checked + .ct-checkbox__state {
           &::before {
             border-color: $ct-input-light-success-border-color;
@@ -145,7 +145,7 @@
     }
 
     &.ct-checkbox--error {
-      #{$root}__element {
+      #{$root}__control {
         & + .ct-checkbox__state {
           &::before {
             border-color: $ct-input-light-error-border-color;
@@ -169,7 +169,7 @@
       color: $ct-checkbox-label-dark-color;
     }
 
-    #{$root}__element {
+    #{$root}__control {
       & + .ct-checkbox__state {
         &::before {
           border-color: $ct-checkbox-dark-border-color;
@@ -222,7 +222,7 @@
     }
 
     &.ct-checkbox--success {
-      #{$root}__element {
+      #{$root}__control {
         &:checked + .ct-checkbox__state {
           &::before {
             border-color: $ct-input-dark-success-border-color;
@@ -233,7 +233,7 @@
     }
 
     &.ct-checkbox--error {
-      #{$root}__element {
+      #{$root}__control {
         & + .ct-checkbox__state {
           &::before {
             border-color: $ct-input-dark-error-border-color;

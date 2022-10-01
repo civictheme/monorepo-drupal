@@ -3,7 +3,7 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeLabel from './label.twig';
 
 export default {
-  title: 'Atoms/Forms/Label',
+  title: 'Atoms/Form control/Label',
   parameters: {
     layout: 'centered',
   },

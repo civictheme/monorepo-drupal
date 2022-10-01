@@ -3,7 +3,7 @@ import { radios, text } from '@storybook/addon-knobs';
 import CivicThemeFieldDescription from './field-description.twig';
 
 export default {
-  title: 'Atoms/Forms/Field Description',
+  title: 'Atoms/Form control/Field Description',
   parameters: {
     layout: 'centered',
   },

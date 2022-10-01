@@ -26,9 +26,9 @@ export const Radio = (knobTab) => {
     is_checked: boolean('Checked', false, generalKnobTab),
     is_invalid: boolean('Invalid', false, generalKnobTab),
     is_disabled: boolean('Disabled', false, generalKnobTab),
-    name: text('Name', 'element-name', generalKnobTab),
-    value: text('Value', 'element-value', generalKnobTab),
-    id: text('ID', 'element-id', generalKnobTab),
+    name: text('Name', 'control-name', generalKnobTab),
+    value: text('Value', 'control-value', generalKnobTab),
+    id: text('ID', 'control-id', generalKnobTab),
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };

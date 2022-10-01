@@ -16,7 +16,7 @@
     margin-bottom: ct-spacing();
   }
 
-  &__element {
+  &__control {
     border: ct-particle(0.125) solid;
     border-radius: $ct-input-border-radius;
     padding: ct-spacing(1.5) ct-spacing(5) ct-spacing(1.5) ct-spacing(2);
@@ -56,7 +56,7 @@
   }
 
   &.ct-theme-light {
-    #{$root}__element {
+    #{$root}__control {
       border-color: $ct-input-light-border-color;
       background-color: $ct-input-light-background-color;
 
