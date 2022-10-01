@@ -222,30 +222,8 @@ $ct-mobile-navigation-spacing: ct-spacing(2);
 .ct-mobile-navigation__trigger {
   @include ct-print-hide();
 
-  background-color: transparent;
-  border: none;
-  padding-left: 0;
-  padding-right: 0;
-
-  @include ct-typography-ruleset(($ct-font-base-size * 0.875, ct-icon-size-dimension('regular', 'xxs', 'height'), 400, 'primary', 0));
-
-  display: inline;
-
   @include ct-breakpoint($ct-mobile-navigation-breakpoint) {
     display: none;
-  }
-
-  .ct-icon {
-    width: ct-icon-size-dimension('regular', 'xxs', 'width');
-    height: ct-icon-size-dimension('regular', 'xxs', 'height');
-  }
-
-  &.ct-theme-light {
-    color: $ct-mobile-navigation-trigger-light-color;
-  }
-
-  &.ct-theme-dark {
-    color: $ct-mobile-navigation-trigger-dark-color;
   }
 }
 
