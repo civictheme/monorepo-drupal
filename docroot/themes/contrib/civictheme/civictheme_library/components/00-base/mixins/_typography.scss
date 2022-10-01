@@ -109,7 +109,7 @@
   }
 
   font-size: rem($font-size);
-  line-height: $line-height;
+  line-height: rem($line-height);
   letter-spacing: $letter-spacing;
 
   @if $font-name != 'none' {
