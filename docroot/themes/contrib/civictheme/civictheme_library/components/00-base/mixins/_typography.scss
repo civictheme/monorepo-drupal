@@ -6,7 +6,7 @@
 @use 'sass:list';
 
 //
-// Include pre-defined typography preset.
+// Print typography rules based on the pre-defined typography preset.
 //
 // @code
 //
@@ -19,82 +19,143 @@
     @error 'Only scalar names can be used as a typography preset.';
   }
 
-  @include ct-typography-ruleset($name);
+  @include _ct-typography-print-ruleset($name);
+}
+
+//
+// Get typography rules based on the pre-defined typography preset.
+//
+// Similar to ct-typography(), but returns the value instead of printing it.
+//
+@function ct-typography-rule($name, $rule-name, $breakpoint, $default: 'none') {
+  @if type-of($name) != string {
+    @error 'Only scalar names can be used as a typography preset.';
+  }
+
+  $value: _ct-typography-get-ruleset-rule($name, $rule-name, $breakpoint);
+
+  @if $value == null {
+    $value: $default;
+  }
+
+  @return $value;
 }
 
 //
 // Include font size, height, weight and family for one-to-many breakpoints.
 //
-// @code
+// Do not use directly.
+// Use @include ct-typography() mixin instead.
 //
-// @include ct-typography('heading-1');
-// or
-// @include ct-typography((24px, 1.2em, 400));
-// or
-// @include ct-typography((
-//   'xs': (16px, 1.5em, 400),
-//   'l': (24px, 1.2em, 600)
-// ));
-//
-// @endcode
-//
-// Try using @include ct-typography() mixin instead to keep custom
-// typography to the minimum.
-//
-@mixin ct-typography-ruleset($ruleset) {
+@mixin _ct-typography-print-ruleset($ruleset) {
   $all-typographies: _ct-typography-all();
 
-  // Ruleset is a name of the preset - print preset.
+  // Ruleset is a name of the preset - retrieve preset as a ruleset.
   @if type-of($ruleset) == string {
     @if map.get($all-typographies, $ruleset) == null {
-      @error '"#{$ruleset}" is not an available typeset';
+      @error '"#{$ruleset}" is not an available typography preset.';
     }
 
     $ruleset: map.get($all-typographies, $ruleset);
   }
 
-  // Ruleset is a list of rule - print rules.
+  // Ruleset is a list of rules - extract rules.
   @if type-of($ruleset) == list {
+    $ruleset: _ct-typography-extract-rules($ruleset);
+
     @include _ct-typography-print-rules($ruleset);
   }
 
   // Ruleset is a full ruleset definition - print all rules with breakpoints.
-  @if type-of($ruleset) == map {
+  @else if type-of($ruleset) == map {
     $breakpoints: map.keys($ruleset);
 
     @each $breakpoint in $breakpoints {
-      $breakpoint-rules: map.get($ruleset, $breakpoint);
+      $breakpoint-ruleset: _ct-typography-extract-rules(map.get($ruleset, $breakpoint));
 
       @include ct-breakpoint($breakpoint) {
-        @include _ct-typography-print-rules($breakpoint-rules);
+        @include _ct-typography-print-rules($breakpoint-ruleset);
       }
     }
   }
 }
 
 //
-// Compile all typographies into a single map.
+// Include font size, height, weight and family for one-to-many breakpoints.
 //
 // Do not use directly.
-// Use @include ct-typography() mixin instead.
+// Use @include ct-ct-typography-rule() function instead.
 //
 // stylelint-disable-next-line scss/at-function-pattern
-@function _ct-typography-all() {
-  @return map.merge($ct-typography-default, $ct-typography);
+@function _ct-typography-get-ruleset-rule($ruleset, $rule-name: false, $rule-breakpoint: false) {
+  $all-typographies: _ct-typography-all();
+
+  // Ruleset is a name of the preset - retrieve preset as a ruleset.
+  @if type-of($ruleset) == string {
+    @if map.get($all-typographies, $ruleset) == null {
+      @error '"#{$ruleset}" is not an available typography preset.';
+    }
+
+    $ruleset: map.get($all-typographies, $ruleset);
+  }
+
+  // Ruleset is a list of rules - extract rules.
+  @if type-of($ruleset) == list {
+    $ruleset: _ct-typography-extract-rules($ruleset);
+
+    @if $rule-name {
+      @return map.get($ruleset, $rule-name);
+    }
+  }
+
+  // Ruleset is a full ruleset definition - print all rules with breakpoints.
+  @else if type-of($ruleset) == map {
+    $breakpoints: map.keys($ruleset);
+
+    @each $breakpoint in $breakpoints {
+      $breakpoint-ruleset: _ct-typography-extract-rules(map.get($ruleset, $breakpoint));
+
+      @if $rule-name and $rule-breakpoint and $breakpoint == $rule-breakpoint {
+        @return map.get($breakpoint-ruleset, $rule-name);
+      }
+    }
+  }
 }
 
 //
 // Print typography rules.
 //
 // Do not use directly.
-// Use @include ct-typography() mixin instead.
 //
-@mixin _ct-typography-print-rules($rules) {
+@mixin _ct-typography-print-rules($map) {
+  font-size: map.get($map, 'font-size');
+  line-height: map.get($map, 'line-height');
+
+  @if map.get($map, 'font-name') {
+    font-family: map.get($map, 'font-name');
+  }
+
+  @if map.get($map, 'font-weight') {
+    font-weight: map.get($map, 'font-weight');
+  }
+
+  @if map.get($map, 'letter-spacing') {
+    letter-spacing: map.get($map, 'letter-spacing');
+  }
+}
+
+//
+// Normalize typography rules and return as a map.
+//
+// Do not use directly.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _ct-typography-extract-rules($rules) {
   $font-size: list.nth($rules, 1);
   $line-height: list.nth($rules, 2);
-  $font-weight: 'default';
-  $font-name: 'none';
-  $letter-spacing: normal;
+  $font-weight: false;
+  $font-name: false;
+  $letter-spacing: false;
 
   @if length($rules) >= 3 {
     $font-weight: list.nth($rules, 3);
@@ -108,15 +169,11 @@
     $letter-spacing: list.nth($rules, 5);
   }
 
-  font-size: rem($font-size);
-  line-height: rem($line-height);
-  letter-spacing: $letter-spacing;
-
-  @if $font-name != 'none' {
-    font-family: ct-font($font-name);
+  @if $font-name {
+    $font-name: ct-font($font-name);
   }
 
-  @if $font-weight != 'default' {
+  @if $font-weight {
     // Try to get the weight value from the pre-defined weights or default
     // to the provided value.
     $font-weight-value: map.get(_ct-font-weights-all(), $font-weight);
@@ -124,7 +181,26 @@
     @if $font-weight-value != null {
       $font-weight: $font-weight-value;
     }
-
-    font-weight: $font-weight;
   }
+
+  $map: (
+    'font-size': rem($font-size),
+    'line-height': rem($line-height),
+    'font-weight': $font-weight,
+    'font-name': $font-name,
+    'letter-spacing': $letter-spacing,
+  );
+
+  @return $map;
+}
+
+//
+// Compile all typographies into a single map.
+//
+// Do not use directly.
+// Use @include ct-typography() mixin instead.
+//
+// stylelint-disable-next-line scss/at-function-pattern
+@function _ct-typography-all() {
+  @return map.merge($ct-typography-default, $ct-typography);
 }

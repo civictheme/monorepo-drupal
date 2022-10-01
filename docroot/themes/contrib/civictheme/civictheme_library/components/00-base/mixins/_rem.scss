@@ -15,12 +15,7 @@
   }
 
   $pxbase: $base;
-
   $value: math.div($pxval, $pxbase) * 1rem;
-
-  @if ($value == 0rem) {
-    $value: 0;
-  }
 
   @return $value;
 }
