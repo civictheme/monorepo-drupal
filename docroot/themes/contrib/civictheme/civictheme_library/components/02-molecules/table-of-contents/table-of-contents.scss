@@ -98,7 +98,7 @@
       }
 
       &:focus {
-        @include ct-outline();
+        @include ct-outline-light();
       }
     }
   }
@@ -130,7 +130,7 @@
       }
 
       &:focus {
-        @include ct-outline();
+        @include ct-outline-dark();
       }
     }
   }

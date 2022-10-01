@@ -5,10 +5,33 @@
 //
 // Set element outline.
 //
-@mixin ct-outline($is_dark: false) {
-  outline-offset: $ct-outline-offset;
-  outline-width: $ct-outline-width;
+// Should be used on all interactive elements.
+//
+@mixin ct-outline-light($width: $ct-outline-width, $offset: $ct-outline-offset, $radius: $ct-outline-border-radius) {
+  @include _ct-outline(false, $width, $offset, $radius);
+}
+
+//
+// Set element outline.
+//
+// Should be used on all interactive elements.
+//
+@mixin ct-outline-dark($width: $ct-outline-width, $offset: $ct-outline-offset, $radius: $ct-outline-border-radius) {
+  @include _ct-outline(true, $width, $offset, $radius);
+}
+
+//
+// Set element outline.
+//
+// Do not use directly.
+// Use ct-outline-light() and ct-outline-dark() instead.
+//
+@mixin _ct-outline($is_dark: false, $width: $ct-outline-width, $offset: $ct-outline-offset, $radius: $ct-outline-border-radius) {
+  border-radius: $radius;
+  outline-offset: $offset;
+  outline-width: $width;
   outline-style: solid;
+  transition: none;
 
   @if $is_dark {
     outline-color: $ct-outline-dark;
@@ -18,6 +41,9 @@
   }
 }
 
-@mixin ct-outline-border() {
-  border-radius: $ct-outline-border-radius;
+//
+// Remove outline.
+//
+@mixin ct-outline-remove() {
+  outline: none;
 }

@@ -52,7 +52,7 @@
     }
 
     &:focus {
-      @include ct-outline(false);
+      @include ct-outline-dark();
     }
 
     &:hover {
@@ -101,7 +101,7 @@
     }
 
     &:focus {
-      @include ct-outline(true);
+      @include ct-outline-dark();
     }
 
     &:hover {

@@ -61,7 +61,7 @@
     padding-bottom: ct-spacing(2);
 
     &:focus {
-      @include ct-outline();
+      @include ct-outline-light();
     }
   }
 

@@ -19,7 +19,7 @@
     padding: 0;
 
     &:focus {
-      @include ct-outline(true);
+      @include ct-outline-dark();
     }
   }
 

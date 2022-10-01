@@ -17,7 +17,7 @@
   @include ct-elevation(3);
 
   &:focus-within {
-    @include ct-outline();
+    @include ct-outline-light();
   }
 
   #{$root}__image-wrapper {
@@ -106,7 +106,7 @@
     background-color: $ct-navigation-card-light-background-color;
 
     &:focus {
-      @include ct-outline(false);
+      @include ct-outline-dark();
     }
 
     #{$root}__title {
@@ -135,7 +135,7 @@
     background-color: $ct-navigation-card-dark-background-color;
 
     &:focus {
-      @include ct-outline(true);
+      @include ct-outline-dark();
     }
 
     #{$root}__title {

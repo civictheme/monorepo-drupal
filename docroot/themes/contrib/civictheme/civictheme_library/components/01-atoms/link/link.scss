@@ -56,8 +56,7 @@
     );
 
     &:focus {
-      @include ct-outline();
-      @include ct-outline-border();
+      @include ct-outline-light();
     }
 
     .ct-link__external-icon {
@@ -74,8 +73,7 @@
     );
 
     &:focus {
-      @include ct-outline();
-      @include ct-outline-border();
+      @include ct-outline-dark();
     }
 
     .ct-link__external-icon {

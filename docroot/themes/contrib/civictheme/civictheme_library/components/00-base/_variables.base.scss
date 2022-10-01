@@ -494,6 +494,6 @@ $ct-animation-enabled: true !default;
 $ct-animation-duration: 0.25s !default;
 
 // Outline.
-$ct-outline-offset: 0 !default;
+$ct-outline-offset: ct-particle(0.25) !default;
 $ct-outline-width: ct-particle(0.375) !default;
 $ct-outline-border-radius: $ct-border-radius !default;

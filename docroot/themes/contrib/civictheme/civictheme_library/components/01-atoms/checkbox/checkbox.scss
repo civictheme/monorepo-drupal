@@ -101,7 +101,7 @@
       &:focus {
         & + .ct-checkbox__state {
           &::before {
-            @include ct-outline();
+            @include ct-outline-light();
 
             background-color: $ct-checkbox-light-selected-background-color;
             border-color: $ct-checkbox-light-selected-background-color;
@@ -189,7 +189,7 @@
       &:focus {
         & + .ct-checkbox__state {
           &::before {
-            @include ct-outline(true);
+            @include ct-outline-dark();
 
             background-color: $ct-checkbox-dark-selected-background-color;
             border-color: $ct-checkbox-dark-selected-background-color;

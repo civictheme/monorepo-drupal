@@ -157,7 +157,7 @@
     }
 
     &:focus {
-      @include ct-outline();
+      @include ct-outline-light();
     }
   }
 

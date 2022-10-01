@@ -25,7 +25,7 @@
     color: $ct-content-link-light-color;
 
     &:focus {
-      @include ct-outline();
+      @include ct-outline-light();
     }
 
     &:hover {
@@ -38,7 +38,7 @@
     color: $ct-content-link-dark-color;
 
     &:focus {
-      @include ct-outline(true);
+      @include ct-outline-dark();
     }
 
     &:hover {

@@ -19,7 +19,7 @@
   @include ct-elevation(3);
 
   &:focus-within {
-    @include ct-outline();
+    @include ct-outline-light();
   }
 
   &#{$root}--no-image {
@@ -93,7 +93,7 @@
     background-color: $ct-event-card-light-background-color;
 
     &:focus {
-      @include ct-outline(false);
+      @include ct-outline-dark();
     }
 
     &#{$root}--no-image {
@@ -123,7 +123,7 @@
     background-color: $ct-event-card-dark-background-color;
 
     &:focus {
-      @include ct-outline(true);
+      @include ct-outline-dark();
     }
 
     &#{$root}--no-image {
