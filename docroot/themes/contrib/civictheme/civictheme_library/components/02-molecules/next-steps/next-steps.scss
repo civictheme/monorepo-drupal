@@ -12,7 +12,7 @@
   &__content {
     display: block;
     position: relative;
-    border: 1px solid;
+    border: 1px solid transparent;
     border-radius: $ct-next-steps-border-radius;
     padding: ct-spacing(3) ct-spacing(3);
 
@@ -47,6 +47,7 @@
     #{$root}__content {
       color: $ct-next-steps-light-color;
       background-color: $ct-next-steps-light-background-color;
+      border-color: $ct-next-steps-light-border-color;
 
       @include ct-highlight-stripe-color($ct-next-steps-light-stripe-color);
     }
@@ -96,6 +97,7 @@
     #{$root}__content {
       color: $ct-next-steps-dark-color;
       background-color: $ct-next-steps-dark-background-color;
+      border-color: $ct-next-steps-dark-border-color;
 
       @include ct-highlight-stripe-color($ct-next-steps-dark-stripe-color);
     }
