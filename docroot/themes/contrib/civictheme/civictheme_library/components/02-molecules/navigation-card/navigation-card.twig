@@ -61,7 +61,7 @@
     {% endblock %}
     {% block icon %}
       {% if icon %}
-        <div class="ct-navigation-card__icon">
+        <div class="ct-navigation-card__icon-wrapper">
           {% include '@base/icon/icon.twig' with {
             symbol: icon,
             size: 'large',
@@ -80,7 +80,7 @@
           {% endif %}
             {{ title }}
             {% if url is not empty %}
-              <span>
+              <span class="ct-navigation-card__icon-wrapper">
                 {% if is_external %}
                   {% include '@base/icon/icon.twig' with {
                     symbol: 'upper-right-arrow',
