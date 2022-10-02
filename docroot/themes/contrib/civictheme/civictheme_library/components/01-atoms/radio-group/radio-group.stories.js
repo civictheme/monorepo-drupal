@@ -1,0 +1,59 @@
+// phpcs:ignoreFile
+import {
+  boolean, number, radios, text,
+} from '@storybook/addon-knobs';
+import CivicThemeRadioGroup from './radio-group.twig';
+import { randomInputItems } from '../../00-base/base.stories';
+
+export default {
+  title: 'Atoms/Form control/Radio Group',
+  parameters: {
+    layout: 'centered',
+  },
+};
+
+export const RadioGroup = (knobTab) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+
+  const generalKnobs = {
+    theme: radios(
+      'Theme',
+      {
+        Light: 'light',
+        Dark: 'dark',
+      },
+      'light',
+      generalKnobTab,
+    ),
+    direction: radios(
+      'Direction',
+      {
+        Horizontal: 'horizontal',
+        Vertical: 'vertical',
+      },
+      'vertical',
+      generalKnobTab,
+    ),
+    items: randomInputItems(number(
+      'Items count',
+      5,
+      {
+        range: true,
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      generalKnobTab,
+    )),
+    name: text('Name', 'control-name', generalKnobTab),
+    id: text('ID', 'control-id', generalKnobTab),
+    is_invalid: boolean('Invalid', false, generalKnobTab),
+    is_disabled: boolean('Disabled', false, generalKnobTab),
+    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
+    attributes: text('Additional attributes', '', generalKnobTab),
+  };
+
+  return CivicThemeRadioGroup({
+    ...generalKnobs,
+  });
+};
