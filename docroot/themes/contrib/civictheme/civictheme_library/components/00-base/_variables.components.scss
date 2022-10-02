@@ -581,21 +581,21 @@ $ct-navigation-card-image-height-mobile: ct-particle(35) !default;
 $ct-navigation-card-large-image-height-desktop: auto !default;
 $ct-navigation-card-large-image-height-mobile: ct-particle(35) !default;
 $ct-navigation-card-large-image-width-desktop: ct-particle(25) !default;
-$ct-navigation-card-large-image-width-mobile: ct-particle(20) !default;
+$ct-navigation-card-large-image-width-mobile: 100% !default;
 $ct-navigation-card-light-background-color: ct-color-light('background-light') !default;
 $ct-navigation-card-light-color: ct-color-light('body') !default;
 $ct-navigation-card-light-heading-active-color: ct-color-light('heading') !default;
 $ct-navigation-card-light-heading-color: ct-color-light('heading') !default;
-$ct-navigation-card-light-heading-hover-color: ct-color-light('heading') !default;
-$ct-navigation-card-light-icon-arrow-color: ct-color-light('heading') !default;
-$ct-navigation-card-light-icon-color: ct-color-light('heading') !default;
+$ct-navigation-card-light-heading-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-navigation-card-light-icon-arrow-color: ct-color-light('interaction-background') !default;
+$ct-navigation-card-light-icon-color: ct-color-light('interaction-background') !default;
 $ct-navigation-card-dark-background-color: ct-color-dark('background-dark') !default;
 $ct-navigation-card-dark-color: ct-color-dark('body') !default;
 $ct-navigation-card-dark-heading-active-color: ct-color-dark('heading') !default;
 $ct-navigation-card-dark-heading-color: ct-color-dark('heading') !default;
-$ct-navigation-card-dark-heading-hover-color: ct-color-dark('heading') !default;
-$ct-navigation-card-dark-icon-arrow-color: ct-color-dark('heading') !default;
-$ct-navigation-card-dark-icon-color: ct-color-dark('heading') !default;
+$ct-navigation-card-dark-heading-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-navigation-card-dark-icon-arrow-color: ct-color-dark('interaction-background') !default;
+$ct-navigation-card-dark-icon-color: ct-color-dark('interaction-background') !default;
 
 //
 // Cards/Promo card.
