@@ -45,6 +45,7 @@
 
   &__title {
     @include ct-typography('heading-5');
+
     z-index: 1;
   }
 
