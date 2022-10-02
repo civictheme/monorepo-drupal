@@ -8,10 +8,13 @@
 .ct-label {
   $root: &;
 
-  display: block;
-  margin-bottom: ct-spacing();
-
   @include ct-typography('label-regular');
+
+  display: block;
+
+  &[for] {
+    cursor: pointer;
+  }
 
   &--required {
     &::after {

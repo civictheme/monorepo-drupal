@@ -5,7 +5,7 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - content: [string] Label content.
+ * - label: [string] Label content.
  * - is_checked: [boolean] Denote if the control is checked.
  * - is_invalid: [boolean] Denote if the control is invalid.
  * - is_disabled: [boolean] Denote if the control is disabled.
@@ -34,8 +34,13 @@
       {{ is_disabled ? 'disabled' }}
       {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
     />
-    {% if content is not empty %}
-      <label class="ct-radio__label" {% if id %}for="{{ id }}"{% endif %}>{{ content }}</label>
+    {% if label is not empty %}
+      {% include '@atoms/label/label.twig' with {
+        theme: theme,
+        content: label,
+        for: id ? id : null,
+        modifier_class: 'ct-radio__label',
+      } only %}
     {% endif %}
   </div>
 {% endif %}

@@ -22,7 +22,6 @@
 
   display: grid;
   grid-template-columns: $_control-width auto;
-  gap: ct-particle(1.5);
 
   #{$root}__control {
     @include ct-form-control(false, false);
@@ -36,7 +35,7 @@
 
     // Adjust vertical position to be visually centered within the vertical
     // middle of the label based on the line height.
-    transform: translateY(math.div($_control-height - ct-typography-rule('text-regular', 'line-height', 'm'), 2) + $ct-form-control-border-width * 2);
+    transform: translateY(-1 * math.div($_control-height - ct-typography-rule('label-regular', 'line-height', 'm'), 2));
 
     &::before {
       content: '';
@@ -62,9 +61,7 @@
   }
 
   #{$root}__label {
-    &[for] {
-      cursor: pointer;
-    }
+    padding-left: ct-spacing(1.5);
   }
 
   &.ct-theme-light {

@@ -35,6 +35,7 @@ export const Label = (knobTab) => {
       generalKnobTab,
     ),
     content: text('Content', 'Label content', generalKnobTab),
+    for: text('For', '', generalKnobTab),
     modifier_class: text('Additional classes', '', generalKnobTab),
     attributes: text('Additional attributes', '', generalKnobTab),
   };

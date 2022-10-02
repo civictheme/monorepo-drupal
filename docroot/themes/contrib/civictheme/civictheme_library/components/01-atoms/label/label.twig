@@ -7,6 +7,7 @@
  * - theme: [string] Theme: light, dark.
  * - size: [string] Chip size: extra-large, large, regular, small, extra-small.
  * - content: [string] The label's content.
+ * - for: [string] Which component this label belongs to.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
@@ -20,8 +21,7 @@
 {% if content is not empty -%}
   <label
     class="ct-label {{ modifier_class }}"
+    {% if for is not empty %}for="{{ for }}"{% endif %}
     {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
-  >
-    {{ content }}
-  </label>
+  >{{ content }}</label>
 {%- endif %}
