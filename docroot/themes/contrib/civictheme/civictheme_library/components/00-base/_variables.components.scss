@@ -663,14 +663,14 @@ $ct-subject-card-image-height-mobile: ct-particle(20);
 $ct-subject-card-image-width-desktop: auto;
 $ct-subject-card-image-width-mobile: auto;
 $ct-subject-card-light-active-color: ct-color-light('body') !default;
-$ct-subject-card-light-color: ct-color-light('body') !default;
-$ct-subject-card-light-hover-color: ct-color-light('body') !default;
-$ct-subject-card-light-icon-color: ct-color-light('body') !default;
-$ct-subject-card-light-image-background-color: ct-color-light('background') !default;
+$ct-subject-card-light-color: ct-color-light('interaction-background') !default;
+$ct-subject-card-light-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-subject-card-light-icon-color: ct-color-light('interaction-background') !default;
+$ct-subject-card-light-image-background-color: ct-color-light('background-light') !default;
 $ct-subject-card-dark-active-color: ct-color-dark('body') !default;
-$ct-subject-card-dark-color: ct-color-dark('body') !default;
-$ct-subject-card-dark-hover-color: ct-color-dark('body') !default;
-$ct-subject-card-dark-icon-color: ct-color-dark('body') !default;
+$ct-subject-card-dark-color: ct-color-dark('interaction-background') !default;
+$ct-subject-card-dark-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-subject-card-dark-icon-color: ct-color-dark('interaction-background') !default;
 $ct-subject-card-dark-image-background-color: ct-color-dark('background') !default;
 
 //

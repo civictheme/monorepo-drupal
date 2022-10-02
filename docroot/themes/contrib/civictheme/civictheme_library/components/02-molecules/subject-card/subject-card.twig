@@ -17,7 +17,7 @@
 
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set type_class = image is empty ? 'ct-subject-card--no-image' : '' %}
-{% set modifier_class = '%s %s'|format(theme_class, type_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, type_class, modifier_class|default('')) %}
 
 <div class="ct-subject-card {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
   <div class="ct-subject-card__image-wrapper">
@@ -45,11 +45,12 @@
       {% if title is not empty %}
         <div class="ct-subject-card__title">
           {% if url is not empty %}
-          <a class="ct-subject-card__title-link" href="{{ url }}">
+            <a class="ct-subject-card__title-link" href="{{ url }}">
           {% endif %}
             {{ title }}
-            {% if url is not empty %}
-              <span>
+          {% if url is not empty %}
+            </a>
+            <div class="ct-subject-card__icon-wrapper">
                 {% if is_external %}
                   {% include '@base/icon/icon.twig' with {
                     symbol: 'upper-right-arrow',
@@ -58,15 +59,12 @@
                   } only %}
                 {% else %}
                   {% include '@base/icon/icon.twig' with {
-                    symbol: 'upper-right-arrow',
+                    symbol: 'right-arrow-2',
                     color: 'primary',
                     modifier_class: 'ct-subject-card__icon--arrow',
                   } only %}
                 {% endif %}
-              </span>
-            {% endif %}
-          {% if url is not empty %}
-          </a>
+              </div>
           {% endif %}
         </div>
       {% endif %}
