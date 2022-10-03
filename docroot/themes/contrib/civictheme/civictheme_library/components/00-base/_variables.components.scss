@@ -1244,3 +1244,9 @@ $ct-webform-light-wrapper-background-color: ct-color-light('background') !defaul
 $ct-webform-dark-background-color: ct-color-dark('background') !default;
 $ct-webform-dark-color: ct-color-dark('body') !default;
 $ct-webform-dark-wrapper-background-color: ct-color-dark('background') !default;
+
+//
+// Pagination.
+//
+$ct-pager-light-color: ct-color-light('interaction-background') !default;
+$ct-pager-dark-color: ct-color-dark('interaction-background') !default;

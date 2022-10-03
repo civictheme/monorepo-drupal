@@ -82,9 +82,15 @@
 
   #{$root}__link {
     padding: 0 ct-spacing();
-    display: block;
-    text-align: center;
-    text-decoration-color: transparent;
     white-space: nowrap;
+  }
+
+  &,
+  &.ct-theme-light {
+    color: $ct-pager-light-color;
+  }
+
+  &.ct-theme-dark {
+    color: $ct-pager-dark-color;
   }
 }
