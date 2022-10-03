@@ -11,16 +11,11 @@
     margin-bottom: 0;
   }
 
-  #{$root}__element {
-    box-sizing: border-box;
-    width: 100%;
-  }
-
   &--vertical {
     #{$root}__label,
     #{$root}__description,
-    #{$root}__element,
-    #{$root}__mesage {
+    #{$root}__control,
+    #{$root}__message {
       margin-bottom: ct-spacing();
     }
   }
@@ -35,8 +30,8 @@
     }
 
     #{$root}__description,
-    #{$root}__element,
-    #{$root}__mesage {
+    #{$root}__control,
+    #{$root}__message {
       margin-bottom: ct-spacing();
     }
   }

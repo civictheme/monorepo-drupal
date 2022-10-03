@@ -57,8 +57,8 @@ export const FormElement = () => {
     id: text('ID', 'control-id', generalKnobTab),
     is_required: boolean('Required', false, generalKnobTab),
     is_disabled: boolean('Disabled', false, generalKnobTab),
-    has_error: boolean('Has error', false, generalKnobTab),
-    message: text('Message', '', generalKnobTab),
+    is_invalid: boolean('Is invalid', false, generalKnobTab),
+    message: text('Message', 'Field message that spans on the multiple lines to test vertical checkbox alignment', generalKnobTab),
     modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };

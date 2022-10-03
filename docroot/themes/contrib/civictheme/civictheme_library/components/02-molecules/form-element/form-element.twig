@@ -26,7 +26,7 @@
     name: name,
     is_disabled: is_disabled,
     is_invalid: has_error,
-    modifier_class: element.modifier_class ~ ' civictheme-form-element__element',
+    modifier_class: 'ct-form-element__control ' ~ element.modifier_class,
   }) %}
 
   <div class="ct-form-element {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
@@ -66,16 +66,17 @@
       {% if description is not empty %}
         {% include '@atoms/field-description/field-description.twig' with {
           theme: theme,
+          size: 'regular',
           content: description,
           modifier_class: 'ct-form-element__description',
         } only %}
       {% endif %}
 
-      {% if message or has_error %}
+      {% if message or is_invalid %}
         {% include '@atoms/field-message/field-message.twig' with {
           theme: theme,
-          type: has_error ? 'error' : 'status',
-          content: message ? message : (has_error ? 'Error' : null),
+          type: is_invalid ? 'error' : 'information',
+          content: message ? message : (is_invalid ? (label is not empty ? 'Field <em>' ~  label ~ '</em> has an error' : 'Field has an error') : null),
           modifier_class: 'ct-form-element__message',
         } only %}
       {% endif %}
