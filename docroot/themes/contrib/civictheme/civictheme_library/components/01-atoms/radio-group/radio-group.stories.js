@@ -1,9 +1,9 @@
 // phpcs:ignoreFile
 import {
-  boolean, number, radios, text,
+  number, radios, text, boolean,
 } from '@storybook/addon-knobs';
 import CivicThemeRadioGroup from './radio-group.twig';
-import { randomInputItems } from '../../00-base/base.stories';
+import { generateInputItems } from '../../00-base/base.stories';
 
 export default {
   title: 'Atoms/Form control/Radio Group',
@@ -12,7 +12,7 @@ export default {
   },
 };
 
-export const RadioGroup = (knobTab) => {
+export const RadioGroup = (knobTab, returnHtml = true) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -34,7 +34,7 @@ export const RadioGroup = (knobTab) => {
       'vertical',
       generalKnobTab,
     ),
-    items: randomInputItems(number(
+    items: generateInputItems(number(
       'Items count',
       5,
       {
@@ -51,7 +51,7 @@ export const RadioGroup = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicThemeRadioGroup({
+  return returnHtml ? CivicThemeRadioGroup({
     ...generalKnobs,
-  });
+  }) : generalKnobs;
 };

@@ -33,5 +33,5 @@
     {{ is_required ? 'required' }}
     {% if placeholder is not empty %}placeholder="{{ placeholder }}"{% endif %}
     {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
-  >{% if value %}{{ value }}{% endif %}</textarea>
+  >{% if value is not empty %}{{ value }}{% endif %}</textarea>
 {% endif %}

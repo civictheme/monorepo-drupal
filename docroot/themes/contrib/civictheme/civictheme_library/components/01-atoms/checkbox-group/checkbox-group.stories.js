@@ -3,7 +3,7 @@ import {
   boolean, number, radios, text,
 } from '@storybook/addon-knobs';
 import CivicThemeCheckboxGroup from './checkbox-group.twig';
-import { randomInputItems } from '../../00-base/base.stories';
+import { generateInputItems } from '../../00-base/base.stories';
 
 export default {
   title: 'Atoms/Form control/Checkbox Group',
@@ -12,7 +12,7 @@ export default {
   },
 };
 
-export const CheckboxGroup = (knobTab) => {
+export const CheckboxGroup = (knobTab, returnHtml = true) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -34,7 +34,7 @@ export const CheckboxGroup = (knobTab) => {
       'vertical',
       generalKnobTab,
     ),
-    items: randomInputItems(number(
+    items: generateInputItems(number(
       'Items count',
       5,
       {
@@ -51,7 +51,7 @@ export const CheckboxGroup = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicThemeCheckboxGroup({
+  return returnHtml ? CivicThemeCheckboxGroup({
     ...generalKnobs,
-  });
+  }) : generalKnobs;
 };

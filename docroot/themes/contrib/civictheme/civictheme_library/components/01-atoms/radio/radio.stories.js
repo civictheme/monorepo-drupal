@@ -9,7 +9,7 @@ export default {
   },
 };
 
-export const Radio = (knobTab) => {
+export const Radio = (knobTab, returnHtml = true) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -33,7 +33,7 @@ export const Radio = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicThemeRadio({
+  return returnHtml ? CivicThemeRadio({
     ...generalKnobs,
-  });
+  }) : returnHtml;
 };

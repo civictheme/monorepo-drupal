@@ -1,71 +1,84 @@
 {#
 /**
  * @file
- * Footer component.
+ * Form element component.
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
  * - type: [string] Type.
  * - name: [string] Name.
- * - label_display: [string] Display label: before, after.
- * - description_position: [string] Display description: before, after.
- * - disabled: [boolean] Disabled or not.
- * - errors: [array] Optional array of errors.
- * - description_modifier_class: [string] Additional classes for description.
+ * - description: [string] Description.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
+{% set type = type not in ['textfield', 'textarea', 'select', 'radio-group', 'checkbox', 'checkbox-group'] ? 'input' : type %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set type_class =  type is not empty ? 'ct-form-element--%s'|format(type) : '' %}
-{% set name_class = name is not empty ?  'ct-form-element--%s'|format(name) : '' %}
-{% set label_class = label_display not in ['after', 'before'] ? 'ct-form-element--no-label' : 'ct-form-element--label--%s'|format(title_display) %}
-{% set description_class = description_position not in ['after', 'before'] ? 'ct-form-element--no-description' : 'ct-form-element--label--%s'|format(description_position) %}
-{% set disabled_class =  disabled == 'disabled' ? 'ct-form-element--form-disabled' : '' %}
-{% set error_class =  errors is not empty ? 'ct-form-element--error' : '' %}
-{% set modifier_class = '%s %s %s %s %s %s %s %s'|format(theme_class, type_class, name_class, label_class, description_class, disabled_class, error_class, modifier_class|default('')) %}
+{% set type_class =  'ct-form-element--%s'|format(type|default('input')) %}
+{% set direction_class =  'ct-form-element--%s'|format(direction|default('horizontal')) %}
+{% set element_class =  'ct-form-element__element' %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, type_class, direction_class, element_class, modifier_class|default('')) %}
 
-{% set description_modifier_class = '%s %s'|format(description_visibility_class|default(''), description_display_class|default('')) %}
+{% if name is not empty %}
+  {% set element = element | merge({
+    theme: theme,
+    name: name,
+    is_disabled: is_disabled,
+    is_invalid: has_error,
+    modifier_class: element.modifier_class ~ ' civictheme-form-element__element',
+  }) %}
 
-<div class="ct-form-element {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-  {% if label is not empty and label_display in ['before', 'invisible'] %}
-    {{ label }}
-  {% endif %}
+  <div class="ct-form-element {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+    {% if label is not empty %}
+      {% include '@atoms/label/label.twig' with {
+        theme: theme,
+        content: label,
+        for: element.id ? element.id : null,
+        modifier_class: 'ct-form-element__label',
+      } only %}
+    {% endif %}
 
-  {% if prefix is not empty %}
-    <span class="field-prefix">{{ prefix }}</span>
-  {% endif %}
+    <div class="ct-form-element__wrapper">
+      {% if type == 'textfield' %}
+        {% include '@atoms/textfield/textfield.twig' with element only %}
+      {% elseif type == 'textarea' %}
+        {% include  '@atoms/textarea/textarea.twig' with element only %}
+      {% elseif type == 'select' %}
+        {% include '@atoms/select/select.twig' with element only %}
+      {% elseif type == 'checkbox' %}
+        {% include '@atoms/checkbox/checkbox.twig' with element only %}
+      {% elseif type == 'checkbox-group' %}
+        {% include '@atoms/checkbox-group/checkbox-group.twig' with element only %}
+      {% elseif type == 'radio-group' %}
+        {% include '@atoms/radio-group/radio-group.twig' with element only %}
+      {% else %}
+        <input
+          type="{{ type }}"
+          name="{{ element.name }}"
+          {% if element.modifier_class %}class="{{ element.modifier_class }}"{% endif %}
+          {% if element.value %}value="{{ element.value }}"{% endif %}
+          {% if element.id %}id="{{ element.id }}"{% endif %}
+          {% if element.attributes %}{{ element.attributes|raw }}{% endif %}
+        />
+      {% endif %}
 
-  {% if  description.content is not empty and description_position == 'before' %}
-    <div class="ct-form-element__description {{ description_modifier_class }}" {% if description.attributes is not empty %}{{ description.attributes }}{% endif %}>
-      {{ description.content }}
+      {% if description is not empty %}
+        {% include '@atoms/field-description/field-description.twig' with {
+          theme: theme,
+          content: description,
+          modifier_class: 'ct-form-element__description',
+        } only %}
+      {% endif %}
+
+      {% if message or has_error %}
+        {% include '@atoms/field-message/field-message.twig' with {
+          theme: theme,
+          type: has_error ? 'error' : 'status',
+          content: message ? message : (has_error ? 'Error' : null),
+          modifier_class: 'ct-form-element__message',
+        } only %}
+      {% endif %}
     </div>
-  {% endif %}
-
-  {% if children is not empty %}
-    {{ children }}
-  {% endif %}
-
-  {% if suffix is not empty %}
-    <span class="field-suffix">{{ suffix }}</span>
-  {% endif %}
-
-  {% if label is not empty and label_display == 'after' %}
-    {{ label }}
-  {% endif %}
-
-  {% if description.content is not empty and description_position in ['after', 'invisible'] %}
-    <div class="ct-form-element__description {{ description_modifier_class }}" {{ description.attributes }}>
-      {{ description.content }}
-    </div>
-  {% endif %}
-
-  {% if errors %}
-    {% include '@organisms/message/message.twig' with {
-      theme: theme,
-      type: 'error',
-      title: errors
-    } only %}
-  {% endif %}
-</div>
+  </div>
+{% endif %}

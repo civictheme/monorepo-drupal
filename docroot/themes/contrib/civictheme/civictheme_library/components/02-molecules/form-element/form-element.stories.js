@@ -1,199 +1,104 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeFormElement from './form-element.twig';
-import Textfield from '../../01-atoms/textfield/textfield.twig';
-import Select from '../../01-atoms/select/select.twig';
-import CivicThemeLabel from '../../01-atoms/label/label.twig';
+import { Select } from '../../01-atoms/select/select.stories';
+import { Textfield } from '../../01-atoms/textfield/textfield.stories';
+import { Textarea } from '../../01-atoms/textarea/textarea.stories';
+import { Checkbox } from '../../01-atoms/checkbox/checkbox.stories';
+import { CheckboxGroup } from '../../01-atoms/checkbox-group/checkbox-group.stories';
+import { RadioGroup } from '../../01-atoms/radio-group/radio-group.stories';
 
 export default {
   title: 'Molecules/Form Element',
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export const FormElement = () => {
   const generalKnobTab = 'General';
-  const inputKnobTab = 'Input';
-
-  const theme = radios(
-    'Theme',
-    {
-      Light: 'light',
-      Dark: 'dark',
-    },
-    'light',
-    generalKnobTab,
-  );
-
-  const inputType = radios(
-    'Type',
-    {
-      Text: 'text',
-      Textarea: 'textarea',
-      Email: 'email',
-      Tel: 'tel',
-      Password: 'password',
-      Select: 'select',
-      Radio: 'radio',
-      Checkbox: 'checkbox',
-    },
-    'text',
-    generalKnobTab,
-  );
-
-  // We don't allow before and after label for radio or checkbox it is always
-  // after.
-  const isRadioOrCheckbox = inputType === 'radio' || inputType === 'checkbox';
-
   const generalKnobs = {
-    theme,
-    label_display: isRadioOrCheckbox ? 'after' : radios(
-      'Label position',
+    theme: radios(
+      'Theme',
       {
-        Before: 'before',
-        After: 'after',
+        Light: 'light',
+        Dark: 'dark',
       },
-      'before',
+      'light',
       generalKnobTab,
     ),
-    description_position: isRadioOrCheckbox ? 'after' : radios(
-      'Description position',
+    direction: radios(
+      'Direction',
       {
-        Before: 'before',
-        After: 'after',
+        Horizontal: 'horizontal',
+        Vertical: 'vertical',
       },
-      'after',
+      'vertical',
       generalKnobTab,
     ),
-    description: {
-      content: text('Description', 'CivicTheme input description', generalKnobTab),
-    },
-    errors: boolean('With error', false, generalKnobTab) ? 'Sample error message' : false,
-    required: boolean('Required', false, generalKnobTab),
-    modifier_class: text('Additional class', '', generalKnobTab),
+    type: radios(
+      'Type',
+      {
+        Textfield: 'textfield',
+        Textarea: 'textarea',
+        Select: 'select',
+        'Radio Group': 'radio-group',
+        Checkbox: 'checkbox',
+        'Checkbox Group': 'checkbox-group',
+        Other: 'other',
+      },
+      'textfield',
+      generalKnobTab,
+    ),
+    label: text('Label', 'Field label', generalKnobTab),
+    description: text('Description', 'Field description that spans on the multiple lines to test vertical checkbox alignment', generalKnobTab),
+    name: text('Name', 'control-name', generalKnobTab),
+    value: text('Value', '', generalKnobTab),
+    id: text('ID', 'control-id', generalKnobTab),
+    is_required: boolean('Required', false, generalKnobTab),
+    is_disabled: boolean('Disabled', false, generalKnobTab),
+    has_error: boolean('Has error', false, generalKnobTab),
+    message: text('Message', '', generalKnobTab),
+    modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  const states = {
-    None: 'default',
-    Error: 'error',
-    Success: 'success',
-  };
+  generalKnobs.element = {};
 
-  const inputKnobs = {
-    theme,
-    value: text('Value', 'CivicTheme input', inputKnobTab),
-    placeholder: text('Placeholder', 'CivicTheme input', inputKnobTab),
-    state: radios(
-      'State',
-      states,
-      'default',
-      inputKnobTab,
-    ),
-    attributes: `id="input-${inputType}"`,
-    disabled: boolean('Disabled', false, inputKnobTab),
-    required: generalKnobs.required,
-  };
+  const elementKnobTab = 'Element';
+  let elementKnobs = {};
 
-  const selectKnobs = {
-    theme,
-    state: radios(
-      'State',
-      states,
-      'default',
-      inputKnobTab,
-    ),
-    attributes: `id="input-${inputType}"`,
-    disabled: boolean('Disabled', false, inputKnobTab),
-    options: [
-      { type: 'option', value: 'option1', label: 'Option 1' },
-      { type: 'option', value: 'option2', label: 'Option 2' },
-      { type: 'option', value: 'option3', label: 'Option 3' },
-      { type: 'option', value: 'option4', label: 'Option 4' },
-    ],
-  };
-
-  const radioKnobs = {
-    theme,
-    state: radios(
-      'State',
-      states,
-      'default',
-      inputKnobTab,
-    ),
-    attributes: `id="input-${inputType}"`,
-    disabled: boolean('Disabled', false, inputKnobTab),
-    required: generalKnobs.required,
-  };
-
-  const checkboxKnobs = {
-    theme,
-    state: radios(
-      'State',
-      states,
-      'default',
-      inputKnobTab,
-    ),
-    attributes: `id="input-${inputType}"`,
-    disabled: boolean('Disabled', false, inputKnobTab),
-    required: generalKnobs.required,
-  };
-
-  const labelKnobTab = 'Label';
-  const labelKnobs = {
-    theme,
-    size: radios(
-      'Size', {
-        'Extra Large': 'extra-large',
-        Large: 'large',
-        Regular: 'regular',
-        Small: 'small',
-        'Extra Small': 'extra-small',
-        None: '',
-      },
-      'regular',
-      labelKnobTab,
-    ),
-    content: text('Label', 'Label for input', labelKnobTab),
-    attributes: `for="input-${inputType}"`,
-  };
-
-  const children = [];
-
-  switch (inputType) {
-    case 'radio':
-      children.push(Textfield({
-        type: inputType,
-        ...radioKnobs,
-      }));
+  switch (generalKnobs.type) {
+    case 'textfield':
+      elementKnobs = Textfield(elementKnobTab, false);
       break;
 
-    case 'checkbox':
-      children.push(Textfield({
-        type: inputType,
-        ...checkboxKnobs,
-      }));
+    case 'textarea':
+      elementKnobs = Textarea(elementKnobTab, false);
       break;
 
     case 'select':
-      children.push(Select({
-        ...selectKnobs,
-      }));
+      elementKnobs = Select(elementKnobTab, false);
+      break;
+
+    case 'checkbox':
+      elementKnobs = Checkbox(elementKnobTab, false);
+      break;
+
+    case 'checkbox-group':
+      elementKnobs = CheckboxGroup(elementKnobTab, false);
+      break;
+
+    case 'radio-group':
+      elementKnobs = RadioGroup(elementKnobTab, false);
       break;
 
     default:
-      children.push(Textfield({
-        type: inputType,
-        ...inputKnobs,
-      }));
+      elementKnobs = Textfield(elementKnobTab, false);
   }
 
-  const label = [CivicThemeLabel(labelKnobs)];
-
-  const html = CivicThemeFormElement({
+  return CivicThemeFormElement({
     ...generalKnobs,
-    type: inputType,
-    label,
-    children,
+    element: elementKnobs,
   });
-
-  return `<div class="container"><div class="row"><div class="col-xxs-12">${html}</div></div></div>`;
 };

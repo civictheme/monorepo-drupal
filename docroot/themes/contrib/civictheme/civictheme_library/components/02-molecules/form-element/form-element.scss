@@ -3,86 +3,41 @@
 //
 
 .ct-form-element {
-  @include ct-typography('text-regular');
+  $root: &;
 
   margin-bottom: ct-spacing(2);
-  width: 100%;
 
   &:last-child {
     margin-bottom: 0;
   }
 
-  &--radio,
-  &--checkbox {
+  #{$root}__element {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  &--vertical {
+    #{$root}__label,
+    #{$root}__description,
+    #{$root}__element,
+    #{$root}__mesage {
+      margin-bottom: ct-spacing();
+    }
+  }
+
+  &--horizontal {
     display: flex;
-    flex-wrap: wrap;
-    position: relative;
+    align-items: baseline;
 
-    .ct-input {
-      margin: 0;
-    }
-
-    .ct-form-element__description,
-    label {
-      padding-left: ct-spacing(5);
-    }
-
-    .ct-form-element__description {
-      width: 100%;
-    }
-
-    label {
-      margin: ct-spacing(0.5) 0;
-    }
-  }
-
-  &--button,
-  &--submit {
-    display: inline-block;
-    width: auto;
-    margin-left: ct-spacing(2);
-
-    &:first-child {
-      margin-left: 0;
-    }
-  }
-
-  .ct-message {
-    padding: ct-spacing();
-    margin-bottom: ct-spacing();
-    display: inline-flex;
-    align-items: center;
-    border: none;
-
-    @include ct-typography('label-small');
-
-    &__title {
-      font-weight: 400;
-    }
-
-    .ct-icon {
-      width: rem(18px);
-      height: rem(18px);
-      vertical-align: middle;
-    }
-
-    .ct-message__icon {
-      width: rem(18px);
+    #{$root}__label {
       margin-right: ct-spacing();
+      text-align: right;
     }
-  }
 
-  &__description {
-    margin-bottom: ct-spacing(1);
-
-    @include ct-typography('text-small');
-  }
-
-  &.ct-theme-light {
-    color: $ct-form-element-light-color;
-  }
-
-  &.ct-theme-dark {
-    color: $ct-form-element-dark-color;
+    #{$root}__description,
+    #{$root}__element,
+    #{$root}__mesage {
+      margin-bottom: ct-spacing();
+    }
   }
 }

@@ -11,7 +11,7 @@ export default {
   },
 };
 
-export const Textarea = (knobTab) => {
+export const Textarea = (knobTab, returnHtml = true) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -46,7 +46,7 @@ export const Textarea = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicThemeTextarea({
+  return returnHtml ? CivicThemeTextarea({
     ...generalKnobs,
-  });
+  }) : generalKnobs;
 };

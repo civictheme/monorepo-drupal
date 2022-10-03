@@ -8,7 +8,7 @@
   display: block;
   margin-bottom: ct-spacing();
 
-  @include ct-typography('text-regular');
+  @include ct-typography('text-small');
 
   &.ct-theme-light {
     color: $ct-field-description-light-color;

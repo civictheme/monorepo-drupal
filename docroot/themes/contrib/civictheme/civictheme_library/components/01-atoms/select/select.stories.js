@@ -1,7 +1,7 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeSelect from './select.twig';
-import { randomSelectOptions, randomInt } from '../../00-base/base.stories';
+import { generateSelectItems } from '../../00-base/base.stories';
 
 export default {
   title: 'Atoms/Form control/Select',
@@ -10,9 +10,8 @@ export default {
   },
 };
 
-export const Select = (knobTab) => {
+export const Select = (knobTab, returnHtml = true) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
-  const numOfOptions = randomInt(3, 5);
 
   const generalKnobs = {
     theme: radios(
@@ -24,7 +23,7 @@ export const Select = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    options: boolean('With options', true, generalKnobTab) ? randomSelectOptions(numOfOptions, (boolean('Options have groups', false, generalKnobTab) ? 'optgroup' : 'option')) : [],
+    items: boolean('With options', true, generalKnobTab) ? generateSelectItems(5, (boolean('Options have groups', false, generalKnobTab) ? 'optgroup' : 'option')) : [],
     is_multiple: boolean('Is multiple', false, generalKnobTab),
     is_required: boolean('Required', false, generalKnobTab),
     is_invalid: boolean('Invalid', false, generalKnobTab),
@@ -36,7 +35,7 @@ export const Select = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicThemeSelect({
+  return returnHtml ? CivicThemeSelect({
     ...generalKnobs,
-  });
+  }) : generalKnobs;
 };

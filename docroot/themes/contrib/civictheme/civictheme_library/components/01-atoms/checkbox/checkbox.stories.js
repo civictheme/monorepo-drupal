@@ -9,7 +9,7 @@ export default {
   },
 };
 
-export const Checkbox = (knobTab) => {
+export const Checkbox = (knobTab, returnHtml = true) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -22,7 +22,7 @@ export const Checkbox = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    label: text('Content', 'Control label', generalKnobTab),
+    label: text('Label', 'Checkbox label that spans on the multiple lines to test vertical checkbox alignment', generalKnobTab),
     is_checked: boolean('Checked', false, generalKnobTab),
     is_invalid: boolean('Invalid', false, generalKnobTab),
     is_disabled: boolean('Disabled', false, generalKnobTab),
@@ -33,7 +33,7 @@ export const Checkbox = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicThemeCheckbox({
+  return returnHtml ? CivicThemeCheckbox({
     ...generalKnobs,
-  });
+  }) : generalKnobs;
 };

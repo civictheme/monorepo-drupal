@@ -247,15 +247,15 @@ export const randomDropdownFilter = (filterType, numOfOptions, theme, rand, itr)
   });
 };
 
-export const randomInputItems = (count, sameName = false) => {
-  const name = randomString(randomInt(3, 8));
-  const id = randomString(randomInt(3, 8));
+export const generateInputItems = (count, sameName = false) => {
+  const name = 'control-name';
+  const id = 'control-id';
   const items = [];
   for (let i = 1; i <= count; i++) {
     const item = {
-      label: randomString(randomInt(3, 8)),
-      value: randomString(randomInt(1, 8)),
-      name: sameName ? name : randomString(randomInt(3, 8)),
+      label: `Item ${i}`,
+      value: `item-${i}`,
+      name: sameName ? name : `name-${i}`,
       id: `${id}-${i}`,
     };
     items.push(item);
@@ -263,19 +263,19 @@ export const randomInputItems = (count, sameName = false) => {
   return items;
 };
 
-export const randomSelectOptions = (numOfOptions, optionType = 'option') => {
-  const options = [];
-  for (let i = 1; i <= numOfOptions; i++) {
-    const option = {
-      type: optionType,
+export const generateSelectItems = (count, type = 'option', prefix = '') => {
+  const items = [];
+  for (let i = 1; i <= count; i++) {
+    const item = {
+      type,
       selected: false,
-      label: optionType === 'optgroup' ? `Group ${i}` : randomString(randomInt(3, 8)),
-      value: randomString(randomInt(1, 8)),
-      options: optionType === 'optgroup' ? randomSelectOptions(numOfOptions) : null,
+      label: type === 'optgroup' ? `Group ${i}` : `Item ${i}`,
+      value: `${prefix}item-${i}`,
+      items: type === 'optgroup' ? generateSelectItems(count, 'option', `group-${i}-`) : null,
     };
-    options.push(option);
+    items.push(item);
   }
-  return options;
+  return items;
 };
 
 export const generateItems = (count, content) => {

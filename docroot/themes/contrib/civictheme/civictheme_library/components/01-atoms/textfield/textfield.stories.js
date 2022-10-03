@@ -9,7 +9,7 @@ export default {
   },
 };
 
-export const Textfield = (knobTab) => {
+export const Textfield = (knobTab, returnHtml = true) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -33,7 +33,7 @@ export const Textfield = (knobTab) => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  return CivicThemeTextfield({
+  return returnHtml ? CivicThemeTextfield({
     ...generalKnobs,
-  });
+  }) : generalKnobs;
 };
