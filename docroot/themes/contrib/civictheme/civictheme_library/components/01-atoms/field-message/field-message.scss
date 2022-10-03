@@ -17,7 +17,7 @@
   border-width: ct-particle(0.125);
   border-style: solid;
 
-  @include ct-typography('text-regular');
+  @include ct-typography('text-small');
 
   $map: (
     'information': (
