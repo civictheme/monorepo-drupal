@@ -5,14 +5,17 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
+ * - size: [string] Label size: large, regular, small.
  * - content: [string] The description's content.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
  */
 #}
 
+{% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
+{% set size_class = 'ct-field-description--%s'|format(size) %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
 
 {% if content is not empty -%}
   <div

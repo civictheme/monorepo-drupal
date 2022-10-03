@@ -8,7 +8,14 @@
   display: block;
   margin-bottom: ct-spacing();
 
-  @include ct-typography('text-small');
+  &,
+  &--regular {
+    @include ct-typography('text-small');
+  }
+
+  &--large {
+    @include ct-typography('text-regular');
+  }
 
   &.ct-theme-light {
     color: $ct-field-description-light-color;

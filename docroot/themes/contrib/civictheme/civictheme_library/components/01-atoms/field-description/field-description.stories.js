@@ -22,8 +22,17 @@ export const FieldDescription = (knobTab) => {
       'light',
       generalKnobTab,
     ),
-    content: text('Content', 'We will only use this to respond to your question.', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
+    size: radios(
+      'Size', {
+        Large: 'large',
+        Regular: 'regular',
+        None: '',
+      },
+      'regular',
+      generalKnobTab,
+    ),
+    content: text('Content', 'Field description that spans on the multiple lines to test vertical checkbox alignment.', generalKnobTab),
+    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
