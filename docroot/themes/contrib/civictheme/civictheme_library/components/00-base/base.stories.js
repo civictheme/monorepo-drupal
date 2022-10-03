@@ -247,12 +247,16 @@ export const randomDropdownFilter = (filterType, numOfOptions, theme, rand, itr)
   });
 };
 
-export const randomInputItems = (count) => {
+export const randomInputItems = (count, sameName = false) => {
+  const name = randomString(randomInt(3, 8));
+  const id = randomString(randomInt(3, 8));
   const items = [];
   for (let i = 1; i <= count; i++) {
     const item = {
       label: randomString(randomInt(3, 8)),
       value: randomString(randomInt(1, 8)),
+      name: sameName ? name : randomString(randomInt(3, 8)),
+      id: `${id}-${i}`,
     };
     items.push(item);
   }

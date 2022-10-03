@@ -45,8 +45,6 @@ export const CheckboxGroup = (knobTab) => {
       },
       generalKnobTab,
     )),
-    name: text('Name', 'control-name', generalKnobTab),
-    id: text('ID', 'control-id', generalKnobTab),
     is_invalid: boolean('Invalid', false, generalKnobTab),
     is_disabled: boolean('Disabled', false, generalKnobTab),
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,

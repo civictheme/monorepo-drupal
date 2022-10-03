@@ -5,15 +5,13 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - name: [string] Group name.
- * - id: [string] DOM id.
  * - is_invalid: [boolean] Denote if the control is invalid.
  * - is_disabled: [boolean] Denote if the control is disabled.
  * - direction: [string] Direction: horizontal, vertical.
  * - items: [array] Array of children items:
  *   - label: [string] Child label.
- *   - value: [string] Child value.
- *   - id: [string] Optional DOM id. If not provided - parent will be used.
+ *   - value: [string] Child DOM value.
+ *   - id: [string] DOM id.
  *   - is_checked: [boolean] Denote if the component is checked.
  *   - is_disabled: [boolean] Denote if the component is disabled.
  *   - is_invalid: [boolean] Denote if the component is invalid.
@@ -32,7 +30,7 @@
   {% set list_items = [] %}
   {% for key, item in items %}
     {% set list_item %}
-      {% set item = { theme:theme, name: name, id: id ~ '-' ~ key, is_disabled: is_disabled, is_invalid: is_invalid } | merge(item) %}
+      {% set item = { theme:theme, is_disabled: is_disabled, is_invalid: is_invalid } | merge(item) %}
       {% include '@atoms/radio/radio.twig' with item only %}
     {% endset %}
     {% set list_items = list_items|merge([ list_item ]) %}
