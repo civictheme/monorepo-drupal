@@ -5,7 +5,7 @@
  *
  * Variables:
  * - theme: [string] Theme: light, dark.
- * - size: [string] Chip size: extra-large, large, regular, small, extra-small.
+ * - size: [string] Label size: large, regular, small.
  * - content: [string] The label's content.
  * - for: [string] Which component this label belongs to.
  * - attributes: [string] Additional attributes.
@@ -13,7 +13,7 @@
  */
 #}
 
-{% set size = size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? size : 'regular' %}
+{% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
 {% set size_class = 'ct-label--%s'|format(size) %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}

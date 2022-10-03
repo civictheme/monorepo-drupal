@@ -242,10 +242,6 @@ $ct-typography-default: (
     'm': ($ct-font-base-size * 0.875, $ct-font-base-line-height * 1.5, 'regular', 'primary', 0),
   ),
   // Labels.
-  'label-extra-large': (
-    'xxs': ($ct-font-base-size * 1.25, $ct-font-base-line-height * 1.5, 'semibold', 'primary', -0.1px),
-    'm': ($ct-font-base-size * 1.5, $ct-font-base-line-height * 1.5, 'semibold', 'primary', 0)
-  ),
   'label-large': (
     'xxs': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.5, 'semibold', 'primary', -0.1px),
     'm': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.5, 'semibold', 'primary', 0)
@@ -257,10 +253,6 @@ $ct-typography-default: (
   'label-small': (
     'xxs': ($ct-font-base-size * 0.75, $ct-font-base-line-height * 1.25, 'regular', 'primary', -0.1px),
     'm': ($ct-font-base-size * 0.875, $ct-font-base-line-height * 1.125, 'regular', 'primary', 0)
-  ),
-  'label-extra-small': (
-    'xxs': ($ct-font-base-size * 0.5, $ct-font-base-line-height * 1.25, 'regular', 'primary', -0.1px),
-    'm': ($ct-font-base-size * 0.75, $ct-font-base-line-height * 1.125, 'regular', 'primary', 0)
   ),
 );
 

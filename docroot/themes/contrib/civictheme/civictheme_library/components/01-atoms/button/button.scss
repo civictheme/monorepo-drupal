@@ -300,7 +300,7 @@
   $sizes: ('large', 'regular', 'small');
 
   @if $size == 'large' {
-    @include ct-typography('label-extra-large');
+    @include ct-typography('label-large');
 
     @if $with-padding {
       padding: ct-spacing(2) ct-spacing(5);
