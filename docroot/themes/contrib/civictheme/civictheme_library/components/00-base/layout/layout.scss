@@ -7,10 +7,6 @@
 
   &__sidebar {
     @include ct-print-hide();
-
-    @include ct-breakpoint-upto('m') {
-      margin-bottom: ct-spacing(2);
-    }
   }
 
   &__main {

@@ -7,7 +7,11 @@
 
   width: 100%;
 
-  @include ct-breakpoint('m') {
+  @include ct-breakpoint-upto('l') {
+    margin-top: ct-spacing(3);
+  }
+
+  @include ct-breakpoint('l') {
     width: max-content;
     max-width: $ct-table-of-contents-max-width;
     min-width: $ct-table-of-contents-min-width;
