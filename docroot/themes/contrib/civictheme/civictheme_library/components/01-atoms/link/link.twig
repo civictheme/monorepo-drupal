@@ -9,6 +9,7 @@
  * - url: [string] URL.
  * - is_new_window: [boolean] Open in a new window.
  * - is_external [boolean] Link is external.
+ * - is_actie [boolean] Link is active.
  * - disabled: [boolean] Disabled state.
  * - icon: [string] Icon name.
  * - icon_placement: [string] Icon position: before, after.
@@ -21,8 +22,9 @@
 {% set icon_placement = icon_placement in ['before', 'after'] ? icon_placement : 'after' %}
 {% set icon_size = icon_size in ['extra-large', 'large', 'regular', 'small', 'extra-small'] ? icon_size : 'small' %}
 {% set is_external = is_external ? 'ct-link--external ct-icon--upper-right-arrow--after--' ~ icon_size : '' %}
+{% set active_class = is_active ? 'ct-link--active' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s %s'|format(theme_class, disabled_class, is_external, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, disabled_class, is_external, active_class, modifier_class|default('')) %}
 
 {% if icon %}
   {% set link_icon %}

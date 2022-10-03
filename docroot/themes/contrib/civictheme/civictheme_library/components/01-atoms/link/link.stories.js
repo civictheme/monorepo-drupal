@@ -30,6 +30,7 @@ export const Link = (knobTab) => {
     hidden_text: text('Link hidden text', 'Link hidden text', generalKnobTab),
     url: text('URL', randomUrl(), generalKnobTab),
     is_external: boolean('Is external', false, generalKnobTab),
+    is_active: boolean('Is active', false, generalKnobTab),
     disabled: boolean('Is disabled', false, generalKnobTab),
     is_new_window: boolean('Open in a new window', false, generalKnobTab),
     with_icon: boolean('With icon', false, generalKnobTab),
