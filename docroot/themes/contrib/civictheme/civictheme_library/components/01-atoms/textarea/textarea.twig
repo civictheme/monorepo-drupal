@@ -28,6 +28,7 @@
     type="text"
     class="ct-textarea ct-form-control ct-textarea__control {{ modifier_class }}"
     name="{{ name }}"
+    {% if rows %}rows="{{ rows }}"{% endif %}
     {% if id %}id="{{ id }}"{% endif %}
     {{ is_disabled ? 'disabled' }}
     {{ is_required ? 'required' }}
