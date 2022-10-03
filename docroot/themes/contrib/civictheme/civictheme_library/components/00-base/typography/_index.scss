@@ -32,7 +32,7 @@ p {
 }
 
 blockquote {
-  @include ct-typography('quote');
+  @include ct-typography('text-extra-large');
 
   position: relative;
   margin: 0;

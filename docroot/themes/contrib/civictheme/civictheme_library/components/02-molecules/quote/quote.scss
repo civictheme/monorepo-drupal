@@ -12,13 +12,13 @@
   padding-left: ct-spacing(2);
 
   &__content {
-    @include ct-typography('quote');
+    @include ct-typography('text-extra-large');
 
     margin-bottom: 0;
   }
 
   &__author {
-    @include ct-typography('label-extra-small');
+    @include ct-typography('text-small');
 
     padding: 0 ct-spacing(3) ct-spacing(3);
 

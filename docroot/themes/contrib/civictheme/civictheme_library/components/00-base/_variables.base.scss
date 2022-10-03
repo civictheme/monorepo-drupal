@@ -262,11 +262,6 @@ $ct-typography-default: (
     'xxs': ($ct-font-base-size * 0.5, $ct-font-base-line-height * 1.25, 'regular', 'primary', -0.1px),
     'm': ($ct-font-base-size * 0.75, $ct-font-base-line-height * 1.125, 'regular', 'primary', 0)
   ),
-  // Special elements.
-  'quote': (
-    'xxs': ($ct-font-base-size * 1.125, $ct-font-base-line-height * 1.815, 'regular', 'primary', -0.15px),
-    'm': ($ct-font-base-size * 1.5, $ct-font-base-size * 2.5, 'regular', 'primary', -0.35px)
-  ),
 );
 
 // Font smoothing.
