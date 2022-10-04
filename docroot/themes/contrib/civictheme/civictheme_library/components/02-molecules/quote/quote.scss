@@ -6,7 +6,12 @@
   $root: &;
 
   @include ct-reset-box-model();
-  @include ct-highlight-stripe($ct-quote-border-width, 0, 0);
+  @include ct-highlight-stripe($ct-quote-border-width, $ct-quote-border-radius, 0);
+
+  &:before {
+    border-top-right-radius: $ct-quote-border-radius;
+    border-bottom-right-radius: $ct-quote-border-radius;
+  }
 
   position: relative;
   padding-left: ct-spacing(2);
