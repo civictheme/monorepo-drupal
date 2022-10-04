@@ -5,7 +5,7 @@
  *
  * Variables:
  * - direction: [string] Direction: horizontal, vertical.
- * - no_gutter: [boolean] Render without gutters.
+ * - no_gap: [boolean] Render without gaps.
  * - items: [array] Items array
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
@@ -13,8 +13,8 @@
 #}
 
 {% set direction_class = 'ct-item-list--%s'|format(direction|default('vertical')) %}
-{% set no_gutter_class = no_gutter ? 'ct-item-list--no-gutter' : '' %}
-{% set modifier_class = '%s %s %s'|format(direction_class, no_gutter_class, modifier_class|default('')) %}
+{% set no_gap_class = no_gap ? 'ct-item-list--no-gap' : '' %}
+{% set modifier_class = '%s %s %s'|format(direction_class, no_gap_class, modifier_class|default('')) %}
 
 {% if items is not empty %}
   <div class="ct-item-list {{ modifier_class }}" {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>

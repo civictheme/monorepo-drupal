@@ -26,7 +26,7 @@ export const ItemList = (knobTab) => {
       'horizontal',
       generalKnobTab,
     ),
-    no_gutter: boolean('No gutter', false, generalKnobTab),
+    no_gap: boolean('No gap', false, generalKnobTab),
     items: generateItems(number(
       'Items count',
       5,

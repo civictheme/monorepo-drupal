@@ -16,15 +16,15 @@
   &--horizontal {
     #{$root}__list {
       display: flex;
+      flex-wrap: wrap;
+      column-gap: ct-spacing(2);
+      row-gap: ct-spacing(2);
     }
 
-    #{$root}__list__item {
-      margin-right: ct-spacing(2);
-    }
-
-    &#{$root}--no-gutter {
-      #{$root}__list__item {
-        margin-right: 0;
+    &#{$root}--no-gap {
+      #{$root}__list {
+        column-gap: 0;
+        row-gap: 0;
       }
     }
   }
@@ -38,7 +38,7 @@
       margin-bottom: ct-spacing(2);
     }
 
-    &#{$root}--no-gutter {
+    &#{$root}--no-gap {
       #{$root}__list__item {
         margin-bottom: 0;
       }
