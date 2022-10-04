@@ -12,7 +12,7 @@ export default {
   },
 };
 
-export const RadioGroup = (knobTab, returnHtml = true) => {
+export const RadioGroup = (knobTab, returnHtml = true, idx = null) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -44,7 +44,7 @@ export const RadioGroup = (knobTab, returnHtml = true) => {
         step: 1,
       },
       generalKnobTab,
-    ), true),
+    ), true, idx),
     is_invalid: boolean('Invalid', false, generalKnobTab),
     is_disabled: boolean('Disabled', false, generalKnobTab),
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,

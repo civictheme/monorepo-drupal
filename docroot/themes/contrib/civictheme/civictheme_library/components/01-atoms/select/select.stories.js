@@ -1,7 +1,7 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeSelect from './select.twig';
-import { generateSelectItems } from '../../00-base/base.stories';
+import { generateSelectItems, indexedString } from '../../00-base/base.stories';
 
 export default {
   title: 'Atoms/Form control/Select',
@@ -10,7 +10,7 @@ export default {
   },
 };
 
-export const Select = (knobTab, returnHtml = true) => {
+export const Select = (knobTab, returnHtml = true, idx = null) => {
   const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
 
   const generalKnobs = {
@@ -28,9 +28,9 @@ export const Select = (knobTab, returnHtml = true) => {
     is_required: boolean('Required', false, generalKnobTab),
     is_invalid: boolean('Invalid', false, generalKnobTab),
     is_disabled: boolean('Disabled', false, generalKnobTab),
-    name: text('Name', 'control-name', generalKnobTab),
+    name: text('Name', indexedString('control-name', idx), generalKnobTab),
     value: text('Value', '', generalKnobTab),
-    id: text('ID', 'control-id', generalKnobTab),
+    id: text('ID', indexedString('control-id', idx), generalKnobTab),
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };

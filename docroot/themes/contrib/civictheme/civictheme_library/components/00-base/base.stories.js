@@ -9,8 +9,7 @@ import CivicThemeTextfield from '../01-atoms/textfield/textfield.twig';
 import CivicThemeSelect from '../01-atoms/select/select.twig';
 import CivicThemeCheckbox from '../01-atoms/checkbox/checkbox.twig';
 import CivicThemeRadio from '../01-atoms/radio/radio.twig';
-import CivicThemeFormElement
-  from '../02-molecules/field/field.twig';
+import CivicThemeFormElement from '../02-molecules/field/field.twig';
 import CivicThemeLabel from '../01-atoms/label/label.twig';
 import CivicThemeDropdownFilter
   from '../02-molecules/dropdown-filter/dropdown-filter.twig';
@@ -100,6 +99,10 @@ export const randomTags = (count, rand) => {
   }
 
   return tags;
+};
+
+export const indexedString = function (prefix, idx = null) {
+  return `${prefix}${idx !== null ? `-${idx}` : ''}`;
 };
 
 export const demoImage = (idx) => {
@@ -247,16 +250,14 @@ export const randomDropdownFilter = (filterType, numOfOptions, theme, rand, itr)
   });
 };
 
-export const generateInputItems = (count, sameName = false) => {
-  const name = 'control-name';
-  const id = 'control-id';
+export const generateInputItems = (count, sameName = false, idx = null) => {
   const items = [];
   for (let i = 1; i <= count; i++) {
     const item = {
       label: `Item ${i}`,
-      value: `item-${i}`,
-      name: sameName ? name : `name-${i}`,
-      id: `${id}-${i}`,
+      value: `${indexedString('item', idx)}-${i}`,
+      name: sameName ? `${indexedString('control-name', idx)}` : `${indexedString('control-name', idx)}-${i}`,
+      id: `${indexedString('control-id', idx)}-${i}`,
     };
     items.push(item);
   }

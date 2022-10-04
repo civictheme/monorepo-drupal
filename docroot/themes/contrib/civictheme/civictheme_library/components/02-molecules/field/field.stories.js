@@ -17,8 +17,10 @@ export default {
   },
 };
 
-export const Field = () => {
-  const generalKnobTab = 'General';
+export const Field = (knobTab, controlKnobTab, returnHtml = true, idx = null) => {
+  const generalKnobTab = typeof knobTab === 'string' ? knobTab : 'General';
+  controlKnobTab = typeof controlKnobTab === 'string' ? controlKnobTab : 'Control';
+
   const generalKnobs = {
     theme: radios(
       'Theme',
@@ -74,40 +76,42 @@ export const Field = () => {
 
   generalKnobs.control = {};
 
-  const controlKnobTab = 'Control';
   let controlKnobs = {};
 
   switch (generalKnobs.type) {
     case 'textfield':
-      controlKnobs = Textfield(controlKnobTab, false);
+      controlKnobs = Textfield(controlKnobTab, false, idx);
       break;
 
     case 'textarea':
-      controlKnobs = Textarea(controlKnobTab, false);
+      controlKnobs = Textarea(controlKnobTab, false, idx);
       break;
 
     case 'select':
-      controlKnobs = Select(controlKnobTab, false);
+      controlKnobs = Select(controlKnobTab, false, idx);
       break;
 
     case 'checkbox':
-      controlKnobs = Checkbox(controlKnobTab, false);
+      controlKnobs = Checkbox(controlKnobTab, false, idx);
       break;
 
     case 'checkbox-group':
-      controlKnobs = CheckboxGroup(controlKnobTab, false);
+      controlKnobs = CheckboxGroup(controlKnobTab, false, idx);
       break;
 
     case 'radio-group':
-      controlKnobs = RadioGroup(controlKnobTab, false);
+      controlKnobs = RadioGroup(controlKnobTab, false, idx);
       break;
 
     default:
-      controlKnobs = Textfield(controlKnobTab, false);
+      controlKnobs = Textfield(controlKnobTab, false, idx);
   }
 
-  return CivicThemeField({
+  return returnHtml ? CivicThemeField({
     ...generalKnobs,
     control: controlKnobs,
-  });
+  }) : {
+    ...generalKnobs,
+    control: controlKnobs,
+  };
 };

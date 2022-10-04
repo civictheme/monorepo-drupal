@@ -1,0 +1,49 @@
+//
+// Field group component.
+//
+
+@use 'sass:math';
+
+.ct-field-group {
+  $root: &;
+
+  @include ct-reset-box-model();
+
+  border: none;
+  margin-bottom: ct-spacing(2);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  #{$root}__legend {
+    margin-bottom: ct-spacing();
+  }
+
+  #{$root}__description {
+    margin-bottom: ct-spacing(2);
+  }
+
+  #{$root}__field {
+    @include ct-highlight-stripe($ct-field-group-stripe-width, 0, 0);
+
+    padding-left: $ct-field-group-stripe-width + ct-spacing(2);
+    margin-bottom: ct-spacing(3);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &.ct-theme-light {
+    #{$root}__field {
+      @include ct-highlight-stripe-color($ct-field-group-light-stripe-color);
+    }
+  }
+
+  &.ct-theme-dark {
+    #{$root}__field {
+      @include ct-highlight-stripe-color($ct-field-group-dark-stripe-color);
+    }
+  }
+}
