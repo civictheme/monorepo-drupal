@@ -70,21 +70,16 @@
     {% block title %}
       {% if title is not empty %}
         <div class="ct-publication-card__title">
-          {% if url is not empty %}
-          <a class="ct-publication-card__title-link" href="{{ url }}">
-          {% endif %}
-            {{ title }}
-            {% if link is not empty %}
-              <span>
+          {{ title }}
+          {% if link is not empty %}
+            <span class="ct-publication-card__icon-wrapper">
                 {% include '@base/icon/icon.twig' with {
-                  symbol: 'arrows_download',
+                  symbol: 'download',
                   color: 'primary',
+                  size: 'small',
                   modifier_class: 'ct-publication-card__icon--download',
                 } only %}
               </span>
-            {% endif %}
-          {% if url is not empty %}
-          </a>
           {% endif %}
         </div>
       {% endif %}
