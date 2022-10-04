@@ -5,7 +5,9 @@ import { Select } from '../../01-atoms/select/select.stories';
 import { Textfield } from '../../01-atoms/textfield/textfield.stories';
 import { Textarea } from '../../01-atoms/textarea/textarea.stories';
 import { Checkbox } from '../../01-atoms/checkbox/checkbox.stories';
-import { CheckboxGroup } from '../../01-atoms/checkbox-group/checkbox-group.stories';
+import {
+  CheckboxGroup,
+} from '../../01-atoms/checkbox-group/checkbox-group.stories';
 import { RadioGroup } from '../../01-atoms/radio-group/radio-group.stories';
 
 export default {
@@ -60,6 +62,15 @@ export const FormElement = () => {
     is_disabled: boolean('Disabled', false, generalKnobTab),
     is_invalid: boolean('Is invalid', false, generalKnobTab),
     message: text('Message', 'Field message that spans on the multiple lines to test vertical checkbox alignment', generalKnobTab),
+    control_direction: radios(
+      'Control direction',
+      {
+        Horizontal: 'horizontal',
+        Vertical: 'vertical',
+      },
+      'vertical',
+      generalKnobTab,
+    ),
     modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };

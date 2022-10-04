@@ -18,8 +18,7 @@
 {% set type_class =  'ct-form-element--%s'|format(type|default('input')) %}
 {% set direction_class =  'ct-form-element--%s'|format(direction|default('horizontal')) %}
 {% set is_required_class =  is_required ? 'ct-form-element--required' : '' %}
-{% set element_class =  'ct-form-element__element' %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, type_class, direction_class, is_required_class, element_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, type_class, direction_class, is_required_class, modifier_class|default('')) %}
 
 {% if name is not empty %}
   {% set element = element | merge({
@@ -53,8 +52,10 @@
       {% elseif type == 'checkbox' %}
         {% include '@atoms/checkbox/checkbox.twig' with element only %}
       {% elseif type == 'checkbox-group' %}
+        {% set element = element | merge({ direction: control_direction }) %}
         {% include '@atoms/checkbox-group/checkbox-group.twig' with element only %}
       {% elseif type == 'radio-group' %}
+        {% set element = element | merge({ direction: control_direction }) %}
         {% include '@atoms/radio-group/radio-group.twig' with element only %}
       {% else %}
         <input
