@@ -36,6 +36,10 @@
 
     #{$root}__list__item {
       margin-bottom: ct-spacing(2);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
     &#{$root}--no-gap {
