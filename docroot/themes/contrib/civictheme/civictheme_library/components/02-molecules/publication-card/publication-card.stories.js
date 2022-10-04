@@ -8,7 +8,6 @@ import {
   demoImage,
   getSlots,
   randomSentence,
-  randomUrl,
 } from '../../00-base/base.stories';
 
 export default {
