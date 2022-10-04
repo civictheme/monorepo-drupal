@@ -1,6 +1,6 @@
 // phpcs:ignoreFile
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import CivicThemeFormElement from './form-element.twig';
+import CivicThemeField from './field.twig';
 import { Select } from '../../01-atoms/select/select.stories';
 import { Textfield } from '../../01-atoms/textfield/textfield.stories';
 import { Textarea } from '../../01-atoms/textarea/textarea.stories';
@@ -11,13 +11,13 @@ import {
 import { RadioGroup } from '../../01-atoms/radio-group/radio-group.stories';
 
 export default {
-  title: 'Molecules/Form Element',
+  title: 'Molecules/Field',
   parameters: {
     layout: 'centered',
   },
 };
 
-export const FormElement = () => {
+export const Field = () => {
   const generalKnobTab = 'General';
   const generalKnobs = {
     theme: radios(
@@ -106,7 +106,7 @@ export const FormElement = () => {
       controlKnobs = Textfield(elementKnobTab, false);
   }
 
-  return CivicThemeFormElement({
+  return CivicThemeField({
     ...generalKnobs,
     control: controlKnobs,
   });

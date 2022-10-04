@@ -10,7 +10,7 @@ import CivicThemeSelect from '../01-atoms/select/select.twig';
 import CivicThemeCheckbox from '../01-atoms/checkbox/checkbox.twig';
 import CivicThemeRadio from '../01-atoms/radio/radio.twig';
 import CivicThemeFormElement
-  from '../02-molecules/form-element/form-element.twig';
+  from '../02-molecules/field/field.twig';
 import CivicThemeLabel from '../01-atoms/label/label.twig';
 import CivicThemeDropdownFilter
   from '../02-molecules/dropdown-filter/dropdown-filter.twig';
@@ -142,7 +142,7 @@ export const randomFormElement = (inputType, options, theme, rand, itr) => {
     label: CivicThemeLabel({
       theme,
       content: options.title ? options.title : `Input title ${itr + 1}${rand ? ` ${randomString(randomInt(2, 5))}` : ''}`,
-      attributes: `for="form-element-${itr}"`,
+      attributes: `for="field-${itr}"`,
       required: options.required,
     }),
     label_display: isCheckboxOrRadio ? 'after' : 'before',
@@ -153,7 +153,7 @@ export const randomFormElement = (inputType, options, theme, rand, itr) => {
     children: [],
     attributes: options.form_element_attributes,
   };
-  let attributes = `id="form-element-${itr}"`;
+  let attributes = `id="field-${itr}"`;
   if (typeof options.attributes !== 'undefined') {
     attributes += options.attributes;
   }

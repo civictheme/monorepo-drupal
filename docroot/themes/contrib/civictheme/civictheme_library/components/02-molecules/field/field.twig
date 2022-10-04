@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Form element component.
+ * Field component.
  *
  * Used as a main entry point to build any form fields.
  *
@@ -35,10 +35,10 @@
 
 {% set type = type not in ['textfield', 'textarea', 'select', 'radio-group', 'checkbox', 'checkbox-group', 'hidden'] ? 'hidden' : type %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set type_class =  'ct-form-element--%s'|format(type|default('input')) %}
-{% set direction_class =  'ct-form-element--%s'|format(direction|default('horizontal')) %}
-{% set is_required_class =  is_required ? 'ct-form-element--required' : '' %}
-{% set is_disabled_class =  is_disabled ? 'ct-form-element--disabled' : '' %}
+{% set type_class =  'ct-field--%s'|format(type|default('input')) %}
+{% set direction_class =  'ct-field--%s'|format(direction|default('horizontal')) %}
+{% set is_required_class =  is_required ? 'ct-field--required' : '' %}
+{% set is_disabled_class =  is_disabled ? 'ct-field--disabled' : '' %}
 {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, type_class, direction_class, is_required_class, is_disabled_class, modifier_class|default('')) %}
 
 {% if (control.name is defined and control.name is not empty) or (control.items is defined and control.items is not empty and control.items[0] is defined and control.items[0].name is defined  and control.items[0].name is not empty) %}
@@ -47,22 +47,22 @@
     is_disabled: is_disabled,
     is_invalid: is_invalid,
     is_required: is_required,
-    modifier_class: 'ct-form-element__control ' ~ control.modifier_class,
+    modifier_class: 'ct-field__control ' ~ control.modifier_class,
   }) %}
 
-  <div class="ct-form-element {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
-    {% set label_padded_class =  type in ['textfield', 'textarea', 'select'] and direction == 'horizontal' ? 'ct-form-element__label--padded' %}
+  <div class="ct-field {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
+    {% set label_padded_class =  type in ['textfield', 'textarea', 'select'] and direction == 'horizontal' ? 'ct-field__label--padded' %}
     {% if label is not empty and type != 'hidden' %}
       {% include '@atoms/label/label.twig' with {
         theme: theme,
         content: label,
         is_required: is_required,
         for: control.id ? control.id : null,
-        modifier_class: 'ct-form-element__label ' ~ label_padded_class,
+        modifier_class: 'ct-field__label ' ~ label_padded_class,
       } only %}
     {% endif %}
 
-    <div class="ct-form-element__wrapper">
+    <div class="ct-field__wrapper">
       {% if type == 'textfield' %}
         {% include '@atoms/textfield/textfield.twig' with control only %}
       {% elseif type == 'textarea' %}
@@ -93,7 +93,7 @@
           theme: theme,
           size: 'regular',
           content: description,
-          modifier_class: 'ct-form-element__description',
+          modifier_class: 'ct-field__description',
         } only %}
       {% endif %}
 
@@ -102,7 +102,7 @@
           theme: theme,
           type: is_invalid ? 'error' : 'information',
           content: message ? message : (is_invalid ? (label is not empty ? 'Field <em>' ~  label ~ '</em> has an error' : 'Field has an error') : null),
-          modifier_class: 'ct-form-element__message',
+          modifier_class: 'ct-field__message',
         } only %}
       {% endif %}
     </div>

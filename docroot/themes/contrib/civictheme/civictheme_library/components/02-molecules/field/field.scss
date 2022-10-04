@@ -1,10 +1,10 @@
 //
-// Form Element component.
+// Field component.
 //
 
 @use 'sass:math';
 
-.ct-form-element {
+.ct-field {
   $root: &;
 
   margin-bottom: ct-spacing(2);
@@ -37,7 +37,7 @@
       flex-shrink: 0;
 
       // But only until set maximum width.
-      max-width: $ct-form-element-horizontal-label-max-width;
+      max-width: $ct-field-horizontal-label-max-width;
       padding-right: ct-spacing();
 
       &--padded {
