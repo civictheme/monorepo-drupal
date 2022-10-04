@@ -26,8 +26,7 @@
   @include ct-typography('text-regular');
 
   &--disabled {
-    opacity: 40%;
-    pointer-events: none;
+    @include ct-form-element-disabled();
   }
 }
 
@@ -133,6 +132,14 @@
 
   // Not removed via appearance.
   margin: 0;
+}
+
+//
+// Disabled form element.
+//
+@mixin ct-form-element-disabled() {
+  opacity: 40%;
+  pointer-events: none;
 }
 
 //

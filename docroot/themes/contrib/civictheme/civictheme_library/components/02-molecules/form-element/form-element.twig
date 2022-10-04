@@ -18,7 +18,8 @@
 {% set type_class =  'ct-form-element--%s'|format(type|default('input')) %}
 {% set direction_class =  'ct-form-element--%s'|format(direction|default('horizontal')) %}
 {% set is_required_class =  is_required ? 'ct-form-element--required' : '' %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, type_class, direction_class, is_required_class, modifier_class|default('')) %}
+{% set is_disabled_class =  is_disabled ? 'ct-form-element--disabled' : '' %}
+{% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, type_class, direction_class, is_required_class, is_disabled_class, modifier_class|default('')) %}
 
 {% if name is not empty %}
   {% set element = element | merge({

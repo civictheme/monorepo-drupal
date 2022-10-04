@@ -49,4 +49,14 @@
       }
     }
   }
+
+  // Add disabled styles for non-control elements as they do not have a
+  // 'disabled' state unlike form controls.
+  &--disabled {
+    #{$root}__label,
+    #{$root}__description,
+    #{$root}__message {
+      @include ct-form-element-disabled();
+    }
+  }
 }
