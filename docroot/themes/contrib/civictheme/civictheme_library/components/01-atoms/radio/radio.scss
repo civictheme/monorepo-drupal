@@ -62,6 +62,10 @@
 
   #{$root}__label {
     padding-left: ct-spacing(1.5);
+
+    &.ct-label {
+      font-weight: normal;
+    }
   }
 
   &.ct-theme-light {
