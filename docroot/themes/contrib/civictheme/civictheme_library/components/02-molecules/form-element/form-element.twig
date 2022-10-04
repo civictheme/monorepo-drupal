@@ -22,13 +22,13 @@
 {% set modifier_class = '%s %s %s %s %s %s'|format(theme_class, type_class, direction_class, is_required_class, is_disabled_class, modifier_class|default('')) %}
 
 {% if name is not empty %}
-  {% set element = element | merge({
+  {% set control = control | merge({
     theme: theme,
     name: name,
     is_disabled: is_disabled,
     is_invalid: is_invalid,
     is_required: is_required,
-    modifier_class: 'ct-form-element__control ' ~ element.modifier_class,
+    modifier_class: 'ct-form-element__control ' ~ control.modifier_class,
   }) %}
 
   <div class="ct-form-element {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
@@ -38,34 +38,34 @@
         theme: theme,
         content: label,
         is_required: is_required,
-        for: element.id ? element.id : null,
+        for: control.id ? control.id : null,
         modifier_class: 'ct-form-element__label ' ~ padded_class,
       } only %}
     {% endif %}
 
     <div class="ct-form-element__wrapper">
       {% if type == 'textfield' %}
-        {% include '@atoms/textfield/textfield.twig' with element only %}
+        {% include '@atoms/textfield/textfield.twig' with control only %}
       {% elseif type == 'textarea' %}
-        {% include  '@atoms/textarea/textarea.twig' with element only %}
+        {% include  '@atoms/textarea/textarea.twig' with control only %}
       {% elseif type == 'select' %}
-        {% include '@atoms/select/select.twig' with element only %}
+        {% include '@atoms/select/select.twig' with control only %}
       {% elseif type == 'checkbox' %}
-        {% include '@atoms/checkbox/checkbox.twig' with element only %}
+        {% include '@atoms/checkbox/checkbox.twig' with control only %}
       {% elseif type == 'checkbox-group' %}
-        {% set element = element | merge({ direction: control_direction }) %}
-        {% include '@atoms/checkbox-group/checkbox-group.twig' with element only %}
+        {% set control = control | merge({ direction: control_direction }) %}
+        {% include '@atoms/checkbox-group/checkbox-group.twig' with control only %}
       {% elseif type == 'radio-group' %}
-        {% set element = element | merge({ direction: control_direction }) %}
-        {% include '@atoms/radio-group/radio-group.twig' with element only %}
+        {% set control = control | merge({ direction: control_direction }) %}
+        {% include '@atoms/radio-group/radio-group.twig' with control only %}
       {% else %}
         <input
           type="{{ type }}"
-          name="{{ element.name }}"
-          {% if element.modifier_class %}class="{{ element.modifier_class }}"{% endif %}
-          {% if element.value %}value="{{ element.value }}"{% endif %}
-          {% if element.id %}id="{{ element.id }}"{% endif %}
-          {% if element.attributes %}{{ element.attributes|raw }}{% endif %}
+          name="{{ control.name }}"
+          {% if control.modifier_class %}class="{{ control.modifier_class }}"{% endif %}
+          {% if control.value %}value="{{ control.value }}"{% endif %}
+          {% if control.id %}id="{{ control.id }}"{% endif %}
+          {% if control.attributes %}{{ control.attributes|raw }}{% endif %}
         />
       {% endif %}
 

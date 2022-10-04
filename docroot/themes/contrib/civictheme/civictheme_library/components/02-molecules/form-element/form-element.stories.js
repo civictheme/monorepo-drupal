@@ -75,42 +75,42 @@ export const FormElement = () => {
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 
-  generalKnobs.element = {};
+  generalKnobs.control = {};
 
-  const elementKnobTab = 'Element';
-  let elementKnobs = {};
+  const elementKnobTab = 'Control';
+  let controlKnobs = {};
 
   switch (generalKnobs.type) {
     case 'textfield':
-      elementKnobs = Textfield(elementKnobTab, false);
+      controlKnobs = Textfield(elementKnobTab, false);
       break;
 
     case 'textarea':
-      elementKnobs = Textarea(elementKnobTab, false);
+      controlKnobs = Textarea(elementKnobTab, false);
       break;
 
     case 'select':
-      elementKnobs = Select(elementKnobTab, false);
+      controlKnobs = Select(elementKnobTab, false);
       break;
 
     case 'checkbox':
-      elementKnobs = Checkbox(elementKnobTab, false);
+      controlKnobs = Checkbox(elementKnobTab, false);
       break;
 
     case 'checkbox-group':
-      elementKnobs = CheckboxGroup(elementKnobTab, false);
+      controlKnobs = CheckboxGroup(elementKnobTab, false);
       break;
 
     case 'radio-group':
-      elementKnobs = RadioGroup(elementKnobTab, false);
+      controlKnobs = RadioGroup(elementKnobTab, false);
       break;
 
     default:
-      elementKnobs = Textfield(elementKnobTab, false);
+      controlKnobs = Textfield(elementKnobTab, false);
   }
 
   return CivicThemeFormElement({
     ...generalKnobs,
-    element: elementKnobs,
+    control: controlKnobs,
   });
 };
