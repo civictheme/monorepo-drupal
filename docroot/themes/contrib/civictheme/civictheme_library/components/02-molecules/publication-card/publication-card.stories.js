@@ -42,14 +42,13 @@ export const PublicationCard = (knobTab) => {
     ),
     title: text('Title', 'Publication or whitepaper main title.', generalKnobTab),
     summary: text('Summary', randomSentence(), generalKnobTab),
-    url: text('URL', randomUrl(), generalKnobTab),
     image: boolean('With image', true, generalKnobTab) ? {
       src: demoImage(),
       alt: 'Image alt text',
     } : false,
     link: boolean('With file', true, generalKnobTab) ? {
       url: 'https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.doc',
-      text: 'Filename.pdf (175.96KB)',
+      text: 'Filename (PDF, 175.96 KB)',
     } : null,
     modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
