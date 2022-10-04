@@ -31,7 +31,7 @@ export const FieldDescription = (knobTab) => {
       'regular',
       generalKnobTab,
     ),
-    content: text('Content', 'Field description that spans on the multiple lines to test vertical checkbox alignment.', generalKnobTab),
+    content: text('Content', 'Content sample with long text that spans on the multiple lines to test text vertical spacing', generalKnobTab),
     modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };

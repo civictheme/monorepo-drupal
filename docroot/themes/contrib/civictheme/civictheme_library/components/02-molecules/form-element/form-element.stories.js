@@ -54,14 +54,14 @@ export const FormElement = () => {
       generalKnobTab,
     ),
     label: text('Label', 'Field label', generalKnobTab),
-    description: text('Description', 'Field description that spans on the multiple lines to test vertical checkbox alignment', generalKnobTab),
+    description: text('Description', 'Content sample with long text that spans on the multiple lines to test text vertical spacing', generalKnobTab),
     name: text('Name', 'control-name', generalKnobTab),
     value: text('Value', '', generalKnobTab),
     id: text('ID', 'control-id', generalKnobTab),
     is_required: boolean('Required', false, generalKnobTab),
     is_disabled: boolean('Disabled', false, generalKnobTab),
     is_invalid: boolean('Is invalid', false, generalKnobTab),
-    message: text('Message', 'Field message that spans on the multiple lines to test vertical checkbox alignment', generalKnobTab),
+    message: text('Message', 'Content sample with long text that spans on the multiple lines to test text vertical spacing', generalKnobTab),
     control_direction: radios(
       'Control direction',
       {
