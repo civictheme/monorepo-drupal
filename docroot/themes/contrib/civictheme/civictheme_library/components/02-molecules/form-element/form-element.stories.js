@@ -29,15 +29,6 @@ export const FormElement = () => {
       'light',
       generalKnobTab,
     ),
-    direction: radios(
-      'Direction',
-      {
-        Horizontal: 'horizontal',
-        Vertical: 'vertical',
-      },
-      'vertical',
-      generalKnobTab,
-    ),
     type: radios(
       'Type',
       {
@@ -53,6 +44,24 @@ export const FormElement = () => {
       'textfield',
       generalKnobTab,
     ),
+    direction: radios(
+      'Direction',
+      {
+        Horizontal: 'horizontal',
+        Vertical: 'vertical',
+      },
+      'vertical',
+      generalKnobTab,
+    ),
+    control_direction: radios(
+      'Control direction (for group controls)',
+      {
+        Horizontal: 'horizontal',
+        Vertical: 'vertical',
+      },
+      'vertical',
+      generalKnobTab,
+    ),
     label: text('Label', 'Field label', generalKnobTab),
     description: text('Description', 'Content sample with long text that spans on the multiple lines to test text vertical spacing', generalKnobTab),
     name: text('Name', 'control-name', generalKnobTab),
@@ -62,15 +71,6 @@ export const FormElement = () => {
     is_disabled: boolean('Disabled', false, generalKnobTab),
     is_invalid: boolean('Is invalid', false, generalKnobTab),
     message: text('Message', 'Content sample with long text that spans on the multiple lines to test text vertical spacing', generalKnobTab),
-    control_direction: radios(
-      'Control direction',
-      {
-        Horizontal: 'horizontal',
-        Vertical: 'vertical',
-      },
-      'vertical',
-      generalKnobTab,
-    ),
     modifier_class: `story-wrapper-size--medium ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };
