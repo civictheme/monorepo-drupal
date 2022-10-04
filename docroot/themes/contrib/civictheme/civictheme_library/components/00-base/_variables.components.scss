@@ -282,15 +282,6 @@ $ct-field-message-dark-warning-color: ct-color-dark('body') !default;
 $ct-field-message-dark-warning-icon-color: ct-color-dark('warning') !default;
 
 //
-// Field label.
-//
-$ct-label-required-text: ' *';
-$ct-label-light-color: ct-color-light('heading') !default;
-$ct-label-light-required-color: ct-color-light('error') !default;
-$ct-label-dark-color: ct-color-dark('heading') !default;
-$ct-label-dark-required-color: ct-color-dark('error') !default;
-
-//
 // Content Link.
 //
 $ct-content-link-light-color: ct-color-light('interaction-background') !default;
@@ -307,6 +298,21 @@ $ct-content-link-dark-visited-hover-color: ct-color-dark('interaction-hover-text
 $ct-content-link-dark-visited-hover-border-color: ct-color-dark('interaction-focus') !default;
 
 //
+// Heading.
+//
+$ct-heading-light-color: ct-color-light('heading') !default;
+$ct-heading-dark-color: ct-color-dark('heading') !default;
+
+//
+// Label.
+//
+$ct-label-required-text: ' *';
+$ct-label-light-color: ct-color-light('heading') !default;
+$ct-label-light-required-color: ct-color-light('error') !default;
+$ct-label-dark-color: ct-color-dark('heading') !default;
+$ct-label-dark-required-color: ct-color-dark('error') !default;
+
+//
 // Link.
 //
 $ct-link-icon-external: url('#{$ct-assets-directory}icons/Arrows/Upper Right Arrow.svg');
@@ -320,10 +326,10 @@ $ct-link-dark-visited-color: $ct-link-dark-color !default;
 $ct-link-dark-active-color: ct-color-dark('body') !default;
 
 //
-// Heading.
+// Select.
 //
-$ct-heading-light-color: ct-color-light('heading') !default;
-$ct-heading-dark-color: ct-color-dark('heading') !default;
+//$ct-select-arrow: url("data:image/svg+xml,%3Csvg stroke='' stroke-width='1px' width='14' height='14' viewBox='0 0 14 10' fill='' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.08556 9.91168C3.97589 9.86599 3.87635 9.79904 3.79268 9.71468L0.264683 6.18668C0.0952092 6.01721 0 5.78735 0 5.54768C0 5.30801 0.0952092 5.07816 0.264683 4.90868C0.434156 4.73921 0.664011 4.644 0.903683 4.644C1.14335 4.644 1.37321 4.73921 1.54268 4.90868L4.43168 7.80668L11.9647 0.264682C12.1342 0.0952088 12.364 0 12.6037 0C12.8434 0 13.0732 0.0952088 13.2427 0.264682C13.4122 0.434155 13.5074 0.664011 13.5074 0.903682C13.5074 1.14335 13.4122 1.37321 13.2427 1.54268L5.07068 9.71468C4.98702 9.79904 4.88748 9.86599 4.7778 9.91168C4.66813 9.95737 4.55049 9.9809 4.43168 9.9809C4.31287 9.9809 4.19524 9.95737 4.08556 9.91168Z' /%3E%3C/svg%3E") !default;
+$ct-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='' %3E%3Cpath d='M18.6072 8.38619C18.3583 8.13884 18.0217 8 17.6709 8C17.32 8 16.9834 8.13884 16.7346 8.38619L11.9668 13.0876L7.26542 8.38619C7.01659 8.13884 6.67999 8 6.32913 8C5.97827 8 5.64167 8.13884 5.39284 8.38619C5.26836 8.50965 5.16956 8.65654 5.10214 8.81838C5.03471 8.98022 5 9.1538 5 9.32912C5 9.50445 5.03471 9.67803 5.10214 9.83987C5.16956 10.0017 5.26836 10.1486 5.39284 10.2721L11.0239 15.9031C11.1473 16.0276 11.2942 16.1264 11.4561 16.1938C11.6179 16.2612 11.7915 16.2959 11.9668 16.2959C12.1421 16.2959 12.3157 16.2612 12.4775 16.1938C12.6394 16.1264 12.7863 16.0276 12.9097 15.9031L18.6072 10.2721C18.7316 10.1486 18.8304 10.0017 18.8979 9.83987C18.9653 9.67803 19 9.50445 19 9.32912C19 9.1538 18.9653 8.98022 18.8979 8.81838C18.8304 8.65654 18.7316 8.50965 18.6072 8.38619Z' /%3E%3C/svg%3E") !default;
 
 //
 // Tag.

@@ -2,23 +2,50 @@
 // Select component.
 //
 
+@use 'sass:math';
+
 .ct-select {
+  // Helper to set the color of the icon.
+  // stylelint-disable-next-line scss/at-mixin-pattern
+  @mixin _control-icon($color: currentcolor, $hover-color: $color, $only-color: false) {
+    $_control-icon-width: ct-particle(2);
+
+    &:not([multiple]) {
+      @if $only-color != false {
+        padding-right: $_control-icon-width + ct-spacing() * 2;
+        background-repeat: no-repeat;
+        background-position: right ct-spacing() top 50%;
+        background-size: $_control-icon-width auto;
+      }
+
+      background-image: ct-color-svg-fill($ct-select-arrow, $color);
+
+      &:hover {
+        background-image: ct-color-svg-fill($ct-select-arrow, $hover-color);
+      }
+    }
+  }
+
   $root: &;
 
   @include ct-form-element();
 
   &#{$root}__control {
     @include ct-form-control();
+    @include ct-form-control-no-appearance();
+    @include _control-icon();
   }
 
   &.ct-theme-light {
     &#{$root}__control {
       @include ct-form-control-colors('light');
+      @include _control-icon($ct-form-control-light-border-color, $ct-form-control-light-hover-border-color, true);
     }
 
     &#{$root}--invalid {
       &#{$root}__control {
         @include ct-form-control-colors('light', 'invalid');
+        @include _control-icon($ct-form-control-light-invalid-border-color, $ct-form-control-light-invalid-border-color, true);
       }
     }
   }
@@ -26,11 +53,13 @@
   &.ct-theme-dark {
     &#{$root}__control {
       @include ct-form-control-colors('dark');
+      @include _control-icon($ct-form-control-dark-border-color, $ct-form-control-dark-hover-border-color, true);
     }
 
     &#{$root}--invalid {
       &#{$root}__control {
         @include ct-form-control-colors('dark', 'invalid');
+        @include _control-icon($ct-form-control-dark-invalid-border-color, $ct-form-control-dark-invalid-border-color, true);
       }
     }
   }

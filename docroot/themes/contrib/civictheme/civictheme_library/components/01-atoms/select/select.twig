@@ -36,6 +36,7 @@
     class="ct-select ct-select__control {{ modifier_class }}"
     name="{{ name }}"
     {% if id %}id="{{ id }}"{% endif %}
+    {{ is_multiple ? 'multiple' }}
     {{ is_disabled ? 'disabled' }}
     {{ is_required ? 'required' }}
     {% if attributes is not empty %}{{ attributes|raw }}{% endif %}
