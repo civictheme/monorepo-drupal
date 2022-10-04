@@ -33,8 +33,8 @@ export const FieldMessage = (knobTab) => {
       'error',
       generalKnobTab,
     ),
-    content: text('Content', 'Field message content', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
+    content: text('Content', 'Field message that spans on the multiple lines to test vertical checkbox alignment.', generalKnobTab),
+    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 

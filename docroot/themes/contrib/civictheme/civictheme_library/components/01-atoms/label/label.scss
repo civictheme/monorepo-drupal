@@ -2,6 +2,7 @@
 // Label component.
 //
 
+@use 'sass:math';
 @use 'sass:map';
 @use 'sass:string';
 
@@ -16,11 +17,13 @@
     cursor: pointer;
   }
 
-  &--required {
-    &::after {
-      content: ' (Required)';
+  &#{$root}--required {
+    #{$root}__last-word {
+      white-space: nowrap;
 
-      @include ct-typography('label-small');
+      &::after {
+        content: $ct-label-required-text;
+      }
     }
   }
 
@@ -36,9 +39,11 @@
   &.ct-theme-light {
     color: $ct-label-light-color;
 
-    #{$root}--required {
-      &::after {
-        color: $ct-label-light-required-color;
+    &#{$root}--required {
+      #{$root}__last-word {
+        &::after {
+          color: $ct-label-light-required-color;
+        }
       }
     }
   }
@@ -46,9 +51,11 @@
   &.ct-theme-dark {
     color: $ct-label-dark-color;
 
-    #{$root}--required {
-      &::after {
-        color: $ct-label-dark-required-color;
+    &#{$root}--required {
+      #{$root}__last-word {
+        &::after {
+          color: $ct-label-dark-required-color;
+        }
       }
     }
   }

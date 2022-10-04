@@ -45,6 +45,7 @@ export const FormElement = () => {
         'Radio Group': 'radio-group',
         Checkbox: 'checkbox',
         'Checkbox Group': 'checkbox-group',
+        Hidden: 'hidden',
         Other: 'other',
       },
       'textfield',

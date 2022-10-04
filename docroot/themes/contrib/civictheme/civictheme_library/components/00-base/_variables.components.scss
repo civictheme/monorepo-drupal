@@ -284,6 +284,7 @@ $ct-field-message-dark-warning-icon-color: ct-color-dark('warning') !default;
 //
 // Field label.
 //
+$ct-label-required-text: ' *';
 $ct-label-light-color: ct-color-light('heading') !default;
 $ct-label-light-required-color: ct-color-light('error') !default;
 $ct-label-dark-color: ct-color-dark('heading') !default;
@@ -649,6 +650,11 @@ $ct-figure-light-caption-color: ct-color-light('body') !default;
 $ct-figure-light-caption-icon-color: $ct-figure-light-caption-color !default;
 $ct-figure-dark-caption-color: ct-color-dark('body') !default;
 $ct-figure-dark-caption-icon-color: $ct-figure-dark-caption-color !default;
+
+//
+// Form element.
+//
+$ct-form-element-horizontal-label-max-width: ct-particle(20);
 
 //
 // Group filter.

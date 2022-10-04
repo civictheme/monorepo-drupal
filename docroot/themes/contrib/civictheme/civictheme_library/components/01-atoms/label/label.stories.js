@@ -1,5 +1,5 @@
 // phpcs:ignoreFile
-import { radios, text } from '@storybook/addon-knobs';
+import { boolean, radios, text } from '@storybook/addon-knobs';
 import CivicThemeLabel from './label.twig';
 
 export default {
@@ -24,11 +24,9 @@ export const Label = (knobTab) => {
     ),
     size: radios(
       'Size', {
-        'Extra Large': 'extra-large',
         Large: 'large',
         Regular: 'regular',
         Small: 'small',
-        'Extra Small': 'extra-small',
         None: '',
       },
       'regular',
@@ -36,7 +34,8 @@ export const Label = (knobTab) => {
     ),
     content: text('Content', 'Label content', generalKnobTab),
     for: text('For', '', generalKnobTab),
-    modifier_class: text('Additional classes', '', generalKnobTab),
+    is_required: boolean('Required', false, generalKnobTab),
+    modifier_class: `story-wrapper-size--small ${text('Additional class', '', generalKnobTab)}`,
     attributes: text('Additional attributes', '', generalKnobTab),
   };
 

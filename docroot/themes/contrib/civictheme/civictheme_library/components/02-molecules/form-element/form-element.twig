@@ -13,29 +13,33 @@
  */
 #}
 
-{% set type = type not in ['textfield', 'textarea', 'select', 'radio-group', 'checkbox', 'checkbox-group'] ? 'input' : type %}
+{% set type = type not in ['textfield', 'textarea', 'select', 'radio-group', 'checkbox', 'checkbox-group', 'hidden'] ? 'hidden' : type %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
 {% set type_class =  'ct-form-element--%s'|format(type|default('input')) %}
 {% set direction_class =  'ct-form-element--%s'|format(direction|default('horizontal')) %}
+{% set is_required_class =  is_required ? 'ct-form-element--required' : '' %}
 {% set element_class =  'ct-form-element__element' %}
-{% set modifier_class = '%s %s %s %s %s'|format(theme_class, type_class, direction_class, element_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, type_class, direction_class, is_required_class, element_class, modifier_class|default('')) %}
 
 {% if name is not empty %}
   {% set element = element | merge({
     theme: theme,
     name: name,
     is_disabled: is_disabled,
-    is_invalid: has_error,
+    is_invalid: is_invalid,
+    is_required: is_required,
     modifier_class: 'ct-form-element__control ' ~ element.modifier_class,
   }) %}
 
   <div class="ct-form-element {{ modifier_class }}" {% if attributes %}{{ attributes|raw }}{% endif %}>
-    {% if label is not empty %}
+    {% set padded_class =  type in ['textfield', 'textarea', 'select'] and direction == 'horizontal' ? 'ct-form-element__label--padded' %}
+    {% if label is not empty and type != 'hidden' %}
       {% include '@atoms/label/label.twig' with {
         theme: theme,
         content: label,
+        is_required: is_required,
         for: element.id ? element.id : null,
-        modifier_class: 'ct-form-element__label',
+        modifier_class: 'ct-form-element__label ' ~ padded_class,
       } only %}
     {% endif %}
 
@@ -63,7 +67,7 @@
         />
       {% endif %}
 
-      {% if description is not empty %}
+      {% if description is not empty and type != 'hidden' %}
         {% include '@atoms/field-description/field-description.twig' with {
           theme: theme,
           size: 'regular',
@@ -72,7 +76,7 @@
         } only %}
       {% endif %}
 
-      {% if message or is_invalid %}
+      {% if (message or is_invalid) and type != 'hidden' %}
         {% include '@atoms/field-message/field-message.twig' with {
           theme: theme,
           type: is_invalid ? 'error' : 'information',

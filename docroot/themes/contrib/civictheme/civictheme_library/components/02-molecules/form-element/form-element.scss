@@ -2,6 +2,8 @@
 // Form Element component.
 //
 
+@use 'sass:math';
+
 .ct-form-element {
   $root: &;
 
@@ -22,17 +24,29 @@
 
   &--horizontal {
     display: flex;
-    align-items: baseline;
 
-    #{$root}__label {
-      margin-right: ct-spacing();
-      text-align: right;
-    }
-
+    #{$root}__label,
     #{$root}__description,
     #{$root}__control,
     #{$root}__message {
       margin-bottom: ct-spacing();
+    }
+
+    #{$root}__label {
+      // Prevent label text from wrapping.
+      flex-shrink: 0;
+
+      // But only until set maximum width.
+      max-width: $ct-form-element-horizontal-label-max-width;
+      padding-right: ct-spacing();
+
+      &--padded {
+        // Adjust vertical offset so label starts inline with control's text:
+        // half of the difference between line heights + top padding + border
+        // width.
+        // @see components/00-base/mixins/_form.scss
+        transform: translateY(math.div(ct-typography-rule('text-regular', 'line-height', 'm') - ct-typography-rule('label-regular', 'line-height', 'm'), 2) + $ct-form-control-border-width + ct-particle(0.5));
+      }
     }
   }
 }

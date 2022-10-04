@@ -7,6 +7,7 @@
  * - theme: [string] Theme: light, dark.
  * - size: [string] Label size: large, regular, small.
  * - content: [string] The label's content.
+ * - is_requried: [boolean] Mark label as requried.
  * - for: [string] Which component this label belongs to.
  * - attributes: [string] Additional attributes.
  * - modifier_class: [string] Additional classes.
@@ -15,8 +16,11 @@
 
 {% set size = size in ['large', 'regular', 'small'] ? size : 'regular' %}
 {% set size_class = 'ct-label--%s'|format(size) %}
+{% set is_required_class = is_required ? 'ct-label--required' : '' %}
 {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s %s'|format(theme_class, size_class, modifier_class|default('')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, size_class, is_required_class, modifier_class|default('')) %}
+
+{% set content = content|trim|split(' ', -1)|join(' ') ~ ' <span class="ct-label__last-word">' ~ content|trim|split(' ')|last ~ '</span>' %}
 
 {% if content is not empty -%}
   <label
