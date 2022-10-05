@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa9f4f526dd36ced7f434ba71244dc6f",
+    "content-hash": "72e2e1f141b4f5f8915b99e7e783ada2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5787,10 +5787,6 @@
             ],
             "authors": [
                 {
-                    "name": "Jelle_S",
-                    "homepage": "https://www.drupal.org/user/829198"
-                },
-                {
                     "name": "attiks",
                     "homepage": "https://www.drupal.org/user/105002"
                 },
@@ -5801,6 +5797,10 @@
                 {
                     "name": "jcnventura",
                     "homepage": "https://www.drupal.org/user/122464"
+                },
+                {
+                    "name": "Jelle_S",
+                    "homepage": "https://www.drupal.org/user/829198"
                 },
                 {
                     "name": "nerdstein",
@@ -21578,11 +21578,11 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "=8.0"
+        "php": "=8.1"
     },
     "platform-dev": [],
     "platform-overrides": {
-        "php": "8.0"
+        "php": "8.1"
     },
     "plugin-api-version": "2.3.0"
 }
