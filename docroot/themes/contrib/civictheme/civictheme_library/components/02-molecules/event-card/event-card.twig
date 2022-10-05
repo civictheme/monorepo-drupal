@@ -73,6 +73,7 @@
               text: title,
               url: url,
               is_new_window: is_external,
+              modifier_class: "ct-event-card__title-link",
             } only %}
           {% else %}
             {{ title }}
@@ -119,19 +120,21 @@
             </div>
           {% endif %}
           {% if url %}
-            {% if is_external %}
-              {% include '@base/icon/icon.twig' with {
-                symbol: 'upper-right-arrow',
-                color: 'primary',
-                modifier_class: 'ct-navigation-card__icon--external'
-              } only %}
-            {% else %}
-              {% include '@base/icon/icon.twig' with {
-                symbol: 'upper-right-arrow',
-                color: 'primary',
-                modifier_class: 'ct-navigation-card__icon--arrow',
-              } only %}
-            {% endif %}
+            <div class="ct-event-card__icon-wrapper">
+              {% if is_external %}
+                {% include '@base/icon/icon.twig' with {
+                  symbol: 'upper-right-arrow',
+                  color: 'primary',
+                  modifier_class: 'ct-navigation-card__icon--external'
+                } only %}
+              {% else %}
+                {% include '@base/icon/icon.twig' with {
+                  symbol: 'right-arrow-2',
+                  color: 'primary',
+                  modifier_class: 'ct-navigation-card__icon--arrow',
+                } only %}
+              {% endif %}
+            </div>
           {% endif %}
         </div>
       {% endif %}

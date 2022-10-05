@@ -43,35 +43,6 @@ function _cs_generated_content_create_node_civictheme_page__variations__componen
       ],
     ],
     [
-      'title' => 'Demo Page, Next Step component, Image',
-      'components' => [
-        [
-          'type' => 'next_step',
-          'title' => $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
-          'link' => [
-            'uri' => $helper::randomUrl(),
-            'title' => $helper::staticSentence(2),
-          ],
-          'image' => $helper->staticMediaItem('civictheme_image'),
-        ],
-      ],
-    ],
-    [
-      'title' => 'Demo Page, Next Step component, No link text, Image',
-      'components' => [
-        [
-          'type' => 'next_step',
-          'title' => $helper::staticSentence(3),
-          'summary' => $helper::staticSentence(8),
-          'link' => [
-            'uri' => $helper::randomUrl(),
-          ],
-          'image' => $helper->staticMediaItem('civictheme_image'),
-        ],
-      ],
-    ],
-    [
       'title' => 'Demo Page, Next Step component, 2 on page, Link text & No link text',
       'components' => [
         [

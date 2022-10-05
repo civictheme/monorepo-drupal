@@ -55,6 +55,10 @@
       $ct-link-light-active-color,
     );
 
+    &.ct-link--active {
+      color: $ct-link-light-active-color;
+    }
+
     &:focus {
       @include ct-outline-light();
     }
@@ -71,6 +75,10 @@
       $ct-link-dark-visited-color,
       $ct-link-dark-active-color,
     );
+
+    &.ct-link--active {
+      color: $ct-link-dark-active-color;
+    }
 
     &:focus {
       @include ct-outline-dark();

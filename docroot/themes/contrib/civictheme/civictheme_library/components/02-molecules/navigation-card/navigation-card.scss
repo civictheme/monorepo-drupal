@@ -121,6 +121,10 @@
       color: $ct-navigation-card-light-color;
     }
 
+    #{$root}__icon-wrapper {
+      color: $ct-navigation-card-light-icon-color;
+    }
+
     #{$root}__icon {
       @include ct-icon-fill-color($ct-navigation-card-light-icon-color, true);
     }
@@ -148,6 +152,10 @@
 
     #{$root}__summary {
       color: $ct-navigation-card-dark-color;
+    }
+
+    #{$root}__icon-wrapper {
+      color: $ct-navigation-card-dark-icon-color;
     }
 
     #{$root}__icon {
