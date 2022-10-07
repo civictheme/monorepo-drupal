@@ -2,5 +2,7 @@
   {% include '@atoms/tag/tag.twig' with {
     theme: tag.theme,
     content: tag.text,
+    type: tag.type ?? 'primary',
+    modifier_class: tag.modifier_class ?? false,
   } only %}
 {% endfor %}
