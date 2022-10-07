@@ -31,11 +31,12 @@ function civictheme_preprocess_paragraph__civictheme_publication_card(&$variable
     /** @var \Drupal\file\FileInterface $file */
     $file = $fid ? File::load($fid) : NULL;
     if (!empty($file)) {
-      $url = file_create_url($file->createFileUrl());
+      $url = $file->createFileUrl(FALSE);
       if ($url) {
         $file_size = format_size($file->getSize());
+        $file_extension = pathinfo($file->getFileUri(), PATHINFO_EXTENSION);
         $variables['link']['url'] = $url;
-        $variables['link']['text'] = sprintf('%s (%s)', $file->getFilename(), $file_size);
+        $variables['link']['text'] = sprintf('%s (%s, %s)', $file->label(), strtoupper($file_extension), strtoupper($file_size));
         $variables['url'] = $url;
       }
     }

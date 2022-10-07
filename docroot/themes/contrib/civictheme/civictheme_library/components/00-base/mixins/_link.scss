@@ -22,6 +22,7 @@
   }
 
   @if $active != false {
+    &--active,
     &:active {
       color: $active;
     }
@@ -53,6 +54,7 @@
   }
 
   @if $active != false {
+    &--active,
     &:active {
       background-color: $active;
     }
@@ -85,6 +87,7 @@
     }
   }
 
+  &--active,
   &:active {
     @if $underline-active {
       text-decoration: underline;

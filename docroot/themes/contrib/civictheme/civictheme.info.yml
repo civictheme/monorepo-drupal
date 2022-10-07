@@ -369,7 +369,6 @@ config_devel:
     - field.field.paragraph.civictheme_navigation_card.field_c_p_title
     - field.field.paragraph.civictheme_navigation_card_ref.field_c_p_reference
     - field.field.paragraph.civictheme_navigation_card_ref.field_c_p_theme
-    - field.field.paragraph.civictheme_next_step.field_c_p_image
     - field.field.paragraph.civictheme_next_step.field_c_p_link
     - field.field.paragraph.civictheme_next_step.field_c_p_summary
     - field.field.paragraph.civictheme_next_step.field_c_p_theme
