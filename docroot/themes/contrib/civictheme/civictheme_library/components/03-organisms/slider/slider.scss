@@ -97,7 +97,7 @@
 
   &__progress-indicator {
     border-radius: $ct-slider-progress-indicator-border-radius;
-    padding: ct-spacing() ct-spacing(2);
+    padding: ct-spacing(.5) ct-spacing();
     display: inline-block;
   }
 
