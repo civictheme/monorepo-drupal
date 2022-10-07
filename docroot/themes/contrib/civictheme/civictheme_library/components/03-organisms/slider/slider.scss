@@ -249,6 +249,10 @@
     @include ct-image-fit();
   }
 
+  &__date {
+    font-weight: 600;
+  }
+
   &.ct-theme-light {
     background-color: $ct-slide-light-background-color;
 
