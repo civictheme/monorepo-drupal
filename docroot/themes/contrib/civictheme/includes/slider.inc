@@ -72,7 +72,6 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
   $link = civictheme_get_field_value($paragraph, 'field_c_p_link', TRUE);
   $links = [];
   if ($link) {
-    $inverse_theme = $theme === 'dark' ? 'light' : 'dark';
     $links[] = [
       'type' => 'primary',
       'size' => 'regular',
@@ -81,7 +80,7 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide(&$variables) {
     ];
     $variables['links']['slide_links'] = [
       '#theme' => 'civictheme_slider_slide_links',
-      '#component_theme' => $inverse_theme,
+      '#component_theme' => $theme,
       '#links' => $links,
     ];
   }
@@ -135,7 +134,6 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variable
       $variables['summary'] = civictheme_get_field_value($node, 'field_c_n_summary') ?? civictheme_get_field_value($node, 'field_c_n_tagline');
 
       // Links.
-      $inverse_theme = $variables['theme'] === 'dark' ? 'light' : 'dark';
       $links = [];
       $links[] = [
         'type' => 'primary',
@@ -145,7 +143,7 @@ function civictheme_preprocess_paragraph__civictheme_slider_slide_ref(&$variable
       ];
       $variables['links']['slide_links'] = [
         '#theme' => 'civictheme_slider_slide_links',
-        '#component_theme' => $inverse_theme,
+        '#component_theme' => $variables['theme'],
         '#links' => $links,
       ];
     }
