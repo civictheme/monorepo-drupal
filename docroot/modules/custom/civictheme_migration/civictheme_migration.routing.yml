@@ -1,0 +1,9 @@
+osp_demo.osp_demo_form:
+  path: 'admin/config/civictheme-migration'
+  defaults:
+    _form: '\Drupal\civictheme_migration\Form\CivicThemeMigrationConfigurationForm'
+    _title: 'Setup CivicTheme migration'
+  requirements:
+    _permission: 'administer content types'
+  options:
+    _admin_route: TRUE
