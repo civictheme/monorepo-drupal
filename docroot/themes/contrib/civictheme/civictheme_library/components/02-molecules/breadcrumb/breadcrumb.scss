@@ -5,7 +5,7 @@
 .ct-breadcrumb {
   $root: &;
 
-  span.ct-breadcrumb__links__link--active {
+  #{$root}__links__link--active {
     pointer-events: none;
   }
 
