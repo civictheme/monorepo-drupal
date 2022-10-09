@@ -38,7 +38,7 @@
         "phpmd/phpmd": "^2.12",
         "phpspec/prophecy-phpunit": "^2",
         "pyrech/composer-changelogs": "^1.7",
-        "slevomat/coding-standard": "7.2.1"
+        "slevomat/coding-standard": "8.5.2"
     },
     "autoload": {
         "classmap": [
