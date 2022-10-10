@@ -1,0 +1,4 @@
+migration_type: "remote"
+remote:
+  auth_type: 'none'
+
