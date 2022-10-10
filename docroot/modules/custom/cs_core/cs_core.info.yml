@@ -13,7 +13,11 @@ dependencies:
   - config_devel:config_devel
   - config_filter:config_filter
   - config_update:config_update
+  - config_ignore:config_ignore
   - dblog:dblog
+  - drupal:field_ui
+  - drupal:toolbar
+  - drupal:views_ui
   - environment_indicator:environment_indicator
   - permissions_filter:permissions_filter
   - redirect:redirect

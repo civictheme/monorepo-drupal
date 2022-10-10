@@ -8,16 +8,21 @@ libraries:
   - 'civictheme/global'
 
 dependencies:
+  - ckeditor:ckeditor
   - components:components
   - content_moderation:content_moderation
   - drupal:block_content
   - drupal:datetime_range
+  - drupal:help
   - drupal:inline_form_errors
   - drupal:layout_builder
   - drupal:layout_discovery
   - drupal:media
   - drupal:media_library
+  - drupal:options
   - drupal:rest
+  - drupal:shortcut
+  - drupal:taxonomy
   - field_group:field_group
   - layout_builder_restrictions:layout_builder_restrictions
   - linkit:linkit
