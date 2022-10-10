@@ -214,13 +214,13 @@ jobs:
           command: ahoy build
           no_output_timeout: 30m
 
-  # Standard profile.
+  # Minimal profile.
   build-alt3:
     <<: *container_config
     parallelism: 1
     environment:
       SKIP_SUBTHEME_ACTIVATION: 1
-      DREVOPS_DRUPAL_PROFILE: standard
+      DREVOPS_DRUPAL_PROFILE: minimal
     steps:
       - attach_workspace:
           at: /workspace
