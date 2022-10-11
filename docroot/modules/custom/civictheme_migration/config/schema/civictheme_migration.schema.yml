@@ -7,6 +7,7 @@ civictheme_migration.settings:
     migration_type:
       label: "Migration type"
       type: string
+      nullable: true
     remote:
       label: "Remote migration settings"
       type: mapping

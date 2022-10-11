@@ -1,4 +1,4 @@
-migration_type: "remote"
+migration_type: "local"
 remote:
   auth_type: 'none'
 

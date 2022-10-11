@@ -1,0 +1,54 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - civictheme_migration
+id: civictheme_page_migration
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - civictheme_migration
+migration_group: civictheme_migration
+label: 'CivicTheme Page Migration'
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  # Under 'urls' filled in on configuration form subission
+  # This contains the streamwrappers of the locally hosted files.
+  #  urls:
+
+  # Under 'fields', we list the data items to be imported. The first level keys
+  # are the source field names we want to populate (the names to be used as
+  # sources in the process configuration below). For each field we're importing,
+  # we provide a label (optional - this is for display in migration tools) and
+  # an xpath for retrieving that value. It's important to note that this xpath
+  # is relative to the elements retrieved by item_selector.
+  fields:
+    - name: id
+      label: "ID"
+      selector: id
+    - name: title
+      label: "Title"
+      selector: title
+  # Under 'ids', we identify source fields populated above which will uniquely
+  # identify each imported item. The 'type' makes sure the migration map table
+  # uses the proper schema type for stored the IDs.
+  ids:
+    id:
+      type: string
+process:
+  title:
+    -
+      plugin: skip_on_empty
+      source: title
+      method: row
+      message: 'Title is empty'
+    -
+      plugin: substr
+      length: 255
+destination:
+  plugin: 'entity:node'
+  default_bundle: civictheme_page
