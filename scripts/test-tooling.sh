@@ -16,7 +16,7 @@ echo "==> Test Assets mock."
 bats tests/bats/assets.bats --tap
 
 if [ "${CIVICTHEME_INSTALL_SIBLING}" = "1" ]; then
-  bats tests/bats/assets_demo_sibiling.bats --tap
+  bats tests/bats/assets_demo_sibling.bats --tap
 else
   bats tests/bats/assets_demo_custom.bats --tap
 fi
