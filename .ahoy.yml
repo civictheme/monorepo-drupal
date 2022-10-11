@@ -202,7 +202,7 @@ commands:
     usage: Export theme config.
     cmd: |
       ahoy cli "./scripts/update-theme-config.sh"
-      ahoy drush cde cs_core
+      ahoy drush cde civictheme_dev
 
   deploy:
     usage: Run remote deployment procedures.
