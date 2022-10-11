@@ -14,6 +14,7 @@ dependencies:
     - node.type.civictheme_event
     - node.type.civictheme_page
   module:
+    - content_moderation
     - contextual
     - file
     - filter
