@@ -183,14 +183,19 @@ job-build: &job-build
 jobs:
   build-govcms:
     <<: *container_config
-    parallelism: 1
     <<: *job-build
     <<: *step_persist_to_workspace
+
+  # Minimal profile.
+  build-minimal:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: minimal
+    <<: *job-build
 
   # Subtheme is a sibling.
   build-govcms-sibling:
     <<: *container_config
-    parallelism: 1
     environment:
       DREVOPS_TEST_BEHAT_TAGS: smoke
       CIVICTHEME_INSTALL_SIBLING: 1
@@ -199,18 +204,9 @@ jobs:
   # No subtheme.
   build-govcms-no-subtheme:
     <<: *container_config
-    parallelism: 1
     environment:
       DREVOPS_TEST_BEHAT_TAGS: smoke
       CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-    <<: *job-build
-
-  # Minimal profile.
-  build-minimal:
-    <<: *container_config
-    parallelism: 1
-    environment:
-      DREVOPS_DRUPAL_PROFILE: minimal
     <<: *job-build
 
   # Deploy primary branches.
