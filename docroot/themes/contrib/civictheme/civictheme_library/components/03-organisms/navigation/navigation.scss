@@ -157,6 +157,14 @@
               display: inline-block;
               border-radius: $ct-border-radius;
               padding: ct-spacing();
+
+              &--external {
+                padding-right: ct-spacing(3);
+
+                &::after {
+                  top: ct-spacing(0.65);
+                }
+              }
             }
           }
 
