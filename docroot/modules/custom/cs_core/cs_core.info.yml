@@ -22,7 +22,6 @@ dependencies:
   - permissions_filter:permissions_filter
   - redirect:redirect
   - shield:shield
-  - stage_file_proxy:stage_file_proxy
   - simple_sitemap:simple_sitemap
   - simple_sitemap:simple_sitemap_views
   - testmode:testmode
