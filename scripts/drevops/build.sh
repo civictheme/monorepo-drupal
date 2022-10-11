@@ -36,6 +36,9 @@ export DREVOPS_DOCTOR_CHECK_PREFLIGHT=1 && ./scripts/drevops/doctor.sh
 # shellcheck disable=SC2015
 docker network prune -f > /dev/null 2>&1 && docker network inspect amazeeio-network > /dev/null 2>&1 || docker network create amazeeio-network > /dev/null 2>&1 || true
 
+# Validate Docker Compose configuration.
+docker-compose config -q
+
 # Validate Composer configuration if Composer is installed.
 if command -v composer > /dev/null; then
   if [ "$DREVOPS_COMPOSER_VALIDATE_LOCK" = "1" ]; then
