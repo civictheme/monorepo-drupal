@@ -49,6 +49,9 @@ aliases:
   # SSH key fingerprint to deploy code to civictheme_content.
   - &deploy_ssh_fingerprint4 "ef:1c:ad:2a:dd:ec:0c:cd:1a:63:4c:bb:8a:d7:c1:b7"
 
+  # SSH key fingerprint to deploy code to civictheme_admin.
+  - &deploy_ssh_fingerprint5 "a8:ac:6a:dc:6c:af:fd:a3:82:3d:12:06:20:ec:5a:f9"
+
   #-----------------------------------------------------------------------------
   # Optional variables.
   #-----------------------------------------------------------------------------
@@ -83,6 +86,7 @@ aliases:
       DEPLOY_SSH_FINGERPRINT2: *deploy_ssh_fingerprint2
       DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
+      DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
     docker:
       - image: drevops/ci-builder
         auth:
@@ -314,6 +318,16 @@ jobs:
             DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_content.git \
             DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
             DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_content" \
+            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
+            ./scripts/deploy-code-release.sh
+          no_output_timeout: 30m
+      - run:
+          name: Deploy release to CivicTheme Admin repository.
+          command: |
+            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT5 \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
+            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_admin" \
             DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
