@@ -29,6 +29,7 @@ dependencies:
   - menu_block:menu_block
   - paragraphs:paragraphs
   - pathauto:pathauto
+  - redirect:redirect
   - webform:webform
 
 regions:

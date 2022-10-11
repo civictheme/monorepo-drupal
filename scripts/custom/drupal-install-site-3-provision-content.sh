@@ -19,6 +19,9 @@ if [ "${DREVOPS_DRUPAL_PROFILE}" = "govcms" ]; then
   echo "  > Remove GovCMS configs."
   $drush -y pm-enable civictheme_govcms
   $drush civictheme_govcms:remove-config
+else
+  echo "  > Enable Admin module."
+  $drush -y pm-enable civictheme_admin
 fi
 
 echo "  > Provision default content."
