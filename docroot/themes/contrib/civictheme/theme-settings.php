@@ -19,6 +19,7 @@ use Drupal\Core\Url;
  */
 function civictheme_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state) {
   _civictheme_form_system_theme_settings_theme_version($form, $form_state);
+  _civictheme_form_system_theme_settings_colors($form, $form_state);
   _civictheme_form_system_theme_settings_components($form, $form_state);
   _civictheme_form_system_theme_settings_content_provision($form, $form_state);
   _civictheme_form_system_theme_settings_storybook($form, $form_state);
@@ -633,4 +634,385 @@ function _civictheme_path_field_description($original_path, $fallback_path) {
     '@explicit-file' => StreamWrapperManager::getScheme($original_path ?? '') !== FALSE ? $original_path : 'public://' . $fallback_path,
     '@local-file' => $local_file,
   ]);
+}
+
+/**
+ * Provide color settings to theme settings form.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ */
+function _civictheme_form_system_theme_settings_colors(&$form, FormStateInterface &$form_state) {
+  $form['colors'] = [
+    '#type' => 'details',
+    '#title' => t('Colors'),
+    '#weight' => 40,
+    '#open' => TRUE,
+    '#tree' => TRUE,
+  ];
+
+  $form['colors']['use_brand_colors'] = [
+    '#title' => t('Use Brand colors'),
+    '#type' => 'checkbox',
+    '#default_value' => theme_get_setting("colors.use_brand_colors") ?? TRUE,
+  ];
+  // Brand.
+  $form['colors']['brand'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Brand colors'),
+    '#tree' => TRUE,
+    '#states' => [
+      'visible' => [
+        ':input[name="colors[use_brand_colors"]' => ['checked' => TRUE],
+      ],
+    ],
+  ];
+
+  // Brand light.
+  $form['colors']['brand']['light'] = [
+    '#type' => 'fieldset',
+    '#tree' => TRUE,
+    '#attributes' => [
+      'class' => 'color-light',
+    ],
+  ];
+  $form['colors']['brand']['light']['brand1'] = [
+    '#type' => 'color',
+    '#title' => t('Brand1'),
+    '#default_value' => theme_get_setting("colors.brand.light.brand1") ?? TRUE,
+  ];
+  $form['colors']['brand']['light']['brand2'] = [
+    '#type' => 'color',
+    '#title' => t('Brand2'),
+    '#default_value' => theme_get_setting("colors.brand.light.brand2") ?? TRUE,
+  ];
+  $form['colors']['brand']['light']['brand3'] = [
+    '#type' => 'color',
+    '#title' => t('Brand3'),
+    '#default_value' => theme_get_setting("colors.brand.light.brand3") ?? TRUE,
+  ];
+
+  // Brand dark.
+  $form['colors']['brand']['dark'] = [
+    '#type' => 'fieldset',
+    '#tree' => TRUE,
+    '#attributes' => [
+      'class' => 'color-dark',
+    ],
+  ];
+  $form['colors']['brand']['dark']['brand1'] = [
+    '#type' => 'color',
+    '#title' => t('Brand1'),
+    '#default_value' => theme_get_setting("colors.brand.dark.brand1") ?? TRUE,
+  ];
+  $form['colors']['brand']['dark']['brand2'] = [
+    '#type' => 'color',
+    '#title' => t('Brand2'),
+    '#default_value' => theme_get_setting("colors.brand.dark.brand2") ?? TRUE,
+  ];
+  $form['colors']['brand']['dark']['brand3'] = [
+    '#type' => 'color',
+    '#title' => t('Brand3'),
+    '#default_value' => theme_get_setting("colors.brand.dark.brand3") ?? TRUE,
+  ];
+
+  // Palette.
+  $form['colors']['palette'] = [
+    '#type' => 'details',
+    '#title' => t('Palette colors'),
+    '#open' => TRUE,
+    '#tree' => TRUE,
+  ];
+
+  // Palette light.
+  $form['colors']['palette']['light'] = [
+    '#type' => 'fieldset',
+    '#tree' => TRUE,
+    '#attributes' => [
+      'class' => 'color-light',
+    ],
+  ];
+  // Palette light typography.
+  $form['colors']['palette']['light']['typography'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Typography'),
+    '#tree' => TRUE,
+  ];
+  $form['colors']['palette']['light']['typography']['heading'] = [
+    '#type' => 'color',
+    '#title' => t('Heading'),
+    '#default_value' => theme_get_setting("colors.palette.light.heading") ?? TRUE,
+  ];
+  $form['colors']['palette']['light']['typography']['body'] = [
+    '#type' => 'color',
+    '#title' => t('Body'),
+    '#default_value' => theme_get_setting("colors.palette.light.body") ?? TRUE,
+  ];
+  // Palette light background.
+  $form['colors']['palette']['light']['background'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Background'),
+  ];
+  $form['colors']['palette']['light']['background']['background_light'] = [
+    '#type' => 'color',
+    '#title' => t('Background light'),
+    '#default_value' => theme_get_setting("colors.palette.light.background_light") ?? TRUE,
+  ];
+  $form['colors']['palette']['light']['background']['background'] = [
+    '#type' => 'color',
+    '#title' => t('Background'),
+    '#default_value' => theme_get_setting("colors.palette.light.background") ?? TRUE,
+  ];
+  $form['colors']['palette']['light']['background']['background_dark'] = [
+    '#type' => 'color',
+    '#title' => t('Background dark'),
+    '#default_value' => theme_get_setting("colors.palette.light.background_dark") ?? TRUE,
+  ];
+  // Palette light border.
+  $form['colors']['palette']['light']['border'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Border'),
+  ];
+  $form['colors']['palette']['light']['border']['border_light'] = [
+    '#type' => 'color',
+    '#title' => t('Border light'),
+    '#default_value' => theme_get_setting("colors.palette.light.border_light") ?? TRUE,
+  ];
+  $form['colors']['palette']['light']['border']['border'] = [
+    '#type' => 'color',
+    '#title' => t('Border'),
+    '#default_value' => theme_get_setting("colors.palette.light.border") ?? TRUE,
+  ];
+  $form['colors']['palette']['light']['border']['border_dark'] = [
+    '#type' => 'color',
+    '#title' => t('Border Dark'),
+    '#default_value' => theme_get_setting("colors.palette.light.border_dark") ?? TRUE,
+  ];
+  // Palette light interection.
+  $form['colors']['palette']['light']['interection'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Interection'),
+  ];
+  $form['colors']['palette']['light']['interection']['interaction_text'] = [
+    '#type' => 'color',
+    '#title' => t('Interaction text'),
+    '#default_value' => theme_get_setting("colors.palette.light.interaction_text") ?? TRUE,
+  ];
+  $form['colors']['palette']['light']['interection']['interaction_background'] = [
+    '#type' => 'color',
+    '#title' => t('Interaction background'),
+    '#default_value' => theme_get_setting("colors.palette.light.interaction_background") ?? TRUE,
+  ];
+  $form['colors']['palette']['light']['interection']['interaction_hover_text'] = [
+    '#type' => 'color',
+    '#title' => t('Interaction hover text'),
+    '#default_value' => theme_get_setting("colors.palette.light.interaction_hover_text") ?? TRUE,
+  ];
+  $form['colors']['palette']['light']['interection']['interaction_hover_background'] = [
+    '#type' => 'color',
+    '#title' => t('Interaction hover background'),
+    '#default_value' => theme_get_setting("colors.palette.light.interaction_hover_background") ?? TRUE,
+  ];
+  $form['colors']['palette']['light']['interection']['interaction_focus'] = [
+    '#type' => 'color',
+    '#title' => t('Interaction focus'),
+    '#default_value' => theme_get_setting("colors.palette.light.interaction_focus") ?? TRUE,
+  ];
+  // Palette light highlight.
+  $form['colors']['palette']['light']['highlight'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Highlight'),
+  ];
+  $form['colors']['palette']['light']['highlight']['highlight'] = [
+    '#type' => 'color',
+    '#title' => t('Highlight'),
+    '#default_value' => theme_get_setting("colors.palette.light.highlight") ?? TRUE,
+  ];
+  // Palette light status.
+  $form['colors']['palette']['light']['status'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Status'),
+  ];
+  $form['colors']['palette']['light']['status']['information'] = [
+    '#type' => 'color',
+    '#title' => t('Information'),
+    '#default_value' => theme_get_setting("colors.palette.light.information") ?? TRUE,
+  ];
+  $form['colors']['palette']['light']['status']['warning'] = [
+    '#type' => 'color',
+    '#title' => t('Warning'),
+    '#default_value' => theme_get_setting("colors.palette.light.warning") ?? TRUE,
+  ];
+  $form['colors']['palette']['light']['status']['error'] = [
+    '#type' => 'color',
+    '#title' => t('Error'),
+    '#default_value' => theme_get_setting("colors.palette.light.error") ?? TRUE,
+  ];
+  $form['colors']['palette']['light']['status']['success'] = [
+    '#type' => 'color',
+    '#title' => t('Success'),
+    '#default_value' => theme_get_setting("colors.palette.light.success") ?? TRUE,
+  ];
+
+  // Palette dark.
+  $form['colors']['palette']['dark'] = [
+    '#type' => 'fieldset',
+    '#tree' => TRUE,
+    '#attributes' => [
+      'class' => 'color-dark',
+    ],
+  ];
+  // Palette dark typography.
+  $form['colors']['palette']['dark']['typography'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Typography'),
+    '#tree' => TRUE,
+  ];
+  $form['colors']['palette']['dark']['typography']['heading'] = [
+    '#type' => 'color',
+    '#title' => t('Heading'),
+    '#default_value' => theme_get_setting("colors.palette.dark.heading") ?? TRUE,
+  ];
+  $form['colors']['palette']['dark']['typography']['body'] = [
+    '#type' => 'color',
+    '#title' => t('Body'),
+    '#default_value' => theme_get_setting("colors.palette.dark.body") ?? TRUE,
+  ];
+  // Palette dark background.
+  $form['colors']['palette']['dark']['background'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Background'),
+  ];
+  $form['colors']['palette']['dark']['background']['background_light'] = [
+    '#type' => 'color',
+    '#title' => t('Background light'),
+    '#default_value' => theme_get_setting("colors.palette.dark.background_light") ?? TRUE,
+  ];
+  $form['colors']['palette']['dark']['background']['background'] = [
+    '#type' => 'color',
+    '#title' => t('Background'),
+    '#default_value' => theme_get_setting("colors.palette.dark.background") ?? TRUE,
+  ];
+  $form['colors']['palette']['dark']['background']['background_dark'] = [
+    '#type' => 'color',
+    '#title' => t('Background dark'),
+    '#default_value' => theme_get_setting("colors.palette.dark.background_dark") ?? TRUE,
+  ];
+  // Palette dark border.
+  $form['colors']['palette']['dark']['border'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Border'),
+  ];
+  $form['colors']['palette']['dark']['border']['border_light'] = [
+    '#type' => 'color',
+    '#title' => t('Border light'),
+    '#default_value' => theme_get_setting("colors.palette.dark.border_light") ?? TRUE,
+  ];
+  $form['colors']['palette']['dark']['border']['border'] = [
+    '#type' => 'color',
+    '#title' => t('Border'),
+    '#default_value' => theme_get_setting("colors.palette.dark.border") ?? TRUE,
+  ];
+  $form['colors']['palette']['dark']['border']['border_dark'] = [
+    '#type' => 'color',
+    '#title' => t('Border Dark'),
+    '#default_value' => theme_get_setting("colors.palette.dark.border_dark") ?? TRUE,
+  ];
+  // Palette dark interection.
+  $form['colors']['palette']['dark']['interection'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Interection'),
+  ];
+  $form['colors']['palette']['dark']['interection']['interaction_text'] = [
+    '#type' => 'color',
+    '#title' => t('Interaction text'),
+    '#default_value' => theme_get_setting("colors.palette.dark.interaction_text") ?? TRUE,
+  ];
+  $form['colors']['palette']['dark']['interection']['interaction_background'] = [
+    '#type' => 'color',
+    '#title' => t('Interaction background'),
+    '#default_value' => theme_get_setting("colors.palette.dark.interaction_background") ?? TRUE,
+  ];
+  $form['colors']['palette']['dark']['interection']['interaction_hover_text'] = [
+    '#type' => 'color',
+    '#title' => t('Interaction hover text'),
+    '#default_value' => theme_get_setting("colors.palette.dark.interaction_hover_text") ?? TRUE,
+  ];
+  $form['colors']['palette']['dark']['interection']['interaction_hover_background'] = [
+    '#type' => 'color',
+    '#title' => t('Interaction hover background'),
+    '#default_value' => theme_get_setting("colors.palette.dark.interaction_hover_background") ?? TRUE,
+  ];
+  $form['colors']['palette']['dark']['interection']['interaction_focus'] = [
+    '#type' => 'color',
+    '#title' => t('Interaction focus'),
+    '#default_value' => theme_get_setting("colors.palette.dark.interaction_focus") ?? TRUE,
+  ];
+  // Palette dark highlight.
+  $form['colors']['palette']['dark']['highlight'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Highlight'),
+  ];
+  $form['colors']['palette']['dark']['highlight']['highlight'] = [
+    '#type' => 'color',
+    '#title' => t('Highlight'),
+    '#default_value' => theme_get_setting("colors.palette.dark.highlight") ?? TRUE,
+  ];
+  // Palette dark status.
+  $form['colors']['palette']['dark']['status'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Status'),
+  ];
+  $form['colors']['palette']['dark']['status']['information'] = [
+    '#type' => 'color',
+    '#title' => t('Information'),
+    '#default_value' => theme_get_setting("colors.palette.dark.information") ?? TRUE,
+  ];
+  $form['colors']['palette']['dark']['status']['warning'] = [
+    '#type' => 'color',
+    '#title' => t('Warning'),
+    '#default_value' => theme_get_setting("colors.palette.dark.warning") ?? TRUE,
+  ];
+  $form['colors']['palette']['dark']['status']['error'] = [
+    '#type' => 'color',
+    '#title' => t('Error'),
+    '#default_value' => theme_get_setting("colors.palette.dark.error") ?? TRUE,
+  ];
+  $form['colors']['palette']['dark']['status']['success'] = [
+    '#type' => 'color',
+    '#title' => t('Success'),
+    '#default_value' => theme_get_setting("colors.palette.dark.success") ?? TRUE,
+  ];
+  // Colors submit handler.
+  $form['#submit'][] = '_civictheme_form_system_theme_settings_colors_submit';
+}
+
+/**
+ * Submit callback for theme settings form of colors.
+ *
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+function _civictheme_form_system_theme_settings_colors_submit(array &$form, FormStateInterface $form_state) {
+  $palette_types = ['light', 'dark'];
+  $values = $form_state->getValues();
+  foreach ($palette_types as $palette_type) {
+    foreach ($values['colors']['palette'][$palette_type] as $palette_type_key => $palette_type_value) {
+      foreach ($palette_type_value as $palette_key => $palette_value) {
+        $color_palette_field_name_key = [
+          'colors',
+          'palette',
+          $palette_type,
+          $palette_key,
+        ];
+        $form_state->setValue($color_palette_field_name_key, $palette_value);
+      }
+      $color_palette_field_name_key = [
+        'colors',
+        'palette',
+        $palette_type,
+        $palette_type_key,
+      ];
+      $form_state->unsetValue($color_palette_field_name_key);
+    }
+  }
 }
