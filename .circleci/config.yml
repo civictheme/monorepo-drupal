@@ -211,7 +211,6 @@ jobs:
     parallelism: 1
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
-      DREVOPS_TEST_BEHAT_TAGS: smoke
       CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
     <<: *job-build
 
