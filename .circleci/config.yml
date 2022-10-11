@@ -193,6 +193,13 @@ jobs:
       DREVOPS_DRUPAL_PROFILE: minimal
     <<: *job-build
 
+  # Drupal 10.
+  build-minimal-drupal10:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_VERSION: 10
+    <<: *job-build
+
   # Subtheme is a sibling.
   build-govcms-sibling:
     <<: *container_config
@@ -355,12 +362,17 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - build-minimal-drupal10:
+          filters:
+            tags:
+              only: /.*/
       - deploy:
           requires:
             - build-govcms
             - build-govcms-sibling
             - build-govcms-no-subtheme
             - build-minimal
+            - build-minimal-drupal10
           filters:
             branches:
               # Allowed branches:
@@ -378,6 +390,7 @@ workflows:
             - build-govcms-sibling
             - build-govcms-no-subtheme
             - build-minimal
+            - build-minimal-drupal10
           filters:
             branches:
               ignore: /.*/

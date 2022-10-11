@@ -1,0 +1,312 @@
+{
+    "name": "salsadigitalauorg/civictheme_source",
+    "description": "Drupal 9 implementation of CivicTheme Source for Salsa Digital",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.1",
+        "composer/installers": "^2",
+        "cweagans/composer-patches": "^1.7",
+        "drupal/ckeditor": "^1.0",
+        "drupal/components": "^3.0@beta",
+        "drupal/config_devel": "dev-8.x-1.x",
+        "drupal/config_filter": "^2.4",
+        "drupal/config_ignore": "2.x-dev#bbdb8d39d970ecde407c658dabc7fdb21c97947f",
+        "drupal/core-composer-scaffold": "^10@beta",
+        "drupal/core-project-message": "^10@beta",
+        "drupal/core-recommended": "^10@beta",
+        "drupal/default_content": "^2@alpha",
+        "drupal/environment_indicator": "^4.0",
+        "drupal/field_group": "^3@dev",
+        "drupal/generated_content": "^1.3",
+        "drupal/jquery_ui": "@dev",
+        "drupal/jquery_ui_autocomplete": "@dev",
+        "drupal/jquery_ui_menu": "@dev",
+        "drupal/layout_builder_restrictions": "@dev",
+        "drupal/linkit": "@dev",
+        "drupal/menu_block": "dev-8.x-1.8",
+        "drupal/paragraphs": "^1.15",
+        "drupal/pathauto": "^1.11",
+        "drupal/redirect": "^1.8",
+        "drupal/shield": "^1.7",
+        "drupal/simple_sitemap": "^4.1",
+        "drupal/testmode": "^2.2",
+        "drupal/webform": "dev-6.2.x",
+        "drush/drush": "^11",
+        "oomphinc/composer-installers-extender": "^2.0",
+        "vlucas/phpdotenv": "^5.1",
+        "webflo/drupal-finder": "^1.2"
+    },
+    "require-dev": {
+        "behat/behat": "^3.7",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+        "drevops/behat-format-progress-fail": "^1.0",
+        "drevops/behat-screenshot": "^1.2",
+        "drevops/behat-steps": "^1.5",
+        "drupal/coder": "8.3.16",
+        "drupal/core-dev": "^10@beta",
+        "drupal/drupal-extension": "dev-feature/drupal-10 as 4.2.1-dev",
+        "php-parallel-lint/php-parallel-lint": "^1.2",
+        "phpcompatibility/php-compatibility": "^9.0",
+        "phpmd/phpmd": "^2.12",
+        "phpspec/prophecy-phpunit": "^2",
+        "pyrech/composer-changelogs": "^1.7",
+        "slevomat/coding-standard": "7.2.1"
+    },
+    "autoload": {
+        "classmap": [
+            "scripts/composer/"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/phpunit/unit"
+        ]
+    },
+    "config": {
+        "platform": {
+            "php": "8.1"
+        },
+        "process-timeout": 0,
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "drupal/console-extend-plugin": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "oomphinc/composer-installers-extender": true,
+            "pyrech/composer-changelogs": true,
+            "zaporylie/composer-drupal-optimizations": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "repositories": {
+        "drupal/config_devel":  {
+            "type": "package",
+            "package": {
+                "name": "drupal/config_devel",
+                "type": "drupal-module",
+                "version": "dev-8.x-1.x",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/issue/config_devel-3296836.git",
+                    "reference": "2cd5688e9c3845b7dc47eb2beab757077328e7f1"
+                }
+            }
+        },
+        "drupal/layout_builder_restrictions":  {
+            "type": "package",
+            "package": {
+                "name": "drupal/layout_builder_restrictions",
+                "type": "drupal-module",
+                "version": "dev-8.x-2.x",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/issue/layout_builder_restrictions-3257889.git",
+                    "reference": "757da0b25f1308d4c36806bafd3d7dd083cbcb8a"
+                }
+            }
+        },
+        "drupal/jquery_ui":  {
+            "type": "package",
+            "package": {
+                "name": "drupal/jquery_ui",
+                "type": "drupal-module",
+                "version": "dev-8.x-1.x",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/issue/jquery_ui-3277748.git",
+                    "reference": "655ebd8a4ddcdfa488a126a4864490270812d832"
+                }
+            }
+        },
+        "drupal/jquery_ui_autocomplete":  {
+            "type": "package",
+            "package": {
+                "name": "drupal/jquery_ui_autocomplete",
+                "type": "drupal-module",
+                "version": "dev-8.x-1.x",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/issue/jquery_ui_autocomplete-3288098.git",
+                    "reference": "187fd9679ff1f01dc5b7abedd2b2af68db3fd3f2"
+                }
+            }
+        },
+        "drupal/jquery_ui_menu":  {
+            "type": "package",
+            "package": {
+                "name": "drupal/jquery_ui_menu",
+                "type": "drupal-module",
+                "version": "dev-8.x-1.x",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/issue/jquery_ui_menu-3288107.git",
+                    "reference": "36a758d64a54b8e92abffdc62d49a05c28f6d184"
+                }
+            }
+        },
+        "drupal/linkit":  {
+            "type": "package",
+            "package": {
+                "name": "drupal/linkit",
+                "type": "drupal-module",
+                "version": "dev-6.0.x",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/issue/linkit-3288339.git",
+                    "reference": "b5f739cbfe2cb02d5f008fc9bebd07419907b85d"
+                }
+            }
+        },
+        "drupal/menu_block":  {
+            "type": "package",
+            "package": {
+                "name": "drupal/menu_block",
+                "type": "drupal-module",
+                "version": "dev-8.x-1.8",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/issue/menu_block-3288540.git",
+                    "reference": "c2853ff65df7689d4c70b691a57bbf639ccbb729"
+                }
+            }
+        },
+        "drupal/webform":  {
+            "type": "package",
+            "package": {
+                "name": "drupal/webform",
+                "type": "drupal-module",
+                "version": "dev-6.2.x",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/issue/webform-3290604.git",
+                    "reference": "46d9dff50f9bb00ba2031d7807d8e5cf06220369"
+                }
+            }
+        },
+        "drupal/drupal-driver": {
+            "type": "vcs",
+            "url": "https://github.com/drevops/DrupalDriver"
+        },
+        "drupal/drupal-extension": {
+            "type": "vcs",
+            "url": "https://github.com/drevops/drupalextension"
+        },
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "asset-packagist": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        "dropzone/dropzone": {
+            "type": "package",
+            "package": {
+                "name": "dropzone/dropzone",
+                "version": "v5.7.2",
+                "type": "drupal-library",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/dropzone/dropzone/archive/refs/tags/v5.7.2.zip"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+            "Utilities\\composer\\DrupalSettings::create"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+            "Utilities\\composer\\DrupalSettings::create"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "patches": {
+            "drupal/core": {
+                "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2021-04-12/D9-3204271-2-missing-layout-exception.patch"
+            },
+            "drupal/simple_sitemap": {
+                "D10 compat": "https://git.drupalcode.org/project/simple_sitemap/-/commit/d598dc5664332583942e59d75a0e7865dfc7a8ab.diff"
+            }
+        },
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "./docroot"
+            },
+            "file-mapping": {
+                "[project-root]/.editorconfig": false,
+                "[project-root]/.gitattributes": false,
+                "[web-root]/.htaccess": false,
+                "[web-root]/.ht.router.php": false,
+                "[web-root]/example.gitignore": false,
+                "[web-root]/INSTALL.txt": false,
+                "[web-root]/README.txt": false,
+                "[web-root]/sites/example.settings.local.php": false,
+                "[web-root]/sites/example.sites.php": false,
+                "[web-root]/web.config": false
+            }
+        },
+        "enable-patching": true,
+        "installer-paths": {
+            "docroot/core": [
+                "type:drupal-core"
+            ],
+            "docroot/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
+            ],
+            "docroot/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "docroot/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "docroot/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ]
+        },
+        "installer-types": [
+            "bower-asset",
+            "npm-asset"
+        ],
+        "preserve-paths": [
+            "docroot/modules/custom",
+            "docroot/themes/custom",
+            "docroot/themes/contrib/civictheme",
+            "docroot/drush",
+            "docroot/sites/default/settings.php",
+            "docroot/sites/default/services.yml",
+            "docroot/sites/default/default.settings.local.php",
+            "docroot/sites/default/default.services.local.yml",
+            "docroot/sites/default/settings.local.php",
+            "docroot/sites/default/services.local.yml",
+            "docroot/sites/default/files",
+            "docroot/robots.txt",
+            "docroot/.htaccess"
+        ]
+    }
+}

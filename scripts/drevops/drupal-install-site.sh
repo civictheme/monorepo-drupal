@@ -58,6 +58,11 @@ DREVOPS_DRUPAL_INSTALL_OPERATIONS_SKIP="${DREVOPS_DRUPAL_INSTALL_OPERATIONS_SKIP
 
 # ------------------------------------------------------------------------------
 
+# Drupal version custom adjustments.
+if [ "${DREVOPS_DRUPAL_VERSION}" = "10" ]; then
+  export DREVOPS_DRUPAL_PROFILE=minimal
+fi
+
 echo "==> Started site installation."
 
 # Use local or global Drush, giving priority to a local Drush.

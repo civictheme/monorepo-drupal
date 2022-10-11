@@ -1,7 +1,7 @@
 name: 'CivicTheme Development'
 type: module
 description: 'Development-related helpers.'
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
 package: CivicTheme
 dependencies:
   # Only provide a list of modules that CivicTheme is not dependent on.

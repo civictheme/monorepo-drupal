@@ -32,7 +32,7 @@ Feature: Tests the pagination element
       | [TEST] Page 24 | 1      |
       | [TEST] Page 25 | 1      |
 
-  @api
+  @api @skipped
   Scenario: Styleguide page should show table with correct markup.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/appearance/styleguide/civictheme#pagination-heading"
