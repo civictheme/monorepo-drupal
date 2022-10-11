@@ -1013,7 +1013,7 @@ function _civictheme_form_system_theme_settings_colors_submit(array &$form, Form
         $palette_type,
         $palette_type_key,
       ];
-      if($palette_type_key === 'highlight') {
+      if ($palette_type_key === 'highlight') {
         continue;
       }
       $form_state->unsetValue($color_palette_field_name_key);
