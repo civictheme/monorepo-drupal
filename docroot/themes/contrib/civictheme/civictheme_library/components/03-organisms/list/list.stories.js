@@ -252,7 +252,7 @@ export const List = (knobTab) => {
         {
           type: 'option', label: 100, value: 100, selected: false,
         },
-      ]
+      ],
     });
   }
 
