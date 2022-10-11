@@ -184,7 +184,7 @@ export const List = (knobTab) => {
       }
     }
 
-    if (filterType === 'geoup') {
+    if (filterType === 'group') {
       generalKnobs.filters = CivicThemeGroupFilter({
         theme,
         filter_title: 'Filter search results by:',
@@ -239,6 +239,20 @@ export const List = (knobTab) => {
       },
       ellipses: true,
       current: 1,
+      items_per_page_options: [
+        {
+          type: 'option', label: 10, value: 10, selected: false,
+        },
+        {
+          type: 'option', label: 20, value: 20, selected: true,
+        },
+        {
+          type: 'option', label: 50, value: 50, selected: false,
+        },
+        {
+          type: 'option', label: 100, value: 100, selected: false,
+        },
+      ],
     });
   }
 
