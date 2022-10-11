@@ -19,6 +19,7 @@ function civictheme_dev_post_update_provision_users() {
     'alan.rako@salsadigital.com.au',
     'alan@salsadigital.com.au',
     'alex.skrypnyk@salsadigital.com.au',
+    'deepali.shelar@salsadigital.com.au',
     'govind@salsadigital.com.au',
     'john.cloys@salsadigital.com.au',
     'joshua.fernandes@salsadigital.com.au',
