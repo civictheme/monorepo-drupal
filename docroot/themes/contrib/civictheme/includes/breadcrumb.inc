@@ -24,7 +24,8 @@ function _civictheme_preprocess_civictheme_breadcrumb(&$variables) {
     $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $current_route_match->getRouteObject());
     if (!empty($title)) {
       $link = Link::createFromRoute($title, '<none>');
-      if (!in_array($link, $variables['links'])) {
+      $last_link = end($variables['links']);
+      if ($last_link instanceof Link && ($last_link->getText() != $link->getText() || $last_link->getUrl() != $last_link->getUrl())) {
         $variables['links'][] = $link;
         $variables['active_is_link'] = FALSE;
       }
