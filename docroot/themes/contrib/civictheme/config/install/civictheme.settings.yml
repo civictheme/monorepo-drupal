@@ -6,17 +6,85 @@ features:
   favicon: true
 components:
   logo:
-    image_light_desktop: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_light_desktop.png
-    image_light_mobile: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_light_mobile.png
-    image_dark_desktop: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_dark_desktop.png
-    image_dark_mobile: themes/contrib/civictheme/dist/assets/logos/civictheme_logo_dark_mobile.png
     image_alt: 'CivicTheme logo'
+    primary:
+      light:
+        image_primary_light_desktop: 'themes/custom/civictheme/dist/assets/logos/civictheme_logo_primary_light_desktop.png'
+        image_primary_light_mobile: 'themes/custom/civictheme/dist/assets/logos/civictheme_logo_primary_light_mobile.png'
+      dark:
+        image_primary_dark_desktop: 'themes/custom/civictheme/dist/assets/logos/civictheme_logo_primary_dark_desktop.png'
+        image_primary_dark_mobile: 'themes/custom/civictheme/dist/assets/logos/civictheme_logo_primary_dark_mobile.png'
+    secondary:
+      light:
+        image_secondary_light_desktop: 'themes/custom/civictheme/dist/assets/logos/civictheme_logo_secondary_light_desktop.png'
+        image_secondary_light_mobile: 'themes/custom/civictheme/dist/assets/logos/civictheme_logo_secondary_light_mobile.png'
+      dark:
+        image_secondary_dark_desktop: 'themes/custom/civictheme/dist/assets/logos/civictheme_logo_secondary_dark_desktop.png'
+        image_secondary_dark_mobile: 'themes/custom/civictheme/dist/assets/logos/civictheme_logo_secondary_dark_mobile.png'
   header:
     theme: light
+    logo_type: default
+  navigation:
+    primary_navigation:
+      dropdown: drawer
+      dropdown_columns: true
+      dropdown_columns_fill: false
+      is_animated: false
+    secondary_navigation:
+      dropdown: none
+      dropdown_columns: true
+      dropdown_columns_fill: false
+      is_animated: false
   footer:
     theme: dark
+    logo_type: default
     background_image: ''
   link:
     new_window: false
     external_new_window: true
     external_override_domains: {  }
+  components__active_tab: edit-components-logo
+colors:
+  brand:
+    light:
+      brand1: '#00698f'
+      brand2: '#e6e9eb'
+      brand3: '#121313'
+    dark:
+      brand1: '#61daff'
+      brand2: '#003a4f'
+      brand3: '#00698f'
+  palette:
+    light:
+      heading: '#000000'
+      body: '#000000'
+      background_light: '#000000'
+      background_dark: '#000000'
+      border_light: '#000000'
+      border_dark: '#000000'
+      interaction_text: '#000000'
+      interaction_background: '#000000'
+      interaction_hover_text: '#000000'
+      interaction_hover_background: '#000000'
+      interaction_focus: '#000000'
+      information: '#000000'
+      warning: '#000000'
+      error: '#000000'
+      success: '#000000'
+    dark:
+      heading: '#000000'
+      body: '#000000'
+      background_light: '#000000'
+      background_dark: '#000000'
+      border_light: '#000000'
+      border_dark: '#000000'
+      interaction_text: '#000000'
+      interaction_background: '#000000'
+      interaction_hover_text: '#000000'
+      interaction_hover_background: '#000000'
+      interaction_focus: '#000000'
+      information: '#000000'
+      warning: '#000000'
+      error: '#000000'
+      success: '#000000'
+  use_brand_colors: 1
