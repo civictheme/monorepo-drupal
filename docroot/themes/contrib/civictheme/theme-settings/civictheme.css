@@ -1,0 +1,8 @@
+#edit-colors #edit-colors-brand > div > fieldset,
+#edit-colors #edit-colors-palette > div > fieldset {
+    display: inline-block;
+}
+
+#edit-colors fieldset .fieldset-wrapper > div {
+    display: inline-block;
+}

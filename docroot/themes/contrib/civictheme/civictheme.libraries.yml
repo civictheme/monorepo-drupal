@@ -9,3 +9,9 @@ global:
     - core/jquery.once
     - core/drupal
     - core/drupalSettings
+theme-settings:
+  css:
+    theme:
+      theme-settings/civictheme.css: {}
+  js:
+    theme-settings/civictheme.js: {}
