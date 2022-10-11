@@ -50,6 +50,9 @@ fi
 echo "==> Removing project containers and packages available since the previous run."
 ahoy clean
 
+echo "  > Creating GitHub authentication token if provided."
+[ -n "$GITHUB_TOKEN" ] && echo "{\"github-oauth\": {\"github.com\": \"$GITHUB_TOKEN\"}}" > ./auth.json
+
 echo "==> Building images, recreating and starting containers."
 
 if [ -n "${DREVOPS_DB_DOCKER_IMAGE}" ]; then
