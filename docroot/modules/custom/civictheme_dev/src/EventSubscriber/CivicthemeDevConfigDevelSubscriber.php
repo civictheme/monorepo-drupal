@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cs_core\EventSubscriber;
+namespace Drupal\civictheme_dev\EventSubscriber;
 
 use Drupal\config_devel\Event\ConfigDevelEvents;
 use Drupal\config_devel\Event\ConfigDevelSaveEvent;
@@ -11,15 +11,15 @@ use Drupal\Core\Config\ConfigManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * CsCoreConfigDevelSubscriber subscriber for ConfigDevel events.
+ * CivicthemeDevConfigDevelSubscriber subscriber for ConfigDevel events.
  *
  * Integrates custom config_ignore filter into config_devel so that exporting
  * with config_devel would respect config_ignore filtering.
  *
- * Currently limited to a single custom config_ignore filter defined in this
+ * Currently, limited to a single custom config_ignore filter defined in this
  * module.
  */
-class CsCoreConfigDevelSubscriber extends ConfigDevelSubscriberBase implements EventSubscriberInterface {
+class CivicthemeDevConfigDevelSubscriber extends ConfigDevelSubscriberBase implements EventSubscriberInterface {
 
   /**
    * The config ignore plugin manager.
@@ -62,8 +62,8 @@ class CsCoreConfigDevelSubscriber extends ConfigDevelSubscriberBase implements E
     $name = basename($filename, '.yml');
     $data = $event->getData();
 
-    /** @var \Drupal\cs_core\Plugin\ConfigFilter\CsCoreIgnoreFilter $plugin */
-    $plugin = $this->configFilterPluginManager->createInstance('cs_core_config_ignore');
+    /** @var \Drupal\civictheme_dev\Plugin\ConfigFilter\CivicthemeDevIgnoreFilter $plugin */
+    $plugin = $this->configFilterPluginManager->createInstance('civictheme_dev_config_ignore');
 
     $data = $plugin->filterWrite($name, $data);
 

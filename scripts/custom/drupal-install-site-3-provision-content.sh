@@ -27,8 +27,8 @@ $drush -y pm-enable civictheme_content
 echo "  > Provision content."
 $drush php:eval -v "require_once '/app/docroot/themes/contrib/civictheme/theme-settings.provision.inc'; civictheme_provision_cli();"
 
-echo "  > Enable helper module."
-$drush -y pm-enable cs_core
+echo "  > Enable development module."
+$drush -y pm-enable civictheme_dev
 
 echo "  > Generate test content."
 GENERATED_CONTENT_CREATE=1 $drush -y pm-enable cs_generated_content

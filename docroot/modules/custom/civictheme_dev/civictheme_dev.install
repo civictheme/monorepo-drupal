@@ -8,12 +8,12 @@
 /**
  * Implements hook_install().
  */
-function cs_core_install() {
-  module_load_include('php', 'cs_core', 'cs_core.post_update');
+function civictheme_dev_install() {
+  module_load_include('php', 'civictheme_dev', 'civictheme_dev.post_update');
   $functions = get_defined_functions();
   // Run all update functions when installing this module.
   foreach ($functions['user'] as $function) {
-    if (strpos($function, 'cs_core_update_') === 0) {
+    if (strpos($function, 'civictheme_dev_update_') === 0) {
       $sandbox = [];
       call_user_func($function, $sandbox);
     }
@@ -23,7 +23,7 @@ function cs_core_install() {
   $key_value = \Drupal::keyValue('post_update');
   $executed_updates = $key_value->get('existing_updates', []);
   foreach ($executed_updates as $function) {
-    if (strpos($function, 'cs_core_post_update_') === 0) {
+    if (strpos($function, 'civictheme_dev_post_update_') === 0) {
       $sandbox = [];
       call_user_func($function, $sandbox);
     }

@@ -1,6 +1,6 @@
-name: 'CivicTheme Core'
+name: 'CivicTheme Development'
 type: module
-description: 'Core feature for site settings.'
+description: 'Development-related helpers.'
 core_version_requirement: ^9
 package: CivicTheme
 dependencies:

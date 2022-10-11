@@ -10,7 +10,7 @@ use Drupal\Core\Site\Settings;
 /**
  * Implements hook_mail_alter().
  */
-function cs_core_mail_alter(&$message) {
+function civictheme_dev_mail_alter(&$message) {
   // Allow to stop any mail send out through settings. Note if email
   // functionality needs to be tested, this code should be removed and
   // replaced with a dev mail system.
@@ -22,7 +22,7 @@ function cs_core_mail_alter(&$message) {
 /**
  * Implements hook_preprocess_html().
  */
-function cs_core_preprocess_html(&$variables) {
+function civictheme_dev_preprocess_html(&$variables) {
   /** @var \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list */
   $civictheme_path = \Drupal::service('extension.list.theme')->getPath('civictheme');
   $civictheme_theme_path = $civictheme_path . DIRECTORY_SEPARATOR . 'civictheme.theme';
