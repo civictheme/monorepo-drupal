@@ -129,7 +129,7 @@ aliases:
         # Remove lines containing '###' and uncomment comments starting with '##'.
         sed -i -e "/###/d" docker-compose.yml && sed -i -e "s/##//" docker-compose.yml
         # Alter build for an alternative build setup.
-        [ "$CI_ALTERNATIVE_BUILD" = "1" ] && cp -Rf .docker/Dockerfile.cli2 .docker/Dockerfile.cli || true
+        [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ] && cp -Rf .docker/Dockerfile.cli2 .docker/Dockerfile.cli || true
 
 ################################################################################
 # JOBS
@@ -185,11 +185,11 @@ jobs:
             - code
 
   # Subtheme is a sibling.
-  build-alt:
+  build-sibling:
     <<: *container_config
     parallelism: 1
     environment:
-      CI_ALTERNATIVE_BUILD: 1
+      CIVICTHEME_INSTALL_SIBLING: 1
     steps:
       - attach_workspace:
           at: /workspace
@@ -202,7 +202,7 @@ jobs:
           no_output_timeout: 30m
 
   # No subtheme.
-  build-alt2:
+  build-no-subtheme:
     <<: *container_config
     parallelism: 1
     environment:
@@ -219,7 +219,7 @@ jobs:
           no_output_timeout: 30m
 
   # Minimal profile.
-  build-alt3:
+  build-minimal:
     <<: *container_config
     parallelism: 1
     environment:
@@ -370,24 +370,24 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - build-alt:
+      - build-sibling:
           filters:
             tags:
               only: /.*/
-      - build-alt2:
+      - build-no-subtheme:
           filters:
             tags:
               only: /.*/
-      - build-alt3:
+      - build-minimal:
           filters:
             tags:
               only: /.*/
       - deploy:
           requires:
             - build
-            - build-alt
-            - build-alt2
-            - build-alt3
+            - build-sibling
+            - build-no-subtheme
+            - build-minimal
           filters:
             branches:
               # Allowed branches:
@@ -402,9 +402,9 @@ workflows:
       - deploy_tags:
           requires:
             - build
-            - build-alt
-            - build-alt2
-            - build-alt3
+            - build-sibling
+            - build-no-subtheme
+            - build-minimal
           filters:
             branches:
               ignore: /.*/
