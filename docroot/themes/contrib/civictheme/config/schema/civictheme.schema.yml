@@ -117,6 +117,9 @@ civictheme.settings:
       type: mapping
       label: 'Colors'
       mapping:
+        use_brand_colors:
+          label: 'Use Brand colors'
+          type: boolean
         brand:
           type: mapping
           label: 'Brand colors'
