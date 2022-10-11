@@ -23,8 +23,16 @@ $drush php:eval "require_once dirname(\Drupal::getContainer()->get('theme_handle
 
 echo "  > Enable admin theme and set as default."
 if [ "${DREVOPS_DRUPAL_PROFILE}" = "govcms" ]; then
+  # Enable Adminimal theme and set as default admin theme.
   $drush -y theme-enable adminimal_theme
   $drush -y config-set system.theme admin adminimal_theme
+
+  # Enable stable9 theme and set as default theme.
+  # This is required to remove other theme to avoid polluting configuration.
+  $drush -y theme-enable stable9
+  $drush -y config-set system.theme default stable9
+
+  # Remove other themes.
   $drush -y theme-uninstall claro || true
   $drush -y theme-uninstall govcms_bartik || true
   $drush -y theme-uninstall bartik || true
@@ -38,3 +46,5 @@ echo "  > Enable CivicTheme theme and set as default."
 $drush -y theme-enable civictheme
 $drush -y config-set system.theme default civictheme
 $drush -y config-set media.settings standalone_url true
+
+$drush -y theme-uninstall stable9 || true
