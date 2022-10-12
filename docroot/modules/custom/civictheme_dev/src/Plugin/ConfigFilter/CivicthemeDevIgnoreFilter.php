@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cs_core\Plugin\ConfigFilter;
+namespace Drupal\civictheme_dev\Plugin\ConfigFilter;
 
 use Drupal\config_ignore\Plugin\ConfigFilter\IgnoreFilter;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -16,12 +16,12 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
  * (e.g. civictheme_govcms).
  *
  * @ConfigFilter(
- *   id = "cs_core_config_ignore",
+ *   id = "civictheme_dev_config_ignore",
  *   label = "CS Core Config Ignore",
  *   weight = 100
  * )
  */
-class CsCoreIgnoreFilter extends IgnoreFilter implements ContainerFactoryPluginInterface {
+class CivicthemeDevIgnoreFilter extends IgnoreFilter implements ContainerFactoryPluginInterface {
 
   /**
    * {@inheritdoc}
