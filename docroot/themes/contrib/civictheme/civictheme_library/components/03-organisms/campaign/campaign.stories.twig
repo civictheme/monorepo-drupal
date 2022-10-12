@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Campaign component stories.
+ */
+#}
+
+{% extends './campaign.twig' %}
+
+{% if show_content_text %}
+  {% set content_middle %}
+    <div class="ct-campaign__content__example">
+      {% include '@atoms/button/button.twig' with {
+        text: 'Learn about us',
+        type: 'primary',
+        theme: theme,
+      } only %}
+      {% include '@atoms/button/button.twig' with {
+        text: 'Tertiary',
+        type: 'tertiary',
+        theme: theme,
+      } only %}
+    </div>
+  {% endset %}
+{% endif %}
