@@ -493,3 +493,53 @@ function _civictheme_get_dom_document($content) {
 
   return $doc;
 }
+
+/**
+ * Theme color mapping fields.
+ */
+function civictheme_theme_color_mapping() {
+  return [
+    'brand' => [
+      'brand1',
+      'brand2',
+      'brand3',
+    ],
+    'palette' => [
+      'typography' => [
+        'heading',
+        'body',
+      ],
+      'background' => [
+        'background_light',
+        'background',
+        'background_dark',
+      ],
+      'border' => [
+        'border_light',
+        'border',
+        'border_dark',
+      ],
+      'interection' => [
+        'background_light',
+        'background',
+        'background_dark',
+      ],
+      'background' => [
+        'interaction_text',
+        'interaction_background',
+        'interaction_hover_text',
+        'interaction_hover_background',
+        'interaction_focus'
+      ],
+      'highlight' => [
+        'highlight',
+      ],
+      'status' => [
+        'information',
+        'warning',
+        'error',
+        'success',
+      ],
+    ],
+  ];
+}
