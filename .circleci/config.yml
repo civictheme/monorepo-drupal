@@ -131,12 +131,6 @@ aliases:
         # Alter build for an alternative build setup.
         [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ] && cp -Rf .docker/Dockerfile.cli2 .docker/Dockerfile.cli || true
 
-  - &step_persist_to_workspace
-    persist_to_workspace:
-      root: /workspace
-      paths:
-        - code
-
 ################################################################################
 # JOBS
 ################################################################################
@@ -179,12 +173,16 @@ job-build: &job-build
         path: *drevops_test_reports_dir
     - store_artifacts:
         path: *drevops_test_artifact_dir
+    - run: mkdir -p /workspace/code && touch /workspace/.gitempty
+    - persist_to_workspace:
+        root: /workspace
+        paths:
+          - code
 
 jobs:
   build-govcms:
     <<: *container_config
     <<: *job-build
-    <<: *step_persist_to_workspace
 
   # Minimal profile.
   build-minimal:
