@@ -29,6 +29,7 @@
         "drupal/redirect": "^1.8",
         "drupal/shield": "^1.7",
         "drupal/simple_sitemap": "^4.1",
+        "drupal/styleguide": "dev-2.x@dev",
         "drupal/testmode": "^2.2",
         "drupal/webform": "dev-6.2.x",
         "drush/drush": "^11",
@@ -173,6 +174,19 @@
                     "type": "git",
                     "url": "https://git.drupalcode.org/issue/menu_block-3288540.git",
                     "reference": "c2853ff65df7689d4c70b691a57bbf639ccbb729"
+                }
+            }
+        },
+      "drupal/styleguide":  {
+            "type": "package",
+            "package": {
+                "name": "drupal/styleguide",
+                "type": "drupal-module",
+                "version": "dev-2.x",
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/issue/styleguide-3298185.git",
+                    "reference": "5ac7a7590734426f8684a37a39d816dff8ae8b34"
                 }
             }
         },
