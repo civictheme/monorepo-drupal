@@ -78,7 +78,11 @@
             {% block title %}
               {% if title is not empty %}
                 <div class="ct-campaign__title">
-                  {{ title }}
+                  {% include '@atoms/heading/heading.twig' with {
+                    content: title,
+                    level: 3,
+                    theme: theme,
+                  } only %}
                 </div>
               {% endif %}
             {% endblock %}
