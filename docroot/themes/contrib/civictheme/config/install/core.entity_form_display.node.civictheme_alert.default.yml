@@ -8,7 +8,6 @@ dependencies:
     - field.field.node.civictheme_alert.field_c_n_date_range
     - node.type.civictheme_alert
   module:
-    - content_moderation
     - datetime_range
     - path
     - text

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff00d0f642221aad7dbb23b4b78ef183",
+    "content-hash": "fb2906470958888ee9300e604ae5a752",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8962,83 +8962,6 @@
             "support": {
                 "source": "https://cgit.drupalcode.org/simple_sitemap",
                 "issues": "https://drupal.org/project/issues/simple_sitemap"
-            }
-        },
-        {
-            "name": "drupal/stage_file_proxy",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/stage_file_proxy.git",
-                "reference": "8.x-1.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/stage_file_proxy-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "a0bea520c139a4b0b67738b0c54e7ee21af081da"
-            },
-            "require": {
-                "drupal/core": ">=8.7.7"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1637007759",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                },
-                "drush": {
-                    "services": {
-                        "stage_file_proxy.drush.services.yml": "^9 || ^10"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "BarisW",
-                    "homepage": "https://www.drupal.org/user/107229"
-                },
-                {
-                    "name": "geek-merlin",
-                    "homepage": "https://www.drupal.org/user/229048"
-                },
-                {
-                    "name": "greggles",
-                    "homepage": "https://www.drupal.org/user/36762"
-                },
-                {
-                    "name": "markdorison",
-                    "homepage": "https://www.drupal.org/user/346106"
-                },
-                {
-                    "name": "moshe weitzman",
-                    "homepage": "https://www.drupal.org/user/23"
-                },
-                {
-                    "name": "msonnabaum",
-                    "homepage": "https://www.drupal.org/user/75278"
-                },
-                {
-                    "name": "netaustin",
-                    "homepage": "https://www.drupal.org/user/199298"
-                },
-                {
-                    "name": "robwilmshurst",
-                    "homepage": "https://www.drupal.org/user/144488"
-                }
-            ],
-            "description": "Provides stage_file_proxy module.",
-            "homepage": "https://www.drupal.org/project/stage_file_proxy",
-            "support": {
-                "source": "https://git.drupalcode.org/project/stage_file_proxy"
             }
         },
         {
@@ -21578,7 +21501,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "=8.1"
+        "php": "8.1"
     },
     "platform-dev": [],
     "platform-overrides": {

@@ -1,4 +1,4 @@
-@civictheme @civictheme_theme_settings1
+@civictheme @civictheme_theme_settings
 Feature: Check that compiled Storybook is available in theme settings
 
   @api @javascript

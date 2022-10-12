@@ -65,3 +65,5 @@ docroot/themes/custom
 # Ignore FE lock files. Do not ignore in distributions as they could be required
 # by the consumer sites.
 package-lock.json
+
+auth.json

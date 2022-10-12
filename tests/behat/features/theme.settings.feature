@@ -158,9 +158,13 @@ Feature: Check that components settings are available in theme settings
     And I fill in "Logo image for primary in Light theme for mobile" with "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
     And I fill in "Logo image for primary in Dark theme for desktop" with "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
     And I fill in "Logo image for primary in Dark theme for mobile" with "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
+    And I fill in "Logo image for secondary in Light theme for desktop" with "/sites/default/files/civictheme_test/logo_light_desktop.jpg"
+    And I fill in "Logo image for secondary in Light theme for mobile" with "/sites/default/files/civictheme_test/logo_light_mobile.jpg"
+    And I fill in "Logo image for secondary in Dark theme for desktop" with "/sites/default/files/civictheme_test/logo_dark_desktop.jpg"
+    And I fill in "Logo image for secondary in Dark theme for mobile" with "/sites/default/files/civictheme_test/logo_dark_mobile.jpg"
     And I fill in "Footer background image path" with "/sites/default/files/civictheme_test/footer_background_image.jpg"
     And I press "Save configuration"
-    Then I should see the text "5 errors have been found"
+    Then I should see the text "9 errors have been found"
 
   @api
   Scenario: The CivicTheme theme settings verify custom logo configuration with image upload

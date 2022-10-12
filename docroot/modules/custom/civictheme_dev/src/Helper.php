@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cs_core;
+namespace Drupal\civictheme_dev;
 
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\Component\Utility\UrlHelper;
@@ -29,7 +29,7 @@ use Symfony\Component\DomCrawler\Crawler;
  *
  * Helper class for manipulating content.
  *
- * @package Drupal\cs_core
+ * @package Drupal\civictheme_dev
  */
 class Helper {
 
