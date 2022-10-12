@@ -198,6 +198,7 @@ jobs:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_VERSION: 10
+      DREVOPS_TEST_BEHAT_PROFILE: d10
     <<: *job-build
 
   # Subtheme is a sibling.
