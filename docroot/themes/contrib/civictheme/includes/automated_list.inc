@@ -40,9 +40,11 @@ function civictheme_preprocess_paragraph__civictheme_automated_list(&$variables)
 
   // Propagate Automated list theme settings to the view filters.
   // @todo Possibly move these into _civictheme_automated_list_element().
-  $form_elements = Element::children($variables['automated_list']['view']['#view']->exposed_widgets);
-  foreach ($form_elements as $form_element) {
-    $variables['automated_list']['view']['#view']->exposed_widgets[$form_element]['#civictheme_theme'] = $variables['theme'];
+  if (!empty($variables['automated_list']['view']['#view'])) {
+    $form_elements = Element::children($variables['automated_list']['view']['#view']->exposed_widgets);
+    foreach ($form_elements as $form_element) {
+      $variables['automated_list']['view']['#view']->exposed_widgets[$form_element]['#civictheme_theme'] = $variables['theme'];
+    }
   }
 }
 

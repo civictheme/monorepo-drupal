@@ -259,7 +259,7 @@ Feature: View of Page content type
     And I should see 1 "div.ct-item-grid__item > .ct-theme-dark" elements
     And save screenshot
 
-  @api @javascript @smoke
+  @api @javascript
   Scenario: CivicTheme page revisions can be viewed without error
 
     Given I am logged in as a user with the "Site Administrator" role

@@ -115,7 +115,7 @@ function civictheme_media_get_url(MediaInterface $media) {
   $fid = $media->getSource()->getSourceFieldValue($media);
   $file = File::load($fid);
   if ($file) {
-    return file_create_url($file->createFileUrl());
+    return \Drupal::service('file_url_generator')->generateAbsoluteString($file->createFileUrl());
   }
 
   return FALSE;

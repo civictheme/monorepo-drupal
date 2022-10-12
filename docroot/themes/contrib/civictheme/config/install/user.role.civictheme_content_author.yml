@@ -32,7 +32,6 @@ permissions:
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
-  - 'access in-place editing'
   - 'access media overview'
   - 'access shortcuts'
   - 'administer linkit profiles'

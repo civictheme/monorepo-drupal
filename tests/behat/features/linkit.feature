@@ -1,4 +1,4 @@
-@civictheme @civictheme_linkit
+@civictheme @civictheme_linkit @d9
 Feature: Check that content linkit feature works correctly
 
   Ensure that LinkIt in WYSIWYG has access to Content pages and Document Media.

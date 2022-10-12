@@ -57,3 +57,8 @@ p1:
     cache: '/tmp/behat_gherkin_cache'
     filters:
       tags: "@p1&&~@skipped"
+d10:
+  gherkin:
+    cache: '/tmp/behat_gherkin_cache'
+    filters:
+      tags: "~d9&&~@skipped"

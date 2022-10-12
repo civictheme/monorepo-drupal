@@ -3,7 +3,7 @@ Feature: Tests the Table
 
   Ensure that Table is rendering correctly.
 
-  @api
+  @api @d9
   Scenario: Styleguide page should show table with correct markup.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/appearance/styleguide/civictheme#table"
