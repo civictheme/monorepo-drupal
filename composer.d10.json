@@ -245,6 +245,9 @@
             "drupal/core": {
                 "Builds failing on missing layout column plugin": "https://www.drupal.org/files/issues/2021-04-12/D9-3204271-2-missing-layout-exception.patch"
             },
+            "drupal/field_group": {
+                "Uncaught TypeError: Cannot read properties of undefined (reading 'attach')": "https://git.drupalcode.org/project/field_group/-/merge_requests/17.diff"
+            },
             "drupal/simple_sitemap": {
                 "D10 compat": "https://git.drupalcode.org/project/simple_sitemap/-/commit/d598dc5664332583942e59d75a0e7865dfc7a8ab.diff"
             }
