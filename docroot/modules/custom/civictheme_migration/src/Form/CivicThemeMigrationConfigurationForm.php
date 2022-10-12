@@ -332,14 +332,14 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
   protected function generateMigrationConfigurationSubmit(array &$form, FormStateInterface $form_state) {
     $file_ids = $form_state->getValue('configuration_files');
     $files = $this->fileStorage->loadMultiple($file_ids);
-    $file_steam_wrappers = [];
+    $file_stream_wrappers = [];
     foreach ($files as $file) {
-      $file_steam_wrappers[] = $file->getFileUri();
+      $file_stream_wrappers[] = $file->getFileUri();
     }
     $migration_config_file_name = $this->extensionPathResolver->getPath('module', 'civictheme_migration') . '/assets/migrate_plus.migration.civictheme_page.yml';
     $migration_config = file_get_contents($migration_config_file_name);
     $migration_config = $this->yaml->decode($migration_config);
-    $migration_config['source']['urls'] = $file_steam_wrappers;
+    $migration_config['source']['urls'] = $file_stream_wrappers;
     $existing_migration = $this->migrationStorage->load('civictheme_page_migration');
     if ($existing_migration === NULL) {
       $migration = $this->migrationStorage->create($migration_config);
