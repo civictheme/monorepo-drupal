@@ -1,7 +1,7 @@
 name: 'CivicTheme Default Content'
 type: module
 description: 'Default content for CivicTheme theme. One of the sub-modules needs to be enabled to provision content.'
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
 package: CivicTheme
 dependencies:
   - default_content:default_content
