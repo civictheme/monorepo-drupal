@@ -87,6 +87,8 @@ aliases:
       DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
       DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
+      # Directory to store code exported between jobs.
+      DREVOPS_EXPORT_CODE_DIR: &drevops_build_export_dir /workspace/code
     docker:
       - image: drevops/ci-builder
         auth:
@@ -97,8 +99,6 @@ aliases:
           TZ: *timezone
           # Always answer 'y' to any confirmation questions.
           DREVOPS_AHOY_CONFIRM_RESPONSE: 'y'
-          # Directory to store code exported between jobs.
-          DREVOPS_EXPORT_CODE_DIR: &drevops_build_export_dir /workspace/code
           # Directory to store test results.
           DREVOPS_TEST_REPORTS_DIR: &drevops_test_reports_dir /tmp/tests
           # Directory to store test artifacts.
@@ -130,12 +130,6 @@ aliases:
         sed -i -e "/###/d" docker-compose.yml && sed -i -e "s/##//" docker-compose.yml
         # Alter build for an alternative build setup.
         [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ] && cp -Rf .docker/Dockerfile.cli2 .docker/Dockerfile.cli || true
-
-  - &step_persist_to_workspace
-    persist_to_workspace:
-      root: /workspace
-      paths:
-        - code
 
 ################################################################################
 # JOBS
@@ -179,18 +173,22 @@ job-build: &job-build
         path: *drevops_test_reports_dir
     - store_artifacts:
         path: *drevops_test_artifact_dir
+    - persist_to_workspace:
+        root: /workspace
+        paths:
+          - code
 
 jobs:
   build-govcms:
     <<: *container_config
     <<: *job-build
-    <<: *step_persist_to_workspace
 
   # Minimal profile.
   build-minimal:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
+      DREVOPS_EXPORT_CODE_DIR: /tmp
     <<: *job-build
 
   # Drupal 10.
@@ -199,6 +197,7 @@ jobs:
     environment:
       DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_TEST_BEHAT_PROFILE: d10
+      DREVOPS_EXPORT_CODE_DIR: /tmp
     <<: *job-build
 
   # Subtheme is a sibling.
@@ -207,6 +206,7 @@ jobs:
     environment:
       DREVOPS_TEST_BEHAT_TAGS: smoke
       CIVICTHEME_INSTALL_SIBLING: 1
+      DREVOPS_EXPORT_CODE_DIR: /tmp
     <<: *job-build
 
   # No subtheme.
@@ -215,6 +215,7 @@ jobs:
     environment:
       DREVOPS_TEST_BEHAT_TAGS: smoke
       CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
+      DREVOPS_EXPORT_CODE_DIR: /tmp
     <<: *job-build
 
   # Deploy primary branches.
