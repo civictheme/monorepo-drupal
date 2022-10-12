@@ -50,6 +50,22 @@
     }
   }
 
+  #{$root}__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: ct-spacing(3);
+
+    .ct-tag {
+      margin-top: ct-spacing(0.5);
+      margin-right: ct-spacing(0.5);
+    }
+
+    @include ct-breakpoint('m') {
+      margin-bottom: ct-spacing(4);
+    }
+  }
+
   #{$root}__date {
     @include ct-typography('label-small');
 
@@ -71,28 +87,6 @@
     @include ct-typography('text-large');
 
     margin-bottom: ct-spacing(3);
-
-    @include ct-breakpoint('m') {
-      margin-bottom: ct-spacing(4);
-    }
-  }
-
-  #{$root}__bottom-wrapper {
-    display: flex;
-    justify-content: space-between;
-    padding-top: ct-spacing(3);
-  }
-
-  #{$root}__tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-bottom: ct-spacing(3);
-
-    .ct-tag {
-      margin-top: ct-spacing(0.5);
-      margin-right: ct-spacing(0.5);
-    }
 
     @include ct-breakpoint('m') {
       margin-bottom: ct-spacing(4);
