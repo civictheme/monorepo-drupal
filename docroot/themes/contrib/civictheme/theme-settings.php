@@ -676,6 +676,7 @@ function _civictheme_form_system_theme_settings_colors(&$form, FormStateInterfac
         ],
       ];
       if (array_keys($color_fields) !== range(0, count($color_fields) - 1)) {
+        $theme_setting_constant_default = 'CIVICTHEME_PALETTE_COLOR_' . strtoupper($theme_key) . '_DEFAULT';
         foreach ($color_fields as $color_field_key => $color_field_values) {
           $form['colors'][$color_key][$theme_key][$color_field_key] = [
             '#type' => 'fieldset',
@@ -684,10 +685,11 @@ function _civictheme_form_system_theme_settings_colors(&$form, FormStateInterfac
           ];
           foreach ($color_field_values as $color_field) {
             $theme_setting = 'colors.' . $color_key . '.' . $theme_key . '.' . $color_field;
+            $theme_setting_constant = 'CIVICTHEME_PALETTE_COLOR_' . strtoupper($theme_key) . '_' . strtoupper($color_field);
             $form['colors'][$color_key][$theme_key][$color_field_key][$color_field] = [
               '#type' => 'color',
               '#title' => ucfirst(str_replace('_', ' ', $color_field)),
-              '#default_value' => theme_get_setting($theme_setting),
+              '#default_value' => theme_get_setting($theme_setting) ?? "{$theme_setting_constant}" ?? "{$theme_setting_constant_default}",
             ];
           }
         }
@@ -695,10 +697,11 @@ function _civictheme_form_system_theme_settings_colors(&$form, FormStateInterfac
       else {
         foreach ($color_fields as $color_field) {
           $theme_setting = 'colors.' . $color_key . '.' . $theme_key . '.' . $color_field;
+          $theme_setting_constant = 'CIVICTHEME_BRAND_COLOR_' . strtoupper($theme_key) . '_' . strtoupper($color_field);
           $form['colors'][$color_key][$theme_key][$color_field] = [
             '#type' => 'color',
             '#title' => ucfirst($color_field),
-            '#default_value' => theme_get_setting($theme_setting),
+            '#default_value' => theme_get_setting($theme_setting) ?? "{$theme_setting_constant}",
           ];
         }
       }
