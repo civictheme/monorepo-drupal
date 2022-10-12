@@ -16,11 +16,6 @@
     @include ct-outline();
   }
 
-  &#{$root}--no-image {
-    border-top-width: ct-spacing(0.75);
-    border-top-style: solid;
-  }
-
   #{$root}__image-wrapper {
     @include ct-image-fit();
     @include ct-elevation();
