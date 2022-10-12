@@ -1,4 +1,4 @@
-@civictheme @xmlsitemap @skipped
+@civictheme @xmlsitemap
 Feature: XML Sitemap
 
   Ensure that the XML Sitemap exists.
@@ -19,7 +19,7 @@ Feature: XML Sitemap
       | [TEST] Published alert | 1      | /alerts/test-published-alert |
       | [TEST] Draft alert     | 0      | /alerts/test-draft-alert     |
 
-    Given I run drush "simple-sitemap:generate --uri=http://example.com"
+    Given I run drush "simple-sitemap:generate" "--uri=http://example.com"
 
     When I go to "sitemap.xml"
     Then the response status code should be 200
