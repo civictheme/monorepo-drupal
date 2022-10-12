@@ -81,18 +81,18 @@
               {% endif %}
             {% endblock %}
 
-            {% block summary %}
-              {% if summary is not empty %}
-                <div class="ct-campaign__summary">
-                  {{ summary|raw }}
+            {% block content_middle %}
+              {% if content_bottom is not empty %}
+                <div class="ct-campaign__content-middle">
+                  {{ content_middle }}
                 </div>
               {% endif %}
             {% endblock %}
 
-            {% block content_middle %}
-              {% if content_middle is not empty %}
-                <div class="ct-campaign__content-middle">
-                  {{ content_middle }}
+            {% block summary %}
+              {% if summary is not empty %}
+                <div class="ct-campaign__summary">
+                  {{ summary|raw }}
                 </div>
               {% endif %}
             {% endblock %}
