@@ -16,6 +16,14 @@
     @include ct-outline();
   }
 
+  &--image-position-right {
+    > .container > .row {
+      @include ct-breakpoint('m') {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
   #{$root}__image-wrapper {
     @include ct-image-fit();
     @include ct-elevation();

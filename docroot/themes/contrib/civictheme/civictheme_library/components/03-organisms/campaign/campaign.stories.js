@@ -38,6 +38,15 @@ export const Campaign = (knobTab) => {
       src: demoImage(),
       alt: 'Image alt text',
     },
+    image_position: radios(
+      'Image position',
+      {
+        Left: 'left',
+        Right: 'right',
+      },
+      'right',
+      generalKnobTab,
+    ),
     tags: randomTags(number(
       'Number of tags',
       1,
