@@ -9,7 +9,7 @@ field_name: field_c_n_hide_sidebar
 entity_type: node
 bundle: civictheme_page
 label: 'Hide sidebar'
-description: 'Hide sidebar making this page''s component appear edge-to-edge.'
+description: "Hide sidebar making this page's component appear edge-to-edge."
 required: false
 translatable: false
 default_value:

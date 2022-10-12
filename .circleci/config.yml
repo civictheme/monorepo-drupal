@@ -131,12 +131,6 @@ aliases:
         # Alter build for an alternative build setup.
         [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ] && cp -Rf .docker/Dockerfile.cli2 .docker/Dockerfile.cli || true
 
-  - &step_persist_to_workspace
-    persist_to_workspace:
-      root: /workspace
-      paths:
-        - code
-
 ################################################################################
 # JOBS
 ################################################################################
@@ -179,18 +173,30 @@ job-build: &job-build
         path: *drevops_test_reports_dir
     - store_artifacts:
         path: *drevops_test_artifact_dir
+    - run: mkdir -p /workspace/code && touch /workspace/.gitempty
+    - persist_to_workspace:
+        root: /workspace
+        paths:
+          - code
 
 jobs:
   build-govcms:
     <<: *container_config
     <<: *job-build
-    <<: *step_persist_to_workspace
 
   # Minimal profile.
   build-minimal:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
+    <<: *job-build
+
+  # Drupal 10.
+  build-minimal-drupal10:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_VERSION: 10
+      DREVOPS_TEST_BEHAT_PROFILE: d10
     <<: *job-build
 
   # Subtheme is a sibling.
@@ -355,12 +361,17 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - build-minimal-drupal10:
+          filters:
+            tags:
+              only: /.*/
       - deploy:
           requires:
             - build-govcms
             - build-govcms-sibling
             - build-govcms-no-subtheme
             - build-minimal
+            - build-minimal-drupal10
           filters:
             branches:
               # Allowed branches:
@@ -378,6 +389,7 @@ workflows:
             - build-govcms-sibling
             - build-govcms-no-subtheme
             - build-minimal
+            - build-minimal-drupal10
           filters:
             branches:
               ignore: /.*/
