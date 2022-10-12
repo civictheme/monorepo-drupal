@@ -178,6 +178,7 @@ job-build: &job-build
         root: /workspace
         paths:
           - code
+          - code_tmp
 
 jobs:
   build-govcms:
@@ -189,7 +190,7 @@ jobs:
     <<: *container_config
     environment:
       DREVOPS_DRUPAL_PROFILE: minimal
-      DREVOPS_EXPORT_CODE_DIR: ''
+      DREVOPS_EXPORT_CODE_DIR: /workspace/code_tmp
     <<: *job-build
 
   # Drupal 10.
@@ -198,7 +199,7 @@ jobs:
     environment:
       DREVOPS_DRUPAL_VERSION: 10
       DREVOPS_TEST_BEHAT_PROFILE: d10
-      DREVOPS_EXPORT_CODE_DIR: ''
+      DREVOPS_EXPORT_CODE_DIR: /workspace/code_tmp
     <<: *job-build
 
   # Subtheme is a sibling.
@@ -207,7 +208,7 @@ jobs:
     environment:
       DREVOPS_TEST_BEHAT_TAGS: smoke
       CIVICTHEME_INSTALL_SIBLING: 1
-      DREVOPS_EXPORT_CODE_DIR: ''
+      DREVOPS_EXPORT_CODE_DIR: /workspace/code_tmp
     <<: *job-build
 
   # No subtheme.
@@ -216,7 +217,7 @@ jobs:
     environment:
       DREVOPS_TEST_BEHAT_TAGS: smoke
       CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
-      DREVOPS_EXPORT_CODE_DIR: ''
+      DREVOPS_EXPORT_CODE_DIR: /workspace/code_tmp
     <<: *job-build
 
   # Deploy primary branches.
