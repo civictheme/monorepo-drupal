@@ -67,3 +67,5 @@ docroot/themes/custom
 package-lock.json
 
 auth.json
+
+.gitempty
