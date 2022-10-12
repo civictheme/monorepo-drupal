@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\civictheme_migration\Form;
+namespace Drupal\civictheme_migrate\Form;
 
 use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -49,7 +49,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
   /**
    * Extemnsion Path resolver.
    *
-   * @var \Drupal\civictheme_migration\Form\ExtensionPathResolver
+   * @var \Drupal\civictheme_migrate\Form\ExtensionPathResolver
    */
   protected ExtensionPathResolver $extensionPathResolver;
 
@@ -130,14 +130,14 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'civictheme_migration_configuration_form';
+    return 'civictheme_migrate_configuration_form';
   }
 
   /**
    * {@inheritdoc}
    */
   protected function getEditableConfigNames() {
-    return ['civictheme_migration.settings'];
+    return ['civictheme_migrate.settings'];
   }
 
   /**
@@ -145,7 +145,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['#theme'] = 'system_config_form';
-    $config = $this->config("civictheme_migration.settings");
+    $config = $this->config("civictheme_migrate.settings");
 
     $form['migration_type'] = [
       '#title' => $this->t('Where are your Merlin extracted content JSON files?'),
@@ -249,10 +249,10 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
       '#multiple' => TRUE,
       '#progress_indicator' => 'bar',
       '#progress_message'   => $this->t('Uploading files...'),
-      '#upload_location' => 'private://civictheme_migration/',
+      '#upload_location' => 'private://civictheme_migrate/',
       '#upload_validators'  => [
         'file_validate_extensions' => ['json txt'],
-        'civictheme_migration_validate_json' => [],
+        'civictheme_migrate_validate_json' => [],
       ],
     ];
 
@@ -287,7 +287,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $config = $this->config('civictheme_migration.settings');
+    $config = $this->config('civictheme_migrate.settings');
     if ($this->isRetrieveFilesSubmit($form_state)) {
       $urls = explode("\r\n", $form_state->getValue('endpoint'));
       try {
@@ -336,7 +336,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
     foreach ($files as $file) {
       $file_stream_wrappers[] = $file->getFileUri();
     }
-    $migration_config_file_name = $this->extensionPathResolver->getPath('module', 'civictheme_migration') . '/assets/migrate_plus.migration.civictheme_page.yml';
+    $migration_config_file_name = $this->extensionPathResolver->getPath('module', 'civictheme_migrate') . '/assets/migrate_plus.migration.civictheme_page.yml';
     $migration_config = file_get_contents($migration_config_file_name);
     $migration_config = $this->yaml->decode($migration_config);
     $migration_config['source']['urls'] = $file_stream_wrappers;
@@ -355,7 +355,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
       $this->messenger()->addStatus($this->t('Migration has been updated.'));
     }
     $form_state->setRedirect('entity.migration.list', [
-      'migration_group' => 'civictheme_migration',
+      'migration_group' => 'civictheme_migrate',
     ]);
   }
 
@@ -430,7 +430,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
       }
       else {
         $filename = $this->generateFileName($url);
-        $directory = 'private://civictheme_migration';
+        $directory = 'private://civictheme_migrate';
         if ($this->fileSystem->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY)) {
           $uri = "$directory/$filename";
           $path = $this->fileSystem->saveData($json, $uri);
@@ -455,7 +455,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
    *   Authentication header options.
    */
   protected function getAuthHeaders():array {
-    $config = $this->config('civictheme_migration.settings');
+    $config = $this->config('civictheme_migrate.settings');
     $auth_type = $config->get('auth_type');
     if (empty($auth_type)) {
       return [];

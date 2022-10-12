@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-id: civictheme_migration
+id: civictheme_migrate
 label: 'Civictheme Migration'
 description: 'CivicTheme Merlin UI Migration'
 source_type: 'Merlin UI'

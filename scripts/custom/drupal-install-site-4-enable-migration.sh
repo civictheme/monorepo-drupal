@@ -9,4 +9,4 @@ drush="$(if [ -f "${APP}/vendor/bin/drush" ]; then echo "${APP}/vendor/bin/drush
 
 echo "  > Enable migration modules."
 
-$drush -y pm-enable civictheme_migration
+$drush -y pm-enable civictheme_migrate

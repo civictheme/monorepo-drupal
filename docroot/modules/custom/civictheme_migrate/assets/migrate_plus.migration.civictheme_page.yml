@@ -3,14 +3,14 @@ status: true
 dependencies:
   enforced:
     module:
-      - civictheme_migration
+      - civictheme_migrate
 id: civictheme_page_migration
 class: null
 field_plugin_method: null
 cck_plugin_method: null
 migration_tags:
-  - civictheme_migration
-migration_group: civictheme_migration
+  - civictheme_migrate
+migration_group: civictheme_migrate
 label: 'CivicTheme Page Migration'
 source:
   plugin: url

@@ -1,6 +1,6 @@
-# CivicTheme Migration
+# CivicTheme Migrate
 
-Merlin Migration is imported via configuration form (`/admin/configuration/civictheme-migration`).
+Merlin Migration is imported via configuration form (`/admin/configuration/civictheme-migrate`).
 
 You can choose to manually upload the Merlin UI extracted content JSON files or retrieve the extracted content JSON files from Merlin UI API endpoint.
 

@@ -1,10 +1,10 @@
-@civictheme @civictheme_migration
+@civictheme @civictheme_migrate
 Feature: Tests the CivicTheme migration functionality
 
   @api @javascript
   Scenario: Migration configuration form should be setup correctly
     Given I am logged in as a user with the "administer migrations" permission
-    When I go to "admin/config/civictheme-migration"
+    When I go to "admin/config/civictheme-migrate"
     Then I should see the text "Setup CivicTheme migration"
     And I select the radio button "Local"
     And I should see the text "Upload Merlin extracted content JSON Files"
@@ -29,7 +29,7 @@ Feature: Tests the CivicTheme migration functionality
       | filename                                 | uri                                               | path                                     |
       | merlin_ui_extracted_content_invalid.json | public://merlin_ui_extracted_content_invalid.json | merlin_ui_extracted_content_invalid.json |
     Given I am logged in as a user with the "administer migrations" permission
-    When I go to "admin/config/civictheme-migration"
+    When I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
     And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/merlin_ui_extracted_content_invalid.json"
     And I press the "Retrieve files" button
@@ -45,14 +45,14 @@ Feature: Tests the CivicTheme migration functionality
       | merlin_ui_extracted_content.json  | public://merlin_ui_extracted_content.json  | merlin_ui_extracted_content.json  |
       | merlin_ui_extracted_content2.json | public://merlin_ui_extracted_content2.json | merlin_ui_extracted_content2.json |
     Given I am logged in as a user with the "administer migrations" permission
-    When I go to "admin/config/civictheme-migration"
+    When I go to "admin/config/civictheme-migrate"
     And I select the radio button "Remote"
     And I fill in "Merlin extracted content JSON URL endpoints" with "http://nginx:8080/sites/default/files/merlin_ui_extracted_content2.json"
     And I press the "Retrieve files" button
     And I should see the message "Merlin extracted content JSON files have been retrieved"
     And I press the "Generate migration" button
-    And I should be in the "admin/structure/migrate/manage/civictheme_migration/migrations" path
-    And I visit "/admin/structure/migrate/manage/civictheme_migration/migrations/civictheme_page_migration/execute"
+    And I should be in the "admin/structure/migrate/manage/civictheme_migrate/migrations" path
+    And I visit "/admin/structure/migrate/manage/civictheme_migrate/migrations/civictheme_page_migration/execute"
     And I press the "Execute" button
     # Arbituary wait while batch processes, extend wait time if it is failing.
     And I wait 10 seconds
@@ -63,7 +63,7 @@ Feature: Tests the CivicTheme migration functionality
   Scenario Outline: Only administrator can access the CivicTheme migration configuration form
 
     Given I am logged in as a user with the "<role>" role
-    When I go to "admin/config/civictheme-migration"
+    When I go to "admin/config/civictheme-migrate"
     Then the response status code should be <code>
 
     Examples:

@@ -1,0 +1,9 @@
+civictheme_migrate.settings:
+  path: 'admin/config/civictheme-migrate'
+  defaults:
+    _form: '\Drupal\civictheme_migrate\Form\CivicThemeMigrationConfigurationForm'
+    _title: 'Setup CivicTheme migration'
+  requirements:
+    _permission: 'administer migrations'
+  options:
+    _admin_route: TRUE

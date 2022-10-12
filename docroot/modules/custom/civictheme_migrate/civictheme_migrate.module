@@ -19,7 +19,7 @@ use Drupal\file\FileInterface;
  *
  * @see hook_file_validate()
  */
-function civictheme_migration_validate_json(FileInterface $file) {
+function civictheme_migrate_validate_json(FileInterface $file) {
   $errors = [];
   $is_valid_json = json_decode(file_get_contents($file->getFileUri()));
   if ($is_valid_json === NULL) {
