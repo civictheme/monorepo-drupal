@@ -641,6 +641,7 @@ function _civictheme_path_field_description($original_path, $fallback_path) {
  *
  * @SuppressWarnings(PHPMD.UnusedFormalParameter)
  * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+ * @SuppressWarnings(PHPMD.ElseExpression)
  */
 function _civictheme_form_system_theme_settings_colors(&$form, FormStateInterface &$form_state) {
   $form['colors'] = [
@@ -670,6 +671,7 @@ function _civictheme_form_system_theme_settings_colors(&$form, FormStateInterfac
     foreach ($theme_type as $theme_key => $theme_value) {
       $form['colors'][$color_key][$theme_key] = [
         '#type' => 'fieldset',
+        '#title' => ucfirst($theme_value),
         '#tree' => TRUE,
         '#attributes' => [
           'class' => "color-{$theme_key}",

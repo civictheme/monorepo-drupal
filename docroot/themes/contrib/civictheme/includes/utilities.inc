@@ -520,11 +520,6 @@ function civictheme_theme_color_mapping() {
         'border_dark',
       ],
       'interection' => [
-        'background_light',
-        'background',
-        'background_dark',
-      ],
-      'background' => [
         'interaction_text',
         'interaction_background',
         'interaction_hover_text',
