@@ -2423,12 +2423,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drevops/DrupalDriver.git",
-                "reference": "e45edffe50b1841f8bc2d925431a4e659a04b015"
+                "reference": "0fda7a9366b339a4fdbbc42578374ec254a2b5e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drevops/DrupalDriver/zipball/e45edffe50b1841f8bc2d925431a4e659a04b015",
-                "reference": "e45edffe50b1841f8bc2d925431a4e659a04b015",
+                "url": "https://api.github.com/repos/drevops/DrupalDriver/zipball/0fda7a9366b339a4fdbbc42578374ec254a2b5e3",
+                "reference": "0fda7a9366b339a4fdbbc42578374ec254a2b5e3",
                 "shasum": ""
             },
             "require": {
@@ -2515,7 +2515,7 @@
                     "url": "https://github.com/jhedstrom"
                 }
             ],
-            "time": "2022-10-06T15:47:50+00:00"
+            "time": "2022-10-12T03:54:41+00:00"
         },
         {
             "name": "drupal/drupal-extension",
