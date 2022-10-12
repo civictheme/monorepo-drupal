@@ -74,11 +74,13 @@
   #{$root}__summary {
     @include ct-typography('text-regular');
 
+    margin-top: ct-spacing(-1);
     margin-bottom: ct-spacing(3);
 
     @include ct-breakpoint('m') {
       @include ct-typography('text-large');
 
+      margin-top: ct-spacing(-1);
       margin-bottom: ct-spacing(4);
     }
   }
