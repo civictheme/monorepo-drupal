@@ -688,10 +688,11 @@ function _civictheme_form_system_theme_settings_colors(&$form, FormStateInterfac
           foreach ($color_field_values as $color_field) {
             $theme_setting = 'colors.' . $color_key . '.' . $theme_key . '.' . $color_field;
             $theme_setting_constant = 'CIVICTHEME_PALETTE_COLOR_' . strtoupper($theme_key) . '_' . strtoupper($color_field);
+            $default_value = defined($theme_setting_constant) ? constant($theme_setting_constant) : constant($theme_setting_constant_default);
             $form['colors'][$color_key][$theme_key][$color_field_key][$color_field] = [
               '#type' => 'color',
               '#title' => ucfirst(str_replace('_', ' ', $color_field)),
-              '#default_value' => theme_get_setting($theme_setting) ?? "{$theme_setting_constant}" ?? "{$theme_setting_constant_default}",
+              '#default_value' => theme_get_setting($theme_setting) ?? $default_value,
             ];
           }
         }
@@ -703,7 +704,7 @@ function _civictheme_form_system_theme_settings_colors(&$form, FormStateInterfac
           $form['colors'][$color_key][$theme_key][$color_field] = [
             '#type' => 'color',
             '#title' => ucfirst($color_field),
-            '#default_value' => theme_get_setting($theme_setting) ?? "{$theme_setting_constant}",
+            '#default_value' => theme_get_setting($theme_setting) ?? constant($theme_setting_constant),
           ];
         }
       }
