@@ -1,8 +1,23 @@
-#edit-colors #edit-colors-brand > div > fieldset,
+#edit-colors #edit-colors-brand > div > fieldset{
+    display: inline-block;
+}
+
 #edit-colors #edit-colors-palette > div > fieldset {
     display: inline-block;
+    max-width: 45%;
+    border: 0;
+}
+
+#edit-colors #edit-colors-brand > .fieldset-wrapper,
+#edit-colors #edit-colors-palette > .fieldset-wrapper {
+ text-align: center;
 }
 
 #edit-colors fieldset .fieldset-wrapper > div {
     display: inline-block;
+}
+
+#edit-colors input[type="color"] {
+	width: 50px;
+	height: 30px;
 }
