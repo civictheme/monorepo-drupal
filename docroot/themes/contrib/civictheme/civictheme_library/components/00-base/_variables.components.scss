@@ -1198,13 +1198,13 @@ $ct-slider-border-radius: $ct-border-radius !default;
 $ct-slider-progress-indicator-border-radius: $ct-border-radius !default;
 $ct-slider-space-horizontal: ct-spacing(7) !default;
 $ct-slider-light-background-color: ct-color-light('background') !default;
-$ct-slider-light-progress-indicator-background-color: ct-color-light('background') !default;
-$ct-slider-light-progress-indicator-color: ct-color-light('body') !default;
+$ct-slider-light-progress-indicator-background-color: ct-color-light('interaction-background') !default;
+$ct-slider-light-progress-indicator-color: ct-color-light('interaction-text') !default;
 $ct-slider-light-title-color: ct-color-light('heading') !default;
 $ct-slider-light-wrapper-background-color: ct-color-light('background') !default;
 $ct-slider-dark-background-color: ct-color-dark('background') !default;
-$ct-slider-dark-progress-indicator-background-color: ct-color-dark('background') !default;
-$ct-slider-dark-progress-indicator-color: ct-color-dark('body') !default;
+$ct-slider-dark-progress-indicator-background-color: ct-color-dark('interaction-background') !default;
+$ct-slider-dark-progress-indicator-color: ct-color-dark('interaction-text') !default;
 $ct-slider-dark-title-color: ct-color-dark('heading') !default;
 $ct-slider-dark-wrapper-background-color: ct-color-dark('background') !default;
 

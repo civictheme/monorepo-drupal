@@ -45,9 +45,7 @@ x-environment: &default-environment
   # Pass-through $CI variable used to identify the CI environment.
   CI: ${CI:-}
   # Uncomment below if emails are not being received by Mailhog locally.
-  # SSMTP_MAILHUB: ${SSMTP_MAILHUB:-host.docker.internal:1025}
-  # Uncomment below if emails are not being received by Mailhog locally.
-  # SSMTP_MAILHUB: ${SSMTP_MAILHUB:-host.docker.internal:1025}
+  SSMTP_MAILHUB: ${SSMTP_MAILHUB:-host.docker.internal:1025}
   # Drupal Shield credentials.
   DRUPAL_SHIELD_USER: ${DRUPAL_SHIELD_USER:-}
   DRUPAL_SHIELD_PASS: ${DRUPAL_SHIELD_PASS:-}
@@ -55,6 +53,7 @@ x-environment: &default-environment
   LAGOON_PROJECT: ${LAGOON_PROJECT:-example_site}
   # Lagoon environment type.
   LAGOON_ENVIRONMENT_TYPE: ${LAGOON_ENVIRONMENT_TYPE:-local}
+  GITHUB_TOKEN: ${GITHUB_TOKEN:-}
 
 # ------------------------------------------------------------------------------
 # Services.
@@ -66,6 +65,8 @@ services:
     build:
       context: .
       dockerfile: .docker/Dockerfile.cli
+      args:
+        GITHUB_TOKEN: "${GITHUB_TOKEN:-}"
     image: &cli-image ${DREVOPS_PROJECT:-example_site}-cli
     <<: *default-volumes
     user: root

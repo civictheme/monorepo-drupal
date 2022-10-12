@@ -68,7 +68,7 @@ all new, updated or deleted configuration was captured
     ahoy export-config
 
 Configuration is captured using Config Devel module for:
-- development modules into `cs_core` module's `config/install` and `config/optional` directories.
+- development modules into `civictheme_dev` module's `config/install` and `config/optional` directories.
 - theme into CivicTheme Drupal theme's `config/install` and `config/optional` directories.
 
 To add new configuration to the export, add configuration name to `civictheme.info.yml`.

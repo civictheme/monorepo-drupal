@@ -71,7 +71,7 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
     '#validate' => ['_civictheme_form_system_theme_settings_provision_validate'],
     '#submit' => ['_civictheme_form_system_theme_settings_provision_submit'],
   ];
-  $form[]['#process'][] = '_civictheme_form_system_theme_settings_alter_provision_process';
+  $form['provision_content']['#process'][] = '_civictheme_form_system_theme_settings_alter_provision_process';
 }
 
 /**
@@ -82,6 +82,7 @@ function _civictheme_form_system_theme_settings_alter_provision(&$form, FormStat
 function _civictheme_form_system_theme_settings_alter_provision_process(&$element, FormStateInterface $form_state, &$complete_form) {
   $form_state->addCleanValueKey('provision_types');
   $form_state->addCleanValueKey('provision_clear_cache');
+  return $element;
 }
 
 /**

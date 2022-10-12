@@ -49,6 +49,9 @@ aliases:
   # SSH key fingerprint to deploy code to civictheme_content.
   - &deploy_ssh_fingerprint4 "ef:1c:ad:2a:dd:ec:0c:cd:1a:63:4c:bb:8a:d7:c1:b7"
 
+  # SSH key fingerprint to deploy code to civictheme_admin.
+  - &deploy_ssh_fingerprint5 "a8:ac:6a:dc:6c:af:fd:a3:82:3d:12:06:20:ec:5a:f9"
+
   #-----------------------------------------------------------------------------
   # Optional variables.
   #-----------------------------------------------------------------------------
@@ -83,6 +86,7 @@ aliases:
       DEPLOY_SSH_FINGERPRINT2: *deploy_ssh_fingerprint2
       DEPLOY_SSH_FINGERPRINT3: *deploy_ssh_fingerprint3
       DEPLOY_SSH_FINGERPRINT4: *deploy_ssh_fingerprint4
+      DEPLOY_SSH_FINGERPRINT5: *deploy_ssh_fingerprint5
     docker:
       - image: drevops/ci-builder
         auth:
@@ -125,112 +129,85 @@ aliases:
         # Remove lines containing '###' and uncomment comments starting with '##'.
         sed -i -e "/###/d" docker-compose.yml && sed -i -e "s/##//" docker-compose.yml
         # Alter build for an alternative build setup.
-        [ "$CI_ALTERNATIVE_BUILD" = "1" ] && cp -Rf .docker/Dockerfile.cli2 .docker/Dockerfile.cli || true
+        [ "$CIVICTHEME_INSTALL_SIBLING" = "1" ] && cp -Rf .docker/Dockerfile.cli2 .docker/Dockerfile.cli || true
+
+  - &step_persist_to_workspace
+    persist_to_workspace:
+      root: /workspace
+      paths:
+        - code
 
 ################################################################################
 # JOBS
 ################################################################################
-jobs:
 
-  build: &job_build
+job-build: &job-build
+  steps:
+    - attach_workspace:
+        at: /workspace
+    - checkout
+    - *step_process_codebase
+    - *step_setup_remote_docker
+    - run:
+        name: Lint docs spelling
+        command: ./scripts/lint-spelling.sh
+    - run:
+        name: Build site
+        command: ahoy build
+        no_output_timeout: 30m
+    - run:
+        name: Lint code
+        command: ahoy lint
+    - run:
+        name: Lint theme config
+        command: ahoy lint config || true
+    - run:
+        name: Run tooling tests
+        command: ./scripts/test-tooling.sh
+    - run:
+        name: Run tests
+        command: 'if [ $CIRCLE_NODE_TOTAL -gt 1 ]; then export DREVOPS_TEST_BEHAT_PARALLEL_INDEX=$CIRCLE_NODE_INDEX; fi && ahoy test'
+    - run:
+        name: Process test logs and artifacts
+        command: |
+          [ -n "$(docker-compose ps -q cli)" ] && [ -n "$(docker ps -q --no-trunc | grep "$(docker-compose ps -q cli)")" ] && (
+            ahoy cli mkdir -p "${DREVOPS_TEST_REPORTS_DIR}" && docker cp "$(docker-compose ps -q cli)":"${DREVOPS_TEST_REPORTS_DIR}" "${DREVOPS_TEST_REPORTS_DIR}"
+            ahoy cli mkdir -p "${DREVOPS_TEST_ARTIFACT_DIR}" && docker cp "$(docker-compose ps -q cli)":"${DREVOPS_TEST_ARTIFACT_DIR}" "${DREVOPS_TEST_ARTIFACT_DIR}"
+          ) || true
+        when: always
+    - store_test_results:
+        path: *drevops_test_reports_dir
+    - store_artifacts:
+        path: *drevops_test_artifact_dir
+
+jobs:
+  build-govcms:
     <<: *container_config
-    parallelism: 1
-    steps:
-      - attach_workspace:
-          at: /workspace
-      - checkout
-      - *step_process_codebase
-      - *step_setup_remote_docker
-      - run:
-          name: Lint docs spelling
-          command: ./scripts/lint-spelling.sh
-      - run:
-          name: Build site
-          command: ahoy build
-          no_output_timeout: 30m
-      - run:
-          name: Lint code
-          command: ahoy lint
-      - run:
-          name: Lint theme config
-          command: ahoy lint config || true
-      - run:
-          name: Run tooling tests
-          command: ./scripts/test-tooling.sh
-      - run:
-          name: Run tests
-          command: 'if [ $CIRCLE_NODE_TOTAL -gt 1 ]; then export DREVOPS_TEST_BEHAT_PARALLEL_INDEX=$CIRCLE_NODE_INDEX; fi && ahoy test'
-      - run:
-          name: Process test logs and artifacts
-          command: |
-            [ -n "$(docker-compose ps -q cli)" ] && [ -n "$(docker ps -q --no-trunc | grep "$(docker-compose ps -q cli)")" ] && (
-              ahoy cli mkdir -p "${DREVOPS_TEST_REPORTS_DIR}" && docker cp "$(docker-compose ps -q cli)":"${DREVOPS_TEST_REPORTS_DIR}" "${DREVOPS_TEST_REPORTS_DIR}"
-              ahoy cli mkdir -p "${DREVOPS_TEST_ARTIFACT_DIR}" && docker cp "$(docker-compose ps -q cli)":"${DREVOPS_TEST_ARTIFACT_DIR}" "${DREVOPS_TEST_ARTIFACT_DIR}"
-            ) || true
-          when: always
-      - store_test_results:
-          path: *drevops_test_reports_dir
-      - store_artifacts:
-          path: *drevops_test_artifact_dir
-      #
-      # Persisting previously built application code artifact (without
-      # development dependencies) to use it in deployment job.
-      - persist_to_workspace:
-          root: /workspace
-          paths:
-            - code
+    <<: *job-build
+    <<: *step_persist_to_workspace
+
+  # Minimal profile.
+  build-minimal:
+    <<: *container_config
+    environment:
+      DREVOPS_DRUPAL_PROFILE: minimal
+    <<: *job-build
 
   # Subtheme is a sibling.
-  build-alt:
+  build-govcms-sibling:
     <<: *container_config
-    parallelism: 1
     environment:
-      CI_ALTERNATIVE_BUILD: 1
-    steps:
-      - attach_workspace:
-          at: /workspace
-      - checkout
-      - *step_process_codebase
-      - *step_setup_remote_docker
-      - run:
-          name: Build site
-          command: ahoy build
-          no_output_timeout: 30m
+      DREVOPS_TEST_BEHAT_TAGS: smoke
+      CIVICTHEME_INSTALL_SIBLING: 1
+    <<: *job-build
 
   # No subtheme.
-  build-alt2:
+  build-govcms-no-subtheme:
     <<: *container_config
-    parallelism: 1
     environment:
-      SKIP_SUBTHEME_ACTIVATION: 1
-    steps:
-      - attach_workspace:
-          at: /workspace
-      - checkout
-      - *step_process_codebase
-      - *step_setup_remote_docker
-      - run:
-          name: Build site
-          command: ahoy build
-          no_output_timeout: 30m
-
-  # Standard profile.
-  build-alt3:
-    <<: *container_config
-    parallelism: 1
-    environment:
-      SKIP_SUBTHEME_ACTIVATION: 1
-      DREVOPS_DRUPAL_PROFILE: standard
-    steps:
-      - attach_workspace:
-          at: /workspace
-      - checkout
-      - *step_process_codebase
-      - *step_setup_remote_docker
-      - run:
-          name: Build site
-          command: ahoy build
-          no_output_timeout: 30m
+      DREVOPS_TEST_BEHAT_TAGS: smoke
+      CIVICTHEME_SKIP_SUBTHEME_ACTIVATION: 1
+    <<: *job-build
 
   # Deploy primary branches.
   deploy: &job_deploy
@@ -317,6 +294,16 @@ jobs:
             DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
             ./scripts/deploy-code-release.sh
           no_output_timeout: 30m
+      - run:
+          name: Deploy release to CivicTheme Admin repository.
+          command: |
+            DEPLOY_SSH_FINGERPRINT=$DEPLOY_SSH_FINGERPRINT5 \
+            DEPLOY_CODE_RELEASE_REMOTE_REPO=git@github.com:salsadigitalauorg/civictheme_admin.git \
+            DEPLOY_CODE_RELEASE_REMOTE_BRANCH=master \
+            DEPLOY_CODE_RELEASE_SRC_DIR="${DREVOPS_EXPORT_CODE_DIR}/docroot/modules/custom/civictheme_admin" \
+            DEPLOY_CODE_RELEASE_LOG_FILTER_REGEX="^\[CIVIC" \
+            ./scripts/deploy-code-release.sh
+          no_output_timeout: 30m
       - store_artifacts:
           path: *drevops_test_artifact_dir
 
@@ -352,28 +339,28 @@ workflows:
   # Commit workflow. Runs for every commit push to the remote repository.
   commit:
     jobs:
-      - build:
+      - build-govcms:
           filters:
             tags:
               only: /.*/
-      - build-alt:
+      - build-govcms-sibling:
           filters:
             tags:
               only: /.*/
-      - build-alt2:
+      - build-govcms-no-subtheme:
           filters:
             tags:
               only: /.*/
-      - build-alt3:
+      - build-minimal:
           filters:
             tags:
               only: /.*/
       - deploy:
           requires:
-            - build
-            - build-alt
-            - build-alt2
-            - build-alt3
+            - build-govcms
+            - build-govcms-sibling
+            - build-govcms-no-subtheme
+            - build-minimal
           filters:
             branches:
               # Allowed branches:
@@ -387,10 +374,10 @@ workflows:
               ignore: /.*/
       - deploy_tags:
           requires:
-            - build
-            - build-alt
-            - build-alt2
-            - build-alt3
+            - build-govcms
+            - build-govcms-sibling
+            - build-govcms-no-subtheme
+            - build-minimal
           filters:
             branches:
               ignore: /.*/
