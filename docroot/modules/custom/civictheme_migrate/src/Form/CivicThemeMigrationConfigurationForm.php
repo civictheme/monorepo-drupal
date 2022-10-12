@@ -14,7 +14,7 @@ use GuzzleHttp\ClientInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Configure CivicTheme Migration from Merlin Migration JSON files.
+ * Configure CivicTheme Migrate from Merlin Migration JSON files.
  */
 class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
 

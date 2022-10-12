@@ -1,5 +1,5 @@
 civictheme_migrate.admin:
-  title: 'CivicTheme Migration'
+  title: 'CivicTheme Migrate'
   description: 'Setup and import extracted content JSON from Merlin UI'
   parent: system.admin_config_development
   route_name: civictheme_migrate.settings

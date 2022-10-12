@@ -2,7 +2,7 @@
 
 /**
  * @file
- * CivicTheme migration module.
+ * CivicTheme Migrate module.
  */
 
 use Drupal\file\FileInterface;
