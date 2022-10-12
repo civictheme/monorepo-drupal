@@ -1,6 +1,6 @@
 services:
-  cs_core.config_devel_subscriber:
-    class: Drupal\cs_core\EventSubscriber\CsCoreConfigDevelSubscriber
+  civictheme_dev.config_devel_subscriber:
+    class: Drupal\civictheme_dev\EventSubscriber\CivicthemeDevConfigDevelSubscriber
     arguments: ['@config.factory', '@config.manager', '@plugin.manager.config_filter']
     tags:
       - { name: event_subscriber }

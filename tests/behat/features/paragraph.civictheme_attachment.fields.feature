@@ -17,8 +17,6 @@ Feature: Tests the Attachment
     And I should see the text "field_c_p_theme" in the "Theme" row
     And I should see the text "field_c_p_summary" in the "Summary" row
     And I should see the text "field_c_p_attachments" in the "Attachments" row
-    And I should see the text "field_c_p_icon" in the "Icon" row
-    And I should see the text "field_c_p_image" in the "Image" row
     And I should see the text "field_c_p_vertical_spacing" in the "Vertical spacing" row
     And I should see the text "field_c_p_background" in the "Background" row
 
@@ -39,10 +37,5 @@ Feature: Tests the Attachment
     And should see an "input[name='field_c_n_components[0][subform][field_c_p_title][0][value]'].required" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]']" element
     And should see an "textarea[name='field_c_n_components[0][subform][field_c_p_summary][0][value]'].required" element
-    And should see "The summary field may contain up to 100 characters. Any characters past the 100 character limit will not show for users." in the ".form-item-field-c-n-components-0-subform-field-c-p-summary-0-value" element
     And I should see an "input[name='field_c_n_components[0][subform][field_c_p_background][value]']" element
-    And should see an "#field_c_p_image-media-library-wrapper-field_c_n_components-0-subform" element
-    And should see an "#field_c_p_attachments-media-library-wrapper-field_c_n_components-0-subform" element
-    And should see an "#field_c_p_attachments-media-library-wrapper-field_c_n_components-0-subform.required" element
-    And should see an "#field_c_p_icon-media-library-wrapper-field_c_n_components-0-subform" element
     And the option "Light" from select "Theme" is selected

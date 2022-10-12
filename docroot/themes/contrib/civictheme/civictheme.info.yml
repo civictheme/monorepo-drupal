@@ -2,28 +2,34 @@ name: CivicTheme
 type: theme
 base theme: false
 description: CivicTheme is a Drupal 9 component-based theme.
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
 
 libraries:
   - 'civictheme/global'
 
 dependencies:
+  - ckeditor:ckeditor
   - components:components
   - content_moderation:content_moderation
   - drupal:block_content
   - drupal:datetime_range
+  - drupal:help
   - drupal:inline_form_errors
   - drupal:layout_builder
   - drupal:layout_discovery
   - drupal:media
   - drupal:media_library
+  - drupal:options
   - drupal:rest
+  - drupal:shortcut
+  - drupal:taxonomy
   - field_group:field_group
   - layout_builder_restrictions:layout_builder_restrictions
   - linkit:linkit
   - menu_block:menu_block
   - paragraphs:paragraphs
   - pathauto:pathauto
+  - redirect:redirect
   - webform:webform
 
 regions:
@@ -294,8 +300,6 @@ config_devel:
     - field.field.paragraph.civictheme_accordion_panel.field_c_p_title
     - field.field.paragraph.civictheme_attachment.field_c_p_attachments
     - field.field.paragraph.civictheme_attachment.field_c_p_background
-    - field.field.paragraph.civictheme_attachment.field_c_p_icon
-    - field.field.paragraph.civictheme_attachment.field_c_p_image
     - field.field.paragraph.civictheme_attachment.field_c_p_summary
     - field.field.paragraph.civictheme_attachment.field_c_p_theme
     - field.field.paragraph.civictheme_attachment.field_c_p_title
@@ -371,7 +375,6 @@ config_devel:
     - field.field.paragraph.civictheme_navigation_card.field_c_p_title
     - field.field.paragraph.civictheme_navigation_card_ref.field_c_p_reference
     - field.field.paragraph.civictheme_navigation_card_ref.field_c_p_theme
-    - field.field.paragraph.civictheme_next_step.field_c_p_image
     - field.field.paragraph.civictheme_next_step.field_c_p_link
     - field.field.paragraph.civictheme_next_step.field_c_p_summary
     - field.field.paragraph.civictheme_next_step.field_c_p_theme

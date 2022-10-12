@@ -8,14 +8,14 @@ label: Page
 type: 'canonical_entities:node'
 pattern: '[node:title]'
 selection_criteria:
-  536cf8c6-d312-4974-8d67-75789c6e8097:
-    id: node_type
-    bundles:
-      civictheme_page: civictheme_page
+  d0cb40e2-2a88-4a13-8c3d-4dc398a6865f:
+    id: 'entity_bundle:node'
     negate: false
+    uuid: d0cb40e2-2a88-4a13-8c3d-4dc398a6865f
     context_mapping:
       node: node
-    uuid: 536cf8c6-d312-4974-8d67-75789c6e8097
+    bundles:
+      civictheme_page: civictheme_page
 selection_logic: and
 weight: -5
 relationships: {  }

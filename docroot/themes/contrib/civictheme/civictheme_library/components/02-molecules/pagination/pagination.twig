@@ -111,9 +111,10 @@
             text: key,
             title: title,
             hidden_text: current == key ? 'Current page' : 'Page',
+            is_active: current == key ? 1 : 0,
             url: item.href,
             attributes: attributes,
-            modifier_class: 'ct-pager__link ' ~ (current == key ? 'ct-pager__link--active' : ''),
+            modifier_class: 'ct-pager__link',
           } only %}
         </li>
         {% if loop.first %}

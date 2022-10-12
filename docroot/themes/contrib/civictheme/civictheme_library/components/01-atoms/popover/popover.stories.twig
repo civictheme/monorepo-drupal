@@ -1,25 +1,17 @@
-{#
-/**
- * @file
- * Popover component story.
- *
- * Variables:
- * - theme: [string] Theme: light, dark.
- * - attributes: [string] Additional attributes.
- * - modifier_class: [string] Additional classes.
- */
-#}
-
-{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
-{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
-
-{% if content %}
-  <div class="{{ modifier_class }}" data-popover {% if attributes is not empty %}{{ attributes|raw }}{% endif %}>
-    <button data-popover-trigger data-popover-trigger-event="{{ trigger_event }}">
-      TRIGGER ({{ trigger_event }} me)
-    </button>
-    <div data-popover-content>
-      {{ content }}
-    </div>
+{% for content in contents %}
+  <div class="example-container">
+    {% set trigger_attributes = 'data-popover data-popover-trigger data-popover-trigger-event="' ~ trigger_event ~ '" data-popover-trigger-id="data-popover-' ~ loop.index ~ '"' %}
+    {% include '@atoms/link/link.twig' with {
+      theme: theme,
+      text: trigger_text,
+      attributes: trigger_attributes,
+    } only %}
+    {% include '@atoms/popover/popover.twig' with {
+        theme: theme,
+        content: content,
+        data_popover_id: 'data-popover-' ~ loop.index,
+        attributes: attributes,
+        modifier_class: modifier_class,
+    } only %}
   </div>
-{% endif %}
+{% endfor %}

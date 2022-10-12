@@ -2,7 +2,7 @@ name: CivicTheme Starter Kit
 type: theme
 base theme: civictheme
 description: 'CivicTheme Starter Kit description.'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10
 hidden: true
 
 regions:

@@ -10,14 +10,6 @@ Feature: View of Page content
       | test_svg.svg   | public://civictheme_test/test_svg.svg   | test_svg.svg   |
       | test_pdf.pdf   | public://civictheme_test/test_pdf.pdf   | test_pdf.pdf   |
 
-    And "civictheme_image" media:
-      | name                    | field_c_m_image |
-      | [TEST] CivicTheme Image | test_image.jpg  |
-
-    And "civictheme_icon" media:
-      | name                  | field_c_m_icon |
-      | [TEST] CivicTheme SVG | test_svg.svg   |
-
     And "civictheme_document" media:
       | name                  | field_c_m_document |
       | [TEST] CivicTheme PDF | test_pdf.pdf       |
@@ -34,8 +26,6 @@ Feature: View of Page content
       | field_c_p_summary     | Summary text            |
       | field_c_p_theme       | light                   |
       | field_c_p_background  | 0                       |
-      | field_c_p_image       | [TEST] CivicTheme Image |
-      | field_c_p_icon        | [TEST] CivicTheme SVG   |
       | field_c_p_attachments | [TEST] CivicTheme PDF   |
 
     When I visit "civictheme_page" "[TEST] Page attachment test"
@@ -59,8 +49,6 @@ Feature: View of Page content
       | field_c_p_summary     | Summary text            |
       | field_c_p_theme       | dark                    |
       | field_c_p_background  | 1                       |
-      | field_c_p_image       | [TEST] CivicTheme Image |
-      | field_c_p_icon        | [TEST] CivicTheme SVG   |
       | field_c_p_attachments | [TEST] CivicTheme PDF   |
 
     When I visit "civictheme_page" "[TEST] Page attachment test"

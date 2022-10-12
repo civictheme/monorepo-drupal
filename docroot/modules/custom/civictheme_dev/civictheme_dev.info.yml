@@ -1,26 +1,21 @@
-name: 'CivicTheme Core'
+name: 'CivicTheme Development'
 type: module
-description: 'Core feature for site settings.'
-core_version_requirement: ^9
+description: 'Development-related helpers.'
+core_version_requirement: ^9 || ^10
 package: CivicTheme
 dependencies:
   # Only provide a list of modules that CivicTheme is not dependent on.
-  - admin_toolbar:admin_toolbar
-  - admin_toolbar:admin_toolbar_tools
-  - adminimal_admin_toolbar:adminimal_admin_toolbar
-  - civictheme_styleguide:civictheme_styleguide
-  - coffee:coffee
   - config_devel:config_devel
   - config_filter:config_filter
-  - config_update:config_update
+  - config_ignore:config_ignore
   - dblog:dblog
+  - drupal:field_ui
+  - drupal:views_ui
   - environment_indicator:environment_indicator
-  - permissions_filter:permissions_filter
-  - redirect:redirect
   - shield:shield
-  - stage_file_proxy:stage_file_proxy
   - simple_sitemap:simple_sitemap
   - simple_sitemap:simple_sitemap_views
+  - styleguide:styleguide
   - testmode:testmode
 
 config_devel:

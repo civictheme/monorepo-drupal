@@ -3,7 +3,7 @@
     "description": "Drupal 9 implementation of CivicTheme Source for Salsa Digital",
     "license": "proprietary",
     "require": {
-        "php": "=8.0",
+        "php": "8.1",
         "composer/installers": "^2",
         "cweagans/composer-patches": "^1.7",
         "drupal/coffee": "^1",
@@ -15,7 +15,6 @@
         "drupal/generated_content": "^1.2",
         "drupal/permissions_filter": "^1.1",
         "drupal/redirect": "^1.6",
-        "drupal/stage_file_proxy": "^1.1",
         "drupal/styleguide": "^2@beta",
         "drupal/testmode": "^2.1",
         "drush/drush": "^11",
@@ -38,7 +37,7 @@
         "phpmd/phpmd": "^2.12",
         "phpspec/prophecy-phpunit": "^2",
         "pyrech/composer-changelogs": "^1.7",
-        "slevomat/coding-standard": "7.2.1"
+        "slevomat/coding-standard": "8.5.2"
     },
     "autoload": {
         "classmap": [
@@ -52,7 +51,7 @@
     },
     "config": {
         "platform": {
-            "php": "8.0"
+            "php": "8.1"
         },
         "process-timeout": 0,
         "sort-packages": true,
@@ -65,7 +64,8 @@
             "drupal/core-project-message": true,
             "oomphinc/composer-installers-extender": true,
             "pyrech/composer-changelogs": true,
-            "zaporylie/composer-drupal-optimizations": true
+            "zaporylie/composer-drupal-optimizations": true,
+            "phpstan/extension-installer": true
         }
     },
     "conflict": {

@@ -52,16 +52,20 @@
     align-self: self-start;
   }
 
-  #{$root}__title {
-    @include ct-typography('heading-5');
+  #{$root}__title-link {
+    @include ct-typography('heading-4');
+    @include ct-link-decoration();
+    @include ct-link-no-outline();
+    @include ct-link-cover-parent();
 
+    display: flex;
+    justify-content: space-between;
     margin-bottom: ct-spacing(2);
   }
 
   #{$root}__location {
     @include ct-typography('text-regular');
 
-    font-weight: 600;
     margin-bottom: ct-spacing(2);
   }
 
@@ -100,8 +104,8 @@
       border-top-color: $ct-event-card-light-border-top-color;
     }
 
-    #{$root}__title {
-      color: $ct-event-card-light-heading-color;
+    #{$root}__title-link {
+      @include ct-link-colors($ct-event-card-light-heading-color, $ct-event-card-light-heading-hover-color, $active: $ct-event-card-light-heading-active-color);
     }
 
     #{$root}__location {
@@ -117,6 +121,10 @@
     #{$root}__icon--arrow {
       @include ct-icon-fill-color($ct-event-card-light-icon-arrow-color);
     }
+
+    #{$root}__icon-wrapper {
+      color: $ct-event-card-light-icon-color;
+    }
   }
 
   &.ct-theme-dark {
@@ -130,8 +138,8 @@
       border-top-color: $ct-event-card-dark-border-top-color;
     }
 
-    #{$root}__title {
-      color: $ct-event-card-dark-heading-color;
+    #{$root}__title-link {
+      @include ct-link-colors($ct-event-card-dark-heading-color, $ct-event-card-dark-heading-hover-color, $active: $ct-event-card-dark-heading-active-color);
     }
 
     #{$root}__location {
@@ -144,6 +152,10 @@
 
     #{$root}__icon--arrow {
       @include ct-icon-fill-color($ct-event-card-dark-icon-arrow-color, true);
+    }
+
+    #{$root}__icon-wrapper {
+      color: $ct-event-card-dark-icon-color;
     }
   }
 }

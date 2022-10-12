@@ -32,7 +32,7 @@ Feature: Tests the pagination element
       | [TEST] Page 24 | 1      |
       | [TEST] Page 25 | 1      |
 
-  @api
+  @api @d9
   Scenario: Styleguide page should show table with correct markup.
     Given I am logged in as a user with the "Administrator" role
     When I go to "admin/appearance/styleguide/civictheme#pagination-heading"
@@ -84,7 +84,7 @@ Feature: Tests the pagination element
     And I should see an ".ct-list__results-below .ct-pager" element
     And I should not see "First" in the ".ct-list__results-below .ct-pager" element
     And I should see "Prev" in the ".ct-list__results-below .ct-pager .ct-input--disabled.ct-pager__link" element
-    And I should see "1" in the ".ct-list__results-below .ct-pager .ct-pager__link.ct-pager__link--active" element
+    And I should see "1" in the ".ct-list__results-below .ct-pager .ct-pager__link.ct-link--active" element
     And I should not see "Last" in the ".ct-list__results-below .ct-pager" element
     And I should see a ".ct-pager .ct-pager__item--ellipsis-next" element
     And I should not see a ".ct-pager .ct-pager__item--ellipsis-previous" element
@@ -93,10 +93,10 @@ Feature: Tests the pagination element
     And I should see a ".ct-pager .ct-pager__item--ellipsis-previous" element
     And I should not see "Last" in the ".ct-list__results-below .ct-pager" element
     And I should not see "First" in the ".ct-list__results-below .ct-pager" element
-    And I should see "2" in the ".ct-list__results-below .ct-pager .ct-pager__link.ct-pager__link--active" element
+    And I should see "2" in the ".ct-list__results-below .ct-pager .ct-pager__link.ct-link--active" element
     And I click "Prev"
     And I should see "Prev" in the ".ct-list__results-below .ct-pager .ct-input--disabled.ct-pager__link" element
-    And I should see "1" in the ".ct-list__results-below .ct-pager .ct-pager__link.ct-pager__link--active" element
+    And I should see "1" in the ".ct-list__results-below .ct-pager .ct-pager__link.ct-link--active" element
     And I should see "Items per page" in the ".ct-list__results-below .ct-pager .ct-pager__items_per_page" element
     And select "items_per_page" should have an option "5"
     And select "items_per_page" should have an option "10"
