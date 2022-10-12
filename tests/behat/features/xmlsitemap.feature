@@ -1,4 +1,4 @@
-@civictheme @xmlsitemap
+@civictheme @xmlsitemap @skipped
 Feature: XML Sitemap
 
   Ensure that the XML Sitemap exists.
