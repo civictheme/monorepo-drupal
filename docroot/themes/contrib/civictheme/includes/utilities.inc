@@ -529,7 +529,7 @@ function civictheme_theme_color_mapping() {
         'interaction_background',
         'interaction_hover_text',
         'interaction_hover_background',
-        'interaction_focus'
+        'interaction_focus',
       ],
       'highlight' => [
         'highlight',
