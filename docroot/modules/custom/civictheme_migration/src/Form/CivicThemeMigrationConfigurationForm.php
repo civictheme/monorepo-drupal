@@ -10,6 +10,8 @@ use Drupal\Core\Extension\ExtensionPathResolver;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\Messenger;
+use Drupal\Core\Messenger\MessengerInterface;
 use GuzzleHttp\ClientInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -112,8 +114,8 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
    *   Generation configuration button label.
    */
-  protected function getGenerateConfigurationLabel() {
-    return $this->t('Generate configuration');
+  protected function getSaveConfigurationLabel() {
+    return $this->t('Save configuration');
   }
 
   /**
@@ -148,8 +150,8 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
     $config = $this->config("civictheme_migration.settings");
 
     $form['migration_type'] = [
-      '#title' => $this->t('Merlin generated content files'),
-      '#description' => $this->t('Upload JSON generated files or connect to a remote URLS to retrieve Merlin JSON files'),
+      '#title' => $this->t('Where are your Merlin extracted content JSON files?'),
+      '#description' => $this->t('Upload Merlin extracted content json files or connect to a remote URLS to retrieve'),
       '#type' => 'radios',
       '#required' => TRUE,
       '#options' => [
@@ -161,7 +163,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
 
     $form['remote'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Connect to remote Merlin UI API to retrieve files'),
+      '#title' => $this->t('Connect to remote Merlin UI API to retrieve extracted content JSON files'),
       '#states' => [
         'visible' => [
           ':input[name="migration_type"]' => ['value' => 'remote'],
@@ -225,8 +227,8 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
 
     $form['remote']['endpoint'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Merlin Generated JSON Endpoints'),
-      '#description' => $this->t('URL on each line'),
+      '#title' => $this->t('Merlin extracted content JSON URL endpoints'),
+      '#description' => $this->t('One URL each line'),
       '#default_value' => $config->get('remote')['endpoint'] ?? NULL,
       '#states' => [
         'required' => [
@@ -244,7 +246,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
 
     $form['configuration_files'] = [
       '#type' => 'managed_file',
-      '#title' => $this->t('Upload Merlin JSON Files'),
+      '#title' => $this->t('Upload Merlin extracted content JSON Files'),
       '#default_value' => $config->get('configuration_files'),
       '#multiple' => TRUE,
       '#progress_indicator' => 'bar',
@@ -259,7 +261,7 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->getGenerateConfigurationLabel(),
+      '#value' => $this->getSaveConfigurationLabel(),
       '#button_type' => 'primary',
     ];
     $form['actions']['generate_migration'] = [
@@ -292,16 +294,16 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
       $urls = explode("\r\n", $form_state->getValue('endpoint'));
       try {
         $files = $this->retrieveFiles($urls);
+        $existing_files = $config->get('configuration_files') ?? [];
+        $config->set('configuration_files', array_merge($existing_files, $files));
+        $this->messenger()->addStatus($this->t('Merlin extracted content JSON files have been retrieved'));
       }
       catch (\Exception $exception) {
-        $form_state->setError($form['remote']['endpoint'], $exception->getMessage());
+        $this->messenger()->addError($exception->getMessage());
       }
-      $existing_files = $config->get('configuration_files') ?? [];
-      $config->set('configuration_files', array_merge($existing_files, $files));
-      $this->messenger()->addStatus($this->t('Merlin configuration files have been retrieved'));
     }
 
-    if ($this->isGenerateConfigurationSubmit($form_state) || $this->isGenerateMigrationSubmit($form_state)) {
+    if ($this->isSaveConfigurationSubmit($form_state) || $this->isGenerateMigrationSubmit($form_state)) {
       $config->set('configuration_files', $form_state->getValue('configuration_files'));
     }
     $config->set('migration_type', $form_state->getValue('migration_type'));
@@ -384,8 +386,8 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
    * @return bool
    *   Whether the triggering button is the Retrieve files button.
    */
-  protected function isGenerateConfigurationSubmit(FormStateInterface $form_state): bool {
-    $button_label = $this->getGenerateConfigurationLabel();
+  protected function isSaveConfigurationSubmit(FormStateInterface $form_state): bool {
+    $button_label = $this->getSaveConfigurationLabel();
     $button_title = $form_state->getTriggeringElement()['#value'] ?? '';
 
     return (string) $button_title === (string) $button_label;
@@ -423,10 +425,10 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
     $auth_headers = $this->getAuthHeaders();
     foreach ($urls as $url) {
       $file = $this->httpClient->get($url, $auth_headers);
-      $json = $file->getBody($file);
+      $json = $file->getBody();
       $json_validate = json_decode($json);
       if ($json_validate === NULL) {
-        throw new \Exception(sprintf('Json file is malformed - %s', $url));
+        throw new \Exception(sprintf('JSON file is malformed - %s', $url));
       }
       else {
         $filename = $this->generateFileName($url);
@@ -441,9 +443,6 @@ class CivicThemeMigrationConfigurationForm extends ConfigFormBase {
           $file->setPermanent();
           $file->save();
           $files[] = (int) $file->get('fid')->getString();
-        }
-        else {
-          // @todo add logging for failure to create directory.
         }
       }
     }
