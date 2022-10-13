@@ -1179,11 +1179,11 @@ $ct-mobile-navigation-trigger-dark-color: ct-color-dark('background') !default;
 // Promo.
 //
 $ct-promo-light-background-color: ct-color-light('background-light') !default;
-$ct-promo-light-body-color: ct-color-light('body') !default;
-$ct-promo-light-heading-color: ct-color-light('heading') !default;
+$ct-promo-light-content-color: ct-color-light('body') !default;
+$ct-promo-light-title-color: ct-color-light('heading') !default;
 $ct-promo-dark-background-color: ct-color-dark('background-dark') !default;
-$ct-promo-dark-body-color: ct-color-dark('body') !default;
-$ct-promo-dark-heading-color: ct-color-dark('heading') !default;
+$ct-promo-dark-content-color: ct-color-dark('body') !default;
+$ct-promo-dark-title-color: ct-color-dark('heading') !default;
 
 //
 // Skip link.
