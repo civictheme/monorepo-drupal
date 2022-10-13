@@ -298,6 +298,7 @@ jobs:
             - *deploy_ssh_fingerprint2
             - *deploy_ssh_fingerprint3
             - *deploy_ssh_fingerprint4
+            - *deploy_ssh_fingerprint5
       - checkout
       - *step_process_codebase
       - run:
