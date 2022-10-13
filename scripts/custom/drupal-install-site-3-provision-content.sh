@@ -33,6 +33,9 @@ $drush php:eval -v "require_once '/app/docroot/themes/contrib/civictheme/theme-s
 echo "  > Enable development module."
 $drush -y pm-enable civictheme_dev
 
+echo "  > Enable migration modules."
+$drush -y pm-enable civictheme_migrate
+
 echo "  > Generate test content."
 GENERATED_CONTENT_CREATE=1 $drush -y pm-enable cs_generated_content
 
